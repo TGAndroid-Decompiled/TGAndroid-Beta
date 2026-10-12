@@ -1,33 +1,33 @@
 package k1;
 public final class m extends ld.j implements sd.p {
-    public final int f14344a;
-    public int f14345b;
-    public Object f14346c;
+    public final int f14345a;
+    public int f14346b;
+    public Object f14347c;
     public final a0 d;
 
     public m(a0 a0Var, jd.c cVar, int i10) {
         super(2, cVar);
-        this.f14344a = i10;
+        this.f14345a = i10;
         this.d = a0Var;
     }
 
     @Override
     public final jd.c create(Object obj, jd.c cVar) {
-        switch (this.f14344a) {
+        switch (this.f14345a) {
             case 0:
                 m mVar = new m(this.d, cVar, 0);
-                mVar.f14346c = obj;
+                mVar.f14347c = obj;
                 return mVar;
             default:
                 m mVar2 = new m(this.d, cVar, 1);
-                mVar2.f14346c = obj;
+                mVar2.f14347c = obj;
                 return mVar2;
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f14344a) {
+        switch (this.f14345a) {
             case 0:
                 return ((m) create((k) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11090a);
             default:

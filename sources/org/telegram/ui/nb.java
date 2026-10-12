@@ -21,15 +21,15 @@ public final class nb extends wb {
         int i14;
         MessageObject messageObject;
         yb ybVar = this.V2;
-        if (ybVar.v != null && ybVar.f44436x != null && (i14 = ybVar.N0) >= 0) {
+        if (ybVar.v != null && ybVar.f44441x != null && (i14 = ybVar.N0) >= 0) {
             if (ybVar.M0 != 0) {
                 int i15 = 0;
                 while (true) {
                     ub ubVar = ybVar.E;
                     if (i15 < ubVar.d) {
-                        if (i15 >= ubVar.f42478f && i15 < ubVar.h) {
-                            ArrayList arrayList = ubVar.f42479n.f44424o0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - ubVar.f42478f)) - 1);
+                        if (i15 >= ubVar.f42480f && i15 < ubVar.h) {
+                            ArrayList arrayList = ubVar.f42481n.f44429o0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - ubVar.f42480f)) - 1);
                         } else {
                             messageObject = null;
                         }
@@ -43,7 +43,7 @@ public final class nb extends wb {
                     }
                 }
             }
-            ybVar.f44436x.i1(i14, ybVar.O0, true);
+            ybVar.f44441x.i1(i14, ybVar.O0, true);
             ybVar.N0 = -1;
             ybVar.M0 = 0L;
         }

@@ -66,7 +66,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && b7.f50137a == null) {
+            if (i12 == 1 && b7.f50145a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -74,12 +74,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    b7.f50137a = Boolean.valueOf(z10);
+                    b7.f50145a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                b7.f50137a = Boolean.valueOf(z10);
+                b7.f50145a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }
@@ -128,7 +128,7 @@ public abstract class c {
 
     public static e9.a1 d(e eVar) {
         e9.f0 u10 = e9.i0.u();
-        e9.k0 k0Var = k2.b.f14406e;
+        e9.k0 k0Var = k2.b.f14407e;
         e9.m0 m0Var = k0Var.f8759b;
         if (m0Var == null) {
             m0Var = k0Var.c();

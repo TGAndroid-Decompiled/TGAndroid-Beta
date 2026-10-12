@@ -14,19 +14,19 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.PhotoViewer;
 public final class mv0 implements org.telegram.ui.Cells.l1 {
-    public final int f28666a;
-    public final org.telegram.ui.ActionBar.c6 f28667b;
-    public final ov0 f28668c;
+    public final int f28655a;
+    public final org.telegram.ui.ActionBar.c6 f28656b;
+    public final ov0 f28657c;
 
     public mv0(ov0 ov0Var, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f28668c = ov0Var;
-        this.f28666a = i10;
-        this.f28667b = c6Var;
+        this.f28657c = ov0Var;
+        this.f28655a = i10;
+        this.f28656b = c6Var;
     }
 
     public static TLRPC.TL_message a(TLRPC.Message message) {
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f19823id = message.f19823id;
+        tL_message.f19824id = message.f19824id;
         tL_message.from_id = message.from_id;
         tL_message.from_boosts_applied = message.from_boosts_applied;
         tL_message.peer_id = message.peer_id;
@@ -165,7 +165,7 @@ public final class mv0 implements org.telegram.ui.Cells.l1 {
     @Override
     public final void U0(int i10, org.telegram.ui.Cells.u1 u1Var) {
         if (i10 == 80) {
-            org.telegram.ui.ActionBar.m2 m2Var = this.f28668c.f29311s.f26972v1;
+            org.telegram.ui.ActionBar.m2 m2Var = this.f28657c.f29314s.f26957v1;
             MessageObject messageObject = u1Var.getMessageObject();
             org.telegram.ui.Cells.t8 t8Var = wh0.O;
             if (m2Var != null && m2Var.getParentActivity() != null) {
@@ -256,7 +256,7 @@ public final class mv0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void j(org.telegram.ui.Cells.u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-        SendMessagesHelper.getInstance(this.f28666a).sendVote(u1Var.getMessageObject(), arrayList, null);
+        SendMessagesHelper.getInstance(this.f28655a).sendVote(u1Var.getMessageObject(), arrayList, null);
     }
 
     @Override
@@ -276,22 +276,22 @@ public final class mv0 implements org.telegram.ui.Cells.l1 {
         TLRPC.Document document2;
         TLRPC.Document document3;
         TLRPC.TL_textWithEntities tL_textWithEntities;
-        hw0 hw0Var = this.f28668c.f29311s;
+        hw0 hw0Var = this.f28657c.f29314s;
         MessageObject messageObject = u1Var.getMessageObject();
         TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
         if (messageMedia != null && messageObject != null && (media instanceof TLRPC.TL_messageMediaPoll)) {
             TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) media;
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
-            org.telegram.ui.ActionBar.c6 c6Var = this.f28667b;
-            int i14 = this.f28666a;
+            org.telegram.ui.ActionBar.c6 c6Var = this.f28656b;
+            int i14 = this.f28655a;
             int i15 = 0;
             if (geoPoint != null) {
-                if (AndroidUtilities.isMapsInstalled(hw0Var.f26972v1)) {
+                if (AndroidUtilities.isMapsInstalled(hw0Var.f26957v1)) {
                     org.telegram.ui.id0 id0Var = new org.telegram.ui.id0(3);
                     id0Var.setResourceProvider(c6Var);
                     TLRPC.TL_message tL_message = new TLRPC.TL_message();
                     tL_message.local_id = -1;
-                    tL_message.peer_id = MessagesController.getInstance(i14).getPeer(hw0Var.f26947j1);
+                    tL_message.peer_id = MessagesController.getInstance(i14).getPeer(hw0Var.f26932j1);
                     TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
                     tL_messageMediaGeo.geo = messageMedia.geo;
                     String str = messageMedia.address;
@@ -306,17 +306,17 @@ public final class mv0 implements org.telegram.ui.Cells.l1 {
                     tL_message.media = tL_messageMediaGeo;
                     id0Var.O0 = false;
                     id0Var.t0(new MessageObject(UserConfig.selectedAccount, tL_message, false, false));
-                    hw0Var.f26972v1.presentFragment(id0Var);
+                    hw0Var.f26957v1.presentFragment(id0Var);
                 }
             } else if (MessageObject.isAnyKindOfStickerOrEmoji(messageMedia.document)) {
-                org.telegram.ui.ut.q().w(hw0Var.f26972v1.getParentActivity());
+                org.telegram.ui.ut.q().w(hw0Var.f26957v1.getParentActivity());
                 org.telegram.ui.ut.q().v(new hv0(this, tL_messageMediaPoll, pollAnswer, u1Var));
                 org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
                 TLRPC.Document document4 = messageMedia.document;
                 if (MessageObject.isAnimatedEmoji(document4)) {
                     i15 = 2;
                 }
-                q6.t(document4, null, "", null, null, i15, false, u1Var.getMessageObject(), this.f28667b, 200);
+                q6.t(document4, null, "", null, null, i15, false, u1Var.getMessageObject(), this.f28656b, 200);
             } else {
                 TLRPC.Message message2 = messageObject.messageOwner;
                 ArrayList<Integer> arrayList = new ArrayList<>();
@@ -386,8 +386,8 @@ public final class mv0 implements org.telegram.ui.Cells.l1 {
                 }
                 if (i11 > -1 && !arrayList2.isEmpty()) {
                     messageObject.pollMediaMapping = arrayList;
-                    PhotoViewer.t1().K2(null, hw0Var.f26972v1, c6Var);
-                    PhotoViewer.t1().b2(arrayList2, i11, hw0Var.f26947j1, 0L, 0L, new lv0(this));
+                    PhotoViewer.t1().K2(null, hw0Var.f26957v1, c6Var);
+                    PhotoViewer.t1().b2(arrayList2, i11, hw0Var.f26932j1, 0L, 0L, new lv0(this));
                 }
             }
         }

@@ -99,7 +99,7 @@ public final class t extends s4.o0 {
                 gm0 gm0Var3 = (gm0) recyclerView.T(view);
                 if (gm0Var3 != null) {
                     int i12 = 0;
-                    if (gm0Var3.f47893f != 5) {
+                    if (gm0Var3.f47901f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
@@ -175,7 +175,7 @@ public final class t extends s4.o0 {
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(f7, f10, width - i10, f10, org.telegram.ui.ActionBar.h6.f20681k0);
+                        canvas.drawLine(f7, f10, width - i10, f10, org.telegram.ui.ActionBar.h6.f20682k0);
                     }
                 }
                 return;

@@ -20,13 +20,13 @@ public final class a implements ff.a {
 
     @Override
     public final int a(b bVar, b bVar2) {
-        if (bVar.d || bVar2.f54596c) {
+        if (bVar.d || bVar2.f54604c) {
             int i10 = bVar2.h;
             if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
                 return 0;
             }
         }
-        if (bVar.f54599g >= 2 && bVar2.f54599g >= 2) {
+        if (bVar.f54607g >= 2 && bVar2.f54607g >= 2) {
             return 2;
         }
         return 1;

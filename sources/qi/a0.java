@@ -3,24 +3,24 @@ package qi;
 import java.io.File;
 import java.io.IOException;
 public final class a0 implements Runnable {
-    public final int f46666a;
-    public final p0 f46667b;
-    public final File f46668c;
+    public final int f46674a;
+    public final p0 f46675b;
+    public final File f46676c;
 
     public a0(p0 p0Var, File file, int i10) {
-        this.f46666a = i10;
-        this.f46667b = p0Var;
-        this.f46668c = file;
+        this.f46674a = i10;
+        this.f46675b = p0Var;
+        this.f46676c = file;
     }
 
     @Override
     public final void run() {
         int i10;
         String name;
-        switch (this.f46666a) {
+        switch (this.f46674a) {
             case 0:
-                p0 p0Var = this.f46667b;
-                File file = this.f46668c;
+                p0 p0Var = this.f46675b;
+                File file = this.f46676c;
                 synchronized (p0Var.h) {
                     i10 = 0;
                     for (int i11 = 0; i11 < p0Var.h.size(); i11++) {
@@ -36,7 +36,7 @@ public final class a0 implements Runnable {
                     }
                     p0Var.h.clear();
                 }
-                l lVar = p0Var.f46863n;
+                l lVar = p0Var.f46871n;
                 StringBuilder l4 = hg.c.l(i10, "temporary file cleanup completed: deleted=", ", retained=");
                 if (file == null) {
                     name = "none";
@@ -47,22 +47,22 @@ public final class a0 implements Runnable {
                 lVar.b(l4.toString());
                 return;
             case 1:
-                this.f46667b.i(this.f46668c);
+                this.f46675b.i(this.f46676c);
                 return;
             default:
-                p0 p0Var2 = this.f46667b;
-                File file3 = this.f46668c;
+                p0 p0Var2 = this.f46675b;
+                File file3 = this.f46676c;
                 s sVar = p0Var2.R;
                 if (sVar != null) {
                     try {
                         sVar.a();
                     } catch (IOException e7) {
-                        p0Var2.f46863n.a("MP4 abort failed", e7);
+                        p0Var2.f46871n.a("MP4 abort failed", e7);
                     }
                 }
-                p0Var2.f46861l.execute(new a0(p0Var2, file3, 0));
-                p0Var2.f46860k.shutdown();
-                p0Var2.f46861l.shutdown();
+                p0Var2.f46869l.execute(new a0(p0Var2, file3, 0));
+                p0Var2.f46868k.shutdown();
+                p0Var2.f46869l.shutdown();
                 return;
         }
     }

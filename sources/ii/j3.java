@@ -38,14 +38,14 @@ public final class j3 implements a5 {
         uVar.f12715g = photo;
         uVar.f12710a = 2;
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f19827w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
+        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f19828w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
             uVar.f12717j = i10;
             uVar.f12718k = i11;
         }
         a aVar = this.f12519b;
         TL_iv.PageBlock O3 = x3.O3(aVar, uVar);
         if (O3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) O3).photo_id = photo.f19826id;
+            ((TL_iv.pageBlockPhoto) O3).photo_id = photo.f19827id;
         }
         x3 x3Var = this.f12520c;
         x3Var.X3.remove(uVar);
@@ -61,7 +61,7 @@ public final class j3 implements a5 {
         a aVar = this.f12519b;
         TL_iv.PageBlock O3 = x3.O3(aVar, uVar);
         if (O3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) O3).video_id = document.f19808id;
+            ((TL_iv.pageBlockVideo) O3).video_id = document.f19809id;
         }
         x3 x3Var = this.f12520c;
         x3Var.X3.remove(uVar);

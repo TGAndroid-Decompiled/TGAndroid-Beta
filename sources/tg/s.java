@@ -4,35 +4,35 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 public final class s implements Runnable {
-    public final int f48615a;
-    public final z f48616b;
+    public final int f48643a;
+    public final a0 f48644b;
 
-    public s(z zVar, int i10) {
-        this.f48615a = i10;
-        this.f48616b = zVar;
+    public s(a0 a0Var, int i10) {
+        this.f48643a = i10;
+        this.f48644b = a0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f48615a;
-        z zVar = this.f48616b;
+        int i10 = this.f48643a;
+        a0 a0Var = this.f48644b;
         switch (i10) {
             case 0:
-                AndroidUtilities.hideKeyboard(zVar.d);
+                AndroidUtilities.hideKeyboard(a0Var.d);
                 return;
             case 1:
-                zVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f48661b0, Boolean.TRUE);
+                a0Var.getClass();
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, a0Var.f48506b0, Boolean.TRUE);
                 return;
             case 2:
-                zVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f48661b0, Boolean.FALSE);
+                a0Var.getClass();
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, a0Var.f48506b0, Boolean.FALSE);
                 return;
             case 3:
-                z.S(zVar);
+                a0.S(a0Var);
                 return;
             default:
-                z.T(zVar);
+                a0.T(a0Var);
                 return;
         }
     }

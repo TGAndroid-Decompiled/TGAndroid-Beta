@@ -16,26 +16,26 @@ import org.telegram.tgnet.TLRPC;
 public final class cz extends vm0 {
     public boolean E;
     public final d00 F;
-    public final xy f25051c;
+    public final xy f25043c;
     public long d;
-    public TLRPC.StickerSet f25052e;
-    public ArrayList f25053f;
+    public TLRPC.StickerSet f25044e;
+    public ArrayList f25045f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f25054n = new ArrayList();
-    public final ArrayList f25055r = new ArrayList();
-    public final ArrayList f25056s = new ArrayList();
+    public final ArrayList f25046n = new ArrayList();
+    public final ArrayList f25047r = new ArrayList();
+    public final ArrayList f25048s = new ArrayList();
     public String v;
-    public String f25057w;
-    public bz f25058x;
-    public boolean f25059y;
+    public String f25049w;
+    public bz f25050x;
+    public boolean f25051y;
 
     public cz(d00 d00Var, Context context) {
         this.F = d00Var;
-        ?? aVar = new nh.a(context, d00Var.f25080c1, new d(this, 11), new ew(this, 1), d00Var.Z1);
-        this.f25051c = aVar;
+        ?? aVar = new nh.a(context, d00Var.f25072c1, new d(this, 11), new ew(this, 1), d00Var.Z1);
+        this.f25043c = aVar;
         aVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
         aVar.setClipToPadding(false);
-        aVar.W2.f26675r = false;
+        aVar.W2.f26679r = false;
         aVar.setNestedScrollingEnabled(false);
         aVar.setDrawSelection(false);
         aVar.setOnTouchListener(new m.d2(this, 1));
@@ -55,12 +55,12 @@ public final class cz extends vm0 {
         if (str3 == null) {
             return;
         }
-        MediaDataController.getInstance(d00Var.f25080c1).searchStickers(true, str2, str3, new ai.f4((Object) czVar, str3, arrayList, (Object) runnable, 9), z10);
+        MediaDataController.getInstance(d00Var.f25072c1).searchStickers(true, str2, str3, new ai.f4((Object) czVar, str3, arrayList, (Object) runnable, 9), z10);
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 0 && i10 != 4) {
             return false;
         }
@@ -77,24 +77,24 @@ public final class cz extends vm0 {
             my myVar = d00Var.R;
             if (adapter != myVar) {
                 pyVar.setAdapter(myVar);
-                this.f25059y = false;
+                this.f25051y = false;
             }
             this.d = 0L;
-            d00Var.f25074b.a(false, true);
+            d00Var.f25066b.a(false, true);
             l();
         } else {
             this.v = str.toLowerCase();
         }
-        bz bzVar = this.f25058x;
+        bz bzVar = this.f25050x;
         if (bzVar != null) {
             AndroidUtilities.cancelRunOnUIThread(bzVar);
         }
         if (!TextUtils.isEmpty(this.v)) {
-            this.f25054n.clear();
+            this.f25046n.clear();
             this.E = false;
             d00Var.V.e(true);
             bz bzVar2 = new bz(this);
-            this.f25058x = bzVar2;
+            this.f25050x = bzVar2;
             if (z10) {
                 j3 = 300;
             }
@@ -105,13 +105,13 @@ public final class cz extends vm0 {
     @Override
     public final int h() {
         if (this.d != 0) {
-            return this.f25053f.size() + 4;
+            return this.f25045f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f25056s;
-        ArrayList arrayList3 = this.f25055r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f25059y) {
+        ArrayList arrayList2 = this.f25048s;
+        ArrayList arrayList3 = this.f25047r;
+        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f25051y) {
             return this.F.getRecentEmoji().size() + 1;
         }
         int i10 = 2;
@@ -137,7 +137,7 @@ public final class cz extends vm0 {
 
     @Override
     public final void l() {
-        this.f25051c.W2.N(false);
+        this.f25043c.W2.N(false);
         super.l();
     }
 
@@ -176,16 +176,16 @@ public final class cz extends vm0 {
                         }
                     } else {
                         ViewGroup.LayoutParams q0Var = new s4.q0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f25051c;
+                        View view2 = this.f25043c;
                         view2.setLayoutParams(q0Var);
                         f0Var = view2;
                     }
                 } else {
-                    f0Var = new org.telegram.ui.Cells.o8(d00Var.getContext(), true, false, d00Var.Z1, d00Var.f25101i2);
+                    f0Var = new org.telegram.ui.Cells.o8(d00Var.getContext(), true, false, d00Var.Z1, d00Var.f25093i2);
                 }
             } else {
                 View view3 = new View(d00Var.getContext());
-                view3.setLayoutParams(new s4.q0(-1, d00Var.f25076b1));
+                view3.setLayoutParams(new s4.q0(-1, d00Var.f25068b1));
                 f0Var = view3;
             }
         } else {

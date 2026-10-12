@@ -23,20 +23,20 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
     public ValueAnimator H;
     public float I;
     public boolean J;
-    public final fc1 f26554a;
-    public final y9 f26555b;
-    public final RadialProgressView f26556c;
+    public final fc1 f26558a;
+    public final y9 f26559b;
+    public final RadialProgressView f26560c;
     public final vh.n d;
-    public final ia0 f26557e;
-    public final ci.d f26558f;
+    public final ia0 f26561e;
+    public final ci.d f26562f;
     public boolean h;
-    public final org.telegram.ui.ActionBar.c6 f26559n;
-    public int f26560r;
-    public final View f26561s;
+    public final org.telegram.ui.ActionBar.c6 f26563n;
+    public int f26564r;
+    public final View f26565s;
     public int v;
-    public final int f26562w;
-    public boolean f26563x;
-    public final org.telegram.ui.Cells.l7 f26564y;
+    public final int f26566w;
+    public boolean f26567x;
+    public final org.telegram.ui.Cells.l7 f26568y;
 
     public gy0(Context context) {
         this(context, null, 1, null);
@@ -58,11 +58,11 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
                 i11 = AndroidUtilities.dp(20.0f);
             }
             float f7 = i12 + i11;
-            RadialProgressView radialProgressView = this.f26556c;
-            fc1 fc1Var = this.f26554a;
+            RadialProgressView radialProgressView = this.f26560c;
+            fc1 fc1Var = this.f26558a;
             if (z10) {
                 ViewPropertyAnimator translationY = fc1Var.animate().translationY(f7);
-                js jsVar = js.f27627f;
+                js jsVar = js.f27634f;
                 translationY.setInterpolator(jsVar).setDuration(250L);
                 if (radialProgressView != null) {
                     radialProgressView.animate().translationY(f7).setInterpolator(jsVar).setDuration(250L);
@@ -81,8 +81,8 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
         Object obj;
         TLRPC.Document document;
         int i10;
-        int i11 = this.f26560r;
-        y9 y9Var = this.f26555b;
+        int i11 = this.f26564r;
+        y9 y9Var = this.f26559b;
         if (i11 != 0) {
             boolean z10 = true;
             if (i11 != 1) {
@@ -90,7 +90,7 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
                 String str = null;
                 document2 = null;
                 document2 = null;
-                int i12 = this.f26562w;
+                int i12 = this.f26566w;
                 if (i11 == 16) {
                     document = MediaDataController.getInstance(i12).getEmojiAnimatedSticker("👍");
                     obj = null;
@@ -99,8 +99,8 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
                     if (stickerSetByName == null) {
                         stickerSetByName = MediaDataController.getInstance(i12).getStickerSetByEmojiOrName("tg_placeholders_android");
                     }
-                    if (stickerSetByName != null && (i10 = this.f26560r) >= 0 && i10 < stickerSetByName.documents.size()) {
-                        document2 = stickerSetByName.documents.get(this.f26560r);
+                    if (stickerSetByName != null && (i10 = this.f26564r) >= 0 && i10 < stickerSetByName.documents.size()) {
+                        document2 = stickerSetByName.documents.get(this.f26564r);
                     }
                     obj = stickerSetByName;
                     document = document2;
@@ -115,7 +115,7 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
                         svgThumb.overrideWidthAndHeight(512, 512);
                     }
                     y9Var.i(ImageLocation.getForDocument(document), str, "tgs", svgThumb, obj);
-                    int i13 = this.f26560r;
+                    int i13 = this.f26564r;
                     if (i13 != 9 && i13 != 0) {
                         y9Var.getImageReceiver().setAutoRepeat(2);
                         return;
@@ -177,10 +177,10 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
             }
         }
         int visibility = getVisibility();
-        y9 y9Var = this.f26555b;
-        RadialProgressView radialProgressView = this.f26556c;
-        fc1 fc1Var = this.f26554a;
-        View view = this.f26561s;
+        y9 y9Var = this.f26559b;
+        RadialProgressView radialProgressView = this.f26560c;
+        fc1 fc1Var = this.f26558a;
+        View view = this.f26565s;
         if (visibility != i10 && i10 == 0) {
             if (this.h) {
                 fc1Var.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
@@ -230,13 +230,13 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
         if (this.h != z10) {
             this.h = z10;
             if (getVisibility() == 0) {
-                RadialProgressView radialProgressView = this.f26556c;
-                View view = this.f26561s;
-                fc1 fc1Var = this.f26554a;
+                RadialProgressView radialProgressView = this.f26560c;
+                View view = this.f26565s;
+                fc1 fc1Var = this.f26558a;
                 if (z11) {
                     if (z10) {
                         fc1Var.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
-                        this.f26564y.run();
+                        this.f26568y.run();
                         return;
                     }
                     fc1Var.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
@@ -246,7 +246,7 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
                     } else {
                         radialProgressView.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f).setDuration(150L).start();
                     }
-                    this.f26555b.getImageReceiver().startAnimation();
+                    this.f26559b.getImageReceiver().startAnimation();
                 } else if (z10) {
                     fc1Var.animate().cancel();
                     fc1Var.setAlpha(0.0f);
@@ -289,31 +289,31 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
         if (getVisibility() == 0) {
             c();
         }
-        NotificationCenter.getInstance(this.f26562w).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f26566w).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f26562w).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f26566w).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         super.onLayout(z10, i10, i11, i12, i13);
-        if ((this.E || this.f26563x) && (i14 = this.F) > 0 && i14 != getMeasuredHeight()) {
+        if ((this.E || this.f26567x) && (i14 = this.F) > 0 && i14 != getMeasuredHeight()) {
             float measuredHeight = (this.F - getMeasuredHeight()) / 2.0f;
-            fc1 fc1Var = this.f26554a;
+            fc1 fc1Var = this.f26558a;
             fc1Var.setTranslationY(fc1Var.getTranslationY() + measuredHeight);
-            if (!this.f26563x) {
-                fc1Var.animate().translationY(0.0f).setInterpolator(js.f27627f).setDuration(250L);
+            if (!this.f26567x) {
+                fc1Var.animate().translationY(0.0f).setInterpolator(js.f27634f).setDuration(250L);
             }
-            RadialProgressView radialProgressView = this.f26556c;
+            RadialProgressView radialProgressView = this.f26560c;
             if (radialProgressView != null) {
                 radialProgressView.setTranslationY(radialProgressView.getTranslationY() + measuredHeight);
-                if (!this.f26563x) {
-                    radialProgressView.animate().translationY(0.0f).setInterpolator(js.f27627f).setDuration(250L);
+                if (!this.f26567x) {
+                    radialProgressView.animate().translationY(0.0f).setInterpolator(js.f27634f).setDuration(250L);
                 }
             }
         }
@@ -325,10 +325,10 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
     }
 
     public void setPreventMoving(boolean z10) {
-        this.f26563x = z10;
+        this.f26567x = z10;
         if (!z10) {
-            this.f26554a.setTranslationY(0.0f);
-            RadialProgressView radialProgressView = this.f26556c;
+            this.f26558a.setTranslationY(0.0f);
+            RadialProgressView radialProgressView = this.f26560c;
             if (radialProgressView != null) {
                 radialProgressView.setTranslationY(0.0f);
             }
@@ -336,8 +336,8 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
     }
 
     public void setStickerType(int i10) {
-        if (this.f26560r != i10) {
-            this.f26560r = i10;
+        if (this.f26564r != i10) {
+            this.f26564r = i10;
             c();
         }
     }
@@ -366,7 +366,7 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
                 charSequence = ((Object) charSequence.subSequence(0, i13)) + "\n" + ((Object) charSequence.subSequence(i13 + 1, charSequence.length()));
             }
         }
-        this.f26557e.setText(charSequence);
+        this.f26561e.setText(charSequence);
     }
 
     @Override
@@ -376,17 +376,17 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
 
     public gy0(Context context, View view, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f26562w = UserConfig.selectedAccount;
-        this.f26564y = new org.telegram.ui.Cells.l7(this, 23);
-        this.G = org.telegram.ui.ActionBar.h6.f20543c7;
-        this.f26559n = c6Var;
-        this.f26561s = view;
-        this.f26560r = i10;
+        this.f26566w = UserConfig.selectedAccount;
+        this.f26568y = new org.telegram.ui.Cells.l7(this, 23);
+        this.G = org.telegram.ui.ActionBar.h6.f20544c7;
+        this.f26563n = c6Var;
+        this.f26565s = view;
+        this.f26564r = i10;
         fc1 fc1Var = new fc1(this, context, 10);
-        this.f26554a = fc1Var;
+        this.f26558a = fc1Var;
         fc1Var.setOrientation(1);
         y9 y9Var = new y9(context);
-        this.f26555b = y9Var;
+        this.f26559b = y9Var;
         y9Var.setOnClickListener(new f90(this, 18));
         vh.n nVar = new vh.n(context);
         this.d = nVar;
@@ -397,8 +397,8 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
         nVar.setTextSize(1, 20.0f);
         nVar.setGravity(17);
         ia0 ia0Var = new ia0(context, null);
-        this.f26557e = ia0Var;
-        int i12 = org.telegram.ui.ActionBar.h6.f20945y6;
+        this.f26561e = ia0Var;
+        int i12 = org.telegram.ui.ActionBar.h6.f20946y6;
         ia0Var.setTag(Integer.valueOf(i12));
         ia0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
         ia0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.J6, c6Var));
@@ -406,7 +406,7 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
         ia0Var.setGravity(17);
         ci.d dVar = new ci.d(context, c6Var, true);
         dVar.setRoundRadius(24);
-        this.f26558f = dVar;
+        this.f26562f = dVar;
         dVar.setVisibility(8);
         fc1Var.addView(y9Var, w7.w5.q(117, 117, 1));
         fc1Var.addView(nVar, w7.w5.t(-2, -2, 1, 0, 12, 0, 0));
@@ -415,7 +415,7 @@ public class gy0 extends FrameLayout implements NotificationCenter.NotificationC
         addView(fc1Var, w7.w5.a(-2.0f, 46.0f, 0.0f, 46.0f, 30.0f, -2, 17));
         if (view == null) {
             RadialProgressView radialProgressView = new RadialProgressView(context, c6Var);
-            this.f26556c = radialProgressView;
+            this.f26560c = radialProgressView;
             radialProgressView.setAlpha(0.0f);
             radialProgressView.setScaleY(0.5f);
             radialProgressView.setScaleX(0.5f);

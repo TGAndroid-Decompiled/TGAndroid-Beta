@@ -16,28 +16,28 @@ import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.js;
 import org.telegram.ui.Components.q6;
 public final class a extends ReplacementSpan {
-    public final Drawable f48492a;
-    public final Drawable f48493b;
-    public boolean f48494c;
+    public final Drawable f48500a;
+    public final Drawable f48501b;
+    public boolean f48502c;
     public boolean d;
-    public final q6 f48495e;
-    public final TextPaint f48496f;
+    public final q6 f48503e;
+    public final TextPaint f48504f;
     public final int h;
 
     public a(u1 u1Var, TextPaint textPaint, int i10) {
-        this.f48496f = textPaint;
+        this.f48504f = textPaint;
         q6 q6Var = new q6(false, false, true);
-        this.f48495e = q6Var;
+        this.f48503e = q6Var;
         q6Var.n(0.3f, 250L, js.h);
         q6Var.setCallback(u1Var);
         q6Var.w(AndroidUtilities.dp(11.5f));
         q6Var.x(AndroidUtilities.bold());
         q6Var.t("", true, true);
-        q6Var.f29712b = 17;
+        q6Var.f29690b = 17;
         Drawable mutate = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
-        this.f48492a = mutate;
+        this.f48500a = mutate;
         Drawable mutate2 = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
-        this.f48493b = mutate2;
+        this.f48501b = mutate2;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
         this.h = i10;
@@ -58,27 +58,27 @@ public final class a extends ReplacementSpan {
         } else {
             i10 = 0;
         }
-        return (int) (this.f48495e.e() + AndroidUtilities.dp(i10 + 16));
+        return (int) (this.f48503e.e() + AndroidUtilities.dp(i10 + 16));
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         int i15;
-        TextPaint textPaint = this.f48496f;
+        TextPaint textPaint = this.f48504f;
         int color = textPaint.getColor();
-        q6 q6Var = this.f48495e;
-        int color2 = q6Var.f29710a.getColor();
-        Drawable drawable = this.f48493b;
-        Drawable drawable2 = this.f48492a;
+        q6 q6Var = this.f48503e;
+        int color2 = q6Var.f29688a.getColor();
+        Drawable drawable = this.f48501b;
+        Drawable drawable2 = this.f48500a;
         if (color != color2) {
             q6Var.u(textPaint.getColor());
-            int color3 = q6Var.f29710a.getColor();
+            int color3 = q6Var.f29688a.getColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(q6Var.f29710a.getColor(), mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(q6Var.f29688a.getColor(), mode));
         }
         canvas.save();
-        if (this.d && !this.f48494c) {
+        if (this.d && !this.f48502c) {
             i15 = AndroidUtilities.dp(8.0f);
         } else {
             i15 = 0;
@@ -92,7 +92,7 @@ public final class a extends ReplacementSpan {
         }
         canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) q6Var.c(), (int) q6Var.f29715e);
+        rect.set(0, 0, (int) q6Var.c(), (int) q6Var.f29693e);
         q6Var.setBounds(rect);
         q6Var.draw(canvas);
         canvas.restore();

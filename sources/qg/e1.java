@@ -36,16 +36,16 @@ public abstract class e1 extends j {
     public d5 J0;
     public d5 K0;
     public d5 L0;
-    public final w5 f46166q0;
-    public final x0 f46167r0;
-    public final ArrayList f46168s0;
-    public final MessageObject.GroupedMessages f46169t0;
-    public boolean f46170u0;
-    public boolean f46171v0;
-    public TextureView f46172w0;
-    public boolean f46173x0;
-    public int f46174y0;
-    public int f46175z0;
+    public final w5 f46174q0;
+    public final x0 f46175r0;
+    public final ArrayList f46176s0;
+    public final MessageObject.GroupedMessages f46177t0;
+    public boolean f46178u0;
+    public boolean f46179v0;
+    public TextureView f46180w0;
+    public boolean f46181x0;
+    public int f46182y0;
+    public int f46183z0;
 
     public e1(Context context, PointF pointF, ArrayList arrayList, la laVar, boolean z10, a7 a7Var) {
         super(context, pointF);
@@ -55,9 +55,9 @@ public abstract class e1 extends j {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f46168s0 = new ArrayList();
-        this.f46174y0 = 1;
-        this.f46175z0 = 1;
+        this.f46176s0 = new ArrayList();
+        this.f46182y0 = 1;
+        this.f46183z0 = 1;
         this.A0 = true;
         this.B0 = h6.I.q();
         this.C0 = new SparseIntArray();
@@ -103,9 +103,9 @@ public abstract class e1 extends j {
                 int i12 = messageObject.currentAccount;
                 MessageObject messageObject2 = new MessageObject(i12, message, messageObject.replyMessageObject, MessagesController.getInstance(i12).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
                 messageObject2.setType();
-                this.f46168s0.add(messageObject2);
+                this.f46176s0.add(messageObject2);
             }
-            tL_messageService.f19823id = message2.f19823id;
+            tL_messageService.f19824id = message2.f19824id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -183,21 +183,21 @@ public abstract class e1 extends j {
             int i122 = messageObject.currentAccount;
             MessageObject messageObject22 = new MessageObject(i122, message, messageObject.replyMessageObject, MessagesController.getInstance(i122).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
             messageObject22.setType();
-            this.f46168s0.add(messageObject22);
+            this.f46176s0.add(messageObject22);
         }
-        this.f46169t0 = null;
-        if (this.f46168s0.size() > 1) {
+        this.f46177t0 = null;
+        if (this.f46176s0.size() > 1) {
             MessageObject.GroupedMessages groupedMessages = new MessageObject.GroupedMessages();
-            this.f46169t0 = groupedMessages;
-            groupedMessages.messages.addAll(this.f46168s0);
-            groupedMessages.groupId = ((MessageObject) this.f46168s0.get(0)).getGroupId();
+            this.f46177t0 = groupedMessages;
+            groupedMessages.messages.addAll(this.f46176s0);
+            groupedMessages.groupId = ((MessageObject) this.f46176s0.get(0)).getGroupId();
             groupedMessages.calculate();
         }
         w5 w5Var = new w5(b6Var, context);
-        this.f46166q0 = w5Var;
+        this.f46174q0 = w5Var;
         addView(w5Var, w7.w5.d(-1.0f, -1));
         x0 x0Var = new x0(b6Var, context, this.D0);
-        this.f46167r0 = x0Var;
+        this.f46175r0 = x0Var;
         x0Var.setAdapter(new a1(b6Var, context, laVar, a7Var, z10));
         b1 b1Var = new b1(b6Var);
         b1Var.O = new c1(b6Var);
@@ -221,7 +221,7 @@ public abstract class e1 extends j {
     }
 
     public org.telegram.ui.Cells.u1 getCell() {
-        x0 x0Var = this.f46167r0;
+        x0 x0Var = this.f46175r0;
         if (x0Var != null) {
             for (int i10 = 0; i10 < x0Var.getChildCount(); i10++) {
                 if (x0Var.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
@@ -262,7 +262,7 @@ public abstract class e1 extends j {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f46171v0) {
+        if (this.f46179v0) {
             s();
         }
     }
@@ -283,11 +283,11 @@ public abstract class e1 extends j {
         float f13 = 2.1474836E9f;
         float f14 = -2.1474836E9f;
         while (true) {
-            x0 x0Var = this.f46167r0;
+            x0 x0Var = this.f46175r0;
             if (i10 < x0Var.getChildCount()) {
                 View childAt = x0Var.getChildAt(i10);
                 boolean z10 = childAt instanceof org.telegram.ui.Cells.u1;
-                w5 w5Var = this.f46166q0;
+                w5 w5Var = this.f46174q0;
                 if (z10) {
                     org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                     if (u1Var.getMessageObject() != null && u1Var.getMessageObject().isRoundVideo() && u1Var.getPhotoImage() != null) {
@@ -297,7 +297,7 @@ public abstract class e1 extends j {
                         y3 = u1Var.getPhotoImage().getImageY2() + u1Var.getY() + w5Var.getY();
                     } else {
                         float x10 = childAt.getX() + w5Var.getX() + u1Var.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
-                        if (this.f46169t0 == null) {
+                        if (this.f46177t0 == null) {
                             x10 += AndroidUtilities.dp(8.0f);
                         }
                         float x11 = ((childAt.getX() + w5Var.getX()) + u1Var.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
@@ -333,7 +333,7 @@ public abstract class e1 extends j {
     }
 
     public final void s() {
-        x0 x0Var = this.f46167r0;
+        x0 x0Var = this.f46175r0;
         x0Var.invalidate();
         for (int i10 = 0; i10 < x0Var.getChildCount(); i10++) {
             x0Var.getChildAt(i10).invalidate();

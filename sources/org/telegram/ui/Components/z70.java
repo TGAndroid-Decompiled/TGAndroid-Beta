@@ -15,11 +15,11 @@ public final class z70 extends gy0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f26555b.getImageReceiver().startAnimation();
+                this.f26559b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f26555b.getImageReceiver().startAnimation();
+                this.f26559b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public abstract class e90 extends org.telegram.ui.ActionBar.e3 {
-    public boolean f25636b;
+    public boolean f25641b;
 
     public e90(Context context, TLRPC.Chat chat) {
         super(context, true);
@@ -28,12 +28,12 @@ public abstract class e90 extends org.telegram.ui.ActionBar.e3 {
         y9Var.e(chat, new j9(chat));
         TextView textView = new TextView(context);
         org.telegram.messenger.am.k(18.0f, 1, textView);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20667j5, null, false, textView, 1);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20668j5, null, false, textView, 1);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.w5.t(-2, -2, 49, 17, 24, 17, 0), context);
         h.setTextSize(1, 14.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20817r5, null, false, h, 1);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20818r5, null, false, h, 1);
         linearLayout.addView(h, w7.w5.t(-2, -2, 49, 30, 8, 30, 0));
-        ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(chat.f19802id, false);
+        ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(chat.f19803id, false);
         if (groupCall != null) {
             if (TextUtils.isEmpty(groupCall.call.title)) {
                 textView.setText(chat.title);
@@ -52,11 +52,11 @@ public abstract class e90 extends org.telegram.ui.ActionBar.e3 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        frameLayout.f25268a = view;
+        frameLayout.f25260a = view;
         view.setBackground(org.telegram.ui.ActionBar.w5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
         frameLayout.addView(view, w7.w5.a(-1.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 0));
         TextView textView2 = new TextView(context);
-        frameLayout.f25269b = textView2;
+        frameLayout.f25261b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -77,7 +77,7 @@ public abstract class e90 extends org.telegram.ui.ActionBar.e3 {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        if (this.f25636b) {
+        if (this.f25641b) {
             o();
         }
     }

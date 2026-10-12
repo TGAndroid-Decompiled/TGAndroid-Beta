@@ -30,7 +30,7 @@ public final class s4 extends fn0 {
         frameLayout.addView((View) imageView, w7.w5.a(160.0f, 17.0f, 14.0f, 17.0f, 0.0f, 160, 49));
         TextView textView = new TextView(context);
         org.telegram.messenger.am.k(24.0f, 1, textView);
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20667j5));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20668j5));
         if (i10 == 0) {
             textView.setText(LocaleController.getString(R.string.ReportTitleSpam));
         } else if (i10 == 6) {
@@ -46,18 +46,18 @@ public final class s4 extends fn0 {
         }
         TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, w7.w5.a(-2.0f, 17.0f, 197.0f, 17.0f, 0.0f, -2, 49), context);
         g10.setTextSize(1, 14.0f);
-        g10.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20817r5));
+        g10.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20818r5));
         g10.setGravity(1);
         g10.setText(LocaleController.getString(R.string.ReportInfo));
         frameLayout.addView(g10, w7.w5.a(-2.0f, 30.0f, 235.0f, 30.0f, 44.0f, -2, 49));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f26146c = editTextBoldCursor;
+        this.f26148c = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setHintTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.H6));
         int i12 = org.telegram.ui.ActionBar.h6.G6;
         editTextBoldCursor.setTextColor(getThemedColor(i12));
         editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setLineColors(getThemedColor(org.telegram.ui.ActionBar.h6.f20687k6), getThemedColor(org.telegram.ui.ActionBar.h6.f20705l6), getThemedColor(org.telegram.ui.ActionBar.h6.f20780p7));
+        editTextBoldCursor.setLineColors(getThemedColor(org.telegram.ui.ActionBar.h6.f20688k6), getThemedColor(org.telegram.ui.ActionBar.h6.f20706l6), getThemedColor(org.telegram.ui.ActionBar.h6.f20781p7));
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setLines(1);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
@@ -92,7 +92,7 @@ public final class s4 extends fn0 {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         frameLayout2.addView(textView2, w7.w5.e(-2, -2, 17));
-        this.f26145b = frameLayout2;
+        this.f26147b = frameLayout2;
         frameLayout2.setBackground(null);
         frameLayout2.setText(LocaleController.getString(R.string.ReportSend));
         w7.y5.a(frameLayout2);

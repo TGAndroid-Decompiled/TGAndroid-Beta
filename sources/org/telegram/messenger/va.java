@@ -4,12 +4,12 @@ import java.util.Comparator;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class va implements Comparator {
-    public final int f19182a;
-    public final MessagesController f19183b;
+    public final int f19183a;
+    public final MessagesController f19184b;
 
     public va(MessagesController messagesController, int i10) {
-        this.f19182a = i10;
-        this.f19183b = messagesController;
+        this.f19183a = i10;
+        this.f19184b = messagesController;
     }
 
     @Override
@@ -21,27 +21,27 @@ public final class va implements Comparator {
         int lambda$new$10;
         int lambda$new$11;
         int lambda$new$12;
-        switch (this.f19182a) {
+        switch (this.f19183a) {
             case 0:
-                lambda$processUpdatesQueue$326 = this.f19183b.lambda$processUpdatesQueue$326((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
+                lambda$processUpdatesQueue$326 = this.f19184b.lambda$processUpdatesQueue$326((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
                 return lambda$processUpdatesQueue$326;
             case 1:
-                lambda$renameSavedReactionTag$487 = this.f19183b.lambda$renameSavedReactionTag$487((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                lambda$renameSavedReactionTag$487 = this.f19184b.lambda$renameSavedReactionTag$487((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
                 return lambda$renameSavedReactionTag$487;
             case 2:
-                lambda$updateSavedReactionTags$486 = this.f19183b.lambda$updateSavedReactionTags$486((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                lambda$updateSavedReactionTags$486 = this.f19184b.lambda$updateSavedReactionTags$486((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
                 return lambda$updateSavedReactionTags$486;
             case 3:
-                lambda$new$9 = this.f19183b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                lambda$new$9 = this.f19184b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
                 return lambda$new$9;
             case 4:
-                lambda$new$10 = this.f19183b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                lambda$new$10 = this.f19184b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
                 return lambda$new$10;
             case 5:
-                lambda$new$11 = this.f19183b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
+                lambda$new$11 = this.f19184b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
                 return lambda$new$11;
             default:
-                lambda$new$12 = this.f19183b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
+                lambda$new$12 = this.f19184b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
                 return lambda$new$12;
         }
     }

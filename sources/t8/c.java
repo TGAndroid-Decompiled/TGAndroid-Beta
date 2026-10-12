@@ -13,17 +13,17 @@ import m.f3;
 import n6.m;
 import sc.v;
 public final class c extends g {
-    public final q8.a f48468b;
-    public final u2 f48469c;
+    public final q8.a f48476b;
+    public final u2 f48477c;
     public final Object d;
-    public boolean f48470e;
+    public boolean f48478e;
 
     public c(u2 u2Var) {
         super(3);
-        this.f48468b = new q8.a();
+        this.f48476b = new q8.a();
         this.d = new Object();
-        this.f48470e = true;
-        this.f48469c = u2Var;
+        this.f48478e = true;
+        this.f48477c = u2Var;
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class c extends g {
         super.U0();
         synchronized (this.d) {
             try {
-                if (!this.f48470e) {
+                if (!this.f48478e) {
                     return;
                 }
-                this.f48469c.l();
-                this.f48470e = false;
+                this.f48477c.l();
+                this.f48478e = false;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -73,8 +73,8 @@ public final class c extends g {
             I = f3Var.I();
         }
         synchronized (this.d) {
-            if (this.f48470e) {
-                u2 u2Var = this.f48469c;
+            if (this.f48478e) {
+                u2 u2Var = this.f48477c;
                 m.h(I);
                 n10 = u2Var.n(I, g3.b(f3Var));
             } else {
@@ -85,14 +85,14 @@ public final class c extends g {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f48462a;
+            int i17 = aVar.f48470a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f48468b.a(i17), aVar);
+            sparseArray.append(this.f48476b.a(i17), aVar);
         }
         return sparseArray;
     }
@@ -100,7 +100,7 @@ public final class c extends g {
     public final void finalize() {
         try {
             synchronized (this.d) {
-                if (this.f48470e) {
+                if (this.f48478e) {
                     Log.w("FaceDetector", "FaceDetector was not released with FaceDetector.release()");
                     U0();
                 }

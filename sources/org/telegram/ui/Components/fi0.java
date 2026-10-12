@@ -35,41 +35,41 @@ public final class fi0 extends FrameLayout {
     public ev T;
     public final gr[] U;
     public final ci0 V;
-    public final org.telegram.ui.vy f26076a;
-    public final int f26077b;
-    public final p71 f26078c;
+    public final org.telegram.ui.vy f26078a;
+    public final int f26079b;
+    public final p71 f26080c;
     public TLRPC.SearchPostsFlood d;
-    public final ArrayList f26079e;
-    public int f26080f;
+    public final ArrayList f26081e;
+    public int f26082f;
     public boolean h;
-    public final ArrayList f26081n;
-    public int f26082r;
-    public boolean f26083s;
+    public final ArrayList f26083n;
+    public int f26084r;
+    public boolean f26085s;
     public boolean v;
-    public String f26084w;
-    public final FrameLayout f26085x;
-    public final org.telegram.ui.ce f26086y;
+    public String f26086w;
+    public final FrameLayout f26087x;
+    public final org.telegram.ui.ce f26088y;
 
     public fi0(Context context, org.telegram.ui.vy vyVar) {
         super(context);
-        this.f26079e = new ArrayList();
-        this.f26081n = new ArrayList();
+        this.f26081e = new ArrayList();
+        this.f26083n = new ArrayList();
         this.K = -1;
         this.L = 0;
         this.O = -1;
         this.U = new gr[1];
         this.V = new ci0(this, 1);
-        this.f26076a = vyVar;
+        this.f26078a = vyVar;
         int currentAccount = vyVar.getCurrentAccount();
-        this.f26077b = currentAccount;
+        this.f26079b = currentAccount;
         p71 p71Var = new p71(context, currentAccount, 0, false, new d(this, 18), new ew(this, 12), null, null);
-        this.f26078c = p71Var;
+        this.f26080c = p71Var;
         p71Var.j(new ii.n3(3, this, vyVar));
         addView(p71Var, w7.w5.e(-1, -1, 119));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f26085x = frameLayout;
+        this.f26087x = frameLayout;
         org.telegram.ui.ce ceVar = new org.telegram.ui.ce(context, 3);
-        this.f26086y = ceVar;
+        this.f26088y = ceVar;
         ceVar.setOrientation(1);
         frameLayout.addView(ceVar, w7.w5.a(-2.0f, 32.0f, 0.0f, 32.0f, 0.0f, -2, 17));
         y9 y9Var = new y9(context);
@@ -115,35 +115,35 @@ public final class fi0 extends FrameLayout {
         long j3;
         TLRPC.SearchPostsFlood searchPostsFlood;
         if (!this.v) {
-            boolean isEmpty = TextUtils.isEmpty(this.f26084w);
+            boolean isEmpty = TextUtils.isEmpty(this.f26086w);
             if (!isEmpty || !this.h) {
-                if (isEmpty || !this.f26083s) {
+                if (isEmpty || !this.f26085s) {
                     if (!isEmpty && this.d == null) {
                         return;
                     }
                     this.v = true;
-                    int i10 = this.f26077b;
+                    int i10 = this.f26079b;
                     MessagesController messagesController = MessagesController.getInstance(i10);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags |= 2;
-                    tL_channels_searchPosts.query = this.f26084w;
+                    tL_channels_searchPosts.query = this.f26086w;
                     tL_channels_searchPosts.limit = 30;
                     if (isEmpty) {
-                        ArrayList arrayList = this.f26079e;
+                        ArrayList arrayList = this.f26081e;
                         if (!arrayList.isEmpty()) {
                             MessageObject messageObject = (MessageObject) hg.c.h(1, arrayList);
-                            tL_channels_searchPosts.offset_rate = this.f26080f;
+                            tL_channels_searchPosts.offset_rate = this.f26082f;
                             tL_channels_searchPosts.offset_id = messageObject.getRealId();
                             tL_channels_searchPosts.offset_peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
                         } else {
                             tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
                         }
                     } else {
-                        ArrayList arrayList2 = this.f26081n;
+                        ArrayList arrayList2 = this.f26083n;
                         if (!arrayList2.isEmpty()) {
                             MessageObject messageObject2 = (MessageObject) hg.c.h(1, arrayList2);
-                            tL_channels_searchPosts.offset_rate = this.f26082r;
+                            tL_channels_searchPosts.offset_rate = this.f26084r;
                             tL_channels_searchPosts.offset_id = messageObject2.getRealId();
                             tL_channels_searchPosts.offset_peer = messagesController.getInputPeer(messageObject2.messageOwner.peer_id);
                         } else {
@@ -159,7 +159,7 @@ public final class fi0 extends FrameLayout {
                     }
                     this.K = connectionsManager.sendRequest(tL_channels_searchPosts, new j7(this, messagesController, isEmpty, tL_channels_searchPosts, z10, j3, connectionsManager), 1024);
                     d();
-                    this.f26078c.W2.N(true);
+                    this.f26080c.W2.N(true);
                 }
             }
         }
@@ -168,13 +168,13 @@ public final class fi0 extends FrameLayout {
     public final void b(String str) {
         boolean z10;
         int i10 = this.O;
-        int i11 = this.f26077b;
+        int i11 = this.f26079b;
         if (i10 >= 0) {
             ConnectionsManager.getInstance(i11).cancelRequest(this.O, true);
             this.O = -1;
         }
         if (!this.M) {
-            if (this.Q && (!this.f26081n.isEmpty() || !this.f26083s)) {
+            if (this.Q && (!this.f26083n.isEmpty() || !this.f26085s)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -191,12 +191,12 @@ public final class fi0 extends FrameLayout {
     }
 
     public final void c() {
-        this.f26085x.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+        this.f26087x.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
         this.F.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        int i10 = org.telegram.ui.ActionBar.h6.f20945y6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20946y6;
         this.I.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         this.G.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        p71 p71Var = this.f26078c;
+        p71 p71Var = this.f26080c;
         p71Var.setAdapter(null);
         p71Var.setAdapter(p71Var.W2);
         if (this.T != null) {
@@ -213,7 +213,7 @@ public final class fi0 extends FrameLayout {
         Object valueOf2;
         ci0 ci0Var = this.V;
         AndroidUtilities.cancelRunOnUIThread(ci0Var);
-        int i10 = this.f26077b;
+        int i10 = this.f26079b;
         int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
         boolean isPremium = UserConfig.getInstance(i10).isPremium();
         TextView textView = this.G;
@@ -229,25 +229,25 @@ public final class fi0 extends FrameLayout {
             dVar.g(LocaleController.getString(R.string.SearchPostsButtonPremium), true, true);
             dVar.f(null, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final fi0 f25371b;
+                public final fi0 f25363b;
 
                 {
-                    this.f25371b = this;
+                    this.f25363b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f25371b.f26076a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            this.f25363b.f26078a.presentFragment(new PremiumPreviewFragment(0, "search"));
                             return;
                         case 1:
-                            fi0 fi0Var = this.f25371b;
+                            fi0 fi0Var = this.f25363b;
                             fi0Var.H.setLoading(true);
                             fi0Var.a(true);
                             return;
                         default:
-                            fi0 fi0Var2 = this.f25371b;
+                            fi0 fi0Var2 = this.f25363b;
                             fi0Var2.H.setLoading(true);
                             fi0Var2.a(false);
                             return;
@@ -258,20 +258,20 @@ public final class fi0 extends FrameLayout {
             textView3.setText(LocaleController.getString(R.string.SearchPostsPremium));
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f26084w);
-        ArrayList arrayList = this.f26081n;
-        if (!isEmpty && arrayList.isEmpty() && this.f26083s) {
+        boolean isEmpty = TextUtils.isEmpty(this.f26086w);
+        ArrayList arrayList = this.f26083n;
+        if (!isEmpty && arrayList.isEmpty() && this.f26085s) {
             if (y9Var.getImageReceiver().getImageDrawable() == null) {
                 y9Var.setImageDrawable(new fk0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             }
             y9Var.setVisibility(0);
             textView2.setText(LocaleController.getString(R.string.SearchPostsNotFound));
-            textView.setText(LocaleController.formatString(R.string.SearchPostsNotFoundText, TextUtils.ellipsize(this.f26084w, textView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)));
+            textView.setText(LocaleController.formatString(R.string.SearchPostsNotFoundText, TextUtils.ellipsize(this.f26086w, textView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)));
             dVar.setVisibility(8);
             textView3.setVisibility(8);
             return;
         }
-        if (!TextUtils.isEmpty(this.f26084w) && (searchPostsFlood = this.d) != null) {
+        if (!TextUtils.isEmpty(this.f26086w) && (searchPostsFlood = this.d) != null) {
             f7 = 100.0f;
             if ((searchPostsFlood.flags & 2) != 0 && currentTime < searchPostsFlood.wait_till) {
                 y9Var.setVisibility(8);
@@ -308,25 +308,25 @@ public final class fi0 extends FrameLayout {
                 dVar.f(LocaleController.formatString(i16, sb2.toString()), true);
                 dVar.f4866e.r(false, true);
                 dVar.setOnClickListener(new View.OnClickListener(this) {
-                    public final fi0 f25371b;
+                    public final fi0 f25363b;
 
                     {
-                        this.f25371b = this;
+                        this.f25363b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                this.f25371b.f26076a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                                this.f25363b.f26078a.presentFragment(new PremiumPreviewFragment(0, "search"));
                                 return;
                             case 1:
-                                fi0 fi0Var = this.f25371b;
+                                fi0 fi0Var = this.f25363b;
                                 fi0Var.H.setLoading(true);
                                 fi0Var.a(true);
                                 return;
                             default:
-                                fi0 fi0Var2 = this.f25371b;
+                                fi0 fi0Var2 = this.f25363b;
                                 fi0Var2.H.setLoading(true);
                                 fi0Var2.a(false);
                                 return;
@@ -340,7 +340,7 @@ public final class fi0 extends FrameLayout {
         } else {
             f7 = 100.0f;
         }
-        if (arrayList.isEmpty() && !this.v && !TextUtils.isEmpty(this.f26084w)) {
+        if (arrayList.isEmpty() && !this.v && !TextUtils.isEmpty(this.f26086w)) {
             y9Var.setVisibility(8);
             textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
             textView.setText(LocaleController.getString(R.string.SearchPostsText));
@@ -357,7 +357,7 @@ public final class fi0 extends FrameLayout {
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.SearchPostsButton));
             spannableStringBuilder.append((CharSequence) " ");
             int length = spannableStringBuilder.length();
-            spannableStringBuilder.append(TextUtils.ellipsize(this.f26084w, dVar.getTextPaint(), AndroidUtilities.dp(f7), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append(TextUtils.ellipsize(this.f26086w, dVar.getTextPaint(), AndroidUtilities.dp(f7), TextUtils.TruncateAt.END));
             spannableStringBuilder.setSpan(this.T, length, spannableStringBuilder.length(), 33);
             spannableStringBuilder.append((CharSequence) " >");
             if (this.S == null) {
@@ -371,25 +371,25 @@ public final class fi0 extends FrameLayout {
             dVar.d.r(false, false);
             dVar.f(null, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final fi0 f25371b;
+                public final fi0 f25363b;
 
                 {
-                    this.f25371b = this;
+                    this.f25363b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f25371b.f26076a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            this.f25363b.f26078a.presentFragment(new PremiumPreviewFragment(0, "search"));
                             return;
                         case 1:
-                            fi0 fi0Var = this.f25371b;
+                            fi0 fi0Var = this.f25363b;
                             fi0Var.H.setLoading(true);
                             fi0Var.a(true);
                             return;
                         default:
-                            fi0 fi0Var2 = this.f25371b;
+                            fi0 fi0Var2 = this.f25363b;
                             fi0Var2.H.setLoading(true);
                             fi0Var2.a(false);
                             return;
@@ -435,7 +435,7 @@ public final class fi0 extends FrameLayout {
         if (!this.P) {
             this.P = true;
             MessagesController.getGlobalMainSettings().edit().putInt("searchpostsnew", MessagesController.getGlobalMainSettings().getInt("searchpostsnew", 0) + 1).apply();
-            yh.n5.y(this.f26077b, false).p();
+            yh.n5.y(this.f26079b, false).p();
         }
     }
 
@@ -448,6 +448,6 @@ public final class fi0 extends FrameLayout {
     }
 
     public void setKeyboardHeight(int i10) {
-        this.f26086y.animate().translationY((-i10) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21181w).start();
+        this.f26088y.animate().translationY((-i10) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21182w).start();
     }
 }

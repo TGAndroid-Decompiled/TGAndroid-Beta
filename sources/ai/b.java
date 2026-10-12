@@ -70,14 +70,14 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 4:
                 b4 b4Var = (b4) obj;
-                b4Var.V5.invalidate();
+                b4Var.X5.invalidate();
                 b4Var.setAnimatedTop(0);
-                b4Var.V5.V2 = true;
+                b4Var.X5.V2 = true;
                 View view = b4Var.G1;
                 if (view != null && view.getVisibility() == 0) {
                     b4Var.G1.setTranslationY(((1.0f - b4Var.getTopViewEnterProgress()) * b4Var.G1.getLayoutParams().height) + b4Var.T1);
                 }
-                b4Var.V5.f962e2 = null;
+                b4Var.X5.f962e2 = null;
                 return;
             case 5:
                 b6 b6Var = (b6) obj;
@@ -208,7 +208,7 @@ public final class b extends AnimatorListenerAdapter {
                 ((kg.e) obj).h.setVisibility(8);
                 return;
             case 25:
-                ((CropAreaView) obj).f23913c0 = null;
+                ((CropAreaView) obj).f23914c0 = null;
                 return;
             case 26:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) obj;
@@ -217,20 +217,20 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) obj;
-                Runnable runnable = i4Var.f38641a0;
+                Runnable runnable = i4Var.f38644a0;
                 if (runnable != null) {
                     runnable.run();
-                    i4Var.f38641a0 = null;
+                    i4Var.f38644a0 = null;
                     return;
                 }
                 return;
             case 28:
                 org.telegram.ui.v3 v3Var2 = (org.telegram.ui.v3) obj;
-                v3Var2.f42659w = 1.0f;
+                v3Var2.f42661w = 1.0f;
                 v3Var2.n();
                 v3Var2.i();
                 v3Var2.h();
-                v3Var2.f42651a.unlock();
+                v3Var2.f42653a.unlock();
                 return;
             case 29:
                 org.telegram.ui.t4 t4Var = (org.telegram.ui.t4) obj;

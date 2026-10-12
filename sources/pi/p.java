@@ -1,20 +1,14 @@
 package pi;
 
 import java.io.File;
-public final class p {
-    public final File f45800a;
-    public final long f45801b;
-    public final byte[] f45802c;
+public interface p {
+    void onBytesAvailable(long j3, File file, long j10, long j11);
 
-    public p(File file, long j3, byte[] bArr) {
-        byte[] bArr2;
-        this.f45800a = file;
-        this.f45801b = j3;
-        if (bArr == null) {
-            bArr2 = null;
-        } else {
-            bArr2 = (byte[]) bArr.clone();
-        }
-        this.f45802c = bArr2;
-    }
+    void onOutputCompleted(long j3, File file, long j10, long j11);
+
+    void onOutputError(long j3, Exception exc);
+
+    void onOutputInvalidated(long j3, o oVar);
+
+    void onOutputStarted(long j3, File file);
 }

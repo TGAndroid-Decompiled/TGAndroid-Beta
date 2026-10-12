@@ -2,12 +2,12 @@ package qi;
 
 import android.os.Handler;
 public final class a implements Runnable {
-    public final int f46664a;
-    public final h f46665b;
+    public final int f46672a;
+    public final h f46673b;
 
     public a(h hVar, int i10) {
-        this.f46664a = i10;
-        this.f46665b = hVar;
+        this.f46672a = i10;
+        this.f46673b = hVar;
     }
 
     @Override
@@ -17,35 +17,35 @@ public final class a implements Runnable {
         Exception runtimeException;
         Exception runtimeException2;
         Exception runtimeException3;
-        switch (this.f46664a) {
+        switch (this.f46672a) {
             case 0:
-                this.f46665b.j();
+                this.f46673b.j();
                 return;
             case 1:
-                h hVar = this.f46665b;
-                Handler handler = hVar.f46732n;
+                h hVar = this.f46673b;
+                Handler handler = hVar.f46740n;
                 if (handler != null) {
                     handler.post(new a(hVar, 2));
                     return;
                 }
                 return;
             case 2:
-                h hVar2 = this.f46665b;
-                if (hVar2.S && hVar2.f46755z != null && (kVar = hVar2.f46749w) != null) {
+                h hVar2 = this.f46673b;
+                if (hVar2.S && hVar2.f46763z != null && (kVar = hVar2.f46757w) != null) {
                     synchronized (kVar) {
-                        z10 = kVar.f46792z;
+                        z10 = kVar.f46800z;
                     }
                     if (!z10) {
                         try {
-                            k kVar2 = hVar2.f46749w;
-                            hVar2.f46751x = kVar2;
-                            Handler handler2 = hVar2.f46732n;
+                            k kVar2 = hVar2.f46757w;
+                            hVar2.f46759x = kVar2;
+                            Handler handler2 = hVar2.f46740n;
                             if (handler2 != null) {
                                 handler2.removeCallbacks(hVar2.N0);
                                 handler2.postDelayed(hVar2.N0, 3000L);
                             }
                             kVar2.q(new c(hVar2, kVar2, 0), new c(hVar2, kVar2, 1));
-                            hVar2.f46725j.b("first camera frame received; audio startup requested: segmentElapsedMs=" + h.m(hVar2.f46719f0));
+                            hVar2.f46733j.b("first camera frame received; audio startup requested: segmentElapsedMs=" + h.m(hVar2.f46727f0));
                             return;
                         } catch (RuntimeException e7) {
                             hVar2.d();
@@ -57,31 +57,31 @@ public final class a implements Runnable {
                 }
                 return;
             case 3:
-                h hVar3 = this.f46665b;
-                k kVar3 = hVar3.f46751x;
-                if (hVar3.S && !hVar3.Y && kVar3 != null && hVar3.f46749w == kVar3) {
-                    hVar3.f46751x = null;
+                h hVar3 = this.f46673b;
+                k kVar3 = hVar3.f46759x;
+                if (hVar3.S && !hVar3.Y && kVar3 != null && hVar3.f46757w == kVar3) {
+                    hVar3.f46759x = null;
                     hVar3.t(new IllegalStateException("Timed out waiting for synchronized audio and video start"));
                     return;
                 }
                 return;
             case 4:
-                this.f46665b.a();
+                this.f46673b.a();
                 return;
             case 5:
-                h hVar4 = this.f46665b;
+                h hVar4 = this.f46673b;
                 hVar4.S = false;
                 hVar4.d();
                 try {
-                    k kVar4 = hVar4.f46749w;
+                    k kVar4 = hVar4.f46757w;
                     if (kVar4 != null) {
                         long m10 = kVar4.m();
                         p pVar = hVar4.v;
                         if (pVar != null && m10 != Long.MAX_VALUE) {
-                            pVar.f46832k = Math.max(0L, m10) * 1000;
-                            Handler handler3 = pVar.f46839o;
+                            pVar.f46840k = Math.max(0L, m10) * 1000;
+                            Handler handler3 = pVar.f46847o;
                             if (handler3 != null) {
-                                handler3.removeCallbacks(pVar.f46842p0);
+                                handler3.removeCallbacks(pVar.f46850p0);
                             }
                         }
                     }
@@ -108,7 +108,7 @@ public final class a implements Runnable {
                     }
                 }
                 try {
-                    k kVar5 = hVar4.f46749w;
+                    k kVar5 = hVar4.f46757w;
                     if (kVar5 != null) {
                         kVar5.r();
                     }
@@ -125,21 +125,21 @@ public final class a implements Runnable {
                             runtimeException.addSuppressed(runtimeException3);
                         }
                     } finally {
-                        hVar4.f46749w = null;
+                        hVar4.f46757w = null;
                         hVar4.Y = false;
                     }
                 }
                 if (runtimeException != null) {
                     hVar4.t(runtimeException);
                 }
-                p0 p0Var = (p0) hVar4.f46727k.f14466b;
-                p0Var.f46859j.post(new f0(p0Var, 2));
+                p0 p0Var = (p0) hVar4.f46735k.f14467b;
+                p0Var.f46867j.post(new f0(p0Var, 2));
                 return;
             case 6:
-                this.f46665b.r();
+                this.f46673b.r();
                 return;
             default:
-                this.f46665b.G();
+                this.f46673b.G();
                 return;
         }
     }

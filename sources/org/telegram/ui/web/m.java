@@ -13,10 +13,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ns0;
 public final class m extends org.telegram.ui.ActionBar.j {
-    public final o f43336a;
+    public final o f43334a;
 
     public m(o oVar) {
-        this.f43336a = oVar;
+        this.f43334a = oVar;
     }
 
     @Override
@@ -24,15 +24,15 @@ public final class m extends org.telegram.ui.ActionBar.j {
         String str;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        o oVar = this.f43336a;
-        HashSet hashSet = oVar.f43358w;
+        o oVar = this.f43334a;
+        HashSet hashSet = oVar.f43363w;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.m2) oVar).actionBar;
             if (kVar.u()) {
                 kVar2 = ((org.telegram.ui.ActionBar.m2) oVar).actionBar;
                 kVar2.t();
                 hashSet.clear();
-                AndroidUtilities.forEachViews((RecyclerView) oVar.f27773a, (Utilities.Callback<View>) new ai.i(22));
+                AndroidUtilities.forEachViews((RecyclerView) oVar.f27776a, (Utilities.Callback<View>) new ai.i(22));
                 return;
             }
             oVar.finishFragment();
@@ -63,7 +63,7 @@ public final class m extends org.telegram.ui.ActionBar.j {
                         break;
                     }
                 }
-                i iVar = oVar.f43353e;
+                i iVar = oVar.f43358e;
                 if (iVar != null && messageObject == null) {
                     ArrayList arrayList3 = iVar.f43283a;
                     int size2 = arrayList3.size();
@@ -87,13 +87,13 @@ public final class m extends org.telegram.ui.ActionBar.j {
                 }
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(oVar.getParentActivity(), 0, oVar.getResourceProvider());
-            alertDialog$Builder.f20141a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
+            alertDialog$Builder.f20142a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
             if (hashSet3.size() == 1) {
                 str = "AreYouSureUnsaveSingleMessage";
             } else {
                 str = "AreYouSureUnsaveFewMessages";
             }
-            alertDialog$Builder.f20141a.T = LocaleController.getString(str);
+            alertDialog$Builder.f20142a.T = LocaleController.getString(str);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ns0(26, oVar, hashSet3));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             alertDialog$Builder.d(-1);

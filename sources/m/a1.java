@@ -21,12 +21,12 @@ import v7.d8;
 import w7.n6;
 import w7.s7;
 public class a1 extends TextView implements u0.k {
-    public final e2.c f15373a;
-    public final w0 f15374b;
-    public final y f15375c;
+    public final e2.c f15374a;
+    public final w0 f15375b;
+    public final y f15376c;
     public t d;
-    public boolean f15376e;
-    public y0 f15377f;
+    public boolean f15377e;
+    public y0 f15378f;
     public Future h;
 
     public a1(Context context, AttributeSet attributeSet) {
@@ -43,11 +43,11 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             cVar.b();
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -55,63 +55,63 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public int getAutoSizeMaxTextSize() {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             return super.getAutoSizeMaxTextSize();
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            return Math.round(w0Var.f15606i.f15443e);
+            return Math.round(w0Var.f15607i.f15444e);
         }
         return -1;
     }
 
     @Override
     public int getAutoSizeMinTextSize() {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             return super.getAutoSizeMinTextSize();
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            return Math.round(w0Var.f15606i.d);
+            return Math.round(w0Var.f15607i.d);
         }
         return -1;
     }
 
     @Override
     public int getAutoSizeStepGranularity() {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             return super.getAutoSizeStepGranularity();
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            return Math.round(w0Var.f15606i.f15442c);
+            return Math.round(w0Var.f15607i.f15443c);
         }
         return -1;
     }
 
     @Override
     public int[] getAutoSizeTextAvailableSizes() {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             return super.getAutoSizeTextAvailableSizes();
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            return w0Var.f15606i.f15444f;
+            return w0Var.f15607i.f15445f;
         }
         return new int[0];
     }
 
     @Override
     public int getAutoSizeTextType() {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             if (super.getAutoSizeTextType() == 1) {
                 return 1;
             }
             return 0;
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            return w0Var.f15606i.f15440a;
+            return w0Var.f15607i.f15441a;
         }
         return 0;
     }
@@ -132,19 +132,19 @@ public class a1 extends TextView implements u0.k {
     }
 
     public x0 getSuperCaller() {
-        if (this.f15377f == null) {
+        if (this.f15378f == null) {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 28) {
-                this.f15377f = new z0(this);
+                this.f15378f = new z0(this);
             } else if (i10 >= 26) {
-                this.f15377f = new y0(this, 0);
+                this.f15378f = new y0(this, 0);
             }
         }
-        return this.f15377f;
+        return this.f15378f;
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -152,7 +152,7 @@ public class a1 extends TextView implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             return cVar.e();
         }
@@ -160,11 +160,11 @@ public class a1 extends TextView implements u0.k {
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f15374b.d();
+        return this.f15375b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f15374b.e();
+        return this.f15375b.e();
     }
 
     @Override
@@ -190,10 +190,10 @@ public class a1 extends TextView implements u0.k {
     @Override
     public TextClassifier getTextClassifier() {
         y yVar;
-        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f15375c) != null) {
-            TextClassifier textClassifier = (TextClassifier) yVar.f15625c;
+        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f15376c) != null) {
+            TextClassifier textClassifier = (TextClassifier) yVar.f15626c;
             if (textClassifier == null) {
-                return q0.a((TextView) yVar.f15624b);
+                return q0.a((TextView) yVar.f15625b);
             }
             return textClassifier;
         }
@@ -207,7 +207,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        this.f15374b.getClass();
+        this.f15375b.getClass();
         w0.h(editorInfo, onCreateInputConnection, this);
         w7.l.a(editorInfo, onCreateInputConnection, this);
         return onCreateInputConnection;
@@ -216,9 +216,9 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        w0 w0Var = this.f15374b;
-        if (w0Var != null && !u3.f15586b) {
-            w0Var.f15606i.a();
+        w0 w0Var = this.f15375b;
+        if (w0Var != null && !u3.f15587b) {
+            w0Var.f15607i.a();
         }
     }
 
@@ -245,10 +245,10 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            h1 h1Var = w0Var.f15606i;
-            if (!u3.f15586b && h1Var.f()) {
+            h1 h1Var = w0Var.f15607i;
+            if (!u3.f15587b && h1Var.f()) {
                 h1Var.a();
             }
         }
@@ -262,11 +262,11 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public final void setAutoSizeTextTypeUniformWithConfiguration(int i10, int i11, int i12, int i13) {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             super.setAutoSizeTextTypeUniformWithConfiguration(i10, i11, i12, i13);
             return;
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.i(i10, i11, i12, i13);
         }
@@ -274,11 +274,11 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public final void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i10) {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i10);
             return;
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.j(iArr, i10);
         }
@@ -286,11 +286,11 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public void setAutoSizeTextTypeWithDefaults(int i10) {
-        if (u3.f15586b) {
+        if (u3.f15587b) {
             super.setAutoSizeTextTypeWithDefaults(i10);
             return;
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.k(i10);
         }
@@ -299,7 +299,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             cVar.g();
         }
@@ -308,7 +308,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             cVar.h(i10);
         }
@@ -317,7 +317,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -326,7 +326,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -335,7 +335,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void setCompoundDrawablesRelativeWithIntrinsicBounds(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -344,7 +344,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void setCompoundDrawablesWithIntrinsicBounds(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -361,7 +361,7 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((n6) getEmojiTextViewHelper().f15577b.f15627b).a(inputFilterArr));
+        super.setFilters(((n6) getEmojiTextViewHelper().f15578b.f15628b).a(inputFilterArr));
     }
 
     @Override
@@ -404,14 +404,14 @@ public class a1 extends TextView implements u0.k {
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f15373a;
+        e2.c cVar = this.f15374a;
         if (cVar != null) {
             cVar.m(mode);
         }
@@ -419,14 +419,14 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         w0Var.l(colorStateList);
         w0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         w0Var.m(mode);
         w0Var.b();
     }
@@ -434,7 +434,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void setTextAppearance(Context context, int i10) {
         super.setTextAppearance(context, i10);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.g(context, i10);
         }
@@ -443,8 +443,8 @@ public class a1 extends TextView implements u0.k {
     @Override
     public void setTextClassifier(TextClassifier textClassifier) {
         y yVar;
-        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f15375c) != null) {
-            yVar.f15625c = textClassifier;
+        if (Build.VERSION.SDK_INT < 28 && (yVar = this.f15376c) != null) {
+            yVar.f15626c = textClassifier;
         } else {
             super.setTextClassifier(textClassifier);
         }
@@ -459,7 +459,7 @@ public class a1 extends TextView implements u0.k {
 
     public void setTextMetricsParamsCompat(p0.c cVar) {
         TextDirectionHeuristic textDirectionHeuristic;
-        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f45033b;
+        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f45041b;
         TextDirectionHeuristic textDirectionHeuristic3 = TextDirectionHeuristics.FIRSTSTRONG_RTL;
         int i10 = 1;
         if (textDirectionHeuristic2 != textDirectionHeuristic3 && textDirectionHeuristic2 != (textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR)) {
@@ -478,21 +478,21 @@ public class a1 extends TextView implements u0.k {
             }
         }
         setTextDirection(i10);
-        getPaint().set(cVar.f45032a);
-        setBreakStrategy(cVar.f45034c);
+        getPaint().set(cVar.f45040a);
+        setBreakStrategy(cVar.f45042c);
         setHyphenationFrequency(cVar.d);
     }
 
     @Override
     public final void setTextSize(int i10, float f7) {
-        boolean z10 = u3.f15586b;
+        boolean z10 = u3.f15587b;
         if (z10) {
             super.setTextSize(i10, f7);
             return;
         }
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
-            h1 h1Var = w0Var.f15606i;
+            h1 h1Var = w0Var.f15607i;
             if (!z10 && !h1Var.f()) {
                 h1Var.g(f7, i10);
             }
@@ -502,7 +502,7 @@ public class a1 extends TextView implements u0.k {
     @Override
     public final void setTypeface(Typeface typeface, int i10) {
         Typeface typeface2;
-        if (this.f15376e) {
+        if (this.f15377e) {
             return;
         }
         if (typeface != null && i10 > 0) {
@@ -516,33 +516,33 @@ public class a1 extends TextView implements u0.k {
         } else {
             typeface2 = null;
         }
-        this.f15376e = true;
+        this.f15377e = true;
         if (typeface2 != null) {
             typeface = typeface2;
         }
         try {
             super.setTypeface(typeface, i10);
         } finally {
-            this.f15376e = false;
+            this.f15377e = false;
         }
     }
 
     public a1(Context context, AttributeSet attributeSet, int i10) {
         super(context, attributeSet, i10);
         c3.a(context);
-        this.f15376e = false;
-        this.f15377f = null;
+        this.f15377e = false;
+        this.f15378f = null;
         b3.a(this, getContext());
         e2.c cVar = new e2.c(this);
-        this.f15373a = cVar;
+        this.f15374a = cVar;
         cVar.f(attributeSet, i10);
         w0 w0Var = new w0(this);
-        this.f15374b = w0Var;
+        this.f15375b = w0Var;
         w0Var.f(attributeSet, i10);
         w0Var.b();
         y yVar = new y();
-        yVar.f15624b = this;
-        this.f15375c = yVar;
+        yVar.f15625b = this;
+        this.f15376c = yVar;
         getEmojiTextViewHelper().a(attributeSet, i10);
     }
 
@@ -550,7 +550,7 @@ public class a1 extends TextView implements u0.k {
     public final void setCompoundDrawablesRelativeWithIntrinsicBounds(int i10, int i11, int i12, int i13) {
         Context context = getContext();
         setCompoundDrawablesRelativeWithIntrinsicBounds(i10 != 0 ? v7.s7.b(context, i10) : null, i11 != 0 ? v7.s7.b(context, i11) : null, i12 != 0 ? v7.s7.b(context, i12) : null, i13 != 0 ? v7.s7.b(context, i13) : null);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -560,7 +560,7 @@ public class a1 extends TextView implements u0.k {
     public final void setCompoundDrawablesWithIntrinsicBounds(int i10, int i11, int i12, int i13) {
         Context context = getContext();
         setCompoundDrawablesWithIntrinsicBounds(i10 != 0 ? v7.s7.b(context, i10) : null, i11 != 0 ? v7.s7.b(context, i11) : null, i12 != 0 ? v7.s7.b(context, i12) : null, i13 != 0 ? v7.s7.b(context, i13) : null);
-        w0 w0Var = this.f15374b;
+        w0 w0Var = this.f15375b;
         if (w0Var != null) {
             w0Var.b();
         }

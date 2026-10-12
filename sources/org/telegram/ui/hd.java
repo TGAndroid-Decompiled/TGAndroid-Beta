@@ -13,20 +13,20 @@ public final class hd implements Runnable {
         switch (this.f38329a) {
             case 0:
                 qd qdVar = this.f38330b;
-                qdVar.f41284j0 = true;
+                qdVar.f41288j0 = true;
                 qdVar.h0();
                 return;
             case 1:
                 qd qdVar2 = this.f38330b;
-                qdVar2.f41301x = null;
-                qdVar2.f41302y = null;
-                qdVar2.f41286l0 = null;
+                qdVar2.f41305x = null;
+                qdVar2.f41306y = null;
+                qdVar2.f41290l0 = null;
                 qdVar2.m0 = null;
-                qdVar2.f41289o0 = null;
-                qdVar2.f41288n0 = null;
-                qdVar2.f41290p0 = 0.0d;
+                qdVar2.f41293o0 = null;
+                qdVar2.f41292n0 = null;
+                qdVar2.f41294p0 = 0.0d;
                 qdVar2.e0(false, true);
-                qdVar2.f41277e.h(null, null, qdVar2.f41294s, null);
+                qdVar2.f41281e.h(null, null, qdVar2.f41298s, null);
                 qdVar2.h.setAnimation(qdVar2.J);
                 qdVar2.J.M(0);
                 return;
@@ -35,9 +35,9 @@ public final class hd implements Runnable {
                 return;
             default:
                 qd qdVar3 = this.f38330b;
-                qdVar3.f41284j0 = true;
-                if (qdVar3.f41299w.length() > 0) {
-                    qdVar3.d0(qdVar3.f41299w.getText().toString());
+                qdVar3.f41288j0 = true;
+                if (qdVar3.f41303w.length() > 0) {
+                    qdVar3.d0(qdVar3.f41303w.getText().toString());
                 }
                 qdVar3.h0();
                 return;

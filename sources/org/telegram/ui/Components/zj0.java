@@ -7,35 +7,35 @@ import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class zj0 extends MetricAffectingSpan implements LineHeightSpan {
-    public ak0 f33392a;
+    public ak0 f33394a;
 
     @Override
     public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
         int i14;
         int i15;
-        ak0 ak0Var = this.f33392a;
-        if (ak0Var.f24419b) {
+        ak0 ak0Var = this.f33394a;
+        if (ak0Var.f24416b) {
             int i16 = 2;
-            if (ak0Var.f24422f) {
+            if (ak0Var.f24419f) {
                 i14 = 7;
             } else {
                 i14 = 2;
             }
-            if (i10 <= ak0Var.f24420c) {
+            if (i10 <= ak0Var.f24417c) {
                 int i17 = fontMetricsInt.ascent;
-                if (ak0Var.f24423n) {
+                if (ak0Var.f24420n) {
                     i15 = 2;
                 } else {
                     i15 = 0;
                 }
                 fontMetricsInt.ascent = i17 - AndroidUtilities.dp(i15 + i14);
                 int i18 = fontMetricsInt.top;
-                if (!this.f33392a.f24423n) {
+                if (!this.f33394a.f24420n) {
                     i16 = 0;
                 }
                 fontMetricsInt.top = i18 - AndroidUtilities.dp(i16 + i14);
             }
-            if (i11 >= this.f33392a.d) {
+            if (i11 >= this.f33394a.d) {
                 float f7 = i14;
                 fontMetricsInt.descent = AndroidUtilities.dp(f7) + fontMetricsInt.descent;
                 fontMetricsInt.bottom = AndroidUtilities.dp(f7) + fontMetricsInt.bottom;
@@ -49,7 +49,7 @@ public final class zj0 extends MetricAffectingSpan implements LineHeightSpan {
         if (textPaint == null) {
             return;
         }
-        if (this.f33392a.f24418a) {
+        if (this.f33394a.f24415a) {
             f7 = 16.0f;
         } else {
             f7 = SharedConfig.fontSize - 2;
@@ -61,13 +61,13 @@ public final class zj0 extends MetricAffectingSpan implements LineHeightSpan {
     public final void updateMeasureState(TextPaint textPaint) {
         float f7;
         float f10;
-        if (this.f33392a.f24418a) {
+        if (this.f33394a.f24415a) {
             f7 = 16.0f;
         } else {
             f7 = SharedConfig.fontSize - 2;
         }
         textPaint.setTextSize(AndroidUtilities.dp(f7));
-        if (this.f33392a.f24418a) {
+        if (this.f33394a.f24415a) {
             f10 = 1.1f;
         } else {
             f10 = 1.0f;

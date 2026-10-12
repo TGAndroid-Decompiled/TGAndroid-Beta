@@ -4,8 +4,8 @@ import com.google.android.gms.internal.play_billing.s0;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class s {
-    public static final HashMap f14916b;
-    public final int[] f14917a;
+    public static final HashMap f14917b;
+    public final int[] f14918a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -33,20 +33,20 @@ public final class s {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f14916b = hashMap;
+        f14917b = hashMap;
     }
 
     public s(String[] strArr) {
-        this.f14917a = new int[strArr.length];
+        this.f14918a = new int[strArr.length];
         for (int i10 = 0; i10 < strArr.length; i10++) {
             int i11 = 0;
             for (String str : strArr[i10].split("\\s+")) {
-                Integer num = (Integer) f14916b.get(str);
+                Integer num = (Integer) f14917b.get(str);
                 if (num != null) {
                     i11 = ((i11 & 255) == 0 ? i11 | (num.intValue() & 255) : i11) | (num.intValue() & (-256));
                 }
             }
-            this.f14917a[i10] = i11;
+            this.f14918a[i10] = i11;
         }
     }
 
@@ -67,7 +67,7 @@ public final class s {
         int[] iArr3 = new int[length];
         int[] iArr4 = new int[length];
         ?? obj = new Object();
-        obj.f14915b = new int[48];
+        obj.f14916b = new int[48];
         int i11 = -1;
         int i12 = 0;
         int i13 = 0;
@@ -94,7 +94,7 @@ public final class s {
                 i10 = iArr2[i18];
             }
             int i19 = iArr[i14 + 2];
-            int[] iArr5 = this.f14917a;
+            int[] iArr5 = this.f14918a;
             int i20 = iArr5[i19];
             int i21 = iArr5[iArr[i14 + 3]];
             int i22 = i21 & 255;
@@ -117,6 +117,6 @@ public final class s {
             i13 = iArr3[i11];
             i11--;
         }
-        return Arrays.copyOf(obj.f14915b, obj.f14914a);
+        return Arrays.copyOf(obj.f14916b, obj.f14915a);
     }
 }

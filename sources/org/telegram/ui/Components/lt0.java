@@ -18,15 +18,15 @@ public final class lt0 extends org.telegram.ui.eo {
         hw0 hw0Var = this.Sc;
         sv0 sv0Var = hw0Var.S;
         if (this.Qc) {
-            if (this.f37302j0 != null) {
+            if (this.f37307j0 != null) {
                 qa("");
-                this.f37302j0.H(sv0Var.f30693w, false);
+                this.f37307j0.H(sv0Var.f30696w, false);
             }
-            org.telegram.ui.dl dlVar = this.f37363o1;
+            org.telegram.ui.dl dlVar = this.f37368o1;
             if (dlVar != null) {
-                dlVar.e(sv0Var.f30694x, false);
+                dlVar.e(sv0Var.f30697x, false);
             }
-            hw0Var.f26972v1.getMediaDataController().portSavedSearchResults(getClassGuid(), sv0Var.f30694x, sv0Var.f30693w, sv0Var.f30690n, sv0Var.h, this.Rc, sv0Var.v, sv0Var.f30692s);
+            hw0Var.f26957v1.getMediaDataController().portSavedSearchResults(getClassGuid(), sv0Var.f30697x, sv0Var.f30696w, sv0Var.f30693n, sv0Var.h, this.Rc, sv0Var.v, sv0Var.f30695s);
             this.Qc = false;
         }
         super.onTransitionAnimationStart(z10, z11);

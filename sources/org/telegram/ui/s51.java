@@ -18,8 +18,8 @@ public final class s51 implements ValueAnimator.AnimatorUpdateListener {
         switch (this.f41812a) {
             case 0:
                 n71 n71Var = this.f41813b;
-                k61 k61Var = n71Var.f40272h0;
-                a61 a61Var = n71Var.f40274i0;
+                k61 k61Var = n71Var.f40275h0;
+                a61 a61Var = n71Var.f40277i0;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (!this.f41814c) {
                     floatValue = 1.0f - floatValue;
@@ -29,7 +29,7 @@ public final class s51 implements ValueAnimator.AnimatorUpdateListener {
                 k61Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
                 a61Var.setAlpha(floatValue);
                 a61Var.setTranslationY(AndroidUtilities.dp(8.0f) * f7);
-                n71Var.f40276j0.setAlpha(a61Var.getAlpha() * floatValue);
+                n71Var.f40279j0.setAlpha(a61Var.getAlpha() * floatValue);
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -37,7 +37,7 @@ public final class s51 implements ValueAnimator.AnimatorUpdateListener {
                     floatValue2 = 1.0f - floatValue2;
                 }
                 n71 n71Var2 = this.f41813b;
-                n71Var2.f40276j0.setAlpha(n71Var2.f40274i0.getAlpha() * floatValue2);
+                n71Var2.f40279j0.setAlpha(n71Var2.f40277i0.getAlpha() * floatValue2);
                 return;
         }
     }

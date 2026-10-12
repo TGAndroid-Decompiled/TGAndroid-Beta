@@ -89,7 +89,7 @@ public final class RecordedAudioTranscriptionController implements NotificationC
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         tL_document.file_reference = new byte[0];
         tL_document.dc_id = Integer.MIN_VALUE;
-        tL_document.f19808id = SharedConfig.getLastLocalId();
+        tL_document.f19809id = SharedConfig.getLastLocalId();
         tL_document.user_id = this.selfDialogId;
         tL_document.date = ConnectionsManager.getInstance(this.account).getCurrentTime();
         if (TextUtils.isEmpty(this.sourceDocument.mime_type)) {
@@ -282,7 +282,7 @@ public final class RecordedAudioTranscriptionController implements NotificationC
                         z10 = false;
                     }
                     if (this.requestTag.equals(str) || z10) {
-                        this.savedMessageId = message.f19823id;
+                        this.savedMessageId = message.f19824id;
                         stopObserving();
                         if (BuildVars.LOGS_ENABLED) {
                             v0.o(this.savedMessageId, new StringBuilder("Recorded audio transcription upload completed: messageId="));

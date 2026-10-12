@@ -29,7 +29,7 @@ public final class q40 extends db {
         org.telegram.ui.n01 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -59,7 +59,7 @@ public final class q40 extends db {
         ci.d dVar = new ci.d(activity, c6Var, true);
         dVar.e();
         dVar.g(LocaleController.formatString(R.string.GuardBotReplaceUseNew, shortName2), false, true);
-        dVar.setOnClickListener(new wt(6, this, gqVar));
+        dVar.setOnClickListener(new xt(6, this, gqVar));
         linearLayout.addView(dVar, w7.w5.k(14.0f, 0.0f, 14.0f, 10.0f, -1, 48));
         ci.d dVar2 = new ci.d(activity, c6Var, true);
         dVar2.e();
@@ -92,7 +92,7 @@ public final class q40 extends db {
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
         this.Y = h71Var;
-        h71Var.f26675r = false;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

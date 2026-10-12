@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class f0 implements View.OnClickListener {
-    public final int f25830a;
-    public final Object f25831b;
+    public final int f25832a;
+    public final Object f25833b;
 
     public f0(Object obj, int i10) {
-        this.f25830a = i10;
-        this.f25831b = obj;
+        this.f25832a = i10;
+        this.f25833b = obj;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class f0 implements View.OnClickListener {
     }
 
     public f0(s80 s80Var, ai.f fVar) {
-        this.f25830a = 27;
-        this.f25831b = s80Var;
+        this.f25832a = 27;
+        this.f25833b = s80Var;
     }
 }

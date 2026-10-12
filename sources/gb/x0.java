@@ -16,12 +16,12 @@ public final class x0 implements db.v {
     public final db.u create(db.g gVar, kb.a aVar) {
         switch (this.f10504a) {
             case 0:
-                if (aVar.f14775a == ((Class) this.f10505b)) {
+                if (aVar.f14776a == ((Class) this.f10505b)) {
                     return this.f10506c;
                 }
                 return null;
             case 1:
-                Class<?> cls = aVar.f14775a;
+                Class<?> cls = aVar.f14776a;
                 if (!((Class) this.f10505b).isAssignableFrom(cls)) {
                     return null;
                 }

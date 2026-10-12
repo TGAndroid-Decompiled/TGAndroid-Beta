@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class b21 extends org.telegram.ui.Components.l91 {
-    public boolean f36035a;
-    public final org.telegram.ui.Components.ct0 f36036b;
+    public boolean f36037a;
+    public final org.telegram.ui.Components.ct0 f36038b;
 
     public b21(org.telegram.ui.Components.ct0 ct0Var) {
-        this.f36036b = ct0Var;
+        this.f36038b = ct0Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        org.telegram.ui.Components.ct0 ct0Var = this.f36036b;
+        org.telegram.ui.Components.ct0 ct0Var = this.f36038b;
         pz0 pz0Var = ct0Var.G;
-        org.telegram.ui.Components.t91 t91Var = ct0Var.f36306n;
+        org.telegram.ui.Components.t91 t91Var = ct0Var.f36308n;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -34,7 +34,7 @@ public final class b21 extends org.telegram.ui.Components.l91 {
             }
         }
         int f7 = f(t91Var.getCurrentPosition());
-        ai.y8 y8Var = ct0Var.f36307r;
+        ai.y8 y8Var = ct0Var.f36309r;
         y8Var.getClass();
         HashMap hashMap = new HashMap();
         ArrayList arrayList3 = y8Var.h;
@@ -73,7 +73,7 @@ public final class b21 extends org.telegram.ui.Components.l91 {
         if (i10 == 0) {
             return false;
         }
-        if (this.f36035a && i10 == e() - 1) {
+        if (this.f36037a && i10 == e() - 1) {
             return false;
         }
         return true;
@@ -84,12 +84,12 @@ public final class b21 extends org.telegram.ui.Components.l91 {
         if (i10 == -1) {
             return null;
         }
-        return new View(this.f36036b.getContext());
+        return new View(this.f36038b.getContext());
     }
 
     @Override
     public final int e() {
-        return this.f36036b.f36307r.h.size() + 1 + (this.f36035a ? 1 : 0);
+        return this.f36038b.f36309r.h.size() + 1 + (this.f36037a ? 1 : 0);
     }
 
     @Override
@@ -97,10 +97,10 @@ public final class b21 extends org.telegram.ui.Components.l91 {
         if (i10 == 0) {
             return 0;
         }
-        if (this.f36035a && i10 == e() - 1) {
+        if (this.f36037a && i10 == e() - 1) {
             return -1;
         }
-        return ((ai.f9) this.f36036b.f36307r.h.get(i10 - 1)).f1031a;
+        return ((ai.f9) this.f36038b.f36309r.h.get(i10 - 1)).f1031a;
     }
 
     @Override
@@ -108,7 +108,7 @@ public final class b21 extends org.telegram.ui.Components.l91 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.StoriesAlbumNameAllStories);
         }
-        if (this.f36035a && i10 == e() - 1) {
+        if (this.f36037a && i10 == e() - 1) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoriesAlbumAddAlbum));
             org.telegram.ui.Components.gr grVar = new org.telegram.ui.Components.gr(R.drawable.poll_add_plus, 0);
@@ -116,12 +116,12 @@ public final class b21 extends org.telegram.ui.Components.l91 {
             spannableStringBuilder.setSpan(grVar, 0, 1, 33);
             return spannableStringBuilder;
         }
-        return ((ai.f9) this.f36036b.f36307r.h.get(i10 - 1)).f1032b;
+        return ((ai.f9) this.f36038b.f36309r.h.get(i10 - 1)).f1032b;
     }
 
     @Override
     public final int h(int i10) {
-        if (this.f36035a && i10 == e() - 1) {
+        if (this.f36037a && i10 == e() - 1) {
             return -1;
         }
         return i10;
@@ -131,7 +131,7 @@ public final class b21 extends org.telegram.ui.Components.l91 {
         if (i10 == 0) {
             return 0;
         }
-        int c10 = this.f36036b.f36307r.c(i10);
+        int c10 = this.f36038b.f36309r.c(i10);
         if (c10 == -1) {
             return -1;
         }

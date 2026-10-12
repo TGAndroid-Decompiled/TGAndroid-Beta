@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class a40 extends FrameLayout {
-    public final org.telegram.ui.h50 f24231a;
+    public final org.telegram.ui.h50 f24232a;
 
     public a40(org.telegram.ui.h50 h50Var, Context context) {
         super(context);
-        this.f24231a = h50Var;
+        this.f24232a = h50Var;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        f40.o(this.f24231a);
+        f40.o(this.f24232a);
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class a40 extends FrameLayout {
         } else {
             z10 = false;
         }
-        org.telegram.ui.h50 h50Var = this.f24231a;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) h50Var.f25884c.getLayoutParams();
+        org.telegram.ui.h50 h50Var = this.f24232a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) h50Var.f25886c.getLayoutParams();
         if (z10) {
             int dp = AndroidUtilities.dp(80.0f);
             marginLayoutParams.leftMargin = dp;
@@ -39,7 +39,7 @@ public final class a40 extends FrameLayout {
             marginLayoutParams.rightMargin = dp2;
         }
         int A = org.telegram.messenger.am.A(200.0f, View.MeasureSpec.getSize(i10), 2);
-        h50Var.f25883b.setPadding(A, 0, A, 0);
+        h50Var.f25885b.setPadding(A, 0, A, 0);
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
         measureChildWithMargins(h50Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
     }

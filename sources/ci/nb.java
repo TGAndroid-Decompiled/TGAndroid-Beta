@@ -32,7 +32,7 @@ public final class nb extends q6 {
         lcVar.f5525v1.N0(false);
         lcVar.f5465c1.clearAnimation();
         ViewPropertyAnimator duration = lcVar.f5465c1.animate().alpha(0.0f).setDuration(180L);
-        js jsVar = js.f27628g;
+        js jsVar = js.f27635g;
         duration.setInterpolator(jsVar).start();
         if (lcVar.f5478g0 != 2) {
             lcVar.Y0.clearAnimation();
@@ -48,12 +48,12 @@ public final class nb extends q6 {
             lcVar.f5505p1.setVisibility(0);
             lcVar.f5505p1.setAlpha(0.0f);
             lcVar.f5505p1.clearAnimation();
-            lcVar.f5505p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(js.f27628g).start();
+            lcVar.f5505p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(js.f27635g).start();
             return;
         }
         lcVar.f5505p1.a(false, z11);
         lcVar.f5505p1.clearAnimation();
-        ViewPropertyAnimator interpolator = lcVar.f5505p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(js.f27628g);
+        ViewPropertyAnimator interpolator = lcVar.f5505p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(js.f27635g);
         if (z11) {
             j3 = 500;
         } else {
@@ -93,7 +93,7 @@ public final class nb extends q6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        js jsVar = js.f27628g;
+        js jsVar = js.f27635g;
         duration.setInterpolator(jsVar).start();
         lcVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = lcVar.Y0.animate();

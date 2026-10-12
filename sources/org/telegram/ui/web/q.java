@@ -6,27 +6,27 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class q implements Utilities.Callback2 {
-    public final int f43375a;
-    public final b1 f43376b;
-    public final ea f43377c;
+    public final int f43380a;
+    public final b1 f43381b;
+    public final ea f43382c;
 
     public q(b1 b1Var, ea eaVar, int i10) {
-        this.f43375a = i10;
-        this.f43376b = b1Var;
-        this.f43377c = eaVar;
+        this.f43380a = i10;
+        this.f43381b = b1Var;
+        this.f43382c = eaVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         g0 g0Var;
         String str;
-        switch (this.f43375a) {
+        switch (this.f43380a) {
             case 0:
                 String str2 = (String) obj2;
                 JSONObject A = b1.A(str2, "status");
-                b1 b1Var = this.f43376b;
-                b1Var.x(this.f43377c, "emoji_status_access_requested", A);
-                if (((Boolean) obj).booleanValue() && "allowed".equalsIgnoreCase(str2) && (g0Var = b1Var.f43183c) != null) {
+                b1 b1Var = this.f43381b;
+                b1Var.x(this.f43382c, "emoji_status_access_requested", A);
+                if (((Boolean) obj).booleanValue() && "allowed".equalsIgnoreCase(str2) && (g0Var = b1Var.f43185c) != null) {
                     g0Var.a();
                     return;
                 }
@@ -34,31 +34,31 @@ public final class q implements Utilities.Callback2 {
             case 1:
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj2;
-                b1 b1Var2 = this.f43376b;
-                if (b1Var2.f43183c != null && bool.booleanValue()) {
-                    b1Var2.f43183c.w(bool2.booleanValue());
+                b1 b1Var2 = this.f43381b;
+                if (b1Var2.f43185c != null && bool.booleanValue()) {
+                    b1Var2.f43185c.w(bool2.booleanValue());
                 }
-                b1Var2.f43194k0.j(new r(b1Var2, this.f43377c, 1));
+                b1Var2.f43196k0.j(new r(b1Var2, this.f43382c, 1));
                 return;
             case 2:
                 String str3 = (String) obj2;
-                b1 b1Var3 = this.f43376b;
+                b1 b1Var3 = this.f43381b;
                 b1Var3.getClass();
                 if (((Boolean) obj).booleanValue()) {
-                    ei.r rVar = b1Var3.f43193j0;
+                    ei.r rVar = b1Var3.f43195j0;
                     rVar.f9316e = true;
                     rVar.k();
                 }
-                b1Var3.v(this.f43377c);
+                b1Var3.v(this.f43382c);
                 return;
             case 3:
-                ea eaVar = this.f43377c;
+                ea eaVar = this.f43382c;
                 Boolean bool3 = (Boolean) obj;
                 String str4 = (String) obj2;
-                b1 b1Var4 = this.f43376b;
+                b1 b1Var4 = this.f43381b;
                 b1Var4.getClass();
                 if (bool3.booleanValue()) {
-                    b1Var4.f43193j0.f9316e = true;
+                    b1Var4.f43195j0.f9316e = true;
                 }
                 try {
                     JSONObject jSONObject = new JSONObject();
@@ -78,11 +78,11 @@ public final class q implements Utilities.Callback2 {
             default:
                 String str5 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                b1 b1Var5 = this.f43376b;
-                ea eaVar2 = this.f43377c;
+                b1 b1Var5 = this.f43381b;
+                ea eaVar2 = this.f43382c;
                 if (str5 == null) {
                     b1Var5.x(eaVar2, "emoji_status_set", null);
-                    g0 g0Var2 = b1Var5.f43183c;
+                    g0 g0Var2 = b1Var5.f43185c;
                     if (g0Var2 != null) {
                         g0Var2.d(document);
                         return;

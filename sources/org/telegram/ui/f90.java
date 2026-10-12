@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import java.util.regex.Pattern;
 public final class f90 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37680a;
-    public final LaunchActivity f37681b;
+    public final int f37684a;
+    public final LaunchActivity f37685b;
 
     public f90(LaunchActivity launchActivity, int i10) {
-        this.f37680a = i10;
-        this.f37681b = launchActivity;
+        this.f37684a = i10;
+        this.f37685b = launchActivity;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f37680a;
-        LaunchActivity launchActivity = this.f37681b;
+        int i10 = this.f37684a;
+        LaunchActivity launchActivity = this.f37685b;
         switch (i10) {
             case 0:
-                launchActivity.f33656w0.invalidate();
+                launchActivity.f33658w0.invalidate();
                 return;
             default:
                 Pattern pattern = LaunchActivity.B1;

@@ -66,10 +66,10 @@ import r4.c;
 import x3.g;
 import y2.n;
 public final class a implements bg.a, q, cg.a, d, o, yi, n, m, q9.d, sg, l1, t0, c, Continuation, u5.a, s0, g, y6.d, m71 {
-    public final int f16853a;
+    public final int f16854a;
 
     public a(int i10) {
-        this.f16853a = i10;
+        this.f16854a = i10;
     }
 
     public static byte[] I2(i0 i0Var, long j3) {
@@ -311,7 +311,7 @@ public final class a implements bg.a, q, cg.a, d, o, yi, n, m, q9.d, sg, l1, t0,
 
     @Override
     public boolean f() {
-        switch (this.f16853a) {
+        switch (this.f16854a) {
             case 17:
                 return true;
             default:
@@ -391,7 +391,7 @@ public final class a implements bg.a, q, cg.a, d, o, yi, n, m, q9.d, sg, l1, t0,
 
     @Override
     public l m0(j jVar, s sVar) {
-        return l.f16269u;
+        return l.f16270u;
     }
 
     @Override
@@ -557,7 +557,7 @@ public final class a implements bg.a, q, cg.a, d, o, yi, n, m, q9.d, sg, l1, t0,
 
     @Override
     public Object w2() {
-        switch (this.f16853a) {
+        switch (this.f16854a) {
             case 8:
                 return new LinkedHashSet();
             default:
@@ -572,7 +572,7 @@ public final class a implements bg.a, q, cg.a, d, o, yi, n, m, q9.d, sg, l1, t0,
 
     @Override
     public Object x0(u5 u5Var) {
-        switch (this.f16853a) {
+        switch (this.f16854a) {
             case 14:
                 qb.g gVar = (qb.g) u5Var.a(qb.g.class);
                 return new rb.a(0, false);

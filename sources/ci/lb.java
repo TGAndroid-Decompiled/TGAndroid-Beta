@@ -12,6 +12,14 @@ public final class lb implements pc {
     }
 
     @Override
+    public final void R() {
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
     public final void A(float f7) {
     }
 
@@ -36,10 +44,6 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void R() {
-    }
-
-    @Override
     public final void W(float f7) {
     }
 
@@ -57,10 +61,6 @@ public final class lb implements pc {
 
     @Override
     public final void g(float f7) {
-    }
-
-    @Override
-    public final void p() {
     }
 
     @Override

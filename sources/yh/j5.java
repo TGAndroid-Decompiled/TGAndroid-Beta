@@ -12,47 +12,47 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.zc;
 public final class j5 {
-    public final org.telegram.ui.ActionBar.m2 f52955a;
-    public final long f52956b;
-    public final sc f52957c;
+    public final org.telegram.ui.ActionBar.m2 f52967a;
+    public final long f52968b;
+    public final sc f52969c;
     public final mc d;
-    public final qc f52958e;
-    public final lc f52959f;
-    public int f52960g;
+    public final qc f52970e;
+    public final lc f52971f;
+    public int f52972g;
     public long h;
-    public ai.j3 f52961i;
-    public final ArrayList f52962j = new ArrayList();
-    public final HashSet f52963k = new HashSet();
-    public final long f52964l = System.currentTimeMillis();
-    public boolean f52965m = true;
-    public boolean f52966n;
-    public boolean f52967o;
-    public final i5 f52968p;
+    public ai.j3 f52973i;
+    public final ArrayList f52974j = new ArrayList();
+    public final HashSet f52975k = new HashSet();
+    public final long f52976l = System.currentTimeMillis();
+    public boolean f52977m = true;
+    public boolean f52978n;
+    public boolean f52979o;
+    public final i5 f52980p;
 
     public j5(org.telegram.ui.ActionBar.m2 m2Var, long j3) {
         ?? r22 = new Runnable(this) {
-            public final j5 f52916b;
+            public final j5 f52928b;
 
             {
-                this.f52916b = this;
+                this.f52928b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f52916b.a();
+                        this.f52928b.a();
                         return;
                     default:
-                        j5 j5Var = this.f52916b;
-                        if (!j5Var.f52966n && !j5Var.f52967o && j5Var.f52965m) {
-                            j5Var.f52966n = true;
-                            ai.j3 j3Var = j5Var.f52961i;
+                        j5 j5Var = this.f52928b;
+                        if (!j5Var.f52978n && !j5Var.f52979o && j5Var.f52977m) {
+                            j5Var.f52978n = true;
+                            ai.j3 j3Var = j5Var.f52973i;
                             if (j3Var != null) {
-                                j3Var.run(j5Var.f52963k);
+                                j3Var.run(j5Var.f52975k);
                             }
-                            if (j5Var.f52958e != null) {
-                                j5Var.f52957c.b();
+                            if (j5Var.f52970e != null) {
+                                j5Var.f52969c.b();
                                 return;
                             }
                             return;
@@ -61,43 +61,43 @@ public final class j5 {
                 }
             }
         };
-        this.f52968p = r22;
-        this.f52955a = m2Var;
-        this.f52956b = j3;
+        this.f52980p = r22;
+        this.f52967a = m2Var;
+        this.f52968b = j3;
         Context t10 = n5.t(m2Var);
         mc mcVar = new mc(t10, m2Var.getResourceProvider());
         this.d = mcVar;
         mcVar.c(R.raw.stars_topup, new String[0]);
         lc lcVar = new lc(t10, m2Var.getResourceProvider());
-        this.f52959f = lcVar;
-        lcVar.f28153b = 3000L;
+        this.f52971f = lcVar;
+        lcVar.f28138b = 3000L;
         lcVar.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gi, m2Var.getResourceProvider()));
         qc qcVar = new qc(t10, m2Var.getResourceProvider(), true, false);
-        this.f52958e = qcVar;
+        this.f52970e = qcVar;
         qcVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        qcVar.f29816a = new Runnable(this) {
-            public final j5 f52916b;
+        qcVar.f29794a = new Runnable(this) {
+            public final j5 f52928b;
 
             {
-                this.f52916b = this;
+                this.f52928b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f52916b.a();
+                        this.f52928b.a();
                         return;
                     default:
-                        j5 j5Var = this.f52916b;
-                        if (!j5Var.f52966n && !j5Var.f52967o && j5Var.f52965m) {
-                            j5Var.f52966n = true;
-                            ai.j3 j3Var = j5Var.f52961i;
+                        j5 j5Var = this.f52928b;
+                        if (!j5Var.f52978n && !j5Var.f52979o && j5Var.f52977m) {
+                            j5Var.f52978n = true;
+                            ai.j3 j3Var = j5Var.f52973i;
                             if (j3Var != null) {
-                                j3Var.run(j5Var.f52963k);
+                                j3Var.run(j5Var.f52975k);
                             }
-                            if (j5Var.f52958e != null) {
-                                j5Var.f52957c.b();
+                            if (j5Var.f52970e != null) {
+                                j5Var.f52969c.b();
                                 return;
                             }
                             return;
@@ -110,32 +110,32 @@ public final class j5 {
         qcVar.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
         mcVar.setButton(qcVar);
         sc b10 = zc.a0(m2Var).b(mcVar, -1);
-        this.f52957c = b10;
-        b10.f30548r = false;
+        this.f52969c = b10;
+        b10.f30544r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
-            public final j5 f52916b;
+            public final j5 f52928b;
 
             {
-                this.f52916b = this;
+                this.f52928b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f52916b.a();
+                        this.f52928b.a();
                         return;
                     default:
-                        j5 j5Var = this.f52916b;
-                        if (!j5Var.f52966n && !j5Var.f52967o && j5Var.f52965m) {
-                            j5Var.f52966n = true;
-                            ai.j3 j3Var = j5Var.f52961i;
+                        j5 j5Var = this.f52928b;
+                        if (!j5Var.f52978n && !j5Var.f52979o && j5Var.f52977m) {
+                            j5Var.f52978n = true;
+                            ai.j3 j3Var = j5Var.f52973i;
                             if (j3Var != null) {
-                                j3Var.run(j5Var.f52963k);
+                                j3Var.run(j5Var.f52975k);
                             }
-                            if (j5Var.f52958e != null) {
-                                j5Var.f52957c.b();
+                            if (j5Var.f52970e != null) {
+                                j5Var.f52969c.b();
                                 return;
                             }
                             return;
@@ -149,9 +149,9 @@ public final class j5 {
     }
 
     public final void a() {
-        if (!this.f52966n && !this.f52967o) {
-            this.f52967o = true;
-            ArrayList arrayList = this.f52962j;
+        if (!this.f52978n && !this.f52979o) {
+            this.f52979o = true;
+            ArrayList arrayList = this.f52974j;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -159,8 +159,8 @@ public final class j5 {
                 i10++;
                 ((Runnable) obj).run();
             }
-            if (this.f52958e != null) {
-                this.f52957c.b();
+            if (this.f52970e != null) {
+                this.f52969c.b();
             }
         }
     }

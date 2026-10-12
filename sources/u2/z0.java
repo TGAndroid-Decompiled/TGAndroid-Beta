@@ -11,45 +11,45 @@ public class z0 implements c3.h0 {
     public boolean E;
     public long F;
     public boolean G;
-    public final sp0 f48971a;
+    public final sp0 f48979a;
     public final n2.m d;
-    public final n2.j f48974e;
-    public Object f48975f;
-    public b2.s f48976g;
+    public final n2.j f48982e;
+    public Object f48983f;
+    public b2.s f48984g;
     public n2.g h;
-    public int f48984p;
-    public int f48985q;
-    public int f48986r;
-    public int f48987s;
-    public boolean f48990w;
-    public boolean f48993z;
-    public final ii.b0 f48972b = new Object();
-    public int f48977i = 1000;
-    public long[] f48978j = new long[1000];
-    public long[] f48979k = new long[1000];
-    public long[] f48982n = new long[1000];
-    public int[] f48981m = new int[1000];
-    public int[] f48980l = new int[1000];
-    public c3.g0[] f48983o = new c3.g0[1000];
-    public final a5.a f48973c = new a5.a(new s0.b(18));
-    public long f48988t = Long.MIN_VALUE;
-    public long f48989u = Long.MIN_VALUE;
+    public int f48992p;
+    public int f48993q;
+    public int f48994r;
+    public int f48995s;
+    public boolean f48998w;
+    public boolean f49001z;
+    public final ii.b0 f48980b = new Object();
+    public int f48985i = 1000;
+    public long[] f48986j = new long[1000];
+    public long[] f48987k = new long[1000];
+    public long[] f48990n = new long[1000];
+    public int[] f48989m = new int[1000];
+    public int[] f48988l = new int[1000];
+    public c3.g0[] f48991o = new c3.g0[1000];
+    public final a5.a f48981c = new a5.a(new s0.b(18));
+    public long f48996t = Long.MIN_VALUE;
+    public long f48997u = Long.MIN_VALUE;
     public long v = Long.MIN_VALUE;
-    public boolean f48992y = true;
-    public boolean f48991x = true;
+    public boolean f49000y = true;
+    public boolean f48999x = true;
     public boolean D = true;
 
     public z0(y2.d dVar, n2.m mVar, n2.j jVar) {
         this.d = mVar;
-        this.f48974e = jVar;
-        this.f48971a = new sp0(dVar);
+        this.f48982e = jVar;
+        this.f48979a = new sp0(dVar);
     }
 
     public final void A(b2.s sVar, n4.y yVar) {
         boolean z10;
         b2.o oVar;
         b2.s sVar2;
-        b2.s sVar3 = this.f48976g;
+        b2.s sVar3 = this.f48984g;
         if (sVar3 == null) {
             z10 = true;
         } else {
@@ -60,7 +60,7 @@ public class z0 implements c3.h0 {
         } else {
             oVar = sVar3.v;
         }
-        this.f48976g = sVar;
+        this.f48984g = sVar;
         b2.o oVar2 = sVar.v;
         n2.m mVar = this.d;
         if (mVar != null) {
@@ -71,15 +71,15 @@ public class z0 implements c3.h0 {
         } else {
             sVar2 = sVar;
         }
-        yVar.f16363c = sVar2;
-        yVar.f16362b = this.h;
+        yVar.f16364c = sVar2;
+        yVar.f16363b = this.h;
         if (mVar != null) {
             if (z10 || !Objects.equals(oVar, oVar2)) {
                 n2.g gVar = this.h;
-                n2.j jVar = this.f48974e;
+                n2.j jVar = this.f48982e;
                 n2.g d12 = mVar.d1(jVar, sVar);
                 this.h = d12;
-                yVar.f16362b = d12;
+                yVar.f16363b = d12;
                 if (gVar != null) {
                     gVar.a(jVar);
                 }
@@ -91,14 +91,14 @@ public class z0 implements c3.h0 {
         boolean z10;
         long j3;
         try {
-            int u10 = u(this.f48987s);
-            if (this.f48987s != this.f48984p) {
+            int u10 = u(this.f48995s);
+            if (this.f48995s != this.f48992p) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                j3 = this.f48978j[u10];
+                j3 = this.f48986j[u10];
             } else {
                 j3 = this.C;
             }
@@ -118,20 +118,20 @@ public class z0 implements c3.h0 {
         } else {
             z11 = false;
         }
-        ii.b0 b0Var = this.f48972b;
+        ii.b0 b0Var = this.f48980b;
         synchronized (this) {
             try {
                 hVar.d = false;
-                if (this.f48987s != this.f48984p) {
+                if (this.f48995s != this.f48992p) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 i11 = -3;
                 if (!z12) {
-                    if (!z10 && !this.f48990w) {
+                    if (!z10 && !this.f48998w) {
                         b2.s sVar = this.B;
-                        if (sVar == null || (!z11 && sVar == this.f48976g)) {
+                        if (sVar == null || (!z11 && sVar == this.f48984g)) {
                         }
                         A(sVar, yVar);
                         i11 = -5;
@@ -140,20 +140,20 @@ public class z0 implements c3.h0 {
                     hVar.f10984e = Long.MIN_VALUE;
                     i11 = -4;
                 } else {
-                    b2.s sVar2 = ((x0) this.f48973c.n(t())).f48966a;
-                    if (!z11 && sVar2 == this.f48976g) {
-                        int u10 = u(this.f48987s);
+                    b2.s sVar2 = ((x0) this.f48981c.n(t())).f48974a;
+                    if (!z11 && sVar2 == this.f48984g) {
+                        int u10 = u(this.f48995s);
                         if (!y(u10)) {
                             hVar.d = true;
                         } else {
-                            hVar.setFlags(this.f48981m[u10]);
-                            if (this.f48987s == this.f48984p - 1 && (z10 || this.f48990w)) {
+                            hVar.setFlags(this.f48989m[u10]);
+                            if (this.f48995s == this.f48992p - 1 && (z10 || this.f48998w)) {
                                 hVar.addFlag(536870912);
                             }
-                            hVar.f10984e = this.f48982n[u10];
-                            b0Var.f12278a = this.f48980l[u10];
-                            b0Var.f12279b = this.f48979k[u10];
-                            b0Var.f12280c = this.f48983o[u10];
+                            hVar.f10984e = this.f48990n[u10];
+                            b0Var.f12278a = this.f48988l[u10];
+                            b0Var.f12279b = this.f48987k[u10];
+                            b0Var.f12280c = this.f48991o[u10];
                             i11 = -4;
                         }
                     }
@@ -170,15 +170,15 @@ public class z0 implements c3.h0 {
             }
             if ((i10 & 4) == 0) {
                 if (z13) {
-                    sp0 sp0Var = this.f48971a;
-                    sp0.f((w0) sp0Var.f30611f, hVar, this.f48972b, (e2.v) sp0Var.d);
+                    sp0 sp0Var = this.f48979a;
+                    sp0.f((w0) sp0Var.f30613f, hVar, this.f48980b, (e2.v) sp0Var.d);
                 } else {
-                    sp0 sp0Var2 = this.f48971a;
-                    sp0Var2.f30611f = sp0.f((w0) sp0Var2.f30611f, hVar, this.f48972b, (e2.v) sp0Var2.d);
+                    sp0 sp0Var2 = this.f48979a;
+                    sp0Var2.f30613f = sp0.f((w0) sp0Var2.f30613f, hVar, this.f48980b, (e2.v) sp0Var2.d);
                 }
             }
             if (!z13) {
-                this.f48987s++;
+                this.f48995s++;
             }
         }
         return i11;
@@ -186,33 +186,33 @@ public class z0 implements c3.h0 {
 
     public final void D(boolean z10) {
         boolean z11;
-        sp0 sp0Var = this.f48971a;
-        sp0Var.a((w0) sp0Var.f30610e);
-        w0 w0Var = (w0) sp0Var.f30610e;
-        int i10 = sp0Var.f30607a;
-        if (((y2.a) w0Var.f48960c) == null) {
+        sp0 sp0Var = this.f48979a;
+        sp0Var.a((w0) sp0Var.f30612e);
+        w0 w0Var = (w0) sp0Var.f30612e;
+        int i10 = sp0Var.f30609a;
+        if (((y2.a) w0Var.f48968c) == null) {
             z11 = true;
         } else {
             z11 = false;
         }
         e2.d.g(z11);
-        w0Var.f48958a = 0L;
-        w0Var.f48959b = i10;
-        w0 w0Var2 = (w0) sp0Var.f30610e;
-        sp0Var.f30611f = w0Var2;
-        sp0Var.f30612g = w0Var2;
-        sp0Var.f30608b = 0L;
-        ((y2.d) sp0Var.f30609c).b();
-        this.f48984p = 0;
-        this.f48985q = 0;
-        this.f48986r = 0;
-        this.f48987s = 0;
-        this.f48991x = true;
-        this.f48988t = Long.MIN_VALUE;
-        this.f48989u = Long.MIN_VALUE;
+        w0Var.f48966a = 0L;
+        w0Var.f48967b = i10;
+        w0 w0Var2 = (w0) sp0Var.f30612e;
+        sp0Var.f30613f = w0Var2;
+        sp0Var.f30614g = w0Var2;
+        sp0Var.f30610b = 0L;
+        ((y2.d) sp0Var.f30611c).b();
+        this.f48992p = 0;
+        this.f48993q = 0;
+        this.f48994r = 0;
+        this.f48995s = 0;
+        this.f48999x = true;
+        this.f48996t = Long.MIN_VALUE;
+        this.f48997u = Long.MIN_VALUE;
         this.v = Long.MIN_VALUE;
-        this.f48990w = false;
-        a5.a aVar = this.f48973c;
+        this.f48998w = false;
+        a5.a aVar = this.f48981c;
         SparseArray sparseArray = (SparseArray) aVar.f300c;
         for (int i11 = 0; i11 < sparseArray.size(); i11++) {
             ((s0.b) aVar.d).accept(sparseArray.valueAt(i11));
@@ -222,23 +222,23 @@ public class z0 implements c3.h0 {
         if (z10) {
             this.A = null;
             this.B = null;
-            this.f48992y = true;
+            this.f49000y = true;
             this.D = true;
         }
     }
 
     public final synchronized void E() {
-        this.f48987s = 0;
-        sp0 sp0Var = this.f48971a;
-        sp0Var.f30611f = (w0) sp0Var.f30610e;
+        this.f48995s = 0;
+        sp0 sp0Var = this.f48979a;
+        sp0Var.f30613f = (w0) sp0Var.f30612e;
     }
 
     public final synchronized boolean F(int i10) {
         E();
-        int i11 = this.f48985q;
-        if (i10 >= i11 && i10 <= this.f48984p + i11) {
-            this.f48988t = Long.MIN_VALUE;
-            this.f48987s = i10 - i11;
+        int i11 = this.f48993q;
+        if (i10 >= i11 && i10 <= this.f48992p + i11) {
+            this.f48996t = Long.MIN_VALUE;
+            this.f48995s = i10 - i11;
             return true;
         }
         return false;
@@ -253,15 +253,15 @@ public class z0 implements c3.h0 {
         try {
             try {
                 E();
-                int u10 = u(this.f48987s);
-                int i10 = this.f48987s;
-                int i11 = this.f48984p;
+                int u10 = u(this.f48995s);
+                int i10 = this.f48995s;
+                int i11 = this.f48992p;
                 if (i10 != i11) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!z11 || j3 < this.f48982n[u10] || (j3 > this.v && !z10)) {
+                if (!z11 || j3 < this.f48990n[u10] || (j3 > this.v && !z10)) {
                     return false;
                 }
                 if (this.D) {
@@ -270,12 +270,12 @@ public class z0 implements c3.h0 {
                     while (true) {
                         if (i13 < i12) {
                             try {
-                                if (this.f48982n[u10] >= j3) {
+                                if (this.f48990n[u10] >= j3) {
                                     i12 = i13;
                                     break;
                                 }
                                 u10++;
-                                if (u10 == this.f48977i) {
+                                if (u10 == this.f48985i) {
                                     u10 = 0;
                                 }
                                 i13++;
@@ -299,8 +299,8 @@ public class z0 implements c3.h0 {
                 if (o9 == -1) {
                     return false;
                 }
-                z0Var.f48988t = j10;
-                z0Var.f48987s += o9;
+                z0Var.f48996t = j10;
+                z0Var.f48995s += o9;
                 return true;
             } catch (Throwable th4) {
                 th = th4;
@@ -318,10 +318,10 @@ public class z0 implements c3.h0 {
         boolean z10;
         if (i10 >= 0) {
             try {
-                if (this.f48987s + i10 <= this.f48984p) {
+                if (this.f48995s + i10 <= this.f48992p) {
                     z10 = true;
                     e2.d.b(z10);
-                    this.f48987s += i10;
+                    this.f48995s += i10;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -329,7 +329,7 @@ public class z0 implements c3.h0 {
         }
         z10 = false;
         e2.d.b(z10);
-        this.f48987s += i10;
+        this.f48995s += i10;
     }
 
     @Override
@@ -342,22 +342,22 @@ public class z0 implements c3.h0 {
         boolean z10;
         b2.s p5 = p(sVar);
         boolean z11 = false;
-        this.f48993z = false;
+        this.f49001z = false;
         this.A = sVar;
         synchronized (this) {
             try {
-                this.f48992y = false;
+                this.f49000y = false;
                 if (!Objects.equals(p5, this.B)) {
-                    if (((SparseArray) this.f48973c.f300c).size() == 0) {
+                    if (((SparseArray) this.f48981c.f300c).size() == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     if (!z10) {
-                        SparseArray sparseArray = (SparseArray) this.f48973c.f300c;
-                        if (((x0) sparseArray.valueAt(sparseArray.size() - 1)).f48966a.equals(p5)) {
-                            SparseArray sparseArray2 = (SparseArray) this.f48973c.f300c;
-                            this.B = ((x0) sparseArray2.valueAt(sparseArray2.size() - 1)).f48966a;
+                        SparseArray sparseArray = (SparseArray) this.f48981c.f300c;
+                        if (((x0) sparseArray.valueAt(sparseArray.size() - 1)).f48974a.equals(p5)) {
+                            SparseArray sparseArray2 = (SparseArray) this.f48981c.f300c;
+                            this.B = ((x0) sparseArray2.valueAt(sparseArray2.size() - 1)).f48974a;
                             boolean z12 = this.D;
                             b2.s sVar2 = this.B;
                             this.D = z12 & b2.r0.a(sVar2.f3641r, sVar2.f3634k);
@@ -376,7 +376,7 @@ public class z0 implements c3.h0 {
                 throw th2;
             }
         }
-        ?? r52 = this.f48975f;
+        ?? r52 = this.f48983f;
         if (r52 != 0 && z11) {
             r52.a();
         }
@@ -394,22 +394,22 @@ public class z0 implements c3.h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        sp0 sp0Var = this.f48971a;
+        sp0 sp0Var = this.f48979a;
         int c10 = sp0Var.c(i10);
-        w0 w0Var = (w0) sp0Var.f30612g;
-        y2.a aVar = (y2.a) w0Var.f48960c;
-        int read = kVar.read(aVar.f51880a, ((int) (sp0Var.f30608b - w0Var.f48958a)) + aVar.f51881b, c10);
+        w0 w0Var = (w0) sp0Var.f30614g;
+        y2.a aVar = (y2.a) w0Var.f48968c;
+        int read = kVar.read(aVar.f51888a, ((int) (sp0Var.f30610b - w0Var.f48966a)) + aVar.f51889b, c10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        long j3 = sp0Var.f30608b + read;
-        sp0Var.f30608b = j3;
-        w0 w0Var2 = (w0) sp0Var.f30612g;
-        if (j3 == w0Var2.f48959b) {
-            sp0Var.f30612g = (w0) w0Var2.d;
+        long j3 = sp0Var.f30610b + read;
+        sp0Var.f30610b = j3;
+        w0 w0Var2 = (w0) sp0Var.f30614g;
+        if (j3 == w0Var2.f48967b) {
+            sp0Var.f30614g = (w0) w0Var2.d;
         }
         return read;
     }
@@ -417,18 +417,18 @@ public class z0 implements c3.h0 {
     @Override
     public final void f(e2.v vVar, int i10, int i11) {
         while (true) {
-            sp0 sp0Var = this.f48971a;
+            sp0 sp0Var = this.f48979a;
             if (i10 > 0) {
                 int c10 = sp0Var.c(i10);
-                w0 w0Var = (w0) sp0Var.f30612g;
-                y2.a aVar = (y2.a) w0Var.f48960c;
-                vVar.h(((int) (sp0Var.f30608b - w0Var.f48958a)) + aVar.f51881b, c10, aVar.f51880a);
+                w0 w0Var = (w0) sp0Var.f30614g;
+                y2.a aVar = (y2.a) w0Var.f48968c;
+                vVar.h(((int) (sp0Var.f30610b - w0Var.f48966a)) + aVar.f51889b, c10, aVar.f51888a);
                 i10 -= c10;
-                long j3 = sp0Var.f30608b + c10;
-                sp0Var.f30608b = j3;
-                w0 w0Var2 = (w0) sp0Var.f30612g;
-                if (j3 == w0Var2.f48959b) {
-                    sp0Var.f30612g = (w0) w0Var2.d;
+                long j3 = sp0Var.f30610b + c10;
+                sp0Var.f30610b = j3;
+                w0 w0Var2 = (w0) sp0Var.f30614g;
+                if (j3 == w0Var2.f48967b) {
+                    sp0Var.f30614g = (w0) w0Var2.d;
                 }
             } else {
                 sp0Var.getClass();
@@ -442,13 +442,13 @@ public class z0 implements c3.h0 {
     }
 
     public final int h(long j3) {
-        int i10 = this.f48984p;
+        int i10 = this.f48992p;
         int u10 = u(i10 - 1);
-        while (i10 > this.f48987s && this.f48982n[u10] >= j3) {
+        while (i10 > this.f48995s && this.f48990n[u10] >= j3) {
             i10--;
             u10--;
             if (u10 == -1) {
-                u10 = this.f48977i - 1;
+                u10 = this.f48985i - 1;
             }
         }
         return i10;
@@ -456,23 +456,23 @@ public class z0 implements c3.h0 {
 
     public final long i(int i10) {
         int i11;
-        this.f48989u = Math.max(this.f48989u, s(i10));
-        this.f48984p -= i10;
-        int i12 = this.f48985q + i10;
-        this.f48985q = i12;
-        int i13 = this.f48986r + i10;
-        this.f48986r = i13;
-        int i14 = this.f48977i;
+        this.f48997u = Math.max(this.f48997u, s(i10));
+        this.f48992p -= i10;
+        int i12 = this.f48993q + i10;
+        this.f48993q = i12;
+        int i13 = this.f48994r + i10;
+        this.f48994r = i13;
+        int i14 = this.f48985i;
         if (i13 >= i14) {
-            this.f48986r = i13 - i14;
+            this.f48994r = i13 - i14;
         }
-        int i15 = this.f48987s - i10;
-        this.f48987s = i15;
+        int i15 = this.f48995s - i10;
+        this.f48995s = i15;
         int i16 = 0;
         if (i15 < 0) {
-            this.f48987s = 0;
+            this.f48995s = 0;
         }
-        a5.a aVar = this.f48973c;
+        a5.a aVar = this.f48981c;
         SparseArray sparseArray = (SparseArray) aVar.f300c;
         while (i16 < sparseArray.size() - 1) {
             int i17 = i16 + 1;
@@ -487,31 +487,31 @@ public class z0 implements c3.h0 {
             }
             i16 = i17;
         }
-        if (this.f48984p == 0) {
-            int i19 = this.f48986r;
+        if (this.f48992p == 0) {
+            int i19 = this.f48994r;
             if (i19 == 0) {
-                i19 = this.f48977i;
+                i19 = this.f48985i;
             }
-            return this.f48979k[i19 - 1] + this.f48980l[i11];
+            return this.f48987k[i19 - 1] + this.f48988l[i11];
         }
-        return this.f48979k[this.f48986r];
+        return this.f48987k[this.f48994r];
     }
 
     public final void j(long j3, boolean z10) {
         Throwable th2;
-        sp0 sp0Var = this.f48971a;
+        sp0 sp0Var = this.f48979a;
         synchronized (this) {
             try {
                 try {
-                    int i10 = this.f48984p;
+                    int i10 = this.f48992p;
                     long j10 = -1;
                     if (i10 != 0) {
-                        long[] jArr = this.f48982n;
-                        int i11 = this.f48986r;
+                        long[] jArr = this.f48990n;
+                        int i11 = this.f48994r;
                         if (j3 >= jArr[i11]) {
                             if (z10) {
                                 try {
-                                    int i12 = this.f48987s;
+                                    int i12 = this.f48995s;
                                     if (i12 != i10) {
                                         i10 = i12 + 1;
                                     }
@@ -543,9 +543,9 @@ public class z0 implements c3.h0 {
 
     public final void k() {
         long i10;
-        sp0 sp0Var = this.f48971a;
+        sp0 sp0Var = this.f48979a;
         synchronized (this) {
-            int i11 = this.f48984p;
+            int i11 = this.f48992p;
             if (i11 == 0) {
                 i10 = -1;
             } else {
@@ -557,7 +557,7 @@ public class z0 implements c3.h0 {
 
     public final void l(long j3) {
         boolean z10;
-        if (this.f48984p == 0) {
+        if (this.f48992p == 0) {
             return;
         }
         if (j3 > r()) {
@@ -566,31 +566,31 @@ public class z0 implements c3.h0 {
             z10 = false;
         }
         e2.d.b(z10);
-        n(this.f48985q + h(j3));
+        n(this.f48993q + h(j3));
     }
 
     public final long m(int i10) {
         boolean z10;
         int i11;
         int u10;
-        int i12 = this.f48985q;
-        int i13 = this.f48984p;
+        int i12 = this.f48993q;
+        int i13 = this.f48992p;
         int i14 = (i12 + i13) - i10;
         boolean z11 = false;
-        if (i14 >= 0 && i14 <= i13 - this.f48987s) {
+        if (i14 >= 0 && i14 <= i13 - this.f48995s) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        int i15 = this.f48984p - i14;
-        this.f48984p = i15;
-        this.v = Math.max(this.f48989u, s(i15));
-        if (i14 == 0 && this.f48990w) {
+        int i15 = this.f48992p - i14;
+        this.f48992p = i15;
+        this.v = Math.max(this.f48997u, s(i15));
+        if (i14 == 0 && this.f48998w) {
             z11 = true;
         }
-        this.f48990w = z11;
-        a5.a aVar = this.f48973c;
+        this.f48998w = z11;
+        a5.a aVar = this.f48981c;
         SparseArray sparseArray = (SparseArray) aVar.f300c;
         for (int size = sparseArray.size() - 1; size >= 0 && i10 < sparseArray.keyAt(size); size--) {
             ((s0.b) aVar.d).accept(sparseArray.valueAt(size));
@@ -602,9 +602,9 @@ public class z0 implements c3.h0 {
             i11 = -1;
         }
         aVar.f299b = i11;
-        int i16 = this.f48984p;
+        int i16 = this.f48992p;
         if (i16 != 0) {
-            return this.f48979k[u(i16 - 1)] + this.f48980l[u10];
+            return this.f48987k[u(i16 - 1)] + this.f48988l[u10];
         }
         return 0L;
     }
@@ -612,59 +612,59 @@ public class z0 implements c3.h0 {
     public final void n(int i10) {
         boolean z10;
         long m10 = m(i10);
-        sp0 sp0Var = this.f48971a;
-        int i11 = sp0Var.f30607a;
-        if (m10 <= sp0Var.f30608b) {
+        sp0 sp0Var = this.f48979a;
+        int i11 = sp0Var.f30609a;
+        if (m10 <= sp0Var.f30610b) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        sp0Var.f30608b = m10;
+        sp0Var.f30610b = m10;
         if (m10 != 0) {
-            w0 w0Var = (w0) sp0Var.f30610e;
-            if (m10 != w0Var.f48958a) {
-                while (sp0Var.f30608b > w0Var.f48959b) {
+            w0 w0Var = (w0) sp0Var.f30612e;
+            if (m10 != w0Var.f48966a) {
+                while (sp0Var.f30610b > w0Var.f48967b) {
                     w0Var = (w0) w0Var.d;
                 }
                 w0 w0Var2 = (w0) w0Var.d;
                 w0Var2.getClass();
                 sp0Var.a(w0Var2);
-                w0 w0Var3 = new w0(w0Var.f48959b, i11);
+                w0 w0Var3 = new w0(w0Var.f48967b, i11);
                 w0Var.d = w0Var3;
-                if (sp0Var.f30608b == w0Var.f48959b) {
+                if (sp0Var.f30610b == w0Var.f48967b) {
                     w0Var = w0Var3;
                 }
-                sp0Var.f30612g = w0Var;
-                if (((w0) sp0Var.f30611f) == w0Var2) {
-                    sp0Var.f30611f = w0Var3;
+                sp0Var.f30614g = w0Var;
+                if (((w0) sp0Var.f30613f) == w0Var2) {
+                    sp0Var.f30613f = w0Var3;
                     return;
                 }
                 return;
             }
         }
-        sp0Var.a((w0) sp0Var.f30610e);
-        w0 w0Var4 = new w0(sp0Var.f30608b, i11);
-        sp0Var.f30610e = w0Var4;
-        sp0Var.f30611f = w0Var4;
-        sp0Var.f30612g = w0Var4;
+        sp0Var.a((w0) sp0Var.f30612e);
+        w0 w0Var4 = new w0(sp0Var.f30610b, i11);
+        sp0Var.f30612e = w0Var4;
+        sp0Var.f30613f = w0Var4;
+        sp0Var.f30614g = w0Var4;
     }
 
     public final int o(long j3, int i10, int i11, boolean z10) {
         int i12 = -1;
         for (int i13 = 0; i13 < i11; i13++) {
-            int i14 = (this.f48982n[i10] > j3 ? 1 : (this.f48982n[i10] == j3 ? 0 : -1));
+            int i14 = (this.f48990n[i10] > j3 ? 1 : (this.f48990n[i10] == j3 ? 0 : -1));
             if (i14 > 0) {
                 break;
             }
-            if (!z10 || (this.f48981m[i10] & 1) != 0) {
+            if (!z10 || (this.f48989m[i10] & 1) != 0) {
                 if (i14 == 0) {
                     return i13;
                 }
                 i12 = i13;
             }
             i10++;
-            if (i10 == this.f48977i) {
+            if (i10 == this.f48985i) {
                 i10 = 0;
             }
         }
@@ -685,7 +685,7 @@ public class z0 implements c3.h0 {
     }
 
     public final synchronized long r() {
-        return Math.max(this.f48989u, s(this.f48987s));
+        return Math.max(this.f48997u, s(this.f48995s));
     }
 
     public final long s(int i10) {
@@ -695,25 +695,25 @@ public class z0 implements c3.h0 {
         }
         int u10 = u(i10 - 1);
         for (int i11 = 0; i11 < i10; i11++) {
-            j3 = Math.max(j3, this.f48982n[u10]);
-            if ((this.f48981m[u10] & 1) != 0) {
+            j3 = Math.max(j3, this.f48990n[u10]);
+            if ((this.f48989m[u10] & 1) != 0) {
                 return j3;
             }
             u10--;
             if (u10 == -1) {
-                u10 = this.f48977i - 1;
+                u10 = this.f48985i - 1;
             }
         }
         return j3;
     }
 
     public final int t() {
-        return this.f48985q + this.f48987s;
+        return this.f48993q + this.f48995s;
     }
 
     public final int u(int i10) {
-        int i11 = this.f48986r + i10;
-        int i12 = this.f48977i;
+        int i11 = this.f48994r + i10;
+        int i12 = this.f48985i;
         if (i11 < i12) {
             return i11;
         }
@@ -724,15 +724,15 @@ public class z0 implements c3.h0 {
         boolean z11;
         try {
             try {
-                int u10 = u(this.f48987s);
-                int i10 = this.f48987s;
-                int i11 = this.f48984p;
+                int u10 = u(this.f48995s);
+                int i10 = this.f48995s;
+                int i11 = this.f48992p;
                 if (i10 != i11) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!z11 || j3 < this.f48982n[u10]) {
+                if (!z11 || j3 < this.f48990n[u10]) {
                     return 0;
                 }
                 if (j3 > this.v && z10) {
@@ -755,7 +755,7 @@ public class z0 implements c3.h0 {
 
     public final synchronized b2.s w() {
         b2.s sVar;
-        if (this.f48992y) {
+        if (this.f49000y) {
             sVar = null;
         } else {
             sVar = this.B;
@@ -767,27 +767,27 @@ public class z0 implements c3.h0 {
         boolean z11;
         b2.s sVar;
         boolean z12 = false;
-        if (this.f48987s != this.f48984p) {
+        if (this.f48995s != this.f48992p) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (!z11) {
-            if (z10 || this.f48990w || ((sVar = this.B) != null && sVar != this.f48976g)) {
+            if (z10 || this.f48998w || ((sVar = this.B) != null && sVar != this.f48984g)) {
                 z12 = true;
             }
             return z12;
-        } else if (((x0) this.f48973c.n(t())).f48966a != this.f48976g) {
+        } else if (((x0) this.f48981c.n(t())).f48974a != this.f48984g) {
             return true;
         } else {
-            return y(u(this.f48987s));
+            return y(u(this.f48995s));
         }
     }
 
     public final boolean y(int i10) {
         n2.g gVar = this.h;
         if (gVar != null && gVar.e() != 4) {
-            if ((this.f48981m[i10] & 1073741824) != 0 || !this.h.d()) {
+            if ((this.f48989m[i10] & 1073741824) != 0 || !this.h.d()) {
                 return false;
             }
             return true;

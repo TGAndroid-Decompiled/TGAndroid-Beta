@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class t0 extends org.telegram.ui.Components.t6 {
-    public final int f42030b;
+    public final int f42034b;
 
     public t0(String str, int i10) {
         super(str, 0);
-        this.f42030b = i10;
+        this.f42034b = i10;
     }
 
     @Override
     public final void c(Object obj, float f7) {
-        switch (this.f42030b) {
+        switch (this.f42034b) {
             case 0:
                 ((ArticleViewer$WindowView) obj).setInnerTranslationX(f7);
                 return;
@@ -46,8 +46,8 @@ public final class t0 extends org.telegram.ui.Components.t6 {
                         secretMediaViewer.S.setScaleX(f11);
                         secretMediaViewer.S.setScaleY(f11);
                         org.telegram.ui.Components.s81 s81Var = secretMediaViewer.Q;
-                        if (s81Var.f30500y != f10) {
-                            s81Var.f30500y = f10;
+                        if (s81Var.f30496y != f10) {
+                            s81Var.f30496y = f10;
                             s81Var.v.invalidate();
                             return;
                         }
@@ -65,7 +65,7 @@ public final class t0 extends org.telegram.ui.Components.t6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f42030b) {
+        switch (this.f42034b) {
             case 0:
                 return Float.valueOf(((ArticleViewer$WindowView) obj).getInnerTranslationX());
             case 1:

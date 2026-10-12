@@ -15,7 +15,7 @@ public final class s01 extends URLSpan {
 
     @Override
     public final void onClick(View view) {
-        of.f.s(this.f41779b.f35664e.getParentActivity(), this.f41778a);
+        of.f.s(this.f41779b.f35666e.getParentActivity(), this.f41778a);
     }
 
     @Override

@@ -50,7 +50,7 @@ public final class a9 implements Runnable {
         String str = (String) this.f653e;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f654f;
         String str2 = (String) this.h;
-        org.telegram.ui.ActionBar.c6 c6Var = b1Var.f43186e;
+        org.telegram.ui.ActionBar.c6 c6Var = b1Var.f43188e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
                 nl0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, b1Var);
@@ -92,7 +92,7 @@ public final class a9 implements Runnable {
     }
 
     private final void g() {
-        yh.s3.z0((yh.s3) this.f651b, (TLObject) this.f652c, (tg.m1[]) this.d, (Long) this.f653e, (pi.h) this.f654f, (TLRPC.TL_error) this.h);
+        yh.s3.z0((yh.s3) this.f651b, (TLObject) this.f652c, (tg.m1[]) this.d, (Long) this.f653e, (pi.i) this.f654f, (TLRPC.TL_error) this.h);
     }
 
     private final void h() {
@@ -113,7 +113,7 @@ public final class a9 implements Runnable {
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(n5Var.f53134a).sendRequest(tL_payments_canPurchaseStore, new oh1(oVar, hVar, rVar, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(n5Var.f53146a).sendRequest(tL_payments_canPurchaseStore, new oh1(oVar, hVar, rVar, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void i() {
@@ -123,7 +123,7 @@ public final class a9 implements Runnable {
         TLRPC.InputInvoice inputInvoice = (TLRPC.InputInvoice) this.f653e;
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) this.f654f;
         Utilities.Callback callback = (Utilities.Callback) this.h;
-        if (!n5Var.f53137e) {
+        if (!n5Var.f53149e) {
             yh.n5.e("NO_BALANCE");
             runnable.run();
             return;

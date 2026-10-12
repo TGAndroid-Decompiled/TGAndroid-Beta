@@ -87,7 +87,7 @@ public final class RecordedAudioTranscriptionRequest implements NotificationCent
         if (messageObject.messageOwner != null && messageObject.isSent()) {
             MessageObject messageObject2 = this.message;
             TLRPC.Message message = messageObject2.messageOwner;
-            if (message.f19823id > 0 && message.peer_id != null) {
+            if (message.f19824id > 0 && message.peer_id != null) {
                 if (messageObject2.isVoice() || this.message.isRoundVideo()) {
                     return true;
                 }
@@ -128,7 +128,7 @@ public final class RecordedAudioTranscriptionRequest implements NotificationCent
         TLRPC.TL_messages_transcribeAudio tL_messages_transcribeAudio = new TLRPC.TL_messages_transcribeAudio();
         TLRPC.InputPeer inputPeer = MessagesController.getInstance(this.account).getInputPeer(this.message.messageOwner.peer_id);
         tL_messages_transcribeAudio.peer = inputPeer;
-        tL_messages_transcribeAudio.msg_id = this.message.messageOwner.f19823id;
+        tL_messages_transcribeAudio.msg_id = this.message.messageOwner.f19824id;
         if (inputPeer == null) {
             fail(FailureReason.INVALID_MESSAGE, null);
             return;

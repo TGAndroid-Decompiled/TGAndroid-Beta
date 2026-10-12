@@ -7,25 +7,25 @@ import android.graphics.PorterDuffColorFilter;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 public class a6 extends TextView {
-    public int f24237a;
-    public PorterDuffColorFilter f24238b;
-    public x5 f24239c;
+    public int f24238a;
+    public PorterDuffColorFilter f24239b;
+    public x5 f24240c;
 
     public a6(Context context) {
         super(context);
-        this.f24237a = 0;
+        this.f24238a = 0;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f24239c = b6.update(this.f24237a, this, this.f24239c, getLayout());
+        this.f24240c = b6.update(this.f24238a, this, this.f24240c, getLayout());
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        b6.release(this, this.f24239c);
+        b6.release(this, this.f24240c);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class a6 extends TextView {
             canvas2 = canvas;
             canvas2.translate(f10, f7);
         }
-        b6.drawAnimatedEmojis(canvas2, getLayout(), this.f24239c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f24238b);
+        b6.drawAnimatedEmojis(canvas2, getLayout(), this.f24240c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f24239b);
         if (i10 == 0 && f10 == 0.0f) {
             return;
         }
@@ -63,24 +63,24 @@ public class a6 extends TextView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f24239c = b6.update(this.f24237a, this, this.f24239c, getLayout());
+        this.f24240c = b6.update(this.f24238a, this, this.f24240c, getLayout());
     }
 
     public void setCacheType(int i10) {
-        if (this.f24237a == i10) {
+        if (this.f24238a == i10) {
             return;
         }
-        this.f24237a = i10;
-        this.f24239c = b6.update(i10, this, this.f24239c, getLayout());
+        this.f24238a = i10;
+        this.f24240c = b6.update(i10, this, this.f24240c, getLayout());
     }
 
     public void setEmojiColor(int i10) {
-        this.f24238b = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+        this.f24239b = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
     }
 
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        this.f24239c = b6.update(this.f24237a, this, this.f24239c, getLayout());
+        this.f24240c = b6.update(this.f24238a, this, this.f24240c, getLayout());
     }
 }

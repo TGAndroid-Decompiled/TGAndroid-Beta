@@ -6,35 +6,35 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class an0 extends Drawable {
-    public final uw f24447e;
-    public final uw f24448f;
+    public final uw f24444e;
+    public final uw f24445f;
     public float h;
-    public float f24450i;
-    public final Rect f24444a = new Rect();
-    public final js f24445b = cu.f25016b;
-    public final int f24446c = AndroidUtilities.dp(24.0f);
+    public float f24447i;
+    public final Rect f24441a = new Rect();
+    public final js f24442b = du.f25464b;
+    public final int f24443c = AndroidUtilities.dp(24.0f);
     public final int d = AndroidUtilities.dp(24.0f);
-    public long f24449g = -1;
+    public long f24446g = -1;
 
     public an0() {
         uw uwVar = new uw();
-        this.f24447e = uwVar;
+        this.f24444e = uwVar;
         uwVar.f31272c.setColor(-2130706433);
         uw uwVar2 = new uw();
-        this.f24448f = uwVar2;
+        this.f24445f = uwVar2;
         uwVar2.f31272c.setColor(-2130706433);
     }
 
     public final void a(Canvas canvas, float f7) {
         Rect bounds = getBounds();
-        float interpolation = this.f24445b.getInterpolation(f7);
-        Rect rect = this.f24444a;
+        float interpolation = this.f24442b.getInterpolation(f7);
+        Rect rect = this.f24441a;
         rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f24450i));
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f24447i));
         rect.bottom = dp;
         rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f24450i));
-        uw uwVar = this.f24448f;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f24447i));
+        uw uwVar = this.f24445f;
         uwVar.setBounds(rect);
         uwVar.draw(canvas);
         int dp2 = AndroidUtilities.dp(12.0f);
@@ -44,7 +44,7 @@ public final class an0 extends Drawable {
         rect.bottom = dp3;
         rect.top = dp3;
         rect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
-        uw uwVar2 = this.f24447e;
+        uw uwVar2 = this.f24444e;
         uwVar2.setBounds(rect);
         uwVar2.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
         uwVar2.draw(canvas);
@@ -52,24 +52,24 @@ public final class an0 extends Drawable {
 
     public final void b(Canvas canvas, float f7) {
         Rect bounds = getBounds();
-        float interpolation = this.f24445b.getInterpolation(f7);
-        Rect rect = this.f24444a;
+        float interpolation = this.f24442b.getInterpolation(f7);
+        Rect rect = this.f24441a;
         rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f24450i));
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f24447i));
         rect.bottom = dp;
         rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f24450i));
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f24447i));
         rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
-        uw uwVar = this.f24448f;
+        uw uwVar = this.f24445f;
         uwVar.setBounds(rect);
         uwVar.draw(canvas);
         rect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.h);
-        int dpf2 = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.f24450i);
+        int dpf2 = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.f24447i);
         rect.top = dpf2;
         rect.right = bounds.right - rect.left;
-        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.f24450i));
+        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.f24447i));
         rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
-        uw uwVar2 = this.f24447e;
+        uw uwVar2 = this.f24444e;
         uwVar2.setBounds(rect);
         uwVar2.setAlpha(255);
         uwVar2.draw(canvas);
@@ -77,24 +77,24 @@ public final class an0 extends Drawable {
 
     public final void c(Canvas canvas, float f7) {
         Rect bounds = getBounds();
-        float interpolation = this.f24445b.getInterpolation(f7);
-        Rect rect = this.f24444a;
+        float interpolation = this.f24442b.getInterpolation(f7);
+        Rect rect = this.f24441a;
         rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
-        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f24450i));
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f24447i));
         rect.bottom = dp;
         rect.right = bounds.right - rect.left;
-        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f24450i));
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f24447i));
         rect.offset(0, AndroidUtilities.dp(-8.0f));
-        uw uwVar = this.f24448f;
+        uw uwVar = this.f24445f;
         uwVar.setBounds(rect);
         uwVar.draw(canvas);
         rect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.h);
-        int dpf2 = (int) (AndroidUtilities.dpf2(6.0f) * this.f24450i);
+        int dpf2 = (int) (AndroidUtilities.dpf2(6.0f) * this.f24447i);
         rect.top = dpf2;
         rect.right = bounds.right - rect.left;
-        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(4.0f) * this.f24450i));
+        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(4.0f) * this.f24447i));
         rect.offset(0, AndroidUtilities.dp(8.0f));
-        uw uwVar2 = this.f24447e;
+        uw uwVar2 = this.f24444e;
         uwVar2.setBounds(rect);
         uwVar2.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
         uwVar2.draw(canvas);
@@ -102,8 +102,8 @@ public final class an0 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f24449g > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f24449g);
+        if (this.f24446g > 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f24446g);
             int i10 = currentTimeMillis - 300;
             if (i10 >= 0) {
                 if (i10 < 150) {
@@ -121,7 +121,7 @@ public final class an0 extends Drawable {
                                 } else {
                                     c(canvas, 1.0f);
                                     if (currentTimeMillis - 1400 >= 100) {
-                                        this.f24449g = System.currentTimeMillis();
+                                        this.f24446g = System.currentTimeMillis();
                                     }
                                 }
                             } else {
@@ -148,7 +148,7 @@ public final class an0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f24446c;
+        return this.f24443c;
     }
 
     @Override
@@ -158,14 +158,14 @@ public final class an0 extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.h = rect.width() / this.f24446c;
-        this.f24450i = rect.height() / this.d;
+        this.h = rect.width() / this.f24443c;
+        this.f24447i = rect.height() / this.d;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24447e.setColorFilter(colorFilter);
-        this.f24448f.setColorFilter(colorFilter);
+        this.f24444e.setColorFilter(colorFilter);
+        this.f24445f.setColorFilter(colorFilter);
         invalidateSelf();
     }
 

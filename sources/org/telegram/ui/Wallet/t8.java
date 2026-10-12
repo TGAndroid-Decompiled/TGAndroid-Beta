@@ -6,10 +6,10 @@ import org.telegram.messenger.MrzRecognizer;
 import org.telegram.ui.n9;
 import org.telegram.ui.x9;
 public final class t8 implements x9 {
-    public final u8 f35397a;
+    public final u8 f35399a;
 
     public t8(u8 u8Var) {
-        this.f35397a = u8Var;
+        this.f35399a = u8Var;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class t8 implements x9 {
     @Override
     public final void K(String str) {
         String trim;
-        u8 u8Var = this.f35397a;
+        u8 u8Var = this.f35399a;
         if (!u8Var.isFinished && u8Var.M != null) {
             if (str == null) {
                 trim = "";
@@ -56,10 +56,10 @@ public final class t8 implements x9 {
     }
 
     @Override
-    public final void P0(MrzRecognizer.Result result) {
+    public final void onDismiss() {
     }
 
     @Override
-    public final void onDismiss() {
+    public final void P0(MrzRecognizer.Result result) {
     }
 }

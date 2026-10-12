@@ -9,10 +9,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class ne1 implements org.telegram.ui.Cells.l1 {
-    public final oe1 f40395a;
+    public final oe1 f40398a;
 
     public ne1(oe1 oe1Var) {
-        this.f40395a = oe1Var;
+        this.f40398a = oe1Var;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class ne1 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean O(org.telegram.ui.Cells.u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        oe1 oe1Var = this.f40395a;
+        oe1 oe1Var = this.f40398a;
         if (oe1Var.K.getDelegate() != null) {
             return oe1Var.K.getDelegate().O(oe1Var.K, todoItem, z10);
         }

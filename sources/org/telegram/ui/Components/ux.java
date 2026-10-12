@@ -37,18 +37,18 @@ public final class ux implements z4.e {
             z10 = false;
         }
         d00Var.L(z10, true);
-        if (i10 == 2 && (this.f31277a || d00Var.f25139v0)) {
+        if (i10 == 2 && (this.f31277a || d00Var.f25131v0)) {
             z11 = true;
         }
         d00Var.Q(z11, true);
-        if (d00Var.f25134t1.z()) {
+        if (d00Var.f25126t1.z()) {
             if (i10 == 0) {
                 cx cxVar = d00Var.V;
                 if (cxVar != null) {
                     cxVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                ix ixVar = d00Var.f25116o0;
+                ix ixVar = d00Var.f25108o0;
                 if (ixVar != null) {
                     ixVar.d.requestFocus();
                 }
@@ -71,16 +71,16 @@ public final class ux implements z4.e {
         int i14;
         d00 d00Var = this.f31278b;
         pz pzVar3 = d00Var.G0;
-        pz pzVar4 = d00Var.f25116o0;
+        pz pzVar4 = d00Var.f25108o0;
         pz pzVar5 = d00Var.V;
         qx qxVar = d00Var.C0;
         lx lxVar = d00Var.D0;
-        ky kyVar = d00Var.f25119p0;
-        fx fxVar = d00Var.f25096h0;
+        ky kyVar = d00Var.f25111p0;
+        fx fxVar = d00Var.f25088h0;
         py pyVar = d00Var.P;
         int i15 = 2;
         boolean z10 = true;
-        if (d00Var.f25147x0 == null || d00Var.f25093g0 == null) {
+        if (d00Var.f25139x0 == null || d00Var.f25085g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -137,7 +137,7 @@ public final class ux implements z4.e {
         d00Var.getMeasuredWidth();
         d00Var.getPaddingLeft();
         d00Var.getPaddingRight();
-        dz dzVar = d00Var.f25134t1;
+        dz dzVar = d00Var.f25126t1;
         if (dzVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

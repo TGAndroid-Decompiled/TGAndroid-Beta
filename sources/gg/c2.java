@@ -95,10 +95,10 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
             case 6:
                 eo eoVar = (eo) this.f10562c;
                 boolean[] zArr = (boolean[]) this.d;
-                eoVar.getMessagesController().pinMessage(eoVar.f37241e, eoVar.f37253f, this.f10561b, false, !zArr[1], zArr[0]);
-                sc B = zc.B(eoVar, true, null, null, eoVar.f37251ea);
+                eoVar.getMessagesController().pinMessage(eoVar.f37246e, eoVar.f37258f, this.f10561b, false, !zArr[1], zArr[0]);
+                sc B = zc.B(eoVar, true, null, null, eoVar.f37256ea);
                 B.j();
-                wb wbVar = B.f30536e;
+                wb wbVar = B.f30532e;
                 wbVar.postDelayed(new rh(0, wbVar), 550L);
                 return;
             case 7:
@@ -129,12 +129,12 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
                 l50 l50Var = ((h50) this.f10562c).f38247n;
-                ChatObject.Call call = l50Var.f39646b.f38678a1;
+                ChatObject.Call call = l50Var.f39640b.f38681a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f10561b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView l1 = l50Var.f39646b.l1();
+                UndoView l1 = l50Var.f39640b.l1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -149,7 +149,7 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f10562c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f33620d0;
+                ArrayList arrayList = launchActivity.f33622d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((m2) hg.c.h(1, arrayList))) {
                     id0 id0Var = new id0(0);
                     id0Var.F0 = new i2.s(hashMap, this.f10561b, 12);
@@ -176,12 +176,12 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
         int i10;
         m4.m0 m0Var = (m4.m0) this.f10562c;
         n4.m mVar = (n4.m) this.d;
-        if (TextUtils.isEmpty(mVar.f16326a)) {
+        if (TextUtils.isEmpty(mVar.f16327a)) {
             e2.a.n("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i11 = m4.k.f15868a;
-        String str = mVar.f16326a;
+        int i11 = m4.k.f15869a;
+        String str = mVar.f16327a;
         b2.y yVar = new b2.y();
         e9.g0 g0Var = e9.i0.f8749b;
         e9.a1 a1Var = e9.a1.f8712e;
@@ -193,16 +193,16 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
         }
         String str2 = str;
         aa.a aVar = new aa.a(4);
-        aVar.f387c = mVar.f16331n;
+        aVar.f387c = mVar.f16332n;
         b2.g0 g0Var3 = new b2.g0(aVar);
-        CharSequence charSequence = mVar.f16327b;
+        CharSequence charSequence = mVar.f16328b;
         b2.m0 m0Var2 = new b2.m0();
-        m0Var2.f3422f = mVar.f16328c;
+        m0Var2.f3422f = mVar.f16329c;
         m0Var2.f3423g = mVar.d;
-        m0Var2.f3428m = mVar.f16330f;
+        m0Var2.f3428m = mVar.f16331f;
         Bundle bundle = null;
         m0Var2.f3424i = m4.k.c(null);
-        Bitmap bitmap = mVar.f16329e;
+        Bitmap bitmap = mVar.f16330e;
         if (bitmap != null) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -269,7 +269,7 @@ public final class c2 implements MediaDataController.KeywordResultCallback, org.
             m0Var2.H = bundle;
         }
         m0Var2.f3433r = Boolean.TRUE;
-        i9.w l4 = m0Var.f15905g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var2), g0Var3)));
+        i9.w l4 = m0Var.f15906g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var2), g0Var3)));
         l4.a(new i9.s(0, l4, new a5.a(m0Var, rVar, this.f10561b)), i9.q.f12073a);
     }
 

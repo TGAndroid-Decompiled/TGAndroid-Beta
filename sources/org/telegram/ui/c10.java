@@ -6,10 +6,10 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class c10 implements TextWatcher {
-    public final e10 f36296a;
+    public final e10 f36298a;
 
     public c10(e10 e10Var) {
-        this.f36296a = e10Var;
+        this.f36298a = e10Var;
     }
 
     @Override
@@ -18,17 +18,17 @@ public final class c10 implements TextWatcher {
         org.telegram.ui.ActionBar.k kVar2;
         String str;
         int i10;
-        h10 h10Var = this.f36296a.f36956e;
+        h10 h10Var = this.f36298a.f36960e;
         if (!TextUtils.equals(editable, h10Var.f38220w)) {
             h10Var.f38217n = !TextUtils.isEmpty(editable);
             h10Var.f38220w = org.telegram.ui.Components.b6.onlyEmojiSpans(editable);
             v00 v00Var = h10Var.I;
             if (v00Var != null) {
-                v00Var.e(org.telegram.ui.Components.b6.cloneSpans(h10Var.f38220w, -1, v00Var.f42630s.getPaint().getFontMetricsInt(), 0.5f), true);
+                v00Var.e(org.telegram.ui.Components.b6.cloneSpans(h10Var.f38220w, -1, v00Var.f42632s.getPaint().getFontMetricsInt(), 0.5f), true);
             }
             w00 w00Var = h10Var.J;
             if (w00Var != null) {
-                org.telegram.ui.Cells.u3 u3Var = w00Var.f43018r;
+                org.telegram.ui.Cells.u3 u3Var = w00Var.f43020r;
                 if (h10.k0(h10Var.f38220w)) {
                     if (h10Var.f38221x) {
                         i10 = R.string.FilterNameAnimationsDisable;

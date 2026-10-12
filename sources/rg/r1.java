@@ -52,7 +52,7 @@ public final class r1 extends r8 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        ik0 ik0Var = this.f22483e;
+        ik0 ik0Var = this.f22484e;
         float width = (ik0Var.getWidth() / 2.0f) + ik0Var.getX();
         float y3 = ik0Var.getY();
         float height = ((ik0Var.getHeight() / 2.0f) + (y3 + ik0Var.getPaddingTop())) - AndroidUtilities.dp(3.0f);

@@ -52,33 +52,33 @@ public abstract class n extends s4.j {
         this.R = c6Var;
         this.F = eoVar;
         this.G = wm0Var;
-        this.f47949o = V;
-        this.f47930n = true;
-        this.f47929m = false;
+        this.f47957o = V;
+        this.f47938n = true;
+        this.f47937m = false;
     }
 
     @Override
     public final void B(s4.h hVar) {
         View view;
         s4.h hVar2;
-        d1 d1Var = hVar.f47931a;
+        d1 d1Var = hVar.f47939a;
         View view2 = null;
         if (d1Var == null) {
             view = null;
         } else {
-            view = d1Var.f47889a;
+            view = d1Var.f47897a;
         }
-        d1 d1Var2 = hVar.f47932b;
+        d1 d1Var2 = hVar.f47940b;
         if (d1Var2 != null) {
-            view2 = d1Var2.f47889a;
+            view2 = d1Var2.f47897a;
         }
         View view3 = view2;
         ArrayList arrayList = this.B;
         if (view != null) {
             ViewPropertyAnimator duration = view.animate().setDuration(250L);
-            arrayList.add(hVar.f47931a);
-            duration.translationX(hVar.f47934e - hVar.f47933c);
-            duration.translationY(hVar.f47935f - hVar.d);
+            arrayList.add(hVar.f47939a);
+            duration.translationX(hVar.f47942e - hVar.f47941c);
+            duration.translationY(hVar.f47943f - hVar.d);
             hVar2 = hVar;
             duration.alpha(0.0f).setListener(new k(this, hVar2, duration, view, 0)).start();
         } else {
@@ -86,7 +86,7 @@ public abstract class n extends s4.j {
         }
         if (view3 != null) {
             ViewPropertyAnimator animate = view3.animate();
-            arrayList.add(hVar2.f47932b);
+            arrayList.add(hVar2.f47940b);
             animate.translationX(0.0f).translationY(0.0f).setDuration(250L).alpha(1.0f).setListener(new k(this, hVar2, animate, view3, 1)).start();
         }
     }
@@ -106,14 +106,14 @@ public abstract class n extends s4.j {
         if (animator != null) {
             animator.cancel();
         }
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (this.K.contains(view) && (i21Var = (i21) this.U.run()) != null) {
             i21Var.a(view);
         }
-        if (hVar.f47932b == d1Var) {
-            hVar.f47932b = null;
-        } else if (hVar.f47931a == d1Var) {
-            hVar.f47931a = null;
+        if (hVar.f47940b == d1Var) {
+            hVar.f47940b = null;
+        } else if (hVar.f47939a == d1Var) {
+            hVar.f47939a = null;
         } else {
             return false;
         }
@@ -162,9 +162,9 @@ public abstract class n extends s4.j {
             }
         }
         if (!this.K.isEmpty() && (i21Var = (i21) this.U.run()) != null) {
-            ArrayList arrayList2 = i21Var.f27023c;
-            if (!i21Var.f27024e) {
-                i21Var.f27024e = true;
+            ArrayList arrayList2 = i21Var.f27008c;
+            if (!i21Var.f27009e) {
+                i21Var.f27009e = true;
                 int size2 = arrayList2.size();
                 while (i10 < size2) {
                     Object obj2 = arrayList2.get(i10);
@@ -177,7 +177,7 @@ public abstract class n extends s4.j {
                     }
                 }
                 arrayList2.clear();
-                g21 g21Var = i21Var.f27021a;
+                g21 g21Var = i21Var.f27006a;
                 if (g21Var != null) {
                     g21Var.i();
                 }
@@ -211,7 +211,7 @@ public abstract class n extends s4.j {
                 if (childAt instanceof u1) {
                     u1 u1Var = (u1) childAt;
                     MessageObject messageObject = u1Var.getMessageObject();
-                    if (u1Var.getTransitionParams().f22778v0 && groupedMessages.messages.contains(messageObject)) {
+                    if (u1Var.getTransitionParams().f22779v0 && groupedMessages.messages.contains(messageObject)) {
                         groupedMessages.transitionParams.top = u1Var.getBackgroundDrawableTop() + u1Var.getPaddingTop() + u1Var.getTop();
                         groupedMessages.transitionParams.bottom = u1Var.getBackgroundDrawableBottom() + u1Var.getPaddingTop() + u1Var.getTop();
                         groupedMessages.transitionParams.left = u1Var.getBackgroundDrawableLeft() + u1Var.getLeft();
@@ -260,8 +260,8 @@ public abstract class n extends s4.j {
             u1Var.setAnimationOffsetX(0.0f);
         } else if (view instanceof w0) {
             v0 transitionParams = ((w0) view).getTransitionParams();
-            transitionParams.f23300b = false;
-            transitionParams.f23301c = 1.0f;
+            transitionParams.f23301b = false;
+            transitionParams.f23302c = 1.0f;
         } else {
             view.setTranslationX(0.0f);
         }
@@ -275,7 +275,7 @@ public abstract class n extends s4.j {
     public final boolean Z(View view) {
         d1 T;
         if (!this.N && (T = this.G.T(view)) != null) {
-            if (this.f47951q.contains(T) || this.f47958y.contains(T)) {
+            if (this.f47959q.contains(T) || this.f47966y.contains(T)) {
                 return true;
             }
             return false;
@@ -292,7 +292,7 @@ public abstract class n extends s4.j {
             int i11 = 0;
             boolean z10 = false;
             while (true) {
-                arrayList = this.f47951q;
+                arrayList = this.f47959q;
                 if (i11 >= arrayList.size()) {
                     break;
                 }
@@ -304,13 +304,13 @@ public abstract class n extends s4.j {
             if (z10) {
                 i10 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    i10 += ((d1) arrayList.get(i12)).f47889a.getHeight();
+                    i10 += ((d1) arrayList.get(i12)).f47897a.getHeight();
                 }
             } else {
                 i10 = 0;
             }
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                ((d1) arrayList.get(i13)).f47889a.setTranslationY(i10);
+                ((d1) arrayList.get(i13)).f47897a.setTranslationY(i10);
             }
         }
         return a2;
@@ -319,7 +319,7 @@ public abstract class n extends s4.j {
     public final boolean a0(View view) {
         d1 T = this.G.T(view);
         if (T != null) {
-            if (this.f47950p.contains(T) || this.A.contains(T)) {
+            if (this.f47958p.contains(T) || this.A.contains(T)) {
                 return true;
             }
             return false;
@@ -334,7 +334,7 @@ public abstract class n extends s4.j {
         if (animator != null) {
             animator.cancel();
         }
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (this.K.contains(view) && (i21Var = (i21) this.U.run()) != null) {
             i21Var.a(view);
         }
@@ -363,28 +363,28 @@ public abstract class n extends s4.j {
         }
         this.O = null;
         this.P = null;
-        ArrayList arrayList2 = this.f47952r;
+        ArrayList arrayList2 = this.f47960r;
         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
             s4.i iVar = (s4.i) arrayList2.get(size2);
-            X(iVar.f47939a.f47889a);
-            v(iVar.f47939a);
+            X(iVar.f47947a.f47897a);
+            v(iVar.f47947a);
             arrayList2.remove(size2);
         }
-        ArrayList arrayList3 = this.f47950p;
+        ArrayList arrayList3 = this.f47958p;
         for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
             d1 d1Var = (d1) arrayList3.get(size3);
-            X(d1Var.f47889a);
+            X(d1Var.f47897a);
             d(d1Var);
             arrayList3.remove(size3);
         }
-        ArrayList arrayList4 = this.f47951q;
+        ArrayList arrayList4 = this.f47959q;
         for (int size4 = arrayList4.size() - 1; size4 >= 0; size4--) {
             d1 d1Var2 = (d1) arrayList4.get(size4);
-            X(d1Var2.f47889a);
+            X(d1Var2.f47897a);
             u(d1Var2);
             arrayList4.remove(size4);
         }
-        ArrayList arrayList5 = this.f47953s;
+        ArrayList arrayList5 = this.f47961s;
         for (int size5 = arrayList5.size() - 1; size5 >= 0; size5--) {
             I((s4.h) arrayList5.get(size5));
         }
@@ -392,25 +392,25 @@ public abstract class n extends s4.j {
         if (!k()) {
             return;
         }
-        ArrayList arrayList6 = this.f47955u;
+        ArrayList arrayList6 = this.f47963u;
         for (int size6 = arrayList6.size() - 1; size6 >= 0; size6--) {
             ArrayList arrayList7 = (ArrayList) arrayList6.get(size6);
             for (int size7 = arrayList7.size() - 1; size7 >= 0; size7--) {
                 s4.i iVar2 = (s4.i) arrayList7.get(size7);
-                X(iVar2.f47939a.f47889a);
-                v(iVar2.f47939a);
+                X(iVar2.f47947a.f47897a);
+                v(iVar2.f47947a);
                 arrayList7.remove(size7);
                 if (arrayList7.isEmpty()) {
                     arrayList6.remove(arrayList7);
                 }
             }
         }
-        ArrayList arrayList8 = this.f47954t;
+        ArrayList arrayList8 = this.f47962t;
         for (int size8 = arrayList8.size() - 1; size8 >= 0; size8--) {
             ArrayList arrayList9 = (ArrayList) arrayList8.get(size8);
             for (int size9 = arrayList9.size() - 1; size9 >= 0; size9--) {
                 d1 d1Var3 = (d1) arrayList9.get(size9);
-                X(d1Var3.f47889a);
+                X(d1Var3.f47897a);
                 u(d1Var3);
                 arrayList9.remove(size9);
                 if (arrayList9.isEmpty()) {
@@ -429,8 +429,8 @@ public abstract class n extends s4.j {
             }
         }
         E(this.A);
-        E(this.f47959z);
-        E(this.f47958y);
+        E(this.f47967z);
+        E(this.f47966y);
         E(this.B);
         e();
     }
@@ -448,16 +448,16 @@ public abstract class n extends s4.j {
     @Override
     public final q0 l(a1 a1Var, d1 d1Var, int i10, List list) {
         q0 l4 = super.l(a1Var, d1Var, i10, list);
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (view instanceof u1) {
             ?? obj = new Object();
             obj.f3531a = l4.f3531a;
             obj.f3532b = l4.f3532b;
             t1 transitionParams = ((u1) view).getTransitionParams();
-            obj.f14244c = transitionParams.f22687a;
-            obj.d = transitionParams.f22691b;
-            obj.f14245e = transitionParams.f22696c;
-            obj.f14246f = transitionParams.d;
+            obj.f14245c = transitionParams.f22688a;
+            obj.d = transitionParams.f22692b;
+            obj.f14246e = transitionParams.f22697c;
+            obj.f14247f = transitionParams.d;
             return obj;
         }
         return l4;
@@ -471,7 +471,7 @@ public abstract class n extends s4.j {
     @Override
     public final void p(d1 d1Var) {
         R(d1Var);
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         view.setAlpha(0.0f);
         if (!this.N) {
             view.setScaleX(0.9f);
@@ -479,7 +479,7 @@ public abstract class n extends s4.j {
         } else if (view instanceof u1) {
             ((u1) view).getTransitionParams().h = true;
         }
-        this.f47951q.add(d1Var);
+        this.f47959q.add(d1Var);
     }
 
     @Override
@@ -488,7 +488,7 @@ public abstract class n extends s4.j {
         if (d1Var == d1Var2) {
             return r(d1Var, q0Var, i10, i11, i12, i13);
         }
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (view instanceof u1) {
             translationX = ((u1) view).getAnimationOffsetX();
         } else {
@@ -506,7 +506,7 @@ public abstract class n extends s4.j {
         }
         view.setTranslationY(translationY);
         view.setAlpha(alpha);
-        View view2 = d1Var2.f47889a;
+        View view2 = d1Var2.f47897a;
         R(d1Var2);
         if (view2 instanceof u1) {
             ((u1) view2).setAnimationOffsetX(-i14);
@@ -515,7 +515,7 @@ public abstract class n extends s4.j {
         }
         view2.setTranslationY(-i15);
         view2.setAlpha(0.0f);
-        this.f47953s.add(new s4.h(d1Var, d1Var2, i10, i11, i12, i13));
+        this.f47961s.add(new s4.h(d1Var, d1Var2, i10, i11, i12, i13));
         F();
         return true;
     }
@@ -545,12 +545,12 @@ public abstract class n extends s4.j {
         boolean z13;
         boolean isOutOwner;
         float f16;
-        View view2 = d1Var.f47889a;
+        View view2 = d1Var.f47897a;
         if (view2 instanceof u1) {
             u1 u1Var2 = (u1) view2;
             translationX = i10 + ((int) u1Var2.getAnimationOffsetX());
-            if (u1Var2.getTransitionParams().f22769s2 != u1Var2.getTopMediaOffset()) {
-                i14 = (u1Var2.getTransitionParams().f22769s2 - u1Var2.getTopMediaOffset()) + i11;
+            if (u1Var2.getTransitionParams().f22770s2 != u1Var2.getTopMediaOffset()) {
+                i14 = (u1Var2.getTransitionParams().f22770s2 - u1Var2.getTopMediaOffset()) + i11;
             } else {
                 i14 = i11;
             }
@@ -602,7 +602,7 @@ public abstract class n extends s4.j {
         if (u1Var != null) {
             t1 transitionParams = u1Var.getTransitionParams();
             transitionParams.getClass();
-            int[] iArr2 = transitionParams.f22771t0;
+            int[] iArr2 = transitionParams.f22772t0;
             Rect rect = transitionParams.D0;
             MessageObject.GroupedMessages currentMessagesGroup = u1Var.getCurrentMessagesGroup();
             if (i20 != 0) {
@@ -615,27 +615,27 @@ public abstract class n extends s4.j {
                 view = view2;
                 l lVar = (l) q0Var;
                 i15 = i20;
-                if (transitionParams.f22778v0 && lVar.f14246f != f7 && lVar.f14245e != f7) {
+                if (transitionParams.f22779v0 && lVar.f14247f != f7 && lVar.f14246e != f7) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                iVar.f14254n = z13;
+                iVar.f14255n = z13;
                 if (z13) {
                     wm0Var.setClipChildren(false);
                     wm0Var.invalidate();
-                    transitionParams.f22711f0 = true;
+                    transitionParams.f22712f0 = true;
                     if (u1Var.getMessageObject().isRoundVideo()) {
                         transitionParams.m0 = f12;
-                        transitionParams.f22747n0 = f13;
-                        transitionParams.f22751o0 = f18;
-                        transitionParams.f22755p0 = f17;
+                        transitionParams.f22748n0 = f13;
+                        transitionParams.f22752o0 = f18;
+                        transitionParams.f22756p0 = f17;
                         transitionParams.A0 = iArr;
                     } else {
                         transitionParams.m0 = photoImage.getImageX();
-                        transitionParams.f22747n0 = photoImage.getImageY();
-                        transitionParams.f22751o0 = photoImage.getImageWidth();
-                        transitionParams.f22755p0 = photoImage.getImageHeight();
+                        transitionParams.f22748n0 = photoImage.getImageY();
+                        transitionParams.f22752o0 = photoImage.getImageWidth();
+                        transitionParams.f22756p0 = photoImage.getImageHeight();
                         transitionParams.A0 = photoImage.getRoundRadius();
                     }
                     transitionParams.B0 = false;
@@ -651,15 +651,15 @@ public abstract class n extends s4.j {
                         }
                     }
                     float f19 = transitionParams.m0;
-                    float f20 = lVar.f14244c;
-                    if (f19 == f20 && transitionParams.f22747n0 == lVar.d && transitionParams.f22755p0 == lVar.f14246f && transitionParams.f22751o0 == lVar.f14245e && !transitionParams.B0) {
-                        transitionParams.f22711f0 = false;
-                        iVar.f14254n = false;
+                    float f20 = lVar.f14245c;
+                    if (f19 == f20 && transitionParams.f22748n0 == lVar.d && transitionParams.f22756p0 == lVar.f14247f && transitionParams.f22752o0 == lVar.f14246e && !transitionParams.B0) {
+                        transitionParams.f22712f0 = false;
+                        iVar.f14255n = false;
                     } else {
-                        iVar.f14255o = f20;
-                        iVar.f14256p = lVar.d;
-                        iVar.f14257q = lVar.f14245e;
-                        iVar.f14258r = lVar.f14246f;
+                        iVar.f14256o = f20;
+                        iVar.f14257p = lVar.d;
+                        iVar.f14258q = lVar.f14246e;
+                        iVar.f14259r = lVar.f14247f;
                         if (currentMessagesGroup != null) {
                             boolean z15 = currentMessagesGroup.hasCaption;
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -682,26 +682,26 @@ public abstract class n extends s4.j {
                             }
                             photoImage.setRoundRadius(iArr2);
                         }
-                        u1Var.U3(iVar.f14255o, iVar.f14256p, iVar.f14257q, iVar.f14258r);
+                        u1Var.U3(iVar.f14256o, iVar.f14257p, iVar.f14258q, iVar.f14259r);
                     }
                 }
-                if (currentMessagesGroup == null && transitionParams.f22778v0 && (((isOutOwner = u1Var.getMessageObject().isOutOwner()) && rect.left != u1Var.getBackgroundDrawableLeft()) || ((!isOutOwner && rect.right != u1Var.getBackgroundDrawableRight()) || rect.top != u1Var.getBackgroundDrawableTop() || rect.bottom != u1Var.getBackgroundDrawableBottom()))) {
+                if (currentMessagesGroup == null && transitionParams.f22779v0 && (((isOutOwner = u1Var.getMessageObject().isOutOwner()) && rect.left != u1Var.getBackgroundDrawableLeft()) || ((!isOutOwner && rect.right != u1Var.getBackgroundDrawableRight()) || rect.top != u1Var.getBackgroundDrawableTop() || rect.bottom != u1Var.getBackgroundDrawableBottom()))) {
                     iVar.v = u1Var.getBackgroundDrawableBottom() - rect.bottom;
-                    iVar.f14261u = u1Var.getBackgroundDrawableTop() - rect.top;
+                    iVar.f14262u = u1Var.getBackgroundDrawableTop() - rect.top;
                     if (u1Var.G8 != transitionParams.E0) {
-                        iVar.f14259s = u1Var.getBackgroundDrawableLeft() - rect.left;
-                        iVar.f14260t = u1Var.getBackgroundDrawableRight() - rect.right;
+                        iVar.f14260s = u1Var.getBackgroundDrawableLeft() - rect.left;
+                        iVar.f14261t = u1Var.getBackgroundDrawableRight() - rect.right;
                     } else if (isOutOwner) {
-                        iVar.f14259s = u1Var.getBackgroundDrawableLeft() - rect.left;
+                        iVar.f14260s = u1Var.getBackgroundDrawableLeft() - rect.left;
                     } else {
-                        iVar.f14260t = u1Var.getBackgroundDrawableRight() - rect.right;
+                        iVar.f14261t = u1Var.getBackgroundDrawableRight() - rect.right;
                     }
-                    iVar.f14252l = true;
-                    transitionParams.f22782w0 = true;
-                    transitionParams.f22716g0 = -iVar.f14259s;
-                    transitionParams.f22720h0 = -iVar.f14260t;
-                    transitionParams.f22730j0 = -iVar.f14261u;
-                    transitionParams.f22725i0 = -iVar.v;
+                    iVar.f14253l = true;
+                    transitionParams.f22783w0 = true;
+                    transitionParams.f22717g0 = -iVar.f14260s;
+                    transitionParams.f22721h0 = -iVar.f14261t;
+                    transitionParams.f22731j0 = -iVar.f14262u;
+                    transitionParams.f22726i0 = -iVar.v;
                     wm0Var.setClipChildren(false);
                     wm0Var.invalidate();
                 }
@@ -738,7 +738,7 @@ public abstract class n extends s4.j {
                                 if (i28 == 0 || backgroundDrawableRight > i28) {
                                     i28 = backgroundDrawableRight;
                                 }
-                                if (u1Var3.getTransitionParams().f22778v0 || transitionParams3.isNewGroup) {
+                                if (u1Var3.getTransitionParams().f22779v0 || transitionParams3.isNewGroup) {
                                     if (i25 == 0 || backgroundDrawableTop < i25) {
                                         i25 = backgroundDrawableTop;
                                     }
@@ -758,18 +758,18 @@ public abstract class n extends s4.j {
                     }
                     transitionParams3.isNewGroup = false;
                     if (i25 == 0 && i26 == 0 && i27 == 0 && i28 == 0) {
-                        iVar.f14250j = false;
+                        iVar.f14251j = false;
                         transitionParams3.backgroundChangeBounds = false;
                     } else {
                         int i29 = (-i25) + transitionParams3.top;
-                        iVar.f14247f = i29;
+                        iVar.f14248f = i29;
                         int i30 = (-i26) + transitionParams3.bottom;
-                        iVar.f14248g = i30;
+                        iVar.f14249g = i30;
                         int i31 = (-i27) + transitionParams3.left;
                         iVar.h = i31;
                         int i32 = (-i28) + transitionParams3.right;
-                        iVar.f14249i = i32;
-                        iVar.f14250j = true;
+                        iVar.f14250i = i32;
+                        iVar.f14251j = true;
                         transitionParams3.backgroundChangeBounds = true;
                         transitionParams3.offsetTop = i29;
                         transitionParams3.offsetBottom = i30;
@@ -793,22 +793,22 @@ public abstract class n extends s4.j {
             if (groupedMessages2 != null) {
                 MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
                 hashMap.remove(Integer.valueOf(u1Var.getMessageObject().getId()));
-                if (transitionParams.f22778v0) {
+                if (transitionParams.f22779v0) {
                     int backgroundDrawableLeft2 = u1Var.getBackgroundDrawableLeft() + u1Var.getLeft();
                     int backgroundDrawableRight2 = u1Var.getBackgroundDrawableRight() + u1Var.getLeft();
                     int backgroundDrawableTop2 = u1Var.getBackgroundDrawableTop() + u1Var.getPaddingTop() + u1Var.getTop();
                     int backgroundDrawableBottom2 = u1Var.getBackgroundDrawableBottom() + u1Var.getPaddingTop() + u1Var.getTop();
-                    iVar.f14262w = true;
-                    transitionParams.f22782w0 = true;
-                    iVar.f14259s = backgroundDrawableLeft2 - transitionParams4.left;
-                    iVar.f14260t = backgroundDrawableRight2 - transitionParams4.right;
-                    iVar.f14261u = backgroundDrawableTop2 - transitionParams4.top;
+                    iVar.f14263w = true;
+                    transitionParams.f22783w0 = true;
+                    iVar.f14260s = backgroundDrawableLeft2 - transitionParams4.left;
+                    iVar.f14261t = backgroundDrawableRight2 - transitionParams4.right;
+                    iVar.f14262u = backgroundDrawableTop2 - transitionParams4.top;
                     iVar.v = backgroundDrawableBottom2 - transitionParams4.bottom;
-                    iVar.f14252l = false;
-                    transitionParams.f22716g0 = (int) ((-i16) - u1Var.getAnimationOffsetX());
-                    transitionParams.f22720h0 = (int) ((-iVar.f14260t) - u1Var.getAnimationOffsetX());
-                    transitionParams.f22730j0 = (int) ((-iVar.f14261u) - u1Var.getTranslationY());
-                    transitionParams.f22725i0 = (int) ((-iVar.v) - u1Var.getTranslationY());
+                    iVar.f14253l = false;
+                    transitionParams.f22717g0 = (int) ((-i16) - u1Var.getAnimationOffsetX());
+                    transitionParams.f22721h0 = (int) ((-iVar.f14261t) - u1Var.getAnimationOffsetX());
+                    transitionParams.f22731j0 = (int) ((-iVar.f14262u) - u1Var.getTranslationY());
+                    transitionParams.f22726i0 = (int) ((-iVar.v) - u1Var.getTranslationY());
                     transitionParams.C0 = true;
                     wm0Var.setClipChildren(false);
                     wm0Var.invalidate();
@@ -822,27 +822,27 @@ public abstract class n extends s4.j {
             } else {
                 z10 = false;
             }
-            if (!u1Var.f23029k8 && !u1Var.J && !z10) {
+            if (!u1Var.f23030k8 && !u1Var.J && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            if (transitionParams.f22790y0 != z11) {
+            if (transitionParams.f22791y0 != z11) {
                 z12 = true;
-                iVar.f14251k = true;
+                iVar.f14252k = true;
                 f14 = f7;
-                transitionParams.f22794z0 = f14;
+                transitionParams.f22795z0 = f14;
             } else {
                 f14 = f7;
                 z12 = true;
             }
             boolean f21 = transitionParams.f();
-            iVar.f14253m = f21;
+            iVar.f14254m = f21;
             if (f21) {
-                transitionParams.f22715g = z12;
+                transitionParams.f22716g = z12;
                 transitionParams.K1 = f14;
             }
-            if (i15 == 0 && i21 == 0 && !iVar.f14254n && !iVar.f14262w && !iVar.f14250j && !iVar.f14251k && !iVar.f14252l && !f21) {
+            if (i15 == 0 && i21 == 0 && !iVar.f14255n && !iVar.f14263w && !iVar.f14251j && !iVar.f14252k && !iVar.f14253l && !f21) {
                 v(d1Var);
                 return false;
             }
@@ -852,15 +852,15 @@ public abstract class n extends s4.j {
             if (i20 != 0) {
                 view2.setTranslationX(-i20);
             }
-            if (!transitionParams5.f23299a) {
+            if (!transitionParams5.f23300a) {
                 a2 = false;
             } else {
                 a2 = transitionParams5.d.E0.a();
             }
-            iVar.f14253m = a2;
+            iVar.f14254m = a2;
             if (a2) {
-                transitionParams5.f23300b = true;
-                transitionParams5.f23301c = 0.0f;
+                transitionParams5.f23301b = true;
+                transitionParams5.f23302c = 0.0f;
             }
             if (i20 == 0 && i21 == 0 && !a2) {
                 v(d1Var);
@@ -876,7 +876,7 @@ public abstract class n extends s4.j {
         } else if (i20 != 0) {
             view2.setTranslationX(-i20);
         }
-        this.f47952r.add(iVar);
+        this.f47960r.add(iVar);
         F();
         return true;
     }
@@ -887,7 +887,7 @@ public abstract class n extends s4.j {
             FileLog.d("animate remove");
         }
         super.s(d1Var, q0Var);
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (q0Var != null) {
             int i10 = q0Var.f3532b;
             int top = view.getTop();
@@ -903,7 +903,7 @@ public abstract class n extends s4.j {
                 }
                 if (q0Var instanceof l) {
                     l lVar = (l) q0Var;
-                    u1Var.U3(lVar.f14244c, lVar.d, lVar.f14245e, lVar.f14246f);
+                    u1Var.U3(lVar.f14245c, lVar.d, lVar.f14246e, lVar.f14247f);
                 }
             } else if (left != 0) {
                 view.setTranslationX(-left);

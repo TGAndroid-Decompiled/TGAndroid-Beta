@@ -18,32 +18,32 @@ import org.telegram.ui.Components.yz;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.h10;
 public final class l5 implements Runnable {
-    public final int f21131a;
-    public final Object f21132b;
-    public final Object f21133c;
+    public final int f21132a;
+    public final Object f21133b;
+    public final Object f21134c;
     public final Object d;
-    public final Object f21134e;
+    public final Object f21135e;
 
     public l5(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f21131a = i10;
-        this.f21132b = obj;
-        this.f21133c = obj2;
+        this.f21132a = i10;
+        this.f21133b = obj;
+        this.f21134c = obj2;
         this.d = obj3;
-        this.f21134e = obj4;
+        this.f21135e = obj4;
     }
 
     private final void a() {
-        wz wzVar = (wz) this.f21133c;
+        wz wzVar = (wz) this.f21134c;
         TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.d;
-        TLObject tLObject = (TLObject) this.f21132b;
-        Runnable runnable = (Runnable) this.f21134e;
-        ArrayList arrayList = wzVar.f32589s;
-        yz yzVar = wzVar.f32590w;
-        if (yzVar.M != wzVar.f32583b) {
+        TLObject tLObject = (TLObject) this.f21133b;
+        Runnable runnable = (Runnable) this.f21135e;
+        ArrayList arrayList = wzVar.f32588s;
+        yz yzVar = wzVar.f32589w;
+        if (yzVar.M != wzVar.f32582b) {
             return;
         }
         yzVar.L = 0;
-        if (tL_messages_getStickers.emoticon.equals(wzVar.f32582a)) {
+        if (tL_messages_getStickers.emoticon.equals(wzVar.f32581a)) {
             if (!(tLObject instanceof TLRPC.TL_messages_stickers)) {
                 runnable.run();
                 return;
@@ -53,12 +53,12 @@ public final class l5 implements Runnable {
             int size2 = tL_messages_stickers.stickers.size();
             for (int i10 = 0; i10 < size2; i10++) {
                 TLRPC.Document document = tL_messages_stickers.stickers.get(i10);
-                if (wzVar.v.indexOfKey(document.f19808id) < 0) {
+                if (wzVar.v.indexOfKey(document.f19809id) < 0) {
                     arrayList.add(document);
                 }
             }
             if (size != arrayList.size()) {
-                wzVar.f32586f.put(arrayList, yzVar.N);
+                wzVar.f32585f.put(arrayList, yzVar.N);
                 if (size == 0) {
                     wzVar.h.add(arrayList);
                 }
@@ -68,12 +68,12 @@ public final class l5 implements Runnable {
     }
 
     private final void b() {
-        v10 v10Var = (v10) this.f21133c;
-        TLObject tLObject = (TLObject) this.f21132b;
-        Utilities.Callback callback = (Utilities.Callback) this.f21134e;
+        v10 v10Var = (v10) this.f21134c;
+        TLObject tLObject = (TLObject) this.f21133b;
+        Utilities.Callback callback = (Utilities.Callback) this.f21135e;
         int i10 = -1;
         v10Var.f31348z0 = -1;
-        m2 m2Var = v10Var.f25297n;
+        m2 m2Var = v10Var.f25289n;
         h10.r0((TLRPC.TL_error) this.d, m2Var, zc.a0(m2Var));
         int i11 = 0;
         if (tLObject != null) {
@@ -83,14 +83,14 @@ public final class l5 implements Runnable {
                 if (arrayList.isEmpty()) {
                     TLRPC.Update update = updates.update;
                     if (update instanceof TL_update.TL_updateDialogFilter) {
-                        i10 = ((TL_update.TL_updateDialogFilter) update).f20059id;
+                        i10 = ((TL_update.TL_updateDialogFilter) update).f20060id;
                     }
                 } else {
                     while (true) {
                         if (i11 >= arrayList.size()) {
                             break;
                         } else if (arrayList.get(i11) instanceof TL_update.TL_updateDialogFilter) {
-                            i10 = ((TL_update.TL_updateDialogFilter) arrayList.get(i11)).f20059id;
+                            i10 = ((TL_update.TL_updateDialogFilter) arrayList.get(i11)).f20060id;
                             break;
                         } else {
                             i11++;
@@ -114,11 +114,11 @@ public final class l5 implements Runnable {
     }
 
     private final void c() {
-        ba0 ba0Var = (ba0) this.f21133c;
+        ba0 ba0Var = (ba0) this.f21134c;
         TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) this.d;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f21134e;
-        TLObject tLObject = (TLObject) this.f21132b;
-        ba0Var.f24602y = false;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f21135e;
+        TLObject tLObject = (TLObject) this.f21133b;
+        ba0Var.f24590y = false;
         ba0Var.K = tL_chatInviteExported.link;
         if (tL_error == null) {
             TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
@@ -134,22 +134,22 @@ public final class l5 implements Runnable {
     }
 
     private final void e() {
-        hb0 hb0Var = (hb0) this.f21132b;
+        hb0 hb0Var = (hb0) this.f21133b;
         ArrayList arrayList = (ArrayList) this.d;
-        boolean[] zArr = (boolean[]) this.f21134e;
-        ((boolean[]) this.f21133c)[0] = true;
+        boolean[] zArr = (boolean[]) this.f21135e;
+        ((boolean[]) this.f21134c)[0] = true;
         AndroidUtilities.cancelRunOnUIThread(hb0Var.U);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((TL_stories.StoryItem) arrayList.get(i10)).pinned = zArr[i10];
         }
-        hb0Var.getMessagesController().getStoriesController().n0(hb0Var.f26737e, arrayList, false);
+        hb0Var.getMessagesController().getStoriesController().n0(hb0Var.f26741e, arrayList, false);
     }
 
     private final void f() {
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f21132b;
-        ci.d dVar = (ci.d) this.f21133c;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f21133b;
+        ci.d dVar = (ci.d) this.f21134c;
         e3 e3Var = (e3) this.d;
-        Runnable runnable = (Runnable) this.f21134e;
+        Runnable runnable = (Runnable) this.f21135e;
         if (tL_error != null) {
             zc.X().f0(tL_error, false);
             return;
@@ -166,26 +166,26 @@ public final class l5 implements Runnable {
     }
 
     public l5(Object obj, Object obj2, TLObject tLObject, Object obj3, int i10) {
-        this.f21131a = i10;
-        this.f21133c = obj;
+        this.f21132a = i10;
+        this.f21134c = obj;
         this.d = obj2;
-        this.f21132b = tLObject;
-        this.f21134e = obj3;
+        this.f21133b = tLObject;
+        this.f21135e = obj3;
     }
 
     public l5(m2 m2Var, TLObject tLObject, TLObject tLObject2, Object obj, int i10) {
-        this.f21131a = i10;
-        this.f21133c = m2Var;
-        this.f21132b = tLObject;
+        this.f21132a = i10;
+        this.f21134c = m2Var;
+        this.f21133b = tLObject;
         this.d = tLObject2;
-        this.f21134e = obj;
+        this.f21135e = obj;
     }
 
     public l5(ba0 ba0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject) {
-        this.f21131a = 26;
-        this.f21133c = ba0Var;
+        this.f21132a = 26;
+        this.f21134c = ba0Var;
         this.d = tL_chatInviteExported;
-        this.f21134e = tL_error;
-        this.f21132b = tLObject;
+        this.f21135e = tL_error;
+        this.f21133b = tLObject;
     }
 }

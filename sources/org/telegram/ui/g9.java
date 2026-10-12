@@ -16,7 +16,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g9 extends org.telegram.ui.Components.t61 {
-    public static final int f37982a = 0;
+    public static final int f37980a = 0;
 
     static {
         org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
@@ -40,9 +40,9 @@ public final class g9 extends org.telegram.ui.Components.t61 {
         org.telegram.ui.Components.m9 m9Var = h9Var.f38297b;
         org.telegram.ui.Cells.i6 i6Var = h9Var.d;
         ImageView imageView = h9Var.f38298c;
-        boolean z13 = i9Var.f38807e;
-        ArrayList arrayList = i9Var.f38806c;
-        ArrayList arrayList2 = i9Var.f38805b;
+        boolean z13 = i9Var.f38810e;
+        ArrayList arrayList = i9Var.f38809c;
+        ArrayList arrayList2 = i9Var.f38808b;
         if (z13) {
             i10 = R.drawable.menu_videocall;
         } else {
@@ -74,13 +74,13 @@ public final class g9 extends org.telegram.ui.Components.t61 {
                         Drawable mutate = h9Var.getContext().getResources().getDrawable(R.drawable.mini_call_out_16).mutate();
                         boolean z14 = z11;
                         mutate.setBounds(z14 ? 1 : 0, z14 ? 1 : 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-                        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20819r7, z14), PorterDuff.Mode.MULTIPLY));
+                        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20820r7, z14), PorterDuff.Mode.MULTIPLY));
                         spannableString.setSpan(new ImageSpan(mutate, z14 ? 1 : 0), str.length(), str.length() + 1, 33);
                     }
                 } else {
                     Drawable mutate2 = h9Var.getContext().getResources().getDrawable(R.drawable.mini_call_in_16).mutate();
                     mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20819r7, false), PorterDuff.Mode.MULTIPLY));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20820r7, false), PorterDuff.Mode.MULTIPLY));
                     spannableString.setSpan(new ImageSpan(mutate2, 0), str.length(), str.length() + 1, 33);
                 }
             } else {
@@ -95,7 +95,7 @@ public final class g9 extends org.telegram.ui.Components.t61 {
             mutate4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.A6, false), PorterDuff.Mode.MULTIPLY));
             spannableString.setSpan(new ImageSpan(mutate4, 0), str.length(), str.length() + 1, 33);
         }
-        if (i9Var.f38804a != 0) {
+        if (i9Var.f38807a != 0) {
             StringBuilder sb2 = new StringBuilder();
             for (int i14 = 0; i14 < Math.min(3, arrayList2.size()); i14++) {
                 if (i14 > 0) {
@@ -121,8 +121,8 @@ public final class g9 extends org.telegram.ui.Components.t61 {
             }
             i6Var2.u(obj2, null, sb2.toString(), spannableString, false, false);
             m9Var.setVisibility(r12);
-            i6Var.f22023r.clearImage();
-            i6Var.f22010f = true;
+            i6Var.f22024r.clearImage();
+            i6Var.f22011f = true;
             int min = Math.min(3, arrayList3.size());
             for (int i15 = 0; i15 < min; i15++) {
                 m9Var.b(i15, (TLObject) arrayList3.get(i15), i12);
@@ -141,11 +141,11 @@ public final class g9 extends org.telegram.ui.Components.t61 {
             }
             i6Var3.u(obj, null, null, spannableString2, false, false);
             m9Var.setVisibility(8);
-            i6Var.f22010f = false;
+            i6Var.f22011f = false;
         }
         imageView.setTag(i9Var);
         imageView.setOnClickListener(onClickListener);
-        boolean z15 = u61Var.f31070e;
+        boolean z15 = u61Var.f31065e;
         org.telegram.ui.Components.fq fqVar = h9Var.f38299e;
         if (fqVar == null) {
             return;

@@ -6,42 +6,42 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pp0;
 public final class x7 implements pp0 {
-    public final z7 f23494a;
+    public final z7 f23495a;
 
     public x7(z7 z7Var) {
-        this.f23494a = z7Var;
+        this.f23495a = z7Var;
     }
 
     @Override
     public final void X(float f7, boolean z10) {
         int[] iArr;
         int round;
-        z7 z7Var = this.f23494a;
-        y7 y7Var = z7Var.f23580r;
-        if (y7Var != null && z7Var.f23579n != null) {
-            if (y7Var.f23544c != null) {
+        z7 z7Var = this.f23495a;
+        y7 y7Var = z7Var.f23581r;
+        if (y7Var != null && z7Var.f23580n != null) {
+            if (y7Var.f23545c != null) {
                 double length = f7 * (iArr.length - 1);
-                int clamp = Utilities.clamp((int) Math.floor(length), z7Var.f23580r.f23544c.length - 1, 0);
-                int clamp2 = Utilities.clamp((int) Math.ceil(length), z7Var.f23580r.f23544c.length - 1, 0);
-                int[] iArr2 = z7Var.f23580r.f23544c;
-                round = Math.round(AndroidUtilities.lerp(iArr2[clamp], iArr2[clamp2], Math.round(((float) (length - Math.floor(length))) * z7Var.f23580r.d) / z7Var.f23580r.d));
+                int clamp = Utilities.clamp((int) Math.floor(length), z7Var.f23581r.f23545c.length - 1, 0);
+                int clamp2 = Utilities.clamp((int) Math.ceil(length), z7Var.f23581r.f23545c.length - 1, 0);
+                int[] iArr2 = z7Var.f23581r.f23545c;
+                round = Math.round(AndroidUtilities.lerp(iArr2[clamp], iArr2[clamp2], Math.round(((float) (length - Math.floor(length))) * z7Var.f23581r.d) / z7Var.f23581r.d));
             } else {
-                round = Math.round(((z7Var.f23580r.a() - z7Var.f23580r.b()) * f7) + y7Var.b());
+                round = Math.round(((z7Var.f23581r.a() - z7Var.f23581r.b()) * f7) + y7Var.b());
             }
             int i10 = z7Var.h;
             if (i10 != Integer.MIN_VALUE) {
                 round = Math.max(round, i10);
             }
-            int i11 = z7Var.f23578f;
+            int i11 = z7Var.f23579f;
             if (i11 != round) {
                 if (z7Var.c(i11) != z7Var.c(round)) {
-                    AndroidUtilities.vibrateCursor(z7Var.f23577e);
+                    AndroidUtilities.vibrateCursor(z7Var.f23578e);
                 }
-                z7Var.f23578f = round;
+                z7Var.f23579f = round;
                 z7Var.e(round, true);
-                Utilities.Callback callback = z7Var.f23579n;
+                Utilities.Callback callback = z7Var.f23580n;
                 if (callback != null) {
-                    callback.run(Integer.valueOf(z7Var.f23578f));
+                    callback.run(Integer.valueOf(z7Var.f23579f));
                 }
             }
         }
@@ -50,23 +50,23 @@ public final class x7 implements pp0 {
     @Override
     public final CharSequence getContentDescription() {
         Utilities.Callback2Return callback2Return;
-        z7 z7Var = this.f23494a;
+        z7 z7Var = this.f23495a;
         try {
             StringBuilder sb2 = new StringBuilder();
-            if (!TextUtils.isEmpty(z7Var.f23581s)) {
-                sb2.append(z7Var.f23581s);
+            if (!TextUtils.isEmpty(z7Var.f23582s)) {
+                sb2.append(z7Var.f23582s);
             }
-            y7 y7Var = z7Var.f23580r;
-            if (y7Var != null && (callback2Return = y7Var.f23545e) != null) {
-                CharSequence charSequence = (CharSequence) callback2Return.run(0, Integer.valueOf(z7Var.f23578f));
+            y7 y7Var = z7Var.f23581r;
+            if (y7Var != null && (callback2Return = y7Var.f23546e) != null) {
+                CharSequence charSequence = (CharSequence) callback2Return.run(0, Integer.valueOf(z7Var.f23579f));
                 if (!TextUtils.isEmpty(charSequence)) {
                     if (sb2.length() > 0) {
                         sb2.append(", ");
                     }
                     sb2.append(charSequence);
                 }
-                CharSequence charSequence2 = (CharSequence) z7Var.f23580r.f23545e.run(-1, Integer.valueOf(z7Var.f23580r.b()));
-                CharSequence charSequence3 = (CharSequence) z7Var.f23580r.f23545e.run(1, Integer.valueOf(z7Var.f23580r.a()));
+                CharSequence charSequence2 = (CharSequence) z7Var.f23581r.f23546e.run(-1, Integer.valueOf(z7Var.f23581r.b()));
+                CharSequence charSequence3 = (CharSequence) z7Var.f23581r.f23546e.run(1, Integer.valueOf(z7Var.f23581r.a()));
                 if (!TextUtils.isEmpty(charSequence2) && !TextUtils.isEmpty(charSequence3)) {
                     if (sb2.length() > 0) {
                         sb2.append(", ");
@@ -82,17 +82,17 @@ public final class x7 implements pp0 {
             return null;
         } catch (Throwable th2) {
             FileLog.e(th2);
-            return z7Var.f23581s;
+            return z7Var.f23582s;
         }
     }
 
     @Override
     public final int m0() {
-        y7 y7Var = this.f23494a.f23580r;
+        y7 y7Var = this.f23495a.f23581r;
         if (y7Var == null) {
             return 0;
         }
-        int[] iArr = y7Var.f23544c;
+        int[] iArr = y7Var.f23545c;
         if (iArr != null) {
             return (iArr.length - 1) * y7Var.d;
         }

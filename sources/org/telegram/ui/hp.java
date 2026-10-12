@@ -24,7 +24,7 @@ public final class hp extends org.telegram.ui.Components.q90 {
         org.telegram.ui.ActionBar.c6 c6Var;
         lp lpVar = this.f38484x;
         if (lpVar.V && (chatFull = lpVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (lpVar.f39798a0) {
+            if (lpVar.f39801a0) {
                 if (z10) {
                     str = "ApproveNewMembersEnableForLinksChannel";
                 } else {
@@ -38,13 +38,13 @@ public final class hp extends org.telegram.ui.Components.q90 {
             Context context = this.f38483w;
             c6Var = ((org.telegram.ui.ActionBar.m2) lpVar).resourceProvider;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
-            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f20141a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
+            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
+            alertDialog$Builder.f20142a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
             alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.z1(this) {
-                public final hp f38110b;
+                public final hp f38114b;
 
                 {
-                    this.f38110b = this;
+                    this.f38114b = this;
                 }
 
                 @Override
@@ -52,13 +52,13 @@ public final class hp extends org.telegram.ui.Components.q90 {
                     switch (r3) {
                         case 0:
                             boolean z11 = z10;
-                            hp hpVar = this.f38110b;
+                            hp hpVar = this.f38114b;
                             hpVar.setJoinRequest(z11);
                             hpVar.f38484x.W = true;
                             return;
                         default:
                             boolean z12 = z10;
-                            hp hpVar2 = this.f38110b;
+                            hp hpVar2 = this.f38114b;
                             hpVar2.setJoinRequest(z12);
                             hpVar2.f38484x.W = false;
                             return;
@@ -66,10 +66,10 @@ public final class hp extends org.telegram.ui.Components.q90 {
                 }
             });
             alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.z1(this) {
-                public final hp f38110b;
+                public final hp f38114b;
 
                 {
-                    this.f38110b = this;
+                    this.f38114b = this;
                 }
 
                 @Override
@@ -77,20 +77,20 @@ public final class hp extends org.telegram.ui.Components.q90 {
                     switch (r3) {
                         case 0:
                             boolean z11 = z10;
-                            hp hpVar = this.f38110b;
+                            hp hpVar = this.f38114b;
                             hpVar.setJoinRequest(z11);
                             hpVar.f38484x.W = true;
                             return;
                         default:
                             boolean z12 = z10;
-                            hp hpVar2 = this.f38110b;
+                            hp hpVar2 = this.f38114b;
                             hpVar2.setJoinRequest(z12);
                             hpVar2.f38484x.W = false;
                             return;
                     }
                 }
             });
-            lpVar.showDialog(alertDialog$Builder.f20141a);
+            lpVar.showDialog(alertDialog$Builder.f20142a);
             return false;
         }
         return true;

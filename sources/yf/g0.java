@@ -7,39 +7,39 @@ import android.widget.EditText;
 import ci.g2;
 import org.telegram.ui.ActionBar.e5;
 public final class g0 implements TextWatcher {
-    public final e5 f52381a;
-    public final EditText f52382b;
-    public String f52383c;
+    public final e5 f52389a;
+    public final EditText f52390b;
+    public String f52391c;
     public boolean d;
-    public boolean f52384e;
+    public boolean f52392e;
 
     public g0(g2 g2Var, e5 e5Var) {
-        this.f52381a = e5Var;
-        this.f52382b = g2Var;
+        this.f52389a = e5Var;
+        this.f52390b = g2Var;
     }
 
     public final void a() {
-        this.f52384e = true;
+        this.f52392e = true;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        boolean isEmpty = TextUtils.isEmpty(this.f52383c);
+        boolean isEmpty = TextUtils.isEmpty(this.f52391c);
         boolean isEmpty2 = TextUtils.isEmpty(obj);
         if (isEmpty && !isEmpty2) {
             b(true);
         }
-        this.f52383c = obj;
-        this.f52381a.q(this.f52382b);
-        if (!isEmpty && isEmpty2 && !this.f52384e) {
+        this.f52391c = obj;
+        this.f52389a.q(this.f52390b);
+        if (!isEmpty && isEmpty2 && !this.f52392e) {
             b(false);
         }
     }
 
     public final void b(boolean z10) {
         if (this.d != z10) {
-            e5 e5Var = this.f52381a;
+            e5 e5Var = this.f52389a;
             if (!e5Var.c()) {
                 return;
             }

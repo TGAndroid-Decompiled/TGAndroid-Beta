@@ -21,50 +21,50 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class u71 extends org.telegram.ui.ActionBar.e3 {
-    public final Drawable f31097b;
-    public final t71 f31098c;
+    public final Drawable f31092b;
+    public final t71 f31093c;
     public AnimatorSet d;
-    public final View f31099e;
-    public final LinearLayout f31100f;
+    public final View f31094e;
+    public final LinearLayout f31095f;
     public int h;
-    public final int[] f31101n;
+    public final int[] f31096n;
 
     public u71(Context context, BetaUpdate betaUpdate) {
         super(context, false);
-        this.f31101n = new int[2];
+        this.f31096n = new int[2];
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.f31097b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20630h5, false), PorterDuff.Mode.MULTIPLY));
+        this.f31092b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false), PorterDuff.Mode.MULTIPLY));
         ai.f0 f0Var = new ai.f0(this, context, 23);
         f0Var.setWillNotDraw(false);
         this.containerView = f0Var;
         t71 t71Var = new t71(this, context);
-        this.f31098c = t71Var;
+        this.f31093c = t71Var;
         t71Var.setFillViewport(true);
         t71Var.setWillNotDraw(false);
         t71Var.setClipToPadding(false);
         t71Var.setVerticalScrollBarEnabled(false);
         f0Var.addView(t71Var, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 130.0f, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f31100f = linearLayout;
+        this.f31095f = linearLayout;
         linearLayout.setOrientation(1);
         t71Var.addView(linearLayout, w7.w5.x(-1, -2, 51));
         TextView textView = new TextView(context);
         org.telegram.messenger.am.k(20.0f, 1, textView);
-        int i10 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i10 = org.telegram.ui.ActionBar.h6.f20668j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setText(LocaleController.getString(R.string.AppUpdateBeta));
         linearLayout.addView(textView, w7.w5.t(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20817r5, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20818r5, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        int i11 = org.telegram.ui.ActionBar.h6.f20686k5;
+        int i11 = org.telegram.ui.ActionBar.h6.f20687k5;
         textView2.setLinkTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         textView2.setText(LocaleController.formatString(R.string.AppBetaUpdateVersion, betaUpdate.version, Integer.valueOf(betaUpdate.versionCode)));
         textView2.setGravity(49);
@@ -83,7 +83,7 @@ public final class u71 extends org.telegram.ui.ActionBar.e3 {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
         layoutParams.bottomMargin = AndroidUtilities.dp(130.0f);
         View view = new View(context);
-        this.f31099e = view;
+        this.f31094e = view;
         view.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.V5, false));
         view.setAlpha(0.0f);
         view.setTag(1);
@@ -92,27 +92,27 @@ public final class u71 extends org.telegram.ui.ActionBar.e3 {
         File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
         if (downloadedUpdateFile != null) {
             dVar.g(LocaleController.formatString(R.string.AppUpdateNow, new Object[0]), false, true);
-            dVar.setOnClickListener(new wt(22, this, downloadedUpdateFile));
+            dVar.setOnClickListener(new xt(22, this, downloadedUpdateFile));
         } else {
             dVar.g(LocaleController.formatString(R.string.AppUpdateDownloadNow, new Object[0]), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final u71 f30437b;
+                public final u71 f30433b;
 
                 {
-                    this.f30437b = this;
+                    this.f30433b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            u71 u71Var = this.f30437b;
+                            u71 u71Var = this.f30433b;
                             u71Var.getClass();
                             ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                             u71Var.dismiss();
                             return;
                         default:
-                            this.f30437b.dismiss();
+                            this.f30433b.dismiss();
                             return;
                     }
                 }
@@ -122,23 +122,23 @@ public final class u71 extends org.telegram.ui.ActionBar.e3 {
         ci.d dVar2 = new ci.d(context, null, false);
         dVar2.g(LocaleController.getString(R.string.AppUpdateRemindMeLater), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final u71 f30437b;
+            public final u71 f30433b;
 
             {
-                this.f30437b = this;
+                this.f30433b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        u71 u71Var = this.f30437b;
+                        u71 u71Var = this.f30433b;
                         u71Var.getClass();
                         ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                         u71Var.dismiss();
                         return;
                     default:
-                        this.f30437b.dismiss();
+                        this.f30433b.dismiss();
                         return;
                 }
             }
@@ -147,9 +147,9 @@ public final class u71 extends org.telegram.ui.ActionBar.e3 {
     }
 
     public static void o(u71 u71Var) {
-        LinearLayout linearLayout = u71Var.f31100f;
+        LinearLayout linearLayout = u71Var.f31095f;
         View childAt = linearLayout.getChildAt(0);
-        int[] iArr = u71Var.f31101n;
+        int[] iArr = u71Var.f31096n;
         childAt.getLocationInWindow(iArr);
         int max = Math.max(iArr[1] - AndroidUtilities.dp(24.0f), 0);
         if (linearLayout.getMeasuredHeight() + iArr[1] <= u71Var.containerView.getTranslationY() + (u71Var.container.getMeasuredHeight() - AndroidUtilities.dp(113.0f))) {
@@ -159,7 +159,7 @@ public final class u71 extends org.telegram.ui.ActionBar.e3 {
         }
         if (u71Var.h != max) {
             u71Var.h = max;
-            u71Var.f31098c.invalidate();
+            u71Var.f31093c.invalidate();
         }
     }
 
@@ -171,7 +171,7 @@ public final class u71 extends org.telegram.ui.ActionBar.e3 {
     public final void q(boolean z10) {
         Integer num;
         float f7;
-        View view = this.f31099e;
+        View view = this.f31094e;
         if ((z10 && view.getTag() != null) || (!z10 && view.getTag() == null)) {
             if (z10) {
                 num = null;

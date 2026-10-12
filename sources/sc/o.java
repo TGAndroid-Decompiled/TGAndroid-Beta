@@ -5,8 +5,8 @@ import java.nio.ByteBuffer;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends x {
-    public static final byte[] f48149e = {0, 0, -1, -1};
-    public int f48150c;
+    public static final byte[] f48157e = {0, 0, -1, -1};
+    public int f48158c;
     public c5.b0 d;
 
     public static byte[] a(byte[] r13) {
@@ -14,7 +14,7 @@ public final class o extends x {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i10 = this.f48150c;
+        int i10 = this.f48158c;
         if (i10 == 32768 || bArr.length < i10) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -34,7 +34,7 @@ public final class o extends x {
     public final byte[] c(byte[] bArr) {
         c5.b0 b0Var = new c5.b0(bArr.length + 4, 8);
         b0Var.p(bArr);
-        b0Var.p(f48149e);
+        b0Var.p(f48157e);
         if (this.d == null) {
             this.d = new c5.b0(0, 8);
         }

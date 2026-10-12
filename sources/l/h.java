@@ -7,50 +7,50 @@ import android.widget.BaseAdapter;
 import androidx.appcompat.view.menu.ListMenuItemView;
 import java.util.ArrayList;
 public final class h extends BaseAdapter {
-    public final k f14977a;
-    public int f14978b = -1;
-    public boolean f14979c;
+    public final k f14978a;
+    public int f14979b = -1;
+    public boolean f14980c;
     public final boolean d;
-    public final LayoutInflater f14980e;
-    public final int f14981f;
+    public final LayoutInflater f14981e;
+    public final int f14982f;
 
     public h(k kVar, LayoutInflater layoutInflater, boolean z10, int i10) {
         this.d = z10;
-        this.f14980e = layoutInflater;
-        this.f14977a = kVar;
-        this.f14981f = i10;
+        this.f14981e = layoutInflater;
+        this.f14978a = kVar;
+        this.f14982f = i10;
         a();
     }
 
     public final void a() {
-        k kVar = this.f14977a;
+        k kVar = this.f14978a;
         m mVar = kVar.v;
         if (mVar != null) {
             kVar.i();
-            ArrayList arrayList = kVar.f14990j;
+            ArrayList arrayList = kVar.f14991j;
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 if (((m) arrayList.get(i10)) == mVar) {
-                    this.f14978b = i10;
+                    this.f14979b = i10;
                     return;
                 }
             }
         }
-        this.f14978b = -1;
+        this.f14979b = -1;
     }
 
     @Override
     public final m getItem(int i10) {
         ArrayList l4;
         boolean z10 = this.d;
-        k kVar = this.f14977a;
+        k kVar = this.f14978a;
         if (z10) {
             kVar.i();
-            l4 = kVar.f14990j;
+            l4 = kVar.f14991j;
         } else {
             l4 = kVar.l();
         }
-        int i11 = this.f14978b;
+        int i11 = this.f14979b;
         if (i11 >= 0 && i10 >= i11) {
             i10++;
         }
@@ -61,14 +61,14 @@ public final class h extends BaseAdapter {
     public final int getCount() {
         ArrayList l4;
         boolean z10 = this.d;
-        k kVar = this.f14977a;
+        k kVar = this.f14978a;
         if (z10) {
             kVar.i();
-            l4 = kVar.f14990j;
+            l4 = kVar.f14991j;
         } else {
             l4 = kVar.l();
         }
-        if (this.f14978b < 0) {
+        if (this.f14979b < 0) {
             return l4.size();
         }
         return l4.size() - 1;
@@ -84,22 +84,22 @@ public final class h extends BaseAdapter {
         int i11;
         boolean z10 = false;
         if (view == null) {
-            view = this.f14980e.inflate(this.f14981f, viewGroup, false);
+            view = this.f14981e.inflate(this.f14982f, viewGroup, false);
         }
-        int i12 = getItem(i10).f15008b;
+        int i12 = getItem(i10).f15009b;
         int i13 = i10 - 1;
         if (i13 >= 0) {
-            i11 = getItem(i13).f15008b;
+            i11 = getItem(i13).f15009b;
         } else {
             i11 = i12;
         }
         ListMenuItemView listMenuItemView = (ListMenuItemView) view;
-        if (this.f14977a.m() && i12 != i11) {
+        if (this.f14978a.m() && i12 != i11) {
             z10 = true;
         }
         listMenuItemView.setGroupDividerEnabled(z10);
         y yVar = (y) view;
-        if (this.f14979c) {
+        if (this.f14980c) {
             listMenuItemView.setForceShowIcon(true);
         }
         yVar.b(getItem(i10));

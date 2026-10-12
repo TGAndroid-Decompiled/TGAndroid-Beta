@@ -19,10 +19,10 @@ public final class s3 extends org.telegram.ui.ActionBar.e1 {
         int i11 = h6.F8;
         c(w02, h6.w0(i11, c6Var));
         e(h6.w0(i11, c6Var), PorterDuff.Mode.SRC_IN);
-        this.f20323c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f20324c.setTranslationX(AndroidUtilities.dp(2.0f));
         a(2);
         setBackground(null);
-        this.f20323c.addOnAttachStateChangeListener(new ai.v2(this, 14));
+        this.f20324c.addOnAttachStateChangeListener(new ai.v2(this, 14));
     }
 
     @Override

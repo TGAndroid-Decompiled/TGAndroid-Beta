@@ -11,7 +11,7 @@ public final class ox extends s4.d0 {
     @Override
     public final int R0() {
         uy uyVar = this.I;
-        if (uyVar.f42618s == 0 && this.J.W.W3() && uyVar.v == 2) {
+        if (uyVar.f42620s == 0 && this.J.W.W3() && uyVar.v == 2) {
             return 1;
         }
         return 0;

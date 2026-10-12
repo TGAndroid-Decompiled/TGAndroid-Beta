@@ -11,31 +11,31 @@ import java.util.ArrayList;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
 public final class x9 extends GradientDrawable {
-    public final int[] f32681a;
-    public final a0.f f32682b;
-    public final a0.f f32683c;
+    public final int[] f32680a;
+    public final a0.f f32681b;
+    public final a0.f f32682c;
     public final a0.f d;
-    public final ArrayList f32684e;
-    public final Paint f32685f;
-    public boolean f32686g;
+    public final ArrayList f32683e;
+    public final Paint f32684f;
+    public boolean f32685g;
 
     public x9(GradientDrawable.Orientation orientation, int[] iArr) {
         super(orientation, iArr);
-        this.f32682b = new a0.m(0);
-        this.f32683c = new a0.m(0);
+        this.f32681b = new a0.m(0);
+        this.f32682c = new a0.m(0);
         this.d = new a0.m(0);
-        this.f32684e = new ArrayList();
+        this.f32683e = new ArrayList();
         Paint paint = new Paint(1);
-        this.f32685f = paint;
-        this.f32686g = false;
+        this.f32684f = paint;
+        this.f32685g = false;
         setDither(true);
-        this.f32681a = iArr;
+        this.f32680a = iArr;
         paint.setDither(true);
     }
 
     public static void a(x9 x9Var, Runnable[] runnableArr, Bitmap bitmap, d70 d70Var, int i10, w7.h0[] h0VarArr) {
-        a0.f fVar = x9Var.f32682b;
-        ArrayList arrayList = x9Var.f32684e;
+        a0.f fVar = x9Var.f32681b;
+        ArrayList arrayList = x9Var.f32683e;
         if (!arrayList.contains(runnableArr)) {
             if (bitmap != null) {
                 bitmap.recycle();
@@ -47,7 +47,7 @@ public final class x9 extends GradientDrawable {
             fVar.put(d70Var, bitmap);
         } else {
             fVar.remove(d70Var);
-            x9Var.f32683c.remove(d70Var);
+            x9Var.f32682c.remove(d70Var);
         }
         runnableArr[i10] = null;
         boolean z10 = true;
@@ -64,7 +64,7 @@ public final class x9 extends GradientDrawable {
         }
         w7.h0 h0Var = h0VarArr[0];
         if (h0Var != null) {
-            h0Var.b(d70Var.f25258a, d70Var.f25259b);
+            h0Var.b(d70Var.f25250a, d70Var.f25251b);
             if (!z10) {
                 h0VarArr[0].a();
                 h0VarArr[0] = null;
@@ -156,41 +156,41 @@ public final class x9 extends GradientDrawable {
     }
 
     public final void b() {
-        if (!this.f32686g) {
-            for (int size = this.f32684e.size() - 1; size >= 0; size--) {
-                Utilities.globalQueue.cancelRunnables((Runnable[]) this.f32684e.remove(size));
+        if (!this.f32685g) {
+            for (int size = this.f32683e.size() - 1; size >= 0; size--) {
+                Utilities.globalQueue.cancelRunnables((Runnable[]) this.f32683e.remove(size));
             }
-            for (int i10 = this.f32682b.f33c - 1; i10 >= 0; i10--) {
-                Bitmap bitmap = (Bitmap) this.f32682b.f(i10);
+            for (int i10 = this.f32681b.f33c - 1; i10 >= 0; i10--) {
+                Bitmap bitmap = (Bitmap) this.f32681b.f(i10);
                 if (bitmap != null) {
                     bitmap.recycle();
                 }
             }
-            this.f32683c.clear();
+            this.f32682c.clear();
             this.d.clear();
-            this.f32686g = true;
+            this.f32685g = true;
         }
     }
 
     public final w9 c(Canvas canvas, final ViewGroup viewGroup) {
-        if (this.f32686g) {
+        if (this.f32685g) {
             super.draw(canvas);
             return null;
         }
         Rect bounds = getBounds();
         int width = (int) (bounds.width() * 0.5f);
         int height = (int) (bounds.height() * 0.5f);
-        a0.f fVar = this.f32682b;
+        a0.f fVar = this.f32681b;
         int i10 = fVar.f33c;
         int i11 = 0;
         while (true) {
             a0.f fVar2 = this.d;
             if (i11 < i10) {
                 d70 d70Var = (d70) fVar.e(i11);
-                if (d70Var.f25258a == width && d70Var.f25259b == height) {
+                if (d70Var.f25250a == width && d70Var.f25251b == height) {
                     Bitmap bitmap = (Bitmap) fVar.h(i11);
                     if (bitmap != null) {
-                        canvas.drawBitmap(bitmap, (Rect) null, bounds, this.f32685f);
+                        canvas.drawBitmap(bitmap, (Rect) null, bounds, this.f32684f);
                     } else {
                         super.draw(canvas);
                     }
@@ -204,7 +204,7 @@ public final class x9 extends GradientDrawable {
                 }
                 d70 d70Var2 = new d70(width, height);
                 fVar.put(d70Var2, null);
-                this.f32683c.put(d70Var2, Boolean.TRUE);
+                this.f32682c.put(d70Var2, Boolean.TRUE);
                 final s9 g10 = g(new d70[]{d70Var2}, new u9(this, viewGroup), 0L);
                 w9 w9Var2 = (w9) fVar2.put(viewGroup, new w9() {
                     @Override
@@ -223,22 +223,22 @@ public final class x9 extends GradientDrawable {
     public final void draw(Canvas canvas) {
         Bitmap bitmap;
         Boolean bool;
-        if (this.f32686g) {
+        if (this.f32685g) {
             super.draw(canvas);
             return;
         }
         Rect bounds = getBounds();
         int width = bounds.width();
         int height = bounds.height();
-        a0.f fVar = this.f32682b;
+        a0.f fVar = this.f32681b;
         int i10 = fVar.f33c;
         float f7 = Float.MAX_VALUE;
         Bitmap bitmap2 = null;
         for (int i11 = 0; i11 < i10; i11++) {
             d70 d70Var = (d70) fVar.e(i11);
             float f10 = f7;
-            float sqrt = (float) Math.sqrt(Math.pow(height - d70Var.f25259b, 2.0d) + Math.pow(width - d70Var.f25258a, 2.0d));
-            if (sqrt < f10 && (bitmap = (Bitmap) fVar.h(i11)) != null && ((bool = (Boolean) this.f32683c.get(d70Var)) == null || !bool.booleanValue())) {
+            float sqrt = (float) Math.sqrt(Math.pow(height - d70Var.f25251b, 2.0d) + Math.pow(width - d70Var.f25250a, 2.0d));
+            if (sqrt < f10 && (bitmap = (Bitmap) fVar.h(i11)) != null && ((bool = (Boolean) this.f32682c.get(d70Var)) == null || !bool.booleanValue())) {
                 bitmap2 = bitmap;
                 f7 = sqrt;
             } else {
@@ -246,18 +246,18 @@ public final class x9 extends GradientDrawable {
             }
         }
         if (bitmap2 != null) {
-            canvas.drawBitmap(bitmap2, (Rect) null, bounds, this.f32685f);
+            canvas.drawBitmap(bitmap2, (Rect) null, bounds, this.f32684f);
         } else {
             super.draw(canvas);
         }
     }
 
     public final s9 f(m.y0 y0Var, w7.h0 h0Var, long j3) {
-        d70[] d70VarArr = (d70[]) y0Var.f15627b;
-        if (!this.f32686g) {
+        d70[] d70VarArr = (d70[]) y0Var.f15628b;
+        if (!this.f32685g) {
             ArrayList arrayList = new ArrayList(d70VarArr.length);
             for (d70 d70Var : d70VarArr) {
-                a0.f fVar = this.f32682b;
+                a0.f fVar = this.f32681b;
                 if (!fVar.containsKey(d70Var)) {
                     fVar.put(d70Var, null);
                     arrayList.add(d70Var);
@@ -284,10 +284,10 @@ public final class x9 extends GradientDrawable {
         }
         w7.h0[] h0VarArr = {h0Var};
         Runnable[] runnableArr = new Runnable[d70VarArr.length];
-        this.f32684e.add(runnableArr);
+        this.f32683e.add(runnableArr);
         for (int i10 = 0; i10 < d70VarArr.length; i10++) {
             d70 d70Var = d70VarArr[i10];
-            if (d70Var.f25258a != 0 && d70Var.f25259b != 0) {
+            if (d70Var.f25250a != 0 && d70Var.f25251b != 0) {
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 r9 r9Var = new r9(this, d70Var, runnableArr, i10, h0VarArr);
                 runnableArr[i10] = r9Var;
@@ -300,12 +300,12 @@ public final class x9 extends GradientDrawable {
     @Override
     public final void setAlpha(int i10) {
         super.setAlpha(i10);
-        this.f32685f.setAlpha(i10);
+        this.f32684f.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
         super.setColorFilter(colorFilter);
-        this.f32685f.setColorFilter(colorFilter);
+        this.f32684f.setColorFilter(colorFilter);
     }
 }

@@ -11,6 +11,6 @@ public final class yk extends org.telegram.ui.Components.q71 {
 
     @Override
     public final org.telegram.ui.ActionBar.c6 getResourceProvider() {
-        return this.N.f37251ea;
+        return this.N.f37256ea;
     }
 }

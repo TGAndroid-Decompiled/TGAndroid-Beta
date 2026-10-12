@@ -215,7 +215,7 @@ public final class s0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (adVar.f24286i) {
+            if (adVar.f24287i) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;

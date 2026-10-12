@@ -17,13 +17,13 @@ public final class de extends org.telegram.ui.Components.de0 {
         switch (this.L) {
             case 0:
                 oe oeVar = (oe) this.M;
-                org.telegram.ui.Components.p71 p71Var = oeVar.f40655a1;
+                org.telegram.ui.Components.p71 p71Var = oeVar.f40658a1;
                 fi.o oVar = oeVar.Y0;
                 if (oVar != null && !oVar.isFocusable()) {
                     oVar.setFocusable(true);
                     oVar.setFocusableInTouchMode(true);
                     int y12 = p71Var.y1(3);
-                    if (y12 >= 0 && y12 < p71Var.W2.f26678x.size()) {
+                    if (y12 >= 0 && y12 < p71Var.W2.f26682x.size()) {
                         p71Var.B0();
                         p71Var.x0(y12);
                     }
@@ -36,10 +36,10 @@ public final class de extends org.telegram.ui.Components.de0 {
                 if (oVar2 != null && !oVar2.isFocusable()) {
                     gVar.Q.setFocusable(true);
                     gVar.Q.setFocusableInTouchMode(true);
-                    int y13 = gVar.f52784e.y1(1);
-                    if (y13 >= 0 && y13 < gVar.f52784e.W2.f26678x.size()) {
-                        gVar.f52784e.B0();
-                        gVar.f52784e.x0(y13);
+                    int y13 = gVar.f52796e.y1(1);
+                    if (y13 >= 0 && y13 < gVar.f52796e.W2.f26682x.size()) {
+                        gVar.f52796e.B0();
+                        gVar.f52796e.x0(y13);
                     }
                     gVar.Q.requestFocus();
                 }

@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class lf implements Runnable {
-    public final int f28182a;
-    public int f28183b;
-    public final KeyEvent.Callback f28184c;
+    public final int f28167a;
+    public int f28168b;
+    public final KeyEvent.Callback f28169c;
 
     public lf(KeyEvent.Callback callback, int i10, int i11) {
-        this.f28182a = i11;
-        this.f28184c = callback;
-        this.f28183b = i10;
+        this.f28167a = i11;
+        this.f28169c = callback;
+        this.f28168b = i10;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class lf implements Runnable {
         boolean z10;
         boolean z11;
         int max;
-        int i10 = this.f28182a;
-        KeyEvent.Callback callback = this.f28184c;
+        int i10 = this.f28167a;
+        KeyEvent.Callback callback = this.f28169c;
         switch (i10) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 ig igVar = chatActivityEnterView.U0;
-                if (igVar != null && (currentPage = igVar.getCurrentPage()) != this.f28183b) {
-                    this.f28183b = currentPage;
+                if (igVar != null && (currentPage = igVar.getCurrentPage()) != this.f28168b) {
+                    this.f28168b = currentPage;
                     boolean z12 = chatActivityEnterView.Z3;
                     int i11 = 2;
                     if (currentPage != 1 && currentPage != 2) {
@@ -40,14 +40,14 @@ public final class lf implements Runnable {
                         z10 = true;
                     }
                     chatActivityEnterView.Z3 = z10;
-                    boolean z13 = chatActivityEnterView.f23620a4;
+                    boolean z13 = chatActivityEnterView.f23621a4;
                     if (currentPage == 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    chatActivityEnterView.f23620a4 = z11;
-                    if (chatActivityEnterView.f23627b4) {
+                    chatActivityEnterView.f23621a4 = z11;
+                    if (chatActivityEnterView.f23628b4) {
                         if (chatActivityEnterView.R1 != 0) {
                             if (currentPage != 0) {
                                 i11 = 1;
@@ -58,7 +58,7 @@ public final class lf implements Runnable {
                             chatActivityEnterView.p1(false, true, false, true);
                         }
                     }
-                    if (z12 != chatActivityEnterView.Z3 || z13 != chatActivityEnterView.f23620a4) {
+                    if (z12 != chatActivityEnterView.Z3 || z13 != chatActivityEnterView.f23621a4) {
                         chatActivityEnterView.L(true);
                         return;
                     }
@@ -66,7 +66,7 @@ public final class lf implements Runnable {
                 }
                 return;
             case 1:
-                int i12 = this.f28183b;
+                int i12 = this.f28168b;
                 eq eqVar = (eq) callback;
                 s4.p0 layoutManager = eqVar.f25759w.getLayoutManager();
                 if (layoutManager != null) {
@@ -76,13 +76,13 @@ public final class lf implements Runnable {
                         max = Math.max(i12 - 1, 0);
                     }
                     yp ypVar = eqVar.H;
-                    ypVar.f48058a = max;
+                    ypVar.f48066a = max;
                     layoutManager.w0(ypVar);
                 }
                 eqVar.Q = i12;
                 return;
             default:
-                int i13 = this.f28183b;
+                int i13 = this.f28168b;
                 ci.j9 j9Var = (ci.j9) callback;
                 if (((lf) j9Var.f5288f) == this) {
                     ArrayList arrayList = new ArrayList();
@@ -110,8 +110,8 @@ public final class lf implements Runnable {
     }
 
     public lf(ChatActivityEnterView chatActivityEnterView) {
-        this.f28182a = 0;
-        this.f28184c = chatActivityEnterView;
-        this.f28183b = -1;
+        this.f28167a = 0;
+        this.f28169c = chatActivityEnterView;
+        this.f28168b = -1;
     }
 }

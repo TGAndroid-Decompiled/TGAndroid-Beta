@@ -7,16 +7,16 @@ import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.ma0;
 public final class h extends of.e {
     public ma0 d;
-    public final Layout f21941e;
-    public final ClickableSpan f21942f;
-    public final float f21943g;
+    public final Layout f21942e;
+    public final ClickableSpan f21943f;
+    public final float f21944g;
     public final j h;
 
     public h(j jVar, Layout layout, ClickableSpan clickableSpan, float f7) {
         this.h = jVar;
-        this.f21941e = layout;
-        this.f21942f = clickableSpan;
-        this.f21943g = f7;
+        this.f21942e = layout;
+        this.f21943f = clickableSpan;
+        this.f21944g = f7;
     }
 
     @Override
@@ -39,12 +39,12 @@ public final class h extends of.e {
         if (ma0Var != null) {
             fa0Var.l(ma0Var, true);
         }
-        ma0 i10 = fa0.i(this.f21941e, this.f21942f, this.f21943g);
+        ma0 i10 = fa0.i(this.f21942e, this.f21943f, this.f21944g);
         this.d = i10;
         jVar.G = i10;
         int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, jVar.I);
         this.d.g(org.telegram.ui.ActionBar.h6.m1(0.8f, w02), org.telegram.ui.ActionBar.h6.m1(1.3f, w02), org.telegram.ui.ActionBar.h6.m1(1.0f, w02), org.telegram.ui.ActionBar.h6.m1(4.0f, w02));
-        this.d.f28486x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+        this.d.f28481x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
         fa0Var.b(this.d, null);
     }
 }

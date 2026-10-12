@@ -37,7 +37,7 @@ public final class s20 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
                     }
                     if (view instanceof org.telegram.ui.Cells.e4) {
                         i60Var2.J1();
-                        org.telegram.ui.Components.ik0 ik0Var = ((org.telegram.ui.Cells.e4) view).f21792f;
+                        org.telegram.ui.Components.ik0 ik0Var = ((org.telegram.ui.Cells.e4) view).f21793f;
                         if (ik0Var.isEnabled()) {
                             ik0Var.callOnClick();
                             return true;
@@ -57,8 +57,8 @@ public final class s20 implements org.telegram.ui.ActionBar.q0, org.telegram.ui.
     public void o(KeyEvent keyEvent) {
         i60 i60Var;
         i50 i50Var;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i50Var = (i60Var = this.f41790b).f38703f3) != null && i50Var.isShowing()) {
-            i60Var.f38703f3.dismiss();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (i50Var = (i60Var = this.f41790b).f38706f3) != null && i50Var.isShowing()) {
+            i60Var.f38706f3.dismiss();
         }
     }
 

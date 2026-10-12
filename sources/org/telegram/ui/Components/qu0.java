@@ -11,14 +11,14 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qu0 extends vm0 {
-    public final Context f29934c;
+    public final Context f29935c;
     public final ArrayList d = new ArrayList();
-    public int f29935e;
-    public final hw0 f29936f;
+    public int f29936e;
+    public final hw0 f29937f;
 
     public qu0(hw0 hw0Var, Context context) {
-        this.f29936f = hw0Var;
-        this.f29934c = context;
+        this.f29937f = hw0Var;
+        this.f29935c = context;
         E(false);
     }
 
@@ -28,9 +28,9 @@ public final class qu0 extends vm0 {
     }
 
     public final void E(boolean z10) {
-        hw0 hw0Var = this.f29936f;
-        long j3 = hw0Var.f26947j1;
-        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26972v1;
+        hw0 hw0Var = this.f29937f;
+        long j3 = hw0Var.f26932j1;
+        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
         if (m2Var != null) {
             if (DialogObject.isChatDialog(j3)) {
                 TLRPC.Chat chat = MessagesController.getInstance(m2Var.getCurrentAccount()).getChat(Long.valueOf(-j3));
@@ -57,7 +57,7 @@ public final class qu0 extends vm0 {
             if (!arrayList.isEmpty() && !UserConfig.getInstance(m2Var.getCurrentAccount()).isPremium()) {
                 i10 = channelRecommendations.more;
             }
-            this.f29935e = i10;
+            this.f29936e = i10;
             if (z10) {
                 l();
             }
@@ -71,7 +71,7 @@ public final class qu0 extends vm0 {
 
     @Override
     public final int j(int i10) {
-        if (this.f29935e > 0 && i10 == this.d.size() - 1) {
+        if (this.f29936e > 0 && i10 == this.d.size() - 1) {
             return 18;
         }
         return 17;
@@ -80,8 +80,8 @@ public final class qu0 extends vm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         org.telegram.ui.Cells.i6 i6Var;
-        int i11 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        int i11 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i11 == 17) {
             if (view instanceof org.telegram.ui.Cells.i6) {
                 i6Var = (org.telegram.ui.Cells.i6) view;
@@ -90,7 +90,7 @@ public final class qu0 extends vm0 {
             }
         } else if (i11 == 18) {
             if (view instanceof ev0) {
-                i6Var = ((ev0) view).f25789a;
+                i6Var = ((ev0) view).f25791a;
             } else {
                 return;
             }
@@ -114,24 +114,24 @@ public final class qu0 extends vm0 {
         View i6Var;
         int currentAccount;
         boolean z10;
-        hw0 hw0Var = this.f29936f;
+        hw0 hw0Var = this.f29937f;
         if (i10 == 18) {
-            org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26972v1;
+            org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
             if (m2Var == null) {
                 currentAccount = UserConfig.selectedAccount;
             } else {
                 currentAccount = m2Var.getCurrentAccount();
             }
             int i11 = currentAccount;
-            if (hw0Var.f26947j1 > 0) {
+            if (hw0Var.f26932j1 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             boolean z11 = z10;
-            i6Var = new ev0(i11, this.f29934c, z11, hw0Var.F1, new ur0(this, 4));
+            i6Var = new ev0(i11, this.f29935c, z11, hw0Var.F1, new ur0(this, 4));
         } else {
-            i6Var = new org.telegram.ui.Cells.i6(this.f29934c, hw0Var.F1);
+            i6Var = new org.telegram.ui.Cells.i6(this.f29935c, hw0Var.F1);
         }
         i6Var.setLayoutParams(new s4.q0(-1, -2));
         return new s4.d1(i6Var);

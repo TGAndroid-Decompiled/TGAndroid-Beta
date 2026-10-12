@@ -23,7 +23,7 @@ public final class h0 extends org.telegram.ui.ActionBar.e5 {
             default:
                 return super.h();
             case 2:
-                return !((org.telegram.ui.Wallet.b2) this.h).f34495m;
+                return !((org.telegram.ui.Wallet.b2) this.h).f34497m;
         }
     }
 

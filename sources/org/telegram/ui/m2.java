@@ -2,48 +2,48 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Intro;
 public final class m2 implements z4.e {
-    public final int f39887a;
-    public final Object f39888b;
+    public final int f39890a;
+    public final Object f39891b;
 
     public m2(Object obj, int i10) {
-        this.f39887a = i10;
-        this.f39888b = obj;
+        this.f39890a = i10;
+        this.f39891b = obj;
     }
 
     @Override
     public final void a(int i10) {
-        switch (this.f39887a) {
+        switch (this.f39890a) {
             case 0:
-                q2 q2Var = (q2) this.f39888b;
+                q2 q2Var = (q2) this.f39891b;
                 q2Var.v = i10;
-                q2Var.f41142c.invalidate();
+                q2Var.f41144c.invalidate();
                 return;
             case 1:
-                ((f80) this.f39888b).H = i10;
+                ((f80) this.f39891b).H = i10;
                 return;
             default:
-                ((zd1) this.f39888b).f44730a0.invalidate();
+                ((zd1) this.f39891b).f44735a0.invalidate();
                 return;
         }
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
-        switch (this.f39887a) {
+        switch (this.f39890a) {
             case 0:
-                q2 q2Var = (q2) this.f39888b;
-                float measuredWidth = q2Var.f41140a.getMeasuredWidth();
+                q2 q2Var = (q2) this.f39891b;
+                float measuredWidth = q2Var.f41142a.getMeasuredWidth();
                 if (measuredWidth != 0.0f) {
-                    q2Var.f41147s = com.google.android.gms.internal.vision.e2.u(q2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
-                    q2Var.f41142c.invalidate();
+                    q2Var.f41149s = com.google.android.gms.internal.vision.e2.u(q2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
+                    q2Var.f41144c.invalidate();
                     return;
                 }
                 return;
             case 1:
-                f80 f80Var = (f80) this.f39888b;
-                org.telegram.ui.Components.ua uaVar = f80Var.f37668e;
-                uaVar.f31123b = f7;
-                uaVar.f31124c = i10;
+                f80 f80Var = (f80) this.f39891b;
+                org.telegram.ui.Components.ua uaVar = f80Var.f37672e;
+                uaVar.f31118b = f7;
+                uaVar.f31119c = i10;
                 uaVar.invalidate();
                 float measuredWidth2 = f80Var.d.getMeasuredWidth();
                 if (measuredWidth2 != 0.0f) {
@@ -58,11 +58,11 @@ public final class m2 implements z4.e {
 
     @Override
     public final void c(int i10) {
-        switch (this.f39887a) {
+        switch (this.f39890a) {
             case 0:
                 return;
             case 1:
-                f80 f80Var = (f80) this.f39888b;
+                f80 f80Var = (f80) this.f39891b;
                 if (i10 == 1) {
                     f80Var.K = true;
                     f80Var.d.getCurrentItem();
@@ -72,8 +72,8 @@ public final class m2 implements z4.e {
                     if (f80Var.K) {
                         f80Var.K = false;
                     }
-                    if (f80Var.f37673w != f80Var.d.getCurrentItem()) {
-                        f80Var.f37673w = f80Var.d.getCurrentItem();
+                    if (f80Var.f37677w != f80Var.d.getCurrentItem()) {
+                        f80Var.f37677w = f80Var.d.getCurrentItem();
                         return;
                     }
                     return;

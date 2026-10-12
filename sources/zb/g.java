@@ -2,18 +2,18 @@ package zb;
 
 import ci.u5;
 public final class g implements q9.d {
-    public static final g f54540b = new g(0);
-    public static final g f54541c = new g(1);
+    public static final g f54548b = new g(0);
+    public static final g f54549c = new g(1);
     public static final g d = new g(2);
-    public final int f54542a;
+    public final int f54550a;
 
     public g(int i10) {
-        this.f54542a = i10;
+        this.f54550a = i10;
     }
 
     @Override
     public final Object x0(u5 u5Var) {
-        switch (this.f54542a) {
+        switch (this.f54550a) {
             case 0:
                 return new e((qb.g) u5Var.a(qb.g.class));
             case 1:

@@ -7,21 +7,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.h6;
 public final class h extends CharacterStyle {
-    public final String f14884a;
-    public final float f14885b;
-    public final boolean f14886c;
+    public final String f14885a;
+    public final float f14886b;
+    public final boolean f14887c;
 
     public h(boolean z10, String str, String str2) {
         int length;
         int i10;
-        this.f14886c = z10;
-        this.f14884a = str;
+        this.f14887c = z10;
+        this.f14885a = str;
         if (str2 == null) {
             length = 0;
         } else {
             length = str2.length();
         }
-        q qVar = k.f14892a;
+        q qVar = k.f14893a;
         if (length > 120) {
             i10 = 5;
         } else if (length > 50) {
@@ -29,13 +29,13 @@ public final class h extends CharacterStyle {
         } else {
             i10 = 2;
         }
-        this.f14885b = i10;
+        this.f14886b = i10;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        if (this.f14886c) {
-            textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.f14885b));
+        if (this.f14887c) {
+            textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.f14886b));
         }
         textPaint.setColor(h6.x0(null, h6.ec, false));
         textPaint.setTypeface(Typeface.MONOSPACE);

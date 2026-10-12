@@ -15,7 +15,7 @@ public final class gy extends c00 {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f25090f0 = false;
+            this.d.f25082f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -27,15 +27,15 @@ public final class gy extends c00 {
         cz czVar = d00Var.S;
         dy dyVar = d00Var.Q;
         d00Var.U(dyVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = d00Var.f25104j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = d00Var.f25096j2) != null) {
             hVar.f(i10, i11);
         }
         super.b(recyclerView, i10, i11);
         if (czVar != null && d00Var.P.getAdapter() == czVar) {
-            cz czVar2 = czVar.f25058x.f24776a;
+            cz czVar2 = czVar.f25050x.f24771a;
             if (!czVar2.F.V.F && !czVar2.E) {
                 if (dyVar.N0() + 20 > czVar.h()) {
-                    bz bzVar = czVar.f25058x;
+                    bz bzVar = czVar.f25050x;
                     Objects.requireNonNull(bzVar);
                     AndroidUtilities.runOnUIThread(new kx(bzVar, 1));
                 }

@@ -145,7 +145,7 @@ public final class r4 implements Runnable {
                 k6.e eVar = g0Var.d;
                 Context context = g0Var.f6586c;
                 eVar.getClass();
-                if (!k6.g.f14705a.getAndSet(true)) {
+                if (!k6.g.f14706a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -163,7 +163,7 @@ public final class r4 implements Runnable {
                 ((com.google.android.gms.common.api.internal.p0) this.f1652b).f();
                 return;
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.c) this.f1652b).f51335b).f6655b;
+                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.c) this.f1652b).f51343b).f6655b;
                 cVar2.e(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 16:
@@ -199,7 +199,7 @@ public final class r4 implements Runnable {
                 return;
             case 23:
                 kg.e eVar3 = (kg.e) this.f1652b;
-                eVar3.f14830f.animate().setDuration(120L).alpha(0.0f);
+                eVar3.f14831f.animate().setDuration(120L).alpha(0.0f);
                 eVar3.h.animate().setListener(null).start();
                 if (eVar3.h.getVisibility() != 0) {
                     eVar3.h.setVisibility(0);
@@ -209,7 +209,7 @@ public final class r4 implements Runnable {
                 return;
             case 24:
                 m.s1 s1Var = (m.s1) this.f1652b;
-                s1Var.f15572w = null;
+                s1Var.f15573w = null;
                 s1Var.drawableStateChanged();
                 return;
             case 25:
@@ -220,27 +220,27 @@ public final class r4 implements Runnable {
                 }
                 return;
             case 26:
-                Object obj2 = ((xa.c) this.f1652b).f51335b;
+                Object obj2 = ((xa.c) this.f1652b).f51343b;
                 return;
             case 27:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1652b;
-                if (a0Var.f21542b == null) {
-                    a0Var.f21542b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f21543b == null) {
+                    a0Var.f21543b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f21542b;
-                int i10 = a0Var.f21543c + 1;
-                a0Var.f21543c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f21543b;
+                int i10 = a0Var.f21544c + 1;
+                a0Var.f21544c = i10;
                 jVar2.f2599b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             case 28:
                 org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1652b;
-                TextView textView = v5Var.f23315b;
+                TextView textView = v5Var.f23316b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23314a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23315a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
                 v5Var.d.addListener(new org.telegram.ui.w4(this, 9));
@@ -249,7 +249,7 @@ public final class r4 implements Runnable {
             default:
                 org.telegram.ui.Cells.t6 t6Var = (org.telegram.ui.Cells.t6) this.f1652b;
                 t6Var.a();
-                RectF rectF = t6Var.f22826f;
+                RectF rectF = t6Var.f22827f;
                 t6Var.invalidate(((int) rectF.left) - 5, ((int) rectF.top) - 5, ((int) rectF.right) + 5, ((int) rectF.bottom) + 5);
                 AndroidUtilities.runOnUIThread(t6Var.v, 1000L);
                 return;

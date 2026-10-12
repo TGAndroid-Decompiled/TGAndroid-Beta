@@ -50,24 +50,24 @@ import org.telegram.ui.u6;
 import org.telegram.ui.uk0;
 import org.telegram.ui.xm0;
 public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.android.gms.common.api.internal.s, n5.b, SuccessContinuation {
-    public final int f16571a;
-    public Object f16572b;
-    public Object f16573c;
+    public final int f16572a;
+    public Object f16573b;
+    public Object f16574c;
 
     public z0(int i10, byte b10) {
-        this.f16571a = i10;
+        this.f16572a = i10;
     }
 
     @Override
     public void B(float f7, boolean z10) {
-        cd0 cd0Var = (cd0) this.f16572b;
-        pg0 pg0Var = (pg0) this.f16573c;
+        cd0 cd0Var = (cd0) this.f16573b;
+        pg0 pg0Var = (pg0) this.f16574c;
         q81 q81Var = pg0Var.d;
         if (q81Var != null) {
             long p5 = q81Var.p();
             float max = 2.8f / ((float) Math.max(60L, p5));
             long j3 = (((f7 / (1.0f - max)) * max) + f7) * ((float) p5);
-            pg0Var.f29497e = j3;
+            pg0Var.f29500e = j3;
             pg0Var.d.L(j3, !z10);
             if (!z10) {
                 AndroidUtilities.cancelRunOnUIThread(cd0Var);
@@ -83,13 +83,13 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public Paint G(String str) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
                 return h6.T0(str);
             case 8:
                 return h6.T0(str);
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     return h6.T0(str);
                 }
@@ -99,12 +99,12 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void J0(int i10, int i11) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
             case 8:
                 return;
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var != null) {
                     c6Var.J0(i10, i11);
                     return;
@@ -115,14 +115,14 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void X(float f7, boolean z10) {
-        ((TextView) this.f16572b).setText("Alpha " + l5.f39643e);
-        l5.f39643e = f7;
-        ((l5) this.f16573c).f39644b.M();
+        ((TextView) this.f16573b).setText("Alpha " + l5.f39637e);
+        l5.f39637e = f7;
+        ((l5) this.f16574c).f39638b.M();
     }
 
     @Override
     public boolean a() {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
             case 8:
             default:
@@ -137,9 +137,9 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void c(String str, String str2) {
-        pn0 pn0Var = ((xm0) this.f16573c).f44042a;
+        pn0 pn0Var = ((xm0) this.f16574c).f44047a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
-            pn0Var.N1(true, str2, (uk0) this.f16572b, this, pn0Var.B1);
+            pn0Var.N1(true, str2, (uk0) this.f16573b, this, pn0Var.B1);
         } else {
             pn0Var.M1(true, false);
         }
@@ -147,13 +147,13 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public int d0(int i10) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
                 return x0(i10);
             case 8:
                 return x0(i10);
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     return h6.x0(null, i10, false);
                 }
@@ -163,18 +163,18 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void dismiss() {
-        ((lv) this.f16573c).dismiss();
+        ((lv) this.f16574c).dismiss();
     }
 
     @Override
     public int f1(int i10) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
-                return ((SparseIntArray) this.f16572b).get(i10);
+                return ((SparseIntArray) this.f16573b).get(i10);
             case 8:
                 return x0(i10);
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     return h6.x0(null, i10, false);
                 }
@@ -186,9 +186,9 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
     public Object mo27get() {
         qb.b bVar = new qb.b(24);
         ob.a aVar = new ob.a(24);
-        Object mo27get = ((gd.a) this.f16572b).mo27get();
-        gd.a aVar2 = (gd.a) this.f16573c;
-        return new s5.g(bVar, aVar, s5.a.f48064f, (s5.i) mo27get, aVar2);
+        Object mo27get = ((gd.a) this.f16573b).mo27get();
+        gd.a aVar2 = (gd.a) this.f16574c;
+        return new s5.g(bVar, aVar, s5.a.f48072f, (s5.i) mo27get, aVar2);
     }
 
     @Override
@@ -198,13 +198,13 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public Drawable getDrawable(String str) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
                 return null;
             case 8:
                 return null;
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     return h6.P0(str);
                 }
@@ -214,15 +214,15 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void i() {
-        ((uu) this.f16572b).getText();
-        ((g3) this.f16573c).b();
+        ((uu) this.f16573b).getText();
+        ((g3) this.f16574c).b();
     }
 
     public ArrayList j() {
         ?? arrayList;
         ArrayList arrayList2 = new ArrayList();
-        Context context = (Context) this.f16572b;
-        Class cls = ((fb.e) this.f16573c).f9807a;
+        Context context = (Context) this.f16573b;
+        Class cls = ((fb.e) this.f16574c).f9807a;
         Bundle bundle = null;
         try {
             PackageManager packageManager = context.getPackageManager();
@@ -258,8 +258,8 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     public View k(int i10, int i11, int i12, int i13) {
         int i14;
-        s4.i1 i1Var = (s4.i1) this.f16573c;
-        s4.j1 j1Var = (s4.j1) this.f16572b;
+        s4.i1 i1Var = (s4.i1) this.f16574c;
+        s4.j1 j1Var = (s4.j1) this.f16573b;
         int D = j1Var.D();
         int U = j1Var.U();
         if (i11 > i10) {
@@ -272,18 +272,18 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
             View Z = j1Var.Z(i10);
             int m10 = j1Var.m(Z);
             int d02 = j1Var.d0(Z);
-            i1Var.f47946b = D;
-            i1Var.f47947c = U;
+            i1Var.f47954b = D;
+            i1Var.f47955c = U;
             i1Var.d = m10;
-            i1Var.f47948e = d02;
+            i1Var.f47956e = d02;
             if (i12 != 0) {
-                i1Var.f47945a = i12;
+                i1Var.f47953a = i12;
                 if (i1Var.a()) {
                     return Z;
                 }
             }
             if (i13 != 0) {
-                i1Var.f47945a = i13;
+                i1Var.f47953a = i13;
                 if (i1Var.a()) {
                     view = Z;
                 }
@@ -297,7 +297,7 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
     public ch.d l() {
         if (Build.VERSION.SDK_INT >= 29) {
             ch.e eVar = new ch.e(this);
-            ((PhotoViewer) this.f16573c).Z.add(eVar);
+            ((PhotoViewer) this.f16574c).Z.add(eVar);
             return eVar;
         }
         return new ch.f(this);
@@ -305,13 +305,13 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public boolean l0() {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
                 return false;
             case 8:
                 return false;
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     return h6.b1();
                 }
@@ -321,7 +321,7 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void m(float f7, float f10, int i10, int i11) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
                 h6.q(f7, f10, i10, i11);
                 return;
@@ -329,7 +329,7 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
                 h6.q(f7, f10, i10, i11);
                 return;
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     h6.q(f7, f10, i10, i11);
                     return;
@@ -347,48 +347,48 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
-        ph.i iVar = (ph.i) this.f16573c;
-        iVar.f45755c.a(f7);
+        ph.i iVar = (ph.i) this.f16574c;
+        iVar.f45760c.a(f7);
         iVar.d.a(f7);
-        iVar.f45754b.a(f7);
-        ((Runnable) this.f16572b).run();
+        iVar.f45759b.a(f7);
+        ((Runnable) this.f16573b).run();
     }
 
     public boolean o(View view) {
-        s4.i1 i1Var = (s4.i1) this.f16573c;
-        s4.j1 j1Var = (s4.j1) this.f16572b;
+        s4.i1 i1Var = (s4.i1) this.f16574c;
+        s4.j1 j1Var = (s4.j1) this.f16573b;
         int D = j1Var.D();
         int U = j1Var.U();
         int m10 = j1Var.m(view);
         int d02 = j1Var.d0(view);
-        i1Var.f47946b = D;
-        i1Var.f47947c = U;
+        i1Var.f47954b = D;
+        i1Var.f47955c = U;
         i1Var.d = m10;
-        i1Var.f47948e = d02;
-        i1Var.f47945a = 24579;
+        i1Var.f47956e = d02;
+        i1Var.f47953a = 24579;
         return i1Var.a();
     }
 
     @Override
     public Task then(Object obj) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 21:
                 da.b bVar = (da.b) obj;
-                w9.n nVar = ((w9.l) this.f16573c).f50469e;
+                w9.n nVar = ((w9.l) this.f16574c).f50477e;
                 if (bVar == null) {
                     Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
                     return Tasks.forResult(null);
                 }
-                return Tasks.whenAll(w9.n.b(nVar), nVar.f50483m.y((Executor) this.f16572b, null));
+                return Tasks.whenAll(w9.n.b(nVar), nVar.f50491m.y((Executor) this.f16573b, null));
             default:
-                return ((w9.n) this.f16573c).f50476e.l(new u4.f(1, this, (Boolean) obj));
+                return ((w9.n) this.f16574c).f50484e.l(new u4.f(1, this, (Boolean) obj));
         }
     }
 
     public String toString() {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 13:
-                return "Bounds{lower=" + ((i0.b) this.f16572b) + " upper=" + ((i0.b) this.f16573c) + "}";
+                return "Bounds{lower=" + ((i0.b) this.f16573b) + " upper=" + ((i0.b) this.f16574c) + "}";
             default:
                 return super.toString();
         }
@@ -398,7 +398,7 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
     public void v(Canvas canvas, float f7, float f10, float f11, float f12) {
         canvas.save();
         canvas.clipRect(f7, f10, f11, f12);
-        ((PhotoViewer) this.f16573c).T0(canvas, (pa) this.f16572b, -14277082, 855638016, false, true, true);
+        ((PhotoViewer) this.f16574c).T0(canvas, (pa) this.f16573b, -14277082, 855638016, false, true, true);
         canvas.drawColor(637534208);
         canvas.restore();
     }
@@ -406,10 +406,10 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
     public c3.h0 w(int i10) {
         int i11 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f16572b;
+            int[] iArr = (int[]) this.f16573b;
             if (i11 < iArr.length) {
                 if (i10 == iArr[i11]) {
-                    return ((u2.z0[]) this.f16573c)[i11];
+                    return ((u2.z0[]) this.f16574c)[i11];
                 }
                 i11++;
             } else {
@@ -421,15 +421,15 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public ColorFilter x() {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
-                return h6.f20889v3;
+                return h6.f20890v3;
             case 8:
-                return h6.f20889v3;
+                return h6.f20890v3;
             default:
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
-                    return h6.f20889v3;
+                    return h6.f20890v3;
                 }
                 return c6Var.x();
         }
@@ -437,27 +437,27 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public int x0(int i10) {
-        switch (this.f16571a) {
+        switch (this.f16572a) {
             case 1:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f16572b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f16573b;
                 int indexOfKey = sparseIntArray.indexOfKey(i10);
                 if (indexOfKey >= 0) {
                     return sparseIntArray.valueAt(indexOfKey);
                 }
                 return h6.x0(null, i10, false);
             case 8:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f16572b;
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f16573b;
                 if (sparseIntArray2 != null) {
                     return sparseIntArray2.get(i10);
                 }
                 return h6.x0(null, i10, false);
             default:
-                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f16572b;
+                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f16573b;
                 int indexOfKey2 = sparseIntArray3.indexOfKey(i10);
                 if (indexOfKey2 >= 0) {
                     return sparseIntArray3.valueAt(indexOfKey2);
                 }
-                c6 c6Var = (c6) this.f16573c;
+                c6 c6Var = (c6) this.f16574c;
                 if (c6Var == null) {
                     return h6.x0(null, i10, false);
                 }
@@ -467,110 +467,110 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
 
     @Override
     public void y0(u6 u6Var, zh.a aVar, boolean z10) {
-        lv lvVar = (lv) this.f16573c;
+        lv lvVar = (lv) this.f16574c;
         kv kvVar = lvVar.X;
         if (aVar != null) {
-            ((zh.b) this.f16572b).i(aVar);
-            lvVar.f39849e0.d();
-            zh.b bVar = lvVar.f39851g0;
-            jz0[] jz0VarArr = lvVar.f39846b0;
-            a2[] a2VarArr = lvVar.f39847c0;
+            ((zh.b) this.f16573b).i(aVar);
+            lvVar.f39852e0.d();
+            zh.b bVar = lvVar.f39854g0;
+            jz0[] jz0VarArr = lvVar.f39849b0;
+            a2[] a2VarArr = lvVar.f39850c0;
             a2 a2Var = a2VarArr[0];
             if (a2Var != null) {
                 jz0 jz0Var = jz0VarArr[0];
-                boolean z11 = bVar.f54934m;
-                jz0Var.f27682c = z11;
+                boolean z11 = bVar.f54942m;
+                jz0Var.f27685c = z11;
                 a2Var.c(z11, true);
             }
             a2 a2Var2 = a2VarArr[1];
             if (a2Var2 != null) {
                 jz0 jz0Var2 = jz0VarArr[1];
-                boolean z12 = bVar.f54935n;
-                jz0Var2.f27682c = z12;
+                boolean z12 = bVar.f54943n;
+                jz0Var2.f27685c = z12;
                 a2Var2.c(z12, true);
             }
             a2 a2Var3 = a2VarArr[2];
             if (a2Var3 != null) {
                 jz0 jz0Var3 = jz0VarArr[2];
-                boolean z13 = bVar.f54936o;
-                jz0Var3.f27682c = z13;
+                boolean z13 = bVar.f54944o;
+                jz0Var3.f27685c = z13;
                 a2Var3.c(z13, true);
             }
             a2 a2Var4 = a2VarArr[3];
             if (a2Var4 != null) {
                 jz0 jz0Var4 = jz0VarArr[3];
-                boolean z14 = bVar.f54937p;
-                jz0Var4.f27682c = z14;
+                boolean z14 = bVar.f54945p;
+                jz0Var4.f27685c = z14;
                 a2Var4.c(z14, true);
             }
             a2 a2Var5 = a2VarArr[4];
             if (a2Var5 != null) {
                 jz0 jz0Var5 = jz0VarArr[4];
-                boolean z15 = bVar.f54938q;
-                jz0Var5.f27682c = z15;
+                boolean z15 = bVar.f54946q;
+                jz0Var5.f27685c = z15;
                 a2Var5.c(z15, true);
             }
-            lvVar.f39845a0.a(kvVar.d(), true);
+            lvVar.f39848a0.a(kvVar.d(), true);
             kvVar.c(true);
         }
     }
 
     public z0(int i10, Object obj, Object obj2) {
-        this.f16571a = i10;
-        this.f16572b = obj;
-        this.f16573c = obj2;
+        this.f16572a = i10;
+        this.f16573b = obj;
+        this.f16574c = obj2;
     }
 
     public z0(Object obj, Object obj2, boolean z10, int i10) {
-        this.f16571a = i10;
-        this.f16573c = obj;
-        this.f16572b = obj2;
+        this.f16572a = i10;
+        this.f16574c = obj;
+        this.f16573b = obj2;
     }
 
     public z0(c6 c6Var) {
-        this.f16571a = 9;
-        this.f16572b = new SparseIntArray();
-        this.f16573c = c6Var;
+        this.f16572a = 9;
+        this.f16573b = new SparseIntArray();
+        this.f16574c = c6Var;
         e();
     }
 
     public z0() {
-        this.f16571a = 23;
-        this.f16572b = new AtomicInteger();
-        this.f16573c = new AtomicInteger();
+        this.f16572a = 23;
+        this.f16573b = new AtomicInteger();
+        this.f16574c = new AtomicInteger();
     }
 
     public z0(pg.i0 i0Var) {
-        this.f16571a = 10;
-        this.f16572b = i0Var;
+        this.f16572a = 10;
+        this.f16573b = i0Var;
     }
 
     public z0(pg0 pg0Var) {
-        this.f16571a = 4;
-        this.f16573c = pg0Var;
-        this.f16572b = new cd0(this, 10);
+        this.f16572a = 4;
+        this.f16574c = pg0Var;
+        this.f16573b = new cd0(this, 10);
     }
 
     public z0(s4.j1 j1Var) {
-        this.f16571a = 15;
-        this.f16572b = j1Var;
+        this.f16572a = 15;
+        this.f16573b = j1Var;
         ?? obj = new Object();
-        obj.f47945a = 0;
-        this.f16573c = obj;
+        obj.f47953a = 0;
+        this.f16574c = obj;
     }
 
     public z0(int i10) {
-        this.f16571a = 19;
+        this.f16572a = 19;
         Bitmap createBitmap = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
-        this.f16572b = createBitmap;
+        this.f16573b = createBitmap;
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f16573c = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.f16574c = new BitmapShader(createBitmap, tileMode, tileMode);
     }
 
     public z0(w9.l lVar, Executor executor, String str) {
-        this.f16571a = 21;
-        this.f16573c = lVar;
-        this.f16572b = executor;
+        this.f16572a = 21;
+        this.f16574c = lVar;
+        this.f16573b = executor;
     }
 
     @Override
@@ -601,14 +601,14 @@ public class z0 implements c6, pp0, su, pc, k7, dn0, fh.a, me.d, com.google.andr
     }
 
     public z0(g31 g31Var) {
-        this.f16571a = 8;
-        this.f16573c = g31Var;
+        this.f16572a = 8;
+        this.f16574c = g31Var;
     }
 
     public z0(PhotoViewer photoViewer) {
-        this.f16571a = 7;
-        this.f16573c = photoViewer;
-        this.f16572b = new pa(photoViewer.f33712b0, photoViewer.f33741e0, 0, false);
+        this.f16572a = 7;
+        this.f16574c = photoViewer;
+        this.f16573b = new pa(photoViewer.f33714b0, photoViewer.f33743e0, 0, false);
     }
 
     @Override

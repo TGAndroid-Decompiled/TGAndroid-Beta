@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class cv0 extends org.telegram.ui.Cells.i7 {
-    public final int f25034l0;
+    public final int f25026l0;
     public final vm0 m0;
 
     public cv0(vm0 vm0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
         super(context, 0, c6Var);
-        this.f25034l0 = i10;
+        this.f25026l0 = i10;
         this.m0 = vm0Var;
     }
 
@@ -18,14 +18,14 @@ public final class cv0 extends org.telegram.ui.Cells.i7 {
     public final boolean d(MessageObject messageObject) {
         ArrayList<MessageObject> arrayList;
         ArrayList<MessageObject> arrayList2;
-        switch (this.f25034l0) {
+        switch (this.f25026l0) {
             case 0:
                 dv0 dv0Var = (dv0) this.m0;
                 if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
                     if (!messageObject.isMusic()) {
                         return false;
                     }
-                    return MediaController.getInstance().setPlaylist(dv0Var.d, messageObject, dv0Var.v.f26930c1);
+                    return MediaController.getInstance().setPlaylist(dv0Var.d, messageObject, dv0Var.v.f26915c1);
                 }
                 boolean playMessage = MediaController.getInstance().playMessage(messageObject);
                 MediaController mediaController = MediaController.getInstance();
@@ -47,12 +47,12 @@ public final class cv0 extends org.telegram.ui.Cells.i7 {
                     if (!messageObject.isMusic()) {
                         return false;
                     }
-                    return MediaController.getInstance().setPlaylist(hw0Var.f26968t1[i10].f32553a, messageObject, hw0Var.f26930c1);
+                    return MediaController.getInstance().setPlaylist(hw0Var.f26953t1[i10].f32552a, messageObject, hw0Var.f26915c1);
                 }
                 boolean playMessage2 = MediaController.getInstance().playMessage(messageObject);
                 MediaController mediaController2 = MediaController.getInstance();
                 if (playMessage2) {
-                    arrayList2 = hw0Var.f26968t1[i10].f32553a;
+                    arrayList2 = hw0Var.f26953t1[i10].f32552a;
                 } else {
                     arrayList2 = null;
                 }

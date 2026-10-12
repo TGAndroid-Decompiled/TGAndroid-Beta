@@ -13,7 +13,7 @@ public final class ix extends pz {
     public final void setTranslationY(float f7) {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
-            this.H.f25093g0.invalidate();
+            this.H.f25085g0.invalidate();
         }
     }
 }

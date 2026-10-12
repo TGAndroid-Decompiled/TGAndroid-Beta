@@ -6,21 +6,21 @@ import android.text.TextWatcher;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class br implements TextWatcher {
-    public final int f24720a = 1;
-    public final int f24721b;
-    public final View f24722c;
+    public final int f24715a = 1;
+    public final int f24716b;
+    public final View f24717c;
 
     public br(er erVar, int i10) {
-        this.f24722c = erVar;
-        this.f24721b = i10;
+        this.f24717c = erVar;
+        this.f24716b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        int i11 = this.f24720a;
-        int i12 = this.f24721b;
-        View view = this.f24722c;
+        int i11 = this.f24715a;
+        int i12 = this.f24716b;
+        View view = this.f24717c;
         boolean z10 = false;
         switch (i11) {
             case 0:
@@ -76,17 +76,17 @@ public final class br implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f24720a;
+        int i13 = this.f24715a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f24720a;
+        int i13 = this.f24715a;
     }
 
     public br(int i10, NumberTextView numberTextView) {
-        this.f24721b = i10;
-        this.f24722c = numberTextView;
+        this.f24716b = i10;
+        this.f24717c = numberTextView;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

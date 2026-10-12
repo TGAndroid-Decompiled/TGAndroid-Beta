@@ -4,26 +4,26 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public final class r61 extends MetricAffectingSpan {
-    public Typeface f30062a;
-    public int f30063b;
-    public int f30064c;
+    public Typeface f30063a;
+    public int f30064b;
+    public int f30065c;
 
     public r61(Typeface typeface) {
-        this.f30064c = -1;
-        this.f30062a = typeface;
+        this.f30065c = -1;
+        this.f30063a = typeface;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f30064c;
+        int i10 = this.f30065c;
         if (i10 >= 0) {
-            this.f30063b = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+            this.f30064b = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
         }
-        Typeface typeface = this.f30062a;
+        Typeface typeface = this.f30063a;
         if (typeface != null) {
             textPaint.setTypeface(typeface);
         }
-        int i11 = this.f30063b;
+        int i11 = this.f30064b;
         if (i11 != 0) {
             textPaint.setColor(i11);
         }
@@ -32,7 +32,7 @@ public final class r61 extends MetricAffectingSpan {
 
     @Override
     public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f30062a;
+        Typeface typeface = this.f30063a;
         if (typeface != null) {
             textPaint.setTypeface(typeface);
         }
@@ -41,13 +41,13 @@ public final class r61 extends MetricAffectingSpan {
 
     public r61() {
         Typeface typeface = Typeface.DEFAULT;
-        this.f30064c = -1;
-        this.f30062a = typeface;
+        this.f30065c = -1;
+        this.f30063a = typeface;
     }
 
     public r61(Typeface typeface, int i10) {
-        this.f30064c = -1;
-        this.f30062a = typeface;
-        this.f30063b = i10;
+        this.f30065c = -1;
+        this.f30063a = typeface;
+        this.f30064b = i10;
     }
 }

@@ -21,7 +21,7 @@ import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ea;
 import org.telegram.ui.eo;
-import org.telegram.ui.fg0;
+import org.telegram.ui.gg0;
 import org.telegram.ui.hg1;
 import org.telegram.ui.py;
 import org.telegram.ui.vy;
@@ -149,7 +149,7 @@ public final class c1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f19800id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f19801id);
                                     hashMap.put("bot", "" + j3);
                                     long j12 = j10;
                                     SendMessagesHelper.prepareSendingBotContextResult(U, AccountInstance.getInstance(i16), tL_messages_preparedInlineMessage4.result, hashMap, j12, messageObject2, messageObject2, null, null, z12, i12, 0, null, 0L, 0L);
@@ -186,11 +186,11 @@ public final class c1 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                fg0 fg0Var = (fg0) this.d;
+                gg0 gg0Var = (gg0) this.d;
                 String str = (String) this.f8987e;
                 String str2 = (String) this.f8988f;
                 String str3 = (String) this.h;
-                ci.d dVar = fg0Var.f37771b;
+                ci.d dVar = gg0Var.f38040b;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -213,7 +213,7 @@ public final class c1 implements View.OnClickListener {
                         tL_dataJSON.data = q6.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    fg0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new ea(fg0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    gg0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new ea(gg0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;
@@ -222,27 +222,27 @@ public final class c1 implements View.OnClickListener {
                 Context context = (Context) this.f8987e;
                 c6 c6Var = (c6) this.f8988f;
                 Utilities.Callback callback = (Utilities.Callback) this.h;
-                if (c0Var.f52554s.W) {
+                if (c0Var.f52567s.W) {
                     int i12 = this.f8986c;
                     if (MessagesController.getInstance(i12).isFrozen()) {
                         org.telegram.ui.b.b(i12);
                         return;
                     }
-                    n5 x10 = n5.x(i12, c0Var.H.f54665a);
-                    if (x10.f53137e) {
+                    n5 x10 = n5.x(i12, c0Var.H.f54673a);
+                    if (x10.f53149e) {
                         aVar = zf.a.l(x10.p());
                     } else {
                         aVar = null;
                     }
-                    if (!c0Var.f52549c && (aVar == null || aVar.f54666b < c0Var.H.f54666b)) {
+                    if (!c0Var.f52562c && (aVar == null || aVar.f54674b < c0Var.H.f54674b)) {
                         zf.a aVar2 = c0Var.H;
-                        zf.b bVar = aVar2.f54665a;
-                        if (bVar == zf.b.f54667a) {
+                        zf.b bVar = aVar2.f54673a;
+                        if (bVar == zf.b.f54675a) {
                             long a2 = aVar2.a();
                             long j10 = this.f8985b;
                             new e7(context, c6Var, a2, 13, ng.d.h(i12, j10), null, j10).show();
                             return;
-                        } else if (bVar == zf.b.f54668b) {
+                        } else if (bVar == zf.b.f54676b) {
                             new di.h(context, c6Var, aVar2, true, null).show();
                             return;
                         } else {
@@ -257,8 +257,8 @@ public final class c1 implements View.OnClickListener {
         }
     }
 
-    public c1(fg0 fg0Var, String str, long j3, String str2, String str3, int i10) {
-        this.d = fg0Var;
+    public c1(gg0 gg0Var, String str, long j3, String str2, String str3, int i10) {
+        this.d = gg0Var;
         this.f8987e = str;
         this.f8985b = j3;
         this.f8988f = str2;

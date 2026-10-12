@@ -29,7 +29,7 @@ public final class s00 extends FrameLayout {
         vh.n nVar = new vh.n(context);
         nVar.setTypeface(AndroidUtilities.bold());
         nVar.setTextSize(1, 20.0f);
-        int i11 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f20668j5;
         nVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         nVar.setGravity(1);
         nVar.setText(t00Var.S(nVar));
@@ -39,7 +39,7 @@ public final class s00 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        nVar.f49965s = i10;
+        nVar.f49973s = i10;
         addView(nVar, w7.w5.a(-2.0f, 20.0f, 84.0f, 20.0f, 0.0f, -2, 49));
         TextView textView = new TextView(context);
         if (t00Var.Y.isEmpty()) {

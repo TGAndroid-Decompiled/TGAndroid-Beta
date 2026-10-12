@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import java.util.concurrent.atomic.AtomicReference;
 public final class po implements Runnable {
-    public final int f29557a;
-    public final wo f29558b;
+    public final int f29536a;
+    public final wo f29537b;
 
     public po(wo woVar, int i10) {
-        this.f29557a = i10;
-        this.f29558b = woVar;
+        this.f29536a = i10;
+        this.f29537b = woVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f29557a) {
+        switch (this.f29536a) {
             case 0:
-                wo woVar = this.f29558b;
+                wo woVar = this.f29537b;
                 AtomicReference atomicReference = woVar.f32514n;
                 org.telegram.ui.ActionBar.h5 h5Var = (org.telegram.ui.ActionBar.h5) atomicReference.get();
                 if (h5Var != null) {
@@ -24,7 +24,7 @@ public final class po implements Runnable {
                 }
                 return;
             case 1:
-                wo woVar2 = this.f29558b;
+                wo woVar2 = this.f29537b;
                 AtomicReference atomicReference2 = woVar2.v;
                 org.telegram.ui.ActionBar.h5 h5Var2 = (org.telegram.ui.ActionBar.h5) atomicReference2.get();
                 if (h5Var2 != null) {
@@ -38,7 +38,7 @@ public final class po implements Runnable {
                 }
                 return;
             default:
-                wo woVar3 = this.f29558b;
+                wo woVar3 = this.f29537b;
                 woVar3.f32511j0 = false;
                 woVar3.f32509h0.c(false);
                 if (woVar3.a()) {

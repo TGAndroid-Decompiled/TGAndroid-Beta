@@ -9,9 +9,9 @@ public final class f0 implements u {
     public final AudioTrack a(k kVar, b2.e eVar, int i10, Context context) {
         AudioAttributes audioAttributes;
         int i11 = Build.VERSION.SDK_INT;
-        int i12 = kVar.f14503b;
-        int i13 = kVar.f14504c;
-        int i14 = kVar.f14502a;
+        int i12 = kVar.f14504b;
+        int i13 = kVar.f14505c;
+        int i14 = kVar.f14503a;
         String str = e2.d0.f8529a;
         AudioFormat build = new AudioFormat.Builder().setSampleRate(i12).setChannelMask(i13).setEncoding(i14).build();
         if (kVar.d) {
@@ -19,9 +19,9 @@ public final class f0 implements u {
         } else {
             audioAttributes = (AudioAttributes) eVar.b().f3679a;
         }
-        AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(audioAttributes).setAudioFormat(build).setTransferMode(1).setBufferSizeInBytes(kVar.f14506f).setSessionId(i10);
+        AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(audioAttributes).setAudioFormat(build).setTransferMode(1).setBufferSizeInBytes(kVar.f14507f).setSessionId(i10);
         if (i11 >= 29) {
-            sessionId.setOffloadedPlayback(kVar.f14505e);
+            sessionId.setOffloadedPlayback(kVar.f14506e);
         }
         if (i11 >= 34 && context != null) {
             sessionId.setContext(context);

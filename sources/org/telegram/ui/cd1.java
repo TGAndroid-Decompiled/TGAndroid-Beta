@@ -7,20 +7,20 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class cd1 implements org.telegram.ui.Components.dr {
-    public final zd1 f36404a;
+    public final zd1 f36406a;
 
     public cd1(zd1 zd1Var) {
-        this.f36404a = zd1Var;
+        this.f36406a = zd1Var;
     }
 
     @Override
     public final int H0(int i10) {
         org.telegram.ui.ActionBar.e6 e6Var;
-        zd1 zd1Var = this.f36404a;
-        if (zd1Var.f44767n == 3) {
-            org.telegram.ui.ActionBar.g6 g6Var = zd1Var.f44744e0;
-            if (g6Var.S && i10 == 0 && (e6Var = (org.telegram.ui.ActionBar.e6) g6Var.f20429a0.get(org.telegram.ui.ActionBar.h6.f20737n)) != null) {
-                return e6Var.f20352e;
+        zd1 zd1Var = this.f36406a;
+        if (zd1Var.f44772n == 3) {
+            org.telegram.ui.ActionBar.g6 g6Var = zd1Var.f44749e0;
+            if (g6Var.S && i10 == 0 && (e6Var = (org.telegram.ui.ActionBar.e6) g6Var.f20430a0.get(org.telegram.ui.ActionBar.h6.f20738n)) != null) {
+                return e6Var.f20353e;
             }
             return 0;
         }
@@ -31,21 +31,21 @@ public final class cd1 implements org.telegram.ui.Components.dr {
     public final void l(boolean z10) {
         int i10;
         int i11;
-        zd1 zd1Var = this.f36404a;
-        org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44779s;
+        zd1 zd1Var = this.f36406a;
+        org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44784s;
         if (z10) {
-            if (e6Var.f20364r == null) {
+            if (e6Var.f20365r == null) {
                 zd1Var.finishFragment();
                 i11 = ((org.telegram.ui.ActionBar.m2) zd1Var).currentAccount;
-                MessagesController.getInstance(i11).saveThemeToServer(e6Var.f20350b, e6Var);
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, e6Var.f20350b, e6Var);
+                MessagesController.getInstance(i11).saveThemeToServer(e6Var.f20351b, e6Var);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, e6Var.f20351b, e6Var);
                 return;
             }
             StringBuilder sb2 = new StringBuilder("https://");
             i10 = ((org.telegram.ui.ActionBar.m2) zd1Var).currentAccount;
             sb2.append(MessagesController.getInstance(i10).linkPrefix);
             sb2.append("/addtheme/");
-            sb2.append(e6Var.f20364r.slug);
+            sb2.append(e6Var.f20365r.slug);
             String sb3 = sb2.toString();
             zd1Var.showDialog(new org.telegram.ui.Components.sr0(zd1Var.getParentActivity(), null, sb3, false, sb3, false, null));
             return;
@@ -55,50 +55,50 @@ public final class cd1 implements org.telegram.ui.Components.dr {
 
     @Override
     public final void t0(int i10, int i11, boolean z10) {
-        zd1 zd1Var = this.f36404a;
-        if (zd1Var.f44732b == 2) {
+        zd1 zd1Var = this.f36406a;
+        if (zd1Var.f44737b == 2) {
             zd1Var.a1(i10, i11, true);
             return;
         }
         Runnable runnable = zd1Var.Y;
-        org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44779s;
+        org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44784s;
         if (i11 == -1) {
-            int i12 = zd1Var.f44767n;
+            int i12 = zd1Var.f44772n;
             if (i12 == 1 || i12 == 2) {
                 long j3 = zd1Var.I;
                 if (j3 != 0) {
-                    e6Var.f20356j = j3;
+                    e6Var.f20357j = j3;
                 } else {
-                    e6Var.f20356j = 0L;
+                    e6Var.f20357j = 0L;
                 }
                 long j10 = zd1Var.J;
                 if (j10 != 0) {
-                    e6Var.f20357k = j10;
+                    e6Var.f20358k = j10;
                 } else {
-                    e6Var.f20357k = 0L;
+                    e6Var.f20358k = 0L;
                 }
                 long j11 = zd1Var.K;
                 if (j11 != 0) {
-                    e6Var.f20358l = j11;
+                    e6Var.f20359l = j11;
                 } else {
-                    e6Var.f20358l = 0L;
+                    e6Var.f20359l = 0L;
                 }
                 long j12 = zd1Var.L;
                 if (j12 != 0) {
-                    e6Var.f20359m = j12;
+                    e6Var.f20360m = j12;
                 } else {
-                    e6Var.f20359m = 0L;
+                    e6Var.f20360m = 0L;
                 }
-                e6Var.f20360n = zd1Var.O;
+                e6Var.f20361n = zd1Var.O;
                 if (i12 == 2) {
                     int C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Nd);
                     int C02 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Od);
                     int C03 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Pd);
                     int C04 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Qd);
-                    int i13 = (int) e6Var.f20357k;
-                    int i14 = (int) e6Var.f20358l;
-                    int i15 = (int) e6Var.f20359m;
-                    int i16 = (int) e6Var.f20356j;
+                    int i13 = (int) e6Var.f20358k;
+                    int i14 = (int) e6Var.f20359l;
+                    int i15 = (int) e6Var.f20360m;
+                    int i16 = (int) e6Var.f20357j;
                     org.telegram.ui.Components.er erVar = zd1Var.V;
                     if (i15 != 0) {
                         C04 = i15;
@@ -121,25 +121,25 @@ public final class cd1 implements org.telegram.ui.Components.dr {
                     erVar4.e(C0, 0);
                 }
             }
-            int i17 = zd1Var.f44767n;
+            int i17 = zd1Var.f44772n;
             if (i17 == 1 || i17 == 3) {
-                int i18 = zd1Var.f44794y;
+                int i18 = zd1Var.f44799y;
                 if (i18 != 0) {
-                    e6Var.f20352e = i18;
+                    e6Var.f20353e = i18;
                 } else {
-                    e6Var.f20352e = 0;
+                    e6Var.f20353e = 0;
                 }
                 int i19 = zd1Var.E;
                 if (i19 != 0) {
-                    e6Var.f20353f = i19;
+                    e6Var.f20354f = i19;
                 } else {
-                    e6Var.f20353f = 0;
+                    e6Var.f20354f = 0;
                 }
                 int i20 = zd1Var.F;
                 if (i20 != 0) {
-                    e6Var.f20354g = i20;
+                    e6Var.f20355g = i20;
                 } else {
-                    e6Var.f20354g = 0;
+                    e6Var.f20355g = 0;
                 }
                 int i21 = zd1Var.G;
                 if (i21 != 0) {
@@ -149,18 +149,18 @@ public final class cd1 implements org.telegram.ui.Components.dr {
                 }
                 if (i17 == 3) {
                     zd1Var.V.e(e6Var.h, 3);
-                    zd1Var.V.e(e6Var.f20354g, 2);
-                    zd1Var.V.e(e6Var.f20353f, 1);
+                    zd1Var.V.e(e6Var.f20355g, 2);
+                    zd1Var.V.e(e6Var.f20354f, 1);
                     org.telegram.ui.Components.er erVar5 = zd1Var.V;
-                    int i22 = e6Var.f20352e;
+                    int i22 = e6Var.f20353e;
                     if (i22 == 0) {
-                        i22 = e6Var.f20351c;
+                        i22 = e6Var.f20352c;
                     }
                     erVar5.e(i22, 0);
                 }
             }
             org.telegram.ui.ActionBar.h6.o1(false, false);
-            zd1Var.f44784u0.f1();
+            zd1Var.f44789u0.f1();
             return;
         }
         int i23 = zd1Var.X;
@@ -179,18 +179,18 @@ public final class cd1 implements org.telegram.ui.Components.dr {
 
     @Override
     public final void y() {
-        zd1 zd1Var = this.f36404a;
+        zd1 zd1Var = this.f36406a;
         if (zd1Var.getParentActivity() != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zd1Var.getParentActivity());
-            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.DeleteThemeTitle);
-            alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.DeleteThemeAlert);
+            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.DeleteThemeTitle);
+            alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.DeleteThemeAlert);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new jq0(this, 20));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
             zd1Var.showDialog(a2Var);
             TextView textView = (TextView) a2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20799q7));
+                textView.setTextColor(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20800q7));
             }
         }
     }

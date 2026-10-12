@@ -32,14 +32,14 @@ public final class kl0 extends y9 {
         switch (this.G) {
             case 0:
                 ll0 ll0Var = this.H;
-                kl0 kl0Var = ll0Var.f28230b;
+                kl0 kl0Var = ll0Var.f28219b;
                 super.dispatchDraw(canvas);
-                if (this.f33001a.getLottieAnimation() != null && !ll0Var.E) {
-                    this.f33001a.getLottieAnimation().start();
+                if (this.f32994a.getLottieAnimation() != null && !ll0Var.E) {
+                    this.f32994a.getLottieAnimation().start();
                 }
-                if (ll0Var.f28236s && !ll0Var.v && this.f33001a.getLottieAnimation() != null && this.f33001a.getLottieAnimation().A() && kl0Var.f33001a.getLottieAnimation() != null && kl0Var.f33001a.getLottieAnimation().u()) {
+                if (ll0Var.f28225s && !ll0Var.v && this.f32994a.getLottieAnimation() != null && this.f32994a.getLottieAnimation().A() && kl0Var.f32994a.getLottieAnimation() != null && kl0Var.f32994a.getLottieAnimation().u()) {
                     ll0Var.v = true;
-                    kl0Var.f33001a.getLottieAnimation().N(0, false, true);
+                    kl0Var.f32994a.getLottieAnimation().N(0, false, true);
                     kl0Var.setVisibility(0);
                     Runnable runnable = ll0Var.P.P0;
                     if (runnable != null) {
@@ -81,11 +81,11 @@ public final class kl0 extends y9 {
                 super.onDraw(canvas);
                 return;
             case 2:
-                s5 s5Var = this.f33004e;
+                s5 s5Var = this.f32997e;
                 if (s5Var != null) {
-                    imageReceiver = s5Var.f30406k;
+                    imageReceiver = s5Var.f30402k;
                 } else {
-                    imageReceiver = this.f33001a;
+                    imageReceiver = this.f32994a;
                 }
                 if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
                     imageReceiver.getLottieAnimation().start();

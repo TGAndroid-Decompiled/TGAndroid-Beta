@@ -47,7 +47,7 @@ import org.telegram.ui.Components.co;
 import org.telegram.ui.Components.hr;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.m10;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.vm0;
 import org.telegram.ui.Components.wm0;
 import org.telegram.ui.Components.x6;
@@ -63,7 +63,7 @@ public class m extends vm0 implements o2 {
     public long I;
     public boolean J;
     public wm0 K;
-    public pj0 L;
+    public qj0 L;
     public Drawable O;
     public final j P;
     public boolean Q;
@@ -123,7 +123,7 @@ public class m extends vm0 implements o2 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 1 && i10 != 5 && i10 != 3 && i10 != 8 && i10 != 7 && i10 != 10 && i10 != 11 && i10 != 13 && i10 != 15 && i10 != 16 && i10 != 18 && i10 != 19 && i10 != 20) {
             return true;
         }
@@ -150,7 +150,7 @@ public class m extends vm0 implements o2 {
 
     public final int F(long j3) {
         for (int i10 = 0; i10 < this.M.size(); i10++) {
-            if (((k) this.M.get(i10)).f10698c != null && ((k) this.M.get(i10)).f10698c.f19806id == j3) {
+            if (((k) this.M.get(i10)).f10698c != null && ((k) this.M.get(i10)).f10698c.f19807id == j3) {
                 return i10;
             }
         }
@@ -220,30 +220,30 @@ public class m extends vm0 implements o2 {
         this.f10719n = z10;
     }
 
-    public final void N(pj0 pj0Var) {
-        this.L = pj0Var;
+    public final void N(qj0 qj0Var) {
+        this.L = qj0Var;
     }
 
     public final void O(wm0 wm0Var, boolean z10) {
         this.J = z10;
         for (int i10 = 0; i10 < wm0Var.getChildCount(); i10++) {
             if (wm0Var.getChildAt(i10) instanceof s2) {
-                ((s2) wm0Var.getChildAt(i10)).f22553f = z10;
+                ((s2) wm0Var.getChildAt(i10)).f22554f = z10;
             }
         }
         for (int i11 = 0; i11 < wm0Var.getCachedChildCount(); i11++) {
             if (wm0Var.P(i11) instanceof s2) {
-                ((s2) wm0Var.P(i11)).f22553f = z10;
+                ((s2) wm0Var.P(i11)).f22554f = z10;
             }
         }
         for (int i12 = 0; i12 < wm0Var.getHiddenChildCount(); i12++) {
             if (wm0Var.V(i12) instanceof s2) {
-                ((s2) wm0Var.V(i12)).f22553f = z10;
+                ((s2) wm0Var.V(i12)).f22554f = z10;
             }
         }
         for (int i13 = 0; i13 < wm0Var.getAttachedScrapChildCount(); i13++) {
             if (wm0Var.O(i13) instanceof s2) {
-                ((s2) wm0Var.O(i13)).f22553f = z10;
+                ((s2) wm0Var.O(i13)).f22554f = z10;
             }
         }
     }
@@ -381,7 +381,7 @@ public class m extends vm0 implements o2 {
 
     @Override
     public final int j(int i10) {
-        return ((k) this.M.get(i10)).f16876a;
+        return ((k) this.M.get(i10)).f16877a;
     }
 
     @Override
@@ -436,7 +436,7 @@ public class m extends vm0 implements o2 {
                     r22 = new i6(context, null);
                 }
                 if (this.h == 15) {
-                    r22.setBackgroundColor(h6.x0(null, h6.f20559d6, false));
+                    r22.setBackgroundColor(h6.x0(null, h6.f20560d6, false));
                     break;
                 }
                 break;
@@ -481,17 +481,17 @@ public class m extends vm0 implements o2 {
                 break;
             case 3:
                 r22 = new x5(context, 2);
-                r22.setBackgroundColor(h6.x0(null, h6.f20503a7, false));
+                r22.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
                 View view = new View(context);
-                view.setBackgroundDrawable(h6.W0(context, R.drawable.greydivider, h6.f20523b7));
+                view.setBackgroundDrawable(h6.W0(context, R.drawable.greydivider, h6.f20524b7));
                 r22.addView(view, w5.d(-1.0f, -1));
                 break;
             case 4:
                 r22 = new org.telegram.ui.Cells.a0(context);
                 ImageReceiver imageReceiver = new ImageReceiver(r22);
                 r22.h = imageReceiver;
-                r22.f22798n = new j9((c6) null);
-                r22.f22801w = AndroidUtilities.dp(40.0f);
+                r22.f22799n = new j9((c6) null);
+                r22.f22802w = AndroidUtilities.dp(40.0f);
                 r22.F = AndroidUtilities.dp(10.0f);
                 r22.H = UserConfig.selectedAccount;
                 h6.S(context);
@@ -513,8 +513,8 @@ public class m extends vm0 implements o2 {
                 break;
             case 8:
                 r22 = new a7(context, (org.telegram.ui.Cells.c1) null);
-                hr hrVar = new hr(new ColorDrawable(h6.x0(null, h6.f20503a7, false)), h6.W0(context, R.drawable.greydivider, h6.f20523b7));
-                hrVar.f26897w = true;
+                hr hrVar = new hr(new ColorDrawable(h6.x0(null, h6.f20504a7, false)), h6.W0(context, R.drawable.greydivider, h6.f20524b7));
+                hrVar.f26883w = true;
                 r22.setBackgroundDrawable(hrVar);
                 break;
             case 9:
@@ -522,7 +522,7 @@ public class m extends vm0 implements o2 {
             default:
                 r22 = new r8(context);
                 if (this.h == 15) {
-                    r22.setBackgroundColor(h6.x0(null, h6.f20559d6, false));
+                    r22.setBackgroundColor(h6.x0(null, h6.f20560d6, false));
                     break;
                 }
                 break;
@@ -531,8 +531,8 @@ public class m extends vm0 implements o2 {
                 break;
             case 11:
                 r22 = new i(this, context);
-                hr hrVar2 = new hr(new ColorDrawable(h6.x0(null, h6.f20503a7, false)), h6.W0(context, R.drawable.greydivider, h6.f20523b7));
-                hrVar2.f26897w = true;
+                hr hrVar2 = new hr(new ColorDrawable(h6.x0(null, h6.f20504a7, false)), h6.W0(context, R.drawable.greydivider, h6.f20524b7));
+                hrVar2.f26883w = true;
                 r22.setBackgroundDrawable(hrVar2);
                 break;
             case 14:
@@ -543,9 +543,9 @@ public class m extends vm0 implements o2 {
                 break;
             case 15:
                 r22 = new LinearLayout(context);
-                r22.f22479b = new ArrayList();
+                r22.f22480b = new ArrayList();
                 r22.setOrientation(1);
-                r22.setBackgroundColor(h6.x0(null, h6.f20503a7, false));
+                r22.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
                 break;
             case 16:
                 r22 = new h(this, context);
@@ -586,7 +586,7 @@ public class m extends vm0 implements o2 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (view instanceof s2) {
             s2 s2Var = (s2) view;
             s2Var.T(this.H, false);

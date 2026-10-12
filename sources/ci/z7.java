@@ -11,13 +11,13 @@ public final class z7 implements ah.j {
 
     @Override
     public final void g0(ah.a aVar) {
-        aVar.a(this.f6423a.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6));
+        aVar.a(this.f6423a.getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
     @Override
     public final void l(Canvas canvas) {
-        int i10 = org.telegram.ui.ActionBar.h6.f20559d6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20560d6;
         d8 d8Var = this.f6423a;
         canvas.drawColor(d8Var.getThemedColor(i10));
         if (SharedConfig.chatBlurEnabled()) {

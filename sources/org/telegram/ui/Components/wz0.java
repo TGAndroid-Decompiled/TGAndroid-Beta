@@ -14,17 +14,17 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class wz0 {
-    public final org.telegram.ui.ActionBar.c6 f32591a;
-    public StaticLayout f32592b;
-    public final ArrayList f32593c = new ArrayList(2);
+    public final org.telegram.ui.ActionBar.c6 f32590a;
+    public StaticLayout f32591b;
+    public final ArrayList f32592c = new ArrayList(2);
     public int d;
-    public int f32594e;
-    public int f32595f;
-    public int f32596g;
+    public int f32593e;
+    public int f32594f;
+    public int f32595g;
     public int h;
 
     public wz0(org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f32591a = c6Var;
+        this.f32590a = c6Var;
     }
 
     public static void c(StringBuilder sb2, int i10, boolean z10) {
@@ -41,7 +41,7 @@ public final class wz0 {
     }
 
     public final int a() {
-        return this.f32596g;
+        return this.f32595g;
     }
 
     public final void b(MessageObject messageObject) {
@@ -68,7 +68,7 @@ public final class wz0 {
             return;
         }
         MessageSuggestionParams of2 = MessageSuggestionParams.of(suggestedPost);
-        org.telegram.ui.ActionBar.c6 c6Var = this.f32591a;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f32590a;
         if (c6Var != null) {
             paint = c6Var.G("paintChatActionText3");
         }
@@ -76,8 +76,8 @@ public final class wz0 {
             paint = org.telegram.ui.ActionBar.h6.T0("paintChatActionText3");
         }
         TextPaint textPaint = (TextPaint) paint;
-        this.f32596g = AndroidUtilities.dp(14.0f) * 2;
-        ArrayList arrayList = this.f32593c;
+        this.f32595g = AndroidUtilities.dp(14.0f) * 2;
+        ArrayList arrayList = this.f32592c;
         arrayList.clear();
         zf.a aVar = of2.amount;
         if (aVar != null && !aVar.k()) {
@@ -95,11 +95,11 @@ public final class wz0 {
             Object obj = arrayList.get(i17);
             i17++;
             vz0 vz0Var = (vz0) obj;
-            f10 = Math.max(f10, vz0Var.f32218a.l());
-            f11 = Math.max(f11, vz0Var.f32219b.l());
-            int j3 = ((int) vz0Var.f32218a.j()) + this.f32596g;
-            this.f32596g = j3;
-            this.f32596g = AndroidUtilities.dp(7.0f) + j3;
+            f10 = Math.max(f10, vz0Var.f32204a.l());
+            f11 = Math.max(f11, vz0Var.f32205b.l());
+            int j3 = ((int) vz0Var.f32204a.j()) + this.f32595g;
+            this.f32595g = j3;
+            this.f32595g = AndroidUtilities.dp(7.0f) + j3;
         }
         int dp = (int) (f11 + f10 + AndroidUtilities.dp(11.0f));
         int max = Math.max(dp, AndroidUtilities.dp(160.0f));
@@ -204,18 +204,18 @@ public final class wz0 {
                 spannableStringBuilder.append((CharSequence) LocaleController.formatString(i30, objArr2));
             }
         }
-        this.f32592b = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.f32591b = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         int i31 = i15;
-        for (int i32 = i31; i32 < this.f32592b.getLineCount(); i32++) {
-            i31 = (int) Math.max(i31, this.f32592b.getLineWidth(i32));
+        for (int i32 = i31; i32 < this.f32591b.getLineCount(); i32++) {
+            i31 = (int) Math.max(i31, this.f32591b.getLineWidth(i32));
         }
-        int height = this.f32592b.getHeight() + this.f32596g;
-        this.f32596g = height;
-        this.f32596g = AndroidUtilities.dp(5.0f) + height;
+        int height = this.f32591b.getHeight() + this.f32595g;
+        this.f32595g = height;
+        this.f32595g = AndroidUtilities.dp(5.0f) + height;
         int D = org.telegram.messenger.v0.D(24.0f, 2, Math.max(dp, i31));
         this.h = D;
         this.d = (D - max) / 2;
-        this.f32594e = (D - dp) / 2;
-        this.f32595f = (int) (AndroidUtilities.dp(f7) + i16 + f10);
+        this.f32593e = (D - dp) / 2;
+        this.f32594f = (int) (AndroidUtilities.dp(f7) + i16 + f10);
     }
 }

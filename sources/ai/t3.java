@@ -41,15 +41,15 @@ public final class t3 extends w7.g0 {
                 return;
             case 2:
                 eo eoVar = (eo) this.f1726b;
-                eoVar.f37360n9 = !z10;
+                eoVar.f37365n9 = !z10;
                 if (z10) {
-                    if (eoVar.f37237d9 != null) {
+                    if (eoVar.f37242d9 != null) {
                         eo.W1(eoVar, 0.0f);
-                        eoVar.f37237d9 = null;
+                        eoVar.f37242d9 = null;
                     }
-                    eoVar.f37250e9 = false;
-                    eoVar.f37262f9 = false;
-                    vl vlVar = eoVar.f37286h9;
+                    eoVar.f37255e9 = false;
+                    eoVar.f37267f9 = false;
+                    vl vlVar = eoVar.f37291h9;
                     if (vlVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(vlVar.H);
                         vlVar.a();
@@ -59,15 +59,15 @@ public final class t3 extends w7.g0 {
                 return;
             default:
                 tc0 tc0Var = (tc0) this.f1726b;
-                lc0 lc0Var = tc0Var.f30857e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = tc0Var.f30861s;
-                zc0 zc0Var = tc0Var.f30856c0;
-                if (zc0Var.f33331s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f24659b > 0.0f) {
+                lc0 lc0Var = tc0Var.f30860e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = tc0Var.f30864s;
+                zc0 zc0Var = tc0Var.f30859c0;
+                if (zc0Var.f33337s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f24650b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (lc0Var.v - lc0Var.f21646u > MessagesController.getInstance(zc0Var.f33332w).quoteLengthMax) {
+                        if (lc0Var.v - lc0Var.f21647u > MessagesController.getInstance(zc0Var.f33338w).quoteLengthMax) {
                             tc0Var.f();
                             return;
                         }
@@ -80,7 +80,7 @@ public final class t3 extends w7.g0 {
                         MessageObject c10 = tc0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = zc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = lc0Var.f21646u;
+                            int i10 = lc0Var.f21647u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = lc0Var.v;
                             messagePreviewParams.quoteEnd = i11;

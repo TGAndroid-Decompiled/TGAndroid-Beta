@@ -17,7 +17,7 @@ public class j4 extends View {
     public j4(Context context, c6 c6Var) {
         super(context);
         rw0 rw0Var = new rw0(new d2.c(18), new d2.c(19));
-        rw0Var.f30272c = 100.0f;
+        rw0Var.f30268c = 100.0f;
         this.f9130a = rw0Var;
         Paint paint = new Paint(1);
         this.f9131b = paint;
@@ -44,7 +44,7 @@ public class j4 extends View {
         o1.l lVar = new o1.l();
         lVar.b(400.0f);
         lVar.a(1.0f);
-        kVar.f16690u = lVar;
+        kVar.f16691u = lVar;
         this.d = kVar;
     }
 
@@ -66,7 +66,7 @@ public class j4 extends View {
             setLoadProgress(f7);
             return;
         }
-        kVar.f16690u.f16697i = f7 * 100.0f;
+        kVar.f16691u.f16698i = f7 * 100.0f;
         kVar.h();
     }
 }

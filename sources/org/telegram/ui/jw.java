@@ -6,21 +6,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.UndoView;
 public final class jw implements Runnable {
-    public final int f39289a;
-    public final vy f39290b;
+    public final int f39292a;
+    public final vy f39293b;
 
     public jw(vy vyVar, int i10) {
-        this.f39289a = i10;
-        this.f39290b = vyVar;
+        this.f39292a = i10;
+        this.f39293b = vyVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f39289a) {
+        switch (this.f39292a) {
             case 0:
-                vy vyVar = this.f39290b;
+                vy vyVar = this.f39293b;
                 fy fyVar = vyVar.C0;
-                if (fyVar != null && fyVar.f27613y0) {
+                if (fyVar != null && fyVar.f27620y0) {
                     fyVar.Q(false);
                     return;
                 }
@@ -30,7 +30,7 @@ public final class jw implements Runnable {
                 vyVar.Y.b(false);
                 return;
             case 1:
-                vy vyVar2 = this.f39290b;
+                vy vyVar2 = this.f39293b;
                 if (vyVar2.R0 != 10) {
                     vyVar2.Z3(false);
                 }
@@ -42,8 +42,8 @@ public final class jw implements Runnable {
                     return;
                 }
             case 2:
-                vy vyVar3 = this.f39290b;
-                hh.f fVar = vyVar3.f43005y1;
+                vy vyVar3 = this.f39293b;
+                hh.f fVar = vyVar3.f43007y1;
                 if (fVar != null) {
                     fVar.d();
                 }
@@ -57,33 +57,33 @@ public final class jw implements Runnable {
                 }
                 return;
             case 3:
-                this.f39290b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                this.f39293b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
                 return;
             case 4:
-                this.f39290b.J3();
+                this.f39293b.J3();
                 return;
             case 5:
-                this.f39290b.R4();
+                this.f39293b.R4();
                 return;
             case 6:
-                vy.C0(this.f39290b);
+                vy.C0(this.f39293b);
                 return;
             case 7:
-                this.f39290b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                this.f39293b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 8:
-                vy vyVar4 = this.f39290b;
-                ci.d4 d4Var = vyVar4.f42961q0;
+                vy vyVar4 = this.f39293b;
+                ci.d4 d4Var = vyVar4.f42963q0;
                 if (d4Var != null) {
                     d4Var.e(true);
                 }
                 vyVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 9:
-                this.f39290b.f42903e0[0].d.l();
+                this.f39293b.f42905e0[0].d.l();
                 return;
             case 10:
-                vy vyVar5 = this.f39290b;
+                vy vyVar5 = this.f39293b;
                 UndoView V3 = vyVar5.V3();
                 if (V3 != null) {
                     V3.l(0L, 15, null, new rv(vyVar5, 26));
@@ -91,7 +91,7 @@ public final class jw implements Runnable {
                 }
                 return;
             case 11:
-                vy vyVar6 = this.f39290b;
+                vy vyVar6 = this.f39293b;
                 vyVar6.getClass();
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 long j3 = globalMainSettings.getLong("cache_hint_period", 604800000L);
@@ -102,10 +102,10 @@ public final class jw implements Runnable {
                 vyVar6.R4();
                 return;
             case 12:
-                MessagesController.getInstance(this.f39290b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                MessagesController.getInstance(this.f39293b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
                 return;
             default:
-                this.f39290b.X4();
+                this.f39293b.X4();
                 return;
         }
     }

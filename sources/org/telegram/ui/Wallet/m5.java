@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import org.telegram.messenger.am;
 public class m5 {
-    public final int f35081a;
-    public final int f35082b;
-    public final int f35083c;
+    public final int f35083a;
+    public final int f35084b;
+    public final int f35085c;
     public final int d;
 
     public m5() {
@@ -119,8 +119,8 @@ public class m5 {
         GLES20.glGenTextures(3, iArr, 0);
         int i19 = iArr[0];
         int i20 = iArr[1];
-        this.f35081a = i20;
-        this.f35082b = iArr[2];
+        this.f35083a = i20;
+        this.f35084b = iArr[2];
         GLES20.glBindTexture(35866, i20);
         e(35866);
         GLES20.glTexParameteri(35866, 33085, 3);
@@ -140,7 +140,7 @@ public class m5 {
         }
         createBitmap.recycle();
         GLES20.glGenerateMipmap(35866);
-        GLES20.glBindTexture(3553, this.f35082b);
+        GLES20.glBindTexture(3553, this.f35084b);
         e(3553);
         GLES30.glTexStorage2D(3553, 8, 32856, 128, 128);
         int[] iArr2 = new int[1];
@@ -160,7 +160,7 @@ public class m5 {
                 GLES20.glBindTexture(3553, i19);
                 GLUtils.texSubImage2D(3553, 0, 0, 0, createBitmap2);
                 GLES20.glGenerateMipmap(3553);
-                GLES20.glBindTexture(3553, this.f35082b);
+                GLES20.glBindTexture(3553, this.f35084b);
                 GLES20.glCopyTexSubImage2D(3553, 0, i24 / 4, i23 / 4, 0, 0, 16, 16);
             }
         }
@@ -194,7 +194,7 @@ public class m5 {
         int[] iArr5 = new int[1];
         GLES20.glGenBuffers(1, iArr5, 0);
         int i28 = iArr5[0];
-        this.f35083c = i28;
+        this.f35085c = i28;
         GLES20.glBindBuffer(34962, i28);
         GLES20.glBufferData(34962, this.d * 32, h, 35044);
         GLES20.glBindBuffer(34962, 0);
@@ -215,8 +215,8 @@ public class m5 {
             Object obj = arrayList.get(i12);
             i12++;
             l5 l5Var = (l5) obj;
-            paint.setShader(l5Var.f35033b);
-            canvas.drawPath(l5Var.f35032a, paint);
+            paint.setShader(l5Var.f35035b);
+            canvas.drawPath(l5Var.f35034a, paint);
         }
     }
 
@@ -229,33 +229,33 @@ public class m5 {
 
     public boolean b(int i10) {
         if (i10 == 1) {
-            if (this.f35081a - this.f35082b <= 1) {
+            if (this.f35083a - this.f35084b <= 1) {
                 return false;
             }
-        } else if (this.f35083c - this.d <= 1) {
+        } else if (this.f35085c - this.d <= 1) {
             return false;
         }
         return true;
     }
 
     public void d() {
-        GLES20.glDeleteProgram(this.f35081a);
-        GLES20.glDeleteShader(this.f35082b);
-        GLES20.glDeleteShader(this.f35083c);
+        GLES20.glDeleteProgram(this.f35083a);
+        GLES20.glDeleteShader(this.f35084b);
+        GLES20.glDeleteShader(this.f35085c);
     }
 
     public m5(int i10, int i11, int i12, int i13) {
-        this.f35081a = i10;
-        this.f35082b = i11;
-        this.f35083c = i12;
+        this.f35083a = i10;
+        this.f35084b = i11;
+        this.f35085c = i12;
         this.d = i13;
     }
 
     public m5(String str, String str2) {
         int a2 = qi.y.a(35633, str);
-        this.f35082b = a2;
+        this.f35084b = a2;
         int a10 = qi.y.a(35632, str2);
-        this.f35083c = a10;
+        this.f35085c = a10;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a2);
         GLES20.glAttachShader(glCreateProgram, a10);
@@ -265,7 +265,7 @@ public class m5 {
         int[] iArr = new int[1];
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
         if (iArr[0] != 0) {
-            this.f35081a = glCreateProgram;
+            this.f35083a = glCreateProgram;
             this.d = 1;
             int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
             GLES20.glUseProgram(glCreateProgram);

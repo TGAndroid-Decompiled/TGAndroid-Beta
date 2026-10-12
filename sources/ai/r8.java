@@ -127,7 +127,7 @@ public final class r8 implements Runnable {
         try {
             Arrays.fill(bArr4, (byte) 0);
             byte[] secretPhraseToPublicKey = WalletEngine2.secretPhraseToPublicKey(i0Var);
-            TL_wallet.WalletState walletState = l0Var.f34997e;
+            TL_wallet.WalletState walletState = l0Var.f34999e;
             if (walletState instanceof TL_wallet.TL_walletState) {
                 bArr = ((TL_wallet.TL_walletState) walletState).public_key;
             } else {
@@ -169,24 +169,24 @@ public final class r8 implements Runnable {
     }
 
     private final void b() {
-        pi.s sVar = (pi.s) this.f1665c;
-        pi.m mVar = (pi.m) this.d;
+        pi.t tVar = (pi.t) this.f1665c;
+        pi.n nVar = (pi.n) this.d;
         long j3 = this.f1664b;
         byte[] bArr = (byte[]) this.f1666e;
-        if (sVar.f45822m != pi.q.h) {
+        if (tVar.f45830m != pi.r.h) {
             return;
         }
-        long length = mVar.f45794b.length();
-        sVar.a(mVar, length);
-        synchronized (sVar.f45820k) {
-            if (mVar.d && !mVar.f45796e) {
-                mVar.f45796e = true;
-                sVar.f45819j.execute(new pi.e(sVar, mVar, length, j3, 2));
-                sVar.C = new pi.p(mVar.f45794b, j3, bArr);
-                sVar.s(pi.q.f45808n);
-                sVar.r();
-                sVar.l("completed");
-                sVar.f45815e.onCompleted(sVar.C);
+        long length = nVar.f45802b.length();
+        tVar.a(nVar, length);
+        synchronized (tVar.f45828k) {
+            if (nVar.d && !nVar.f45804e) {
+                nVar.f45804e = true;
+                tVar.f45827j.execute(new pi.g(tVar, nVar, length, j3, 1));
+                tVar.C = new pi.q(nVar.f45802b, j3, bArr);
+                tVar.u(pi.r.f45816n);
+                tVar.t();
+                tVar.n("completed");
+                tVar.f45823e.onCompleted(tVar.C);
             }
         }
     }
@@ -199,12 +199,12 @@ public final class r8 implements Runnable {
         yh.s3 s3Var = (yh.s3) this.f1665c;
         s3Var.getClass();
         ((boolean[]) this.d)[0] = true;
-        s3Var.f53403k0.setLoading(false);
+        s3Var.f53415k0.setLoading(false);
         s3Var.w1(this.f1664b, (Utilities.Callback) this.f1666e);
     }
 
     private final void f() {
-        ((yh.n5) this.d).d0((MessageObject) this.f1666e, ((yh.w3) this.f1665c).f53555a, this.f1664b, true, true, null);
+        ((yh.n5) this.d).d0((MessageObject) this.f1666e, ((yh.w3) this.f1665c).f53567a, this.f1664b, true, true, null);
     }
 
     private final void g() {
@@ -225,7 +225,7 @@ public final class r8 implements Runnable {
         yh.n5 n5Var = (yh.n5) this.f1665c;
         Utilities.Callback callback = (Utilities.Callback) this.d;
         TL_stars.StarGift starGift = (TL_stars.StarGift) this.f1666e;
-        if (!n5Var.f53137e) {
+        if (!n5Var.f53149e) {
             yh.n5.e("NO_BALANCE");
             callback.run(null);
             return;

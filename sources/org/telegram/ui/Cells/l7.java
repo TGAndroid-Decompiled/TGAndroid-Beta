@@ -32,17 +32,17 @@ import org.telegram.ui.Components.d10;
 import org.telegram.ui.Components.dm0;
 import org.telegram.ui.Components.gy0;
 import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.hu;
 import org.telegram.ui.Components.in;
 import org.telegram.ui.Components.j70;
 import org.telegram.ui.Components.jn;
 import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.jt;
 import org.telegram.ui.Components.km;
 import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.no;
 import org.telegram.ui.Components.nw0;
 import org.telegram.ui.Components.p60;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.s91;
 import org.telegram.ui.Components.t91;
 import org.telegram.ui.Components.tk;
@@ -63,12 +63,12 @@ import org.telegram.ui.eo;
 import org.telegram.ui.fj;
 import org.telegram.ui.uw;
 public final class l7 implements Runnable {
-    public final int f22189a;
-    public final Object f22190b;
+    public final int f22190a;
+    public final Object f22191b;
 
     public l7(Object obj, int i10) {
-        this.f22189a = i10;
-        this.f22190b = obj;
+        this.f22190a = i10;
+        this.f22191b = obj;
     }
 
     @Override
@@ -82,30 +82,30 @@ public final class l7 implements Runnable {
         boolean z12;
         float f11;
         float f12;
-        int i10 = this.f22189a;
+        int i10 = this.f22190a;
         float f13 = 0.0f;
-        Object obj = this.f22190b;
+        Object obj = this.f22191b;
         switch (i10) {
             case 0:
                 n7 n7Var = (n7) obj;
-                if (n7Var.f22289b == null) {
-                    n7Var.f22289b = new androidx.emoji2.text.j(n7Var, 4);
+                if (n7Var.f22290b == null) {
+                    n7Var.f22290b = new androidx.emoji2.text.j(n7Var, 4);
                 }
-                androidx.emoji2.text.j jVar = n7Var.f22289b;
-                int i11 = n7Var.f22291c + 1;
-                n7Var.f22291c = i11;
+                androidx.emoji2.text.j jVar = n7Var.f22290b;
+                int i11 = n7Var.f22292c + 1;
+                n7Var.f22292c = i11;
                 jVar.f2599b = i11;
                 n7Var.postDelayed(jVar, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             case 1:
                 w7 w7Var = (w7) obj;
-                RectF rectF = w7Var.f23442n;
+                RectF rectF = w7Var.f23443n;
                 w7Var.invalidate(((int) rectF.left) - 5, ((int) rectF.top) - 5, ((int) rectF.right) + 5, ((int) rectF.bottom) + 5);
-                AndroidUtilities.runOnUIThread(w7Var.f23447y, 1000L);
+                AndroidUtilities.runOnUIThread(w7Var.f23448y, 1000L);
                 return;
             case 2:
                 org.telegram.ui.Components.u7 u7Var = (org.telegram.ui.Components.u7) obj;
-                org.telegram.ui.Components.l8 l8Var = u7Var.f31094y;
+                org.telegram.ui.Components.l8 l8Var = u7Var.f31089y;
                 if (MediaController.getInstance().getPlayingMessageObject() != null) {
                     int i12 = l8Var.J0 + 1;
                     l8Var.J0 = i12;
@@ -178,8 +178,8 @@ public final class l7 implements Runnable {
             case 4:
                 hd hdVar = (hd) obj;
                 hdVar.b(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                hdVar.f26752f.performHapticFeedback(0);
-                Runnable runnable = hdVar.f26755j;
+                hdVar.f26756f.performHapticFeedback(0);
+                Runnable runnable = hdVar.f26759j;
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -199,14 +199,14 @@ public final class l7 implements Runnable {
                 in inVar = (in) obj;
                 jn jnVar = inVar.P;
                 if (jnVar.J != null && !jnVar.K) {
-                    int computeVerticalScrollOffset = jnVar.f27559r.computeVerticalScrollOffset();
-                    if (jnVar.f27559r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (inVar.e() - inVar.f27238r) + inVar.f27237n) {
+                    int computeVerticalScrollOffset = jnVar.f27566r.computeVerticalScrollOffset();
+                    if (jnVar.f27566r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (inVar.e() - inVar.f27232r) + inVar.f27231n) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     float max = Math.max(0.0f, (jnVar.E - Math.max(0, computeVerticalScrollOffset - jnVar.getListTopPadding())) - AndroidUtilities.dp(52.0f));
-                    float max2 = Math.max(0.0f, ((jnVar.f27559r.getMeasuredHeight() - (jnVar.E - computeVerticalScrollOffset)) - jnVar.getListTopPadding()) - AndroidUtilities.dp(84.0f));
+                    float max2 = Math.max(0.0f, ((jnVar.f27566r.getMeasuredHeight() - (jnVar.E - computeVerticalScrollOffset)) - jnVar.getListTopPadding()) - AndroidUtilities.dp(84.0f));
                     float dp2 = AndroidUtilities.dp(32.0f);
                     if (max < dp2 && computeVerticalScrollOffset > jnVar.getListTopPadding()) {
                         f10 = (-(1.0f - (max / dp2))) * AndroidUtilities.dp(6.0f);
@@ -216,9 +216,9 @@ public final class l7 implements Runnable {
                         f10 = 0.0f;
                     }
                     int i14 = (int) f10;
-                    if (Math.abs(i14) > 0 && jnVar.f27559r.canScrollVertically(i14) && (f10 <= 0.0f || !z10)) {
+                    if (Math.abs(i14) > 0 && jnVar.f27566r.canScrollVertically(i14) && (f10 <= 0.0f || !z10)) {
                         jnVar.E += f10;
-                        jnVar.f27559r.scrollBy(0, i14);
+                        jnVar.f27566r.scrollBy(0, i14);
                         inVar.invalidate();
                     }
                     inVar.L = true;
@@ -229,10 +229,10 @@ public final class l7 implements Runnable {
             case 7:
                 no noVar = (no) obj;
                 l7 l7Var = noVar.U0;
-                d6 d6Var = noVar.f28886g1;
+                d6 d6Var = noVar.f28890g1;
                 if (d6Var != null) {
                     EditTextBoldCursor editField = d6Var.getEditField();
-                    if (!noVar.H && editField != null && noVar.G && !noVar.f28882e1 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
+                    if (!noVar.H && editField != null && noVar.G && !noVar.f28886e1 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
                         editField.requestFocus();
                         AndroidUtilities.showKeyboard(editField);
                         AndroidUtilities.cancelRunOnUIThread(l7Var);
@@ -245,8 +245,8 @@ public final class l7 implements Runnable {
             case 8:
                 cv cvVar = (cv) obj;
                 l7 l7Var2 = cvVar.P;
-                xu xuVar = cvVar.f25023a;
-                if (!cvVar.f25033y && xuVar != null && cvVar.N && !cvVar.v && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
+                xu xuVar = cvVar.f25015a;
+                if (!cvVar.f25025y && xuVar != null && cvVar.N && !cvVar.v && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow && AndroidUtilities.isTablet()) {
                     xuVar.requestFocus();
                     AndroidUtilities.showKeyboard(xuVar);
                     AndroidUtilities.cancelRunOnUIThread(l7Var2);
@@ -267,7 +267,7 @@ public final class l7 implements Runnable {
                 return;
             case 10:
                 d00 d00Var = (d00) obj;
-                if (d00Var.B0.f31231s == null) {
+                if (d00Var.B0.f31223s == null) {
                     d00Var.X1 = false;
                     d00Var.Y();
                     return;
@@ -280,14 +280,14 @@ public final class l7 implements Runnable {
                     if (elapsedRealtime > 17) {
                         elapsedRealtime = 17;
                     }
-                    float f16 = d10Var.f25183p0 + (((float) elapsedRealtime) / 320.0f);
-                    d10Var.f25183p0 = f16;
-                    d10Var.setAnimationIdicatorProgress(d10Var.f25176i0.getInterpolation(f16));
-                    if (d10Var.f25183p0 > 1.0f) {
-                        d10Var.f25183p0 = 1.0f;
+                    float f16 = d10Var.f25175p0 + (((float) elapsedRealtime) / 320.0f);
+                    d10Var.f25175p0 = f16;
+                    d10Var.setAnimationIdicatorProgress(d10Var.f25168i0.getInterpolation(f16));
+                    if (d10Var.f25175p0 > 1.0f) {
+                        d10Var.f25175p0 = 1.0f;
                     }
-                    if (d10Var.f25183p0 < 1.0f) {
-                        AndroidUtilities.runOnUIThread(d10Var.f25191v0);
+                    if (d10Var.f25175p0 < 1.0f) {
+                        AndroidUtilities.runOnUIThread(d10Var.f25183v0);
                         return;
                     }
                     d10Var.O = false;
@@ -304,13 +304,13 @@ public final class l7 implements Runnable {
                 FragmentContextView fragmentContextView = (FragmentContextView) obj;
                 float[] fArr = FragmentContextView.Q0;
                 fragmentContextView.f();
-                AndroidUtilities.runOnUIThread(fragmentContextView.f23965t0, 1000L);
+                AndroidUtilities.runOnUIThread(fragmentContextView.f23966t0, 1000L);
                 return;
             case 13:
-                TextureView textureView = ((p60) obj).H0.f32315q0;
+                TextureView textureView = ((p60) obj).H0.f32301q0;
                 if (textureView != null) {
                     try {
-                        AndroidUtilities.runOnUIThread(new hu(17, this, textureView.getBitmap(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f))));
+                        AndroidUtilities.runOnUIThread(new jt(18, this, textureView.getBitmap(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f))));
                         return;
                     } catch (Exception e7) {
                         FileLog.e(e7);
@@ -343,26 +343,26 @@ public final class l7 implements Runnable {
                 ((xe0) obj).e();
                 return;
             case 17:
-                pj0 pj0Var = (pj0) obj;
-                pj0Var.f29535y = true;
-                ValueAnimator valueAnimator2 = pj0Var.f29536z;
+                qj0 qj0Var = (qj0) obj;
+                qj0Var.f29849y = true;
+                ValueAnimator valueAnimator2 = qj0Var.f29850z;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                pj0Var.f29534x = 0.0f;
+                qj0Var.f29848x = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                pj0Var.f29536z = ofFloat;
-                ofFloat.addUpdateListener(pj0Var.f29512b0);
-                pj0Var.f29536z.setInterpolator(new LinearInterpolator());
-                pj0Var.f29536z.setDuration(150L);
-                pj0Var.f29536z.start();
+                qj0Var.f29850z = ofFloat;
+                ofFloat.addUpdateListener(qj0Var.f29826b0);
+                qj0Var.f29850z.setInterpolator(new LinearInterpolator());
+                qj0Var.f29850z.setDuration(150L);
+                qj0Var.f29850z.start();
                 return;
             case 18:
                 wm0 wm0Var = (wm0) obj;
                 fj fjVar = wm0Var.f32452f2;
                 int[] iArr = wm0Var.f32462k2;
                 eo eoVar = fjVar.d;
-                iArr[0] = (int) eoVar.f37422s9;
+                iArr[0] = (int) eoVar.f37427s9;
                 iArr[1] = eoVar.Ba;
                 if (wm0Var.f32456h2) {
                     dp = -AndroidUtilities.dp(12.0f);
@@ -371,7 +371,7 @@ public final class l7 implements Runnable {
                     dp = AndroidUtilities.dp(12.0f);
                     wm0Var.M0(0.0f, wm0Var.getMeasuredHeight() - wm0Var.f32462k2[1]);
                 }
-                wm0Var.f32452f2.d.f37478x0.scrollBy(0, dp);
+                wm0Var.f32452f2.d.f37483x0.scrollBy(0, dp);
                 if (wm0Var.f32454g2) {
                     AndroidUtilities.runOnUIThread(wm0Var.B2);
                     return;
@@ -379,8 +379,8 @@ public final class l7 implements Runnable {
                 return;
             case 19:
                 dm0 dm0Var = (dm0) obj;
-                l7 l7Var3 = dm0Var.f25405i0;
-                if (dm0Var.f25409n) {
+                l7 l7Var3 = dm0Var.f25408i0;
+                if (dm0Var.f25412n) {
                     AndroidUtilities.cancelRunOnUIThread(l7Var3);
                     AndroidUtilities.runOnUIThread(l7Var3, 4000L);
                     return;
@@ -390,14 +390,14 @@ public final class l7 implements Runnable {
                 return;
             case 20:
                 ym0 ym0Var = (ym0) obj;
-                RecyclerView recyclerView = ym0Var.f33125a;
+                RecyclerView recyclerView = ym0Var.f33133a;
                 if (recyclerView != null) {
-                    if (ym0Var.f33130g) {
-                        recyclerView.scrollBy(0, -ym0Var.f33131i);
+                    if (ym0Var.f33138g) {
+                        recyclerView.scrollBy(0, -ym0Var.f33139i);
                         AndroidUtilities.runOnUIThread(this);
                         return;
                     } else if (ym0Var.h) {
-                        recyclerView.scrollBy(0, ym0Var.f33131i);
+                        recyclerView.scrollBy(0, ym0Var.f33139i);
                         AndroidUtilities.runOnUIThread(this);
                         return;
                     } else {
@@ -412,19 +412,19 @@ public final class l7 implements Runnable {
                     if (elapsedRealtime2 > 17) {
                         elapsedRealtime2 = 17;
                     }
-                    float f17 = scrollSlidingTextTabStrip.S + (((float) elapsedRealtime2) / ((float) scrollSlidingTextTabStrip.f24084b0));
+                    float f17 = scrollSlidingTextTabStrip.S + (((float) elapsedRealtime2) / ((float) scrollSlidingTextTabStrip.f24085b0));
                     scrollSlidingTextTabStrip.S = f17;
                     scrollSlidingTextTabStrip.setAnimationIdicatorProgress(scrollSlidingTextTabStrip.N.getInterpolation(f17));
                     if (scrollSlidingTextTabStrip.S > 1.0f) {
                         scrollSlidingTextTabStrip.S = 1.0f;
                     }
                     if (scrollSlidingTextTabStrip.S < 1.0f) {
-                        AndroidUtilities.runOnUIThread(scrollSlidingTextTabStrip.f24087d0);
+                        AndroidUtilities.runOnUIThread(scrollSlidingTextTabStrip.f24088d0);
                         return;
                     }
                     scrollSlidingTextTabStrip.H = false;
                     scrollSlidingTextTabStrip.setEnabled(true);
-                    xn0 xn0Var = scrollSlidingTextTabStrip.f24083b;
+                    xn0 xn0Var = scrollSlidingTextTabStrip.f24084b;
                     if (xn0Var != null) {
                         xn0Var.v0(1.0f);
                         return;
@@ -434,58 +434,58 @@ public final class l7 implements Runnable {
                 return;
             case 22:
                 ShutterButton shutterButton = (ShutterButton) obj;
-                mw0 mw0Var = shutterButton.f24108e;
+                mw0 mw0Var = shutterButton.f24109e;
                 if (mw0Var != null) {
                     final km kmVar = (km) mw0Var;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kmVar.f27896e;
-                    aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kmVar.f27882e;
+                    aj ajVar = chatAttachAlertPhotoLayout.f30570b;
                     um umVar = chatAttachAlertPhotoLayout.R;
                     int i15 = ajVar.T0;
-                    org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24342f0;
-                    if ((i15 == 2 || (m2Var instanceof eo)) && !chatAttachAlertPhotoLayout.f23838s0 && !ajVar.V && chatAttachAlertPhotoLayout.P != null && !ajVar.G) {
+                    org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
+                    if ((i15 == 2 || (m2Var instanceof eo)) && !chatAttachAlertPhotoLayout.f23839s0 && !ajVar.V && chatAttachAlertPhotoLayout.P != null && !ajVar.G) {
                         if (m2Var == null) {
                             m2Var = LaunchActivity.R();
                         }
                         if (m2Var != null && m2Var.getParentActivity() != null) {
-                            if (!chatAttachAlertPhotoLayout.f23843w0) {
-                                am.q(R.string.GlobalAttachVideoRestricted, new zc(chatAttachAlertPhotoLayout.P, kmVar.f27895c), null);
+                            if (!chatAttachAlertPhotoLayout.f23844w0) {
+                                am.q(R.string.GlobalAttachVideoRestricted, new zc(chatAttachAlertPhotoLayout.P, kmVar.f27881c), null);
                             } else if (chatAttachAlertPhotoLayout.getContext().checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                                 chatAttachAlertPhotoLayout.Q0 = true;
                                 m2Var.getParentActivity().requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 21);
                             } else {
                                 for (int i16 = 0; i16 < 2; i16++) {
-                                    chatAttachAlertPhotoLayout.S[i16].animate().alpha(0.0f).translationX(AndroidUtilities.dp(30.0f)).setDuration(150L).setInterpolator(js.f27627f).start();
+                                    chatAttachAlertPhotoLayout.S[i16].animate().alpha(0.0f).translationX(AndroidUtilities.dp(30.0f)).setDuration(150L).setInterpolator(js.f27634f).start();
                                 }
-                                ViewPropertyAnimator duration2 = chatAttachAlertPhotoLayout.f23836r0.animate().alpha(0.0f).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
-                                js jsVar = js.f27627f;
+                                ViewPropertyAnimator duration2 = chatAttachAlertPhotoLayout.f23837r0.animate().alpha(0.0f).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
+                                js jsVar = js.f27634f;
                                 duration2.setInterpolator(jsVar).start();
-                                chatAttachAlertPhotoLayout.f23834q0.animate().alpha(0.0f).setDuration(150L).setInterpolator(jsVar).start();
-                                org.telegram.ui.ActionBar.m2 m2Var2 = ajVar.f24342f0;
+                                chatAttachAlertPhotoLayout.f23835q0.animate().alpha(0.0f).setDuration(150L).setInterpolator(jsVar).start();
+                                org.telegram.ui.ActionBar.m2 m2Var2 = ajVar.f24338f0;
                                 if ((m2Var2 instanceof eo) && ((eo) m2Var2).v()) {
                                     z11 = true;
                                 } else {
                                     z11 = false;
                                 }
-                                kmVar.f27893a = AndroidUtilities.generateVideoPath(z11);
+                                kmVar.f27879a = AndroidUtilities.generateVideoPath(z11);
                                 AndroidUtilities.updateViewVisibilityAnimated(umVar, true);
                                 umVar.setText(AndroidUtilities.formatLongDuration(0));
-                                chatAttachAlertPhotoLayout.f23815g0 = 0;
-                                chatAttachAlertPhotoLayout.f23817h0 = new Runnable() {
+                                chatAttachAlertPhotoLayout.f23816g0 = 0;
+                                chatAttachAlertPhotoLayout.f23818h0 = new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r2) {
                                             case 0:
-                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = kmVar.f27896e;
-                                                if (chatAttachAlertPhotoLayout2.f23817h0 != null) {
-                                                    int i17 = chatAttachAlertPhotoLayout2.f23815g0 + 1;
-                                                    chatAttachAlertPhotoLayout2.f23815g0 = i17;
+                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = kmVar.f27882e;
+                                                if (chatAttachAlertPhotoLayout2.f23818h0 != null) {
+                                                    int i17 = chatAttachAlertPhotoLayout2.f23816g0 + 1;
+                                                    chatAttachAlertPhotoLayout2.f23816g0 = i17;
                                                     chatAttachAlertPhotoLayout2.R.setText(AndroidUtilities.formatLongDuration(i17));
-                                                    AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f23817h0, 1000L);
+                                                    AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f23818h0, 1000L);
                                                     return;
                                                 }
                                                 return;
                                             default:
-                                                AndroidUtilities.runOnUIThread(kmVar.f27896e.f23817h0, 1000L);
+                                                AndroidUtilities.runOnUIThread(kmVar.f27882e.f23818h0, 1000L);
                                                 return;
                                         }
                                     }
@@ -493,7 +493,7 @@ public final class l7 implements Runnable {
                                 AndroidUtilities.lockOrientation(m2Var.getParentActivity());
                                 CameraController cameraController = CameraController.getInstance();
                                 Object cameraSessionObject = chatAttachAlertPhotoLayout.P.getCameraSessionObject();
-                                File file = kmVar.f27893a;
+                                File file = kmVar.f27879a;
                                 if (ajVar.T0 != 0) {
                                     z12 = true;
                                 } else {
@@ -504,22 +504,22 @@ public final class l7 implements Runnable {
                                     public final void run() {
                                         switch (r2) {
                                             case 0:
-                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = kmVar.f27896e;
-                                                if (chatAttachAlertPhotoLayout2.f23817h0 != null) {
-                                                    int i17 = chatAttachAlertPhotoLayout2.f23815g0 + 1;
-                                                    chatAttachAlertPhotoLayout2.f23815g0 = i17;
+                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = kmVar.f27882e;
+                                                if (chatAttachAlertPhotoLayout2.f23818h0 != null) {
+                                                    int i17 = chatAttachAlertPhotoLayout2.f23816g0 + 1;
+                                                    chatAttachAlertPhotoLayout2.f23816g0 = i17;
                                                     chatAttachAlertPhotoLayout2.R.setText(AndroidUtilities.formatLongDuration(i17));
-                                                    AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f23817h0, 1000L);
+                                                    AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f23818h0, 1000L);
                                                     return;
                                                 }
                                                 return;
                                             default:
-                                                AndroidUtilities.runOnUIThread(kmVar.f27896e.f23817h0, 1000L);
+                                                AndroidUtilities.runOnUIThread(kmVar.f27882e.f23818h0, 1000L);
                                                 return;
                                         }
                                     }
                                 }, chatAttachAlertPhotoLayout.P);
-                                chatAttachAlertPhotoLayout.f23823k0.a(nw0.f28978b);
+                                chatAttachAlertPhotoLayout.f23824k0.a(nw0.f28982b);
                                 chatAttachAlertPhotoLayout.P.runHaptic();
                                 return;
                             }
@@ -531,17 +531,17 @@ public final class l7 implements Runnable {
                 return;
             case 23:
                 gy0 gy0Var = (gy0) obj;
-                View view = gy0Var.f26561s;
+                View view = gy0Var.f26565s;
                 if (view != null) {
                     if (view.getVisibility() != 0) {
-                        gy0Var.f26561s.setVisibility(0);
-                        gy0Var.f26561s.setAlpha(0.0f);
+                        gy0Var.f26565s.setVisibility(0);
+                        gy0Var.f26565s.setAlpha(0.0f);
                     }
-                    gy0Var.f26561s.animate().setListener(null).cancel();
-                    gy0Var.f26561s.animate().alpha(1.0f).setDuration(150L).start();
+                    gy0Var.f26565s.animate().setListener(null).cancel();
+                    gy0Var.f26565s.animate().alpha(1.0f).setDuration(150L).start();
                     return;
                 }
-                gy0Var.f26556c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                gy0Var.f26560c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
                 return;
             case 24:
                 t91 t91Var = (t91) obj;
@@ -550,19 +550,19 @@ public final class l7 implements Runnable {
                     if (elapsedRealtime3 > 17) {
                         elapsedRealtime3 = 17;
                     }
-                    float f18 = t91Var.f30810f0 + (((float) elapsedRealtime3) / 200.0f);
-                    t91Var.f30810f0 = f18;
-                    t91Var.setAnimationIdicatorProgress(t91Var.f30801a0.getInterpolation(f18));
-                    if (t91Var.f30810f0 > 1.0f) {
-                        t91Var.f30810f0 = 1.0f;
+                    float f18 = t91Var.f30813f0 + (((float) elapsedRealtime3) / 200.0f);
+                    t91Var.f30813f0 = f18;
+                    t91Var.setAnimationIdicatorProgress(t91Var.f30804a0.getInterpolation(f18));
+                    if (t91Var.f30813f0 > 1.0f) {
+                        t91Var.f30813f0 = 1.0f;
                     }
-                    if (t91Var.f30810f0 < 1.0f) {
-                        AndroidUtilities.runOnUIThread(t91Var.f30813i0);
+                    if (t91Var.f30813f0 < 1.0f) {
+                        AndroidUtilities.runOnUIThread(t91Var.f30816i0);
                         return;
                     }
                     t91Var.J = false;
                     t91Var.setEnabled(true);
-                    s91 s91Var = t91Var.f30827y;
+                    s91 s91Var = t91Var.f30830y;
                     if (s91Var != null) {
                         ((n4.l) s91Var).k(1.0f);
                         return;
@@ -572,21 +572,21 @@ public final class l7 implements Runnable {
                 return;
             case 25:
                 a40 a40Var = (a40) obj;
-                if (a40Var.f31814b && a40Var.Q0.f38782z0 == null) {
-                    a40Var.f31823g0 = false;
+                if (a40Var.f31799b && a40Var.Q0.f38785z0 == null) {
+                    a40Var.f31808g0 = false;
                     org.telegram.ui.Components.voip.n0.a(a40Var);
                     return;
                 }
-                AndroidUtilities.runOnUIThread(a40Var.f31824h0, 3000L);
+                AndroidUtilities.runOnUIThread(a40Var.f31809h0, 3000L);
                 return;
             case 26:
                 org.telegram.ui.Wallet.a1 a1Var = (org.telegram.ui.Wallet.a1) obj;
-                if (a1Var.d && a1Var.f34446e && a1Var.f34451k != null) {
-                    if (SystemClock.elapsedRealtime() - a1Var.f34452l >= 30000) {
+                if (a1Var.d && a1Var.f34448e && a1Var.f34453k != null) {
+                    if (SystemClock.elapsedRealtime() - a1Var.f34454l >= 30000) {
                         a1Var.f("heartbeat timed out");
                         return;
                     }
-                    a1Var.d("sending ping; last pong " + (SystemClock.elapsedRealtime() - a1Var.f34452l) + " ms ago");
+                    a1Var.d("sending ping; last pong " + (SystemClock.elapsedRealtime() - a1Var.f34454l) + " ms ago");
                     a1Var.g("{\"operation\":\"ping\",\"id\":\"heartbeat\"}");
                     AndroidUtilities.runOnUIThread(this, 15000L);
                     return;
@@ -594,10 +594,10 @@ public final class l7 implements Runnable {
                 return;
             case 27:
                 org.telegram.ui.Wallet.c5 c5Var = (org.telegram.ui.Wallet.c5) obj;
-                if (c5Var.f27773a != null && c5Var.d != null) {
+                if (c5Var.f27776a != null && c5Var.d != null) {
                     c5Var.E0();
-                    if (c5Var.f34567r) {
-                        c5Var.f27773a.postOnAnimation(this);
+                    if (c5Var.f34569r) {
+                        c5Var.f27776a.postOnAnimation(this);
                         return;
                     }
                     return;
@@ -605,17 +605,17 @@ public final class l7 implements Runnable {
                 return;
             case 28:
                 org.telegram.ui.Wallet.f5 f5Var = (org.telegram.ui.Wallet.f5) obj;
-                org.telegram.ui.Wallet.p5 p5Var = f5Var.f34755x;
+                org.telegram.ui.Wallet.p5 p5Var = f5Var.f34757x;
                 if (f5Var.isAttachedToWindow()) {
                     p5Var.b(System.nanoTime());
-                    if (p5Var.f35221a) {
-                        f11 = Math.max(-15.0f, Math.min(15.0f, p5Var.f35222b - p5Var.d));
+                    if (p5Var.f35223a) {
+                        f11 = Math.max(-15.0f, Math.min(15.0f, p5Var.f35224b - p5Var.d));
                     } else {
                         f11 = 0.0f;
                     }
                     f5Var.G = f11;
-                    if (p5Var.f35221a) {
-                        f13 = Math.max(-15.0f, Math.min(15.0f, p5Var.f35223c - p5Var.f35224e));
+                    if (p5Var.f35223a) {
+                        f13 = Math.max(-15.0f, Math.min(15.0f, p5Var.f35225c - p5Var.f35226e));
                     }
                     float f19 = f5Var.G;
                     float f20 = f5Var.H;
@@ -633,16 +633,16 @@ public final class l7 implements Runnable {
             default:
                 org.telegram.ui.Wallet.s5 s5Var = (org.telegram.ui.Wallet.s5) obj;
                 org.telegram.ui.Wallet.p5 p5Var2 = s5Var.K;
-                if (s5Var.f35352s) {
+                if (s5Var.f35354s) {
                     p5Var2.b(System.nanoTime());
-                    if (p5Var2.f35221a) {
-                        f12 = Math.max(-15.0f, Math.min(15.0f, p5Var2.f35222b - p5Var2.d));
+                    if (p5Var2.f35223a) {
+                        f12 = Math.max(-15.0f, Math.min(15.0f, p5Var2.f35224b - p5Var2.d));
                     } else {
                         f12 = 0.0f;
                     }
                     s5Var.R = f12;
-                    if (p5Var2.f35221a) {
-                        f13 = Math.max(-15.0f, Math.min(15.0f, p5Var2.f35223c - p5Var2.f35224e));
+                    if (p5Var2.f35223a) {
+                        f13 = Math.max(-15.0f, Math.min(15.0f, p5Var2.f35225c - p5Var2.f35226e));
                     }
                     float b10 = org.telegram.ui.Wallet.s5.b(f13 * 1.5f, -15.0f, 15.0f);
                     float f23 = s5Var.R;
@@ -653,8 +653,8 @@ public final class l7 implements Runnable {
                     float y12 = com.google.android.gms.internal.vision.e2.y(b10, f25, 1.0f, f25);
                     s5Var.T = y12;
                     float f26 = s5Var.P;
-                    org.telegram.ui.Wallet.n5 n5Var = s5Var.f35345a.f35315f0;
-                    float f27 = (y11 * f26) + n5Var.f48277i + s5Var.O;
+                    org.telegram.ui.Wallet.n5 n5Var = s5Var.f35347a.f35317f0;
+                    float f27 = (y11 * f26) + n5Var.f48285i + s5Var.O;
                     s5Var.N = f27;
                     float f28 = (y12 * f26) + n5Var.d;
                     s5Var.Q = f28;

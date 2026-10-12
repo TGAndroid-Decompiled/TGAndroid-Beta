@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 public abstract class k {
-    public static final int f15868a = 0;
+    public static final int f15869a = 0;
 
     static {
         int i10 = e9.m0.f8767c;
@@ -132,8 +132,8 @@ public abstract class k {
 
     public static b2.c1 c(n4.h0 h0Var) {
         if (h0Var != null) {
-            float f7 = h0Var.f16317b;
-            int i10 = h0Var.f16316a;
+            float f7 = h0Var.f16318b;
+            int i10 = h0Var.f16317a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -225,11 +225,11 @@ public abstract class k {
         } else {
             g0Var = new k2.g0(6);
         }
-        AudioAttributes.Builder builder = (AudioAttributes.Builder) g0Var.f14466b;
+        AudioAttributes.Builder builder = (AudioAttributes.Builder) g0Var.f14467b;
         builder.setContentType(eVar.f3275a);
         builder.setFlags(eVar.f3276b);
         g0Var.h(eVar.f3277c);
-        AudioAttributes audioAttributes = g0Var.c().f16290a;
+        AudioAttributes audioAttributes = g0Var.c().f16291a;
         audioAttributes.getClass();
         int flags = audioAttributes.getFlags();
         int usage = audioAttributes.getUsage();

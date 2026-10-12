@@ -51,16 +51,16 @@ public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         int i10 = u61Var.d;
-        if (i10 != 1 && u61Var.f31069c != e1Var.h) {
+        if (i10 != 1 && u61Var.f31064c != e1Var.h) {
             if (i10 == 2) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e1Var.getParentActivity());
-                alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
-                alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
+                alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
+                alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new z0(e1Var, 3));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                e1Var.showDialog(alertDialog$Builder.f20141a);
+                e1Var.showDialog(alertDialog$Builder.f20142a);
             }
-        } else if (e1Var.f11212x != null && u61Var.f31069c != e1Var.h) {
+        } else if (e1Var.f11212x != null && u61Var.f31064c != e1Var.h) {
             e1Var.f11212x = null;
             e1Var.f11203a.W2.N(true);
         } else {
@@ -74,7 +74,7 @@ public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.
             id0Var.F0 = new ah.b(15, e1Var, id0Var);
             if (e1Var.f11212x == null && !TextUtils.isEmpty(e1Var.f11213y)) {
                 org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(e1Var.getParentActivity(), 3, null);
-                a2Var.f20163g0 = false;
+                a2Var.f20164g0 = false;
                 a2Var.q(200L);
                 Utilities.searchQueue.postRunnable(new x0(e1Var, id0Var, a2Var));
                 return;

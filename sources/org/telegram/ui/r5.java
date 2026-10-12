@@ -27,17 +27,17 @@ public final class r5 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        return ((x5) this.d.f44295a0.get(d1Var.b())).f16877b;
+        return ((x5) this.d.f44300a0.get(d1Var.b())).f16878b;
     }
 
     @Override
     public final int h() {
-        return this.d.f44295a0.size();
+        return this.d.f44300a0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((x5) this.d.f44295a0.get(i10)).f16876a;
+        return ((x5) this.d.f44300a0.get(i10)).f16877a;
     }
 
     @Override
@@ -48,10 +48,10 @@ public final class r5 extends og.b {
         int i13;
         y5 y5Var = this.d;
         int i14 = y5Var.Q;
-        TLRPC.Chat chat = y5Var.f44301g0;
-        ArrayList arrayList = y5Var.f44295a0;
-        int i15 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        TLRPC.Chat chat = y5Var.f44306g0;
+        ArrayList arrayList = y5Var.f44300a0;
+        int i15 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i15 != 4 && i15 != 14 && i15 != 15) {
             if (i15 != 1 && i15 != 12 && i15 != 16) {
                 if (i15 == 0) {
@@ -96,18 +96,18 @@ public final class r5 extends og.b {
                     } else {
                         formatString = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(boost.expires));
                     }
-                    bVar.d(user, ContactsController.formatName(user), formatString, !((x5) arrayList.get(i10)).f43756f);
+                    bVar.d(user, ContactsController.formatName(user), formatString, !((x5) arrayList.get(i10)).f43761f);
                     bVar.setStatus(boost);
                     bVar.setAvatarPadding(5);
                     return;
                 } else if (i15 == 6) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                    e9Var.setText(((x5) arrayList.get(i10)).f43754c);
+                    e9Var.setText(((x5) arrayList.get(i10)).f43759c);
                     e9Var.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.875f, -1));
                     return;
                 } else if (i15 == 9) {
                     org.telegram.ui.Cells.y4 y4Var = (org.telegram.ui.Cells.y4) view;
-                    if (y5Var.f44296b0 == 0) {
+                    if (y5Var.f44301b0 == 0) {
                         y4Var.b(LocaleController.formatPluralString("BoostingShowMoreBoosts", y5Var.X, new Object[0]), R.drawable.arrow_more, 5, false);
                         return;
                     } else {
@@ -115,12 +115,12 @@ public final class r5 extends og.b {
                         return;
                     }
                 } else if (i15 == 3) {
-                    ((org.telegram.ui.Components.ba0) view).setLink(((x5) arrayList.get(i10)).f43754c);
+                    ((org.telegram.ui.Components.ba0) view).setLink(((x5) arrayList.get(i10)).f43759c);
                     return;
                 } else if (i15 == 11) {
                     x5 x5Var = (x5) arrayList.get(i10);
-                    TL_stories.PrepaidGiveaway prepaidGiveaway = x5Var.f43755e;
-                    boolean z10 = x5Var.f43756f;
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = x5Var.f43760e;
+                    boolean z10 = x5Var.f43761f;
                     yg.c cVar = (yg.c) view;
                     if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                         cVar.d(prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, new Object[0])), !z10);
@@ -132,14 +132,14 @@ public final class r5 extends og.b {
                     cVar.setAvatarPadding(5);
                     return;
                 } else if (i15 == 13) {
-                    if (y5Var.T.getTag() == null || ((Integer) y5Var.T.getTag()).intValue() != Objects.hash(Integer.valueOf(y5Var.m0), Integer.valueOf(y5Var.f44306l0))) {
-                        y5Var.T.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(y5Var.m0), Integer.valueOf(y5Var.f44306l0))));
+                    if (y5Var.T.getTag() == null || ((Integer) y5Var.T.getTag()).intValue() != Objects.hash(Integer.valueOf(y5Var.m0), Integer.valueOf(y5Var.f44311l0))) {
+                        y5Var.T.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(y5Var.m0), Integer.valueOf(y5Var.f44311l0))));
                         y5Var.T.g();
                         y5Var.T.a(0, LocaleController.formatPluralString("BoostingBoostsCount", y5Var.m0, new Object[0]), null);
-                        if (MessagesController.getInstance(i14).giveawayGiftsPurchaseAvailable && (i11 = y5Var.f44306l0) > 0 && i11 != y5Var.m0) {
+                        if (MessagesController.getInstance(i14).giveawayGiftsPurchaseAvailable && (i11 = y5Var.f44311l0) > 0 && i11 != y5Var.m0) {
                             y5Var.T.a(1, LocaleController.formatPluralString("BoostingGiftsCount", i11, new Object[0]), null);
                         }
-                        y5Var.T.setInitialTabId(y5Var.f44296b0);
+                        y5Var.T.setInitialTabId(y5Var.f44301b0);
                         y5Var.T.c();
                         return;
                     }
@@ -149,9 +149,9 @@ public final class r5 extends og.b {
                 }
             }
             kg.c cVar2 = (kg.c) view;
-            cVar2.setTitle(((x5) arrayList.get(i10)).f43754c);
+            cVar2.setTitle(((x5) arrayList.get(i10)).f43759c);
             cVar2.c(false);
-            if (d1Var.f47893f == 12) {
+            if (d1Var.f47901f == 12) {
                 cVar2.setPadding(AndroidUtilities.dp(3.0f), cVar2.getPaddingTop(), cVar2.getPaddingRight(), cVar2.getPaddingBottom());
             }
         }
@@ -182,7 +182,7 @@ public final class r5 extends og.b {
             case 3:
                 org.telegram.ui.Components.ba0 ba0Var = new org.telegram.ui.Components.ba0(y5Var.getParentActivity(), y5Var, null, false, false);
                 ba0Var.d.setVisibility(8);
-                ba0Var.f24592a.setGravity(17);
+                ba0Var.f24580a.setGravity(17);
                 ba0Var.h.setVisibility(8);
                 ba0Var.v.setVisibility(8);
                 ba0Var.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
@@ -206,25 +206,25 @@ public final class r5 extends og.b {
             case 8:
                 ai.x5 x5Var2 = new ai.x5(y5Var.getParentActivity(), 7);
                 TextView textView = new TextView(y5Var.getParentActivity());
-                if (ChatObject.isChannelAndNotMegaGroup(y5Var.f44301g0)) {
+                if (ChatObject.isChannelAndNotMegaGroup(y5Var.f44306g0)) {
                     i11 = R.string.NoBoostersHint;
                 } else {
                     i11 = R.string.NoBoostersGroupHint;
                 }
                 org.telegram.messenger.am.j(14.0f, i11, 1, textView);
-                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20945y6, null, false, textView, 17);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20946y6, null, false, textView, 17);
                 x5Var2.addView(textView, w7.w5.a(-2.0f, 0.0f, 16.0f, 0.0f, 0.0f, -1, 0));
                 x5Var = x5Var2;
                 break;
             case 9:
                 q5 q5Var = new q5(y5Var.getParentActivity(), 0);
-                q5Var.a(org.telegram.ui.ActionBar.h6.f20892v6, org.telegram.ui.ActionBar.h6.f20874u6);
+                q5Var.a(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
                 x5Var = q5Var;
                 break;
             case 10:
                 org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(y5Var.getParentActivity());
                 r8Var.m(R.drawable.msg_gift_premium, LocaleController.formatString(R.string.BoostingGetBoostsViaGifts, new Object[0]), false);
-                r8Var.f22487s = 64;
+                r8Var.f22488s = 64;
                 int i12 = org.telegram.ui.ActionBar.h6.q6;
                 r8Var.e(i12, i12);
                 x5Var = r8Var;

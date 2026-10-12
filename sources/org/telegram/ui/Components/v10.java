@@ -78,7 +78,7 @@ public final class v10 extends db {
         ArrayList<MessagesController.DialogFilter> arrayList3 = m2Var.getMessagesController().dialogFilters;
         if (arrayList3 != null) {
             for (int i11 = 0; i11 < arrayList3.size(); i11++) {
-                if (arrayList3.get(i11).f17003id == i10) {
+                if (arrayList3.get(i11).f17004id == i10) {
                     dialogFilter = arrayList3.get(i11);
                     break;
                 }
@@ -114,7 +114,7 @@ public final class v10 extends db {
         ArrayList<MessagesController.DialogFilter> arrayList = m2Var.getMessagesController().dialogFilters;
         if (arrayList != null) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                if (arrayList.get(i11).f17003id == i10) {
+                if (arrayList.get(i11).f17004id == i10) {
                     dialogFilter = arrayList.get(i11);
                     break;
                 }
@@ -124,15 +124,15 @@ public final class v10 extends db {
         bl blVar = new bl(i10, m2Var, callback, 4);
         if (dialogFilter != null && dialogFilter.isMyChatlist()) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m2Var.getContext());
-            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.FilterDelete);
-            alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.FilterDeleteAlertLinks);
+            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.FilterDelete);
+            alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.FilterDeleteAlertLinks);
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new mn(callback));
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ew(blVar, 4));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
             m2Var.showDialog(a2Var);
             TextView textView = (TextView) a2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20799q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20800q7, false));
                 return;
             }
             return;
@@ -176,7 +176,7 @@ public final class v10 extends db {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(LocaleController.formatPluralString("FilterInviteHeaderChats", this.f31332i0.size(), new Object[0]));
         if (z10 && this.f31347y0 != null) {
-            str = ", " + ((Object) this.f31347y0.f30361b.getText());
+            str = ", " + ((Object) this.f31347y0.f30357b.getText());
         } else {
             str = "";
         }
@@ -240,7 +240,7 @@ public final class v10 extends db {
                         z10 = false;
                     } else {
                         boolean z11 = peer instanceof TLRPC.TL_peerChat;
-                        org.telegram.ui.ActionBar.m2 m2Var = this.f25297n;
+                        org.telegram.ui.ActionBar.m2 m2Var = this.f25289n;
                         if (z11) {
                             j3 = -peer.chat_id;
                             isNotInChat = ChatObject.isNotInChat(m2Var.getMessagesController().getChat(Long.valueOf(-j3)));
@@ -302,47 +302,47 @@ public final class v10 extends db {
         Context context = getContext();
         ?? frameLayout = new FrameLayout(context);
         js jsVar = js.h;
-        frameLayout.f29978e = new g6(350L, jsVar);
+        frameLayout.f29979e = new g6(350L, jsVar);
         float f7 = 0.0f;
         frameLayout.h = 0.0f;
-        frameLayout.f29982s = 1.0f;
-        frameLayout.f29984x = 1.0f;
-        frameLayout.f29985y = true;
+        frameLayout.f29983s = 1.0f;
+        frameLayout.f29985x = 1.0f;
+        frameLayout.f29986y = true;
         View view = new View(context);
-        frameLayout.f29979f = view;
+        frameLayout.f29980f = view;
         int i17 = org.telegram.ui.ActionBar.h6.Oh;
         view.setBackground(org.telegram.ui.ActionBar.w5.d(new float[]{8.0f}, 0, org.telegram.ui.ActionBar.w5.b(org.telegram.ui.ActionBar.h6.x0(null, i17, false))));
         frameLayout.addView(view, w7.w5.d(-1.0f, -1));
         frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(8.0f), org.telegram.ui.ActionBar.h6.x0(null, i17, false)));
         Paint paint = new Paint(1);
-        frameLayout.f29975a = paint;
+        frameLayout.f29976a = paint;
         int i18 = org.telegram.ui.ActionBar.h6.Sh;
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
         q6 q6Var = new q6(true, true, false);
-        frameLayout.f29976b = q6Var;
+        frameLayout.f29977b = q6Var;
         q6Var.n(0.3f, 250L, jsVar);
         q6Var.setCallback(frameLayout);
         q6Var.w(AndroidUtilities.dp(14.0f));
         q6Var.x(AndroidUtilities.bold());
         q6Var.u(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
         q6Var.t("", true, true);
-        q6Var.f29712b = 1;
+        q6Var.f29690b = 1;
         q6 q6Var2 = new q6(false, false, true);
-        frameLayout.f29977c = q6Var2;
+        frameLayout.f29978c = q6Var2;
         q6Var2.n(0.3f, 250L, jsVar);
         q6Var2.setCallback(frameLayout);
         q6Var2.w(AndroidUtilities.dp(12.0f));
         q6Var2.x(AndroidUtilities.bold());
         q6Var2.u(org.telegram.ui.ActionBar.h6.x0(null, i17, false));
         q6Var2.t("", true, true);
-        q6Var2.f29712b = 1;
+        q6Var2.f29690b = 1;
         frameLayout.setWillNotDraw(false);
         this.f31335l0 = frameLayout;
         frameLayout.setOnClickListener(new f0(this, 15));
         this.containerView.addView(this.f31335l0, w7.w5.a(48.0f, 16.0f, 10.0f, 16.0f, 10.0f, -1, 87));
         View view2 = new View(getContext());
         this.m0 = view2;
-        view2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20503a7, false));
+        view2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false));
         this.containerView.addView(this.m0, w7.w5.a(1.0f / AndroidUtilities.density, 6.0f, 0.0f, 6.0f, 68.0f, -1, 87));
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
@@ -353,9 +353,9 @@ public final class v10 extends db {
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.f31334k0 = frameLayout2;
         this.containerView.addView(frameLayout2, w7.w5.a(100.0f, 6.0f, 0.0f, 6.0f, 68.0f, -1, 87));
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20630h5, false));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false));
         V(false);
-        this.f25295e.setTitle(A());
+        this.f25287e.setTitle(A());
     }
 
     public final void V(boolean z10) {
@@ -380,12 +380,12 @@ public final class v10 extends db {
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     int i12 = 0;
                     if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                        this.f31335l0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.f31326c0, this.f31335l0.f29976b.f29710a.getFontMetricsInt(), false), this.f31327d0, this.f31335l0.f29976b.f29710a.getFontMetricsInt())), z10);
+                        this.f31335l0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.f31326c0, this.f31335l0.f29977b.f29688a.getFontMetricsInt(), false), this.f31327d0, this.f31335l0.f29977b.f29688a.getFontMetricsInt())), z10);
                         r10 r10Var2 = this.f31335l0;
                         if (this.f31328e0) {
                             i12 = 26;
                         }
-                        r10Var2.f29976b.f29725p = i12;
+                        r10Var2.f29977b.f29703p = i12;
                     } else {
                         r10 r10Var3 = this.f31335l0;
                         if (size > 0) {
@@ -400,11 +400,11 @@ public final class v10 extends db {
                 }
             }
             r10 r10Var4 = this.f31335l0;
-            q6 q6Var = r10Var4.f29977c;
+            q6 q6Var = r10Var4.f29978c;
             if (z10) {
                 q6Var.a();
             }
-            if (z10 && size != (i10 = r10Var4.f29983w) && size > 0 && i10 > 0) {
+            if (z10 && size != (i10 = r10Var4.f29984w) && size > 0 && i10 > 0) {
                 ValueAnimator valueAnimator = r10Var4.v;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
@@ -418,7 +418,7 @@ public final class v10 extends db {
                 r10Var4.v.setDuration(200L);
                 r10Var4.v.start();
             }
-            r10Var4.f29983w = size;
+            r10Var4.f29984w = size;
             if (size != 0) {
                 f7 = 1.0f;
             } else {
@@ -471,7 +471,7 @@ public final class v10 extends db {
     public final void dismiss() {
         super.dismiss();
         if (this.f31348z0 >= 0) {
-            this.f25297n.getConnectionsManager().cancelRequest(this.f31348z0, true);
+            this.f25289n.getConnectionsManager().cancelRequest(this.f31348z0, true);
         }
         Utilities.Callback callback = this.B0;
         if (callback != null) {

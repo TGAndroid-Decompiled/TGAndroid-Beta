@@ -7,27 +7,27 @@ import android.view.View;
 import org.telegram.ui.Components.da;
 import org.telegram.ui.Components.js;
 public final class t0 {
-    public float f31966a;
-    public float f31967b;
-    public float f31968c;
-    public boolean f31969e;
-    public final m3 f31970f;
-    public final m3 f31971g;
-    public ValueAnimator f31973j;
-    public int f31974k;
+    public float f31943a;
+    public float f31944b;
+    public float f31945c;
+    public boolean f31946e;
+    public final m3 f31947f;
+    public final m3 f31948g;
+    public ValueAnimator f31950j;
+    public int f31951k;
     public float d = 0.0f;
     public boolean h = false;
-    public float f31972i = 1.0f;
+    public float f31949i = 1.0f;
 
     public t0(int i10, int i11, int i12, int i13) {
         ?? daVar = new da(i13 - 1);
-        this.f31970f = daVar;
+        this.f31947f = daVar;
         ?? daVar2 = new da(i13);
-        this.f31971g = daVar2;
-        daVar.f25272a = i10;
-        daVar.f25273b = i11;
-        daVar2.f25272a = i10 - i12;
-        daVar2.f25273b = i11 - i12;
+        this.f31948g = daVar2;
+        daVar.f25264a = i10;
+        daVar.f25265b = i11;
+        daVar2.f25264a = i10 - i12;
+        daVar2.f25265b = i11 - i12;
         daVar.b();
         daVar2.b();
         daVar.d.setColor(-1);
@@ -37,28 +37,28 @@ public final class t0 {
     }
 
     public final void a(Canvas canvas, float f7, float f10, View view) {
-        float f11 = (this.f31966a * 0.4f) + 0.8f;
-        if (this.f31969e || this.d != 0.0f) {
+        float f11 = (this.f31943a * 0.4f) + 0.8f;
+        if (this.f31946e || this.d != 0.0f) {
             canvas.save();
-            float interpolation = js.f27627f.getInterpolation(this.d) * f11;
+            float interpolation = js.f27634f.getInterpolation(this.d) * f11;
             canvas.scale(interpolation, interpolation, f7, f10);
-            float f12 = this.f31966a;
-            float f13 = this.f31972i;
-            m3 m3Var = this.f31970f;
+            float f12 = this.f31943a;
+            float f13 = this.f31949i;
+            m3 m3Var = this.f31947f;
             m3Var.g(f12, f13);
             Paint paint = m3Var.d;
             m3Var.a(f7, f10, canvas, paint);
-            float f14 = this.f31966a;
-            float f15 = this.f31972i;
-            m3 m3Var2 = this.f31971g;
+            float f14 = this.f31943a;
+            float f15 = this.f31949i;
+            m3 m3Var2 = this.f31948g;
             m3Var2.g(f14, f15);
             m3Var2.a(f7, f10, canvas, paint);
             canvas.restore();
         }
-        if (!this.h || this.f31974k != 0) {
-            int i10 = this.f31974k;
+        if (!this.h || this.f31951k != 0) {
+            int i10 = this.f31951k;
             if (i10 != 0) {
-                this.f31974k = i10 - 1;
+                this.f31951k = i10 - 1;
             }
             if (this.d != 0.0f) {
                 view.invalidate();
@@ -69,7 +69,7 @@ public final class t0 {
     public final void b(double d) {
         float f7 = ((float) d) / 80.0f;
         float f10 = 0.0f;
-        if (!this.f31969e) {
+        if (!this.f31946e) {
             f7 = 0.0f;
         }
         if (f7 > 1.0f) {
@@ -77,26 +77,26 @@ public final class t0 {
         } else if (f7 >= 0.0f) {
             f10 = f7;
         }
-        this.f31967b = f10;
-        this.f31968c = (f10 - this.f31966a) / 200.0f;
+        this.f31944b = f10;
+        this.f31945c = (f10 - this.f31943a) / 200.0f;
     }
 
     public final void c() {
-        float f7 = this.f31967b;
-        float f10 = this.f31966a;
+        float f7 = this.f31944b;
+        float f10 = this.f31943a;
         if (f7 != f10) {
-            float f11 = this.f31968c;
+            float f11 = this.f31945c;
             float f12 = (16.0f * f11) + f10;
-            this.f31966a = f12;
+            this.f31943a = f12;
             if (f11 > 0.0f) {
                 if (f12 > f7) {
-                    this.f31966a = f7;
+                    this.f31943a = f7;
                 }
             } else if (f12 < f7) {
-                this.f31966a = f7;
+                this.f31943a = f7;
             }
         }
-        boolean z10 = this.f31969e;
+        boolean z10 = this.f31946e;
         if (z10) {
             float f13 = this.d;
             if (f13 != 1.0f) {

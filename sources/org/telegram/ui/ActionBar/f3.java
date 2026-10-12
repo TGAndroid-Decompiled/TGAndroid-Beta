@@ -3,15 +3,15 @@ package org.telegram.ui.ActionBar;
 import android.view.View;
 import android.view.WindowInsets;
 public final class f3 implements View.OnApplyWindowInsetsListener {
-    public final int f20390a;
+    public final int f20391a;
 
     public f3(int i10) {
-        this.f20390a = i10;
+        this.f20391a = i10;
     }
 
     @Override
     public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f20390a) {
+        switch (this.f20391a) {
             case 0:
                 return h3.a(view, windowInsets);
             case 1:

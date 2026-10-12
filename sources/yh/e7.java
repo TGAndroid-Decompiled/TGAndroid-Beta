@@ -27,12 +27,12 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
     public final long X;
     public final o20 Y;
     public final FrameLayout Z;
-    public final k10 f52663a0;
-    public Runnable f52664b0;
-    public final TLRPC.InputPeer f52665c0;
-    public final boolean f52666d0;
-    public h71 f52667e0;
-    public boolean f52668f0;
+    public final k10 f52675a0;
+    public Runnable f52676b0;
+    public final TLRPC.InputPeer f52677c0;
+    public final boolean f52678d0;
+    public h71 f52679e0;
+    public boolean f52680f0;
 
     public e7(android.content.Context r16, org.telegram.ui.ActionBar.c6 r17, long r18, int r20, java.lang.String r21, java.lang.Runnable r22, long r23) {
         throw new UnsupportedOperationException("Method not decompiled: yh.e7.<init>(android.content.Context, org.telegram.ui.ActionBar.c6, long, int, java.lang.String, java.lang.Runnable, long):void");
@@ -40,11 +40,11 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
 
     public static void Q(e7 e7Var, int i10) {
         u61 G;
-        h71 h71Var = e7Var.f52667e0;
+        h71 h71Var = e7Var.f52679e0;
         if (h71Var != null && (G = h71Var.G(i10 - 1)) != null) {
-            h71 h71Var2 = e7Var.f52667e0;
+            h71 h71Var2 = e7Var.f52679e0;
             if (G.d == -1) {
-                e7Var.f52668f0 = !e7Var.f52668f0;
+                e7Var.f52680f0 = !e7Var.f52680f0;
                 h71Var2.N(true);
             } else if (G.G(b7.class) && (G.G instanceof TL_stars.TL_starsTopupOption)) {
                 Activity findActivity = AndroidUtilities.findActivity(e7Var.getContext());
@@ -52,7 +52,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
                     findActivity = LaunchActivity.G1;
                 }
                 if (findActivity != null) {
-                    n5.y(e7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new qh.r(5, e7Var, G), e7Var.f52665c0);
+                    n5.y(e7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new qh.r(5, e7Var, G), e7Var.f52677c0);
                 }
             }
         }
@@ -62,7 +62,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
         if (e7Var.getContext() != null) {
             if (bool.booleanValue()) {
                 new zc((FrameLayout) e7Var.containerView, e7Var.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) u61Var.B, new Object[0])), R.raw.stars_topup).j();
-                e7Var.f52663a0.c(true);
+                e7Var.f52675a0.c(true);
                 n5.y(e7Var.currentAccount, false).T(true);
             } else if (str != null) {
                 hg.c.s(R.string.UnknownErrorCode, new Object[]{str}, new zc((FrameLayout) e7Var.containerView, e7Var.resourcesProvider), R.raw.error, 36);
@@ -76,7 +76,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
         if (o20Var == null) {
             return null;
         }
-        return ((TextView) o20Var.f40542b).getText();
+        return ((TextView) o20Var.f40545b).getText();
     }
 
     public final void S(ArrayList arrayList, h71 h71Var) {
@@ -85,7 +85,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
         int i11;
         o20 o20Var = this.Y;
         arrayList.add(u61.l(o20Var));
-        boolean z10 = this.f52666d0;
+        boolean z10 = this.f52678d0;
         if (z10) {
             com.google.android.gms.internal.vision.e2.n(R.string.TelegramStarsChoose, arrayList);
         }
@@ -106,7 +106,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
                     }
                     TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) z11.get(i14);
                     if (tL_starsTopupOption.stars >= j3) {
-                        if (tL_starsTopupOption.extended && !this.f52668f0 && z12) {
+                        if (tL_starsTopupOption.extended && !this.f52680f0 && z12) {
                             i16++;
                         } else {
                             arrayList.add(b7.a(i14, i13, tL_starsTopupOption));
@@ -136,7 +136,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
                             i12++;
                             i13++;
                         }
-                        boolean z13 = this.f52668f0;
+                        boolean z13 = this.f52680f0;
                         if (!z13 && i16 > 0) {
                             if (z13) {
                                 i11 = R.string.NotifyLessOptions;
@@ -144,19 +144,19 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
                                 i11 = R.string.NotifyMoreOptions;
                             }
                             String string = LocaleController.getString(i11);
-                            int i19 = x6.f53603a;
+                            int i19 = x6.f53612a;
                             u61 J = u61.J(x6.class);
                             J.d = -1;
-                            J.f31076l = string;
-                            J.f31071f = !this.f52668f0;
-                            J.f31081q = true;
+                            J.f31071l = string;
+                            J.f31066f = !this.f52680f0;
+                            J.f31076q = true;
                             arrayList.add(J);
                         }
                     } else {
-                        this.f52668f0 = true;
+                        this.f52680f0 = true;
                     }
                 } else if (i15 > 0) {
-                    boolean z14 = this.f52668f0;
+                    boolean z14 = this.f52680f0;
                     if (!z14 && i16 > 0) {
                         if (z14) {
                             i10 = R.string.NotifyLessOptions;
@@ -164,12 +164,12 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
                             i10 = R.string.NotifyMoreOptions;
                         }
                         String string2 = LocaleController.getString(i10);
-                        int i20 = x6.f53603a;
+                        int i20 = x6.f53612a;
                         u61 J2 = u61.J(x6.class);
                         J2.d = -1;
-                        J2.f31076l = string2;
-                        J2.f31071f = !this.f52668f0;
-                        J2.f31081q = true;
+                        J2.f31071l = string2;
+                        J2.f31066f = !this.f52680f0;
+                        J2.f31076q = true;
                         arrayList.add(J2);
                     }
                 } else {
@@ -192,20 +192,20 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            h71 h71Var = this.f52667e0;
+            h71 h71Var = this.f52679e0;
             if (h71Var != null) {
                 h71Var.N(true);
             }
             long j3 = n5.y(this.currentAccount, false).p().amount;
             long j10 = this.X;
-            ((TextView) this.Y.f40542b).setText(LocaleController.formatPluralStringComma("StarsNeededTitle", (int) (j10 - j3)));
-            za zaVar = this.f25295e;
+            ((TextView) this.Y.f40545b).setText(LocaleController.formatPluralStringComma("StarsNeededTitle", (int) (j10 - j3)));
+            za zaVar = this.f25287e;
             if (zaVar != null) {
                 zaVar.setTitle(A());
             }
-            if (j3 >= j10 && (runnable = this.f52664b0) != null) {
+            if (j3 >= j10 && (runnable = this.f52676b0) != null) {
                 runnable.run();
-                this.f52664b0 = null;
+                this.f52676b0 = null;
                 dismiss();
             }
         }
@@ -216,7 +216,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
         super.dismiss();
         o20 o20Var = this.Y;
         if (o20Var != null) {
-            ((sg.n) o20Var.f40543c).setPaused(true);
+            ((sg.n) o20Var.f40546c).setPaused(true);
         }
     }
 
@@ -230,13 +230,13 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
     @Override
     public final void show() {
         sk skVar;
-        if (!this.f52666d0) {
+        if (!this.f52678d0) {
             org.telegram.messenger.v0.q(R.string.PaymentInvoiceDisabledStarsText, new zc(nb.a(getContext()), this.resourcesProvider), R.raw.stars_topup, 36);
         } else if (n5.y(this.currentAccount, false).p().amount >= this.X) {
-            Runnable runnable = this.f52664b0;
+            Runnable runnable = this.f52676b0;
             if (runnable != null) {
                 runnable.run();
-                this.f52664b0 = null;
+                this.f52676b0 = null;
             }
         } else {
             org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
@@ -255,7 +255,7 @@ public final class e7 extends db implements NotificationCenter.NotificationCente
     @Override
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 28), this.resourcesProvider);
-        this.f52667e0 = h71Var;
+        this.f52679e0 = h71Var;
         return h71Var;
     }
 }

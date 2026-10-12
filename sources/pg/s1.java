@@ -10,16 +10,16 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.sw0;
 import w7.l6;
 public final class s1 {
-    public final Bitmap f45664a;
-    public int f45665b;
+    public final Bitmap f45669a;
+    public int f45670b;
 
     public s1(Bitmap bitmap) {
-        this.f45664a = bitmap;
+        this.f45669a = bitmap;
     }
 
     public static int b(sw0 sw0Var) {
-        int i10 = (int) sw0Var.f30696a;
-        int i11 = (int) sw0Var.f30697b;
+        int i10 = (int) sw0Var.f30699a;
+        int i11 = (int) sw0Var.f30700b;
         int[] iArr = new int[1];
         GLES20.glGenTextures(1, iArr, 0);
         int i12 = iArr[0];
@@ -34,43 +34,43 @@ public final class s1 {
 
     public final void a(boolean z10) {
         Bitmap bitmap;
-        int i10 = this.f45665b;
+        int i10 = this.f45670b;
         if (i10 != 0) {
             GLES20.glDeleteTextures(1, new int[]{i10}, 0);
-            this.f45665b = 0;
-            if (z10 && (bitmap = this.f45664a) != null && !bitmap.isRecycled()) {
+            this.f45670b = 0;
+            if (z10 && (bitmap = this.f45669a) != null && !bitmap.isRecycled()) {
                 bitmap.recycle();
             }
         }
     }
 
     public final int c() {
-        int i10 = this.f45665b;
+        int i10 = this.f45670b;
         if (i10 != 0) {
             return i10;
         }
-        Bitmap bitmap = this.f45664a;
+        Bitmap bitmap = this.f45669a;
         if (bitmap == null || bitmap.isRecycled()) {
             return 0;
         }
         int[] iArr = new int[1];
         GLES20.glGenTextures(1, iArr, 0);
         int i11 = iArr[0];
-        this.f45665b = i11;
+        this.f45670b = i11;
         GLES20.glBindTexture(3553, i11);
         GLES20.glTexParameteri(3553, 10242, 33071);
         GLES20.glTexParameteri(3553, 10243, 33071);
         GLES20.glTexParameteri(3553, 10240, 9729);
         GLES20.glTexParameteri(3553, 10241, 9729);
         try {
-            GLUtils.texImage2D(3553, 0, 6408, this.f45664a, 5121, 0);
+            GLUtils.texImage2D(3553, 0, 6408, this.f45669a, 5121, 0);
         } catch (Exception e7) {
             FileLog.e(e7);
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
             int i12 = width * height;
             int[] iArr2 = new int[i12];
-            this.f45664a.getPixels(iArr2, 0, width, 0, 0, width, height);
+            this.f45669a.getPixels(iArr2, 0, width, 0, 0, width, height);
             for (int i13 = 0; i13 < i12; i13++) {
                 int i14 = iArr2[i13];
                 iArr2[i13] = ((i14 >> 16) & 255) | (i14 & (-16711936)) | ((i14 & 255) << 16);
@@ -84,6 +84,6 @@ public final class s1 {
             GLES20.glTexSubImage2D(3553, 0, 0, 0, 1, 1, 6408, 5121, allocateDirect);
         }
         l6.a();
-        return this.f45665b;
+        return this.f45670b;
     }
 }

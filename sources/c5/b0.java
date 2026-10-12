@@ -178,7 +178,7 @@ public final class b0 implements r2.u {
                     if (i11 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = sc.k.f48145a;
+                        SecureRandom secureRandom = sc.k.f48153a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -229,8 +229,8 @@ public final class b0 implements r2.u {
                                             }
                                             sc.s sVar = new sc.s(socketFactory, new sc.a(str2, i10), i11, null, null);
                                             sVar.d = 1;
-                                            sVar.f48162e = 250;
-                                            sVar.f48163f = true;
+                                            sVar.f48170e = 250;
+                                            sVar.f48171f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }

@@ -16,21 +16,21 @@ public final class vx extends lw {
     @Override
     public final void Y(boolean z10) {
         d00 d00Var = this.X;
-        ArrayList arrayList = d00Var.f25120p1;
+        ArrayList arrayList = d00Var.f25112p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19829id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19829id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f19830id))) {
+                arrayList.add(Long.valueOf(stickerSet.f19830id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19829id));
+            arrayList.remove(Long.valueOf(stickerSet.f19830id));
         }
         d00Var.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f25141v2 = false;
+        this.X.f25133v2 = false;
         super.dismiss();
     }
 }

@@ -18,8 +18,8 @@ public final class ii extends cv {
         super.f();
         d00 emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f25143w0 = false;
-            emojiView.f25145w2 = false;
+            emojiView.f25135w0 = false;
+            emojiView.f25137w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,7 +27,7 @@ public final class ii extends cv {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.V.f24342f0;
+        org.telegram.ui.ActionBar.m2 m2Var = this.V.f24338f0;
         if (m2Var instanceof org.telegram.ui.eo) {
             org.telegram.ui.eo.n8(menu, ((org.telegram.ui.eo) m2Var).h, true, true, true, true);
         }
@@ -37,7 +37,7 @@ public final class ii extends cv {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         aj ajVar = this.V;
         ii iiVar = ajVar.S0;
-        if (!ajVar.f24400x1) {
+        if (!ajVar.f24396x1) {
             if (motionEvent.getX() > iiVar.getEditText().getLeft() && motionEvent.getX() < iiVar.getEditText().getRight() && motionEvent.getY() > iiVar.getEditText().getTop() && motionEvent.getY() < iiVar.getEditText().getBottom()) {
                 ajVar.w1(iiVar.getEditText(), true);
             } else {
@@ -58,7 +58,7 @@ public final class ii extends cv {
         boolean z10;
         aj ajVar = this.V;
         ajVar.f2();
-        if (ajVar.f24331c0) {
+        if (ajVar.f24327c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {

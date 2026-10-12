@@ -39,11 +39,11 @@ public final class d2 extends z1 {
         o1Var.setOnItemClickListener(new ai.g(this, 4));
         o1Var.setOnScrollListener(new ai.r(this, 2));
         s4.j jVar = new s4.j();
-        jVar.f47981c = 220L;
-        jVar.f47982e = 220L;
-        jVar.f47983f = 160L;
-        jVar.f47984g = 160L;
-        jVar.f47985i = js.f27628g;
+        jVar.f47989c = 220L;
+        jVar.f47990e = 220L;
+        jVar.f47991f = 160L;
+        jVar.f47992g = 160L;
+        jVar.f47993i = js.f27635g;
         o1Var.setItemAnimator(jVar);
         addView(o1Var, w7.w5.d(-1.0f, -1));
         c6Var = ((org.telegram.ui.ActionBar.e3) r2Var).resourcesProvider;
@@ -94,7 +94,7 @@ public final class d2 extends z1 {
                 j2Var.F1(r2Var.f5881c);
                 k2Var.f5308f.D1();
                 if (k2Var.f5308f.getSelectedCategory() != null) {
-                    c2Var.H = k2Var.f5308f.getSelectedCategory().f24507a;
+                    c2Var.H = k2Var.f5308f.getSelectedCategory().f24495a;
                     androidx.fragment.app.a0 a0Var = c2Var.M;
                     AndroidUtilities.cancelRunOnUIThread(a0Var);
                     AndroidUtilities.runOnUIThread(a0Var);

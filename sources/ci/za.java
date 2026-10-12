@@ -53,7 +53,7 @@ public final class za implements Utilities.Callback2 {
                                 nbVar2.f5809l2 = true;
                                 j6 j6Var = nbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f19827w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f19828w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -161,7 +161,7 @@ public final class za implements Utilities.Callback2 {
                         if (intValue == 1) {
                             org.telegram.ui.Components.zc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.zc.l(DialogObject.getShortName(profileActivity.f34080e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.zc.l(DialogObject.getShortName(profileActivity.f34082e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.zc.d0(tL_error);
                         }
@@ -178,11 +178,11 @@ public final class za implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.d0 d0Var = (org.telegram.ui.Wallet.d0) this.f6430c;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = d0Var.f34597b;
-                ArrayList arrayList2 = d0Var.f34598c;
-                d0Var.f34605l = -1;
-                d0Var.f34603j = false;
-                d0Var.f34602i = false;
+                ArrayList arrayList = d0Var.f34599b;
+                ArrayList arrayList2 = d0Var.f34600c;
+                d0Var.f34607l = -1;
+                d0Var.f34605j = false;
+                d0Var.f34604i = false;
                 boolean z13 = this.f6429b;
                 if (nftitems != null) {
                     if (z13) {
@@ -209,9 +209,9 @@ public final class za implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    d0Var.f34600f = str2;
+                    d0Var.f34602f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    d0Var.f34601g = isEmpty;
+                    d0Var.f34603g = isEmpty;
                     d0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -237,7 +237,7 @@ public final class za implements Utilities.Callback2 {
                     d0Var.g();
                 } else {
                     if (z13) {
-                        d0Var.f34601g = false;
+                        d0Var.f34603g = false;
                         d0Var.h = false;
                     }
                     if (tL_error2 == null) {
@@ -245,7 +245,7 @@ public final class za implements Utilities.Callback2 {
                     } else {
                         str = tL_error2.text;
                     }
-                    d0Var.f34604k = str;
+                    d0Var.f34606k = str;
                 }
                 d0Var.f();
                 return;

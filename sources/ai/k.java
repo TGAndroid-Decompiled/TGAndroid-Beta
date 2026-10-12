@@ -124,7 +124,7 @@ public final class k implements u9, yh1, m4.b1, e2.h, org.telegram.ui.ActionBar.
 
     @Override
     public void e(long j3) {
-        org.telegram.ui.Components.q6 q6Var = ((org.telegram.ui.Cells.u1) this.f1215c).f23197w4;
+        org.telegram.ui.Components.q6 q6Var = ((org.telegram.ui.Cells.u1) this.f1215c).f23198w4;
         if (q6Var != null) {
             q6Var.t(LocaleController.formatPollEndTime((int) j3, this.f1214b), true, true);
         }
@@ -139,8 +139,8 @@ public final class k implements u9, yh1, m4.b1, e2.h, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                i60 i60Var = ((l50) this.f1215c).f39646b;
-                i60Var.f38678a1.toggleRecord(null, 0);
+                i60 i60Var = ((l50) this.f1215c).f39640b;
+                i60Var.f38681a1.toggleRecord(null, 0);
                 UndoView l1 = i60Var.l1();
                 if (this.f1214b) {
                     i11 = 101;
@@ -198,13 +198,13 @@ public final class k implements u9, yh1, m4.b1, e2.h, org.telegram.ui.ActionBar.
                 if (z11) {
                     m0 = -1;
                 } else {
-                    m0 = c0Var.f15748t.m0();
+                    m0 = c0Var.f15749t.m0();
                 }
                 int i11 = m0;
                 if (z11) {
                     J0 = -9223372036854775807L;
                 } else {
-                    J0 = c0Var.f15748t.J0();
+                    J0 = c0Var.f15749t.J0();
                 }
                 return c0Var.q(rVar, z10, i11, J0);
             default:
@@ -213,13 +213,13 @@ public final class k implements u9, yh1, m4.b1, e2.h, org.telegram.ui.ActionBar.
                 if (z12) {
                     m02 = -1;
                 } else {
-                    m02 = c0Var.f15748t.m0();
+                    m02 = c0Var.f15749t.m0();
                 }
                 int i12 = m02;
                 if (z12) {
                     J02 = -9223372036854775807L;
                 } else {
-                    J02 = c0Var.f15748t.J0();
+                    J02 = c0Var.f15749t.J0();
                 }
                 return c0Var.q(rVar, list, i12, J02);
         }
@@ -228,7 +228,7 @@ public final class k implements u9, yh1, m4.b1, e2.h, org.telegram.ui.ActionBar.
     @Override
     public void l(vh.g gVar, float f7, float f10) {
         vh.n nVar = (vh.n) this.f1215c;
-        if (!nVar.d && !nVar.f49961e && !nVar.f49962f && this.f1214b) {
+        if (!nVar.d && !nVar.f49969e && !nVar.f49970f && this.f1214b) {
             nVar.c(f7, f10);
         }
     }

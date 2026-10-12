@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class aa1 implements bh.a {
-    public final RectF f35743a = new RectF();
-    public final y8 f35744b;
-    public final db1 f35745c;
+    public final RectF f35745a = new RectF();
+    public final y8 f35746b;
+    public final db1 f35747c;
 
     public aa1(db1 db1Var, y8 y8Var) {
-        this.f35745c = db1Var;
-        this.f35744b = y8Var;
+        this.f35747c = db1Var;
+        this.f35746b = y8Var;
     }
 
     @Override
@@ -22,21 +22,21 @@ public final class aa1 implements bh.a {
         ah.n nVar;
         fc fcVar;
         fc fcVar2;
-        db1 db1Var = this.f35745c;
+        db1 db1Var = this.f35747c;
         db1Var.fragmentView.getMeasuredWidth();
         db1Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(db1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6));
+        canvas.drawColor(db1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6));
         for (int i10 = 0; i10 < 3; i10++) {
             if (i10 == 0) {
                 nVar = db1Var.T;
                 fcVar = db1Var.S;
-            } else if (i10 == 1 && (fcVar2 = db1Var.f36736j0) != null) {
+            } else if (i10 == 1 && (fcVar2 = db1Var.f36738j0) != null) {
                 nVar = fcVar2.G;
                 fcVar = fcVar2;
             } else {
-                oe oeVar = db1Var.f36737k0;
+                oe oeVar = db1Var.f36739k0;
                 if (oeVar != null) {
-                    nVar = oeVar.f40656b1;
+                    nVar = oeVar.f40659b1;
                     fcVar = oeVar;
                 } else {
                     nVar = null;
@@ -44,8 +44,8 @@ public final class aa1 implements bh.a {
                 }
             }
             if (nVar != null && fcVar != null) {
-                y8 y8Var = this.f35744b;
-                RectF rectF2 = this.f35743a;
+                y8 y8Var = this.f35746b;
+                RectF rectF2 = this.f35745a;
                 hh.j.c(fcVar, y8Var, rectF2);
                 if (rectF2.right > 0.0f) {
                     db1Var.fragmentView.getMeasuredWidth();

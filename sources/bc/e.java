@@ -2,8 +2,8 @@ package bc;
 
 import android.os.SystemClock;
 import m.r3;
-import pi.m;
-import pi.s;
+import pi.n;
+import pi.t;
 import v7.k;
 import z7.fb;
 import z7.gb;
@@ -23,18 +23,18 @@ public final class e implements wf {
     @Override
     public a5.a zza() {
         ?? obj = new Object();
-        obj.f15556c = fb.TYPE_THIN;
+        obj.f15557c = fb.TYPE_THIN;
         k kVar = new k(18, false);
         kVar.d = ((f) this.f3854b).f3858e.a();
-        kVar.f49474b = (gb) this.f3855c;
-        kVar.f49475c = Long.valueOf((SystemClock.elapsedRealtime() - this.f3853a) & Long.MAX_VALUE);
-        obj.f15557e = new ge(kVar);
+        kVar.f49482b = (gb) this.f3855c;
+        kVar.f49483c = Long.valueOf((SystemClock.elapsedRealtime() - this.f3853a) & Long.MAX_VALUE);
+        obj.f15558e = new ge(kVar);
         return new a5.a((r3) obj, 0);
     }
 
-    public e(s sVar, m mVar, long j3) {
-        this.f3855c = sVar;
-        this.f3854b = mVar;
+    public e(t tVar, n nVar, long j3) {
+        this.f3855c = tVar;
+        this.f3854b = nVar;
         this.f3853a = j3;
     }
 }

@@ -9,25 +9,25 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class f9 extends e70 {
-    public final int f37678v0;
-    public final org.telegram.ui.ActionBar.m2 f37679w0;
+    public final int f37682v0;
+    public final org.telegram.ui.ActionBar.m2 f37683w0;
 
     public f9(Bundle bundle, int i10, org.telegram.ui.ActionBar.m2 m2Var) {
         super(bundle);
-        this.f37678v0 = i10;
-        this.f37679w0 = m2Var;
+        this.f37682v0 = i10;
+        this.f37683w0 = m2Var;
     }
 
     @Override
     public final void n0(HashSet hashSet) {
         int size = hashSet.size();
-        int i10 = this.f37678v0;
+        int i10 = this.f37682v0;
         if (size == 1) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(user.f19949id);
+            TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(user.f19950id);
             if (userFull == null) {
                 TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f19942id = MessagesController.getInstance(i10).getInputUser(user.f19949id);
+                tL_users_getFullUser.f19943id = MessagesController.getInstance(i10).getInputUser(user.f19950id);
                 ConnectionsManager.getInstance(i10).sendRequest(tL_users_getFullUser, new gg.u(this, i10, user, 3));
                 return;
             }
@@ -35,7 +35,7 @@ public final class f9 extends e70 {
         } else {
             TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
             createconferencecall.random_id = Utilities.random.nextInt();
-            ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new gg.u(i10, hashSet, this.f37679w0));
+            ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new gg.u(i10, hashSet, this.f37683w0));
         }
         finishFragment();
     }

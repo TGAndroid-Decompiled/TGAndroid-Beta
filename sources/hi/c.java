@@ -85,7 +85,7 @@ public final class c extends db {
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
         this.Y = h71Var;
-        h71Var.f26675r = false;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

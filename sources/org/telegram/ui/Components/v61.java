@@ -22,9 +22,9 @@ public final class v61 extends y61 {
             textPaint.setColor(-1);
         } else if (i12 == 1) {
             if (h) {
-                i11 = org.telegram.ui.ActionBar.h6.f20636hc;
+                i11 = org.telegram.ui.ActionBar.h6.f20637hc;
             } else {
-                i11 = org.telegram.ui.ActionBar.h6.f20601fc;
+                i11 = org.telegram.ui.ActionBar.h6.f20602fc;
             }
             textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         } else {

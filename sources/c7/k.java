@@ -41,8 +41,8 @@ public final class k extends l {
         f3 f3Var2 = new f3(7, false);
         ((f3) f3Var.d).d = f3Var2;
         f3Var.d = f3Var2;
-        f3Var2.f15424c = valueOf;
-        f3Var2.f15423b = "errorCode";
+        f3Var2.f15425c = valueOf;
+        f3Var2.f15424b = "errorCode";
         String str = this.f4491b;
         if (str != null) {
             f3Var.Z(str, "errorMessage");

@@ -16,13 +16,13 @@ public final class zr extends db {
     public final a90 X;
     public final ArrayList Y;
     public final boolean Z;
-    public final boolean f33477a0;
-    public final boolean f33478b0;
-    public boolean f33479c0;
-    public TLRPC.Peer f33480d0;
-    public TLRPC.InputPeer f33481e0;
-    public final org.telegram.ui.ActionBar.m2 f33482f0;
-    public final long f33483g0;
+    public final boolean f33479a0;
+    public final boolean f33480b0;
+    public boolean f33481c0;
+    public TLRPC.Peer f33482d0;
+    public TLRPC.InputPeer f33483e0;
+    public final org.telegram.ui.ActionBar.m2 f33484f0;
+    public final long f33485g0;
 
     public zr(org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, long j3, a90 a90Var) {
         super(m2Var, false);
@@ -30,22 +30,22 @@ public final class zr extends db {
         String formatString;
         String formatString2;
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f33482f0 = m2Var;
-        this.f33483g0 = j3;
+        this.f33484f0 = m2Var;
+        this.f33485g0 = j3;
         this.v = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.Y = arrayList2;
         this.X = a90Var;
         boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.f33478b0 = isChannelOrGiga;
-        this.f33480d0 = (TLRPC.Peer) arrayList2.get(0);
+        this.f33480b0 = isChannelOrGiga;
+        this.f33482d0 = (TLRPC.Peer) arrayList2.get(0);
         if (arrayList2.size() > 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.Z = z10;
-        this.f33477a0 = ChatObject.canManageCalls(chat);
+        this.f33479a0 = ChatObject.canManageCalls(chat);
         Context context = this.containerView.getContext();
         this.containerView.addView(new ci.bb(this, context, 16), w7.w5.a(120.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         TextView textView = new TextView(context);
@@ -65,7 +65,7 @@ public final class zr extends db {
         int dp = AndroidUtilities.dp(8.0f);
         int i10 = org.telegram.ui.ActionBar.h6.Oh;
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false), 120);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false), 120);
         textView.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, x02, k10, k10));
         this.containerView.addView(textView, w7.w5.a(48.0f, 16.0f, 0.0f, 16.0f, 60.0f, -1, 80));
         TextView textView2 = new TextView(context);
@@ -133,19 +133,19 @@ public final class zr extends db {
     }
 
     public static void Q(zr zrVar) {
-        zrVar.f33481e0 = MessagesController.getInstance(zrVar.currentAccount).getInputPeer(MessageObject.getPeerId(zrVar.f33480d0));
+        zrVar.f33483e0 = MessagesController.getInstance(zrVar.currentAccount).getInputPeer(MessageObject.getPeerId(zrVar.f33482d0));
         zrVar.dismiss();
     }
 
     public static void R(zr zrVar) {
-        zrVar.f33481e0 = MessagesController.getInstance(zrVar.currentAccount).getInputPeer(MessageObject.getPeerId(zrVar.f33480d0));
-        zrVar.f33479c0 = true;
+        zrVar.f33483e0 = MessagesController.getInstance(zrVar.currentAccount).getInputPeer(MessageObject.getPeerId(zrVar.f33482d0));
+        zrVar.f33481c0 = true;
         zrVar.dismiss();
     }
 
     @Override
     public final CharSequence A() {
-        if (this.f33478b0) {
+        if (this.f33480b0) {
             return LocaleController.getString(R.string.StartVoipChannelTitle);
         }
         return LocaleController.getString(R.string.StartVoipChatTitle);
@@ -154,13 +154,13 @@ public final class zr extends db {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        TLRPC.InputPeer inputPeer = this.f33481e0;
+        TLRPC.InputPeer inputPeer = this.f33483e0;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.Y.size() <= 1) {
                 z10 = false;
             }
-            this.X.a(inputPeer, z10, this.f33479c0, false);
+            this.X.a(inputPeer, z10, this.f33481c0, false);
         }
     }
 

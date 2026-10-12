@@ -45,7 +45,7 @@ public final class n1 extends vm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -135,16 +135,16 @@ public final class n1 extends vm0 implements NotificationCenter.NotificationCent
         boolean z10;
         int i11;
         int i12;
-        int i13 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        int i13 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i13 == 0) {
             s2 s2Var = (s2) view;
-            s2Var.f22620s2 = true;
+            s2Var.f22621s2 = true;
             MessageObject messageObject = (MessageObject) E(i10);
             long dialogId = messageObject.getDialogId();
             int i14 = messageObject.messageOwner.date;
             if (this.f10743w) {
-                s2Var.f22612r0 = true;
+                s2Var.f22613r0 = true;
                 long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;

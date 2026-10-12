@@ -1,50 +1,127 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
+import ai.f4;
+import ai.t5;
+import android.content.Intent;
+import android.net.Uri;
+import ci.a9;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c3;
 import org.telegram.ui.ActionBar.c6;
-public final class c0 extends ci.d {
-    public final RectF f48510h0;
-    public boolean f48511i0;
-    public float f48512j0;
-    public final org.telegram.ui.Components.voip.h f48513k0;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.db;
+import org.telegram.ui.Components.sc;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.Components.wm0;
+import org.telegram.ui.Components.yw0;
+import org.telegram.ui.LaunchActivity;
+public final class c0 extends db {
+    public final TLRPC.TL_payments_checkedGiftCode X;
+    public final boolean Y;
+    public b0 Z;
+    public final String f48540a0;
 
-    public c0(Context context, c6 c6Var) {
-        super(context, c6Var, true);
-        this.f48510h0 = new RectF();
-        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f48513k0 = hVar;
-        hVar.f31709n = 1.2f;
-        hVar.f31706k = false;
-        hVar.f31708m = 4.0f;
+    public c0(m2 m2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(m2Var, true);
+        boolean z10;
+        if (tL_payments_checkedGiftCode.used_date == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.Y = z10;
+        this.X = tL_payments_checkedGiftCode;
+        this.f48540a0 = str;
+        setApplyTopPadding(false);
+        setApplyBottomPadding(false);
+        fixNavigationBar();
+        O();
+        b0 b0Var = this.Z;
+        c3 c3Var = this.container;
+        b0Var.getClass();
+        b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
+        b0Var.f49159e = m2Var;
+        b0Var.f49160f = tL_payments_checkedGiftCode;
+        b0Var.h = str;
+        b0Var.f49161n = c3Var;
+    }
+
+    public static c6 Q(c0 c0Var) {
+        return c0Var.resourcesProvider;
+    }
+
+    public static boolean T(Intent intent, of.e eVar) {
+        String scheme;
+        String path;
+        Uri data = intent.getData();
+        if (data != null && (scheme = data.getScheme()) != null) {
+            if (!scheme.equals("http") && !scheme.equals("https")) {
+                if (scheme.equals("tg")) {
+                    String uri = data.toString();
+                    String lastPathSegment = data.getLastPathSegment();
+                    if ((uri.startsWith("tg:giftcode") || uri.startsWith("tg://giftcode")) && lastPathSegment != null) {
+                        U(LaunchActivity.R(), lastPathSegment, eVar);
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            String lowerCase = data.getHost().toLowerCase();
+            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null) {
+                String lastPathSegment2 = data.getLastPathSegment();
+                if (path.startsWith("/giftcode") && lastPathSegment2 != null) {
+                    U(LaunchActivity.R(), lastPathSegment2, eVar);
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static void U(m2 m2Var, String str, of.e eVar) {
+        if (m2Var == null) {
+            return;
+        }
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        if (eVar != null) {
+            eVar.d();
+            eVar.f16870b = new d(atomicBoolean, 1);
+        }
+        f4 f4Var = new f4(atomicBoolean, m2Var, str, eVar, 16);
+        f fVar = new f(atomicBoolean, eVar, 1);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
+        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+        TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
+        tL_payments_checkGiftCode.slug = str;
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new t5(messagesController, f4Var, fVar, 19));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f48511i0) {
-            float f7 = this.f48512j0 + 0.016f;
-            this.f48512j0 = f7;
-            if (f7 > 3.0f) {
-                this.f48511i0 = false;
-            }
-        } else {
-            float f10 = this.f48512j0 - 0.016f;
-            this.f48512j0 = f10;
-            if (f10 < 1.0f) {
-                this.f48511i0 = true;
-            }
+    public final CharSequence A() {
+        if (this.Y) {
+            return LocaleController.getString(R.string.BoostingGiftLink);
         }
-        RectF rectF = this.f48510h0;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        rg.b1.d().f((-getMeasuredWidth()) * 0.1f * this.f48512j0, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), rg.b1.d().e());
-        int measuredWidth = getMeasuredWidth();
-        org.telegram.ui.Components.voip.h hVar = this.f48513k0;
-        hVar.f31702f = measuredWidth;
-        hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, null);
-        super.onDraw(canvas);
-        invalidate();
+        return LocaleController.getString(R.string.BoostingUsedGiftLink);
+    }
+
+    @Override
+    public final void H(yw0 yw0Var) {
+        sc.a(this.container, new a9(14));
+    }
+
+    @Override
+    public final vm0 x(wm0 wm0Var) {
+        b0 b0Var = new b0(this, this.resourcesProvider);
+        this.Z = b0Var;
+        return b0Var;
     }
 }

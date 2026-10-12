@@ -33,7 +33,7 @@ public final class h0 extends org.telegram.ui.Components.m9 {
         int g10;
         switch (this.f1067e) {
             case 1:
-                int i12 = this.f28445a.f28120n;
+                int i12 = this.f28440a.f28105n;
                 if (i12 == 0) {
                     g10 = 0;
                 } else {

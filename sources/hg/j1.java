@@ -85,7 +85,7 @@ public abstract class j1 extends LinearLayout {
                 }
                 textView2.setGravity(i13);
                 this.h[i17].setTextSize(1, 13.0f);
-                this.h[i17].setTextColor(h6.w0(h6.f20963z6, c6Var));
+                this.h[i17].setTextColor(h6.w0(h6.f20964z6, c6Var));
                 x5Var.addView(this.h[i17], w5.i(-2.0f, -2.0f, 8388659, 0.0f, 33.0f, 0.0f, 10.0f));
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.v = linearLayout;
@@ -95,7 +95,7 @@ public abstract class j1 extends LinearLayout {
                 for (int i19 = 0; i19 < 2; i19++) {
                     this.f11283n[i17][i19] = new TextView(context);
                     this.f11283n[i17][i19].setTextSize(1, 14.0f);
-                    this.f11283n[i17][i19].setTextColor(h6.w0(h6.f20963z6, c6Var));
+                    this.f11283n[i17][i19].setTextColor(h6.w0(h6.f20964z6, c6Var));
                     TextView textView3 = this.f11283n[i17][i19];
                     if (LocaleController.isRTL) {
                         i16 = 3;
@@ -108,7 +108,7 @@ public abstract class j1 extends LinearLayout {
                 for (int i20 = 0; i20 < 2; i20++) {
                     this.f11280c[i20] = new TextView(context);
                     this.f11280c[i20].setTextSize(1, 14.0f);
-                    this.f11280c[i20].setTextColor(h6.w0(h6.f20963z6, c6Var));
+                    this.f11280c[i20].setTextColor(h6.w0(h6.f20964z6, c6Var));
                     TextView textView4 = this.f11280c[i20];
                     if (LocaleController.isRTL) {
                         i15 = 3;
@@ -124,7 +124,7 @@ public abstract class j1 extends LinearLayout {
                 imageView.setScaleX(0.6f);
                 imageView.setScaleY(0.6f);
                 imageView.setImageResource(R.drawable.arrow_more);
-                imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20963z6, c6Var), PorterDuff.Mode.SRC_IN));
+                imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20964z6, c6Var), PorterDuff.Mode.SRC_IN));
                 this.f11285s.addView(imageView, w5.h(20.0f, 20.0f, 8388629));
                 this.v.addView(this.f11285s, new LinearLayout.LayoutParams(w5.z(-1.0f), w5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
                 vq vqVar = new vq(context);
@@ -139,7 +139,7 @@ public abstract class j1 extends LinearLayout {
                 }
                 vqVar.setGravity(i14);
                 int dp = AndroidUtilities.dp(8.0f);
-                int i21 = h6.f20762o6;
+                int i21 = h6.f20763o6;
                 int w02 = h6.w0(i21, c6Var);
                 a(w02);
                 int m12 = h6.m1(0.1f, w02);
@@ -176,7 +176,7 @@ public abstract class j1 extends LinearLayout {
                 for (int i22 = 0; i22 < 2; i22++) {
                     this.f11283n[i17][i22] = new TextView(context);
                     this.f11283n[i17][i22].setTextSize(1, 14.0f);
-                    this.f11283n[i17][i22].setTextColor(h6.w0(h6.f20963z6, c6Var));
+                    this.f11283n[i17][i22].setTextColor(h6.w0(h6.f20964z6, c6Var));
                     TextView textView6 = this.f11283n[i17][i22];
                     if (LocaleController.isRTL) {
                         i11 = 3;
@@ -225,7 +225,7 @@ public abstract class j1 extends LinearLayout {
         if (this.E) {
             Paint U0 = h6.U0("paintDivider", this.f11278a);
             if (U0 == null) {
-                U0 = h6.f20681k0;
+                U0 = h6.f20682k0;
             }
             Paint paint = U0;
             float f10 = 21.33f;

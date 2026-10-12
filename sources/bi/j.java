@@ -74,7 +74,7 @@ public final class j extends xv0 {
     @Override
     public final em0 getMovingAdapter() {
         u uVar = this.f3903o3;
-        if (uVar.G.f48057y == 0 && !uVar.W.G.C1) {
+        if (uVar.G.f48065y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;

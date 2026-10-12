@@ -3,12 +3,12 @@ package p4;
 import z7.hb;
 import z7.xf;
 public final class t0 implements Runnable {
-    public final int f45318a;
-    public final Object f45319b;
+    public final int f45323a;
+    public final Object f45324b;
 
     public t0(Object obj, int i10) {
-        this.f45318a = i10;
-        this.f45319b = obj;
+        this.f45323a = i10;
+        this.f45324b = obj;
     }
 
     private final void a() {
@@ -21,8 +21,8 @@ public final class t0 implements Runnable {
     }
 
     public t0(xf xfVar) {
-        this.f45318a = 16;
+        this.f45323a = 16;
         hb hbVar = hb.UNKNOWN_EVENT;
-        this.f45319b = xfVar;
+        this.f45324b = xfVar;
     }
 }

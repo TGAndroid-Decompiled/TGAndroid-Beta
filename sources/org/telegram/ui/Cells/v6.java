@@ -10,7 +10,7 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wm0;
 import org.telegram.ui.j11;
 public final class v6 extends t61 {
-    public static final int f23318a = 0;
+    public static final int f23319a = 0;
 
     static {
         t61.setup(new t61());
@@ -21,9 +21,9 @@ public final class v6 extends t61 {
         Object obj = u61Var.G;
         if (obj instanceof j11) {
             j11 j11Var = (j11) obj;
-            ((x6) view).b(u61Var.f31076l, j11Var.d, j11Var.f39078e, z10);
+            ((x6) view).b(u61Var.f31071l, j11Var.d, j11Var.f39080e, z10);
         } else if (obj instanceof MessagesController.FaqSearchResult) {
-            ((x6) view).a(u61Var.f31076l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
+            ((x6) view).a(u61Var.f31071l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
         }
     }
 

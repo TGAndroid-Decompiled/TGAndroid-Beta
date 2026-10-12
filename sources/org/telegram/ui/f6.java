@@ -12,26 +12,26 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 public final class f6 implements Runnable {
-    public final int f37638a;
-    public final b7 f37639b;
+    public final int f37642a;
+    public final b7 f37643b;
 
     public f6(b7 b7Var, int i10) {
-        this.f37638a = i10;
-        this.f37639b = b7Var;
+        this.f37642a = i10;
+        this.f37643b = b7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37638a) {
+        switch (this.f37642a) {
             case 0:
-                b7 b7Var = this.f37639b;
+                b7 b7Var = this.f37643b;
                 b7Var.resumeDelayedFragmentAnimation();
                 b7Var.L = false;
                 b7Var.w0(true);
                 b7Var.v0();
                 return;
             case 1:
-                b7 b7Var2 = this.f37639b;
+                b7 b7Var2 = this.f37643b;
                 b7Var2.getFileLoader().getFileDatabase().ensureDatabaseCreated();
                 zh.b bVar = new zh.b(false);
                 LongSparseArray longSparseArray = new LongSparseArray();
@@ -50,8 +50,8 @@ public final class f6 implements Runnable {
                 for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
                     u6 u6Var = (u6) longSparseArray.valueAt(i10);
                     arrayList.add(u6Var);
-                    if (b7Var2.getMessagesController().getUserOrChat(((u6) arrayList.get(i10)).f42371a) == null) {
-                        long j3 = u6Var.f42371a;
+                    if (b7Var2.getMessagesController().getUserOrChat(((u6) arrayList.get(i10)).f42373a) == null) {
+                        long j3 = u6Var.f42373a;
                         if (j3 > 0) {
                             arrayList2.add(Long.valueOf(j3));
                         } else {
@@ -60,52 +60,52 @@ public final class f6 implements Runnable {
                     }
                 }
                 Collections.sort(bVar.d, new ob1(28));
-                Collections.sort(bVar.f54927e, new ob1(28));
-                Collections.sort(bVar.f54928f, new ob1(28));
-                Collections.sort(bVar.f54929g, new ob1(28));
+                Collections.sort(bVar.f54935e, new ob1(28));
+                Collections.sort(bVar.f54936f, new ob1(28));
+                Collections.sort(bVar.f54937g, new ob1(28));
                 Collections.sort(bVar.h, new ob1(28));
                 b7Var2.getMessagesStorage().getStorageQueue().postRunnable(new g6(b7Var2, arrayList2, arrayList3, arrayList, bVar, 0));
                 return;
             default:
-                b7 b7Var3 = this.f37639b;
+                b7 b7Var3 = this.f37643b;
                 b7Var3.h = b7.q0(5, FileLoader.checkDirectory(4));
-                if (!b7.f36073k0) {
-                    b7Var3.f36093r = b7.q0(4, FileLoader.checkDirectory(4));
-                    if (!b7.f36073k0) {
+                if (!b7.f36075k0) {
+                    b7Var3.f36095r = b7.q0(4, FileLoader.checkDirectory(4));
+                    if (!b7.f36075k0) {
                         long q02 = b7.q0(0, FileLoader.checkDirectory(0));
-                        b7Var3.f36097y = q02;
-                        b7Var3.f36097y = b7.q0(0, FileLoader.checkDirectory(100)) + q02;
-                        if (!b7.f36073k0) {
+                        b7Var3.f36099y = q02;
+                        b7Var3.f36099y = b7.q0(0, FileLoader.checkDirectory(100)) + q02;
+                        if (!b7.f36075k0) {
                             long q03 = b7.q0(0, FileLoader.checkDirectory(2));
                             b7Var3.E = q03;
                             b7Var3.E = b7.q0(0, FileLoader.checkDirectory(101)) + q03;
-                            if (!b7.f36073k0) {
+                            if (!b7.f36075k0) {
                                 long q04 = b7.q0(1, AndroidUtilities.getLogsDir());
                                 b7Var3.F = q04;
                                 if (!BuildVars.DEBUG_VERSION && q04 < 268435456) {
                                     b7Var3.F = 0L;
                                 }
-                                if (!b7.f36073k0) {
+                                if (!b7.f36075k0) {
                                     long q05 = b7.q0(1, FileLoader.checkDirectory(3));
-                                    b7Var3.f36094s = q05;
-                                    b7Var3.f36094s = b7.q0(1, FileLoader.checkDirectory(5)) + q05;
-                                    if (!b7.f36073k0) {
+                                    b7Var3.f36096s = q05;
+                                    b7Var3.f36096s = b7.q0(1, FileLoader.checkDirectory(5)) + q05;
+                                    if (!b7.f36075k0) {
                                         long q06 = b7.q0(2, FileLoader.checkDirectory(3));
-                                        b7Var3.f36096x = q06;
-                                        b7Var3.f36096x = b7.q0(2, FileLoader.checkDirectory(5)) + q06;
-                                        if (!b7.f36073k0) {
+                                        b7Var3.f36098x = q06;
+                                        b7Var3.f36098x = b7.q0(2, FileLoader.checkDirectory(5)) + q06;
+                                        if (!b7.f36075k0) {
                                             b7Var3.G = b7.q0(0, new File(FileLoader.checkDirectory(4), "acache"));
-                                            if (!b7.f36073k0) {
-                                                b7Var3.f36092n = b7.q0(3, FileLoader.checkDirectory(4));
-                                                if (!b7.f36073k0) {
-                                                    b7Var3.G += b7Var3.f36092n;
+                                            if (!b7.f36075k0) {
+                                                b7Var3.f36094n = b7.q0(3, FileLoader.checkDirectory(4));
+                                                if (!b7.f36075k0) {
+                                                    b7Var3.G += b7Var3.f36094n;
                                                     b7Var3.v = b7.q0(0, FileLoader.checkDirectory(1));
-                                                    b7Var3.f36095w = b7.q0(0, FileLoader.checkDirectory(6));
-                                                    if (!b7.f36073k0) {
-                                                        long j10 = b7Var3.h + b7Var3.f36093r + b7Var3.E + b7Var3.F + b7Var3.v + b7Var3.f36097y + b7Var3.f36094s + b7Var3.f36096x + b7Var3.f36095w + b7Var3.G;
+                                                    b7Var3.f36097w = b7.q0(0, FileLoader.checkDirectory(6));
+                                                    if (!b7.f36075k0) {
+                                                        long j10 = b7Var3.h + b7Var3.f36095r + b7Var3.E + b7Var3.F + b7Var3.v + b7Var3.f36099y + b7Var3.f36096s + b7Var3.f36098x + b7Var3.f36097w + b7Var3.G;
                                                         b7.m0 = Long.valueOf(j10);
                                                         b7Var3.H = j10;
-                                                        b7.f36074l0 = System.currentTimeMillis();
+                                                        b7.f36076l0 = System.currentTimeMillis();
                                                         ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
                                                         File file = rootDirs.get(0);
                                                         file.getAbsolutePath();

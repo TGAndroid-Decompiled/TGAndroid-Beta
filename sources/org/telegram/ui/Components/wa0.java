@@ -17,14 +17,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class wa0 {
-    public static final Pattern f32364a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f32365b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f32366c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f32350a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f32351b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f32352c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(cf.p pVar, TL_iv.PageBlock pageBlock) {
         ta0 ta0Var = new ta0(pageBlock);
         pVar.a(ta0Var);
-        return g(h(ta0.x(ta0Var.f30837c)));
+        return g(h(ta0.x(ta0Var.f30840c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -73,7 +73,7 @@ public abstract class wa0 {
         textmath.tried = true;
         ii.s a2 = ii.s.a(trim, AndroidUtilities.dp(20.0f), true);
         if (a2 != null) {
-            textmath.f20029w = a2.f12677b;
+            textmath.f20030w = a2.f12677b;
             textmath.h = a2.f12678c;
             textmath.depth = a2.d;
             textmath.bitmap = a2.f12676a;

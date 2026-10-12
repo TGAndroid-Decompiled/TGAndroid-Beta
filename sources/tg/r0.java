@@ -1,143 +1,245 @@
 package tg;
 
-import ai.f4;
-import ai.o6;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.am;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.vm0;
-import org.telegram.ui.Components.wm0;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.o20;
-import org.telegram.ui.xy0;
+import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.js;
 import w7.w5;
-public final class r0 extends db {
-    public final ArrayList X;
-    public final ArrayList Y;
-    public final TLRPC.Chat Z;
-    public final c0 f48612a0;
-    public q0 f48613b0;
-    public k0 f48614c0;
+public final class r0 extends LinearLayout {
+    public final ArrayList f48639a;
+    public final o0 f48640b;
+    public final FrameLayout f48641c;
+    public final FrameLayout d;
+    public final ia0 f48642e;
 
-    public r0(m2 m2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
-        super(m2Var, false);
-        this.X = new ArrayList();
-        this.Y = new ArrayList();
-        this.v = 0.3f;
-        this.Z = chat;
-        ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
+    public r0(Context context) {
+        super(context);
+        this.f48639a = new ArrayList();
+        setOrientation(1);
+        setClipChildren(false);
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        this.f48641c = frameLayout;
+        frameLayout.setClipChildren(false);
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        this.d = frameLayout2;
+        frameLayout2.setClipChildren(false);
+        frameLayout.addView(frameLayout2, w5.a(70.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        ImageView imageView = new ImageView(frameLayout3.getContext());
+        imageView.setImageResource(R.drawable.msg_arrow_avatar);
+        imageView.setColorFilter(h6.x0(null, h6.E6, false));
+        frameLayout3.addView(imageView);
+        frameLayout.addView(frameLayout3, w5.e(24, 24, 17));
+        o0 o0Var = new o0(context);
+        this.f48640b = o0Var;
+        o0Var.setLayerType(2, null);
+        frameLayout.addView(o0Var, w5.e(70, 70, 17));
+        addView(frameLayout, w5.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
+        TextView textView = new TextView(context);
+        textView.setTypeface(AndroidUtilities.bold());
+        am.j(20.0f, R.string.BoostingReassignBoost, 1, textView);
+        textView.setTextColor(h6.x0(null, h6.G6, false));
+        addView(textView, w5.t(-2, -2, 1, 0, 15, 0, 7));
+        ia0 ia0Var = new ia0(getContext(), null);
+        this.f48642e = ia0Var;
+        ia0Var.setTextSize(1, 14.0f);
+        ia0Var.setGravity(1);
+        ia0Var.setTextColor(h6.x0(null, h6.f20668j5, false));
+        ia0Var.setLineSpacing(ia0Var.getLineSpacingExtra(), ia0Var.getLineSpacingMultiplier() * 1.1f);
+        addView(ia0Var, w5.t(-2, -2, 1, 28, 0, 28, 18));
+    }
+
+    public final void a(ArrayList arrayList, TLRPC.Chat chat) {
+        ArrayList arrayList2;
+        FrameLayout frameLayout;
+        char c10;
+        o0 o0Var;
+        int i10;
+        char c11;
+        int i11;
+        ArrayList arrayList3 = new ArrayList(arrayList.size());
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            TL_stories.TL_myBoost tL_myBoost = arrayList.get(i10);
-            i10++;
-            TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
-            TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f19802id)) {
-                this.Y.add(tL_myBoost2);
+        int i12 = 0;
+        int i13 = 0;
+        while (i13 < size) {
+            Object obj = arrayList.get(i13);
+            i13++;
+            arrayList3.add(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(((TL_stories.TL_myBoost) obj).peer))));
+        }
+        ArrayList arrayList4 = new ArrayList();
+        ArrayList arrayList5 = new ArrayList();
+        js jsVar = js.f27634f;
+        int size2 = arrayList3.size();
+        int i14 = 0;
+        while (true) {
+            arrayList2 = this.f48639a;
+            if (i14 >= size2) {
+                break;
+            }
+            Object obj2 = arrayList3.get(i14);
+            i14++;
+            TLRPC.Chat chat2 = (TLRPC.Chat) obj2;
+            if (!arrayList2.contains(chat2)) {
+                arrayList5.add(chat2);
             }
         }
-        o20 o20Var = new o20(getContext(), this.resourcesProvider, this.d);
-        o20Var.setClickable(true);
-        o20Var.setOrientation(1);
-        o20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        o20Var.setBackgroundColor(h6.w0(h6.f20630h5, this.resourcesProvider));
-        c0 c0Var = new c0(getContext(), this.resourcesProvider);
-        this.f48612a0 = c0Var;
-        c0Var.k();
-        c0Var.setCounterColor(-6785796);
-        c0Var.setOnClickListener(new xy0(23, this, chat));
-        o20Var.addView(c0Var, w5.q(-1, 48, 87));
-        ViewGroup viewGroup = this.containerView;
-        int i11 = this.backgroundPaddingLeft;
-        viewGroup.addView(o20Var, w5.f(-2.0f, 87, i11, 0, i11, 0));
-        wm0 wm0Var = this.d;
-        int i12 = this.backgroundPaddingLeft;
-        wm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new o6(24, this, chat));
-        fixNavigationBar();
-        O();
-        T(false);
-        sc.a(this.container, new Object());
-    }
-
-    public static void Q(r0 r0Var, TLRPC.Chat chat, View view) {
-        ArrayList arrayList = r0Var.X;
-        if (view instanceof xg.l) {
-            xg.l lVar = (xg.l) view;
-            if (lVar.getBoost().cooldown_until_date > 0) {
-                new zc(r0Var.container, r0Var.resourcesProvider).G(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).k(true);
-                return;
+        int size3 = arrayList2.size();
+        int i15 = 0;
+        while (i15 < size3) {
+            Object obj3 = arrayList2.get(i15);
+            i15++;
+            TLRPC.Chat chat3 = (TLRPC.Chat) obj3;
+            if (!arrayList3.contains(chat3)) {
+                arrayList4.add(chat3);
             }
-            if (arrayList.contains(lVar.getBoost())) {
-                arrayList.remove(lVar.getBoost());
+        }
+        ArrayList arrayList6 = new ArrayList();
+        int i16 = 0;
+        while (true) {
+            frameLayout = this.d;
+            if (i16 >= frameLayout.getChildCount()) {
+                break;
+            }
+            o0 o0Var2 = (o0) frameLayout.getChildAt(i16);
+            if (o0Var2.getTag() == null) {
+                arrayList6.add(o0Var2);
+            }
+            i16++;
+        }
+        int size4 = arrayList5.size();
+        int i17 = 0;
+        while (true) {
+            c10 = 2;
+            if (i17 >= size4) {
+                break;
+            }
+            Object obj4 = arrayList5.get(i17);
+            i17++;
+            TLRPC.Chat chat4 = (TLRPC.Chat) obj4;
+            o0 o0Var3 = new o0(getContext());
+            o0Var3.setLayerType(2, null);
+            o0Var3.d = chat4;
+            j9 j9Var = o0Var3.f48629e;
+            j9Var.q(chat4);
+            o0Var3.f48626a.e(chat4, j9Var);
+            int size5 = arrayList6.size();
+            frameLayout.addView(o0Var3, i12, w5.e(70, 70, 17));
+            o0Var3.setTranslationX(AndroidUtilities.dp(23.0f) * (-size5));
+            o0Var3.setAlpha(0.0f);
+            o0Var3.setScaleX(0.1f);
+            o0Var3.setScaleY(0.1f);
+            ArrayList arrayList7 = arrayList5;
+            o0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(jsVar).setDuration(200).start();
+            if (size5 == 0) {
+                p0 p0Var = o0Var3.f48627b;
+                p0Var.setScaleY(1.0f);
+                p0Var.setScaleX(1.0f);
+                p0Var.setAlpha(1.0f);
+            }
+            arrayList5 = arrayList7;
+            i12 = 0;
+        }
+        ArrayList arrayList8 = arrayList5;
+        int size6 = arrayList4.size();
+        int i18 = 0;
+        while (i18 < size6) {
+            Object obj5 = arrayList4.get(i18);
+            i18++;
+            TLRPC.Chat chat5 = (TLRPC.Chat) obj5;
+            int size7 = arrayList6.size();
+            int i19 = 0;
+            while (true) {
+                if (i19 < size7) {
+                    Object obj6 = arrayList6.get(i19);
+                    i19++;
+                    o0Var = (o0) obj6;
+                    if (o0Var.d == chat5) {
+                        break;
+                    }
+                } else {
+                    o0Var = null;
+                    break;
+                }
+            }
+            if (o0Var != null) {
+                o0Var.setTag("REMOVED");
+                long j3 = 200;
+                o0Var.animate().alpha(0.0f).translationXBy(AndroidUtilities.dp(23.0f)).scaleX(0.1f).scaleY(0.1f).setInterpolator(jsVar).setDuration(j3).setListener(new q0(this, o0Var)).start();
+                int size8 = arrayList6.size();
+                int i20 = 0;
+                int i21 = 0;
+                while (i20 < size8) {
+                    Object obj7 = arrayList6.get(i20);
+                    i20++;
+                    o0 o0Var4 = (o0) obj7;
+                    int size9 = arrayList6.size() - 1;
+                    if (o0Var4 != o0Var) {
+                        i21++;
+                        i11 = size6;
+                        o0Var4.animate().translationX((-(size9 - i21)) * AndroidUtilities.dp(23.0f)).setInterpolator(jsVar).setDuration(j3).start();
+                    } else {
+                        i11 = size6;
+                    }
+                    size6 = i11;
+                }
+                i10 = size6;
+                if (hg.c.h(1, arrayList6) == o0Var && arrayList6.size() > 1) {
+                    c11 = 2;
+                    ((o0) hg.c.h(2, arrayList6)).f48627b.setScaleY(0.1f);
+                    ((o0) arrayList6.get(arrayList6.size() - 2)).f48627b.setScaleX(0.1f);
+                    ((o0) arrayList6.get(arrayList6.size() - 2)).f48627b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(jsVar).start();
+                    c10 = c11;
+                    size6 = i10;
+                } else {
+                    c11 = 2;
+                }
             } else {
-                arrayList.add(lVar.getBoost());
+                i10 = size6;
+                c11 = c10;
             }
-            lVar.c(arrayList.contains(lVar.getBoost()), true);
-            r0Var.T(true);
-            r0Var.f48613b0.a(arrayList, chat);
+            c10 = c11;
+            size6 = i10;
         }
-    }
-
-    public static void R(r0 r0Var, TLRPC.Chat chat, ArrayList arrayList, HashSet hashSet, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        MessagesController.getInstance(r0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f19802id, new f4(r0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
-    }
-
-    @Override
-    public final CharSequence A() {
-        return LocaleController.getString(R.string.BoostingReassignBoost);
-    }
-
-    public final void T(boolean z10) {
-        c0 c0Var = this.f48612a0;
-        boolean z11 = false;
-        c0Var.setShowZero(false);
-        ArrayList arrayList = this.X;
-        if (arrayList.size() > 1) {
-            c0Var.g(LocaleController.getString(R.string.BoostingReassignBoosts), z10, true);
+        o0 o0Var5 = this.f48640b;
+        if (o0Var5.d == null) {
+            o0Var5.d = chat;
+            j9 j9Var2 = o0Var5.f48629e;
+            j9Var2.q(chat);
+            o0Var5.f48626a.e(chat, j9Var2);
+        }
+        arrayList2.removeAll(arrayList4);
+        arrayList2.addAll(arrayList8);
+        FrameLayout frameLayout2 = this.f48641c;
+        frameLayout2.animate().cancel();
+        if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
+            frameLayout2.animate().setInterpolator(jsVar).translationX(AndroidUtilities.dp(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();
         } else {
-            c0Var.g(LocaleController.getString(R.string.BoostingReassignBoost), z10, true);
+            frameLayout2.animate().setInterpolator(jsVar).translationX(0.0f).setDuration(200).start();
         }
-        c0Var.b(arrayList.size(), z10);
-        if (arrayList.size() > 0) {
-            z11 = true;
+        o0Var5.animate().cancel();
+        frameLayout.animate().cancel();
+        if (arrayList2.isEmpty()) {
+            long j10 = 200;
+            frameLayout.animate().setInterpolator(jsVar).translationX(0.0f).setDuration(j10).start();
+            o0Var5.animate().setInterpolator(jsVar).translationX(0.0f).setDuration(j10).start();
+            return;
         }
-        c0Var.setEnabled(z11);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f48614c0 = new k0(this);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f48614c0.cancel();
-    }
-
-    @Override
-    public final void onOpenAnimationEnd() {
-        this.f48614c0.start();
-    }
-
-    @Override
-    public final vm0 x(wm0 wm0Var) {
-        return new l0(this);
+        long j11 = 200;
+        frameLayout.animate().setInterpolator(jsVar).translationX(-AndroidUtilities.dp(48.0f)).setDuration(j11).start();
+        o0Var5.animate().setInterpolator(jsVar).translationX(AndroidUtilities.dp(48.0f)).setDuration(j11).start();
     }
 }

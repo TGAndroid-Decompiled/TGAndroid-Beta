@@ -62,14 +62,14 @@ public final class h91 extends LinearLayout implements org.telegram.ui.ActionBar
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         org.telegram.ui.ActionBar.c6 c6Var = this.f38302a;
         this.f38305e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        this.f38306f.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20945y6, c6Var));
-        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20744n6, c6Var));
+        this.f38306f.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20946y6, c6Var));
+        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20745n6, c6Var));
         if (this.f38307n && (c6Var == null ? org.telegram.ui.ActionBar.h6.I.q() : c6Var.a())) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f38303b.f31140b = z10;
+        this.f38303b.f31135b = z10;
     }
 
     public int[] getColorKeys() {

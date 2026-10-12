@@ -22,29 +22,29 @@ public class q71 extends View {
     public int K;
     public CharSequence L;
     public int M;
-    public int f29750a;
-    public String f29751b;
-    public int f29752c;
+    public int f29728a;
+    public String f29729b;
+    public int f29730c;
     public final TextPaint d;
-    public final Paint f29753e;
-    public final RectF f29754f;
+    public final Paint f29731e;
+    public final RectF f29732f;
     public int h;
-    public int f29755n;
-    public Drawable f29756r;
-    public StaticLayout f29757s;
+    public int f29733n;
+    public Drawable f29734r;
+    public StaticLayout f29735s;
     public Drawable v;
-    public StaticLayout f29758w;
-    public int f29759x;
-    public final TextPaint f29760y;
+    public StaticLayout f29736w;
+    public int f29737x;
+    public final TextPaint f29738y;
 
     public q71(Context context) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
-        this.f29753e = new Paint(1);
-        this.f29754f = new RectF();
+        this.f29731e = new Paint(1);
+        this.f29732f = new RectF();
         TextPaint textPaint2 = new TextPaint(1);
-        this.f29760y = textPaint2;
+        this.f29738y = textPaint2;
         this.G = 1.0f;
         this.M = org.telegram.ui.ActionBar.h6.Ae;
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -57,17 +57,17 @@ public class q71 extends View {
         if (this.L != str) {
             this.L = str;
             this.H = z10;
-            this.f29758w = this.f29757s;
-            this.v = this.f29756r;
+            this.f29736w = this.f29735s;
+            this.v = this.f29734r;
             Typeface bold = AndroidUtilities.bold();
-            TextPaint textPaint = this.f29760y;
+            TextPaint textPaint = this.f29738y;
             textPaint.setTypeface(bold);
-            this.f29759x = (int) Math.ceil(textPaint.measureText((CharSequence) str, 0, str.length()));
-            this.f29756r = null;
-            this.f29757s = new StaticLayout(str, textPaint, this.f29759x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            this.f29737x = (int) Math.ceil(textPaint.measureText((CharSequence) str, 0, str.length()));
+            this.f29734r = null;
+            this.f29735s = new StaticLayout(str, textPaint, this.f29737x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
             setContentDescription(str);
             invalidate();
-            if (this.f29758w == null && this.v == null) {
+            if (this.f29736w == null && this.v == null) {
                 return;
             }
             ValueAnimator valueAnimator = this.F;
@@ -120,15 +120,15 @@ public class q71 extends View {
         float f12;
         int i13;
         int i14;
-        StaticLayout staticLayout = this.f29757s;
+        StaticLayout staticLayout = this.f29735s;
         if (isEnabled()) {
             i10 = this.M;
         } else {
-            i10 = org.telegram.ui.ActionBar.h6.f20945y6;
+            i10 = org.telegram.ui.ActionBar.h6.f20946y6;
         }
         int w02 = org.telegram.ui.ActionBar.h6.w0(i10, getResourceProvider());
         int i15 = this.I;
-        TextPaint textPaint = this.f29760y;
+        TextPaint textPaint = this.f29738y;
         if (i15 != w02) {
             this.I = w02;
             textPaint.setColor(w02);
@@ -140,9 +140,9 @@ public class q71 extends View {
             this.J = w03;
             textPaint2.setColor(w03);
         }
-        int w04 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20864tf, getResourceProvider());
+        int w04 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20865tf, getResourceProvider());
         int i17 = this.K;
-        Paint paint = this.f29753e;
+        Paint paint = this.f29731e;
         if (i17 != w04) {
             this.K = w04;
             paint.setColor(w04);
@@ -150,10 +150,10 @@ public class q71 extends View {
         if (getParent() != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredWidth2 = (getMeasuredWidth() - measuredWidth) / 2;
-            if (this.f29755n != org.telegram.ui.ActionBar.h6.w0(this.M, getResourceProvider()) || this.E == null) {
+            if (this.f29733n != org.telegram.ui.ActionBar.h6.w0(this.M, getResourceProvider()) || this.E == null) {
                 int dp = AndroidUtilities.dp(60.0f);
                 int w05 = org.telegram.ui.ActionBar.h6.w0(this.M, getResourceProvider());
-                this.f29755n = w05;
+                this.f29733n = w05;
                 org.telegram.ui.Cells.z i02 = org.telegram.ui.ActionBar.h6.i0(dp, 0, i0.a.k(w05, 26));
                 this.E = i02;
                 i02.setCallback(this);
@@ -171,12 +171,12 @@ public class q71 extends View {
             this.E.setBounds(i14, (getMeasuredHeight() / 2) - i19, i18, (getMeasuredHeight() / 2) + i19);
             this.E.draw(canvas);
         }
-        if (this.f29757s != null) {
+        if (this.f29735s != null) {
             canvas.save();
-            if (this.G != 1.0f && this.f29758w != null) {
+            if (this.G != 1.0f && this.f29736w != null) {
                 int alpha = textPaint.getAlpha();
                 canvas.save();
-                canvas.translate(((getMeasuredWidth() - this.f29758w.getWidth()) / 2) - (this.h / 2), getTopOffset() + ((getMeasuredHeight() - this.f29757s.getHeight()) / 2));
+                canvas.translate(((getMeasuredWidth() - this.f29736w.getWidth()) / 2) - (this.h / 2), getTopOffset() + ((getMeasuredHeight() - this.f29735s.getHeight()) / 2));
                 Drawable drawable = this.v;
                 if (drawable != null) {
                     i12 = AndroidUtilities.dp(3.0f) + (drawable.getIntrinsicWidth() / 2);
@@ -196,7 +196,7 @@ public class q71 extends View {
                     f7 = 6.0f;
                     f11 = 1.0f;
                     f12 = 3.0f;
-                    drawable2.setBounds((-drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.f29757s.getHeight() - this.v.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.v.getIntrinsicHeight() + this.f29757s.getHeight()) / 2));
+                    drawable2.setBounds((-drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.f29735s.getHeight() - this.v.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.v.getIntrinsicHeight() + this.f29735s.getHeight()) / 2));
                     this.v.setAlpha((int) ((1.0f - this.G) * alpha));
                     this.v.draw(canvas);
                 } else {
@@ -206,11 +206,11 @@ public class q71 extends View {
                 }
                 float f15 = alpha;
                 textPaint.setAlpha((int) ((f11 - this.G) * f15));
-                this.f29758w.draw(canvas);
+                this.f29736w.draw(canvas);
                 canvas.restore();
                 canvas.save();
-                canvas.translate(((getMeasuredWidth() - this.f29759x) / 2) - (this.h / 2), getTopOffset() + ((getMeasuredHeight() - this.f29757s.getHeight()) / 2));
-                Drawable drawable3 = this.f29756r;
+                canvas.translate(((getMeasuredWidth() - this.f29737x) / 2) - (this.h / 2), getTopOffset() + ((getMeasuredHeight() - this.f29735s.getHeight()) / 2));
+                Drawable drawable3 = this.f29734r;
                 if (drawable3 != null) {
                     i13 = AndroidUtilities.dp(f12) + (drawable3.getIntrinsicWidth() / 2);
                 } else {
@@ -221,60 +221,60 @@ public class q71 extends View {
                     f14 = f11;
                 }
                 canvas.translate(f16, (f11 - this.G) * f14 * AndroidUtilities.dp(18.0f));
-                Drawable drawable4 = this.f29756r;
+                Drawable drawable4 = this.f29734r;
                 if (drawable4 != null) {
-                    drawable4.setBounds((-drawable4.getIntrinsicWidth()) - AndroidUtilities.dp(f7), AndroidUtilities.dp(f11) + ((this.f29757s.getHeight() - this.f29756r.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(f7), AndroidUtilities.dp(f11) + ((this.f29756r.getIntrinsicHeight() + this.f29757s.getHeight()) / 2));
-                    this.f29756r.setAlpha((int) (this.G * f15));
-                    this.f29756r.draw(canvas);
+                    drawable4.setBounds((-drawable4.getIntrinsicWidth()) - AndroidUtilities.dp(f7), AndroidUtilities.dp(f11) + ((this.f29735s.getHeight() - this.f29734r.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(f7), AndroidUtilities.dp(f11) + ((this.f29734r.getIntrinsicHeight() + this.f29735s.getHeight()) / 2));
+                    this.f29734r.setAlpha((int) (this.G * f15));
+                    this.f29734r.draw(canvas);
                 }
                 textPaint.setAlpha((int) (f15 * this.G));
-                this.f29757s.draw(canvas);
+                this.f29735s.draw(canvas);
                 canvas.restore();
                 textPaint.setAlpha(alpha);
             } else {
                 f7 = 6.0f;
-                int measuredWidth3 = ((getMeasuredWidth() - this.f29759x) / 2) - (this.h / 2);
-                Drawable drawable5 = this.f29756r;
+                int measuredWidth3 = ((getMeasuredWidth() - this.f29737x) / 2) - (this.h / 2);
+                Drawable drawable5 = this.f29734r;
                 if (drawable5 != null) {
                     i11 = AndroidUtilities.dp(3.0f) + (drawable5.getIntrinsicWidth() / 2);
                 } else {
                     i11 = 0;
                 }
-                canvas.translate(measuredWidth3 + i11, getTopOffset() + ((getMeasuredHeight() - this.f29757s.getHeight()) / 2));
-                Drawable drawable6 = this.f29756r;
+                canvas.translate(measuredWidth3 + i11, getTopOffset() + ((getMeasuredHeight() - this.f29735s.getHeight()) / 2));
+                Drawable drawable6 = this.f29734r;
                 if (drawable6 != null) {
-                    drawable6.setBounds((-drawable6.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.f29757s.getHeight() - this.f29756r.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.f29756r.getIntrinsicHeight() + this.f29757s.getHeight()) / 2));
-                    this.f29756r.setAlpha(255);
-                    this.f29756r.draw(canvas);
+                    drawable6.setBounds((-drawable6.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.f29735s.getHeight() - this.f29734r.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.f29734r.getIntrinsicHeight() + this.f29735s.getHeight()) / 2));
+                    this.f29734r.setAlpha(255);
+                    this.f29734r.draw(canvas);
                 }
-                this.f29757s.draw(canvas);
+                this.f29735s.draw(canvas);
             }
             canvas.restore();
         } else {
             f7 = 6.0f;
         }
-        if (this.f29751b != null && staticLayout != null) {
+        if (this.f29729b != null && staticLayout != null) {
             int ceil = (int) Math.ceil(staticLayout.getLineWidth(0));
             int dp2 = AndroidUtilities.dp(f7) + ((((getMeasuredWidth() - ceil) / 2) + ceil) - (this.h / 2));
             float dp3 = AndroidUtilities.dp(10.0f) + (getMeasuredHeight() / 2);
-            RectF rectF = this.f29754f;
+            RectF rectF = this.f29732f;
             rectF.set(dp2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(10.0f), dp2 + this.h, dp3);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
-            canvas.drawText(this.f29751b, rectF.centerX() - (this.f29752c / 2.0f), rectF.top + AndroidUtilities.dp(14.5f), textPaint2);
+            canvas.drawText(this.f29729b, rectF.centerX() - (this.f29730c / 2.0f), rectF.top + AndroidUtilities.dp(14.5f), textPaint2);
         }
     }
 
     public void setCounter(int i10) {
-        if (this.f29750a != i10) {
-            this.f29750a = i10;
+        if (this.f29728a != i10) {
+            this.f29728a = i10;
             if (i10 == 0) {
-                this.f29751b = null;
+                this.f29729b = null;
                 this.h = 0;
             } else {
                 String formatWholeNumber = AndroidUtilities.formatWholeNumber(i10, 0);
-                this.f29751b = formatWholeNumber;
-                this.f29752c = (int) Math.ceil(this.d.measureText(formatWholeNumber));
-                int max = Math.max(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f) + this.f29752c);
+                this.f29729b = formatWholeNumber;
+                this.f29730c = (int) Math.ceil(this.d.measureText(formatWholeNumber));
+                int max = Math.max(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f) + this.f29730c);
                 if (this.h != max) {
                     this.h = max;
                 }
@@ -285,11 +285,11 @@ public class q71 extends View {
 
     public void setText(CharSequence charSequence) {
         Typeface bold = AndroidUtilities.bold();
-        TextPaint textPaint = this.f29760y;
+        TextPaint textPaint = this.f29738y;
         textPaint.setTypeface(bold);
-        this.f29759x = (int) Math.ceil(textPaint.measureText(charSequence, 0, charSequence.length()));
-        this.f29756r = null;
-        this.f29757s = new StaticLayout(charSequence, textPaint, this.f29759x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        this.f29737x = (int) Math.ceil(textPaint.measureText(charSequence, 0, charSequence.length()));
+        this.f29734r = null;
+        this.f29735s = new StaticLayout(charSequence, textPaint, this.f29737x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         setContentDescription(charSequence);
         invalidate();
     }
@@ -300,11 +300,11 @@ public class q71 extends View {
     }
 
     public void setTextInfo(CharSequence charSequence) {
-        TextPaint textPaint = this.f29760y;
+        TextPaint textPaint = this.f29738y;
         textPaint.setTypeface(null);
-        this.f29759x = (int) Math.ceil(textPaint.measureText(charSequence, 0, charSequence.length()));
-        this.f29756r = null;
-        this.f29757s = new StaticLayout(charSequence, textPaint, this.f29759x + 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        this.f29737x = (int) Math.ceil(textPaint.measureText(charSequence, 0, charSequence.length()));
+        this.f29734r = null;
+        this.f29735s = new StaticLayout(charSequence, textPaint, this.f29737x + 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         setContentDescription(charSequence);
         invalidate();
     }

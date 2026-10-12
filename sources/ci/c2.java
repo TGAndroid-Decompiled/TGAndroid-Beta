@@ -91,8 +91,8 @@ public final class c2 extends s4.i0 {
         TLRPC.StickerSet stickerSet;
         d2 d2Var = this.N;
         r2 r2Var = d2Var.f4899s;
-        int i11 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        int i11 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.q0(-1, (int) r2Var.f5884n));
@@ -150,12 +150,12 @@ public final class c2 extends s4.i0 {
                 int dp2 = AndroidUtilities.dp(56.0f);
                 int dp3 = AndroidUtilities.dp(56.0f);
                 hrVar.h = dp2;
-                hrVar.f26894n = dp3;
+                hrVar.f26880n = dp3;
                 int dp4 = AndroidUtilities.dp(24.0f);
                 int dp5 = AndroidUtilities.dp(24.0f);
-                hrVar.f26892e = dp4;
-                hrVar.f26893f = dp5;
-                hrVar.f26895r = true;
+                hrVar.f26878e = dp4;
+                hrVar.f26879f = dp5;
+                hrVar.f26881r = true;
                 n1Var.setDrawable(hrVar);
                 return;
             }

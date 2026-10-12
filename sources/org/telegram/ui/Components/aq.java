@@ -7,12 +7,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class aq implements ResultCallback {
-    public final ChatThemeController f24457a;
-    public final eq f24458b;
+    public final ChatThemeController f24454a;
+    public final eq f24455b;
 
     public aq(eq eqVar, ChatThemeController chatThemeController) {
-        this.f24458b = eqVar;
-        this.f24457a = chatThemeController;
+        this.f24455b = eqVar;
+        this.f24454a = chatThemeController;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class aq implements ResultCallback {
         int i10;
         int i11;
         Void r62 = (Void) obj;
-        ChatThemeController chatThemeController = this.f24457a;
+        ChatThemeController chatThemeController = this.f24454a;
         if (chatThemeController.isGiftThemesFullyLoaded()) {
             i10 = 2;
         } else {
             i10 = 0;
         }
         List<org.telegram.ui.ActionBar.b4> emojiThemes = chatThemeController.getEmojiThemes(i10 | 5);
-        eq eqVar = this.f24458b;
+        eq eqVar = this.f24455b;
         i11 = ((org.telegram.ui.ActionBar.e3) eqVar).currentAccount;
-        NotificationCenter.getInstance(i11).doOnIdle(new md(24, this, emojiThemes));
+        NotificationCenter.getInstance(i11).doOnIdle(new md(25, this, emojiThemes));
         eqVar.f25746b0 = false;
     }
 
@@ -40,6 +40,6 @@ public final class aq implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f24458b.getContext(), tL_error.text, 0).show();
+        Toast.makeText(this.f24455b.getContext(), tL_error.text, 0).show();
     }
 }

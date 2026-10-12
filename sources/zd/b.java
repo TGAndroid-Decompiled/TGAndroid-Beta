@@ -1,6 +1,6 @@
 package zd;
 public abstract class b {
-    public static final int f54586a = 0;
+    public static final int f54594a = 0;
 
     static {
         ThreadLocal[] threadLocalArr = new ThreadLocal[4];

@@ -9,32 +9,32 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.zc;
 public final class j7 implements Utilities.Callback {
-    public final int f34926a;
-    public final n7 f34927b;
-    public final of.e f34928c;
+    public final int f34928a;
+    public final n7 f34929b;
+    public final of.e f34930c;
 
     public j7(n7 n7Var, of.e eVar, int i10) {
-        this.f34926a = i10;
-        this.f34927b = n7Var;
-        this.f34928c = eVar;
+        this.f34928a = i10;
+        this.f34929b = n7Var;
+        this.f34930c = eVar;
     }
 
     @Override
     public final void run(Object obj) {
         String str = (String) obj;
-        switch (this.f34926a) {
+        switch (this.f34928a) {
             case 0:
-                n7 n7Var = this.f34927b;
+                n7 n7Var = this.f34929b;
                 n7Var.getClass();
-                this.f34928c.b();
+                this.f34930c.b();
                 if (!TextUtils.isEmpty(str)) {
                     zc.a0(n7Var).e0(str, false);
                     return;
                 }
                 return;
             case 1:
-                this.f34928c.c(false);
-                n7 n7Var2 = this.f34927b;
+                this.f34930c.c(false);
+                n7 n7Var2 = this.f34929b;
                 org.telegram.ui.ActionBar.b5 parentLayout = n7Var2.getParentLayout();
                 if (parentLayout != null) {
                     ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
@@ -54,13 +54,13 @@ public final class j7 implements Utilities.Callback {
                     return;
                 }
                 sc M = zc.a0(n7Var2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                M.f30540j = 5000;
+                M.f30536j = 5000;
                 M.j();
                 return;
             default:
-                n7 n7Var3 = this.f34927b;
+                n7 n7Var3 = this.f34929b;
                 n7Var3.getClass();
-                this.f34928c.b();
+                this.f34930c.b();
                 if (str != null) {
                     zc.a0(n7Var3).e0(str, false);
                     return;

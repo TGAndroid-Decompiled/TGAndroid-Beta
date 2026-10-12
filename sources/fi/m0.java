@@ -36,7 +36,7 @@ import org.telegram.ui.Components.zc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.t70;
+import org.telegram.ui.q70;
 public final class m0 implements Utilities.Callback {
     public final int f10006a;
     public final int f10007b;
@@ -64,17 +64,17 @@ public final class m0 implements Utilities.Callback {
             case 0:
                 m2 m2Var = (m2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f19802id;
+                long j3 = ((TLRPC.Chat) obj2).f19803id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean isChannel = ChatObject.isChannel(chat);
                 int i12 = this.f10007b;
                 if (!isChannel) {
                     a2 a2Var = new a2(m2Var.getContext(), 3, null);
                     a2Var.q(250L);
-                    MessagesController.getInstance(i12).convertToMegaGroup(m2Var.getParentActivity(), chat.f19802id, m2Var, new n0(a2Var, m2Var, i12, j3, booleanValue));
+                    MessagesController.getInstance(i12).convertToMegaGroup(m2Var.getParentActivity(), chat.f19803id, m2Var, new n0(a2Var, m2Var, i12, j3, booleanValue));
                     return;
                 }
-                long j10 = chat.f19802id;
+                long j10 = chat.f19803id;
                 MessagesController.getInstance(i12).linkCommunity(-j10, j3, booleanValue, new o0(m2Var, j10, 0));
                 return;
             case 1:
@@ -107,7 +107,7 @@ public final class m0 implements Utilities.Callback {
                 lw lwVar = (lw) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                m2 m2Var2 = lwVar.f28293c;
+                m2 m2Var2 = lwVar.f28288c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -120,12 +120,12 @@ public final class m0 implements Utilities.Callback {
                 return;
             case 3:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
-                t70 t70Var = (t70) obj3;
+                q70 q70Var = (q70) obj3;
                 Long l4 = (Long) obj2;
                 TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
                 Pattern pattern = LaunchActivity.B1;
                 try {
-                    t70Var.run();
+                    q70Var.run();
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
@@ -157,19 +157,19 @@ public final class m0 implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f33832o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33832o5)) {
-                        if (photoViewer.f33823n5) {
-                            photoViewer.f33827o0.K(20);
-                            photoViewer.f33827o0.r(19);
+                    photoViewer.f33834o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f33834o5)) {
+                        if (photoViewer.f33825n5) {
+                            photoViewer.f33829o0.K(20);
+                            photoViewer.f33829o0.r(19);
                             return;
                         }
-                        photoViewer.f33827o0.K(19);
-                        photoViewer.f33827o0.r(20);
+                        photoViewer.f33829o0.K(19);
+                        photoViewer.f33829o0.r(20);
                         return;
                     }
-                    photoViewer.f33827o0.r(19);
-                    photoViewer.f33827o0.r(20);
+                    photoViewer.f33829o0.r(19);
+                    photoViewer.f33829o0.r(20);
                     return;
                 }
                 return;
@@ -196,10 +196,10 @@ public final class m0 implements Utilities.Callback {
         this.f10009e = arrayList;
     }
 
-    public m0(LaunchActivity launchActivity, t70 t70Var, Long l4, int i10) {
+    public m0(LaunchActivity launchActivity, q70 q70Var, Long l4, int i10) {
         this.f10006a = 3;
         this.f10008c = launchActivity;
-        this.d = t70Var;
+        this.d = q70Var;
         this.f10009e = l4;
         this.f10007b = i10;
     }

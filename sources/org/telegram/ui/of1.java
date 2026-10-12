@@ -12,21 +12,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class of1 extends org.telegram.ui.Components.yw0 {
-    public boolean f40704w0;
-    public final Paint f40705x0;
-    public final hg1 f40706y0;
+    public boolean f40707w0;
+    public final Paint f40708x0;
+    public final hg1 f40709y0;
 
     public of1(hg1 hg1Var, Context context) {
         super(context, null);
-        this.f40706y0 = hg1Var;
+        this.f40709y0 = hg1Var;
         setWillNotDraw(false);
-        this.f40705x0 = new Paint();
+        this.f40708x0 = new Paint();
     }
 
     @Override
     public final void J(Canvas canvas, float f7, Rect rect, Paint paint, boolean z10) {
         if (Build.VERSION.SDK_INT >= 29 && SharedConfig.chatBlurEnabled()) {
-            hg1 hg1Var = this.f40706y0;
+            hg1 hg1Var = this.f40709y0;
             if (hg1Var.f38394g1 != null) {
                 canvas.save();
                 canvas.translate(0.0f, -f7);
@@ -46,7 +46,7 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
     public final void L(Canvas canvas, ArrayList arrayList) {
         int i10 = 0;
         while (true) {
-            hg1 hg1Var = this.f40706y0;
+            hg1 hg1Var = this.f40709y0;
             if (i10 < hg1Var.N.getChildCount()) {
                 View childAt = hg1Var.N.getChildAt(i10);
                 if (childAt.getY() < AndroidUtilities.dp(100.0f) && childAt.getVisibility() == 0) {
@@ -70,7 +70,7 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
         Canvas canvas2;
         int measuredWidth;
         int measuredHeight;
-        hg1 hg1Var = this.f40706y0;
+        hg1 hg1Var = this.f40709y0;
         fh.d dVar = hg1Var.f38396h1;
         fh.d dVar2 = hg1Var.f38394g1;
         ah.h hVar = hg1Var.f38392f1;
@@ -99,18 +99,18 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
         }
         super.dispatchDraw(canvas);
         if (hg1Var.isInPreviewMode()) {
-            int themedColor = hg1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6);
-            Paint paint = this.f40705x0;
+            int themedColor = hg1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6);
+            Paint paint = this.f40708x0;
             paint.setColor(themedColor);
             paint.setAlpha((int) (hg1Var.W * 255.0f));
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.statusBarHeight, paint);
-            canvas2.drawLine(0.0f, 0.0f, 0.0f, getHeight(), org.telegram.ui.ActionBar.h6.f20681k0);
+            canvas2.drawLine(0.0f, 0.0f, 0.0f, getHeight(), org.telegram.ui.ActionBar.h6.f20682k0);
         } else {
             canvas2 = canvas;
         }
         if (hg1Var.M0 == null) {
-            AndroidUtilities.drawNavigationBarProtection(canvas2, this, hg1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6), hg1Var.f38389e1);
+            AndroidUtilities.drawNavigationBarProtection(canvas2, this, hg1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6), hg1Var.f38389e1);
         }
     }
 
@@ -120,7 +120,7 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
         org.telegram.ui.ActionBar.k kVar2;
         org.telegram.ui.ActionBar.k kVar3;
         float f7;
-        hg1 hg1Var = this.f40706y0;
+        hg1 hg1Var = this.f40709y0;
         kVar = ((org.telegram.ui.ActionBar.m2) hg1Var).actionBar;
         if (view == kVar && !hg1Var.isInPreviewMode()) {
             kVar2 = ((org.telegram.ui.ActionBar.m2) hg1Var).actionBar;
@@ -138,14 +138,14 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
             float f10 = hg1Var.W;
             if (f10 > 0.0f) {
                 if (f10 < 1.0f) {
-                    int alpha = org.telegram.ui.ActionBar.h6.f20681k0.getAlpha();
-                    org.telegram.ui.ActionBar.h6.f20681k0.setAlpha((int) (alpha * hg1Var.W));
+                    int alpha = org.telegram.ui.ActionBar.h6.f20682k0.getAlpha();
+                    org.telegram.ui.ActionBar.h6.f20682k0.setAlpha((int) (alpha * hg1Var.W));
                     float f11 = i10;
-                    canvas.drawLine(0.0f, f11, getMeasuredWidth(), f11, org.telegram.ui.ActionBar.h6.f20681k0);
-                    org.telegram.ui.ActionBar.h6.f20681k0.setAlpha(alpha);
+                    canvas.drawLine(0.0f, f11, getMeasuredWidth(), f11, org.telegram.ui.ActionBar.h6.f20682k0);
+                    org.telegram.ui.ActionBar.h6.f20682k0.setAlpha(alpha);
                 } else {
                     float f12 = i10;
-                    canvas.drawLine(0.0f, f12, getMeasuredWidth(), f12, org.telegram.ui.ActionBar.h6.f20681k0);
+                    canvas.drawLine(0.0f, f12, getMeasuredWidth(), f12, org.telegram.ui.ActionBar.h6.f20682k0);
                 }
             }
         }
@@ -162,16 +162,16 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
         int i12;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        hg1 hg1Var = this.f40706y0;
+        hg1 hg1Var = this.f40709y0;
         z51 z51Var = hg1Var.f38407o0;
         if (z51Var != null) {
-            this.f40704w0 = true;
+            this.f40707w0 = true;
             ViewGroup.LayoutParams layoutParams = z51Var.getLayoutParams();
             int dp = AndroidUtilities.dp(51.0f);
             int i13 = hg1Var.f38389e1;
             layoutParams.height = dp + i13;
             hg1Var.f38407o0.setPadding(0, 0, 0, i13);
-            this.f40704w0 = false;
+            this.f40707w0 = false;
         }
         int i14 = 0;
         for (int i15 = 0; i15 < getChildCount(); i15++) {
@@ -203,7 +203,7 @@ public final class of1 extends org.telegram.ui.Components.yw0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f40704w0) {
+        if (this.f40707w0) {
             return;
         }
         super.requestLayout();

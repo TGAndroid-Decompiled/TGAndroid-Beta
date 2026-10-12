@@ -19,23 +19,23 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
 import org.telegram.messenger.FileLog;
 public final class kv implements ja1 {
-    public final ov f27951a;
+    public final ov f27936a;
 
     public kv(ov ovVar) {
-        this.f27951a = ovVar;
+        this.f27936a = ovVar;
     }
 
     @Override
     public final TextureView a(View view, boolean z10, float f7, int i10, boolean z11) {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
-        ov ovVar = this.f27951a;
-        FrameLayout frameLayout = ovVar.f29298e;
-        Activity activity = ovVar.f29301r;
+        ov ovVar = this.f27936a;
+        FrameLayout frameLayout = ovVar.f29301e;
+        Activity activity = ovVar.f29304r;
         if (z10) {
             frameLayout.setVisibility(0);
             frameLayout.setAlpha(1.0f);
-            frameLayout.addView(ovVar.f29297c.getAspectRatioView());
+            frameLayout.addView(ovVar.f29300c.getAspectRatioView());
             ovVar.N = false;
             ovVar.M = z11;
             if (activity != null) {
@@ -76,28 +76,28 @@ public final class kv implements ja1 {
 
     @Override
     public final void b() {
-        ov ovVar = this.f27951a;
-        if (ovVar.f29297c.f()) {
+        ov ovVar = this.f27936a;
+        if (ovVar.f29300c.f()) {
             ovVar.dismissInternal();
         }
     }
 
     @Override
     public final void d() {
-        ov ovVar = this.f27951a;
-        iv ivVar = ovVar.f29296b;
+        ov ovVar = this.f27936a;
+        iv ivVar = ovVar.f29299b;
         ivVar.setVisibility(0);
-        ovVar.f29302s.setVisibility(0);
+        ovVar.f29305s.setVisibility(0);
         ovVar.v.setVisibility(4);
         ivVar.setKeepScreenOn(true);
-        ma1 ma1Var = ovVar.f29297c;
+        ma1 ma1Var = ovVar.f29300c;
         ma1Var.setVisibility(4);
         ma1Var.getControlsView().setVisibility(4);
         ma1Var.getTextureView().setVisibility(4);
         if (ma1Var.getTextureImageView() != null) {
             ma1Var.getTextureImageView().setVisibility(4);
         }
-        ovVar.f29297c.g(null, null, null, null, false);
+        ovVar.f29300c.g(null, null, null, null, false);
         HashMap hashMap = new HashMap();
         hashMap.put("Referer", "messenger.telegram.org");
         try {
@@ -109,7 +109,7 @@ public final class kv implements ja1 {
 
     @Override
     public final void e(ma1 ma1Var, boolean z10) {
-        Activity activity = this.f27951a.f29301r;
+        Activity activity = this.f27936a.f29304r;
         if (z10) {
             try {
                 activity.getWindow().addFlags(128);
@@ -132,16 +132,16 @@ public final class kv implements ja1 {
         ViewGroup viewGroup2;
         ViewGroup viewGroup3;
         org.telegram.ui.ActionBar.d3 d3Var;
-        ov ovVar = this.f27951a;
-        ma1 ma1Var = ovVar.f29297c;
+        ov ovVar = this.f27936a;
+        ma1 ma1Var = ovVar.f29300c;
         int[] iArr = ovVar.E;
         if (z10) {
             view.setTranslationY(0.0f);
-            TextureView textureView = new TextureView(ovVar.f29301r);
-            if (!jh0.x(false, ovVar.f29301r, null, textureView, i10, i11, false)) {
+            TextureView textureView = new TextureView(ovVar.f29304r);
+            if (!jh0.x(false, ovVar.f29304r, null, textureView, i10, i11, false)) {
                 return null;
             }
-            jh0.f27503p0.U = ovVar;
+            jh0.f27497p0.U = ovVar;
             return textureView;
         } else if (!z11) {
             viewGroup = ((org.telegram.ui.ActionBar.e3) ovVar).containerView;
@@ -182,12 +182,12 @@ public final class kv implements ja1 {
 
     @Override
     public final ViewGroup g() {
-        return this.f27951a.container;
+        return this.f27936a.container;
     }
 
     @Override
     public final boolean h() {
-        Activity activity = this.f27951a.f29301r;
+        Activity activity = this.f27936a.f29304r;
         if (activity == null) {
             return false;
         }
@@ -211,53 +211,53 @@ public final class kv implements ja1 {
         ViewGroup viewGroup7;
         org.telegram.ui.ActionBar.d3 d3Var3;
         if (z10) {
-            ov ovVar = this.f27951a;
-            if (ovVar.f29301r != null) {
+            ov ovVar = this.f27936a;
+            if (ovVar.f29304r != null) {
                 try {
                     viewGroup3 = ((org.telegram.ui.ActionBar.e3) ovVar).containerView;
                     viewGroup3.setSystemUiVisibility(0);
-                    ov ovVar2 = this.f27951a;
+                    ov ovVar2 = this.f27936a;
                     int i10 = ovVar2.L;
                     if (i10 != -2) {
-                        ovVar2.f29301r.setRequestedOrientation(i10);
+                        ovVar2.f29304r.setRequestedOrientation(i10);
                     }
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             }
-            if (this.f27951a.f29298e.getVisibility() == 0) {
-                viewGroup6 = ((org.telegram.ui.ActionBar.e3) this.f27951a).containerView;
-                viewGroup7 = ((org.telegram.ui.ActionBar.e3) this.f27951a).containerView;
+            if (this.f27936a.f29301e.getVisibility() == 0) {
+                viewGroup6 = ((org.telegram.ui.ActionBar.e3) this.f27936a).containerView;
+                viewGroup7 = ((org.telegram.ui.ActionBar.e3) this.f27936a).containerView;
                 viewGroup6.setTranslationY(AndroidUtilities.dp(10.0f) + viewGroup7.getMeasuredHeight());
-                d3Var3 = ((org.telegram.ui.ActionBar.e3) this.f27951a).backDrawable;
+                d3Var3 = ((org.telegram.ui.ActionBar.e3) this.f27936a).backDrawable;
                 d3Var3.setAlpha(0);
             }
-            this.f27951a.setOnShowListener(null);
+            this.f27936a.setOnShowListener(null);
             if (z11) {
-                TextureView textureView = this.f27951a.f29297c.getTextureView();
-                View controlsView = this.f27951a.f29297c.getControlsView();
-                ImageView textureImageView = this.f27951a.f29297c.getTextureImageView();
+                TextureView textureView = this.f27936a.f29300c.getTextureView();
+                View controlsView = this.f27936a.f29300c.getControlsView();
+                ImageView textureImageView = this.f27936a.f29300c.getTextureImageView();
                 sl0 o9 = jh0.o(f7, true);
-                float width = o9.f30589c / textureView.getWidth();
+                float width = o9.f30591c / textureView.getWidth();
                 AnimatorSet animatorSet = new AnimatorSet();
                 Property property = View.SCALE_X;
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textureImageView, property, width);
                 Property property2 = View.SCALE_Y;
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textureImageView, property2, width);
                 Property property3 = View.TRANSLATION_X;
-                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textureImageView, property3, o9.f30587a);
+                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textureImageView, property3, o9.f30589a);
                 Property property4 = View.TRANSLATION_Y;
-                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textureImageView, property4, o9.f30588b);
+                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textureImageView, property4, o9.f30590b);
                 ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(textureView, property, width);
                 ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(textureView, property2, width);
-                ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(textureView, property3, o9.f30587a);
-                ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(textureView, property4, o9.f30588b);
-                viewGroup4 = ((org.telegram.ui.ActionBar.e3) this.f27951a).containerView;
-                viewGroup5 = ((org.telegram.ui.ActionBar.e3) this.f27951a).containerView;
+                ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(textureView, property3, o9.f30589a);
+                ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(textureView, property4, o9.f30590b);
+                viewGroup4 = ((org.telegram.ui.ActionBar.e3) this.f27936a).containerView;
+                viewGroup5 = ((org.telegram.ui.ActionBar.e3) this.f27936a).containerView;
                 ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(viewGroup4, property4, AndroidUtilities.dp(10.0f) + viewGroup5.getMeasuredHeight());
-                d3Var2 = ((org.telegram.ui.ActionBar.e3) this.f27951a).backDrawable;
+                d3Var2 = ((org.telegram.ui.ActionBar.e3) this.f27936a).backDrawable;
                 ObjectAnimator ofInt = ObjectAnimator.ofInt(d3Var2, u6.d, 0);
-                FrameLayout frameLayout = this.f27951a.f29298e;
+                FrameLayout frameLayout = this.f27936a.f29301e;
                 Property property5 = View.ALPHA;
                 animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ofFloat9, ofInt, ObjectAnimator.ofFloat(frameLayout, property5, 0.0f), ObjectAnimator.ofFloat(controlsView, property5, 0.0f));
                 animatorSet.setInterpolator(new DecelerateInterpolator());
@@ -266,48 +266,48 @@ public final class kv implements ja1 {
                 animatorSet.start();
                 return;
             }
-            if (this.f27951a.f29298e.getVisibility() == 0) {
-                this.f27951a.f29298e.setAlpha(1.0f);
-                this.f27951a.f29298e.setVisibility(4);
+            if (this.f27936a.f29301e.getVisibility() == 0) {
+                this.f27936a.f29301e.setAlpha(1.0f);
+                this.f27936a.f29301e.setVisibility(4);
             }
             ea1Var.run();
-            this.f27951a.dismissInternal();
+            this.f27936a.dismissInternal();
             return;
         }
         if (ApplicationLoader.mainInterfacePaused) {
             try {
-                this.f27951a.f29301r.startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
+                this.f27936a.f29304r.startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
             } catch (Throwable th2) {
                 FileLog.e(th2);
             }
         }
         if (z11) {
-            ov ovVar3 = this.f27951a;
+            ov ovVar3 = this.f27936a;
             ovVar3.setOnShowListener(ovVar3.R);
             sl0 o10 = jh0.o(f7, false);
-            TextureView textureView2 = this.f27951a.f29297c.getTextureView();
-            ImageView textureImageView2 = this.f27951a.f29297c.getTextureImageView();
-            float f10 = o10.f30589c / textureView2.getLayoutParams().width;
+            TextureView textureView2 = this.f27936a.f29300c.getTextureView();
+            ImageView textureImageView2 = this.f27936a.f29300c.getTextureImageView();
+            float f10 = o10.f30591c / textureView2.getLayoutParams().width;
             textureImageView2.setScaleX(f10);
             textureImageView2.setScaleY(f10);
-            textureImageView2.setTranslationX(o10.f30587a);
-            textureImageView2.setTranslationY(o10.f30588b);
+            textureImageView2.setTranslationX(o10.f30589a);
+            textureImageView2.setTranslationY(o10.f30590b);
             textureView2.setScaleX(f10);
             textureView2.setScaleY(f10);
-            textureView2.setTranslationX(o10.f30587a);
-            textureView2.setTranslationY(o10.f30588b);
+            textureView2.setTranslationX(o10.f30589a);
+            textureView2.setTranslationY(o10.f30590b);
         } else {
             jh0.j(false);
         }
-        this.f27951a.setShowWithoutAnimation(true);
-        this.f27951a.show();
+        this.f27936a.setShowWithoutAnimation(true);
+        this.f27936a.show();
         if (z11) {
-            ov ovVar4 = this.f27951a;
+            ov ovVar4 = this.f27936a;
             ovVar4.P = 4;
             d3Var = ((org.telegram.ui.ActionBar.e3) ovVar4).backDrawable;
             d3Var.setAlpha(1);
-            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f27951a).containerView;
-            viewGroup2 = ((org.telegram.ui.ActionBar.e3) this.f27951a).containerView;
+            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f27936a).containerView;
+            viewGroup2 = ((org.telegram.ui.ActionBar.e3) this.f27936a).containerView;
             viewGroup.setTranslationY(AndroidUtilities.dp(10.0f) + viewGroup2.getMeasuredHeight());
         }
     }

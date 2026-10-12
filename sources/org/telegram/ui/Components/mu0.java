@@ -14,7 +14,7 @@ public final class mu0 extends bw0 {
         super.l();
         hw0 hw0Var = this.h;
         av0 W = hw0Var.W(0);
-        if (W != null && W.f24500r.getVisibility() == 0) {
+        if (W != null && W.f24488r.getVisibility() == 0) {
             hw0Var.I.l();
         }
     }

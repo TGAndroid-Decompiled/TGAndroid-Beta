@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public abstract class mt extends h71 {
+public abstract class nt extends h71 {
     public final int N;
     public final int O;
     public final ArrayList P;
@@ -19,11 +19,11 @@ public abstract class mt extends h71 {
     public boolean X;
     public boolean Y;
     public int Z;
-    public int f28657a0;
-    public String f28658b0;
-    public final pq f28659c0;
+    public int f28964a0;
+    public String f28965b0;
+    public final pq f28966c0;
 
-    public mt(wm0 wm0Var, Context context, int i10, int i11) {
+    public nt(wm0 wm0Var, Context context, int i10, int i11) {
         super(wm0Var, context, i10, 0, false, null, null);
         this.P = new ArrayList();
         this.Q = new ArrayList();
@@ -31,15 +31,15 @@ public abstract class mt extends h71 {
         this.S = new ArrayList();
         this.V = new ArrayList();
         ep0 ep0Var = (ep0) this;
-        this.f28659c0 = new pq(ep0Var, 6);
-        this.f26676s = new d(ep0Var, 9);
+        this.f28966c0 = new pq(ep0Var, 6);
+        this.f26680s = new d(ep0Var, 9);
         this.N = i10;
         this.O = i11;
         N(false);
     }
 
     public final void V(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mt.V(boolean):void");
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nt.V(boolean):void");
     }
 
     public final void W() {
@@ -51,7 +51,7 @@ public abstract class mt extends h71 {
         while (i11 < size) {
             TLRPC.Dialog dialog = allDialogs.get(i11);
             i11++;
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f19806id));
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f19807id));
             if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
                 arrayList.add(chat);
                 if (arrayList.size() >= 100) {

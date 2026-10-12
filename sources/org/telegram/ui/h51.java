@@ -24,7 +24,7 @@ public final class h51 extends FrameLayout {
         o1.j jVar = new o1.j(0.0f);
         this.f38252f = jVar;
         o1.k kVar = new o1.k(jVar);
-        kVar.f16690u = org.telegram.ui.Cells.c1.j(0.0f, 750.0f, 1.0f);
+        kVar.f16691u = org.telegram.ui.Cells.c1.j(0.0f, 750.0f, 1.0f);
         kVar.b(new td0(this, 5));
         this.h = kVar;
         this.f38253n = new t0("progress", 6);
@@ -34,7 +34,7 @@ public final class h51 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f38252f.f16689a = 0.0f;
+        this.f38252f.f16690a = 0.0f;
         this.f38251e = 0;
     }
 
@@ -43,9 +43,9 @@ public final class h51 extends FrameLayout {
         float f7;
         super.onLayout(z10, i10, i11, i12, i13);
         SecretMediaViewer secretMediaViewer = this.f38254r;
-        e51 e51Var = secretMediaViewer.f34304y;
+        e51 e51Var = secretMediaViewer.f34306y;
         if (e51Var != null) {
-            f7 = ((float) e51Var.n()) / ((float) secretMediaViewer.f34304y.p());
+            f7 = ((float) e51Var.n()) / ((float) secretMediaViewer.f34306y.p());
         } else {
             f7 = 0.0f;
         }

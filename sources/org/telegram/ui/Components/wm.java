@@ -20,11 +20,11 @@ public final class wm extends CameraView {
     public final void dispatchDraw(Canvas canvas) {
         float f7;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32441c;
-        aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+        aj ajVar = chatAttachAlertPhotoLayout.f30570b;
         if (AndroidUtilities.makingGlobalBlurBitmap) {
             return;
         }
-        if (!this.f32440b && (chatAttachAlertPhotoLayout.f23809d0 || !chatAttachAlertPhotoLayout.f23805b0)) {
+        if (!this.f32440b && (chatAttachAlertPhotoLayout.f23810d0 || !chatAttachAlertPhotoLayout.f23806b0)) {
             float translationY = (ajVar.getContainerView().getTranslationY() + (ajVar.J0[1] + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY();
             ci.i iVar = ajVar.E2;
             if (iVar != null) {
@@ -33,16 +33,16 @@ public final class wm extends CameraView {
                 f7 = 0.0f;
             }
             int min = (int) Math.min(translationY - f7, getMeasuredHeight());
-            boolean z10 = chatAttachAlertPhotoLayout.f23809d0;
+            boolean z10 = chatAttachAlertPhotoLayout.f23810d0;
             if (z10) {
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f10 = chatAttachAlertPhotoLayout.f23829n1;
-                boolean z11 = ChatAttachAlertPhotoLayout.f23798q1;
-                float f11 = 1.0f - chatAttachAlertPhotoLayout.f23811e0;
-                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f23824k1, chatAttachAlertPhotoLayout.f23826m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f23811e0));
-            } else if (!z10 && !chatAttachAlertPhotoLayout.f23805b0) {
+                float f10 = chatAttachAlertPhotoLayout.f23830n1;
+                boolean z11 = ChatAttachAlertPhotoLayout.f23799q1;
+                float f11 = 1.0f - chatAttachAlertPhotoLayout.f23812e0;
+                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f23825k1, chatAttachAlertPhotoLayout.f23827m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f23812e0));
+            } else if (!z10 && !chatAttachAlertPhotoLayout.f23806b0) {
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                boolean z12 = ChatAttachAlertPhotoLayout.f23798q1;
+                boolean z12 = ChatAttachAlertPhotoLayout.f23799q1;
                 rectF2.set(0.0f, chatAttachAlertPhotoLayout.W, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
                 return;
             } else {

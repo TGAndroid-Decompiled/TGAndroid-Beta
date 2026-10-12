@@ -18,7 +18,7 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wm0;
 import org.telegram.ui.xk;
 public final class w1 extends t61 {
-    public static final int f43466a = 0;
+    public static final int f43471a = 0;
 
     static {
         t61.setup(new t61());
@@ -27,12 +27,12 @@ public final class w1 extends t61 {
     @Override
     public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
         x1 x1Var = (x1) view;
-        CharSequence charSequence = u61Var.f31078n;
-        String str = (String) u61Var.f31076l;
+        CharSequence charSequence = u61Var.f31073n;
+        String str = (String) u61Var.f31071l;
         long j3 = u61Var.B;
-        ImageView imageView = x1Var.f43471a;
-        x1Var.f43472b.setText(charSequence);
-        xk xkVar = x1Var.f43473c;
+        ImageView imageView = x1Var.f43476a;
+        x1Var.f43477b.setText(charSequence);
+        xk xkVar = x1Var.f43478c;
         xkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             xkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -43,7 +43,7 @@ public final class w1 extends t61 {
             xkVar.setScaleX(1.0f);
             xkVar.setScaleY(1.0f);
         }
-        x1Var.f43474e = str;
+        x1Var.f43479e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -67,10 +67,10 @@ public final class w1 extends t61 {
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             hrVar.h = dp;
-            hrVar.f26894n = dp2;
+            hrVar.f26880n = dp2;
             imageView.setImageDrawable(hrVar);
         }
-        x1Var.f43475f = z10;
+        x1Var.f43480f = z10;
         x1Var.invalidate();
     }
 

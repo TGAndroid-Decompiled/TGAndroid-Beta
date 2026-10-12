@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class av implements dz {
-    public final cv f24493a;
+    public final cv f24481a;
 
     public av(cv cvVar) {
-        this.f24493a = cvVar;
+        this.f24481a = cvVar;
     }
 
     @Override
@@ -51,16 +51,16 @@ public final class av implements dz {
     @Override
     public final void i(int i10) {
         boolean z10;
-        cv cvVar = this.f24493a;
+        cv cvVar = this.f24481a;
         if (cvVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            cvVar.f25032x = z10;
+            cvVar.f25024x = z10;
             cvVar.y();
-            yw0 yw0Var = cvVar.f25027f;
+            yw0 yw0Var = cvVar.f25019f;
             if (yw0Var != null) {
                 yw0Var.S();
             }
@@ -74,7 +74,7 @@ public final class av implements dz {
 
     @Override
     public final boolean k() {
-        xu xuVar = this.f24493a.f25023a;
+        xu xuVar = this.f24481a.f25015a;
         if (xuVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class av implements dz {
 
     @Override
     public final void l(String str) {
-        xu xuVar = this.f24493a.f25023a;
+        xu xuVar = this.f24481a.f25015a;
         int selectionEnd = xuVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class av implements dz {
 
     @Override
     public final void n() {
-        cv cvVar = this.f24493a;
+        cv cvVar = this.f24481a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cvVar.getContext(), 0, cvVar.M);
-        alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         org.telegram.ui.ActionBar.m2 m2Var = cvVar.h;
         if (m2Var != null) {
-            m2Var.showDialog(alertDialog$Builder.f20141a);
+            m2Var.showDialog(alertDialog$Builder.f20142a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,7 +122,7 @@ public final class av implements dz {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f24493a.h;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f24481a.h;
         if (m2Var == null) {
             new rg.y0((org.telegram.ui.ActionBar.m2) new ai.z3(this, 4), 11, false).show();
         } else {
@@ -133,8 +133,8 @@ public final class av implements dz {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         b6 b6Var;
-        cv cvVar = this.f24493a;
-        xu xuVar = cvVar.f25023a;
+        cv cvVar = this.f24481a;
+        xu xuVar = cvVar.f25015a;
         int selectionEnd = xuVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class av implements dz {
             } else {
                 b6Var = new b6(j3, xuVar.getPaint().getFontMetricsInt());
             }
-            b6Var.cacheType = cvVar.d.f25078c;
+            b6Var.cacheType = cvVar.d.f25070c;
             spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
             xuVar.setText(xuVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class av implements dz {
 
     @Override
     public final boolean z() {
-        return this.f24493a.f25032x;
+        return this.f24481a.f25024x;
     }
 
     @Override

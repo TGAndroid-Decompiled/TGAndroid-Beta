@@ -30,13 +30,13 @@ public final class z implements db.v {
         boolean isAssignableFrom;
         kb.a aVar2 = this.f10510a;
         if (aVar2 != null) {
-            if (!aVar2.equals(aVar) && (!this.f10511b || aVar2.f14776b != aVar.f14775a)) {
+            if (!aVar2.equals(aVar) && (!this.f10511b || aVar2.f14777b != aVar.f14776a)) {
                 isAssignableFrom = false;
             } else {
                 isAssignableFrom = true;
             }
         } else {
-            isAssignableFrom = this.f10512c.isAssignableFrom(aVar.f14775a);
+            isAssignableFrom = this.f10512c.isAssignableFrom(aVar.f14776a);
         }
         if (isAssignableFrom) {
             return new a0(this.d, gVar, aVar, this, true);

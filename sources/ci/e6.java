@@ -99,8 +99,8 @@ public final class e6 implements dz {
     public final void n() {
         q6 q6Var = this.f5027a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q6Var.getContext(), 0, q6Var.G1);
-        alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
         hg.c.r(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -122,7 +122,7 @@ public final class e6 implements dz {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    b6Var = new org.telegram.ui.Components.b6(document.f19808id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(document.f19809id, 1.0f, editText.getPaint().getFontMetricsInt());
                     b6Var.document = document;
                 } else {
                     b6Var = new org.telegram.ui.Components.b6(j3, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -145,6 +145,18 @@ public final class e6 implements dz {
     }
 
     @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
     }
 
@@ -157,10 +169,6 @@ public final class e6 implements dz {
     }
 
     @Override
-    public final void q() {
-    }
-
-    @Override
     public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
     }
 
@@ -170,14 +178,6 @@ public final class e6 implements dz {
 
     @Override
     public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
     }
 
     @Override

@@ -40,7 +40,7 @@ public final class r1 extends TimerTask {
                 } catch (Exception e10) {
                     FileLog.e(e10);
                 }
-                Utilities.searchQueue.postRunnable(new org.telegram.ui.Components.voip.y(2, (au) this.f10786c, this.f10785b));
+                Utilities.searchQueue.postRunnable(new org.telegram.ui.Components.voip.p(3, (au) this.f10786c, this.f10785b));
                 return;
         }
     }

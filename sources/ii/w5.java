@@ -21,7 +21,7 @@ public final class w5 implements View.OnFocusChangeListener {
                 e6.a((e6) this.f12787b, z10);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f12787b).f45700c;
+                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f12787b).f45705c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
@@ -45,21 +45,21 @@ public final class w5 implements View.OnFocusChangeListener {
                 return;
             case 4:
                 yh.y yVar = (yh.y) this.f12787b;
-                yVar.f53609c0.c(z10, !TextUtils.isEmpty(yVar.f53610d0.getText()));
+                yVar.f53618c0.c(z10, !TextUtils.isEmpty(yVar.f53619d0.getText()));
                 return;
             case 5:
                 yh.c0 c0Var = (yh.c0) this.f12787b;
-                c0Var.f52551f.c(z10, !TextUtils.isEmpty(c0Var.h.getText()));
+                c0Var.f52564f.c(z10, !TextUtils.isEmpty(c0Var.h.getText()));
                 return;
             case 6:
                 yh.h0 h0Var = (yh.h0) this.f12787b;
-                h0Var.f52827b.c(z10, !TextUtils.isEmpty(h0Var.f52828c.getText()));
+                h0Var.f52839b.c(z10, !TextUtils.isEmpty(h0Var.f52840c.getText()));
                 return;
             default:
                 zg.o oVar = (zg.o) this.f12787b;
                 if (z10) {
                     oVar.n(true);
-                    Runnable runnable = oVar.f54712e;
+                    Runnable runnable = oVar.f54720e;
                     if (runnable != null) {
                         runnable.run();
                         return;

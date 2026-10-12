@@ -7,9 +7,9 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.HashMap;
 import java.util.WeakHashMap;
 public abstract class np0 extends View.AccessibilityDelegate {
-    public static final String f28920c = "android.widget.SeekBar";
-    public final HashMap f28921a = new HashMap(4);
-    public final ai.v2 f28922b = new ai.v2(this, 9);
+    public static final String f28924c = "android.widget.SeekBar";
+    public final HashMap f28925a = new HashMap(4);
+    public final ai.v2 f28926b = new ai.v2(this, 9);
 
     public abstract boolean a();
 
@@ -22,7 +22,7 @@ public abstract class np0 extends View.AccessibilityDelegate {
     }
 
     public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(f28920c);
+        accessibilityNodeInfo.setClassName(f28924c);
         CharSequence d = d();
         if (!TextUtils.isEmpty(d)) {
             accessibilityNodeInfo.setText(d);
@@ -49,14 +49,14 @@ public abstract class np0 extends View.AccessibilityDelegate {
         }
         c(z10);
         if (view != null) {
-            WeakHashMap weakHashMap = r0.i0.f46981a;
+            WeakHashMap weakHashMap = r0.i0.f46989a;
             if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.f28921a;
+                HashMap hashMap = this.f28925a;
                 Runnable runnable = (Runnable) hashMap.get(view);
                 if (runnable == null) {
-                    runnable = new sj0(5, this, view);
+                    runnable = new gi0(6, this, view);
                     hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.f28922b);
+                    view.addOnAttachStateChangeListener(this.f28926b);
                 } else {
                     view.removeCallbacks(runnable);
                 }

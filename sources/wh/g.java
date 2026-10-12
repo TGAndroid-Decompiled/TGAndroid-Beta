@@ -19,23 +19,23 @@ import org.telegram.ui.zq0;
 import rg.j1;
 import s4.d1;
 public final class g extends vm0 {
-    public final l f50639c;
+    public final l f50647c;
 
     public g(l lVar) {
-        this.f50639c = lVar;
+        this.f50647c = lVar;
     }
 
     @Override
     public final boolean D(d1 d1Var) {
-        if (d1Var.f47893f == 0) {
+        if (d1Var.f47901f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(List list) {
-        l lVar = this.f50639c;
-        ArrayList arrayList = lVar.f50659c;
+        l lVar = this.f50647c;
+        ArrayList arrayList = lVar.f50667c;
         boolean isEmpty = arrayList.isEmpty();
         int i10 = 0;
         while (i10 < list.size()) {
@@ -65,18 +65,18 @@ public final class g extends vm0 {
 
     @Override
     public final int h() {
-        l lVar = this.f50639c;
+        l lVar = this.f50647c;
         int i10 = 1;
-        return ((lVar.f50659c.isEmpty() || !lVar.f50677x) ? 0 : 0) + lVar.f50659c.size() + (!lVar.B ? 1 : 0);
+        return ((lVar.f50667c.isEmpty() || !lVar.f50685x) ? 0 : 0) + lVar.f50667c.size() + (!lVar.B ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        l lVar = this.f50639c;
+        l lVar = this.f50647c;
         if (i10 == 0 && !lVar.B) {
             return 2;
         }
-        if (i10 == h() - 1 && !lVar.f50659c.isEmpty() && lVar.f50677x) {
+        if (i10 == h() - 1 && !lVar.f50667c.isEmpty() && lVar.f50685x) {
             return 4;
         }
         return 0;
@@ -85,29 +85,29 @@ public final class g extends vm0 {
     @Override
     public final void v(d1 d1Var, int i10) {
         boolean z10;
-        l lVar = this.f50639c;
-        ArrayList arrayList = lVar.f50659c;
-        int i11 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        l lVar = this.f50647c;
+        ArrayList arrayList = lVar.f50667c;
+        int i11 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i11 == 0) {
             g5 g5Var = (g5) view;
             int i12 = i10 - (!lVar.B ? 1 : 0);
             LongSparseArray longSparseArray = lVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i12);
-            if (i12 == arrayList.size() - 1 && !lVar.f50677x) {
+            if (i12 == arrayList.size() - 1 && !lVar.f50685x) {
                 z10 = false;
             } else {
                 z10 = true;
             }
             h5 h5Var = g5Var.d;
-            g5Var.f21908e = tL_chatInviteImporter;
-            g5Var.f21909f = z10;
+            g5Var.f21909e = tL_chatInviteImporter;
+            g5Var.f21910f = z10;
             g5Var.setWillNotDraw(!z10);
             TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            j9 j9Var = g5Var.f21905a;
+            j9 j9Var = g5Var.f21906a;
             j9Var.r(user);
-            g5Var.f21906b.e(user, j9Var);
-            g5Var.f21907c.l(UserObject.getUserName(user), false);
+            g5Var.f21907b.e(user, j9Var);
+            g5Var.f21908c.l(UserObject.getUserName(user), false);
             String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
             if (tL_chatInviteImporter.via_chatlist) {
                 h5Var.l(LocaleController.getString(R.string.JoinedViaFolder), false);
@@ -132,20 +132,20 @@ public final class g extends vm0 {
     @Override
     public final d1 x(ViewGroup viewGroup, int i10) {
         g5 g5Var;
-        l lVar = this.f50639c;
-        boolean z10 = lVar.f50657a;
+        l lVar = this.f50647c;
+        boolean z10 = lVar.f50665a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         g5Var = new g5(viewGroup.getContext(), lVar, z10);
                     } else {
-                        m2 m2Var = lVar.f50662g;
+                        m2 m2Var = lVar.f50670g;
                         zq0 zq0Var = new zq0(m2Var.getParentActivity(), 1, m2Var.getResourceProvider());
                         if (lVar.B) {
-                            zq0Var.setBackgroundColor(h6.w0(h6.f20559d6, m2Var.getResourceProvider()));
+                            zq0Var.setBackgroundColor(h6.w0(h6.f20560d6, m2Var.getResourceProvider()));
                         }
-                        zq0Var.f(h6.f20559d6, h6.f20503a7, -1);
+                        zq0Var.f(h6.f20560d6, h6.f20504a7, -1);
                         zq0Var.setViewType(15);
                         zq0Var.setMemberRequestButton(z10);
                         zq0Var.setIsSingleCell(true);

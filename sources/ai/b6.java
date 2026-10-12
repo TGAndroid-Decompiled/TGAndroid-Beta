@@ -77,7 +77,7 @@ public final class b6 extends FrameLayout {
             } else {
                 if (this.f714n) {
                     this.f714n = false;
-                    if (this.d.f27534f < 0.2f) {
+                    if (this.d.f27541f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -97,7 +97,7 @@ public final class b6 extends FrameLayout {
                 this.d = jk0Var2;
                 jk0Var2.d(null, true, false);
             }
-            this.d.f27544q = 0;
+            this.d.f27551q = 0;
             ImageReceiver imageReceiver = z5Var.getImageReceiver();
             float b10 = com.google.android.gms.internal.vision.e2.b(1.0f, this.h, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
             this.d.f((int) (rectF.left - b10), (int) (rectF.top - b10), (int) (rectF.right + b10), (int) (rectF.bottom + b10));
@@ -108,7 +108,7 @@ public final class b6 extends FrameLayout {
                 clamp = Utilities.clamp(f10, 1.0f, 0.0f);
             }
             jk0Var3.e(clamp, true);
-            if (this.f715r && z11 && this.d.f27534f >= 0.9f) {
+            if (this.f715r && z11 && this.d.f27541f >= 0.9f) {
                 this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
@@ -116,7 +116,7 @@ public final class b6 extends FrameLayout {
                     Paint t10 = ja.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
                     jk0 jk0Var4 = this.d;
-                    jk0Var4.f27547t = t10;
+                    jk0Var4.f27554t = t10;
                     jk0Var4.a(canvas);
                 }
                 if (this.f713f == null) {
@@ -129,7 +129,7 @@ public final class b6 extends FrameLayout {
                 }
                 this.f713f.setAlpha((int) (255.0f * f7 * this.h));
                 jk0 jk0Var5 = this.d;
-                jk0Var5.f27547t = this.f713f;
+                jk0Var5.f27554t = this.f713f;
                 jk0Var5.a(canvas);
             }
         }

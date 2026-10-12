@@ -29,24 +29,24 @@ public final class bi0 extends FrameLayout {
     public float N;
     public Runnable O;
     public boolean P;
-    public SparseIntArray f24658a;
-    public float f24659b;
-    public float f24660c;
+    public SparseIntArray f24649a;
+    public float f24650b;
+    public float f24651c;
     public n4.l d;
-    public boolean f24661e;
-    public boolean f24662f;
+    public boolean f24652e;
+    public boolean f24653f;
     public boolean h;
-    public Paint f24663n;
-    public Paint f24664r;
-    public int f24665s;
+    public Paint f24654n;
+    public Paint f24655r;
+    public int f24656s;
     public Path v;
-    public RectF f24666w;
-    public ArrayList f24667x;
-    public boolean f24668y;
+    public RectF f24657w;
+    public ArrayList f24658x;
+    public boolean f24659y;
 
     public final void a(float f7, float f10) {
-        ValueAnimator duration = ValueAnimator.ofFloat(this.f24659b, f7).setDuration(Math.max(0.5f, Math.abs(this.f24659b - f7) - Math.min(0.2f, f10)) * 300.0f);
-        duration.setInterpolator(js.f27627f);
+        ValueAnimator duration = ValueAnimator.ofFloat(this.f24650b, f7).setDuration(Math.max(0.5f, Math.abs(this.f24650b - f7) - Math.min(0.2f, f10)) * 300.0f);
+        duration.setInterpolator(js.f27634f);
         this.H.lock();
         duration.addUpdateListener(new yh0(this, 0));
         duration.addListener(new org.telegram.ui.ActionBar.y0(this, f7, 5));
@@ -60,12 +60,12 @@ public final class bi0 extends FrameLayout {
     }
 
     public final void b(boolean z10) {
-        if (this.f24662f) {
+        if (this.f24653f) {
             return;
         }
         if (!z10) {
             this.G = -1;
-            this.f24659b = 0.0f;
+            this.f24650b = 0.0f;
             c(true);
             return;
         }
@@ -76,15 +76,15 @@ public final class bi0 extends FrameLayout {
         View view;
         float f7;
         float f10;
-        ArrayList arrayList = this.f24667x;
-        if (this.M != this.f24660c || this.N != this.f24659b) {
+        ArrayList arrayList = this.f24658x;
+        if (this.M != this.f24651c || this.N != this.f24650b) {
             if (!arrayList.isEmpty()) {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((ai0) arrayList.get(i10)).a(this.f24660c, this.f24659b);
+                    ((ai0) arrayList.get(i10)).a(this.f24651c, this.f24650b);
                 }
             }
-            this.M = this.f24660c;
-            this.N = this.f24659b;
+            this.M = this.f24651c;
+            this.N = this.f24650b;
         }
         View childAt = getChildAt(0);
         int i11 = this.G;
@@ -93,27 +93,27 @@ public final class bi0 extends FrameLayout {
         } else {
             view = null;
         }
-        childAt.setTranslationX((-this.f24659b) * getWidth() * 0.5f);
-        float f11 = ((1.0f - this.f24659b) * 0.05f) + 0.95f;
+        childAt.setTranslationX((-this.f24650b) * getWidth() * 0.5f);
+        float f11 = ((1.0f - this.f24650b) * 0.05f) + 0.95f;
         childAt.setScaleX(f11);
         childAt.setScaleY(f11);
         if (view != null) {
-            view.setTranslationX((1.0f - this.f24659b) * getWidth());
+            view.setTranslationX((1.0f - this.f24650b) * getWidth());
         }
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt2 = getChildAt(i12);
             if (i12 == 0) {
-                if (this.f24659b == 1.0f && childAt2.getVisibility() != 4) {
+                if (this.f24650b == 1.0f && childAt2.getVisibility() != 4) {
                     childAt2.setVisibility(4);
                 }
-                if (this.f24659b != 1.0f && childAt2.getVisibility() != 0) {
+                if (this.f24650b != 1.0f && childAt2.getVisibility() != 0) {
                     childAt2.setVisibility(0);
                 }
             } else if (i12 == this.G) {
-                if (this.f24659b == 0.0f && childAt2.getVisibility() != 4) {
+                if (this.f24650b == 0.0f && childAt2.getVisibility() != 4) {
                     childAt2.setVisibility(4);
                 }
-                if (this.f24659b != 0.0f && childAt2.getVisibility() != 0) {
+                if (this.f24650b != 0.0f && childAt2.getVisibility() != 0) {
                     childAt2.setVisibility(0);
                 }
             } else {
@@ -134,15 +134,15 @@ public final class bi0 extends FrameLayout {
         }
         if (childAt.getMeasuredWidth() != 0 && childAt.getMeasuredHeight() != 0) {
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) getParent();
-            float f12 = this.f24659b;
+            float f12 = this.f24650b;
             float f13 = ((f7 - measuredWidth) * f12) + measuredWidth;
             float y3 = com.google.android.gms.internal.vision.e2.y(f10, measuredHeight, f12, measuredHeight) + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingBottom() + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingTop();
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f20130a = false;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f20131a = false;
             actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleX((f13 + (actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingRight() + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingLeft())) / actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth());
             if (z10) {
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(Math.min(1.0f, y3 / actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight()));
             }
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f20130a = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f20131a = true;
             for (int i13 = 0; i13 < getChildCount(); i13++) {
                 View childAt3 = getChildAt(i13);
                 childAt3.setPivotX(0.0f);
@@ -172,7 +172,7 @@ public final class bi0 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Path path = this.v;
-        RectF rectF = this.f24666w;
+        RectF rectF = this.f24657w;
         if (getChildCount() != 0) {
             View childAt = getChildAt(0);
             float top = childAt.getTop();
@@ -188,9 +188,9 @@ public final class bi0 extends FrameLayout {
                     f7 = childAt2.getMeasuredHeight();
                 }
                 if (childAt.getMeasuredWidth() != 0 && childAt.getMeasuredHeight() != 0 && childAt2.getMeasuredWidth() != 0 && childAt2.getMeasuredHeight() != 0) {
-                    top = AndroidUtilities.lerp(top, top2, this.f24659b);
-                    measuredWidth = AndroidUtilities.lerp(measuredWidth, measuredWidth2, this.f24659b);
-                    measuredHeight = AndroidUtilities.lerp(measuredHeight, f7, this.f24659b);
+                    top = AndroidUtilities.lerp(top, top2, this.f24650b);
+                    measuredWidth = AndroidUtilities.lerp(measuredWidth, measuredWidth2, this.f24650b);
+                    measuredHeight = AndroidUtilities.lerp(measuredHeight, f7, this.f24650b);
                 }
             }
             int save = canvas.save();
@@ -210,7 +210,7 @@ public final class bi0 extends FrameLayout {
                 zh0 zh0Var = this.K;
                 int height = (int) rectF.height();
                 this.J = height;
-                org.telegram.ui.ActionBar.m2[] m2VarArr = (org.telegram.ui.ActionBar.m2[]) ((org.telegram.ui.ju) zh0Var).f39283b;
+                org.telegram.ui.ActionBar.m2[] m2VarArr = (org.telegram.ui.ActionBar.m2[]) ((org.telegram.ui.ju) zh0Var).f39286b;
                 org.telegram.ui.ActionBar.m2 m2Var = m2VarArr[0];
                 if (m2Var != null && m2Var.getFragmentView() != null && m2VarArr[0].isInPreviewMode()) {
                     ViewGroup.LayoutParams layoutParams = m2VarArr[0].getFragmentView().getLayoutParams();
@@ -227,27 +227,27 @@ public final class bi0 extends FrameLayout {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         float f7;
-        RectF rectF = this.f24666w;
+        RectF rectF = this.f24657w;
         int action = motionEvent.getAction() & 255;
-        if (this.f24662f) {
+        if (this.f24653f) {
             z10 = true;
-        } else if (!((GestureDetector) this.d.f16325a).onTouchEvent(motionEvent) && (action == 1 || action == 3)) {
-            if (this.f24661e) {
-                this.f24661e = false;
+        } else if (!((GestureDetector) this.d.f16326a).onTouchEvent(motionEvent) && (action == 1 || action == 3)) {
+            if (this.f24652e) {
+                this.f24652e = false;
                 this.h = false;
-                if (this.f24659b >= 0.5f) {
+                if (this.f24650b >= 0.5f) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
                 a(f7, 0.0f);
             } else if (this.h) {
-                this.f24661e = false;
+                this.f24652e = false;
                 this.h = false;
             }
             z10 = false;
         } else {
-            z10 = this.f24661e;
+            z10 = this.f24652e;
         }
         if (!z10) {
             int actionMasked = motionEvent.getActionMasked();
@@ -262,7 +262,7 @@ public final class bi0 extends FrameLayout {
             if (i10 >= 0 && i10 < getChildCount()) {
                 View childAt = getChildAt(0);
                 View childAt2 = getChildAt(this.G);
-                if (this.f24659b > 0.5f) {
+                if (this.f24650b > 0.5f) {
                     childAt = childAt2;
                 }
                 boolean dispatchTouchEvent = childAt.dispatchTouchEvent(motionEvent);
@@ -278,12 +278,12 @@ public final class bi0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        Paint paint = this.f24663n;
-        Paint paint2 = this.f24664r;
+        Paint paint = this.f24654n;
+        Paint paint2 = this.f24655r;
         int indexOfChild = indexOfChild(view);
         int save = canvas.save();
         if (indexOfChild != 0) {
-            int i10 = this.f24665s;
+            int i10 = this.f24656s;
             if (i10 == 0) {
                 paint2.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, this.I));
             } else {
@@ -293,7 +293,7 @@ public final class bi0 extends FrameLayout {
         }
         boolean drawChild = super.drawChild(canvas, view, j3);
         if (indexOfChild == 0) {
-            paint.setAlpha((int) (this.f24659b * 64.0f));
+            paint.setAlpha((int) (this.f24650b * 64.0f));
             canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
         }
         canvas.restoreToCount(save);
@@ -301,16 +301,16 @@ public final class bi0 extends FrameLayout {
     }
 
     public final void e(int i10) {
-        if (this.f24662f) {
+        if (this.f24653f) {
             return;
         }
         this.G = i10;
-        this.E = this.f24658a.get(i10);
+        this.E = this.f24649a.get(i10);
         a(1.0f, 0.0f);
     }
 
     public final void f(int i10, int i11, boolean z10) {
-        this.f24658a.put(i10, i11);
+        this.f24649a.put(i10, i11);
         int i12 = this.G;
         if (i10 == i12 && i12 >= 0 && i12 < getChildCount()) {
             ValueAnimator valueAnimator = this.F;
@@ -325,9 +325,9 @@ public final class bi0 extends FrameLayout {
                     f7 = childAt.getMeasuredHeight();
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(f7, i11).setDuration(240L);
-                duration.setInterpolator(cu.f25018e);
+                duration.setInterpolator(du.f25466e);
                 duration.addUpdateListener(new yh0(this, 1));
-                this.f24662f = true;
+                this.f24653f = true;
                 duration.addListener(new zd0(this, 5));
                 duration.start();
                 this.F = duration;
@@ -367,7 +367,7 @@ public final class bi0 extends FrameLayout {
     }
 
     public void setForegroundColor(int i10) {
-        this.f24665s = i10;
+        this.f24656s = i10;
     }
 
     public void setOnForegroundOpenFinished(Runnable runnable) {
@@ -383,6 +383,6 @@ public final class bi0 extends FrameLayout {
     }
 
     public void setSwipeBackDisallowed(boolean z10) {
-        this.f24668y = z10;
+        this.f24659y = z10;
     }
 }

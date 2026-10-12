@@ -12,27 +12,27 @@ public final class o extends n {
     public final boolean J;
     public final boolean K;
     public final int L;
-    public final boolean f50748e;
-    public final i f50749f;
+    public final boolean f50756e;
+    public final i f50757f;
     public final boolean h;
-    public final boolean f50750n;
-    public final boolean f50751r;
-    public final int f50752s;
+    public final boolean f50758n;
+    public final boolean f50759r;
+    public final int f50760s;
     public final int v;
-    public final int f50753w;
-    public final int f50754x;
-    public final int f50755y;
+    public final int f50761w;
+    public final int f50762x;
+    public final int f50763y;
 
     public o(int r7, b2.l1 r8, int r9, x2.i r10, int r11, java.lang.String r12, int r13, boolean r14) {
         throw new UnsupportedOperationException("Method not decompiled: x2.o.<init>(int, b2.l1, int, x2.i, int, java.lang.String, int, boolean):void");
     }
 
     public static int c(o oVar, o oVar2) {
-        z c10 = z.f8817a.c(oVar.f50750n, oVar2.f50750n);
-        Integer valueOf = Integer.valueOf(oVar.f50754x);
-        Integer valueOf2 = Integer.valueOf(oVar2.f50754x);
+        z c10 = z.f8817a.c(oVar.f50758n, oVar2.f50758n);
+        Integer valueOf = Integer.valueOf(oVar.f50762x);
+        Integer valueOf2 = Integer.valueOf(oVar2.f50762x);
         x0 x0Var = x0.f8815c;
-        z b10 = c10.b(valueOf, valueOf2, x0Var).a(oVar.f50755y, oVar2.f50755y).a(oVar.E, oVar2.E).c(oVar.F, oVar2.F).a(oVar.G, oVar2.G).c(oVar.f50751r, oVar2.f50751r).c(oVar.f50748e, oVar2.f50748e).c(oVar.h, oVar2.h).b(Integer.valueOf(oVar.f50753w), Integer.valueOf(oVar2.f50753w), x0Var);
+        z b10 = c10.b(valueOf, valueOf2, x0Var).a(oVar.f50763y, oVar2.f50763y).a(oVar.E, oVar2.E).c(oVar.F, oVar2.F).a(oVar.G, oVar2.G).c(oVar.f50759r, oVar2.f50759r).c(oVar.f50756e, oVar2.f50756e).c(oVar.h, oVar2.h).b(Integer.valueOf(oVar.f50761w), Integer.valueOf(oVar2.f50761w), x0Var);
         boolean z10 = oVar.J;
         z c11 = b10.c(z10, oVar2.J);
         boolean z11 = oVar.K;
@@ -52,7 +52,7 @@ public final class o extends n {
     public final boolean b(n nVar) {
         o oVar = (o) nVar;
         if (this.H || Objects.equals(this.d.f3641r, oVar.d.f3641r)) {
-            this.f50749f.getClass();
+            this.f50757f.getClass();
             if (this.J == oVar.J && this.K == oVar.K) {
                 return true;
             }

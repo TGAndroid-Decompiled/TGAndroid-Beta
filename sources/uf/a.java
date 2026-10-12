@@ -5,22 +5,22 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import yf.x;
 public final class a implements ViewTreeObserver.OnDrawListener {
-    public final int f49124a;
-    public final View f49125b;
+    public final int f49132a;
+    public final View f49133b;
 
     public a(int i10, View view) {
-        this.f49124a = i10;
-        this.f49125b = view;
+        this.f49132a = i10;
+        this.f49133b = view;
     }
 
     @Override
     public final void onDraw() {
-        switch (this.f49124a) {
+        switch (this.f49132a) {
             case 0:
-                ((o4) this.f49125b).forceLayout();
+                ((o4) this.f49133b).forceLayout();
                 return;
             default:
-                ((x) this.f49125b).f52428e.incrementAndGet();
+                ((x) this.f49133b).f52436e.incrementAndGet();
                 return;
         }
     }

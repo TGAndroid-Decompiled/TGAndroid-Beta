@@ -10,15 +10,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class sb implements org.telegram.ui.Cells.t0 {
-    public final ub f41885a;
+    public final ub f41889a;
 
     public sb(ub ubVar) {
-        this.f41885a = ubVar;
+        this.f41889a = ubVar;
     }
 
     @Override
     public final void E1(long j3) {
-        yb ybVar = this.f41885a.f42479n;
+        yb ybVar = this.f41889a.f42481n;
         if (j3 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j3);
@@ -36,24 +36,24 @@ public final class sb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final org.telegram.ui.ActionBar.m2 T0() {
-        return this.f41885a.f42479n;
+        return this.f41889a.f42481n;
     }
 
     @Override
     public final void V0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        yb ybVar = this.f41885a.f42479n;
+        yb ybVar = this.f41889a.f42481n;
         if (ybVar.A0) {
             return;
         }
-        if (ybVar.f44439y0.containsKey(tL_chatInviteExported.link)) {
-            obj = ybVar.f44439y0.get(tL_chatInviteExported.link);
+        if (ybVar.f44444y0.containsKey(tL_chatInviteExported.link)) {
+            obj = ybVar.f44444y0.get(tL_chatInviteExported.link);
         } else {
             obj = null;
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = ybVar.getMessagesController().getInputPeer(-ybVar.f44414f.f19802id);
+            tL_messages_getExportedChatInvite.peer = ybVar.getMessagesController().getInputPeer(-ybVar.f44419f.f19803id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             ybVar.A0 = true;
             final boolean[] zArr = new boolean[1];
@@ -61,14 +61,14 @@ public final class sb implements org.telegram.ui.Cells.t0 {
             a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    sb.this.f41885a.f42479n.A0 = false;
+                    sb.this.f41889a.f42481n.A0 = false;
                     zArr[0] = true;
                 }
             });
             a2Var.q(300L);
             ybVar.getConnectionsManager().bindRequestToGuid(ybVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new ai.q3(this, tL_chatInviteExported, zArr, a2Var, 4)), yb.z0(ybVar));
         } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            yb.A0(ybVar, (TLRPC.TL_messages_exportedChatInvite) obj, ybVar.f44440z0);
+            yb.A0(ybVar, (TLRPC.TL_messages_exportedChatInvite) obj, ybVar.f44445z0);
         } else {
             org.telegram.messenger.v0.q(R.string.LinkHashExpired, org.telegram.ui.Components.zc.a0(ybVar), R.raw.linkbroken, 36);
         }
@@ -76,7 +76,7 @@ public final class sb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final long a() {
-        return -this.f41885a.f42479n.f44414f.f19802id;
+        return -this.f41889a.f42481n.f44419f.f19803id;
     }
 
     @Override
@@ -91,11 +91,11 @@ public final class sb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final void n0(org.telegram.ui.Cells.w0 w0Var) {
-        yb ybVar = this.f41885a.f42479n;
+        yb ybVar = this.f41889a.f42481n;
         MessageObject messageObject = w0Var.getMessageObject();
         if (messageObject.type == 22) {
             fd fdVar = new fd(a());
-            fdVar.f37736l0 = ybVar;
+            fdVar.f37740l0 = ybVar;
             ybVar.presentFragment(fdVar);
             return;
         }
@@ -110,7 +110,7 @@ public final class sb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean y2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        yb ybVar = this.f41885a.f42479n;
+        yb ybVar = this.f41889a.f42481n;
         int i10 = yb.Q0;
         return ybVar.P0(w0Var, 0.0f, 0.0f);
     }

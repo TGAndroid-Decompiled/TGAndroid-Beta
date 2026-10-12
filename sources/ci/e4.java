@@ -19,9 +19,9 @@ public final class e4 implements View.OnLayoutChangeListener {
                 return;
             case 1:
                 kg.c cVar = (kg.c) this.f5024b;
-                TextView textView = cVar.f14815c;
+                TextView textView = cVar.f14816c;
                 textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f14814b;
+                TextView textView2 = cVar.f14815b;
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             default:

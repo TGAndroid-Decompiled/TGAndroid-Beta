@@ -1,20 +1,20 @@
 package ri;
 public final class c {
-    public volatile boolean f47785a;
-    public volatile int f47786b;
+    public volatile boolean f47793a;
+    public volatile int f47794b;
 
     public final int a() {
-        if (!this.f47785a) {
+        if (!this.f47793a) {
             synchronized (this) {
                 try {
-                    if (!this.f47785a) {
-                        this.f47786b = d.f47787a.getInt("round_video_video_bitrate", 1200000);
-                        this.f47785a = true;
+                    if (!this.f47793a) {
+                        this.f47794b = d.f47795a.getInt("round_video_video_bitrate", 1200000);
+                        this.f47793a = true;
                     }
                 } finally {
                 }
             }
         }
-        return this.f47786b;
+        return this.f47794b;
     }
 }

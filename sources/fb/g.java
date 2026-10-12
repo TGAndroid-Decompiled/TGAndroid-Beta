@@ -48,7 +48,7 @@ public final class g implements v, Cloneable {
 
     @Override
     public final u create(db.g gVar, kb.a aVar) {
-        Class cls = aVar.f14775a;
+        Class cls = aVar.f14776a;
         boolean b10 = b(cls, true);
         boolean b11 = b(cls, false);
         if (!b10 && !b11) {

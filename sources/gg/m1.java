@@ -38,11 +38,11 @@ public final class m1 extends FrameLayout {
         setWillNotDraw(false);
         l9 l9Var = new l9(this, false);
         this.f10727b = l9Var;
-        l9Var.f28118l = true;
-        l9Var.f28122p = AndroidUtilities.dp(75.0f);
-        l9Var.f28121o = AndroidUtilities.dp(48.0f);
-        l9Var.f28129x = true;
-        l9Var.f28125s = AndroidUtilities.dp(22.0f);
+        l9Var.f28103l = true;
+        l9Var.f28107p = AndroidUtilities.dp(75.0f);
+        l9Var.f28106o = AndroidUtilities.dp(48.0f);
+        l9Var.f28114x = true;
+        l9Var.f28110s = AndroidUtilities.dp(22.0f);
         for (int i11 = 0; i11 < 2; i11++) {
             this.f10728c[i11] = new TextView(context);
             this.f10728c[i11].setTextColor(h6.w0(h6.G6, c6Var));
@@ -58,7 +58,7 @@ public final class m1 extends FrameLayout {
             textView.setVisibility(i10);
             addView(this.f10728c[i11], w5.a(-2.0f, 76.0f, 7.0f, 40.0f, 0.0f, -1, 48));
             this.d[i11] = new TextView(context);
-            this.d[i11].setTextColor(h6.w0(h6.f20963z6, c6Var));
+            this.d[i11].setTextColor(h6.w0(h6.f20964z6, c6Var));
             this.d[i11].setTextSize(1, 12.0f);
             TextView textView2 = this.d[i11];
             if (i11 == 0) {
@@ -133,7 +133,7 @@ public final class m1 extends FrameLayout {
         super.onDraw(canvas);
         Paint U0 = h6.U0("paintDivider", this.f10726a);
         if (U0 == null) {
-            U0 = h6.f20681k0;
+            U0 = h6.f20682k0;
         }
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), U0);
     }

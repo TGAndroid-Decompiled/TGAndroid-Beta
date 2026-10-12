@@ -1,21 +1,21 @@
 package pi;
 public final class a implements Runnable {
-    public final int f45764a;
-    public final org.telegram.utils.recorder.audio.b f45765b;
+    public final int f45769a;
+    public final org.telegram.utils.recorder.audio.b f45770b;
 
     public a(org.telegram.utils.recorder.audio.b bVar, int i10) {
-        this.f45764a = i10;
-        this.f45765b = bVar;
+        this.f45769a = i10;
+        this.f45770b = bVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45764a) {
+        switch (this.f45769a) {
             case 0:
-                this.f45765b.e();
+                this.f45770b.e();
                 return;
             default:
-                org.telegram.utils.recorder.audio.b.a(this.f45765b);
+                org.telegram.utils.recorder.audio.b.a(this.f45770b);
                 return;
         }
     }

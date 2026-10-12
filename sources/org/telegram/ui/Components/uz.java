@@ -45,13 +45,13 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
         l60 l60Var = (l60) this.f31292c;
         VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.d;
         w60 w60Var = p60Var.H0;
-        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, p60Var.f29391a.getAbsolutePath(), 0, true, 0, 0, 0L);
+        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, p60Var.f29394a.getAbsolutePath(), 0, true, 0, 0, 0L);
         if (l60Var != null) {
-            photoEntry.ttl = l60Var.f28058c;
+            photoEntry.ttl = l60Var.f28043c;
             photoEntry.effectId = l60Var.d;
         }
-        j60 j60Var = w60Var.f32311n;
-        if (!z10 && l60Var != null && !l60Var.f28056a) {
+        j60 j60Var = w60Var.f32297n;
+        if (!z10 && l60Var != null && !l60Var.f28041a) {
             z11 = false;
         } else {
             z11 = true;
@@ -59,7 +59,7 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
         if (i10 != 0) {
             i12 = i10;
         } else if (l60Var != null) {
-            i12 = l60Var.f28057b;
+            i12 = l60Var.f28042b;
         } else {
             i12 = 0;
         }
@@ -69,7 +69,7 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
             i13 = 0;
         }
         if (l60Var != null) {
-            j3 = l60Var.f28059e;
+            j3 = l60Var.f28044e;
         } else {
             j3 = 0;
         }
@@ -113,7 +113,7 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && (bitmap = bitmapSafe.bitmap) != null) {
-            Drawable drawable = dqVar.f25447b;
+            Drawable drawable = dqVar.f25450b;
             if (drawable instanceof gd0) {
                 gd0 gd0Var = (gd0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
@@ -141,7 +141,7 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
                 hw0 hw0Var = (hw0) this.f31291b;
                 ArrayList arrayList = (ArrayList) this.d;
                 ((ai.v8) this.f31292c).F(arrayList);
-                zc.a0(hw0Var.f26972v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
+                zc.a0(hw0Var.f26957v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
                 hw0Var.L(false);
                 return;
             case 5:
@@ -167,15 +167,15 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
         l5.h hVar = (l5.h) this.d;
         s5.g gVar = (s5.g) aVar.d;
         gVar.getClass();
-        i5.d dVar = iVar.f15161c;
-        String str = hVar.f15154a;
-        String str2 = iVar.f15159a;
+        i5.d dVar = iVar.f15162c;
+        String str = hVar.f15155a;
+        String str2 = iVar.f15160a;
         String c10 = w7.h6.c("SQLiteEventStore");
         if (Log.isLoggable(c10, 3)) {
             Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
         }
         ((Long) gVar.c(new uz(gVar, hVar, iVar, 8))).getClass();
-        aVar.f45933a.V(iVar, 1, false);
+        aVar.f45941a.V(iVar, 1, false);
         return null;
     }
 
@@ -201,8 +201,8 @@ public final class uz implements MediaDataController.KeywordResultCallback, f5, 
         wz wzVar = (wz) this.f31291b;
         HashMap hashMap = (HashMap) this.f31292c;
         Runnable runnable = (Runnable) this.d;
-        HashMap hashMap2 = wzVar.f32586f;
-        if (wzVar.f32590w.M != wzVar.f32583b) {
+        HashMap hashMap2 = wzVar.f32585f;
+        if (wzVar.f32589w.M != wzVar.f32582b) {
             return;
         }
         int size = arrayList.size();

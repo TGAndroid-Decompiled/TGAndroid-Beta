@@ -117,7 +117,7 @@ public final class hp0 extends View {
         int i12;
         boolean z10 = this.f38486b;
         if (z10) {
-            i10 = org.telegram.ui.ActionBar.h6.f20724m6;
+            i10 = org.telegram.ui.ActionBar.h6.f20725m6;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.q6;
         }
@@ -164,7 +164,7 @@ public final class hp0 extends View {
             i10 = 0;
         }
         org.telegram.ui.Components.r11 r11Var = this.f38489f;
-        r11Var.f29999p = measuredWidth4 - i10;
+        r11Var.f30000p = measuredWidth4 - i10;
         if (LocaleController.isRTL) {
             dp = (getMeasuredWidth() - r11Var.l()) - AndroidUtilities.dp(58.0f);
         } else {
@@ -185,7 +185,7 @@ public final class hp0 extends View {
                 measuredWidth3 = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
             }
             this.f38494x.setBounds(measuredWidth3 - AndroidUtilities.dp(11.0f), org.telegram.messenger.am.A(11.0f, getMeasuredHeight(), 2), measuredWidth3, (AndroidUtilities.dp(11.0f) + getMeasuredHeight()) / 2);
-            this.f38494x.f(AndroidUtilities.dpf2(3.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var));
+            this.f38494x.f(AndroidUtilities.dpf2(3.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var));
             this.f38494x.draw(canvas);
         } else if (this.f38493w != null && this.f38494x != null) {
             if (LocaleController.isRTL) {
@@ -196,7 +196,7 @@ public final class hp0 extends View {
             this.f38494x.setBounds(measuredWidth2 - AndroidUtilities.dp(11.0f), org.telegram.messenger.am.A(11.0f, getMeasuredHeight(), 2), measuredWidth2, (AndroidUtilities.dp(11.0f) + getMeasuredHeight()) / 2);
             xp0 xp0Var = this.f38494x;
             float dpf2 = AndroidUtilities.dpf2(3.0f);
-            int i12 = org.telegram.ui.ActionBar.h6.f20559d6;
+            int i12 = org.telegram.ui.ActionBar.h6.f20560d6;
             xp0Var.f(dpf2, org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
             this.f38494x.draw(canvas);
             int dp5 = measuredWidth2 - AndroidUtilities.dp(18.0f);
@@ -229,7 +229,7 @@ public final class hp0 extends View {
             rectF.set(f7, measuredHeight, measuredWidth, (AndroidUtilities.dp(22.0f) + getMeasuredHeight()) / 2.0f);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f38490n);
             org.telegram.ui.Components.r11 r11Var2 = this.f38491r;
-            r11Var2.f29999p = min;
+            r11Var2.f30000p = min;
             if (LocaleController.isRTL) {
                 B2 = AndroidUtilities.dp(24.0f);
             } else {
@@ -244,7 +244,7 @@ public final class hp0 extends View {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.h6.f20681k0;
+                paint = org.telegram.ui.ActionBar.h6.f20682k0;
             }
             Paint paint2 = paint;
             if (LocaleController.isRTL) {
@@ -288,7 +288,7 @@ public final class hp0 extends View {
         if (indexOf > 0) {
             trim = trim.substring(0, indexOf);
         }
-        this.f38491r = new org.telegram.ui.Components.r11(Emoji.replaceEmoji(trim, org.telegram.ui.ActionBar.h6.f20758o2.getFontMetricsInt(), false), 13.0f, AndroidUtilities.bold());
+        this.f38491r = new org.telegram.ui.Components.r11(Emoji.replaceEmoji(trim, org.telegram.ui.ActionBar.h6.f20759o2.getFontMetricsInt(), false), 13.0f, AndroidUtilities.bold());
         xp0 xp0Var2 = this.f38493w;
         MessagesController.PeerColor peerColor = null;
         if (xp0Var2 != null) {
@@ -299,13 +299,13 @@ public final class hp0 extends View {
         int i13 = this.f38485a;
         if (z10) {
             TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-            int i14 = xp0.f44138j;
+            int i14 = xp0.f44143j;
             int i15 = tL_emojiStatusCollectible.center_color | (-16777216);
             this.f38493w = new xp0(tL_emojiStatusCollectible.document_id, i15, i15, i15);
         } else {
             if (UserObject.getProfileColorId(user) >= 0) {
                 xp0Var = xp0.c(i13, UserObject.getProfileColorId(user));
-                xp0Var.f44139a = AndroidUtilities.dp(11.0f);
+                xp0Var.f44144a = AndroidUtilities.dp(11.0f);
                 xp0Var.d();
             } else {
                 xp0Var = null;
@@ -349,7 +349,7 @@ public final class hp0 extends View {
             this.f38491r.o(i10);
             paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1f, i10));
             xp0 xp0Var4 = new xp0(tL_peerColorCollectible.gift_emoji_id, intValue, i11, i12);
-            xp0Var4.f44139a = AndroidUtilities.dp(11.0f);
+            xp0Var4.f44144a = AndroidUtilities.dp(11.0f);
             xp0Var4.d();
             this.f38494x = xp0Var4;
             xp0Var4.e(this);
@@ -357,7 +357,7 @@ public final class hp0 extends View {
         }
         int colorId = UserObject.getColorId(user);
         if (colorId < 7) {
-            int i16 = org.telegram.ui.ActionBar.h6.f20820r8[colorId];
+            int i16 = org.telegram.ui.ActionBar.h6.f20821r8[colorId];
             this.f38492s = i16;
             w02 = org.telegram.ui.ActionBar.h6.w0(i16, c6Var);
         } else {
@@ -369,7 +369,7 @@ public final class hp0 extends View {
                 this.f38492s = -1;
                 w02 = peerColor.getColor1();
             } else {
-                int i17 = org.telegram.ui.ActionBar.h6.f20820r8[0];
+                int i17 = org.telegram.ui.ActionBar.h6.f20821r8[0];
                 this.f38492s = i17;
                 w02 = org.telegram.ui.ActionBar.h6.w0(i17, c6Var);
             }
@@ -377,7 +377,7 @@ public final class hp0 extends View {
         this.f38491r.o(w02);
         paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1f, w02));
         xp0 a2 = xp0.a(i13, colorId);
-        a2.f44139a = AndroidUtilities.dp(11.0f);
+        a2.f44144a = AndroidUtilities.dp(11.0f);
         a2.d();
         this.f38494x = a2;
     }

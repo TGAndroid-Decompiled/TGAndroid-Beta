@@ -1,9 +1,9 @@
 package v7;
 public final class e implements h {
-    public final int f49389a;
+    public final int f49397a;
 
     public e(int i10) {
-        this.f49389a = i10;
+        this.f49397a = i10;
     }
 
     @Override
@@ -15,8 +15,8 @@ public final class e implements h {
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof h) {
-                if (this.f49389a == ((e) ((h) obj)).f49389a) {
-                    Object obj2 = g.f49421a;
+                if (this.f49397a == ((e) ((h) obj)).f49397a) {
+                    Object obj2 = g.f49429a;
                     if (obj2.equals(obj2)) {
                         return true;
                     }
@@ -31,11 +31,11 @@ public final class e implements h {
 
     @Override
     public final int hashCode() {
-        return (this.f49389a ^ 14552422) + (g.f49421a.hashCode() ^ 2041407134);
+        return (this.f49397a ^ 14552422) + (g.f49429a.hashCode() ^ 2041407134);
     }
 
     @Override
     public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f49389a + "intEncoding=" + g.f49421a + ')';
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f49397a + "intEncoding=" + g.f49429a + ')';
     }
 }

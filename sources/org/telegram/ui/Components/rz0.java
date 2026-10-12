@@ -7,12 +7,12 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 public final class rz0 extends vm0 {
-    public final uz0 f30285c;
+    public final uz0 f30281c;
     public final uz0 d;
 
     public rz0(uz0 uz0Var, uz0 uz0Var2) {
         this.d = uz0Var;
-        this.f30285c = uz0Var2;
+        this.f30281c = uz0Var2;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class rz0 extends vm0 {
 
     @Override
     public final int h() {
-        ArrayList arrayList = this.f30285c.f31305w;
+        ArrayList arrayList = this.f30281c.f31305w;
         if (arrayList == null) {
             return 0;
         }
@@ -31,7 +31,7 @@ public final class rz0 extends vm0 {
 
     @Override
     public final long i(int i10) {
-        ArrayList arrayList = this.f30285c.f31305w;
+        ArrayList arrayList = this.f30281c.f31305w;
         if (arrayList == null) {
             return 0L;
         }
@@ -41,8 +41,8 @@ public final class rz0 extends vm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         String str;
-        tz0 tz0Var = (tz0) d1Var.f47889a;
-        uz0 uz0Var = this.f30285c;
+        tz0 tz0Var = (tz0) d1Var.f47897a;
+        uz0 uz0Var = this.f30281c;
         ArrayList arrayList = uz0Var.f31305w;
         if (arrayList == null) {
             str = null;
@@ -50,13 +50,13 @@ public final class rz0 extends vm0 {
             str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
         }
         int direction = uz0Var.getDirection();
-        tz0Var.f31003a = str;
+        tz0Var.f30998a = str;
         if (str != null && str.startsWith("animated_")) {
             try {
                 long parseLong = Long.parseLong(str.substring(9));
-                Drawable drawable = tz0Var.f31004b;
+                Drawable drawable = tz0Var.f30999b;
                 if (!(drawable instanceof s5) || ((s5) drawable).i() != parseLong) {
-                    tz0Var.setImageDrawable(s5.n(UserConfig.selectedAccount, parseLong, null, tz0Var.f31007f.d()));
+                    tz0Var.setImageDrawable(s5.n(UserConfig.selectedAccount, parseLong, null, tz0Var.f31002f.d()));
                 }
             } catch (Exception unused) {
                 tz0Var.setImageDrawable(null);
@@ -72,6 +72,6 @@ public final class rz0 extends vm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new tz0(this.d, this.f30285c.getContext()));
+        return new s4.d1(new tz0(this.d, this.f30281c.getContext()));
     }
 }

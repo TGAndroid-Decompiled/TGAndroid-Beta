@@ -18,26 +18,26 @@ import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class dc extends og.b {
     public int d = -1;
-    public int f36758e = -1;
-    public final fc f36759f;
+    public int f36760e = -1;
+    public final fc f36761f;
 
     public dc(fc fcVar) {
-        this.f36759f = fcVar;
+        this.f36761f = fcVar;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        return ((ec) this.f36759f.f37708x.get(d1Var.b())).f16877b;
+        return ((ec) this.f36761f.f37712x.get(d1Var.b())).f16878b;
     }
 
     @Override
     public final int h() {
-        return this.f36759f.f37708x.size();
+        return this.f36761f.f37712x.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((ec) this.f36759f.f37708x.get(i10)).f16876a;
+        return ((ec) this.f36761f.f37712x.get(i10)).f16877a;
     }
 
     @Override
@@ -46,12 +46,12 @@ public final class dc extends og.b {
         String formatString;
         int i12;
         int i13;
-        fc fcVar = this.f36759f;
-        int i14 = fcVar.f37700b;
+        fc fcVar = this.f36761f;
+        int i14 = fcVar.f37704b;
         TLRPC.Chat chat = fcVar.J;
-        ArrayList arrayList = fcVar.f37708x;
-        int i15 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        ArrayList arrayList = fcVar.f37712x;
+        int i15 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i15 != 4) {
             if (i15 != 1 && i15 != 12) {
                 if (i15 == 0) {
@@ -94,29 +94,29 @@ public final class dc extends og.b {
                     } else {
                         formatString = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(boost.expires));
                     }
-                    bVar.d(user, ContactsController.formatName(user), formatString, !((ec) arrayList.get(i10)).f37059f);
+                    bVar.d(user, ContactsController.formatName(user), formatString, !((ec) arrayList.get(i10)).f37063f);
                     bVar.setStatus(boost);
                     bVar.setAvatarPadding(5);
                     return;
                 } else if (i15 == 6) {
-                    ((org.telegram.ui.Cells.e9) view).setText(((ec) arrayList.get(i10)).f37057c);
+                    ((org.telegram.ui.Cells.e9) view).setText(((ec) arrayList.get(i10)).f37061c);
                     return;
                 } else if (i15 == 9) {
                     org.telegram.ui.Cells.y4 y4Var = (org.telegram.ui.Cells.y4) view;
-                    if (fcVar.f37709y == 0) {
-                        y4Var.b(LocaleController.formatPluralString("BoostingShowMoreBoosts", fcVar.f37706s, new Object[0]), R.drawable.arrow_more, 5, false);
+                    if (fcVar.f37713y == 0) {
+                        y4Var.b(LocaleController.formatPluralString("BoostingShowMoreBoosts", fcVar.f37710s, new Object[0]), R.drawable.arrow_more, 5, false);
                         return;
                     } else {
-                        y4Var.b(LocaleController.formatPluralString("BoostingShowMoreGifts", fcVar.f37707w, new Object[0]), R.drawable.arrow_more, 5, false);
+                        y4Var.b(LocaleController.formatPluralString("BoostingShowMoreGifts", fcVar.f37711w, new Object[0]), R.drawable.arrow_more, 5, false);
                         return;
                     }
                 } else if (i15 == 3) {
-                    ((org.telegram.ui.Components.ba0) view).setLink(((ec) arrayList.get(i10)).f37057c);
+                    ((org.telegram.ui.Components.ba0) view).setLink(((ec) arrayList.get(i10)).f37061c);
                     return;
                 } else if (i15 == 11) {
                     ec ecVar = (ec) arrayList.get(i10);
-                    TL_stories.PrepaidGiveaway prepaidGiveaway = ecVar.f37058e;
-                    boolean z10 = ecVar.f37059f;
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = ecVar.f37062e;
+                    boolean z10 = ecVar.f37063f;
                     yg.c cVar = (yg.c) view;
                     if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                         cVar.d(prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, new Object[0])), !z10);
@@ -130,16 +130,16 @@ public final class dc extends og.b {
                 } else if (i15 == 13) {
                     int i16 = this.d;
                     int i17 = fcVar.P;
-                    if (i16 != i17 || this.f36758e != fcVar.O) {
+                    if (i16 != i17 || this.f36760e != fcVar.O) {
                         this.d = i17;
-                        this.f36758e = fcVar.O;
-                        fcVar.f37703f.g();
-                        fcVar.f37703f.a(0, LocaleController.formatPluralString("BoostingBoostsCount", fcVar.P, new Object[0]), null);
+                        this.f36760e = fcVar.O;
+                        fcVar.f37707f.g();
+                        fcVar.f37707f.a(0, LocaleController.formatPluralString("BoostingBoostsCount", fcVar.P, new Object[0]), null);
                         if (MessagesController.getInstance(i14).giveawayGiftsPurchaseAvailable && (i11 = fcVar.O) > 0 && i11 != fcVar.P) {
-                            fcVar.f37703f.a(1, LocaleController.formatPluralString("BoostingGiftsCount", i11, new Object[0]), null);
+                            fcVar.f37707f.a(1, LocaleController.formatPluralString("BoostingGiftsCount", i11, new Object[0]), null);
                         }
-                        fcVar.f37703f.setInitialTabId(fcVar.f37709y);
-                        fcVar.f37703f.c();
+                        fcVar.f37707f.setInitialTabId(fcVar.f37713y);
+                        fcVar.f37707f.c();
                         return;
                     }
                     return;
@@ -148,9 +148,9 @@ public final class dc extends og.b {
                 }
             }
             kg.c cVar2 = (kg.c) view;
-            cVar2.setTitle(((ec) arrayList.get(i10)).f37057c);
+            cVar2.setTitle(((ec) arrayList.get(i10)).f37061c);
             cVar2.c(false);
-            if (d1Var.f47893f == 12) {
+            if (d1Var.f47901f == 12) {
                 cVar2.setPadding(AndroidUtilities.dp(3.0f), cVar2.getPaddingTop(), cVar2.getPaddingRight(), cVar2.getPaddingBottom());
             }
         }
@@ -160,9 +160,9 @@ public final class dc extends og.b {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         ci.m6 m6Var;
         int i11;
-        fc fcVar = this.f36759f;
-        org.telegram.ui.ActionBar.c6 c6Var = fcVar.f37702e;
-        db1 db1Var = fcVar.f37701c;
+        fc fcVar = this.f36761f;
+        org.telegram.ui.ActionBar.c6 c6Var = fcVar.f37706e;
+        db1 db1Var = fcVar.f37705c;
         switch (i10) {
             case 0:
                 m6Var = new xa1(fcVar.getContext(), 2);
@@ -173,20 +173,20 @@ public final class dc extends og.b {
                 m6Var = cVar;
                 break;
             case 2:
-                m6Var = new org.telegram.ui.Cells.a7(viewGroup.getContext(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20503a7, false), 0);
+                m6Var = new org.telegram.ui.Cells.a7(viewGroup.getContext(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false), 0);
                 break;
             case 3:
-                org.telegram.ui.Components.ba0 ba0Var = new org.telegram.ui.Components.ba0(fcVar.getContext(), fcVar.f37701c, null, false, false);
+                org.telegram.ui.Components.ba0 ba0Var = new org.telegram.ui.Components.ba0(fcVar.getContext(), fcVar.f37705c, null, false, false);
                 ba0Var.d.setVisibility(8);
-                ba0Var.f24592a.setGravity(17);
+                ba0Var.f24580a.setGravity(17);
                 ba0Var.h.setVisibility(8);
                 ba0Var.v.setVisibility(8);
                 ba0Var.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
                 m6Var = ba0Var;
                 break;
             case 4:
-                LimitPreviewView limitPreviewView = new LimitPreviewView(fcVar.getContext(), R.drawable.filled_limit_boost, 0, fcVar.f37702e, 0);
-                limitPreviewView.f24017c0 = true;
+                LimitPreviewView limitPreviewView = new LimitPreviewView(fcVar.getContext(), R.drawable.filled_limit_boost, 0, fcVar.f37706e, 0);
+                limitPreviewView.f24018c0 = true;
                 limitPreviewView.setTag(-33024);
                 limitPreviewView.setPadding(0, AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f));
                 limitPreviewView.e(fcVar.d, false);
@@ -210,19 +210,19 @@ public final class dc extends og.b {
                     i11 = R.string.NoBoostersGroupHint;
                 }
                 org.telegram.messenger.am.j(14.0f, i11, 1, textView);
-                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20945y6, null, false, textView, 17);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20946y6, null, false, textView, 17);
                 x5Var.addView(textView, w7.w5.a(-2.0f, 0.0f, 16.0f, 0.0f, 0.0f, -1, 0));
                 m6Var = x5Var;
                 break;
             case 9:
                 q5 q5Var = new q5(fcVar.getContext(), 1);
-                q5Var.a(org.telegram.ui.ActionBar.h6.f20892v6, org.telegram.ui.ActionBar.h6.f20874u6);
+                q5Var.a(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
                 m6Var = q5Var;
                 break;
             case 10:
                 org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(fcVar.getContext());
                 r8Var.m(R.drawable.msg_gift_premium, LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), false);
-                r8Var.f22487s = 64;
+                r8Var.f22488s = 64;
                 int i12 = org.telegram.ui.ActionBar.h6.q6;
                 r8Var.e(i12, i12);
                 m6Var = r8Var;
@@ -237,15 +237,15 @@ public final class dc extends og.b {
                 break;
             case 13:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(db1Var.getParentActivity(), c6Var);
-                fcVar.f37703f = scrollSlidingTextTabStrip;
+                fcVar.f37707f = scrollSlidingTextTabStrip;
                 int i13 = org.telegram.ui.ActionBar.h6.Fh;
                 int i14 = org.telegram.ui.ActionBar.h6.Eh;
                 scrollSlidingTextTabStrip.L = i13;
                 scrollSlidingTextTabStrip.M = i14;
                 scrollSlidingTextTabStrip.e();
                 ci.m6 m6Var2 = new ci.m6(this, db1Var.getParentActivity());
-                fcVar.f37703f.setDelegate(new g(this, 11));
-                m6Var2.addView(fcVar.f37703f, w7.w5.d(48.0f, -2));
+                fcVar.f37707f.setDelegate(new g(this, 11));
+                m6Var2.addView(fcVar.f37707f, w7.w5.d(48.0f, -2));
                 m6Var = m6Var2;
                 break;
             default:

@@ -5,19 +5,19 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 public final class b8 extends g8 {
     public long d;
-    public final l8 f24581e;
+    public final l8 f24569e;
 
     public b8(l8 l8Var, Context context) {
         super(context);
-        this.f24581e = l8Var;
+        this.f24569e = l8Var;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        l8 l8Var = this.f24581e;
+        l8 l8Var = this.f24569e;
         if (action == 0) {
-            if (this.f26320a[this.f26321b].getImageReceiver().hasBitmapImage()) {
+            if (this.f26318a[this.f26319b].getImageReceiver().hasBitmapImage()) {
                 l8Var.B0(true, true);
                 this.d = SystemClock.elapsedRealtime();
                 return true;

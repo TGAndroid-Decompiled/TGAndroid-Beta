@@ -30,8 +30,8 @@ public abstract class a {
             aVar.getClass();
             JSONObject jSONObject = new JSONObject();
             try {
-                jSONObject.put("url", aVar.f16016b.toString());
-                jSONObject.put("width", aVar.f16017c);
+                jSONObject.put("url", aVar.f16017b.toString());
+                jSONObject.put("width", aVar.f16018c);
                 jSONObject.put("height", aVar.d);
             } catch (JSONException unused) {
             }

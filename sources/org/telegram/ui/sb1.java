@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.content.Intent;
 public final class sb1 implements org.telegram.ui.Components.hm0, org.telegram.ui.ActionBar.z1 {
-    public final int f41887a;
-    public final ThemeActivity f41888b;
+    public final int f41891a;
+    public final ThemeActivity f41892b;
 
     public sb1(ThemeActivity themeActivity, int i10) {
-        this.f41887a = i10;
-        this.f41888b = themeActivity;
+        this.f41891a = i10;
+        this.f41892b = themeActivity;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f41887a) {
+        switch (this.f41891a) {
             case 1:
-                ThemeActivity themeActivity = this.f41888b;
+                ThemeActivity themeActivity = this.f41892b;
                 themeActivity.getClass();
                 org.telegram.ui.Components.g5.V(themeActivity, 0, null, null);
                 return;
             default:
-                ThemeActivity themeActivity2 = this.f41888b;
+                ThemeActivity themeActivity2 = this.f41892b;
                 if (themeActivity2.getParentActivity() != null) {
                     try {
                         themeActivity2.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
@@ -34,7 +34,7 @@ public final class sb1 implements org.telegram.ui.Components.hm0, org.telegram.u
     @Override
     public int run() {
         int i10;
-        i10 = this.f41888b.sensitiveContentRow;
+        i10 = this.f41892b.sensitiveContentRow;
         return i10;
     }
 }

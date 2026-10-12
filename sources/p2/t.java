@@ -1,6 +1,9 @@
 package p2;
-public interface t {
-    y2.n D(p pVar, m mVar);
 
-    y2.n y();
+import android.net.Uri;
+import c5.b0;
+public interface t {
+    void a();
+
+    boolean b(Uri uri, b0 b0Var, boolean z10);
 }

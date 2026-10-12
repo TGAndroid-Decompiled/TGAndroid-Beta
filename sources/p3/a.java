@@ -10,15 +10,15 @@ import java.util.regex.Pattern;
 import v7.r6;
 import w7.k;
 public final class a extends k {
-    public static final Pattern f45191c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f45192a = StandardCharsets.UTF_8.newDecoder();
-    public final CharsetDecoder f45193b = StandardCharsets.ISO_8859_1.newDecoder();
+    public static final Pattern f45196c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f45197a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f45198b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
         String str;
-        CharsetDecoder charsetDecoder = this.f45193b;
-        CharsetDecoder charsetDecoder2 = this.f45192a;
+        CharsetDecoder charsetDecoder = this.f45198b;
+        CharsetDecoder charsetDecoder2 = this.f45197a;
         String str2 = null;
         try {
             str = charsetDecoder2.decode(byteBuffer).toString();
@@ -46,7 +46,7 @@ public final class a extends k {
         if (str == null) {
             return new p0(new c(null, null, bArr));
         }
-        Matcher matcher = f45191c.matcher(str);
+        Matcher matcher = f45196c.matcher(str);
         String str3 = null;
         for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
             String group = matcher.group(1);

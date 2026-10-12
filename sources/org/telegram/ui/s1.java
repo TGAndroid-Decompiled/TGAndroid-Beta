@@ -16,13 +16,13 @@ public final class s1 extends WebView {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         t1 t1Var = this.f41780a;
-        t1Var.f42045s = true;
+        t1Var.f42049s = true;
         TL_iv.pageBlockEmbed pageblockembed = t1Var.v;
         if (pageblockembed != null) {
             if (pageblockembed.allow_scrolling) {
                 requestDisallowInterceptTouchEvent(true);
             } else {
-                t1Var.f42047x.f38647f0.requestDisallowInterceptTouchEvent(true);
+                t1Var.f42051x.f38650f0.requestDisallowInterceptTouchEvent(true);
             }
         }
         return super.onTouchEvent(motionEvent);

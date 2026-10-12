@@ -39,17 +39,17 @@ public final class hk0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         frameLayout.addView(gk0Var, w7.w5.a(32.0f, 29.0f, 16.0f, 0.0f, 0.0f, 64, 49));
         gk0Var.a(0);
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final hk0 f37809b;
+            public final hk0 f37806b;
 
             {
-                this.f37809b = this;
+                this.f37806b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.ik0 ik0Var = this.f37809b.f38453c;
+                        org.telegram.ui.Components.ik0 ik0Var = this.f37806b.f38453c;
                         if (!ik0Var.b()) {
                             ik0Var.setProgress(0.0f);
                             ik0Var.d();
@@ -57,7 +57,7 @@ public final class hk0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                         }
                         return;
                     default:
-                        hk0 hk0Var = this.f37809b;
+                        hk0 hk0Var = this.f37806b;
                         Utilities.Callback callback2 = hk0Var.d;
                         if (callback2 != null) {
                             callback2.run(Boolean.TRUE);
@@ -70,7 +70,7 @@ public final class hk0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         });
         e7.addView(frameLayout, w7.w5.n(-1, 110));
         TextView textView = new TextView(context);
-        int i12 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i12 = org.telegram.ui.ActionBar.h6.f20668j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
@@ -87,7 +87,7 @@ public final class hk0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         e7.addView(new ai.x5(context, LocaleController.getString(R.string.NotificationsPermissionAlert2), R.drawable.msg_members_list2), w7.w5.n(-1, -2));
         e7.addView(new ai.x5(context, LocaleController.getString(R.string.NotificationsPermissionAlert3), R.drawable.msg_customize_s), w7.w5.n(-1, -2));
         setCustomView(e7);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20630h5));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20631h5));
         TextView textView3 = new TextView(context);
         if (z10) {
             i10 = R.string.NotificationsPermissionSettings;
@@ -101,17 +101,17 @@ public final class hk0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         textView3.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
         textView3.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{24.0f}, org.telegram.ui.ActionBar.h6.x0(null, i11, false)));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final hk0 f37809b;
+            public final hk0 f37806b;
 
             {
-                this.f37809b = this;
+                this.f37806b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.ik0 ik0Var = this.f37809b.f38453c;
+                        org.telegram.ui.Components.ik0 ik0Var = this.f37806b.f38453c;
                         if (!ik0Var.b()) {
                             ik0Var.setProgress(0.0f);
                             ik0Var.d();
@@ -119,7 +119,7 @@ public final class hk0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                         }
                         return;
                     default:
-                        hk0 hk0Var = this.f37809b;
+                        hk0 hk0Var = this.f37806b;
                         Utilities.Callback callback2 = hk0Var.d;
                         if (callback2 != null) {
                             callback2.run(Boolean.TRUE);

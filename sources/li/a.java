@@ -8,7 +8,7 @@ import hh.j;
 import java.util.ArrayList;
 import java.util.Iterator;
 public final class a {
-    public final e f15345a;
+    public final e f15346a;
 
     public final void a() {
         boolean z10;
@@ -19,17 +19,17 @@ public final class a {
         boolean z13;
         boolean z14;
         boolean z15;
-        e eVar = this.f15345a;
+        e eVar = this.f15346a;
         ArrayList arrayList = eVar.d;
-        mi.a aVar2 = eVar.f15366p;
-        RectF rectF = eVar.f15363m;
-        int width = eVar.f15359i.getWidth();
-        int height = eVar.f15359i.getHeight();
-        if (eVar.f15364n == width && eVar.f15365o == height) {
+        mi.a aVar2 = eVar.f15367p;
+        RectF rectF = eVar.f15364m;
+        int width = eVar.f15360i.getWidth();
+        int height = eVar.f15360i.getHeight();
+        if (eVar.f15365n == width && eVar.f15366o == height) {
             z10 = false;
         } else {
-            eVar.f15364n = width;
-            eVar.f15365o = height;
+            eVar.f15365n = width;
+            eVar.f15366o = height;
             z10 = true;
         }
         int size = arrayList.size();
@@ -38,19 +38,19 @@ public final class a {
             Object obj = arrayList.get(i11);
             i11++;
             d dVar = (d) obj;
-            View view = dVar.f15347a;
-            RectF rectF2 = dVar.f15351f;
+            View view = dVar.f15348a;
+            RectF rectF2 = dVar.f15352f;
             RectF rectF3 = dVar.d;
-            RectF rectF4 = dVar.f15349c;
-            RectF rectF5 = dVar.f15350e;
-            ch.d dVar2 = dVar.f15348b;
+            RectF rectF4 = dVar.f15350c;
+            RectF rectF5 = dVar.f15351e;
+            ch.d dVar2 = dVar.f15349b;
             boolean z16 = z10;
-            if (!j.c(view, eVar.f15359i, rectF)) {
+            if (!j.c(view, eVar.f15360i, rectF)) {
                 z10 = z16;
             } else {
                 if (!rectF4.equals(rectF)) {
                     rectF4.set(rectF);
-                    dVar.f15352g = true;
+                    dVar.f15353g = true;
                     dVar2.t(rectF4.left, rectF4.top);
                     z11 = true;
                 } else {
@@ -60,7 +60,7 @@ public final class a {
                 if (!rectF3.equals(rectF)) {
                     rectF3.set(rectF);
                     z12 = true;
-                    dVar.f15352g = true;
+                    dVar.f15353g = true;
                     z11 = true;
                 } else {
                     z12 = true;
@@ -68,17 +68,17 @@ public final class a {
                 rectF.offset(rectF4.left, rectF4.top);
                 if (!rectF5.equals(rectF)) {
                     rectF5.set(rectF);
-                    dVar.f15352g = z12;
+                    dVar.f15353g = z12;
                     z11 = true;
                 }
                 rectF.set(rectF5);
                 rectF.inset(-dVar2.h, -dVar2.f4682i);
                 if (!rectF2.equals(rectF)) {
                     rectF2.set(rectF);
-                    dVar.f15352g = true;
+                    dVar.f15353g = true;
                     z11 = true;
                 }
-                View view2 = dVar.f15347a;
+                View view2 = dVar.f15348a;
                 if (!rectF5.isEmpty() && view2.isAttachedToWindow() && rectF5.intersects(0.0f, 0.0f, width, height) && dVar2.f4685l > 0 && view2.getVisibility() == 0 && view2.getAlpha() > 0.0f && view2.getScaleX() != 0.0f && view2.getScaleY() != 0.0f) {
                     z13 = true;
                 } else {
@@ -93,7 +93,7 @@ public final class a {
                     z15 = z11;
                 } else {
                     dVar.h = z13;
-                    dVar.f15352g = true;
+                    dVar.f15353g = true;
                     z15 = true;
                 }
                 z10 = z15;
@@ -101,7 +101,7 @@ public final class a {
         }
         boolean z17 = z10;
         if (z17) {
-            aVar2.f16194b = 0;
+            aVar2.f16195b = 0;
             int size2 = arrayList.size();
             int i12 = 0;
             while (i12 < size2) {
@@ -109,16 +109,16 @@ public final class a {
                 i12++;
                 d dVar3 = (d) obj2;
                 if (dVar3.h) {
-                    RectF rectF6 = dVar3.f15351f;
+                    RectF rectF6 = dVar3.f15352f;
                     aVar2.a(rectF6.left, rectF6.top, rectF6.right, rectF6.bottom);
                 }
             }
-            mi.b bVar = eVar.f15356e;
-            mi.a aVar3 = eVar.f15367q;
+            mi.b bVar = eVar.f15357e;
+            mi.a aVar3 = eVar.f15368q;
             bVar.getClass();
             if (aVar2 != aVar3) {
-                aVar3.f16194b = 0;
-                int i13 = aVar2.f16194b;
+                aVar3.f16195b = 0;
+                int i13 = aVar2.f16195b;
                 for (int i14 = 0; i14 < i13; i14++) {
                     RectF b10 = aVar2.b(i14);
                     float f7 = b10.left;
@@ -126,18 +126,18 @@ public final class a {
                     float f11 = b10.right;
                     float f12 = b10.bottom;
                     int i15 = 0;
-                    while (i15 < aVar3.f16194b) {
+                    while (i15 < aVar3.f16195b) {
                         RectF b11 = aVar3.b(i15);
                         float f13 = b11.left;
                         float f14 = b11.right;
-                        float f15 = bVar.f16196a;
+                        float f15 = bVar.f16197a;
                         if (f11 >= f13 ? !(f14 >= f7 || f7 - f14 <= f15) : f13 - f11 > f15) {
                             aVar = aVar2;
                         } else {
                             float f16 = b11.top;
                             float f17 = b11.bottom;
                             aVar = aVar2;
-                            float f18 = bVar.f16197b;
+                            float f18 = bVar.f16198b;
                             if (f12 >= f16 ? f17 >= f10 || f10 - f17 <= f18 : f16 - f12 <= f18) {
                                 if (f13 < f7) {
                                     f7 = f13;
@@ -161,7 +161,7 @@ public final class a {
                     }
                     aVar3.a(f7, f10, f11, f12);
                 }
-                int i16 = aVar3.f16194b;
+                int i16 = aVar3.f16195b;
                 for (int i17 = 1; i17 < i16; i17++) {
                     RectF b12 = aVar3.b(i17);
                     float f19 = b12.left;
@@ -189,35 +189,35 @@ public final class a {
                 throw new IllegalArgumentException("positions and output must be different arrays");
             }
         }
-        ArrayList arrayList2 = eVar.f15369s;
+        ArrayList arrayList2 = eVar.f15370s;
         if (arrayList2.size() <= 0) {
-            Iterator it = eVar.f15355c.iterator();
+            Iterator it = eVar.f15356c.iterator();
             if (!it.hasNext()) {
                 if (z17) {
                     i10 = 4;
                 } else {
                     i10 = 0;
                 }
-                long j3 = eVar.f15362l;
+                long j3 = eVar.f15363l;
                 long j10 = eVar.h;
                 if (j3 != j10) {
-                    eVar.f15362l = j10;
+                    eVar.f15363l = j10;
                     i10 |= 8;
                 }
-                long j11 = eVar.f15361k;
-                long j12 = eVar.f15358g;
+                long j11 = eVar.f15362k;
+                long j12 = eVar.f15359g;
                 if (j11 != j12) {
-                    eVar.f15361k = j12;
+                    eVar.f15362k = j12;
                     i10 |= 2;
                 }
-                long j13 = eVar.f15360j;
-                long j14 = eVar.f15357f;
+                long j13 = eVar.f15361j;
+                long j14 = eVar.f15358f;
                 if (j13 != j14) {
-                    eVar.f15360j = j14;
+                    eVar.f15361j = j14;
                     i10 |= 1;
                 }
                 if (i10 != 0) {
-                    c cVar = eVar.f15353a;
+                    c cVar = eVar.f15354a;
                     if (cVar != null) {
                         cVar.b(i10);
                     }
@@ -228,9 +228,9 @@ public final class a {
                         i19++;
                         d dVar4 = (d) obj3;
                         boolean z18 = dVar4.h;
-                        ch.d dVar5 = dVar4.f15348b;
-                        if (z18 && dVar4.f15352g) {
-                            dVar4.f15352g = false;
+                        ch.d dVar5 = dVar4.f15349b;
+                        if (z18 && dVar4.f15353g) {
+                            dVar4.f15353g = false;
                             if (Build.VERSION.SDK_INT >= 29 && (dVar5 instanceof ch.e)) {
                                 dVar5.w();
                             } else {

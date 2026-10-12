@@ -12,7 +12,7 @@ public abstract class ka extends wm0 {
     public int X2;
     public boolean Y2;
     public int Z2;
-    public boolean f27796a3;
+    public boolean f27799a3;
 
     @Override
     public void dispatchDraw(Canvas canvas) {
@@ -26,7 +26,7 @@ public abstract class ka extends wm0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view.getY() + view.getMeasuredHeight() < this.V2 && !this.f27796a3 && !Z0()) {
+        if (view.getY() + view.getMeasuredHeight() < this.V2 && !this.f27799a3 && !Z0()) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -34,9 +34,9 @@ public abstract class ka extends wm0 {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        this.f27796a3 = true;
+        this.f27799a3 = true;
         super.f(canvas, rectF);
-        this.f27796a3 = false;
+        this.f27799a3 = false;
     }
 
     @Override

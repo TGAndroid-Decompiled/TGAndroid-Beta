@@ -8,11 +8,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class w90 extends sr0 {
-    public final ba0 f32363b1;
+    public final ba0 f32349b1;
 
     public w90(ba0 ba0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, null, str, false, str2, false, c6Var);
-        this.f32363b1 = ba0Var;
+        this.f32349b1 = ba0Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class w90 extends sr0 {
             return;
         }
         if (iVar != null && iVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) iVar.n(0)).f19806id;
+            long j3 = ((TLRPC.Dialog) iVar.n(0)).f19807id;
             if (j3 != 0 && j3 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j3, true));
             } else {
@@ -31,6 +31,6 @@ public final class w90 extends sr0 {
         } else {
             formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
         }
-        this.f32363b1.e(R.raw.forward, AndroidUtilities.replaceTags(formatString));
+        this.f32349b1.e(R.raw.forward, AndroidUtilities.replaceTags(formatString));
     }
 }

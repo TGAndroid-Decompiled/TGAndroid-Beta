@@ -26,7 +26,7 @@ public final class v81 implements ImageReceiver.ImageReceiverDelegate {
         y81 y81Var = (y81) this.f31460a;
         ImageReceiver imageReceiver2 = y81Var.Q;
         if (z10) {
-            if (y81Var.N != null || y81Var.f32989d0 != null) {
+            if (y81Var.N != null || y81Var.f32982d0 != null) {
                 int dp = AndroidUtilities.dp(150.0f);
                 org.telegram.ui.lu0 lu0Var = y81Var.N;
                 if (lu0Var != null) {
@@ -84,17 +84,17 @@ public final class v81 implements ImageReceiver.ImageReceiverDelegate {
                     z13 = true;
                     int i13 = 0;
                     while (true) {
-                        if (i13 < y81Var.f32989d0.size()) {
-                            x81Var = (x81) y81Var.f32989d0.get(i13);
+                        if (i13 < y81Var.f32982d0.size()) {
+                            x81Var = (x81) y81Var.f32982d0.get(i13);
                             if (i13 == 0) {
                                 d = 0.0d;
                             } else {
-                                d = x81Var.f32678a;
+                                d = x81Var.f32677a;
                             }
-                            if (i13 == y81Var.f32989d0.size() - 1) {
+                            if (i13 == y81Var.f32982d0.size() - 1) {
                                 d10 = 9.9999999E7d;
                             } else {
-                                d10 = ((x81) y81Var.f32989d0.get(i13 + 1)).f32678a;
+                                d10 = ((x81) y81Var.f32982d0.get(i13 + 1)).f32677a;
                             }
                             double d11 = y81Var.O;
                             if (d11 >= d && d11 <= d10) {
@@ -107,10 +107,10 @@ public final class v81 implements ImageReceiver.ImageReceiverDelegate {
                         }
                     }
                     if (x81Var != null) {
-                        y81Var.R = x81Var.f32679b;
-                        y81Var.S = x81Var.f32680c;
-                        y81Var.T = y81Var.f32986b0;
-                        y81Var.U = y81Var.f32988c0;
+                        y81Var.R = x81Var.f32678b;
+                        y81Var.S = x81Var.f32679c;
+                        y81Var.T = y81Var.f32979b0;
+                        y81Var.U = y81Var.f32981c0;
                     } else {
                         return;
                     }

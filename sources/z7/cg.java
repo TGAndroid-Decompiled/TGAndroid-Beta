@@ -3,16 +3,16 @@ package z7;
 import java.util.List;
 import java.util.ListIterator;
 public final class cg extends e9.c implements ListIterator {
-    public final e9.l f53846e;
+    public final e9.l f53854e;
 
     public cg(e9.l lVar) {
         super(lVar, (char) 0);
-        this.f53846e = lVar;
+        this.f53854e = lVar;
     }
 
     @Override
     public final void add(Object obj) {
-        e9.l lVar = this.f53846e;
+        e9.l lVar = this.f53854e;
         boolean isEmpty = lVar.isEmpty();
         b();
         ((ListIterator) this.f8717b).add(obj);
@@ -53,6 +53,6 @@ public final class cg extends e9.c implements ListIterator {
 
     public cg(e9.l lVar, int i10) {
         super(lVar, ((List) lVar.f8763c).listIterator(i10), (char) 0);
-        this.f53846e = lVar;
+        this.f53854e = lVar;
     }
 }

@@ -32,7 +32,7 @@ public final class j {
     public static void a(d dVar) {
         k6.d dVar2 = k6.d.d;
         Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f14702a);
+        int d = dVar2.d(context, k6.e.f14703a);
         String c10 = r.c(context, d);
         String b10 = r.b(context, d);
         LinearLayout linearLayout = new LinearLayout(dVar.getContext());

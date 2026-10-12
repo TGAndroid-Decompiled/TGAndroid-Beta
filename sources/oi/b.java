@@ -8,35 +8,35 @@ import java.net.IDN;
 import java.util.Locale;
 import java.util.regex.Pattern;
 public final class b {
-    public static final Pattern f16910g = Pattern.compile("[A-Za-z0-9][A-Za-z0-9_-]*(/[A-Za-z0-9][A-Za-z0-9_-]*)*");
+    public static final Pattern f16911g = Pattern.compile("[A-Za-z0-9][A-Za-z0-9_-]*(/[A-Za-z0-9][A-Za-z0-9_-]*)*");
     public static final Pattern h = Pattern.compile("[A-Za-z0-9_-]+");
-    public static final b f16911i = a().a();
-    public final int f16912a;
-    public final String f16913b;
-    public final int f16914c;
+    public static final b f16912i = a().a();
+    public final int f16913a;
+    public final String f16914b;
+    public final int f16915c;
     public final String d;
-    public final String f16915e;
-    public final String f16916f;
+    public final String f16916e;
+    public final String f16917f;
 
     public b(a aVar) {
-        int i10 = aVar.f16905a;
-        this.f16912a = i10;
-        this.f16913b = aVar.f16906b;
+        int i10 = aVar.f16906a;
+        this.f16913a = i10;
+        this.f16914b = aVar.f16907b;
         if (i10 == 3) {
-            this.f16916f = aVar.f16909f;
-            this.f16914c = 0;
+            this.f16917f = aVar.f16910f;
+            this.f16915c = 0;
             this.d = "";
-            this.f16915e = "";
+            this.f16916e = "";
         } else if (i10 == 2) {
-            this.f16916f = aVar.f16909f;
-            this.f16914c = aVar.f16907c;
+            this.f16917f = aVar.f16910f;
+            this.f16915c = aVar.f16908c;
             this.d = "";
-            this.f16915e = "";
+            this.f16916e = "";
         } else if (i10 == 1) {
-            this.f16916f = "";
-            this.f16914c = aVar.f16907c;
+            this.f16917f = "";
+            this.f16915c = aVar.f16908c;
             this.d = aVar.d;
-            this.f16915e = aVar.f16908e;
+            this.f16916e = aVar.f16909e;
         } else {
             throw new IllegalArgumentException();
         }
@@ -44,11 +44,11 @@ public final class b {
 
     public static a a() {
         ?? obj = new Object();
-        obj.f16905a = 1;
-        obj.f16906b = "";
+        obj.f16906a = 1;
+        obj.f16907b = "";
         obj.d = "";
-        obj.f16908e = "";
-        obj.f16909f = "";
+        obj.f16909e = "";
+        obj.f16910f = "";
         return obj;
     }
 
@@ -107,7 +107,7 @@ public final class b {
         if (string == null) {
             string = "";
         }
-        a2.f16906b = string;
+        a2.f16907b = string;
         if (string2 == null) {
             string2 = "";
         }
@@ -115,16 +115,16 @@ public final class b {
         if (string3 == null) {
             string3 = "";
         }
-        a2.f16908e = string3;
+        a2.f16909e = string3;
         if (string4 != null) {
             str = string4;
         }
-        a2.f16909f = str;
-        a2.f16907c = i11;
+        a2.f16910f = str;
+        a2.f16908c = i11;
         if (e7 != 0) {
             i13 = e7;
         }
-        a2.f16905a = i13;
+        a2.f16906a = i13;
         return a2.a();
     }
 
@@ -169,7 +169,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (this.f16914c == bVar.f16914c && this.f16912a == bVar.f16912a && Objects.equals(this.f16913b, bVar.f16913b) && Objects.equals(this.d, bVar.d) && Objects.equals(this.f16915e, bVar.f16915e) && Objects.equals(this.f16916f, bVar.f16916f)) {
+                if (this.f16915c == bVar.f16915c && this.f16913a == bVar.f16913a && Objects.equals(this.f16914b, bVar.f16914b) && Objects.equals(this.d, bVar.d) && Objects.equals(this.f16916e, bVar.f16916e) && Objects.equals(this.f16917f, bVar.f16917f)) {
                     return true;
                 }
                 return false;
@@ -183,9 +183,9 @@ public final class b {
         String str;
         String str2;
         boolean equals;
-        String str3 = this.f16913b;
+        String str3 = this.f16914b;
         if (!TextUtils.isEmpty(str3)) {
-            if (this.f16912a == 3) {
+            if (this.f16913a == 3) {
                 if (!TextUtils.isEmpty(str3)) {
                     int indexOf = str3.indexOf(47);
                     if (indexOf >= 0) {
@@ -198,19 +198,19 @@ public final class b {
                     } else {
                         str2 = null;
                     }
-                    if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && f16910g.matcher(str2).matches()))) {
+                    if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && f16911g.matcher(str2).matches()))) {
                         try {
                             equals = str.equals(IDN.toASCII(str, 3).toLowerCase(Locale.US));
                         } catch (IllegalArgumentException unused) {
                         }
-                        if (!equals && g(this.f16916f)) {
+                        if (!equals && g(this.f16917f)) {
                             return true;
                         }
                     }
                 }
                 equals = false;
                 return !equals ? false : false;
-            } else if (this.f16914c > 0) {
+            } else if (this.f16915c > 0) {
                 return true;
             }
         }
@@ -219,7 +219,7 @@ public final class b {
 
     public final void h(SharedPreferences.Editor editor) {
         int i10;
-        int i11 = this.f16912a;
+        int i11 = this.f16913a;
         int c10 = m1.j.c(i11);
         if (c10 != 1) {
             if (c10 != 2) {
@@ -231,11 +231,11 @@ public final class b {
             i10 = 1;
         }
         editor.putInt("proxy_type", i10);
-        editor.putString("proxy_ip", this.f16913b);
+        editor.putString("proxy_ip", this.f16914b);
         int c11 = m1.j.c(i11);
-        int i12 = this.f16914c;
+        int i12 = this.f16915c;
         if (c11 != 0) {
-            String str = this.f16916f;
+            String str = this.f16917f;
             if (c11 != 1) {
                 if (c11 != 2) {
                     return;
@@ -254,7 +254,7 @@ public final class b {
         }
         editor.putInt("proxy_port", i12);
         editor.remove("proxy_secret");
-        String str2 = this.f16915e;
+        String str2 = this.f16916e;
         if (TextUtils.isEmpty(str2)) {
             editor.remove("proxy_pass");
         } else {
@@ -269,6 +269,6 @@ public final class b {
     }
 
     public final int hashCode() {
-        return Objects.hash(m1.j.a(this.f16912a), this.f16913b, Integer.valueOf(this.f16914c), this.d, this.f16915e, this.f16916f);
+        return Objects.hash(m1.j.a(this.f16913a), this.f16914b, Integer.valueOf(this.f16915c), this.d, this.f16916e, this.f16917f);
     }
 }

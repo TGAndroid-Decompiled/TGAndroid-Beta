@@ -20,7 +20,7 @@ public abstract class jb0 extends y71 {
     public jb0(org.telegram.ui.ActionBar.m2 m2Var, long j3) {
         super(m2Var.getParentActivity(), m2Var.getCurrentAccount(), m2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.h6.f20503a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f20504a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -32,14 +32,14 @@ public abstract class jb0 extends y71 {
         this.U = ib0Var;
         ib0Var.B = false;
         setDimBehindAlpha(75);
-        this.f32976w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        wh.g gVar = ib0Var.f50661f;
-        this.f32972f = gVar;
-        this.f32971e = gVar;
+        this.f32969w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        wh.g gVar = ib0Var.f50669f;
+        this.f32965f = gVar;
+        this.f32964e = gVar;
         this.d.setAdapter(gVar);
         this.d.p1();
         ai.w0 w0Var = this.d;
-        ib0Var.f50670p = w0Var;
+        ib0Var.f50678p = w0Var;
         w0Var.setOnItemClickListener(new ai.g(ib0Var, 18));
         s4.t0 onScrollListener = w0Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -67,9 +67,9 @@ public abstract class jb0 extends y71 {
         int action = motionEvent.getAction();
         ib0 ib0Var = this.U;
         if (action == 0) {
-            this.Y = this.f32978y;
+            this.Y = this.f32971y;
             ib0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f32978y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f32971y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -80,13 +80,13 @@ public abstract class jb0 extends y71 {
             if (m2Var instanceof org.telegram.ui.eo) {
                 boolean U9 = ((org.telegram.ui.eo) m2Var).U9();
                 this.Z = true;
-                hu huVar = new hu(25, this, g2Var);
+                jt jtVar = new jt(26, this, g2Var);
                 if (U9) {
                     j3 = 200;
                 } else {
                     j3 = 0;
                 }
-                AndroidUtilities.runOnUIThread(huVar, j3);
+                AndroidUtilities.runOnUIThread(jtVar, j3);
             } else {
                 this.Z = true;
                 setFocusable(true);
@@ -108,7 +108,7 @@ public abstract class jb0 extends y71 {
     @Override
     public final void J(int i10) {
         super.J(i10);
-        this.V.setTranslationY(this.f32970c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f32963c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class jb0 extends y71 {
             } else {
                 i10 = 0;
             }
-            if (this.f32978y != i10) {
-                this.f32978y = i10;
+            if (this.f32971y != i10) {
+                this.f32971y = i10;
                 J(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class jb0 extends y71 {
 
     @Override
     public final void onBackPressed() {
-        wh.k kVar = this.U.f50673s;
+        wh.k kVar = this.U.f50681s;
         if (kVar != null) {
             kVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class jb0 extends y71 {
     @Override
     public final void show() {
         ib0 ib0Var = this.U;
-        if (ib0Var.f50658b && this.f32978y == 0) {
-            this.f32978y = AndroidUtilities.dp(8.0f);
+        if (ib0Var.f50666b && this.f32971y == 0) {
+            this.f32971y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        ib0Var.f50658b = false;
+        ib0Var.f50666b = false;
     }
 }

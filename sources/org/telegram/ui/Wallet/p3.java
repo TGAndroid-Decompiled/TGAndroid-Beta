@@ -29,32 +29,32 @@ import org.telegram.ui.Components.x01;
 import org.telegram.ui.Components.za;
 import org.telegram.ui.LaunchActivity;
 public final class p3 implements Utilities.Callback {
-    public final LinearLayout f35207a;
-    public final f4 f35208b;
-    public final org.telegram.ui.ActionBar.c6 f35209c;
+    public final LinearLayout f35209a;
+    public final f4 f35210b;
+    public final org.telegram.ui.ActionBar.c6 f35211c;
     public final int d;
-    public final TextView f35210e;
-    public final k2[] f35211f;
-    public final x01 f35212g;
+    public final TextView f35212e;
+    public final k2[] f35213f;
+    public final x01 f35214g;
     public final Utilities.Callback3 h;
-    public final Context f35213i;
-    public final TextView[] f35214j;
-    public final int f35215k;
-    public final SpannableString[] f35216l;
+    public final Context f35215i;
+    public final TextView[] f35216j;
+    public final int f35217k;
+    public final SpannableString[] f35218l;
 
     public p3(LinearLayout linearLayout, f4 f4Var, org.telegram.ui.ActionBar.c6 c6Var, int i10, TextView textView, k2[] k2VarArr, x01 x01Var, Utilities.Callback3 callback3, Context context, TextView[] textViewArr, int i11, SpannableString[] spannableStringArr) {
-        this.f35207a = linearLayout;
-        this.f35208b = f4Var;
-        this.f35209c = c6Var;
+        this.f35209a = linearLayout;
+        this.f35210b = f4Var;
+        this.f35211c = c6Var;
         this.d = i10;
-        this.f35210e = textView;
-        this.f35211f = k2VarArr;
-        this.f35212g = x01Var;
+        this.f35212e = textView;
+        this.f35213f = k2VarArr;
+        this.f35214g = x01Var;
         this.h = callback3;
-        this.f35213i = context;
-        this.f35214j = textViewArr;
-        this.f35215k = i11;
-        this.f35216l = spannableStringArr;
+        this.f35215i = context;
+        this.f35216j = textViewArr;
+        this.f35217k = i11;
+        this.f35218l = spannableStringArr;
     }
 
     @Override
@@ -103,23 +103,23 @@ public final class p3 implements Utilities.Callback {
         } else {
             z10 = true;
         }
-        LinearLayout linearLayout = this.f35207a;
+        LinearLayout linearLayout = this.f35209a;
         if ((linearLayout.getParent() instanceof View) && (linearLayout.getParent().getParent() instanceof u91) && ((u91) linearLayout.getParent().getParent()).getViewPages()[0] != linearLayout.getParent()) {
             z11 = false;
         } else {
             z11 = true;
         }
         boolean z18 = wallettransaction.key_change;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f35209c;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f35211c;
         int i17 = this.d;
-        k2[] k2VarArr2 = this.f35211f;
+        k2[] k2VarArr2 = this.f35213f;
         if (!z18 && wallettransaction.nft == null) {
             if (z10) {
-                w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var);
+                w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var);
             } else {
                 w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, c6Var);
             }
-            f4 f4Var = this.f35208b;
+            f4 f4Var = this.f35210b;
             f4Var.setTextColor(w02);
             SpannableStringBuilder o9 = l0.o(l0.n(abs, false), 0.75f);
             if (z17) {
@@ -159,7 +159,7 @@ public final class p3 implements Utilities.Callback {
             }
             f4Var.setText(spannableStringBuilder);
             CharSequence l4 = l0.v(i17).l(abs, false);
-            TextView textView = this.f35210e;
+            TextView textView = this.f35212e;
             if (z13) {
                 if (wallettransaction.failed) {
                     a2 = LocaleController.getString(R.string.WalletFailed);
@@ -168,9 +168,9 @@ public final class p3 implements Utilities.Callback {
                 }
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a2);
                 if (wallettransaction.failed) {
-                    i15 = org.telegram.ui.ActionBar.h6.f20780p7;
+                    i15 = org.telegram.ui.ActionBar.h6.f20781p7;
                 } else {
-                    i15 = org.telegram.ui.ActionBar.h6.f20744n6;
+                    i15 = org.telegram.ui.ActionBar.h6.f20745n6;
                 }
                 c12 = 0;
                 spannableStringBuilder2.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(i15, c6Var)), 0, spannableStringBuilder2.length(), 33);
@@ -179,7 +179,7 @@ public final class p3 implements Utilities.Callback {
                 c12 = 0;
                 textView.setText(l4);
             }
-            if (z16 && (k2Var3 = k2VarArr2[c12]) != null && (zaVar3 = k2Var3.f25295e) != null) {
+            if (z16 && (k2Var3 = k2VarArr2[c12]) != null && (zaVar3 = k2Var3.f25287e) != null) {
                 zaVar3.setTitle(l0.k("Grams", o9, R.string.Grams_other));
             }
         } else {
@@ -188,12 +188,12 @@ public final class p3 implements Utilities.Callback {
             boolean z19 = z11;
             j3 = abs2;
             if (z18) {
-                if (z19 && (k2Var2 = k2VarArr2[0]) != null && (zaVar2 = k2Var2.f25295e) != null) {
+                if (z19 && (k2Var2 = k2VarArr2[0]) != null && (zaVar2 = k2Var2.f25287e) != null) {
                     zaVar2.setTitle(l0.k("Grams", l0.o(l0.n(abs, false), 0.75f), R.string.Grams_other));
                 }
             } else {
                 TL_wallet.nftItem nftitem = wallettransaction.nft;
-                if (nftitem != null && z19 && (k2Var = k2VarArr2[0]) != null && (zaVar = k2Var.f25295e) != null) {
+                if (nftitem != null && z19 && (k2Var = k2VarArr2[0]) != null && (zaVar = k2Var.f25287e) != null) {
                     if (TextUtils.isEmpty(nftitem.name)) {
                         str = LocaleController.getString(R.string.WalletCollectible);
                     } else {
@@ -203,7 +203,7 @@ public final class p3 implements Utilities.Callback {
                 }
             }
         }
-        x01 x01Var2 = this.f35212g;
+        x01 x01Var2 = this.f35214g;
         x01Var2.removeAllViews();
         TL_wallet.WalletTransactionPeer walletTransactionPeer = wallettransaction.peer;
         boolean z20 = walletTransactionPeer instanceof TL_wallet.walletTransactionPeerUser;
@@ -211,7 +211,7 @@ public final class p3 implements Utilities.Callback {
         if (z20) {
             TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = (TL_wallet.walletTransactionPeerUser) walletTransactionPeer;
             TLRPC.User user = MessagesController.getInstance(i17).getUser(Long.valueOf(wallettransactionpeeruser.user_id));
-            if (user != null && !UserObject.isService(user.f19949id)) {
+            if (user != null && !UserObject.isService(user.f19950id)) {
                 if (z12) {
                     i13 = R.string.WalletSender;
                 } else {
@@ -224,7 +224,7 @@ public final class p3 implements Utilities.Callback {
                 if (callback3 != null) {
                     sVar = null;
                 } else {
-                    sVar = new s(7, k2VarArr2, user);
+                    sVar = new s(8, k2VarArr2, user);
                 }
                 k2VarArr = k2VarArr2;
                 x01Var2.l(string, i17, j10, lVar, string2, sVar);
@@ -434,7 +434,7 @@ public final class p3 implements Utilities.Callback {
             }
             String string5 = LocaleController.getString(R.string.WalletAddress);
             String str5 = walletTransactionPeer2.address;
-            s sVar2 = new s(8, k2VarArr, c6Var);
+            s sVar2 = new s(9, k2VarArr, c6Var);
             if (TextUtils.isEmpty(str5)) {
                 charSequence = LocaleController.getString(R.string.WalletUnknown);
             } else {
@@ -462,10 +462,10 @@ public final class p3 implements Utilities.Callback {
             } else {
                 str2 = null;
             }
-            x01Var.i(string5, charSequence, 14, null, str2, new s(9, k2VarArr, walletTransactionPeer2));
+            x01Var.i(string5, charSequence, 14, null, str2, new s(10, k2VarArr, walletTransactionPeer2));
         }
         int i19 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        Context context = this.f35213i;
+        Context context = this.f35215i;
         if (i19 > 0 && wallettransaction.gasless) {
             SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder("x ");
             gr grVar = new gr(R.drawable.wallet_gram_small, 2);
@@ -482,20 +482,20 @@ public final class p3 implements Utilities.Callback {
             r42 = 0;
             if (i19 > 0 || wallettransaction.nft != null || wallettransaction.preview) {
                 TextView textView2 = new TextView(context);
-                TextView[] textViewArr = this.f35214j;
+                TextView[] textViewArr = this.f35216j;
                 textViewArr[0] = textView2;
                 textView2.setGravity(16);
                 textViewArr[0].setIncludeFontPadding(false);
                 textViewArr[0].setTextSize(1, 14.0f);
                 TextView textView3 = textViewArr[0];
                 if (z13) {
-                    i12 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var);
+                    i12 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var);
                 } else {
-                    i12 = this.f35215k;
+                    i12 = this.f35217k;
                 }
                 textView3.setTextColor(i12);
                 if (wallettransaction.preview && i19 <= 0) {
-                    SpannableString[] spannableStringArr = this.f35216l;
+                    SpannableString[] spannableStringArr = this.f35218l;
                     c11 = 0;
                     if (spannableStringArr[0] == null) {
                         SpannableString spannableString = new SpannableString(LocaleController.getString(R.string.Loading));

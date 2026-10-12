@@ -27,9 +27,9 @@ public final class c3 extends eo {
         if (!this.Qc) {
             this.Qc = true;
             sc O = zc.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
-            O.f30548r = false;
+            O.f30544r = false;
             O.j();
-            k10 k10Var = this.f37346m9;
+            k10 k10Var = this.f37351m9;
             if (k10Var != null) {
                 k10Var.c(true);
             }

@@ -3,12 +3,12 @@ package qg;
 import android.content.Context;
 import android.view.ViewGroup;
 public final class g1 extends s4.i0 {
-    public final Context f46193c;
+    public final Context f46201c;
     public final i1 d;
 
     public g1(i1 i1Var, Context context) {
         this.d = i1Var;
-        this.f46193c = context;
+        this.f46201c = context;
     }
 
     @Override
@@ -19,26 +19,26 @@ public final class g1 extends s4.i0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         float f7;
-        h1 h1Var = (h1) d1Var.f47889a;
+        h1 h1Var = (h1) d1Var.f47897a;
         ViewGroup.LayoutParams layoutParams = h1Var.getLayoutParams();
         i1 i1Var = this.d;
         layoutParams.height = ((i1Var.getHeight() - i1Var.getPaddingTop()) - i1Var.getPaddingBottom()) / 2;
         pg.t0 t0Var = i1Var.Y2;
         if (t0Var != null) {
-            h1Var.f46197a = t0Var.b(i10);
+            h1Var.f46205a = t0Var.b(i10);
             h1Var.invalidate();
             if (i1Var.X2 == i10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            h1Var.f46198b = f7;
+            h1Var.f46206b = f7;
             h1Var.invalidate();
         }
     }
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new h1(this.d, this.f46193c));
+        return new s4.d1(new h1(this.d, this.f46201c));
     }
 }

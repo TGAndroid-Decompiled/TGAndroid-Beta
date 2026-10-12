@@ -1,7 +1,7 @@
 package yh;
 public final class c8 {
-    public boolean f52587a;
-    public boolean f52588b;
-    public long f52589c;
+    public boolean f52599a;
+    public boolean f52600b;
+    public long f52601c;
     public long d;
 }

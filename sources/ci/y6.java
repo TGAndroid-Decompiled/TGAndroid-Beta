@@ -21,6 +21,7 @@ import org.telegram.ui.gv0;
 import org.telegram.ui.i01;
 import org.telegram.ui.i60;
 import org.telegram.ui.vy;
+import org.telegram.ui.web.f2;
 public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.z1, t5.b, r9.g, o50 {
     public final int f6350a;
     public final long f6351b;
@@ -74,14 +75,14 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
         switch (this.f6350a) {
             case 5:
                 r9.f fVar = (r9.f) this.f6352c;
-                return fVar.f47331b.schedule(new r9.d(fVar, (Runnable) this.d, lVar, 1), this.f6351b, (TimeUnit) this.f6353e);
+                return fVar.f47339b.schedule(new r9.d(fVar, (Runnable) this.d, lVar, 1), this.f6351b, (TimeUnit) this.f6353e);
             default:
                 final r9.f fVar2 = (r9.f) this.f6352c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f47331b.schedule(new Callable() {
+                return fVar2.f47339b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f47330a.submit(new p2.b(16, callable, lVar));
+                        return f.this.f47338a.submit(new f2(18, callable, lVar));
                     }
                 }, this.f6351b, (TimeUnit) this.f6353e);
         }
@@ -128,7 +129,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f6353e;
-                ProfileActivity profileActivity = ((i01) this.f6352c).f38577b;
+                ProfileActivity profileActivity = ((i01) this.f6352c).f38580b;
                 profileActivity.N1 = true;
                 Bundle i11 = a1.g.i("scrollToTopOnResume", true);
                 long j3 = -this.f6351b;
@@ -207,11 +208,11 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
     }
 
     @Override
-    public void D(float f7) {
+    public void P() {
     }
 
     @Override
-    public void P() {
+    public void D(float f7) {
     }
 
     @Override

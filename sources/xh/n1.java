@@ -11,15 +11,15 @@ import android.os.Build;
 import org.telegram.messenger.LiteMode;
 import yh.b8;
 public final class n1 extends Drawable {
-    public final int f51615a;
-    public final RectF f51616b;
-    public final Path f51617c;
+    public final int f51623a;
+    public final RectF f51624b;
+    public final Path f51625c;
     public final Paint d;
-    public final b8 f51618e;
-    public boolean f51619f;
-    public rg.x1 f51620g;
+    public final b8 f51626e;
+    public boolean f51627f;
+    public rg.x1 f51628g;
     public ii.q1 h;
-    public boolean f51621i;
+    public boolean f51629i;
 
     public n1(int i10) {
         this(i0.a.k(i10, 128), i10);
@@ -27,22 +27,22 @@ public final class n1 extends Drawable {
 
     public final void a() {
         boolean z10;
-        if (this.f51618e != null && this.f51621i && LiteMode.isEnabled(131072)) {
+        if (this.f51626e != null && this.f51629i && LiteMode.isEnabled(131072)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f51619f == z10) {
+        if (this.f51627f == z10) {
             return;
         }
-        this.f51619f = z10;
+        this.f51627f = z10;
         if (z10) {
             yf.h d = yf.h.d();
             rg.x1 x1Var = new rg.x1(this, 21);
-            this.f51620g = x1Var;
+            this.f51628g = x1Var;
             d.a(15, x1Var);
         } else {
-            yf.h.d().f(this.f51620g);
+            yf.h.d().f(this.f51628g);
         }
         invalidateSelf();
     }
@@ -50,19 +50,19 @@ public final class n1 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Paint paint = this.d;
-        Path path = this.f51617c;
+        Path path = this.f51625c;
         canvas.drawPath(path, paint);
-        b8 b8Var = this.f51618e;
+        b8 b8Var = this.f51626e;
         if (b8Var != null) {
-            if (this.f51619f || !this.f51621i) {
+            if (this.f51627f || !this.f51629i) {
                 canvas.save();
                 canvas.clipPath(path);
-                if (this.f51620g == null) {
+                if (this.f51628g == null) {
                     b8Var.d();
                 }
-                b8Var.a(canvas, this.f51615a);
+                b8Var.a(canvas, this.f51623a);
                 canvas.restore();
-                if (this.f51620g == null) {
+                if (this.f51628g == null) {
                     invalidateSelf();
                 }
             }
@@ -78,12 +78,12 @@ public final class n1 extends Drawable {
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         float min = Math.min(rect.width(), rect.height()) / 2.0f;
-        RectF rectF = this.f51616b;
+        RectF rectF = this.f51624b;
         rectF.set(rect);
-        Path path = this.f51617c;
+        Path path = this.f51625c;
         path.rewind();
         path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        b8 b8Var = this.f51618e;
+        b8 b8Var = this.f51626e;
         if (b8Var != null) {
             b8Var.g(rectF);
         }
@@ -100,16 +100,16 @@ public final class n1 extends Drawable {
     }
 
     public n1(int i10, int i11) {
-        this.f51616b = new RectF();
-        this.f51617c = new Path();
+        this.f51624b = new RectF();
+        this.f51625c = new Path();
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f51615a = i10;
+        this.f51623a = i10;
         paint.setColor(i11);
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f51618e = new b8(1, 25);
+            this.f51626e = new b8(1, 25);
         } else {
-            this.f51618e = null;
+            this.f51626e = null;
         }
     }
 }

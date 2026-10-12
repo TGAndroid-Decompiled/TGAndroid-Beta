@@ -4,32 +4,32 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class b1 extends o6.a implements x8.n {
     public static final Parcelable.Creator<b1> CREATOR = new n0(9);
-    public final int f51971a;
-    public final String f51972b;
-    public final String f51973c;
+    public final int f51979a;
+    public final String f51980b;
+    public final String f51981c;
     public final String d;
-    public final String f51974e;
-    public final String f51975f;
+    public final String f51982e;
+    public final String f51983f;
     public final String h;
-    public final byte f51976n;
-    public final byte f51977r;
-    public final byte f51978s;
+    public final byte f51984n;
+    public final byte f51985r;
+    public final byte f51986s;
     public final byte v;
-    public final String f51979w;
+    public final String f51987w;
 
     public b1(int i10, String str, String str2, String str3, String str4, String str5, String str6, byte b10, byte b11, byte b12, byte b13, String str7) {
-        this.f51971a = i10;
-        this.f51972b = str;
-        this.f51973c = str2;
+        this.f51979a = i10;
+        this.f51980b = str;
+        this.f51981c = str2;
         this.d = str3;
-        this.f51974e = str4;
-        this.f51975f = str5;
+        this.f51982e = str4;
+        this.f51983f = str5;
         this.h = str6;
-        this.f51976n = b10;
-        this.f51977r = b11;
-        this.f51978s = b12;
+        this.f51984n = b10;
+        this.f51985r = b11;
+        this.f51986s = b12;
         this.v = b13;
-        this.f51979w = str7;
+        this.f51987w = str7;
     }
 
     public final boolean equals(Object obj) {
@@ -40,24 +40,24 @@ public final class b1 extends o6.a implements x8.n {
             return false;
         }
         b1 b1Var = (b1) obj;
-        String str = b1Var.f51979w;
+        String str = b1Var.f51987w;
         String str2 = b1Var.h;
-        String str3 = b1Var.f51973c;
-        if (this.f51971a != b1Var.f51971a || this.f51976n != b1Var.f51976n || this.f51977r != b1Var.f51977r || this.f51978s != b1Var.f51978s || this.v != b1Var.v || !this.f51972b.equals(b1Var.f51972b)) {
+        String str3 = b1Var.f51981c;
+        if (this.f51979a != b1Var.f51979a || this.f51984n != b1Var.f51984n || this.f51985r != b1Var.f51985r || this.f51986s != b1Var.f51986s || this.v != b1Var.v || !this.f51980b.equals(b1Var.f51980b)) {
             return false;
         }
-        String str4 = this.f51973c;
+        String str4 = this.f51981c;
         if (str4 == null ? str3 != null : !str4.equals(str3)) {
             return false;
         }
-        if (!this.d.equals(b1Var.d) || !this.f51974e.equals(b1Var.f51974e) || !this.f51975f.equals(b1Var.f51975f)) {
+        if (!this.d.equals(b1Var.d) || !this.f51982e.equals(b1Var.f51982e) || !this.f51983f.equals(b1Var.f51983f)) {
             return false;
         }
         String str5 = this.h;
         if (str5 == null ? str2 != null : !str5.equals(str2)) {
             return false;
         }
-        String str6 = this.f51979w;
+        String str6 = this.f51987w;
         if (str6 != null) {
             return str6.equals(str);
         }
@@ -70,23 +70,23 @@ public final class b1 extends o6.a implements x8.n {
     public final int hashCode() {
         int i10;
         int i11;
-        int h = a1.g.h((this.f51971a + 31) * 31, 31, this.f51972b);
+        int h = a1.g.h((this.f51979a + 31) * 31, 31, this.f51980b);
         int i12 = 0;
-        String str = this.f51973c;
+        String str = this.f51981c;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        int h10 = a1.g.h(a1.g.h(a1.g.h((h + i10) * 31, 31, this.d), 31, this.f51974e), 31, this.f51975f);
+        int h10 = a1.g.h(a1.g.h(a1.g.h((h + i10) * 31, 31, this.d), 31, this.f51982e), 31, this.f51983f);
         String str2 = this.h;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
             i11 = 0;
         }
-        int i13 = (((((((((h10 + i11) * 31) + this.f51976n) * 31) + this.f51977r) * 31) + this.f51978s) * 31) + this.v) * 31;
-        String str3 = this.f51979w;
+        int i13 = (((((((((h10 + i11) * 31) + this.f51984n) * 31) + this.f51985r) * 31) + this.f51986s) * 31) + this.v) * 31;
+        String str3 = this.f51987w;
         if (str3 != null) {
             i12 = str3.hashCode();
         }
@@ -95,18 +95,18 @@ public final class b1 extends o6.a implements x8.n {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AncsNotificationParcelable{, id=");
-        sb2.append(this.f51971a);
+        sb2.append(this.f51979a);
         sb2.append(", appId='");
-        sb2.append(this.f51972b);
+        sb2.append(this.f51980b);
         sb2.append("', dateTime='");
-        sb2.append(this.f51973c);
+        sb2.append(this.f51981c);
         sb2.append("', eventId=");
-        sb2.append((int) this.f51976n);
+        sb2.append((int) this.f51984n);
         sb2.append(", eventFlags=");
-        hg.c.w(sb2, this.f51977r, ", categoryId=", this.f51978s, ", categoryCount=");
+        hg.c.w(sb2, this.f51985r, ", categoryId=", this.f51986s, ", categoryCount=");
         sb2.append((int) this.v);
         sb2.append(", packageName='");
-        sb2.append(this.f51979w);
+        sb2.append(this.f51987w);
         sb2.append("'}");
         return sb2.toString();
     }
@@ -115,27 +115,27 @@ public final class b1 extends o6.a implements x8.n {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.c0.q(parcel, 20293);
         w7.c0.s(parcel, 2, 4);
-        parcel.writeInt(this.f51971a);
-        String str = this.f51972b;
+        parcel.writeInt(this.f51979a);
+        String str = this.f51980b;
         w7.c0.l(parcel, 3, str);
-        w7.c0.l(parcel, 4, this.f51973c);
+        w7.c0.l(parcel, 4, this.f51981c);
         w7.c0.l(parcel, 5, this.d);
-        w7.c0.l(parcel, 6, this.f51974e);
-        w7.c0.l(parcel, 7, this.f51975f);
+        w7.c0.l(parcel, 6, this.f51982e);
+        w7.c0.l(parcel, 7, this.f51983f);
         String str2 = this.h;
         if (str2 != null) {
             str = str2;
         }
         w7.c0.l(parcel, 8, str);
         w7.c0.s(parcel, 9, 4);
-        parcel.writeInt(this.f51976n);
+        parcel.writeInt(this.f51984n);
         w7.c0.s(parcel, 10, 4);
-        parcel.writeInt(this.f51977r);
+        parcel.writeInt(this.f51985r);
         w7.c0.s(parcel, 11, 4);
-        parcel.writeInt(this.f51978s);
+        parcel.writeInt(this.f51986s);
         w7.c0.s(parcel, 12, 4);
         parcel.writeInt(this.v);
-        w7.c0.l(parcel, 13, this.f51979w);
+        w7.c0.l(parcel, 13, this.f51987w);
         w7.c0.r(parcel, q6);
     }
 }

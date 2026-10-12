@@ -6,20 +6,20 @@ import android.graphics.RectF;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class u30 extends TextView {
-    public final RectF f42358a;
-    public final i60 f42359b;
+    public final RectF f42360a;
+    public final i60 f42361b;
 
     public u30(i60 i60Var, Context context) {
         super(context);
-        this.f42359b = i60Var;
-        this.f42358a = new RectF();
+        this.f42361b = i60Var;
+        this.f42360a = new RectF();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f42358a;
+        RectF rectF = this.f42360a;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f42359b.f38705g1);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f42361b.f38708g1);
         super.onDraw(canvas);
     }
 }

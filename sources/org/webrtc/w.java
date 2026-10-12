@@ -3,19 +3,19 @@ package org.webrtc;
 import org.webrtc.VideoDecoder;
 import org.webrtc.VideoEncoder;
 public final class w implements VideoDecoder.Callback, VideoEncoder.Callback {
-    public final long f45023a;
+    public final long f45031a;
 
     public w(long j3) {
-        this.f45023a = j3;
+        this.f45031a = j3;
     }
 
     @Override
     public void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2) {
-        VideoDecoderWrapper.nativeOnDecodedFrame(this.f45023a, videoFrame, num, num2);
+        VideoDecoderWrapper.nativeOnDecodedFrame(this.f45031a, videoFrame, num, num2);
     }
 
     @Override
     public void onEncodedFrame(EncodedImage encodedImage, VideoEncoder.CodecSpecificInfo codecSpecificInfo) {
-        VideoEncoderWrapper.a(this.f45023a, encodedImage, codecSpecificInfo);
+        VideoEncoderWrapper.a(this.f45031a, encodedImage, codecSpecificInfo);
     }
 }

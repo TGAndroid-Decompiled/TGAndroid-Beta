@@ -25,11 +25,11 @@ public final class d3 extends ma0 {
     public final void b(Canvas canvas, Path path) {
         super.b(canvas, path);
         f3 f3Var = this.N;
-        RectF rectF = f3Var.f34714f;
-        if (f3Var.f34731o0 != null) {
+        RectF rectF = f3Var.f34716f;
+        if (f3Var.f34733o0 != null) {
             canvas.saveLayer(rectF, null);
-            f3Var.f34731o0.c((AndroidUtilities.dp(206.0f) - f3Var.f34731o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - f3Var.f34731o0.j(), 1.0f, -1, canvas);
-            Shader shader = this.f28486x.getShader();
+            f3Var.f34733o0.c((AndroidUtilities.dp(206.0f) - f3Var.f34733o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - f3Var.f34733o0.j(), 1.0f, -1, canvas);
+            Shader shader = this.f28481x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
             canvas.drawRect(rectF, paint);
@@ -40,6 +40,6 @@ public final class d3 extends ma0 {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        this.N.f34705a.invalidate();
+        this.N.f34707a.invalidate();
     }
 }

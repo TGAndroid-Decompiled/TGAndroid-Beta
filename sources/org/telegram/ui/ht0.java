@@ -47,7 +47,7 @@ public final class ht0 implements st {
 
     @Override
     public final boolean B() {
-        if (this.h.f33917x7 != null) {
+        if (this.h.f33919x7 != null) {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ public final class ht0 implements st {
 
     @Override
     public final boolean J() {
-        if (this.h.f33879t7 != null) {
+        if (this.h.f33881t7 != null) {
             return true;
         }
         return false;
@@ -89,7 +89,7 @@ public final class ht0 implements st {
     @Override
     public final void O(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33907w7 = true;
+        photoViewer.f33909w7 = true;
         R();
         photoViewer.p5.p(this.f38522a, this.f38523b, str, null, true, 0L, null, null, photoViewer.v1(), this.f38524c.thumbPath, null, null);
     }
@@ -169,7 +169,7 @@ public final class ht0 implements st {
     @Override
     public final void f(CharSequence charSequence, String str, jt jtVar) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33907w7 = true;
+        photoViewer.f33909w7 = true;
         R();
         photoViewer.p5.p(this.f38522a, this.f38523b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f38524c.thumbPath, jtVar, null);
     }
@@ -207,9 +207,9 @@ public final class ht0 implements st {
     @Override
     public final void o(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33907w7 = true;
+        photoViewer.f33909w7 = true;
         R();
-        photoViewer.p5.p(this.f38522a, this.f38523b, str, null, false, 0L, null, null, photoViewer.v1(), this.f38524c.thumbPath, null, photoViewer.f33917x7);
+        photoViewer.p5.p(this.f38522a, this.f38523b, str, null, false, 0L, null, null, photoViewer.v1(), this.f38524c.thumbPath, null, photoViewer.f33919x7);
     }
 
     @Override
@@ -220,9 +220,9 @@ public final class ht0 implements st {
     @Override
     public final void w(TLRPC.StickerSet stickerSet, String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33907w7 = true;
+        photoViewer.f33909w7 = true;
         R();
-        photoViewer.p5.p(this.f38522a, this.f38523b, str, null, false, 0L, stickerSet, photoViewer.f33879t7, photoViewer.v1(), this.f38524c.thumbPath, null, null);
+        photoViewer.p5.p(this.f38522a, this.f38523b, str, null, false, 0L, stickerSet, photoViewer.f33881t7, photoViewer.v1(), this.f38524c.thumbPath, null, null);
     }
 
     @Override
@@ -249,12 +249,12 @@ public final class ht0 implements st {
                 if (photoViewer.l4 == null) {
                     return;
                 }
-                photoViewer.f33907w7 = true;
+                photoViewer.f33909w7 = true;
                 R();
                 photoViewer.p5.p(this.f38522a, this.f38523b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
                 return;
             }
-            photoViewer.f33907w7 = true;
+            photoViewer.f33909w7 = true;
             R();
             photoEntry.imagePath = this.f38522a;
             photoViewer.d.o(photoViewer.P4, this.f38523b, this.d, this.f38525e, this.f38526f, this.f38527g);

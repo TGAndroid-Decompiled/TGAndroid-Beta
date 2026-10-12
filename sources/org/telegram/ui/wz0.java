@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class wz0 extends n71 {
-    public final e71[] f43699d2;
-    public final ProfileActivity f43700e2;
+    public final e71[] f43704d2;
+    public final ProfileActivity f43705e2;
 
     public wz0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11, e71[] e71VarArr) {
         super(profileActivity2, activity, true, num, i10, true, c6Var, i11);
-        this.f43700e2 = profileActivity;
-        this.f43699d2 = e71VarArr;
+        this.f43705e2 = profileActivity;
+        this.f43704d2 = e71VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.m2) this.f43700e2).currentAccount;
-            if (yh.n5.y(i10, false).n(tL_starGiftUnique.f20031id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.m2) this.f43705e2).currentAccount;
+            if (yh.n5.y(i10, false).n(tL_starGiftUnique.f20032id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -32,7 +32,7 @@ public final class wz0 extends n71 {
 
     @Override
     public final long getDialogId() {
-        return this.f43700e2.a();
+        return this.f43705e2.a();
     }
 
     @Override
@@ -44,18 +44,18 @@ public final class wz0 extends n71 {
         int i10;
         int i11;
         int i12;
-        ProfileActivity profileActivity = this.f43700e2;
+        ProfileActivity profileActivity = this.f43705e2;
         org.telegram.ui.Components.q5[] q5VarArr = profileActivity.G;
-        e71[] e71VarArr = this.f43699d2;
+        e71[] e71VarArr = this.f43704d2;
         if (tL_starGiftUnique != null) {
             i10 = ((org.telegram.ui.ActionBar.m2) profileActivity).currentAccount;
-            TL_stars.SavedStarGift n10 = yh.n5.y(i10, false).n(tL_starGiftUnique.f20031id);
+            TL_stars.SavedStarGift n10 = yh.n5.y(i10, false).n(tL_starGiftUnique.f20032id);
             if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                 Context context = getContext();
                 i11 = ((org.telegram.ui.ActionBar.m2) profileActivity).currentAccount;
                 i12 = ((org.telegram.ui.ActionBar.m2) profileActivity).currentAccount;
-                yh.s3 s3Var = new yh.s3(context, i11, UserConfig.getInstance(i12).getClientUserId(), profileActivity.f34223z0, null);
+                yh.s3 s3Var = new yh.s3(context, i11, UserConfig.getInstance(i12).getClientUserId(), profileActivity.f34225z0, null);
                 s3Var.l2(n10, null);
                 s3Var.o2();
                 s3Var.show();
@@ -68,7 +68,7 @@ public final class wz0 extends n71 {
                 return;
             }
             TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible2 = new TLRPC.TL_inputEmojiStatusCollectible();
-            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f20031id;
+            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f20032id;
             tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
             if (num != null) {
                 tL_inputEmojiStatusCollectible2.flags |= 1;
@@ -88,7 +88,7 @@ public final class wz0 extends n71 {
             }
         }
         if (tL_starGiftUnique != null) {
-            l10 = Long.valueOf(tL_starGiftUnique.f20031id);
+            l10 = Long.valueOf(tL_starGiftUnique.f20032id);
         } else {
             l10 = null;
         }
@@ -98,7 +98,7 @@ public final class wz0 extends n71 {
         if (chat == null) {
             j3 = 0;
         } else {
-            j3 = -chat.f19802id;
+            j3 = -chat.f19803id;
         }
         messagesController.updateEmojiStatus(j3, tL_inputEmojiStatusCollectible, tL_starGiftUnique);
         for (int i13 = 0; i13 < 2; i13++) {
@@ -121,10 +121,10 @@ public final class wz0 extends n71 {
             }
         }
         if (l4 != null) {
-            org.telegram.ui.Cells.o oVar = profileActivity.f34071d0;
+            org.telegram.ui.Cells.o oVar = profileActivity.f34073d0;
             ?? obj = new Object();
             long longValue = l4.longValue();
-            obj.f54842g = longValue;
+            obj.f54850g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }

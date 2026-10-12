@@ -14,46 +14,46 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 public class r6 extends View {
-    public boolean f30053a;
-    public Drawable f30054b;
-    public final q6 f30055c;
+    public boolean f30054a;
+    public Drawable f30055b;
+    public final q6 f30056c;
     public int d;
-    public int f30056e;
-    public CharSequence f30057f;
+    public int f30057e;
+    public CharSequence f30058f;
     public boolean h;
-    public boolean f30058n;
-    public boolean f30059r;
+    public boolean f30059n;
+    public boolean f30060r;
 
     public r6(Context context, boolean z10, boolean z11, boolean z12) {
         this(context, z10, z11, z12, false, false);
     }
 
     public final void a() {
-        this.f30055c.a();
+        this.f30056c.a();
     }
 
     public final void b(float f7, long j3, TimeInterpolator timeInterpolator) {
-        this.f30055c.n(f7, j3, timeInterpolator);
+        this.f30056c.n(f7, j3, timeInterpolator);
     }
 
     public final void c(CharSequence charSequence, boolean z10, boolean z11) {
         boolean z12;
-        if (!this.f30059r && z10) {
+        if (!this.f30060r && z10) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f30059r = false;
-        q6 q6Var = this.f30055c;
-        if (z12 && !TextUtils.equals(charSequence, q6Var.f29718i)) {
+        this.f30060r = false;
+        q6 q6Var = this.f30056c;
+        if (z12 && !TextUtils.equals(charSequence, q6Var.f29696i)) {
             if (q6Var.J) {
-                ValueAnimator valueAnimator = q6Var.f29729t;
+                ValueAnimator valueAnimator = q6Var.f29707t;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    q6Var.f29729t = null;
+                    q6Var.f29707t = null;
                 }
             } else if (q6Var.h()) {
-                this.f30057f = charSequence;
+                this.f30058f = charSequence;
                 this.h = z11;
                 return;
             }
@@ -68,31 +68,31 @@ public class r6 extends View {
     }
 
     public final int d() {
-        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f30055c.c()));
+        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f30056c.c()));
     }
 
     public q6 getDrawable() {
-        return this.f30055c;
+        return this.f30056c;
     }
 
     public TextPaint getPaint() {
-        return this.f30055c.f29710a;
+        return this.f30056c.f29688a;
     }
 
     public float getRightPadding() {
-        return this.f30055c.N;
+        return this.f30056c.N;
     }
 
     public Drawable getSizeableBackground() {
-        return this.f30054b;
+        return this.f30055b;
     }
 
     public CharSequence getText() {
-        return this.f30055c.f29718i;
+        return this.f30056c.f29696i;
     }
 
     public int getTextColor() {
-        return this.f30055c.f29710a.getColor();
+        return this.f30056c.f29688a.getColor();
     }
 
     public int getTextHeight() {
@@ -108,11 +108,11 @@ public class r6 extends View {
     @Override
     public void onDraw(Canvas canvas) {
         int i10;
-        Drawable drawable = this.f30054b;
-        q6 q6Var = this.f30055c;
-        if (drawable != null && (!this.f30053a || q6Var.i() > 0.0f)) {
+        Drawable drawable = this.f30055b;
+        q6 q6Var = this.f30056c;
+        if (drawable != null && (!this.f30054a || q6Var.i() > 0.0f)) {
             int c10 = (int) (q6Var.c() + getPaddingLeft() + getPaddingRight());
-            int i11 = q6Var.f29712b & 7;
+            int i11 = q6Var.f29690b & 7;
             if (i11 == 5) {
                 i10 = getWidth() - c10;
             } else if (i11 == 1) {
@@ -120,8 +120,8 @@ public class r6 extends View {
             } else {
                 i10 = 0;
             }
-            this.f30054b.setBounds(i10, 0, c10 + i10, getHeight());
-            this.f30054b.draw(canvas);
+            this.f30055b.setBounds(i10, 0, c10 + i10, getHeight());
+            this.f30055b.draw(canvas);
         }
         q6Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         q6Var.draw(canvas);
@@ -138,85 +138,85 @@ public class r6 extends View {
     public void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        int i12 = this.f30056e;
+        int i12 = this.f30057e;
         if (i12 > 0) {
             size = Math.min(size, i12);
         }
         int i13 = this.d;
-        q6 q6Var = this.f30055c;
+        q6 q6Var = this.f30056c;
         if (i13 != size && getLayoutParams().width != 0) {
             q6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
-            q6Var.t(q6Var.f29718i, false, true);
+            q6Var.t(q6Var.f29696i, false, true);
         }
         this.d = size;
-        if (this.f30058n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+        if (this.f30059n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
             size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(q6Var.e()));
         }
         setMeasuredDimension(size, size2);
     }
 
     public void setAllowCancel(boolean z10) {
-        this.f30055c.J = z10;
+        this.f30056c.J = z10;
     }
 
     public void setEllipsizeByGradient(boolean z10) {
-        this.f30055c.q(z10);
+        this.f30056c.q(z10);
     }
 
     public void setEmojiCacheType(int i10) {
-        this.f30055c.f29725p = i10;
+        this.f30056c.f29703p = i10;
     }
 
     public void setEmojiColor(int i10) {
-        q6 q6Var = this.f30055c;
+        q6 q6Var = this.f30056c;
         if (q6Var.Z != i10) {
             q6Var.Z = i10;
-            q6Var.f29711a0 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+            q6Var.f29689a0 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
         }
         invalidate();
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f30055c.f29711a0 = colorFilter;
+        this.f30056c.f29689a0 = colorFilter;
         invalidate();
     }
 
     public void setGravity(int i10) {
-        this.f30055c.f29712b = i10;
+        this.f30056c.f29690b = i10;
     }
 
     public void setHideBackgroundIfEmpty(boolean z10) {
-        this.f30053a = z10;
+        this.f30054a = z10;
     }
 
     public void setIgnoreRTL(boolean z10) {
-        this.f30055c.K = z10;
+        this.f30056c.K = z10;
     }
 
     public void setIncludeFontPadding(boolean z10) {
-        this.f30055c.S = z10;
+        this.f30056c.S = z10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f30056e = i10;
+        this.f30057e = i10;
     }
 
     public void setOnWidthUpdatedListener(Runnable runnable) {
-        this.f30055c.f29713b0 = runnable;
+        this.f30056c.f29691b0 = runnable;
     }
 
     public void setRightPadding(float f7) {
-        q6 q6Var = this.f30055c;
+        q6 q6Var = this.f30056c;
         q6Var.N = f7;
         q6Var.invalidateSelf();
     }
 
     public void setScaleProperty(float f7) {
-        this.f30055c.A = f7;
+        this.f30056c.A = f7;
     }
 
     public void setSizeableBackground(Drawable drawable) {
-        this.f30054b = drawable;
+        this.f30055b = drawable;
         invalidate();
     }
 
@@ -225,24 +225,24 @@ public class r6 extends View {
     }
 
     public void setTextColor(int i10) {
-        this.f30055c.u(i10);
+        this.f30056c.u(i10);
         invalidate();
     }
 
     public void setTextSize(float f7) {
-        this.f30055c.w(f7);
+        this.f30056c.w(f7);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f30055c.x(typeface);
+        this.f30056c.x(typeface);
     }
 
     public r6(Context context, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
         super(context);
-        this.f30058n = true;
-        this.f30059r = true;
+        this.f30059n = true;
+        this.f30060r = true;
         q6 q6Var = new q6(z10, z11, z12, z13, z14);
-        this.f30055c = q6Var;
+        this.f30056c = q6Var;
         q6Var.setCallback(this);
         q6Var.I = new tg(this, 8);
     }

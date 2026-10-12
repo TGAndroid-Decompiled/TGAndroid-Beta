@@ -75,11 +75,11 @@ public final class m3 implements View.OnClickListener {
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f53174j;
+                ArrayList arrayList2 = g10.f53186j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f53176l;
+                ArrayList arrayList3 = g10.f53188l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
@@ -92,11 +92,11 @@ public final class m3 implements View.OnClickListener {
                     i12++;
                     TLObject tLObject = (TLObject) obj6;
                     if (tLObject instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject).f19949id;
+                        j3 = ((TLRPC.User) tLObject).f19950id;
                     } else if (tLObject instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                            j3 = -chat.f19802id;
+                            j3 = -chat.f19803id;
                         }
                     }
                     long j10 = j3;
@@ -107,8 +107,8 @@ public final class m3 implements View.OnClickListener {
                     }
                     F.g(tLObject, z10, new a3.h0(jArr, j10, l3Var, 8));
                 }
-                F.f30473t = false;
-                F.f30472s = 0;
+                F.f30469t = false;
+                F.f30468s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();
@@ -127,7 +127,7 @@ public final class m3 implements View.OnClickListener {
                     float scrollX = horizontalScrollView.getScrollX();
                     float x10 = yk0Var.getX() - ((horizontalScrollView.getWidth() - yk0Var.getWidth()) / 2.0f);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(js.f27627f);
+                    duration.setInterpolator(js.f27634f);
                     duration.addUpdateListener(new org.telegram.ui.Cells.b(horizontalScrollView, scrollX, x10, yk0Var2, yk0Var));
                     duration.start();
                     return;
@@ -144,14 +144,14 @@ public final class m3 implements View.OnClickListener {
                     tL_birthday.flags |= 1;
                     tL_birthday.year = yd0Var.getValue();
                 }
-                runnable = z2Var.f21484a.dismissRunnable;
+                runnable = z2Var.f21485a.dismissRunnable;
                 runnable.run();
                 callback.run(tL_birthday);
                 return;
             case 3:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj4, 0, (ai.d) obj3);
                 String string = LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
                 a2Var.R = string;
                 a2Var.T = LocaleController.getString(R.string.LiveStoryRTMPRevokeText);
                 alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new ha((fs) obj5, (ci.d) obj2, (TL_phone.getGroupCallStreamRtmpUrl) obj, this.f9216b, 2));
@@ -182,7 +182,7 @@ public final class m3 implements View.OnClickListener {
                     TL_stars.TL_changeStarsSubscription tL_changeStarsSubscription = new TL_stars.TL_changeStarsSubscription();
                     tL_changeStarsSubscription.canceled = Boolean.FALSE;
                     tL_changeStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                    tL_changeStarsSubscription.subscription_id = starsSubscription.f20032id;
+                    tL_changeStarsSubscription.subscription_id = starsSubscription.f20033id;
                     int i13 = this.f9216b;
                     ConnectionsManager.getInstance(i13).sendRequest(tL_changeStarsSubscription, new za(dVar, e3VarArr, i13, tLObject2, str, 13));
                     return;

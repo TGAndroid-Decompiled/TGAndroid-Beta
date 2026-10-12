@@ -32,7 +32,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.x5, n9 {
         int i10 = org.telegram.ui.ActionBar.h6.vk;
         org.telegram.ui.ActionBar.c6 c6Var = this.f12843n;
         this.f12844r.setColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        this.f12845s.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20883uf, c6Var));
+        this.f12845s.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20884uf, c6Var));
     }
 
     @Override
@@ -88,7 +88,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.x5, n9 {
         if (t2Var != null && (textSelectionHelper = t2Var.f12702a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22372p0 && R <= textSelectionHelper.f22375s0) {
+            if (R >= 0 && R >= textSelectionHelper.f22373p0 && R <= textSelectionHelper.f22376s0) {
                 canvas2 = canvas;
                 canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f12845s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;

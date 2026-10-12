@@ -18,7 +18,7 @@ public final class b6 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 == 1 || i10 == 2 || i10 == 4) {
             return true;
         }
@@ -27,22 +27,22 @@ public final class b6 extends og.b {
 
     @Override
     public final int h() {
-        return this.d.f36654c.size();
+        return this.d.f36656c.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((c6) this.d.f36654c.get(i10)).f16876a;
+        return ((c6) this.d.f36656c.get(i10)).f16877a;
     }
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         String str;
         d6 d6Var = this.d;
-        ArrayList arrayList = d6Var.f36654c;
-        if (((c6) arrayList.get(i10)).f16876a == 2) {
-            org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) d1Var.f47889a;
-            CacheByChatsController.KeepMediaException keepMediaException = ((c6) arrayList.get(i10)).f36332c;
+        ArrayList arrayList = d6Var.f36656c;
+        if (((c6) arrayList.get(i10)).f16877a == 2) {
+            org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) d1Var.f47897a;
+            CacheByChatsController.KeepMediaException keepMediaException = ((c6) arrayList.get(i10)).f36334c;
             TLObject userOrChat = d6Var.getMessagesController().getUserOrChat(keepMediaException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;
@@ -59,7 +59,7 @@ public final class b6 extends og.b {
             boolean z10 = true;
             xaVar.setSelfAsSavedMessages(true);
             String keepMediaString = CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia);
-            if (i10 != arrayList.size() - 1 && ((c6) arrayList.get(i10 + 1)).f16876a != 2) {
+            if (i10 != arrayList.size() - 1 && ((c6) arrayList.get(i10 + 1)).f16877a != 2) {
                 z10 = false;
             }
             xaVar.d(userOrChat, str, keepMediaString, z10);
@@ -76,8 +76,8 @@ public final class b6 extends og.b {
                     if (i10 == 4) {
                         org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(viewGroup.getContext());
                         r8Var2.i(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                        r8Var2.e(-1, org.telegram.ui.ActionBar.h6.f20780p7);
-                        r8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+                        r8Var2.e(-1, org.telegram.ui.ActionBar.h6.f20781p7);
+                        r8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
                         r8Var = r8Var2;
                     }
                 } else {
@@ -85,15 +85,15 @@ public final class b6 extends og.b {
                 }
             } else {
                 View xaVar = new org.telegram.ui.Cells.xa(4, 0, viewGroup.getContext(), null, false, false);
-                xaVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+                xaVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
                 view = xaVar;
             }
             return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
         }
         org.telegram.ui.Cells.r8 r8Var3 = new org.telegram.ui.Cells.r8(viewGroup.getContext());
         r8Var3.m(R.drawable.msg_contact_add, LocaleController.getString(R.string.NotificationsAddAnException), true);
-        r8Var3.e(org.telegram.ui.ActionBar.h6.f20892v6, org.telegram.ui.ActionBar.h6.f20874u6);
-        r8Var3.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+        r8Var3.e(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
+        r8Var3.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
         r8Var = r8Var3;
         view = r8Var;
         return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);

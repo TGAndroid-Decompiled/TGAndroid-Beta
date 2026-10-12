@@ -111,7 +111,7 @@ public final class l implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 uxVar.getClass();
                 ((org.telegram.ui.ActionBar.a2) obj3).dismiss();
-                vy vyVar = uxVar.f42605b;
+                vy vyVar = uxVar.f42607b;
                 vyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
                 py pyVar = vyVar.C2;
                 vyVar.removeSelfFromStack();

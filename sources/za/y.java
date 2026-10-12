@@ -1,18 +1,18 @@
 package za;
 public final class y extends ld.c {
-    public Object f54517a;
-    public int f54518b;
-    public final k1.p f54519c;
+    public Object f54525a;
+    public int f54526b;
+    public final k1.p f54527c;
 
     public y(k1.p pVar, ld.c cVar) {
         super(cVar);
-        this.f54519c = pVar;
+        this.f54527c = pVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f54517a = obj;
-        this.f54518b |= Integer.MIN_VALUE;
-        return this.f54519c.b(null, this);
+        this.f54525a = obj;
+        this.f54526b |= Integer.MIN_VALUE;
+        return this.f54527c.b(null, this);
     }
 }

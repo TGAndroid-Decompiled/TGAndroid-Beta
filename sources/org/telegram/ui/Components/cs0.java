@@ -12,7 +12,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.hg1;
 public final class cs0 implements p20, org.telegram.ui.py {
-    public final hw0 f25010a;
+    public final hw0 f24995a;
 
     @Override
     public boolean B() {
@@ -25,7 +25,7 @@ public final class cs0 implements p20, org.telegram.ui.py {
     }
 
     public void a(boolean z10) {
-        hw0 hw0Var = this.f25010a;
+        hw0 hw0Var = this.f24995a;
         if (!z10) {
             hw0Var.requestLayout();
         }
@@ -36,9 +36,9 @@ public final class cs0 implements p20, org.telegram.ui.py {
     public boolean w(org.telegram.ui.vy vyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, hg1 hg1Var) {
         int i12;
         UndoView undoView;
-        hw0 hw0Var = this.f25010a;
+        hw0 hw0Var = this.f24995a;
         SparseArray[] sparseArrayArr = hw0Var.Z0;
-        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26972v1;
+        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         boolean z12 = true;
         int i13 = 1;
@@ -64,11 +64,11 @@ public final class cs0 implements p20, org.telegram.ui.py {
             sparseArrayArr[i13].clear();
             i13--;
         }
-        hw0Var.f26923a1 = 0;
+        hw0Var.f26908a1 = 0;
         hw0Var.b1(false);
         rv0 rv0Var = hw0Var.R;
         if (rv0Var != null) {
-            rv0Var.f30257w.clear();
+            rv0Var.f30253w.clear();
         }
         if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != m2Var.getUserConfig().getClientUserId() && charSequence == null) {
             long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;

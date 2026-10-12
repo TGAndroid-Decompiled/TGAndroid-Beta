@@ -19,7 +19,7 @@ import org.telegram.ui.fc1;
 import w7.w5;
 import w7.y5;
 public final class o1 extends t61 {
-    public static final int f51664a = 0;
+    public static final int f51672a = 0;
 
     static {
         t61.setup(new t61());
@@ -31,16 +31,16 @@ public final class o1 extends t61 {
         p1 p1Var = (p1) view;
         int i10 = u61Var.d;
         ArrayList arrayList = (ArrayList) u61Var.G;
-        int i11 = u61Var.f31089z;
+        int i11 = u61Var.f31084z;
         Utilities.Callback callback = (Utilities.Callback) u61Var.H;
-        fc1 fc1Var = p1Var.f51674a;
+        fc1 fc1Var = p1Var.f51682a;
         ArrayList arrayList2 = p1Var.d;
-        if (p1Var.f51680r == i10) {
+        if (p1Var.f51688r == i10) {
             z11 = true;
         } else {
             z11 = false;
         }
-        p1Var.f51680r = i10;
+        p1Var.f51688r = i10;
         if (arrayList2.size() != arrayList.size()) {
             int i12 = 0;
             int i13 = 0;
@@ -66,7 +66,7 @@ public final class o1 extends t61 {
                 ia0Var.setGravity(17);
                 ia0Var.setText((CharSequence) arrayList.get(i13));
                 ia0Var.setTypeface(AndroidUtilities.bold());
-                ia0Var.setTextColor(h6.v(h6.x0(null, h6.f20522b6, false), h6.x0(null, h6.f20542c6, false)));
+                ia0Var.setTextColor(h6.v(h6.x0(null, h6.f20523b6, false), h6.x0(null, h6.f20543c6, false)));
                 ia0Var.setTextSize(1, 14.0f);
                 ia0Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 ia0Var.setEllipsize(TextUtils.TruncateAt.END);
@@ -78,9 +78,9 @@ public final class o1 extends t61 {
                 i13++;
             }
         }
-        p1Var.f51675b = i11;
+        p1Var.f51683b = i11;
         if (!z11) {
-            p1Var.f51676c.d(i11, true);
+            p1Var.f51684c.d(i11, true);
         }
         fc1Var.invalidate();
         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
@@ -90,7 +90,7 @@ public final class o1 extends t61 {
 
     @Override
     public final boolean contentsEquals(u61 u61Var, u61 u61Var2) {
-        if (u61Var.f31089z == u61Var2.f31089z && u61Var.H == u61Var2.H && equals(u61Var, u61Var2)) {
+        if (u61Var.f31084z == u61Var2.f31084z && u61Var.H == u61Var2.H && equals(u61Var, u61Var2)) {
             return true;
         }
         return false;

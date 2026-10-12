@@ -39,7 +39,7 @@ public final class n1 extends View {
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f19808id;
+            j3 = document.f19809id;
         }
         if (j10 != j3) {
             org.telegram.ui.Components.s5 s5Var = this.f5622c;
@@ -49,7 +49,7 @@ public final class n1 extends View {
             if (document != null) {
                 int i11 = 1;
                 this.f5620a = true;
-                this.f5624f = document.f19808id;
+                this.f5624f = document.f19809id;
                 int i12 = r2.G;
                 if (!z10) {
                     i11 = 16388;
@@ -163,7 +163,7 @@ public final class n1 extends View {
         this.f5620a = false;
         if (document != null) {
             long j3 = this.f5624f;
-            long j10 = document.f19808id;
+            long j10 = document.f19809id;
             if (j3 != j10) {
                 this.f5624f = j10;
                 if (this.f5623e == null) {

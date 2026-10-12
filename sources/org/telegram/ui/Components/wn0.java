@@ -19,7 +19,7 @@ public final class wn0 extends a6 {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e7 = this.d.e(this.f32496f.f24099n0);
+        float e7 = this.d.e(this.f32496f.f24100n0);
         int i10 = (e7 > 0.0f ? 1 : (e7 == 0.0f ? 0 : -1));
         if (i10 > 0) {
             canvas2 = canvas;
@@ -37,7 +37,7 @@ public final class wn0 extends a6 {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f32496f.f24100r == this.f32495e) {
+        if (this.f32496f.f24101r == this.f32495e) {
             z10 = true;
         } else {
             z10 = false;

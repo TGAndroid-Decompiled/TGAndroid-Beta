@@ -4,7 +4,7 @@ public final class e01 extends i01 {
 
     @Override
     public final int a(r01 r01Var, k01 k01Var, d01 d01Var, int i10, boolean z10) {
-        return Math.max(0, this.f27005a - d01Var.a(k01Var, i10));
+        return Math.max(0, this.f26990a - d01Var.a(k01Var, i10));
     }
 
     @Override

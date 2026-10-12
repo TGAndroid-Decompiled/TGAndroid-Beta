@@ -7,39 +7,39 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
 public class f {
-    public final jg.a f14837a;
-    public final Paint f14838b;
-    public final Paint f14839c;
+    public final jg.a f14838a;
+    public final Paint f14839b;
+    public final Paint f14840c;
     public final Paint d;
-    public final Path f14840e;
-    public final Path f14841f;
-    public final Path f14842g;
+    public final Path f14841e;
+    public final Path f14842f;
+    public final Path f14843g;
     public ValueAnimator h;
-    public ValueAnimator f14843i;
-    public int f14844j;
-    public final float[] f14845k;
-    public final float[] f14846l;
-    public int f14847m;
-    public boolean f14848n;
-    public float f14849o;
-    public final c6 f14850p;
+    public ValueAnimator f14844i;
+    public int f14845j;
+    public final float[] f14846k;
+    public final float[] f14847l;
+    public int f14848m;
+    public boolean f14849n;
+    public float f14850o;
+    public final c6 f14851p;
 
     public f(jg.a aVar, boolean z10, c6 c6Var) {
         int length;
         int length2;
         Paint paint = new Paint(1);
-        this.f14838b = paint;
+        this.f14839b = paint;
         Paint paint2 = new Paint(1);
-        this.f14839c = paint2;
+        this.f14840c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
-        this.f14840e = new Path();
-        this.f14841f = new Path();
-        this.f14842g = new Path();
-        this.f14848n = true;
-        this.f14849o = 1.0f;
-        this.f14850p = c6Var;
-        this.f14837a = aVar;
+        this.f14841e = new Path();
+        this.f14842f = new Path();
+        this.f14843g = new Path();
+        this.f14849n = true;
+        this.f14850o = 1.0f;
+        this.f14851p = c6Var;
+        this.f14838a = aVar;
         paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
@@ -60,33 +60,33 @@ public class f {
         } else {
             length = jArr.length << 2;
         }
-        this.f14845k = new float[length];
+        this.f14846k = new float[length];
         long[] jArr2 = aVar.f14148a;
         if (z10) {
             length2 = jArr2.length * 8;
         } else {
             length2 = jArr2.length << 2;
         }
-        this.f14846l = new float[length2];
+        this.f14847l = new float[length2];
     }
 
     public void a() {
         int i10;
-        jg.a aVar = this.f14837a;
+        jg.a aVar = this.f14838a;
         int i11 = aVar.f14153g;
-        c6 c6Var = this.f14850p;
+        c6 c6Var = this.f14851p;
         if (i11 >= 0 && h6.d1(i11)) {
-            this.f14847m = h6.w0(aVar.f14153g, c6Var);
+            this.f14848m = h6.w0(aVar.f14153g, c6Var);
         } else {
-            if (i0.a.f(h6.w0(h6.f20559d6, c6Var)) < 0.5d) {
+            if (i0.a.f(h6.w0(h6.f20560d6, c6Var)) < 0.5d) {
                 i10 = aVar.f14154i;
             } else {
                 i10 = aVar.h;
             }
-            this.f14847m = i10;
+            this.f14848m = i10;
         }
-        this.f14839c.setColor(this.f14847m);
-        this.f14838b.setColor(this.f14847m);
-        this.d.setColor(this.f14847m);
+        this.f14840c.setColor(this.f14848m);
+        this.f14839b.setColor(this.f14848m);
+        this.d.setColor(this.f14848m);
     }
 }

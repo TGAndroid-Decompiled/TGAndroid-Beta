@@ -1,129 +1,75 @@
 package tg;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import ai.a6;
+import android.os.CountDownTimer;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import com.google.android.gms.internal.vision.e2;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import java.util.ArrayList;
+import java.util.Date;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.a7;
-import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.ia0;
-import org.telegram.ui.Components.vm0;
-import rg.x1;
-public final class l0 extends vm0 {
-    public final r0 f48558c;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.Components.wm0;
+public final class l0 extends CountDownTimer {
+    public final s0 f48588a;
 
-    public l0(r0 r0Var) {
-        this.f48558c = r0Var;
+    public l0(s0 s0Var) {
+        super(Long.MAX_VALUE, 1000L);
+        this.f48588a = s0Var;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47893f == 3) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.f48558c.Y.size() + 3;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 != 0) {
-            int i11 = 1;
-            if (i10 != 1) {
-                i11 = 2;
-                if (i10 != 2) {
-                    return 3;
-                }
+    public final void onTick(long j3) {
+        s0 s0Var = this.f48588a;
+        wm0 wm0Var = s0Var.d;
+        ArrayList arrayList = s0Var.Y;
+        ArrayList arrayList2 = new ArrayList(arrayList.size());
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) obj;
+            if (tL_myBoost.cooldown_until_date > 0) {
+                arrayList2.add(tL_myBoost);
             }
-            return i11;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        String str;
-        int i11 = d1Var.f47893f;
-        View view = d1Var.f47889a;
-        r0 r0Var = this.f48558c;
-        if (i11 == 3) {
-            TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) r0Var.Y.get(i10 - 3);
-            xg.l lVar = (xg.l) view;
-            lVar.setBoost(tL_myBoost);
-            lVar.c(r0Var.X.contains(tL_myBoost), false);
-        } else if (i11 == 2) {
-            m4 m4Var = (m4) view;
-            m4Var.setTextSize(15.0f);
-            m4Var.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-            m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
-        } else if (i11 == 0) {
-            q0 q0Var = (q0) view;
-            r0Var.f48613b0 = q0Var;
-            TLRPC.Chat chat = r0Var.Z;
-            ia0 ia0Var = q0Var.f48610e;
-            try {
-                int i12 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
-                if (chat == null) {
-                    str = "";
-                } else {
-                    str = chat.title;
-                }
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i12, str, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), h6.gc, 2, new x1(r0Var, 12));
-                int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
-                replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
-                ia0Var.setText(replaceTags, TextView.BufferType.EDITABLE);
-                ia0Var.post(new org.telegram.ui.Wallet.i(q0Var, indexOf, 8));
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            if (tL_myBoost.cooldown_until_date * 1000 < System.currentTimeMillis()) {
+                tL_myBoost.cooldown_until_date = 0;
             }
         }
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        c6 c6Var;
-        Context context = viewGroup.getContext();
-        r0 r0Var = this.f48558c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 == 3) {
-                        c6Var = ((e3) r0Var).resourcesProvider;
-                        view = new xg.l(context, true, false, c6Var, true);
-                    } else {
-                        view = new View(context);
+        if (!arrayList2.isEmpty()) {
+            for (int i11 = 0; i11 < wm0Var.getChildCount(); i11++) {
+                View childAt = wm0Var.getChildAt(i11);
+                if (childAt instanceof xg.l) {
+                    xg.l lVar = (xg.l) childAt;
+                    if (arrayList2.contains(lVar.getBoost())) {
+                        h5 h5Var = lVar.f49813e;
+                        a6 a6Var = lVar.d;
+                        int i12 = lVar.J.cooldown_until_date;
+                        if (i12 > 0) {
+                            lVar.setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, xg.l.f((i12 * 1000) - System.currentTimeMillis())));
+                            a6Var.setAlpha(0.65f);
+                            h5Var.setAlpha(0.65f);
+                            lVar.i(0.3f, false);
+                        } else {
+                            lVar.setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(lVar.J.expires * 1000))));
+                            if (a6Var.getAlpha() < 1.0f) {
+                                a6Var.animate().alpha(1.0f).start();
+                                h5Var.animate().alpha(1.0f).start();
+                                lVar.i(1.0f, true);
+                            } else {
+                                a6Var.setAlpha(1.0f);
+                                h5Var.setAlpha(1.0f);
+                                lVar.i(1.0f, false);
+                            }
+                        }
                     }
-                } else {
-                    view = new m4(context, 22);
                 }
-            } else {
-                view = new a7(context, h6.x0(null, h6.f20503a7, false), 0);
             }
-        } else {
-            q0 q0Var = new q0(context);
-            q0Var.a(r0Var.X, r0Var.Z);
-            view = q0Var;
         }
-        return e2.k(view, view, -1, -2);
+    }
+
+    @Override
+    public final void onFinish() {
     }
 }

@@ -50,11 +50,11 @@ public final class s extends m2 implements me.d {
             TLRPC.Chat chat = MessagesController.getInstance(sVar.currentAccount).getChat(Long.valueOf(-j3));
             TLRPC.User user = MessagesController.getInstance(sVar.currentAccount).getUser(Long.valueOf(j3));
             if (user != null) {
-                sVar.presentFragment(eo.W9(user.f19949id));
+                sVar.presentFragment(eo.W9(user.f19950id));
             } else if (!ChatObject.isPublic(chat) && !ChatObject.isInChat(chat)) {
                 new hi.c(sVar.getParentActivity(), chat, new y8(23, sVar, fVar)).show();
             } else {
-                sVar.presentFragment(eo.W9(-chat.f19802id));
+                sVar.presentFragment(eo.W9(-chat.f19803id));
             }
         }
     }
@@ -81,13 +81,13 @@ public final class s extends m2 implements me.d {
         this.actionBar.setTitle(LocaleController.getString(R.string.CommunityPendingRequests));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f10040c = frameLayout;
-        int i10 = h6.f20503a7;
+        int i10 = h6.f20504a7;
         frameLayout.setBackgroundColor(h6.x0(null, i10, false));
         p71 p71Var = new p71(this, new bi.v(this, 19), new q(this), new q(this));
         this.d = p71Var;
         p71Var.setClipToPadding(false);
         p71 p71Var2 = this.d;
-        p71Var2.W2.f26675r = false;
+        p71Var2.W2.f26679r = false;
         p71Var2.p1();
         this.d.j(new ai.r(this, 5));
         this.actionBar.setAdaptiveBackground(this.d);
@@ -106,7 +106,7 @@ public final class s extends m2 implements me.d {
         ci.d dVar = new ci.d(context, this.resourceProvider, true);
         this.f10043n = dVar;
         dVar.d();
-        this.f10043n.setColor(i0.a.d(0.125f, getThemedColor(h6.f20559d6), getThemedColor(h6.G6)));
+        this.f10043n.setColor(i0.a.d(0.125f, getThemedColor(h6.f20560d6), getThemedColor(h6.G6)));
         this.f10043n.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         this.f10043n.e();
         this.f10043n.setOnClickListener(new View.OnClickListener(this) {
@@ -157,7 +157,7 @@ public final class s extends m2 implements me.d {
         gy0 gy0Var = new gy0(getParentActivity(), null, 16, this.resourceProvider);
         this.f10044r = gy0Var;
         gy0Var.d.setText(LocaleController.getString(R.string.NoCommunityJoinRequests));
-        this.f10044r.f26557e.setText(LocaleController.getString(R.string.NoCommunityJoinRequestsDescription));
+        this.f10044r.f26561e.setText(LocaleController.getString(R.string.NoCommunityJoinRequestsDescription));
         this.f10044r.setAnimateLayoutChange(true);
         this.f10044r.setVisibility(8);
         this.f10040c.addView(this.f10044r, w5.e(-2, -2, 17));
@@ -169,7 +169,7 @@ public final class s extends m2 implements me.d {
         V(0);
         FrameLayout frameLayout2 = this.f10040c;
         q qVar = new q(this);
-        WeakHashMap weakHashMap = r0.i0.f46981a;
+        WeakHashMap weakHashMap = r0.i0.f46989a;
         r0.a0.i(frameLayout2, qVar);
         setBulletinDelegate(new a9(4));
         FrameLayout frameLayout3 = this.f10040c;

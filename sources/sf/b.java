@@ -12,19 +12,19 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.gd;
 import rg.x1;
 public final class b {
-    public final int f48205a;
-    public final e f48206b;
+    public final int f48213a;
+    public final e f48214b;
 
     public b(e eVar, int i10) {
-        this.f48205a = i10;
-        this.f48206b = eVar;
+        this.f48213a = i10;
+        this.f48214b = eVar;
     }
 
     public final void a(boolean z10) {
         Bitmap bitmap;
-        switch (this.f48205a) {
+        switch (this.f48213a) {
             case 0:
-                final e eVar = this.f48206b;
+                final e eVar = this.f48214b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -32,18 +32,18 @@ public final class b {
                         switch (r2) {
                             case 0:
                                 e eVar2 = eVar;
-                                if (eVar2.f48211a != 4) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar2.f48211a);
+                                if (eVar2.f48219a != 4) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar2.f48219a);
                                     return;
                                 }
-                                eVar2.f48218j.f46099a.q().removeView(eVar2.f48215f);
-                                eVar2.f48217i = null;
-                                eVar2.f48215f = null;
-                                eVar2.f48216g = null;
-                                f fVar = eVar2.f48214e;
+                                eVar2.f48226j.f46107a.q().removeView(eVar2.f48223f);
+                                eVar2.f48225i = null;
+                                eVar2.f48223f = null;
+                                eVar2.f48224g = null;
+                                f fVar = eVar2.f48222e;
                                 if (fVar != null) {
                                     fVar.b();
-                                    eVar2.f48214e = null;
+                                    eVar2.f48222e = null;
                                 }
                                 f fVar2 = eVar2.d;
                                 if (fVar2 != null) {
@@ -59,39 +59,39 @@ public final class b {
                                     bitmap2.recycle();
                                     u5Var.f6065c = null;
                                 }
-                                eVar2.f48211a = 0;
+                                eVar2.f48219a = 0;
                                 Log.i("PIP_DEBUG", "[HANDLER] detach");
-                                if (eVar2.f48222n) {
+                                if (eVar2.f48230n) {
                                     eVar2.g();
                                     return;
                                 }
                                 return;
                             case 1:
                                 e eVar3 = eVar;
-                                if (eVar3.f48211a != 1) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar3.f48211a);
+                                if (eVar3.f48219a != 1) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar3.f48219a);
                                     return;
                                 }
                                 Log.i("PIP_DEBUG", "[HANDLER] attach");
                                 eVar3.h.z();
-                                eVar3.f48218j.f46104g.a(new p(ApplicationLoader.applicationHandler, new b(eVar3, 2), 400L));
-                                eVar3.f48211a = 2;
-                                if (!eVar3.f48222n) {
+                                eVar3.f48226j.f46112g.a(new p(ApplicationLoader.applicationHandler, new b(eVar3, 2), 400L));
+                                eVar3.f48219a = 2;
+                                if (!eVar3.f48230n) {
                                     eVar3.h();
                                     return;
                                 }
                                 return;
                             default:
                                 e eVar4 = eVar;
-                                qf.e eVar5 = eVar4.f48218j;
-                                if (eVar4.f48211a != 3) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f48211a);
+                                qf.e eVar5 = eVar4.f48226j;
+                                if (eVar4.f48219a != 3) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f48219a);
                                     return;
                                 }
-                                eVar5.f46104g.b(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
-                                eVar4.f48215f.invalidate();
-                                eVar4.f48211a = 4;
-                                AndroidUtilities.doOnPreDraw(eVar5.f46106j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
+                                eVar5.f46112g.b(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
+                                eVar4.f48223f.invalidate();
+                                eVar4.f48219a = 4;
+                                AndroidUtilities.doOnPreDraw(eVar5.f46114j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
                                 Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
                                 return;
                         }
@@ -99,7 +99,7 @@ public final class b {
                 });
                 return;
             case 1:
-                final e eVar2 = this.f48206b;
+                final e eVar2 = this.f48214b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -107,18 +107,18 @@ public final class b {
                         switch (r2) {
                             case 0:
                                 e eVar22 = eVar2;
-                                if (eVar22.f48211a != 4) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar22.f48211a);
+                                if (eVar22.f48219a != 4) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar22.f48219a);
                                     return;
                                 }
-                                eVar22.f48218j.f46099a.q().removeView(eVar22.f48215f);
-                                eVar22.f48217i = null;
-                                eVar22.f48215f = null;
-                                eVar22.f48216g = null;
-                                f fVar = eVar22.f48214e;
+                                eVar22.f48226j.f46107a.q().removeView(eVar22.f48223f);
+                                eVar22.f48225i = null;
+                                eVar22.f48223f = null;
+                                eVar22.f48224g = null;
+                                f fVar = eVar22.f48222e;
                                 if (fVar != null) {
                                     fVar.b();
-                                    eVar22.f48214e = null;
+                                    eVar22.f48222e = null;
                                 }
                                 f fVar2 = eVar22.d;
                                 if (fVar2 != null) {
@@ -134,39 +134,39 @@ public final class b {
                                     bitmap2.recycle();
                                     u5Var.f6065c = null;
                                 }
-                                eVar22.f48211a = 0;
+                                eVar22.f48219a = 0;
                                 Log.i("PIP_DEBUG", "[HANDLER] detach");
-                                if (eVar22.f48222n) {
+                                if (eVar22.f48230n) {
                                     eVar22.g();
                                     return;
                                 }
                                 return;
                             case 1:
                                 e eVar3 = eVar2;
-                                if (eVar3.f48211a != 1) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar3.f48211a);
+                                if (eVar3.f48219a != 1) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar3.f48219a);
                                     return;
                                 }
                                 Log.i("PIP_DEBUG", "[HANDLER] attach");
                                 eVar3.h.z();
-                                eVar3.f48218j.f46104g.a(new p(ApplicationLoader.applicationHandler, new b(eVar3, 2), 400L));
-                                eVar3.f48211a = 2;
-                                if (!eVar3.f48222n) {
+                                eVar3.f48226j.f46112g.a(new p(ApplicationLoader.applicationHandler, new b(eVar3, 2), 400L));
+                                eVar3.f48219a = 2;
+                                if (!eVar3.f48230n) {
                                     eVar3.h();
                                     return;
                                 }
                                 return;
                             default:
                                 e eVar4 = eVar2;
-                                qf.e eVar5 = eVar4.f48218j;
-                                if (eVar4.f48211a != 3) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f48211a);
+                                qf.e eVar5 = eVar4.f48226j;
+                                if (eVar4.f48219a != 3) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f48219a);
                                     return;
                                 }
-                                eVar5.f46104g.b(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
-                                eVar4.f48215f.invalidate();
-                                eVar4.f48211a = 4;
-                                AndroidUtilities.doOnPreDraw(eVar5.f46106j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
+                                eVar5.f46112g.b(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
+                                eVar4.f48223f.invalidate();
+                                eVar4.f48219a = 4;
+                                AndroidUtilities.doOnPreDraw(eVar5.f46114j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
                                 Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
                                 return;
                         }
@@ -174,7 +174,7 @@ public final class b {
                 });
                 return;
             case 2:
-                u5 u5Var = this.f48206b.h;
+                u5 u5Var = this.f48214b.h;
                 if (((gd) u5Var.f6066e) != null) {
                     ((View) u5Var.f6063a).setBackground(null);
                     u5Var.f6066e = null;
@@ -187,12 +187,12 @@ public final class b {
                 return;
             case 3:
                 Log.i("PIP_DEBUG", "[HANDLER] on old source render first frame " + z10);
-                u5 u5Var2 = this.f48206b.h;
+                u5 u5Var2 = this.f48214b.h;
                 Objects.requireNonNull(u5Var2);
                 AndroidUtilities.runOnUIThread(new x1(u5Var2, 2));
                 return;
             default:
-                final e eVar3 = this.f48206b;
+                final e eVar3 = this.f48214b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -200,18 +200,18 @@ public final class b {
                         switch (r2) {
                             case 0:
                                 e eVar22 = eVar3;
-                                if (eVar22.f48211a != 4) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar22.f48211a);
+                                if (eVar22.f48219a != 4) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + eVar22.f48219a);
                                     return;
                                 }
-                                eVar22.f48218j.f46099a.q().removeView(eVar22.f48215f);
-                                eVar22.f48217i = null;
-                                eVar22.f48215f = null;
-                                eVar22.f48216g = null;
-                                f fVar = eVar22.f48214e;
+                                eVar22.f48226j.f46107a.q().removeView(eVar22.f48223f);
+                                eVar22.f48225i = null;
+                                eVar22.f48223f = null;
+                                eVar22.f48224g = null;
+                                f fVar = eVar22.f48222e;
                                 if (fVar != null) {
                                     fVar.b();
-                                    eVar22.f48214e = null;
+                                    eVar22.f48222e = null;
                                 }
                                 f fVar2 = eVar22.d;
                                 if (fVar2 != null) {
@@ -227,39 +227,39 @@ public final class b {
                                     bitmap2.recycle();
                                     u5Var3.f6065c = null;
                                 }
-                                eVar22.f48211a = 0;
+                                eVar22.f48219a = 0;
                                 Log.i("PIP_DEBUG", "[HANDLER] detach");
-                                if (eVar22.f48222n) {
+                                if (eVar22.f48230n) {
                                     eVar22.g();
                                     return;
                                 }
                                 return;
                             case 1:
                                 e eVar32 = eVar3;
-                                if (eVar32.f48211a != 1) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar32.f48211a);
+                                if (eVar32.f48219a != 1) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + eVar32.f48219a);
                                     return;
                                 }
                                 Log.i("PIP_DEBUG", "[HANDLER] attach");
                                 eVar32.h.z();
-                                eVar32.f48218j.f46104g.a(new p(ApplicationLoader.applicationHandler, new b(eVar32, 2), 400L));
-                                eVar32.f48211a = 2;
-                                if (!eVar32.f48222n) {
+                                eVar32.f48226j.f46112g.a(new p(ApplicationLoader.applicationHandler, new b(eVar32, 2), 400L));
+                                eVar32.f48219a = 2;
+                                if (!eVar32.f48230n) {
                                     eVar32.h();
                                     return;
                                 }
                                 return;
                             default:
                                 e eVar4 = eVar3;
-                                qf.e eVar5 = eVar4.f48218j;
-                                if (eVar4.f48211a != 3) {
-                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f48211a);
+                                qf.e eVar5 = eVar4.f48226j;
+                                if (eVar4.f48219a != 3) {
+                                    FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + eVar4.f48219a);
                                     return;
                                 }
-                                eVar5.f46104g.b(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
-                                eVar4.f48215f.invalidate();
-                                eVar4.f48211a = 4;
-                                AndroidUtilities.doOnPreDraw(eVar5.f46106j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
+                                eVar5.f46112g.b(new p(ApplicationLoader.applicationHandler, new b(eVar4, 3), 400L));
+                                eVar4.f48223f.invalidate();
+                                eVar4.f48219a = 4;
+                                AndroidUtilities.doOnPreDraw(eVar5.f46114j, new p(ApplicationLoader.applicationHandler, new b(eVar4, 4), 300L));
                                 Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
                                 return;
                         }

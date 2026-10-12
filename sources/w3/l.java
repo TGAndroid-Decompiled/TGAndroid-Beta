@@ -17,54 +17,54 @@ public final class l implements c3.o, b0 {
     public long D;
     public int E;
     public r3.a F;
-    public final z3.k f50046a;
-    public final int f50047b;
-    public final v f50048c;
+    public final z3.k f50054a;
+    public final int f50055b;
+    public final v f50056c;
     public final v d;
-    public final v f50049e;
-    public final v f50050f;
-    public final ArrayDeque f50051g;
+    public final v f50057e;
+    public final v f50058f;
+    public final ArrayDeque f50059g;
     public final n h;
-    public final ArrayList f50052i;
-    public a1 f50053j;
-    public int f50054k;
-    public int f50055l;
-    public long f50056m;
-    public int f50057n;
-    public v f50058o;
-    public int f50059p;
-    public int f50060q;
-    public int f50061r;
-    public int f50062s;
-    public boolean f50063t;
-    public boolean f50064u;
+    public final ArrayList f50060i;
+    public a1 f50061j;
+    public int f50062k;
+    public int f50063l;
+    public long f50064m;
+    public int f50065n;
+    public v f50066o;
+    public int f50067p;
+    public int f50068q;
+    public int f50069r;
+    public int f50070s;
+    public boolean f50071t;
+    public boolean f50072u;
     public boolean v;
-    public long f50065w;
-    public boolean f50066x;
-    public long f50067y;
-    public c3.q f50068z;
+    public long f50073w;
+    public boolean f50074x;
+    public long f50075y;
+    public c3.q f50076z;
 
     public l(z3.k kVar, int i10) {
         int i11;
-        this.f50046a = kVar;
-        this.f50047b = i10;
+        this.f50054a = kVar;
+        this.f50055b = i10;
         g0 g0Var = i0.f8749b;
-        this.f50053j = a1.f8712e;
+        this.f50061j = a1.f8712e;
         if ((i10 & 4) != 0) {
             i11 = 3;
         } else {
             i11 = 0;
         }
-        this.f50054k = i11;
+        this.f50062k = i11;
         this.h = new n();
-        this.f50052i = new ArrayList();
-        this.f50050f = new v(16);
-        this.f50051g = new ArrayDeque();
-        this.f50048c = new v(f2.p.f9614a);
+        this.f50060i = new ArrayList();
+        this.f50058f = new v(16);
+        this.f50059g = new ArrayDeque();
+        this.f50056c = new v(f2.p.f9614a);
         this.d = new v(6);
-        this.f50049e = new v();
-        this.f50059p = -1;
-        this.f50068z = c3.q.f4148m;
+        this.f50057e = new v();
+        this.f50067p = -1;
+        this.f50076z = c3.q.f4148m;
         this.A = new k[0];
     }
 
@@ -72,7 +72,7 @@ public final class l implements c3.o, b0 {
     public final boolean b(c3.p pVar) {
         boolean z10;
         a1 a1Var;
-        if ((this.f50047b & 2) != 0) {
+        if ((this.f50055b & 2) != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -84,7 +84,7 @@ public final class l implements c3.o, b0 {
             g0 g0Var = i0.f8749b;
             a1Var = a1.f8712e;
         }
-        this.f50053j = a1Var;
+        this.f50061j = a1Var;
         if (n10 == null) {
             return true;
         }
@@ -98,40 +98,40 @@ public final class l implements c3.o, b0 {
 
     @Override
     public final void g(c3.q qVar) {
-        if ((this.f50047b & 16) == 0) {
-            qVar = new com.google.firebase.messaging.m(qVar, this.f50046a);
+        if ((this.f50055b & 16) == 0) {
+            qVar = new com.google.firebase.messaging.m(qVar, this.f50054a);
         }
-        this.f50068z = qVar;
+        this.f50076z = qVar;
     }
 
     @Override
     public final void h(long j3, long j10) {
         k[] kVarArr;
-        this.f50051g.clear();
-        this.f50057n = 0;
-        this.f50059p = -1;
-        this.f50060q = 0;
-        this.f50061r = 0;
-        this.f50062s = 0;
-        this.f50063t = false;
+        this.f50059g.clear();
+        this.f50065n = 0;
+        this.f50067p = -1;
+        this.f50068q = 0;
+        this.f50069r = 0;
+        this.f50070s = 0;
+        this.f50071t = false;
         if (j3 == 0) {
-            if (this.f50054k != 3) {
-                this.f50054k = 0;
-                this.f50057n = 0;
+            if (this.f50062k != 3) {
+                this.f50062k = 0;
+                this.f50065n = 0;
                 return;
             }
             n nVar = this.h;
-            nVar.f50072a.clear();
-            nVar.f50073b = 0;
-            this.f50052i.clear();
+            nVar.f50080a.clear();
+            nVar.f50081b = 0;
+            this.f50060i.clear();
             return;
         }
         for (k kVar : this.A) {
-            s sVar = kVar.f50043b;
-            int e7 = d0.e(sVar.f50109f, j10, false);
+            s sVar = kVar.f50051b;
+            int e7 = d0.e(sVar.f50117f, j10, false);
             while (true) {
                 if (e7 >= 0) {
-                    if ((sVar.f50110g[e7] & 1) != 0) {
+                    if ((sVar.f50118g[e7] & 1) != 0) {
                         break;
                     }
                     e7--;
@@ -143,7 +143,7 @@ public final class l implements c3.o, b0 {
             if (e7 == -1) {
                 e7 = sVar.a(j10);
             }
-            kVar.f50045e = e7;
+            kVar.f50053e = e7;
             c3.i0 i0Var = kVar.d;
             if (i0Var != null) {
                 i0Var.f4119b = false;
@@ -154,7 +154,7 @@ public final class l implements c3.o, b0 {
 
     @Override
     public final List i() {
-        return this.f50053j;
+        return this.f50061j;
     }
 
     @Override

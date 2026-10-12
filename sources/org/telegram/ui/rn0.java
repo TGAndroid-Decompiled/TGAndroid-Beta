@@ -35,30 +35,30 @@ public final class rn0 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                xo0 xo0Var2 = new xo0(xo0Var.f44090b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44123x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44114r0, xo0Var.W0);
-                xo0Var2.f44093c1 = xo0Var.f44093c1;
-                xo0Var2.f44095d1 = xo0Var.f44095d1;
+                xo0 xo0Var2 = new xo0(xo0Var.f44095b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44128x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44119r0, xo0Var.W0);
+                xo0Var2.f44098c1 = xo0Var.f44098c1;
+                xo0Var2.f44100d1 = xo0Var.f44100d1;
                 xo0Var2.T = new co0(xo0Var);
                 xo0Var.presentFragment(xo0Var2);
                 return;
             case 2:
-                xo0 xo0Var3 = new xo0(xo0Var.f44090b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44123x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44114r0, xo0Var.W0);
-                xo0Var3.f44093c1 = xo0Var.f44093c1;
-                xo0Var3.f44095d1 = xo0Var.f44095d1;
+                xo0 xo0Var3 = new xo0(xo0Var.f44095b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44128x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44119r0, xo0Var.W0);
+                xo0Var3.f44098c1 = xo0Var.f44098c1;
+                xo0Var3.f44100d1 = xo0Var.f44100d1;
                 xo0Var3.T = new do0(xo0Var);
                 xo0Var.presentFragment(xo0Var3);
                 return;
             case 3:
-                xo0 xo0Var4 = new xo0(xo0Var.f44090b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44123x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44114r0, xo0Var.W0);
-                xo0Var4.f44093c1 = xo0Var.f44093c1;
-                xo0Var4.f44095d1 = xo0Var.f44095d1;
+                xo0 xo0Var4 = new xo0(xo0Var.f44095b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44128x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44119r0, xo0Var.W0);
+                xo0Var4.f44098c1 = xo0Var.f44098c1;
+                xo0Var4.f44100d1 = xo0Var.f44100d1;
                 xo0Var4.T = new eo0(xo0Var);
                 xo0Var.presentFragment(xo0Var4);
                 return;
             case 4:
-                xo0 xo0Var5 = new xo0(xo0Var.f44090b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44123x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44114r0, xo0Var.W0);
-                xo0Var5.f44093c1 = xo0Var.f44093c1;
-                xo0Var5.f44095d1 = xo0Var.f44095d1;
+                xo0 xo0Var5 = new xo0(xo0Var.f44095b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f44128x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f44119r0, xo0Var.W0);
+                xo0Var5.f44098c1 = xo0Var.f44098c1;
+                xo0Var5.f44100d1 = xo0Var.f44100d1;
                 xo0Var5.T = new fo0(xo0Var);
                 xo0Var.presentFragment(xo0Var5);
                 return;
@@ -77,10 +77,10 @@ public final class rn0 implements View.OnClickListener {
             case 7:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xo0Var.getParentActivity());
                 String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
-                if (xo0Var.f44086a0.has_secure_values) {
+                if (xo0Var.f44091a0.has_secure_values) {
                     string = org.telegram.messenger.v0.h(R.string.TurnPasswordOffPassport, sc.v.j(string, "\n\n"));
                 }
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
                 a2Var.T = string;
                 a2Var.R = LocaleController.getString(R.string.TurnPasswordOffQuestionTitle);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Disable), new vn0(xo0Var, 3));
@@ -88,7 +88,7 @@ public final class rn0 implements View.OnClickListener {
                 xo0Var.showDialog(a2Var);
                 TextView textView = (TextView) a2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(xo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20799q7));
+                    textView.setTextColor(xo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20800q7));
                     return;
                 }
                 return;
@@ -155,17 +155,17 @@ public final class rn0 implements View.OnClickListener {
                     jSONObject.put("currencyCode", xo0Var.C0.invoice.currency);
                     jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
                     put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", xo0Var.f44111p0));
+                    put.put("merchantInfo", new JSONObject().put("merchantName", xo0Var.f44116p0));
                     String jSONObject2 = put.toString();
                     ?? obj = new Object();
-                    obj.f49703r = true;
+                    obj.f49711r = true;
                     n6.m.i(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f49704s = jSONObject2;
-                    com.google.android.gms.internal.clearcut.u0 u0Var = xo0Var.f44096e;
+                    obj.f49712s = jSONObject2;
+                    com.google.android.gms.internal.clearcut.u0 u0Var = xo0Var.f44101e;
                     u0Var.getClass();
                     com.google.android.gms.common.api.internal.v e7 = com.google.android.gms.common.api.internal.w.e();
                     e7.f6694c = new k2.g0((Object) obj, 29);
-                    e7.d = new k6.c[]{v8.p.f49715b};
+                    e7.d = new k6.c[]{v8.p.f49723b};
                     e7.f6693b = true;
                     e7.f6692a = 23707;
                     v8.a.a(u0Var.e(1, e7.a()), xo0Var.getParentActivity());
@@ -175,12 +175,12 @@ public final class rn0 implements View.OnClickListener {
                     return;
                 }
             case 13:
-                xo0Var.f44119v0 = false;
+                xo0Var.f44124v0 = false;
                 xo0Var.t0();
                 return;
             default:
-                xo0Var.f44099f[0].requestFocus();
-                AndroidUtilities.showKeyboard(xo0Var.f44099f[0]);
+                xo0Var.f44104f[0].requestFocus();
+                AndroidUtilities.showKeyboard(xo0Var.f44104f[0]);
                 return;
         }
     }

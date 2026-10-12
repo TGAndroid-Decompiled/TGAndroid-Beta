@@ -28,21 +28,21 @@ import org.telegram.ui.Components.yw0;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.ci0;
 public final class c7 extends org.telegram.ui.ActionBar.m2 {
-    public int f34582a;
-    public w4 f34583b;
-    public LinearLayout f34584c;
+    public int f34584a;
+    public w4 f34585b;
+    public LinearLayout f34586c;
     public ci.d d;
-    public ImageView f34585e;
-    public ScrollView f34586f;
+    public ImageView f34587e;
+    public ScrollView f34588f;
     public ia0 h;
-    public int f34587n;
-    public boolean f34588r;
-    public byte[] f34589s;
+    public int f34589n;
+    public boolean f34590r;
+    public byte[] f34591s;
     public final ArrayList v;
 
     public c7() {
         super(null);
-        this.f34582a = 12;
+        this.f34584a = 12;
         this.v = new ArrayList();
     }
 
@@ -53,15 +53,15 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
                 zc.a0(c7Var).e0(str2, false);
                 return;
             }
-            if (c7Var.f34588r && !TextUtils.isEmpty(str) && !TextUtils.equals(str, l0Var.r())) {
+            if (c7Var.f34590r && !TextUtils.isEmpty(str) && !TextUtils.equals(str, l0Var.r())) {
                 new q0(c7Var.getParentActivity(), str, c7Var.currentAccount).B();
             }
-            AndroidUtilities.runOnUIThread(new s(12, c7Var, m2Var), 300L);
+            AndroidUtilities.runOnUIThread(new s(13, c7Var, m2Var), 300L);
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c7Var.getParentActivity(), 0, c7Var.getResourceProvider());
-        alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
-        alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
+        alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
+        alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
         org.telegram.messenger.v0.p(R.string.WalletOK, alertDialog$Builder, null);
     }
 
@@ -83,7 +83,7 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
             try {
                 c7Var.d.setLoading(true);
                 org.telegram.ui.ActionBar.m2 m2Var = null;
-                if (c7Var.f34589s != null) {
+                if (c7Var.f34591s != null) {
                     try {
                         bArr = WalletEngine2.secretPhraseToPublicKey(d);
                     } catch (Exception e7) {
@@ -93,11 +93,11 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
                     if (bArr == null) {
                         c7Var.d.setLoading(false);
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c7Var.getParentActivity(), 0, c7Var.getResourceProvider());
-                        alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
-                        alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
+                        alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
+                        alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
                         alertDialog$Builder.k(LocaleController.getString(R.string.WalletOK), null);
                         alertDialog$Builder.o();
-                    } else if (!Arrays.equals(bArr, c7Var.f34589s)) {
+                    } else if (!Arrays.equals(bArr, c7Var.f34591s)) {
                         try {
                             str = WalletEngine2.secretPhraseToAddress(d);
                         } catch (Exception e10) {
@@ -112,7 +112,7 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
                             textView.setText(X(str));
                             textView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(12.0f));
                             textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-                            textView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20503a7, c7Var.resourceProvider)));
+                            textView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20504a7, c7Var.resourceProvider)));
                             textView.setGravity(17);
                             frameLayout.addView(textView, w7.w5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 7));
                         } else {
@@ -120,14 +120,14 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
                         }
                         c7Var.d.setLoading(false);
                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(c7Var.getParentActivity(), 0, c7Var.getResourceProvider());
-                        alertDialog$Builder2.f20141a.R = LocaleController.getString(R.string.WalletWrongSecretPhrase);
-                        alertDialog$Builder2.f20141a.T = LocaleController.getString(R.string.WalletWrongSecretPhraseInfo);
+                        alertDialog$Builder2.f20142a.R = LocaleController.getString(R.string.WalletWrongSecretPhrase);
+                        alertDialog$Builder2.f20142a.T = LocaleController.getString(R.string.WalletWrongSecretPhraseInfo);
                         alertDialog$Builder2.n(frameLayout);
                         alertDialog$Builder2.k(LocaleController.getString(R.string.OK), null);
                         alertDialog$Builder2.o();
                     } else {
                         l0 v = l0.v(c7Var.currentAccount);
-                        v.f34996c.p(UserConfig.getInstance(c7Var.currentAccount).getClientUserId(), bArr, d, new b7(0, c7Var, v));
+                        v.f34998c.p(UserConfig.getInstance(c7Var.currentAccount).getClientUserId(), bArr, d, new b7(0, c7Var, v));
                     }
                     d.close();
                     return;
@@ -178,7 +178,7 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
                 int i14 = i11 + 1;
                 if (i11 % 2 == 1) {
                     ev evVar = new ev(false);
-                    evVar.f25788b = (int) 191.25f;
+                    evVar.f25790b = (int) 191.25f;
                     spannableStringBuilder.setSpan(evVar, i10, spannableStringBuilder.length(), 33);
                 }
                 i10 = spannableStringBuilder.length();
@@ -200,9 +200,9 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
             i11++;
             arrayList.add(((j9) obj).getWord());
         }
-        this.f34584c.removeAllViews();
+        this.f34586c.removeAllViews();
         arrayList2.clear();
-        for (int i12 = 0; i12 < this.f34582a; i12++) {
+        for (int i12 = 0; i12 < this.f34584a; i12++) {
             if (i12 == 0) {
                 z10 = true;
             } else {
@@ -212,7 +212,7 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
             j9Var.setOnTextChangedListener(new a7(this, 1));
             j9Var.setOnPasteListener(new i(this, i12, 3));
             j9Var.setOnNextListener(new ci0(this, i12, j9Var, 14));
-            LinearLayout linearLayout = this.f34584c;
+            LinearLayout linearLayout = this.f34586c;
             if (i12 == 0) {
                 i10 = 0;
             } else {
@@ -255,13 +255,13 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
         this.actionBar.setOccupyStatusBar(false);
         yw0 yw0Var = new yw0(context, null);
         this.fragmentView = yw0Var;
-        yw0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, this.resourceProvider));
+        yw0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, this.resourceProvider));
         ScrollView scrollView = new ScrollView(context);
         scrollView.setFillViewport(true);
         scrollView.setVerticalScrollBarEnabled(false);
         scrollView.setClipToPadding(false);
         scrollView.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
-        this.f34586f = scrollView;
+        this.f34588f = scrollView;
         scrollView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
@@ -293,33 +293,33 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
         linearLayout.setClipToPadding(false);
         scrollView.addView(linearLayout, w7.w5.n(-1, -2));
         ImageView imageView = new ImageView(context);
-        this.f34585e = imageView;
+        this.f34587e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        ImageView imageView2 = this.f34585e;
+        ImageView imageView2 = this.f34587e;
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, this.resourceProvider), PorterDuff.Mode.SRC_IN));
-        this.f34585e.setImageResource(R.drawable.ic_ab_close);
-        this.f34585e.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, this.resourceProvider), 3, -1));
-        this.f34585e.setOnClickListener(new View.OnClickListener(this) {
-            public final c7 f35602b;
+        this.f34587e.setImageResource(R.drawable.ic_ab_close);
+        this.f34587e.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, this.resourceProvider), 3, -1));
+        this.f34587e.setOnClickListener(new View.OnClickListener(this) {
+            public final c7 f35604b;
 
             {
-                this.f35602b = this;
+                this.f35604b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35602b.finishFragment();
+                        this.f35604b.finishFragment();
                         return;
                     default:
-                        c7.V(this.f35602b);
+                        c7.V(this.f35604b);
                         return;
                 }
             }
         });
-        ((FrameLayout) this.fragmentView).addView(this.f34585e, w7.w5.a(48.0f, 4.0f, 12.0f, 0.0f, 0.0f, 48, 51));
+        ((FrameLayout) this.fragmentView).addView(this.f34587e, w7.w5.a(48.0f, 4.0f, 12.0f, 0.0f, 0.0f, 48, 51));
         y9 y9Var = new y9(context);
         y9Var.setAspectFit(true);
         y9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
@@ -331,7 +331,7 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, this.resourceProvider));
-        if (this.f34589s != null) {
+        if (this.f34591s != null) {
             i10 = R.string.WalletSecretPhrase;
         } else {
             i10 = R.string.WalletImport;
@@ -342,47 +342,47 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
         this.h = ia0Var;
         ia0Var.setTextSize(1, 14.0f);
         this.h.setGravity(1);
-        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, this.resourceProvider));
+        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, this.resourceProvider));
         this.h.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.gc, this.resourceProvider));
-        if (this.f34589s != null) {
+        if (this.f34591s != null) {
             this.h.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.WalletEnterSecretPhrase), new a7(this, 0)));
         } else {
             this.h.setText(LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, 12));
         }
         linearLayout.addView(this.h, w7.w5.t(-1, -2, 1, 32, 0, 32, 8));
         w4 w4Var = new w4(context, new CharSequence[]{LocaleController.formatPluralString("WalletPhraseWords", 12, new Object[0]), LocaleController.formatPluralString("WalletPhraseWords", 24, new Object[0])}, new k(this, 4), this.resourceProvider);
-        this.f34583b = w4Var;
-        w4Var.f35474e = true;
+        this.f34585b = w4Var;
+        w4Var.f35476e = true;
         w4Var.e();
-        this.f34583b.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        this.f34583b.setClipToPadding(false);
-        linearLayout.addView(this.f34583b, w7.w5.t(-1, -2, 1, 0, 0, 0, 4));
+        this.f34585b.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        this.f34585b.setClipToPadding(false);
+        linearLayout.addView(this.f34585b, w7.w5.t(-1, -2, 1, 0, 0, 0, 4));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f34584c = linearLayout2;
+        this.f34586c = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.f34584c.setGravity(1);
-        this.f34584c.setClipChildren(false);
-        linearLayout.addView(this.f34584c, w7.w5.t(-1, -2, 1, 0, 16, 0, 0));
+        this.f34586c.setGravity(1);
+        this.f34586c.setClipChildren(false);
+        linearLayout.addView(this.f34586c, w7.w5.t(-1, -2, 1, 0, 16, 0, 0));
         ci.d dVar = new ci.d(context, this.resourceProvider, true);
         this.d = dVar;
         dVar.e();
         this.d.setText(LocaleController.getString(R.string.WalletImportButton));
         this.d.setEnabled(false);
         this.d.setOnClickListener(new View.OnClickListener(this) {
-            public final c7 f35602b;
+            public final c7 f35604b;
 
             {
-                this.f35602b = this;
+                this.f35604b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35602b.finishFragment();
+                        this.f35604b.finishFragment();
                         return;
                     default:
-                        c7.V(this.f35602b);
+                        c7.V(this.f35604b);
                         return;
                 }
             }
@@ -401,26 +401,26 @@ public final class c7 extends org.telegram.ui.ActionBar.m2 {
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
         FrameLayout.LayoutParams layoutParams;
-        ScrollView scrollView = this.f34586f;
+        ScrollView scrollView = this.f34588f;
         if (scrollView != null) {
             scrollView.setPadding(i10, AndroidUtilities.dp(96.0f) + i11, i12, 0);
-            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f34586f.getLayoutParams();
-            int max = Math.max(i13, this.f34587n);
+            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f34588f.getLayoutParams();
+            int max = Math.max(i13, this.f34589n);
             if (layoutParams2.bottomMargin != max) {
                 layoutParams2.bottomMargin = max;
-                this.f34586f.setLayoutParams(layoutParams2);
+                this.f34588f.setLayoutParams(layoutParams2);
             }
         }
-        ImageView imageView = this.f34585e;
+        ImageView imageView = this.f34587e;
         if (imageView != null && (layoutParams = (FrameLayout.LayoutParams) imageView.getLayoutParams()) != null) {
             layoutParams.topMargin = AndroidUtilities.dp(12.0f) + i11;
-            this.f34585e.setLayoutParams(layoutParams);
+            this.f34587e.setLayoutParams(layoutParams);
         }
     }
 
     @Override
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        this.f34587n = k1Var.f46992a.f(8).d;
+        this.f34589n = k1Var.f47000a.f(8).d;
         return super.onInsetsInternal(view, k1Var);
     }
 }

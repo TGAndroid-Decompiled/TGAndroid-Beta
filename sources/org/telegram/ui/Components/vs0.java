@@ -15,13 +15,13 @@ public final class vs0 extends ew0 {
         super.l();
         hw0 hw0Var = this.G;
         av0 W = hw0Var.W(9);
-        if (W != null && W.f24500r.getVisibility() == 0) {
-            hw0Var.f26938f0.l();
+        if (W != null && W.f24488r.getVisibility() == 0) {
+            hw0Var.f26923f0.l();
         }
         if (W != null) {
-            rt0 rt0Var = W.f24502w;
-            ai.e9 e9Var = this.f25795s;
-            if (e9Var != null && (e9Var.k() || (hw0Var.i0() && this.f25795s.g() > 0))) {
+            rt0 rt0Var = W.f24490w;
+            ai.e9 e9Var = this.f25797s;
+            if (e9Var != null && (e9Var.k() || (hw0Var.i0() && this.f25797s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

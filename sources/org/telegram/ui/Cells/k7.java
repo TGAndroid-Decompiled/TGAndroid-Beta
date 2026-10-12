@@ -1,23 +1,23 @@
 package org.telegram.ui.Cells;
 public final class k7 implements Runnable {
-    public final int f22165a;
-    public final n7 f22166b;
+    public final int f22166a;
+    public final n7 f22167b;
 
     public k7(n7 n7Var, int i10) {
-        this.f22165a = i10;
-        this.f22166b = n7Var;
+        this.f22166a = i10;
+        this.f22167b = n7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22165a) {
+        switch (this.f22166a) {
             case 0:
-                n7 n7Var = this.f22166b;
+                n7 n7Var = this.f22167b;
                 n7Var.post(new k7(n7Var, 1));
                 return;
             default:
-                n7 n7Var2 = this.f22166b;
-                n7Var2.f22290b0.isSpoilersRevealed = true;
+                n7 n7Var2 = this.f22167b;
+                n7Var2.f22291b0.isSpoilersRevealed = true;
                 n7Var2.H.clear();
                 n7Var2.I.clear();
                 n7Var2.J.clear();

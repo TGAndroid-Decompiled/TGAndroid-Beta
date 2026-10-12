@@ -22,7 +22,7 @@ public final class y extends db {
         this.Y = str;
         O();
         this.v = 0.6f;
-        this.f25302y = true;
+        this.f25294y = true;
         this.E = true;
         fixNavigationBar();
         L();
@@ -41,7 +41,7 @@ public final class y extends db {
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(wm0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
         this.Z = h71Var;
-        h71Var.f26675r = false;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

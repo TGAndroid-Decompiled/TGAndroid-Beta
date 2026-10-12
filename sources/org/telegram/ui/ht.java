@@ -17,12 +17,12 @@ public final class ht implements View.OnClickListener {
             case 0:
                 ut utVar = this.f38521b;
                 utVar.K = false;
-                utVar.f42591z.invalidate();
+                utVar.f42593z.invalidate();
                 utVar.n();
                 return;
             case 1:
                 ut utVar2 = this.f38521b;
-                Activity activity = utVar2.f42588w;
+                Activity activity = utVar2.f42590w;
                 if (activity instanceof LaunchActivity) {
                     LaunchActivity launchActivity = (LaunchActivity) activity;
                     if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
@@ -31,12 +31,12 @@ public final class ht implements View.OnClickListener {
                     launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
                 }
                 utVar2.K = false;
-                utVar2.f42591z.invalidate();
+                utVar2.f42593z.invalidate();
                 utVar2.n();
                 return;
             case 2:
                 ut utVar3 = this.f38521b;
-                st stVar = utVar3.f42578l;
+                st stVar = utVar3.f42580l;
                 if (stVar != null) {
                     stVar.K();
                 }
@@ -44,7 +44,7 @@ public final class ht implements View.OnClickListener {
                 return;
             default:
                 ut utVar4 = this.f38521b;
-                st stVar2 = utVar4.f42578l;
+                st stVar2 = utVar4.f42580l;
                 if (stVar2 != null) {
                     stVar2.s();
                 }

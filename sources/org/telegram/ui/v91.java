@@ -22,13 +22,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class v91 extends org.telegram.ui.Components.db {
-    public static final int f42731d0 = 0;
+    public static final int f42733d0 = 0;
     public final yh.a X;
     public final LinearLayout Y;
     public final LinearLayout Z;
-    public boolean f42732a0;
-    public boolean f42733b0;
-    public org.telegram.ui.Components.h71 f42734c0;
+    public boolean f42734a0;
+    public boolean f42735b0;
+    public org.telegram.ui.Components.h71 f42736c0;
 
     public v91(final Context context, final int i10, final org.telegram.ui.ActionBar.c6 c6Var, final tc tcVar) {
         super(1, context, c6Var, true);
@@ -38,7 +38,7 @@ public final class v91 extends org.telegram.ui.Components.db {
         this.v = 0.2f;
         this.smoothKeyboardAnimationEnabled = true;
         this.smoothKeyboardByBottom = true;
-        yh.a aVar = new yh.a(context, i10, zf.b.f54668b, c6Var);
+        yh.a aVar = new yh.a(context, i10, zf.b.f54676b, c6Var);
         this.X = aVar;
         aVar.setScaleX(0.6f);
         aVar.setScaleY(0.6f);
@@ -60,7 +60,7 @@ public final class v91 extends org.telegram.ui.Components.db {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.dice6);
         linearLayout.addView(imageView, w7.w5.t(80, 80, 1, 0, 0, 0, 8));
-        int i13 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i13 = org.telegram.ui.ActionBar.h6.f20668j5;
         TextView b10 = w7.a6.b(context, 20.0f, i13, true, null);
         b10.setGravity(17);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.StakeDiceTitle));
@@ -102,7 +102,7 @@ public final class v91 extends org.telegram.ui.Components.db {
             tableRow2.addView((View) dVar.run((Object) 6, (Object) Float.valueOf(tL_emojiGameDiceInfo.params.get(5).intValue() / 1000.0f)), new TableRow.LayoutParams(0, -1, 1.0f));
             tableRow2.addView((View) dVar.run((Object) 7, (Object) Float.valueOf(tL_emojiGameDiceInfo.params.get(6).intValue() / 1000.0f)), new TableRow.LayoutParams(0, -1, 2.0f));
         }
-        TextView b13 = w7.a6.b(context, 14.0f, org.telegram.ui.ActionBar.h6.f20945y6, false, null);
+        TextView b13 = w7.a6.b(context, 14.0f, org.telegram.ui.ActionBar.h6.f20946y6, false, null);
         b13.setGravity(17);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("🎲");
         org.telegram.ui.Components.gr grVar = new org.telegram.ui.Components.gr(R.drawable.dice6, 0);
@@ -133,8 +133,8 @@ public final class v91 extends org.telegram.ui.Components.db {
         editTextBoldCursor.setInputType(8194);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20883uf, c6Var));
-        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20900vf, c6Var));
+        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20884uf, c6Var));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20901vf, c6Var));
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
@@ -241,8 +241,8 @@ public final class v91 extends org.telegram.ui.Components.db {
                         int i26 = -iArr2[0];
                         iArr2[0] = i26;
                         AndroidUtilities.shakeViewSpring(de0Var2, i26);
-                    } else if (yh.n5.y(i23, true).f53138f.toDouble() < parseDouble) {
-                        new di.h(context, c6Var, zf.a.i((long) (parseDouble * 1.0E9d), zf.b.f54668b), true, new w21(2));
+                    } else if (yh.n5.y(i23, true).f53150f.toDouble() < parseDouble) {
+                        new di.h(context, c6Var, zf.a.i((long) (parseDouble * 1.0E9d), zf.b.f54676b), true, new w21(2));
                     } else {
                         tcVar.run(Long.valueOf((long) (parseDouble * 1.0E9d)));
                         v91.this.dismiss();
@@ -259,7 +259,7 @@ public final class v91 extends org.telegram.ui.Components.db {
         org.telegram.ui.Components.wm0 wm0Var = this.d;
         int i24 = this.backgroundPaddingLeft;
         wm0Var.setPadding(i24, 0, i24, AndroidUtilities.dp(68.0f));
-        this.f42734c0.N(false);
+        this.f42736c0.N(false);
     }
 
     @Override
@@ -270,13 +270,13 @@ public final class v91 extends org.telegram.ui.Components.db {
     public final void Q() {
         boolean z10;
         float f7;
-        if (this.f42732a0 && !isDismissed() && !isKeyboardVisible()) {
+        if (this.f42734a0 && !isDismissed() && !isKeyboardVisible()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f42733b0 != z10) {
-            this.f42733b0 = z10;
+        if (this.f42735b0 != z10) {
+            this.f42735b0 = z10;
             yh.a aVar = this.X;
             if (aVar != null) {
                 aVar.setEnabled(z10);
@@ -320,21 +320,21 @@ public final class v91 extends org.telegram.ui.Components.db {
     @Override
     public final void onDismissAnimationStart() {
         super.onDismissAnimationStart();
-        this.f42732a0 = false;
+        this.f42734a0 = false;
         Q();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f42732a0 = true;
+        this.f42734a0 = true;
         Q();
     }
 
     @Override
     public final org.telegram.ui.Components.vm0 x(org.telegram.ui.Components.wm0 wm0Var) {
         org.telegram.ui.Components.h71 h71Var = new org.telegram.ui.Components.h71(wm0Var, getContext(), this.currentAccount, 0, false, new e5(this, 27), this.resourcesProvider);
-        this.f42734c0 = h71Var;
+        this.f42736c0 = h71Var;
         return h71Var;
     }
 }

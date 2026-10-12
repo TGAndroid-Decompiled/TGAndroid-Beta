@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class b41 implements Runnable {
-    public final int f36066a;
-    public final d41 f36067b;
+    public final int f36068a;
+    public final d41 f36069b;
 
     public b41(d41 d41Var, int i10) {
-        this.f36066a = i10;
-        this.f36067b = d41Var;
+        this.f36068a = i10;
+        this.f36069b = d41Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36066a) {
+        switch (this.f36068a) {
             case 0:
-                d41 d41Var = this.f36067b;
+                d41 d41Var = this.f36069b;
                 e41 e41Var = d41Var.v;
-                if (d41Var.f36638a == 0) {
+                if (d41Var.f36640a == 0) {
                     e41Var.dismiss();
                     return;
                 } else {
@@ -24,7 +24,7 @@ public final class b41 implements Runnable {
                     return;
                 }
             default:
-                AndroidUtilities.showKeyboard(this.f36067b.f36643n.f22080b);
+                AndroidUtilities.showKeyboard(this.f36069b.f36645n.f22081b);
                 return;
         }
     }

@@ -8,14 +8,14 @@ import com.google.android.gms.common.api.internal.t;
 import java.util.concurrent.Executor;
 import q9.r;
 public final class i implements q9.d, t {
-    public static final i f14751b = new i(0);
-    public static final i f14752c = new i(1);
+    public static final i f14752b = new i(0);
+    public static final i f14753c = new i(1);
     public static final i d = new i(2);
-    public static final i f14753e = new i(3);
-    public final int f14754a;
+    public static final i f14754e = new i(3);
+    public final int f14755a;
 
     public i(int i10) {
-        this.f14754a = i10;
+        this.f14755a = i10;
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class i implements q9.d, t {
 
     @Override
     public Object x0(u5 u5Var) {
-        switch (this.f14754a) {
+        switch (this.f14755a) {
             case 0:
                 Object g10 = u5Var.g(new r(m9.a.class, Executor.class));
                 kotlin.jvm.internal.i.d(g10, "c.get(Qualified.qualifie…a, Executor::class.java))");

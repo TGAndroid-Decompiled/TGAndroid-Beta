@@ -6,10 +6,10 @@ import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class fi implements Comparator {
-    public final int f17619a;
+    public final int f17620a;
 
     public fi(int i10) {
-        this.f17619a = i10;
+        this.f17620a = i10;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class fi implements Comparator {
         int lambda$checkSecretHoles$16;
         int lambda$saveProxyList$4;
         int lambda$sortTopics$9;
-        switch (this.f17619a) {
+        switch (this.f17620a) {
             case 0:
                 lambda$updatePinnedOrder$5 = SavedMessagesController.lambda$updatePinnedOrder$5((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
                 return lambda$updatePinnedOrder$5;

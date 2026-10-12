@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class pl extends FrameLayout {
-    public float f40987a;
-    public float f40988b;
-    public final eo f40989c;
+    public float f40989a;
+    public float f40990b;
+    public final eo f40991c;
 
     public pl(eo eoVar, Activity activity) {
         super(activity);
-        this.f40989c = eoVar;
+        this.f40991c = eoVar;
         setOnLongClickListener(new v(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        eo eoVar = this.f40989c;
-        if (view == eoVar.f37504z2) {
+        eo eoVar = this.f40991c;
+        if (view == eoVar.f37509z2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
         org.telegram.ui.ActionBar.h5[] h5VarArr = eoVar.D2;
         if (view != h5VarArr[0] && view != h5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == eoVar.f37504z2) {
+            if (view == eoVar.f37509z2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,7 +43,7 @@ public final class pl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        eo eoVar = this.f40989c;
+        eo eoVar = this.f40991c;
         if (eoVar.A2) {
             int i12 = 0;
             while (true) {
@@ -64,16 +64,16 @@ public final class pl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f40987a = motionEvent.getY();
+        this.f40989a = motionEvent.getY();
         int action = motionEvent.getAction();
-        eo eoVar = this.f40989c;
+        eo eoVar = this.f40991c;
         if (action == 1) {
             eoVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f40988b - this.f40987a;
+            float f7 = this.f40990b - this.f40989a;
             eoVar.movePreviewFragment(f7);
             if (f7 < 0.0f) {
-                this.f40988b = this.f40987a;
+                this.f40990b = this.f40989a;
             }
         }
         return super.onTouchEvent(motionEvent);

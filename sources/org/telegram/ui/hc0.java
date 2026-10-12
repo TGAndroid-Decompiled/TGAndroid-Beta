@@ -27,8 +27,8 @@ public final class hc0 extends og.a {
         if (this != obj) {
             if (obj instanceof hc0) {
                 hc0 hc0Var = (hc0) obj;
-                int i10 = hc0Var.f16876a;
-                int i11 = this.f16876a;
+                int i10 = hc0Var.f16877a;
+                int i11 = this.f16877a;
                 if (i10 == i11) {
                     if (i11 != 3 || hc0Var.d == this.d) {
                         if (i11 != 5 || hc0Var.f38328f == this.f38328f) {

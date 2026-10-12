@@ -79,13 +79,13 @@ public final class gx implements org.telegram.ui.Components.sg {
                 }
                 return;
             }
-            org.telegram.ui.Components.voip.y yVar = vyVar.H2;
-            if (yVar != null) {
-                AndroidUtilities.cancelRunOnUIThread(yVar);
+            org.telegram.ui.Components.voip.p pVar = vyVar.H2;
+            if (pVar != null) {
+                AndroidUtilities.cancelRunOnUIThread(pVar);
             }
-            org.telegram.ui.Components.voip.y yVar2 = new org.telegram.ui.Components.voip.y(12, this, charSequence);
-            vyVar.H2 = yVar2;
-            AndroidUtilities.runOnUIThread(yVar2, 1000L);
+            org.telegram.ui.Components.voip.p pVar2 = new org.telegram.ui.Components.voip.p(13, this, charSequence);
+            vyVar.H2 = pVar2;
+            AndroidUtilities.runOnUIThread(pVar2, 1000L);
         }
     }
 

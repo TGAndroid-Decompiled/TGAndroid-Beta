@@ -10,11 +10,11 @@ public final class d9 extends wm0 {
     public int X2;
     public final org.telegram.ui.y7 Y2;
     public c9 Z2;
-    public final g9 f25267a3;
+    public final g9 f25259a3;
 
     public d9(g9 g9Var, Activity activity) {
         super(activity, null);
-        this.f25267a3 = g9Var;
+        this.f25259a3 = g9Var;
         this.V2 = new ArrayList();
         this.W2 = 200;
         this.X2 = -1;
@@ -25,25 +25,25 @@ public final class d9 extends wm0 {
             ?? obj = new Object();
             int i11 = this.W2;
             this.W2 = i11 + 1;
-            obj.f24859a = i11;
-            int[] iArr = g9.f26348c0[i10];
-            obj.f24861c = iArr[0];
+            obj.f24854a = i11;
+            int[] iArr = g9.f26346c0[i10];
+            obj.f24856c = iArr[0];
             obj.d = iArr[1];
-            obj.f24862e = iArr[2];
-            obj.f24863f = iArr[3];
+            obj.f24857e = iArr[2];
+            obj.f24858f = iArr[3];
             this.V2.add(obj);
         }
         for (int i12 = 0; i12 < 30; i12++) {
             ?? obj2 = new Object();
             int i13 = this.W2;
             this.W2 = i13 + 1;
-            obj2.f24859a = i13;
-            int[] iArr2 = g9.f26349d0[i12];
-            obj2.f24861c = iArr2[0];
+            obj2.f24854a = i13;
+            int[] iArr2 = g9.f26347d0[i12];
+            obj2.f24856c = iArr2[0];
             obj2.d = iArr2[1];
-            obj2.f24862e = 0;
-            obj2.f24863f = 0;
-            obj2.f24860b = true;
+            obj2.f24857e = 0;
+            obj2.f24858f = 0;
+            obj2.f24855b = true;
             this.V2.add(obj2);
         }
         setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
@@ -59,7 +59,7 @@ public final class d9 extends wm0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10) / this.Y2.h();
-        g9 g9Var = this.f25267a3;
+        g9 g9Var = this.f25259a3;
         g9Var.P = size;
         if (size < AndroidUtilities.dp(39.0f)) {
             g9Var.P = AndroidUtilities.dp(39.0f);
@@ -75,7 +75,7 @@ public final class d9 extends wm0 {
             ArrayList arrayList = this.V2;
             if (i10 < arrayList.size()) {
                 if (((c9) arrayList.get(i10)).equals(c9Var)) {
-                    this.X2 = ((c9) arrayList.get(i10)).f24859a;
+                    this.X2 = ((c9) arrayList.get(i10)).f24854a;
                     break;
                 }
                 i10++;

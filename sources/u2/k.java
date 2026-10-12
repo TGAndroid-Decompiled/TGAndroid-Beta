@@ -1,12 +1,12 @@
 package u2;
 public final class k {
-    public final a f48835a;
-    public final i f48836b;
-    public final j f48837c;
+    public final a f48843a;
+    public final i f48844b;
+    public final j f48845c;
 
     public k(a aVar, i iVar, j jVar) {
-        this.f48835a = aVar;
-        this.f48836b = iVar;
-        this.f48837c = jVar;
+        this.f48843a = aVar;
+        this.f48844b = iVar;
+        this.f48845c = jVar;
     }
 }

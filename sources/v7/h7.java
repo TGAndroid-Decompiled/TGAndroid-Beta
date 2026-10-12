@@ -1,12 +1,12 @@
 package v7;
 public final class h7 {
-    public final c6 f49434a;
-    public final g6 f49435b;
-    public final f7 f49436c;
+    public final c6 f49442a;
+    public final g6 f49443b;
+    public final f7 f49444c;
 
     public h7(k kVar) {
-        this.f49434a = (c6) kVar.f49474b;
-        this.f49435b = (g6) kVar.f49475c;
-        this.f49436c = (f7) kVar.d;
+        this.f49442a = (c6) kVar.f49482b;
+        this.f49443b = (g6) kVar.f49483c;
+        this.f49444c = (f7) kVar.d;
     }
 }

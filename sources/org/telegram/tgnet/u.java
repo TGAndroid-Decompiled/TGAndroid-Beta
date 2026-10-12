@@ -4,15 +4,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class u implements Vector.TLDeserializer {
-    public final int f20070a;
+    public final int f20071a;
 
     public u(int i10) {
-        this.f20070a = i10;
+        this.f20071a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f20070a) {
+        switch (this.f20071a) {
             case 0:
                 return TLRPC.TL_paymentFormMethod.TLdeserialize(inputSerializedData, i10, z10);
             case 1:

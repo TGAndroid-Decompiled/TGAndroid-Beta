@@ -23,7 +23,7 @@ public final class g extends db {
 
     public g(Activity activity, c6 c6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, c6Var);
-        setBackgroundColor(h6.w0(h6.f20503a7, c6Var));
+        setBackgroundColor(h6.w0(h6.f20504a7, c6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
@@ -34,7 +34,7 @@ public final class g extends db {
         wm0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.setSections(true);
-        y p5 = this.f25295e.p();
+        y p5 = this.f25287e.p();
         p5.a(-1, R.drawable.ic_close_white);
         p5.setTranslationX(-AndroidUtilities.dp(5.0f));
         this.X.N(false);
@@ -56,7 +56,7 @@ public final class g extends db {
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(wm0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
         this.X = h71Var;
-        h71Var.f26675r = false;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

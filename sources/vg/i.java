@@ -7,7 +7,7 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import w7.w5;
 public final class i extends c {
-    public final h5 f49826s;
+    public final h5 f49834s;
     public Object v;
 
     public i(Context context, c6 c6Var) {
@@ -15,12 +15,12 @@ public final class i extends c {
         int i10;
         float f7;
         float f10;
-        this.f49804c.setVisibility(8);
-        h5 h5Var = this.f49805e;
+        this.f49812c.setVisibility(8);
+        h5 h5Var = this.f49813e;
         int i11 = h6.B6;
         h5Var.setTextColor(h6.w0(i11, c6Var));
         h5 h5Var2 = new h5(context);
-        this.f49826s = h5Var2;
+        this.f49834s = h5Var2;
         h5Var2.setTextSize(16);
         h5Var2.setTextColor(h6.w0(i11, c6Var));
         if (LocaleController.isRTL) {

@@ -50,11 +50,11 @@ public final class w implements f0, mm0 {
         if (hyVar != null) {
             Long l4 = (Long) view.getTag();
             long longValue = l4.longValue();
-            vy vyVar = hyVar.f38559a;
+            vy vyVar = hyVar.f38562a;
             if (vyVar.getParentActivity() != null && (user = vyVar.getMessagesController().getUser(l4)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vyVar.getParentActivity());
                 String string = LocaleController.getString(R.string.ChatHintsDeleteAlertTitle);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
                 a2Var.R = string;
                 a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("ChatHintsDeleteAlert", R.string.ChatHintsDeleteAlert, ContactsController.formatName(user.first_name, user.last_name)));
                 alertDialog$Builder.k(LocaleController.getString(R.string.StickersRemove), new ai.z1(hyVar, longValue, 9));
@@ -62,7 +62,7 @@ public final class w implements f0, mm0 {
                 vyVar.showDialog(a2Var);
                 TextView textView = (TextView) a2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(vyVar.getThemedColor(h6.f20799q7));
+                    textView.setTextColor(vyVar.getThemedColor(h6.f20800q7));
                 }
             }
         }

@@ -47,7 +47,7 @@ public final class g0 implements Runnable {
                 long j3 = this.f127b;
                 long j10 = this.f128c;
                 String str2 = e2.d0.f8529a;
-                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45444c)).f11618a.f11681s;
+                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45449c)).f11618a.f11681s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -59,7 +59,7 @@ public final class g0 implements Runnable {
                 long j11 = this.f127b;
                 long j12 = this.f128c;
                 String str4 = e2.d0.f8529a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.d).f16363c)).f11618a.f11681s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.d).f16364c)).f11618a.f11681s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new hg.o1(p10, str3, j12, j11));
                 return;
@@ -102,7 +102,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j13, j14));
                     vyVar.C2.w(vyVar, arrayList, null, false, vyVar.J2, vyVar.K2, vyVar.L2, hg1Var);
-                    if (vyVar.f42926i2) {
+                    if (vyVar.f42928i2) {
                         vyVar.C2 = null;
                         return;
                     }
@@ -122,7 +122,7 @@ public final class g0 implements Runnable {
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f33644q0 != null) {
+                if (launchActivity.f33646q0 != null) {
                     ng.d.a(eoVar, MessagesStorage.TopicKey.of(-j15, j16));
                     ((ActionBarLayout) launchActivity.O()).P(eoVar);
                     return;
@@ -133,9 +133,9 @@ public final class g0 implements Runnable {
                 qi.l0 l0Var = (qi.l0) this.f129e;
                 long j17 = this.f127b;
                 long j18 = this.f128c;
-                synchronized (p0Var.f46857g) {
-                    if (!l0Var.d && !l0Var.f46802e) {
-                        ((m11) p0Var.f46855e).a(l0Var.f46799a, l0Var.f46800b, j17, j18);
+                synchronized (p0Var.f46865g) {
+                    if (!l0Var.d && !l0Var.f46810e) {
+                        ((m11) p0Var.f46863e).a(l0Var.f46807a, l0Var.f46808b, j17, j18);
                         return;
                     }
                     return;

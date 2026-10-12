@@ -5,12 +5,12 @@ import android.view.View;
 import j$.util.Objects;
 import java.util.ArrayList;
 public abstract class sm0 extends em0 {
-    public SparseIntArray f30591c;
+    public SparseIntArray f30593c;
     public SparseIntArray d;
-    public SparseIntArray f30592e;
-    public int f30593f;
+    public SparseIntArray f30594e;
+    public int f30595f;
     public int h;
-    public final ArrayList f30594n = new ArrayList();
+    public final ArrayList f30596n = new ArrayList();
 
     public sm0() {
         L();
@@ -26,15 +26,15 @@ public abstract class sm0 extends em0 {
         SparseIntArray sparseIntArray = this.d;
         if (sparseIntArray == null) {
             this.d = new SparseIntArray();
-            this.f30591c = new SparseIntArray();
-            this.f30592e = new SparseIntArray();
+            this.f30593c = new SparseIntArray();
+            this.f30594e = new SparseIntArray();
         } else {
             sparseIntArray.clear();
-            this.f30591c.clear();
-            this.f30592e.clear();
+            this.f30593c.clear();
+            this.f30594e.clear();
         }
         this.h = -1;
-        this.f30593f = -1;
+        this.f30595f = -1;
     }
 
     public abstract int M(int i10);
@@ -48,14 +48,14 @@ public abstract class sm0 extends em0 {
     public abstract int P(int i10, int i11);
 
     public final int Q(int i10) {
-        int i11 = this.f30591c.get(i10, Integer.MAX_VALUE);
+        int i11 = this.f30593c.get(i10, Integer.MAX_VALUE);
         if (i11 != Integer.MAX_VALUE) {
             return i11;
         }
-        int i12 = this.f30593f;
+        int i12 = this.f30595f;
         if (i12 < 0) {
             i12 = R();
-            this.f30593f = i12;
+            this.f30595f = i12;
         }
         int i13 = 0;
         int i14 = 0;
@@ -63,7 +63,7 @@ public abstract class sm0 extends em0 {
             int U = U(i13) + i14;
             if (i10 >= i14 && i10 < U) {
                 int i15 = i10 - i14;
-                this.f30591c.put(i10, i15);
+                this.f30593c.put(i10, i15);
                 return i15;
             }
             i13++;
@@ -79,10 +79,10 @@ public abstract class sm0 extends em0 {
         if (i11 != Integer.MAX_VALUE) {
             return i11;
         }
-        int i12 = this.f30593f;
+        int i12 = this.f30595f;
         if (i12 < 0) {
             i12 = R();
-            this.f30593f = i12;
+            this.f30595f = i12;
         }
         int i13 = 0;
         int i14 = 0;
@@ -101,12 +101,12 @@ public abstract class sm0 extends em0 {
     public abstract View T(int i10, View view);
 
     public final int U(int i10) {
-        int i11 = this.f30592e.get(i10, Integer.MAX_VALUE);
+        int i11 = this.f30594e.get(i10, Integer.MAX_VALUE);
         if (i11 != Integer.MAX_VALUE) {
             return i11;
         }
         int M = M(i10);
-        this.f30592e.put(i10, M);
+        this.f30594e.put(i10, M);
         return M;
     }
 
@@ -115,14 +115,14 @@ public abstract class sm0 extends em0 {
     public abstract void W(int i10, int i11, s4.d1 d1Var);
 
     public final void X(boolean z10) {
-        ArrayList arrayList = this.f30594n;
+        ArrayList arrayList = this.f30596n;
         ArrayList arrayList2 = new ArrayList(arrayList);
         L();
         arrayList.clear();
-        int i10 = this.f30593f;
+        int i10 = this.f30595f;
         if (i10 < 0) {
             i10 = R();
-            this.f30593f = i10;
+            this.f30595f = i10;
         }
         for (int i11 = 0; i11 < i10; i11++) {
             int U = U(i11);
@@ -144,10 +144,10 @@ public abstract class sm0 extends em0 {
             return i10;
         }
         this.h = 0;
-        int i11 = this.f30593f;
+        int i11 = this.f30595f;
         if (i11 < 0) {
             i11 = R();
-            this.f30593f = i11;
+            this.f30595f = i11;
         }
         for (int i12 = 0; i12 < i11; i12++) {
             this.h = U(i12) + this.h;

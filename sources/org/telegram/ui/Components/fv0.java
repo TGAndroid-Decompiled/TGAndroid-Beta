@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 public final class fv0 {
-    public String f26178a;
-    public int f26179b;
-    public int f26180c;
+    public String f26176a;
+    public int f26177b;
+    public int f26178c;
     public int d;
 }

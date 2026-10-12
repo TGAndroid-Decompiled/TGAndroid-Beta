@@ -241,12 +241,12 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (messagesController.canAddToForward(dialog)) {
-                if (DialogObject.isUserDialog(dialog.f19806id)) {
-                    TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.f19806id));
-                    if (user != null && !user.bot && user.f19949id != 777000 && !UserObject.isUserSelf(user)) {
+                if (DialogObject.isUserDialog(dialog.f19807id)) {
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.f19807id));
+                    if (user != null && !user.bot && user.f19950id != 777000 && !UserObject.isUserSelf(user)) {
                         arrayList.add(user);
                     }
-                } else if (DialogObject.isChatDialog(dialog.f19806id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f19806id))) != null && !ChatObject.isForum(chat)) {
+                } else if (DialogObject.isChatDialog(dialog.f19807id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f19807id))) != null && !ChatObject.isForum(chat)) {
                     arrayList.add(chat);
                 }
             }
@@ -274,14 +274,14 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
         }
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
-            if (DialogObject.isUserDialog(dialog.f19806id)) {
-                TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.f19806id));
-                if (user2 != null && !user2.bot && user2.f19949id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z10 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f19949id)) != null))) {
-                    hashMap.put(Long.valueOf(user2.f19949id), Boolean.TRUE);
+            if (DialogObject.isUserDialog(dialog.f19807id)) {
+                TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.f19807id));
+                if (user2 != null && !user2.bot && user2.f19950id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z10 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f19950id)) != null))) {
+                    hashMap.put(Long.valueOf(user2.f19950id), Boolean.TRUE);
                     arrayList.add(user2);
                 }
-            } else if (z11 && DialogObject.isChatDialog(dialog.f19806id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f19806id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
-                hashMap.put(Long.valueOf(-chat.f19802id), Boolean.TRUE);
+            } else if (z11 && DialogObject.isChatDialog(dialog.f19807id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f19807id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
+                hashMap.put(Long.valueOf(-chat.f19803id), Boolean.TRUE);
                 arrayList.add(chat);
             }
         }
@@ -289,9 +289,9 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
             for (Map.Entry<Long, TLRPC.TL_contact> entry : concurrentHashMap.entrySet()) {
                 Long key = entry.getKey();
                 key.getClass();
-                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f19949id != 777000 && !UserObject.isUserSelf(user)) {
+                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f19950id != 777000 && !UserObject.isUserSelf(user)) {
                     arrayList.add(user);
-                    hashMap.put(Long.valueOf(user.f19949id), Boolean.TRUE);
+                    hashMap.put(Long.valueOf(user.f19950id), Boolean.TRUE);
                 }
             }
         }
@@ -313,12 +313,12 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
     public static int e1(fa faVar, TLRPC.Chat chat) {
         Integer num;
         int i10;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(faVar.currentAccount).getChatFull(chat.f19802id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(faVar.currentAccount).getChatFull(chat.f19803id);
         if (chatFull != null && (i10 = chatFull.participants_count) > 0) {
             return i10;
         }
         HashMap hashMap = faVar.P;
-        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f19802id))) != null) {
+        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f19803id))) != null) {
             return num.intValue();
         }
         return chat.participants_count;
@@ -499,7 +499,7 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) userOrChat;
-                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f19949id));
+                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f19950id));
                     if (user2 != null) {
                         user = user2;
                     }
@@ -521,8 +521,8 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
-            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.StoryRestrictions);
-            alertDialog$Builder.f20141a.T = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
+            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.StoryRestrictions);
+            alertDialog$Builder.f20142a.T = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
             alertDialog$Builder.k(LocaleController.getString(R.string.Proceed), new ai.r5(this, daVar, runnable, 5));
             hg.c.r(R.string.Cancel, alertDialog$Builder, null);
             return;
@@ -553,7 +553,7 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
         if (arrayList2 != null) {
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 TLRPC.TL_contact tL_contact = arrayList2.get(i10);
-                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f19949id != 777000) {
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f19950id != 777000) {
                     arrayList.add(user);
                 }
             }
@@ -570,7 +570,7 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesSendAsUpdate);
-        int i10 = org.telegram.ui.ActionBar.h6.f20630h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f20631h5;
         this.R.setColor(org.telegram.ui.ActionBar.h6.w0(i10, this.resourcesProvider));
         fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(i10, this.resourcesProvider));
         this.containerView = new g9(this, context);

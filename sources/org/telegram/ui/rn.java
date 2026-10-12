@@ -22,13 +22,13 @@ public final class rn extends View {
         arrayList.clear();
         eo eoVar = this.f41693c;
         arrayList.add(eoVar.K1);
-        arrayList.add(eoVar.f37478x0);
+        arrayList.add(eoVar.f37483x0);
         arrayList.add(eoVar.X);
         arrayList.add(eoVar.K3);
         arrayList.add(eoVar.I1);
         arrayList.add(eoVar.X2);
         arrayList.add(eoVar.Y);
-        arrayList.add(eoVar.f37303j1);
+        arrayList.add(eoVar.f37308j1);
         arrayList.add(eoVar.S);
         arrayList.add(eoVar.R1);
         arrayList.removeAll(Collections.singleton(null));
@@ -43,7 +43,7 @@ public final class rn extends View {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         eo eoVar = this.f41693c;
-        eoVar.f37411rc = true;
+        eoVar.f37416rc = true;
         ArrayList arrayList = this.f41692b;
         int size = arrayList.size();
         int i10 = 0;
@@ -53,7 +53,7 @@ public final class rn extends View {
             ((View) obj).setVisibility(0);
         }
         arrayList.clear();
-        eoVar.f37411rc = false;
+        eoVar.f37416rc = false;
     }
 
     @Override
@@ -61,7 +61,7 @@ public final class rn extends View {
         super.onDetachedFromWindow();
         a();
         eo eoVar = this.f41693c;
-        eoVar.f37411rc = true;
+        eoVar.f37416rc = true;
         ArrayList arrayList = this.f41691a;
         int size = arrayList.size();
         int i10 = 0;
@@ -74,7 +74,7 @@ public final class rn extends View {
                 this.f41692b.add(view);
             }
         }
-        eoVar.f37411rc = false;
+        eoVar.f37416rc = false;
     }
 
     @Override

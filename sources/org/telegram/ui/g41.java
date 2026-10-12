@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class g41 extends org.telegram.ui.Components.vm0 {
-    public final Context f37927c;
+    public final Context f37925c;
     public final boolean d;
-    public final h41 f37928e;
+    public final h41 f37926e;
 
     public g41(h41 h41Var, Context context, boolean z10) {
-        this.f37928e = h41Var;
-        this.f37927c = context;
+        this.f37926e = h41Var;
+        this.f37925c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47893f == 0) {
+        if (d1Var.f47901f == 0) {
             return true;
         }
         return false;
@@ -28,7 +28,7 @@ public final class g41 extends org.telegram.ui.Components.vm0 {
     public final int h() {
         boolean z10 = this.d;
         int i10 = 0;
-        h41 h41Var = this.f37928e;
+        h41 h41Var = this.f37926e;
         if (z10) {
             ArrayList arrayList = h41Var.f38244f;
             if (arrayList == null) {
@@ -44,7 +44,7 @@ public final class g41 extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final int j(int i10) {
-        if (!this.d && i10 == this.f37928e.f38243e) {
+        if (!this.d && i10 == this.f37926e.f38243e) {
             return 1;
         }
         return 0;
@@ -58,7 +58,7 @@ public final class g41 extends org.telegram.ui.Components.vm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.m4 m4Var;
-        Context context = this.f37927c;
+        Context context = this.f37925c;
         if (i10 != 0) {
             if (i10 != 2) {
                 m4Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);

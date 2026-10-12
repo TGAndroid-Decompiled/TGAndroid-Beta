@@ -51,7 +51,7 @@ public final class uf1 extends s4.j {
     public final void z(s4.d1 d1Var) {
         hg1 hg1Var = this.H;
         View view = hg1Var.f38381b1;
-        if (view == d1Var.f47889a) {
+        if (view == d1Var.f47897a) {
             view.setTranslationX(0.0f);
             lf1 lf1Var = hg1Var.O;
             if (lf1Var != null) {
@@ -60,7 +60,7 @@ public final class uf1 extends s4.j {
             View view2 = hg1Var.f38381b1;
             if (view2 instanceof eg1) {
                 eg1 eg1Var = (eg1) view2;
-                eg1Var.setTopicIcon(eg1Var.f37092c5);
+                eg1Var.setTopicIcon(eg1Var.f37097c5);
             }
             hg1Var.f38381b1 = null;
         }

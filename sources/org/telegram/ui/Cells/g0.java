@@ -13,22 +13,22 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class g0 extends Drawable {
-    public final Drawable f21875a;
-    public final Paint f21876b;
-    public final Paint f21877c;
+    public final Drawable f21876a;
+    public final Paint f21877b;
+    public final Paint f21878c;
     public final Paint d;
-    public int f21878e;
-    public ColorFilter f21879f;
+    public int f21879e;
+    public ColorFilter f21880f;
 
     public g0(Context context) {
         Paint paint = new Paint(1);
-        this.f21876b = paint;
+        this.f21877b = paint;
         Paint paint2 = new Paint(1);
-        this.f21877c = paint2;
+        this.f21878c = paint2;
         this.d = new Paint();
-        this.f21878e = 255;
+        this.f21879e = 255;
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_folders_bots).mutate();
-        this.f21875a = mutate;
+        this.f21876a = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
         paint.setShader(new RadialGradient(400.0f, 213.0f, 500.0f, -4811527, -9674273, Shader.TileMode.CLAMP));
         paint2.setColor(-1);
@@ -37,11 +37,11 @@ public final class g0 extends Drawable {
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11, float f12) {
-        Drawable drawable = this.f21875a;
+        Drawable drawable = this.f21876a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-            drawable.setAlpha(Math.round(this.f21878e * f12));
+            drawable.setAlpha(Math.round(this.f21879e * f12));
             drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
             canvas.save();
             canvas.translate(f7, f10);
@@ -55,7 +55,7 @@ public final class g0 extends Drawable {
     public final void b(Canvas canvas, Rect rect, float f7, float f10, float f11, float f12, float f13, float f14) {
         float f15 = rect.left;
         float f16 = rect.top;
-        canvas.drawLine((f11 * f7) + f15, (f12 * f10) + f16, (f13 * f7) + f15, (f14 * f10) + f16, this.f21877c);
+        canvas.drawLine((f11 * f7) + f15, (f12 * f10) + f16, (f13 * f7) + f15, (f14 * f10) + f16, this.f21878c);
     }
 
     @Override
@@ -63,8 +63,8 @@ public final class g0 extends Drawable {
         Canvas canvas2;
         int i10;
         Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f21878e != 0) {
-            ColorFilter colorFilter = this.f21879f;
+        if (!bounds.isEmpty() && this.f21879e != 0) {
+            ColorFilter colorFilter = this.f21880f;
             if (colorFilter != null) {
                 Paint paint = this.d;
                 paint.setColorFilter(colorFilter);
@@ -76,8 +76,8 @@ public final class g0 extends Drawable {
             }
             float width = bounds.width() / 800.0f;
             float height = bounds.height() / 427.0f;
-            int i11 = this.f21878e;
-            Paint paint2 = this.f21876b;
+            int i11 = this.f21879e;
+            Paint paint2 = this.f21877b;
             paint2.setAlpha(i11);
             canvas2.save();
             canvas2.translate(bounds.left, bounds.top);
@@ -85,8 +85,8 @@ public final class g0 extends Drawable {
             Canvas canvas3 = canvas2;
             canvas3.drawRect(0.0f, 0.0f, 800.0f, 427.0f, paint2);
             canvas3.restore();
-            int i12 = this.f21878e;
-            Paint paint3 = this.f21877c;
+            int i12 = this.f21879e;
+            Paint paint3 = this.f21878c;
             paint3.setAlpha(i12);
             paint3.setStrokeWidth(Math.min(width, height) * 16.4f);
             b(canvas3, bounds, width, height, 449.809f, 246.04f, 483.703f, 212.418f);
@@ -140,16 +140,16 @@ public final class g0 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         int max = Math.max(0, Math.min(255, i10));
-        if (this.f21878e != max) {
-            this.f21878e = max;
+        if (this.f21879e != max) {
+            this.f21879e = max;
             invalidateSelf();
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        if (this.f21879f != colorFilter) {
-            this.f21879f = colorFilter;
+        if (this.f21880f != colorFilter) {
+            this.f21880f = colorFilter;
             invalidateSelf();
         }
     }

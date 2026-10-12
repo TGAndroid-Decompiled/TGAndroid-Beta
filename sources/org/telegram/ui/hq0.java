@@ -11,7 +11,7 @@ public final class hq0 implements cr0 {
     @Override
     public final void a() {
         mq0 mq0Var = this.f38497a;
-        if (mq0Var.f40108b.size() == 0) {
+        if (mq0Var.f40111b.size() == 0) {
             mq0Var.Q.setPivotX(0.0f);
             mq0Var.Q.setPivotY(0.0f);
             mq0Var.W(false);
@@ -25,7 +25,7 @@ public final class hq0 implements cr0 {
     public final void b(Editable editable) {
         mq0 mq0Var = this.f38497a;
         org.telegram.ui.Components.cv cvVar = mq0Var.M;
-        mq0Var.f40107a = editable;
+        mq0Var.f40110a = editable;
         cvVar.setText(editable);
     }
 
@@ -39,7 +39,7 @@ public final class hq0 implements cr0 {
         mq0 mq0Var = this.f38497a;
         mq0Var.removeSelfFromStack();
         if (!z10) {
-            mq0Var.V(mq0Var.f40108b, mq0Var.f40109c, z11, i10);
+            mq0Var.V(mq0Var.f40111b, mq0Var.f40112c, z11, i10);
         }
     }
 

@@ -16,16 +16,16 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gi implements org.telegram.ui.web.g0 {
-    public ValueAnimator f26436a;
-    public final ei.p4 f26437b;
-    public final String f26438c;
+    public ValueAnimator f26434a;
+    public final ei.p4 f26435b;
+    public final String f26436c;
     public final long d;
-    public final aj f26439e;
+    public final aj f26437e;
 
     public gi(aj ajVar, ei.p4 p4Var, String str, long j3) {
-        this.f26439e = ajVar;
-        this.f26437b = p4Var;
-        this.f26438c = str;
+        this.f26437e = ajVar;
+        this.f26435b = p4Var;
+        this.f26436c = str;
         this.d = j3;
     }
 
@@ -41,7 +41,7 @@ public final class gi implements org.telegram.ui.web.g0 {
 
     @Override
     public final boolean h() {
-        aj ajVar = this.f26439e;
+        aj ajVar = this.f26437e;
         MediaDataController mediaDataController = MediaDataController.getInstance(ajVar.M1);
         long j3 = this.d;
         if (!mediaDataController.botInAttachMenu(j3) && !MessagesController.getInstance(ajVar.M1).whitelistedBots.contains(Long.valueOf(j3))) {
@@ -53,7 +53,7 @@ public final class gi implements org.telegram.ui.web.g0 {
     @Override
     public final void i(boolean z10) {
         int i10;
-        ImageView backButton = this.f26439e.f24325a1.getBackButton();
+        ImageView backButton = this.f26437e.f24321a1.getBackButton();
         if (z10) {
             i10 = R.drawable.ic_ab_back;
         } else {
@@ -69,22 +69,22 @@ public final class gi implements org.telegram.ui.web.g0 {
 
     @Override
     public final void k(boolean z10) {
-        this.f26437b.setNeedCloseConfirmation(z10);
+        this.f26435b.setNeedCloseConfirmation(z10);
     }
 
     @Override
     public final void m(int i10) {
-        this.f26437b.setCustomBackground(i10);
+        this.f26435b.setCustomBackground(i10);
     }
 
     @Override
     public final void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject) {
         org.telegram.ui.ActionBar.c6 c6Var;
-        aj ajVar = this.f26439e;
+        aj ajVar = this.f26437e;
         int i10 = ajVar.M1;
-        org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24342f0;
+        org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
         boolean z10 = tLObject instanceof TLRPC.TL_payments_paymentFormStars;
-        ei.p4 p4Var = this.f26437b;
+        ei.p4 p4Var = this.f26435b;
         org.telegram.ui.xo0 xo0Var = null;
         if (z10) {
             org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(ajVar.getContext(), 3, null);
@@ -120,13 +120,13 @@ public final class gi implements org.telegram.ui.web.g0 {
         float f7;
         float f10;
         float f11;
-        aj ajVar = this.f26439e;
+        aj ajVar = this.f26437e;
         RadialProgressView radialProgressView = ajVar.F1;
         r6 r6Var = ajVar.H1;
         si siVar = ajVar.B0;
-        ei.p4 p4Var = this.f26437b;
+        ei.p4 p4Var = this.f26435b;
         if (siVar == p4Var) {
-            if (p4Var.P || this.f26438c != null) {
+            if (p4Var.P || this.f26436c != null) {
                 r6Var.setClickable(z11);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 if (j3 != 0) {
@@ -150,7 +150,7 @@ public final class gi implements org.telegram.ui.web.g0 {
                 float f13 = 1.0f;
                 if (ajVar.G1 != z10) {
                     ajVar.G1 = z10;
-                    ValueAnimator valueAnimator = this.f26436a;
+                    ValueAnimator valueAnimator = this.f26434a;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
@@ -165,10 +165,10 @@ public final class gi implements org.telegram.ui.web.g0 {
                         f11 = 0.0f;
                     }
                     ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(250L);
-                    this.f26436a = duration;
+                    this.f26434a = duration;
                     duration.addUpdateListener(new m6(this, 9));
-                    this.f26436a.addListener(new yh(this, z10, 0));
-                    this.f26436a.start();
+                    this.f26434a.addListener(new yh(this, z10, 0));
+                    this.f26434a.start();
                 }
                 radialProgressView.setProgressColor(i11);
                 if (ajVar.E1 != z12) {
@@ -199,8 +199,8 @@ public final class gi implements org.telegram.ui.web.g0 {
 
     @Override
     public final void s() {
-        si siVar = this.f26439e.B0;
-        ei.p4 p4Var = this.f26437b;
+        si siVar = this.f26437e.B0;
+        ei.p4 p4Var = this.f26435b;
         if (siVar == p4Var && !p4Var.J.f9258c) {
             p4Var.J();
         }
@@ -209,7 +209,7 @@ public final class gi implements org.telegram.ui.web.g0 {
     @Override
     public final void t(boolean z10) {
         int i10;
-        org.telegram.ui.ActionBar.e1 e1Var = this.f26437b.L;
+        org.telegram.ui.ActionBar.e1 e1Var = this.f26435b.L;
         if (e1Var != null) {
             if (z10) {
                 i10 = 0;
@@ -225,47 +225,47 @@ public final class gi implements org.telegram.ui.web.g0 {
         int i12;
         org.telegram.ui.ActionBar.c6 c6Var;
         org.telegram.ui.ActionBar.c6 c6Var2;
-        aj ajVar = this.f26439e;
+        aj ajVar = this.f26437e;
         final int color = ajVar.I2.f9931a.getColor();
         final ei.c2 c2Var = new ei.c2();
         int i13 = 0;
-        if (ajVar.f24324a0) {
+        if (ajVar.f24320a0) {
             i12 = color;
         } else {
             i12 = 0;
         }
         c6Var = ((org.telegram.ui.ActionBar.e3) ajVar).resourcesProvider;
         c2Var.c(c2Var.f8989a, i12, c6Var);
-        ajVar.f24324a0 = z10;
+        ajVar.f24320a0 = z10;
         if (z10) {
             i13 = i11;
         }
         c6Var2 = ((org.telegram.ui.ActionBar.e3) ajVar).resourcesProvider;
         c2Var.c(c2Var.f8990b, i13, c6Var2);
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-        duration.setInterpolator(js.f27627f);
-        final ei.p4 p4Var = this.f26437b;
+        duration.setInterpolator(js.f27634f);
+        final ei.p4 p4Var = this.f26435b;
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int d = i0.a.d(floatValue, color, i11);
-                aj ajVar2 = gi.this.f26439e;
-                ajVar2.f24376q2 = d;
-                ajVar2.f24373p2 = true;
-                a8 a8Var = ajVar2.f24325a1;
+                aj ajVar2 = gi.this.f26437e;
+                ajVar2.f24372q2 = d;
+                ajVar2.f24369p2 = true;
+                a8 a8Var = ajVar2.f24321a1;
                 if (a8Var != null) {
                     a8Var.e();
                     a8Var.invalidate();
                 }
                 ajVar2.I2.a(d);
-                jh.f fVar = ajVar2.f24404y1;
+                jh.f fVar = ajVar2.f24400y1;
                 if (fVar != null) {
                     fVar.invalidate();
                 }
                 p4Var.setCustomActionBarBackground(d);
                 ajVar2.B0.invalidate();
-                ajVar2.f24389u1.invalidate();
+                ajVar2.f24385u1.invalidate();
                 c2Var.b(a8Var, floatValue);
             }
         });
@@ -275,9 +275,9 @@ public final class gi implements org.telegram.ui.web.g0 {
     @Override
     public final void v(TLRPC.User user, String str, ArrayList arrayList) {
         boolean isEmpty = arrayList.isEmpty();
-        aj ajVar = this.f26439e;
+        aj ajVar = this.f26437e;
         if (isEmpty) {
-            org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24342f0;
+            org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
             if (m2Var instanceof org.telegram.ui.eo) {
                 org.telegram.ui.sk skVar = ((org.telegram.ui.eo) m2Var).Y;
                 skVar.setFieldText("@" + UserObject.getPublicUsername(user) + " " + str);
@@ -305,13 +305,13 @@ public final class gi implements org.telegram.ui.web.g0 {
 
     @Override
     public final void x(boolean z10) {
-        this.f26437b.setAllowSwipes(z10);
+        this.f26435b.setAllowSwipes(z10);
     }
 
     @Override
     public final void y() {
-        aj ajVar = this.f26439e;
-        if (ajVar.B0 != this.f26437b) {
+        aj ajVar = this.f26437e;
+        if (ajVar.B0 != this.f26435b) {
             return;
         }
         ajVar.setFocusable(false);

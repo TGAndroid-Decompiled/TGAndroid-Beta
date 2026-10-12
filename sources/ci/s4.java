@@ -93,14 +93,14 @@ public abstract class s4 extends FrameLayout {
                             u61 J = u61.J(q4.class);
                             J.d = intValue;
                             J.G = (l8) cbVar2.f5941c.get(intValue);
-                            J.f31089z = i12;
+                            J.f31084z = i12;
                             if (cbVar2.f5943f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             J.K(z10);
-                            J.f31071f = cbVar2.f5942e.contains(num);
+                            J.f31066f = cbVar2.f5942e.contains(num);
                             J.D = new m4(cbVar2, intValue, 0);
                             arrayList.add(J);
                             if (cbVar2.f5942e.contains(num)) {
@@ -125,7 +125,7 @@ public abstract class s4 extends FrameLayout {
             }
         }, new a1.c(cbVar, 17), dVar);
         this.f5940b = n4Var;
-        n4Var.W2.f26675r = false;
+        n4Var.W2.f26679r = false;
         n4Var.setClipToPadding(false);
         n4Var.setClipChildren(false);
         n4Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -151,14 +151,14 @@ public abstract class s4 extends FrameLayout {
                             u61 J = u61.J(q4.class);
                             J.d = intValue;
                             J.G = (l8) cbVar2.f5941c.get(intValue);
-                            J.f31089z = i12;
+                            J.f31084z = i12;
                             if (cbVar2.f5943f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             J.K(z10);
-                            J.f31071f = cbVar2.f5942e.contains(num);
+                            J.f31066f = cbVar2.f5942e.contains(num);
                             J.D = new m4(cbVar2, intValue, 0);
                             arrayList.add(J);
                             if (cbVar2.f5942e.contains(num)) {
@@ -323,7 +323,7 @@ public abstract class s4 extends FrameLayout {
         r11 r11Var = this.f5947w;
         n4 n4Var = this.f5940b;
         if (r11Var != null) {
-            r11Var.c(rectF.centerX() - (this.f5947w.f29988c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - n4Var.getAlpha(), -1, canvas);
+            r11Var.c(rectF.centerX() - (this.f5947w.f29989c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - n4Var.getAlpha(), -1, canvas);
         }
         if (n4Var.getAlpha() > 0.0f) {
             canvas.save();
@@ -438,14 +438,14 @@ public abstract class s4 extends FrameLayout {
                 adVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (adVar.f24286i) {
+            if (adVar.f24287i) {
                 c(!this.M, true);
             }
             adVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             adVar.c(false);
         }
-        if (!adVar.f24286i && !super.onTouchEvent(motionEvent)) {
+        if (!adVar.f24287i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

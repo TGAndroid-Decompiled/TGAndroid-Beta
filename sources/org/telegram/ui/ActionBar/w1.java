@@ -12,8 +12,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.am;
 public final class w1 extends FrameLayout {
-    public final TextView f21422a;
-    public final ImageView f21423b;
+    public final TextView f21423a;
+    public final ImageView f21424b;
 
     public w1(Context context, c6 c6Var) {
         super(context);
@@ -21,7 +21,7 @@ public final class w1 extends FrameLayout {
         setBackground(h6.g0(h6.w0(h6.I5, c6Var), 2, -1));
         setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f21423b = imageView;
+        this.f21424b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.J5, c6Var), PorterDuff.Mode.MULTIPLY));
         if (LocaleController.isRTL) {
@@ -31,21 +31,21 @@ public final class w1 extends FrameLayout {
         }
         addView(imageView, w7.w5.e(-2, 40, i10 | 16));
         TextView textView = new TextView(context);
-        this.f21422a = textView;
+        this.f21423a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        am.o(h6.f20667j5, c6Var, textView, 1, 16.0f);
+        am.o(h6.f20668j5, c6Var, textView, 1, 16.0f);
         addView(textView, w7.w5.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
     }
 
     public final void a(int i10, CharSequence charSequence) {
         int dp;
         int i11;
-        TextView textView = this.f21422a;
+        TextView textView = this.f21423a;
         textView.setText(charSequence);
-        ImageView imageView = this.f21423b;
+        ImageView imageView = this.f21424b;
         if (i10 != 0) {
             imageView.setImageResource(i10);
             imageView.setVisibility(0);
@@ -72,10 +72,10 @@ public final class w1 extends FrameLayout {
     }
 
     public void setGravity(int i10) {
-        this.f21422a.setGravity(i10);
+        this.f21423a.setGravity(i10);
     }
 
     public void setTextColor(int i10) {
-        this.f21422a.setTextColor(i10);
+        this.f21423a.setTextColor(i10);
     }
 }

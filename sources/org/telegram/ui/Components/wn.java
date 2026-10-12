@@ -21,7 +21,7 @@ public final class wn implements yi {
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         un unVar = this.f32494c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = unVar.f24354j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = unVar.f24350j0;
         Utilities.Callback callback = this.f32493b;
         if (i10 == 15) {
             org.telegram.ui.ActionBar.m2 m2Var = this.f32492a;

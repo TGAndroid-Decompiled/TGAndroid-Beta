@@ -16,21 +16,21 @@ import u2.d0;
 import u2.x0;
 import w3.p;
 public final class b implements s5.e, pa.a, q9.d, z1, ud0, d9.e, e2.h, q3.g {
-    public final int f47810a;
+    public final int f47818a;
 
     public b(int i10) {
-        this.f47810a = i10;
+        this.f47818a = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        ((x0) obj).f48967b.release();
+        ((x0) obj).f48975b.release();
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f47810a) {
+        switch (this.f47818a) {
             case 5:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -55,13 +55,13 @@ public final class b implements s5.e, pa.a, q9.d, z1, ud0, d9.e, e2.h, q3.g {
             case 16:
                 return ((o) obj).c().getClass().getSimpleName();
             case 17:
-                return i0.v(q.w(((d0) obj).o().f48880b, new b(19)));
+                return i0.v(q.w(((d0) obj).o().f48888b, new b(19)));
             case 19:
                 return Integer.valueOf(((l1) obj).f3415c);
             case 26:
-                return Long.valueOf(((z3.a) obj).f53713b);
+                return Long.valueOf(((z3.a) obj).f53721b);
             case 27:
-                return Long.valueOf(((z3.a) obj).f53714c);
+                return Long.valueOf(((z3.a) obj).f53722c);
             default:
                 return (p) obj;
         }
@@ -83,7 +83,7 @@ public final class b implements s5.e, pa.a, q9.d, z1, ud0, d9.e, e2.h, q3.g {
 
     @Override
     public String e(int i10) {
-        switch (this.f47810a) {
+        switch (this.f47818a) {
             case 12:
                 return String.valueOf(i10);
             default:
@@ -93,7 +93,7 @@ public final class b implements s5.e, pa.a, q9.d, z1, ud0, d9.e, e2.h, q3.g {
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f47810a) {
+        switch (this.f47818a) {
             case 11:
                 return;
             case 14:
@@ -107,7 +107,7 @@ public final class b implements s5.e, pa.a, q9.d, z1, ud0, d9.e, e2.h, q3.g {
 
     @Override
     public void g(pa.b bVar) {
-        switch (this.f47810a) {
+        switch (this.f47818a) {
             case 6:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -126,7 +126,7 @@ public final class b implements s5.e, pa.a, q9.d, z1, ud0, d9.e, e2.h, q3.g {
     }
 
     public b(Object obj, int i10) {
-        this.f47810a = i10;
+        this.f47818a = i10;
     }
 
     private final void a(a2 a2Var, int i10) {

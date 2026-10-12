@@ -164,7 +164,7 @@ public final class d extends j implements l {
                     } else {
                         k kVar = (k) eVar;
                         if (kVar instanceof k1.j) {
-                            t tVar = ((k1.j) kVar).f14341b;
+                            t tVar = ((k1.j) kVar).f14342b;
                             if (th4 == null) {
                                 th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                             } else {

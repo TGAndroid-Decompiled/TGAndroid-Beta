@@ -23,7 +23,7 @@ public final class v4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 q6 q6Var = (q6) this.f6148c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q6Var.A1.f45651a = i0.a.d(floatValue, ((Integer) this.d).intValue(), this.f6147b);
+                q6Var.A1.f45656a = i0.a.d(floatValue, ((Integer) this.d).intValue(), this.f6147b);
                 l6 l6Var = q6Var.T0;
                 if (l6Var != null) {
                     l6Var.invalidate();
@@ -31,14 +31,14 @@ public final class v4 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                ((cu0) this.f6148c).f25022e.O1.put(this.f6147b, (Float) valueAnimator.getAnimatedValue());
+                ((cu0) this.f6148c).f25014e.O1.put(this.f6147b, (Float) valueAnimator.getAnimatedValue());
                 ((wm0) this.d).invalidate();
                 return;
             default:
                 qg.m0 m0Var = (qg.m0) this.f6148c;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.K1.f45651a = i0.a.d(floatValue2, ((Integer) this.d).intValue(), this.f6147b);
-                qg.k0 k0Var = m0Var.f46300c1;
+                m0Var.K1.f45656a = i0.a.d(floatValue2, ((Integer) this.d).intValue(), this.f6147b);
+                qg.k0 k0Var = m0Var.f46308c1;
                 if (k0Var != null) {
                     k0Var.invalidate();
                     return;

@@ -15,8 +15,8 @@ public final class a8 implements View.OnFocusChangeListener {
             d8 d8Var = this.f4726a;
             d8Var.f4952i0 = true;
             ji.o oVar = new ji.o(d8Var.getContext(), 2);
-            oVar.f48058a = 1;
-            oVar.f14270p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f);
+            oVar.f48066a = 1;
+            oVar.f14271p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f);
             ((s4.d0) d8Var.d.getLayoutManager()).w0(oVar);
         }
     }

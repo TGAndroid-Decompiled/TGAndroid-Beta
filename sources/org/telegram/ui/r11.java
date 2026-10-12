@@ -8,67 +8,67 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class r11 extends View {
-    public static final String[] f41466s = {"🎉", "🎆", "🎈"};
-    public final ProfileActivity f41467a;
-    public o11 f41468b;
-    public o11 f41469c;
+    public static final String[] f41470s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f41471a;
+    public o11 f41472b;
+    public o11 f41473c;
     public final PointF d;
-    public boolean f41470e;
-    public boolean f41471f;
+    public boolean f41474e;
+    public boolean f41475f;
     public float h;
-    public long f41472n;
-    public boolean f41473r;
+    public long f41476n;
+    public boolean f41477r;
 
     public r11(ProfileActivity profileActivity, o11 o11Var) {
         super(profileActivity.getParentActivity());
         this.d = new PointF();
         this.h = 1.0f;
-        this.f41473r = false;
-        this.f41467a = profileActivity;
-        this.f41468b = o11Var;
+        this.f41477r = false;
+        this.f41471a = profileActivity;
+        this.f41472b = o11Var;
     }
 
     public final boolean a() {
-        o11 o11Var = this.f41468b;
-        if (!o11Var.f40533b || this.h < 1.0f) {
+        o11 o11Var = this.f41472b;
+        if (!o11Var.f40536b || this.h < 1.0f) {
             return false;
         }
-        if (o11Var.f40534c.getLottieAnimation() != null) {
-            this.f41468b.f40534c.getLottieAnimation().N(0, false, false);
-            this.f41468b.f40534c.getLottieAnimation().H(true);
+        if (o11Var.f40537c.getLottieAnimation() != null) {
+            this.f41472b.f40537c.getLottieAnimation().N(0, false, false);
+            this.f41472b.f40537c.getLottieAnimation().H(true);
         }
-        this.f41473r = true;
+        this.f41477r = true;
         this.h = 0.0f;
         invalidate();
         return true;
     }
 
     public final void b(o11 o11Var) {
-        if (this.f41468b != o11Var && o11Var != null) {
-            ArrayList arrayList = o11Var.f40535e;
-            if (this.f41473r) {
-                this.f41469c = o11Var;
+        if (this.f41472b != o11Var && o11Var != null) {
+            ArrayList arrayList = o11Var.f40538e;
+            if (this.f41477r) {
+                this.f41473c = o11Var;
                 return;
             }
-            if (this.f41471f) {
-                for (int i10 = 0; i10 < this.f41468b.f40535e.size(); i10++) {
-                    ((q11) this.f41468b.f40535e.get(i10)).setParentView(null);
+            if (this.f41475f) {
+                for (int i10 = 0; i10 < this.f41472b.f40538e.size(); i10++) {
+                    ((q11) this.f41472b.f40538e.get(i10)).setParentView(null);
                 }
-                this.f41471f = false;
+                this.f41475f = false;
             }
-            o11 o11Var2 = this.f41468b;
-            ArrayList arrayList2 = o11Var2.f40539j;
+            o11 o11Var2 = this.f41472b;
+            ArrayList arrayList2 = o11Var2.f40542j;
             arrayList2.remove(this);
-            if (arrayList2.isEmpty() && o11Var2.f40538i) {
+            if (arrayList2.isEmpty() && o11Var2.f40541i) {
                 o11Var2.b(true);
-                o11Var2.f40538i = false;
+                o11Var2.f40541i = false;
             }
-            this.f41468b = o11Var;
-            if (!this.f41471f) {
+            this.f41472b = o11Var;
+            if (!this.f41475f) {
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     ((q11) arrayList.get(i11)).setParentView(this);
                 }
-                this.f41471f = true;
+                this.f41475f = true;
             }
         }
     }
@@ -76,49 +76,49 @@ public final class r11 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41468b.f40539j.add(this);
+        this.f41472b.f40542j.add(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f41471f) {
-            for (int i10 = 0; i10 < this.f41468b.f40535e.size(); i10++) {
-                ((q11) this.f41468b.f40535e.get(i10)).setParentView(null);
+        if (this.f41475f) {
+            for (int i10 = 0; i10 < this.f41472b.f40538e.size(); i10++) {
+                ((q11) this.f41472b.f40538e.get(i10)).setParentView(null);
             }
-            this.f41471f = false;
+            this.f41475f = false;
         }
-        o11 o11Var = this.f41468b;
-        ArrayList arrayList = o11Var.f40539j;
+        o11 o11Var = this.f41472b;
+        ArrayList arrayList = o11Var.f40542j;
         arrayList.remove(this);
-        if (arrayList.isEmpty() && o11Var.f40538i) {
+        if (arrayList.isEmpty() && o11Var.f40541i) {
             o11Var.b(true);
-            o11Var.f40538i = false;
+            o11Var.f40541i = false;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f41468b.f40533b) {
+        if (this.f41472b.f40536b) {
             boolean z10 = true;
-            if (!this.f41471f) {
-                for (int i10 = 0; i10 < this.f41468b.f40535e.size(); i10++) {
-                    ((q11) this.f41468b.f40535e.get(i10)).setParentView(this);
+            if (!this.f41475f) {
+                for (int i10 = 0; i10 < this.f41472b.f40538e.size(); i10++) {
+                    ((q11) this.f41472b.f40538e.get(i10)).setParentView(this);
                 }
-                this.f41471f = true;
-                if (!this.f41470e) {
-                    this.f41470e = true;
+                this.f41475f = true;
+                if (!this.f41474e) {
+                    this.f41474e = true;
                     post(new pz0(this, 4));
                 }
             }
-            if (!this.f41473r) {
+            if (!this.f41477r) {
                 return;
             }
             long currentTimeMillis = System.currentTimeMillis();
-            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f41472n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
-            this.f41472n = currentTimeMillis;
-            ProfileActivity profileActivity = this.f41467a;
-            gz0 gz0Var = profileActivity.f34048a;
+            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f41476n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f41476n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f41471a;
+            gz0 gz0Var = profileActivity.f34050a;
             int i11 = profileActivity.U2;
             PointF pointF = this.d;
             float f7 = 2.0f;
@@ -130,7 +130,7 @@ public final class r11 extends View {
                     }
                     View childAt = gz0Var.getChildAt(i12);
                     if (i11 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.c9)) {
-                        vh.n nVar = ((org.telegram.ui.Cells.c9) childAt).f21693a;
+                        vh.n nVar = ((org.telegram.ui.Cells.c9) childAt).f21694a;
                         pointF.set(nVar.getX() + childAt.getX() + gz0Var.getX() + AndroidUtilities.dp(12.0f), (nVar.getMeasuredHeight() / 2.0f) + nVar.getY() + childAt.getY() + gz0Var.getY());
                         break;
                     }
@@ -138,22 +138,22 @@ public final class r11 extends View {
                 }
             }
             float f10 = hz.f();
-            this.f41468b.f40534c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
+            this.f41472b.f40537c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
             canvas.save();
             canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
-            this.f41468b.f40534c.draw(canvas);
-            this.f41468b.f40534c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            this.f41472b.f40537c.draw(canvas);
+            this.f41472b.f40537c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
             canvas.restore();
             int dp = AndroidUtilities.dp(110.0f);
-            int size = this.f41468b.d.size() - 1;
+            int size = this.f41472b.d.size() - 1;
             while (size >= 0) {
-                q11 q11Var = (q11) this.f41468b.d.get(size);
+                q11 q11Var = (q11) this.f41472b.d.get(size);
                 float f11 = size;
-                float cascade = AndroidUtilities.cascade(this.h, f11, this.f41468b.d.size(), 1.8f);
+                float cascade = AndroidUtilities.cascade(this.h, f11, this.f41472b.d.size(), 1.8f);
                 float f12 = dp;
                 float f13 = 0.88f * f12;
                 boolean z11 = z10;
-                float u10 = com.google.android.gms.internal.vision.e2.u(f13, this.f41468b.d.size() - 1, getWidth(), f7);
+                float u10 = com.google.android.gms.internal.vision.e2.u(f13, this.f41472b.d.size() - 1, getWidth(), f7);
                 float f14 = pointF.x;
                 float f15 = f7;
                 float f16 = pointF.y;
@@ -168,9 +168,9 @@ public final class r11 extends View {
                 f7 = f15;
             }
             if (this.h >= 1.0f) {
-                this.f41473r = false;
-                b(this.f41469c);
-                this.f41469c = null;
+                this.f41477r = false;
+                b(this.f41473c);
+                this.f41473c = null;
                 return;
             }
             invalidate();

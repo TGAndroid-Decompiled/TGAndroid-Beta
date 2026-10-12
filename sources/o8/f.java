@@ -9,17 +9,17 @@ import java.util.List;
 import w7.c0;
 public final class f extends o6.a implements q {
     public static final Parcelable.Creator<f> CREATOR = new m8.h(23);
-    public final List f16846a;
-    public final String f16847b;
+    public final List f16847a;
+    public final String f16848b;
 
     public f(String str, ArrayList arrayList) {
-        this.f16846a = arrayList;
-        this.f16847b = str;
+        this.f16847a = arrayList;
+        this.f16848b = str;
     }
 
     @Override
     public final Status i() {
-        if (this.f16847b != null) {
+        if (this.f16848b != null) {
             return Status.f6519e;
         }
         return Status.f6522r;
@@ -28,8 +28,8 @@ public final class f extends o6.a implements q {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = c0.q(parcel, 20293);
-        c0.n(parcel, 1, this.f16846a);
-        c0.l(parcel, 2, this.f16847b);
+        c0.n(parcel, 1, this.f16847a);
+        c0.l(parcel, 2, this.f16848b);
         c0.r(parcel, q6);
     }
 }

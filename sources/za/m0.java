@@ -9,28 +9,28 @@ import android.os.Messenger;
 import android.util.Log;
 import java.util.ArrayList;
 public final class m0 extends Handler {
-    public boolean f54492a;
-    public long f54493b;
-    public final ArrayList f54494c;
+    public boolean f54500a;
+    public long f54501b;
+    public final ArrayList f54502c;
 
     public m0(Looper looper) {
         super(looper);
-        this.f54494c = new ArrayList();
+        this.f54502c = new ArrayList();
     }
 
     public final void a(Messenger messenger) {
         String str;
-        if (this.f54492a) {
+        if (this.f54500a) {
             Object b10 = k9.h.c().b(j0.class);
             kotlin.jvm.internal.i.d(b10, "Firebase.app[SessionGenerator::class.java]");
-            c(messenger, ((j0) b10).b().f54412a);
+            c(messenger, ((j0) b10).b().f54420a);
             return;
         }
         Object b11 = k9.h.c().b(t.class);
         kotlin.jvm.internal.i.d(b11, "Firebase.app[SessionDatastore::class.java]");
-        n nVar = (n) ((z) ((t) b11)).f54524c.get();
+        n nVar = (n) ((z) ((t) b11)).f54532c.get();
         if (nVar != null) {
-            str = nVar.f54495a;
+            str = nVar.f54503a;
         } else {
             str = null;
         }
@@ -48,20 +48,20 @@ public final class m0 extends Handler {
         int i10 = j0Var.d + 1;
         j0Var.d = i10;
         if (i10 == 0) {
-            a2 = j0Var.f54479c;
+            a2 = j0Var.f54487c;
         } else {
             a2 = j0Var.a();
         }
         String str = a2;
-        String str2 = j0Var.f54479c;
+        String str2 = j0Var.f54487c;
         int i11 = j0Var.d;
-        j0Var.f54477a.getClass();
-        j0Var.f54480e = new a0(i11, System.currentTimeMillis() * 1000, str, str2);
+        j0Var.f54485a.getClass();
+        j0Var.f54488e = new a0(i11, System.currentTimeMillis() * 1000, str, str2);
         j0Var.b();
         StringBuilder sb2 = new StringBuilder("Generated new session ");
         Object b11 = k9.h.c().b(j0.class);
         kotlin.jvm.internal.i.d(b11, "Firebase.app[SessionGenerator::class.java]");
-        sb2.append(((j0) b11).b().f54412a);
+        sb2.append(((j0) b11).b().f54420a);
         Log.d("SessionLifecycleService", sb2.toString());
         StringBuilder sb3 = new StringBuilder("Broadcasting new session: ");
         Object b12 = k9.h.c().b(j0.class);
@@ -73,8 +73,8 @@ public final class m0 extends Handler {
         Object b14 = k9.h.c().b(j0.class);
         kotlin.jvm.internal.i.d(b14, "Firebase.app[SessionGenerator::class.java]");
         h0 h0Var = (h0) ((d0) b13);
-        ae.g0.q(ae.g0.b(h0Var.f54468e), new f0(h0Var, ((j0) b14).b(), null));
-        ArrayList arrayList = new ArrayList(this.f54494c);
+        ae.g0.q(ae.g0.b(h0Var.f54476e), new f0(h0Var, ((j0) b14).b(), null));
+        ArrayList arrayList = new ArrayList(this.f54502c);
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
@@ -88,10 +88,10 @@ public final class m0 extends Handler {
         kotlin.jvm.internal.i.d(b15, "Firebase.app[SessionDatastore::class.java]");
         Object b16 = k9.h.c().b(j0.class);
         kotlin.jvm.internal.i.d(b16, "Firebase.app[SessionGenerator::class.java]");
-        String sessionId = ((j0) b16).b().f54412a;
+        String sessionId = ((j0) b16).b().f54420a;
         z zVar = (z) ((t) b15);
         kotlin.jvm.internal.i.e(sessionId, "sessionId");
-        ae.g0.q(ae.g0.b(zVar.f54523b), new bb.j(zVar, sessionId, null, 5));
+        ae.g0.q(ae.g0.b(zVar.f54531b), new bb.j(zVar, sessionId, null, 5));
     }
 
     public final void c(Messenger messenger, String str) {
@@ -103,7 +103,7 @@ public final class m0 extends Handler {
             messenger.send(obtain);
         } catch (DeadObjectException unused) {
             Log.d("SessionLifecycleService", "Removing dead client from list: " + messenger);
-            this.f54494c.remove(messenger);
+            this.f54502c.remove(messenger);
         } catch (Exception e7) {
             Log.w("SessionLifecycleService", "Unable to push new session to " + messenger + '.', e7);
         }

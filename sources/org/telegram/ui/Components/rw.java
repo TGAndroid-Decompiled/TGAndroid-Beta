@@ -24,30 +24,30 @@ public class rw extends ViewGroup {
     public boolean H;
     public ValueAnimator I;
     public final vw J;
-    public Long f30259a;
-    public boolean f30260b;
-    public final boolean f30261c;
+    public Long f30255a;
+    public boolean f30256b;
+    public final boolean f30257c;
     public final y9 d;
-    public final fk0 f30262e;
-    public final rg.c1 f30263f;
+    public final fk0 f30258e;
+    public final rg.c1 f30259f;
     public final boolean h;
-    public final boolean f30264n;
-    public Long f30265r;
-    public TLRPC.Document f30266s;
+    public final boolean f30260n;
+    public Long f30261r;
+    public TLRPC.Document f30262s;
     public qy v;
-    public s5 f30267w;
-    public boolean f30268x;
-    public boolean f30269y;
+    public s5 f30263w;
+    public boolean f30264x;
+    public boolean f30265y;
 
     public rw(vw vwVar, Context context, int i10) {
         super(context);
         this.J = vwVar;
         setFocusable(true);
         this.h = true;
-        this.f30264n = false;
+        this.f30260n = false;
         setBackground(org.telegram.ui.ActionBar.h6.N(vwVar.k(), 0, 0));
         fk0 fk0Var = new fk0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), false, null);
-        this.f30262e = fk0Var;
+        this.f30258e = fk0Var;
         fk0Var.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(27.0f), AndroidUtilities.dp(27.0f));
         fk0Var.R(this);
         fk0Var.J(true);
@@ -63,11 +63,11 @@ public class rw extends ViewGroup {
         }
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
         y9 y9Var = this.d;
-        if (y9Var != null && !this.f30261c) {
+        if (y9Var != null && !this.f30257c) {
             y9Var.setColorFilter(porterDuffColorFilter);
             y9Var.invalidate();
         }
-        fk0 fk0Var = this.f30262e;
+        fk0 fk0Var = this.f30258e;
         if (fk0Var != null) {
             fk0Var.setColorFilter(porterDuffColorFilter);
             invalidate();
@@ -75,7 +75,7 @@ public class rw extends ViewGroup {
     }
 
     public final void a(Boolean bool) {
-        rg.c1 c1Var = this.f30263f;
+        rg.c1 c1Var = this.f30259f;
         if (c1Var == null) {
             return;
         }
@@ -96,8 +96,8 @@ public class rw extends ViewGroup {
 
     public final void b() {
         ai.m4 m4Var;
-        s5 s5Var = this.f30267w;
-        if (s5Var != null && (m4Var = s5Var.f30406k) != null) {
+        s5 s5Var = this.f30263w;
+        if (s5Var != null && (m4Var = s5Var.f30402k) != null) {
             if (m4Var.getLottieAnimation() != null) {
                 m4Var.getLottieAnimation().M(0);
                 m4Var.getLottieAnimation().stop();
@@ -112,28 +112,28 @@ public class rw extends ViewGroup {
         if (y9Var == null) {
             return;
         }
-        if (this.f30268x && this.f30269y) {
-            s5 s5Var = this.f30267w;
-            if (s5Var == null && (this.f30266s != null || this.f30265r != null)) {
+        if (this.f30264x && this.f30265y) {
+            s5 s5Var = this.f30263w;
+            if (s5Var == null && (this.f30262s != null || this.f30261r != null)) {
                 y9Var.b();
-                TLRPC.Document document = this.f30266s;
+                TLRPC.Document document = this.f30262s;
                 vw vwVar = this.J;
                 if (document != null) {
-                    this.f30267w = s5.m(UserConfig.selectedAccount, vwVar.S, document);
+                    this.f30263w = s5.m(UserConfig.selectedAccount, vwVar.S, document);
                 } else {
-                    this.f30267w = s5.n(UserConfig.selectedAccount, this.f30265r.longValue(), null, vwVar.S);
+                    this.f30263w = s5.n(UserConfig.selectedAccount, this.f30261r.longValue(), null, vwVar.S);
                 }
-                this.f30267w.a(y9Var);
-                y9Var.setImageDrawable(this.f30267w);
+                this.f30263w.a(y9Var);
+                y9Var.setImageDrawable(this.f30263w);
             } else {
                 if (s5Var != null) {
                     s5Var.o(y9Var);
-                    this.f30267w = null;
+                    this.f30263w = null;
                 }
                 y9Var.b();
                 qy qyVar = this.v;
                 if (qyVar != null) {
-                    this.d.i(ImageLocation.getForStickerSet(qyVar.f29947b), "24_24", null, null, this.v);
+                    this.d.i(ImageLocation.getForStickerSet(qyVar.f29948b), "24_24", null, null, this.v);
                     if (this.v.d != null) {
                         MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet(this.v.d, false);
                         this.v.d = null;
@@ -141,14 +141,14 @@ public class rw extends ViewGroup {
                 }
             }
         } else {
-            s5 s5Var2 = this.f30267w;
+            s5 s5Var2 = this.f30263w;
             if (s5Var2 != null) {
                 s5Var2.o(y9Var);
-                this.f30267w = null;
+                this.f30263w = null;
             }
             y9Var.b();
         }
-        if (this.f30268x && this.f30269y) {
+        if (this.f30264x && this.f30265y) {
             y9Var.onAttachedToWindow();
         } else {
             y9Var.onDetachedFromWindow();
@@ -172,15 +172,15 @@ public class rw extends ViewGroup {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        fk0 fk0Var = this.f30262e;
-        if (fk0Var != null && this.f30269y) {
+        fk0 fk0Var = this.f30258e;
+        if (fk0Var != null && this.f30265y) {
             fk0Var.draw(canvas);
         }
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f30269y) {
+        if (!this.f30265y) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -203,7 +203,7 @@ public class rw extends ViewGroup {
             f11 = 1.0f;
         }
         this.F = f11;
-        rg.c1 c1Var = this.f30263f;
+        rg.c1 c1Var = this.f30259f;
         c1Var.setScaleX(f11);
         c1Var.setScaleY(this.F);
         c1Var.setAlpha(this.F);
@@ -216,14 +216,14 @@ public class rw extends ViewGroup {
     }
 
     public final void f() {
-        rg.c1 c1Var = this.f30263f;
+        rg.c1 c1Var = this.f30259f;
         if (c1Var != null && !c1Var.h && (getDrawable() instanceof s5)) {
             if (((s5) getDrawable()).c()) {
                 c1Var.setImageReceiver(null);
                 c1Var.setColor(this.J.Q);
                 return;
             }
-            ai.m4 m4Var = ((s5) getDrawable()).f30406k;
+            ai.m4 m4Var = ((s5) getDrawable()).f30402k;
             if (m4Var != null) {
                 c1Var.setImageReceiver(m4Var);
                 c1Var.invalidate();
@@ -293,20 +293,20 @@ public class rw extends ViewGroup {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f30268x = true;
+        this.f30264x = true;
         c();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f30268x = false;
+        this.f30264x = false;
         c();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (!this.f30269y) {
+        if (!this.f30265y) {
             return;
         }
         super.onDraw(canvas);
@@ -321,14 +321,14 @@ public class rw extends ViewGroup {
         String contentDescription = accessibilityNodeInfo.getContentDescription();
         if (contentDescription == null) {
             qy qyVar = this.v;
-            if (qyVar != null && (stickerSet = qyVar.f29947b) != null && (str = stickerSet.title) != null) {
+            if (qyVar != null && (stickerSet = qyVar.f29948b) != null && (str = stickerSet.title) != null) {
                 contentDescription = str;
             } else {
-                TLRPC.Document document = this.f30266s;
+                TLRPC.Document document = this.f30262s;
                 if (document != null) {
                     contentDescription = MessageObject.findAnimatedEmojiEmoticon(document, null);
                 } else {
-                    Long l4 = this.f30265r;
+                    Long l4 = this.f30261r;
                     if (l4 != null && (f7 = s5.f(UserConfig.selectedAccount, l4.longValue())) != null) {
                         contentDescription = MessageObject.findAnimatedEmojiEmoticon(f7, null);
                     }
@@ -358,7 +358,7 @@ public class rw extends ViewGroup {
             int i15 = (i13 - i11) / 2;
             y9Var.layout(i14 - (y9Var.getMeasuredWidth() / 2), i15 - (y9Var.getMeasuredHeight() / 2), (y9Var.getMeasuredWidth() / 2) + i14, (y9Var.getMeasuredHeight() / 2) + i15);
         }
-        rg.c1 c1Var = this.f30263f;
+        rg.c1 c1Var = this.f30259f;
         if (c1Var != null) {
             int i16 = i12 - i10;
             int i17 = i13 - i11;
@@ -373,7 +373,7 @@ public class rw extends ViewGroup {
         if (y9Var != null) {
             y9Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
         }
-        rg.c1 c1Var = this.f30263f;
+        rg.c1 c1Var = this.f30259f;
         if (c1Var != null) {
             c1Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
         }
@@ -382,8 +382,8 @@ public class rw extends ViewGroup {
     @Override
     public final boolean performClick() {
         ai.m4 m4Var;
-        s5 s5Var = this.f30267w;
-        if (s5Var != null && (m4Var = s5Var.f30406k) != null) {
+        s5 s5Var = this.f30263w;
+        if (s5Var != null && (m4Var = s5Var.f30402k) != null) {
             if (m4Var.getAnimation() != null) {
                 m4Var.getAnimation().y(0L, true, false);
             }
@@ -394,57 +394,57 @@ public class rw extends ViewGroup {
 
     public void setAnimatedEmojiDocument(TLRPC.Document document) {
         long j3;
-        TLRPC.Document document2 = this.f30266s;
-        if ((document2 != null || this.f30265r != null) && document != null) {
-            Long l4 = this.f30265r;
+        TLRPC.Document document2 = this.f30262s;
+        if ((document2 != null || this.f30261r != null) && document != null) {
+            Long l4 = this.f30261r;
             if (l4 != null) {
                 j3 = l4.longValue();
             } else {
-                j3 = document2.f19808id;
+                j3 = document2.f19809id;
             }
-            if (j3 == document.f19808id) {
+            if (j3 == document.f19809id) {
                 return;
             }
         }
-        s5 s5Var = this.f30267w;
+        s5 s5Var = this.f30263w;
         y9 y9Var = this.d;
         if (s5Var != null) {
             s5Var.o(y9Var);
-            this.f30267w = null;
+            this.f30263w = null;
         }
         y9Var.b();
-        this.f30266s = document;
-        this.f30265r = null;
+        this.f30262s = document;
+        this.f30261r = null;
         c();
     }
 
     public void setAnimatedEmojiDocumentId(long j3) {
         long j10;
-        TLRPC.Document document = this.f30266s;
-        if ((document != null || this.f30265r != null) && j3 != 0) {
-            Long l4 = this.f30265r;
+        TLRPC.Document document = this.f30262s;
+        if ((document != null || this.f30261r != null) && j3 != 0) {
+            Long l4 = this.f30261r;
             if (l4 != null) {
                 j10 = l4.longValue();
             } else {
-                j10 = document.f19808id;
+                j10 = document.f19809id;
             }
             if (j10 == j3) {
                 return;
             }
         }
-        s5 s5Var = this.f30267w;
+        s5 s5Var = this.f30263w;
         y9 y9Var = this.d;
         Long l10 = null;
         if (s5Var != null) {
             s5Var.o(y9Var);
-            this.f30267w = null;
+            this.f30263w = null;
         }
         y9Var.b();
-        this.f30266s = null;
+        this.f30262s = null;
         if (j3 != 0) {
             l10 = Long.valueOf(j3);
         }
-        this.f30265r = l10;
+        this.f30261r = l10;
         c();
     }
 
@@ -455,18 +455,18 @@ public class rw extends ViewGroup {
     }
 
     public void setStickerThumb(qy qyVar) {
-        if (qyVar != null && qyVar.f29947b == null) {
+        if (qyVar != null && qyVar.f29948b == null) {
             qyVar = null;
         }
         qy qyVar2 = this.v;
-        if (qyVar2 != null && qyVar != null && qyVar2.f29947b.f19829id == qyVar.f29947b.f19829id) {
+        if (qyVar2 != null && qyVar != null && qyVar2.f29948b.f19830id == qyVar.f29948b.f19830id) {
             return;
         }
-        s5 s5Var = this.f30267w;
+        s5 s5Var = this.f30263w;
         y9 y9Var = this.d;
-        if (s5Var != null && this.f30266s == null && this.f30265r == null) {
+        if (s5Var != null && this.f30262s == null && this.f30261r == null) {
             s5Var.o(y9Var);
-            this.f30267w = null;
+            this.f30263w = null;
         }
         y9Var.b();
         this.v = qyVar;
@@ -486,13 +486,13 @@ public class rw extends ViewGroup {
         this.J = vwVar;
         setFocusable(true);
         this.h = false;
-        this.f30264n = z10;
+        this.f30260n = z10;
         if (z10) {
             setBackground(org.telegram.ui.ActionBar.h6.Z(vwVar.k(), 8, 8));
         }
         y9 y9Var = new y9(context);
         this.d = y9Var;
-        y9Var.f33009w = false;
+        y9Var.f33002w = false;
         y9Var.setImageDrawable(context.getResources().getDrawable(i10).mutate());
         d();
         addView(y9Var);
@@ -502,19 +502,19 @@ public class rw extends ViewGroup {
         super(context);
         this.J = vwVar;
         setFocusable(true);
-        this.f30260b = true;
+        this.f30256b = true;
         this.h = false;
-        this.f30264n = false;
+        this.f30260n = false;
         ow owVar = new ow(this, context);
         this.d = owVar;
-        owVar.f33009w = false;
-        this.f30266s = document;
-        this.f30261c = true;
+        owVar.f33002w = false;
+        this.f30262s = document;
+        this.f30257c = true;
         owVar.setColorFilter(vwVar.getEmojiColorFilter());
         addView(owVar);
         int i10 = rg.c1.L;
         rg.c1 c1Var = new rg.c1(context, 1, vwVar.v);
-        this.f30263f = c1Var;
+        this.f30259f = c1Var;
         c1Var.setAlpha(0.0f);
         c1Var.setScaleX(0.0f);
         c1Var.setScaleY(0.0f);
@@ -527,19 +527,19 @@ public class rw extends ViewGroup {
         super(context);
         this.J = vwVar;
         setFocusable(true);
-        this.f30260b = true;
+        this.f30256b = true;
         this.h = false;
-        this.f30264n = false;
+        this.f30260n = false;
         ai.z5 z5Var = new ai.z5(this, context, 8);
         this.d = z5Var;
-        z5Var.f33009w = false;
-        this.f30265r = Long.valueOf(j3);
-        this.f30261c = true;
+        z5Var.f33002w = false;
+        this.f30261r = Long.valueOf(j3);
+        this.f30257c = true;
         z5Var.setColorFilter(vwVar.getEmojiColorFilter());
         addView(z5Var);
         int i10 = rg.c1.L;
         rg.c1 c1Var = new rg.c1(context, 1, vwVar.v);
-        this.f30263f = c1Var;
+        this.f30259f = c1Var;
         c1Var.setAlpha(0.0f);
         c1Var.setScaleX(0.0f);
         c1Var.setScaleY(0.0f);

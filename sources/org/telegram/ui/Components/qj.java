@@ -4,23 +4,23 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qj implements mm0, vj {
-    public final ek f29844a;
+    public final ek f29822a;
 
     public qj(ek ekVar) {
-        this.f29844a = ekVar;
+        this.f29822a = ekVar;
     }
 
     @Override
     public void a(TLRPC.User user, boolean z10, int i10, long j3) {
-        ek ekVar = this.f29844a;
-        ekVar.f30574b.dismiss(true);
+        ek ekVar = this.f29822a;
+        ekVar.f30570b.dismiss(true);
         ekVar.J.a(user, z10, i10, j3);
     }
 
     @Override
     public boolean d(int i10, View view) {
         Object O;
-        ek ekVar = this.f29844a;
+        ek ekVar = this.f29822a;
         s4.i0 adapter = ekVar.f25718s.getAdapter();
         ak akVar = ekVar.F;
         if (adapter == akVar) {

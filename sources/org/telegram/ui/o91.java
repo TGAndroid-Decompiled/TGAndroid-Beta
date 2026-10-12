@@ -6,14 +6,14 @@ import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class o91 implements View.OnClickListener {
-    public final Context f40606a;
+    public final Context f40609a;
 
     public o91(Activity activity) {
-        this.f40606a = activity;
+        this.f40609a = activity;
     }
 
     @Override
     public final void onClick(View view) {
-        of.f.s(this.f40606a, LocaleController.getString(R.string.SponsoredMessageAlertLearnMoreUrl));
+        of.f.s(this.f40609a, LocaleController.getString(R.string.SponsoredMessageAlertLearnMoreUrl));
     }
 }

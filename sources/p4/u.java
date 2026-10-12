@@ -1,13 +1,13 @@
 package p4;
 public final class u {
-    public final y f45320a;
-    public final t f45321b;
-    public s f45322c = s.f45310c;
+    public final y f45325a;
+    public final t f45326b;
+    public s f45327c = s.f45315c;
     public int d;
-    public long f45323e;
+    public long f45328e;
 
     public u(y yVar, t tVar) {
-        this.f45320a = yVar;
-        this.f45321b = tVar;
+        this.f45325a = yVar;
+        this.f45326b = tVar;
     }
 }

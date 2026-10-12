@@ -11,7 +11,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wm0;
 public final class h7 extends t61 {
-    public static final int f21976a = 0;
+    public static final int f21977a = 0;
 
     static {
         t61.setup(new t61());
@@ -39,7 +39,7 @@ public final class h7 extends t61 {
         if (obj2 instanceof Utilities.CallbackReturn) {
             i7Var.setNeedPlayMessageListener((Utilities.CallbackReturn) obj2);
         }
-        i7Var.e(u61Var.f31070e, false);
+        i7Var.e(u61Var.f31065e, false);
     }
 
     @Override

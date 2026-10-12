@@ -14,20 +14,20 @@ import java.util.HashMap;
 import org.telegram.ui.LaunchActivity;
 public final class c {
     public final LaunchActivity d;
-    public boolean f46078e;
-    public boolean f46079f;
-    public boolean f46080g;
+    public boolean f46086e;
+    public boolean f46087f;
+    public boolean f46088g;
     public PictureInPictureParams h;
-    public boolean f46086n;
-    public final ArrayList f46075a = new ArrayList();
-    public final ArrayList f46076b = new ArrayList();
-    public final HashMap f46077c = new HashMap();
-    public float f46081i = -1.0f;
-    public final tf.a f46082j = new tf.a("enter");
-    public final tf.a f46083k = new tf.a("leave");
-    public final Choreographer f46084l = Choreographer.getInstance();
-    public final b f46085m = new b(this, 0);
-    public final g f46087o = new g(this, 9);
+    public boolean f46094n;
+    public final ArrayList f46083a = new ArrayList();
+    public final ArrayList f46084b = new ArrayList();
+    public final HashMap f46085c = new HashMap();
+    public float f46089i = -1.0f;
+    public final tf.a f46090j = new tf.a("enter");
+    public final tf.a f46091k = new tf.a("leave");
+    public final Choreographer f46092l = Choreographer.getInstance();
+    public final b f46093m = new b(this, 0);
+    public final g f46095o = new g(this, 9);
 
     public c(LaunchActivity launchActivity) {
         this.d = launchActivity;
@@ -35,8 +35,8 @@ public final class c {
 
     public final void a(boolean z10) {
         d(0.0f);
-        this.f46083k.a();
-        ArrayList arrayList = this.f46076b;
+        this.f46091k.a();
+        ArrayList arrayList = this.f46084b;
         int size = arrayList.size();
         int i10 = 0;
         int i11 = 0;
@@ -45,12 +45,12 @@ public final class c {
             i11++;
             ((rf.b) obj).getClass();
         }
-        if (this.f46086n) {
-            this.f46086n = false;
-            this.f46084l.removeFrameCallback(this.f46085m);
+        if (this.f46094n) {
+            this.f46094n = false;
+            this.f46092l.removeFrameCallback(this.f46093m);
         }
-        this.f46079f = false;
-        ArrayList arrayList2 = this.f46075a;
+        this.f46087f = false;
+        ArrayList arrayList2 = this.f46083a;
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj2 = arrayList2.get(i10);
@@ -60,10 +60,10 @@ public final class c {
     }
 
     public final void b() {
-        this.f46079f = true;
+        this.f46087f = true;
         int i10 = 0;
-        this.f46080g = false;
-        ArrayList arrayList = this.f46075a;
+        this.f46088g = false;
+        ArrayList arrayList = this.f46083a;
         int size = arrayList.size();
         int i11 = 0;
         while (i11 < size) {
@@ -71,9 +71,9 @@ public final class c {
             i11++;
             ((rf.c) obj).e();
         }
-        tf.a aVar = this.f46082j;
-        long j3 = aVar.f48487b;
-        ArrayList arrayList2 = this.f46076b;
+        tf.a aVar = this.f46090j;
+        long j3 = aVar.f48495b;
+        ArrayList arrayList2 = this.f46084b;
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj2 = arrayList2.get(i10);
@@ -81,16 +81,16 @@ public final class c {
             ((rf.b) obj2).getClass();
         }
         d(0.0f);
-        aVar.f48488c = SystemClock.uptimeMillis();
-        if (this.f46086n) {
+        aVar.f48496c = SystemClock.uptimeMillis();
+        if (this.f46094n) {
             return;
         }
-        this.f46086n = true;
-        this.f46084l.postFrameCallback(this.f46085m);
+        this.f46094n = true;
+        this.f46092l.postFrameCallback(this.f46093m);
     }
 
     public final void c(boolean z10) {
-        ArrayList arrayList = this.f46075a;
+        ArrayList arrayList = this.f46083a;
         int size = arrayList.size();
         int i10 = 0;
         int i11 = 0;
@@ -99,9 +99,9 @@ public final class c {
             i11++;
             ((rf.c) obj).d();
         }
-        tf.a aVar = this.f46083k;
-        long j3 = aVar.f48487b;
-        ArrayList arrayList2 = this.f46076b;
+        tf.a aVar = this.f46091k;
+        long j3 = aVar.f48495b;
+        ArrayList arrayList2 = this.f46084b;
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj2 = arrayList2.get(i10);
@@ -109,26 +109,26 @@ public final class c {
             ((rf.b) obj2).getClass();
         }
         d(1.0f);
-        aVar.f48488c = SystemClock.uptimeMillis();
-        if (this.f46086n) {
+        aVar.f48496c = SystemClock.uptimeMillis();
+        if (this.f46094n) {
             return;
         }
-        this.f46086n = true;
-        this.f46084l.postFrameCallback(this.f46085m);
+        this.f46094n = true;
+        this.f46092l.postFrameCallback(this.f46093m);
     }
 
     public final void d(float f7) {
-        if (f7 != this.f46081i) {
-            this.f46081i = f7;
-            ArrayList arrayList = this.f46076b;
+        if (f7 != this.f46089i) {
+            this.f46089i = f7;
+            ArrayList arrayList = this.f46084b;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
                 sf.e eVar = (sf.e) ((rf.b) obj);
-                eVar.f48223o = f7;
-                f fVar = eVar.f48215f;
+                eVar.f48231o = f7;
+                f fVar = eVar.f48223f;
                 if (fVar != null) {
                     fVar.invalidate();
                 }
@@ -146,7 +146,7 @@ public final class c {
 
     public final void f() {
         int i10;
-        if (!this.f46079f && (i10 = Build.VERSION.SDK_INT) < 31 && i10 >= 26 && this.h != null && e()) {
+        if (!this.f46087f && (i10 = Build.VERSION.SDK_INT) < 31 && i10 >= 26 && this.h != null && e()) {
             b();
             this.d.enterPictureInPictureMode(this.h);
         }
@@ -164,10 +164,10 @@ public final class c {
                 Log.i("PIP_DEBUG", "[Activity] onPictureInPictureUiStateChanged " + pictureInPictureUiState.isStashed());
             }
             boolean isStashed = pictureInPictureUiState.isStashed();
-            if (this.f46080g != isStashed) {
-                this.f46080g = isStashed;
+            if (this.f46088g != isStashed) {
+                this.f46088g = isStashed;
                 int i11 = 0;
-                ArrayList arrayList = this.f46075a;
+                ArrayList arrayList = this.f46083a;
                 if (isStashed) {
                     int size = arrayList.size();
                     while (i11 < size) {
@@ -189,10 +189,10 @@ public final class c {
 
     public final void h() {
         Log.i("PIP_DEBUG", "[Activity] onStart");
-        this.f46078e = true;
+        this.f46086e = true;
         IntentFilter intentFilter = new IntentFilter("PIP_CUSTOM_EVENT");
         int i10 = Build.VERSION.SDK_INT;
-        g gVar = this.f46087o;
+        g gVar = this.f46095o;
         LaunchActivity launchActivity = this.d;
         if (i10 >= 33) {
             launchActivity.registerReceiver(gVar, intentFilter, 4);

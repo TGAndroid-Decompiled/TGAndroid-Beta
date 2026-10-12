@@ -8,23 +8,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class oo extends si {
-    public final f00 f29258n;
-    public final wm0 f29259r;
-    public final int f29260s;
+    public final f00 f29261n;
+    public final wm0 f29262r;
+    public final int f29263s;
     public final org.telegram.ui.y7 v;
-    public int f29261w;
+    public int f29264w;
 
     public oo(int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, aj ajVar) {
         super(context, c6Var, ajVar);
-        this.f29260s = i10;
+        this.f29263s = i10;
         f00 f00Var = new f00(context, c6Var);
-        this.f29258n = f00Var;
+        this.f29261n = f00Var;
         f00Var.setText(LocaleController.getString(R.string.NoPhotos));
         f00Var.setOnTouchListener(null);
         f00Var.setTextSize(16);
         addView(f00Var, w7.w5.d(-2.0f, -1));
         f00Var.a(R.raw.media_forbidden, 150, 150);
-        TLRPC.Chat m12 = this.f30574b.m1();
+        TLRPC.Chat m12 = this.f30570b.m1();
         if (i10 == 1) {
             f00Var.setText(ChatObject.getRestrictedErrorText(m12, 7));
         } else if (i10 == 3) {
@@ -36,7 +36,7 @@ public final class oo extends si {
         }
         f00Var.c();
         wm0 wm0Var = new wm0(context, c6Var);
-        this.f29259r = wm0Var;
+        this.f29262r = wm0Var;
         wm0Var.setSectionsType(2);
         wm0Var.setVerticalScrollBarEnabled(false);
         wm0Var.setLayoutManager(new s4.d0());
@@ -56,7 +56,7 @@ public final class oo extends si {
 
     @Override
     public int getCurrentItemTop() {
-        wm0 wm0Var = this.f29259r;
+        wm0 wm0Var = this.f29262r;
         if (wm0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -71,7 +71,7 @@ public final class oo extends si {
             top = i10;
         }
         int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
-        f00 f00Var = this.f29258n;
+        f00 f00Var = this.f29261n;
         f00Var.setTranslationY(((measuredHeight - f00Var.getMeasuredHeight()) / 2) + top);
         return AndroidUtilities.dp(12.0f) + top;
     }
@@ -83,12 +83,12 @@ public final class oo extends si {
 
     @Override
     public int getListTopPadding() {
-        return this.f29259r.getPaddingTop();
+        return this.f29262r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30574b.getSheetContainer().invalidate();
+        this.f30570b.getSheetContainer().invalidate();
     }
 }

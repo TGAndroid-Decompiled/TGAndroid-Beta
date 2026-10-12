@@ -14,7 +14,7 @@ public final class wf1 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 0 && i10 != 3) {
             return false;
         }
@@ -37,7 +37,7 @@ public final class wf1 extends og.b {
         if (i10 == h() - 1) {
             return 2;
         }
-        return ((yf1) this.d.f38379b.get(i10)).f16876a;
+        return ((yf1) this.d.f38379b.get(i10)).f16877a;
     }
 
     @Override
@@ -67,14 +67,14 @@ public final class wf1 extends og.b {
             org.telegram.ui.Components.m10 m10Var = new org.telegram.ui.Components.m10(viewGroup.getContext(), null);
             m10Var.setViewType(24);
             m10Var.setIsSingleCell(true);
-            m10Var.f28355w = true;
+            m10Var.f28350w = true;
             return new s4.d1(m10Var);
         }
         eg1 eg1Var = new eg1(hg1Var, viewGroup.getContext(), false);
         if (i10 == 3) {
             i11 = ((org.telegram.ui.ActionBar.m2) hg1Var).currentAccount;
             boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -hg1Var.f38376a);
-            eg1Var.setForumIcon(ng.d.d(ng.a.f16595k[0], ""));
+            eg1Var.setForumIcon(ng.d.d(ng.a.f16596k[0], ""));
             if (!isBotForumWithEditableTopics) {
                 i12 = R.string.BotForumAskForStartOffNewChatTitle;
             } else {
@@ -89,7 +89,7 @@ public final class wf1 extends og.b {
             eg1Var.setCustomMessage(LocaleController.getString(i13));
         }
         z10 = ((org.telegram.ui.ActionBar.m2) hg1Var).inPreviewMode;
-        eg1Var.f22578k0 = z10;
+        eg1Var.f22579k0 = z10;
         eg1Var.setArchivedPullAnimation(hg1Var.f38417w);
         return new s4.d1(eg1Var);
     }

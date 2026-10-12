@@ -4,12 +4,12 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 public final class vf0 extends Path {
-    public int f31499a;
-    public int f31500b;
-    public int f31501c;
+    public int f31500a;
+    public int f31501b;
+    public int f31502c;
 
     public final void a(int i10, int i11, int i12) {
-        if (this.f31499a == i10 && this.f31500b == i11 && this.f31501c == i12) {
+        if (this.f31500a == i10 && this.f31501b == i11 && this.f31502c == i12) {
             return;
         }
         rewind();
@@ -30,8 +30,8 @@ public final class vf0 extends Path {
         float f16 = i11;
         cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
         close();
-        this.f31499a = i10;
-        this.f31500b = i11;
-        this.f31501c = i12;
+        this.f31500a = i10;
+        this.f31501b = i11;
+        this.f31502c = i12;
     }
 }

@@ -65,7 +65,7 @@ public final class u2 extends AnimatorListenerAdapter {
             case 3:
                 r50 r50Var = (r50) obj;
                 r50Var.h = f7;
-                r50Var.f41505a.invalidate();
+                r50Var.f41509a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -73,7 +73,7 @@ public final class u2 extends AnimatorListenerAdapter {
                 return;
             default:
                 yh.w3 w3Var = (yh.w3) obj;
-                w3Var.f53565y = f7;
+                w3Var.f53577y = f7;
                 w3Var.invalidate();
                 if (animator == w3Var.E && runnable != null) {
                     runnable.run();

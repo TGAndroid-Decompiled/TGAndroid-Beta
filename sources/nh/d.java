@@ -16,20 +16,20 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.x5;
 import w7.w5;
 public final class d extends FrameLayout implements x5 {
-    public final c6 f16616a;
-    public final ImageView f16617b;
-    public final TextView f16618c;
+    public final c6 f16617a;
+    public final ImageView f16618b;
+    public final TextView f16619c;
 
     public d(Context context, c6 c6Var) {
         super(context);
-        this.f16616a = c6Var;
+        this.f16617a = c6Var;
         ImageView imageView = new ImageView(context);
-        this.f16617b = imageView;
+        this.f16618b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_arrow_back);
         addView(imageView, w5.a(48.0f, 6.0f, 0.0f, 0.0f, 0.0f, 48, 8388627));
         TextView textView = new TextView(context);
-        this.f16618c = textView;
+        this.f16619c = textView;
         textView.setText(LocaleController.getString(R.string.EmojiSearchBackToSearch));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -42,11 +42,11 @@ public final class d extends FrameLayout implements x5 {
     @Override
     public final void e() {
         int i10 = h6.Wk;
-        c6 c6Var = this.f16616a;
+        c6 c6Var = this.f16617a;
         int i11 = (int) 153.0f;
-        this.f16618c.setTextColor(i0.a.k(h6.w0(i10, c6Var), i11));
+        this.f16619c.setTextColor(i0.a.k(h6.w0(i10, c6Var), i11));
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.a.k(h6.w0(i10, c6Var), i11), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f16617b;
+        ImageView imageView = this.f16618b;
         imageView.setColorFilter(porterDuffColorFilter);
         imageView.setBackground(h6.g0(i0.a.k(h6.w0(i10, c6Var), (int) 25.5f), 1, -1));
     }
@@ -56,6 +56,6 @@ public final class d extends FrameLayout implements x5 {
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f16617b.setOnClickListener(onClickListener);
+        this.f16618b.setOnClickListener(onClickListener);
     }
 }

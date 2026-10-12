@@ -12,15 +12,15 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class w41 extends Thread {
-    public final String f32261a;
-    public final String f32262b;
-    public final String f32263c;
+    public final String f32247a;
+    public final String f32248b;
+    public final String f32249c;
     public final Utilities.Callback2 d;
 
     public w41(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f32261a = str;
-        this.f32262b = str2;
-        this.f32263c = str3;
+        this.f32247a = str;
+        this.f32248b = str2;
+        this.f32249c = str3;
         this.d = callback2;
     }
 
@@ -30,11 +30,11 @@ public final class w41 extends Thread {
         Integer num;
         String str;
         Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f32263c;
+        String str2 = this.f32249c;
         boolean z10 = false;
         String str3 = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f32261a) + "&tl=" + Uri.encode(this.f32262b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f32247a) + "&tl=" + Uri.encode(this.f32248b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
             try {
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setRequestProperty("User-Agent", g51.R[(int) Math.round(Math.random() * 5)]);

@@ -16,7 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.wh0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.gj;
-import org.telegram.ui.t70;
+import org.telegram.ui.q70;
 import org.telegram.ui.ts;
 import org.telegram.ui.u60;
 import org.telegram.ui.yq;
@@ -74,11 +74,11 @@ public final class za implements RequestDelegate {
                 return;
             case 9:
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (t70) obj3, this.f2022b, (String) obj2));
+                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (q70) obj3, this.f2022b, (String) obj2));
                 return;
             case 10:
                 Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, this.f2022b, (org.telegram.ui.ActionBar.a2) obj, (t70) obj3, (String) obj2));
+                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, this.f2022b, (org.telegram.ui.ActionBar.a2) obj, (q70) obj3, (String) obj2));
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.web.b1) obj4, (String) obj, tLObject, tL_error, this.f2022b, (org.telegram.ui.web.y0) obj3, (ea) obj2));

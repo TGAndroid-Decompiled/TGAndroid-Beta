@@ -18,7 +18,7 @@ public final class ic extends f30 {
         lc lcVar = this.f5212a.E0;
         if (lcVar.f5475f0 == 0 && (obVar = lcVar.B0) != null && !lcVar.S1 && obVar.isInited() && !lcVar.P1 && !lcVar.O0.f5280x0) {
             t7 t7Var = lcVar.D0;
-            if ((t7Var == null || (!t7Var.f6017x.f24286i && !t7Var.L)) && !lcVar.I() && lcVar.f5506p2 == null) {
+            if ((t7Var == null || (!t7Var.f6017x.f24287i && !t7Var.L)) && !lcVar.I() && lcVar.f5506p2 == null) {
                 return true;
             }
             return false;
@@ -74,7 +74,7 @@ public final class ic extends f30 {
         kc kcVar = this.f5212a;
         lc lcVar = kcVar.E0;
         ValueAnimator valueAnimator = lcVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((t7Var = lcVar.D0) != null && (t7Var.f6017x.f24286i || t7Var.L)) || lcVar.O0.f5280x0 || (((obVar = lcVar.B0) != null && obVar.f4818s) || kcVar.A0 || (((oa1Var = lcVar.V0) != null && (oa1Var.F || oa1Var.G)) || lcVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((t7Var = lcVar.D0) != null && (t7Var.f6017x.f24287i || t7Var.L)) || lcVar.O0.f5280x0 || (((obVar = lcVar.B0) != null && obVar.f4818s) || kcVar.A0 || (((oa1Var = lcVar.V0) != null && (oa1Var.F || oa1Var.G)) || lcVar.H())))) {
             return false;
         }
         boolean z12 = true;

@@ -385,7 +385,7 @@ public final class s implements Runnable {
                 return;
             case 20:
                 Typeface typeface = (Typeface) this.f12077c;
-                e2.a0 a0Var = (e2.a0) ((xa.c) this.f12076b).f51335b;
+                e2.a0 a0Var = (e2.a0) ((xa.c) this.f12076b).f51343b;
                 if (a0Var != null) {
                     a0Var.g(typeface);
                     return;
@@ -395,7 +395,7 @@ public final class s implements Runnable {
                 ((c5.z) this.f12076b).accept(this.f12077c);
                 return;
             case 22:
-                eo eoVar = ((um) this.f12077c).f42536c;
+                eo eoVar = ((um) this.f12077c).f42538c;
                 if (this == eoVar.J5) {
                     eoVar.cb((CharSequence) this.f12076b, false);
                     eoVar.J5 = null;
@@ -422,7 +422,7 @@ public final class s implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(wrVar.f43614c);
+                AndroidUtilities.updateVisibleRows(wrVar.f43619c);
                 pr w02 = wrVar.w0();
                 wrVar.B0();
                 wrVar.A0(w02);
@@ -436,9 +436,9 @@ public final class s implements Runnable {
                 while (!((Set) this.f12077c).isEmpty()) {
                     try {
                         qb.l lVar = (qb.l) referenceQueue.remove();
-                        if (lVar.f46026a.remove(lVar)) {
+                        if (lVar.f46034a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f46027b.getClass();
+                            lVar.f46035b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
@@ -460,17 +460,17 @@ public final class s implements Runnable {
             case 27:
                 qb.i iVar2 = (qb.i) this.f12076b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f12077c;
-                int decrementAndGet = iVar2.f46019b.decrementAndGet();
+                int decrementAndGet = iVar2.f46027b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z19 = false;
                 }
                 n6.m.k(z19);
                 if (decrementAndGet == 0) {
                     iVar2.c();
-                    iVar2.f46020c.set(false);
+                    iVar2.f46028c.set(false);
                 }
-                t7.n.f48454a.clear();
-                t7.s.f48460a.clear();
+                t7.n.f48462a.clear();
+                t7.s.f48468a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 28:
@@ -498,8 +498,8 @@ public final class s implements Runnable {
                     c();
                     return;
                 } catch (Error e13) {
-                    synchronized (((r9.i) this.f12077c).f47335b) {
-                        ((r9.i) this.f12077c).f47336c = 1;
+                    synchronized (((r9.i) this.f12077c).f47343b) {
+                        ((r9.i) this.f12077c).f47344c = 1;
                         throw e13;
                     }
                 }
@@ -512,9 +512,9 @@ public final class s implements Runnable {
             case 0:
                 aa.a aVar = new aa.a(s.class.getSimpleName(), 13);
                 n4.y yVar = new n4.y(11, false);
-                ((n4.y) aVar.d).f16363c = yVar;
+                ((n4.y) aVar.d).f16364c = yVar;
                 aVar.d = yVar;
-                yVar.f16362b = (r) this.f12077c;
+                yVar.f16363b = (r) this.f12077c;
                 return aVar.toString();
             case 29:
                 Runnable runnable = (Runnable) this.f12076b;
@@ -522,7 +522,7 @@ public final class s implements Runnable {
                     return "SequentialExecutorWorker{running=" + runnable + "}";
                 }
                 StringBuilder sb2 = new StringBuilder("SequentialExecutorWorker{state=");
-                int i10 = ((r9.i) this.f12077c).f47336c;
+                int i10 = ((r9.i) this.f12077c).f47344c;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 != 3) {

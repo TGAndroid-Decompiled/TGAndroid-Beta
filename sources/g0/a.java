@@ -50,7 +50,7 @@ public abstract class a {
             AudioProfile audioProfile = (AudioProfile) directProfilesForAttributes.get(i10);
             if (audioProfile.getEncapsulationType() != 1) {
                 int format = audioProfile.getFormat();
-                if (d0.J(format) || k2.b.f14406e.containsKey(Integer.valueOf(format))) {
+                if (d0.J(format) || k2.b.f14407e.containsKey(Integer.valueOf(format))) {
                     if (hashMap.containsKey(Integer.valueOf(format))) {
                         Set set = (Set) hashMap.get(Integer.valueOf(format));
                         set.getClass();

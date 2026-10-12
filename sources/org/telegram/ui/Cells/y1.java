@@ -27,7 +27,7 @@ public final class y1 extends ia0 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f24148a;
+                return ((UndoView) this.M).f24149a;
             default:
                 return super.a();
         }
@@ -83,7 +83,7 @@ public final class y1 extends ia0 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.ta) this.M).f42136e.getThemedColor(org.telegram.ui.ActionBar.h6.f20780p7)), 0, indexOf, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.ta) this.M).f42138e.getThemedColor(org.telegram.ui.ActionBar.h6.f20781p7)), 0, indexOf, 33);
                     }
                     r61[] r61VarArr = (r61[]) charSequence.getSpans(0, charSequence.length(), r61.class);
                     for (int i10 = 0; i10 < r61VarArr.length; i10++) {
@@ -100,12 +100,12 @@ public final class y1 extends ia0 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(qdVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20780p7)), 0, indexOf2, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(qdVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20781p7)), 0, indexOf2, 33);
                     }
                     r61[] r61VarArr2 = (r61[]) charSequence.getSpans(0, charSequence.length(), r61.class);
-                    EditTextBoldCursor editTextBoldCursor = qdVar.f41299w;
+                    EditTextBoldCursor editTextBoldCursor = qdVar.f41303w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = qdVar.f41299w.getText().toString();
+                        str = qdVar.f41303w.getText().toString();
                     } else {
                         str = "";
                     }

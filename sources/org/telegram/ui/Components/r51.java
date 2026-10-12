@@ -27,26 +27,26 @@ public final class r51 extends db {
     public final ImageView X;
     public final FrameLayout Y;
     public final ci.d Z;
-    public CharSequence f30041a0;
-    public boolean f30042b0;
-    public CharSequence f30043c0;
-    public nu f30044d0;
-    public String f30045e0;
-    public String f30046f0;
-    public int f30047g0;
-    public final String[] f30048h0;
-    public final String[] f30049i0;
-    public h71 f30050j0;
-    public boolean f30051k0;
-    public int f30052l0;
+    public CharSequence f30042a0;
+    public boolean f30043b0;
+    public CharSequence f30044c0;
+    public nu f30045d0;
+    public String f30046e0;
+    public String f30047f0;
+    public int f30048g0;
+    public final String[] f30049h0;
+    public final String[] f30050i0;
+    public h71 f30051j0;
+    public boolean f30052k0;
+    public int f30053l0;
 
     public r51(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, null, false, false, 2, c6Var);
-        this.f30047g0 = 1;
-        this.f30048h0 = new String[]{"formal", "neutral", "casual"};
-        this.f30049i0 = new String[]{"Formal", "Neutral", "Casual"};
-        this.f30051k0 = true;
-        this.f30052l0 = -1;
+        this.f30048g0 = 1;
+        this.f30049h0 = new String[]{"formal", "neutral", "casual"};
+        this.f30050i0 = new String[]{"Formal", "Neutral", "Casual"};
+        this.f30052k0 = true;
+        this.f30053l0 = -1;
         ImageView imageView = new ImageView(context);
         this.X = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -54,17 +54,17 @@ public final class r51 extends db {
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         imageView.setColorFilter(getThemedColor(i10));
         imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.m1(0.1f, getThemedColor(i10)), 1, -1));
-        this.f25295e.addView(imageView, w7.w5.a(54.0f, 0.0f, 0.0f, 8.0f, 0.0f, 54, 85));
+        this.f25287e.addView(imageView, w7.w5.a(54.0f, 0.0f, 0.0f, 8.0f, 0.0f, 54, 85));
         w7.y5.b(imageView, 0.1f, 1.5f);
         imageView.setOnClickListener(new i51(this, 2));
         String D = g51.D();
-        this.f30046f0 = D;
+        this.f30047f0 = D;
         if (D == null) {
-            this.f30046f0 = TranslateController.currentLanguage();
+            this.f30047f0 = TranslateController.currentLanguage();
         }
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        int i11 = org.telegram.ui.ActionBar.h6.f20503a7;
+        int i11 = org.telegram.ui.ActionBar.h6.f20504a7;
         setBackgroundColor(getThemedColor(i11));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Y = frameLayout;
@@ -87,12 +87,12 @@ public final class r51 extends db {
         this.d.p1();
         this.d.setOnItemClickListener(new ai.o6(14, this, c6Var));
         s4.j jVar = new s4.j();
-        jVar.f47929m = false;
+        jVar.f47937m = false;
         jVar.C = false;
         jVar.o(js.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        this.f30050j0.N(false);
+        this.f30051j0.N(false);
     }
 
     public static void Q(r51 r51Var, View view) {
@@ -100,58 +100,58 @@ public final class r51 extends db {
         s80 F = s80.F(r51Var.container, r51Var.resourcesProvider, view);
         F.X = AndroidUtilities.dp(450.0f);
         int i10 = 0;
-        F.f30473t = false;
+        F.f30469t = false;
         F.Y = true;
         ScrollView scrollView = new ScrollView(r51Var.getContext());
         LinearLayout linearLayout = new LinearLayout(r51Var.getContext());
         linearLayout.setOrientation(1);
         scrollView.addView(linearLayout);
         F.q(scrollView);
-        for (int i11 = 0; i11 < r51Var.f30048h0.length; i11++) {
-            if (r51Var.f30047g0 == i11) {
+        for (int i11 = 0; i11 < r51Var.f30049h0.length; i11++) {
+            if (r51Var.f30048g0 == i11) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            r51Var.U(F, linearLayout, z10, r51Var.f30049i0[i11], new nd(r51Var, i11, 12));
+            r51Var.U(F, linearLayout, z10, r51Var.f30050i0[i11], new nd(r51Var, i11, 12));
         }
         View j1Var = new org.telegram.ui.ActionBar.j1(r51Var.getContext(), r51Var.resourcesProvider);
         j1Var.setTag(R.id.fit_width_tag, 1);
         linearLayout.addView(j1Var, w7.w5.n(-1, 8));
         ArrayList<TranslateController.Language> suggestedLanguages = TranslateController.getSuggestedLanguages(null);
         ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
-        if (!TextUtils.isEmpty(r51Var.f30046f0)) {
-            r51Var.U(F, linearLayout, true, g51.A(g51.F(r51Var.f30046f0, null, null)), null);
+        if (!TextUtils.isEmpty(r51Var.f30047f0)) {
+            r51Var.U(F, linearLayout, true, g51.A(g51.F(r51Var.f30047f0, null, null)), null);
         }
         int size = suggestedLanguages.size();
         int i12 = 0;
         while (i12 < size) {
             int i13 = i12 + 1;
             final TranslateController.Language language = suggestedLanguages.get(i12);
-            if (!TextUtils.equals(language.code, r51Var.f30046f0)) {
+            if (!TextUtils.equals(language.code, r51Var.f30047f0)) {
                 r51Var.U(F, linearLayout, false, language.displayName, new Runnable(r51Var) {
-                    public final r51 f26655b;
+                    public final r51 f26659b;
 
                     {
-                        this.f26655b = r51Var;
+                        this.f26659b = r51Var;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                r51 r51Var2 = this.f26655b;
+                                r51 r51Var2 = this.f26659b;
                                 r51Var2.V();
                                 String str = language.code;
-                                r51Var2.f30046f0 = str;
+                                r51Var2.f30047f0 = str;
                                 g51.J(str);
                                 r51Var2.W();
                                 return;
                             default:
-                                r51 r51Var3 = this.f26655b;
+                                r51 r51Var3 = this.f26659b;
                                 r51Var3.V();
                                 String str2 = language.code;
-                                r51Var3.f30046f0 = str2;
+                                r51Var3.f30047f0 = str2;
                                 g51.J(str2);
                                 r51Var3.W();
                                 return;
@@ -169,29 +169,29 @@ public final class r51 extends db {
             TranslateController.Language language2 = languages.get(i10);
             i10++;
             final TranslateController.Language language3 = language2;
-            r51Var.U(F, linearLayout, TextUtils.equals(language3.code, r51Var.f30046f0), language3.displayName, new Runnable(r51Var) {
-                public final r51 f26655b;
+            r51Var.U(F, linearLayout, TextUtils.equals(language3.code, r51Var.f30047f0), language3.displayName, new Runnable(r51Var) {
+                public final r51 f26659b;
 
                 {
-                    this.f26655b = r51Var;
+                    this.f26659b = r51Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            r51 r51Var2 = this.f26655b;
+                            r51 r51Var2 = this.f26659b;
                             r51Var2.V();
                             String str = language3.code;
-                            r51Var2.f30046f0 = str;
+                            r51Var2.f30047f0 = str;
                             g51.J(str);
                             r51Var2.W();
                             return;
                         default:
-                            r51 r51Var3 = this.f26655b;
+                            r51 r51Var3 = this.f26659b;
                             r51Var3.V();
                             String str2 = language3.code;
-                            r51Var3.f30046f0 = str2;
+                            r51Var3.f30047f0 = str2;
                             g51.J(str2);
                             r51Var3.W();
                             return;
@@ -210,7 +210,7 @@ public final class r51 extends db {
     }
 
     public static void S(r51 r51Var, TLRPC.TL_messages_translateResult tL_messages_translateResult, TLRPC.TL_error tL_error) {
-        r51Var.f30052l0 = -1;
+        r51Var.f30053l0 = -1;
         ci.d dVar = r51Var.Z;
         dVar.setLoading(false);
         if (tL_error != null) {
@@ -218,9 +218,9 @@ public final class r51 extends db {
             dVar.setText(LocaleController.getString(R.string.OK));
             dVar.setOnClickListener(new i51(r51Var, 0));
         } else if (tL_messages_translateResult != null && !tL_messages_translateResult.result.isEmpty()) {
-            r51Var.f30043c0 = MessageObject.formatTextWithEntities(tL_messages_translateResult.result.get(0));
-            r51Var.f30042b0 = false;
-            r51Var.f30050j0.N(true);
+            r51Var.f30044c0 = MessageObject.formatTextWithEntities(tL_messages_translateResult.result.get(0));
+            r51Var.f30043b0 = false;
+            r51Var.f30051j0.N(true);
         } else {
             dVar.setText(LocaleController.getString(R.string.OK));
             dVar.setOnClickListener(new i51(r51Var, 1));
@@ -228,12 +228,12 @@ public final class r51 extends db {
     }
 
     public static void T(r51 r51Var, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
-        u61 G = r51Var.f30050j0.G(i10 - 1);
+        u61 G = r51Var.f30051j0.G(i10 - 1);
         if (G != null) {
             int i11 = G.d;
             if (i11 == 1) {
-                CharSequence charSequence = r51Var.f30043c0;
-                if (charSequence != null && !r51Var.f30042b0) {
+                CharSequence charSequence = r51Var.f30044c0;
+                if (charSequence != null && !r51Var.f30043b0) {
                     AndroidUtilities.addToClipboard(charSequence);
                 }
             } else if (i11 == 2) {
@@ -278,16 +278,16 @@ public final class r51 extends db {
     }
 
     public final void V() {
-        if (this.f30052l0 >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f30052l0, true);
-            this.f30052l0 = -1;
+        if (this.f30053l0 >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f30053l0, true);
+            this.f30053l0 = -1;
         }
     }
 
     public final void W() {
         String charSequence;
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence[] charSequenceArr = {this.f30041a0};
+        CharSequence[] charSequenceArr = {this.f30042a0};
         tL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
         CharSequence charSequence2 = charSequenceArr[0];
         if (charSequence2 == null) {
@@ -296,25 +296,25 @@ public final class r51 extends db {
             charSequence = charSequence2.toString();
         }
         tL_textWithEntities.text = charSequence;
-        if (this.f30044d0 != null) {
+        if (this.f30045d0 != null) {
             this.Z.setLoading(true);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
         spannableStringBuilder.setSpan(new na0(null, AndroidUtilities.dp(120.0f), 0, null), 0, spannableStringBuilder.length(), 33);
-        this.f30043c0 = spannableStringBuilder;
-        this.f30042b0 = true;
+        this.f30044c0 = spannableStringBuilder;
+        this.f30043b0 = true;
         TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
-        tL_messages_translateText.to_lang = this.f30046f0;
+        tL_messages_translateText.to_lang = this.f30047f0;
         tL_messages_translateText.flags |= 2;
         tL_messages_translateText.text.add(tL_textWithEntities);
-        int i10 = this.f30047g0;
+        int i10 = this.f30048g0;
         if (i10 != 1) {
             tL_messages_translateText.flags |= 4;
-            tL_messages_translateText.tone = this.f30048h0[i10];
+            tL_messages_translateText.tone = this.f30049h0[i10];
         }
-        this.f30052l0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new Object(), new j51(this, 1));
-        this.f30050j0.N(true);
+        this.f30053l0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new Object(), new j51(this, 1));
+        this.f30051j0.N(true);
     }
 
     @Override
@@ -332,13 +332,13 @@ public final class r51 extends db {
     @Override
     public final void show() {
         super.show();
-        za zaVar = this.f25295e;
+        za zaVar = this.f25287e;
         if (zaVar != null) {
             zaVar.setTitle("Translate");
         }
-        this.f30050j0.N(false);
+        this.f30051j0.N(false);
         W();
-        if (this.f30044d0 != null) {
+        if (this.f30045d0 != null) {
             ci.d dVar = this.Z;
             dVar.setText("Use This Translation");
             dVar.setOnClickListener(new i51(this, 3));
@@ -348,8 +348,8 @@ public final class r51 extends db {
     @Override
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(wm0Var, getContext(), this.currentAccount, 0, true, new j51(this, 0), this.resourcesProvider);
-        this.f30050j0 = h71Var;
-        h71Var.f26675r = false;
+        this.f30051j0 = h71Var;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

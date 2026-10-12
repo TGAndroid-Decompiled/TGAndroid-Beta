@@ -55,7 +55,7 @@ public class da0 extends org.telegram.ui.ActionBar.h5 {
                 ca0 b10 = this.O0.b();
                 b10.e(null, 0, 0.0f, 0.0f);
                 b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
-                AndroidUtilities.runOnUIThread(new hu(22, this, ja0Var), ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(new jt(23, this, ja0Var), ViewConfiguration.getLongPressTimeout());
                 return true;
             } else if (motionEvent.getAction() == 1) {
                 fa0Var.d(true);

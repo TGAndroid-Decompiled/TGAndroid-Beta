@@ -27,8 +27,8 @@ public final class t5 extends AnimatorListenerAdapter {
                 super.onAnimationEnd(animator);
                 nl0 nl0Var = this.f5997b;
                 nl0Var.Q = null;
-                nl0Var.f28848n0 = 0.0f;
-                nl0Var.f28846l0 = null;
+                nl0Var.f28852n0 = 0.0f;
+                nl0Var.f28850l0 = null;
                 nl0Var.invalidate();
                 return;
         }

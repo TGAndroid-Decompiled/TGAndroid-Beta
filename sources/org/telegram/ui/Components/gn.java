@@ -17,32 +17,32 @@ public final class gn {
     public TextPaint B;
     public TextPaint C;
     public final hn O;
-    public hn f26455a;
-    public MediaController.PhotoEntry f26456b;
-    public ImageReceiver f26457c;
+    public hn f26457a;
+    public MediaController.PhotoEntry f26458b;
+    public ImageReceiver f26459c;
     public ImageReceiver d;
-    public boolean f26458e;
-    public float f26464l;
-    public float f26465m;
-    public float f26466n;
-    public float f26467o;
-    public vh.f f26471s;
+    public boolean f26460e;
+    public float f26466l;
+    public float f26467m;
+    public float f26468n;
+    public float f26469o;
+    public vh.f f26473s;
     public Bitmap v;
-    public RectF f26459f = null;
-    public final RectF f26460g = new RectF();
+    public RectF f26461f = null;
+    public final RectF f26462g = new RectF();
     public long h = 0;
-    public int f26461i = 0;
-    public float f26462j = 1.0f;
-    public float f26463k = 0.0f;
-    public RectF f26468p = null;
-    public final RectF f26469q = new RectF();
-    public String f26470r = null;
-    public final Path f26472t = new Path();
-    public final float[] f26473u = new float[8];
-    public float f26474w = 1.0f;
-    public final Paint f26475x = new Paint(1);
-    public final RectF f26476y = new RectF();
-    public final Paint f26477z = new Paint(1);
+    public int f26463i = 0;
+    public float f26464j = 1.0f;
+    public float f26465k = 0.0f;
+    public RectF f26470p = null;
+    public final RectF f26471q = new RectF();
+    public String f26472r = null;
+    public final Path f26474t = new Path();
+    public final float[] f26475u = new float[8];
+    public float f26476w = 1.0f;
+    public final Paint f26477x = new Paint(1);
+    public final RectF f26478y = new RectF();
+    public final Paint f26479z = new Paint(1);
     public final Paint A = new Paint(1);
     public final Paint D = new Paint(1);
     public Bitmap E = null;
@@ -58,37 +58,37 @@ public final class gn {
 
     public gn(hn hnVar) {
         this.O = hnVar;
-        this.f26455a = hnVar;
+        this.f26457a = hnVar;
     }
 
     public static void a(gn gnVar, MediaController.PhotoEntry photoEntry) {
         hn hnVar = gnVar.O;
-        gnVar.f26456b = photoEntry;
+        gnVar.f26458b = photoEntry;
         if (photoEntry.isVideo) {
-            gnVar.f26470r = AndroidUtilities.formatShortDuration(photoEntry.duration);
+            gnVar.f26472r = AndroidUtilities.formatShortDuration(photoEntry.duration);
         } else {
-            gnVar.f26470r = null;
+            gnVar.f26472r = null;
         }
-        if (gnVar.f26457c == null) {
-            gnVar.f26457c = new ImageReceiver(hnVar.f26837z);
-            gnVar.d = new ImageReceiver(hnVar.f26837z);
-            gnVar.f26457c.setDelegate(new y2(7, gnVar, photoEntry));
+        if (gnVar.f26459c == null) {
+            gnVar.f26459c = new ImageReceiver(hnVar.f26823z);
+            gnVar.d = new ImageReceiver(hnVar.f26823z);
+            gnVar.f26459c.setDelegate(new y2(7, gnVar, photoEntry));
         }
         String str = photoEntry.thumbPath;
         if (str != null) {
-            gnVar.f26457c.setImage(ImageLocation.getForPath(str), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
+            gnVar.f26459c.setImage(ImageLocation.getForPath(str), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
         } else if (photoEntry.path != null) {
             if (photoEntry.isVideo) {
-                ImageReceiver imageReceiver = gnVar.f26457c;
+                ImageReceiver imageReceiver = gnVar.f26459c;
                 imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
-                gnVar.f26457c.setAllowStartAnimation(true);
+                gnVar.f26459c.setAllowStartAnimation(true);
                 return;
             }
-            gnVar.f26457c.setOrientation(photoEntry.orientation, true);
-            ImageReceiver imageReceiver2 = gnVar.f26457c;
+            gnVar.f26459c.setOrientation(photoEntry.orientation, true);
+            ImageReceiver imageReceiver2 = gnVar.f26459c;
             imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
         } else {
-            gnVar.f26457c.setImageBitmap(org.telegram.ui.ActionBar.h6.R4);
+            gnVar.f26459c.setImageBitmap(org.telegram.ui.ActionBar.h6.R4);
         }
     }
 
@@ -96,34 +96,34 @@ public final class gn {
         float f7;
         float f10;
         float f11;
-        RectF rectF = gnVar.f26469q;
-        RectF rectF2 = gnVar.f26460g;
+        RectF rectF = gnVar.f26471q;
+        RectF rectF2 = gnVar.f26462g;
         if (cnVar != null && groupedMessagePosition != null) {
-            gnVar.f26461i = groupedMessagePosition.flags;
+            gnVar.f26463i = groupedMessagePosition.flags;
             if (z10) {
                 float e7 = gnVar.e();
-                RectF rectF3 = gnVar.f26459f;
+                RectF rectF3 = gnVar.f26461f;
                 if (rectF3 != null) {
                     AndroidUtilities.lerp(rectF3, rectF2, e7, rectF3);
                 }
-                RectF rectF4 = gnVar.f26468p;
+                RectF rectF4 = gnVar.f26470p;
                 if (rectF4 != null) {
                     AndroidUtilities.lerp(rectF4, rectF, e7, rectF4);
                 }
-                gnVar.f26462j = AndroidUtilities.lerp(gnVar.f26462j, gnVar.f26463k, e7);
+                gnVar.f26464j = AndroidUtilities.lerp(gnVar.f26464j, gnVar.f26465k, e7);
                 gnVar.h = SystemClock.elapsedRealtime();
             }
             float f12 = groupedMessagePosition.left;
-            float f13 = cnVar.f24975c;
+            float f13 = cnVar.f24960c;
             float f14 = f12 / f13;
             float f15 = groupedMessagePosition.top;
-            float f16 = cnVar.f24977f;
+            float f16 = cnVar.f24962f;
             float f17 = f15 / f16;
-            gnVar.f26463k = 1.0f;
-            rectF2.set(f14, f17, (groupedMessagePosition.pw / f13) + f14, (groupedMessagePosition.f17000ph / f16) + f17);
+            gnVar.f26465k = 1.0f;
+            rectF2.set(f14, f17, (groupedMessagePosition.pw / f13) + f14, (groupedMessagePosition.f17001ph / f16) + f17);
             float dp = AndroidUtilities.dp(2.0f);
             float dp2 = AndroidUtilities.dp(SharedConfig.bubbleRadius - 1);
-            int i10 = gnVar.f26461i;
+            int i10 = gnVar.f26463i;
             if ((i10 & 5) == 5) {
                 f7 = dp2;
             } else {
@@ -143,28 +143,28 @@ public final class gn {
                 dp = dp2;
             }
             rectF.set(f7, f10, f11, dp);
-            if (gnVar.f26459f == null) {
+            if (gnVar.f26461f == null) {
                 RectF rectF5 = new RectF();
-                gnVar.f26459f = rectF5;
+                gnVar.f26461f = rectF5;
                 rectF5.set(rectF2);
             }
-            if (gnVar.f26468p == null) {
+            if (gnVar.f26470p == null) {
                 RectF rectF6 = new RectF();
-                gnVar.f26468p = rectF6;
+                gnVar.f26470p = rectF6;
                 rectF6.set(rectF);
             }
         } else if (z10) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            gnVar.f26462j = AndroidUtilities.lerp(gnVar.f26462j, gnVar.f26463k, gnVar.e());
-            RectF rectF7 = gnVar.f26459f;
+            gnVar.f26464j = AndroidUtilities.lerp(gnVar.f26464j, gnVar.f26465k, gnVar.e());
+            RectF rectF7 = gnVar.f26461f;
             if (rectF7 != null) {
-                AndroidUtilities.lerp(rectF7, rectF2, gnVar.e(), gnVar.f26459f);
+                AndroidUtilities.lerp(rectF7, rectF2, gnVar.e(), gnVar.f26461f);
             }
-            gnVar.f26463k = 0.0f;
+            gnVar.f26465k = 0.0f;
             gnVar.h = elapsedRealtime;
         } else {
-            gnVar.f26462j = 0.0f;
-            gnVar.f26463k = 0.0f;
+            gnVar.f26464j = 0.0f;
+            gnVar.f26465k = 0.0f;
         }
     }
 
@@ -174,68 +174,68 @@ public final class gn {
 
     public final Object clone() {
         gn gnVar = new gn(this.O);
-        gnVar.f26460g.set(this.f26460g);
-        gnVar.f26457c = this.f26457c;
-        gnVar.f26456b = this.f26456b;
+        gnVar.f26462g.set(this.f26462g);
+        gnVar.f26459c = this.f26459c;
+        gnVar.f26458b = this.f26458b;
         return gnVar;
     }
 
     public final RectF d() {
         float f7 = 0.0f;
-        if (this.f26460g != null && this.f26457c != null) {
-            in inVar = this.O.f26837z;
+        if (this.f26462g != null && this.f26459c != null) {
+            in inVar = this.O.f26823z;
             gn gnVar = inVar.P.J;
-            if (gnVar != null && gnVar.f26456b == this.f26456b) {
+            if (gnVar != null && gnVar.f26458b == this.f26458b) {
                 f7 = inVar.G;
             }
-            float lerp = (((1.0f - f7) * 0.2f) + 0.8f) * AndroidUtilities.lerp(this.f26462j, this.f26463k, e());
+            float lerp = (((1.0f - f7) * 0.2f) + 0.8f) * AndroidUtilities.lerp(this.f26464j, this.f26465k, e());
             RectF f10 = f(e());
             float f11 = 1.0f - lerp;
             float f12 = lerp + 1.0f;
             f10.set(a1.g.B(f10.width(), f11, 2.0f, f10.left), ((f10.height() * f11) / 2.0f) + f10.top, a1.g.B(f10.width(), f12, 2.0f, f10.left), ((f10.height() * f12) / 2.0f) + f10.top);
             return f10;
         }
-        RectF rectF = this.f26476y;
+        RectF rectF = this.f26478y;
         rectF.set(0.0f, 0.0f, 0.0f, 0.0f);
         return rectF;
     }
 
     public final float e() {
-        return this.O.f26822j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.h)) / 200.0f));
+        return this.O.f26808j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.h)) / 200.0f));
     }
 
     public final RectF f(float f7) {
         RectF rectF;
-        RectF rectF2 = this.f26476y;
-        RectF rectF3 = this.f26460g;
-        if (rectF3 != null && this.f26457c != null) {
+        RectF rectF2 = this.f26478y;
+        RectF rectF3 = this.f26462g;
+        if (rectF3 != null && this.f26459c != null) {
             hn hnVar = this.O;
-            float f10 = (rectF3.left * hnVar.f26830r) + hnVar.f26826n;
-            float f11 = (rectF3.top * hnVar.f26831s) + hnVar.f26828p;
-            float width = rectF3.width() * hnVar.f26830r;
-            float height = rectF3.height() * hnVar.f26831s;
-            if (f7 < 1.0f && (rectF = this.f26459f) != null) {
-                f10 = AndroidUtilities.lerp((rectF.left * hnVar.f26830r) + hnVar.f26826n, f10, f7);
-                f11 = AndroidUtilities.lerp((this.f26459f.top * hnVar.f26831s) + hnVar.f26828p, f11, f7);
-                width = AndroidUtilities.lerp(this.f26459f.width() * hnVar.f26830r, width, f7);
-                height = AndroidUtilities.lerp(this.f26459f.height() * hnVar.f26831s, height, f7);
+            float f10 = (rectF3.left * hnVar.f26816r) + hnVar.f26812n;
+            float f11 = (rectF3.top * hnVar.f26817s) + hnVar.f26814p;
+            float width = rectF3.width() * hnVar.f26816r;
+            float height = rectF3.height() * hnVar.f26817s;
+            if (f7 < 1.0f && (rectF = this.f26461f) != null) {
+                f10 = AndroidUtilities.lerp((rectF.left * hnVar.f26816r) + hnVar.f26812n, f10, f7);
+                f11 = AndroidUtilities.lerp((this.f26461f.top * hnVar.f26817s) + hnVar.f26814p, f11, f7);
+                width = AndroidUtilities.lerp(this.f26461f.width() * hnVar.f26816r, width, f7);
+                height = AndroidUtilities.lerp(this.f26461f.height() * hnVar.f26817s, height, f7);
             }
-            int i10 = this.f26461i;
+            int i10 = this.f26463i;
             if ((i10 & 4) == 0) {
-                int i11 = hnVar.f26825m;
+                int i11 = hnVar.f26811m;
                 f11 += i11;
                 height -= i11;
             }
             if ((i10 & 8) == 0) {
-                height -= hnVar.f26825m;
+                height -= hnVar.f26811m;
             }
             if ((i10 & 1) == 0) {
-                int i12 = hnVar.f26825m;
+                int i12 = hnVar.f26811m;
                 f10 += i12;
                 width -= i12;
             }
             if ((i10 & 2) == 0) {
-                width -= hnVar.f26825m;
+                width -= hnVar.f26811m;
             }
             rectF2.set(f10, f11, width + f10, height + f11);
             return rectF2;

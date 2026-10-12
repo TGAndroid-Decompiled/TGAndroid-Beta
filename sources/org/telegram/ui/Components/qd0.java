@@ -7,30 +7,30 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     public int A0;
     public int B0;
     public boolean C0;
-    public final b2.q0 f29821w0;
-    public View f29822x0;
-    public pd0 f29823y0;
-    public org.telegram.ui.ActionBar.c3 f29824z0;
+    public final b2.q0 f29799w0;
+    public View f29800x0;
+    public pd0 f29801y0;
+    public org.telegram.ui.ActionBar.c3 f29802z0;
 
     public qd0(Context context) {
         super(context, null);
-        this.f29821w0 = new Object();
+        this.f29799w0 = new Object();
     }
 
     public void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
         pd0 pd0Var;
         int max;
-        if (viewGroup == this.f29822x0 && (pd0Var = this.f29823y0) != null && ((org.telegram.ui.u7) pd0Var).getListView() != null) {
-            int top = this.f29823y0.getTop();
+        if (viewGroup == this.f29800x0 && (pd0Var = this.f29801y0) != null && ((org.telegram.ui.u7) pd0Var).getListView() != null) {
+            int top = this.f29801y0.getTop();
             if (i11 < 0) {
                 if (top <= this.A0) {
-                    wm0 listView = ((org.telegram.ui.u7) this.f29823y0).getListView();
+                    wm0 listView = ((org.telegram.ui.u7) this.f29801y0).getListView();
                     int L0 = ((s4.d0) listView.getLayoutManager()).L0();
                     int i13 = -1;
                     if (L0 != -1) {
                         s4.d1 K = listView.K(L0);
                         if (K != null) {
-                            i13 = K.f47889a.getTop();
+                            i13 = K.f47897a.getTop();
                         }
                         int paddingTop = listView.getPaddingTop();
                         if (i13 != paddingTop || L0 != 0) {
@@ -46,14 +46,14 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
                         return;
                     }
                     return;
-                } else if (this.f29824z0 != null && !this.f29822x0.canScrollVertically(i11)) {
-                    this.f29824z0.onNestedScroll(viewGroup, 0, 0, i10, i11);
+                } else if (this.f29802z0 != null && !this.f29800x0.canScrollVertically(i11)) {
+                    this.f29802z0.onNestedScroll(viewGroup, 0, 0, i10, i11);
                     return;
                 } else {
                     return;
                 }
             }
-            org.telegram.ui.ActionBar.c3 c3Var = this.f29824z0;
+            org.telegram.ui.ActionBar.c3 c3Var = this.f29802z0;
             if (c3Var != null) {
                 c3Var.onNestedPreScroll(viewGroup, i10, i11, iArr);
             }
@@ -61,7 +61,7 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     }
 
     public final boolean Z() {
-        pd0 pd0Var = this.f29823y0;
+        pd0 pd0Var = this.f29801y0;
         if (pd0Var != null && pd0Var.getTop() == this.A0) {
             return true;
         }
@@ -70,8 +70,8 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
 
     public final void a0(pd0 pd0Var, int i10) {
         this.B0 = i10;
-        if (this.f29823y0 != pd0Var) {
-            this.f29823y0 = pd0Var;
+        if (this.f29801y0 != pd0Var) {
+            this.f29801y0 = pd0Var;
             if (this.C0 && pd0Var != null) {
                 org.telegram.ui.u7 u7Var = (org.telegram.ui.u7) pd0Var;
                 if (u7Var.getListView() != null) {
@@ -83,12 +83,12 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     }
 
     public final void b0() {
-        View view = this.f29822x0;
-        if (view != null && this.f29823y0 != null) {
+        View view = this.f29800x0;
+        if (view != null && this.f29801y0 != null) {
             if (this.B0 != 0) {
                 this.A0 = view.getPaddingTop() + this.B0;
             } else {
-                this.A0 = (view.getMeasuredHeight() - this.f29822x0.getPaddingBottom()) - this.f29823y0.getMeasuredHeight();
+                this.A0 = (view.getMeasuredHeight() - this.f29800x0.getPaddingBottom()) - this.f29801y0.getMeasuredHeight();
             }
         }
     }
@@ -100,9 +100,9 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
 
     public void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         pd0 pd0Var;
-        if (viewGroup == this.f29822x0 && (pd0Var = this.f29823y0) != null && ((org.telegram.ui.u7) pd0Var).getListView() != null) {
-            wm0 listView = ((org.telegram.ui.u7) this.f29823y0).getListView();
-            if (this.f29823y0.getTop() == this.A0) {
+        if (viewGroup == this.f29800x0 && (pd0Var = this.f29801y0) != null && ((org.telegram.ui.u7) pd0Var).getListView() != null) {
+            wm0 listView = ((org.telegram.ui.u7) this.f29801y0).getListView();
+            if (this.f29801y0.getTop() == this.A0) {
                 iArr[1] = i13;
                 listView.scrollBy(0, i13);
             }
@@ -110,8 +110,8 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     }
 
     public void o(int i10, View view) {
-        this.f29821w0.f3531a = 0;
-        org.telegram.ui.ActionBar.c3 c3Var = this.f29824z0;
+        this.f29799w0.f3531a = 0;
+        org.telegram.ui.ActionBar.c3 c3Var = this.f29802z0;
         if (c3Var != null) {
             c3Var.onStopNestedScroll(view);
         }
@@ -121,7 +121,7 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.C0 = true;
-        pd0 pd0Var = this.f29823y0;
+        pd0 pd0Var = this.f29801y0;
         if (pd0Var != null) {
             pd0Var.addOnLayoutChangeListener(this);
         }
@@ -131,7 +131,7 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.C0 = false;
-        pd0 pd0Var = this.f29823y0;
+        pd0 pd0Var = this.f29801y0;
         if (pd0Var != null) {
             pd0Var.removeOnLayoutChangeListener(this);
         }
@@ -156,11 +156,11 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     }
 
     public void s(View view, View view2, int i10, int i11) {
-        this.f29821w0.f3531a = i10;
+        this.f29799w0.f3531a = i10;
     }
 
     public void setBottomSheetContainerView(org.telegram.ui.ActionBar.c3 c3Var) {
-        this.f29824z0 = c3Var;
+        this.f29802z0 = c3Var;
     }
 
     public void setChildLayout(pd0 pd0Var) {
@@ -168,7 +168,7 @@ public abstract class qd0 extends yw0 implements r0.m, View.OnLayoutChangeListen
     }
 
     public void setTargetListView(View view) {
-        this.f29822x0 = view;
+        this.f29800x0 = view;
         b0();
     }
 

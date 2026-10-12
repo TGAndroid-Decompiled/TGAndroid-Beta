@@ -19,7 +19,7 @@ public final class a extends Drawable {
         float exactCenterX = getBounds().exactCenterX();
         float exactCenterY = getBounds().exactCenterY();
         int x02 = h6.x0(null, h6.G6, false);
-        int x03 = h6.x0(null, h6.f20559d6, false);
+        int x03 = h6.x0(null, h6.f20560d6, false);
         int i10 = this.f9942b;
         Drawable drawable = this.f9941a;
         if (i10 != x03) {

@@ -19,14 +19,14 @@ public final class g extends s4.o {
     public final boolean a(int i10, int i11) {
         switch (this.f10605b) {
             case 0:
-                if (((k) ((m) this.d).N.get(i10)).f16876a == ((k) this.f10606c.get(i11)).f16876a) {
+                if (((k) ((m) this.d).N.get(i10)).f16877a == ((k) this.f10606c.get(i11)).f16877a) {
                     return true;
                 }
                 return false;
             case 1:
                 og.a aVar = (og.a) this.f10606c.get(i10);
                 og.a aVar2 = (og.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f16876a != aVar2.f16876a) {
+                if (aVar.f16877a != aVar2.f16877a) {
                     return false;
                 }
                 return aVar.a(aVar2);
@@ -50,26 +50,26 @@ public final class g extends s4.o {
                 k kVar = (k) ((m) this.d).N.get(i10);
                 k kVar2 = (k) this.f10606c.get(i11);
                 TLRPC.Dialog dialog = kVar.f10698c;
-                int i12 = kVar.f16876a;
-                int i13 = kVar2.f16876a;
+                int i12 = kVar.f16877a;
+                int i13 = kVar2.f16877a;
                 TLRPC.Dialog dialog2 = kVar2.f10698c;
-                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f10703j == kVar2.f10703j : (tL_contact = kVar.f10699e) != null && (tL_contact2 = kVar2.f10699e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f19806id == dialog2.f19806id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f19806id == dialog2.f19806id && kVar.h == kVar2.h && kVar.f10700f == kVar2.f10700f && kVar.f10701g == kVar2.f10701g))) {
+                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f10703j == kVar2.f10703j : (tL_contact = kVar.f10699e) != null && (tL_contact2 = kVar2.f10699e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f19807id == dialog2.f19807id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f19807id == dialog2.f19807id && kVar.h == kVar2.h && kVar.f10700f == kVar2.f10700f && kVar.f10701g == kVar2.f10701g))) {
                     return false;
                 }
                 return true;
             case 1:
                 og.a aVar = (og.a) this.f10606c.get(i10);
                 og.a aVar2 = (og.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f16876a != aVar2.f16876a) {
+                if (aVar.f16877a != aVar2.f16877a) {
                     return false;
                 }
                 return aVar.equals(aVar2);
             case 2:
-                return ((Integer) this.f10606c.get(i10)).equals(((my) this.d).f28679n.get(i11));
+                return ((Integer) this.f10606c.get(i10)).equals(((my) this.d).f28668n.get(i11));
             case 3:
-                return Objects.equals(this.f10606c.get(i10), ((sm0) this.d).f30594n.get(i11));
+                return Objects.equals(this.f10606c.get(i10), ((sm0) this.d).f30596n.get(i11));
             default:
-                return ((Long) this.f10606c.get(i10)).equals(((n71) this.d).f40301v0.get(i11));
+                return ((Long) this.f10606c.get(i10)).equals(((n71) this.d).f40304v0.get(i11));
         }
     }
 
@@ -81,11 +81,11 @@ public final class g extends s4.o {
             case 1:
                 return ((ArrayList) this.d).size();
             case 2:
-                return ((my) this.d).f28679n.size();
+                return ((my) this.d).f28668n.size();
             case 3:
-                return ((sm0) this.d).f30594n.size();
+                return ((sm0) this.d).f30596n.size();
             default:
-                return ((n71) this.d).f40301v0.size();
+                return ((n71) this.d).f40304v0.size();
         }
     }
 

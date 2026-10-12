@@ -31,9 +31,9 @@ public final class ub implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 org.telegram.ui.fd fdVar = (org.telegram.ui.fd) this.f6103c;
-                fdVar.f37738n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fdVar.f37742n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 fdVar.m0.invalidate();
-                if (!this.f6102b && fdVar.f37738n0 > 0.5f) {
+                if (!this.f6102b && fdVar.f37742n0 > 0.5f) {
                     this.f6102b = true;
                     return;
                 }
@@ -49,9 +49,9 @@ public final class ub implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 zd1 zd1Var = (zd1) this.f6103c;
-                zd1Var.f44759i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zd1Var.f44756h2.invalidate();
-                if (!this.f6102b && zd1Var.f44759i2 > 0.5f) {
+                zd1Var.f44764i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zd1Var.f44761h2.invalidate();
+                if (!this.f6102b && zd1Var.f44764i2 > 0.5f) {
                     this.f6102b = true;
                     return;
                 }

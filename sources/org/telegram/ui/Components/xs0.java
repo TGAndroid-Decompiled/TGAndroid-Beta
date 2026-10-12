@@ -16,7 +16,7 @@ public final class xs0 extends xh.r2 {
         float f7;
         float f10;
         hw0 hw0Var = this.U;
-        TextView textView = hw0Var.f26959q0;
+        TextView textView = hw0Var.f26944q0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f11 = 1.0f;

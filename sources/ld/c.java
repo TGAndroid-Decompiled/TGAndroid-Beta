@@ -57,7 +57,7 @@ public abstract class c extends a {
                 mVar.o();
             }
         }
-        this.intercepted = b.f15240a;
+        this.intercepted = b.f15241a;
     }
 
     public c(jd.c cVar) {

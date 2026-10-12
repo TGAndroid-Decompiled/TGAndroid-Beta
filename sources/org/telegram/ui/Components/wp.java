@@ -34,8 +34,8 @@ public final class wp implements qd1 {
                 wallPaper = eqVar.f25756n.h;
             }
             TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.b4 b4Var = eqVar.M.f25446a;
-            if (b4Var.f20239a) {
+            org.telegram.ui.ActionBar.b4 b4Var = eqVar.M.f25449a;
+            if (b4Var.f20240a) {
                 eqVar.f25756n.i(null, wallPaper2, z10, Boolean.valueOf(eqVar.N), false);
             } else {
                 eqVar.f25756n.i(b4Var, wallPaper2, z10, Boolean.valueOf(eqVar.N), false);

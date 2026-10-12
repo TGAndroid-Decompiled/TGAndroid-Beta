@@ -165,7 +165,7 @@ public final class k7 {
             if (z10) {
                 TL_stories.TL_getStoryReactionsList tL_getStoryReactionsList = new TL_stories.TL_getStoryReactionsList();
                 tL_getStoryReactionsList.forwards_first = v6Var.f1823a;
-                tL_getStoryReactionsList.f20042id = storyItem.f20041id;
+                tL_getStoryReactionsList.f20043id = storyItem.f20042id;
                 tL_getStoryReactionsList.peer = MessagesController.getInstance(i11).getInputPeer(j3);
                 if (this.f1234l || this.f1231i.size() < 20) {
                     i10 = 20;
@@ -179,7 +179,7 @@ public final class k7 {
                     tL_getStoryReactionsList.flags |= 2;
                 }
                 this.f1228e = true;
-                FileLog.d("SelfStoryViewsPage reactions load next " + storyItem.f20041id + " " + this.f1234l + " offset=" + tL_getStoryReactionsList.offset);
+                FileLog.d("SelfStoryViewsPage reactions load next " + storyItem.f20042id + " " + this.f1234l + " offset=" + tL_getStoryReactionsList.offset);
                 int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_getStoryReactionsList, new RequestDelegate(this) {
                     public final k7 f1151b;
 
@@ -206,7 +206,7 @@ public final class k7 {
                                                 ArrayList arrayList3 = k7Var2.f1230g;
                                                 TL_stories.StoryItem storyItem2 = k7Var2.f1226b;
                                                 if (iArr[0] != k7Var2.f1237o) {
-                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " localId != reqId");
+                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " localId != reqId");
                                                     return;
                                                 }
                                                 k7Var2.f1228e = false;
@@ -258,7 +258,7 @@ public final class k7 {
                                                     TL_stories.StoryViews storyViews = storyItem2.views;
                                                     if (i15 > storyViews.views_count) {
                                                         storyViews.recent_viewers.clear();
-                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19949id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19950id, storyItem2.views.recent_viewers, i16, 1)) {
                                                         }
                                                         storyItem2.views.views_count = storyViewsList.count;
                                                         z11 = true;
@@ -283,7 +283,7 @@ public final class k7 {
                                                     }
                                                     k7Var2.f1235m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " response  totalItems " + arrayList3.size() + " has next " + k7Var2.f1235m);
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " response  totalItems " + arrayList3.size() + " has next " + k7Var2.f1235m);
                                                 for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                     ((l7) arrayList.get(i19)).e(k7Var2);
                                                 }
@@ -299,7 +299,7 @@ public final class k7 {
                                                 int i20 = k7Var3.d;
                                                 ArrayList arrayList5 = k7Var3.f1231i;
                                                 if (iArr[0] != k7Var3.f1237o) {
-                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " localId != reqId");
+                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " localId != reqId");
                                                     return;
                                                 }
                                                 k7Var3.f1228e = false;
@@ -349,7 +349,7 @@ public final class k7 {
                                                     }
                                                     k7Var3.f1235m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
                                                 for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                     ((l7) arrayList4.get(i24)).e(k7Var3);
                                                 }
@@ -378,7 +378,7 @@ public final class k7 {
                                                 ArrayList arrayList3 = k7Var22.f1230g;
                                                 TL_stories.StoryItem storyItem2 = k7Var22.f1226b;
                                                 if (iArr2[0] != k7Var22.f1237o) {
-                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " localId != reqId");
+                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " localId != reqId");
                                                     return;
                                                 }
                                                 k7Var22.f1228e = false;
@@ -430,7 +430,7 @@ public final class k7 {
                                                     TL_stories.StoryViews storyViews = storyItem2.views;
                                                     if (i15 > storyViews.views_count) {
                                                         storyViews.recent_viewers.clear();
-                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19949id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19950id, storyItem2.views.recent_viewers, i16, 1)) {
                                                         }
                                                         storyItem2.views.views_count = storyViewsList.count;
                                                         z11 = true;
@@ -455,7 +455,7 @@ public final class k7 {
                                                     }
                                                     k7Var22.f1235m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " response  totalItems " + arrayList3.size() + " has next " + k7Var22.f1235m);
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " response  totalItems " + arrayList3.size() + " has next " + k7Var22.f1235m);
                                                 for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                     ((l7) arrayList.get(i19)).e(k7Var22);
                                                 }
@@ -471,7 +471,7 @@ public final class k7 {
                                                 int i20 = k7Var3.d;
                                                 ArrayList arrayList5 = k7Var3.f1231i;
                                                 if (iArr2[0] != k7Var3.f1237o) {
-                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " localId != reqId");
+                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " localId != reqId");
                                                     return;
                                                 }
                                                 k7Var3.f1228e = false;
@@ -521,7 +521,7 @@ public final class k7 {
                                                     }
                                                     k7Var3.f1235m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
                                                 for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                     ((l7) arrayList4.get(i24)).e(k7Var3);
                                                 }
@@ -542,15 +542,15 @@ public final class k7 {
                 return;
             }
             TL_stories.TL_stories_getStoryViewsList tL_stories_getStoryViewsList = new TL_stories.TL_stories_getStoryViewsList();
-            tL_stories_getStoryViewsList.f20050id = storyItem.f20041id;
+            tL_stories_getStoryViewsList.f20051id = storyItem.f20042id;
             tL_stories_getStoryViewsList.peer = MessagesController.getInstance(i11).getInputPeer(j3);
             if (this.f1239q) {
-                tL_stories_getStoryViewsList.f20051q = "";
+                tL_stories_getStoryViewsList.f20052q = "";
                 tL_stories_getStoryViewsList.just_contacts = false;
                 tL_stories_getStoryViewsList.reactions_first = true;
             } else {
                 String str2 = v6Var.f1825c;
-                tL_stories_getStoryViewsList.f20051q = str2;
+                tL_stories_getStoryViewsList.f20052q = str2;
                 if (!TextUtils.isEmpty(str2)) {
                     tL_stories_getStoryViewsList.flags |= 2;
                 }
@@ -567,7 +567,7 @@ public final class k7 {
                 tL_stories_getStoryViewsList.offset = "";
             }
             this.f1228e = true;
-            FileLog.d("SelfStoryViewsPage load next " + storyItem.f20041id + " " + this.f1234l + " offset=" + tL_stories_getStoryViewsList.offset + " q" + tL_stories_getStoryViewsList.f20051q + " " + tL_stories_getStoryViewsList.just_contacts + " " + tL_stories_getStoryViewsList.reactions_first);
+            FileLog.d("SelfStoryViewsPage load next " + storyItem.f20042id + " " + this.f1234l + " offset=" + tL_stories_getStoryViewsList.offset + " q" + tL_stories_getStoryViewsList.f20052q + " " + tL_stories_getStoryViewsList.just_contacts + " " + tL_stories_getStoryViewsList.reactions_first);
             int sendRequest2 = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoryViewsList, new RequestDelegate(this) {
                 public final k7 f1151b;
 
@@ -594,7 +594,7 @@ public final class k7 {
                                             ArrayList arrayList3 = k7Var22.f1230g;
                                             TL_stories.StoryItem storyItem2 = k7Var22.f1226b;
                                             if (iArr2[0] != k7Var22.f1237o) {
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " localId != reqId");
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " localId != reqId");
                                                 return;
                                             }
                                             k7Var22.f1228e = false;
@@ -646,7 +646,7 @@ public final class k7 {
                                                 TL_stories.StoryViews storyViews = storyItem2.views;
                                                 if (i15 > storyViews.views_count) {
                                                     storyViews.recent_viewers.clear();
-                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19949id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19950id, storyItem2.views.recent_viewers, i16, 1)) {
                                                     }
                                                     storyItem2.views.views_count = storyViewsList.count;
                                                     z11 = true;
@@ -671,7 +671,7 @@ public final class k7 {
                                                 }
                                                 k7Var22.f1235m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " response  totalItems " + arrayList3.size() + " has next " + k7Var22.f1235m);
+                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " response  totalItems " + arrayList3.size() + " has next " + k7Var22.f1235m);
                                             for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                 ((l7) arrayList.get(i19)).e(k7Var22);
                                             }
@@ -687,7 +687,7 @@ public final class k7 {
                                             int i20 = k7Var3.d;
                                             ArrayList arrayList5 = k7Var3.f1231i;
                                             if (iArr2[0] != k7Var3.f1237o) {
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " localId != reqId");
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " localId != reqId");
                                                 return;
                                             }
                                             k7Var3.f1228e = false;
@@ -737,7 +737,7 @@ public final class k7 {
                                                 }
                                                 k7Var3.f1235m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
+                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
                                             for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                 ((l7) arrayList4.get(i24)).e(k7Var3);
                                             }
@@ -766,7 +766,7 @@ public final class k7 {
                                             ArrayList arrayList3 = k7Var22.f1230g;
                                             TL_stories.StoryItem storyItem2 = k7Var22.f1226b;
                                             if (iArr22[0] != k7Var22.f1237o) {
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " localId != reqId");
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " localId != reqId");
                                                 return;
                                             }
                                             k7Var22.f1228e = false;
@@ -818,7 +818,7 @@ public final class k7 {
                                                 TL_stories.StoryViews storyViews = storyItem2.views;
                                                 if (i15 > storyViews.views_count) {
                                                     storyViews.recent_viewers.clear();
-                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19949id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.g(storyViewsList.users.get(i16).f19950id, storyItem2.views.recent_viewers, i16, 1)) {
                                                     }
                                                     storyItem2.views.views_count = storyViewsList.count;
                                                     z11 = true;
@@ -843,7 +843,7 @@ public final class k7 {
                                                 }
                                                 k7Var22.f1235m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f20041id + " response  totalItems " + arrayList3.size() + " has next " + k7Var22.f1235m);
+                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f20042id + " response  totalItems " + arrayList3.size() + " has next " + k7Var22.f1235m);
                                             for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                 ((l7) arrayList.get(i19)).e(k7Var22);
                                             }
@@ -859,7 +859,7 @@ public final class k7 {
                                             int i20 = k7Var3.d;
                                             ArrayList arrayList5 = k7Var3.f1231i;
                                             if (iArr22[0] != k7Var3.f1237o) {
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " localId != reqId");
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " localId != reqId");
                                                 return;
                                             }
                                             k7Var3.f1228e = false;
@@ -909,7 +909,7 @@ public final class k7 {
                                                 }
                                                 k7Var3.f1235m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20041id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
+                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f20042id + " response  totalItems " + arrayList5.size() + " has next " + k7Var3.f1235m);
                                             for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                 ((l7) arrayList4.get(i24)).e(k7Var3);
                                             }

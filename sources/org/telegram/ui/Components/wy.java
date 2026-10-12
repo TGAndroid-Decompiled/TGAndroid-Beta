@@ -5,10 +5,10 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class wy extends z4.a implements ge0 {
-    public final d00 f32579c;
+    public final d00 f32578c;
 
     public wy(d00 d00Var) {
-        this.f32579c = d00Var;
+        this.f32578c = d00Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class wy extends z4.a implements ge0 {
 
     @Override
     public final int b() {
-        return this.f32579c.f25085e.size();
+        return this.f32578c.f25077e.size();
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class wy extends z4.a implements ge0 {
 
     @Override
     public final Object e(z4.g gVar, int i10) {
-        FrameLayout frameLayout = ((zz) this.f32579c.f25085e.get(i10)).f33526b;
+        FrameLayout frameLayout = ((zz) this.f32578c.f25077e.get(i10)).f33528b;
         gVar.addView(frameLayout);
         return frameLayout;
     }

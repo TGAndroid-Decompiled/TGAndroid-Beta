@@ -104,7 +104,7 @@ public final class i extends r20 implements NotificationCenter.NotificationCente
         }
         n5 y3 = n5.y(this.currentAccount, true);
         u61 u61Var = new u61(-2);
-        u61Var.f31069c = (bb) super.r0(getParentActivity());
+        u61Var.f31064c = (bb) super.r0(getParentActivity());
         arrayList.add(u61Var);
         arrayList.add(u61.k(this.U));
         boolean z10 = this.T;
@@ -231,18 +231,18 @@ public final class i extends r20 implements NotificationCenter.NotificationCente
         frameLayout.setClickable(true);
         e6 e6Var = new e6(170, context, false);
         this.Q = e6Var;
-        e6Var.setStarParticlesView(this.f41482e);
+        e6Var.setStarParticlesView(this.f41486e);
         this.P.addView(this.Q, w5.a(170.0f, 0.0f, 32.0f, 0.0f, 12.0f, 170, 17));
         m0(LocaleController.getString(R.string.GramEarningsTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GramEarningsText), new a(context, 0)), true), this.P, null);
-        this.f41481c.setOverScrollMode(2);
+        this.f41485c.setOverScrollMode(2);
         j jVar = new j();
-        jVar.f47929m = false;
+        jVar.f47937m = false;
         jVar.C = false;
         jVar.o(js.h);
         jVar.n(350L);
-        this.f41481c.setItemAnimator(jVar);
-        this.f41481c.setOnItemClickListener(new ai.g(this, 6));
-        this.f41486s.addView(new k10(getParentActivity()), w5.d(-1.0f, -1));
+        this.f41485c.setItemAnimator(jVar);
+        this.f41485c.setOnItemClickListener(new ai.g(this, 6));
+        this.f41490s.addView(new k10(getParentActivity()), w5.d(-1.0f, -1));
         n5.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -267,7 +267,7 @@ public final class i extends r20 implements NotificationCenter.NotificationCente
         r6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         this.X.setGravity(17);
         this.X.setText(LocaleController.getString(R.string.YourTonBalance));
-        this.X.setTextColor(h6.w0(h6.f20963z6, this.resourceProvider));
+        this.X.setTextColor(h6.w0(h6.f20964z6, this.resourceProvider));
         this.U.addView(this.X, w5.a(20.0f, 24.0f, 0.0f, 24.0f, 8.0f, -1, 17));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         f0 f0Var = new f0(this, getParentActivity(), 2);
@@ -448,14 +448,14 @@ public final class i extends r20 implements NotificationCenter.NotificationCente
 
     @Override
     public final int getNavigationBarColor() {
-        return h6.x0(null, h6.f20649i5, false);
+        return h6.x0(null, h6.f20650i5, false);
     }
 
     @Override
     public final i0 n0() {
-        e eVar = new e(this, this.f41481c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
+        e eVar = new e(this, this.f41485c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
         this.f8386f0 = eVar;
-        eVar.f26675r = false;
+        eVar.f26679r = false;
         return eVar;
     }
 
@@ -515,7 +515,7 @@ public final class i extends r20 implements NotificationCenter.NotificationCente
         o7 o7Var = this.R;
         boolean z10 = false;
         if (o7Var != null && (o7Var.getParent() instanceof View)) {
-            if (this.f41481c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f41485c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }

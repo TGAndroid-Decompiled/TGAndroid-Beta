@@ -45,15 +45,15 @@ public final class d2 extends u91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                m2Var = s3Var.f53387c0;
-                if (m2Var != null && view2 == m2Var.Y && (f2Var3 = m2Var.f53391e0) != null) {
+                m2Var = s3Var.f53399c0;
+                if (m2Var != null && view2 == m2Var.Y && (f2Var3 = m2Var.f53403e0) != null) {
                     f2Var3.invalidate();
                 }
-                if (view2 == s3Var.Y && (f2Var2 = s3Var.f53391e0) != null) {
+                if (view2 == s3Var.Y && (f2Var2 = s3Var.f53403e0) != null) {
                     f2Var2.invalidate();
                 }
-                m2Var2 = s3Var.f53389d0;
-                if (m2Var2 == null && view2 == m2Var2.Y && (f2Var = m2Var2.f53391e0) != null) {
+                m2Var2 = s3Var.f53401d0;
+                if (m2Var2 == null && view2 == m2Var2.Y && (f2Var = m2Var2.f53403e0) != null) {
                     f2Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class d2 extends u91 {
             }
         }
         view2 = null;
-        m2Var = s3Var.f53387c0;
+        m2Var = s3Var.f53399c0;
         if (m2Var != null) {
             f2Var3.invalidate();
         }
         if (view2 == s3Var.Y) {
             f2Var2.invalidate();
         }
-        m2Var2 = s3Var.f53389d0;
+        m2Var2 = s3Var.f53401d0;
         if (m2Var2 == null) {
         }
     }
@@ -76,11 +76,11 @@ public final class d2 extends u91 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f31112b;
+        int i10 = this.f31107b;
         s3 s3Var = this.T;
         boolean z10 = false;
         if (i10 != s3Var.M1(false)) {
-            if (this.f31112b > s3Var.M1(false)) {
+            if (this.f31107b > s3Var.M1(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new js0(19, this, z10));

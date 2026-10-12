@@ -19,14 +19,14 @@ public final class uc1 extends org.telegram.ui.Components.wm0 {
     @Override
     public final boolean F0(View view) {
         s4.d1 T;
-        uc1 uc1Var = this.X2.f44784u0;
+        uc1 uc1Var = this.X2.f44789u0;
         View F = uc1Var.F(view);
         if (F == null) {
             T = null;
         } else {
             T = uc1Var.T(F);
         }
-        if (T != null && T.f47893f == 2) {
+        if (T != null && T.f47901f == 2) {
             return false;
         }
         return true;
@@ -44,8 +44,8 @@ public final class uc1 extends org.telegram.ui.Components.wm0 {
                 int top = view.getTop();
                 boolean m32 = u1Var.m3();
                 zd1 zd1Var = this.X2;
-                if (m32 && (T = zd1Var.f44784u0.T(view)) != null) {
-                    if (zd1Var.f44784u0.K(T.b() - 1) != null) {
+                if (m32 && (T = zd1Var.f44789u0.T(view)) != null) {
+                    if (zd1Var.f44789u0.K(T.b() - 1) != null) {
                         avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
                         avatarImage.draw(canvas);
                         return drawChild;
@@ -53,19 +53,19 @@ public final class uc1 extends org.telegram.ui.Components.wm0 {
                 }
                 float translationX = u1Var.getTranslationX();
                 int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = zd1Var.f44784u0.getMeasuredHeight() - zd1Var.f44784u0.getPaddingBottom();
+                int measuredHeight = zd1Var.f44789u0.getMeasuredHeight() - zd1Var.f44789u0.getPaddingBottom();
                 if (layoutHeight > measuredHeight) {
                     layoutHeight = measuredHeight;
                 }
-                if (u1Var.n3() && (r11 = zd1Var.f44784u0.T(view)) != null) {
+                if (u1Var.n3() && (r11 = zd1Var.f44789u0.T(view)) != null) {
                     int i10 = 0;
                     while (i10 < 20) {
                         i10++;
-                        s4.d1 T2 = zd1Var.f44784u0.K(T2.b() + 1);
+                        s4.d1 T2 = zd1Var.f44789u0.K(T2.b() + 1);
                         if (T2 == null) {
                             break;
                         }
-                        View view2 = T2.f47889a;
+                        View view2 = T2.f47897a;
                         int top2 = view2.getTop();
                         if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
                             translationX = Math.min(view2.getTranslationX(), translationX);
@@ -115,10 +115,10 @@ public final class uc1 extends org.telegram.ui.Components.wm0 {
         int action = motionEvent.getAction();
         zd1 zd1Var = this.X2;
         if (action == 1) {
-            if (!zd1Var.f44777r0 && (zd1Var.B1 instanceof jj1) && zd1Var.L0[0].getVisibility() == 0) {
+            if (!zd1Var.f44782r0 && (zd1Var.B1 instanceof jj1) && zd1Var.L0[0].getVisibility() == 0) {
                 zd1Var.f1(0, false, true);
             }
-            zd1Var.f44777r0 = false;
+            zd1Var.f44782r0 = false;
         }
         if (zd1Var.a2) {
             if (motionEvent.getAction() == 0) {

@@ -4,15 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.MessageObject;
 public final class i extends AnimatorListenerAdapter {
-    public final MessageObject.GroupedMessages.TransitionParams f14236a;
+    public final MessageObject.GroupedMessages.TransitionParams f14237a;
 
     public i(MessageObject.GroupedMessages.TransitionParams transitionParams) {
-        this.f14236a = transitionParams;
+        this.f14237a = transitionParams;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        MessageObject.GroupedMessages.TransitionParams transitionParams = this.f14236a;
+        MessageObject.GroupedMessages.TransitionParams transitionParams = this.f14237a;
         transitionParams.backgroundChangeBounds = false;
         transitionParams.drawBackgroundForDeletedItems = false;
     }

@@ -57,7 +57,7 @@ public final class h60 {
         if (f14 > f15) {
             this.f38262f = f15;
         }
-        float interpolation = org.telegram.ui.Components.js.f27628g.getInterpolation(this.f38262f / f15);
+        float interpolation = org.telegram.ui.Components.js.f27635g.getInterpolation(this.f38262f / f15);
         float f16 = i12;
         float f17 = this.f38260c;
         float f18 = (((((this.f38258a - f17) * interpolation) + f17) * f16) + i11) - 200.0f;

@@ -15,12 +15,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
 public final class xd1 extends org.telegram.ui.Components.vm0 {
-    public final Context f43900c;
+    public final Context f43905c;
     public final zd1 d;
 
     public xd1(Context context, zd1 zd1Var) {
         this.d = zd1Var;
-        this.f43900c = context;
+        this.f43905c = context;
     }
 
     @Override
@@ -45,24 +45,24 @@ public final class xd1 extends org.telegram.ui.Components.vm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         BlendMode blendMode;
-        org.telegram.ui.Cells.k5 k5Var = (org.telegram.ui.Cells.k5) d1Var.f47889a;
+        org.telegram.ui.Cells.k5 k5Var = (org.telegram.ui.Cells.k5) d1Var.f47897a;
         zd1 zd1Var = this.d;
         k5Var.setPattern((TLRPC.TL_wallPaper) zd1Var.U0.get(i10));
-        k5Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(zd1Var.f44761j1, zd1Var.f44781s1));
+        k5Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(zd1Var.f44766j1, zd1Var.f44786s1));
         if (Build.VERSION.SDK_INT >= 29) {
             int i11 = 0;
-            if (zd1Var.f44732b == 1) {
+            if (zd1Var.f44737b == 1) {
                 int C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Pd);
-                long j3 = zd1Var.f44779s.f20358l;
+                long j3 = zd1Var.f44784s.f20359l;
                 int i12 = (int) j3;
                 if (i12 != 0 || j3 == 0) {
                     i11 = i12 != 0 ? i12 : C0;
                 }
             } else if (zd1Var.B1 instanceof jj1) {
-                i11 = zd1Var.f44738c1;
+                i11 = zd1Var.f44743c1;
             }
             if (i11 != 0 && zd1Var.l1 >= 0.0f) {
-                ImageReceiver imageReceiver = zd1Var.f44792x0.getImageReceiver();
+                ImageReceiver imageReceiver = zd1Var.f44797x0.getImageReceiver();
                 blendMode = BlendMode.SOFT_LIGHT;
                 imageReceiver.setBlendMode(blendMode);
                 return;
@@ -75,7 +75,7 @@ public final class xd1 extends org.telegram.ui.Components.vm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         int i11 = this.d.H1;
         wd1 wd1Var = new wd1(this);
-        ?? y9Var = new org.telegram.ui.Components.y9(this.f43900c);
+        ?? y9Var = new org.telegram.ui.Components.y9(this.f43905c);
         y9Var.G = new RectF();
         int i12 = UserConfig.selectedAccount;
         y9Var.J = i12;

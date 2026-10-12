@@ -125,7 +125,7 @@ public final class c8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i15 = i11; i15 < arrayList2.size(); i15++) {
                             if (arrayList2.get(i15) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = z9Var.f(arrayList2.get(i15).f20041id, peerDialogId);
+                                TL_stories.StoryItem f7 = z9Var.f(arrayList2.get(i15).f20042id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i15, f7);
                                 }
@@ -219,14 +219,14 @@ public final class c8 implements Runnable {
                                     AndroidUtilities.cancelRunOnUIThread(p51Var);
                                     n71Var3.I1 = null;
                                 }
-                                String str3 = n71Var3.f40313z1;
+                                String str3 = n71Var3.f40316z1;
                                 String str4 = str2;
                                 if (str4 != str3) {
                                     return;
                                 }
-                                n71Var3.f40311y1 = true;
+                                n71Var3.f40314y1 = true;
                                 n71Var3.z(true, z15);
-                                e61 e61Var = n71Var3.f40268f0;
+                                e61 e61Var = n71Var3.f40271f0;
                                 if (e61Var != null) {
                                     e61Var.d(true);
                                 }
@@ -255,7 +255,7 @@ public final class c8 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i17 = 0;
-                                n71Var3.f40274i0.u0(0);
+                                n71Var3.f40277i0.u0(0);
                                 int i18 = n71Var3.W;
                                 if (i18 == 1 || i18 == 14 || i18 == 11 || i18 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -279,7 +279,7 @@ public final class c8 implements Runnable {
                                     ArrayList arrayList18 = n71Var3.A1;
                                     ?? obj5 = new Object();
                                     long longValue2 = l4.longValue();
-                                    obj5.f54842g = longValue2;
+                                    obj5.f54850g = longValue2;
                                     obj5.h = longValue2;
                                     arrayList18.add(obj5);
                                 }
@@ -295,7 +295,7 @@ public final class c8 implements Runnable {
                                     i17++;
                                     n71Var3.C1.addAll((ArrayList) obj6);
                                 }
-                                n71Var3.f40289q0.E(true ^ z16);
+                                n71Var3.f40292q0.E(true ^ z16);
                             }
                         });
                     }
@@ -419,11 +419,11 @@ public final class c8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.r0 r0Var = ((pg.b1) obj3).f45486y.f45517c;
-                sw0 sw0Var = r0Var.f45633g;
-                n6.k h = r0Var.h(new RectF(0.0f, 0.0f, sw0Var.f30696a, sw0Var.f30697b), false, z12, z11);
+                pg.r0 r0Var = ((pg.b1) obj3).f45491y.f45522c;
+                sw0 sw0Var = r0Var.f45638g;
+                n6.k h = r0Var.h(new RectF(0.0f, 0.0f, sw0Var.f30699a, sw0Var.f30700b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f16432b;
+                    bitmapArr[0] = (Bitmap) h.f16433b;
                 }
                 countDownLatch.countDown();
                 return;

@@ -14,27 +14,27 @@ import org.telegram.ui.Components.o60;
 public final class o5 implements SensorEventListener {
     public static o5 G;
     public float E;
-    public final SensorManager f35164a;
-    public final Sensor f35165b;
-    public final WindowManager f35166c;
-    public boolean f35170r;
-    public boolean f35171s;
+    public final SensorManager f35166a;
+    public final Sensor f35167b;
+    public final WindowManager f35168c;
+    public boolean f35172r;
+    public boolean f35173s;
     public float v;
-    public float f35172w;
-    public float f35174y;
+    public float f35174w;
+    public float f35176y;
     public final Handler d = new Handler(Looper.getMainLooper());
-    public final WeakHashMap f35167e = new WeakHashMap();
-    public final float[] f35168f = new float[9];
+    public final WeakHashMap f35169e = new WeakHashMap();
+    public final float[] f35170f = new float[9];
     public final float[] h = new float[9];
-    public final float[] f35169n = new float[3];
-    public int f35173x = -1;
+    public final float[] f35171n = new float[3];
+    public int f35175x = -1;
     public final o60 F = new o60(this, 1);
 
     public o5(Context context) {
         Sensor defaultSensor;
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f35164a = sensorManager;
-        this.f35166c = (WindowManager) context.getSystemService("window");
+        this.f35166a = sensorManager;
+        this.f35168c = (WindowManager) context.getSystemService("window");
         if (sensorManager == null) {
             defaultSensor = null;
         } else {
@@ -43,32 +43,32 @@ public final class o5 implements SensorEventListener {
         if (defaultSensor == null && sensorManager != null) {
             defaultSensor = sensorManager.getDefaultSensor(11);
         }
-        this.f35165b = defaultSensor;
+        this.f35167b = defaultSensor;
     }
 
     public final void a() {
-        if (this.f35170r) {
-            this.f35164a.unregisterListener(this);
+        if (this.f35172r) {
+            this.f35166a.unregisterListener(this);
         }
-        this.f35171s = false;
-        this.f35170r = false;
+        this.f35173s = false;
+        this.f35172r = false;
         this.d.removeCallbacks(this.F);
         this.E = 0.0f;
-        this.f35174y = 0.0f;
+        this.f35176y = 0.0f;
     }
 
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
         int i10;
         float[] fArr = sensorEvent.values;
-        float[] fArr2 = this.f35168f;
+        float[] fArr2 = this.f35170f;
         SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-        int rotation = this.f35166c.getDefaultDisplay().getRotation();
-        if (this.f35173x != rotation) {
-            this.f35171s = false;
-            this.f35173x = rotation;
+        int rotation = this.f35168c.getDefaultDisplay().getRotation();
+        if (this.f35175x != rotation) {
+            this.f35173s = false;
+            this.f35175x = rotation;
         }
-        int i11 = this.f35173x;
+        int i11 = this.f35175x;
         int i12 = 129;
         if (i11 == 1) {
             i10 = 129;
@@ -87,20 +87,20 @@ public final class o5 implements SensorEventListener {
         }
         float[] fArr3 = this.h;
         SensorManager.remapCoordinateSystem(fArr2, i12, i10, fArr3);
-        float[] fArr4 = this.f35169n;
+        float[] fArr4 = this.f35171n;
         SensorManager.getOrientation(fArr3, fArr4);
-        if (!this.f35171s) {
+        if (!this.f35173s) {
             this.v = fArr4[1];
-            this.f35172w = fArr4[2];
-            this.f35171s = true;
+            this.f35174w = fArr4[2];
+            this.f35173s = true;
         }
-        float max = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[2] - this.f35172w, 6.283185307179586d)) / 0.45f));
+        float max = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[2] - this.f35174w, 6.283185307179586d)) / 0.45f));
         float max2 = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[1] - this.v, 6.283185307179586d)) / 0.45f));
-        float f7 = this.f35174y;
-        this.f35174y = com.google.android.gms.internal.vision.e2.y(max, f7, 0.12f, f7);
+        float f7 = this.f35176y;
+        this.f35176y = com.google.android.gms.internal.vision.e2.y(max, f7, 0.12f, f7);
         float f10 = this.E;
         this.E = com.google.android.gms.internal.vision.e2.y(max2, f10, 0.12f, f10);
-        for (View view : this.f35167e.keySet()) {
+        for (View view : this.f35169e.keySet()) {
             view.invalidate();
         }
     }

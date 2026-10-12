@@ -14,56 +14,56 @@ public final class tu0 extends vh.n {
     public final org.telegram.ui.Cells.y9 U;
     public ArrayList V;
     public boolean W;
-    public Layout f42290a0;
-    public org.telegram.ui.Components.x5 f42291b0;
-    public boolean f42292c0;
-    public org.telegram.ui.Components.ma0 f42293d0;
-    public Layout f42294e0;
-    public Path f42295f0;
+    public Layout f42292a0;
+    public org.telegram.ui.Components.x5 f42293b0;
+    public boolean f42294c0;
+    public org.telegram.ui.Components.ma0 f42295d0;
+    public Layout f42296e0;
+    public Path f42297f0;
 
     public tu0(Context context, ru0 ru0Var, org.telegram.ui.Cells.y9 y9Var, final Utilities.Callback2 callback2, final Utilities.Callback3 callback3) {
         super(context);
         setClearLinkOnLongPress(false);
         setDisablePaddingsOffsetY(false);
         this.F = new org.telegram.ui.Components.ha0(this) {
-            public final tu0 f41988b;
+            public final tu0 f41992b;
 
             {
-                this.f41988b = this;
+                this.f41992b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r3) {
                     case 0:
-                        tu0 tu0Var = this.f41988b;
+                        tu0 tu0Var = this.f41992b;
                         tu0Var.getClass();
                         ((Utilities.Callback2) callback2).run(clickableSpan, tu0Var);
                         return;
                     default:
-                        tu0 tu0Var2 = this.f41988b;
+                        tu0 tu0Var2 = this.f41992b;
                         ((Utilities.Callback3) callback2).run(clickableSpan, tu0Var2, new uk0(tu0Var2, 22));
                         return;
                 }
             }
         };
         this.G = new org.telegram.ui.Components.ha0(this) {
-            public final tu0 f41988b;
+            public final tu0 f41992b;
 
             {
-                this.f41988b = this;
+                this.f41992b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r3) {
                     case 0:
-                        tu0 tu0Var = this.f41988b;
+                        tu0 tu0Var = this.f41992b;
                         tu0Var.getClass();
                         ((Utilities.Callback2) callback3).run(clickableSpan, tu0Var);
                         return;
                     default:
-                        tu0 tu0Var2 = this.f41988b;
+                        tu0 tu0Var2 = this.f41992b;
                         ((Utilities.Callback3) callback3).run(clickableSpan, tu0Var2, new uk0(tu0Var2, 22));
                         return;
                 }
@@ -83,12 +83,12 @@ public final class tu0 extends vh.n {
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         float f7;
-        if (this.f42292c0) {
+        if (this.f42294c0) {
             Layout layout = getLayout();
-            Path path = this.f42295f0;
-            if (path == null || this.f42294e0 != layout) {
+            Path path = this.f42297f0;
+            if (path == null || this.f42296e0 != layout) {
                 if (path == null) {
-                    this.f42295f0 = new Path();
+                    this.f42297f0 = new Path();
                 } else {
                     path.rewind();
                 }
@@ -110,25 +110,25 @@ public final class tu0 extends vh.n {
                         } else {
                             f7 = lineBottom;
                         }
-                        this.f42295f0.addRect(getPaddingLeft() + lineLeft, getPaddingTop() + f10, getPaddingLeft() + lineRight, getPaddingTop() + f7, Path.Direction.CW);
+                        this.f42297f0.addRect(getPaddingLeft() + lineLeft, getPaddingTop() + f10, getPaddingLeft() + lineRight, getPaddingTop() + f7, Path.Direction.CW);
                         i11++;
                         f10 = f7;
                     }
                 }
-                this.f42294e0 = layout;
+                this.f42296e0 = layout;
             }
-            if (this.f42293d0 == null) {
+            if (this.f42295d0 == null) {
                 org.telegram.ui.Components.ma0 ma0Var = new org.telegram.ui.Components.ma0();
-                this.f42293d0 = ma0Var;
-                ma0Var.f28487y = this.f42295f0;
+                this.f42295d0 = ma0Var;
+                ma0Var.f28482y = this.f42297f0;
                 ma0Var.k(4.0f);
-                this.f42293d0.g(org.telegram.ui.ActionBar.h6.m1(0.3f, -1), org.telegram.ui.ActionBar.h6.m1(0.1f, -1), org.telegram.ui.ActionBar.h6.m1(0.2f, -1), org.telegram.ui.ActionBar.h6.m1(0.7f, -1));
-                this.f42293d0.setCallback(this);
+                this.f42295d0.g(org.telegram.ui.ActionBar.h6.m1(0.3f, -1), org.telegram.ui.ActionBar.h6.m1(0.1f, -1), org.telegram.ui.ActionBar.h6.m1(0.2f, -1), org.telegram.ui.ActionBar.h6.m1(0.7f, -1));
+                this.f42295d0.setCallback(this);
             }
-            this.f42293d0.setBounds(0, 0, getWidth(), getHeight());
-            this.f42293d0.draw(canvas);
+            this.f42295d0.setBounds(0, 0, getWidth(), getHeight());
+            this.f42295d0.draw(canvas);
         }
-        if (this.f42292c0) {
+        if (this.f42294c0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 178, 31);
         }
         if (this.V != null && this.W) {
@@ -148,20 +148,20 @@ public final class tu0 extends vh.n {
             canvas.restore();
         }
         super.dispatchDraw(canvas);
-        if (this.f42292c0) {
+        if (this.f42294c0) {
             canvas.restore();
         }
         canvas.save();
         canvas.translate(getPaddingLeft(), getPaddingTop());
         canvas.clipRect(0.0f, getScrollY(), getWidth() - getPaddingRight(), (getScrollY() + getHeight()) - (getPaddingBottom() * 0.75f));
-        org.telegram.ui.Components.b6.drawAnimatedEmojis(canvas, getLayout(), this.f42291b0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+        org.telegram.ui.Components.b6.drawAnimatedEmojis(canvas, getLayout(), this.f42293b0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
         canvas.restore();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.b6.release(this, this.f42291b0);
+        org.telegram.ui.Components.b6.release(this, this.f42293b0);
         this.V = org.telegram.ui.Components.ak0.e(null, this.V);
     }
 
@@ -171,16 +171,16 @@ public final class tu0 extends vh.n {
         if (y9Var != null && y9Var.x()) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
-            if (y9Var != null && getStaticTextLayout() != null && y9Var.f23551p0 == this) {
+            if (y9Var != null && getStaticTextLayout() != null && y9Var.f23552p0 == this) {
                 y9Var.W(canvas);
             }
             canvas.restore();
         }
         super.onDraw(canvas);
-        if (this.f42290a0 != getLayout()) {
+        if (this.f42292a0 != getLayout()) {
             boolean z10 = true;
             int i10 = 0;
-            this.f42291b0 = org.telegram.ui.Components.b6.update(0, this, this.f42291b0, getLayout());
+            this.f42293b0 = org.telegram.ui.Components.b6.update(0, this, this.f42293b0, getLayout());
             this.V = org.telegram.ui.Components.ak0.e(getLayout(), this.V);
             if (getLayout() == null || !(getLayout().getText() instanceof Spanned) || ((org.telegram.ui.Components.zj0[]) ((Spanned) getLayout().getText()).getSpans(0, getLayout().getText().length(), org.telegram.ui.Components.zj0.class)).length <= 0) {
                 z10 = false;
@@ -190,22 +190,22 @@ public final class tu0 extends vh.n {
                 i10 = 32;
             }
             w7.c6.a(this, 16.0f, 8.0f, i10 + 16, 8.0f);
-            this.f42290a0 = getLayout();
+            this.f42292a0 = getLayout();
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        this.f42291b0 = org.telegram.ui.Components.b6.update(0, this, this.f42291b0, getLayout());
+        this.f42293b0 = org.telegram.ui.Components.b6.update(0, this, this.f42293b0, getLayout());
         this.V = org.telegram.ui.Components.ak0.e(getLayout(), this.V);
     }
 
     public void setLoading(boolean z10) {
-        if (this.f42292c0 == z10) {
+        if (this.f42294c0 == z10) {
             return;
         }
-        this.f42292c0 = z10;
+        this.f42294c0 = z10;
         invalidate();
     }
 
@@ -225,7 +225,7 @@ public final class tu0 extends vh.n {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f42293d0 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f42295d0 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

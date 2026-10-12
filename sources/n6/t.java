@@ -7,24 +7,24 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 public final class t implements Handler.Callback {
-    public final a6.m f16461a;
-    public final com.google.android.gms.internal.cast.a0 f16466n;
-    public final ArrayList f16462b = new ArrayList();
-    public final ArrayList f16463c = new ArrayList();
+    public final a6.m f16462a;
+    public final com.google.android.gms.internal.cast.a0 f16467n;
+    public final ArrayList f16463b = new ArrayList();
+    public final ArrayList f16464c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public volatile boolean f16464e = false;
-    public final AtomicInteger f16465f = new AtomicInteger(0);
+    public volatile boolean f16465e = false;
+    public final AtomicInteger f16466f = new AtomicInteger(0);
     public boolean h = false;
-    public final Object f16467r = new Object();
+    public final Object f16468r = new Object();
 
     public t(Looper looper, a6.m mVar) {
-        this.f16461a = mVar;
-        this.f16466n = new com.google.android.gms.internal.cast.a0(looper, this);
+        this.f16462a = mVar;
+        this.f16467n = new com.google.android.gms.internal.cast.a0(looper, this);
     }
 
     public final void a(com.google.android.gms.common.api.l lVar) {
         m.h(lVar);
-        synchronized (this.f16467r) {
+        synchronized (this.f16468r) {
             try {
                 if (this.d.contains(lVar)) {
                     String valueOf = String.valueOf(lVar);
@@ -43,9 +43,9 @@ public final class t implements Handler.Callback {
         int i10 = message.what;
         if (i10 == 1) {
             com.google.android.gms.common.api.k kVar = (com.google.android.gms.common.api.k) message.obj;
-            synchronized (this.f16467r) {
+            synchronized (this.f16468r) {
                 try {
-                    if (this.f16464e && this.f16461a.e0() && this.f16462b.contains(kVar)) {
+                    if (this.f16465e && this.f16462a.e0() && this.f16463b.contains(kVar)) {
                         kVar.onConnected(null);
                     }
                 } catch (Throwable th2) {

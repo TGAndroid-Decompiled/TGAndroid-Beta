@@ -7,28 +7,28 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class sk extends ChatActivityEnterView {
-    public int R5;
-    public int S5;
     public int T5;
-    public final eo U5;
+    public int U5;
+    public int V5;
+    public final eo W5;
 
     public sk(eo eoVar, Activity activity, org.telegram.ui.Components.yw0 yw0Var, eo eoVar2, boolean z10, org.telegram.ui.ActionBar.c6 c6Var) {
         super(activity, yw0Var, eoVar2, z10, c6Var);
-        this.U5 = eoVar;
+        this.W5 = eoVar;
     }
 
     @Override
     public final void C0(float f7) {
-        this.U5.t7();
+        this.W5.t7();
     }
 
     @Override
     public final void E0(int i10, int i11) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        eo eoVar = this.U5;
+        eo eoVar = this.W5;
         if (eoVar.Y != null) {
-            if (eoVar.f37478x0 != null) {
+            if (eoVar.f37483x0 != null) {
                 if (eoVar.Ea <= 0.0f) {
                     kVar = ((org.telegram.ui.ActionBar.m2) eoVar).actionBar;
                     if (kVar != null) {
@@ -42,16 +42,16 @@ public final class sk extends ChatActivityEnterView {
                 }
             }
             this.P3 = true;
-            this.S5 = this.E0.getMeasuredHeight();
-            this.T5 = this.E0.getScrollY();
+            this.U5 = this.E0.getMeasuredHeight();
+            this.V5 = this.E0.getScrollY();
             eoVar.X0.invalidate();
-            eoVar.f37202b0 = eoVar.Y.getBackgroundTop();
+            eoVar.f37207b0 = eoVar.Y.getBackgroundTop();
         }
     }
 
     @Override
     public final void J0() {
-        if (this.U5.Fa != null) {
+        if (this.W5.Fa != null) {
             return;
         }
         super.J0();
@@ -59,7 +59,7 @@ public final class sk extends ChatActivityEnterView {
 
     @Override
     public final boolean P0() {
-        if (!this.U5.N5) {
+        if (!this.W5.N5) {
             return false;
         }
         return true;
@@ -67,26 +67,26 @@ public final class sk extends ChatActivityEnterView {
 
     public final void Y1() {
         org.telegram.ui.ActionBar.k kVar;
-        eo eoVar = this.U5;
+        eo eoVar = this.W5;
         kVar = ((org.telegram.ui.ActionBar.m2) eoVar).actionBar;
         if (!kVar.u() && !eoVar.F9()) {
             int backgroundTop = getBackgroundTop();
-            int i10 = eoVar.f37202b0;
-            if (i10 != 0 && backgroundTop != i10 && this.R5 == eoVar.X0.getMeasuredHeight()) {
-                int i11 = (this.T1 + eoVar.f37202b0) - backgroundTop;
+            int i10 = eoVar.f37207b0;
+            if (i10 != 0 && backgroundTop != i10 && this.T5 == eoVar.X0.getMeasuredHeight()) {
+                int i11 = (this.T1 + eoVar.f37207b0) - backgroundTop;
                 setAnimatedTop(i11);
-                this.f23766y1.invalidate();
-                ValueAnimator valueAnimator = eoVar.f37382p9;
+                this.f23767y1.invalidate();
+                ValueAnimator valueAnimator = eoVar.f37387p9;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    eoVar.f37382p9.cancel();
+                    eoVar.f37387p9.cancel();
                 }
                 View view = this.G1;
                 if (view != null && view.getVisibility() == 0) {
                     this.G1.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.G1.getLayoutParams().height) + this.T1);
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(i11, 0.0f);
-                eoVar.f37382p9 = ofFloat;
+                eoVar.f37387p9 = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
                     public final sk f41671b;
 
@@ -99,7 +99,7 @@ public final class sk extends ChatActivityEnterView {
                         switch (r2) {
                             case 0:
                                 sk skVar = this.f41671b;
-                                eo eoVar2 = skVar.U5;
+                                eo eoVar2 = skVar.W5;
                                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                                 skVar.setAnimatedTop((int) floatValue);
                                 View view2 = skVar.G1;
@@ -109,7 +109,7 @@ public final class sk extends ChatActivityEnterView {
                                     eoVar2.t9();
                                     eoVar2.w9();
                                 }
-                                skVar.f23766y1.invalidate();
+                                skVar.f23767y1.invalidate();
                                 skVar.invalidate();
                                 return;
                             default:
@@ -118,20 +118,20 @@ public final class sk extends ChatActivityEnterView {
                         }
                     }
                 });
-                eoVar.f37382p9.addListener(new w4(this, 19));
-                eoVar.f37382p9.setDuration(250L);
-                eoVar.f37382p9.setInterpolator(ji.n.V);
+                eoVar.f37387p9.addListener(new w4(this, 19));
+                eoVar.f37387p9.setDuration(250L);
+                eoVar.f37387p9.setInterpolator(ji.n.V);
                 if (!eoVar.o9) {
-                    eoVar.f37382p9.start();
+                    eoVar.f37387p9.start();
                 }
                 eoVar.t9();
                 eoVar.w9();
-                eoVar.f37202b0 = 0;
-            } else if (this.R5 != eoVar.X0.getMeasuredHeight()) {
-                eoVar.f37202b0 = 0;
+                eoVar.f37207b0 = 0;
+            } else if (this.T5 != eoVar.X0.getMeasuredHeight()) {
+                eoVar.f37207b0 = 0;
             }
             if (this.P3) {
-                float scrollY = (this.T5 - this.E0.getScrollY()) + (this.S5 - this.E0.getMeasuredHeight());
+                float scrollY = (this.V5 - this.E0.getScrollY()) + (this.U5 - this.E0.getMeasuredHeight());
                 org.telegram.ui.Components.uf ufVar = this.E0;
                 ufVar.setOffsetY(ufVar.getOffsetY() - scrollY);
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.E0.getOffsetY(), 0.0f);
@@ -147,7 +147,7 @@ public final class sk extends ChatActivityEnterView {
                         switch (r2) {
                             case 0:
                                 sk skVar = this.f41671b;
-                                eo eoVar2 = skVar.U5;
+                                eo eoVar2 = skVar.W5;
                                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                                 skVar.setAnimatedTop((int) floatValue);
                                 View view2 = skVar.G1;
@@ -157,7 +157,7 @@ public final class sk extends ChatActivityEnterView {
                                     eoVar2.t9();
                                     eoVar2.w9();
                                 }
-                                skVar.f23766y1.invalidate();
+                                skVar.f23767y1.invalidate();
                                 skVar.invalidate();
                                 return;
                             default:
@@ -166,28 +166,28 @@ public final class sk extends ChatActivityEnterView {
                         }
                     }
                 });
-                ValueAnimator valueAnimator2 = eoVar.f37394q9;
+                ValueAnimator valueAnimator2 = eoVar.f37399q9;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                eoVar.f37394q9 = ofFloat2;
+                eoVar.f37399q9 = ofFloat2;
                 ofFloat2.setDuration(250L);
                 ofFloat2.setInterpolator(ji.n.V);
                 ofFloat2.start();
                 this.P3 = false;
             }
-            this.R5 = eoVar.X0.getMeasuredHeight();
+            this.T5 = eoVar.X0.getMeasuredHeight();
             return;
         }
-        ValueAnimator valueAnimator3 = eoVar.f37394q9;
+        ValueAnimator valueAnimator3 = eoVar.f37399q9;
         if (valueAnimator3 != null) {
             valueAnimator3.cancel();
         }
-        ValueAnimator valueAnimator4 = eoVar.f37382p9;
+        ValueAnimator valueAnimator4 = eoVar.f37387p9;
         if (valueAnimator4 != null) {
             valueAnimator4.cancel();
         }
-        eoVar.f37202b0 = 0;
+        eoVar.f37207b0 = 0;
         this.P3 = false;
     }
 
@@ -218,7 +218,7 @@ public final class sk extends ChatActivityEnterView {
     @Override
     public final void r0(boolean z10) {
         super.r0(z10);
-        eo eoVar = this.U5;
+        eo eoVar = this.W5;
         vf vfVar = eoVar.nb;
         if (vfVar != null) {
             AndroidUtilities.runOnUIThread(vfVar);
@@ -230,7 +230,7 @@ public final class sk extends ChatActivityEnterView {
     public final void setVisibility(int i10) {
         boolean z10;
         super.setVisibility(i10);
-        eo eoVar = this.U5;
+        eo eoVar = this.W5;
         j6.l lVar = eoVar.Bc;
         boolean z11 = false;
         if (i10 == 0) {
@@ -238,7 +238,7 @@ public final class sk extends ChatActivityEnterView {
         } else {
             z10 = false;
         }
-        if (getMeasuredWidth() > 0 && !eoVar.f37411rc) {
+        if (getMeasuredWidth() > 0 && !eoVar.f37416rc) {
             z11 = true;
         }
         lVar.i(1, z10, z11);

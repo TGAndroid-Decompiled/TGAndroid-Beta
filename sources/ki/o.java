@@ -1,13 +1,13 @@
 package ki;
 public final class o {
-    public final String f14900a;
-    public final String f14901b;
-    public final int f14902c;
+    public final String f14901a;
+    public final String f14902b;
+    public final int f14903c;
 
     public o(String str, String str2) {
-        this.f14900a = str;
-        this.f14901b = str2;
-        this.f14902c = str2.hashCode() + (str.hashCode() * 31);
+        this.f14901a = str;
+        this.f14902b = str2;
+        this.f14903c = str2.hashCode() + (str.hashCode() * 31);
     }
 
     public final boolean equals(Object obj) {
@@ -15,13 +15,13 @@ public final class o {
             return false;
         }
         o oVar = (o) obj;
-        if (!this.f14900a.equals(oVar.f14900a) || !this.f14901b.equals(oVar.f14901b)) {
+        if (!this.f14901a.equals(oVar.f14901a) || !this.f14902b.equals(oVar.f14902b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return this.f14902c;
+        return this.f14903c;
     }
 }

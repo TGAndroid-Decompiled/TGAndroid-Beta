@@ -8,15 +8,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SendMessagesHelper;
 public final class w9 implements lq0 {
-    public final y9 f43095a;
+    public final y9 f43097a;
 
     public w9(y9 y9Var) {
-        this.f43095a = y9Var;
+        this.f43097a = y9Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        y9 y9Var = this.f43095a;
+        y9 y9Var = this.f43097a;
         try {
             if (!arrayList.isEmpty()) {
                 SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
@@ -26,7 +26,7 @@ public final class w9 implements lq0 {
                     if (g02 != null) {
                         x9 x9Var = y9Var.M;
                         if (x9Var != null) {
-                            x9Var.K((String) g02.f15423b);
+                            x9Var.K((String) g02.f15424b);
                         }
                         y9Var.removeSelfFromStack();
                     }
@@ -42,7 +42,7 @@ public final class w9 implements lq0 {
         try {
             Intent intent = new Intent("android.intent.action.PICK");
             intent.setType("image/*");
-            this.f43095a.getParentActivity().startActivityForResult(intent, 11);
+            this.f43097a.getParentActivity().startActivityForResult(intent, 11);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

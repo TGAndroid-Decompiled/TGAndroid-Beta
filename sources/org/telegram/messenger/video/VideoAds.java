@@ -172,7 +172,7 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             q6Var.setCallback(view);
-            q6Var.f29712b = 17;
+            q6Var.f29690b = 17;
             q6Var.w(AndroidUtilities.dp(12.0f));
             q6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
             q6Var.M = AndroidUtilities.displaySize.x;
@@ -505,7 +505,7 @@ public class VideoAds {
     public void lambda$show$3(sc scVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         sc scVar2 = this.bulletin;
         if (scVar2 != null && scVar2 == scVar) {
-            scVar2.f30540j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            scVar2.f30536j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             scVar2.i(true);
         }
     }
@@ -535,7 +535,7 @@ public class VideoAds {
                 }
             } else if (j10 <= 0) {
                 sc scVar4 = this.bulletin;
-                scVar4.f30540j = (int) j11;
+                scVar4.f30536j = (int) j11;
                 scVar4.i(true);
             } else {
                 AndroidUtilities.runOnUIThread(runnable, j10);
@@ -643,7 +643,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        c6 c6Var = this.bulletinFactory.f33323c;
+        c6 c6Var = this.bulletinFactory.f33329c;
         AdLayout adLayout = new AdLayout(W, c6Var) {
             {
                 VideoAds.this = this;
@@ -661,7 +661,7 @@ public class VideoAds {
         h5 h5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i10 = h6.Oh;
-        h5Var.i(new AdOptionsDrawable(W2, h6.w0(i10, this.bulletinFactory.f33323c)));
+        h5Var.i(new AdOptionsDrawable(W2, h6.w0(i10, this.bulletinFactory.f33329c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
@@ -685,12 +685,12 @@ public class VideoAds {
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(h6.w0(i10, this.bulletinFactory.f33323c));
+        closeDrawable.setColor(h6.w0(i10, this.bulletinFactory.f33329c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new f2(14, this, closeDrawable));
         final sc b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f30551u = false;
+        b10.f30547u = false;
         b10.i(false);
         final t tVar = new t(this, b10, tL_sponsoredMessage, 27);
         final long[] jArr = new long[1];
@@ -704,12 +704,12 @@ public class VideoAds {
         };
         AndroidUtilities.runOnUIThread(tVar, tL_sponsoredMessage.min_display_duration * 1000);
         sc scVar2 = this.bulletin;
-        scVar2.f30548r = false;
+        scVar2.f30544r = false;
         scVar2.v = new t(this, b10, new boolean[1], 28);
         adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, c6Var, adLayout, callback, 0));
         sc scVar3 = this.bulletin;
         f2 f2Var = new f2(15, this, tL_sponsoredMessage);
-        wb wbVar = scVar3.f30536e;
+        wb wbVar = scVar3.f30532e;
         if (wbVar != null) {
             wbVar.setOnClickListener(f2Var);
         }

@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public class ce extends LinearLayout {
-    public static float f36405b = 1.0f;
-    public final int f36406a;
+    public static float f36407b = 1.0f;
+    public final int f36408a;
 
     public ce(Context context, int i10) {
         super(context);
-        this.f36406a = i10;
+        this.f36408a = i10;
     }
 
     @Override
@@ -21,13 +21,13 @@ public class ce extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f36406a) {
+        switch (this.f36408a) {
             case 4:
                 if (getParent() instanceof org.telegram.ui.Components.kp0) {
                     org.telegram.ui.Components.kp0 kp0Var = (org.telegram.ui.Components.kp0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = kp0Var.f27912b;
-                    Path path = kp0Var.f27916n;
+                    LinearLayout linearLayout = kp0Var.f27898b;
+                    Path path = kp0Var.f27902n;
                     if (view != null && org.telegram.ui.Components.kp0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
@@ -73,7 +73,7 @@ public class ce extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = kp0Var.f27913c;
+                            float f7 = kp0Var.f27899c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
@@ -82,7 +82,7 @@ public class ce extends LinearLayout {
                             canvas.clipPath(path);
                         } else if (!z11) {
                             path.rewind();
-                            path.addRoundRect(rectF, kp0Var.f27914e, Path.Direction.CW);
+                            path.addRoundRect(rectF, kp0Var.f27900e, Path.Direction.CW);
                             canvas.clipPath(path);
                         }
                     }
@@ -98,7 +98,7 @@ public class ce extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f36406a) {
+        switch (this.f36408a) {
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -119,7 +119,7 @@ public class ce extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f36406a) {
+        switch (this.f36408a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -159,7 +159,7 @@ public class ce extends LinearLayout {
 
     public ce(Context context) {
         super(context);
-        this.f36406a = 4;
+        this.f36408a = 4;
         setWillNotDraw(false);
     }
 }

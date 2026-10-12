@@ -6,21 +6,21 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class us implements Predicate {
-    public final int f31256a;
-    public final TLObject f31257b;
+    public final int f31248a;
+    public final TLObject f31249b;
 
     public us(int i10, TLObject tLObject) {
-        this.f31256a = i10;
-        this.f31257b = tLObject;
+        this.f31248a = i10;
+        this.f31249b = tLObject;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f31256a;
+        int i10 = this.f31248a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f31256a) {
+        switch (this.f31248a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             default:
@@ -29,19 +29,19 @@ public final class us implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f31256a;
+        int i10 = this.f31248a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f31256a) {
+        switch (this.f31248a) {
             case 0:
-                return MessageObject.peersEqual((TLRPC.InputPeer) this.f31257b, ((MessageObject) obj).messageOwner.from_id);
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f31249b, ((MessageObject) obj).messageOwner.from_id);
             default:
                 MessageObject messageObject = (MessageObject) obj;
-                TLObject tLObject = this.f31257b;
-                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f19802id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f19949id) {
+                TLObject tLObject = this.f31249b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f19803id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f19950id) {
                     return true;
                 }
                 return false;

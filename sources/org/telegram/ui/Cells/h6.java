@@ -22,32 +22,32 @@ import org.telegram.ui.Components.ma0;
 import org.telegram.ui.Components.vq;
 import org.telegram.ui.r01;
 public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.c6 f21970a;
-    public final TextView f21971b;
-    public final vq f21972c;
+    public final org.telegram.ui.ActionBar.c6 f21971a;
+    public final TextView f21972b;
+    public final vq f21973c;
     public final s2 d;
-    public boolean f21973e;
-    public final org.telegram.ui.Components.g6 f21974f;
+    public boolean f21974e;
+    public final org.telegram.ui.Components.g6 f21975f;
     public final ma0 h;
-    public boolean f21975n;
+    public boolean f21976n;
 
     public h6(org.telegram.ui.ActionBar.m2 m2Var) {
         super(m2Var.getContext());
         js jsVar = js.h;
-        this.f21974f = new org.telegram.ui.Components.g6(320L, jsVar);
-        this.f21975n = false;
+        this.f21975f = new org.telegram.ui.Components.g6(320L, jsVar);
+        this.f21976n = false;
         Context context = m2Var.getContext();
         org.telegram.ui.ActionBar.c6 resourceProvider = m2Var.getResourceProvider();
-        this.f21970a = resourceProvider;
+        this.f21971a = resourceProvider;
         LinearLayout e7 = am.e(context, 0);
         addView(e7, w7.w5.a(-2.0f, 16.66f, 11.6f, 16.66f, 0.0f, -1, 55));
         TextView textView = new TextView(context);
-        this.f21971b = textView;
+        this.f21972b = textView;
         am.k(14.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ProfileChannel));
         e7.addView(textView, w7.w5.q(-2, -2, 51));
         vq vqVar = new vq(context);
-        this.f21972c = vqVar;
+        this.f21973c = vqVar;
         vqVar.getDrawable().r(true, true);
         vqVar.b(0.3f, 165L, jsVar);
         vqVar.setTypeface(AndroidUtilities.bold());
@@ -66,7 +66,7 @@ public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBa
         setWillNotDraw(false);
         ma0 ma0Var = new ma0();
         this.h = ma0Var;
-        int i10 = org.telegram.ui.ActionBar.h6.f20650i6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20651i6;
         ma0Var.f(org.telegram.ui.ActionBar.h6.m1(1.25f, org.telegram.ui.ActionBar.h6.w0(i10, resourceProvider)), org.telegram.ui.ActionBar.h6.m1(0.8f, org.telegram.ui.ActionBar.h6.w0(i10, resourceProvider)));
         ma0Var.k(8.0f);
     }
@@ -78,13 +78,13 @@ public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBa
         String formatShortNumber;
         boolean z11;
         float f11;
-        boolean z12 = this.f21975n;
+        boolean z12 = this.f21976n;
         if (chat != null && chat.participants_count <= 0) {
             z10 = false;
         } else {
             z10 = true;
         }
-        vq vqVar = this.f21972c;
+        vq vqVar = this.f21973c;
         vqVar.a();
         float f12 = 0.0f;
         vqVar.setPivotX(0.0f);
@@ -138,21 +138,21 @@ public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBa
             } else {
                 z11 = true;
             }
-            this.f21973e = z11;
+            this.f21974e = z11;
             s2 s2Var = this.d;
             if (z11) {
-                s2Var.W(-chat.f19802id, null, 0, false, z12);
+                s2Var.W(-chat.f19803id, null, 0, false, z12);
             } else {
                 MessageObject messageObject = (MessageObject) hg.c.h(1, arrayList);
-                long j3 = -chat.f19802id;
+                long j3 = -chat.f19803id;
                 int i11 = messageObject.messageOwner.date;
                 if (s2Var.H0 != j3) {
-                    s2Var.f22649x4 = -1;
+                    s2Var.f22650x4 = -1;
                 }
                 s2Var.H0 = j3;
                 s2Var.B4 = System.currentTimeMillis();
-                s2Var.f22555f1 = messageObject;
-                s2Var.f22630u2 = false;
+                s2Var.f22556f1 = messageObject;
+                s2Var.f22631u2 = false;
                 s2Var.N0 = false;
                 s2Var.R0 = i11;
                 int i12 = messageObject.messageOwner.edit_date;
@@ -163,8 +163,8 @@ public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBa
                 s2Var.V0 = 0;
                 s2Var.W0 = 0;
                 s2Var.X0 = messageObject.isUnread();
-                s2Var.f22560g1 = arrayList;
-                MessageObject messageObject2 = s2Var.f22555f1;
+                s2Var.f22561g1 = arrayList;
+                MessageObject messageObject2 = s2Var.f22556f1;
                 if (messageObject2 != null) {
                     s2Var.Y0 = messageObject2.messageOwner.send_state;
                 }
@@ -172,16 +172,16 @@ public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBa
             }
         }
         if (!z12) {
-            this.f21974f.f(this.f21973e, true);
+            this.f21975f.f(this.f21974e, true);
         }
         invalidate();
-        this.f21975n = true;
+        this.f21976n = true;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float e7 = this.f21974f.e(this.f21973e);
+        float e7 = this.f21975f.e(this.f21974e);
         if (e7 > 0.0f) {
             ma0 ma0Var = this.h;
             ma0Var.setAlpha((int) (e7 * 255.0f));
@@ -202,11 +202,11 @@ public abstract class h6 extends FrameLayout implements org.telegram.ui.ActionBa
 
     @Override
     public final void e() {
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, this.f21970a);
-        vq vqVar = this.f21972c;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, this.f21971a);
+        vq vqVar = this.f21973c;
         vqVar.setTextColor(w02);
         vqVar.setBackground(org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), org.telegram.ui.ActionBar.h6.m1(0.1f, w02)));
-        this.f21971b.setTextColor(w02);
+        this.f21972b.setTextColor(w02);
     }
 
     public int[] getColorKeys() {

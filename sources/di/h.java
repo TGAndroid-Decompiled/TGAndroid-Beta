@@ -44,20 +44,20 @@ public final class h extends db implements NotificationCenter.NotificationCenter
         wm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 7));
         j jVar = new j();
-        jVar.f47929m = false;
+        jVar.f47937m = false;
         jVar.C = false;
         jVar.o(js.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        setBackgroundColor(h6.w0(h6.f20630h5, c6Var));
+        setBackgroundColor(h6.w0(h6.f20631h5, c6Var));
         this.X = aVar;
         d1 d1Var = new d1(context, 1, c6Var);
         this.Y = d1Var;
-        ((TextView) d1Var.f803c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f54666b - n5.y(this.currentAccount, true).s().f54666b, zf.b.f54668b).d()));
+        ((TextView) d1Var.f803c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f54674b - n5.y(this.currentAccount, true).s().f54674b, zf.b.f54676b).d()));
         TextView textView = (TextView) d1Var.d;
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
         textView.setMaxWidth(d4.a(textView.getText(), textView.getPaint()));
-        this.f25295e.setTitle(A());
+        this.f25287e.setTitle(A());
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         ci.d dVar = new ci.d(getContext(), getResourcesProvider(), true);
@@ -131,12 +131,12 @@ public final class h extends db implements NotificationCenter.NotificationCenter
             zf.a s10 = n5.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             zf.a aVar = this.X;
-            ((TextView) this.Y.f803c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f54666b - s10.f54666b, zf.b.f54668b).d()));
-            za zaVar = this.f25295e;
+            ((TextView) this.Y.f803c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f54674b - s10.f54674b, zf.b.f54676b).d()));
+            za zaVar = this.f25287e;
             if (zaVar != null) {
                 zaVar.setTitle(A());
             }
-            if (s10.f54666b >= aVar.f54666b && (runnable = this.f8379a0) != null) {
+            if (s10.f54674b >= aVar.f54674b && (runnable = this.f8379a0) != null) {
                 runnable.run();
                 this.f8379a0 = null;
                 dismiss();
@@ -163,7 +163,7 @@ public final class h extends db implements NotificationCenter.NotificationCenter
     @Override
     public final void show() {
         sk skVar;
-        if (n5.y(this.currentAccount, true).s().f54666b >= this.X.f54666b) {
+        if (n5.y(this.currentAccount, true).s().f54674b >= this.X.f54674b) {
             Runnable runnable = this.f8379a0;
             if (runnable != null) {
                 runnable.run();

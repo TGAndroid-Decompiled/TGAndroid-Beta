@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qy {
-    public Long f29946a;
-    public TLRPC.StickerSet f29947b;
-    public ArrayList f29948c = new ArrayList();
+    public Long f29947a;
+    public TLRPC.StickerSet f29948b;
+    public ArrayList f29949c = new ArrayList();
     public TLRPC.InputStickerSet d;
-    public boolean f29949e;
-    public boolean f29950f;
-    public boolean f29951g;
+    public boolean f29950e;
+    public boolean f29951f;
+    public boolean f29952g;
     public boolean h;
-    public boolean f29952i;
-    public int f29953j;
+    public boolean f29953i;
+    public int f29954j;
 }

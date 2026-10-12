@@ -44,7 +44,7 @@ public final class x extends db {
         super(context, null, true, false, c6Var);
         this.X = i10;
         this.Y = callback;
-        int i11 = org.telegram.ui.ActionBar.h6.f20503a7;
+        int i11 = org.telegram.ui.ActionBar.h6.f20504a7;
         setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
         fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -89,7 +89,7 @@ public final class x extends db {
                                 xVar.dismiss();
                                 return;
                             }
-                            String trim = j3Var.f22080b.getText().toString().trim();
+                            String trim = j3Var.f22081b.getText().toString().trim();
                             if (!TextUtils.isEmpty(trim)) {
                                 xVar.f12794g0 = true;
                                 xVar.f12793f0.setLoading(true);
@@ -98,7 +98,7 @@ public final class x extends db {
                                 inputaicomposetonesingleuse.custom_prompt = trim;
                                 tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
                                 xVar.f12795h0 = ConnectionsManager.getInstance(xVar.X).sendRequest(tL_messages_composeRichMessageWithAI, new o8(xVar, 16));
-                                AndroidUtilities.hideKeyboard(j3Var.f22080b);
+                                AndroidUtilities.hideKeyboard(j3Var.f22081b);
                                 return;
                             }
                             return;
@@ -114,7 +114,7 @@ public final class x extends db {
         this.f12790c0 = previewView;
         previewView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f));
         int dp = AndroidUtilities.dp(12.0f);
-        int i13 = org.telegram.ui.ActionBar.h6.f20559d6;
+        int i13 = org.telegram.ui.ActionBar.h6.f20560d6;
         previewView.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.w0(i13, c6Var)));
         frameLayout2.addView(previewView, w7.w5.d(-2.0f, -1));
         frameLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), 0);
@@ -122,7 +122,7 @@ public final class x extends db {
         this.f12791d0 = frameLayout3;
         org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.ArticleAIPrompt), true, false, MessagesController.getInstance(i10).config.aicomposeTonePromptLengthMax.get(), c6Var);
         this.f12792e0 = j3Var;
-        org.telegram.ui.Cells.h3 h3Var = j3Var.f22080b;
+        org.telegram.ui.Cells.h3 h3Var = j3Var.f22081b;
         h3Var.setImeOptions(6);
         h3Var.setMaxLines(5);
         j3Var.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.w0(i13, c6Var)));
@@ -158,7 +158,7 @@ public final class x extends db {
                                 xVar.dismiss();
                                 return;
                             }
-                            String trim = j3Var2.f22080b.getText().toString().trim();
+                            String trim = j3Var2.f22081b.getText().toString().trim();
                             if (!TextUtils.isEmpty(trim)) {
                                 xVar.f12794g0 = true;
                                 xVar.f12793f0.setLoading(true);
@@ -167,7 +167,7 @@ public final class x extends db {
                                 inputaicomposetonesingleuse.custom_prompt = trim;
                                 tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
                                 xVar.f12795h0 = ConnectionsManager.getInstance(xVar.X).sendRequest(tL_messages_composeRichMessageWithAI, new o8(xVar, 16));
-                                AndroidUtilities.hideKeyboard(j3Var2.f22080b);
+                                AndroidUtilities.hideKeyboard(j3Var2.f22081b);
                                 return;
                             }
                             return;
@@ -180,7 +180,7 @@ public final class x extends db {
         ((ViewGroup.MarginLayoutParams) f7.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
         ((ViewGroup.MarginLayoutParams) f7.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         s4.j jVar = new s4.j();
-        jVar.f47929m = false;
+        jVar.f47937m = false;
         jVar.C = false;
         jVar.o(js.h);
         jVar.n(350L);
@@ -204,7 +204,7 @@ public final class x extends db {
         if (richMessage != null) {
             dVar.setEnabled(true);
         } else {
-            dVar.setEnabled(!TextUtils.isEmpty(this.f12792e0.f22080b.getText().toString().trim()));
+            dVar.setEnabled(!TextUtils.isEmpty(this.f12792e0.f22081b.getText().toString().trim()));
         }
     }
 
@@ -214,7 +214,7 @@ public final class x extends db {
             ConnectionsManager.getInstance(this.X).cancelRequest(this.f12795h0, true);
             this.f12795h0 = 0;
         }
-        AndroidUtilities.hideKeyboard(this.f12792e0.f22080b);
+        AndroidUtilities.hideKeyboard(this.f12792e0.f22081b);
         super.dismiss();
     }
 

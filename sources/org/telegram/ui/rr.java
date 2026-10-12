@@ -11,7 +11,7 @@ public final class rr implements org.telegram.ui.Cells.a5, org.telegram.ui.Compo
     @Override
     public boolean c(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         wr wrVar = this.f41709b.d;
-        return wrVar.h0(wrVar.f43608a.E(((Integer) b5Var.getTag()).intValue()), !z10, b5Var);
+        return wrVar.h0(wrVar.f43613a.E(((Integer) b5Var.getTag()).intValue()), !z10, b5Var);
     }
 
     @Override
@@ -20,25 +20,25 @@ public final class rr implements org.telegram.ui.Cells.a5, org.telegram.ui.Compo
         switch (this.f41708a) {
             case 1:
                 wr wrVar = this.f41709b.d;
-                if (wrVar.f43649s != null) {
-                    int i11 = wrVar.f43643p1;
+                if (wrVar.f43654s != null) {
+                    int i11 = wrVar.f43648p1;
                     if ((i11 > 0 && i10 == 0) || (i11 == 0 && i10 > 0)) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    wrVar.f43643p1 = i10;
+                    wrVar.f43648p1 = i10;
                     if (z10) {
                         pr w02 = wrVar.w0();
                         wrVar.B0();
                         wrVar.A0(w02);
                     }
-                    wrVar.f43608a.m(wrVar.P0);
+                    wrVar.f43613a.m(wrVar.P0);
                     return;
                 }
                 return;
             default:
-                this.f41709b.d.f43651s1 = i10 + 1;
+                this.f41709b.d.f43656s1 = i10 + 1;
                 return;
         }
     }

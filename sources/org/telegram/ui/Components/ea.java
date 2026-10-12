@@ -12,21 +12,21 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagePreviewParams;
 public final class ea extends AnimatorListenerAdapter {
-    public final int f25643a;
-    public boolean f25644b;
-    public final Object f25645c;
+    public final int f25648a;
+    public boolean f25649b;
+    public final Object f25650c;
 
     public ea(int i10, Object obj, boolean z10) {
-        this.f25643a = i10;
-        this.f25645c = obj;
-        this.f25644b = z10;
+        this.f25648a = i10;
+        this.f25650c = obj;
+        this.f25649b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f25643a) {
+        switch (this.f25648a) {
             case 0:
-                fa faVar = (fa) this.f25645c;
+                fa faVar = (fa) this.f25650c;
                 AnimatorSet animatorSet = faVar.h;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     faVar.h = null;
@@ -34,21 +34,21 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 2:
-                ((aj) this.f25645c).f24328b1 = null;
+                ((aj) this.f25650c).f24324b1 = null;
                 return;
             case 3:
-                this.f25644b = true;
+                this.f25649b = true;
                 return;
             case 8:
-                g10 g10Var = (g10) this.f25645c;
-                AnimatorSet animatorSet2 = g10Var.f26215e;
+                g10 g10Var = (g10) this.f25650c;
+                AnimatorSet animatorSet2 = g10Var.f26213e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    g10Var.f26215e = null;
+                    g10Var.f26213e = null;
                     return;
                 }
                 return;
             case 12:
-                w70 w70Var = (w70) this.f25645c;
+                w70 w70Var = (w70) this.f25650c;
                 AnimatorSet animatorSet3 = w70Var.X;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
                     w70Var.X = null;
@@ -56,17 +56,17 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 17:
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f25645c;
-                if (animator.equals(pipRoundVideoView.f23995r)) {
-                    pipRoundVideoView.f23995r = null;
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f25650c;
+                if (animator.equals(pipRoundVideoView.f23996r)) {
+                    pipRoundVideoView.f23996r = null;
                     return;
                 }
                 return;
             case 19:
-                ((hw0) this.f25645c).N1 = null;
+                ((hw0) this.f25650c).N1 = null;
                 return;
             case 23:
-                u71 u71Var = (u71) this.f25645c;
+                u71 u71Var = (u71) this.f25650c;
                 AnimatorSet animatorSet4 = u71Var.d;
                 if (animatorSet4 != null && animatorSet4.equals(animator)) {
                     u71Var.d = null;
@@ -74,15 +74,15 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 24:
-                y71 y71Var = (y71) this.f25645c;
-                AnimatorSet animatorSet5 = y71Var.f32974r;
+                y71 y71Var = (y71) this.f25650c;
+                AnimatorSet animatorSet5 = y71Var.f32967r;
                 if (animatorSet5 != null && animatorSet5.equals(animator)) {
-                    y71Var.f32974r = null;
+                    y71Var.f32967r = null;
                     return;
                 }
                 return;
             case 26:
-                ((org.telegram.ui.ts) this.f25645c).f42281w = null;
+                ((org.telegram.ui.ts) this.f25650c).f42283w = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -110,38 +110,38 @@ public final class ea extends AnimatorListenerAdapter {
         float f20;
         float f21;
         float dp;
-        switch (this.f25643a) {
+        switch (this.f25648a) {
             case 0:
-                fa faVar = (fa) this.f25645c;
+                fa faVar = (fa) this.f25650c;
                 AnimatorSet animatorSet = faVar.h;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f25644b) {
-                        faVar.f25986c.setVisibility(4);
+                    if (!this.f25649b) {
+                        faVar.f25988c.setVisibility(4);
                         return;
                     } else {
-                        faVar.f25985b.setVisibility(4);
+                        faVar.f25987b.setVisibility(4);
                         return;
                     }
                 }
                 return;
             case 1:
-                ad adVar = (ad) this.f25645c;
-                if (animator == adVar.f24285g) {
-                    adVar.f24285g = null;
-                    if (this.f25644b) {
+                ad adVar = (ad) this.f25650c;
+                if (animator == adVar.f24286g) {
+                    adVar.f24286g = null;
+                    if (this.f25649b) {
                         f7 = 1.0f;
                     } else {
                         f7 = 0.0f;
                     }
-                    adVar.f24287j = f7;
+                    adVar.f24288j = f7;
                     adVar.b();
                     return;
                 }
                 return;
             case 2:
-                aj ajVar = (aj) this.f25645c;
-                if (ajVar.f24328b1 != null) {
-                    if (this.f25644b) {
+                aj ajVar = (aj) this.f25650c;
+                if (ajVar.f24324b1 != null) {
+                    if (this.f25649b) {
                         if (ajVar.V0) {
                             si siVar = ajVar.B0;
                             if (siVar == null || siVar.L()) {
@@ -152,34 +152,34 @@ public final class ea extends AnimatorListenerAdapter {
                         }
                         return;
                     }
-                    org.telegram.ui.ActionBar.u0 u0Var = ajVar.f24349h1;
+                    org.telegram.ui.ActionBar.u0 u0Var = ajVar.f24345h1;
                     if (u0Var != null) {
                         u0Var.setVisibility(4);
                     }
-                    if (ajVar.T0 != 0 || !ajVar.f24386t1) {
-                        ajVar.f24335d1.setVisibility(4);
+                    if (ajVar.T0 != 0 || !ajVar.f24382t1) {
+                        ajVar.f24331d1.setVisibility(4);
                         return;
                     }
                     return;
                 }
                 return;
             case 3:
-                bp bpVar = (bp) this.f25645c;
-                if (!this.f25644b) {
+                bp bpVar = (bp) this.f25650c;
+                if (!this.f25649b) {
                     y9 y9Var = bpVar.h;
-                    bpVar.h = bpVar.f24707n;
-                    bpVar.f24707n = y9Var;
+                    bpVar.h = bpVar.f24702n;
+                    bpVar.f24702n = y9Var;
                     y9Var.setVisibility(8);
-                    bpVar.f24707n.setAlpha(0.0f);
+                    bpVar.f24702n.setAlpha(0.0f);
                     bpVar.h.setVisibility(0);
                     bpVar.h.setAlpha(1.0f);
                     return;
                 }
                 return;
             case 4:
-                boolean z10 = this.f25644b;
-                lp lpVar = (lp) this.f25645c;
-                if (animator == lpVar.f28259e) {
+                boolean z10 = this.f25649b;
+                lp lpVar = (lp) this.f25650c;
+                if (animator == lpVar.f28248e) {
                     if (z10) {
                         f10 = 1.0f;
                     } else {
@@ -195,8 +195,8 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 5:
-                eq eqVar = (eq) this.f25645c;
-                if (this.f25644b) {
+                eq eqVar = (eq) this.f25650c;
+                if (this.f25649b) {
                     f11 = 1.0f;
                 } else {
                     f11 = 0.0f;
@@ -205,16 +205,16 @@ public final class ea extends AnimatorListenerAdapter {
                 eqVar.J.setTranslationY((-AndroidUtilities.dp(7.0f)) * eqVar.f25754g0);
                 return;
             case 6:
-                if (!this.f25644b) {
-                    ((er) this.f25645c).H.setVisibility(8);
+                if (!this.f25649b) {
+                    ((er) this.f25650c).H.setVisibility(8);
                     return;
                 }
                 return;
             case 7:
-                rw rwVar = (rw) this.f25645c;
+                rw rwVar = (rw) this.f25650c;
                 vw vwVar = rwVar.J;
                 if (vwVar.U && !rwVar.h) {
-                    if (!this.f25644b && !rwVar.f30264n) {
+                    if (!this.f25649b && !rwVar.f30260n) {
                         rwVar.setBackground(null);
                         return;
                     } else if (rwVar.getBackground() == null) {
@@ -226,19 +226,19 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 8:
-                g10 g10Var = (g10) this.f25645c;
-                AnimatorSet animatorSet2 = g10Var.f26215e;
+                g10 g10Var = (g10) this.f25650c;
+                AnimatorSet animatorSet2 = g10Var.f26213e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f25644b) {
-                        g10Var.f26216f.setVisibility(4);
+                    if (!this.f25649b) {
+                        g10Var.f26214f.setVisibility(4);
                     }
-                    g10Var.f26215e = null;
+                    g10Var.f26213e = null;
                     return;
                 }
                 return;
             case 9:
-                r10 r10Var = (r10) this.f25645c;
-                if (this.f25644b) {
+                r10 r10Var = (r10) this.f25650c;
+                if (this.f25649b) {
                     f12 = 1.0f;
                 } else {
                     f12 = 0.0f;
@@ -247,18 +247,18 @@ public final class ea extends AnimatorListenerAdapter {
                 r10Var.invalidate();
                 return;
             case 10:
-                t30 t30Var = (t30) this.f25645c;
-                r30 r30Var = t30Var.f30741a;
+                t30 t30Var = (t30) this.f25650c;
+                r30 r30Var = t30Var.f30744a;
                 if (!t30Var.F) {
-                    if (this.f25644b) {
+                    if (this.f25649b) {
                         f13 = 1.0f;
                     } else {
                         f13 = 0.0f;
                     }
-                    t30Var.f30744b0 = f13;
+                    t30Var.f30747b0 = f13;
                     t30Var.U.setPinnedProgress(f13);
-                    r30Var.setScaleX(1.0f - (t30Var.f30744b0 * 0.6f));
-                    r30Var.setScaleY(1.0f - (t30Var.f30744b0 * 0.6f));
+                    r30Var.setScaleX(1.0f - (t30Var.f30747b0 * 0.6f));
+                    r30Var.setScaleY(1.0f - (t30Var.f30747b0 * 0.6f));
                     if (t30Var.W) {
                         t30Var.i();
                         return;
@@ -268,8 +268,8 @@ public final class ea extends AnimatorListenerAdapter {
                 return;
             case 11:
                 super.onAnimationEnd(animator);
-                View view = (View) this.f25645c;
-                if (this.f25644b) {
+                View view = (View) this.f25650c;
+                if (this.f25649b) {
                     i10 = 8;
                 } else {
                     i10 = 4;
@@ -277,10 +277,10 @@ public final class ea extends AnimatorListenerAdapter {
                 view.setVisibility(i10);
                 return;
             case 12:
-                w70 w70Var = (w70) this.f25645c;
+                w70 w70Var = (w70) this.f25650c;
                 AnimatorSet animatorSet3 = w70Var.X;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    if (!this.f25644b) {
+                    if (!this.f25649b) {
                         w70Var.Y.setVisibility(4);
                     }
                     w70Var.X = null;
@@ -288,14 +288,14 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 13:
-                g80 g80Var = (g80) this.f25645c;
-                boolean z11 = this.f25644b;
+                g80 g80Var = (g80) this.f25650c;
+                boolean z11 = this.f25649b;
                 if (z11) {
                     f14 = 1.0f;
                 } else {
                     f14 = 0.0f;
                 }
-                g80Var.f26330h0 = f14;
+                g80Var.f26328h0 = f14;
                 g80.X(g80Var).invalidate();
                 if (!z11) {
                     g80Var.V.setVisibility(8);
@@ -303,13 +303,13 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 14:
-                zc0 zc0Var = (zc0) this.f25645c;
+                zc0 zc0Var = (zc0) this.f25650c;
                 if (zc0Var.getParent() != null) {
                     ((ViewGroup) zc0Var.getParent()).removeView(zc0Var);
                 }
-                boolean z12 = this.f25644b;
+                boolean z12 = this.f25649b;
                 org.telegram.ui.nl nlVar = (org.telegram.ui.nl) zc0Var;
-                MessagePreviewParams messagePreviewParams = nlVar.H.f37259f5;
+                MessagePreviewParams messagePreviewParams = nlVar.H.f37264f5;
                 if (messagePreviewParams != null) {
                     messagePreviewParams.attach(null);
                 }
@@ -319,15 +319,15 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 15:
-                tc0 tc0Var = (tc0) this.f25645c;
+                tc0 tc0Var = (tc0) this.f25650c;
                 tc0Var.P = null;
-                tc0Var.g(this.f25644b, false);
+                tc0Var.g(this.f25649b, false);
                 return;
             case 16:
-                xe0 xe0Var = (xe0) this.f25645c;
-                TextView textView = xe0Var.f32748w;
-                ai.x5 x5Var = xe0Var.f32743e;
-                if (this.f25644b) {
+                xe0 xe0Var = (xe0) this.f25650c;
+                TextView textView = xe0Var.f32740w;
+                ai.x5 x5Var = xe0Var.f32735e;
+                if (this.f25649b) {
                     f15 = 1.0f;
                 } else {
                     f15 = 0.0f;
@@ -338,21 +338,21 @@ public final class ea extends AnimatorListenerAdapter {
                 textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, f15));
                 textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, f15));
                 textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, f15));
-                xe0Var.f32747s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, f15));
+                xe0Var.f32739s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, f15));
                 return;
             case 17:
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f25645c;
-                if (animator.equals(pipRoundVideoView.f23995r)) {
-                    if (!this.f25644b) {
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f25650c;
+                if (animator.equals(pipRoundVideoView.f23996r)) {
+                    if (!this.f25649b) {
                         pipRoundVideoView.a(false);
                     }
-                    pipRoundVideoView.f23995r = null;
+                    pipRoundVideoView.f23996r = null;
                     return;
                 }
                 return;
             case 18:
-                boolean z13 = this.f25644b;
-                to0 to0Var = (to0) this.f25645c;
+                boolean z13 = this.f25649b;
+                to0 to0Var = (to0) this.f25650c;
                 if (animator == to0Var.G) {
                     if (z13) {
                         f16 = 1.0f;
@@ -369,10 +369,10 @@ public final class ea extends AnimatorListenerAdapter {
                 }
                 return;
             case 19:
-                hw0 hw0Var = (hw0) this.f25645c;
+                hw0 hw0Var = (hw0) this.f25650c;
                 if (hw0Var.N1 != null) {
                     hw0Var.N1 = null;
-                    if (!this.f25644b) {
+                    if (!this.f25649b) {
                         hw0Var.B0.setVisibility(4);
                         return;
                     }
@@ -381,8 +381,8 @@ public final class ea extends AnimatorListenerAdapter {
                 return;
             case 20:
                 super.onAnimationEnd(animator);
-                f31 f31Var = (f31) this.f25645c;
-                if (this.f25644b) {
+                f31 f31Var = (f31) this.f25650c;
+                if (this.f25649b) {
                     f17 = 1.0f;
                 } else {
                     f17 = 0.0f;
@@ -391,8 +391,8 @@ public final class ea extends AnimatorListenerAdapter {
                 f31Var.invalidate();
                 return;
             case 21:
-                c41 c41Var = (c41) this.f25645c;
-                if (this.f25644b) {
+                c41 c41Var = (c41) this.f25650c;
+                if (this.f25649b) {
                     f18 = 1.0f;
                 } else {
                     f18 = 0.0f;
@@ -401,8 +401,8 @@ public final class ea extends AnimatorListenerAdapter {
                 c41Var.h();
                 return;
             case 22:
-                g41 g41Var = (g41) this.f25645c;
-                if (this.f25644b) {
+                g41 g41Var = (g41) this.f25650c;
+                if (this.f25649b) {
                     f19 = 1.0f;
                 } else {
                     f19 = 0.0f;
@@ -412,93 +412,93 @@ public final class ea extends AnimatorListenerAdapter {
                 g41Var.g();
                 return;
             case 23:
-                u71 u71Var = (u71) this.f25645c;
+                u71 u71Var = (u71) this.f25650c;
                 AnimatorSet animatorSet4 = u71Var.d;
                 if (animatorSet4 != null && animatorSet4.equals(animator)) {
-                    if (!this.f25644b) {
-                        u71Var.f31099e.setVisibility(4);
+                    if (!this.f25649b) {
+                        u71Var.f31094e.setVisibility(4);
                     }
                     u71Var.d = null;
                     return;
                 }
                 return;
             case 24:
-                y71 y71Var = (y71) this.f25645c;
-                AnimatorSet animatorSet5 = y71Var.f32974r;
+                y71 y71Var = (y71) this.f25650c;
+                AnimatorSet animatorSet5 = y71Var.f32967r;
                 if (animatorSet5 != null && animatorSet5.equals(animator)) {
-                    if (!this.f25644b) {
-                        y71Var.f32973n.setVisibility(4);
+                    if (!this.f25649b) {
+                        y71Var.f32966n.setVisibility(4);
                     }
-                    y71Var.f32974r = null;
+                    y71Var.f32967r = null;
                     return;
                 }
                 return;
             case 25:
-                org.telegram.ui.Components.voip.w2 w2Var = (org.telegram.ui.Components.voip.w2) this.f25645c;
+                org.telegram.ui.Components.voip.w2 w2Var = (org.telegram.ui.Components.voip.w2) this.f25650c;
                 w2Var.v = null;
-                if (this.f25644b) {
+                if (this.f25649b) {
                     TextView[] textViewArr = w2Var.h;
                     TextView textView2 = textViewArr[0];
                     textViewArr[0] = textViewArr[1];
                     textViewArr[1] = textView2;
                     textView2.setVisibility(8);
                 }
-                if (!w2Var.G && (drawable = (drawableArr = w2Var.f32088e)[1]) != null) {
+                if (!w2Var.G && (drawable = (drawableArr = w2Var.f32074e)[1]) != null) {
                     drawableArr[0] = drawable;
                     drawableArr[1] = null;
                 }
                 w2Var.G = false;
                 if (!w2Var.O) {
-                    w2Var.f32090n = w2Var.f32091r;
+                    w2Var.f32076n = w2Var.f32077r;
                 }
-                w2Var.f32092s = 0.0f;
+                w2Var.f32078s = 0.0f;
                 w2Var.invalidate();
                 return;
             case 26:
-                org.telegram.ui.ts tsVar = (org.telegram.ui.ts) this.f25645c;
-                if (tsVar.f42281w != null && (radialProgressView = tsVar.f42280s) != null) {
-                    if (!this.f25644b) {
+                org.telegram.ui.ts tsVar = (org.telegram.ui.ts) this.f25650c;
+                if (tsVar.f42283w != null && (radialProgressView = tsVar.f42282s) != null) {
+                    if (!this.f25649b) {
                         radialProgressView.setVisibility(4);
                         tsVar.v.setVisibility(4);
                     }
-                    tsVar.f42281w = null;
+                    tsVar.f42283w = null;
                     return;
                 }
                 return;
             case 27:
-                org.telegram.ui.mz mzVar = (org.telegram.ui.mz) this.f25645c;
-                if (this.f25644b) {
+                org.telegram.ui.mz mzVar = (org.telegram.ui.mz) this.f25650c;
+                if (this.f25649b) {
                     f20 = 1.0f;
                 } else {
                     f20 = 0.0f;
                 }
-                mzVar.f40156r = f20;
-                y9 y9Var2 = mzVar.f40152c;
+                mzVar.f40159r = f20;
+                y9 y9Var2 = mzVar.f40155c;
                 int i11 = org.telegram.ui.ActionBar.h6.C6;
-                int w02 = org.telegram.ui.ActionBar.h6.w0(i11, mzVar.f40150a);
+                int w02 = org.telegram.ui.ActionBar.h6.w0(i11, mzVar.f40153a);
                 int i12 = org.telegram.ui.ActionBar.h6.Oh;
-                int d = i0.a.d(mzVar.f40156r, w02, org.telegram.ui.ActionBar.h6.w0(i12, mzVar.f40150a));
+                int d = i0.a.d(mzVar.f40159r, w02, org.telegram.ui.ActionBar.h6.w0(i12, mzVar.f40153a));
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 y9Var2.setColorFilter(new PorterDuffColorFilter(d, mode));
-                mzVar.f40152c.invalidate();
-                mzVar.f40154f.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - mzVar.f40156r, org.telegram.ui.ActionBar.h6.w0(i11, mzVar.f40150a), org.telegram.ui.ActionBar.h6.w0(i12, mzVar.f40150a)), mode));
-                mzVar.f40154f.invalidate();
+                mzVar.f40155c.invalidate();
+                mzVar.f40157f.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - mzVar.f40159r, org.telegram.ui.ActionBar.h6.w0(i11, mzVar.f40153a), org.telegram.ui.ActionBar.h6.w0(i12, mzVar.f40153a)), mode));
+                mzVar.f40157f.invalidate();
                 return;
             case 28:
-                org.telegram.ui.a10 a10Var = (org.telegram.ui.a10) this.f25645c;
-                if (this.f25644b) {
+                org.telegram.ui.a10 a10Var = (org.telegram.ui.a10) this.f25650c;
+                if (this.f25649b) {
                     f21 = 1.0f;
                 } else {
                     f21 = 0.0f;
                 }
-                a10Var.f35659s = f21;
+                a10Var.f35661s = f21;
                 a10Var.invalidate();
                 return;
             default:
-                org.telegram.ui.i60 i60Var = (org.telegram.ui.i60) this.f25645c;
+                org.telegram.ui.i60 i60Var = (org.telegram.ui.i60) this.f25650c;
                 i60Var.U2 = null;
                 org.telegram.ui.ActionBar.h5 subtitleTextView = i60Var.O.getSubtitleTextView();
-                if (this.f25644b) {
+                if (this.f25649b) {
                     dp = 0.0f;
                 } else {
                     dp = AndroidUtilities.dp(20.0f);
@@ -509,19 +509,19 @@ public final class ea extends AnimatorListenerAdapter {
     }
 
     public ea(View view) {
-        this.f25643a = 11;
-        this.f25645c = view;
-        this.f25644b = true;
+        this.f25648a = 11;
+        this.f25650c = view;
+        this.f25649b = true;
     }
 
     public ea(View view, boolean z10) {
-        this.f25643a = 11;
-        this.f25645c = view;
-        this.f25644b = z10;
+        this.f25648a = 11;
+        this.f25650c = view;
+        this.f25649b = z10;
     }
 
     public ea(bp bpVar) {
-        this.f25643a = 3;
-        this.f25645c = bpVar;
+        this.f25648a = 3;
+        this.f25650c = bpVar;
     }
 }

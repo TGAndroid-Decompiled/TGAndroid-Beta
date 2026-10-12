@@ -2,22 +2,22 @@ package me;
 
 import android.graphics.RectF;
 public final class n {
-    public final RectF f16121e = new RectF();
-    public final m f16118a = new m(0.0f);
-    public final m f16119b = new m(0.0f);
-    public final m f16120c = new m(0.0f);
+    public final RectF f16122e = new RectF();
+    public final m f16119a = new m(0.0f);
+    public final m f16120b = new m(0.0f);
+    public final m f16121c = new m(0.0f);
     public final m d = new m(0.0f);
 
     public final boolean a(float f7) {
         boolean z10;
         boolean z11;
-        boolean a2 = this.f16118a.a(f7);
-        if (!this.f16119b.a(f7) && !a2) {
+        boolean a2 = this.f16119a.a(f7);
+        if (!this.f16120b.a(f7) && !a2) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if (!this.f16120c.a(f7) && !z10) {
+        if (!this.f16121c.a(f7) && !z10) {
             z11 = false;
         } else {
             z11 = true;
@@ -29,30 +29,30 @@ public final class n {
     }
 
     public final boolean b(float f7, float f10, float f11, float f12) {
-        if (!this.f16118a.b(f7) && !this.f16119b.b(f10) && !this.f16120c.b(f11) && !this.d.b(f12)) {
+        if (!this.f16119a.b(f7) && !this.f16120b.b(f10) && !this.f16121c.b(f11) && !this.d.b(f12)) {
             return false;
         }
         return true;
     }
 
     public final void c(boolean z10) {
-        this.f16118a.c(z10);
-        this.f16119b.c(z10);
-        this.f16120c.c(z10);
+        this.f16119a.c(z10);
+        this.f16120b.c(z10);
+        this.f16121c.c(z10);
         this.d.c(z10);
     }
 
     public final void d(float f7, float f10, float f11, float f12) {
-        this.f16118a.d(f7);
-        this.f16119b.d(f10);
-        this.f16120c.d(f11);
+        this.f16119a.d(f7);
+        this.f16120b.d(f10);
+        this.f16121c.d(f11);
         this.d.d(f12);
     }
 
     public final void e(float f7, float f10, float f11, float f12) {
-        this.f16118a.f16117c = f7;
-        this.f16119b.f16117c = f10;
-        this.f16120c.f16117c = f11;
-        this.d.f16117c = f12;
+        this.f16119a.f16118c = f7;
+        this.f16120b.f16118c = f10;
+        this.f16121c.f16118c = f11;
+        this.d.f16118c = f12;
     }
 }

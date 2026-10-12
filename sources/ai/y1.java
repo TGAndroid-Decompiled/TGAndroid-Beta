@@ -79,7 +79,7 @@ public final class y1 implements Utilities.Callback {
                     }
                     d2Var.c();
                     d2Var.k();
-                    NotificationCenter.getInstance(d2Var.f807e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.f808f.f19819id));
+                    NotificationCenter.getInstance(d2Var.f807e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.f808f.f19820id));
                     return;
                 }
                 return;
@@ -162,7 +162,7 @@ public final class y1 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ca(16, w2Var, (Runnable) obj), 80L);
                 return;
             case 9:
-                ((ci.v3) this.f1931b).f6142s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21181w).start();
+                ((ci.v3) this.f1931b).f6142s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21182w).start();
                 return;
             case 10:
                 ci.s4 s4Var = (ci.s4) this.f1931b;
@@ -258,8 +258,8 @@ public final class y1 implements Utilities.Callback {
                     u8Var.V();
                     return;
                 }
-                u8Var.f6090o0 = n0Var.f46360e;
-                u8Var.f6089n0 = n0Var.f46361f;
+                u8Var.f6090o0 = n0Var.f46368e;
+                u8Var.f6089n0 = n0Var.f46369f;
                 return;
             case 16:
                 ((ci.u9) this.f1931b).f6093n.W.H = ((Integer) obj).intValue();
@@ -303,7 +303,7 @@ public final class y1 implements Utilities.Callback {
                         vyVar.H3();
                     }
                     MessagesController.getInstance(fyVar.H0).openApp(user2, 0);
-                    cp0Var.R(user2.f19949id, user2);
+                    cp0Var.R(user2.f19950id, user2);
                     return;
                 }
                 return;
@@ -317,7 +317,7 @@ public final class y1 implements Utilities.Callback {
                 if (nVar.F != z11) {
                     nVar.F = z11;
                     if (!z11) {
-                        nVar.f27773a.x0(0);
+                        nVar.f27776a.x0(0);
                         return;
                     }
                     return;

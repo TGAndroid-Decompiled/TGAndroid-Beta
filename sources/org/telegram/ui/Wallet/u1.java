@@ -8,38 +8,38 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.jt;
 public final class u1 implements Utilities.Callback {
-    public final f2 f35406a;
-    public final b2 f35407b;
-    public final jt f35408c;
+    public final f2 f35408a;
+    public final b2 f35409b;
+    public final jt f35410c;
     public final boolean d;
-    public final i0 f35409e;
+    public final i0 f35411e;
 
     public u1(f2 f2Var, b2 b2Var, jt jtVar, boolean z10, i0 i0Var) {
-        this.f35406a = f2Var;
-        this.f35407b = b2Var;
-        this.f35408c = jtVar;
+        this.f35408a = f2Var;
+        this.f35409b = b2Var;
+        this.f35410c = jtVar;
         this.d = z10;
-        this.f35409e = i0Var;
+        this.f35411e = i0Var;
     }
 
     @Override
     public final void run(Object obj) {
         final byte[] bArr = (byte[]) obj;
-        final f2 f2Var = this.f35406a;
-        final b2 b2Var = this.f35407b;
+        final f2 f2Var = this.f35408a;
+        final b2 b2Var = this.f35409b;
         boolean i10 = f2Var.i(b2Var);
-        final jt jtVar = this.f35408c;
+        final jt jtVar = this.f35410c;
         if (!i10 && f2Var.y(b2Var)) {
             TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
-            tonconnectclaimrequest.session_id = b2Var.f34485a.f20065id;
-            tonconnectclaimrequest.msg_id = b2Var.f34486b;
+            tonconnectclaimrequest.session_id = b2Var.f34487a.f20066id;
+            tonconnectclaimrequest.msg_id = b2Var.f34488b;
             tonconnectclaimrequest.app_request_id = b2Var.d;
             final boolean z10 = this.d;
             tonconnectclaimrequest.declined = z10;
             tonconnectclaimrequest.challenge_answer = bArr;
-            ConnectionsManager connectionsManager = f2Var.f34703f;
+            ConnectionsManager connectionsManager = f2Var.f34705f;
             ?? obj2 = new Object();
-            final i0 i0Var = this.f35409e;
+            final i0 i0Var = this.f35411e;
             connectionsManager.sendRequestTyped(tonconnectclaimrequest, obj2, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj3, Object obj4) {
@@ -57,12 +57,12 @@ public final class u1 implements Utilities.Callback {
                         Arrays.fill(bArr2, (byte) 0);
                     }
                     if (tL_error == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                        b2Var2.f34497o = true;
-                        if (!z11 && b2Var2.f34494l < 0) {
-                            if ("disconnect".equals(b2Var2.f34488e)) {
+                        b2Var2.f34499o = true;
+                        if (!z11 && b2Var2.f34496l < 0) {
+                            if ("disconnect".equals(b2Var2.f34490e)) {
                                 f2Var2.w(b2Var2, i0Var2, new JSONObject(), -1, null, jtVar2);
                                 return;
-                            } else if ("signData".equals(b2Var2.f34488e)) {
+                            } else if ("signData".equals(b2Var2.f34490e)) {
                                 if (f2Var2.y(b2Var2) && !f2Var2.i(b2Var2)) {
                                     Utilities.globalQueue.postRunnable(new o6(f2Var2, i0Var2, b2Var2, jtVar2, 8));
                                     return;
@@ -70,11 +70,11 @@ public final class u1 implements Utilities.Callback {
                                     f2Var2.w(b2Var2, i0Var2, null, 0, "Request expired or wallet changed", jtVar2);
                                     return;
                                 }
-                            } else if ("signMessage".equals(b2Var2.f34488e)) {
-                                WalletEngine2 walletEngine2 = f2Var2.f34700b.f34995b;
+                            } else if ("signMessage".equals(b2Var2.f34490e)) {
+                                WalletEngine2 walletEngine2 = f2Var2.f34702b.f34997b;
                                 if (walletEngine2 != null && f2Var2.y(b2Var2) && !f2Var2.i(b2Var2)) {
-                                    e2 e2Var = b2Var2.f34489f;
-                                    walletEngine2.signMessage(i0Var2, e2Var, "ton-connect:" + b2Var2.f34485a.f20065id + ":" + b2Var2.f34486b, new o(f2Var2, b2Var2, i0Var2, jtVar2, 8));
+                                    e2 e2Var = b2Var2.f34491f;
+                                    walletEngine2.signMessage(i0Var2, e2Var, "ton-connect:" + b2Var2.f34487a.f20066id + ":" + b2Var2.f34488b, new o(f2Var2, b2Var2, i0Var2, jtVar2, 8));
                                     return;
                                 }
                                 f2Var2.w(b2Var2, i0Var2, null, 0, "Wallet unavailable or request expired", jtVar2);
@@ -87,19 +87,19 @@ public final class u1 implements Utilities.Callback {
                         if (z11) {
                             i11 = 300;
                         } else {
-                            i11 = b2Var2.f34494l;
+                            i11 = b2Var2.f34496l;
                         }
                         int i12 = i11;
                         if (z11) {
                             str = "User declined the request";
                         } else {
-                            str = b2Var2.f34492j;
+                            str = b2Var2.f34494j;
                         }
                         f2Var2.w(b2Var2, i0Var2, null, i12, str, jtVar2);
                         return;
                     }
                     if (tL_error != null && ("TONCONNECT_REQUEST_ALREADY_CLAIMED".equals(tL_error.text) || "TONCONNECT_REQUEST_EXPIRED".equals(tL_error.text) || "TONCONNECT_REQUEST_NOT_FOUND".equals(tL_error.text))) {
-                        b2Var2.f34496n = true;
+                        b2Var2.f34498n = true;
                     }
                     jtVar2.run(f2.x(tL_error, "claimRequest"));
                 }

@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class i1 extends LinearLayout {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f20977a;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f20978a;
 
     public i1(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, Context context) {
         super(context);
-        this.f20977a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f20978a = actionBarPopupWindow$ActionBarPopupWindowLayout;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if ((view instanceof j1) && this.f20977a.N != null) {
+        if ((view instanceof j1) && this.f20978a.N != null) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
@@ -26,7 +26,7 @@ public final class i1 extends LinearLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         i1 i1Var = this;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = i1Var.f20977a;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = i1Var.f20978a;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.O) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.E = -1000000;
             actionBarPopupWindow$ActionBarPopupWindowLayout.F = -1000000;

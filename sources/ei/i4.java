@@ -11,7 +11,7 @@ public final class i4 implements org.telegram.ui.ActionBar.z1, n4, GenericProvid
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        this.f9118a.f30574b.dismiss();
+        this.f9118a.f30570b.dismiss();
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class i4 implements org.telegram.ui.ActionBar.z1, n4, GenericProvid
     public Object provide(Object obj) {
         boolean z10;
         Void r22 = (Void) obj;
-        if (this.f9118a.f30574b.f24389u1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+        if (this.f9118a.f30570b.f24385u1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

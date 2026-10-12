@@ -4,49 +4,49 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
 public final class e implements Runnable {
-    public final int f47907a;
-    public final ArrayList f47908b;
-    public final j f47909c;
+    public final int f47915a;
+    public final ArrayList f47916b;
+    public final j f47917c;
 
     public e(j jVar, ArrayList arrayList, int i10) {
-        this.f47907a = i10;
-        this.f47909c = jVar;
-        this.f47908b = arrayList;
+        this.f47915a = i10;
+        this.f47917c = jVar;
+        this.f47916b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f47907a) {
+        switch (this.f47915a) {
             case 0:
-                ArrayList arrayList = this.f47908b;
+                ArrayList arrayList = this.f47916b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
-                    j jVar = this.f47909c;
+                    j jVar = this.f47917c;
                     if (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         i iVar = (i) obj;
-                        jVar.C(iVar.f47939a, iVar);
-                        jVar.f47956w.add(iVar);
+                        jVar.C(iVar.f47947a, iVar);
+                        jVar.f47964w.add(iVar);
                     } else {
                         arrayList.clear();
-                        jVar.f47955u.remove(arrayList);
+                        jVar.f47963u.remove(arrayList);
                         return;
                     }
                 }
             case 1:
-                ArrayList arrayList2 = this.f47908b;
+                ArrayList arrayList2 = this.f47916b;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (true) {
-                    j jVar2 = this.f47909c;
+                    j jVar2 = this.f47917c;
                     if (i11 < size2) {
                         Object obj2 = arrayList2.get(i11);
                         i11++;
                         h hVar = (h) obj2;
                         jVar2.B(hVar);
-                        jVar2.f47957x.add(hVar);
+                        jVar2.f47965x.add(hVar);
                     } else {
                         arrayList2.clear();
                         jVar2.v.remove(arrayList2);
@@ -54,7 +54,7 @@ public final class e implements Runnable {
                     }
                 }
             default:
-                ArrayList arrayList3 = this.f47908b;
+                ArrayList arrayList3 = this.f47916b;
                 int i12 = Integer.MAX_VALUE;
                 for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
                     i12 = Math.min(i12, ((d1) arrayList3.get(size3)).b());
@@ -62,19 +62,19 @@ public final class e implements Runnable {
                 int size4 = arrayList3.size();
                 while (true) {
                     size4--;
-                    j jVar3 = this.f47909c;
+                    j jVar3 = this.f47917c;
                     if (size4 >= 0) {
                         d1 d1Var = (d1) arrayList3.get(size4);
                         long b10 = (d1Var.b() - i12) * jVar3.D;
-                        View view = d1Var.f47889a;
+                        View view = d1Var.f47897a;
                         ViewPropertyAnimator animate = view.animate();
-                        jVar3.f47958y.add(d1Var);
+                        jVar3.f47966y.add(d1Var);
                         animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(jVar3.h()).setStartDelay(b10).setInterpolator(jVar3.h);
                         animate.setUpdateListener(new c(jVar3, d1Var, 1));
                         animate.setListener(new f(jVar3, d1Var, view, animate)).start();
                     } else {
                         arrayList3.clear();
-                        jVar3.f47954t.remove(arrayList3);
+                        jVar3.f47962t.remove(arrayList3);
                         return;
                     }
                 }

@@ -11,25 +11,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public final class lz extends ImageView {
-    public int f28322a;
-    public s5 f28323b;
-    public boolean f28324c;
+    public int f28317a;
+    public s5 f28318b;
+    public boolean f28319c;
     public b6 d;
-    public qy f28325e;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] f28326f;
+    public qy f28320e;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f28321f;
     public float h;
-    public ValueAnimator f28327n;
+    public ValueAnimator f28322n;
 
     public lz(Context context) {
         super(context);
-        this.f28326f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        this.f28321f = new ImageReceiver.BackgroundThreadDrawHolder[2];
         setScaleType(ImageView.ScaleType.CENTER);
-        setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20650i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     public final void a(Drawable drawable, boolean z10) {
         setImageDrawable(drawable);
-        this.f28324c = z10;
+        this.f28319c = z10;
     }
 
     public b6 getSpan() {
@@ -71,20 +71,20 @@ public final class lz extends ImageView {
         if (isPressed() != z10) {
             super.setPressed(z10);
             invalidate();
-            if (z10 && (valueAnimator = this.f28327n) != null) {
+            if (z10 && (valueAnimator = this.f28322n) != null) {
                 valueAnimator.removeAllListeners();
-                this.f28327n.cancel();
+                this.f28322n.cancel();
             }
             if (!z10) {
                 float f7 = this.h;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f28327n = ofFloat;
+                    this.f28322n = ofFloat;
                     ofFloat.addUpdateListener(new m6(this, 22));
-                    this.f28327n.addListener(new t8(this, 20));
-                    org.telegram.messenger.am.l(5.0f, this.f28327n);
-                    this.f28327n.setDuration(350L);
-                    this.f28327n.start();
+                    this.f28322n.addListener(new t8(this, 20));
+                    org.telegram.messenger.am.l(5.0f, this.f28322n);
+                    this.f28322n.setDuration(350L);
+                    this.f28322n.start();
                 }
             }
         }

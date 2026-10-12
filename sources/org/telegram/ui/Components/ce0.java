@@ -17,7 +17,7 @@ public final class ce0 extends de0 {
         g2Var.setSingleLine(true);
         g2Var.setInputType(1);
         g2Var.setTypeface(Typeface.DEFAULT);
-        g2Var.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20705l6, false));
+        g2Var.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20706l6, false));
         g2Var.setCursorWidth(1.5f);
         g2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(g2Var);

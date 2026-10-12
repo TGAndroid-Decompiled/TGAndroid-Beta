@@ -12,44 +12,44 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class c81 extends View {
-    public final q6 f24853a;
-    public final q6 f24854b;
-    public final Paint f24855c;
+    public final q6 f24848a;
+    public final q6 f24849b;
+    public final Paint f24850c;
     public final Paint d;
-    public final Paint f24856e;
-    public boolean f24857f;
+    public final Paint f24851e;
+    public boolean f24852f;
     public final g6 h;
-    public final int[] f24858n;
+    public final int[] f24853n;
 
     public c81(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f24855c = paint;
+        this.f24850c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
-        this.f24856e = paint3;
+        this.f24851e = paint3;
         js jsVar = js.h;
         this.h = new g6(this, 0L, 300L, jsVar);
-        this.f24858n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
+        this.f24853n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
         q6 q6Var = new q6(true, false, false);
-        this.f24853a = q6Var;
+        this.f24848a = q6Var;
         q6Var.n(0.4f, 360L, jsVar);
         q6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         q6Var.u(-1);
         q6Var.w(AndroidUtilities.dpf2(10.6f));
         q6Var.setCallback(this);
-        q6Var.f29712b = 17;
+        q6Var.f29690b = 17;
         q6 q6Var2 = new q6(true, false, false);
-        this.f24854b = q6Var2;
+        this.f24849b = q6Var2;
         q6Var2.n(0.2f, 360L, jsVar);
         q6Var2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         q6Var2.u(-1);
         q6Var2.w(AndroidUtilities.dpf2(8.6f));
         q6Var2.setCallback(this);
-        q6Var2.f29712b = 5;
+        q6Var2.f29690b = 5;
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        q6Var2.f29710a.setXfermode(new PorterDuffXfermode(mode));
+        q6Var2.f29688a.setXfermode(new PorterDuffXfermode(mode));
         q6Var2.M = AndroidUtilities.displaySize.x;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -65,9 +65,9 @@ public final class c81 extends View {
         } else {
             z12 = true;
         }
-        this.f24857f = z12;
-        q6 q6Var = this.f24853a;
-        q6 q6Var2 = this.f24854b;
+        this.f24852f = z12;
+        q6 q6Var = this.f24848a;
+        q6 q6Var2 = this.f24849b;
         if (z11) {
             q6Var.t("GIF", true, true);
             q6Var2.t("", true, true);
@@ -78,7 +78,7 @@ public final class c81 extends View {
                 str = "SD";
             }
             q6Var.t(str, true, true);
-            int[] iArr = this.f24858n;
+            int[] iArr = this.f24853n;
             int length = iArr.length - 1;
             while (true) {
                 if (length >= 0) {
@@ -94,14 +94,14 @@ public final class c81 extends View {
             if (length < 0) {
                 q6Var2.t("", true, true);
             } else if (length == 6) {
-                q6Var2.t("2K", TextUtils.isEmpty(q6Var2.f29718i), true);
+                q6Var2.t("2K", TextUtils.isEmpty(q6Var2.f29696i), true);
             } else if (length == 7) {
-                q6Var2.t("4K", TextUtils.isEmpty(q6Var2.f29718i), true);
+                q6Var2.t("4K", TextUtils.isEmpty(q6Var2.f29696i), true);
             } else {
-                q6Var2.t("" + iArr[length], TextUtils.isEmpty(q6Var2.f29718i), true);
+                q6Var2.t("" + iArr[length], TextUtils.isEmpty(q6Var2.f29696i), true);
             }
         }
-        setClickable(!this.f24857f);
+        setClickable(!this.f24852f);
         invalidate();
     }
 
@@ -109,14 +109,14 @@ public final class c81 extends View {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float B = com.google.android.gms.internal.vision.e2.B(this.h.e(this.f24857f), 0.35f, 1.0f, 255.0f);
+        float B = com.google.android.gms.internal.vision.e2.B(this.h.e(this.f24852f), 0.35f, 1.0f, 255.0f);
         int i10 = (int) B;
-        Paint paint = this.f24855c;
+        Paint paint = this.f24850c;
         paint.setAlpha(i10);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
         float dpf2 = AndroidUtilities.dpf2(21.33f);
         float dpf22 = AndroidUtilities.dpf2(6.0f);
-        q6 q6Var = this.f24853a;
+        q6 q6Var = this.f24848a;
         float max = Math.max(dpf2, q6Var.c() + dpf22);
         float dpf23 = AndroidUtilities.dpf2(17.33f);
         RectF rectF = AndroidUtilities.rectTmp;
@@ -127,13 +127,13 @@ public final class c81 extends View {
         q6Var.setBounds(rect);
         q6Var.B = i10;
         q6Var.draw(canvas);
-        q6 q6Var2 = this.f24854b;
+        q6 q6Var2 = this.f24849b;
         float c10 = q6Var2.c() + (AndroidUtilities.dpf2(2.0f) * q6Var2.i());
         float dpf24 = AndroidUtilities.dpf2(8.33f);
         rect.set((int) ((AndroidUtilities.dpf2(16.0f) + (getWidth() / 2.0f)) - c10), (int) ((getHeight() / 2.0f) - AndroidUtilities.dpf2(14.0f)), (int) (AndroidUtilities.dpf2(16.0f) + (getWidth() / 2.0f)), (int) (((getHeight() / 2.0f) - AndroidUtilities.dpf2(14.0f)) + dpf24));
         rectF.set(rect);
         rectF.inset(-AndroidUtilities.dpf2(1.33f), -AndroidUtilities.dpf2(1.33f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(1.66f), AndroidUtilities.dpf2(1.66f), this.f24856e);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(1.66f), AndroidUtilities.dpf2(1.66f), this.f24851e);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         rectF.set(rect);
         Paint paint2 = this.d;
@@ -150,19 +150,19 @@ public final class c81 extends View {
 
     public void setPhotoState(boolean z10) {
         String str;
-        this.f24857f = false;
+        this.f24852f = false;
         if (z10) {
             str = "HD";
         } else {
             str = "SD";
         }
-        this.f24853a.t(str, true, true);
-        this.f24854b.t("", false, true);
+        this.f24848a.t(str, true, true);
+        this.f24849b.t("", false, true);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f24853a != drawable && this.f24854b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f24848a != drawable && this.f24849b != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

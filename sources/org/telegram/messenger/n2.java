@@ -12,42 +12,42 @@ import org.telegram.ui.Components.uu;
 import org.telegram.ui.bo;
 import org.telegram.ui.xn;
 public final class n2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
-    public final boolean f18337a;
-    public final int f18338b;
-    public final Object f18339c;
+    public final boolean f18338a;
+    public final int f18339b;
+    public final Object f18340c;
     public final Object d;
-    public final Object f18340e;
+    public final Object f18341e;
 
     public n2(FactCheckController factCheckController, uu uuVar, int i10, MessageObject messageObject, boolean z10) {
-        this.f18339c = factCheckController;
+        this.f18340c = factCheckController;
         this.d = uuVar;
-        this.f18338b = i10;
-        this.f18340e = messageObject;
-        this.f18337a = z10;
+        this.f18339b = i10;
+        this.f18341e = messageObject;
+        this.f18338a = z10;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        boolean z10 = this.f18337a;
-        ((FactCheckController) this.f18339c).lambda$openFactCheckEditor$8((uu) this.d, this.f18338b, (MessageObject) this.f18340e, z10, a2Var, i10);
+        boolean z10 = this.f18338a;
+        ((FactCheckController) this.f18340c).lambda$openFactCheckEditor$8((uu) this.d, this.f18339b, (MessageObject) this.f18341e, z10, a2Var, i10);
     }
 
     @Override
     public void onComplete(Object obj) {
-        bo boVar = (bo) this.f18339c;
+        bo boVar = (bo) this.f18340c;
         org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) this.d;
-        gd0 gd0Var = (gd0) this.f18340e;
+        gd0 gd0Var = (gd0) this.f18341e;
         Pair pair = (Pair) obj;
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = ((dg.a) pair.second).f8347b;
-            org.telegram.ui.ActionBar.b4 b4Var2 = boVar.f36218f;
+            org.telegram.ui.ActionBar.b4 b4Var2 = boVar.f36220f;
             if (b4Var2 != null && longValue == b4Var2.i(boVar.G ? 1 : 0) && bitmap != null) {
-                ValueAnimator valueAnimator = boVar.f36220r;
+                ValueAnimator valueAnimator = boVar.f36222r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                int i10 = b4Var.k(this.f18337a ? 1 : 0).settings.intensity;
+                int i10 = b4Var.k(this.f18338a ? 1 : 0).settings.intensity;
                 List list = ((dg.a) pair.second).f8348c;
                 gd0Var.R = list;
                 long j3 = boVar.V.Ra;
@@ -55,12 +55,12 @@ public final class n2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
                     gd0Var.S = new Random(j3).nextInt(gd0Var.R.size());
                 }
                 gd0Var.t(bitmap, i10);
-                gd0Var.u(this.f18338b);
+                gd0Var.u(this.f18339b);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                boVar.f36220r = ofFloat;
+                boVar.f36222r = ofFloat;
                 ofFloat.addUpdateListener(new xn(gd0Var, 2));
-                boVar.f36220r.setDuration(250L);
-                boVar.f36220r.start();
+                boVar.f36222r.setDuration(250L);
+                boVar.f36222r.start();
             }
         }
     }
@@ -71,11 +71,11 @@ public final class n2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
     }
 
     public n2(bo boVar, org.telegram.ui.ActionBar.b4 b4Var, boolean z10, gd0 gd0Var, int i10) {
-        this.f18339c = boVar;
+        this.f18340c = boVar;
         this.d = b4Var;
-        this.f18337a = z10;
-        this.f18340e = gd0Var;
-        this.f18338b = i10;
+        this.f18338a = z10;
+        this.f18341e = gd0Var;
+        this.f18339b = i10;
     }
 
     @Override

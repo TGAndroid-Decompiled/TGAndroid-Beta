@@ -74,10 +74,10 @@ public final class l0 extends db {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
         linearLayout.addView(textView, w5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f25295e.setTitle(UserObject.getUserName(user));
+        this.f25287e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f20945y6));
+        textView2.setTextColor(getThemedColor(h6.f20946y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, w5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,7 +90,7 @@ public final class l0 extends db {
             textView3.setGravity(17);
             linearLayout.addView(textView3, w5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f20503a7;
+        int i10 = h6.f20504a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         wm0 wm0Var = this.d;
@@ -122,7 +122,7 @@ public final class l0 extends db {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f47929m = false;
+        jVar.f47937m = false;
         jVar.C = false;
         jVar.o(js.h);
         jVar.n(350L);
@@ -182,7 +182,7 @@ public final class l0 extends db {
 
     @Override
     public final void D(float f7) {
-        h5 titleTextView = this.f25295e.getTitleTextView();
+        h5 titleTextView = this.f25287e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -388,7 +388,7 @@ public final class l0 extends db {
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(wm0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
         this.f11306d0 = h71Var;
-        h71Var.f26675r = false;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

@@ -8,17 +8,17 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class zh0 extends org.telegram.ui.Components.vm0 {
-    public final Context f44846c;
+    public final Context f44851c;
     public final ai0 d;
 
     public zh0(ai0 ai0Var, Context context) {
         this.d = ai0Var;
-        this.f44846c = context;
+        this.f44851c = context;
     }
 
     @Override
     public final void A(s4.d1 d1Var) {
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
@@ -28,8 +28,8 @@ public final class zh0 extends org.telegram.ui.Components.vm0 {
     public final boolean D(s4.d1 d1Var) {
         int b10 = d1Var.b();
         ai0 ai0Var = this.d;
-        if (ai0Var.Q != b10 && ai0Var.f35841x != b10) {
-            if (b10 < ai0Var.f35842y || b10 >= ai0Var.E) {
+        if (ai0Var.Q != b10 && ai0Var.f35843x != b10) {
+            if (b10 < ai0Var.f35844y || b10 >= ai0Var.E) {
                 if ((b10 < ai0Var.H || b10 >= ai0Var.I) && b10 != ai0Var.N) {
                     if (b10 >= ai0Var.U && b10 < ai0Var.V) {
                         return true;
@@ -51,20 +51,20 @@ public final class zh0 extends org.telegram.ui.Components.vm0 {
     @Override
     public final int j(int i10) {
         ai0 ai0Var = this.d;
-        if (i10 == ai0Var.f35835r) {
+        if (i10 == ai0Var.f35837r) {
             return 0;
         }
-        if (i10 == ai0Var.f35837s || i10 == ai0Var.L || i10 == ai0Var.S || i10 == ai0Var.P) {
+        if (i10 == ai0Var.f35839s || i10 == ai0Var.L || i10 == ai0Var.S || i10 == ai0Var.P) {
             return 1;
         }
         if (i10 == ai0Var.v) {
             return 2;
         }
-        if (i10 == ai0Var.f35841x) {
+        if (i10 == ai0Var.f35843x) {
             return 3;
         }
-        if (i10 != ai0Var.f35840w && i10 != ai0Var.J && i10 != ai0Var.M && i10 != ai0Var.R && i10 != ai0Var.T) {
-            if (i10 < ai0Var.f35842y || i10 >= ai0Var.E) {
+        if (i10 != ai0Var.f35842w && i10 != ai0Var.J && i10 != ai0Var.M && i10 != ai0Var.R && i10 != ai0Var.T) {
+            if (i10 < ai0Var.f35844y || i10 >= ai0Var.E) {
                 if (i10 >= ai0Var.H && i10 < ai0Var.I) {
                     return 5;
                 }
@@ -108,13 +108,13 @@ public final class zh0 extends org.telegram.ui.Components.vm0 {
         org.telegram.ui.ActionBar.c6 c6Var2;
         int i11;
         ai0 ai0Var = this.d;
-        Context context = this.f44846c;
+        Context context = this.f44851c;
         switch (i10) {
             case 1:
                 ba0Var = new org.telegram.ui.Cells.m4(context, 23);
                 break;
             case 2:
-                org.telegram.ui.Components.ba0 ba0Var2 = new org.telegram.ui.Components.ba0(this.f44846c, ai0Var, null, true, ai0Var.h);
+                org.telegram.ui.Components.ba0 ba0Var2 = new org.telegram.ui.Components.ba0(this.f44851c, ai0Var, null, true, ai0Var.h);
                 ba0Var2.setPermanent(true);
                 ba0Var2.setDelegate(new yh0(this, ba0Var2));
                 ba0Var = ba0Var2;
@@ -133,7 +133,7 @@ public final class zh0 extends org.telegram.ui.Components.vm0 {
                 org.telegram.ui.Components.m10 m10Var = new org.telegram.ui.Components.m10(context, null);
                 m10Var.setIsSingleCell(true);
                 m10Var.setViewType(9);
-                m10Var.f28355w = false;
+                m10Var.f28350w = false;
                 ba0Var = m10Var;
                 break;
             case 7:
@@ -142,14 +142,14 @@ public final class zh0 extends org.telegram.ui.Components.vm0 {
             case 8:
                 org.telegram.ui.Cells.ca caVar = new org.telegram.ui.Cells.ca(context);
                 caVar.b(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
-                caVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20780p7, false));
+                caVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20781p7, false));
                 ba0Var = caVar;
                 break;
             case 9:
                 ba0Var = new org.telegram.ui.Cells.e9(context);
                 break;
             case 10:
-                ba0Var = new org.telegram.ui.Cells.b5(8, 6, this.f44846c, null, false);
+                ba0Var = new org.telegram.ui.Cells.b5(8, 6, this.f44851c, null, false);
                 break;
             case 11:
                 c6Var2 = ((org.telegram.ui.ActionBar.m2) ai0Var).resourceProvider;
@@ -159,7 +159,7 @@ public final class zh0 extends org.telegram.ui.Components.vm0 {
                 FrameLayout frameLayout = new FrameLayout(context);
                 frameLayout.addView(new sh0(context), w7.w5.a(-2.0f, 0.0f, 10.0f, 0.0f, 0.0f, -2, 49));
                 TextView textView = new TextView(context);
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20618g9, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20619g9, false));
                 textView.setTextSize(1, 14.0f);
                 textView.setGravity(17);
                 if (ai0Var.h) {

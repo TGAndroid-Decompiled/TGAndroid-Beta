@@ -6,21 +6,21 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hv0 implements org.telegram.ui.st {
-    public final TLRPC.TL_messageMediaPoll f26914a;
-    public final TLRPC.PollAnswer f26915b;
-    public final org.telegram.ui.Cells.u1 f26916c;
+    public final TLRPC.TL_messageMediaPoll f26899a;
+    public final TLRPC.PollAnswer f26900b;
+    public final org.telegram.ui.Cells.u1 f26901c;
     public final mv0 d;
 
     public hv0(mv0 mv0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
         this.d = mv0Var;
-        this.f26914a = tL_messageMediaPoll;
-        this.f26915b = pollAnswer;
-        this.f26916c = u1Var;
+        this.f26899a = tL_messageMediaPoll;
+        this.f26900b = pollAnswer;
+        this.f26901c = u1Var;
     }
 
     @Override
     public final MessageObject A() {
-        return this.f26916c.getMessageObject();
+        return this.f26901c.getMessageObject();
     }
 
     @Override
@@ -56,21 +56,21 @@ public final class hv0 implements org.telegram.ui.st {
     @Override
     public final void K() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f26915b);
-        SendMessagesHelper.getInstance(this.d.f28666a).sendVote(this.f26916c.getMessageObject(), arrayList, null);
+        arrayList.add(this.f26900b);
+        SendMessagesHelper.getInstance(this.d.f28655a).sendVote(this.f26901c.getMessageObject(), arrayList, null);
     }
 
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         mv0 mv0Var = this.d;
-        ov0 ov0Var = mv0Var.f28668c;
-        if (inputStickerSet != null && ov0Var.f29311s.getContext() != null) {
+        ov0 ov0Var = mv0Var.f28657c;
+        if (inputStickerSet != null && ov0Var.f29314s.getContext() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f19822id = inputStickerSet.f19822id;
-            dz0 dz0Var = new dz0(ov0Var.f29311s.getContext(), ov0Var.f29311s.f26972v1, tL_inputStickerSetID, null, null, mv0Var.f28667b);
+            tL_inputStickerSetID.f19823id = inputStickerSet.f19823id;
+            dz0 dz0Var = new dz0(ov0Var.f29314s.getContext(), ov0Var.f29314s.f26957v1, tL_inputStickerSetID, null, null, mv0Var.f28656b);
             dz0Var.setCalcMandatoryInsets(true);
-            dz0Var.f25489i0 = z10;
+            dz0Var.f25494i0 = z10;
             dz0Var.show();
         }
     }
@@ -92,7 +92,7 @@ public final class hv0 implements org.telegram.ui.st {
 
     @Override
     public final long a() {
-        return this.d.f28668c.f29311s.f26947j1;
+        return this.d.f28657c.f29314s.f26932j1;
     }
 
     @Override
@@ -107,7 +107,7 @@ public final class hv0 implements org.telegram.ui.st {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f26914a;
+        return this.f26899a;
     }
 
     @Override
@@ -122,7 +122,7 @@ public final class hv0 implements org.telegram.ui.st {
 
     @Override
     public final TLRPC.PollAnswer h() {
-        return this.f26915b;
+        return this.f26900b;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class hv0 implements org.telegram.ui.st {
 
     @Override
     public final void s() {
-        SendMessagesHelper.getInstance(this.d.f28666a).sendVote(this.f26916c.getMessageObject(), null, null);
+        SendMessagesHelper.getInstance(this.d.f28655a).sendVote(this.f26901c.getMessageObject(), null, null);
     }
 
     @Override

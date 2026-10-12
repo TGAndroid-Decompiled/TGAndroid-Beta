@@ -23,34 +23,34 @@ import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.Intro;
 import org.telegram.messenger.R;
 public final class d80 extends DispatchQueue {
-    public static final int f36674y = 0;
-    public final SurfaceTexture f36675a;
-    public EGL10 f36676b;
-    public EGLDisplay f36677c;
+    public static final int f36676y = 0;
+    public final SurfaceTexture f36677a;
+    public EGL10 f36678b;
+    public EGLDisplay f36679c;
     public EGLConfig d;
-    public EGLContext f36678e;
-    public EGLSurface f36679f;
+    public EGLContext f36680e;
+    public EGLSurface f36681f;
     public boolean h;
-    public final int[] f36680n;
-    public float f36681r;
-    public long f36682s;
+    public final int[] f36682n;
+    public float f36683r;
+    public long f36684s;
     public final c80 v;
-    public final z5 f36683w;
-    public final f80 f36684x;
+    public final z5 f36685w;
+    public final f80 f36686x;
 
     public d80(f80 f80Var, SurfaceTexture surfaceTexture) {
         super("EGLThread");
-        this.f36684x = f80Var;
-        this.f36680n = new int[24];
+        this.f36686x = f80Var;
+        this.f36682n = new int[24];
         this.v = new c80(0);
-        this.f36683w = new z5(this, 7);
-        this.f36675a = surfaceTexture;
+        this.f36685w = new z5(this, 7);
+        this.f36677a = surfaceTexture;
     }
 
     public final void b(int i10, int i11, int i12, boolean z10) {
-        Drawable drawable = this.f36684x.getParentActivity().getResources().getDrawable(i10);
+        Drawable drawable = this.f36686x.getParentActivity().getResources().getDrawable(i10);
         if (drawable instanceof BitmapDrawable) {
-            int[] iArr = this.f36680n;
+            int[] iArr = this.f36682n;
             if (z10) {
                 GLES20.glDeleteTextures(1, iArr, i11);
                 GLES20.glGenTextures(1, iArr, i11);
@@ -76,7 +76,7 @@ public final class d80 extends DispatchQueue {
     }
 
     public final void c(GenericProvider genericProvider, int i10, boolean z10) {
-        int[] iArr = this.f36680n;
+        int[] iArr = this.f36682n;
         if (z10) {
             GLES20.glDeleteTextures(1, iArr, i10);
             GLES20.glGenTextures(1, iArr, i10);
@@ -92,75 +92,75 @@ public final class d80 extends DispatchQueue {
     }
 
     public final void finish() {
-        if (this.f36679f != null) {
-            EGL10 egl10 = this.f36676b;
-            EGLDisplay eGLDisplay = this.f36677c;
+        if (this.f36681f != null) {
+            EGL10 egl10 = this.f36678b;
+            EGLDisplay eGLDisplay = this.f36679c;
             EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
             egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-            this.f36676b.eglDestroySurface(this.f36677c, this.f36679f);
-            this.f36679f = null;
+            this.f36678b.eglDestroySurface(this.f36679c, this.f36681f);
+            this.f36681f = null;
         }
-        EGLContext eGLContext = this.f36678e;
+        EGLContext eGLContext = this.f36680e;
         if (eGLContext != null) {
-            this.f36676b.eglDestroyContext(this.f36677c, eGLContext);
-            this.f36678e = null;
+            this.f36678b.eglDestroyContext(this.f36679c, eGLContext);
+            this.f36680e = null;
         }
-        EGLDisplay eGLDisplay2 = this.f36677c;
+        EGLDisplay eGLDisplay2 = this.f36679c;
         if (eGLDisplay2 != null) {
-            this.f36676b.eglTerminate(eGLDisplay2);
-            this.f36677c = null;
+            this.f36678b.eglTerminate(eGLDisplay2);
+            this.f36679c = null;
         }
     }
 
     @Override
     public final void run() {
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.f36676b = egl10;
+        this.f36678b = egl10;
         EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        this.f36677c = eglGetDisplay;
+        this.f36679c = eglGetDisplay;
         boolean z10 = false;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.am.v(this.f36676b, new StringBuilder("eglGetDisplay failed "));
+                org.telegram.messenger.am.v(this.f36678b, new StringBuilder("eglGetDisplay failed "));
             }
             finish();
-        } else if (!this.f36676b.eglInitialize(eglGetDisplay, new int[2])) {
+        } else if (!this.f36678b.eglInitialize(eglGetDisplay, new int[2])) {
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.am.v(this.f36676b, new StringBuilder("eglInitialize failed "));
+                org.telegram.messenger.am.v(this.f36678b, new StringBuilder("eglInitialize failed "));
             }
             finish();
         } else {
             int[] iArr = new int[1];
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            f80 f80Var = this.f36684x;
-            if (!this.f36676b.eglChooseConfig(this.f36677c, EmuDetector.with(f80Var.getParentActivity()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344}, eGLConfigArr, 1, iArr)) {
+            f80 f80Var = this.f36686x;
+            if (!this.f36678b.eglChooseConfig(this.f36679c, EmuDetector.with(f80Var.getParentActivity()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344}, eGLConfigArr, 1, iArr)) {
                 if (BuildVars.LOGS_ENABLED) {
-                    org.telegram.messenger.am.v(this.f36676b, new StringBuilder("eglChooseConfig failed "));
+                    org.telegram.messenger.am.v(this.f36678b, new StringBuilder("eglChooseConfig failed "));
                 }
                 finish();
             } else if (iArr[0] > 0) {
                 EGLConfig eGLConfig = eGLConfigArr[0];
                 this.d = eGLConfig;
-                EGLContext eglCreateContext = this.f36676b.eglCreateContext(this.f36677c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
-                this.f36678e = eglCreateContext;
+                EGLContext eglCreateContext = this.f36678b.eglCreateContext(this.f36679c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+                this.f36680e = eglCreateContext;
                 if (eglCreateContext == null) {
                     if (BuildVars.LOGS_ENABLED) {
-                        org.telegram.messenger.am.v(this.f36676b, new StringBuilder("eglCreateContext failed "));
+                        org.telegram.messenger.am.v(this.f36678b, new StringBuilder("eglCreateContext failed "));
                     }
                     finish();
                 } else {
-                    SurfaceTexture surfaceTexture = this.f36675a;
+                    SurfaceTexture surfaceTexture = this.f36677a;
                     if (surfaceTexture != null) {
-                        EGLSurface eglCreateWindowSurface = this.f36676b.eglCreateWindowSurface(this.f36677c, this.d, surfaceTexture, null);
-                        this.f36679f = eglCreateWindowSurface;
+                        EGLSurface eglCreateWindowSurface = this.f36678b.eglCreateWindowSurface(this.f36679c, this.d, surfaceTexture, null);
+                        this.f36681f = eglCreateWindowSurface;
                         if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
-                            if (!this.f36676b.eglMakeCurrent(this.f36677c, eglCreateWindowSurface, eglCreateWindowSurface, this.f36678e)) {
+                            if (!this.f36678b.eglMakeCurrent(this.f36679c, eglCreateWindowSurface, eglCreateWindowSurface, this.f36680e)) {
                                 if (BuildVars.LOGS_ENABLED) {
-                                    org.telegram.messenger.am.v(this.f36676b, new StringBuilder("eglMakeCurrent failed "));
+                                    org.telegram.messenger.am.v(this.f36678b, new StringBuilder("eglMakeCurrent failed "));
                                 }
                                 finish();
                             } else {
-                                int[] iArr2 = this.f36680n;
+                                int[] iArr2 = this.f36682n;
                                 GLES20.glGenTextures(23, iArr2, 0);
                                 b(R.drawable.intro_fast_arrow_shadow, 0, 0, false);
                                 b(R.drawable.intro_fast_arrow, 1, 0, false);
@@ -179,7 +179,7 @@ public final class d80 extends DispatchQueue {
                                 b(R.drawable.intro_knot_up, 14, 0, false);
                                 b(R.drawable.intro_powerful_infinity_white, 15, 0, false);
                                 b(R.drawable.intro_powerful_infinity, 16, 0, false);
-                                b(R.drawable.intro_powerful_mask, 17, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false), false);
+                                b(R.drawable.intro_powerful_mask, 17, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false), false);
                                 b(R.drawable.intro_powerful_star, 18, 0, false);
                                 b(R.drawable.intro_private_door, 19, 0, false);
                                 b(R.drawable.intro_private_screw, 20, 0, false);
@@ -198,7 +198,7 @@ public final class d80 extends DispatchQueue {
                             }
                         } else {
                             if (BuildVars.LOGS_ENABLED) {
-                                org.telegram.messenger.am.v(this.f36676b, new StringBuilder("createWindowSurface failed "));
+                                org.telegram.messenger.am.v(this.f36678b, new StringBuilder("createWindowSurface failed "));
                             }
                             finish();
                         }

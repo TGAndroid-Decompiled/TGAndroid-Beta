@@ -20,7 +20,7 @@ public final class w41 extends org.telegram.ui.Components.db {
     public final LinearLayout X;
     public org.telegram.ui.Components.h71 Y;
 
-    public w41(Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.sj0 sj0Var) {
+    public w41(Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.gi0 gi0Var) {
         super(context, null, false, false, c6Var);
         int i10;
         fixNavigationBar();
@@ -62,9 +62,9 @@ public final class w41 extends org.telegram.ui.Components.db {
         } else {
             i10 = R.string.SearchAdsAbout2Subtitle;
         }
-        linearLayout.addView(new ai.x5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new dm0(this, isPremium, sj0Var, 7)), true)), w7.w5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new ai.x5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new dm0(this, isPremium, gi0Var, 7)), true)), w7.w5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d7, c6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20561d7, c6Var));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -100,10 +100,10 @@ public final class w41 extends org.telegram.ui.Components.db {
         this.Y.N(false);
     }
 
-    public static void Q(w41 w41Var, boolean z10, org.telegram.ui.Components.sj0 sj0Var) {
+    public static void Q(w41 w41Var, boolean z10, org.telegram.ui.Components.gi0 gi0Var) {
         if (z10) {
             MessagesController.getInstance(w41Var.currentAccount).disableAds(true);
-            sj0Var.run();
+            gi0Var.run();
         } else {
             org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
             if (U == null) {

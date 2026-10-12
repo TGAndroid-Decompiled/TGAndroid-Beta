@@ -2,37 +2,37 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class bm implements na1, f5, mm0 {
-    public final int f24682a;
-    public final ChatAttachAlertPhotoLayout f24683b;
+    public final int f24677a;
+    public final ChatAttachAlertPhotoLayout f24678b;
 
     public bm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f24682a = i10;
-        this.f24683b = chatAttachAlertPhotoLayout;
+        this.f24677a = i10;
+        this.f24678b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        int i12 = this.f24682a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24683b;
+        int i12 = this.f24677a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24678b;
         switch (i12) {
             case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f23798q1;
-                aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f23799q1;
+                aj ajVar = chatAttachAlertPhotoLayout.f30570b;
                 ajVar.a1();
-                ajVar.f24333c2.I1(7, false, z10, i10, 0, 0L, ajVar.u1(), false, 0L);
+                ajVar.f24329c2.I1(7, false, z10, i10, 0, 0L, ajVar.u1(), false, 0L);
                 return;
             default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f23798q1;
-                aj ajVar2 = chatAttachAlertPhotoLayout.f30574b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f23799q1;
+                aj ajVar2 = chatAttachAlertPhotoLayout.f30570b;
                 ajVar2.a1();
-                ajVar2.f24333c2.I1(4, true, z10, i10, 0, 0L, ajVar2.u1(), false, 0L);
+                ajVar2.f24329c2.I1(4, true, z10, i10, 0, 0L, ajVar2.u1(), false, 0L);
                 return;
         }
     }
 
     @Override
     public void a(float f7) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24683b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24678b;
         wm wmVar = chatAttachAlertPhotoLayout.P;
         if (wmVar != null) {
             chatAttachAlertPhotoLayout.B0 = f7;
@@ -43,12 +43,12 @@ public final class bm implements na1, f5, mm0 {
 
     @Override
     public boolean d(int i10, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f23798q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24683b;
-        aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+        boolean z10 = ChatAttachAlertPhotoLayout.f23799q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24678b;
+        aj ajVar = chatAttachAlertPhotoLayout.f30570b;
         if (!ajVar.W0) {
             if (i10 == 0 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
-                yi yiVar = ajVar.f24333c2;
+                yi yiVar = ajVar.f24329c2;
                 if (yiVar != null) {
                     yiVar.I1(0, false, true, 0, 0, 0L, ajVar.u1(), false, 0L);
                 }

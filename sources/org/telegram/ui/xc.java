@@ -16,7 +16,7 @@ public final class xc extends aq0 {
         yc ycVar = this.F;
         TextView textView = ycVar.d;
         if (textView != null) {
-            textView.setTextColor(ycVar.f44445b.h.getTextColor());
+            textView.setTextColor(ycVar.f44450b.h.getTextColor());
         }
     }
 }

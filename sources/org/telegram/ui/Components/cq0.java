@@ -4,24 +4,24 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 public final class cq0 extends s4.t0 {
-    public final kf f25003a;
+    public final kf f24988a;
 
     public cq0(kf kfVar) {
-        this.f25003a = kfVar;
+        this.f24988a = kfVar;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         boolean z10;
         float f7;
-        kf kfVar = this.f25003a;
-        View view = kfVar.f26492u;
-        if (kfVar.f26493w.I0() != 0) {
+        kf kfVar = this.f24988a;
+        View view = kfVar.f26494u;
+        if (kfVar.f26495w.I0() != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        Boolean bool = kfVar.f26494x;
+        Boolean bool = kfVar.f26496x;
         if (bool != null && z10 == bool.booleanValue()) {
             return;
         }
@@ -33,6 +33,6 @@ public final class cq0 extends s4.t0 {
             f7 = 0.0f;
         }
         animate.alpha(f7).setDuration(150L).start();
-        kfVar.f26494x = Boolean.valueOf(z10);
+        kfVar.f26496x = Boolean.valueOf(z10);
     }
 }

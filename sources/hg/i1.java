@@ -58,7 +58,7 @@ public final class i1 extends m2 {
         this.actionBar.setTitle(this.f11265a);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 15));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20503a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
         p71 p71Var = new p71(this, new bi.v(this, 28), new c5(this, 4), null);
         this.f11270n = p71Var;
         p71Var.p1();

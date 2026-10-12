@@ -24,20 +24,20 @@ public final class eu extends org.telegram.ui.Components.db {
     public final FrameLayout X;
     public final ci.d Y;
     public final ci.d Z;
-    public final ArrayList f37546a0;
-    public final HashSet f37547b0;
-    public boolean f37548c0;
-    public org.telegram.ui.Components.h71 f37549d0;
+    public final ArrayList f37551a0;
+    public final HashSet f37552b0;
+    public boolean f37553c0;
+    public org.telegram.ui.Components.h71 f37554d0;
 
     public eu(Activity activity, HashSet hashSet) {
         super(activity, null, false, false, new ai.d());
         ArrayList arrayList = new ArrayList();
-        this.f37546a0 = arrayList;
+        this.f37551a0 = arrayList;
         HashSet hashSet2 = new HashSet();
-        this.f37547b0 = hashSet2;
+        this.f37552b0 = hashSet2;
         arrayList.addAll(hashSet);
         hashSet2.addAll(hashSet);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20630h5));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20631h5));
         this.drawDoubleNavigationBar = false;
         FrameLayout frameLayout = new FrameLayout(activity);
         this.X = frameLayout;
@@ -49,23 +49,23 @@ public final class eu extends org.telegram.ui.Components.db {
         frameLayout.addView(imageView, w7.w5.a(24.0f, 0.0f, 14.0f, 14.0f, 0.0f, 24, 53));
         w7.y5.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final eu f36904b;
+            public final eu f36907b;
 
             {
-                this.f36904b = this;
+                this.f36907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f36904b.dismiss();
+                        this.f36907b.dismiss();
                         return;
                     case 1:
-                        this.f36904b.T(false);
+                        this.f36907b.T(false);
                         return;
                     default:
-                        this.f36904b.T(true);
+                        this.f36907b.T(true);
                         return;
                 }
             }
@@ -86,12 +86,12 @@ public final class eu extends org.telegram.ui.Components.db {
         a10.setGravity(17);
         a10.setMaxWidth(ci.d4.a(a10.getText(), a10.getPaint()));
         f7.addView(a10, w7.w5.t(-1, -2, 1, 2, 0, 2, 23));
-        org.telegram.ui.Components.h71 h71Var = this.f37549d0;
+        org.telegram.ui.Components.h71 h71Var = this.f37554d0;
         if (h71Var != null) {
             h71Var.N(false);
         }
         s4.j jVar = new s4.j();
-        jVar.f47929m = false;
+        jVar.f47937m = false;
         jVar.C = false;
         jVar.o(org.telegram.ui.Components.js.h);
         jVar.n(350L);
@@ -110,23 +110,23 @@ public final class eu extends org.telegram.ui.Components.db {
         dVar.g(spannableStringBuilder, false, true);
         f10.addView(dVar, w7.w5.p(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final eu f36904b;
+            public final eu f36907b;
 
             {
-                this.f36904b = this;
+                this.f36907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f36904b.dismiss();
+                        this.f36907b.dismiss();
                         return;
                     case 1:
-                        this.f36904b.T(false);
+                        this.f36907b.T(false);
                         return;
                     default:
-                        this.f36904b.T(true);
+                        this.f36907b.T(true);
                         return;
                 }
             }
@@ -140,23 +140,23 @@ public final class eu extends org.telegram.ui.Components.db {
         dVar2.g(spannableStringBuilder2, false, true);
         f10.addView(dVar2, w7.w5.p(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final eu f36904b;
+            public final eu f36907b;
 
             {
-                this.f36904b = this;
+                this.f36907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f36904b.dismiss();
+                        this.f36907b.dismiss();
                         return;
                     case 1:
-                        this.f36904b.T(false);
+                        this.f36907b.T(false);
                         return;
                     default:
-                        this.f36904b.T(true);
+                        this.f36907b.T(true);
                         return;
                 }
             }
@@ -181,29 +181,29 @@ public final class eu extends org.telegram.ui.Components.db {
                 i10++;
                 groupCall = ((TL_update.TL_updateGroupCall) obj).call;
             }
-            Utilities.stageQueue.postRunnable(new org.telegram.ui.Components.voip.y(4, euVar, updates));
+            Utilities.stageQueue.postRunnable(new org.telegram.ui.Components.voip.p(5, euVar, updates));
             if (groupCall != null && LaunchActivity.G1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f19819id = groupCall.f19812id;
+                tL_inputGroupCall.f19820id = groupCall.f19813id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 euVar.dismiss();
                 org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, euVar.currentAccount, tL_inputGroupCall, z10, groupCall, hashSet);
                 return;
             }
-            euVar.f37548c0 = false;
+            euVar.f37553c0 = false;
             dVar.setLoading(false);
         } else if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             MessagesController.getInstance(euVar.currentAccount).putUsers(groupcall.users, false);
             MessagesController.getInstance(euVar.currentAccount).putChats(groupcall.chats, false);
             if (LaunchActivity.G1 == null) {
-                euVar.f37548c0 = false;
+                euVar.f37553c0 = false;
                 dVar.setLoading(false);
                 return;
             }
             TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
             TLRPC.GroupCall groupCall2 = groupcall.call;
-            tL_inputGroupCall2.f19819id = groupCall2.f19812id;
+            tL_inputGroupCall2.f19820id = groupCall2.f19813id;
             tL_inputGroupCall2.access_hash = groupCall2.access_hash;
             euVar.dismiss();
             org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, euVar.currentAccount, tL_inputGroupCall2, z10, groupcall.call, hashSet);
@@ -215,7 +215,7 @@ public final class eu extends org.telegram.ui.Components.db {
     public static void S(eu euVar, ArrayList arrayList) {
         arrayList.add(org.telegram.ui.Components.u61.k(euVar.X));
         arrayList.add(org.telegram.ui.Components.u61.B(null));
-        ArrayList arrayList2 = euVar.f37546a0;
+        ArrayList arrayList2 = euVar.f37551a0;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             com.google.android.gms.internal.vision.e2.n(R.string.GroupCallCreateAddMembers, arrayList);
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
@@ -223,10 +223,10 @@ public final class eu extends org.telegram.ui.Components.db {
                 l4.getClass();
                 TLRPC.User user = MessagesController.getInstance(euVar.currentAccount).getUser(l4);
                 if (user != null) {
-                    int i11 = xg.k.f51384a;
+                    int i11 = xg.k.f51392a;
                     org.telegram.ui.Components.u61 J = org.telegram.ui.Components.u61.J(xg.k.class);
                     J.G = user;
-                    J.K(euVar.f37547b0.contains(l4));
+                    J.K(euVar.f37552b0.contains(l4));
                     arrayList.add(J);
                 } else {
                     return;
@@ -242,10 +242,10 @@ public final class eu extends org.telegram.ui.Components.db {
 
     public final void T(boolean z10) {
         ci.d dVar;
-        if (this.f37548c0) {
+        if (this.f37553c0) {
             return;
         }
-        this.f37548c0 = true;
+        this.f37553c0 = true;
         if (z10) {
             dVar = this.Z;
         } else {
@@ -253,7 +253,7 @@ public final class eu extends org.telegram.ui.Components.db {
         }
         dVar.setLoading(true);
         HashSet hashSet = new HashSet();
-        hashSet.addAll(this.f37547b0);
+        hashSet.addAll(this.f37552b0);
         TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
         createconferencecall.random_id = Utilities.random.nextInt();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new ci.s1(this, dVar, z10, hashSet));
@@ -262,7 +262,7 @@ public final class eu extends org.telegram.ui.Components.db {
     @Override
     public final org.telegram.ui.Components.vm0 x(org.telegram.ui.Components.wm0 wm0Var) {
         org.telegram.ui.Components.h71 h71Var = new org.telegram.ui.Components.h71(wm0Var, getContext(), this.currentAccount, 0, true, new e5(this, 10), this.resourcesProvider);
-        this.f37549d0 = h71Var;
+        this.f37554d0 = h71Var;
         return h71Var;
     }
 }

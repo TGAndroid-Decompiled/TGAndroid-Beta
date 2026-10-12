@@ -64,7 +64,7 @@ public final class u7 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f20141a.L0.run();
+                alertDialog$Builder.f20142a.L0.run();
                 kk0Var.run();
                 return;
             case 3:
@@ -74,12 +74,12 @@ public final class u7 implements View.OnClickListener {
                 int size = arrayList.size();
                 int i11 = this.f1801b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) i60Var.f38678a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) i60Var.f38681a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     i60Var.y1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    i50 i50Var = i60Var.f38703f3;
+                    i50 i50Var = i60Var.f38706f3;
                     if (i50Var != null) {
                         i50Var.dismiss();
                         return;
@@ -124,8 +124,8 @@ public final class u7 implements View.OnClickListener {
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.f1803e;
                 MessagesController messagesController = hg1Var.getMessagesController();
                 long j3 = -hg1Var.f38376a;
-                if (messagesController.isDialogMuted(j3, tL_forumTopic.f19854id)) {
-                    hg1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f19854id, false);
+                if (messagesController.isDialogMuted(j3, tL_forumTopic.f19855id)) {
+                    hg1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f19855id, false);
                     hg1Var.finishPreviewFragment();
                     if (zc.a(hg1Var)) {
                         zc.z(hg1Var, 4, 0, hg1Var.getResourceProvider()).j();

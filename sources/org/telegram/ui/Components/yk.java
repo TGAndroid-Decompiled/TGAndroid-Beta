@@ -10,12 +10,12 @@ import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.VideoEditedInfo;
 public final class yk implements View.OnTouchListener {
-    public final int f33111a;
-    public final Object f33112b;
+    public final int f33119a;
+    public final Object f33120b;
 
     public yk(Object obj, int i10) {
-        this.f33111a = i10;
-        this.f33112b = obj;
+        this.f33119a = i10;
+        this.f33120b = obj;
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class yk implements View.OnTouchListener {
         i2.f0 f0Var;
         float f10;
         n80 n80Var;
-        switch (this.f33111a) {
+        switch (this.f33119a) {
             case 0:
-                il ilVar = (il) this.f33112b;
+                il ilVar = (il) this.f33120b;
                 ilVar.getClass();
                 if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
                     ilVar.c0();
@@ -34,7 +34,7 @@ public final class yk implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.m1 m1Var = ((ps) this.f33112b).f29580a;
+                org.telegram.ui.ActionBar.m1 m1Var = ((ps) this.f33120b).f29559a;
                 if (motionEvent.getActionMasked() == 1 && m1Var != null && m1Var.isShowing()) {
                     Rect rect = AndroidUtilities.rectTmp2;
                     view.getHitRect(rect);
@@ -46,7 +46,7 @@ public final class yk implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                v60 v60Var = (v60) this.f33112b;
+                v60 v60Var = (v60) this.f33120b;
                 boolean z10 = false;
                 if (v60Var.P == null || v60Var.R == null) {
                     return false;
@@ -60,7 +60,7 @@ public final class yk implements View.OnTouchListener {
                     v60Var.B0 = false;
                     v60Var.f31443z0 = motionEvent.getPointerId(0);
                     v60Var.A0 = -1;
-                    int i10 = v60Var.R.f46809a;
+                    int i10 = v60Var.R.f46817a;
                     if (i10 == 5) {
                         ImageView imageView = v60Var.I;
                         qi.p0 p0Var = v60Var.P;
@@ -91,7 +91,7 @@ public final class yk implements View.OnTouchListener {
                 } else {
                     if (motionEvent.getActionMasked() == 5 && motionEvent.getPointerCount() == 2) {
                         qi.o0 o0Var = v60Var.R;
-                        if (o0Var.f46809a == 3 && !o0Var.f46812e) {
+                        if (o0Var.f46817a == 3 && !o0Var.f46820e) {
                             v60Var.f31443z0 = motionEvent.getPointerId(0);
                             v60Var.A0 = motionEvent.getPointerId(1);
                             float hypot = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
@@ -112,7 +112,7 @@ public final class yk implements View.OnTouchListener {
                             if (h0Var == null) {
                                 f7 = 1.0f;
                             } else {
-                                f7 = h0Var.f46759c;
+                                f7 = h0Var.f46767c;
                             }
                             float max = (Math.max(0.0f, hypot2 - 1.0f) / 1.5f) + 1.0f;
                             if (f7 > 1.0f) {
@@ -134,8 +134,8 @@ public final class yk implements View.OnTouchListener {
                 }
                 return true;
             case 3:
-                s80 s80Var = (s80) ((WeakReference) this.f33112b).get();
-                if (s80Var != null && (n80Var = s80Var.f30462m) != null && n80Var.isShowing()) {
+                s80 s80Var = (s80) ((WeakReference) this.f33120b).get();
+                if (s80Var != null && (n80Var = s80Var.f30458m) != null && n80Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -144,40 +144,40 @@ public final class yk implements View.OnTouchListener {
                         s80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
                     } else if (actionMasked == 1) {
                         s80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                        View view2 = s80Var.f30468p0;
+                        View view2 = s80Var.f30464p0;
                         if (view2 != null) {
-                            s80Var.f30468p0 = null;
+                            s80Var.f30464p0 = null;
                             view2.setPressed(false);
                             view2.performClick();
                         }
                         view.setOnTouchListener(null);
-                        s80Var.f30466o0 = null;
+                        s80Var.f30462o0 = null;
                     } else if (actionMasked == 3) {
-                        View view3 = s80Var.f30468p0;
+                        View view3 = s80Var.f30464p0;
                         if (view3 != null) {
                             view3.setPressed(false);
-                            s80Var.f30468p0 = null;
+                            s80Var.f30464p0 = null;
                         }
                         view.setOnTouchListener(null);
-                        s80Var.f30466o0 = null;
+                        s80Var.f30462o0 = null;
                     }
                     return true;
                 }
                 view.setOnTouchListener(null);
                 return false;
             case 4:
-                tb0 tb0Var = (tb0) this.f33112b;
+                tb0 tb0Var = (tb0) this.f33120b;
                 tb0Var.getClass();
-                return org.telegram.ui.ut.q().s(motionEvent, tb0Var.getListView(), tb0Var.f30846w, null, tb0Var.f30838a);
+                return org.telegram.ui.ut.q().s(motionEvent, tb0Var.getListView(), tb0Var.f30849w, null, tb0Var.f30841a);
             case 5:
-                tc0 tc0Var = (tc0) this.f33112b;
+                tc0 tc0Var = (tc0) this.f33120b;
                 tc0Var.getClass();
                 if (motionEvent.getAction() == 1) {
-                    tc0Var.f30856c0.a(true);
+                    tc0Var.f30859c0.a(true);
                 }
                 return true;
             default:
-                return dz0.x((dz0) this.f33112b, motionEvent);
+                return dz0.x((dz0) this.f33120b, motionEvent);
         }
     }
 }

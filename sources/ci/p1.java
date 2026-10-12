@@ -67,8 +67,8 @@ public final class p1 implements View.OnTouchListener {
                 org.telegram.ui.Components.k8 k8Var = (org.telegram.ui.Components.k8) this.f5714b;
                 org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5715c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.l8 l8Var = k8Var.f27779n;
-                    l8Var.H.r(l8Var.f28084n.T(xVar));
+                    org.telegram.ui.Components.l8 l8Var = k8Var.f27782n;
+                    l8Var.H.r(l8Var.f28069n.T(xVar));
                     return false;
                 }
                 return false;
@@ -82,7 +82,7 @@ public final class p1 implements View.OnTouchListener {
                 bzVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     ez ezVar = bzVar.d;
-                    ezVar.f37568c.r(ezVar.f37567b.T(g4Var));
+                    ezVar.f37572c.r(ezVar.f37571b.T(g4Var));
                     return false;
                 }
                 return false;
@@ -90,8 +90,8 @@ public final class p1 implements View.OnTouchListener {
                 e20 e20Var = (e20) this.f5714b;
                 a20 a20Var = (a20) this.f5715c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = e20Var.f36960e;
-                    filtersSetupActivity.f33599c.r(filtersSetupActivity.f33597a.T(a20Var));
+                    FiltersSetupActivity filtersSetupActivity = e20Var.f36964e;
+                    filtersSetupActivity.f33601c.r(filtersSetupActivity.f33599a.T(a20Var));
                     return false;
                 }
                 return false;
@@ -139,7 +139,7 @@ public final class p1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             w10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new tw(23, pn0Var, editTextBoldCursor));
                         }
-                        pn0Var.showDialog(w10.f20141a);
+                        pn0Var.showDialog(w10.f20142a);
                     } catch (Exception e7) {
                         FileLog.e(e7);
                     }

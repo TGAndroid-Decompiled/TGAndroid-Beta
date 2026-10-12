@@ -3,22 +3,22 @@ package k6;
 import android.content.Context;
 import android.util.Log;
 public abstract class o {
-    public static final k f14718a;
-    public static final k f14719b;
-    public static Context f14720c;
+    public static final k f14719a;
+    public static final k f14720b;
+    public static Context f14721c;
 
     static {
         new k(l.K0("0\u0082\u0005È0\u0082\u0003° \u0003\u0002\u0001\u0002\u0002\u0014\u0010\u008ae\bsù/\u008eQí"), 0);
         new k(l.K0("0\u0082\u0006\u00040\u0082\u0003ì \u0003\u0002\u0001\u0002\u0002\u0014\u0003£²\u00ad×árÊkì"), 1);
-        f14718a = new k(l.K0("0\u0082\u0004C0\u0082\u0003+ \u0003\u0002\u0001\u0002\u0002\t\u0000Âà\u0087FdJ0\u008d0"), 2);
-        f14719b = new k(l.K0("0\u0082\u0004¨0\u0082\u0003\u0090 \u0003\u0002\u0001\u0002\u0002\t\u0000Õ\u0085¸l}ÓNõ0"), 3);
+        f14719a = new k(l.K0("0\u0082\u0004C0\u0082\u0003+ \u0003\u0002\u0001\u0002\u0002\t\u0000Âà\u0087FdJ0\u008d0"), 2);
+        f14720b = new k(l.K0("0\u0082\u0004¨0\u0082\u0003\u0090 \u0003\u0002\u0001\u0002\u0002\t\u0000Õ\u0085¸l}ÓNõ0"), 3);
     }
 
     public static synchronized void a(Context context) {
         synchronized (o.class) {
-            if (f14720c == null) {
+            if (f14721c == null) {
                 if (context != null) {
-                    f14720c = context.getApplicationContext();
+                    f14721c = context.getApplicationContext();
                     return;
                 }
                 return;

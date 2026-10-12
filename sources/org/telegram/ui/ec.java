@@ -3,20 +3,20 @@ package org.telegram.ui;
 import j$.util.Objects;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ec extends og.a {
-    public final String f37057c;
+    public final String f37061c;
     public final TL_stories.Boost d;
-    public TL_stories.PrepaidGiveaway f37058e;
-    public boolean f37059f;
-    public final int f37060g;
+    public TL_stories.PrepaidGiveaway f37062e;
+    public boolean f37063f;
+    public final int f37064g;
 
     public ec(int i10, String str) {
         super(i10, false);
-        this.f37057c = str;
+        this.f37061c = str;
     }
 
     public final boolean equals(Object obj) {
         TL_stories.PrepaidGiveaway prepaidGiveaway;
-        boolean z10 = this.f37059f;
+        boolean z10 = this.f37063f;
         if (this == obj) {
             return true;
         }
@@ -25,10 +25,10 @@ public final class ec extends og.a {
         }
         ec ecVar = (ec) obj;
         TL_stories.Boost boost = ecVar.d;
-        boolean z11 = ecVar.f37059f;
-        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.f37058e;
-        if (prepaidGiveaway2 != null && (prepaidGiveaway = ecVar.f37058e) != null) {
-            if (prepaidGiveaway2.f20040id == prepaidGiveaway.f20040id && z10 == z11) {
+        boolean z11 = ecVar.f37063f;
+        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.f37062e;
+        if (prepaidGiveaway2 != null && (prepaidGiveaway = ecVar.f37062e) != null) {
+            if (prepaidGiveaway2.f20041id == prepaidGiveaway.f20041id && z10 == z11) {
                 return true;
             }
             return false;
@@ -37,20 +37,20 @@ public final class ec extends og.a {
         if (boost2 == null || boost == null) {
             return true;
         }
-        if (boost2.f20036id.hashCode() == boost.f20036id.hashCode() && z10 == z11 && this.f37060g == ecVar.f37060g) {
+        if (boost2.f20037id.hashCode() == boost.f20037id.hashCode() && z10 == z11 && this.f37064g == ecVar.f37064g) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f37057c, this.d, this.f37058e, Boolean.valueOf(this.f37059f), Integer.valueOf(this.f37060g));
+        return Objects.hash(this.f37061c, this.d, this.f37062e, Boolean.valueOf(this.f37063f), Integer.valueOf(this.f37064g));
     }
 
     public ec(TL_stories.Boost boost, boolean z10, int i10) {
         super(5, true);
         this.d = boost;
-        this.f37059f = z10;
-        this.f37060g = i10;
+        this.f37063f = z10;
+        this.f37064g = i10;
     }
 }

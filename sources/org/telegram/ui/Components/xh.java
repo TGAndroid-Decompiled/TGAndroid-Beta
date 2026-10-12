@@ -15,19 +15,19 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class xh implements Runnable {
-    public final int f32759a;
+    public final int f32751a;
 
     public xh(int i10) {
-        this.f32759a = i10;
+        this.f32751a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f32759a) {
+        switch (this.f32751a) {
             case 0:
                 return;
             case 1:
-                int i10 = no.f28872m1;
+                int i10 = no.f28876m1;
                 return;
             case 2:
                 PhotoViewer.t1().G0(false, false);
@@ -57,26 +57,26 @@ public final class xh implements Runnable {
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj = new Object();
-                    obj.f21087a = true;
+                    obj.f21088a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 10:
-                int i12 = s11.f30362f;
+                int i12 = s11.f30358f;
                 return;
             case 11:
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                i21.f27020f = Boolean.TRUE;
+                i21.f27005f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 12:
                 SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                i21.f27020f = Boolean.TRUE;
+                i21.f27005f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 13:
-                int i13 = h41.f26633f0;
+                int i13 = h41.f26637f0;
                 return;
             case 14:
                 SavedMessagesController.openSavedMessages();
@@ -138,7 +138,7 @@ public final class xh implements Runnable {
     }
 
     public xh(Object obj, int i10) {
-        this.f32759a = i10;
+        this.f32751a = i10;
     }
 
     private final void a() {

@@ -9,17 +9,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.j71;
 public final class p8 implements gg.f0, org.telegram.ui.ActionBar.z1 {
-    public final u8 f35242a;
+    public final u8 f35244a;
 
     public p8(u8 u8Var) {
-        this.f35242a = u8Var;
+        this.f35244a = u8Var;
     }
 
     @Override
     public void a(a0.i iVar, ArrayList arrayList) {
-        u8 u8Var = this.f35242a;
-        ArrayList arrayList2 = u8Var.f35426r;
-        if (!u8Var.f35425n) {
+        u8 u8Var = this.f35244a;
+        ArrayList arrayList2 = u8Var.f35428r;
+        if (!u8Var.f35427n) {
             arrayList2.clear();
             int size = arrayList.size();
             int i10 = 0;
@@ -32,7 +32,7 @@ public final class p8 implements gg.f0, org.telegram.ui.ActionBar.z1 {
                     arrayList2.add((TLRPC.User) g0Var.f10607a);
                 }
             }
-            j71 j71Var = u8Var.f27773a;
+            j71 j71Var = u8Var.f27776a;
             if (j71Var != null) {
                 j71Var.W2.N(true);
             }
@@ -41,7 +41,7 @@ public final class p8 implements gg.f0, org.telegram.ui.ActionBar.z1 {
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        u8 u8Var = this.f35242a;
+        u8 u8Var = this.f35244a;
         u8Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

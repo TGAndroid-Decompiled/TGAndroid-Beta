@@ -36,33 +36,33 @@ public final class f5 extends FrameLayout implements SensorEventListener {
     public float U;
     public float V;
     public final org.telegram.ui.Cells.l7 W;
-    public final boolean f34746a;
-    public final ai.x7 f34747b;
-    public final e5 f34748c;
+    public final boolean f34748a;
+    public final ai.x7 f34749b;
+    public final e5 f34750c;
     public final d5 d;
-    public final FrameLayout f34749e;
-    public final m.r3 f34750f;
+    public final FrameLayout f34751e;
+    public final m.r3 f34752f;
     public final float[] h;
-    public final SensorManager f34751n;
-    public final Sensor f34752r;
-    public final boolean f34753s;
+    public final SensorManager f34753n;
+    public final Sensor f34754r;
+    public final boolean f34755s;
     public final float[] v;
-    public final float[] f34754w;
-    public final p5 f34755x;
-    public final int f34756y;
+    public final float[] f34756w;
+    public final p5 f34757x;
+    public final int f34758y;
 
     public f5(int i10, int i11, Context context, boolean z10) {
         super(context);
-        this.f34750f = new m.r3();
+        this.f34752f = new m.r3();
         this.h = new float[8];
         this.v = new float[9];
-        this.f34754w = new float[3];
-        this.f34755x = new Object();
+        this.f34756w = new float[3];
+        this.f34757x = new Object();
         this.E = -0.22f;
         this.F = -0.28f;
         this.U = 1.0f;
         this.W = new org.telegram.ui.Cells.l7(this, 28);
-        this.f34746a = z10;
+        this.f34748a = z10;
         boolean z11 = false;
         setClipChildren(false);
         setClipToPadding(false);
@@ -70,32 +70,32 @@ public final class f5 extends FrameLayout implements SensorEventListener {
         setCameraDistance(AndroidUtilities.dp(4800.0f));
         w7.y5.b(this, 0.02f, 1.2f);
         ai.x7 x7Var = new ai.x7(context, 9);
-        this.f34747b = x7Var;
+        this.f34749b = x7Var;
         addView(x7Var, w7.w5.e(-1, -1, 17));
         e5 e5Var = new e5(context);
-        this.f34748c = e5Var;
+        this.f34750c = e5Var;
         x7Var.addView(e5Var, w7.w5.e(-1, -1, 17));
         d5 d5Var = new d5(context, i10, i11);
         this.d = d5Var;
         x7Var.addView(d5Var, w7.w5.e(-1, -1, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f34749e = frameLayout;
+        this.f34751e = frameLayout;
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         frameLayout.setPivotX(0.0f);
         frameLayout.setPivotY(0.0f);
         x7Var.addView(frameLayout, w7.w5.e(336, 205, 51));
-        this.f34756y = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f34758y = ViewConfiguration.get(context).getScaledTouchSlop();
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f34751n = sensorManager;
+        this.f34753n = sensorManager;
         Sensor defaultSensor = sensorManager.getDefaultSensor(15);
         defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
         defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(4) : defaultSensor;
-        this.f34752r = defaultSensor;
+        this.f34754r = defaultSensor;
         if (defaultSensor != null && defaultSensor.getType() != 4) {
             z11 = true;
         }
-        this.f34753s = z11;
+        this.f34755s = z11;
     }
 
     public static float c(float f7, float f10, float f11) {
@@ -130,8 +130,8 @@ public final class f5 extends FrameLayout implements SensorEventListener {
         if (width > 0 && height > 0) {
             f11 = f7;
             f12 = f10;
-            this.f34750f.c(width, height, f11, f12, false, this.h);
-            ai.x7 x7Var = this.f34747b;
+            this.f34752f.c(width, height, f11, f12, false, this.h);
+            ai.x7 x7Var = this.f34749b;
             int width2 = x7Var.getWidth();
             int height2 = x7Var.getHeight();
             if (width2 != 0 && height2 != 0) {
@@ -153,10 +153,10 @@ public final class f5 extends FrameLayout implements SensorEventListener {
             f11 = f7;
             f12 = f10;
         }
-        e5 e5Var = this.f34748c;
-        Matrix matrix = e5Var.f34653b;
+        e5 e5Var = this.f34750c;
+        Matrix matrix = e5Var.f34655b;
         if (e5Var.d != null) {
-            matrix.setRotate(((2.0f * f12) - (1.25f * f11)) - 69.01f, e5Var.f34655e, e5Var.f34656f);
+            matrix.setRotate(((2.0f * f12) - (1.25f * f11)) - 69.01f, e5Var.f34657e, e5Var.f34658f);
             e5Var.d.setLocalMatrix(matrix);
             e5Var.invalidate();
         }
@@ -175,27 +175,27 @@ public final class f5 extends FrameLayout implements SensorEventListener {
     }
 
     public FrameLayout getFrontFace() {
-        return this.f34749e;
+        return this.f34751e;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f34746a) {
+        if (this.f34748a) {
             return;
         }
         this.Q = 0L;
-        p5 p5Var = this.f34755x;
-        p5Var.f35221a = false;
+        p5 p5Var = this.f34757x;
+        p5Var.f35223a = false;
         p5Var.h = 0L;
-        p5Var.f35227i = 0L;
-        p5Var.f35228j = 0L;
+        p5Var.f35229i = 0L;
+        p5Var.f35230j = 0L;
         this.G = 0.0f;
         this.H = 0.0f;
         this.I = 0.0f;
-        Sensor sensor = this.f34752r;
+        Sensor sensor = this.f34754r;
         if (sensor != null) {
-            this.f34751n.registerListener(this, sensor, 1);
+            this.f34753n.registerListener(this, sensor, 1);
         }
         org.telegram.ui.Cells.l7 l7Var = this.W;
         removeCallbacks(l7Var);
@@ -204,7 +204,7 @@ public final class f5 extends FrameLayout implements SensorEventListener {
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f34751n.unregisterListener(this);
+        this.f34753n.unregisterListener(this);
         removeCallbacks(this.W);
         ValueAnimator valueAnimator = this.R;
         if (valueAnimator != null) {
@@ -223,11 +223,11 @@ public final class f5 extends FrameLayout implements SensorEventListener {
 
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
-        if (this.f34753s) {
+        if (this.f34755s) {
             float[] fArr = sensorEvent.values;
             float[] fArr2 = this.v;
             SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-            float[] fArr3 = this.f34754w;
+            float[] fArr3 = this.f34756w;
             SensorManager.getOrientation(fArr2, fArr3);
             this.E = c((float) Math.sin(fArr3[2]), -0.82f, 0.82f);
             this.F = c(-((float) Math.sin(fArr3[1])), -0.82f, 0.82f);
@@ -243,14 +243,14 @@ public final class f5 extends FrameLayout implements SensorEventListener {
             this.Q = sensorEvent.timestamp;
         }
         long j10 = sensorEvent.timestamp;
-        this.f34755x.a(((-this.F) / 0.82f) * 15.0f, (this.E / 0.82f) * 15.0f, j10);
+        this.f34757x.a(((-this.F) / 0.82f) * 15.0f, (this.E / 0.82f) * 15.0f, j10);
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         float dp = i10 / AndroidUtilities.dp(336.0f);
-        FrameLayout frameLayout = this.f34749e;
+        FrameLayout frameLayout = this.f34751e;
         frameLayout.setScaleX(dp);
         frameLayout.setScaleY(i11 / AndroidUtilities.dp(205.0f));
         b(this.S, this.V);
@@ -258,7 +258,7 @@ public final class f5 extends FrameLayout implements SensorEventListener {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f34746a) {
+        if (this.f34748a) {
             return false;
         }
         int actionMasked = motionEvent.getActionMasked();
@@ -275,7 +275,7 @@ public final class f5 extends FrameLayout implements SensorEventListener {
                     }
                 } else {
                     float abs = Math.abs(motionEvent.getX() - this.L);
-                    float f7 = this.f34756y;
+                    float f7 = this.f34758y;
                     if (abs > f7 || Math.abs(motionEvent.getY() - this.M) > f7) {
                         this.P = true;
                         setPressed(false);
@@ -334,9 +334,9 @@ public final class f5 extends FrameLayout implements SensorEventListener {
     public void setCardIcon(int i10) {
         d5 d5Var = this.d;
         Drawable drawable = d5Var.getContext().getDrawable(i10);
-        d5Var.f34629x = drawable;
+        d5Var.f34631x = drawable;
         if (drawable != null) {
-            d5Var.f34629x = drawable.mutate();
+            d5Var.f34631x = drawable.mutate();
         }
         d5Var.invalidate();
     }

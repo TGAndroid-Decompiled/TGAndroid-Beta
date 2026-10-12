@@ -19,10 +19,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public final class c80 implements GenericProvider, FlagSecureReason.FlagSecureCondition, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.ud0, Utilities.Callback2Return, org.telegram.ui.Components.bx0, g2.g, pg.i0 {
-    public final int f36366a;
+    public final int f36368a;
 
     public c80(int i10) {
-        this.f36366a = i10;
+        this.f36368a = i10;
     }
 
     public static AudioRecordingConfiguration b(Object obj) {
@@ -35,7 +35,7 @@ public final class c80 implements GenericProvider, FlagSecureReason.FlagSecureCo
 
     @Override
     public Typeface a() {
-        switch (this.f36366a) {
+        switch (this.f36368a) {
             case 27:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 28:
@@ -72,7 +72,7 @@ public final class c80 implements GenericProvider, FlagSecureReason.FlagSecureCo
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f36366a) {
+        switch (this.f36368a) {
             case 4:
                 a2Var.dismiss();
                 return;
@@ -125,12 +125,12 @@ public final class c80 implements GenericProvider, FlagSecureReason.FlagSecureCo
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f36366a) {
+        switch (this.f36368a) {
             case 0:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);

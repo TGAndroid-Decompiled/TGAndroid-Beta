@@ -53,20 +53,20 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     public float S;
     public int T;
     public l0 U;
-    public boolean f34964a;
-    public float f34965b;
-    public final Matrix f34966c;
+    public boolean f34966a;
+    public float f34967b;
+    public final Matrix f34968c;
     public final Matrix d;
-    public final Matrix f34967e;
-    public final RectF f34968f;
+    public final Matrix f34969e;
+    public final RectF f34970f;
     public boolean h;
-    public boolean f34969n;
-    public final boolean f34970r;
-    public float f34971s;
+    public boolean f34971n;
+    public final boolean f34972r;
+    public float f34973s;
     public float v;
-    public final Matrix f34972w;
-    public final Matrix f34973x;
-    public final Matrix f34974y;
+    public final Matrix f34974w;
+    public final Matrix f34975x;
+    public final Matrix f34976y;
 
     public k5(Context context, boolean z10) {
         this(R.drawable.wallet_card_qr, 45, context, z10);
@@ -123,7 +123,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public final void a() {
-        boolean z10 = this.f34969n;
+        boolean z10 = this.f34971n;
         int i10 = this.Q;
         if (z10) {
             f5 f5Var = new f5(this.P, i10, getContext(), false);
@@ -134,7 +134,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
             this.E = s5Var;
             this.F = s5Var.getFrontFace();
         }
-        setAdditionalTilt(this.f34971s);
+        setAdditionalTilt(this.f34973s);
         setUseGyroscope(this.v);
         FrameLayout frameLayout = this.E;
         if (frameLayout instanceof s5) {
@@ -177,7 +177,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public final void g(l0 l0Var) {
         if (l0Var != null) {
-            int i10 = l0Var.f34994a;
+            int i10 = l0Var.f34996a;
             setCardHolder(UserObject.getUserName(UserConfig.getInstance(i10).getCurrentUser()).toUpperCase());
             if (l0Var.r() != null) {
                 setCardNumber(b(l0Var.r().toUpperCase()));
@@ -285,7 +285,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setAdditionalTilt(float f7) {
-        this.f34971s = f7;
+        this.f34973s = f7;
         FrameLayout frameLayout = this.E;
         if (frameLayout instanceof f5) {
             ((f5) frameLayout).setAdditionalTilt(f7);
@@ -347,7 +347,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setDiamondOnCard(boolean z10) {
-        this.f34964a = z10;
+        this.f34966a = z10;
         if (!z10) {
             FrameLayout frameLayout = this.E;
             if (frameLayout instanceof s5) {
@@ -377,8 +377,8 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setUse2D(boolean z10) {
-        boolean z11 = z10 | this.f34970r;
-        if (this.f34969n != z11) {
+        boolean z11 = z10 | this.f34972r;
+        if (this.f34971n != z11) {
             int childCount = this.F.getChildCount();
             View[] viewArr = new View[childCount];
             ViewGroup.LayoutParams[] layoutParamsArr = new ViewGroup.LayoutParams[childCount];
@@ -389,7 +389,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
             }
             this.F.removeAllViews();
             removeView(this.E);
-            this.f34969n = z11;
+            this.f34971n = z11;
             a();
             for (int i11 = 0; i11 < childCount; i11++) {
                 this.F.addView(viewArr[i11], layoutParamsArr[i11]);
@@ -409,20 +409,20 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public k5(int i10, int i11, Context context, boolean z10) {
         super(context);
-        this.f34965b = 1.0f;
-        this.f34966c = new Matrix();
+        this.f34967b = 1.0f;
+        this.f34968c = new Matrix();
         this.d = new Matrix();
-        this.f34967e = new Matrix();
-        this.f34968f = new RectF();
+        this.f34969e = new Matrix();
+        this.f34970f = new RectF();
         this.v = 1.0f;
-        this.f34972w = new Matrix();
-        this.f34973x = new Matrix();
-        this.f34974y = new Matrix();
+        this.f34974w = new Matrix();
+        this.f34975x = new Matrix();
+        this.f34976y = new Matrix();
         this.T = UserConfig.selectedAccount;
         PowerManager powerManager = (PowerManager) context.getSystemService("power");
         boolean z11 = powerManager != null && powerManager.isPowerSaveMode();
-        this.f34970r = z11;
-        this.f34969n = z10 || z11;
+        this.f34972r = z11;
+        this.f34971n = z10 || z11;
         this.P = i10;
         this.Q = i11;
         setClipChildren(false);
@@ -461,7 +461,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
         this.L = i5Var;
         i5Var.getDrawable().M = AndroidUtilities.dp(4096.0f);
         js jsVar = js.h;
-        i5Var.f30055c.m(0.35f, 320L, 3.5f, jsVar);
+        i5Var.f30056c.m(0.35f, 320L, 3.5f, jsVar);
         i5Var.setScaleProperty(0.6f);
         i5Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         i5Var.setTextSize(AndroidUtilities.dp(24.0f));
@@ -470,7 +470,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
         linearLayout.addView(i5Var, w7.w5.n(-1, 28));
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(context, false, true, true, true, true);
         this.M = r6Var;
-        r6Var.f30055c.m(0.35f, 320L, 3.5f, jsVar);
+        r6Var.f30056c.m(0.35f, 320L, 3.5f, jsVar);
         r6Var.setScaleProperty(0.6f);
         r6Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         r6Var.setTextSize(AndroidUtilities.dp(14.0f));

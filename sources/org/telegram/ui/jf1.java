@@ -58,7 +58,7 @@ public final class jf1 extends s4.d0 {
             return;
         }
         ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f48058a = i10;
+        oVar.f48066a = i10;
         w0(oVar);
     }
 }

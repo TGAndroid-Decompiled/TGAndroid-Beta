@@ -12,15 +12,15 @@ import org.telegram.ui.Components.bx0;
 import org.telegram.ui.Components.jm0;
 import v7.j8;
 public final class r0 implements e2.h, b1, a1, n2.l, d9.e, z1, bx0, Utilities.Callback2Return, hh.h, jm0 {
-    public final int f15969a;
+    public final int f15970a;
 
     public r0(int i10) {
-        this.f15969a = i10;
+        this.f15970a = i10;
     }
 
     @Override
     public void a(g1 g1Var, r rVar, List list) {
-        switch (this.f15969a) {
+        switch (this.f15970a) {
             case 3:
                 g1Var.v0(list);
                 return;
@@ -32,7 +32,7 @@ public final class r0 implements e2.h, b1, a1, n2.l, d9.e, z1, bx0, Utilities.Ca
 
     @Override
     public void accept(Object obj) {
-        switch (this.f15969a) {
+        switch (this.f15970a) {
             case 0:
                 ((g1) obj).F0();
                 return;
@@ -70,12 +70,12 @@ public final class r0 implements e2.h, b1, a1, n2.l, d9.e, z1, bx0, Utilities.Ca
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return e9.i0.v(e9.q.w(qVar.Y.f48880b, new s0.b(19)));
+        return e9.i0.v(e9.q.w(qVar.Y.f48888b, new s0.b(19)));
     }
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f15969a) {
+        switch (this.f15970a) {
             case 22:
                 a2Var.dismiss();
                 return;
@@ -103,9 +103,9 @@ public final class r0 implements e2.h, b1, a1, n2.l, d9.e, z1, bx0, Utilities.Ca
 
     @Override
     public Object h(c0 c0Var, r rVar, int i10) {
-        switch (this.f15969a) {
+        switch (this.f15970a) {
             case 2:
-                na.d dVar = c0Var.f15734e;
+                na.d dVar = c0Var.f15735e;
                 c0Var.s(rVar);
                 dVar.getClass();
                 return j8.b(new m1(-6));
@@ -122,7 +122,7 @@ public final class r0 implements e2.h, b1, a1, n2.l, d9.e, z1, bx0, Utilities.Ca
                 c0Var.getClass();
                 throw new ClassCastException();
             default:
-                na.d dVar2 = c0Var.f15734e;
+                na.d dVar2 = c0Var.f15735e;
                 c0Var.s(rVar);
                 dVar2.getClass();
                 return j8.b(new m1(-6));
@@ -144,15 +144,15 @@ public final class r0 implements e2.h, b1, a1, n2.l, d9.e, z1, bx0, Utilities.Ca
     }
 
     public r0(Object obj, int i10) {
-        this.f15969a = i10;
+        this.f15970a = i10;
     }
 
     public r0(String str, int i10, int i11, n nVar) {
-        this.f15969a = 6;
+        this.f15970a = 6;
     }
 
     public r0(String str, int i10, Object obj) {
-        this.f15969a = i10;
+        this.f15970a = i10;
     }
 
     @Override

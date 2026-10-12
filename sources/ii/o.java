@@ -44,7 +44,7 @@ public final class o implements lk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f12588b.f30574b.f24342f0.startActivityForResult(intent, 21);
+            this.f12588b.f30570b.f24338f0.startActivityForResult(intent, 21);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

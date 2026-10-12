@@ -10,19 +10,19 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class a2 extends HorizontalScrollView implements org.telegram.ui.ActionBar.x5, e3 {
-    public final w70 f35665a;
-    public final FrameLayout f35666b;
-    public final ImageView f35667c;
+    public final w70 f35667a;
+    public final FrameLayout f35668b;
+    public final ImageView f35669c;
     public int d;
 
     public a2(Context context, w70 w70Var) {
         super(context);
-        this.f35665a = w70Var;
+        this.f35667a = w70Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f35666b = frameLayout;
+        this.f35668b = frameLayout;
         addView(frameLayout, w7.w5.d(-2.0f, -2));
         ImageView imageView = new ImageView(context);
-        this.f35667c = imageView;
+        this.f35669c = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, w7.w5.d(-2.0f, -2));
         e();
@@ -30,7 +30,7 @@ public final class a2 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     @Override
     public final void e() {
-        this.f35667c.setColorFilter(new PorterDuffColorFilter(this.f35665a.b(), PorterDuff.Mode.SRC_IN));
+        this.f35669c.setColorFilter(new PorterDuffColorFilter(this.f35667a.b(), PorterDuff.Mode.SRC_IN));
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class a2 extends HorizontalScrollView implements org.telegram.ui.Ac
             super.onLayout(z10, i10, i11, i12, i13);
             return;
         }
-        FrameLayout frameLayout = this.f35666b;
+        FrameLayout frameLayout = this.f35668b;
         frameLayout.layout((i14 - i15) / 2, 0, (i14 + i15) / 2, frameLayout.getMeasuredHeight());
     }
 
@@ -81,9 +81,9 @@ public final class a2 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     public void setBlock(TL_iv.pageBlockMath pageblockmath) {
         ii.s a2;
-        ImageView imageView = this.f35667c;
+        ImageView imageView = this.f35669c;
         imageView.setImageBitmap(null);
-        w70 w70Var = this.f35665a;
+        w70 w70Var = this.f35667a;
         w70Var.getClass();
         float f7 = 18;
         int dp = AndroidUtilities.dp(f7);

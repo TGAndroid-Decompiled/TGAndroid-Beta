@@ -31,7 +31,7 @@ public final class l extends ld.j implements p {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        kd.a aVar = kd.a.f14780a;
+        kd.a aVar = kd.a.f14781a;
         a8.b(obj);
         n1.b bVar = (n1.b) this.f3833a;
         n1.d key = this.f3835c;
@@ -43,8 +43,8 @@ public final class l extends ld.j implements p {
         } else {
             bVar.getClass();
             kotlin.jvm.internal.i.e(key, "key");
-            if (!bVar.f16215b.get()) {
-                bVar.f16214a.remove(key);
+            if (!bVar.f16216b.get()) {
+                bVar.f16215a.remove(key);
             } else {
                 throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             }

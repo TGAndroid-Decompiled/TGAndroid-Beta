@@ -1,15 +1,15 @@
 package qi;
 public final class i0 {
-    public static final i0 f46762a;
-    public static final i0 f46763b;
-    public static final i0[] f46764c;
+    public static final i0 f46770a;
+    public static final i0 f46771b;
+    public static final i0[] f46772c;
 
     static {
         ?? r02 = new Enum("FRONT", 0);
-        f46762a = r02;
+        f46770a = r02;
         ?? r12 = new Enum("BACK", 1);
-        f46763b = r12;
-        f46764c = new i0[]{r02, r12};
+        f46771b = r12;
+        f46772c = new i0[]{r02, r12};
     }
 
     public static i0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class i0 {
     }
 
     public static i0[] values() {
-        return (i0[]) f46764c.clone();
+        return (i0[]) f46772c.clone();
     }
 }

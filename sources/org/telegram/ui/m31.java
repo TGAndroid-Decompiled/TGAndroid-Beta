@@ -11,23 +11,23 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class m31 extends FrameLayout {
-    public final org.telegram.ui.Components.q5 f39903a;
-    public final n31 f39904b;
+    public final org.telegram.ui.Components.q5 f39906a;
+    public final n31 f39907b;
 
     public m31(n31 n31Var, Context context) {
         super(context);
-        this.f39904b = n31Var;
+        this.f39907b = n31Var;
         TextView g10 = org.telegram.messenger.v0.g(context, 1, 16.0f);
         g10.setTextColor(n31Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
         g10.setText(LocaleController.getString(R.string.DoubleTapSetting));
         addView(g10, w7.w5.a(-2.0f, 20.0f, 0.0f, 48.0f, 0.0f, -1, 23));
-        this.f39903a = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), this);
+        this.f39906a = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), this);
     }
 
     public final void a(boolean z10) {
-        n31 n31Var = this.f39904b;
+        n31 n31Var = this.f39907b;
         String doubleTapReaction = MediaDataController.getInstance(n31.Y(n31Var)).getDoubleTapReaction();
-        org.telegram.ui.Components.q5 q5Var = this.f39903a;
+        org.telegram.ui.Components.q5 q5Var = this.f39906a;
         if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
             try {
                 q5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
@@ -43,27 +43,27 @@ public final class m31 extends FrameLayout {
 
     public final void b() {
         int width = getWidth();
-        org.telegram.ui.Components.q5 q5Var = this.f39903a;
-        q5Var.setBounds((width - q5Var.f29694s) - AndroidUtilities.dp(21.0f), (getHeight() - q5Var.f29694s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + q5Var.f29694s) / 2);
+        org.telegram.ui.Components.q5 q5Var = this.f39906a;
+        q5Var.setBounds((width - q5Var.f29672s) - AndroidUtilities.dp(21.0f), (getHeight() - q5Var.f29672s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + q5Var.f29672s) / 2);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         b();
-        this.f39903a.draw(canvas);
+        this.f39906a.draw(canvas);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f39903a.a();
+        this.f39906a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f39903a.b();
+        this.f39906a.b();
     }
 
     @Override

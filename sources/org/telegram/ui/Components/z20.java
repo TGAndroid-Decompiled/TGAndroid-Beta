@@ -10,20 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 public class z20 extends ScrollView {
-    public final int f33258a;
-    public final a0.i f33259b;
-    public final ArrayList f33260c;
+    public final int f33264a;
+    public final a0.i f33265b;
+    public final ArrayList f33266c;
     public final y20 d;
-    public int f33261e;
-    public w20 f33262f;
+    public int f33267e;
+    public w20 f33268f;
     public boolean h;
-    public int f33263n;
+    public int f33269n;
 
     public z20(Context context, int i10) {
         super(context);
-        this.f33259b = new a0.i();
-        this.f33260c = new ArrayList();
-        this.f33258a = i10;
+        this.f33265b = new a0.i();
+        this.f33266c = new ArrayList();
+        this.f33264a = i10;
         y20 y20Var = new y20(this, context);
         this.d = y20Var;
         setVerticalScrollBarEnabled(false);
@@ -32,22 +32,22 @@ public class z20 extends ScrollView {
 
     public void a(g40 g40Var) {
         y20 y20Var = this.d;
-        ArrayList arrayList = y20Var.f32931c;
-        z20 z20Var = y20Var.f32935r;
-        z20Var.f33260c.add(g40Var);
+        ArrayList arrayList = y20Var.f32924c;
+        z20 z20Var = y20Var.f32928r;
+        z20Var.f33266c.add(g40Var);
         if (!g40Var.d) {
-            z20Var.f33259b.k(g40Var, g40Var.getUid());
+            z20Var.f33265b.k(g40Var, g40Var.getUid());
         }
-        AnimatorSet animatorSet = y20Var.f32929a;
+        AnimatorSet animatorSet = y20Var.f32922a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            y20Var.f32929a.setupEndValues();
-            y20Var.f32929a.cancel();
+            y20Var.f32922a.setupEndValues();
+            y20Var.f32922a.cancel();
         }
-        y20Var.f32930b = false;
+        y20Var.f32923b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        y20Var.f32929a = animatorSet2;
+        y20Var.f32922a = animatorSet2;
         animatorSet2.addListener(new x20(y20Var, 1));
-        y20Var.f32929a.setDuration(150L);
+        y20Var.f32922a.setDuration(150L);
         y20Var.d = g40Var;
         arrayList.clear();
         arrayList.add(ObjectAnimator.ofFloat(y20Var.d, View.SCALE_X, 0.01f, 1.0f));
@@ -58,26 +58,26 @@ public class z20 extends ScrollView {
 
     public void b() {
         y20 y20Var = this.d;
-        ArrayList arrayList = y20Var.f32931c;
-        z20 z20Var = y20Var.f32935r;
+        ArrayList arrayList = y20Var.f32924c;
+        z20 z20Var = y20Var.f32928r;
         z20Var.h = true;
-        ArrayList arrayList2 = z20Var.f33260c;
+        ArrayList arrayList2 = z20Var.f33266c;
         ArrayList arrayList3 = new ArrayList(arrayList2);
         arrayList2.clear();
-        ArrayList arrayList4 = y20Var.f32932e;
+        ArrayList arrayList4 = y20Var.f32925e;
         arrayList4.clear();
         arrayList4.addAll(arrayList3);
         for (int i10 = 0; i10 < arrayList3.size(); i10++) {
             ((g40) arrayList3.get(i10)).setOnClickListener(null);
         }
-        AnimatorSet animatorSet = y20Var.f32929a;
+        AnimatorSet animatorSet = y20Var.f32922a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            y20Var.f32929a.setupEndValues();
-            y20Var.f32929a.cancel();
+            y20Var.f32922a.setupEndValues();
+            y20Var.f32922a.cancel();
         }
-        y20Var.f32930b = false;
+        y20Var.f32923b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        y20Var.f32929a = animatorSet2;
+        y20Var.f32922a = animatorSet2;
         animatorSet2.addListener(new ai.z(26, y20Var, arrayList3));
         arrayList.clear();
         for (int i11 = 0; i11 < arrayList3.size(); i11++) {
@@ -91,25 +91,25 @@ public class z20 extends ScrollView {
 
     public void c(g40 g40Var) {
         y20 y20Var = this.d;
-        ArrayList arrayList = y20Var.f32932e;
-        ArrayList arrayList2 = y20Var.f32931c;
-        z20 z20Var = y20Var.f32935r;
+        ArrayList arrayList = y20Var.f32925e;
+        ArrayList arrayList2 = y20Var.f32924c;
+        z20 z20Var = y20Var.f32928r;
         z20Var.h = true;
         if (!g40Var.d) {
-            z20Var.f33259b.l(g40Var.getUid());
+            z20Var.f33265b.l(g40Var.getUid());
         }
-        z20Var.f33260c.remove(g40Var);
+        z20Var.f33266c.remove(g40Var);
         g40Var.setOnClickListener(null);
-        AnimatorSet animatorSet = y20Var.f32929a;
+        AnimatorSet animatorSet = y20Var.f32922a;
         if (animatorSet != null) {
             animatorSet.setupEndValues();
-            y20Var.f32929a.cancel();
+            y20Var.f32922a.cancel();
         }
-        y20Var.f32930b = false;
+        y20Var.f32923b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        y20Var.f32929a = animatorSet2;
+        y20Var.f32922a = animatorSet2;
         animatorSet2.addListener(new ai.z(25, y20Var, g40Var));
-        y20Var.f32929a.setDuration(150L);
+        y20Var.f32922a.setDuration(150L);
         arrayList.clear();
         arrayList.add(g40Var);
         arrayList2.clear();
@@ -122,7 +122,7 @@ public class z20 extends ScrollView {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        float f7 = this.f33261e;
+        float f7 = this.f33267e;
         float y3 = motionEvent.getY();
         if (action == 0 && y3 > f7) {
             return false;
@@ -141,12 +141,12 @@ public class z20 extends ScrollView {
             return false;
         }
         rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.v0.C(20.0f, this.f33263n, rect.top);
-        rect.bottom = org.telegram.messenger.v0.C(50.0f, this.f33263n, rect.bottom);
+        rect.top = org.telegram.messenger.v0.C(20.0f, this.f33269n, rect.top);
+        rect.bottom = org.telegram.messenger.v0.C(50.0f, this.f33269n, rect.bottom);
         return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 
     public void setDelegate(w20 w20Var) {
-        this.f33262f = w20Var;
+        this.f33268f = w20Var;
     }
 }

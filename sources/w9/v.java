@@ -7,23 +7,23 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Pattern;
 public final class v {
-    public static final Pattern f50522g = Pattern.compile("[^\\p{Alnum}]");
+    public static final Pattern f50530g = Pattern.compile("[^\\p{Alnum}]");
     public static final String h = Pattern.quote("/");
-    public final d9.f f50523a;
-    public final Context f50524b;
-    public final String f50525c;
+    public final d9.f f50531a;
+    public final Context f50532b;
+    public final String f50533c;
     public final qa.d d;
-    public final s f50526e;
-    public c f50527f;
+    public final s f50534e;
+    public c f50535f;
 
     public v(Context context, String str, qa.d dVar, s sVar) {
         if (context != null) {
             if (str != null) {
-                this.f50524b = context;
-                this.f50525c = str;
+                this.f50532b = context;
+                this.f50533c = str;
                 this.d = dVar;
-                this.f50526e = sVar;
-                this.f50523a = new Object();
+                this.f50534e = sVar;
+                this.f50531a = new Object();
                 return;
             }
             throw new IllegalArgumentException("appIdentifier must not be null");
@@ -37,7 +37,7 @@ public final class v {
         if (uuid == null) {
             lowerCase = null;
         } else {
-            lowerCase = f50522g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
+            lowerCase = f50530g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
         }
         String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -49,16 +49,16 @@ public final class v {
 
     public final synchronized c b() {
         String str;
-        c cVar = this.f50527f;
-        if (cVar != null && (cVar.f50449b != null || !this.f50526e.a())) {
-            return this.f50527f;
+        c cVar = this.f50535f;
+        if (cVar != null && (cVar.f50457b != null || !this.f50534e.a())) {
+            return this.f50535f;
         }
-        t9.b bVar = t9.b.f48476a;
+        t9.b bVar = t9.b.f48484a;
         bVar.c("Determining Crashlytics installation ID...");
-        SharedPreferences sharedPreferences = this.f50524b.getSharedPreferences("com.google.firebase.crashlytics", 0);
+        SharedPreferences sharedPreferences = this.f50532b.getSharedPreferences("com.google.firebase.crashlytics", 0);
         String string = sharedPreferences.getString("firebase.installation.id", null);
         bVar.c("Cached Firebase Installation ID: " + string);
-        if (this.f50526e.a()) {
+        if (this.f50534e.a()) {
             try {
                 str = (String) y.a(((qa.c) this.d).d());
             } catch (Exception e7) {
@@ -74,23 +74,23 @@ public final class v {
                 }
             }
             if (str.equals(string)) {
-                this.f50527f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
+                this.f50535f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
             } else {
-                this.f50527f = new c(a(str, sharedPreferences), str);
+                this.f50535f = new c(a(str, sharedPreferences), str);
             }
         } else if (string != null && string.startsWith("SYN_")) {
-            this.f50527f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
+            this.f50535f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
         } else {
-            this.f50527f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
+            this.f50535f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
         }
-        bVar.c("Install IDs: " + this.f50527f);
-        return this.f50527f;
+        bVar.c("Install IDs: " + this.f50535f);
+        return this.f50535f;
     }
 
     public final String c() {
         String str;
-        d9.f fVar = this.f50523a;
-        Context context = this.f50524b;
+        d9.f fVar = this.f50531a;
+        Context context = this.f50532b;
         synchronized (fVar) {
             try {
                 if (fVar.f8209a == null) {

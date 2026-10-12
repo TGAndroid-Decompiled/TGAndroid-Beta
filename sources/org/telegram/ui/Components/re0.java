@@ -5,20 +5,20 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class re0 extends AnimatorListenerAdapter {
-    public final int f30149a;
-    public final se0 f30150b;
+    public final int f30150a;
+    public final se0 f30151b;
 
     public re0(se0 se0Var, int i10) {
-        this.f30149a = i10;
-        this.f30150b = se0Var;
+        this.f30150a = i10;
+        this.f30151b = se0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         EditTextBoldCursor editTextBoldCursor;
-        switch (this.f30149a) {
+        switch (this.f30150a) {
             case 0:
-                xe0 xe0Var = this.f30150b.d;
+                xe0 xe0Var = this.f30151b.d;
                 if (!xe0Var.L) {
                     xe0Var.T = 1.0f;
                     xe0Var.g(1.0f);
@@ -26,16 +26,16 @@ public final class re0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                se0 se0Var = this.f30150b;
+                se0 se0Var = this.f30151b;
                 xe0 xe0Var2 = se0Var.d;
                 if (!xe0Var2.L) {
-                    Runnable runnable = se0Var.f30559c;
+                    Runnable runnable = se0Var.f30555c;
                     if (runnable != null) {
                         runnable.run();
                     }
-                    if (SharedConfig.passcodeType == 1 && xe0Var2.f32749x.getVisibility() != 0 && (editTextBoldCursor = xe0Var2.f32746r) != null) {
+                    if (SharedConfig.passcodeType == 1 && xe0Var2.f32741x.getVisibility() != 0 && (editTextBoldCursor = xe0Var2.f32738r) != null) {
                         editTextBoldCursor.requestFocus();
-                        AndroidUtilities.showKeyboard(xe0Var2.f32746r);
+                        AndroidUtilities.showKeyboard(xe0Var2.f32738r);
                         return;
                     }
                     return;

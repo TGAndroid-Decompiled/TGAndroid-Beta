@@ -201,10 +201,10 @@ public abstract class vr {
         h.setGravity(17);
         linearLayout.addView(h, w7.w5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, c6Var);
-        org.telegram.ui.Cells.h3 h3Var = j3Var.f22080b;
+        org.telegram.ui.Cells.h3 h3Var = j3Var.f22081b;
         h3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i14 = org.telegram.ui.ActionBar.h6.f20559d6;
+        int i14 = org.telegram.ui.ActionBar.h6.f20560d6;
         j3Var.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.w0(i14, c6Var)));
         j3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(j3Var, w7.w5.t(-1, -2, 55, 12, 0, 12, 0));
@@ -214,7 +214,7 @@ public abstract class vr {
         org.telegram.ui.Cells.j3 j3Var2 = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 32, c6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f22080b;
+        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f22081b;
         j3Var2.removeView(h3Var2);
         h3Var2.setHintColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.H6, c6Var));
         h3Var2.setPadding(0, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(15.0f));
@@ -258,7 +258,7 @@ public abstract class vr {
         i11.useBackgroundTopPadding = false;
         i11.smoothKeyboardAnimationEnabled = true;
         i11.doNotOverlayNavigationBar = true;
-        i11.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20503a7, c6Var));
+        i11.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20504a7, c6Var));
         i11.fixNavigationBar();
         boolean[] zArr = new boolean[1];
         boolean[] zArr2 = new boolean[1];
@@ -277,7 +277,7 @@ public abstract class vr {
         }
         org.telegram.tgnet.h hVar = new org.telegram.tgnet.h(e9Var2, replaceSingleLink, c6Var, 17);
         ai.d9 d9Var = new ai.d9(iArr3, runnableArr, iArr2, i10, 18);
-        md mdVar = new md(26, j3Var2, treeSet);
+        md mdVar = new md(27, j3Var2, treeSet);
         sr srVar = new sr(zArr2, iArr, d9Var, strArr, f7, j3Var2, treeSet, hVar, e9Var2, c6Var, iArr3, runnableArr, iArr2, i10, ndVar, i11);
         hVar.run();
         tr trVar = new tr(zArr2, iArr, j3Var2, treeSet, strArr, srVar, j3Var, iArr4, d9Var, f7, z10, i10, user, zArr, callback, i11, ndVar, c6Var, e9Var2, context);

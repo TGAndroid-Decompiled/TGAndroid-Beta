@@ -15,17 +15,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.kj1;
 public final class vp implements yi {
-    public final eq f32153a;
+    public final eq f32138a;
 
     public vp(eq eqVar) {
-        this.f32153a = eqVar;
+        this.f32138a = eqVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        eq eqVar = this.f32153a;
+        eq eqVar = this.f32138a;
         try {
-            HashMap<Object, Object> selectedPhotos = eqVar.Y.f24354j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = eqVar.Y.f24350j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -42,7 +42,7 @@ public final class vp implements yi {
                     spVar.V1 = eqVar.f25753f0;
                     spVar.F1 = false;
                     spVar.E1 = false;
-                    spVar.f44769n1 = 0.2f;
+                    spVar.f44774n1 = 0.2f;
                     spVar.c1(eqVar.v.a());
                     spVar.I1 = new up(this, 0);
                     eq.s(eqVar, spVar);
@@ -62,7 +62,7 @@ public final class vp implements yi {
     @Override
     public final void Z0(Object obj) {
         sp spVar = new sp(obj, null, true, 3);
-        eq eqVar = this.f32153a;
+        eq eqVar = this.f32138a;
         spVar.V1 = eqVar.f25753f0;
         spVar.c1(eqVar.v.a());
         spVar.I1 = new up(this, 1);

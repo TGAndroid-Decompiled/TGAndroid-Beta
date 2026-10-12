@@ -5,24 +5,24 @@ import java.util.Comparator;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class i7 implements Comparator {
-    public final int f17849a;
-    public final ArrayList f17850b;
+    public final int f17850a;
+    public final ArrayList f17851b;
 
     public i7(ArrayList arrayList, int i10) {
-        this.f17849a = i10;
-        this.f17850b = arrayList;
+        this.f17850a = i10;
+        this.f17851b = arrayList;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int lambda$getEmojiSuggestions$221;
         int lambda$reorderStickers$54;
-        switch (this.f17849a) {
+        switch (this.f17850a) {
             case 0:
-                lambda$getEmojiSuggestions$221 = MediaDataController.lambda$getEmojiSuggestions$221(this.f17850b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
+                lambda$getEmojiSuggestions$221 = MediaDataController.lambda$getEmojiSuggestions$221(this.f17851b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
                 return lambda$getEmojiSuggestions$221;
             default:
-                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f17850b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f17851b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
                 return lambda$reorderStickers$54;
         }
     }

@@ -21,15 +21,15 @@ public final class sz0 extends org.telegram.ui.Components.da0 {
         int m12;
         super.setTextColor(i10);
         ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f34166r;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f34168r;
         org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[2];
         if (h5Var != null) {
             h5Var.setTextColor(i10);
             h5VarArr[3].setTextColor(i10);
         }
-        l11 l11Var = profileActivity.f34062b6;
-        if (l11Var != null && l11Var.f39624c != (m12 = org.telegram.ui.ActionBar.h6.m1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
-            l11Var.f39624c = m12;
+        l11 l11Var = profileActivity.f34064b6;
+        if (l11Var != null && l11Var.f39618c != (m12 = org.telegram.ui.ActionBar.h6.m1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
+            l11Var.f39618c = m12;
             l11Var.invalidateSelf();
         }
     }
@@ -40,8 +40,8 @@ public final class sz0 extends org.telegram.ui.Components.da0 {
         ProfileActivity profileActivity = this.P0;
         profileActivity.Z3();
         profileActivity.getClass();
-        profileActivity.f34166r[2].setTranslationX(f7);
-        profileActivity.f34166r[3].setTranslationX(f7);
+        profileActivity.f34168r[2].setTranslationX(f7);
+        profileActivity.f34168r[3].setTranslationX(f7);
         org.telegram.ui.Components.rx0 rx0Var = profileActivity.T;
         if (rx0Var != null) {
             rx0Var.setTranslationX(f7 - profileActivity.Z3());
@@ -52,7 +52,7 @@ public final class sz0 extends org.telegram.ui.Components.da0 {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f34166r;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f34168r;
         if (profileActivity.T != null) {
             AndroidUtilities.dp(3.0f);
             profileActivity.T.getVisibilityFactor();

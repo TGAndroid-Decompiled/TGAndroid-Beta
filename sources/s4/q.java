@@ -9,18 +9,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import rg.x1;
 public final class q implements Runnable {
-    public static final ThreadLocal f48006e = new ThreadLocal();
-    public static final fb.j f48007f = new fb.j(5);
-    public ArrayList f48008a;
-    public long f48009b;
-    public long f48010c;
+    public static final ThreadLocal f48014e = new ThreadLocal();
+    public static final fb.j f48015f = new fb.j(5);
+    public ArrayList f48016a;
+    public long f48017b;
+    public long f48018c;
     public ArrayList d;
 
     public static d1 c(RecyclerView recyclerView, int i10, long j3) {
         int L = recyclerView.f3143e.L();
         for (int i11 = 0; i11 < L; i11++) {
             d1 U = RecyclerView.U(recyclerView.f3143e.K(i11));
-            if (U.f47891c == i10 && !U.h()) {
+            if (U.f47899c == i10 && !U.h()) {
                 return null;
             }
         }
@@ -31,7 +31,7 @@ public final class q implements Runnable {
                 d1 j10 = eVar.j(i10, j3);
                 if (j10 != null) {
                     if (j10.g() && !j10.h()) {
-                        eVar.g(j10.f47889a);
+                        eVar.g(j10.f47897a);
                     } else {
                         eVar.a(j10, false);
                     }
@@ -51,8 +51,8 @@ public final class q implements Runnable {
     }
 
     public final void a(RecyclerView recyclerView, int i10, int i11) {
-        if (recyclerView.G && this.f48009b == 0) {
-            this.f48009b = recyclerView.getNanoTime();
+        if (recyclerView.G && this.f48017b == 0) {
+            this.f48017b = recyclerView.getNanoTime();
             recyclerView.post(this);
         }
         a0.h hVar = recyclerView.f3162t0;
@@ -68,7 +68,7 @@ public final class q implements Runnable {
         p pVar2;
         boolean z10;
         ArrayList arrayList = this.d;
-        ArrayList arrayList2 = this.f48008a;
+        ArrayList arrayList2 = this.f48016a;
         int size = arrayList2.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
@@ -102,24 +102,24 @@ public final class q implements Runnable {
                     } else {
                         z10 = false;
                     }
-                    pVar2.f47990a = z10;
-                    pVar2.f47991b = abs;
-                    pVar2.f47992c = i15;
+                    pVar2.f47998a = z10;
+                    pVar2.f47999b = abs;
+                    pVar2.f48000c = i15;
                     pVar2.d = recyclerView4;
-                    pVar2.f47993e = iArr[i14];
+                    pVar2.f48001e = iArr[i14];
                     i12++;
                 }
             }
         }
-        Collections.sort(arrayList, f48007f);
+        Collections.sort(arrayList, f48015f);
         for (int i16 = 0; i16 < arrayList.size() && (recyclerView = (pVar = (p) arrayList.get(i16)).d) != null; i16++) {
-            if (pVar.f47990a) {
+            if (pVar.f47998a) {
                 j10 = Long.MAX_VALUE;
             } else {
                 j10 = j3;
             }
-            d1 c10 = c(recyclerView, pVar.f47993e, j10);
-            if (c10 != null && c10.f47890b != null && c10.g() && !c10.h() && (recyclerView2 = (RecyclerView) c10.f47890b.get()) != null) {
+            d1 c10 = c(recyclerView, pVar.f48001e, j10);
+            if (c10 != null && c10.f47898b != null && c10.g() && !c10.h() && (recyclerView2 = (RecyclerView) c10.f47898b.get()) != null) {
                 if (recyclerView2.Q && recyclerView2.f3143e.L() != 0) {
                     recyclerView2.o0();
                 }
@@ -127,44 +127,44 @@ public final class q implements Runnable {
                 hVar3.c(recyclerView2, true);
                 if (hVar3.d != 0) {
                     try {
-                        int i17 = n0.g.f16212a;
+                        int i17 = n0.g.f16213a;
                         Trace.beginSection("RV Nested Prefetch");
                         a1 a1Var = recyclerView2.f3163u0;
                         i0 i0Var = recyclerView2.f3165w;
                         a1Var.d = 1;
-                        a1Var.f47842e = i0Var.h();
-                        a1Var.f47844g = false;
+                        a1Var.f47850e = i0Var.h();
+                        a1Var.f47852g = false;
                         a1Var.h = false;
-                        a1Var.f47845i = false;
+                        a1Var.f47853i = false;
                         for (int i18 = 0; i18 < hVar3.d * 2; i18 += 2) {
                             c(recyclerView2, ((int[]) hVar3.f18c)[i18], j3);
                         }
                         Trace.endSection();
-                        pVar.f47990a = false;
-                        pVar.f47991b = 0;
-                        pVar.f47992c = 0;
+                        pVar.f47998a = false;
+                        pVar.f47999b = 0;
+                        pVar.f48000c = 0;
                         pVar.d = null;
-                        pVar.f47993e = 0;
+                        pVar.f48001e = 0;
                     } catch (Throwable th2) {
-                        int i19 = n0.g.f16212a;
+                        int i19 = n0.g.f16213a;
                         Trace.endSection();
                         throw th2;
                     }
                 }
             }
-            pVar.f47990a = false;
-            pVar.f47991b = 0;
-            pVar.f47992c = 0;
+            pVar.f47998a = false;
+            pVar.f47999b = 0;
+            pVar.f48000c = 0;
             pVar.d = null;
-            pVar.f47993e = 0;
+            pVar.f48001e = 0;
         }
     }
 
     @Override
     public final void run() {
-        ArrayList arrayList = this.f48008a;
+        ArrayList arrayList = this.f48016a;
         try {
-            int i10 = n0.g.f16212a;
+            int i10 = n0.g.f16213a;
             Trace.beginSection("RV Prefetch");
             if (!arrayList.isEmpty()) {
                 int size = arrayList.size();
@@ -176,14 +176,14 @@ public final class q implements Runnable {
                     }
                 }
                 if (j3 != 0) {
-                    b(TimeUnit.MILLISECONDS.toNanos(j3) + this.f48010c);
+                    b(TimeUnit.MILLISECONDS.toNanos(j3) + this.f48018c);
                 }
             }
-            this.f48009b = 0L;
+            this.f48017b = 0L;
             Trace.endSection();
         } catch (Throwable th2) {
-            this.f48009b = 0L;
-            int i12 = n0.g.f16212a;
+            this.f48017b = 0L;
+            int i12 = n0.g.f16213a;
             Trace.endSection();
             throw th2;
         }

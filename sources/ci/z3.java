@@ -62,10 +62,10 @@ public final class z3 extends org.telegram.ui.ActionBar.e3 {
         }
         this.f6416e = Boolean.valueOf(z10);
         if (z10) {
-            o1.k kVar = new o1.k(y3Var, o1.h.f16672n, height);
+            o1.k kVar = new o1.k(y3Var, o1.h.f16673n, height);
             this.d = kVar;
-            kVar.f16690u.a(0.75f);
-            this.d.f16690u.b(350.0f);
+            kVar.f16691u.a(0.75f);
+            this.d.f16691u.b(350.0f);
             this.d.a(new x3(this, height, w3Var));
             this.d.h();
             return;

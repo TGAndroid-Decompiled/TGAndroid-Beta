@@ -12,14 +12,14 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.js;
 import org.telegram.ui.Components.y9;
 public final class r2 extends FrameLayout {
-    public final xh.f1 f53343a;
-    public final FrameLayout f53344b;
-    public final y9 f53345c;
+    public final xh.f1 f53355a;
+    public final FrameLayout f53356b;
+    public final y9 f53357c;
     public final TextView d;
-    public final FrameLayout f53346e;
-    public final ImageView f53347f;
+    public final FrameLayout f53358e;
+    public final ImageView f53359f;
     public TL_stars.StarGift h;
-    public boolean f53348n;
+    public boolean f53360n;
 
     public r2(Context context) {
         super(context);
@@ -33,18 +33,18 @@ public final class r2 extends FrameLayout {
         imageView.setScaleY(1.25f);
         frameLayout.addView(imageView, w7.w5.e(24, 24, 17));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f53344b = frameLayout2;
+        this.f53356b = frameLayout2;
         xh.f1 f1Var = new xh.f1(frameLayout2, null, false);
-        this.f53343a = f1Var;
+        this.f53355a = f1Var;
         frameLayout2.setBackground(f1Var);
-        f1Var.f51457s = AndroidUtilities.dp(18.0f);
-        f1Var.f51459u = false;
+        f1Var.f51465s = AndroidUtilities.dp(18.0f);
+        f1Var.f51467u = false;
         frameLayout.addView(frameLayout2, w7.w5.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);
         frameLayout2.setScaleX(0.6f);
         frameLayout2.setScaleY(0.6f);
         y9 y9Var = new y9(context);
-        this.f53345c = y9Var;
+        this.f53357c = y9Var;
         frameLayout2.addView(y9Var, w7.w5.e(52, 52, 17));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -56,11 +56,11 @@ public final class r2 extends FrameLayout {
         textView.setAlpha(0.0f);
         addView(textView, w7.w5.a(15.33f, 2.0f, 0.0f, 2.0f, 0.0f, -2, 51));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f53346e = frameLayout3;
+        this.f53358e = frameLayout3;
         frameLayout3.setAlpha(0.0f);
         addView(frameLayout3, w7.w5.a(20.0f, 2.0f, 0.0f, 2.0f, 0.0f, 20, 53));
         ImageView imageView2 = new ImageView(context);
-        this.f53347f = imageView2;
+        this.f53359f = imageView2;
         imageView2.setImageResource(R.drawable.msg_close);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         frameLayout3.addView(imageView2, w7.w5.e(12, 12, 17));
@@ -72,16 +72,16 @@ public final class r2 extends FrameLayout {
         this.h = starGift;
         if (starGift != null) {
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) n5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-            xh.f1 f1Var = this.f53343a;
+            xh.f1 f1Var = this.f53355a;
             f1Var.d(stargiftattributebackdrop);
             f1Var.e((TL_stars.starGiftAttributePattern) n5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class));
-            p7.a1(this.f53345c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) n5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
+            p7.a1(this.f53357c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) n5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
             int b10 = org.telegram.ui.ActionBar.h6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.h6.m1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
             String H0 = ei.l.H0(starGift.craft_chance_permille);
             TextView textView = this.d;
             textView.setText(H0);
             textView.setBackground(new g3(AndroidUtilities.dp(10.0f), b10));
-            this.f53346e.setBackground(new g3(AndroidUtilities.dp(10.0f), b10));
+            this.f53358e.setBackground(new g3(AndroidUtilities.dp(10.0f), b10));
         }
         if (starGift != null) {
             z11 = true;
@@ -100,11 +100,11 @@ public final class r2 extends FrameLayout {
         float f13;
         int i11;
         float f14;
-        FrameLayout frameLayout = this.f53344b;
+        FrameLayout frameLayout = this.f53356b;
         frameLayout.animate().cancel();
         TextView textView = this.d;
         textView.animate().cancel();
-        FrameLayout frameLayout2 = this.f53346e;
+        FrameLayout frameLayout2 = this.f53358e;
         frameLayout2.animate().cancel();
         float f15 = 0.6f;
         float f16 = 0.0f;
@@ -174,10 +174,10 @@ public final class r2 extends FrameLayout {
         ViewPropertyAnimator alpha = scaleY.alpha(f10);
         js jsVar = js.h;
         alpha.setInterpolator(jsVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final r2 f53285b;
+            public final r2 f53297b;
 
             {
-                this.f53285b = this;
+                this.f53297b = this;
             }
 
             @Override
@@ -185,9 +185,9 @@ public final class r2 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z12 = z10;
-                        r2 r2Var = this.f53285b;
+                        r2 r2Var = this.f53297b;
                         if (!z12) {
-                            r2Var.f53346e.setVisibility(8);
+                            r2Var.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var.getClass();
@@ -195,9 +195,9 @@ public final class r2 extends FrameLayout {
                         }
                     case 1:
                         boolean z13 = z10;
-                        r2 r2Var2 = this.f53285b;
+                        r2 r2Var2 = this.f53297b;
                         if (!z13) {
-                            r2Var2.f53346e.setVisibility(8);
+                            r2Var2.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var2.getClass();
@@ -205,9 +205,9 @@ public final class r2 extends FrameLayout {
                         }
                     default:
                         boolean z14 = z10;
-                        r2 r2Var3 = this.f53285b;
+                        r2 r2Var3 = this.f53297b;
                         if (!z14) {
-                            r2Var3.f53346e.setVisibility(8);
+                            r2Var3.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var3.getClass();
@@ -224,10 +224,10 @@ public final class r2 extends FrameLayout {
             f11 = 0.0f;
         }
         animate2.alpha(f11).setInterpolator(jsVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final r2 f53285b;
+            public final r2 f53297b;
 
             {
-                this.f53285b = this;
+                this.f53297b = this;
             }
 
             @Override
@@ -235,9 +235,9 @@ public final class r2 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z12 = z10;
-                        r2 r2Var = this.f53285b;
+                        r2 r2Var = this.f53297b;
                         if (!z12) {
-                            r2Var.f53346e.setVisibility(8);
+                            r2Var.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var.getClass();
@@ -245,9 +245,9 @@ public final class r2 extends FrameLayout {
                         }
                     case 1:
                         boolean z13 = z10;
-                        r2 r2Var2 = this.f53285b;
+                        r2 r2Var2 = this.f53297b;
                         if (!z13) {
-                            r2Var2.f53346e.setVisibility(8);
+                            r2Var2.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var2.getClass();
@@ -255,9 +255,9 @@ public final class r2 extends FrameLayout {
                         }
                     default:
                         boolean z14 = z10;
-                        r2 r2Var3 = this.f53285b;
+                        r2 r2Var3 = this.f53297b;
                         if (!z14) {
-                            r2Var3.f53346e.setVisibility(8);
+                            r2Var3.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var3.getClass();
@@ -272,10 +272,10 @@ public final class r2 extends FrameLayout {
             f16 = 1.0f;
         }
         animate3.alpha(f16).setInterpolator(jsVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final r2 f53285b;
+            public final r2 f53297b;
 
             {
-                this.f53285b = this;
+                this.f53297b = this;
             }
 
             @Override
@@ -283,9 +283,9 @@ public final class r2 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z12 = z10;
-                        r2 r2Var = this.f53285b;
+                        r2 r2Var = this.f53297b;
                         if (!z12) {
-                            r2Var.f53346e.setVisibility(8);
+                            r2Var.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var.getClass();
@@ -293,9 +293,9 @@ public final class r2 extends FrameLayout {
                         }
                     case 1:
                         boolean z13 = z10;
-                        r2 r2Var2 = this.f53285b;
+                        r2 r2Var2 = this.f53297b;
                         if (!z13) {
-                            r2Var2.f53346e.setVisibility(8);
+                            r2Var2.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var2.getClass();
@@ -303,9 +303,9 @@ public final class r2 extends FrameLayout {
                         }
                     default:
                         boolean z14 = z10;
-                        r2 r2Var3 = this.f53285b;
+                        r2 r2Var3 = this.f53297b;
                         if (!z14) {
-                            r2Var3.f53346e.setVisibility(8);
+                            r2Var3.f53358e.setVisibility(8);
                             return;
                         } else {
                             r2Var3.getClass();

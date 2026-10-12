@@ -15,29 +15,29 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class g51 extends FrameLayout {
-    public final Paint f37940a;
-    public final Paint f37941b;
-    public final RectF f37942c;
+    public final Paint f37938a;
+    public final Paint f37939b;
+    public final RectF f37940c;
     public final org.telegram.ui.Components.i31 d;
-    public boolean f37943e;
-    public long f37944f;
+    public boolean f37941e;
+    public long f37942f;
     public long h;
-    public final org.telegram.ui.Components.fk0 f37945n;
-    public final TextPaint f37946r;
-    public StaticLayout f37947s;
+    public final org.telegram.ui.Components.fk0 f37943n;
+    public final TextPaint f37944r;
+    public StaticLayout f37945s;
     public float v;
-    public float f37948w;
-    public final SecretMediaViewer f37949x;
+    public float f37946w;
+    public final SecretMediaViewer f37947x;
 
     public g51(SecretMediaViewer secretMediaViewer, Activity activity) {
         super(activity);
-        this.f37949x = secretMediaViewer;
-        this.f37942c = new RectF();
+        this.f37947x = secretMediaViewer;
+        this.f37940c = new RectF();
         this.d = new org.telegram.ui.Components.i31();
-        this.f37946r = new TextPaint(1);
+        this.f37944r = new TextPaint(1);
         setWillNotDraw(false);
         Paint paint = new Paint(1);
-        this.f37941b = paint;
+        this.f37939b = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
         paint.setColor(-1644826);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -45,14 +45,14 @@ public final class g51 extends FrameLayout {
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint paint2 = new Paint(1);
-        this.f37940a = paint2;
+        this.f37938a = paint2;
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
         paint2.setColor(-1644826);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         new Paint(1).setColor(2130706432);
         org.telegram.ui.Components.fk0 fk0Var = new org.telegram.ui.Components.fk0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        this.f37945n = fk0Var;
+        this.f37943n = fk0Var;
         fk0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         fk0Var.R(this);
         fk0Var.start();
@@ -62,23 +62,23 @@ public final class g51 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         SecretMediaViewer secretMediaViewer;
         float max;
-        MessageObject messageObject = this.f37949x.f34268h0;
+        MessageObject messageObject = this.f37947x.f34270h0;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
             if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                if (this.f37944f == 0) {
+                if (this.f37942f == 0) {
                     max = 1.0f;
                 } else {
-                    max = ((float) Math.max(0L, this.f37944f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f34249a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
+                    max = ((float) Math.max(0L, this.f37942f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f34251a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
                 }
-                boolean z10 = this.f37943e;
-                Paint paint = this.f37941b;
-                Paint paint2 = this.f37940a;
-                RectF rectF = this.f37942c;
+                boolean z10 = this.f37941e;
+                Paint paint = this.f37939b;
+                Paint paint2 = this.f37938a;
+                RectF rectF = this.f37940c;
                 if (z10) {
                     canvas.save();
-                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f37948w / 2.0f));
-                    this.f37947s.draw(canvas);
+                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f37946w / 2.0f));
+                    this.f37945s.draw(canvas);
                     canvas.restore();
                     canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
                     float f7 = 19.285715f;
@@ -91,7 +91,7 @@ public final class g51 extends FrameLayout {
                     float centerX = rectF.centerX();
                     float centerY = rectF.centerY() - AndroidUtilities.dp(1.0f);
                     float dp = AndroidUtilities.dp(8.0f);
-                    org.telegram.ui.Components.fk0 fk0Var = this.f37945n;
+                    org.telegram.ui.Components.fk0 fk0Var = this.f37943n;
                     fk0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
                     fk0Var.draw(canvas);
                     float f10 = max * (-360.0f);
@@ -109,7 +109,7 @@ public final class g51 extends FrameLayout {
         float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
         float measuredHeight = getMeasuredHeight() / 2.0f;
         float dpf2 = AndroidUtilities.dpf2(10.5f);
-        this.f37942c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
+        this.f37940c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
         setPivotX(measuredWidth);
         setPivotY(measuredHeight);
     }

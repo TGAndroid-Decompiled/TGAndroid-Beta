@@ -12,7 +12,7 @@ public final class rd0 implements org.telegram.ui.Components.xw0 {
 
     @Override
     public final void H(int i10, boolean z10) {
-        lg0 lg0Var;
+        mg0 mg0Var;
         pl0 pl0Var;
         switch (this.f41612a) {
             case 0:
@@ -20,8 +20,8 @@ public final class rd0 implements org.telegram.ui.Components.xw0 {
                 if (i10 > AndroidUtilities.dp(20.0f) && xg0Var.h1()) {
                     AndroidUtilities.hideKeyboard(xg0Var.fragmentView);
                 }
-                if (i10 <= AndroidUtilities.dp(20.0f) && (lg0Var = xg0Var.T) != null) {
-                    lg0Var.run();
+                if (i10 <= AndroidUtilities.dp(20.0f) && (mg0Var = xg0Var.T) != null) {
+                    mg0Var.run();
                     xg0Var.T = null;
                     return;
                 }

@@ -25,35 +25,35 @@ public final class rl0 extends LinearLayout implements me.d {
     public boolean K;
     public boolean L;
     public final ci.h2 M;
-    public final org.telegram.ui.ActionBar.c6 f30178a;
-    public final hf f30179b;
-    public final ai.f0 f30180c;
+    public final org.telegram.ui.ActionBar.c6 f30174a;
+    public final hf f30175b;
+    public final ai.f0 f30176c;
     public final TextView d;
-    public final TextView f30181e;
-    public final ql0 f30182f;
+    public final TextView f30177e;
+    public final ql0 f30178f;
     public final TextView h;
-    public final LinearLayout f30183n;
-    public float f30184r;
-    public final TextView f30185s;
+    public final LinearLayout f30179n;
+    public float f30180r;
+    public final TextView f30181s;
     public final Paint v;
-    public final RectF f30186w;
-    public final me.b f30187x;
-    public int f30188y;
+    public final RectF f30182w;
+    public final me.b f30183x;
+    public int f30184y;
 
     public rl0(Context context, org.telegram.ui.ActionBar.c6 c6Var, hf hfVar) {
         super(context);
         this.v = new Paint(1);
-        this.f30186w = new RectF();
-        this.f30187x = new me.b(0, this, js.h, 220L, true);
+        this.f30182w = new RectF();
+        this.f30183x = new me.b(0, this, js.h, 220L, true);
         this.M = new ci.h2(this, 11);
-        this.f30178a = c6Var;
-        this.f30179b = hfVar;
+        this.f30174a = c6Var;
+        this.f30175b = hfVar;
         setOrientation(1);
         setClipChildren(false);
         setClipToPadding(false);
         setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
         ai.f0 f0Var = new ai.f0(this, context, 16);
-        this.f30180c = f0Var;
+        this.f30176c = f0Var;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, AndroidUtilities.dp(36.0f));
         int dp = AndroidUtilities.dp(8.0f);
         layoutParams.rightMargin = dp;
@@ -74,57 +74,57 @@ public final class rl0 extends LinearLayout implements me.d {
         textView2.setTextSize(2, 14.0f);
         textView2.setGravity(17);
         textView2.setFocusable(true);
-        this.f30181e = textView2;
+        this.f30177e = textView2;
         linearLayout.addView(textView, new LinearLayout.LayoutParams(0, -1, 1.0f));
         linearLayout.addView(textView2, new LinearLayout.LayoutParams(0, -1, 1.0f));
         f0Var.addView(linearLayout, new FrameLayout.LayoutParams(-1, -1));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final rl0 f29548b;
+            public final rl0 f29527b;
 
             {
-                this.f29548b = this;
+                this.f29527b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29548b.setSendAsText(false);
+                        this.f29527b.setSendAsText(false);
                         return;
                     default:
-                        this.f29548b.setSendAsText(true);
+                        this.f29527b.setSendAsText(true);
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final rl0 f29548b;
+            public final rl0 f29527b;
 
             {
-                this.f29548b = this;
+                this.f29527b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f29548b.setSendAsText(false);
+                        this.f29527b.setSendAsText(false);
                         return;
                     default:
-                        this.f29548b.setSendAsText(true);
+                        this.f29527b.setSendAsText(true);
                         return;
                 }
             }
         });
         ql0 ql0Var = new ql0(this, context, hfVar);
-        this.f30182f = ql0Var;
+        this.f30178f = ql0Var;
         ql0Var.setMinimumHeight(AndroidUtilities.dp(44.0f));
         ql0Var.setClipChildren(false);
         LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(-1, -2);
         layoutParams2.topMargin = AndroidUtilities.dp(6.0f);
         addView(ql0Var, layoutParams2);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f30183n = linearLayout2;
+        this.f30179n = linearLayout2;
         linearLayout2.setGravity(16);
         linearLayout2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         addView(linearLayout2, 1, new LinearLayout.LayoutParams(-1, AndroidUtilities.dp(28.0f)));
@@ -134,7 +134,7 @@ public final class rl0 extends LinearLayout implements me.d {
         textView3.setSingleLine(true);
         textView3.setEllipsize(TextUtils.TruncateAt.END);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout2, textView3, new LinearLayout.LayoutParams(0, -2, 1.0f), context);
-        this.f30185s = h;
+        this.f30181s = h;
         h.setTextSize(2, 13.0f);
         h.setGravity(17);
         h.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
@@ -171,11 +171,11 @@ public final class rl0 extends LinearLayout implements me.d {
         if (qeVar != null) {
             qeVar.setAlpha(f7);
         }
-        this.d.setTextColor(i0.a.d(f7, this.f30188y, this.E));
-        this.f30181e.setTextColor(i0.a.d(f7, this.E, this.f30188y));
-        this.f30180c.invalidate();
-        ChatActivityEnterView chatActivityEnterView = this.f30179b.f26765a;
-        int i10 = ChatActivityEnterView.Q5;
+        this.d.setTextColor(i0.a.d(f7, this.f30184y, this.E));
+        this.f30177e.setTextColor(i0.a.d(f7, this.E, this.f30184y));
+        this.f30176c.invalidate();
+        ChatActivityEnterView chatActivityEnterView = this.f30175b.f26769a;
+        int i10 = ChatActivityEnterView.S5;
         chatActivityEnterView.X1(f7);
     }
 
@@ -197,35 +197,35 @@ public final class rl0 extends LinearLayout implements me.d {
 
     public final void d() {
         int i10 = org.telegram.ui.ActionBar.h6.Yd;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f30178a;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f30174a;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i10, c6Var);
-        this.f30188y = w02;
+        this.f30184y = w02;
         int i11 = org.telegram.ui.ActionBar.h6.Ud;
         this.E = org.telegram.ui.ActionBar.h6.w0(i11, c6Var);
         GradientDrawable gradientDrawable = new GradientDrawable();
         int i12 = 16777215 & w02;
         gradientDrawable.setColor((Math.round(Color.alpha(w02) * 0.08f) << 24) | i12);
         gradientDrawable.setCornerRadius(AndroidUtilities.dp(10.0f));
-        this.f30180c.setBackground(gradientDrawable);
+        this.f30176c.setBackground(gradientDrawable);
         this.v.setColor((Math.round(Color.alpha(w02) * 0.18f) << 24) | i12);
         this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
-        this.f30181e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
+        this.f30177e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
         this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Vd, c6Var));
-        TextView textView = this.f30185s;
+        TextView textView = this.f30181s;
         textView.setTextColor(w02);
-        textView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var), 1, -1));
-        a(this.f30187x.f16087e);
+        textView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var), 1, -1));
+        a(this.f30183x.f16088e);
     }
 
     public final void e() {
         Typeface typeface;
         int i10;
         boolean z10;
-        me.b bVar = this.f30187x;
-        boolean z11 = bVar.f16088f;
+        me.b bVar = this.f30183x;
+        boolean z11 = bVar.f16089f;
         TextView textView = this.d;
         textView.setSelected(!z11);
-        TextView textView2 = this.f30181e;
+        TextView textView2 = this.f30177e;
         textView2.setSelected(z11);
         Typeface typeface2 = null;
         if (!z11) {
@@ -261,11 +261,11 @@ public final class rl0 extends LinearLayout implements me.d {
         } else {
             i10 = 0;
         }
-        this.f30185s.setVisibility(i10);
+        this.f30181s.setVisibility(i10);
         if (!this.I && !this.J) {
             i11 = 8;
         }
-        this.f30183n.setVisibility(i11);
+        this.f30179n.setVisibility(i11);
         boolean z13 = this.I;
         TextView textView3 = this.h;
         if (z13) {
@@ -275,11 +275,11 @@ public final class rl0 extends LinearLayout implements me.d {
         } else {
             textView3.setText("");
         }
-        a(bVar.f16087e);
+        a(bVar.f16088e);
     }
 
     public int getEditorBottom() {
-        return this.f30182f.getBottom();
+        return this.f30178f.getBottom();
     }
 
     public Editable getText() {
@@ -291,7 +291,7 @@ public final class rl0 extends LinearLayout implements me.d {
     }
 
     public float getTextModeProgress() {
-        return this.f30187x.f16087e;
+        return this.f30183x.f16088e;
     }
 
     @Override
@@ -300,13 +300,13 @@ public final class rl0 extends LinearLayout implements me.d {
     }
 
     public void setHeightOffset(float f7) {
-        if (this.f30184r == f7) {
+        if (this.f30180r == f7) {
             return;
         }
-        this.f30184r = f7;
-        this.f30180c.setTranslationY(f7);
-        this.f30183n.setTranslationY(f7);
-        this.f30182f.invalidate();
+        this.f30180r = f7;
+        this.f30176c.setTranslationY(f7);
+        this.f30179n.setTranslationY(f7);
+        this.f30178f.invalidate();
     }
 
     public void setPartialText(String str) {
@@ -314,8 +314,8 @@ public final class rl0 extends LinearLayout implements me.d {
     }
 
     public void setSendAsText(boolean z10) {
-        me.b bVar = this.f30187x;
-        if (bVar.f16088f == z10) {
+        me.b bVar = this.f30183x;
+        if (bVar.f16089f == z10) {
             return;
         }
         if (!z10) {
@@ -323,8 +323,8 @@ public final class rl0 extends LinearLayout implements me.d {
         }
         bVar.a(z10, isAttachedToWindow());
         e();
-        ChatActivityEnterView chatActivityEnterView = this.f30179b.f26765a;
-        if (!chatActivityEnterView.f23665h3.f30187x.f16088f) {
+        ChatActivityEnterView chatActivityEnterView = this.f30175b.f26769a;
+        if (!chatActivityEnterView.f23666h3.f30183x.f16089f) {
             chatActivityEnterView.o0(false, false, false);
         }
         chatActivityEnterView.U1();

@@ -7,19 +7,19 @@ import android.graphics.RectF;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class in0 extends FrameLayout {
-    public final Paint f27243a;
-    public final a60 f27244b;
-    public final RectF f27245c;
+    public final Paint f27237a;
+    public final a60 f27238b;
+    public final RectF f27239c;
     public final float d;
-    public float f27246e;
+    public float f27240e;
 
     public in0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f27243a = paint;
+        this.f27237a = paint;
         a60 a60Var = new a60(this, 1);
-        this.f27244b = a60Var;
-        this.f27245c = new RectF();
+        this.f27238b = a60Var;
+        this.f27239c = new RectF();
         this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
         a(paint, 0.2f);
         a(a60Var, 1.0f);
@@ -38,22 +38,22 @@ public final class in0 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         float f7 = this.d;
-        RectF rectF = this.f27245c;
+        RectF rectF = this.f27239c;
         rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
-        canvas.drawOval(rectF, this.f27243a);
-        canvas.drawArc(rectF, -90.0f, this.f27246e * 360.0f, false, this.f27244b);
+        canvas.drawOval(rectF, this.f27237a);
+        canvas.drawArc(rectF, -90.0f, this.f27240e * 360.0f, false, this.f27238b);
     }
 
     public Paint getPaint() {
-        return this.f27244b;
+        return this.f27238b;
     }
 
     public void setProgress(float f7) {
         float max = Math.max(0.0f, Math.min(1.0f, f7));
-        if (this.f27246e == max) {
+        if (this.f27240e == max) {
             return;
         }
-        this.f27246e = max;
+        this.f27240e = max;
         invalidate();
     }
 }

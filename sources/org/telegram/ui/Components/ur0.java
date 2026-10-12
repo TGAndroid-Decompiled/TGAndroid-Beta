@@ -18,12 +18,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ur0 implements Runnable {
-    public final int f31254a;
-    public final Object f31255b;
+    public final int f31246a;
+    public final Object f31247b;
 
     public ur0(Object obj, int i10) {
-        this.f31254a = i10;
-        this.f31255b = obj;
+        this.f31246a = i10;
+        this.f31247b = obj;
     }
 
     @Override
@@ -33,20 +33,20 @@ public final class ur0 implements Runnable {
         String[] currentKeyboardLanguage;
         ArrayList arrayList;
         ArrayList arrayList2;
-        int i10 = this.f31254a;
+        int i10 = this.f31246a;
         int i11 = 0;
-        Object obj = this.f31255b;
+        Object obj = this.f31247b;
         switch (i10) {
             case 0:
                 xr0 xr0Var = (xr0) obj;
-                vr0[] vr0VarArr = xr0Var.f32834a;
-                if (xr0Var.f32835b != 1) {
+                vr0[] vr0VarArr = xr0Var.f32824a;
+                if (xr0Var.f32825b != 1) {
                     for (vr0 vr0Var : vr0VarArr) {
                         org.telegram.ui.ActionBar.h5 h5Var = vr0Var.d;
                         h5Var.setAlpha(1.0f);
                         h5Var.setScaleX(1.0f);
                         h5Var.setScaleY(1.0f);
-                        vr0Var.f32181e.setAlpha(0.0f);
+                        vr0Var.f32166e.setAlpha(0.0f);
                     }
                     xr0Var.E = false;
                     AndroidUtilities.runOnUIThread(xr0Var.G, 4000L);
@@ -57,7 +57,7 @@ public final class ur0 implements Runnable {
                 while (i11 < length) {
                     vr0 vr0Var2 = vr0VarArr[i11];
                     org.telegram.ui.ActionBar.h5 h5Var2 = vr0Var2.d;
-                    org.telegram.ui.ActionBar.h5 h5Var3 = vr0Var2.f32181e;
+                    org.telegram.ui.ActionBar.h5 h5Var3 = vr0Var2.f32166e;
                     h5Var2.setPivotX(0.0f);
                     h5Var3.setPivotX(0.0f);
                     if (xr0Var.E) {
@@ -82,10 +82,10 @@ public final class ur0 implements Runnable {
                 }
                 return;
             case 3:
-                ((fu0) obj).f26175f.m1(false);
+                ((fu0) obj).f26173f.m1(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.m2 m2Var = ((qu0) obj).f29936f.f26972v1;
+                org.telegram.ui.ActionBar.m2 m2Var = ((qu0) obj).f29937f.f26957v1;
                 if (m2Var != null) {
                     m2Var.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
                     return;
@@ -96,7 +96,7 @@ public final class ur0 implements Runnable {
                 return;
             case 6:
                 rv0 rv0Var = (rv0) obj;
-                ArrayList arrayList3 = rv0Var.f30253f;
+                ArrayList arrayList3 = rv0Var.f30249f;
                 if (rv0Var.h) {
                     rv0Var.h = false;
                     ArrayList<Long> arrayList4 = new ArrayList<>();
@@ -106,7 +106,7 @@ public final class ur0 implements Runnable {
                         }
                         i11++;
                     }
-                    rv0Var.f30258x.f26972v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
+                    rv0Var.f30254x.f26957v1.getMessagesController().getSavedMessagesController().updatePinnedOrder(arrayList4);
                     return;
                 }
                 return;
@@ -121,8 +121,8 @@ public final class ur0 implements Runnable {
                 return;
             case 10:
                 zx0 zx0Var = (zx0) obj;
-                if (!zx0Var.f33516w) {
-                    zx0Var.f33518y = 0.0f;
+                if (!zx0Var.f33518w) {
+                    zx0Var.f33520y = 0.0f;
                     return;
                 }
                 return;
@@ -296,7 +296,7 @@ public final class ur0 implements Runnable {
                 ((y11) obj).a();
                 return;
             case 16:
-                ArrayList arrayList7 = ((f21) obj).f25846a;
+                ArrayList arrayList7 = ((f21) obj).f25848a;
                 for (int i15 = 0; i15 < arrayList7.size(); i15++) {
                     ((View) arrayList7.get(i15)).setVisibility(8);
                     if (arrayList7.get(i15) instanceof org.telegram.ui.Cells.u1) {
@@ -308,24 +308,24 @@ public final class ur0 implements Runnable {
             case 17:
                 f31 f31Var = (f31) obj;
                 f31Var.J = null;
-                f31Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(js.f27627f).start();
+                f31Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(js.f27634f).start();
                 return;
             case 18:
                 j31 j31Var = (j31) obj;
                 ViewPropertyAnimator duration = j31Var.animate().alpha(0.0f).setListener(new zd0(j31Var, 23)).setDuration(300L);
-                j31Var.f27358b = duration;
+                j31Var.f27352b = duration;
                 duration.start();
                 return;
             case 19:
                 l31 l31Var = (l31) obj;
-                Utilities.Callback callback = l31Var.f28022b;
+                Utilities.Callback callback = l31Var.f28007b;
                 if (callback != null) {
-                    callback.run(Long.valueOf(l31Var.f28021a.f28392s));
+                    callback.run(Long.valueOf(l31Var.f28006a.f28387s));
                     return;
                 }
                 return;
             case 20:
-                h41 h41Var = ((y31) obj).f32951b;
+                h41 h41Var = ((y31) obj).f32944b;
                 if (h41Var.k()) {
                     h41Var.l();
                     return;
@@ -342,10 +342,10 @@ public final class ur0 implements Runnable {
                 ((org.telegram.ui.ActionBar.m1) obj).dismiss();
                 return;
             case 24:
-                ((q51) obj).f29703c.setVisibility(8);
+                ((q51) obj).f29681c.setVisibility(8);
                 return;
             case 25:
-                ((org.telegram.ui.el) obj).f32659c.presentFragment(new org.telegram.ui.h41());
+                ((org.telegram.ui.el) obj).f32658c.presentFragment(new org.telegram.ui.h41());
                 return;
             case 26:
                 ((b61) obj).requestLayout();
@@ -355,10 +355,10 @@ public final class ur0 implements Runnable {
                 return;
             case 28:
                 UndoView undoView = (UndoView) obj;
-                int i16 = UndoView.f24147e0;
+                int i16 = UndoView.f24148e0;
                 undoView.getClass();
                 try {
-                    undoView.f24156f.performHapticFeedback(3, 2);
+                    undoView.f24157f.performHapticFeedback(3, 2);
                     return;
                 } catch (Exception unused) {
                     return;

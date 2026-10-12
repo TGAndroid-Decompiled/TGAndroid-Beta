@@ -8,46 +8,46 @@ public final class yc {
     public static final yc H;
     public static final yc I;
     public static final yc[] J;
-    public static final yc f33041e;
-    public static final yc f33042f;
+    public static final yc f33034e;
+    public static final yc f33035f;
     public static final yc h;
-    public static final yc f33043n;
-    public static final yc f33044r;
-    public static final yc f33045s;
+    public static final yc f33036n;
+    public static final yc f33037r;
+    public static final yc f33038s;
     public static final yc v;
-    public static final yc f33046w;
-    public static final yc f33047x;
-    public static final yc f33048y;
-    public final String f33049a;
-    public final int f33050b;
-    public final boolean f33051c;
+    public static final yc f33039w;
+    public static final yc f33040x;
+    public static final yc f33041y;
+    public final String f33042a;
+    public final int f33043b;
+    public final boolean f33044c;
     public final xc d;
 
     static {
         int i10 = R.string.PhotoSavedHint;
         xc xcVar = xc.SAVED_TO_GALLERY;
         yc ycVar = new yc("PHOTO", 0, "PhotoSavedHint", i10, xcVar);
-        f33041e = ycVar;
+        f33034e = ycVar;
         yc ycVar2 = new yc("PHOTOS", 1, "PhotosSavedHint", xcVar);
-        f33042f = ycVar2;
+        f33035f = ycVar2;
         yc ycVar3 = new yc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, xcVar);
         h = ycVar3;
         yc ycVar4 = new yc("VIDEOS", 3, "VideosSavedHint", xcVar);
-        f33043n = ycVar4;
+        f33036n = ycVar4;
         yc ycVar5 = new yc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, xcVar);
-        f33044r = ycVar5;
+        f33037r = ycVar5;
         yc ycVar6 = new yc("LIVEPHOTOS", 5, "LivePhotosSavedHint", xcVar);
-        f33045s = ycVar6;
+        f33038s = ycVar6;
         yc ycVar7 = new yc("MEDIA", 6, "MediaSavedHint", xcVar);
         v = ycVar7;
         int i11 = R.string.PhotoSavedToDownloadsHintLinked;
         xc xcVar2 = xc.SAVED_TO_DOWNLOADS;
         yc ycVar8 = new yc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, xcVar2);
-        f33046w = ycVar8;
+        f33039w = ycVar8;
         yc ycVar9 = new yc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, xcVar2);
-        f33047x = ycVar9;
+        f33040x = ycVar9;
         yc ycVar10 = new yc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, xc.SAVED_TO_GIFS);
-        f33048y = ycVar10;
+        f33041y = ycVar10;
         yc ycVar11 = new yc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, xcVar2);
         E = ycVar11;
         int i12 = R.string.AudioSavedHint;
@@ -64,10 +64,10 @@ public final class yc {
     }
 
     public yc(String str, int i10, String str2, int i11, xc xcVar) {
-        this.f33049a = str2;
-        this.f33050b = i11;
+        this.f33042a = str2;
+        this.f33043b = i11;
         this.d = xcVar;
-        this.f33051c = false;
+        this.f33044c = false;
     }
 
     public static yc valueOf(String str) {
@@ -79,9 +79,9 @@ public final class yc {
     }
 
     public yc(String str, int i10, String str2, xc xcVar) {
-        this.f33049a = str2;
+        this.f33042a = str2;
         this.d = xcVar;
-        this.f33050b = 0;
-        this.f33051c = true;
+        this.f33043b = 0;
+        this.f33044c = true;
     }
 }

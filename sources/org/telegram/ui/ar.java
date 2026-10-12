@@ -13,33 +13,33 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ar implements Utilities.Callback {
-    public final int f35950a = 1;
-    public final int f35951b;
-    public final long f35952c;
+    public final int f35952a = 1;
+    public final int f35953b;
+    public final long f35954c;
     public final Object d;
-    public final Object f35953e;
-    public final Object f35954f;
-    public final Object f35955g;
+    public final Object f35955e;
+    public final Object f35956f;
+    public final Object f35957g;
     public final Serializable h;
 
     public ar(int i10, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f35951b = i10;
+        this.f35953b = i10;
         this.d = arrayList;
-        this.f35952c = j3;
-        this.f35953e = activity;
-        this.f35954f = c6Var;
-        this.f35955g = callback;
+        this.f35954c = j3;
+        this.f35955e = activity;
+        this.f35956f = c6Var;
+        this.f35957g = callback;
         this.h = hashMap;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f35950a;
+        int i10 = this.f35952a;
         boolean z10 = false;
         Serializable serializable = this.h;
-        Object obj2 = this.f35955g;
-        Object obj3 = this.f35954f;
-        Object obj4 = this.f35953e;
+        Object obj2 = this.f35957g;
+        Object obj3 = this.f35956f;
+        Object obj4 = this.f35955e;
         Object obj5 = this.d;
         switch (i10) {
             case 0:
@@ -55,9 +55,9 @@ public final class ar implements Utilities.Callback {
                 }
                 long j3 = wrVar.N;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = wrVar.E;
-                long j10 = this.f35952c;
+                long j10 = this.f35954c;
                 dr drVar = new dr(wrVar, j10, j3, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j10);
-                drVar.X0 = new er(wrVar, intValue, j10, this.f35951b, z10, zArr);
+                drVar.X0 = new er(wrVar, intValue, j10, this.f35953b, z10, zArr);
                 wrVar.presentFragment(drVar);
                 return;
             case 1:
@@ -67,7 +67,7 @@ public final class ar implements Utilities.Callback {
                 Utilities.Callback callback = (Utilities.Callback) obj2;
                 HashMap hashMap = (HashMap) serializable;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                int i11 = this.f35951b;
+                int i11 = this.f35953b;
                 if (booleanValue) {
                     SharedPreferences.Editor edit = MessagesController.getInstance(i11).getMainSettings().edit();
                     int size = arrayList.size();
@@ -86,12 +86,12 @@ public final class ar implements Utilities.Callback {
                     }
                     edit.apply();
                 }
-                org.telegram.ui.Components.m1 m1Var = new org.telegram.ui.Components.m1(i11, this.f35952c, activity, arrayList, hashMap, callback, c6Var);
-                if (!yh.n5.y(i11, false).f53137e) {
+                org.telegram.ui.Components.m1 m1Var = new org.telegram.ui.Components.m1(i11, this.f35954c, activity, arrayList, hashMap, callback, c6Var);
+                if (!yh.n5.y(i11, false).f53149e) {
                     yh.n5 y3 = yh.n5.y(i11, false);
-                    y3.f53137e = false;
+                    y3.f53149e = false;
                     y3.q(false, true, m1Var);
-                    y3.f53137e = true;
+                    y3.f53149e = true;
                     return;
                 }
                 m1Var.run();
@@ -100,8 +100,8 @@ public final class ar implements Utilities.Callback {
                 Boolean bool = (Boolean) obj;
                 Pattern pattern = LaunchActivity.B1;
                 TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                int i13 = this.f35951b;
-                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f35952c);
+                int i13 = this.f35953b;
+                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f35954c);
                 tL_messages_toggleBotInAttachMenu.enabled = true;
                 tL_messages_toggleBotInAttachMenu.write_allowed = true;
                 ConnectionsManager.getInstance(i13).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.messenger.pi((LaunchActivity) obj5, i13, (vy) obj4, (org.telegram.ui.ActionBar.m2) obj3, (TLRPC.User) obj2, (String) serializable), 66);
@@ -111,21 +111,21 @@ public final class ar implements Utilities.Callback {
 
     public ar(wr wrVar, long j3, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
         this.d = wrVar;
-        this.f35952c = j3;
-        this.f35951b = i10;
-        this.f35953e = tLObject;
-        this.f35954f = tL_chatAdminRights;
-        this.f35955g = tL_chatBannedRights;
+        this.f35954c = j3;
+        this.f35953b = i10;
+        this.f35955e = tLObject;
+        this.f35956f = tL_chatAdminRights;
+        this.f35957g = tL_chatBannedRights;
         this.h = str;
     }
 
     public ar(LaunchActivity launchActivity, int i10, long j3, vy vyVar, org.telegram.ui.ActionBar.m2 m2Var, TLRPC.User user, String str) {
         this.d = launchActivity;
-        this.f35951b = i10;
-        this.f35952c = j3;
-        this.f35953e = vyVar;
-        this.f35954f = m2Var;
-        this.f35955g = user;
+        this.f35953b = i10;
+        this.f35954c = j3;
+        this.f35955e = vyVar;
+        this.f35956f = m2Var;
+        this.f35957g = user;
         this.h = str;
     }
 }

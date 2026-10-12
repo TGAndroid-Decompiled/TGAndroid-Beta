@@ -5,18 +5,18 @@ import android.text.Spanned;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 public final class j extends InputFilter.LengthFilter {
-    public final l f49827a;
+    public final l f49835a;
 
     public j(l lVar) {
         super(128);
-        this.f49827a = lVar;
+        this.f49835a = lVar;
     }
 
     @Override
     public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
         CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
         if (filter != null && filter.length() == 0) {
-            AndroidUtilities.shakeView(this.f49827a.f49828a);
+            AndroidUtilities.shakeView(this.f49835a.f49836a);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
         }
         return filter;

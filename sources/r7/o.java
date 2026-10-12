@@ -8,19 +8,19 @@ import android.os.Parcelable;
 import w7.c0;
 public final class o extends o6.a {
     public static final Parcelable.Creator<o> CREATOR = new m(2);
-    public final int f47237a;
-    public final n f47238b;
-    public final g8.q f47239c;
+    public final int f47245a;
+    public final n f47246b;
+    public final g8.q f47247c;
     public final g8.n d;
-    public final PendingIntent f47240e;
-    public final y f47241f;
+    public final PendingIntent f47248e;
+    public final y f47249f;
     public final String h;
 
     public o(int i10, n nVar, IBinder iBinder, IBinder iBinder2, PendingIntent pendingIntent, IBinder iBinder3, String str) {
         g8.q qVar;
         g8.n nVar2;
-        this.f47237a = i10;
-        this.f47238b = nVar;
+        this.f47245a = i10;
+        this.f47246b = nVar;
         y yVar = null;
         if (iBinder != null) {
             int i11 = g8.p.f10426b;
@@ -33,10 +33,10 @@ public final class o extends o6.a {
         } else {
             qVar = null;
         }
-        this.f47239c = qVar;
-        this.f47240e = pendingIntent;
+        this.f47247c = qVar;
+        this.f47248e = pendingIntent;
         if (iBinder2 != null) {
-            int i12 = i.f47222c;
+            int i12 = i.f47230c;
             IInterface queryLocalInterface2 = iBinder2.queryLocalInterface("com.google.android.gms.location.ILocationCallback");
             if (queryLocalInterface2 instanceof g8.n) {
                 nVar2 = (g8.n) queryLocalInterface2;
@@ -55,7 +55,7 @@ public final class o extends o6.a {
                 yVar = new a9.a(iBinder3, "com.google.android.gms.location.internal.IFusedLocationProviderCallback", 8);
             }
         }
-        this.f47241f = yVar;
+        this.f47249f = yVar;
         this.h = str;
     }
 
@@ -65,17 +65,17 @@ public final class o extends o6.a {
         IBinder asBinder2;
         int q6 = c0.q(parcel, 20293);
         c0.s(parcel, 1, 4);
-        parcel.writeInt(this.f47237a);
-        c0.k(parcel, 2, this.f47238b, i10);
+        parcel.writeInt(this.f47245a);
+        c0.k(parcel, 2, this.f47246b, i10);
         IBinder iBinder = null;
-        g8.q qVar = this.f47239c;
+        g8.q qVar = this.f47247c;
         if (qVar == null) {
             asBinder = null;
         } else {
             asBinder = qVar.asBinder();
         }
         c0.f(parcel, 3, asBinder);
-        c0.k(parcel, 4, this.f47240e, i10);
+        c0.k(parcel, 4, this.f47248e, i10);
         g8.n nVar = this.d;
         if (nVar == null) {
             asBinder2 = null;
@@ -83,7 +83,7 @@ public final class o extends o6.a {
             asBinder2 = nVar.asBinder();
         }
         c0.f(parcel, 5, asBinder2);
-        y yVar = this.f47241f;
+        y yVar = this.f47249f;
         if (yVar != null) {
             iBinder = yVar.asBinder();
         }

@@ -4,17 +4,17 @@ import java.util.function.ToDoubleFunction;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class u81 implements ToDoubleFunction {
-    public final int f31106a;
+    public final int f31101a;
 
     public u81(int i10) {
-        this.f31106a = i10;
+        this.f31101a = i10;
     }
 
     @Override
     public final double applyAsDouble(Object obj) {
-        switch (this.f31106a) {
+        switch (this.f31101a) {
             case 0:
-                return ((x81) obj).f32678a;
+                return ((x81) obj).f32677a;
             case 1:
                 return ((TLRPC.TL_topPeer) obj).rating;
             case 2:

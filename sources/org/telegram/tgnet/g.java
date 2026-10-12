@@ -8,16 +8,16 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.l5;
 public final class g implements OnSuccessListener, OnFailureListener, ImageReceiver.ImageReceiverDelegate {
-    public final int f19985a;
-    public final long f19986b;
-    public final int f19987c;
+    public final int f19986a;
+    public final long f19987b;
+    public final int f19988c;
     public final Object d;
 
     public g(int i10, int i11, long j3, Utilities.Callback callback) {
-        this.f19985a = i10;
+        this.f19986a = i10;
         this.d = callback;
-        this.f19987c = i11;
-        this.f19986b = j3;
+        this.f19988c = i11;
+        this.f19987b = j3;
     }
 
     @Override
@@ -37,18 +37,18 @@ public final class g implements OnSuccessListener, OnFailureListener, ImageRecei
 
     @Override
     public void onFailure(Exception exc) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f19985a, this.f19986b, this.f19987c, (String) this.d, exc);
+        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f19986a, this.f19987b, this.f19988c, (String) this.d, exc);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f19985a, this.f19986b, this.f19987c, (String) this.d, (IntegrityTokenResponse) obj);
+        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f19986a, this.f19987b, this.f19988c, (String) this.d, (IntegrityTokenResponse) obj);
     }
 
     public g(int i10, long j3, String str, int i11) {
-        this.f19985a = i10;
-        this.f19986b = j3;
-        this.f19987c = i11;
+        this.f19986a = i10;
+        this.f19987b = j3;
+        this.f19988c = i11;
         this.d = str;
     }
 }

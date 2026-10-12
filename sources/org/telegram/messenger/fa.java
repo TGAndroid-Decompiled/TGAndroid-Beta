@@ -4,97 +4,97 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fa implements RequestDelegate {
-    public final int f17595a;
-    public final MessagesController f17596b;
+    public final int f17596a;
+    public final MessagesController f17597b;
 
     public fa(MessagesController messagesController, int i10) {
-        this.f17595a = i10;
-        this.f17596b = messagesController;
+        this.f17596a = i10;
+        this.f17597b = messagesController;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17595a) {
+        switch (this.f17596a) {
             case 0:
-                this.f17596b.lambda$updateTimerProc$151(tLObject, tL_error);
+                this.f17597b.lambda$updateTimerProc$151(tLObject, tL_error);
                 return;
             case 1:
-                this.f17596b.lambda$updateTimerProc$152(tLObject, tL_error);
+                this.f17597b.lambda$updateTimerProc$152(tLObject, tL_error);
                 return;
             case 2:
-                this.f17596b.lambda$processUpdateArray$417(tLObject, tL_error);
+                this.f17597b.lambda$processUpdateArray$417(tLObject, tL_error);
                 return;
             case 3:
-                this.f17596b.lambda$loadCurrentState$324(tLObject, tL_error);
+                this.f17597b.lambda$loadCurrentState$324(tLObject, tL_error);
                 return;
             case 4:
-                this.f17596b.lambda$getContentSettings$505(tLObject, tL_error);
+                this.f17597b.lambda$getContentSettings$505(tLObject, tL_error);
                 return;
             case 5:
-                this.f17596b.lambda$loadSignUpNotificationsSettings$206(tLObject, tL_error);
+                this.f17597b.lambda$loadSignUpNotificationsSettings$206(tLObject, tL_error);
                 return;
             case 6:
-                this.f17596b.lambda$sendBotStart$292(tLObject, tL_error);
+                this.f17597b.lambda$sendBotStart$292(tLObject, tL_error);
                 return;
             case 7:
-                this.f17596b.lambda$reloadDialogsReadValue$63(tLObject, tL_error);
+                this.f17597b.lambda$reloadDialogsReadValue$63(tLObject, tL_error);
                 return;
             case 8:
-                this.f17596b.lambda$completeReadTask$237(tLObject, tL_error);
+                this.f17597b.lambda$completeReadTask$237(tLObject, tL_error);
                 return;
             case 9:
-                this.f17596b.lambda$markMentionMessageAsRead$233(tLObject, tL_error);
+                this.f17597b.lambda$markMentionMessageAsRead$233(tLObject, tL_error);
                 return;
             case 10:
-                this.f17596b.lambda$toggleChannelForum$285(tLObject, tL_error);
+                this.f17597b.lambda$toggleChannelForum$285(tLObject, tL_error);
                 return;
             case 11:
-                this.f17596b.lambda$setDialogHistoryTTL$136(tLObject, tL_error);
+                this.f17597b.lambda$setDialogHistoryTTL$136(tLObject, tL_error);
                 return;
             case 12:
-                this.f17596b.lambda$loadUnreadDialogs$361(tLObject, tL_error);
+                this.f17597b.lambda$loadUnreadDialogs$361(tLObject, tL_error);
                 return;
             case 13:
-                this.f17596b.lambda$checkTosUpdate$162(tLObject, tL_error);
+                this.f17597b.lambda$checkTosUpdate$162(tLObject, tL_error);
                 return;
             case 14:
-                this.f17596b.lambda$reloadReactionsNotifySettings$204(tLObject, tL_error);
+                this.f17597b.lambda$reloadReactionsNotifySettings$204(tLObject, tL_error);
                 return;
             case 15:
-                this.f17596b.lambda$reloadUser$55(tLObject, tL_error);
+                this.f17597b.lambda$reloadUser$55(tLObject, tL_error);
                 return;
             case 16:
-                this.f17596b.lambda$loadHintDialogs$195(tLObject, tL_error);
+                this.f17597b.lambda$loadHintDialogs$195(tLObject, tL_error);
                 return;
             case 17:
-                this.f17596b.lambda$markMessageContentAsRead$231(tLObject, tL_error);
+                this.f17597b.lambda$markMessageContentAsRead$231(tLObject, tL_error);
                 return;
             case 18:
-                this.f17596b.lambda$loadRemoteFilters$30(tLObject, tL_error);
+                this.f17597b.lambda$loadRemoteFilters$30(tLObject, tL_error);
                 return;
             case 19:
-                this.f17596b.lambda$didReceivedNotification$42(tLObject, tL_error);
+                this.f17597b.lambda$didReceivedNotification$42(tLObject, tL_error);
                 return;
             case 20:
-                this.f17596b.lambda$loadGlobalNotificationsSettings$202(tLObject, tL_error);
+                this.f17597b.lambda$loadGlobalNotificationsSettings$202(tLObject, tL_error);
                 return;
             case 21:
-                this.f17596b.lambda$performLogout$321(tLObject, tL_error);
+                this.f17597b.lambda$performLogout$321(tLObject, tL_error);
                 return;
             case 22:
-                this.f17596b.lambda$checkPeerColors$494(tLObject, tL_error);
+                this.f17597b.lambda$checkPeerColors$494(tLObject, tL_error);
                 return;
             case 23:
-                this.f17596b.lambda$checkPeerColors$496(tLObject, tL_error);
+                this.f17597b.lambda$checkPeerColors$496(tLObject, tL_error);
                 return;
             case 24:
-                this.f17596b.lambda$loadSuggestedFilters$25(tLObject, tL_error);
+                this.f17597b.lambda$loadSuggestedFilters$25(tLObject, tL_error);
                 return;
             case 25:
-                this.f17596b.lambda$toggleChannelInvitesHistory$287(tLObject, tL_error);
+                this.f17597b.lambda$toggleChannelInvitesHistory$287(tLObject, tL_error);
                 return;
             default:
-                this.f17596b.lambda$toggleChannelSignatures$283(tLObject, tL_error);
+                this.f17597b.lambda$toggleChannelSignatures$283(tLObject, tL_error);
                 return;
         }
     }

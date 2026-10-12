@@ -123,7 +123,7 @@ public final class f2 implements View.OnClickListener {
                     return;
                 }
                 org.telegram.ui.Components.sc Q = new zc(f6Var.f953c1, f6Var.B0).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-                Q.f30533a = 3;
+                Q.f30529a = 3;
                 Q.k(true);
                 return;
             case 2:
@@ -156,8 +156,8 @@ public final class f2 implements View.OnClickListener {
                     charSequence = null;
                 }
                 if (charSequence != null) {
-                    j3Var.f22080b.setText(charSequence.toString());
-                    org.telegram.ui.Cells.h3 h3Var = j3Var.f22080b;
+                    j3Var.f22081b.setText(charSequence.toString());
+                    org.telegram.ui.Cells.h3 h3Var = j3Var.f22081b;
                     h3Var.setSelection(0, h3Var.getText().length());
                 }
                 caVar.run();
@@ -222,13 +222,13 @@ public final class f2 implements View.OnClickListener {
             case 16:
                 org.telegram.ui.ActionBar.u0 u0Var = (org.telegram.ui.ActionBar.u0) this.f934b;
                 org.telegram.ui.ActionBar.t0 t0Var = (org.telegram.ui.ActionBar.t0) this.f935c;
-                int indexOf = u0Var.f21318g0.indexOf(t0Var.getFilter());
-                if (u0Var.f21319h0 != indexOf) {
-                    u0Var.f21319h0 = indexOf;
+                int indexOf = u0Var.f21319g0.indexOf(t0Var.getFilter());
+                if (u0Var.f21320h0 != indexOf) {
+                    u0Var.f21320h0 = indexOf;
                     u0Var.y();
                     return;
                 } else if (t0Var.getFilter().h) {
-                    if (!t0Var.f21263a.f16088f) {
+                    if (!t0Var.f21264a.f16089f) {
                         t0Var.setSelectedForDelete(true);
                         return;
                     }
@@ -237,7 +237,7 @@ public final class f2 implements View.OnClickListener {
                     org.telegram.ui.ActionBar.e5 e5Var = u0Var.H;
                     if (e5Var != null) {
                         e5Var.o(filter);
-                        u0Var.H.q(u0Var.f21314e);
+                        u0Var.H.q(u0Var.f21315e);
                         return;
                     }
                     return;
@@ -248,7 +248,7 @@ public final class f2 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.s0 s0Var = (org.telegram.ui.ActionBar.s0) this.f934b;
                 org.telegram.ui.ActionBar.u0 u0Var2 = (org.telegram.ui.ActionBar.u0) this.f935c;
                 org.telegram.ui.ActionBar.m1 m1Var = u0Var2.d;
-                if (m1Var != null && m1Var.isShowing() && s0Var.f21246f) {
+                if (m1Var != null && m1Var.isShowing() && s0Var.f21247f) {
                     if (!u0Var2.T) {
                         u0Var2.T = true;
                         u0Var2.d.d(u0Var2.R);
@@ -256,7 +256,7 @@ public final class f2 implements View.OnClickListener {
                         return;
                     }
                 }
-                org.telegram.ui.ActionBar.y yVar = u0Var2.f21311c;
+                org.telegram.ui.ActionBar.y yVar = u0Var2.f21312c;
                 if (yVar != null) {
                     yVar.o(((Integer) view.getTag()).intValue());
                     return;
@@ -269,12 +269,12 @@ public final class f2 implements View.OnClickListener {
                 return;
             case 18:
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.f934b;
-                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20984a) {
+                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20985a) {
                     org.telegram.ui.ActionBar.z1 z1Var = a2Var.m0;
                     if (z1Var != null) {
                         z1Var.f(a2Var, -1);
                     }
-                    if (a2Var.f20164h0) {
+                    if (a2Var.f20165h0) {
                         a2Var.dismiss();
                         return;
                     }
@@ -283,12 +283,12 @@ public final class f2 implements View.OnClickListener {
                 return;
             case 19:
                 org.telegram.ui.ActionBar.a2 a2Var2 = (org.telegram.ui.ActionBar.a2) this.f934b;
-                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20984a) {
-                    org.telegram.ui.ActionBar.z1 z1Var2 = a2Var2.f20171o0;
+                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20985a) {
+                    org.telegram.ui.ActionBar.z1 z1Var2 = a2Var2.f20172o0;
                     if (z1Var2 != null) {
                         z1Var2.f(a2Var2, -2);
                     }
-                    if (a2Var2.f20164h0) {
+                    if (a2Var2.f20165h0) {
                         a2Var2.cancel();
                         return;
                     }
@@ -297,12 +297,12 @@ public final class f2 implements View.OnClickListener {
                 return;
             case 20:
                 org.telegram.ui.ActionBar.a2 a2Var3 = (org.telegram.ui.ActionBar.a2) this.f934b;
-                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20984a) {
-                    org.telegram.ui.ActionBar.z1 z1Var3 = a2Var3.f20177s0;
+                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20985a) {
+                    org.telegram.ui.ActionBar.z1 z1Var3 = a2Var3.f20178s0;
                     if (z1Var3 != null) {
                         z1Var3.f(a2Var3, -2);
                     }
-                    if (a2Var3.f20164h0) {
+                    if (a2Var3.f20165h0) {
                         a2Var3.dismiss();
                         return;
                     }
@@ -311,12 +311,12 @@ public final class f2 implements View.OnClickListener {
                 return;
             case 21:
                 org.telegram.ui.ActionBar.a2 a2Var4 = (org.telegram.ui.ActionBar.a2) this.f934b;
-                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20984a) {
-                    ii.f4 f4Var = a2Var4.f20173q0;
+                if (!((org.telegram.ui.ActionBar.v1) this.f935c).f20985a) {
+                    ii.f4 f4Var = a2Var4.f20174q0;
                     if (f4Var != null) {
                         f4Var.f(a2Var4, -2);
                     }
-                    if (a2Var4.f20164h0) {
+                    if (a2Var4.f20165h0) {
                         a2Var4.cancel();
                         return;
                     }
@@ -327,11 +327,11 @@ public final class f2 implements View.OnClickListener {
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f934b;
                 Activity activity = (Activity) this.f935c;
                 org.telegram.ui.v3 v3Var2 = i4Var.K;
-                if (!i4Var.f38649h0.A0) {
-                    org.telegram.ui.m3 m3Var = i4Var.f38661u0[0];
+                if (!i4Var.f38652h0.A0) {
+                    org.telegram.ui.m3 m3Var = i4Var.f38664u0[0];
                     if (m3Var.f()) {
-                        if (m3Var.getWebView() != null && !i4Var.f38649h0.W) {
-                            if (i4Var.f38650i0 != null) {
+                        if (m3Var.getWebView() != null && !i4Var.f38652h0.W) {
+                            if (i4Var.f38653i0 != null) {
                                 org.telegram.ui.web.y0 webView = m3Var.getWebView();
                                 if (webView != null) {
                                     str = webView.getTitle();
@@ -344,7 +344,7 @@ public final class f2 implements View.OnClickListener {
                                     str2 = null;
                                 }
                                 String u11 = org.telegram.ui.web.b1.u(str2);
-                                org.telegram.ui.web.k kVar = i4Var.f38650i0;
+                                org.telegram.ui.web.k kVar = i4Var.f38653i0;
                                 if (webView != null) {
                                     bitmap = webView.getFavicon();
                                 } else {
@@ -363,8 +363,8 @@ public final class f2 implements View.OnClickListener {
                                 org.telegram.ui.s sVar = new org.telegram.ui.s(i4Var, 1);
                                 org.telegram.ui.s sVar2 = new org.telegram.ui.s(i4Var, 2);
                                 org.telegram.ui.a0 a0Var = new org.telegram.ui.a0(i4Var, u11, m3Var, 0);
-                                org.telegram.ui.web.c cVar2 = kVar.f43315w;
-                                ImageView imageView = kVar.f43311f;
+                                org.telegram.ui.web.c cVar2 = kVar.f43317w;
+                                ImageView imageView = kVar.f43313f;
                                 if (bitmap == null) {
                                     imageView.setImageResource(R.drawable.msg_language);
                                     str4 = str3;
@@ -374,7 +374,7 @@ public final class f2 implements View.OnClickListener {
                                     imageView.setImageDrawable(new BitmapDrawable(kVar.getContext().getResources(), bitmap));
                                     imageView.setColorFilter((ColorFilter) null);
                                 }
-                                TextView textView = kVar.f43313r;
+                                TextView textView = kVar.f43315r;
                                 textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), false));
                                 try {
                                     Uri parse = Uri.parse(str4);
@@ -388,24 +388,24 @@ public final class f2 implements View.OnClickListener {
                                         str5 = str4;
                                         FileLog.e(e);
                                         str6 = str5;
-                                        TextView textView2 = kVar.f43314s;
+                                        TextView textView2 = kVar.f43316s;
                                         textView2.setText(Emoji.replaceEmoji(str6, textView2.getPaint().getFontMetricsInt(), false));
                                         kVar.L = zVar;
                                         kVar.M = sVar;
                                         kVar.N = sVar2;
-                                        kVar.f43310e.setOnClickListener(new xy0(18, kVar, yVar2));
-                                        kVar.f43312n.setOnClickListener(a0Var);
-                                        kVar.f43308b = false;
+                                        kVar.f43312e.setOnClickListener(new xy0(18, kVar, yVar2));
+                                        kVar.f43314n.setOnClickListener(a0Var);
+                                        kVar.f43310b = false;
                                         kVar.setInput(null);
                                         cVar2.W2.N(true);
                                         cVar2.u0(0);
-                                        org.telegram.ui.l0 l0Var = i4Var.f38649h0;
+                                        org.telegram.ui.l0 l0Var = i4Var.f38652h0;
                                         h3 h3Var2 = new h3(28, m3Var, activity);
-                                        fi.o oVar = l0Var.f43417b0;
+                                        fi.o oVar = l0Var.f43422b0;
                                         oVar.setText("");
                                         oVar.setSelection(0, oVar.getText().length());
                                         oVar.setScrollX(0);
-                                        l0Var.f43442v0 = h3Var2;
+                                        l0Var.f43447v0 = h3Var2;
                                         l0Var.k(true);
                                         return;
                                     }
@@ -416,58 +416,58 @@ public final class f2 implements View.OnClickListener {
                                     e = e12;
                                     FileLog.e(e);
                                     str6 = str5;
-                                    TextView textView22 = kVar.f43314s;
+                                    TextView textView22 = kVar.f43316s;
                                     textView22.setText(Emoji.replaceEmoji(str6, textView22.getPaint().getFontMetricsInt(), false));
                                     kVar.L = zVar;
                                     kVar.M = sVar;
                                     kVar.N = sVar2;
-                                    kVar.f43310e.setOnClickListener(new xy0(18, kVar, yVar2));
-                                    kVar.f43312n.setOnClickListener(a0Var);
-                                    kVar.f43308b = false;
+                                    kVar.f43312e.setOnClickListener(new xy0(18, kVar, yVar2));
+                                    kVar.f43314n.setOnClickListener(a0Var);
+                                    kVar.f43310b = false;
                                     kVar.setInput(null);
                                     cVar2.W2.N(true);
                                     cVar2.u0(0);
-                                    org.telegram.ui.l0 l0Var2 = i4Var.f38649h0;
+                                    org.telegram.ui.l0 l0Var2 = i4Var.f38652h0;
                                     h3 h3Var22 = new h3(28, m3Var, activity);
-                                    fi.o oVar2 = l0Var2.f43417b0;
+                                    fi.o oVar2 = l0Var2.f43422b0;
                                     oVar2.setText("");
                                     oVar2.setSelection(0, oVar2.getText().length());
                                     oVar2.setScrollX(0);
-                                    l0Var2.f43442v0 = h3Var22;
+                                    l0Var2.f43447v0 = h3Var22;
                                     l0Var2.k(true);
                                     return;
                                 }
-                                TextView textView222 = kVar.f43314s;
+                                TextView textView222 = kVar.f43316s;
                                 textView222.setText(Emoji.replaceEmoji(str6, textView222.getPaint().getFontMetricsInt(), false));
                                 kVar.L = zVar;
                                 kVar.M = sVar;
                                 kVar.N = sVar2;
-                                kVar.f43310e.setOnClickListener(new xy0(18, kVar, yVar2));
-                                kVar.f43312n.setOnClickListener(a0Var);
-                                kVar.f43308b = false;
+                                kVar.f43312e.setOnClickListener(new xy0(18, kVar, yVar2));
+                                kVar.f43314n.setOnClickListener(a0Var);
+                                kVar.f43310b = false;
                                 kVar.setInput(null);
                                 cVar2.W2.N(true);
                                 cVar2.u0(0);
                             }
-                            org.telegram.ui.l0 l0Var22 = i4Var.f38649h0;
+                            org.telegram.ui.l0 l0Var22 = i4Var.f38652h0;
                             h3 h3Var222 = new h3(28, m3Var, activity);
-                            fi.o oVar22 = l0Var22.f43417b0;
+                            fi.o oVar22 = l0Var22.f43422b0;
                             oVar22.setText("");
                             oVar22.setSelection(0, oVar22.getText().length());
                             oVar22.setScrollX(0);
-                            l0Var22.f43442v0 = h3Var222;
+                            l0Var22.f43447v0 = h3Var222;
                             l0Var22.k(true);
                             return;
                         }
                         return;
                     } else if (v3Var2 != null) {
                         hx0 hx0Var = new hx0(activity);
-                        hx0Var.f48058a = 1;
-                        hx0Var.f26985s = -AndroidUtilities.dp(32.0f);
+                        hx0Var.f48066a = 1;
+                        hx0Var.f26970s = -AndroidUtilities.dp(32.0f);
                         m3Var.d.w0(hx0Var);
                         return;
                     } else {
-                        m3Var.f39892b.x0(0);
+                        m3Var.f39895b.x0(0);
                         return;
                     }
                 }
@@ -475,10 +475,10 @@ public final class f2 implements View.OnClickListener {
             case 23:
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.f934b;
                 w70 w70Var = (w70) this.f935c;
-                if (d1Var.f36596f == 0) {
+                if (d1Var.f36598f == 0) {
                     d1Var.a(1, true);
                     int i11 = ((org.telegram.ui.i4) w70Var).X;
-                    TLRPC.Chat chat = w70Var.f43071n;
+                    TLRPC.Chat chat = w70Var.f43073n;
                     TLRPC.TL_channels_joinChannel tL_channels_joinChannel = new TLRPC.TL_channels_joinChannel();
                     tL_channels_joinChannel.channel = MessagesController.getInputChannel(chat);
                     ConnectionsManager.getInstance(i11).sendRequestTyped(tL_channels_joinChannel, new ei.h1(d1Var, i11, tL_channels_joinChannel, chat));
@@ -488,19 +488,19 @@ public final class f2 implements View.OnClickListener {
             case 24:
                 org.telegram.ui.f5 f5Var = (org.telegram.ui.f5) this.f934b;
                 f5Var.b(false);
-                f5Var.f37627e.b((org.telegram.ui.g5) this.f935c);
+                f5Var.f37631e.b((org.telegram.ui.g5) this.f935c);
                 return;
             case 25:
-                ((org.telegram.ui.z6) this.f934b).f44621e.u0((org.telegram.ui.Cells.a2) this.f935c);
+                ((org.telegram.ui.z6) this.f934b).f44626e.u0((org.telegram.ui.Cells.a2) this.f935c);
                 return;
             case 26:
                 org.telegram.ui.g7 g7Var = (org.telegram.ui.g7) this.f934b;
                 org.telegram.ui.o7 o7Var = (org.telegram.ui.o7) this.f935c;
                 org.telegram.ui.k7 k7Var = g7Var.d.v;
                 if (k7Var != null) {
-                    k7Var.y0(o7Var.f40566c, o7Var.d, true);
+                    k7Var.y0(o7Var.f40569c, o7Var.d, true);
                 }
-                org.telegram.ui.ActionBar.m1 m1Var2 = g7Var.f37961a;
+                org.telegram.ui.ActionBar.m1 m1Var2 = g7Var.f37959a;
                 if (m1Var2 != null) {
                     m1Var2.d(true);
                     return;
@@ -509,12 +509,12 @@ public final class f2 implements View.OnClickListener {
             case 27:
                 org.telegram.ui.m9 m9Var = (org.telegram.ui.m9) this.f934b;
                 org.telegram.ui.i9 i9Var = (org.telegram.ui.i9) this.f935c;
-                ArrayList arrayList = i9Var.f38805b;
+                ArrayList arrayList = i9Var.f38808b;
                 if (arrayList.size() == 1) {
                     TLRPC.User user = (TLRPC.User) arrayList.get(0);
-                    TLRPC.UserFull userFull = m9Var.getMessagesController().getUserFull(user.f19949id);
+                    TLRPC.UserFull userFull = m9Var.getMessagesController().getUserFull(user.f19950id);
                     m9Var.P = user;
-                    boolean z11 = i9Var.f38807e;
+                    boolean z11 = i9Var.f38810e;
                     if (!z11 && (userFull == null || !userFull.video_calls_available)) {
                         z10 = false;
                     } else {
@@ -523,17 +523,17 @@ public final class f2 implements View.OnClickListener {
                     org.telegram.ui.Components.voip.g2.m(user, z11, z10, m9Var.getParentActivity(), null, m9Var.getAccountInstance());
                     return;
                 }
-                boolean z12 = i9Var.f38807e;
+                boolean z12 = i9Var.f38810e;
                 HashSet hashSet = new HashSet();
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
                     Object obj = arrayList.get(i12);
                     i12++;
-                    hashSet.add(Long.valueOf(((TLRPC.User) obj).f19949id));
+                    hashSet.add(Long.valueOf(((TLRPC.User) obj).f19950id));
                 }
                 TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
-                tL_inputGroupCallInviteMessage.msg_id = ((TLRPC.Message) i9Var.f38806c.get(0)).f19823id;
+                tL_inputGroupCallInviteMessage.msg_id = ((TLRPC.Message) i9Var.f38809c.get(0)).f19824id;
                 org.telegram.ui.ActionBar.a2 a2Var5 = new org.telegram.ui.ActionBar.a2(m9Var.getParentActivity(), 3, null);
                 TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
                 getgroupcall.call = tL_inputGroupCallInviteMessage;
@@ -551,7 +551,7 @@ public final class f2 implements View.OnClickListener {
                         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                         wd wdVar = new wd(oeVar, twoStepVerificationActivity, 0);
                         twoStepVerificationActivity.Z = 1;
-                        twoStepVerificationActivity.f34410b0 = wdVar;
+                        twoStepVerificationActivity.f34412b0 = wdVar;
                         dVar.setLoading(true);
                         twoStepVerificationActivity.s0(new xd(oeVar, db1Var, twoStepVerificationActivity, 0));
                         return;

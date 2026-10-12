@@ -51,9 +51,9 @@ public final class h61 extends FrameLayout {
             float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
             float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
             if (n71Var.n()) {
-                AndroidUtilities.rectTmp.set((dp - (n71Var.f40255a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.vision.e2.y(1.0f, n71Var.f40258b1, height, getPaddingTop()), ((width - dp) * n71Var.f40255a1) + getPaddingLeft() + dp, getPaddingTop() + height);
+                AndroidUtilities.rectTmp.set((dp - (n71Var.f40258a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.vision.e2.y(1.0f, n71Var.f40261b1, height, getPaddingTop()), ((width - dp) * n71Var.f40258a1) + getPaddingLeft() + dp, getPaddingTop() + height);
             } else {
-                AndroidUtilities.rectTmp.set((dp - (n71Var.f40255a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * n71Var.f40255a1) + getPaddingLeft() + dp, (height * n71Var.f40258b1) + getPaddingTop());
+                AndroidUtilities.rectTmp.set((dp - (n71Var.f40258a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * n71Var.f40258a1) + getPaddingLeft() + dp, (height * n71Var.f40261b1) + getPaddingTop());
             }
             Path path = this.f38265a;
             path.rewind();

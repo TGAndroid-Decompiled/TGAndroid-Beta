@@ -11,21 +11,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class ev0 extends FrameLayout {
-    public final org.telegram.ui.Cells.i6 f25789a;
-    public final View f25790b;
+    public final org.telegram.ui.Cells.i6 f25791a;
+    public final View f25792b;
 
     public ev0(int i10, Context context, boolean z10, org.telegram.ui.ActionBar.c6 c6Var, ur0 ur0Var) {
         super(context);
         int i11;
         int i12;
         org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, c6Var);
-        this.f25789a = i6Var;
-        i6Var.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var), 2, -1));
+        this.f25791a = i6Var;
+        i6Var.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var), 2, -1));
         addView(i6Var, w7.w5.d(-2.0f, -1));
         View view = new View(context);
-        this.f25790b = view;
+        this.f25792b = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i13 = org.telegram.ui.ActionBar.h6.f20559d6;
+        int i13 = org.telegram.ui.ActionBar.h6.f20560d6;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.h6.m1(0.4f, org.telegram.ui.ActionBar.h6.w0(i13, c6Var)), org.telegram.ui.ActionBar.h6.w0(i13, c6Var)}));
         addView(view, w7.w5.d(60.0f, -1));
         ci.d dVar = new ci.d(context, c6Var, true);
@@ -48,7 +48,7 @@ public final class ev0 extends FrameLayout {
         ia0Var.setTextAlignment(4);
         ia0Var.setGravity(17);
         ia0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, c6Var));
-        ia0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20744n6, c6Var));
+        ia0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20745n6, c6Var));
         ia0Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
         if (z10) {
             i12 = R.string.MoreSimilarBotsText;

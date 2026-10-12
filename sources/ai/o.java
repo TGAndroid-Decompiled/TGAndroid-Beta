@@ -26,7 +26,7 @@ public final class o extends hr {
         mx mxVar = this.G;
         int i12 = mxVar.f664b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f20839s8;
+            i10 = org.telegram.ui.ActionBar.h6.f20840s8;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.M8;
         }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class jp0 extends org.telegram.ui.Components.t61 {
-    public static final int f39263a = 0;
+    public static final int f39266a = 0;
 
     static {
         org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
@@ -15,21 +15,21 @@ public final class jp0 extends org.telegram.ui.Components.t61 {
         kp0 kp0Var = (kp0) view;
         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) u61Var.G;
         xh.j1 j1Var = kp0Var.h;
-        xh.f1 f1Var = kp0Var.f39569e;
-        kp0Var.f39566a = savedStarGift.gift.f20031id;
+        xh.f1 f1Var = kp0Var.f39563e;
+        kp0Var.f39560a = savedStarGift.gift.f20032id;
         kp0Var.setPadding(0, 0, 0, 0);
         kp0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
-        kp0Var.f39567b = (TL_stars.starGiftAttributeBackdrop) yh.n5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        kp0Var.f39568c = (TL_stars.starGiftAttributePattern) yh.n5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
-        f1Var.d(kp0Var.f39567b);
-        f1Var.e(kp0Var.f39568c);
+        kp0Var.f39561b = (TL_stars.starGiftAttributeBackdrop) yh.n5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        kp0Var.f39562c = (TL_stars.starGiftAttributePattern) yh.n5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        f1Var.d(kp0Var.f39561b);
+        f1Var.e(kp0Var.f39562c);
         if (j1Var != null) {
-            j1Var.setBackdrop(kp0Var.f39567b);
+            j1Var.setBackdrop(kp0Var.f39561b);
             String k10 = hg.c.k(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            j1Var.f51538b = k10;
-            j1Var.f51537a.f(9, k10, false);
+            j1Var.f51546b = k10;
+            j1Var.f51545a.f(9, k10, false);
         }
-        kp0Var.b(u61Var.f31070e, false);
+        kp0Var.b(u61Var.f31065e, false);
     }
 
     @Override

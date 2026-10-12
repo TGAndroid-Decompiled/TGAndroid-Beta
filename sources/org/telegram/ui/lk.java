@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lk implements st {
-    public final eo f39774a;
+    public final eo f39777a;
 
     public lk(eo eoVar) {
-        this.f39774a = eoVar;
+        this.f39777a = eoVar;
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class lk implements st {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            eo eoVar = this.f39774a;
+            eo eoVar = this.f39777a;
             if (eoVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f19822id = inputStickerSet.f19822id;
-                org.telegram.ui.Components.dz0 dz0Var = new org.telegram.ui.Components.dz0(eoVar.getParentActivity(), eoVar, tL_inputStickerSetID, null, eoVar.Y, eoVar.f37251ea);
+                tL_inputStickerSetID.f19823id = inputStickerSet.f19823id;
+                org.telegram.ui.Components.dz0 dz0Var = new org.telegram.ui.Components.dz0(eoVar.getParentActivity(), eoVar, tL_inputStickerSetID, null, eoVar.Y, eoVar.f37256ea);
                 dz0Var.setCalcMandatoryInsets(eoVar.C9());
-                dz0Var.f25489i0 = z10;
+                dz0Var.f25494i0 = z10;
                 eoVar.showDialog(dz0Var);
             }
         }
@@ -79,17 +79,17 @@ public final class lk implements st {
 
     @Override
     public final long a() {
-        return this.f39774a.T5;
+        return this.f39777a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f39774a.G6();
+        return this.f39777a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f39774a.R3 == 1) {
+        if (this.f39777a.R3 == 1) {
             return true;
         }
         return false;
@@ -137,7 +137,7 @@ public final class lk implements st {
 
     @Override
     public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f39774a.Y.d(document, str, obj, null, true, z10, i10, i11);
+        this.f39777a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

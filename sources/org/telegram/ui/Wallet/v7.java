@@ -6,20 +6,20 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.eo;
 public final class v7 implements Runnable {
-    public final int f35450a;
-    public final l8 f35451b;
+    public final int f35452a;
+    public final l8 f35453b;
 
     public v7(l8 l8Var, int i10) {
-        this.f35450a = i10;
-        this.f35451b = l8Var;
+        this.f35452a = i10;
+        this.f35453b = l8Var;
     }
 
     @Override
     public final void run() {
         EditTextBoldCursor editTextBoldCursor;
-        switch (this.f35450a) {
+        switch (this.f35452a) {
             case 0:
-                l8 l8Var = this.f35451b;
+                l8 l8Var = this.f35453b;
                 if (l8Var.F && (editTextBoldCursor = l8Var.E) != null && editTextBoldCursor.isAttachedToWindow() && l8Var.E.hasWindowFocus()) {
                     l8Var.E.requestFocus();
                     if (AndroidUtilities.showKeyboard(l8Var.E)) {
@@ -30,16 +30,16 @@ public final class v7 implements Runnable {
                 }
                 return;
             case 1:
-                this.f35451b.f35039a0.setLoading(false);
+                this.f35453b.f35041a0.setLoading(false);
                 return;
             case 2:
-                this.f35451b.f35039a0.setLoading(false);
+                this.f35453b.f35041a0.setLoading(false);
                 return;
             case 3:
-                this.f35451b.q0();
+                this.f35453b.q0();
                 return;
             case 4:
-                l8 l8Var2 = this.f35451b;
+                l8 l8Var2 = this.f35453b;
                 float f7 = l8Var2.Y;
                 if (f7 < 1.0f && l8Var2.X == null) {
                     o1.k kVar = new o1.k(new o1.j(f7));
@@ -47,7 +47,7 @@ public final class v7 implements Runnable {
                     o1.l lVar = new o1.l(1.0f);
                     lVar.a(0.55f);
                     lVar.b(65.0f);
-                    kVar.f16690u = lVar;
+                    kVar.f16691u = lVar;
                     l8Var2.X.e(0.001f);
                     l8Var2.X.b(new t2(l8Var2, 1));
                     l8Var2.X.a(new z5(l8Var2, 1));
@@ -56,11 +56,11 @@ public final class v7 implements Runnable {
                 }
                 return;
             case 5:
-                l8 l8Var3 = this.f35451b;
-                l8Var3.presentFragment(eo.W9(l8Var3.f35043e.f19949id));
+                l8 l8Var3 = this.f35453b;
+                l8Var3.presentFragment(eo.W9(l8Var3.f35045e.f19950id));
                 return;
             default:
-                org.telegram.messenger.v0.q(R.string.WalletAddressCopiedBulletin, zc.a0(this.f35451b), R.raw.copy, 36);
+                org.telegram.messenger.v0.q(R.string.WalletAddressCopiedBulletin, zc.a0(this.f35453b), R.raw.copy, 36);
                 return;
         }
     }

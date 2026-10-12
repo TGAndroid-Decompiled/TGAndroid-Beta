@@ -29,7 +29,7 @@ import org.telegram.ui.bg0;
 import org.telegram.ui.df;
 import org.telegram.ui.dn0;
 import org.telegram.ui.eo;
-import org.telegram.ui.fg0;
+import org.telegram.ui.gg0;
 import org.telegram.ui.hf;
 import org.telegram.ui.pf0;
 import org.telegram.ui.pn;
@@ -90,7 +90,7 @@ public final class hd implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new df((Object) ((LaunchActivity) obj5), (Object) ((org.telegram.ui.ActionBar.a2) obj4), (Object) tL_error, (String) obj3, (Object) ((Bundle) obj2), (Object) tLObject, (Object) ((TL_account.sendConfirmPhoneCode) obj), 3));
                 return;
             case 8:
-                fg0 fg0Var = (fg0) obj5;
+                gg0 gg0Var = (gg0) obj5;
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj4;
                 Purchase purchase = (Purchase) obj3;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj2;
@@ -103,11 +103,11 @@ public final class hd implements RequestDelegate {
                     while (i11 < size) {
                         Object obj6 = findUpdatesAndRemove.get(i11);
                         i11++;
-                        AndroidUtilities.runOnUIThread(new pf0((Object) fg0Var, (Object) tL_inputStorePaymentAuthCode, (Object) ((TL_update.TL_updateSentPhoneCode) obj6), 3));
+                        AndroidUtilities.runOnUIThread(new pf0((Object) gg0Var, (Object) tL_inputStorePaymentAuthCode, (Object) ((TL_update.TL_updateSentPhoneCode) obj6), 3));
                     }
-                    fg0Var.v.getMessagesController().lambda$processUpdates$377(updates, false);
+                    gg0Var.v.getMessagesController().lambda$processUpdates$377(updates, false);
                     BillingController.getInstance().consumeGiftPurchase(purchase, tL_payments_canPurchaseStore.purpose, null);
-                    AndroidUtilities.runOnUIThread(new bg0(fg0Var, 3));
+                    AndroidUtilities.runOnUIThread(new bg0(gg0Var, 3));
                     return;
                 } else if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new wz(uo0Var, 26));

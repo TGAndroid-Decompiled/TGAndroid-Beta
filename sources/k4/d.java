@@ -3,12 +3,12 @@ package k4;
 import c3.p;
 import e2.v;
 public final class d {
-    public final int f14618a;
-    public final long f14619b;
+    public final int f14619a;
+    public final long f14620b;
 
     public d(int i10, long j3, boolean z10) {
-        this.f14618a = i10;
-        this.f14619b = j3;
+        this.f14619a = i10;
+        this.f14620b = j3;
     }
 
     public static d b(p pVar, v vVar) {
@@ -18,7 +18,7 @@ public final class d {
     }
 
     public boolean a() {
-        int i10 = this.f14618a;
+        int i10 = this.f14619a;
         if (i10 == 0 || i10 == 1) {
             return true;
         }
@@ -27,7 +27,7 @@ public final class d {
 
     public d(int i10, long j3) {
         e2.d.b(j3 >= 0);
-        this.f14618a = i10;
-        this.f14619b = j3;
+        this.f14619a = i10;
+        this.f14620b = j3;
     }
 }

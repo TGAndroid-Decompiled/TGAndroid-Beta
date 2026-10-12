@@ -8,24 +8,24 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class ua extends View {
-    public final Paint f31122a;
-    public float f31123b;
-    public int f31124c;
+    public final Paint f31117a;
+    public float f31118b;
+    public int f31119c;
     public int d;
-    public final RectF f31125e;
-    public final z4.g f31126f;
+    public final RectF f31120e;
+    public final z4.g f31121f;
     public final int h;
-    public int f31127n;
-    public int f31128r;
+    public int f31122n;
+    public int f31123r;
 
     public ua(Context context, z4.g gVar, int i10) {
         super(context);
-        this.f31122a = new Paint(1);
+        this.f31117a = new Paint(1);
         new DecelerateInterpolator();
-        this.f31125e = new RectF();
-        this.f31127n = -1;
-        this.f31128r = -1;
-        this.f31126f = gVar;
+        this.f31120e = new RectF();
+        this.f31122n = -1;
+        this.f31123r = -1;
+        this.f31121f = gVar;
         this.h = i10;
     }
 
@@ -35,8 +35,8 @@ public final class ua extends View {
         RectF rectF;
         int dp;
         AndroidUtilities.dp(5.0f);
-        int i11 = this.f31127n;
-        Paint paint = this.f31122a;
+        int i11 = this.f31122n;
+        Paint paint = this.f31117a;
         if (i11 >= 0) {
             paint.setColor((org.telegram.ui.ActionBar.h6.x0(null, i11, false) & 16777215) | (-1275068416));
         } else {
@@ -47,11 +47,11 @@ public final class ua extends View {
             }
             paint.setColor(i10);
         }
-        this.d = this.f31126f.getCurrentItem();
+        this.d = this.f31121f.getCurrentItem();
         int i12 = 0;
         while (true) {
             int i13 = this.h;
-            rectF = this.f31125e;
+            rectF = this.f31120e;
             if (i12 >= i13) {
                 break;
             }
@@ -61,18 +61,18 @@ public final class ua extends View {
             }
             i12++;
         }
-        int i14 = this.f31128r;
+        int i14 = this.f31123r;
         if (i14 >= 0) {
             paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i14, false));
         } else {
             paint.setColor(-14509328);
         }
         int dp2 = AndroidUtilities.dp(11.0f) * this.d;
-        if (this.f31123b != 0.0f) {
-            if (this.f31124c >= this.d) {
-                rectF.set(dp2, 0.0f, (AndroidUtilities.dp(11.0f) * this.f31123b) + AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
+        if (this.f31118b != 0.0f) {
+            if (this.f31119c >= this.d) {
+                rectF.set(dp2, 0.0f, (AndroidUtilities.dp(11.0f) * this.f31118b) + AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
             } else {
-                rectF.set(com.google.android.gms.internal.vision.e2.b(1.0f, this.f31123b, AndroidUtilities.dp(11.0f), dp2), 0.0f, AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
+                rectF.set(com.google.android.gms.internal.vision.e2.b(1.0f, this.f31118b, AndroidUtilities.dp(11.0f), dp2), 0.0f, AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
             }
         } else {
             rectF.set(dp2, 0.0f, AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));

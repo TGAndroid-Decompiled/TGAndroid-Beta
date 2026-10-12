@@ -4,37 +4,37 @@ import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class k2 implements Utilities.Callback {
-    public final int f27728a = 0;
-    public final int f27729b;
-    public final int f27730c;
+    public final int f27731a = 0;
+    public final int f27732b;
+    public final int f27733c;
     public final int d;
-    public final KeyEvent.Callback f27731e;
-    public final Object f27732f;
-    public final Object f27733g;
+    public final KeyEvent.Callback f27734e;
+    public final Object f27735f;
+    public final Object f27736g;
 
     public k2(int i10, int i11, s3 s3Var, u3 u3Var, int i12, t3 t3Var) {
-        this.f27729b = i10;
-        this.f27730c = i11;
-        this.f27731e = s3Var;
-        this.f27732f = u3Var;
+        this.f27732b = i10;
+        this.f27733c = i11;
+        this.f27734e = s3Var;
+        this.f27735f = u3Var;
         this.d = i12;
-        this.f27733g = t3Var;
+        this.f27736g = t3Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         int i11;
-        switch (this.f27728a) {
+        switch (this.f27731a) {
             case 0:
-                s3 s3Var = (s3) this.f27731e;
-                u3 u3Var = (u3) this.f27732f;
-                t3 t3Var = (t3) this.f27733g;
+                s3 s3Var = (s3) this.f27734e;
+                u3 u3Var = (u3) this.f27735f;
+                t3 t3Var = (t3) this.f27736g;
                 Boolean bool = (Boolean) obj;
-                int i12 = this.f27729b;
+                int i12 = this.f27732b;
                 int i13 = i12 % 60;
                 int i14 = (i12 - i13) / 60;
-                int i15 = this.f27730c;
+                int i15 = this.f27733c;
                 int i16 = i15 % 60;
                 int i17 = (i15 - i16) / 60;
                 int i18 = 59;
@@ -96,17 +96,17 @@ public final class k2 implements Utilities.Callback {
                 t3Var.invalidate();
                 return;
             default:
-                yh.s3.F0((yh.s3) this.f27731e, this.f27729b, this.f27730c, this.d, (TL_stars.TL_starGiftUnique) this.f27732f, (tg.m1[]) this.f27733g, (Long) obj);
+                yh.s3.F0((yh.s3) this.f27734e, this.f27732b, this.f27733c, this.d, (TL_stars.TL_starGiftUnique) this.f27735f, (tg.m1[]) this.f27736g, (Long) obj);
                 return;
         }
     }
 
     public k2(yh.s3 s3Var, int i10, int i11, int i12, TL_stars.TL_starGiftUnique tL_starGiftUnique, tg.m1[] m1VarArr) {
-        this.f27731e = s3Var;
-        this.f27729b = i10;
-        this.f27730c = i11;
+        this.f27734e = s3Var;
+        this.f27732b = i10;
+        this.f27733c = i11;
         this.d = i12;
-        this.f27732f = tL_starGiftUnique;
-        this.f27733g = m1VarArr;
+        this.f27735f = tL_starGiftUnique;
+        this.f27736g = m1VarArr;
     }
 }

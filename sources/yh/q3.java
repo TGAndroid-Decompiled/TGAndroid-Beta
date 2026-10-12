@@ -7,10 +7,10 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.jr;
 public final class q3 extends jr {
-    public final View f53287c;
+    public final View f53299c;
     public final Paint d;
-    public final Path f53288e;
-    public final long f53289f;
+    public final Path f53300e;
+    public final long f53301f;
     public float h;
 
     public q3(ci.d dVar, int i10) {
@@ -18,11 +18,11 @@ public final class q3 extends jr {
         Paint paint = new Paint(1);
         this.d = paint;
         Path path = new Path();
-        this.f53288e = path;
-        this.f53289f = System.currentTimeMillis();
+        this.f53300e = path;
+        this.f53301f = System.currentTimeMillis();
         this.h = 1.0f;
-        this.f53287c = dVar;
-        ((Paint) this.f27626b).setColor(-1);
+        this.f53299c = dVar;
+        ((Paint) this.f27633b).setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -36,10 +36,10 @@ public final class q3 extends jr {
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = (Paint) this.f27626b;
+        Paint paint = (Paint) this.f27633b;
         paint.setAlpha((int) (this.h * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f53289f) % 400)) / 400.0f;
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f53301f) % 400)) / 400.0f;
         Paint paint2 = this.d;
         int alpha = paint2.getAlpha();
         paint2.setAlpha((int) (alpha * this.h));
@@ -58,13 +58,13 @@ public final class q3 extends jr {
             canvas.save();
             float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f7);
             canvas.scale(lerp, lerp);
-            canvas.drawPath(this.f53288e, paint2);
+            canvas.drawPath(this.f53300e, paint2);
             canvas.restore();
             canvas.translate(0.0f, AndroidUtilities.dpf2(3.3260002f) * f7);
         }
         canvas.restore();
         paint2.setAlpha(alpha);
-        View view = this.f53287c;
+        View view = this.f53299c;
         if (view != null) {
             view.invalidate();
         }

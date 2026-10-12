@@ -56,7 +56,7 @@ public final class x4 implements o1.f {
                     tb0Var.setVisibility(i10);
                     if (tb0Var.N && z11) {
                         tb0Var.N = false;
-                        tb0Var.f30839b.setLayoutManager(tb0Var.getNeededLayoutManager());
+                        tb0Var.f30842b.setLayoutManager(tb0Var.getNeededLayoutManager());
                         tb0Var.I = true;
                         tb0Var.o(true);
                         return;

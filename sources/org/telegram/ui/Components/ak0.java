@@ -26,37 +26,37 @@ public final class ak0 implements LeadingMarginSpan {
     public final float[] G;
     public final Path H;
     public int I;
-    public rj0 J;
+    public sj0 J;
     public SpannableString K;
-    public final boolean f24418a;
-    public boolean f24419b = true;
-    public int f24420c;
+    public final boolean f24415a;
+    public boolean f24416b = true;
+    public int f24417c;
     public int d;
-    public boolean f24421e;
-    public boolean f24422f;
+    public boolean f24418e;
+    public boolean f24419f;
     public boolean h;
-    public boolean f24423n;
-    public boolean f24424r;
-    public final zj0 f24425s;
+    public boolean f24420n;
+    public boolean f24421r;
+    public final zj0 f24422s;
     public ii.a6 v;
-    public final Drawable f24426w;
-    public final Paint f24427x;
-    public final float[] f24428y;
+    public final Drawable f24423w;
+    public final Paint f24424x;
+    public final float[] f24425y;
 
     public ak0(boolean z10, boolean z11, zj0 zj0Var) {
         Paint paint = new Paint(1);
-        this.f24427x = paint;
-        this.f24428y = new float[8];
+        this.f24424x = paint;
+        this.f24425y = new float[8];
         this.E = new Path();
         Paint paint2 = new Paint(1);
         this.F = paint2;
         this.G = new float[8];
         this.H = new Path();
         this.I = -1;
-        this.f24418a = z10;
-        this.f24425s = zj0Var;
-        this.f24421e = z11;
-        this.f24426w = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.mini_quote).mutate();
+        this.f24415a = z10;
+        this.f24422s = zj0Var;
+        this.f24418e = z11;
+        this.f24423w = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.mini_quote).mutate();
         paint2.setColor(this.I);
         paint.setColor(i0.a.k(this.I, 30));
     }
@@ -84,7 +84,7 @@ public final class ak0 implements LeadingMarginSpan {
             } else {
                 i11 = 0;
             }
-            if (zj0Var.f33392a.f24421e) {
+            if (zj0Var.f33394a.f24418e) {
                 i14 = 16;
             }
             hashMap.put(valueOf, Integer.valueOf(i14 | i11));
@@ -97,7 +97,7 @@ public final class ak0 implements LeadingMarginSpan {
             }
             hashMap.put(valueOf2, Integer.valueOf(i12 | 2));
             spannableStringBuilder.removeSpan(zj0Var);
-            spannableStringBuilder.removeSpan(zj0Var.f33392a);
+            spannableStringBuilder.removeSpan(zj0Var.f33394a);
             i13++;
         }
         Iterator it = treeSet.iterator();
@@ -149,8 +149,8 @@ public final class ak0 implements LeadingMarginSpan {
         int clamp2 = Utilities.clamp(i11, spannable.length(), 0);
         ?? metricAffectingSpan = new MetricAffectingSpan();
         ak0 ak0Var = new ak0(false, z10, metricAffectingSpan);
-        metricAffectingSpan.f33392a = ak0Var;
-        ak0Var.f24420c = clamp;
+        metricAffectingSpan.f33394a = ak0Var;
+        ak0Var.f24417c = clamp;
         ak0Var.d = clamp2;
         spannable.setSpan(metricAffectingSpan, clamp, clamp2, 33);
         spannable.setSpan(ak0Var, clamp, clamp2, 33);
@@ -173,8 +173,8 @@ public final class ak0 implements LeadingMarginSpan {
         }
         ?? metricAffectingSpan = new MetricAffectingSpan();
         ak0 ak0Var = new ak0(true, z10, metricAffectingSpan);
-        metricAffectingSpan.f33392a = ak0Var;
-        ak0Var.f24420c = clamp;
+        metricAffectingSpan.f33394a = ak0Var;
+        ak0Var.f24417c = clamp;
         ak0Var.d = clamp2;
         editable.setSpan(ak0Var, Utilities.clamp(clamp, editable.length(), 0), Utilities.clamp(clamp2, editable.length(), 0), 33);
         editable.setSpan(metricAffectingSpan, Utilities.clamp(clamp, editable.length(), 0), Utilities.clamp(clamp2, editable.length(), 0), 33);
@@ -202,7 +202,7 @@ public final class ak0 implements LeadingMarginSpan {
                     arrayList.clear();
                 }
                 for (ak0 ak0Var : (ak0[]) spanned.getSpans(0, spanned.length(), ak0.class)) {
-                    boolean z10 = ak0Var.f24423n;
+                    boolean z10 = ak0Var.f24420n;
                     wj0 wj0Var = new wj0(null, layout, spanned, ak0Var);
                     if (arrayList == null) {
                         arrayList = new ArrayList();
@@ -220,7 +220,7 @@ public final class ak0 implements LeadingMarginSpan {
     @Override
     public final int getLeadingMargin(boolean z10) {
         float f7;
-        if (this.f24419b) {
+        if (this.f24416b) {
             f7 = 8.0f;
         } else {
             f7 = 10.0f;

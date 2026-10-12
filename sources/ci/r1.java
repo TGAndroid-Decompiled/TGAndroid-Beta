@@ -124,6 +124,22 @@ public final class r1 implements st {
     }
 
     @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
     public final void C(TLRPC.Document document) {
     }
 
@@ -133,14 +149,6 @@ public final class r1 implements st {
 
     @Override
     public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
     }
 
     @Override
@@ -161,14 +169,6 @@ public final class r1 implements st {
 
     @Override
     public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void u() {
     }
 
     @Override

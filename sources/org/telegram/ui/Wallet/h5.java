@@ -19,32 +19,32 @@ import org.telegram.messenger.am;
 public final class h5 {
     public static final LruCache B = new LruCache(2);
     public final int[] A;
-    public g5 f34834a;
-    public int f34835b;
-    public int f34836c;
+    public g5 f34836a;
+    public int f34837b;
+    public int f34838c;
     public int d;
-    public g5 f34837e;
-    public int f34838f;
-    public float[] f34839g;
+    public g5 f34839e;
+    public int f34840f;
+    public float[] f34841g;
     public float h;
-    public final int[] f34840i;
-    public final Context f34841j;
-    public final int f34842k;
-    public final g5 f34843l;
-    public final g5 f34844m;
-    public final int[] f34845n;
-    public final float[] f34846o;
-    public boolean f34847p;
-    public final g5 f34848q;
-    public final g5 f34849r;
-    public final ki.r f34850s;
-    public final ki.r f34851t;
-    public int f34852u;
+    public final int[] f34842i;
+    public final Context f34843j;
+    public final int f34844k;
+    public final g5 f34845l;
+    public final g5 f34846m;
+    public final int[] f34847n;
+    public final float[] f34848o;
+    public boolean f34849p;
+    public final g5 f34850q;
+    public final g5 f34851r;
+    public final ki.r f34852s;
+    public final ki.r f34853t;
+    public int f34854u;
     public final int v;
-    public final m5 f34853w;
-    public final g5 f34854x;
-    public final float[] f34855y;
-    public final float f34856z;
+    public final m5 f34855w;
+    public final g5 f34856x;
+    public final float[] f34857y;
+    public final float f34858z;
 
     public h5(android.content.Context r25, int r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.h5.<init>(android.content.Context, int, int):void");
@@ -153,21 +153,21 @@ public final class h5 {
     }
 
     public static void e(ki.r rVar, g5 g5Var) {
-        int i10 = g5Var.f34792b;
-        int i11 = rVar.f14915b[0];
+        int i10 = g5Var.f34794b;
+        int i11 = rVar.f14916b[0];
         if (i10 >= 0) {
             GLES20.glBindBuffer(34962, i11);
             GLES20.glEnableVertexAttribArray(i10);
             GLES20.glVertexAttribPointer(i10, 3, 5126, false, 0, 0);
         }
-        int i12 = g5Var.f34793c;
-        int i13 = rVar.f14915b[1];
+        int i12 = g5Var.f34795c;
+        int i13 = rVar.f14916b[1];
         if (i12 >= 0) {
             GLES20.glBindBuffer(34962, i13);
             GLES20.glEnableVertexAttribArray(i12);
             GLES20.glVertexAttribPointer(i12, 3, 5126, false, 0, 0);
         }
-        GLES20.glDrawArrays(4, 0, rVar.f14914a);
+        GLES20.glDrawArrays(4, 0, rVar.f14915a);
     }
 
     public static synchronized Bitmap f(Context context, int i10, int i11) {
@@ -213,19 +213,19 @@ public final class h5 {
     }
 
     public final void h(Bitmap bitmap) {
-        if (this.f34834a == null) {
-            Context context = this.f34841j;
-            this.f34834a = new g5(context, g(context, "shaders/wallet_card_vertex.glsl"), g(this.f34841j, "shaders/wallet_card_content_fragment.glsl"), "content", "");
-            this.f34835b = d();
+        if (this.f34836a == null) {
+            Context context = this.f34843j;
+            this.f34836a = new g5(context, g(context, "shaders/wallet_card_vertex.glsl"), g(this.f34843j, "shaders/wallet_card_content_fragment.glsl"), "content", "");
+            this.f34837b = d();
         }
         GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, this.f34835b);
-        if (this.f34836c == bitmap.getWidth() && this.d == bitmap.getHeight()) {
+        GLES20.glBindTexture(3553, this.f34837b);
+        if (this.f34838c == bitmap.getWidth() && this.d == bitmap.getHeight()) {
             GLUtils.texSubImage2D(3553, 0, 0, 0, bitmap);
             return;
         }
         GLUtils.texImage2D(3553, 0, bitmap, 0);
-        this.f34836c = bitmap.getWidth();
+        this.f34838c = bitmap.getWidth();
         this.d = bitmap.getHeight();
     }
 }

@@ -26,23 +26,23 @@ public final class hc implements Utilities.Callback3 {
         int i10 = fdVar.U;
         int i11 = this.f38324b;
         if (i11 == i10) {
-            fdVar.f37737n = l4.longValue();
+            fdVar.f37741n = l4.longValue();
             fdVar.a1(true);
-        } else if (i11 == fdVar.f37725c0) {
-            fdVar.f37749w = l4.longValue();
+        } else if (i11 == fdVar.f37729c0) {
+            fdVar.f37753w = l4.longValue();
             fdVar.b1();
-        } else if (i11 == fdVar.f37730f0) {
+        } else if (i11 == fdVar.f37734f0) {
             if (l4.longValue() == 0) {
-                fdVar.f37753y = null;
+                fdVar.f37757y = null;
             } else if (tL_starGiftUnique != null) {
                 TLRPC.TL_emojiStatusCollectible emojiStatusCollectibleFromGift = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
                 if (num != null) {
                     emojiStatusCollectibleFromGift.flags |= 1;
                     emojiStatusCollectibleFromGift.until = num.intValue();
                 }
-                fdVar.f37753y = emojiStatusCollectibleFromGift;
-                fdVar.f37744s = -1;
-                fdVar.f37749w = 0L;
+                fdVar.f37757y = emojiStatusCollectibleFromGift;
+                fdVar.f37748s = -1;
+                fdVar.f37753w = 0L;
             } else {
                 TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
                 tL_emojiStatus.document_id = l4.longValue();
@@ -50,7 +50,7 @@ public final class hc implements Utilities.Callback3 {
                     tL_emojiStatus.flags |= 1;
                     tL_emojiStatus.until = num.intValue();
                 }
-                fdVar.f37753y = tL_emojiStatus;
+                fdVar.f37757y = tL_emojiStatus;
             }
             fdVar.b1();
         }

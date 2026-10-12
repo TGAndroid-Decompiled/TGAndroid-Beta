@@ -59,15 +59,15 @@ public final class u0 implements km0 {
                 Context context = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
                 kb0 kb0Var = (kb0) tVar.V2.get(i10);
-                if (kb0Var.f39439e && !UserConfig.hasPremiumOnAccounts()) {
+                if (kb0Var.f39442e && !UserConfig.hasPremiumOnAccounts()) {
                     m2Var.showDialog(new rg.y0(m2Var, 10, true));
                     return;
                 } else if (!w7.d6.a(kb0Var)) {
                     s4.e0 e0Var = new s4.e0(context);
-                    e0Var.f48058a = i10;
+                    e0Var.f48066a = i10;
                     tVar.W2.w0(e0Var);
                     w7.d6.b(kb0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22499f;
+                    int i12 = org.telegram.ui.Cells.s.f22500f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

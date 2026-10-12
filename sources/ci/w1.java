@@ -41,8 +41,8 @@ public final class w1 extends g.o {
                 return 1;
             case 2:
                 pj pjVar = (pj) this.d;
-                int i15 = pjVar.f29505r;
-                int i16 = pjVar.f29507w;
+                int i15 = pjVar.f29509r;
+                int i16 = pjVar.f29511w;
                 if (i10 % i16 != i16 - 1) {
                     i11 = AndroidUtilities.dp(5.0f);
                 } else {
@@ -51,7 +51,7 @@ public final class w1 extends g.o {
                 return i15 + i11;
             case 3:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i10 != chatAttachAlertPhotoLayout.G.f24441n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                if (i10 != chatAttachAlertPhotoLayout.G.f24438n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i10--;
                     }
@@ -69,44 +69,44 @@ public final class w1 extends g.o {
                 iz izVar = (iz) this.d;
                 d00 d00Var = izVar.Y;
                 if (i10 == 0) {
-                    d00Var.f25113n0.getClass();
+                    d00Var.f25105n0.getClass();
                 }
-                s4.i0 adapter = d00Var.f25096h0.getAdapter();
-                hz hzVar = d00Var.f25102j0;
-                if (adapter == hzVar && hzVar.f26995x.isEmpty()) {
+                s4.i0 adapter = d00Var.f25088h0.getAdapter();
+                hz hzVar = d00Var.f25094j0;
+                if (adapter == hzVar && hzVar.f26980x.isEmpty()) {
                     return izVar.J;
                 }
-                d00Var.f25113n0.getClass();
+                d00Var.f25105n0.getClass();
                 izVar.B1();
                 return izVar.R.get(i10);
             case 5:
                 dz0 dz0Var = (dz0) this.d;
-                if ((dz0Var.W != null && (dz0Var.d.f33521e.get(i10) instanceof Integer)) || i10 == dz0Var.d.h) {
+                if ((dz0Var.W != null && (dz0Var.d.f33523e.get(i10) instanceof Integer)) || i10 == dz0Var.d.h) {
                     return dz0Var.d.d;
                 }
                 return 1;
             case 6:
                 wp0 wp0Var = (wp0) this.d;
-                if (i10 >= wp0Var.f43580b0 && i10 < wp0Var.f43582c0) {
+                if (i10 >= wp0Var.f43585b0 && i10 < wp0Var.f43587c0) {
                     return 1;
                 }
-                if (i10 >= wp0Var.f43583d0 && i10 < wp0Var.f43585e0) {
+                if (i10 >= wp0Var.f43588d0 && i10 < wp0Var.f43590e0) {
                     return 1;
                 }
                 return 3;
             case 7:
-                u61 G = ((xh.g4) this.d).f51489i0.G(i10 - 1);
-                if (G == null || (i13 = G.f31085u) == -1) {
+                u61 G = ((xh.g4) this.d).f51497i0.G(i10 - 1);
+                if (G == null || (i13 = G.f31080u) == -1) {
                     return 3;
                 }
                 return i13;
             default:
                 yh.r0 r0Var = (yh.r0) this.d;
-                g00 g00Var = r0Var.f53322h0;
-                yh.m0 m0Var = r0Var.f53325k0;
+                g00 g00Var = r0Var.f53334h0;
+                yh.m0 m0Var = r0Var.f53337k0;
                 if (m0Var != null && i10 != 0) {
                     u61 G2 = m0Var.G(i10 - 1);
-                    if (G2 == null || (i14 = G2.f31085u) == -1) {
+                    if (G2 == null || (i14 = G2.f31080u) == -1) {
                         return g00Var.J;
                     }
                     return i14;

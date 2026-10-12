@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class j21 extends FrameLayout {
-    public static final int f27351e = 0;
-    public float f27352a;
-    public float f27353b;
-    public boolean f27354c;
+    public static final int f27345e = 0;
+    public float f27346a;
+    public float f27347b;
+    public boolean f27348c;
     public final ThemeEditorView d;
 
     public j21(ThemeEditorView themeEditorView, Activity activity) {

@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class z3 extends FrameLayout {
-    public final TextPaint f35595a;
-    public final c5 f35596b;
+    public final TextPaint f35597a;
+    public final c5 f35598b;
 
     public z3(c5 c5Var, Context context) {
         super(context);
-        this.f35596b = c5Var;
-        this.f35595a = new TextPaint(1);
+        this.f35598b = c5Var;
+        this.f35597a = new TextPaint(1);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        TextPaint textPaint = this.f35595a;
+        TextPaint textPaint = this.f35597a;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(14.0f);
@@ -32,7 +32,7 @@ public final class z3 extends FrameLayout {
             }
             dp = org.telegram.messenger.v0.C(24.0f, (int) Math.ceil(textPaint.measureText(LocaleController.getString(i12))), dp);
         }
-        this.f35596b.f34557h0.getLayoutParams().width = Math.min(dp, Math.max(0, View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(32.0f)));
+        this.f35598b.f34559h0.getLayoutParams().width = Math.min(dp, Math.max(0, View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(32.0f)));
         super.onMeasure(i10, i11);
     }
 }

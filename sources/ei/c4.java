@@ -18,8 +18,8 @@ public final class c4 extends t61 {
     @Override
     public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
         d4 d4Var = (d4) view;
-        CharSequence charSequence = u61Var.f31076l;
-        CharSequence charSequence2 = u61Var.f31077m;
+        CharSequence charSequence = u61Var.f31071l;
+        CharSequence charSequence2 = u61Var.f31072m;
         d4Var.setText(charSequence);
         d4Var.f9013r.setText(charSequence2);
     }

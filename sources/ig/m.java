@@ -34,19 +34,19 @@ public final class m extends g {
             int i13 = 0;
             while (i13 < size) {
                 kg.f fVar = (kg.f) arrayList3.get(i13);
-                boolean z11 = fVar.f14848n;
-                Paint paint2 = fVar.f14838b;
-                float[] fArr = fVar.f14846l;
-                Path path = fVar.f14840e;
+                boolean z11 = fVar.f14849n;
+                Paint paint2 = fVar.f14839b;
+                float[] fArr = fVar.f14847l;
+                Path path = fVar.f14841e;
                 float f11 = 0.0f;
-                if (!z11 && fVar.f14849o == 0.0f) {
+                if (!z11 && fVar.f14850o == 0.0f) {
                     arrayList = arrayList3;
                     i10 = size;
                 } else {
                     path.reset();
                     int length = this.f12173h0.f14156b.length;
-                    long[] jArr = fVar.f14837a.f14148a;
-                    fVar.f14841f.reset();
+                    long[] jArr = fVar.f14838a.f14148a;
+                    fVar.f14842f.reset();
                     int i14 = 0;
                     int i15 = 0;
                     while (true) {
@@ -114,12 +114,12 @@ public final class m extends g {
                     arrayList = arrayList3;
                     i10 = size;
                     float f15 = f11;
-                    fVar.f14844j = i15;
-                    if (fVar.f14848n || fVar.f14849o != f15) {
+                    fVar.f14845j = i15;
+                    if (fVar.f14849n || fVar.f14850o != f15) {
                         Paint paint3 = paint2;
-                        paint3.setAlpha((int) (fVar.f14849o * 255.0f));
+                        paint3.setAlpha((int) (fVar.f14850o * 255.0f));
                         if (z10) {
-                            canvas.drawLines(fArr, 0, fVar.f14844j, paint3);
+                            canvas.drawLines(fArr, 0, fVar.f14845j, paint3);
                         } else {
                             canvas.drawPath(path, paint3);
                         }

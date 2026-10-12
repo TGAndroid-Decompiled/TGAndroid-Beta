@@ -115,8 +115,8 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                 return;
             case 8:
                 no noVar = (no) this.f45e;
-                noVar.f28891j0.e((TLRPC.TL_messageMediaPoll) this.f43b, noVar.O, noVar.l1, (ArrayList) this.f44c, z10, i10, ((Long) this.d).longValue());
-                noVar.f30574b.dismiss(true);
+                noVar.f28895j0.e((TLRPC.TL_messageMediaPoll) this.f43b, noVar.O, noVar.l1, (ArrayList) this.f44c, z10, i10, ((Long) this.d).longValue());
+                noVar.f30570b.dismiss(true);
                 return;
             case 9:
                 st stVar = (st) this.f45e;
@@ -186,7 +186,7 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                     } else {
                         ek0Var.K = str3;
                     }
-                    ce0 ce0Var2 = ek0Var.f37169e;
+                    ce0 ce0Var2 = ek0Var.f37174e;
                     if (ce0Var2 != null) {
                         ce0Var2.getEditText().setText(str);
                     } else {
@@ -205,7 +205,7 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33671s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33673s);
                 return;
             default:
                 hg1 hg1Var = (hg1) obj4;
@@ -302,7 +302,7 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                             k3Var.M0 = true;
                         }
                         z4 z4Var = new z4(new eo(i12));
-                        z4Var.f21490b = true;
+                        z4Var.f21491b = true;
                         lastFragment.presentFragment(z4Var);
                     }
                 }
@@ -314,7 +314,7 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                 TLRPC.User user2 = (TLRPC.User) this.f43b;
                 String str2 = (String) this.f44c;
                 ee0 ee0Var2 = (ee0) this.d;
-                aj ajVar = ((gi) this.f45e).f26439e;
+                aj ajVar = ((gi) this.f45e).f26437e;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle i13 = g.i("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j10)) {
@@ -325,12 +325,12 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                     i13.putLong("chat_id", -j10);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                m2 m2Var = ajVar.f24342f0;
+                m2 m2Var = ajVar.f24338f0;
                 if (MessagesController.getInstance(ajVar.M1).checkCanOpenChat(i13, m2Var)) {
                     ee0Var2.dismiss();
                     ajVar.dismiss(true);
                     z4 z4Var2 = new z4(new eo(i13));
-                    z4Var2.f21490b = true;
+                    z4Var2.f21491b = true;
                     m2Var.presentFragment(z4Var2);
                 }
                 return true;
@@ -370,7 +370,7 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(h6.w0(h6.f20667j5, c6Var));
+        textView.setTextColor(h6.w0(h6.f20668j5, c6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -401,9 +401,9 @@ public final class d implements OnFailureListener, py, z1, f5, wd0, MediaDataCon
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f19833id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f19834id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(n0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f19833id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f19834id));
                                     }
                                 }
                             }

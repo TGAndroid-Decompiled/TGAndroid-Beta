@@ -37,7 +37,7 @@ public final class ep implements View.OnClickListener {
                 ((org.telegram.ui.ActionBar.e3) this.d).dismiss();
                 Activity findActivity = AndroidUtilities.findActivity(this.f25737b);
                 if (findActivity != null) {
-                    MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", fqVar.f26150a.f23874q).apply();
+                    MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", fqVar.f26152a.f23875q).apply();
                     org.telegram.ui.Components.voip.g2.g(findActivity, this.f25738c, tL_inputGroupCallSlug, false, null, null);
                     return;
                 }

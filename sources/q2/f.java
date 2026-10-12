@@ -28,15 +28,15 @@ public final class f extends i2.f {
     public boolean X;
     public b0 Y;
     public b0 Z;
-    public int f45865a0;
-    public boolean f45866b0;
+    public int f45873a0;
+    public boolean f45874b0;
 
     public f(g gVar) {
         super(4);
         this.I = gVar;
-        this.V = d.f45861a;
+        this.V = d.f45869a;
         this.J = new h(0, 0);
-        this.N = e.f45862c;
+        this.N = e.f45870c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -59,7 +59,7 @@ public final class f extends i2.f {
     }
 
     public final void E() {
-        if (!this.f45866b0) {
+        if (!this.f45874b0) {
             return;
         }
         s sVar = this.S;
@@ -74,8 +74,8 @@ public final class f extends i2.f {
         if (bVar != null) {
             bVar.release();
         }
-        this.T = new b((Context) gVar.f15080b);
-        this.f45866b0 = false;
+        this.T = new b((Context) gVar.f15081b);
+        this.f45874b0 = false;
     }
 
     public final void F() {
@@ -101,7 +101,7 @@ public final class f extends i2.f {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f45861a;
+            dVar = d.f45869a;
         }
         this.V = dVar;
     }
@@ -131,7 +131,7 @@ public final class f extends i2.f {
     @Override
     public final void o() {
         this.S = null;
-        this.N = e.f45862c;
+        this.N = e.f45870c;
         this.K.clear();
         F();
         this.V.getClass();
@@ -185,10 +185,10 @@ public final class f extends i2.f {
                 hVar.clear();
                 int w10 = w(yVar, hVar, 2);
                 if (w10 == -5) {
-                    s sVar = (s) yVar.f16363c;
+                    s sVar = (s) yVar.f16364c;
                     e2.d.h(sVar);
                     this.S = sVar;
-                    this.f45866b0 = true;
+                    this.f45874b0 = true;
                 } else if (w10 == -4) {
                     e2.d.g(hVar.isEndOfStream());
                     this.L = true;

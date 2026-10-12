@@ -19,38 +19,38 @@ public final class jj0 extends na1 {
         int i11;
         int i12;
         mj0 mj0Var = this.v.d;
-        if (this.f40342r.f40892c <= 0) {
+        if (this.f40345r.f40894c <= 0) {
             performClick();
-            ig.g gVar = this.f40337b;
+            ig.g gVar = this.f40340b;
             if (gVar.f12190t0.G) {
                 long selectedDate = gVar.getSelectedDate();
-                if (this.f40343s == 4) {
-                    pa1 pa1Var = this.f40342r;
-                    pa1Var.f40893e = new jg.e(pa1Var.d, selectedDate);
+                if (this.f40346s == 4) {
+                    pa1 pa1Var = this.f40345r;
+                    pa1Var.f40895e = new jg.e(pa1Var.d, selectedDate);
                     g(false);
-                } else if (this.f40342r.f40895g == null) {
+                } else if (this.f40345r.f40897g == null) {
                 } else {
                     f();
-                    String str = this.f40342r.f40895g + "_" + selectedDate;
+                    String str = this.f40345r.f40897g + "_" + selectedDate;
                     jg.b bVar = (jg.b) mj0Var.v.get(str);
                     if (bVar != null) {
-                        this.f40342r.f40893e = bVar;
+                        this.f40345r.f40895e = bVar;
                         g(false);
                         return;
                     }
                     TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f40342r.f40895g;
+                    tL_loadAsyncGraph.token = this.f40345r.f40897g;
                     if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f20035x = selectedDate;
+                        tL_loadAsyncGraph.f20036x = selectedDate;
                         tL_loadAsyncGraph.flags |= 1;
                     }
                     ?? obj = new Object();
-                    mj0Var.f40071w = obj;
-                    mj0Var.f40067f.getClass();
-                    obj.f36388a = RecyclerView.R(this);
+                    mj0Var.f40074w = obj;
+                    mj0Var.f40070f.getClass();
+                    obj.f36390a = RecyclerView.R(this);
                     gVar.f12190t0.d(true, false);
                     i10 = ((org.telegram.ui.ActionBar.m2) mj0Var).currentAccount;
-                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ea(this, str, (Object) obj, 25), null, null, 0, mj0Var.f40058a.stats_dc, 1, true);
+                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ea(this, str, (Object) obj, 25), null, null, 0, mj0Var.f40061a.stats_dc, 1, true);
                     i11 = ((org.telegram.ui.ActionBar.m2) mj0Var).currentAccount;
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
                     i12 = ((org.telegram.ui.ActionBar.m2) mj0Var).classGuid;
@@ -64,15 +64,15 @@ public final class jj0 extends na1 {
     public final void f() {
         kj0 kj0Var = this.v;
         mj0 mj0Var = kj0Var.d;
-        cb1 cb1Var = mj0Var.f40071w;
+        cb1 cb1Var = mj0Var.f40074w;
         if (cb1Var != null) {
-            cb1Var.f36389b = true;
+            cb1Var.f36391b = true;
         }
-        int childCount = mj0Var.f40067f.getChildCount();
+        int childCount = mj0Var.f40070f.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = kj0Var.d.f40067f.getChildAt(i10);
+            View childAt = kj0Var.d.f40070f.getChildAt(i10);
             if (childAt instanceof na1) {
-                ((na1) childAt).f40337b.f12190t0.d(false, true);
+                ((na1) childAt).f40340b.f12190t0.d(false, true);
             }
         }
     }

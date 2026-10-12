@@ -5,33 +5,33 @@ import g2.b0;
 import n7.z0;
 import v7.k7;
 public final class j extends e {
-    public final d f49300s;
+    public final d f49308s;
     public z0 v;
-    public long f49301w;
-    public volatile boolean f49302x;
+    public long f49309w;
+    public volatile boolean f49310x;
 
     public j(g2.h hVar, g2.m mVar, s sVar, int i10, Object obj, d dVar) {
         super(hVar, mVar, 2, sVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f49300s = dVar;
+        this.f49308s = dVar;
     }
 
     @Override
     public final void C() {
-        this.f49302x = true;
+        this.f49310x = true;
     }
 
     @Override
     public final void a() {
         boolean z10;
-        if (this.f49301w == 0) {
-            this.f49300s.a(this.v, -9223372036854775807L, -9223372036854775807L);
+        if (this.f49309w == 0) {
+            this.f49308s.a(this.v, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            g2.m b10 = this.f49279b.b(this.f49301w);
-            b0 b0Var = this.f49284r;
+            g2.m b10 = this.f49287b.b(this.f49309w);
+            b0 b0Var = this.f49292r;
             c3.l lVar = new c3.l(b0Var, b10.f10268e, b0Var.open(b10));
-            while (!this.f49302x) {
-                int m10 = this.f49300s.f49271a.m(lVar, d.f49270s);
+            while (!this.f49310x) {
+                int m10 = this.f49308s.f49279a.m(lVar, d.f49278s);
                 boolean z11 = false;
                 if (m10 != 1) {
                     z10 = true;
@@ -47,10 +47,10 @@ public final class j extends e {
                     break;
                 }
             }
-            this.f49301w = lVar.d - this.f49279b.f10268e;
-            c3.b0 b0Var2 = this.f49300s.f49276n;
+            this.f49309w = lVar.d - this.f49287b.f10268e;
+            c3.b0 b0Var2 = this.f49308s.f49284n;
         } finally {
-            k7.a(this.f49284r);
+            k7.a(this.f49292r);
         }
     }
 }

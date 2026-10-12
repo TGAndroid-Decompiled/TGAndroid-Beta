@@ -71,7 +71,7 @@ public final class j0 extends pb {
             if (i10 == 1) {
                 qc qcVar = new qc(getContext(), c6Var, true);
                 qcVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
-                qcVar.f29816a = new Runnable(this) {
+                qcVar.f29794a = new Runnable(this) {
                     public final j0 f9069b;
 
                     {
@@ -86,7 +86,7 @@ public final class j0 extends pb {
                                 j0 j0Var = this.f9069b;
                                 sc bulletin = j0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f30540j = 2750;
+                                    bulletin.f30536j = 2750;
                                     bulletin.i(true);
                                 }
                                 k0 k0Var = j0Var.f9123f;
@@ -112,13 +112,13 @@ public final class j0 extends pb {
                     }
                 };
                 if (getBulletin() != null) {
-                    qcVar.f29818c = getBulletin();
+                    qcVar.f29796c = getBulletin();
                 }
                 setButton(qcVar);
             } else if (i10 == 2) {
                 qc qcVar2 = new qc(getContext(), c6Var, true);
                 qcVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
-                qcVar2.f29816a = new Runnable(this) {
+                qcVar2.f29794a = new Runnable(this) {
                     public final j0 f9069b;
 
                     {
@@ -133,7 +133,7 @@ public final class j0 extends pb {
                                 j0 j0Var = this.f9069b;
                                 sc bulletin = j0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f30540j = 2750;
+                                    bulletin.f30536j = 2750;
                                     bulletin.i(true);
                                 }
                                 k0 k0Var = j0Var.f9123f;
@@ -159,7 +159,7 @@ public final class j0 extends pb {
                     }
                 };
                 if (getBulletin() != null) {
-                    qcVar2.f29818c = getBulletin();
+                    qcVar2.f29796c = getBulletin();
                 }
                 setButton(qcVar2);
             }
@@ -233,7 +233,7 @@ public final class j0 extends pb {
                 sc bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f30540j = 5000;
+                    bulletin2.f30536j = 5000;
                     bulletin2.i(true);
                 }
             }

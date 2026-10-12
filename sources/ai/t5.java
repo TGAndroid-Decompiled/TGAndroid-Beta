@@ -93,7 +93,7 @@ public final class t5 implements RequestDelegate {
                 MessagesController messagesController = (MessagesController) this.f1733c;
                 tg.x xVar = (tg.x) this.d;
                 if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new p2.b(25, uVar, tL_error));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f2(27, uVar, tL_error));
                     return;
                 } else if (tLObject != null) {
                     messagesController.lambda$processUpdates$377((TLRPC.Updates) tLObject, false);

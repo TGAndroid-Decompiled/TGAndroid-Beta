@@ -17,14 +17,14 @@ public final class qi0 extends hz {
         ej0 ej0Var = this.O;
         xi0 xi0Var = ej0Var.K;
         if (gzVar != null) {
-            if (ej0Var.f37141l0 != null) {
+            if (ej0Var.f37146l0 != null) {
                 gzVar.f38180c = true;
                 float f7 = (hz.f() * AndroidUtilities.density) / 1.3f;
                 float f10 = f7 / 3.0f;
                 gzVar.d = f10;
                 gzVar.f38181e = f10;
-                gzVar.f38178a = Utilities.clamp(ej0Var.f37141l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                gzVar.f38179b = ej0Var.f37141l0.bottom - (f7 / 2.0f);
+                gzVar.f38178a = Utilities.clamp(ej0Var.f37146l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
+                gzVar.f38179b = ej0Var.f37146l0.bottom - (f7 / 2.0f);
                 return;
             }
             org.telegram.ui.Cells.u1 u1Var = ej0Var.Q;

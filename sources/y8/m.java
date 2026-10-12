@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 public final class m extends o6.a {
     public static final Parcelable.Creator<m> CREATOR = new c(8);
-    public final Uri f52020a;
-    public final HashMap f52021b;
-    public final byte[] f52022c;
+    public final Uri f52028a;
+    public final HashMap f52029b;
+    public final byte[] f52030c;
 
     public m(Uri uri, Bundle bundle, byte[] bArr) {
-        this.f52020a = uri;
+        this.f52028a = uri;
         HashMap hashMap = new HashMap();
         ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
         n6.m.h(classLoader);
@@ -25,8 +25,8 @@ public final class m extends o6.a {
             n6.m.h(parcelable);
             hashMap.put(str, (DataItemAssetParcelable) parcelable);
         }
-        this.f52021b = hashMap;
-        this.f52022c = bArr;
+        this.f52029b = hashMap;
+        this.f52030c = bArr;
     }
 
     public final String toString() {
@@ -34,17 +34,17 @@ public final class m extends o6.a {
         boolean isLoggable = Log.isLoggable("DataItem", 3);
         StringBuilder sb2 = new StringBuilder("DataItemParcelable[@");
         sb2.append(Integer.toHexString(hashCode()));
-        byte[] bArr = this.f52022c;
+        byte[] bArr = this.f52030c;
         if (bArr == null) {
             valueOf = "null";
         } else {
             valueOf = Integer.valueOf(bArr.length);
         }
         sb2.append(",dataSz=".concat(valueOf.toString()));
-        HashMap hashMap = this.f52021b;
+        HashMap hashMap = this.f52029b;
         int size = hashMap.size();
         sb2.append(", numAssets=" + size);
-        sb2.append(", uri=".concat(String.valueOf(this.f52020a)));
+        sb2.append(", uri=".concat(String.valueOf(this.f52028a)));
         if (!isLoggable) {
             sb2.append("]");
             return sb2.toString();
@@ -61,16 +61,16 @@ public final class m extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.c0.q(parcel, 20293);
-        w7.c0.k(parcel, 2, this.f52020a, i10);
+        w7.c0.k(parcel, 2, this.f52028a, i10);
         Bundle bundle = new Bundle();
         ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
         n6.m.h(classLoader);
         bundle.setClassLoader(classLoader);
-        for (Map.Entry entry : this.f52021b.entrySet()) {
+        for (Map.Entry entry : this.f52029b.entrySet()) {
             bundle.putParcelable((String) entry.getKey(), new DataItemAssetParcelable((x8.f) entry.getValue()));
         }
         w7.c0.b(parcel, 4, bundle);
-        w7.c0.c(parcel, 5, this.f52022c);
+        w7.c0.c(parcel, 5, this.f52030c);
         w7.c0.r(parcel, q6);
     }
 }

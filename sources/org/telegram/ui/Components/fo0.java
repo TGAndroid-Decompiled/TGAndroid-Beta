@@ -6,17 +6,17 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 public final class fo0 implements View.OnClickListener {
-    public final go0 f26149a;
+    public final go0 f26151a;
 
     public fo0(go0 go0Var) {
-        this.f26149a = go0Var;
+        this.f26151a = go0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        ho0 ho0Var = this.f26149a.f26483c;
-        for (int i10 = 0; i10 < ho0Var.f26856e.size(); i10++) {
-            MessageObject messageObject = (MessageObject) ho0Var.f26856e.get(i10);
+        ho0 ho0Var = this.f26151a.f26485c;
+        for (int i10 = 0; i10 < ho0Var.f26842e.size(); i10++) {
+            MessageObject messageObject = (MessageObject) ho0Var.f26842e.get(i10);
             if (ho0Var.H) {
                 AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
             } else {

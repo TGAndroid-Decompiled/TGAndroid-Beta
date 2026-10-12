@@ -7,9 +7,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class k81 extends org.telegram.ui.ActionBar.e3 {
-    public static final int f39374e = 0;
-    public TLRPC.TL_authorization f39375b;
-    public SessionsActivity f39376c;
+    public static final int f39377e = 0;
+    public TLRPC.TL_authorization f39378b;
+    public SessionsActivity f39379c;
     public org.telegram.ui.Components.ik0 d;
 
     public static void o(k81 k81Var, String str) {
@@ -20,7 +20,7 @@ public final class k81 extends org.telegram.ui.ActionBar.e3 {
 
     public static void p(k81 k81Var) {
         TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = k81Var.f39375b;
+        TLRPC.TL_authorization tL_authorization = k81Var.f39378b;
         changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
         changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
         changeauthorizationsettings.flags = 3;

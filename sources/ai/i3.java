@@ -63,7 +63,7 @@ public final class i3 implements Runnable {
                 final boolean z11 = this.f1129b;
                 storiesController.i0(j10, z11, false);
                 n6.k kVar = new n6.k(5);
-                kVar.f16432b = new Runnable() {
+                kVar.f16433b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -76,7 +76,7 @@ public final class i3 implements Runnable {
                         }
                     }
                 };
-                kVar.f16433c = new Runnable() {
+                kVar.f16434c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -95,7 +95,7 @@ public final class i3 implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.sc V = new zc(f6Var.f957d1, f6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, kVar);
-                V.f30533a = 2;
+                V.f30529a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -119,7 +119,7 @@ public final class i3 implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, c6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
                             a2Var.R = string;
                             a2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             org.telegram.messenger.v0.p(R.string.OK, alertDialog$Builder, null);
@@ -152,7 +152,7 @@ public final class i3 implements Runnable {
                 TLObject tLObject2 = (TLObject) obj2;
                 String str2 = (String) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj3;
-                int i11 = fc0Var.f37711b;
+                int i11 = fc0Var.f37715b;
                 fc0Var.c();
                 if (tLObject2 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
@@ -161,10 +161,10 @@ public final class i3 implements Runnable {
                     TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (user != null) {
                         org.telegram.ui.Wallet.l8 l8Var = new org.telegram.ui.Wallet.l8(user);
-                        l8Var.f35058r = j3;
-                        l8Var.f35042d0 = str2;
-                        l8Var.f35044e0 = z10;
-                        l8Var.f35041c0 = true;
+                        l8Var.f35060r = j3;
+                        l8Var.f35044d0 = str2;
+                        l8Var.f35046e0 = z10;
+                        l8Var.f35043c0 = true;
                         fc0Var.u(l8Var, false);
                         return;
                     }
@@ -177,8 +177,8 @@ public final class i3 implements Runnable {
                 }
             case 4:
                 i01 i01Var = (i01) obj4;
-                ProfileActivity profileActivity = i01Var.f38577b;
-                qq qqVar = new qq(profileActivity.f34080e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = i01Var.f38580b;
+                qq qqVar = new qq(profileActivity.f34082e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 qqVar.X0 = new h01(i01Var, (vy) obj2);
                 profileActivity.presentFragment(qqVar);
                 return;

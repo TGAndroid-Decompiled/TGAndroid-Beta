@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class ww extends org.telegram.ui.Components.tt {
+public final class ww extends org.telegram.ui.Components.ut {
     public final uy E;
 
     public ww(ry ryVar, uy uyVar) {
@@ -12,15 +12,15 @@ public final class ww extends org.telegram.ui.Components.tt {
     @Override
     public final void y() {
         uy uyVar = this.E;
-        if (uyVar.f42613c.L0() == 0) {
-            View m10 = uyVar.f42613c.m(0);
+        if (uyVar.f42615c.L0() == 0) {
+            View m10 = uyVar.f42615c.m(0);
             if (m10 != null) {
                 m10.invalidate();
             }
             if (uyVar.v == 2) {
                 uyVar.v = 1;
             }
-            bx bxVar = uyVar.f42616n;
+            bx bxVar = uyVar.f42618n;
             if (bxVar != null) {
                 bxVar.b();
             }

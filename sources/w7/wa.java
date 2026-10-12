@@ -3,12 +3,12 @@ package w7;
 import java.util.Iterator;
 import java.util.Map;
 public final class wa extends ta {
-    public final transient com.google.android.gms.internal.cast.j0 f50389c;
+    public final transient com.google.android.gms.internal.cast.j0 f50397c;
     public final transient Object[] d;
-    public final transient int f50390e = 1;
+    public final transient int f50398e = 1;
 
     public wa(com.google.android.gms.internal.cast.j0 j0Var, Object[] objArr) {
-        this.f50389c = j0Var;
+        this.f50397c = j0Var;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class wa extends ta {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f50389c.get(key))) {
+            if (value != null && value.equals(this.f50397c.get(key))) {
                 return true;
             }
         }
@@ -27,26 +27,26 @@ public final class wa extends ta {
 
     @Override
     public final int i(Object[] objArr) {
-        sa saVar = this.f50367b;
+        sa saVar = this.f50375b;
         if (saVar == null) {
             saVar = new va(this);
-            this.f50367b = saVar;
+            this.f50375b = saVar;
         }
         return saVar.i(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        sa saVar = this.f50367b;
+        sa saVar = this.f50375b;
         if (saVar == null) {
             saVar = new va(this);
-            this.f50367b = saVar;
+            this.f50375b = saVar;
         }
         return saVar.listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.f50390e;
+        return this.f50398e;
     }
 }

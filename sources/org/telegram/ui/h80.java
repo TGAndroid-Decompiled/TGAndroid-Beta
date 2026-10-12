@@ -26,7 +26,7 @@ public final class h80 implements Runnable {
             default:
                 i80 i80Var = this.f38291b;
                 String str = this.f38292c;
-                j80 j80Var = i80Var.f38800b;
+                j80 j80Var = i80Var.f38803b;
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     ArrayList arrayList = new ArrayList();
@@ -54,8 +54,8 @@ public final class h80 implements Runnable {
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
                 int i13 = 0;
-                while (i13 < j80Var.f39150n.f40323w.size()) {
-                    ContactsController.Contact contact = (ContactsController.Contact) j80Var.f39150n.f40323w.get(i13);
+                while (i13 < j80Var.f39152n.f40326w.size()) {
+                    ContactsController.Contact contact = (ContactsController.Contact) j80Var.f39152n.f40326w.get(i13);
                     String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
                     String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
                     if (lowerCase2.equals(translitString2)) {

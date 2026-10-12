@@ -10,25 +10,25 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class vu extends og.b {
     public final int d;
-    public final Object f42851e;
+    public final Object f42853e;
 
     public vu(Object obj, int i10) {
         this.d = i10;
-        this.f42851e = obj;
+        this.f42853e = obj;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
         switch (this.d) {
             case 0:
-                su suVar = (su) ((xu) this.f42851e).f44162a3.get(d1Var.b());
-                int i10 = suVar.f16876a;
+                su suVar = (su) ((xu) this.f42853e).f44167a3.get(d1Var.b());
+                int i10 = suVar.f16877a;
                 if (i10 != 5 && (i10 != 2 || suVar.h == -1)) {
                     return false;
                 }
                 return true;
             default:
-                int i11 = d1Var.f47893f;
+                int i11 = d1Var.f47901f;
                 if (i11 != 4 && i11 != 3 && i11 != 5) {
                     return false;
                 }
@@ -40,9 +40,9 @@ public final class vu extends og.b {
     public final int h() {
         switch (this.d) {
             case 0:
-                return ((xu) this.f42851e).f44162a3.size();
+                return ((xu) this.f42853e).f44167a3.size();
             default:
-                return ((nc0) this.f42851e).f40379s.size();
+                return ((nc0) this.f42853e).f40382s.size();
         }
     }
 
@@ -50,11 +50,11 @@ public final class vu extends og.b {
     public final int j(int i10) {
         switch (this.d) {
             case 0:
-                return ((su) ((xu) this.f42851e).f44162a3.get(i10)).f16876a;
+                return ((su) ((xu) this.f42853e).f44167a3.get(i10)).f16877a;
             default:
-                nc0 nc0Var = (nc0) this.f42851e;
-                if (i10 >= 0 && i10 < nc0Var.f40379s.size()) {
-                    return ((hc0) nc0Var.f40379s.get(i10)).f16876a;
+                nc0 nc0Var = (nc0) this.f42853e;
+                if (i10 >= 0 && i10 < nc0Var.f40382s.size()) {
+                    return ((hc0) nc0Var.f40382s.get(i10)).f16877a;
                 }
                 return 2;
         }
@@ -70,11 +70,11 @@ public final class vu extends og.b {
         org.telegram.ui.Cells.r8 r8Var;
         int i11 = this.d;
         View view = null;
-        Object obj = this.f42851e;
+        Object obj = this.f42853e;
         switch (i11) {
             case 0:
                 xu xuVar = (xu) obj;
-                bv bvVar = xuVar.f44173m3;
+                bv bvVar = xuVar.f44178m3;
                 org.telegram.ui.ActionBar.c6 c6Var = xuVar.f32467n2;
                 if (i10 != 0) {
                     if (i10 != 1) {
@@ -86,30 +86,30 @@ public final class vu extends og.b {
                                             r8Var = new qu(bvVar, xuVar.getContext());
                                         } else {
                                             View coVar = new org.telegram.ui.Components.co(xuVar.getContext(), 14);
-                                            int i12 = org.telegram.ui.ActionBar.h6.f20559d6;
-                                            int i13 = xu.f44161n3;
+                                            int i12 = org.telegram.ui.ActionBar.h6.f20560d6;
+                                            int i13 = xu.f44166n3;
                                             coVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i12, xuVar.f32467n2));
                                             r8Var = coVar;
                                         }
                                     } else {
                                         ?? view2 = new View(xuVar.getContext());
-                                        view2.f44918a = new Path();
+                                        view2.f44923a = new Path();
                                         Paint paint = new Paint(1);
-                                        view2.f44919b = paint;
-                                        view2.f44920c = true;
+                                        view2.f44924b = paint;
+                                        view2.f44925c = true;
                                         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(-0.66f), 251658240);
-                                        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+                                        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
                                         r8Var = view2;
                                     }
                                 } else {
                                     org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(xuVar.getContext());
-                                    r8Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20780p7, c6Var));
-                                    r8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var));
+                                    r8Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20781p7, c6Var));
+                                    r8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var));
                                     r8Var = r8Var2;
                                 }
                             } else {
                                 View m4Var = new org.telegram.ui.Cells.m4(xuVar.getContext());
-                                m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var));
+                                m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var));
                                 r8Var = m4Var;
                             }
                         } else {
@@ -119,21 +119,21 @@ public final class vu extends og.b {
                         Context context = xuVar.getContext();
                         ?? frameLayout = new FrameLayout(context);
                         TextView textView = new TextView(context);
-                        frameLayout.f35983a = textView;
+                        frameLayout.f35985a = textView;
                         textView.setGravity(17);
                         textView.setTextSize(1, 13.0f);
-                        textView.setTextColor(bvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20945y6));
+                        textView.setTextColor(bvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20946y6));
                         frameLayout.addView(textView, w7.w5.a(-2.0f, 24.0f, 0.0f, 24.0f, 14.0f, -1, 119));
                         frameLayout.setTag(-33024);
                         r8Var = frameLayout;
                     }
                 } else {
                     Context context2 = xuVar.getContext();
-                    int[] iArr = bv.f36253e;
-                    uu uuVar = new uu(this, context2, iArr.length, iArr, bv.f36254f);
-                    xuVar.f44172l3 = uuVar;
+                    int[] iArr = bv.f36255e;
+                    uu uuVar = new uu(this, context2, iArr.length, iArr, bv.f36256f);
+                    xuVar.f44177l3 = uuVar;
                     uuVar.setInterceptTouch(false);
-                    View view3 = xuVar.f44172l3;
+                    View view3 = xuVar.f44177l3;
                     view3.setTag(-33024);
                     r8Var = view3;
                 }

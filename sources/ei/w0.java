@@ -30,7 +30,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.if0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.hu0;
+import org.telegram.ui.du0;
 public final class w0 {
     public static final HashMap f9448g = new HashMap();
     public final Context f9449a;
@@ -187,12 +187,12 @@ public final class w0 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9451c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f10, 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
             a2Var.T = replaceTags;
             v0 v0Var = new v0(this.f9449a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int x02 = h6.x0(null, h6.L5, false);
-            a2Var.f20154b0 = v0Var;
-            a2Var.f20157c0 = x02;
+            a2Var.f20155b0 = v0Var;
+            a2Var.f20158c0 = x02;
             if (!a() && (f7 = f()) != null && (!f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new r5(f10, zArr, qVar, 7));
             } else {
@@ -323,7 +323,7 @@ public final class w0 {
                     try {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
                         alertDialog$Builder.m(R.raw.permission_request_location, 72, h6.x0(null, h6.L5, false), null);
-                        alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
+                        alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Enable), new id(context, 1));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.o();
@@ -366,7 +366,7 @@ public final class w0 {
         edit.apply();
     }
 
-    public final void l(boolean z10, final hu0 hu0Var) {
+    public final void l(boolean z10, final du0 du0Var) {
         this.d = true;
         if (z10 && !a()) {
             Activity f7 = f();
@@ -377,12 +377,12 @@ public final class w0 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9451c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f(), 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
             a2Var.T = replaceTags;
             v0 v0Var = new v0(this.f9449a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int x02 = h6.x0(null, h6.L5, false);
-            a2Var.f20154b0 = v0Var;
-            a2Var.f20157c0 = x02;
+            a2Var.f20155b0 = v0Var;
+            a2Var.f20158c0 = x02;
             Activity f10 = f();
             if (f10 == null || (f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionAllow), new org.telegram.ui.ActionBar.z1(this) {
@@ -398,7 +398,7 @@ public final class w0 {
                             case 0:
                                 w0 w0Var = this.f9322b;
                                 if (!w0Var.a()) {
-                                    if0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.h3(10, w0Var, hu0Var));
+                                    if0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.h3(10, w0Var, du0Var));
                                     return;
                                 }
                                 w0Var.d = true;
@@ -418,7 +418,7 @@ public final class w0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                Runnable runnable = hu0Var;
+                                Runnable runnable = du0Var;
                                 if (runnable != null) {
                                     runnable.run();
                                     return;
@@ -443,7 +443,7 @@ public final class w0 {
                         case 0:
                             w0 w0Var = this.f9322b;
                             if (!w0Var.a()) {
-                                if0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.h3(10, w0Var, hu0Var));
+                                if0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.h3(10, w0Var, du0Var));
                                 return;
                             }
                             w0Var.d = true;
@@ -463,7 +463,7 @@ public final class w0 {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            Runnable runnable = hu0Var;
+                            Runnable runnable = du0Var;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -479,8 +479,8 @@ public final class w0 {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (hu0Var != null) {
-                hu0Var.run();
+            if (du0Var != null) {
+                du0Var.run();
             }
         }
         k();

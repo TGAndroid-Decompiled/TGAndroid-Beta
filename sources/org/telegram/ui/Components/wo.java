@@ -100,17 +100,17 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
             ux0[] ux0VarArr = this.H;
             if (z10) {
                 try {
-                    int intValue = MessagesController.getInstance(this.J).getPrintingStringType(eoVar.a(), eoVar.f37232d4).intValue();
+                    int intValue = MessagesController.getInstance(this.J).getPrintingStringType(eoVar.a(), eoVar.f37237d4).intValue();
                     ux0 ux0Var = ux0VarArr[intValue];
                     if (ux0Var != null) {
                         org.telegram.ui.ActionBar.c6 c6Var = this.f32503d0;
                         if (intValue == 5) {
                             qlVar.g(ux0Var, "**oo**");
-                            ux0VarArr[intValue].b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20783pa, c6Var));
+                            ux0VarArr[intValue].b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20784pa, c6Var));
                             qlVar.setLeftDrawable((Drawable) null);
                         } else {
                             qlVar.g(null, null);
-                            ux0VarArr[intValue].b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20783pa, c6Var));
+                            ux0VarArr[intValue].b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20784pa, c6Var));
                             qlVar.setLeftDrawable(ux0VarArr[intValue]);
                         }
                         this.N = ux0VarArr[intValue];
@@ -158,7 +158,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
         org.telegram.ui.eo eoVar = this.G;
         if (eoVar != null) {
             TLRPC.User i11 = eoVar.i();
-            TLRPC.Chat chat = eoVar.f37241e;
+            TLRPC.Chat chat = eoVar.f37246e;
             if (eoVar.R3 == 3) {
                 long N8 = eoVar.N8();
                 if (N8 >= 0) {
@@ -177,38 +177,38 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
             if (user != null) {
                 j9Var.m(i12, user);
                 if (UserObject.isReplyUser(user)) {
-                    j9Var.f27409p = 0.8f;
+                    j9Var.f27403p = 0.8f;
                     j9Var.g(12);
                     if (soVar != null) {
                         soVar.setAnimatedEmojiDrawable(null);
                         soVar.h(null, null, j9Var, user);
                     }
                 } else if (UserObject.isAnonymous(user)) {
-                    j9Var.f27409p = 0.8f;
+                    j9Var.f27403p = 0.8f;
                     j9Var.g(21);
                     if (soVar != null) {
                         soVar.setAnimatedEmojiDrawable(null);
                         soVar.h(null, null, j9Var, user);
                     }
                 } else if (UserObject.isUserSelf(user) && eoVar.R3 == 3) {
-                    j9Var.f27409p = 0.8f;
+                    j9Var.f27403p = 0.8f;
                     j9Var.g(22);
                     if (soVar != null) {
                         soVar.setAnimatedEmojiDrawable(null);
                         soVar.h(null, null, j9Var, user);
                     }
                 } else if (UserObject.isUserSelf(user)) {
-                    j9Var.f27409p = 0.8f;
+                    j9Var.f27403p = 0.8f;
                     j9Var.g(1);
                     if (soVar != null) {
                         soVar.setAnimatedEmojiDrawable(null);
                         soVar.h(null, null, j9Var, user);
                     }
                 } else {
-                    j9Var.f27409p = 1.0f;
+                    j9Var.f27403p = 1.0f;
                     if (soVar != null) {
                         soVar.setAnimatedEmojiDrawable(null);
-                        soVar.f33001a.setForUserOrChat(user, j9Var, null, true, 3, false);
+                        soVar.f32994a.setForUserOrChat(user, j9Var, null, true, 3, false);
                     }
                 }
             } else if (ChatObject.isMonoForum(chat)) {
@@ -231,7 +231,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 }
                 soVar.setRoundRadius(AndroidUtilities.dp(21.0f));
             } else if (chat != null) {
-                j9Var.f27409p = 1.0f;
+                j9Var.f27403p = 1.0f;
                 j9Var.k(i12, chat);
                 if (soVar != null) {
                     soVar.setAnimatedEmojiDrawable(null);
@@ -258,7 +258,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
         }
         q5 q5Var = this.f32508g0;
         q5Var.j(j3, false);
-        q5Var.k(Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20974zh, this.f32503d0)));
+        q5Var.k(Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20975zh, this.f32503d0)));
         int dp = AndroidUtilities.dp(1.0f);
         q5Var.I = 0;
         q5Var.J = dp;
@@ -429,7 +429,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
             if (z12) {
                 Drawable mutate = getResources().getDrawable(R.drawable.verified_area).mutate();
                 this.f32520r0 = mutate;
-                int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20974zh, this.f32503d0);
+                int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20975zh, this.f32503d0);
                 PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                 mutate.setColorFilter(new PorterDuffColorFilter(w02, mode));
                 Drawable mutate2 = getResources().getDrawable(R.drawable.verified_check).mutate();
@@ -457,20 +457,20 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
             this.h.i(null);
             this.f32516o0 = null;
         } else {
-            if ((this.h.getRightDrawable() instanceof r5) && (((r5) this.h.getRightDrawable()).f30031a instanceof s5)) {
-                ((s5) ((r5) this.h.getRightDrawable()).f30031a).o(this.h);
+            if ((this.h.getRightDrawable() instanceof r5) && (((r5) this.h.getRightDrawable()).f30032a instanceof s5)) {
+                ((s5) ((r5) this.h.getRightDrawable()).f30032a).o(this.h);
             }
             if (DialogObject.getEmojiStatusDocumentId(emojiStatus) != 0) {
                 this.f32507f0.j(DialogObject.getEmojiStatusDocumentId(emojiStatus), z14);
             } else if (z13) {
                 Drawable mutate3 = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
                 this.f32518q0 = mutate3;
-                mutate3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20974zh, this.f32503d0), PorterDuff.Mode.MULTIPLY));
+                mutate3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20975zh, this.f32503d0), PorterDuff.Mode.MULTIPLY));
                 this.f32507f0.g(this.f32518q0, z14);
             } else {
                 this.f32507f0.g(null, z14);
             }
-            this.f32507f0.k(Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20974zh, this.f32503d0)));
+            this.f32507f0.k(Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20975zh, this.f32503d0)));
             this.h.i(this.f32507f0);
             this.m0 = false;
             this.f32516o0 = LocaleController.getString(R.string.AccDescrPremium);
@@ -513,24 +513,24 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
         so soVar = this.f32504e;
         if (isReplyUser) {
             j9Var.g(12);
-            j9Var.f27409p = 0.8f;
+            j9Var.f27403p = 0.8f;
             if (soVar != null) {
                 soVar.h(null, null, j9Var, user);
             }
         } else if (UserObject.isAnonymous(user)) {
             j9Var.g(21);
-            j9Var.f27409p = 0.8f;
+            j9Var.f27403p = 0.8f;
             if (soVar != null) {
                 soVar.h(null, null, j9Var, user);
             }
         } else if (UserObject.isUserSelf(user) && !z10) {
             j9Var.g(1);
-            j9Var.f27409p = 0.8f;
+            j9Var.f27403p = 0.8f;
             if (soVar != null) {
                 soVar.h(null, null, j9Var, user);
             }
         } else {
-            j9Var.f27409p = 1.0f;
+            j9Var.f27403p = 1.0f;
             if (soVar != null) {
                 soVar.e(user, j9Var);
             }
@@ -637,7 +637,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 }
                 for (int i11 = 0; i11 < chatFull.participants.participants.size(); i11++) {
                     TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(chatFull.participants.participants.get(i11).user_id));
-                    if (user != null && (userStatus = user.status) != null && ((userStatus.expires > currentTime || user.f19949id == UserConfig.getInstance(i10).getClientUserId()) && user.status.expires > 10000)) {
+                    if (user != null && (userStatus = user.status) != null && ((userStatus.expires > currentTime || user.f19950id == UserConfig.getInstance(i10).getClientUserId()) && user.status.expires > 10000)) {
                         this.U++;
                     }
                 }
@@ -701,13 +701,13 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 return;
             }
             TLRPC.User i19 = eoVar.i();
-            TLRPC.Chat chat = eoVar.f37241e;
+            TLRPC.Chat chat = eoVar.f37246e;
             if (UserObject.isUserSelf(i19) && eoVar.R3 == 0 && eoVar.getMessagesController().getSavedMessagesController().getAllCount() >= 3 && (this.f32523t0 || MessagesController.getGlobalMainSettings().getInt("savedmsgschatshint", 0) < 3)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            if (((UserObject.isUserSelf(i19) && !z11) || UserObject.isReplyUser(i19) || ((i19 != null && i19.f19949id == 489000) || ((i10 = eoVar.R3) != 0 && i10 != 8))) && eoVar.R3 != 3) {
+            if (((UserObject.isUserSelf(i19) && !z11) || UserObject.isReplyUser(i19) || ((i19 != null && i19.f19950id == 489000) || ((i10 = eoVar.R3) != 0 && i10 != 8))) && eoVar.R3 != 3) {
                 if (getSubtitleTextView().getVisibility() != 8) {
                     getSubtitleTextView().setVisibility(8);
                     return;
@@ -726,7 +726,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                     this.f32523t0 = true;
                 }
             }
-            CharSequence printingString = MessagesController.getInstance(i18).getPrintingString(eoVar.a(), eoVar.f37232d4, false);
+            CharSequence printingString = MessagesController.getInstance(i18).getPrintingString(eoVar.a(), eoVar.f37237d4, false);
             if (printingString == null) {
                 UserObject.isBotForum(i19);
             }
@@ -758,7 +758,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                         getSubtitleTextView().setAlpha(1.0f);
                     }
                 }
-                Integer printingStringType = MessagesController.getInstance(i18).getPrintingStringType(eoVar.a(), eoVar.f37232d4);
+                Integer printingStringType = MessagesController.getInstance(i18).getPrintingStringType(eoVar.a(), eoVar.f37237d4);
                 if (printingStringType != null && printingStringType.intValue() == 5) {
                     charSequence = Emoji.replaceEmoji(printingString, getSubtitlePaint().getFontMetricsInt(), false);
                 } else {
@@ -767,7 +767,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 setTypingAnimation(true);
                 z13 = true;
                 str = charSequence;
-            } else if (eoVar.K9() && !eoVar.f37281h4) {
+            } else if (eoVar.K9() && !eoVar.f37286h4) {
                 if (qlVar2.getTag() == null) {
                     qlVar2.setTag(1);
                     AnimatorSet animatorSet3 = this.Q;
@@ -805,7 +805,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                         }
                         charSequence2 = string;
                     } else {
-                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(i18).getTopicsController().findTopic(chat.f19802id, eoVar.d());
+                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(i18).getTopicsController().findTopic(chat.f19803id, eoVar.d());
                         if (findTopic != null) {
                             i15 = findTopic.totalMessagesCount;
                         } else {
@@ -826,8 +826,8 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                     if (i20 == 3) {
                         charSequence2 = LocaleController.formatPluralString("SavedMessagesCount", Math.max(1, eoVar.getMessagesController().getSavedMessagesController().getMessagesCount(eoVar.N8())), new Object[0]);
                     } else {
-                        if (eoVar.f37281h4 && chat != null) {
-                            TLRPC.TL_forumTopic findTopic2 = MessagesController.getInstance(i18).getTopicsController().findTopic(chat.f19802id, eoVar.d());
+                        if (eoVar.f37286h4 && chat != null) {
+                            TLRPC.TL_forumTopic findTopic2 = MessagesController.getInstance(i18).getTopicsController().findTopic(chat.f19803id, eoVar.d());
                             if (findTopic2 != null) {
                                 i13 = 1;
                                 i14 = findTopic2.totalMessagesCount - 1;
@@ -904,17 +904,17 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                             }
                         } else {
                             if (i19 != null) {
-                                TLRPC.User user = MessagesController.getInstance(i18).getUser(Long.valueOf(i19.f19949id));
+                                TLRPC.User user = MessagesController.getInstance(i18).getUser(Long.valueOf(i19.f19950id));
                                 if (user != null) {
                                     i19 = user;
                                 }
                                 if (!UserObject.isReplyUser(i19)) {
-                                    long j3 = i19.f19949id;
+                                    long j3 = i19.f19950id;
                                     if (j3 != 489000) {
                                         if (j3 == UserConfig.getInstance(i18).getClientUserId()) {
                                             charSequence2 = z14 ? AndroidUtilities.replaceArrows(LocaleController.getString(R.string.SavedMessagesViewAsChatsHint), false) : LocaleController.getString(R.string.ChatYourSelf);
                                         } else {
-                                            long j10 = i19.f19949id;
+                                            long j10 = i19.f19950id;
                                             if (j10 == 333000 || j10 == 777000 || j10 == 42777) {
                                                 z12 = false;
                                                 charSequence2 = LocaleController.getString(R.string.ServiceNotifications);
@@ -954,7 +954,7 @@ public class wo extends FrameLayout implements me.d, NotificationCenter.Notifica
                 }
             }
             if (z13) {
-                i16 = org.telegram.ui.ActionBar.h6.f20783pa;
+                i16 = org.telegram.ui.ActionBar.h6.f20784pa;
             } else {
                 i16 = org.telegram.ui.ActionBar.h6.B8;
             }

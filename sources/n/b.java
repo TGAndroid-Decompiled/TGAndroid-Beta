@@ -3,12 +3,12 @@ package n;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 public final class b implements ThreadFactory {
-    public final AtomicInteger f16200a = new AtomicInteger(0);
+    public final AtomicInteger f16201a = new AtomicInteger(0);
 
     @Override
     public final Thread newThread(Runnable runnable) {
         Thread thread = new Thread(runnable);
-        thread.setName("arch_disk_io_" + this.f16200a.getAndIncrement());
+        thread.setName("arch_disk_io_" + this.f16201a.getAndIncrement());
         return thread;
     }
 }

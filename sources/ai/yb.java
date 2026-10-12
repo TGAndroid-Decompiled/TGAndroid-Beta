@@ -98,9 +98,9 @@ public final class yb extends yw0 {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f1000r3.getReactionsWindow() != null && currentPeerView.f1000r3.getReactionsWindow().f54675c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f1000r3.getReactionsWindow().f54675c.getTranslationY());
-                currentPeerView.f1000r3.getReactionsWindow().f54675c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f1000r3.getReactionsWindow() != null && currentPeerView.f1000r3.getReactionsWindow().f54683c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f1000r3.getReactionsWindow().f54683c.getTranslationY());
+                currentPeerView.f1000r3.getReactionsWindow().f54683c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
@@ -126,7 +126,7 @@ public final class yb extends yw0 {
                 ofFloat.addUpdateListener(new vb(this, 0));
                 kcVar.G.addListener(new wb(this, 0));
                 kcVar.G.setDuration(250L);
-                kcVar.G.setInterpolator(js.f27627f);
+                kcVar.G.setInterpolator(js.f27634f);
                 kcVar.G.start();
             }
             if (kcVar.V >= 0.3f) {
@@ -285,7 +285,7 @@ public final class yb extends yw0 {
                 ofFloat.addUpdateListener(new vb(this, 1));
                 kcVar.G.addListener(new wb(this, 1));
                 kcVar.G.setDuration(150L);
-                kcVar.G.setInterpolator(js.f27627f);
+                kcVar.G.setInterpolator(js.f27634f);
                 kcVar.G.start();
             }
             f6 t10 = kcVar.t();

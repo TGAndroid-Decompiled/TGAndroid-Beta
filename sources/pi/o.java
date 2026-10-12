@@ -1,14 +1,25 @@
 package pi;
+public final class o {
+    public static final o f45805a;
+    public static final o f45806b;
+    public static final o f45807c;
+    public static final o[] d;
 
-import java.io.File;
-public interface o {
-    void onBytesAvailable(long j3, File file, long j10, long j11);
+    static {
+        ?? r02 = new Enum("REBUILT", 0);
+        f45805a = r02;
+        ?? r12 = new Enum("CANCELLED", 1);
+        f45806b = r12;
+        ?? r32 = new Enum("ERROR", 2);
+        f45807c = r32;
+        d = new o[]{r02, r12, r32};
+    }
 
-    void onOutputCompleted(long j3, File file, long j10, long j11);
+    public static o valueOf(String str) {
+        return (o) Enum.valueOf(o.class, str);
+    }
 
-    void onOutputError(long j3, Exception exc);
-
-    void onOutputInvalidated(long j3, n nVar);
-
-    void onOutputStarted(long j3, File file);
+    public static o[] values() {
+        return (o[]) d.clone();
+    }
 }

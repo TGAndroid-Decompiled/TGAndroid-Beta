@@ -138,7 +138,7 @@ public final class c4 implements sg {
     @Override
     public final boolean o1() {
         w60 w60Var = this.f753a.J2;
-        if (w60Var != null && !w60Var.f32306j0) {
+        if (w60Var != null && !w60Var.f32292j0) {
             return true;
         }
         return false;
@@ -170,7 +170,7 @@ public final class c4 implements sg {
             }
         }
         c50 c50Var2 = f6Var.W2;
-        if (f6Var.f950b2.f23631c1) {
+        if (f6Var.f950b2.f23632c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
@@ -323,14 +323,6 @@ public final class c4 implements sg {
     }
 
     @Override
-    public final void C(boolean z10) {
-    }
-
-    @Override
-    public final void C1(CharSequence charSequence) {
-    }
-
-    @Override
     public final void D2() {
     }
 
@@ -363,14 +355,6 @@ public final class c4 implements sg {
     }
 
     @Override
-    public final void Z(boolean z10) {
-    }
-
-    @Override
-    public final void g1(int i10) {
-    }
-
-    @Override
     public final void h() {
     }
 
@@ -383,15 +367,7 @@ public final class c4 implements sg {
     }
 
     @Override
-    public final void l2(int i10) {
-    }
-
-    @Override
     public final void p0() {
-    }
-
-    @Override
-    public final void p2(boolean z10) {
     }
 
     @Override
@@ -408,6 +384,30 @@ public final class c4 implements sg {
 
     @Override
     public final void y0() {
+    }
+
+    @Override
+    public final void C(boolean z10) {
+    }
+
+    @Override
+    public final void C1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void Z(boolean z10) {
+    }
+
+    @Override
+    public final void g1(int i10) {
+    }
+
+    @Override
+    public final void l2(int i10) {
+    }
+
+    @Override
+    public final void p2(boolean z10) {
     }
 
     @Override

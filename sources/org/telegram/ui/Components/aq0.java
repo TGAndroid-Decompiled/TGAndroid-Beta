@@ -5,13 +5,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class aq0 extends LinearLayout {
-    public final int f24459a;
-    public final int f24460b;
+    public final int f24456a;
+    public final int f24457b;
 
     public aq0(Context context, int i10, int i11) {
         super(context);
-        this.f24459a = i10;
-        this.f24460b = i11;
+        this.f24456a = i10;
+        this.f24457b = i11;
     }
 
     @Override
@@ -21,6 +21,6 @@ public final class aq0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f24459a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f24460b), View.MeasureSpec.getMode(i11)));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f24456a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f24457b), View.MeasureSpec.getMode(i11)));
     }
 }

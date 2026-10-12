@@ -66,13 +66,13 @@ public final class a extends g {
             }
             return false;
         }
-        WeakHashMap weakHashMap = i0.f46981a;
+        WeakHashMap weakHashMap = i0.f46989a;
         return view.performAccessibilityAction(i11, bundle);
     }
 
     @Override
     public final d p0(int i10) {
-        return new d(AccessibilityNodeInfo.obtain(this.f13664c.j(i10).f47818a));
+        return new d(AccessibilityNodeInfo.obtain(this.f13664c.j(i10).f47826a));
     }
 
     @Override

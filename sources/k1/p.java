@@ -1,10 +1,10 @@
 package k1;
 public final class p implements de.c {
-    public final int f14353a = 0;
-    public final de.c f14354b;
+    public final int f14354a = 0;
+    public final de.c f14355b;
 
     public p(de.c cVar, za.z zVar) {
-        this.f14354b = cVar;
+        this.f14355b = cVar;
     }
 
     @Override
@@ -13,6 +13,6 @@ public final class p implements de.c {
     }
 
     public p(de.c cVar) {
-        this.f14354b = cVar;
+        this.f14355b = cVar;
     }
 }

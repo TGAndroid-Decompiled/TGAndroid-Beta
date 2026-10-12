@@ -11,7 +11,7 @@ public final class y01 extends hg.j1 {
 
     @Override
     public final int a(int i10) {
-        this.G.f35664e.getClass();
+        this.G.f35666e.getClass();
         return i10;
     }
 }

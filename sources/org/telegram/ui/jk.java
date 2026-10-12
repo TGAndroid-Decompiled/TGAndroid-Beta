@@ -5,18 +5,18 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class jk extends org.telegram.ui.Cells.w0 {
-    public final eo f39235t2;
+    public final eo f39238t2;
 
     public jk(Context context, org.telegram.ui.ActionBar.c6 c6Var, eo eoVar) {
         super(context, c6Var, false);
-        this.f39235t2 = eoVar;
+        this.f39238t2 = eoVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        eo eoVar = this.f39235t2;
+        eo eoVar = this.f39238t2;
         if (eoVar.B8 == null) {
-            float y3 = ((eoVar.f37478x0.getY() + eoVar.f37422s9) - getY()) - AndroidUtilities.dp(4.0f);
+            float y3 = ((eoVar.f37483x0.getY() + eoVar.f37427s9) - getY()) - AndroidUtilities.dp(4.0f);
             if (y3 > 0.0f) {
                 if (y3 < getMeasuredHeight()) {
                     canvas.save();
@@ -35,7 +35,7 @@ public final class jk extends org.telegram.ui.Cells.w0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            eo eoVar = this.f39235t2;
+            eo eoVar = this.f39238t2;
             kVar = ((org.telegram.ui.ActionBar.m2) eoVar).actionBar;
             if (!kVar.u() && !eoVar.F9()) {
                 return super.onInterceptTouchEvent(motionEvent);
@@ -49,7 +49,7 @@ public final class jk extends org.telegram.ui.Cells.w0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            eo eoVar = this.f39235t2;
+            eo eoVar = this.f39238t2;
             kVar = ((org.telegram.ui.ActionBar.m2) eoVar).actionBar;
             if (!kVar.u() && !eoVar.F9()) {
                 return super.onTouchEvent(motionEvent);

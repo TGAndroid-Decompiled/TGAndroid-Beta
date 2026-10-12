@@ -58,14 +58,14 @@ public final class t8 extends FrameLayout {
         SpannableString spannableString = new SpannableString("x");
         this.h = spannableString;
         na0 na0Var = new na0(AndroidUtilities.dp(200.0f), r6Var);
-        na0Var.f28768e = 0.8f;
+        na0Var.f28757e = 0.8f;
         na0Var.a(org.telegram.ui.ActionBar.h6.m1(0.4f, textColor), org.telegram.ui.ActionBar.h6.m1(0.08f, textColor));
         spannableString.setSpan(na0Var, 0, spannableString.length(), 33);
         int textColor2 = r6Var2.getTextColor();
         SpannableString spannableString2 = new SpannableString("x");
         this.f6024n = spannableString2;
         na0 na0Var2 = new na0(AndroidUtilities.dp(140.0f), r6Var2);
-        na0Var2.f28768e = 0.8f;
+        na0Var2.f28757e = 0.8f;
         na0Var2.a(org.telegram.ui.ActionBar.h6.m1(0.4f, textColor2), org.telegram.ui.ActionBar.h6.m1(0.08f, textColor2));
         spannableString2.setSpan(na0Var2, 0, spannableString2.length(), 33);
         ImageView imageView3 = new ImageView(context);

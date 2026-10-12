@@ -61,19 +61,19 @@ public class ya extends NestedScrollView implements r80 {
         this.f1967b0 = xaVar;
         org.telegram.ui.Cells.y9 y9Var = new org.telegram.ui.Cells.y9(xaVar, c6Var);
         this.W = y9Var;
-        y9Var.f21627h0 = false;
+        y9Var.f21628h0 = false;
         frameLayout.addView(xaVar, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
         setFadingEdgeLength(AndroidUtilities.dp(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        o1.k kVar = new o1.k(xaVar, o1.h.f16672n, 0.0f);
+        o1.k kVar = new o1.k(xaVar, o1.h.f16673n, 0.0f);
         this.f1966a0 = kVar;
-        kVar.f16690u.b(100.0f);
+        kVar.f16691u.b(100.0f);
         kVar.e(1.0f);
         kVar.b(new ra(0, this));
-        kVar.f16690u.a(1.0f);
+        kVar.f16691u.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("d", null).setAccessible(true);
         } catch (Exception e7) {
@@ -109,7 +109,7 @@ public class ya extends NestedScrollView implements r80 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new qa(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(js.f27627f);
+        ofFloat.setInterpolator(js.f27634f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class ya extends NestedScrollView implements r80 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new qa(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(js.f27627f);
+        ofFloat.setInterpolator(js.f27634f);
         ofFloat.start();
     }
 
@@ -136,8 +136,8 @@ public class ya extends NestedScrollView implements r80 {
 
     public final void K(float f7) {
         o1.k kVar = this.f1966a0;
-        if (!kVar.f16683f) {
-            kVar.f16679a = f7;
+        if (!kVar.f16684f) {
+            kVar.f16680a = f7;
             kVar.h();
         }
         if (getScrollY() < AndroidUtilities.dp(2.0f)) {
@@ -286,7 +286,7 @@ public class ya extends NestedScrollView implements r80 {
                 boolean z10 = this.f1968c0;
                 xa xaVar = this.f1967b0;
                 if (!z10) {
-                    if (!this.f1966a0.f16683f) {
+                    if (!this.f1966a0.f16684f) {
                         OverScroller overScroller = this.f1976k0;
                         if (overScroller != null) {
                             f7 = overScroller.getCurrVelocity();

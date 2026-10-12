@@ -37,9 +37,9 @@ public final class q60 extends org.telegram.ui.Components.wm0 {
                 i11 = ((SessionsActivity) this.W2).terminateAllSessionsRow;
                 org.telegram.ui.ActionBar.c6 c6Var = this.f32467n2;
                 if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20780p7, c6Var)));
+                    return Integer.valueOf(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20781p7, c6Var)));
                 }
-                return Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var));
+                return Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var));
             default:
                 return super.W0(i10);
         }
@@ -66,13 +66,13 @@ public final class q60 extends org.telegram.ui.Components.wm0 {
                 return;
             case 1:
                 bq0 bq0Var = (bq0) this.W2;
-                Paint paint = bq0Var.f36240w;
-                RectF rectF = bq0Var.f36239s;
-                RectF rectF2 = bq0Var.f36238r;
-                RectF rectF3 = bq0Var.f36237n;
-                s4.d0 d0Var = bq0Var.f36233b;
-                if (!bq0Var.f36236f.isEmpty()) {
-                    float d = bq0Var.f36235e.d(bq0Var.d, false);
+                Paint paint = bq0Var.f36242w;
+                RectF rectF = bq0Var.f36241s;
+                RectF rectF2 = bq0Var.f36240r;
+                RectF rectF3 = bq0Var.f36239n;
+                s4.d0 d0Var = bq0Var.f36235b;
+                if (!bq0Var.f36238f.isEmpty()) {
+                    float d = bq0Var.f36237e.d(bq0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
                     int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
@@ -90,7 +90,7 @@ public final class q60 extends org.telegram.ui.Components.wm0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(bq0Var.f36241x);
+                        paint.setColor(bq0Var.f36243x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);

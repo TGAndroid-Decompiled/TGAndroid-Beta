@@ -37,7 +37,7 @@ public final class e7 {
         this.d = handler;
         this.f5031e = new k2.c(this);
         this.f5032f = new androidx.mediarouter.app.g(this, 5);
-        k2.b bVar = k2.b.f14405c;
+        k2.b bVar = k2.b.f14406c;
         String str2 = Build.MANUFACTURER;
         Uri uriFor = (str2.equals("Amazon") || str2.equals("Xiaomi")) ? Settings.Global.getUriFor("external_surround_sound_enabled") : null;
         this.f5033g = uriFor != null ? new k2.d(this, handler, applicationContext.getContentResolver(), uriFor) : null;
@@ -50,7 +50,7 @@ public final class e7 {
             this.h = bVar;
             k2.d0 d0Var = (k2.d0) ((ei.c5) this.f5030c).f8996b;
             Looper myLooper = Looper.myLooper();
-            if (d0Var.f14433h0 == myLooper) {
+            if (d0Var.f14434h0 == myLooper) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -64,17 +64,17 @@ public final class e7 {
             }
             sb2.append(name);
             sb2.append(") is not the playback looper (");
-            Looper looper = d0Var.f14433h0;
+            Looper looper = d0Var.f14434h0;
             if (looper != null) {
                 str = looper.getThread().getName();
             }
             sb2.append(str);
             sb2.append(")");
             e2.d.f(sb2.toString(), z10);
-            k2.b bVar2 = d0Var.f14452x;
+            k2.b bVar2 = d0Var.f14453x;
             if (bVar2 != null && !bVar.equals(bVar2)) {
-                d0Var.f14452x = bVar;
-                k2.n nVar = d0Var.f14448s;
+                d0Var.f14453x = bVar;
+                k2.n nVar = d0Var.f14449s;
                 if (nVar != null) {
                     nVar.C();
                 }
@@ -137,7 +137,7 @@ public final class e7 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
         this.f5035j = new Path();
         this.f5029b = a0Var;
-        js jsVar = js.f27628g;
+        js jsVar = js.f27635g;
         this.d = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 320L, jsVar);
         this.f5031e = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, jsVar);
         this.f5032f = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, jsVar);

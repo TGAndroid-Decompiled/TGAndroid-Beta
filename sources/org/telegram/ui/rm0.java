@@ -48,8 +48,8 @@ public final class rm0 implements RequestDelegate {
 
     public final void a(final TLRPC.TL_error tL_error, final TLRPC.TL_secureValue tL_secureValue, final TLRPC.TL_secureValue tL_secureValue2) {
         sm0 sm0Var = this.f41690p;
-        final boolean z10 = sm0Var.f41957b;
-        final int i10 = sm0Var.f41958c;
+        final boolean z10 = sm0Var.f41961b;
+        final int i10 = sm0Var.f41962c;
         final dn0 dn0Var = this.f41677a;
         final String str = this.f41678b;
         final TL_account.saveSecureValue savesecurevalue = this.f41679c;
@@ -98,11 +98,11 @@ public final class rm0 implements RequestDelegate {
                 }
                 TLRPC.TL_secureValue tL_secureValue3 = tL_secureValue;
                 if (tL_secureValue3 != null) {
-                    pn0Var2.f41055y.values.add(tL_secureValue3);
+                    pn0Var2.f41057y.values.add(tL_secureValue3);
                 }
                 TLRPC.TL_secureValue tL_secureValue4 = tL_secureValue2;
                 if (tL_secureValue4 != null) {
-                    pn0Var2.f41055y.values.add(tL_secureValue4);
+                    pn0Var2.f41057y.values.add(tL_secureValue4);
                 }
                 ArrayList arrayList3 = arrayList;
                 if (arrayList3 != null && !arrayList3.isEmpty()) {
@@ -227,7 +227,7 @@ public final class rm0 implements RequestDelegate {
         if (tL_error == null && (tL_inputSecureValue = rm0Var.f41689o) != null) {
             TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
             savesecurevalue.value = tL_inputSecureValue;
-            savesecurevalue.secure_secret_id = pn0Var.f41004b1;
+            savesecurevalue.secure_secret_id = pn0Var.f41006b1;
             i10 = ((org.telegram.ui.ActionBar.m2) pn0Var).currentAccount;
             ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new bc0(7, this, (TLRPC.TL_secureValue) tLObject));
             return;

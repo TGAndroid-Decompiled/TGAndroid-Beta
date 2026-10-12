@@ -9,18 +9,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.am;
 public final class s2 extends FrameLayout {
-    public final int f21256a;
-    public final Dialog f21257b;
+    public final int f21257a;
+    public final Dialog f21258b;
 
     public s2(Dialog dialog, Context context, int i10) {
         super(context);
-        this.f21256a = i10;
-        this.f21257b = dialog;
+        this.f21257a = i10;
+        this.f21258b = dialog;
     }
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f21256a) {
+        switch (this.f21257a) {
             case 0:
                 return false;
             default:
@@ -36,12 +36,12 @@ public final class s2 extends FrameLayout {
         int left;
         int measuredWidth;
         int i16;
-        switch (this.f21256a) {
+        switch (this.f21257a) {
             case 1:
                 int childCount = getChildCount();
                 int i17 = i12 - i10;
                 int i18 = -1;
-                if (((a2) this.f21257b).K0) {
+                if (((a2) this.f21258b).K0) {
                     View findViewWithTag = findViewWithTag(-3);
                     View findViewWithTag2 = findViewWithTag(-4);
                     View findViewWithTag3 = findViewWithTag(-2);
@@ -153,13 +153,13 @@ public final class s2 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f21256a) {
+        switch (this.f21257a) {
             case 1:
                 super.onMeasure(i10, i11);
                 int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
                 int childCount = getChildCount();
                 int i12 = 0;
-                if (((a2) this.f21257b).K0) {
+                if (((a2) this.f21258b).K0) {
                     int max = Math.max(0, (measuredWidth - AndroidUtilities.dp(8.0f)) / 2);
                     while (i12 < childCount) {
                         View childAt = getChildAt(i12);
@@ -211,10 +211,10 @@ public final class s2 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f21256a) {
+        switch (this.f21257a) {
             case 0:
                 super.setTranslationY(f7);
-                e3 e3Var = (e3) this.f21257b;
+                e3 e3Var = (e3) this.f21258b;
                 FrameLayout frameLayout = e3Var.topBulletinContainer;
                 if (frameLayout != null) {
                     frameLayout.setTranslationY((-(e3Var.container.getHeight() - e3Var.containerView.getY())) + e3Var.backgroundPaddingTop);

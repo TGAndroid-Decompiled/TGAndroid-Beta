@@ -153,16 +153,16 @@ public final class uy extends FrameLayout implements NotificationCenter.Notifica
         if (qyVar == null) {
             return;
         }
-        boolean z17 = qyVar.f29950f;
+        boolean z17 = qyVar.f29951f;
         d00 d00Var = this.E;
-        if (!z17 && !d00Var.f25120p1.contains(Long.valueOf(qyVar.f29947b.f19829id))) {
+        if (!z17 && !d00Var.f25112p1.contains(Long.valueOf(qyVar.f29948b.f19830id))) {
             z11 = false;
         } else {
             z11 = true;
         }
-        if (!this.f31286s.f29949e && !UserConfig.getInstance(d00Var.f25080c1).isPremium() && !d00Var.U0) {
+        if (!this.f31286s.f29950e && !UserConfig.getInstance(d00Var.f25072c1).isPremium() && !d00Var.U0) {
             i10 = 1;
-        } else if (this.f31286s.f29951g) {
+        } else if (this.f31286s.f29952g) {
             if (z11) {
                 i10 = 3;
             } else {
@@ -435,9 +435,9 @@ public final class uy extends FrameLayout implements NotificationCenter.Notifica
         TLRPC.TL_messages_stickerSet stickerSetById;
         TLRPC.TL_messages_stickerSet stickerSetById2;
         d00 d00Var = this.E;
-        int i12 = d00Var.f25080c1;
+        int i12 = d00Var.f25072c1;
         if (i10 == NotificationCenter.groupStickersDidLoad) {
-            if (this.f31284n != null && (stickerSetById2 = MediaDataController.getInstance(i12).getStickerSetById(this.f31284n.f19822id)) != null && stickerSetById2.set != null) {
+            if (this.f31284n != null && (stickerSetById2 = MediaDataController.getInstance(i12).getStickerSetById(this.f31284n.f19823id)) != null && stickerSetById2.set != null) {
                 org.telegram.ui.ActionBar.m2 m2Var = d00Var.Y1;
                 if (m2Var == null) {
                     m2Var = new ai.z3(this, 6);
@@ -445,16 +445,16 @@ public final class uy extends FrameLayout implements NotificationCenter.Notifica
                 lw.X(m2Var, stickerSetById2, true, null, new pq(this, 14));
                 this.f31284n = null;
             }
-            if (this.f31285r != null && (stickerSetById = MediaDataController.getInstance(i12).getStickerSetById(this.f31285r.f19822id)) != null && stickerSetById.set != null) {
+            if (this.f31285r != null && (stickerSetById = MediaDataController.getInstance(i12).getStickerSetById(this.f31285r.f19823id)) != null && stickerSetById.set != null) {
                 org.telegram.ui.ActionBar.m2 m2Var2 = d00Var.Y1;
                 if (m2Var2 == null) {
                     m2Var2 = new ai.z3(this, 6);
                 }
                 org.telegram.ui.ActionBar.m2 m2Var3 = m2Var2;
-                hu huVar = new hu(6, this, stickerSetById);
+                jt jtVar = new jt(7, this, stickerSetById);
                 Pattern pattern = lw.V;
                 if (m2Var3.getFragmentView() != null) {
-                    MediaDataController.getInstance(m2Var3.getCurrentAccount()).toggleStickerSet(m2Var3.getFragmentView().getContext(), stickerSetById, 0, m2Var3, true, true, huVar, false);
+                    MediaDataController.getInstance(m2Var3.getCurrentAccount()).toggleStickerSet(m2Var3.getFragmentView().getContext(), stickerSetById, 0, m2Var3, true, true, jtVar, false);
                 }
                 this.f31285r = null;
             }
@@ -464,7 +464,7 @@ public final class uy extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.E.f25080c1).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+        NotificationCenter.getInstance(this.E.f25072c1).removeObserver(this, NotificationCenter.groupStickersDidLoad);
     }
 
     @Override
@@ -475,7 +475,7 @@ public final class uy extends FrameLayout implements NotificationCenter.Notifica
                 Paint paint = new Paint(1);
                 this.f31287w = paint;
                 paint.setStrokeWidth(1.0f);
-                this.f31287w.setColor(this.E.A(org.telegram.ui.ActionBar.h6.f20560d7));
+                this.f31287w.setColor(this.E.A(org.telegram.ui.ActionBar.h6.f20561d7));
             }
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, this.f31287w);

@@ -1,12 +1,12 @@
 package u4;
 public final class g {
-    public final String f49077a;
-    public final String f49078b;
-    public final g0.c f49079c;
+    public final String f49085a;
+    public final String f49086b;
+    public final g0.c f49087c;
 
     public g(g0.c cVar, String str, String str2) {
-        this.f49079c = cVar;
-        this.f49077a = str;
-        this.f49078b = str2;
+        this.f49087c = cVar;
+        this.f49085a = str;
+        this.f49086b = str2;
     }
 }

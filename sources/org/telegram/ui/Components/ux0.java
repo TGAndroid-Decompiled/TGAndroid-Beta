@@ -6,7 +6,7 @@ public abstract class ux0 extends Drawable {
         yf.h d = yf.h.d();
         d.getClass();
         yf.h.c();
-        d.f52389e.add(this);
+        d.f52397e.add(this);
     }
 
     public abstract void b(int i10);

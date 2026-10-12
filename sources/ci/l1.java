@@ -22,14 +22,14 @@ public final class l1 extends ji.o {
                 ((o1) this.f5376r).Z2 = true;
                 return;
             case 1:
-                ((d00) this.f5376r).f25090f0 = true;
+                ((d00) this.f5376r).f25082f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((n71) this.f5376r).f40305w1 = true;
+                ((n71) this.f5376r).f40308w1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class l1 extends ji.o {
                 ((o1) this.f5376r).Z2 = false;
                 return;
             case 1:
-                ((d00) this.f5376r).f25090f0 = false;
+                ((d00) this.f5376r).f25082f0 = false;
                 return;
             case 2:
-                ((dy) this.f5376r).Q.f25090f0 = false;
+                ((dy) this.f5376r).Q.f25082f0 = false;
                 return;
             case 3:
-                ((b61) this.f5376r).R.f40305w1 = false;
+                ((b61) this.f5376r).R.f40308w1 = false;
                 return;
             case 4:
-                ((n71) this.f5376r).f40305w1 = false;
+                ((n71) this.f5376r).f40308w1 = false;
                 return;
             default:
-                ((b61) this.f5376r).R.f40305w1 = false;
+                ((b61) this.f5376r).R.f40308w1 = false;
                 return;
         }
     }

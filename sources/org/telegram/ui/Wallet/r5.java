@@ -8,26 +8,26 @@ import android.view.ViewConfiguration;
 import ci.ya;
 import org.telegram.messenger.am;
 public final class r5 extends sg.n {
-    public final n5 f35315f0;
-    public final s5 f35316g0;
-    public final int f35317h0;
-    public final n f35318i0;
-    public float f35319j0;
-    public float f35320k0;
-    public float f35321l0;
+    public final n5 f35317f0;
+    public final s5 f35318g0;
+    public final int f35319h0;
+    public final n f35320i0;
+    public float f35321j0;
+    public float f35322k0;
+    public float f35323l0;
     public float m0;
-    public boolean f35322n0;
-    public ValueAnimator f35323o0;
+    public boolean f35324n0;
+    public ValueAnimator f35325o0;
 
     public r5(Context context, s5 s5Var, int i10, int i11) {
         super(context, 0, 0);
-        this.f35316g0 = s5Var;
-        this.f35318i0 = new n(s5Var, 9);
+        this.f35318g0 = s5Var;
+        this.f35320i0 = new n(s5Var, 9);
         n5 n5Var = new n5(context, i10, i11);
-        this.f35315f0 = n5Var;
+        this.f35317f0 = n5Var;
         setRenderer(n5Var);
         setOpaque(false);
-        this.f35317h0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f35319h0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
@@ -42,27 +42,27 @@ public final class r5 extends sg.n {
 
     @Override
     public final void onDetachedFromWindow() {
-        removeCallbacks(this.f35318i0);
-        this.f35316g0.setPressed(false);
-        ValueAnimator valueAnimator = this.f35323o0;
+        removeCallbacks(this.f35320i0);
+        this.f35318g0.setPressed(false);
+        ValueAnimator valueAnimator = this.f35325o0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f35323o0.cancel();
-            this.f35323o0 = null;
+            this.f35325o0.cancel();
+            this.f35325o0 = null;
         }
         super.onDetachedFromWindow();
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        this.f35315f0.getClass();
-        this.f35316g0.d();
+        this.f35317f0.getClass();
+        this.f35318g0.d();
         super.onSurfaceTextureAvailable(surfaceTexture, i10, i11);
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.f35316g0.d();
+        this.f35318g0.d();
         super.onSurfaceTextureDestroyed(surfaceTexture);
         return true;
     }
@@ -75,80 +75,80 @@ public final class r5 extends sg.n {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int actionMasked = motionEvent.getActionMasked();
-        n5 n5Var = this.f35315f0;
-        s5 s5Var = this.f35316g0;
+        n5 n5Var = this.f35317f0;
+        s5 s5Var = this.f35318g0;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
                 if (actionMasked != 2) {
                     if (actionMasked == 3) {
                         getParent().requestDisallowInterceptTouchEvent(false);
                         s5Var.setPressed(false);
-                        if (this.f35322n0) {
+                        if (this.f35324n0) {
                             p();
                         }
-                        this.f35322n0 = true;
+                        this.f35324n0 = true;
                         return true;
                     }
                 } else {
-                    float abs = Math.abs(motionEvent.getX() - this.f35319j0);
-                    float f7 = this.f35317h0;
-                    if (abs > f7 || Math.abs(motionEvent.getY() - this.f35320k0) > f7) {
-                        this.f35322n0 = true;
+                    float abs = Math.abs(motionEvent.getX() - this.f35321j0);
+                    float f7 = this.f35319h0;
+                    if (abs > f7 || Math.abs(motionEvent.getY() - this.f35322k0) > f7) {
+                        this.f35324n0 = true;
                         s5Var.setPressed(false);
                     }
-                    if (this.f35322n0) {
-                        float b10 = com.google.android.gms.internal.vision.e2.b(motionEvent.getX(), this.f35319j0, 0.03f, this.f35321l0);
-                        float f10 = this.f35321l0;
+                    if (this.f35324n0) {
+                        float b10 = com.google.android.gms.internal.vision.e2.b(motionEvent.getX(), this.f35321j0, 0.03f, this.f35323l0);
+                        float f10 = this.f35323l0;
                         n5Var.d = s5.b(b10, f10 - 32.0f, f10 + 32.0f);
-                        float b11 = com.google.android.gms.internal.vision.e2.b(motionEvent.getY(), this.f35320k0, 0.03f, this.m0);
+                        float b11 = com.google.android.gms.internal.vision.e2.b(motionEvent.getY(), this.f35322k0, 0.03f, this.m0);
                         float f11 = this.m0;
-                        n5Var.f48277i = s5.b(b11, f11 - 22.0f, f11 + 22.0f);
+                        n5Var.f48285i = s5.b(b11, f11 - 22.0f, f11 + 22.0f);
                     }
                 }
                 return true;
             }
             getParent().requestDisallowInterceptTouchEvent(false);
             s5Var.setPressed(false);
-            if (this.f35322n0) {
+            if (this.f35324n0) {
                 p();
                 return true;
             }
-            postDelayed(this.f35318i0, Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
+            postDelayed(this.f35320i0, Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
             return true;
         }
-        ValueAnimator valueAnimator = this.f35323o0;
+        ValueAnimator valueAnimator = this.f35325o0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f35323o0.cancel();
-            this.f35323o0 = null;
+            this.f35325o0.cancel();
+            this.f35325o0 = null;
         }
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.f35319j0 = motionEvent.getX();
-        this.f35320k0 = motionEvent.getY();
-        this.f35321l0 = n5Var.d;
-        this.m0 = n5Var.f48277i;
-        this.f35322n0 = false;
+        this.f35321j0 = motionEvent.getX();
+        this.f35322k0 = motionEvent.getY();
+        this.f35323l0 = n5Var.d;
+        this.m0 = n5Var.f48285i;
+        this.f35324n0 = false;
         s5Var.setPressed(true);
         return true;
     }
 
     public final void p() {
-        ValueAnimator valueAnimator = this.f35323o0;
+        ValueAnimator valueAnimator = this.f35325o0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f35323o0.cancel();
-            this.f35323o0 = null;
+            this.f35325o0.cancel();
+            this.f35325o0 = null;
         }
-        n5 n5Var = this.f35315f0;
+        n5 n5Var = this.f35317f0;
         float f7 = n5Var.d;
-        float f10 = n5Var.f48277i;
+        float f10 = n5Var.f48285i;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f35323o0 = ofFloat;
+        this.f35325o0 = ofFloat;
         ofFloat.setDuration(600L);
-        am.l(1.2f, this.f35323o0);
-        this.f35323o0.addUpdateListener(new ya(this, f7, f10, 7));
-        this.f35323o0.addListener(new z4(this, 2));
-        this.f35323o0.start();
+        am.l(1.2f, this.f35325o0);
+        this.f35325o0.addUpdateListener(new ya(this, f7, f10, 7));
+        this.f35325o0.addListener(new z4(this, 2));
+        this.f35325o0.start();
     }
 
     @Override
@@ -159,11 +159,11 @@ public final class r5 extends sg.n {
 
     @Override
     public final void setPaused(boolean z10) {
-        n5 n5Var = this.f35315f0;
+        n5 n5Var = this.f35317f0;
         synchronized (n5Var) {
-            if (n5Var.f35128e0 != z10) {
-                n5Var.f35128e0 = z10;
-                n5Var.f35130g0 = 0L;
+            if (n5Var.f35130e0 != z10) {
+                n5Var.f35130e0 = z10;
+                n5Var.f35132g0 = 0L;
             }
         }
         super.setPaused(z10);

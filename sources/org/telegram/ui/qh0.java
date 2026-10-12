@@ -4,33 +4,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qh0 implements vb0 {
-    public final ai0 f41336a;
+    public final ai0 f41340a;
 
     public qh0(ai0 ai0Var) {
-        this.f41336a = ai0Var;
+        this.f41340a = ai0Var;
     }
 
     @Override
     public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-        this.f41336a.e0(tL_chatInviteExported);
+        this.f41340a.e0(tL_chatInviteExported);
     }
 
     @Override
     public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
         if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
             TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
-            ai0 ai0Var = this.f41336a;
+            ai0 ai0Var = this.f41340a;
             ai0Var.c0(tL_chatInviteExported2);
-            for (int i10 = 0; i10 < ai0Var.f35826i0.size(); i10++) {
-                if (((TLRPC.TL_chatInviteExported) ai0Var.f35826i0.get(i10)).link.equals(tL_chatInviteExported.link)) {
+            for (int i10 = 0; i10 < ai0Var.f35828i0.size(); i10++) {
+                if (((TLRPC.TL_chatInviteExported) ai0Var.f35828i0.get(i10)).link.equals(tL_chatInviteExported.link)) {
                     if (tL_chatInviteExported2.revoked) {
                         rh0 f02 = ai0Var.f0();
-                        ai0Var.f35826i0.remove(i10);
-                        ai0Var.f35827j0.add(0, tL_chatInviteExported2);
+                        ai0Var.f35828i0.remove(i10);
+                        ai0Var.f35829j0.add(0, tL_chatInviteExported2);
                         ai0Var.h0(f02);
                         return;
                     }
-                    ai0Var.f35826i0.set(i10, tL_chatInviteExported2);
+                    ai0Var.f35828i0.set(i10, tL_chatInviteExported2);
                     ai0Var.i0(true);
                     return;
                 }
@@ -41,7 +41,7 @@ public final class qh0 implements vb0 {
     @Override
     public final void c(TLObject tLObject) {
         if (tLObject instanceof TLRPC.TL_chatInviteExported) {
-            AndroidUtilities.runOnUIThread(new og0(3, this, tLObject), 200L);
+            AndroidUtilities.runOnUIThread(new cg0(4, this, tLObject), 200L);
         }
     }
 }

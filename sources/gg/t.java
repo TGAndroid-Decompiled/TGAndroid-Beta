@@ -135,13 +135,13 @@ public final class t implements Runnable {
             case 4:
                 d2 d2Var = (d2) this.f10809b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f10810c).f19914q;
+                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f10810c).f19915q;
                 f2 f2Var = d2Var.f10573a;
                 String str3 = f2Var.R;
                 e61 e61Var = f2Var.f10597e;
                 if (str2.equals(str3)) {
                     d2Var.a();
-                    e61Var.f25610b.h.getProgressDrawable().f32827e = false;
+                    e61Var.f25615b.h.getProgressDrawable().f32817e = false;
                     f2Var.N = 0;
                     e61Var.b(true);
                     f2Var.E.addAll(tL_messages_foundStickerSets.sets);
@@ -345,37 +345,37 @@ public final class t implements Runnable {
                 return;
             case 21:
                 String str4 = e2.d0.f8529a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.f10809b).f16363c)).f11618a.f11681s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.f10809b).f16364c)).f11618a.f11681s;
                 j2.a p5 = fVar2.p();
                 fVar2.q(p5, 1009, new j2.c(p5, (b2.s) this.f10810c, (i2.h) this.d, 19));
                 return;
             case 22:
                 SpannableString spannableString = (SpannableString) this.f10809b;
-                ki.k.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.y) this.f10810c).f16362b);
+                ki.k.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.y) this.f10810c).f16363b);
                 ((fi.m0) this.d).run(spannableString);
                 return;
             case 23:
                 m4.y yVar = (m4.y) this.f10809b;
                 m4.r rVar = (m4.r) this.f10810c;
                 KeyEvent keyEvent = (KeyEvent) this.d;
-                m4.c0 c0Var = yVar.f16001b;
+                m4.c0 c0Var = yVar.f16002b;
                 if (c0Var.i(rVar)) {
                     c0Var.b(keyEvent, false, false);
                 } else {
                     m4.m0 m0Var = c0Var.h;
-                    n4.a0 a0Var = rVar.f15965a;
+                    n4.a0 a0Var = rVar.f15966a;
                     a0Var.getClass();
                     m0Var.getClass();
                     m0Var.H(1, new m4.d0(m0Var, 7), a0Var, true);
                 }
-                yVar.f16000a = null;
+                yVar.f16001a = null;
                 return;
             case 24:
                 m4.c0 c0Var2 = (m4.c0) this.f10809b;
                 m4.r0 r0Var = (m4.r0) this.f10810c;
                 m4.s sVar2 = (m4.s) this.d;
                 if (!c0Var2.j()) {
-                    m4.g1 g1Var = c0Var2.f15748t;
+                    m4.g1 g1Var = c0Var2.f15749t;
                     r0Var.getClass();
                     w7.r.b(g1Var, sVar2);
                     return;
@@ -383,20 +383,20 @@ public final class t implements Runnable {
                 return;
             case 25:
                 n2.j jVar = (n2.j) this.f10809b;
-                this.f10810c.b(jVar.f16266a, jVar.f16267b, (Exception) this.d);
+                this.f10810c.b(jVar.f16267a, jVar.f16268b, (Exception) this.d);
                 return;
             case 26:
                 oi.k kVar = (oi.k) this.f10809b;
                 WebView webView = (WebView) this.f10810c;
                 b5.h hVar = (b5.h) this.d;
-                synchronized (kVar.f16939a) {
-                    if (!kVar.f16957u && kVar.f16951o == webView && kVar.f16952p == hVar && !kVar.f16954r) {
-                        if (kVar.f16955s) {
+                synchronized (kVar.f16940a) {
+                    if (!kVar.f16958u && kVar.f16952o == webView && kVar.f16953p == hVar && !kVar.f16955r) {
+                        if (kVar.f16956s) {
                             FileLog.e("WEB proxy: Base64 bridge installation timed out again; transport stopped");
                             kVar.o();
                             return;
                         }
-                        kVar.f16955s = true;
+                        kVar.f16956s = true;
                         FileLog.e("WEB proxy: Base64 bridge installation timed out; retrying once");
                         kVar.f();
                         return;

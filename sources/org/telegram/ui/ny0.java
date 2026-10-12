@@ -4,30 +4,30 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ny0 implements Runnable {
-    public final int f40503a;
-    public final ProfileActivity f40504b;
-    public final TLRPC.TL_error f40505c;
+    public final int f40506a;
+    public final ProfileActivity f40507b;
+    public final TLRPC.TL_error f40508c;
     public final TLObject d;
-    public final TLRPC.TL_channels_getParticipants f40506e;
+    public final TLRPC.TL_channels_getParticipants f40509e;
 
     public ny0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
-        this.f40503a = i10;
-        this.f40504b = profileActivity;
-        this.f40505c = tL_error;
+        this.f40506a = i10;
+        this.f40507b = profileActivity;
+        this.f40508c = tL_error;
         this.d = tLObject;
-        this.f40506e = tL_channels_getParticipants;
+        this.f40509e = tL_channels_getParticipants;
     }
 
     @Override
     public final void run() {
-        switch (this.f40503a) {
+        switch (this.f40506a) {
             case 0:
-                ProfileActivity profileActivity = this.f40504b;
-                profileActivity.getNotificationCenter().doOnIdle(new ny0(profileActivity, this.f40505c, this.d, this.f40506e, 1));
+                ProfileActivity profileActivity = this.f40507b;
+                profileActivity.getNotificationCenter().doOnIdle(new ny0(profileActivity, this.f40508c, this.d, this.f40509e, 1));
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f40504b;
-                if (this.f40505c == null) {
+                ProfileActivity profileActivity2 = this.f40507b;
+                if (this.f40508c == null) {
                     profileActivity2.getClass();
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
                     profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
@@ -35,11 +35,11 @@ public final class ny0 implements Runnable {
                     if (tL_channels_channelParticipants.users.size() < 200) {
                         profileActivity2.D1 = true;
                     }
-                    if (this.f40506e.offset == 0) {
+                    if (this.f40509e.offset == 0) {
                         profileActivity2.C1.b();
-                        profileActivity2.f34191u2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity2.f34193u2.participants = new TLRPC.TL_chatParticipants();
                         profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
-                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f34088f1, tL_channels_channelParticipants.participants);
+                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f34090f1, tL_channels_channelParticipants.participants);
                     }
                     for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
@@ -50,11 +50,11 @@ public final class ny0 implements Runnable {
                         tL_chatChannelParticipant.user_id = peerId;
                         tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
                         if (profileActivity2.C1.h(peerId) < 0) {
-                            TLRPC.ChatFull chatFull = profileActivity2.f34191u2;
+                            TLRPC.ChatFull chatFull = profileActivity2.f34193u2;
                             if (chatFull.participants == null) {
                                 chatFull.participants = new TLRPC.TL_chatParticipants();
                             }
-                            profileActivity2.f34191u2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity2.f34193u2.participants.participants.add(tL_chatChannelParticipant);
                             profileActivity2.C1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
                         }
                     }

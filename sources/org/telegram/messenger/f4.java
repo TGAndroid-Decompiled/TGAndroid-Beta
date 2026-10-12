@@ -14,118 +14,118 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_update;
 public final class f4 implements Runnable {
-    public final int f17568a;
-    public final long f17569b;
-    public final Object f17570c;
+    public final int f17569a;
+    public final long f17570b;
+    public final Object f17571c;
     public final Object d;
 
     public f4(Object obj, long j3, Object obj2, int i10) {
-        this.f17568a = i10;
-        this.f17570c = obj;
-        this.f17569b = j3;
+        this.f17569a = i10;
+        this.f17571c = obj;
+        this.f17570b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f17568a) {
+        switch (this.f17569a) {
             case 0:
-                ((GiftAuctionController) this.f17570c).lambda$onGiftAuctionStateReceivedInternal$2((GiftAuctionController.AuctionInternal) this.d, this.f17569b);
+                ((GiftAuctionController) this.f17571c).lambda$onGiftAuctionStateReceivedInternal$2((GiftAuctionController.AuctionInternal) this.d, this.f17570b);
                 return;
             case 1:
-                ((TranslateController) this.f17570c).lambda$pushPollToTranslate$27(this.f17569b, (TranslateController.PendingPollTranslation) this.d);
+                ((TranslateController) this.f17571c).lambda$pushPollToTranslate$27(this.f17570b, (TranslateController.PendingPollTranslation) this.d);
                 return;
             case 2:
-                ((TranslateController) this.f17570c).lambda$pushRichMessageToTranslate$30(this.f17569b, (TranslateController.PendingRichTranslation) this.d);
+                ((TranslateController) this.f17571c).lambda$pushRichMessageToTranslate$30(this.f17570b, (TranslateController.PendingRichTranslation) this.d);
                 return;
             case 3:
-                AndroidUtilities.lambda$showProxyAlert$17((boolean[]) this.f17570c, this.f17569b, (org.telegram.ui.Components.bd[]) this.d);
+                AndroidUtilities.lambda$showProxyAlert$17((boolean[]) this.f17571c, this.f17570b, (org.telegram.ui.Components.bd[]) this.d);
                 return;
             case 4:
-                ((ChatThemeController) this.f17570c).lambda$processUpdate$13(this.f17569b, (TLRPC.UserFull) this.d);
+                ((ChatThemeController) this.f17571c).lambda$processUpdate$13(this.f17570b, (TLRPC.UserFull) this.d);
                 return;
             case 5:
-                ((LocationController) this.f17570c).lambda$loadLiveLocations$25(this.f17569b, (TLObject) this.d);
+                ((LocationController) this.f17571c).lambda$loadLiveLocations$25(this.f17570b, (TLObject) this.d);
                 return;
             case 6:
-                ((MediaDataController) this.f17570c).lambda$putBotInfo$202((TL_bots.BotInfo) this.d, this.f17569b);
+                ((MediaDataController) this.f17571c).lambda$putBotInfo$202((TL_bots.BotInfo) this.d, this.f17570b);
                 return;
             case 7:
-                ((MediaDataController) this.f17570c).lambda$savePinnedMessages$166((ArrayList) this.d, this.f17569b);
+                ((MediaDataController) this.f17571c).lambda$savePinnedMessages$166((ArrayList) this.d, this.f17570b);
                 return;
             case 8:
-                ((MediaDataController) this.f17570c).lambda$updateBotInfo$203((TL_update.TL_updateBotCommands) this.d, this.f17569b);
+                ((MediaDataController) this.f17571c).lambda$updateBotInfo$203((TL_update.TL_updateBotCommands) this.d, this.f17570b);
                 return;
             case 9:
-                MessagesController.lambda$convertToMegaGroup$262((MessagesStorage.LongCallback) this.f17570c, (TLRPC.Updates) this.d, this.f17569b);
+                MessagesController.lambda$convertToMegaGroup$262((MessagesStorage.LongCallback) this.f17571c, (TLRPC.Updates) this.d, this.f17570b);
                 return;
             case 10:
-                ((MessagesController) this.f17570c).lambda$addUsersToChannel$272((TLRPC.TL_messages_invitedUsers) this.d, this.f17569b);
+                ((MessagesController) this.f17571c).lambda$addUsersToChannel$272((TLRPC.TL_messages_invitedUsers) this.d, this.f17570b);
                 return;
             case 11:
-                ((MessagesController) this.f17570c).lambda$updateTimerProc$158(this.f17569b, (TLRPC.TL_chatOnlines) this.d);
+                ((MessagesController) this.f17571c).lambda$updateTimerProc$158(this.f17570b, (TLRPC.TL_chatOnlines) this.d);
                 return;
             case 12:
-                ((MessagesController) this.f17570c).lambda$getSavedReactionTags$490((TLRPC.messages_SavedReactionTags) this.d, this.f17569b);
+                ((MessagesController) this.f17571c).lambda$getSavedReactionTags$490((TLRPC.messages_SavedReactionTags) this.d, this.f17570b);
                 return;
             case 13:
-                ((MessagesController) this.f17570c).lambda$addUserToChat$303((TLRPC.TL_chatInviteJoinResultWebView) this.d, this.f17569b);
+                ((MessagesController) this.f17571c).lambda$addUserToChat$303((TLRPC.TL_chatInviteJoinResultWebView) this.d, this.f17570b);
                 return;
             case 14:
-                ((MessagesController) this.f17570c).lambda$saveSavedReactionsTags$492(this.f17569b, (TLRPC.TL_messages_savedReactionsTags) this.d);
+                ((MessagesController) this.f17571c).lambda$saveSavedReactionsTags$492(this.f17570b, (TLRPC.TL_messages_savedReactionsTags) this.d);
                 return;
             case 15:
-                ((MessagesController) this.f17570c).lambda$didAddedNewTask$81(this.f17569b, (SparseArray) this.d);
+                ((MessagesController) this.f17571c).lambda$didAddedNewTask$81(this.f17570b, (SparseArray) this.d);
                 return;
             case 16:
-                ((MessagesStorage) this.f17570c).lambda$updateUserInfoContactBlocked$131(this.f17569b, (TL_account.RequirementToContact) this.d);
+                ((MessagesStorage) this.f17571c).lambda$updateUserInfoContactBlocked$131(this.f17570b, (TL_account.RequirementToContact) this.d);
                 return;
             case 17:
-                ((MessagesStorage) this.f17570c).lambda$isDialogHasTopMessage$175(this.f17569b, (Runnable) this.d);
+                ((MessagesStorage) this.f17571c).lambda$isDialogHasTopMessage$175(this.f17570b, (Runnable) this.d);
                 return;
             case 18:
-                ((MessagesStorage) this.f17570c).lambda$loadPendingTasks$12((TLRPC.Chat) this.d, this.f17569b);
+                ((MessagesStorage) this.f17571c).lambda$loadPendingTasks$12((TLRPC.Chat) this.d, this.f17570b);
                 return;
             case 19:
-                ((MessagesStorage) this.f17570c).lambda$saveStoryAlbumsCache$269(this.f17569b, (List) this.d);
+                ((MessagesStorage) this.f17571c).lambda$saveStoryAlbumsCache$269(this.f17570b, (List) this.d);
                 return;
             case 20:
-                ((MessagesStorage) this.f17570c).lambda$overwriteChannel$189(this.f17569b, (TLRPC.TL_updates_channelDifferenceTooLong) this.d);
+                ((MessagesStorage) this.f17571c).lambda$overwriteChannel$189(this.f17570b, (TLRPC.TL_updates_channelDifferenceTooLong) this.d);
                 return;
             case 21:
-                ((MessagesStorage) this.f17570c).lambda$createOrEditTopic$199(this.f17569b, (TLRPC.TL_forumTopic) this.d);
+                ((MessagesStorage) this.f17571c).lambda$createOrEditTopic$199(this.f17570b, (TLRPC.TL_forumTopic) this.d);
                 return;
             case 22:
-                ((MessagesStorage) this.f17570c).lambda$createPendingTask$10(this.f17569b, (NativeByteBuffer) this.d);
+                ((MessagesStorage) this.f17571c).lambda$createPendingTask$10(this.f17570b, (NativeByteBuffer) this.d);
                 return;
             case 23:
-                ((MessagesStorage) this.f17570c).lambda$putChannelAdmins$124(this.f17569b, (a0.i) this.d);
+                ((MessagesStorage) this.f17571c).lambda$putChannelAdmins$124(this.f17570b, (a0.i) this.d);
                 return;
             case 24:
-                ((MessagesStorage) this.f17570c).lambda$deleteAllReactionsFromChat$83((SparseArray) this.d, this.f17569b);
+                ((MessagesStorage) this.f17571c).lambda$deleteAllReactionsFromChat$83((SparseArray) this.d, this.f17570b);
                 return;
             case 25:
-                ((NotificationsController) this.f17570c).lambda$showTonConnectNotification$2((String) this.d, this.f17569b);
+                ((NotificationsController) this.f17571c).lambda$showTonConnectNotification$2((String) this.d, this.f17570b);
                 return;
             case 26:
-                ((NotificationsController) this.f17570c).lambda$loadTopicsNotificationsExceptions$55(this.f17569b, (Consumer) this.d);
+                ((NotificationsController) this.f17571c).lambda$loadTopicsNotificationsExceptions$55(this.f17570b, (Consumer) this.d);
                 return;
             case 27:
-                ((SavedMessagesController) this.f17570c).lambda$hasSavedMessages$14((TLObject) this.d, this.f17569b);
+                ((SavedMessagesController) this.f17571c).lambda$hasSavedMessages$14((TLObject) this.d, this.f17570b);
                 return;
             case 28:
-                ((SecretChatHelper) this.f17570c).lambda$processUpdateEncryption$1((TLRPC.TL_dialog) this.d, this.f17569b);
+                ((SecretChatHelper) this.f17571c).lambda$processUpdateEncryption$1((TLRPC.TL_dialog) this.d, this.f17570b);
                 return;
             default:
-                ((TopicsController) this.f17570c).lambda$loadTopics$4(this.f17569b, (TLRPC.TL_messages_savedDialogsNotModified) this.d);
+                ((TopicsController) this.f17571c).lambda$loadTopics$4(this.f17570b, (TLRPC.TL_messages_savedDialogsNotModified) this.d);
                 return;
         }
     }
 
     public f4(Object obj, Object obj2, long j3, int i10) {
-        this.f17568a = i10;
-        this.f17570c = obj;
+        this.f17569a = i10;
+        this.f17571c = obj;
         this.d = obj2;
-        this.f17569b = j3;
+        this.f17570b = j3;
     }
 }

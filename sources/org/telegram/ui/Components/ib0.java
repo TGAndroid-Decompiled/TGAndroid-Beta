@@ -16,14 +16,14 @@ public final class ib0 extends wh.l {
             case 0:
                 wh.b bVar = (wh.b) this.F;
                 gy0 gy0Var = bVar.W;
-                if (this.f50660e.isEmpty()) {
+                if (this.f50668e.isEmpty()) {
                     if (gy0Var.getVisibility() != 4) {
                         gy0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f32976w.J.setText("");
+                    bVar.f32969w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

@@ -15,27 +15,27 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 public final class wj0 implements Choreographer.FrameCallback {
     public static final Matrix E = new Matrix();
-    public static final Paint f43543x;
-    public static final LinearGradient f43544y;
-    public final Choreographer f43545a = Choreographer.getInstance();
-    public List f43546b = new ArrayList();
-    public final ArrayList f43547c = new ArrayList();
+    public static final Paint f43548x;
+    public static final LinearGradient f43549y;
+    public final Choreographer f43550a = Choreographer.getInstance();
+    public List f43551b = new ArrayList();
+    public final ArrayList f43552c = new ArrayList();
     public int d = 0;
-    public int f43548e = 0;
-    public float f43549f = 0.0f;
+    public int f43553e = 0;
+    public float f43554f = 0.0f;
     public boolean h = false;
-    public boolean f43550n = true;
-    public long f43551r = 0;
-    public float f43552s = AndroidUtilities.dp(40.0f);
+    public boolean f43555n = true;
+    public long f43556r = 0;
+    public float f43557s = AndroidUtilities.dp(40.0f);
     public View v;
-    public ai.b8 f43553w;
+    public ai.b8 f43558w;
 
     static {
         Paint paint = new Paint(1);
-        f43543x = paint;
+        f43548x = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, -1, 16777215, Shader.TileMode.CLAMP);
-        f43544y = linearGradient;
+        f43549y = linearGradient;
         paint.setShader(linearGradient);
     }
 
@@ -94,8 +94,8 @@ public final class wj0 implements Choreographer.FrameCallback {
                             matrix.setScale(-AndroidUtilities.dp(50.0f), 1.0f);
                             matrix.postTranslate(f10 - lerp, 0.0f);
                         }
-                        f43544y.setLocalMatrix(matrix);
-                        canvas.drawRect(min, f12, max, f13, f43543x);
+                        f43549y.setLocalMatrix(matrix);
+                        canvas.drawRect(min, f12, max, f13, f43548x);
                         canvas.restoreToCount(saveLayer);
                     }
                 }
@@ -114,16 +114,16 @@ public final class wj0 implements Choreographer.FrameCallback {
     public final void a(float f7) {
         float f10;
         float f11;
-        int size = this.f43546b.size();
+        int size = this.f43551b.size();
         View view = null;
         for (int i10 = 0; i10 < size; i10++) {
-            uj0 uj0Var = (uj0) this.f43546b.get(i10);
-            if (!this.f43550n && i10 > this.d) {
+            uj0 uj0Var = (uj0) this.f43551b.get(i10);
+            if (!this.f43555n && i10 > this.d) {
                 f10 = 0.0f;
             } else {
                 f10 = 1.0f;
             }
-            ArrayList arrayList = this.f43547c;
+            ArrayList arrayList = this.f43552c;
             if (i10 < arrayList.size()) {
                 f11 = ((Float) arrayList.get(i10)).floatValue();
             } else {
@@ -155,7 +155,7 @@ public final class wj0 implements Choreographer.FrameCallback {
     public final float c(uj0 uj0Var) {
         int d = d(uj0Var);
         if (d >= 0) {
-            ArrayList arrayList = this.f43547c;
+            ArrayList arrayList = this.f43552c;
             if (d < arrayList.size()) {
                 return ((Float) arrayList.get(d)).floatValue();
             }
@@ -165,9 +165,9 @@ public final class wj0 implements Choreographer.FrameCallback {
     }
 
     public final int d(uj0 uj0Var) {
-        int size = this.f43546b.size();
+        int size = this.f43551b.size();
         for (int i10 = 0; i10 < size; i10++) {
-            if (this.f43546b.get(i10) == uj0Var) {
+            if (this.f43551b.get(i10) == uj0Var) {
                 return i10;
             }
         }
@@ -177,33 +177,33 @@ public final class wj0 implements Choreographer.FrameCallback {
     @Override
     public final void doFrame(long j3) {
         if (this.h) {
-            long j10 = this.f43551r;
+            long j10 = this.f43556r;
             float f7 = 0.0f;
             if (j10 != 0) {
                 float f10 = ((float) (j3 - j10)) * 1.0E-9f;
-                if (!this.f43546b.isEmpty() && f10 > 0.0f) {
-                    float f11 = this.f43552s * f10;
+                if (!this.f43551b.isEmpty() && f10 > 0.0f) {
+                    float f11 = this.f43557s * f10;
                     while (true) {
                         if (f11 <= 0.0f) {
                             break;
-                        } else if (this.d >= this.f43546b.size()) {
-                            this.f43550n = true;
+                        } else if (this.d >= this.f43551b.size()) {
+                            this.f43555n = true;
                             break;
                         } else {
-                            Layout layout = ((uj0) this.f43546b.get(this.d)).getLayout();
+                            Layout layout = ((uj0) this.f43551b.get(this.d)).getLayout();
                             if (layout != null && layout.getLineCount() != 0) {
-                                if (this.f43548e >= layout.getLineCount()) {
+                                if (this.f43553e >= layout.getLineCount()) {
                                     int lineCount = layout.getLineCount() - 1;
-                                    this.f43548e = lineCount;
-                                    this.f43549f = i(layout, lineCount);
+                                    this.f43553e = lineCount;
+                                    this.f43554f = i(layout, lineCount);
                                 }
-                                float i10 = i(layout, this.f43548e);
+                                float i10 = i(layout, this.f43553e);
                                 if (i10 <= 0.001f) {
                                     if (k(layout)) {
                                         break;
                                     }
                                 } else {
-                                    float f12 = this.f43549f;
+                                    float f12 = this.f43554f;
                                     float f13 = i10 - f12;
                                     if (f13 <= 0.001f) {
                                         if (k(layout)) {
@@ -214,7 +214,7 @@ public final class wj0 implements Choreographer.FrameCallback {
                                             f13 = f11;
                                         }
                                         float f14 = f12 + f13;
-                                        this.f43549f = f14;
+                                        this.f43554f = f14;
                                         f11 -= f13;
                                         if (i10 - f14 <= 0.001f && !k(layout)) {
                                             f11 = 0.0f;
@@ -223,31 +223,31 @@ public final class wj0 implements Choreographer.FrameCallback {
                                 }
                             } else {
                                 this.d++;
-                                this.f43548e = 0;
-                                this.f43549f = 0.0f;
+                                this.f43553e = 0;
+                                this.f43554f = 0.0f;
                             }
                         }
                     }
-                    this.f43550n = f();
+                    this.f43555n = f();
                 } else {
-                    this.f43550n = this.f43546b.isEmpty();
+                    this.f43555n = this.f43551b.isEmpty();
                 }
                 f7 = f10;
             }
-            this.f43551r = j3;
+            this.f43556r = j3;
             a(f7);
             e();
-            if (this.f43550n) {
+            if (this.f43555n) {
                 this.h = false;
-                ArrayList arrayList = this.f43547c;
+                ArrayList arrayList = this.f43552c;
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
                     arrayList.set(i11, Float.valueOf(1.0f));
                 }
-                int size2 = this.f43546b.size();
+                int size2 = this.f43551b.size();
                 View view = null;
                 for (int i12 = 0; i12 < size2; i12++) {
-                    View parentView = ((uj0) this.f43546b.get(i12)).getParentView();
+                    View parentView = ((uj0) this.f43551b.get(i12)).getParentView();
                     if (parentView != null && parentView != view) {
                         if (parentView.getAlpha() != 1.0f) {
                             parentView.setAlpha(1.0f);
@@ -255,15 +255,15 @@ public final class wj0 implements Choreographer.FrameCallback {
                         view = parentView;
                     }
                 }
-                ai.b8 b8Var = this.f43553w;
+                ai.b8 b8Var = this.f43558w;
                 if (b8Var != null) {
                     b8Var.run();
-                    this.f43553w = null;
+                    this.f43558w = null;
                     return;
                 }
                 return;
             }
-            this.f43545a.postFrameCallback(this);
+            this.f43550a.postFrameCallback(this);
         }
     }
 
@@ -271,7 +271,7 @@ public final class wj0 implements Choreographer.FrameCallback {
         View view;
         uj0 uj0Var;
         int i10 = this.d;
-        if (i10 >= 0 && i10 < this.f43546b.size() && (uj0Var = (uj0) this.f43546b.get(this.d)) != null) {
+        if (i10 >= 0 && i10 < this.f43551b.size() && (uj0Var = (uj0) this.f43551b.get(this.d)) != null) {
             view = uj0Var.getParentView();
         } else {
             view = null;
@@ -287,11 +287,11 @@ public final class wj0 implements Choreographer.FrameCallback {
     }
 
     public final boolean f() {
-        if (!this.f43546b.isEmpty()) {
-            int size = this.f43546b.size() - 1;
+        if (!this.f43551b.isEmpty()) {
+            int size = this.f43551b.size() - 1;
             Layout layout = null;
             while (size >= 0) {
-                layout = ((uj0) this.f43546b.get(size)).getLayout();
+                layout = ((uj0) this.f43551b.get(size)).getLayout();
                 if (layout != null && layout.getLineCount() > 0) {
                     break;
                 }
@@ -303,7 +303,7 @@ public final class wj0 implements Choreographer.FrameCallback {
                     if (i10 <= size) {
                         int lineCount = layout.getLineCount() - 1;
                         float i11 = i(layout, lineCount);
-                        if (this.f43548e < lineCount || this.f43549f < i11 - 0.001f) {
+                        if (this.f43553e < lineCount || this.f43554f < i11 - 0.001f) {
                             return false;
                         }
                     }
@@ -317,7 +317,7 @@ public final class wj0 implements Choreographer.FrameCallback {
 
     public final boolean g(uj0 uj0Var) {
         Layout layout;
-        if (d(uj0Var) == this.d && (layout = uj0Var.getLayout()) != null && this.f43548e < layout.getLineCount()) {
+        if (d(uj0Var) == this.d && (layout = uj0Var.getLayout()) != null && this.f43553e < layout.getLineCount()) {
             return true;
         }
         return false;
@@ -329,7 +329,7 @@ public final class wj0 implements Choreographer.FrameCallback {
 
     public final boolean j(uj0 uj0Var) {
         int d = d(uj0Var);
-        if (d >= 0 && !this.f43546b.isEmpty()) {
+        if (d >= 0 && !this.f43551b.isEmpty()) {
             int i10 = this.d;
             if (d < i10 || d <= i10) {
                 return true;
@@ -340,15 +340,15 @@ public final class wj0 implements Choreographer.FrameCallback {
     }
 
     public final boolean k(Layout layout) {
-        int i10 = this.f43548e + 1;
-        this.f43548e = i10;
-        this.f43549f = 0.0f;
+        int i10 = this.f43553e + 1;
+        this.f43553e = i10;
+        this.f43554f = 0.0f;
         if (i10 >= layout.getLineCount()) {
             int i11 = this.d + 1;
             this.d = i11;
-            this.f43548e = 0;
-            this.f43549f = 0.0f;
-            if (i11 >= this.f43546b.size()) {
+            this.f43553e = 0;
+            this.f43554f = 0.0f;
+            if (i11 >= this.f43551b.size()) {
                 return true;
             }
         }
@@ -363,37 +363,37 @@ public final class wj0 implements Choreographer.FrameCallback {
         float f10;
         int lineCount;
         float lineWidth;
-        if (!this.f43546b.isEmpty() && this.d >= this.f43546b.size()) {
-            int size = this.f43546b.size() - 1;
+        if (!this.f43551b.isEmpty() && this.d >= this.f43551b.size()) {
+            int size = this.f43551b.size() - 1;
             this.d = size;
-            Layout layout = ((uj0) this.f43546b.get(size)).getLayout();
+            Layout layout = ((uj0) this.f43551b.get(size)).getLayout();
             if (layout == null) {
                 lineCount = 0;
             } else {
                 lineCount = layout.getLineCount() - 1;
             }
             int max = Math.max(0, lineCount);
-            this.f43548e = max;
+            this.f43553e = max;
             if (layout == null) {
                 lineWidth = 0.0f;
             } else {
                 lineWidth = layout.getLineWidth(max);
             }
-            this.f43549f = lineWidth;
+            this.f43554f = lineWidth;
         }
         if (list == null) {
             list = new ArrayList();
         }
-        this.f43546b = list;
+        this.f43551b = list;
         if (list.isEmpty()) {
             f7 = 0.0f;
         } else {
             f7 = 0.0f;
-            for (int i11 = this.d; i11 < this.f43546b.size(); i11++) {
-                Layout layout2 = ((uj0) this.f43546b.get(i11)).getLayout();
+            for (int i11 = this.d; i11 < this.f43551b.size(); i11++) {
+                Layout layout2 = ((uj0) this.f43551b.get(i11)).getLayout();
                 if (layout2 != null) {
                     if (i11 == this.d) {
-                        i10 = Math.min(Math.max(this.f43548e, 0), Math.max(0, layout2.getLineCount() - 1));
+                        i10 = Math.min(Math.max(this.f43553e, 0), Math.max(0, layout2.getLineCount() - 1));
                     } else {
                         i10 = 0;
                     }
@@ -401,7 +401,7 @@ public final class wj0 implements Choreographer.FrameCallback {
                         float i13 = i(layout2, i12);
                         if (i13 > 0.001f) {
                             if (i11 == this.d && i12 == i10) {
-                                i13 -= this.f43549f;
+                                i13 -= this.f43554f;
                                 if (i13 <= 0.001f) {
                                 }
                             }
@@ -413,39 +413,39 @@ public final class wj0 implements Choreographer.FrameCallback {
         }
         float dp = AndroidUtilities.dp(40.0f);
         if (f7 <= 0.001f) {
-            this.f43552s = dp;
+            this.f43557s = dp;
         } else {
-            this.f43552s = Math.max(dp, f7 / 1.05f);
+            this.f43557s = Math.max(dp, f7 / 1.05f);
         }
-        this.f43550n = f();
+        this.f43555n = f();
         while (true) {
-            arrayList = this.f43547c;
-            if (arrayList.size() <= this.f43546b.size()) {
+            arrayList = this.f43552c;
+            if (arrayList.size() <= this.f43551b.size()) {
                 break;
             }
             a1.g.y(1, arrayList);
         }
-        for (int size2 = arrayList.size(); size2 < this.f43546b.size(); size2++) {
-            if (!this.f43550n && size2 > this.d) {
+        for (int size2 = arrayList.size(); size2 < this.f43551b.size(); size2++) {
+            if (!this.f43555n && size2 > this.d) {
                 f10 = 0.0f;
             } else {
                 f10 = 1.0f;
             }
             arrayList.add(Float.valueOf(f10));
         }
-        if (!this.f43550n && !(z10 = this.h) && !z10) {
+        if (!this.f43555n && !(z10 = this.h) && !z10) {
             this.h = true;
             if (f()) {
-                this.f43550n = true;
+                this.f43555n = true;
             }
-            this.f43551r = 0L;
-            this.f43545a.postFrameCallback(this);
+            this.f43556r = 0L;
+            this.f43550a.postFrameCallback(this);
         }
         a(0.0f);
         e();
     }
 
     public final void m(ai.b8 b8Var) {
-        this.f43553w = b8Var;
+        this.f43558w = b8Var;
     }
 }

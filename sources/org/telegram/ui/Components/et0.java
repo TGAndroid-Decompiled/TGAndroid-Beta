@@ -34,27 +34,27 @@ public final class et0 extends g00 {
         int i12;
         s4.i0 adapter = this.Y.h.getAdapter();
         hw0 hw0Var = this.Z;
-        wv0[] wv0VarArr = hw0Var.f26968t1;
-        if (adapter == hw0Var.O && !wv0VarArr[5].f32553a.isEmpty()) {
-            document = ((MessageObject) wv0VarArr[5].f32553a.get(i10)).getDocument();
+        wv0[] wv0VarArr = hw0Var.f26953t1;
+        if (adapter == hw0Var.O && !wv0VarArr[5].f32552a.isEmpty()) {
+            document = ((MessageObject) wv0VarArr[5].f32552a.get(i10)).getDocument();
         } else {
             document = null;
         }
         sw0 sw0Var = this.X;
-        sw0Var.f30697b = 100.0f;
-        sw0Var.f30696a = 100.0f;
+        sw0Var.f30700b = 100.0f;
+        sw0Var.f30699a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f19827w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                sw0Var.f30696a = i11;
-                sw0Var.f30697b = i12;
+            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f19828w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+                sw0Var.f30699a = i11;
+                sw0Var.f30700b = i12;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    sw0Var.f30696a = documentAttribute.f19809w;
-                    sw0Var.f30697b = documentAttribute.h;
+                    sw0Var.f30699a = documentAttribute.f19810w;
+                    sw0Var.f30700b = documentAttribute.h;
                     break;
                 }
             }
@@ -66,7 +66,7 @@ public final class et0 extends g00 {
     public final void U(pf.e eVar, s4.a1 a1Var, View view, s0.d dVar) {
         e.a aVar;
         super.U(eVar, a1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47818a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47826a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             aVar = new e.a(collectionItemInfo);

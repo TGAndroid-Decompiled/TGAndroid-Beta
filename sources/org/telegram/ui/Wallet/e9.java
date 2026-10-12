@@ -29,14 +29,14 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.y9;
 public final class e9 extends k71 implements NotificationCenter.NotificationCenterDelegate {
     public static void Y(e9 e9Var, TL_wallet.tonConnectSession tonconnectsession, Utilities.Callback callback) {
-        f2 f2Var = l0.v(e9Var.currentAccount).f34999g;
+        f2 f2Var = l0.v(e9Var.currentAccount).f35001g;
         f2Var.getClass();
         AndroidUtilities.runOnUIThread(new l(f2Var, tonconnectsession, callback, 4));
     }
 
     @Override
     public final void U(ArrayList arrayList, h71 h71Var) {
-        f2 f2Var = l0.v(this.currentAccount).f34999g;
+        f2 f2Var = l0.v(this.currentAccount).f35001g;
         if (!f2Var.d.isEmpty()) {
             com.google.android.gms.internal.vision.e2.n(R.string.WalletActiveConnections, arrayList);
         }
@@ -46,7 +46,7 @@ public final class e9 extends k71 implements NotificationCenter.NotificationCent
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
-            int i11 = c9.f34593a;
+            int i11 = c9.f34595a;
             u61 J = u61.J(c9.class);
             J.G = (TL_wallet.tonConnectSession) obj;
             arrayList.add(J);
@@ -74,7 +74,7 @@ public final class e9 extends k71 implements NotificationCenter.NotificationCent
             ImageView imageView = new ImageView(parentActivity);
             imageView.setImageResource(R.drawable.ic_ab_close);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, resourceProvider), 1, -1));
+            imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, resourceProvider), 1, -1));
             int i10 = org.telegram.ui.ActionBar.h6.G6;
             imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, resourceProvider), PorterDuff.Mode.SRC_IN));
             w7.y5.a(imageView);
@@ -124,7 +124,7 @@ public final class e9 extends k71 implements NotificationCenter.NotificationCent
             ci.d dVar = new ci.d(parentActivity, resourceProvider, true);
             dVar.setRoundRadius(24);
             dVar.setText(LocaleController.getString(R.string.WalletDisconnect));
-            dVar.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20799q7, resourceProvider));
+            dVar.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20800q7, resourceProvider));
             f7.addView(dVar, w7.w5.t(-1, 44, 1, 16, 0, 16, 16));
             k2 k2Var = new k2(parentActivity, f7, resourceProvider);
             k2Var.show();
@@ -141,16 +141,16 @@ public final class e9 extends k71 implements NotificationCenter.NotificationCent
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f27773a);
-        this.f27773a.p1();
-        this.f27773a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f27776a);
+        this.f27776a.p1();
+        this.f27776a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         j71 j71Var;
-        if (i10 == NotificationCenter.walletUpdate && (j71Var = this.f27773a) != null) {
+        if (i10 == NotificationCenter.walletUpdate && (j71Var = this.f27776a) != null) {
             j71Var.W2.N(true);
         }
     }
@@ -174,7 +174,7 @@ public final class e9 extends k71 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f27773a.setPadding(0, 0, 0, i13);
-        this.f27773a.setClipToPadding(false);
+        this.f27776a.setPadding(0, 0, 0, i13);
+        this.f27776a.setClipToPadding(false);
     }
 }

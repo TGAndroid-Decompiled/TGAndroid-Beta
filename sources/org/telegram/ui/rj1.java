@@ -11,6 +11,6 @@ public final class rj1 {
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.s(20, this, str));
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.s(21, this, str));
     }
 }

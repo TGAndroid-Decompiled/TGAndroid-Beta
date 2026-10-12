@@ -40,12 +40,12 @@ public final class z1 extends zg {
     public final boolean f() {
         switch (this.f12871l0) {
             case 0:
-                if (!((e2) this.m0).L0 && this.f33369r <= 0) {
+                if (!((e2) this.m0).L0 && this.f33377r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((c4) this.m0).W && this.f33369r <= 0) {
+                if (!((c4) this.m0).W && this.f33377r <= 0) {
                     return false;
                 }
                 return true;
@@ -69,7 +69,7 @@ public final class z1 extends zg {
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = org.telegram.ui.ActionBar.h6.f20972zf;
+                int i11 = org.telegram.ui.ActionBar.h6.f20973zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).z1(i11);
         }

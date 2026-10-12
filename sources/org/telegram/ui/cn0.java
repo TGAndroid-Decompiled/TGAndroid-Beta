@@ -8,10 +8,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class cn0 implements TextWatcher {
-    public final pn0 f36463a;
+    public final pn0 f36465a;
 
     public cn0(pn0 pn0Var) {
-        this.f36463a = pn0Var;
+        this.f36465a = pn0Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class cn0 implements TextWatcher {
         boolean z10;
         String str;
         int indexOf;
-        pn0 pn0Var = this.f36463a;
+        pn0 pn0Var = this.f36465a;
         ArrayList arrayList = pn0Var.U0;
         HashMap hashMap = pn0Var.W0;
         if (pn0Var.Z0) {

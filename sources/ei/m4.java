@@ -23,11 +23,11 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f9220a) {
             case 1:
                 ns nsVar = (ns) this.f9222c;
-                ks ksVar = nsVar.f28956r;
-                if (nsVar.f28955n) {
+                ks ksVar = nsVar.f28960r;
+                if (nsVar.f28959n) {
                     nsVar.removeCallbacks(ksVar);
                 }
-                nsVar.f28955n = true;
+                nsVar.f28959n = true;
                 nsVar.postDelayed(ksVar, 200L);
                 nsVar.h.run();
                 return true;
@@ -86,8 +86,8 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
                 bi0 bi0Var = (bi0) this.f9222c;
-                if (!bi0Var.f24662f && !bi0Var.h && f7 >= 600.0f) {
-                    bi0Var.f24661e = false;
+                if (!bi0Var.f24653f && !bi0Var.h && f7 >= 600.0f) {
+                    bi0Var.f24652e = false;
                     bi0Var.h = false;
                     bi0Var.a(0.0f, f7 / 6000.0f);
                 }

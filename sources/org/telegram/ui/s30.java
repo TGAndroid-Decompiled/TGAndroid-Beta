@@ -17,7 +17,7 @@ public final class s30 extends org.telegram.ui.Components.f8 {
     @Override
     public final TextView a() {
         TextView textView = new TextView(this.f41795y);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20640hg, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20641hg, false));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(51);

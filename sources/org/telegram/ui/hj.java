@@ -16,7 +16,7 @@ public final class hj implements ValueAnimator.AnimatorUpdateListener {
         switch (this.f38443a) {
             case 0:
                 eo eoVar = (eo) this.f38444b;
-                eoVar.f37335la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                eoVar.f37340la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 eoVar.X0.invalidate();
                 return;
             case 1:
@@ -29,7 +29,7 @@ public final class hj implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                ((zd1) this.f38444b).f44792x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((zd1) this.f38444b).f44797x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

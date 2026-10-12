@@ -2,95 +2,95 @@ package lg;
 
 import android.graphics.Matrix;
 public final class n {
-    public float f15308a;
-    public float f15309b;
-    public float f15312f;
+    public float f15309a;
+    public float f15310b;
+    public float f15313f;
     public float h;
-    public boolean f15315j;
-    public final p f15317l;
-    public float f15310c = 0.0f;
+    public boolean f15316j;
+    public final p f15318l;
+    public float f15311c = 0.0f;
     public float d = 0.0f;
-    public float f15311e = 1.0f;
-    public final float f15313g = 0;
-    public float f15314i = 0.0f;
-    public final Matrix f15316k = new Matrix();
+    public float f15312e = 1.0f;
+    public final float f15314g = 0;
+    public float f15315i = 0.0f;
+    public final Matrix f15317k = new Matrix();
 
     public n(p pVar, int i10, int i11) {
-        this.f15317l = pVar;
-        this.f15308a = i10;
-        this.f15309b = i11;
+        this.f15318l = pVar;
+        this.f15309a = i10;
+        this.f15310b = i11;
     }
 
     public static float a(n nVar) {
-        if ((nVar.h + nVar.f15313g) % 180.0f != 0.0f) {
-            return nVar.f15309b;
+        if ((nVar.h + nVar.f15314g) % 180.0f != 0.0f) {
+            return nVar.f15310b;
         }
-        return nVar.f15308a;
+        return nVar.f15309a;
     }
 
     public static float b(n nVar) {
-        if ((nVar.h + nVar.f15313g) % 180.0f != 0.0f) {
-            return nVar.f15308a;
+        if ((nVar.h + nVar.f15314g) % 180.0f != 0.0f) {
+            return nVar.f15309a;
         }
-        return nVar.f15309b;
+        return nVar.f15310b;
     }
 
     public static boolean c(n nVar) {
-        if (Math.abs(nVar.f15310c) <= 1.0E-5f && Math.abs(nVar.d) <= 1.0E-5f && Math.abs(nVar.f15311e - nVar.f15312f) <= 1.0E-5f && Math.abs(nVar.f15314i) <= 1.0E-5f && Math.abs(nVar.h) <= 1.0E-5f) {
+        if (Math.abs(nVar.f15311c) <= 1.0E-5f && Math.abs(nVar.d) <= 1.0E-5f && Math.abs(nVar.f15312e - nVar.f15313f) <= 1.0E-5f && Math.abs(nVar.f15315i) <= 1.0E-5f && Math.abs(nVar.h) <= 1.0E-5f) {
             return false;
         }
         return true;
     }
 
     public static void d(n nVar, float f7) {
-        Matrix matrix = nVar.f15316k;
+        Matrix matrix = nVar.f15317k;
         matrix.reset();
-        nVar.f15310c = 0.0f;
+        nVar.f15311c = 0.0f;
         nVar.d = 0.0f;
-        nVar.f15314i = 0.0f;
+        nVar.f15315i = 0.0f;
         nVar.h = f7;
         nVar.h();
-        float f10 = nVar.f15312f;
-        nVar.f15311e = f10;
+        float f10 = nVar.f15313f;
+        nVar.f15312e = f10;
         matrix.postScale(f10, f10);
     }
 
     public static void e(n nVar, float f7) {
-        nVar.f15314i += f7;
-        nVar.f15316k.postRotate(f7, 0.0f, 0.0f);
+        nVar.f15315i += f7;
+        nVar.f15317k.postRotate(f7, 0.0f, 0.0f);
     }
 
     public static void f(n nVar, float f7, float f10) {
-        nVar.f15310c += f7;
+        nVar.f15311c += f7;
         nVar.d += f10;
-        nVar.f15316k.postTranslate(f7, f10);
+        nVar.f15317k.postTranslate(f7, f10);
     }
 
     public static void g(n nVar, float f7, float f10, float f11) {
-        nVar.f15311e *= f7;
-        nVar.f15316k.postScale(f7, f7, f10, f11);
+        nVar.f15312e *= f7;
+        nVar.f15317k.postScale(f7, f7, f10, f11);
     }
 
     public final void h() {
         float f7;
         float f10;
         float f11 = this.h;
-        float f12 = this.f15313g;
+        float f12 = this.f15314g;
         if ((f11 + f12) % 180.0f != 0.0f) {
-            f7 = this.f15309b;
+            f7 = this.f15310b;
         } else {
-            f7 = this.f15308a;
+            f7 = this.f15309a;
         }
         if ((f11 + f12) % 180.0f != 0.0f) {
-            f10 = this.f15308a;
+            f10 = this.f15309a;
         } else {
-            f10 = this.f15309b;
+            f10 = this.f15310b;
         }
-        p pVar = this.f15317l;
-        if (pVar.f15327x) {
-            this.f15312f = pVar.f15318a.getCropWidth() / f7;
+        p pVar = this.f15318l;
+        if (pVar.f15328x) {
+            this.f15313f = pVar.f15319a.getCropWidth() / f7;
         } else {
-            this.f15312f = Math.max(pVar.f15318a.getCropWidth() / f7, pVar.f15318a.getCropHeight() / f10);
+            this.f15313f = Math.max(pVar.f15319a.getCropWidth() / f7, pVar.f15319a.getCropHeight() / f10);
         }
     }
 }

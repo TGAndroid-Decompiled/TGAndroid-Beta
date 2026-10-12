@@ -32,8 +32,8 @@ public final class i extends g00 {
         switch (this.X) {
             case 0:
                 sw0 sw0Var = (sw0) this.Y;
-                sw0Var.f30697b = 100.0f;
-                sw0Var.f30696a = 100.0f;
+                sw0Var.f30700b = 100.0f;
+                sw0Var.f30699a = 100.0f;
                 return sw0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class i extends g00 {
         switch (this.X) {
             case 0:
                 super.U(eVar, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47818a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47826a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     aVar = new e.a(collectionItemInfo);

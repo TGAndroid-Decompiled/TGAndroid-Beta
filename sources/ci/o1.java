@@ -49,13 +49,13 @@ public final class o1 extends wm0 {
                 } else {
                     i12 = 1;
                 }
-                zl0Var.f33430b = i12;
+                zl0Var.f33432b = i12;
                 o1Var.V2.d(i10, i11, false, false);
                 return;
             }
             l1 l1Var = new l1(o1Var, o1Var.getContext(), 0);
-            l1Var.f48058a = i10;
-            l1Var.f14270p = i11;
+            l1Var.f48066a = i10;
+            l1Var.f14271p = i11;
             sVar.w0(l1Var);
         }
     }
@@ -212,7 +212,7 @@ public final class o1 extends wm0 {
         if (p0Var instanceof s4.d0) {
             zl0 zl0Var = new zl0(this, (s4.d0) p0Var);
             this.V2 = zl0Var;
-            zl0Var.f33435i = new k1(this, 0);
+            zl0Var.f33437i = new k1(this, 0);
             zl0Var.h = new a1.c(this, 15);
         }
     }

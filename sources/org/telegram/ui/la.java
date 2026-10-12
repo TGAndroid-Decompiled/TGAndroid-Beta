@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class la extends org.telegram.ui.Components.vm0 {
-    public final ua f39678c;
+    public final ua f39672c;
 
     public la(ua uaVar) {
-        this.f39678c = uaVar;
+        this.f39672c = uaVar;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47893f == 4) {
+        if (d1Var.f47901f == 4) {
             return true;
         }
         return false;
@@ -25,8 +25,8 @@ public final class la extends org.telegram.ui.Components.vm0 {
     @Override
     public final int h() {
         int i10;
-        ua uaVar = this.f39678c;
-        org.telegram.ui.Components.wm0 wm0Var = uaVar.f42431b;
+        ua uaVar = this.f39672c;
+        org.telegram.ui.Components.wm0 wm0Var = uaVar.f42433b;
         ArrayList arrayList = uaVar.v;
         if (wm0Var != null) {
             ArrayList arrayList2 = wm0Var.I2;
@@ -36,7 +36,7 @@ public final class la extends org.telegram.ui.Components.vm0 {
                 wm0Var.I2 = new ArrayList();
             }
             if (arrayList.size() > 0) {
-                uaVar.f42431b.I2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
+                uaVar.f42433b.I2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
             }
         }
         if (uaVar.v.size() > 0) {
@@ -72,10 +72,10 @@ public final class la extends org.telegram.ui.Components.vm0 {
         int i11;
         int i12;
         boolean z10;
-        ua uaVar = this.f39678c;
-        long j3 = uaVar.f42439x;
-        int i13 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        ua uaVar = this.f39672c;
+        long j3 = uaVar.f42441x;
+        int i13 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         if (i13 != 0) {
             if (i13 != 2) {
                 if (i13 != 3) {
@@ -94,14 +94,14 @@ public final class la extends org.telegram.ui.Components.vm0 {
                     } else {
                         z10 = false;
                     }
-                    raVar.a(tL_username, z10, false, uaVar.f42439x);
+                    raVar.a(tL_username, z10, false, uaVar.f42441x);
                     return;
                 }
-                uaVar.f42435n = true;
+                uaVar.f42437n = true;
                 oa oaVar = (oa) view;
-                uaVar.f42440y = oaVar;
-                oaVar.f40607a.setText(uaVar.f42436r);
-                uaVar.f42435n = false;
+                uaVar.f42442y = oaVar;
+                oaVar.f40610a.setText(uaVar.f42438r);
+                uaVar.f42437n = false;
                 return;
             }
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
@@ -128,7 +128,7 @@ public final class la extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        ua uaVar = this.f39678c;
+        ua uaVar = this.f39672c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

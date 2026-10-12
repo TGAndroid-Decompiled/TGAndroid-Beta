@@ -37,12 +37,12 @@ public final class ek extends si implements NotificationCenter.NotificationCente
         this.f25720x = new ArrayList();
         this.f25721y = false;
         this.F = new ak(this, context);
-        zi ziVar = new zi(context, org.telegram.ui.ActionBar.h6.f20559d6, c6Var);
+        zi ziVar = new zi(context, org.telegram.ui.ActionBar.h6.f20560d6, c6Var);
         this.H = ziVar;
         ziVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f25717r = frameLayout;
-        wi wiVar = new wi(context, c6Var, this.f30574b);
+        wi wiVar = new wi(context, c6Var, this.f30570b);
         this.I = wiVar;
         wiVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         String string = LocaleController.getString(R.string.SearchFriends);
@@ -60,10 +60,10 @@ public final class ek extends si implements NotificationCenter.NotificationCente
         addView(f00Var, w7.w5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 51));
         ai.w0 w0Var = new ai.w0(this, context, c6Var, 12);
         this.f25718s = w0Var;
-        this.f30575c = w0Var;
+        this.f30571c = w0Var;
         this.d = w0Var;
         this.h = true;
-        this.f30577f = true;
+        this.f30573f = true;
         w0Var.p1();
         w0Var.setClipToPadding(false);
         getContext();
@@ -78,14 +78,14 @@ public final class ek extends si implements NotificationCenter.NotificationCente
         yj yjVar = new yj(this, context);
         this.E = yjVar;
         w0Var.setAdapter(yjVar);
-        w0Var.setGlowColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.A5, this.f30573a));
+        w0Var.setGlowColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.A5, this.f30569a));
         w0Var.setOnItemClickListener(new ai.o6(10, this, c6Var));
         w0Var.setOnScrollListener(new ai.r(this, 18));
         w0Var.setOnItemLongClickListener(new qj(this));
         FrameLayout.LayoutParams e7 = w7.w5.e(-1, 60, 51);
         ((ViewGroup.MarginLayoutParams) e7).height += AndroidUtilities.statusBarHeight;
         addView(frameLayout, e7);
-        NotificationCenter.getInstance(this.f30574b.M1).addObserver(this, NotificationCenter.contactsDidLoad);
+        NotificationCenter.getInstance(this.f30570b.M1).addObserver(this, NotificationCenter.contactsDidLoad);
         Q();
     }
 
@@ -110,8 +110,8 @@ public final class ek extends si implements NotificationCenter.NotificationCente
     @Override
     public final void B(int i10, int i11) {
         int i12;
-        aj ajVar = this.f30574b;
-        if (ajVar.f24389u1.R() > AndroidUtilities.dp(20.0f)) {
+        aj ajVar = this.f30570b;
+        if (ajVar.f24385u1.R() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             ajVar.setAllowNestedScroll(false);
         } else {
@@ -125,7 +125,7 @@ public final class ek extends si implements NotificationCenter.NotificationCente
             i12 = (i11 / 5) * 2;
             ajVar.setAllowNestedScroll(true);
         }
-        this.f25718s.o1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.f30576e);
+        this.f25718s.o1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.f30572e);
     }
 
     @Override
@@ -154,13 +154,13 @@ public final class ek extends si implements NotificationCenter.NotificationCente
             i12++;
             arrayList.add(P(hashMap.get((uj) obj)));
         }
-        aj ajVar = this.f30574b;
+        aj ajVar = this.f30570b;
         return g5.a0(ajVar.M1, ajVar.p1(), ajVar.l1() + arrayList.size(), new Utilities.Callback() {
             @Override
             public final void run(Object obj2) {
                 ek ekVar = ek.this;
                 vj vjVar = ekVar.J;
-                aj ajVar2 = ekVar.f30574b;
+                aj ajVar2 = ekVar.f30570b;
                 String obj3 = ajVar2.o1().getText().toString();
                 ((Long) obj2).getClass();
                 vjVar.b(arrayList, obj3, z10, i10, j3, z11);
@@ -174,9 +174,9 @@ public final class ek extends si implements NotificationCenter.NotificationCente
         HashMap hashMap = this.f25719w;
         if (hashMap.isEmpty() && !this.K) {
             String formatString = LocaleController.formatString("AttachContactsSlowMode", R.string.AttachContactsSlowMode, new Object[0]);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f30573a);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f30569a);
             String string = LocaleController.getString(R.string.AppName);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
             a2Var.R = string;
             a2Var.T = formatString;
             org.telegram.messenger.v0.p(R.string.OK, alertDialog$Builder, null);
@@ -203,7 +203,7 @@ public final class ek extends si implements NotificationCenter.NotificationCente
         if (!z10) {
             i10 = 2;
         }
-        this.f30574b.Z1(i10);
+        this.f30570b.Z1(i10);
     }
 
     public final org.telegram.tgnet.TLRPC.TL_userContact_old2 P(java.lang.Object r15) {
@@ -301,17 +301,17 @@ public final class ek extends si implements NotificationCenter.NotificationCente
     public ArrayList<org.telegram.ui.ActionBar.j6> getThemeDescriptions() {
         a7 a7Var = new a7(this, 1);
         ArrayList<org.telegram.ui.ActionBar.j6> arrayList = new ArrayList<>();
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.G, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f20543c7));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.G, 2048, null, null, null, null, org.telegram.ui.ActionBar.h6.f20631h6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.G, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f20544c7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.G, 2048, null, null, null, null, org.telegram.ui.ActionBar.h6.f20632h6));
         int i10 = org.telegram.ui.ActionBar.h6.A5;
         ai.w0 w0Var = this.f25718s;
         arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 32768, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 4096, null, null, null, null, org.telegram.ui.ActionBar.h6.f20650i6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.h6.f20681k0, null, null, org.telegram.ui.ActionBar.h6.f20560d7));
-        int i11 = org.telegram.ui.ActionBar.h6.f20798q5;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 4096, null, null, null, null, org.telegram.ui.ActionBar.h6.f20651i6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.h6.f20682k0, null, null, org.telegram.ui.ActionBar.h6.f20561d7));
+        int i11 = org.telegram.ui.ActionBar.h6.f20799q5;
         arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 0, new Class[]{dk.class}, new String[]{"nameTextView"}, null, null, -1, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 0, new Class[]{dk.class}, new String[]{"statusTextView"}, null, null, -1, a7Var, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 0, new Class[]{dk.class}, null, org.telegram.ui.ActionBar.h6.f20812r0, null, org.telegram.ui.ActionBar.h6.J7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(w0Var, 0, new Class[]{dk.class}, null, org.telegram.ui.ActionBar.h6.f20813r0, null, org.telegram.ui.ActionBar.h6.J7));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, a7Var, org.telegram.ui.ActionBar.h6.O7));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, a7Var, org.telegram.ui.ActionBar.h6.P7));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, a7Var, org.telegram.ui.ActionBar.h6.Q7));
@@ -345,7 +345,7 @@ public final class ek extends si implements NotificationCenter.NotificationCente
 
     @Override
     public final void p() {
-        NotificationCenter.getInstance(this.f30574b.M1).removeObserver(this, NotificationCenter.contactsDidLoad);
+        NotificationCenter.getInstance(this.f30570b.M1).removeObserver(this, NotificationCenter.contactsDidLoad);
     }
 
     public void setDelegate(vj vjVar) {
@@ -359,13 +359,13 @@ public final class ek extends si implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30574b.getSheetContainer().invalidate();
+        this.f30570b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(ah.c cVar) {
         wi wiVar = this.I;
         if (wiVar != null) {
-            wiVar.setupBlurredBackground(cVar.c(wiVar, eh.b.a(this.f30573a), false));
+            wiVar.setupBlurredBackground(cVar.c(wiVar, eh.b.a(this.f30569a), false));
         }
     }
 

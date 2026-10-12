@@ -40,7 +40,7 @@ public class b implements Iterator {
                 e eVar = (e) this.f8303c;
                 int i10 = this.f8302b;
                 eVar.o();
-                if (i10 < eVar.f51285c.size() - 1) {
+                if (i10 < eVar.f51293c.size() - 1) {
                     return true;
                 }
                 return false;
@@ -95,18 +95,18 @@ public class b implements Iterator {
                     int i13 = this.f8302b;
                     int i14 = i13 + 1;
                     this.f8302b = i14;
-                    DataHolder dataHolder = eVar.f51283a;
+                    DataHolder dataHolder = eVar.f51291a;
                     eVar.o();
                     int n10 = eVar.n(i14);
                     int i15 = 0;
-                    if (i14 >= 0 && i14 != eVar.f51285c.size()) {
-                        if (i14 == eVar.f51285c.size() - 1) {
+                    if (i14 >= 0 && i14 != eVar.f51293c.size()) {
+                        if (i14 == eVar.f51293c.size() - 1) {
                             m.h(dataHolder);
                             intValue = dataHolder.f6740n;
-                            intValue2 = ((Integer) eVar.f51285c.get(i14)).intValue();
+                            intValue2 = ((Integer) eVar.f51293c.get(i14)).intValue();
                         } else {
-                            intValue = ((Integer) eVar.f51285c.get(i13 + 2)).intValue();
-                            intValue2 = ((Integer) eVar.f51285c.get(i14)).intValue();
+                            intValue = ((Integer) eVar.f51293c.get(i13 + 2)).intValue();
+                            intValue2 = ((Integer) eVar.f51293c.get(i14)).intValue();
                         }
                         i15 = intValue - intValue2;
                         if (i15 == 1) {

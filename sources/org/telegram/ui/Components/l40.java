@@ -25,45 +25,45 @@ public final class l40 extends y71 {
     public final ArrayList X;
     public final ArrayList Y;
     public boolean Z;
-    public final a0.i f28027a0;
-    public final a0.i f28028b0;
-    public boolean f28029c0;
-    public boolean f28030d0;
-    public final a0.i f28031e0;
-    public final HashSet f28032f0;
-    public org.telegram.ui.j30 f28033g0;
-    public boolean f28034h0;
-    public int f28035i0;
-    public int f28036j0;
-    public int f28037k0;
-    public int f28038l0;
+    public final a0.i f28012a0;
+    public final a0.i f28013b0;
+    public boolean f28014c0;
+    public boolean f28015d0;
+    public final a0.i f28016e0;
+    public final HashSet f28017f0;
+    public org.telegram.ui.j30 f28018g0;
+    public boolean f28019h0;
+    public int f28020i0;
+    public int f28021j0;
+    public int f28022k0;
+    public int f28023l0;
     public int m0;
-    public int f28039n0;
-    public int f28040o0;
-    public int f28041p0;
-    public int f28042q0;
-    public int f28043r0;
+    public int f28024n0;
+    public int f28025o0;
+    public int f28026p0;
+    public int f28027q0;
+    public int f28028r0;
 
     public l40(Context context, int i10, TLRPC.Chat chat, TLRPC.ChatFull chatFull, a0.i iVar, HashSet hashSet) {
         super(context, i10, null);
         this.X = new ArrayList();
         this.Y = new ArrayList();
-        this.f28027a0 = new a0.i();
-        this.f28028b0 = new a0.i();
+        this.f28012a0 = new a0.i();
+        this.f28013b0 = new a0.i();
         setDimBehindAlpha(75);
         this.V = chat;
         this.W = chatFull;
-        this.f28031e0 = iVar;
-        this.f28032f0 = hashSet;
+        this.f28016e0 = iVar;
+        this.f28017f0 = hashSet;
         this.d.setOnItemClickListener(new j(this, 9));
         k40 k40Var = new k40(this, context);
         this.T = k40Var;
-        this.f32971e = k40Var;
+        this.f32964e = k40Var;
         ai.w0 w0Var = this.d;
         h40 h40Var = new h40(this, context);
-        this.f32972f = h40Var;
+        this.f32965f = h40Var;
         w0Var.setAdapter(h40Var);
-        if (!this.f28029c0) {
+        if (!this.f28014c0) {
             this.Z = false;
             U();
         }
@@ -135,9 +135,9 @@ public final class l40 extends y71 {
         ArrayList arrayList;
         a0.i iVar2;
         boolean z10;
-        gy0 gy0Var = l40Var.f32975s;
-        a0.i iVar3 = l40Var.f28027a0;
-        a0.i iVar4 = l40Var.f28028b0;
+        gy0 gy0Var = l40Var.f32968s;
+        a0.i iVar3 = l40Var.f28012a0;
+        a0.i iVar4 = l40Var.f28013b0;
         ArrayList arrayList2 = l40Var.X;
         if (tL_error == null) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
@@ -174,7 +174,7 @@ public final class l40 extends y71 {
             int i13 = 0;
             while (i13 < size2) {
                 long peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) arrayList2.get(i13)).peer);
-                if (iVar4.f(peerId) != null || ((iVar2 = l40Var.f28031e0) != null && iVar2.h(peerId) >= 0)) {
+                if (iVar4.f(peerId) != null || ((iVar2 = l40Var.f28016e0) != null && iVar2.h(peerId) >= 0)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -200,12 +200,12 @@ public final class l40 extends y71 {
             }
         }
         if (l40Var.U <= 0) {
-            l40Var.f28029c0 = false;
-            l40Var.f28030d0 = true;
-            if (l40Var.f28042q0 == 1) {
+            l40Var.f28014c0 = false;
+            l40Var.f28015d0 = true;
+            if (l40Var.f28027q0 == 1) {
                 i10 = 1;
             } else {
-                vm0 vm0Var = l40Var.f32972f;
+                vm0 vm0Var = l40Var.f32965f;
                 if (vm0Var != null) {
                     i10 = vm0Var.h() - 1;
                 } else {
@@ -214,15 +214,15 @@ public final class l40 extends y71 {
             }
             l40Var.K(i10);
             if (arrayList2.isEmpty()) {
-                l40Var.f28034h0 = true;
+                l40Var.f28019h0 = true;
                 l40Var.T();
             }
         }
         l40Var.V();
-        vm0 vm0Var2 = l40Var.f32972f;
+        vm0 vm0Var2 = l40Var.f32965f;
         if (vm0Var2 != null) {
             vm0Var2.l();
-            if (gy0Var != null && l40Var.f32972f.h() == 0 && l40Var.f28030d0) {
+            if (gy0Var != null && l40Var.f32965f.h() == 0 && l40Var.f28015d0) {
                 gy0Var.e(false, true);
             }
         }
@@ -234,8 +234,8 @@ public final class l40 extends y71 {
 
     @Override
     public final void F(MotionEvent motionEvent, ci.g2 g2Var) {
-        org.telegram.ui.i60 i60Var = this.f28033g0.f39091a;
-        if (!i60Var.f38769w0) {
+        org.telegram.ui.i60 i60Var = this.f28018g0.f39093a;
+        if (!i60Var.f38772w0) {
             if (motionEvent.getX() > g2Var.getLeft() && motionEvent.getX() < g2Var.getRight() && motionEvent.getY() > g2Var.getTop() && motionEvent.getY() < g2Var.getBottom()) {
                 i60Var.t1(i60Var.E1, null, g2Var, true);
             } else {
@@ -248,56 +248,56 @@ public final class l40 extends y71 {
     public final void H(String str) {
         k40 k40Var = this.T;
         gg.b2 b2Var = k40Var.d;
-        l40 l40Var = k40Var.f27754w;
-        i40 i40Var = k40Var.f27749e;
+        l40 l40Var = k40Var.f27757w;
+        i40 i40Var = k40Var.f27752e;
         if (i40Var != null) {
             AndroidUtilities.cancelRunOnUIThread(i40Var);
-            k40Var.f27749e = null;
+            k40Var.f27752e = null;
         }
         b2Var.f(null, null);
         TLRPC.Chat chat = l40Var.V;
         ai.w0 w0Var = l40Var.d;
-        b2Var.g(null, true, false, true, false, chat.f19802id, false, 2, -1);
+        b2Var.g(null, true, false, true, false, chat.f19803id, false, 2, -1);
         if (!TextUtils.isEmpty(str)) {
-            l40Var.f32975s.e(true, true);
+            l40Var.f32968s.e(true, true);
             w0Var.W1 = false;
             w0Var.X1 = 0;
             k40Var.l();
             w0Var.W1 = true;
             w0Var.X1 = 0;
             k40Var.h = true;
-            int i10 = k40Var.f27751n + 1;
-            k40Var.f27751n = i10;
+            int i10 = k40Var.f27754n + 1;
+            k40Var.f27754n = i10;
             i40 i40Var2 = new i40(k40Var, str, i10, 0);
-            k40Var.f27749e = i40Var2;
+            k40Var.f27752e = i40Var2;
             AndroidUtilities.runOnUIThread(i40Var2, 300L);
             s4.i0 adapter = w0Var.getAdapter();
-            vm0 vm0Var = l40Var.f32971e;
+            vm0 vm0Var = l40Var.f32964e;
             if (adapter != vm0Var) {
                 w0Var.setAdapter(vm0Var);
                 return;
             }
             return;
         }
-        k40Var.f27751n = -1;
+        k40Var.f27754n = -1;
     }
 
     @Override
     public final void L() {
         this.I = org.telegram.ui.ActionBar.h6.Pg;
         this.J = org.telegram.ui.ActionBar.h6.eg;
-        int i10 = org.telegram.ui.ActionBar.h6.f20496a;
-        this.K = org.telegram.ui.ActionBar.h6.f20605fg;
-        this.L = org.telegram.ui.ActionBar.h6.f20865tg;
-        this.M = org.telegram.ui.ActionBar.h6.f20752ng;
-        this.N = org.telegram.ui.ActionBar.h6.f20770og;
-        this.O = org.telegram.ui.ActionBar.h6.f20715lg;
-        this.P = org.telegram.ui.ActionBar.h6.f20827rg;
-        this.Q = org.telegram.ui.ActionBar.h6.f20734mg;
+        int i10 = org.telegram.ui.ActionBar.h6.f20497a;
+        this.K = org.telegram.ui.ActionBar.h6.f20606fg;
+        this.L = org.telegram.ui.ActionBar.h6.f20866tg;
+        this.M = org.telegram.ui.ActionBar.h6.f20753ng;
+        this.N = org.telegram.ui.ActionBar.h6.f20771og;
+        this.O = org.telegram.ui.ActionBar.h6.f20716lg;
+        this.P = org.telegram.ui.ActionBar.h6.f20828rg;
+        this.Q = org.telegram.ui.ActionBar.h6.f20735mg;
     }
 
     public final void T() {
-        if (!this.f28034h0) {
+        if (!this.f28019h0) {
             return;
         }
         ArrayList<TLRPC.TL_contact> arrayList = ContactsController.getInstance(this.currentAccount).contacts;
@@ -310,7 +310,7 @@ public final class l40 extends y71 {
             TLObject tLObject = (TLObject) arrayList2.get(i10);
             if (tLObject instanceof TLRPC.TL_contact) {
                 long j10 = ((TLRPC.TL_contact) tLObject).user_id;
-                if (j10 == j3 || this.f28031e0.h(j10) >= 0 || this.f28032f0.contains(Long.valueOf(j10))) {
+                if (j10 == j3 || this.f28016e0.h(j10) >= 0 || this.f28017f0.contains(Long.valueOf(j10))) {
                     arrayList2.remove(i10);
                     i10--;
                     size--;
@@ -327,20 +327,20 @@ public final class l40 extends y71 {
         boolean isChannel = ChatObject.isChannel(chat);
         TLRPC.ChatFull chatFull = this.W;
         if (!isChannel) {
-            this.f28029c0 = false;
+            this.f28014c0 = false;
             ArrayList arrayList = this.X;
             arrayList.clear();
             this.Y.clear();
-            a0.i iVar2 = this.f28027a0;
+            a0.i iVar2 = this.f28012a0;
             iVar2.b();
-            this.f28028b0.b();
+            this.f28013b0.b();
             if (chatFull != null) {
                 long j3 = UserConfig.getInstance(this.currentAccount).clientUserId;
                 int size = chatFull.participants.participants.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     TLRPC.ChatParticipant chatParticipant = chatFull.participants.participants.get(i10);
                     long j10 = chatParticipant.user_id;
-                    if (j10 != j3 && ((iVar = this.f28031e0) == null || iVar.h(j10) < 0)) {
+                    if (j10 != j3 && ((iVar = this.f28016e0) == null || iVar.h(j10) < 0)) {
                         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(chatParticipant.user_id));
                         if (!UserObject.isDeleted(user) && !user.bot) {
                             arrayList.add(chatParticipant);
@@ -349,24 +349,24 @@ public final class l40 extends y71 {
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    this.f28034h0 = true;
+                    this.f28019h0 = true;
                     T();
                 }
             }
             V();
-            vm0 vm0Var = this.f32972f;
+            vm0 vm0Var = this.f32965f;
             if (vm0Var != null) {
                 vm0Var.l();
                 return;
             }
             return;
         }
-        this.f28029c0 = true;
-        gy0 gy0Var = this.f32975s;
+        this.f28014c0 = true;
+        gy0 gy0Var = this.f32968s;
         if (gy0Var != null) {
             gy0Var.e(true, false);
         }
-        vm0 vm0Var2 = this.f32972f;
+        vm0 vm0Var2 = this.f32965f;
         if (vm0Var2 != null) {
             vm0Var2.l();
         }
@@ -382,64 +382,64 @@ public final class l40 extends y71 {
         } else {
             tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
         }
-        tL_channels_getParticipants.filter.f19801q = "";
+        tL_channels_getParticipants.filter.f19802q = "";
         tL_channels_getParticipants.offset = 0;
         tL_channels_getParticipants.limit = 200;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new org.telegram.ui.so(10, this, tL_channels_getParticipants));
     }
 
     public final void V() {
-        this.f28035i0 = -1;
-        this.f28037k0 = -1;
-        this.f28038l0 = -1;
+        this.f28020i0 = -1;
+        this.f28022k0 = -1;
+        this.f28023l0 = -1;
         this.m0 = -1;
-        this.f28039n0 = -1;
-        this.f28040o0 = -1;
-        this.f28041p0 = -1;
-        this.f28036j0 = -1;
+        this.f28024n0 = -1;
+        this.f28025o0 = -1;
+        this.f28026p0 = -1;
+        this.f28021j0 = -1;
         boolean z10 = true;
-        this.f28043r0 = 1;
+        this.f28028r0 = 1;
         TLRPC.Chat chat = this.V;
         if (ChatObject.isPublic(chat) || ChatObject.canUserDoAdminAction(chat, 3)) {
-            int i10 = this.f28043r0;
-            this.f28043r0 = i10 + 1;
-            this.f28035i0 = i10;
+            int i10 = this.f28028r0;
+            this.f28028r0 = i10 + 1;
+            this.f28020i0 = i10;
         }
-        if (!this.f28029c0 || this.f28030d0) {
+        if (!this.f28014c0 || this.f28015d0) {
             ArrayList arrayList = this.Y;
             if (!arrayList.isEmpty()) {
-                int i11 = this.f28043r0;
+                int i11 = this.f28028r0;
                 int i12 = i11 + 1;
-                this.f28043r0 = i12;
+                this.f28028r0 = i12;
                 this.m0 = i11;
-                this.f28039n0 = i12;
+                this.f28024n0 = i12;
                 int size = arrayList.size() + i12;
-                this.f28043r0 = size;
-                this.f28040o0 = size;
+                this.f28028r0 = size;
+                this.f28025o0 = size;
             } else {
                 z10 = false;
             }
             ArrayList arrayList2 = this.X;
             if (!arrayList2.isEmpty()) {
                 if (z10) {
-                    int i13 = this.f28043r0;
-                    this.f28043r0 = i13 + 1;
-                    this.f28041p0 = i13;
+                    int i13 = this.f28028r0;
+                    this.f28028r0 = i13 + 1;
+                    this.f28026p0 = i13;
                 }
-                int i14 = this.f28043r0;
-                this.f28037k0 = i14;
+                int i14 = this.f28028r0;
+                this.f28022k0 = i14;
                 int size2 = arrayList2.size() + i14;
-                this.f28043r0 = size2;
-                this.f28038l0 = size2;
+                this.f28028r0 = size2;
+                this.f28023l0 = size2;
             }
         }
-        if (this.f28029c0) {
-            int i15 = this.f28043r0;
-            this.f28043r0 = i15 + 1;
-            this.f28042q0 = i15;
+        if (this.f28014c0) {
+            int i15 = this.f28028r0;
+            this.f28028r0 = i15 + 1;
+            this.f28027q0 = i15;
         }
-        int i16 = this.f28043r0;
-        this.f28043r0 = i16 + 1;
-        this.f28036j0 = i16;
+        int i16 = this.f28028r0;
+        this.f28028r0 = i16 + 1;
+        this.f28021j0 = i16;
     }
 }

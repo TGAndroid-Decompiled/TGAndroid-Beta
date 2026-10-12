@@ -7,30 +7,30 @@ import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class u1 {
-    public long f47668a;
-    public final int f47669b;
+    public long f47676a;
+    public final int f47677b;
     public float d;
-    public float f47671e;
-    public float f47672f;
-    public float f47673g;
+    public float f47679e;
+    public float f47680f;
+    public float f47681g;
     public float h;
-    public float f47674i;
-    public float f47675j;
-    public float f47676k;
-    public int f47677l;
-    public int f47678m;
-    public float f47679n;
-    public float f47680o;
-    public float f47681p;
-    public final v1 f47683r;
-    public float f47670c = 1.0f;
-    public boolean f47682q = true;
+    public float f47682i;
+    public float f47683j;
+    public float f47684k;
+    public int f47685l;
+    public int f47686m;
+    public float f47687n;
+    public float f47688o;
+    public float f47689p;
+    public final v1 f47691r;
+    public float f47678c = 1.0f;
+    public boolean f47690q = true;
 
     public u1(v1 v1Var) {
-        this.f47683r = v1Var;
+        this.f47691r = v1Var;
         int i10 = v1Var.S;
         v1Var.S = i10 + 1;
-        this.f47669b = i10;
+        this.f47677b = i10;
     }
 
     public final void a(android.graphics.Canvas r11, long r12, float r14) {
@@ -47,34 +47,34 @@ public final class u1 {
         float f12;
         float f13;
         float nextFloat;
-        v1 v1Var = this.f47683r;
+        v1 v1Var = this.f47691r;
         int i12 = v1Var.N;
-        ArrayList arrayList = v1Var.f47701n;
-        RectF rectF = v1Var.f47690a;
+        ArrayList arrayList = v1Var.f47709n;
+        RectF rectF = v1Var.f47698a;
         int i13 = 0;
         if (i12 == 28) {
             if (Utilities.fastRandom.nextFloat() < 0.13f) {
-                this.f47677l = 0;
+                this.f47685l = 0;
             } else {
-                this.f47677l = (int) Math.floor((nextFloat * (v1Var.d.length - 2)) + 1.0f);
+                this.f47685l = (int) Math.floor((nextFloat * (v1Var.d.length - 2)) + 1.0f);
             }
         } else {
-            this.f47677l = Math.abs(Utilities.fastRandom.nextInt() % v1Var.d.length);
+            this.f47685l = Math.abs(Utilities.fastRandom.nextInt() % v1Var.d.length);
         }
-        long j10 = j3 + v1Var.f47710x;
+        long j10 = j3 + v1Var.f47718x;
         Random random = Utilities.fastRandom;
-        int i14 = v1Var.f47711y;
-        if (v1Var.f47694f[this.f47677l]) {
+        int i14 = v1Var.f47719y;
+        if (v1Var.f47702f[this.f47685l]) {
             i10 = 3;
         } else {
             i10 = 1;
         }
-        this.f47668a = j10 + random.nextInt(i14 * i10);
+        this.f47676a = j10 + random.nextInt(i14 * i10);
         float f14 = 0.0f;
-        this.f47679n = 0.0f;
+        this.f47687n = 0.0f;
         float f15 = 0.6f;
-        if (v1Var.f47700m) {
-            this.f47670c = (Utilities.fastRandom.nextFloat() * 0.6f) + 0.4f;
+        if (v1Var.f47708m) {
+            this.f47678c = (Utilities.fastRandom.nextFloat() * 0.6f) + 0.4f;
         }
         if (v1Var.B) {
             float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
@@ -89,11 +89,11 @@ public final class u1 {
                 float f19 = f14;
                 while (i13 < arrayList.size()) {
                     if (v1Var.h) {
-                        f12 = ((u1) arrayList.get(i13)).f47672f - abs3;
-                        f13 = ((u1) arrayList.get(i13)).f47673g;
+                        f12 = ((u1) arrayList.get(i13)).f47680f - abs3;
+                        f13 = ((u1) arrayList.get(i13)).f47681g;
                     } else {
                         f12 = ((u1) arrayList.get(i13)).d - abs3;
-                        f13 = ((u1) arrayList.get(i13)).f47671e;
+                        f13 = ((u1) arrayList.get(i13)).f47679e;
                     }
                     float f20 = f13 - abs4;
                     float f21 = (f20 * f20) + (f12 * f12);
@@ -115,16 +115,16 @@ public final class u1 {
             f7 = f14;
             f10 = f15;
             this.d = abs;
-            this.f47671e = abs2;
+            this.f47679e = abs2;
         } else {
             f7 = 0.0f;
             f10 = 0.6f;
             if (v1Var.J) {
                 float width = rectF.width();
-                float f22 = v1Var.f47697j;
+                float f22 = v1Var.f47705j;
                 float y3 = e2.y(width, f22, org.telegram.ui.Cells.c1.d(Utilities.fastRandom, 1000) / 1000.0f, f22);
                 float d = org.telegram.ui.Cells.c1.d(Utilities.fastRandom, 360);
-                if (v1Var.f47694f[this.f47677l] && !this.f47682q) {
+                if (v1Var.f47702f[this.f47685l] && !this.f47690q) {
                     y3 = Math.min(y3, AndroidUtilities.dp(10.0f));
                     f11 = AndroidUtilities.dp(30.0f) + 0.0f;
                 } else {
@@ -133,45 +133,45 @@ public final class u1 {
                 double d10 = y3;
                 double d11 = d;
                 this.d = rectF.centerX() + 0.0f + ((float) (Math.sin(Math.toRadians(d11)) * d10));
-                this.f47671e = rectF.centerY() + f11 + v1Var.f47698k + ((float) (Math.cos(Math.toRadians(d11)) * d10));
+                this.f47679e = rectF.centerY() + f11 + v1Var.f47706k + ((float) (Math.cos(Math.toRadians(d11)) * d10));
             } else {
                 this.d = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
-                this.f47671e = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+                this.f47679e = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
             }
         }
-        if (v1Var.f47694f[this.f47677l]) {
-            this.f47681p = Math.abs(Utilities.fastRandom.nextFloat() * 2.0f);
+        if (v1Var.f47702f[this.f47685l]) {
+            this.f47689p = Math.abs(Utilities.fastRandom.nextFloat() * 2.0f);
         }
-        if (v1Var.f47694f[this.f47677l]) {
+        if (v1Var.f47702f[this.f47685l]) {
             atan2 = Math.toRadians(280.0f - (Utilities.fastRandom.nextFloat() * 200.0f));
         } else if (v1Var.h) {
             atan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
         } else {
-            atan2 = Math.atan2(this.f47671e - (rectF.centerY() + v1Var.f47698k), this.d - (rectF.centerX() + f7));
+            atan2 = Math.atan2(this.f47679e - (rectF.centerY() + v1Var.f47706k), this.d - (rectF.centerX() + f7));
         }
-        this.f47675j = (float) Math.cos(atan2);
-        this.f47676k = (float) Math.sin(atan2);
-        if (v1Var.f47693e[this.f47677l]) {
-            this.f47678m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 120.0f);
+        this.f47683j = (float) Math.cos(atan2);
+        this.f47684k = (float) Math.sin(atan2);
+        if (v1Var.f47701e[this.f47685l]) {
+            this.f47686m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 120.0f);
         } else {
-            this.f47678m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
+            this.f47686m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
         }
         int i16 = v1Var.N;
-        if ((i16 == 6 && ((i11 = this.f47677l) == 1 || i11 == 2)) || i16 == 9 || i16 == 3 || i16 == 7 || i16 == 24 || i16 == 11 || i16 == 22 || i16 == 4) {
-            this.f47679n = (int) (((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 45.0f);
+        if ((i16 == 6 && ((i11 = this.f47685l) == 1 || i11 == 2)) || i16 == 9 || i16 == 3 || i16 == 7 || i16 == 24 || i16 == 11 || i16 == 22 || i16 == 4) {
+            this.f47687n = (int) (((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 45.0f);
         }
         if (v1Var.N != 101) {
-            this.f47680o = f7;
+            this.f47688o = f7;
         }
         if (v1Var.h) {
             float min = (Math.min(rectF.width(), rectF.height()) * ((Utilities.fastRandom.nextFloat() * 1.2f) + f10)) / 2.0f;
             float cos = (((float) Math.cos(atan2)) * min) + rectF.centerX() + 0.0f;
             this.d = cos;
-            this.f47672f = cos;
-            float sin = (((float) Math.sin(atan2)) * min) + rectF.centerY() + v1Var.f47698k;
-            this.f47671e = sin;
-            this.f47673g = sin;
+            this.f47680f = cos;
+            float sin = (((float) Math.sin(atan2)) * min) + rectF.centerY() + v1Var.f47706k;
+            this.f47679e = sin;
+            this.f47681g = sin;
         }
-        this.f47682q = false;
+        this.f47690q = false;
     }
 }

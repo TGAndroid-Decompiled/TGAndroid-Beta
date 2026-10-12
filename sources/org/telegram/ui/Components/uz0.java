@@ -98,9 +98,9 @@ public class uz0 extends FrameLayout implements NotificationCenter.NotificationC
             this.f31300e.setLayoutManager(d0Var);
             s4.j jVar = new s4.j();
             jVar.n(45L);
-            jVar.f47949o = jsVar;
+            jVar.f47957o = jsVar;
             this.f31300e.setItemAnimator(jVar);
-            this.f31300e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, this.f31295b));
+            this.f31300e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, this.f31295b));
             qz0 qz0Var2 = this.f31300e;
             j jVar2 = new j(this, 17);
             qz0Var2.setOnItemClickListener(jVar2);
@@ -138,8 +138,8 @@ public class uz0 extends FrameLayout implements NotificationCenter.NotificationC
         if (qz0Var == null) {
             return super.dispatchTouchEvent(motionEvent);
         }
-        float f7 = this.f31299d0.f26303c;
-        float f10 = this.f31298c0.f26303c;
+        float f7 = this.f31299d0.f26301c;
+        float f10 = this.f31298c0.f26301c;
         RectF rectF = AndroidUtilities.rectTmp;
         float f11 = f7 / 2.0f;
         rectF.set(this.f31300e.getTranslationX() + (f10 - f11) + qz0Var.getPaddingLeft(), this.f31300e.getPaddingTop() + this.f31300e.getTop(), Math.min(this.f31300e.getTranslationX() + f10 + f11 + this.f31300e.getPaddingLeft(), getWidth() - this.d.getPaddingRight()), this.f31300e.getBottom());

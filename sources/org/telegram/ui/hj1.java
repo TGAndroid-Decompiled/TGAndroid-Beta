@@ -14,7 +14,7 @@ public final class hj1 extends org.telegram.ui.ActionBar.e5 {
     public final void k() {
         WallpapersListActivity wallpapersListActivity = this.f38448f;
         mj1 mj1Var = wallpapersListActivity.J;
-        mj1Var.f40077n = null;
+        mj1Var.f40080n = null;
         mj1Var.E(null, true);
         wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
     }

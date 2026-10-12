@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.NotificationCenter;
 public final class mf1 implements View.OnClickListener {
-    public final hg1 f40033a;
+    public final hg1 f40036a;
 
     public mf1(hg1 hg1Var) {
-        this.f40033a = hg1Var;
+        this.f40036a = hg1Var;
     }
 
     @Override
     public final void onClick(View view) {
-        hg1 hg1Var = this.f40033a;
+        hg1 hg1Var = this.f40036a;
         if (hg1Var.M == 1) {
             org.telegram.ui.Components.g5.i0(hg1Var, -hg1Var.f38376a, null, hg1Var.g(), null, false, hg1Var.J, new ya(this, 5), hg1Var.getResourceProvider());
             return;

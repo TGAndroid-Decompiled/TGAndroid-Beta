@@ -1,21 +1,21 @@
 package se;
 public final class b {
-    public static final b f48201e;
-    public boolean f48202a;
-    public boolean f48203b;
-    public boolean f48204c;
+    public static final b f48209e;
+    public boolean f48210a;
+    public boolean f48211b;
+    public boolean f48212c;
     public boolean d;
 
     static {
         ?? obj = new Object();
-        obj.f48202a = true;
-        obj.f48203b = true;
-        obj.f48204c = false;
+        obj.f48210a = true;
+        obj.f48211b = true;
+        obj.f48212c = false;
         obj.d = false;
-        f48201e = obj;
-        obj.f48202a = true;
-        obj.f48203b = true;
-        obj.f48204c = false;
+        f48209e = obj;
+        obj.f48210a = true;
+        obj.f48211b = true;
+        obj.f48212c = false;
         obj.d = false;
     }
 

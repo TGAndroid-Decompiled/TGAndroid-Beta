@@ -12,9 +12,9 @@ public final class kg extends c61 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f28188a;
-        if (chatActivityEnterView.f23619a3 == this) {
-            chatActivityEnterView.f23619a3 = null;
+        ChatActivityEnterView chatActivityEnterView = this.h.f28173a;
+        if (chatActivityEnterView.f23620a3 == this) {
+            chatActivityEnterView.f23620a3 = null;
         }
         sg sgVar = chatActivityEnterView.Z2;
         if (sgVar != null) {

@@ -25,18 +25,18 @@ public final class s10 extends org.telegram.ui.Cells.i7 {
             String str = y10Var.Q;
             long j3 = y10Var.E;
             long j10 = y10Var.H;
-            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j3, j10, j10, y10Var.f44268y);
+            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j3, j10, j10, y10Var.f44273y);
             y10 y10Var2 = t10Var.v;
             playlistGlobalSearchParams.endReached = y10Var2.N;
             playlistGlobalSearchParams.nextSearchRate = y10Var2.v;
             playlistGlobalSearchParams.totalCount = y10Var2.O;
             playlistGlobalSearchParams.folderId = y10Var2.J ? 1 : 0;
-            return MediaController.getInstance().setPlaylist(t10Var.v.f44250f, messageObject, 0L, playlistGlobalSearchParams);
+            return MediaController.getInstance().setPlaylist(t10Var.v.f44255f, messageObject, 0L, playlistGlobalSearchParams);
         }
         boolean playMessage = MediaController.getInstance().playMessage(messageObject);
         MediaController mediaController = MediaController.getInstance();
         if (playMessage) {
-            arrayList = t10Var.v.f44250f;
+            arrayList = t10Var.v.f44255f;
         } else {
             arrayList = null;
         }

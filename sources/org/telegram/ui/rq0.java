@@ -28,11 +28,11 @@ public final class rq0 extends s4.t0 {
             } else {
                 abs = Math.abs(dr0Var.M.N0() - L0) + 1;
             }
-            if (abs > 0 && L0 + abs > dr0Var.M.B() - 2 && !dr0Var.f36888r && !dr0Var.f36890s) {
-                if (dr0Var.f36866a == 1) {
+            if (abs > 0 && L0 + abs > dr0Var.M.B() - 2 && !dr0Var.f36891r && !dr0Var.f36893s) {
+                if (dr0Var.f36869a == 1) {
                     z10 = true;
                 }
-                dr0Var.d0(dr0Var.v, dr0Var.f36895w, z10, true);
+                dr0Var.d0(dr0Var.v, dr0Var.f36898w, z10, true);
             }
         }
     }

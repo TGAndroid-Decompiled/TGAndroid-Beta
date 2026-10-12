@@ -105,7 +105,7 @@ public abstract class wb extends FrameLayout {
         this.inOutOffset = f7;
         updatePosition();
         sc scVar = this.bulletin;
-        if (scVar != null && scVar.f30541k) {
+        if (scVar != null && scVar.f30537k) {
             invalidate();
         }
     }
@@ -141,15 +141,15 @@ public abstract class wb extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         sc scVar = this.bulletin;
-        if (scVar != null && scVar.f30541k) {
+        if (scVar != null && scVar.f30537k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new uh.b(new s(this, 16));
             }
             uh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f49179c == null) {
+            if (bVar.f49187c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f49183i = w7.n.b((int) org.telegram.messenger.am.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f49191i = w7.n.b((int) org.telegram.messenger.am.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -166,9 +166,9 @@ public abstract class wb extends FrameLayout {
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (qbVar = this.delegate) != null) {
-                float h = qbVar.h(this.bulletin.f30533a) - getY();
+                float h = qbVar.h(this.bulletin.f30529a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f30533a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f30529a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -243,14 +243,14 @@ public abstract class wb extends FrameLayout {
         qb qbVar;
         sc scVar;
         o1.k kVar;
-        if (this.bulletin != null && (((qbVar = this.delegate) == null || qbVar.e()) && (kVar = (scVar = this.bulletin).d) != null && kVar.f16683f)) {
-            f7 = scVar.f30545o;
+        if (this.bulletin != null && (((qbVar = this.delegate) == null || qbVar.e()) && (kVar = (scVar = this.bulletin).d) != null && kVar.f16684f)) {
+            f7 = scVar.f30541o;
         } else {
             qb qbVar2 = this.delegate;
             if (qbVar2 != null) {
                 sc scVar2 = this.bulletin;
                 if (scVar2 != null) {
-                    i10 = scVar2.f30533a;
+                    i10 = scVar2.f30529a;
                 } else {
                     i10 = 0;
                 }
@@ -280,7 +280,7 @@ public abstract class wb extends FrameLayout {
         if (qbVar != null) {
             sc scVar = this.bulletin;
             if (scVar != null) {
-                i10 = scVar.f30533a;
+                i10 = scVar.f30529a;
             } else {
                 i10 = 0;
             }
@@ -325,9 +325,9 @@ public abstract class wb extends FrameLayout {
             this.callbacks.get(i10).b();
         }
         uh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f49179c) != null) {
+        if (bVar != null && (bitmap = bVar.f49187c) != null) {
             bitmap.recycle();
-            bVar.f49179c = null;
+            bVar.f49187c = null;
         }
     }
 
@@ -407,7 +407,7 @@ public abstract class wb extends FrameLayout {
             if (this.top) {
                 sc scVar = this.bulletin;
                 if (scVar != null) {
-                    i11 = scVar.f30533a;
+                    i11 = scVar.f30529a;
                 } else {
                     i11 = 0;
                 }

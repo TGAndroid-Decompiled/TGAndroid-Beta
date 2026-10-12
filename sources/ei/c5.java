@@ -113,10 +113,10 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 a4.l lVar = bVar.f14023a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
                 ka.d dVar = (ka.d) lVar.f297b;
-                ka.e eVar = new ka.e(bufferedWriter, dVar.f14767a, dVar.f14768b, dVar.f14769c, dVar.d);
+                ka.e eVar = new ka.e(bufferedWriter, dVar.f14768a, dVar.f14769b, dVar.f14770c, dVar.d);
                 eVar.h((k5.i) aVar.d);
                 eVar.j();
-                eVar.f14771b.flush();
+                eVar.f14772b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -140,7 +140,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         } else {
                             inputStream = inputStream2;
                         }
-                        ii.b0 b0Var = new ii.b0(responseCode, null, k5.m.a(new BufferedReader(new InputStreamReader(inputStream))).f14680a);
+                        ii.b0 b0Var = new ii.b0(responseCode, null, k5.m.a(new BufferedReader(new InputStreamReader(inputStream))).f14681a);
                         if (inputStream != null) {
                             inputStream.close();
                         }
@@ -392,7 +392,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     m2Var.f11230c = new ai.h3(18, g1Var, view3);
                     g1Var.presentFragment((org.telegram.ui.ActionBar.m2) m2Var);
                     return;
-                } else if (u61Var2.f16876a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
+                } else if (u61Var2.f16877a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
                         if (g1Var.h[u61Var2.d].isEmpty()) {
                             ((j5) view3).setChecked(true);
@@ -422,7 +422,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = u61Var2.f31076l;
+                    CharSequence charSequence = u61Var2.f31071l;
                     ArrayList arrayList = g1Var.h[u61Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
@@ -458,13 +458,13 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     w8 w8Var = (w8) view4;
                     boolean z11 = i1Var2.f11271r;
-                    u61Var3.f31070e = z11;
+                    u61Var3.f31065e = z11;
                     w8Var.setChecked(z11);
                     boolean z12 = i1Var2.f11271r;
                     if (z12) {
-                        i11 = org.telegram.ui.ActionBar.h6.f20596f6;
+                        i11 = org.telegram.ui.ActionBar.h6.f20597f6;
                     } else {
-                        i11 = org.telegram.ui.ActionBar.h6.f20579e6;
+                        i11 = org.telegram.ui.ActionBar.h6.f20580e6;
                     }
                     w8Var.b(org.telegram.ui.ActionBar.h6.x0(null, i11, false), z12);
                     i1Var2.f11270n.W2.N(true);
@@ -492,7 +492,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     i1Var2.f11270n.W2.N(true);
                     return;
-                } else if (u61Var3.f16876a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (u61Var3.f16877a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
                     if (i26 >= 0) {
                         f1Var = (hg.f1) arrayList3.get(i26);

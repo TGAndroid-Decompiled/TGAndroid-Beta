@@ -25,15 +25,15 @@ public final class e7 extends gy0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = hg1Var.f38405n.f43926a.animate();
+                    ViewPropertyAnimator animate = hg1Var.f38405n.f43931a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                hg1Var.f38405n.f43926a.animate().cancel();
-                TextView textView = hg1Var.f38405n.f43926a;
+                hg1Var.f38405n.f43931a.animate().cancel();
+                TextView textView = hg1Var.f38405n.f43931a;
                 if (z10) {
                     f7 = 0.0f;
                 }

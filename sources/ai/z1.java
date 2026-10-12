@@ -54,9 +54,9 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         boolean J1;
         aj ajVar = (aj) this.f1997c;
         si siVar = ajVar.B0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24354j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24350j0;
         long j3 = this.f1996b;
-        if (siVar != chatAttachAlertPhotoLayout && siVar != ajVar.f24374q0) {
+        if (siVar != chatAttachAlertPhotoLayout && siVar != ajVar.f24370q0) {
             if (!siVar.K(i10, z10, i11, ajVar.u1(), j3)) {
                 ajVar.D2 = true;
                 ajVar.dismiss();
@@ -65,10 +65,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         } else {
             J1 = ajVar.J1(i10, z10, i11, ajVar.u1(), j3);
         }
-        rf rfVar = ajVar.f24348h0;
+        rf rfVar = ajVar.f24344h0;
         if (rfVar != null) {
             rfVar.h(!J1);
-            ajVar.f24348h0 = null;
+            ajVar.f24344h0 = null;
         }
     }
 
@@ -78,10 +78,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
         contentValues.put("next_request_ms", Long.valueOf(this.f1996b));
-        String str = iVar.f15159a;
-        i5.d dVar = iVar.f15161c;
+        String str = iVar.f15160a;
+        i5.d dVar = iVar.f15162c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(v5.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f15159a);
+            contentValues.put("backend_name", iVar.f15160a);
             contentValues.put("priority", Integer.valueOf(v5.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -134,7 +134,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         switch (this.f1995a) {
             case 8:
-                cp0 cp0Var = ((vy) this.f1997c).C0.f27591b0;
+                cp0 cp0Var = ((vy) this.f1997c).C0.f27598b0;
                 a0.i iVar = cp0Var.f10643x0;
                 long j3 = this.f1996b;
                 gg.g0 g0Var = (gg.g0) iVar.f(j3);
@@ -149,7 +149,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                 }
                 return;
             default:
-                ((hy) this.f1997c).f38559a.getMediaDataController().removePeer(this.f1996b);
+                ((hy) this.f1997c).f38562a.getMediaDataController().removePeer(this.f1996b);
                 return;
         }
     }

@@ -7,23 +7,23 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class k50 implements yi {
-    public final p50 f27760a;
+    public final p50 f27763a;
 
     public k50(p50 p50Var) {
-        this.f27760a = p50Var;
+        this.f27763a = p50Var;
     }
 
     @Override
     public final void A0() {
-        this.f27760a.q();
+        this.f27763a.q();
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         aj ajVar;
-        p50 p50Var = this.f27760a;
-        org.telegram.ui.ActionBar.m2 m2Var = p50Var.f29378a;
-        if (m2Var != null && m2Var.getParentActivity() != null && (ajVar = p50Var.f29380c) != null) {
+        p50 p50Var = this.f27763a;
+        org.telegram.ui.ActionBar.m2 m2Var = p50Var.f29381a;
+        if (m2Var != null && m2Var.getParentActivity() != null && (ajVar = p50Var.f29383c) != null) {
             if (i10 != 8 && i10 != 7) {
                 ajVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -32,8 +32,8 @@ public final class k50 implements yi {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = ajVar.f24354j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = p50Var.f29380c.f24354j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = ajVar.f24350j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = p50Var.f29383c.f24350j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -96,14 +96,14 @@ public final class k50 implements yi {
             }
             p50.a(p50Var, z14, arrayList);
             if (i10 != 8) {
-                p50Var.f29380c.dismiss(true);
+                p50Var.f29383c.dismiss(true);
             }
         }
     }
 
     @Override
     public final void P0() {
-        AndroidUtilities.hideKeyboard(this.f27760a.f29378a.getFragmentView().findFocus());
+        AndroidUtilities.hideKeyboard(this.f27763a.f29381a.getFragmentView().findFocus());
     }
 
     @Override

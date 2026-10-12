@@ -115,7 +115,7 @@ public final class h1 extends u91 {
                 return;
             case 7:
                 db1 db1Var = (db1) this.U;
-                db1Var.m0(db1Var.f36735i0.getCurrentPosition(), true);
+                db1Var.m0(db1Var.f36737i0.getCurrentPosition(), true);
                 db1Var.n0(0.0f, false);
                 db1.W(db1Var);
                 return;
@@ -129,7 +129,7 @@ public final class h1 extends u91 {
         c41 c41Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof d41) && (c41Var = ((d41) getCurrentView()).f36643n) != null) {
+                if ((getCurrentView() instanceof d41) && (c41Var = ((d41) getCurrentView()).f36645n) != null) {
                     AndroidUtilities.hideKeyboard(c41Var);
                     return;
                 }
@@ -173,15 +173,15 @@ public final class h1 extends u91 {
                 cq0 cq0Var = (cq0) this.U;
                 float positionAnimated = cq0Var.I.getPositionAnimated();
                 cq0Var.M.setSelected(positionAnimated);
-                cq0Var.f36481e.setProgressToGradient(1.0f - w7.n.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                cq0Var.f36483e.setProgressToGradient(1.0f - w7.n.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
                 cq0Var.G0();
                 wp0 C0 = cq0Var.C0();
                 d dVar = cq0Var.Q;
                 if (dVar != null && C0 != null && C0 != cq0Var.R) {
                     cq0Var.R = C0;
-                    n6.k kVar = C0.f43584e;
-                    dVar.g((CharSequence) kVar.f16432b, true, true);
-                    cq0Var.Q.f((SpannableStringBuilder) kVar.f16433c, true);
+                    n6.k kVar = C0.f43589e;
+                    dVar.g((CharSequence) kVar.f16433b, true, true);
+                    cq0Var.Q.f((SpannableStringBuilder) kVar.f16434c, true);
                 }
                 cq0Var.D0(1);
                 return;
@@ -193,7 +193,7 @@ public final class h1 extends u91 {
                 return;
             case 7:
                 db1 db1Var = (db1) this.U;
-                float positionAnimated2 = db1Var.f36735i0.getPositionAnimated();
+                float positionAnimated2 = db1Var.f36737i0.getPositionAnimated();
                 db1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     db1Var.m0(Math.round(positionAnimated2), true);
@@ -217,9 +217,9 @@ public final class h1 extends u91 {
         switch (this.T) {
             case 10:
                 org.telegram.ui.Wallet.c5 c5Var = (org.telegram.ui.Wallet.c5) this.U;
-                c5Var.f34555f0 = i10;
+                c5Var.f34557f0 = i10;
                 if (i10 == 1) {
-                    c5Var.f34563n0.post(new org.telegram.ui.Wallet.h3(c5Var, 12));
+                    c5Var.f34565n0.post(new org.telegram.ui.Wallet.h3(c5Var, 12));
                     return;
                 }
                 return;
@@ -234,9 +234,9 @@ public final class h1 extends u91 {
             case 3:
                 if (i10 == 0) {
                     eo eoVar = (eo) this.U;
-                    if (eoVar.f37414s1) {
-                        eoVar.f37414s1 = false;
-                        eoVar.f37387q1.h.clear();
+                    if (eoVar.f37419s1) {
+                        eoVar.f37419s1 = false;
+                        eoVar.f37392q1.h.clear();
                         return;
                     }
                     return;

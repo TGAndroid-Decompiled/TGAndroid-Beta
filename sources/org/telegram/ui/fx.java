@@ -8,17 +8,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class fx extends ChatActivityEnterView {
-    public final vy R5;
+    public final vy T5;
 
     public fx(vy vyVar, Activity activity, oy oyVar) {
         super(activity, oyVar, null, false, null);
-        this.R5 = vyVar;
+        this.T5 = vyVar;
     }
 
     @Override
     public final void C0(float f7) {
-        vy vyVar = this.R5;
-        vyVar.f43005y1.setInputBubbleHeight(f7);
+        vy vyVar = this.T5;
+        vyVar.f43007y1.setInputBubbleHeight(f7);
         vyVar.p3();
         vyVar.j3();
         vyVar.q3();
@@ -28,7 +28,7 @@ public final class fx extends ChatActivityEnterView {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i10;
         if (motionEvent.getAction() == 0) {
-            vy vyVar = this.R5;
+            vy vyVar = this.T5;
             Activity parentActivity = vyVar.getParentActivity();
             i10 = ((org.telegram.ui.ActionBar.m2) vyVar).classGuid;
             AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -39,7 +39,7 @@ public final class fx extends ChatActivityEnterView {
     @Override
     public final int getMessagesCount() {
         CharSequence fieldText;
-        vy vyVar = this.R5;
+        vy vyVar = this.T5;
         int i10 = vyVar.S0;
         fx fxVar = vyVar.B1;
         if (fxVar == null) {
@@ -52,7 +52,7 @@ public final class fx extends ChatActivityEnterView {
 
     @Override
     public final long getStarsPrice() {
-        vy vyVar = this.R5;
+        vy vyVar = this.T5;
         ArrayList arrayList = vyVar.I2;
         if (arrayList == null) {
             return 0L;

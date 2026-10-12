@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class cf1 extends n71 {
-    public boolean f36414d2;
-    public final df1 f36415e2;
+    public boolean f36416d2;
+    public final df1 f36417e2;
 
     public cf1(df1 df1Var, df1 df1Var2, Activity activity) {
         super(df1Var2, activity, false, null, 3, null);
-        this.f36415e2 = df1Var;
-        this.f36414d2 = true;
+        this.f36417e2 = df1Var;
+        this.f36416d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f36414d2) {
-            this.f36414d2 = false;
-            this.f36415e2.f36789f.s(null);
+        if (this.f36416d2) {
+            this.f36416d2 = false;
+            this.f36417e2.f36791f.s(null);
         }
     }
 
@@ -31,7 +31,7 @@ public final class cf1 extends n71 {
         int i10;
         int i11;
         long j3;
-        df1 df1Var = this.f36415e2;
+        df1 df1Var = this.f36417e2;
         i10 = ((org.telegram.ui.ActionBar.m2) df1Var).currentAccount;
         boolean z10 = false;
         if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
@@ -41,7 +41,7 @@ public final class cf1 extends n71 {
             if (stickerSetByEmojiOrName == null) {
                 j3 = 0;
             } else {
-                j3 = stickerSetByEmojiOrName.set.f19829id;
+                j3 = stickerSetByEmojiOrName.set.f19830id;
             }
             if (j3 == MediaDataController.getStickerSetId(document)) {
                 z10 = true;

@@ -8,15 +8,15 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FlagSecureReason;
 public final class ai implements FlagSecureReason.FlagSecureCondition, pv0, r0.n, yf.a0, org.telegram.ui.ActionBar.z1 {
-    public final eo f35812a;
+    public final eo f35814a;
 
     public ai(eo eoVar) {
-        this.f35812a = eoVar;
+        this.f35814a = eoVar;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
-        eo eoVar = this.f35812a;
+        eo eoVar = this.f35814a;
         r0.k1 z82 = eoVar.z8(k1Var);
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(z82, false);
         int i10 = defaultWindowInsets.f11574a;
@@ -34,33 +34,33 @@ public final class ai implements FlagSecureReason.FlagSecureCondition, pv0, r0.n
         eoVar.q7();
         eoVar.u7();
         eoVar.u9();
-        boolean p5 = z82.f46992a.p(8);
+        boolean p5 = z82.f47000a.p(8);
         if (eoVar.Ta != p5) {
             eoVar.Ta = p5;
             eoVar.X0.S();
         }
-        ci.h1 h1Var = eoVar.f37387q1;
+        ci.h1 h1Var = eoVar.f37392q1;
         if (h1Var != null) {
             r0.i0.b(h1Var, z82);
         }
-        return r0.k1.f46991b;
+        return r0.k1.f46999b;
     }
 
     @Override
     public void a(int i10) {
-        eo.X0(this.f35812a, i10);
+        eo.X0(this.f35814a, i10);
     }
 
     @Override
     public void b(float[] fArr) {
-        eo eoVar = this.f35812a;
-        fArr[1] = eoVar.f37478x0.getBottom() - eoVar.Ba;
-        fArr[0] = (eoVar.f37478x0.getTop() + eoVar.f37422s9) - AndroidUtilities.dp(4.0f);
+        eo eoVar = this.f35814a;
+        fArr[1] = eoVar.f37483x0.getBottom() - eoVar.Ba;
+        fArr[0] = (eoVar.f37483x0.getTop() + eoVar.f37427s9) - AndroidUtilities.dp(4.0f);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        eo eoVar = this.f35812a;
+        eo eoVar = this.f35814a;
         eoVar.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -73,7 +73,7 @@ public final class ai implements FlagSecureReason.FlagSecureCondition, pv0, r0.n
 
     @Override
     public boolean run() {
-        eo eoVar = this.f35812a;
+        eo eoVar = this.f35814a;
         if (eoVar.h == null && !eoVar.D9()) {
             return false;
         }

@@ -1,12 +1,12 @@
 package org.telegram.ui;
 public final class t7 {
-    public final String f42108a;
-    public final int f42109b;
-    public final h7 f42110c;
+    public final String f42112a;
+    public final int f42113b;
+    public final h7 f42114c;
 
     public t7(String str, int i10, h7 h7Var) {
-        this.f42108a = str;
-        this.f42109b = i10;
-        this.f42110c = h7Var;
+        this.f42112a = str;
+        this.f42113b = i10;
+        this.f42114c = h7Var;
     }
 }

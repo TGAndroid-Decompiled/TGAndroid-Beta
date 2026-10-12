@@ -240,7 +240,7 @@ public final class l9 implements NotificationCenter.NotificationCenterDelegate {
         this.f1354s = E;
         if (E) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f19823id = 1;
+            tL_message.f19824id = 1;
             String absolutePath = ci.l8.x(this.M.f1404a, true).getAbsolutePath();
             tL_message.attachPath = absolutePath;
             this.f1350e = absolutePath;

@@ -22,12 +22,12 @@ public final class g extends kotlin.jvm.internal.j implements l {
             default:
                 Throwable th3 = (Throwable) obj;
                 if (th3 != null) {
-                    ((a0) this.f14135c).f14323f.d(new k1.g(th3));
+                    ((a0) this.f14135c).f14324f.d(new k1.g(th3));
                 }
-                Object obj2 = a0.f14318s;
+                Object obj2 = a0.f14319s;
                 a0 a0Var = (a0) this.f14135c;
                 synchronized (obj2) {
-                    a0.f14317r.remove(a0Var.c().getAbsolutePath());
+                    a0.f14318r.remove(a0Var.c().getAbsolutePath());
                 }
                 return hd.i.f11090a;
         }

@@ -48,7 +48,7 @@ public final class t7 extends FrameLayout {
         this.h = m7Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f1743s = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20630h5, dVar), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20631h5, dVar), PorterDuff.Mode.MULTIPLY));
         r7 r7Var = new r7(this, context);
         this.f1739e = r7Var;
         n7 n7Var = new n7(this, context);
@@ -196,7 +196,7 @@ public final class t7 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             ofFloat.addUpdateListener(new a(this, 11));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f21181w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f21182w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -205,7 +205,7 @@ public final class t7 extends FrameLayout {
             currentPage.f1338r.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             FrameLayout frameLayout = currentPage.f1334c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.y((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.o1.f21181w);
+                currentPage.d.y((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.o1.f21182w);
             }
         }
     }
@@ -236,7 +236,7 @@ public final class t7 extends FrameLayout {
                         hcVar.f1105c = null;
                     }
                     ac acVar = kcVar.f1281n0;
-                    int i13 = messageObject.storyItem.f20041id;
+                    int i13 = messageObject.storyItem.f20042id;
                     kc kcVar2 = acVar.N0;
                     int i14 = 0;
                     while (true) {

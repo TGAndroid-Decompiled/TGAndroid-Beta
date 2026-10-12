@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
 public final class rp0 {
-    public float f30205a;
-    public float f30206b;
-    public float f30207c;
+    public float f30201a;
+    public float f30202b;
+    public float f30203c;
     public float d;
-    public float f30208e;
-    public float f30209f;
-    public float f30210g;
+    public float f30204e;
+    public float f30205f;
+    public float f30206g;
 }

@@ -16,12 +16,12 @@ public final class p3 extends org.telegram.ui.ActionBar.e1 {
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         c(h6.w0(h6.E8, c6Var), h6.w0(h6.F8, c6Var));
         setIconColor(-1);
-        this.f20323c.setTranslationX(AndroidUtilities.dp(2.0f));
-        this.f20323c.setScaleX(1.2f);
-        this.f20323c.setScaleY(1.2f);
+        this.f20324c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f20324c.setScaleX(1.2f);
+        this.f20324c.setScaleY(1.2f);
         a(2);
         setBackground(null);
-        this.f20323c.addOnAttachStateChangeListener(new ai.v2(this, 13));
+        this.f20324c.addOnAttachStateChangeListener(new ai.v2(this, 13));
     }
 
     @Override

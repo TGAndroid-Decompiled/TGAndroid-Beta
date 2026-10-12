@@ -17,16 +17,16 @@ public final class z extends k.a implements l.i {
         this.f10204c = context;
         this.f10205e = yVar;
         l.k kVar = new l.k(context);
-        kVar.f14992l = 1;
+        kVar.f14993l = 1;
         this.d = kVar;
-        kVar.f14986e = this;
+        kVar.f14987e = this;
     }
 
     @Override
     public final boolean H(l.k kVar, MenuItem menuItem) {
         n4.y yVar = this.f10205e;
         if (yVar != null) {
-            return ((oi.f) yVar.f16362b).G(this, menuItem);
+            return ((oi.f) yVar.f16363b).G(this, menuItem);
         }
         return false;
     }
@@ -129,7 +129,7 @@ public final class z extends k.a implements l.i {
 
     @Override
     public final void n(boolean z10) {
-        this.f14272b = z10;
+        this.f14273b = z10;
         this.h.f10079f.setTitleOptional(z10);
     }
 

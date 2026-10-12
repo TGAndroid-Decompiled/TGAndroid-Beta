@@ -5,30 +5,30 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 public final class qf1 extends AnimatorListenerAdapter {
-    public final int f41320a;
-    public final boolean f41321b;
-    public final hg1 f41322c;
+    public final int f41324a;
+    public final boolean f41325b;
+    public final hg1 f41326c;
 
     public qf1(hg1 hg1Var, boolean z10, int i10) {
-        this.f41320a = i10;
-        this.f41322c = hg1Var;
-        this.f41321b = z10;
+        this.f41324a = i10;
+        this.f41326c = hg1Var;
+        this.f41325b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         int i10;
-        switch (this.f41320a) {
+        switch (this.f41324a) {
             case 0:
                 super.onAnimationEnd(animator);
-                boolean z10 = this.f41321b;
+                boolean z10 = this.f41325b;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                hg1 hg1Var = this.f41322c;
+                hg1 hg1Var = this.f41326c;
                 hg1Var.S0(f7);
                 if (z10) {
                     hg1Var.f38409q0.setVisibility(8);
@@ -41,8 +41,8 @@ public final class qf1 extends AnimatorListenerAdapter {
                 hg1Var.Q0(true);
                 return;
             default:
-                if (!this.f41321b) {
-                    this.f41322c.f38407o0.setVisibility(8);
+                if (!this.f41325b) {
+                    this.f41326c.f38407o0.setVisibility(8);
                     return;
                 }
                 return;

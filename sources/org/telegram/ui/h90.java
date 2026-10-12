@@ -27,7 +27,7 @@ public final class h90 implements Runnable {
                 Pattern pattern = LaunchActivity.B1;
                 org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(launchActivity, null);
                 acVar.d(R.raw.email_check_inbox, new String[0]);
-                acVar.f24276b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                acVar.f24277b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     org.telegram.ui.Components.sc.g(R, acVar, 1500).j();
@@ -55,20 +55,20 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 3:
-                if (!launchActivity.f33644q0.getFragmentStack().isEmpty()) {
-                    launchActivity.f33644q0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.dz0(launchActivity, launchActivity.f33632j0, launchActivity.f33628h0, launchActivity.f33630i0));
+                if (!launchActivity.f33646q0.getFragmentStack().isEmpty()) {
+                    launchActivity.f33646q0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.dz0(launchActivity, launchActivity.f33634j0, launchActivity.f33630h0, launchActivity.f33632i0));
                     return;
                 }
                 return;
             case 4:
                 Pattern pattern3 = LaunchActivity.B1;
                 launchActivity.getClass();
-                org.telegram.ui.Components.t30.f30740e0 = false;
+                org.telegram.ui.Components.t30.f30743e0 = false;
                 org.telegram.ui.Components.t30.j(launchActivity);
                 return;
             case 5:
-                ArrayList arrayList = launchActivity.f33620d0;
-                ArrayList arrayList2 = launchActivity.f33622e0;
+                ArrayList arrayList = launchActivity.f33622d0;
+                ArrayList arrayList2 = launchActivity.f33624e0;
                 if (AndroidUtilities.isTablet()) {
                     if (!arrayList2.isEmpty()) {
                         m2Var = (org.telegram.ui.ActionBar.m2) hg.c.h(1, arrayList2);
@@ -82,11 +82,11 @@ public final class h90 implements Runnable {
                 }
                 return;
             case 6:
-                if (!launchActivity.f33655v1) {
+                if (!launchActivity.f33657v1) {
                     try {
                         org.telegram.ui.ActionBar.a2 B = org.telegram.ui.Components.g5.B(launchActivity);
                         B.setOnDismissListener(new j90(launchActivity, 0));
-                        launchActivity.f33655v1 = true;
+                        launchActivity.f33657v1 = true;
                         B.show();
                     } catch (Throwable unused2) {
                         return;
@@ -95,7 +95,7 @@ public final class h90 implements Runnable {
                 return;
             case 7:
                 if (launchActivity.T0 != null) {
-                    File file = new File(ApplicationLoader.getFilesDirFixed(), a1.g.s(new StringBuilder("remote"), launchActivity.T0.f19939id, ".attheme"));
+                    File file = new File(ApplicationLoader.getFilesDirFixed(), a1.g.s(new StringBuilder("remote"), launchActivity.T0.f19940id, ".attheme"));
                     TLRPC.TL_theme tL_theme = launchActivity.T0;
                     org.telegram.ui.ActionBar.g6 u10 = org.telegram.ui.ActionBar.h6.u(file, tL_theme.title, tL_theme, true);
                     if (u10 != null) {
@@ -111,10 +111,10 @@ public final class h90 implements Runnable {
                 launchActivity.p0(new nc0());
                 return;
             case 9:
-                launchActivity.f33651t1 = null;
+                launchActivity.f33653t1 = null;
                 return;
             default:
-                launchActivity.f33653u1 = null;
+                launchActivity.f33655u1 = null;
                 return;
         }
     }

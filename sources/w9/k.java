@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import org.telegram.ui.l71;
 public final class k implements l71 {
-    public Object f50465a;
+    public Object f50473a;
 
     public k(Object obj) {
-        this.f50465a = obj;
+        this.f50473a = obj;
     }
 
     public void a(da.c cVar, Thread thread, Throwable th2) {
-        n nVar = (n) this.f50465a;
+        n nVar = (n) this.f50473a;
         synchronized (nVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -23,7 +23,7 @@ public final class k implements l71 {
             }
             try {
                 try {
-                    y.a(nVar.f50476e.l(new l(nVar, System.currentTimeMillis(), th2, thread, cVar)));
+                    y.a(nVar.f50484e.l(new l(nVar, System.currentTimeMillis(), th2, thread, cVar)));
                 } catch (TimeoutException unused) {
                     Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
                 }
@@ -34,7 +34,7 @@ public final class k implements l71 {
     }
 
     public void b(IBinder iBinder) {
-        synchronized (((HashMap) this.f50465a)) {
+        synchronized (((HashMap) this.f50473a)) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -43,7 +43,7 @@ public final class k implements l71 {
                 }
             }
             new y8.a();
-            for (Map.Entry entry : ((HashMap) this.f50465a).entrySet()) {
+            for (Map.Entry entry : ((HashMap) this.f50473a).entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;
@@ -60,6 +60,6 @@ public final class k implements l71 {
     }
 
     public k() {
-        this.f50465a = new HashMap();
+        this.f50473a = new HashMap();
     }
 }

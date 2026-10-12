@@ -214,7 +214,7 @@ public class c implements Iterator {
                 if (z13) {
                     Collection collection2 = (Collection) entry2.getValue();
                     this.f8717b.remove();
-                    ((x7.a) this.d).f50922c.d -= collection2.size();
+                    ((x7.a) this.d).f50930c.d -= collection2.size();
                     collection2.clear();
                     this.f8718c = null;
                     return;
@@ -245,7 +245,7 @@ public class c implements Iterator {
                 if (z15) {
                     Collection collection3 = (Collection) entry3.getValue();
                     this.f8717b.remove();
-                    ((ed) this.d).f53878c.getClass();
+                    ((ed) this.d).f53886c.getClass();
                     collection3.size();
                     collection3.clear();
                     this.f8718c = null;

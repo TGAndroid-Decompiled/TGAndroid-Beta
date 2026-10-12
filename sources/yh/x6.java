@@ -13,7 +13,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wm0;
 public final class x6 extends t61 {
-    public static final int f53603a = 0;
+    public static final int f53612a = 0;
 
     static {
         t61.setup(new t61());
@@ -24,19 +24,19 @@ public final class x6 extends t61 {
         boolean z11;
         int i10;
         y6 y6Var = (y6) view;
-        org.telegram.ui.Components.r6 r6Var = y6Var.f53672a;
-        ImageView imageView = y6Var.f53673b;
-        int i11 = y6Var.f53674c;
+        org.telegram.ui.Components.r6 r6Var = y6Var.f53677a;
+        ImageView imageView = y6Var.f53678b;
+        int i11 = y6Var.f53679c;
         int i12 = u61Var.d;
         if (i11 == i12) {
             z11 = true;
         } else {
             z11 = false;
         }
-        y6Var.f53674c = i12;
-        r6Var.c(u61Var.f31076l, z11, true);
-        if (u61Var.f31081q) {
-            i10 = org.telegram.ui.ActionBar.h6.f20762o6;
+        y6Var.f53679c = i12;
+        r6Var.c(u61Var.f31071l, z11, true);
+        if (u61Var.f31076q) {
+            i10 = org.telegram.ui.ActionBar.h6.f20763o6;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.G6;
         }
@@ -46,12 +46,12 @@ public final class x6 extends t61 {
         float f7 = 180.0f;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
-            if (u61Var.f31071f) {
+            if (u61Var.f31066f) {
                 f7 = 0.0f;
             }
             animate.rotation(f7).setDuration(340L).setInterpolator(js.h);
         } else {
-            if (u61Var.f31071f) {
+            if (u61Var.f31066f) {
                 f7 = 0.0f;
             }
             imageView.setRotation(f7);

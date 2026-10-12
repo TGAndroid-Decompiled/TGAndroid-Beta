@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class fa0 implements py {
-    public final int f37691a = 1;
-    public final LaunchActivity f37692b;
-    public final String f37693c;
+    public final int f37695a = 1;
+    public final LaunchActivity f37696b;
+    public final String f37697c;
     public final int d;
-    public final TLRPC.User f37694e;
+    public final TLRPC.User f37698e;
 
     public fa0(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f37692b = launchActivity;
-        this.f37693c = str;
+        this.f37696b = launchActivity;
+        this.f37697c = str;
         this.d = i10;
-        this.f37694e = user;
+        this.f37698e = user;
     }
 
     @Override
     public final boolean B() {
-        switch (this.f37691a) {
+        switch (this.f37695a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class fa0 implements py {
 
     @Override
     public final boolean K(vy vyVar) {
-        switch (this.f37691a) {
+        switch (this.f37695a) {
             case 0:
                 return false;
             default:
@@ -47,11 +47,11 @@ public final class fa0 implements py {
 
     @Override
     public final boolean w(vy vyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, hg1 hg1Var) {
-        int i12 = this.f37691a;
-        TLRPC.User user = this.f37694e;
+        int i12 = this.f37695a;
+        TLRPC.User user = this.f37698e;
         int i13 = this.d;
-        String str = this.f37693c;
-        LaunchActivity launchActivity = this.f37692b;
+        String str = this.f37697c;
+        LaunchActivity launchActivity = this.f37696b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
@@ -78,7 +78,7 @@ public final class fa0 implements py {
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f19864id = tL_inputGameShortName;
+                tL_inputMediaGame.f19865id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
                 SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
@@ -99,9 +99,9 @@ public final class fa0 implements py {
     }
 
     public fa0(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f37692b = launchActivity;
-        this.f37694e = user;
-        this.f37693c = str;
+        this.f37696b = launchActivity;
+        this.f37698e = user;
+        this.f37697c = str;
         this.d = i10;
     }
 }

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ud0 implements Runnable {
-    public final int f42497a;
-    public final hf0 f42498b;
+    public final int f42499a;
+    public final hf0 f42500b;
 
     public ud0(hf0 hf0Var, int i10) {
-        this.f42497a = i10;
-        this.f42498b = hf0Var;
+        this.f42499a = i10;
+        this.f42500b = hf0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42497a) {
+        switch (this.f42499a) {
             case 0:
-                this.f42498b.L.m();
+                this.f42500b.L.m();
                 return;
             case 1:
-                hf0 hf0Var = this.f42498b;
+                hf0 hf0Var = this.f42500b;
                 hf0Var.M = null;
                 hf0Var.N = null;
                 hf0Var.p(true);
@@ -30,10 +30,10 @@ public final class ud0 implements Runnable {
                 hf0Var.K = true;
                 return;
             case 2:
-                this.f42498b.K = true;
+                this.f42500b.K = true;
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f42498b.f38355c;
+                EditTextBoldCursor editTextBoldCursor = this.f42500b.f38355c;
                 if (editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();
                     editTextBoldCursor.setSelection(editTextBoldCursor.length());

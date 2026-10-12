@@ -35,7 +35,7 @@ public final class uv implements org.telegram.ui.st {
     @Override
     public final void C(TLRPC.Document document) {
         lw lwVar = this.f31266a;
-        org.telegram.ui.ActionBar.m2 m2Var = lwVar.f28293c;
+        org.telegram.ui.ActionBar.m2 m2Var = lwVar.f28288c;
         if (m2Var instanceof org.telegram.ui.eo) {
             ((org.telegram.ui.eo) m2Var).fb(document);
         }
@@ -98,7 +98,7 @@ public final class uv implements org.telegram.ui.st {
             return null;
         }
         Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f19808id)) {
+        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f19809id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -123,7 +123,7 @@ public final class uv implements org.telegram.ui.st {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f31266a.f28293c;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f31266a.f28288c;
         if (m2Var instanceof org.telegram.ui.eo) {
             return ((org.telegram.ui.eo) m2Var).c();
         }
@@ -168,10 +168,10 @@ public final class uv implements org.telegram.ui.st {
     @Override
     public final boolean m(int i10) {
         lw lwVar = this.f31266a;
-        org.telegram.ui.ActionBar.m2 m2Var = lwVar.f28293c;
+        org.telegram.ui.ActionBar.m2 m2Var = lwVar.f28288c;
         if ((m2Var instanceof org.telegram.ui.eo) && ((org.telegram.ui.eo) m2Var).H6()) {
             if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                if (((org.telegram.ui.eo) lwVar.f28293c).i() != null && UserObject.isUserSelf(((org.telegram.ui.eo) lwVar.f28293c).i())) {
+                if (((org.telegram.ui.eo) lwVar.f28288c).i() != null && UserObject.isUserSelf(((org.telegram.ui.eo) lwVar.f28288c).i())) {
                     return true;
                 }
                 return false;
@@ -200,7 +200,7 @@ public final class uv implements org.telegram.ui.st {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f19808id;
+            tL_emojiStatus.document_id = document.f19809id;
             emojiStatus = tL_emojiStatus;
         }
         TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -212,22 +212,22 @@ public final class uv implements org.telegram.ui.st {
         lw lwVar = this.f31266a;
         i10 = ((org.telegram.ui.ActionBar.e3) lwVar).currentAccount;
         MessagesController.getInstance(i10).updateEmojiStatus(emojiStatus);
-        hu huVar = new hu(3, this, obj);
+        jt jtVar = new jt(4, this, obj);
         if (document != null) {
             viewGroup = ((org.telegram.ui.ActionBar.e3) lwVar).containerView;
             c6Var = ((org.telegram.ui.ActionBar.e3) lwVar).resourcesProvider;
-            new zc((FrameLayout) viewGroup, c6Var).q(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), huVar).j();
+            new zc((FrameLayout) viewGroup, c6Var).q(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), jtVar).j();
             return;
         }
         Context context = lwVar.getContext();
         c6Var2 = ((org.telegram.ui.ActionBar.e3) lwVar).resourcesProvider;
         kc kcVar = new kc(context, c6Var2);
-        kcVar.f27818b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-        kcVar.f27817a.setImageResource(R.drawable.msg_settings_premium);
+        kcVar.f27821b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+        kcVar.f27820a.setImageResource(R.drawable.msg_settings_premium);
         Context context2 = lwVar.getContext();
         c6Var3 = ((org.telegram.ui.ActionBar.e3) lwVar).resourcesProvider;
         qc qcVar = new qc(context2, c6Var3, true);
-        qcVar.f29816a = huVar;
+        qcVar.f29794a = jtVar;
         kcVar.setButton(qcVar);
         viewGroup2 = ((org.telegram.ui.ActionBar.e3) lwVar).containerView;
         sc.f((FrameLayout) viewGroup2, kcVar, 1500).j();

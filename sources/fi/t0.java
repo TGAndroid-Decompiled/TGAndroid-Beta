@@ -77,7 +77,7 @@ public final class t0 implements gi.e {
     }
 
     public final void b(p71 p71Var) {
-        if (!this.f10058m && !this.f10059n && p71Var.V2.N0() + 10 > p71Var.W2.f26678x.size()) {
+        if (!this.f10058m && !this.f10059n && p71Var.V2.N0() + 10 > p71Var.W2.f26682x.size()) {
             d();
         }
     }
@@ -105,7 +105,7 @@ public final class t0 implements gi.e {
                         u61 J = u61.J(gi.g.class);
                         J.G = new gi.f(peerDialogId, user, z11);
                         J.H = this;
-                        J.f31074j = !z10;
+                        J.f31069j = !z10;
                         arrayList.add(J);
                     }
                 }
@@ -158,7 +158,7 @@ public final class t0 implements gi.e {
                 a2 O = g5.O(this.f10048a, this.f10049b, string, replaceTags, LocaleController.getString(i11), new bi.f(7, this, z10));
                 O.show();
                 if (!z10 && (textView = (TextView) O.d(-1)) != null) {
-                    textView.setTextColor(h6.x0(null, h6.f20799q7, false));
+                    textView.setTextColor(h6.x0(null, h6.f20800q7, false));
                     return;
                 }
                 return;
@@ -202,7 +202,7 @@ public final class t0 implements gi.e {
         c6 c6Var = this.f10049b;
         rc rcVar = new rc(context, c6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j3);
-        m9 m9Var = rcVar.f30138a;
+        m9 m9Var = rcVar.f30139a;
         if (userOrChat != null) {
             m9Var.setCount(1);
             m9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,7 +214,7 @@ public final class t0 implements gi.e {
         m9Var.setScaleX(1.333f);
         m9Var.setScaleY(1.333f);
         m9Var.a(false);
-        ia0 ia0Var = rcVar.f30139b;
+        ia0 ia0Var = rcVar.f30140b;
         ia0Var.setSingleLine(false);
         ia0Var.setMaxLines(2);
         ia0Var.setTextSize(1, 14.0f);
@@ -232,8 +232,8 @@ public final class t0 implements gi.e {
         }
         qc qcVar = new qc(context, c6Var, true, true);
         qcVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        qcVar.f29816a = new ai.j(this, j3, 9);
-        qcVar.f29817b = this.f10054i;
+        qcVar.f29794a = new ai.j(this, j3, 9);
+        qcVar.f29795b = this.f10054i;
         rcVar.setButton(qcVar);
         this.f10050c.b(rcVar, 5000).j();
     }

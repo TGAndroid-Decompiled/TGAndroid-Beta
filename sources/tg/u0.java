@@ -1,27 +1,34 @@
 package tg;
 
-import android.view.View;
-public final class u0 implements View.OnClickListener {
-    public final int f48624a;
-    public final y0 f48625b;
+import j$.util.function.BiConsumer$CC;
+import java.util.List;
+import java.util.function.BiConsumer;
+import org.telegram.ui.Components.db;
+public final class u0 implements BiConsumer {
+    public final int f48653a;
+    public final db f48654b;
 
-    public u0(y0 y0Var, int i10) {
-        this.f48624a = i10;
-        this.f48625b = y0Var;
+    public u0(db dbVar, int i10) {
+        this.f48653a = i10;
+        this.f48654b = dbVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f48624a) {
+    public final void accept(Object obj, Object obj2) {
+        switch (this.f48653a) {
             case 0:
-                y0 y0Var = this.f48625b;
-                y0Var.f48643e0.clear();
-                y0Var.Y.d.b(true);
-                y0Var.c0(true, false);
+                String str = (String) obj;
+                ((z0) this.f48654b).f48683k0.addAll((List) obj2);
                 return;
             default:
-                this.f48625b.X(false);
+                String str2 = (String) obj;
+                ((th.f) this.f48654b).f48706b0.addAll((List) obj2);
                 return;
         }
+    }
+
+    public BiConsumer andThen(BiConsumer biConsumer) {
+        int i10 = this.f48653a;
+        return BiConsumer$CC.$default$andThen(this, biConsumer);
     }
 }

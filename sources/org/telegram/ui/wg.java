@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class wg implements Runnable {
-    public final int f43510a;
-    public final eo f43511b;
+    public final int f43515a;
+    public final eo f43516b;
 
     public wg(eo eoVar, int i10) {
-        this.f43510a = i10;
-        this.f43511b = eoVar;
+        this.f43515a = i10;
+        this.f43516b = eoVar;
     }
 
     @Override
@@ -22,33 +22,33 @@ public final class wg implements Runnable {
         boolean z10;
         boolean z11;
         ci.d4 d4Var;
-        int i10 = this.f43510a;
+        int i10 = this.f43515a;
         boolean z12 = true;
-        eo eoVar = this.f43511b;
+        eo eoVar = this.f43516b;
         switch (i10) {
             case 0:
                 sk skVar = eoVar.Y;
                 if (skVar != null && eoVar.Cc != null) {
                     if (skVar.u0()) {
                         eoVar.Y.n0(false);
-                        AndroidUtilities.showKeyboard(eoVar.Cc.f46600a);
-                        eoVar.Cc.f46601b.f46597a.a(false, true);
+                        AndroidUtilities.showKeyboard(eoVar.Cc.f46608a);
+                        eoVar.Cc.f46609b.f46605a.a(false, true);
                         return;
                     }
                     eoVar.Y.X0(false, false, false);
                     eoVar.Y.u1();
-                    eoVar.Cc.f46601b.f46597a.a(true, true);
+                    eoVar.Cc.f46609b.f46605a.a(true, true);
                     return;
                 }
                 return;
             case 1:
-                ArrayList arrayList = eoVar.f37444u6;
+                ArrayList arrayList = eoVar.f37449u6;
                 eoVar.Hb = System.currentTimeMillis();
-                if (eoVar.f37478x0 != null && eoVar.A0 != null) {
+                if (eoVar.f37483x0 != null && eoVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < eoVar.f37478x0.getChildCount(); i13++) {
-                        View childAt = eoVar.f37478x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < eoVar.f37483x0.getChildCount(); i13++) {
+                        View childAt = eoVar.f37483x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -68,7 +68,7 @@ public final class wg implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) eoVar.f37484x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) eoVar.f37489x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -145,10 +145,10 @@ public final class wg implements Runnable {
                 eoVar.Q6();
                 return;
             case 15:
-                eoVar.f37188a = (eoVar.f37188a + 1) % 3;
+                eoVar.f37193a = (eoVar.f37193a + 1) % 3;
                 return;
             case 16:
-                eoVar.f37201b = !eoVar.f37201b;
+                eoVar.f37206b = !eoVar.f37206b;
                 return;
             case 17:
                 eoVar.D7(true);
@@ -168,13 +168,13 @@ public final class wg implements Runnable {
                 eoVar.w7();
                 return;
             case 20:
-                eoVar.f37500ya = false;
+                eoVar.f37505ya = false;
                 eoVar.yc();
                 return;
             case 21:
-                eoVar.f37301ic = 0;
-                eoVar.f37313jc = false;
-                eoVar.f37478x0.f1();
+                eoVar.f37306ic = 0;
+                eoVar.f37318jc = false;
+                eoVar.f37483x0.f1();
                 return;
             case 22:
                 eoVar.v9(5);
@@ -184,7 +184,7 @@ public final class wg implements Runnable {
                 return;
             case 24:
                 vk vkVar = eoVar.R2;
-                if ((vkVar == null || vkVar.getVisibility() != 0) && (d4Var = eoVar.f37465w1) != null) {
+                if ((vkVar == null || vkVar.getVisibility() != 0) && (d4Var = eoVar.f37470w1) != null) {
                     d4Var.u();
                     return;
                 }
@@ -201,10 +201,10 @@ public final class wg implements Runnable {
             case 28:
                 FrameLayout.LayoutParams e7 = w7.w5.e(-1, -2, 87);
                 e7.bottomMargin = eoVar.Y.getMeasuredHeight();
-                eoVar.X0.addView(eoVar.f37492y1, e7);
-                eoVar.f37492y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                eoVar.f37492y1.m(0.0f, eoVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                eoVar.f37492y1.u();
+                eoVar.X0.addView(eoVar.f37497y1, e7);
+                eoVar.f37497y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                eoVar.f37497y1.m(0.0f, eoVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                eoVar.f37497y1.u();
                 return;
             default:
                 int i17 = eo.Hc;

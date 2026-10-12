@@ -1,36 +1,41 @@
 package pi;
 public final class e implements Runnable {
-    public final int f45775a;
-    public final s f45776b;
-    public final m f45777c;
-    public final long d;
-    public final long f45778e;
+    public final int f45780a;
+    public final t f45781b;
+    public final Throwable f45782c;
 
-    public e(s sVar, m mVar, long j3, long j10, int i10) {
-        this.f45775a = i10;
-        this.f45776b = sVar;
-        this.f45777c = mVar;
-        this.d = j3;
-        this.f45778e = j10;
+    public e(t tVar, Throwable th2, int i10) {
+        this.f45780a = i10;
+        this.f45781b = tVar;
+        this.f45782c = th2;
     }
 
     @Override
     public final void run() {
-        switch (this.f45775a) {
+        Exception runtimeException;
+        Exception runtimeException2;
+        switch (this.f45780a) {
             case 0:
-                o oVar = this.f45776b.f45816f;
-                m mVar = this.f45777c;
-                oVar.onBytesAvailable(mVar.f45793a, mVar.f45794b, this.d, this.f45778e);
-                return;
-            case 1:
-                o oVar2 = this.f45776b.f45816f;
-                m mVar2 = this.f45777c;
-                oVar2.onOutputCompleted(mVar2.f45793a, mVar2.f45794b, this.d, this.f45778e);
+                t tVar = this.f45781b;
+                tVar.getClass();
+                Throwable th2 = this.f45782c;
+                if (th2 instanceof Exception) {
+                    runtimeException = (Exception) th2;
+                } else {
+                    runtimeException = new RuntimeException(th2);
+                }
+                tVar.i(runtimeException);
                 return;
             default:
-                o oVar3 = this.f45776b.f45816f;
-                m mVar3 = this.f45777c;
-                oVar3.onOutputCompleted(mVar3.f45793a, mVar3.f45794b, this.d, this.f45778e);
+                t tVar2 = this.f45781b;
+                tVar2.getClass();
+                Throwable th3 = this.f45782c;
+                if (th3 instanceof Exception) {
+                    runtimeException2 = (Exception) th3;
+                } else {
+                    runtimeException2 = new RuntimeException(th3);
+                }
+                tVar2.i(runtimeException2);
                 return;
         }
     }

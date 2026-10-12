@@ -26,10 +26,9 @@ import org.telegram.ui.Components.k71;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.ci0;
-import org.telegram.ui.w31;
 public final class n7 extends k71 implements NotificationCenter.NotificationCenterDelegate {
     public final ArrayList d = new ArrayList();
-    public boolean f35136e;
+    public boolean f35138e;
 
     public static void Y(n7 n7Var, Utilities.Callback callback, l0 l0Var, q0 q0Var, i0 i0Var) {
         if (i0Var == null) {
@@ -44,7 +43,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
         if (BuildVars.DEBUG_PRIVATE_VERSION && l0Var.e()) {
             pVar = new p((k71) n7Var, l0Var, (Object) g10, 6);
         }
-        f0(parentActivity, g10, c6Var, pVar, new s(13, n7Var, q0Var));
+        f0(parentActivity, g10, c6Var, pVar, new s(14, n7Var, q0Var));
     }
 
     public static void Z(n7 n7Var, org.telegram.ui.ActionBar.a2 a2Var, int i10) {
@@ -111,7 +110,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
             textView.setGravity(8388613);
             textView.setIncludeFontPadding(false);
             textView.setLineSpacing(0.0f, 1.0f);
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var));
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
             StringBuilder sb2 = new StringBuilder();
             int i14 = i12 + 1;
             sb2.append(i14);
@@ -159,7 +158,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
         textView2.setText(LocaleController.getString(R.string.WalletRecoveryPhraseInfo));
         textView2.setMaxWidth(AndroidUtilities.dp(330.0f));
         textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), 0);
@@ -204,7 +203,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
             dVar3.setOnClickListener(new e7(dVar3, pVar, e3Var, c6Var, 1));
         }
         if (sVar != null) {
-            dVar2.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20799q7, c6Var));
+            dVar2.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20800q7, c6Var));
             dVar2.setText(LocaleController.getString(R.string.WalletDelete));
             dVar2.setOnClickListener(new g7(activity, c6Var, sVar, e3Var));
         } else {
@@ -224,18 +223,18 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
         k31 k31Var = new k31(activity, c6Var);
         k31Var.setPadding(AndroidUtilities.dp(0.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(0.0f), AndroidUtilities.dp(4.0f));
         k31Var.setEmojiSize(100);
-        y9 y9Var = k31Var.f27743b;
+        y9 y9Var = k31Var.f27746b;
         y9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
         MediaDataController.getInstance(AndroidUtilities.getAccountInProduction()).setPlaceholderImage(y9Var, "RestrictedEmoji", "📝", "100_100");
         f10.addView(k31Var, w7.w5.q(-1, -2, 7));
         String string = LocaleController.getString(R.string.WalletRecoveryPhraseLearnTitle);
-        ia0 ia0Var = k31Var.f27744c;
+        ia0 ia0Var = k31Var.f27747c;
         CharSequence replaceEmoji = Emoji.replaceEmoji(string, ia0Var.getPaint().getFontMetricsInt(), false);
         String string2 = LocaleController.getString(R.string.WalletRecoveryPhraseLearnInfo);
         ia0 ia0Var2 = k31Var.d;
         k31Var.a(replaceEmoji, Emoji.replaceEmoji(string2, ia0Var2.getPaint().getFontMetricsInt(), false));
         ia0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, c6Var));
-        ia0Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var));
+        ia0Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
         NotificationCenter.listenEmojiLoading(ia0Var);
         NotificationCenter.listenEmojiLoading(ia0Var2);
         f10.addView(d0(activity, c6Var, R.drawable.wallet_learn_hidden, LocaleController.getString(R.string.WalletRecoveryPhraseNeverShare)));
@@ -269,7 +268,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
             l0 v = l0.v(this.currentAccount);
             if (v.f()) {
                 c7 c7Var = new c7();
-                c7Var.f34589s = v.w();
+                c7Var.f34591s = v.w();
                 presentFragment(c7Var);
                 return;
             }
@@ -283,8 +282,8 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
             a2Var.q(500L);
             j jVar = new j(this, a2Var, v9);
             l0.E("emulate disable backup: when ready");
-            s sVar = new s(1, v9, jVar);
-            if (v9.D() && v9.f34998f != null) {
+            s sVar = new s(2, v9, jVar);
+            if (v9.D() && v9.f35000f != null) {
                 sVar.run();
             } else {
                 v9.v.add(new WeakReference(sVar));
@@ -293,7 +292,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
             l0 v10 = l0.v(this.currentAccount);
             d7 d7Var = new d7(this, 1);
             l0.E("enable backup: when ready...");
-            v10.h0(new w31(29, v10, d7Var));
+            v10.h0(new s(0, v10, d7Var));
         } else if (i10 == 4) {
             Activity parentActivity = getParentActivity();
             String string = LocaleController.getString(R.string.WalletDeleteWalletTitle);
@@ -304,10 +303,10 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
             org.telegram.ui.ActionBar.a2 h02 = org.telegram.ui.Components.g5.h0(parentActivity, string, string2, str, LocaleController.getString(R.string.WalletDeleteAnyway), new d7(this, 2), getResourceProvider(), false);
             TextView textView = (TextView) h02.d(-1);
             if (textView != null) {
-                textView.setTextColor(h02.e(org.telegram.ui.ActionBar.h6.f20799q7));
+                textView.setTextColor(h02.e(org.telegram.ui.ActionBar.h6.f20800q7));
             }
         } else if (u61Var.G(l7.class)) {
-            String charSequence = u61Var.f31076l.toString();
+            String charSequence = u61Var.f31071l.toString();
             g0(getParentActivity(), getResourceProvider(), new r(this, l0.v(this.currentAccount), charSequence, new q0(getParentActivity(), charSequence, this.currentAccount)));
         }
     }
@@ -320,16 +319,16 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f27773a);
-        this.f27773a.p1();
-        this.f27773a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f27776a);
+        this.f27776a.p1();
+        this.f27776a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         j71 j71Var;
-        if (i10 == NotificationCenter.walletUpdate && (j71Var = this.f27773a) != null) {
+        if (i10 == NotificationCenter.walletUpdate && (j71Var = this.f27776a) != null) {
             j71Var.W2.N(true);
         }
     }
@@ -348,7 +347,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
     @Override
     public final void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.walletUpdate);
-        this.f35136e = true;
+        this.f35138e = true;
         ArrayList arrayList = this.d;
         int size = arrayList.size();
         int i10 = 0;
@@ -363,7 +362,7 @@ public final class n7 extends k71 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f27773a.setPadding(0, 0, 0, i13);
-        this.f27773a.setClipToPadding(false);
+        this.f27776a.setPadding(0, 0, 0, i13);
+        this.f27776a.setClipToPadding(false);
     }
 }

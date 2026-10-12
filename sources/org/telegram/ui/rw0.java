@@ -19,7 +19,7 @@ public final class rw0 extends RelativeLayout {
             if (childAt.getTag() instanceof String) {
                 int left = childAt.getLeft();
                 PopupNotificationActivity popupNotificationActivity = this.f41743a;
-                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f33952b.getTop(), childAt.getRight(), popupNotificationActivity.f33952b.getBottom());
+                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f33954b.getTop(), childAt.getRight(), popupNotificationActivity.f33954b.getBottom());
             }
         }
     }
@@ -28,8 +28,8 @@ public final class rw0 extends RelativeLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         PopupNotificationActivity popupNotificationActivity = this.f41743a;
-        int measuredWidth = popupNotificationActivity.f33952b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f33952b.getMeasuredHeight();
+        int measuredWidth = popupNotificationActivity.f33954b.getMeasuredWidth();
+        int measuredHeight = popupNotificationActivity.f33954b.getMeasuredHeight();
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt = getChildAt(i12);
             if (childAt.getTag() instanceof String) {

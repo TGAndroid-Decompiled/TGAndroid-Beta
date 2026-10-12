@@ -38,30 +38,30 @@ public abstract class hs extends EditTextBoldCursor {
 
     static {
         org.telegram.ui.Components.rw0 rw0Var = new org.telegram.ui.Components.rw0(new qr(1), new qr(2));
-        rw0Var.f30272c = 100.0f;
+        rw0Var.f30268c = 100.0f;
         I = rw0Var;
         org.telegram.ui.Components.rw0 rw0Var2 = new org.telegram.ui.Components.rw0(new qr(3), new qr(4));
-        rw0Var2.f30272c = 100.0f;
+        rw0Var2.f30268c = 100.0f;
         J = rw0Var2;
         org.telegram.ui.Components.rw0 rw0Var3 = new org.telegram.ui.Components.rw0(new qr(5), new qr(6));
-        rw0Var3.f30272c = 100.0f;
+        rw0Var3.f30268c = 100.0f;
         K = rw0Var3;
         org.telegram.ui.Components.rw0 rw0Var4 = new org.telegram.ui.Components.rw0(new qr(7), new qr(8));
-        rw0Var4.f30272c = 100.0f;
+        rw0Var4.f30268c = 100.0f;
         L = rw0Var4;
     }
 
     public static void k(o1.k kVar, float f7) {
-        o1.l lVar = kVar.f16690u;
-        if (lVar != null && f7 == ((float) lVar.f16697i)) {
+        o1.l lVar = kVar.f16691u;
+        if (lVar != null && f7 == ((float) lVar.f16698i)) {
             return;
         }
         kVar.c();
         o1.l lVar2 = new o1.l(f7);
         lVar2.b(400.0f);
         lVar2.a(1.0f);
-        lVar2.f16697i = f7;
-        kVar.f16690u = lVar2;
+        lVar2.f16698i = f7;
+        kVar.f16691u = lVar2;
         kVar.h();
     }
 
@@ -95,11 +95,11 @@ public abstract class hs extends EditTextBoldCursor {
         kVar.c();
         if (f7 != 0.0f) {
             o1.l j3 = org.telegram.ui.Cells.c1.j(1.0f, 500.0f, 0.75f);
-            j3.f16697i = 100.0f;
-            kVar.f16690u = j3;
-            kVar.f16680b = 100.0f;
-            kVar.f16681c = true;
-            kVar.f16679a = 4000.0f;
+            j3.f16698i = 100.0f;
+            kVar.f16691u = j3;
+            kVar.f16681b = 100.0f;
+            kVar.f16682c = true;
+            kVar.f16680a = 4000.0f;
             kVar.h();
             return;
         }

@@ -18,22 +18,22 @@ public final class c4 extends u91 {
     public final b4 U;
     public final k0 V;
     public final ArrayList W;
-    public final int f34545a0;
-    public final Rect f34546b0;
-    public final View[] f34547c0;
+    public final int f34547a0;
+    public final Rect f34548b0;
+    public final View[] f34549c0;
 
     public c4(Context context, org.telegram.ui.ActionBar.c6 c6Var, final k0 k0Var, final ArrayList arrayList, int i10, Rect rect, View[] viewArr) {
         super(context, c6Var);
         this.V = k0Var;
         this.W = arrayList;
-        this.f34545a0 = i10;
-        this.f34546b0 = rect;
-        this.f34547c0 = viewArr;
+        this.f34547a0 = i10;
+        this.f34548b0 = rect;
+        this.f34549c0 = viewArr;
         this.U = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i11, int i12, Object[] objArr) {
                 ArrayList arrayList2;
-                ArrayList arrayList3 = k0.this.f34950c;
+                ArrayList arrayList3 = k0.this.f34952c;
                 int size = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size) {
@@ -65,7 +65,7 @@ public final class c4 extends u91 {
         view.setTranslationX(f7);
         if (getMeasuredWidth() > 0) {
             float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-            view.setTranslationX(f7 - ((2.0f * clamp) * this.f34546b0.left));
+            view.setTranslationX(f7 - ((2.0f * clamp) * this.f34548b0.left));
             if (clamp > 0.0f) {
                 measuredWidth = 0.0f;
             } else {
@@ -97,26 +97,26 @@ public final class c4 extends u91 {
                     float dp = (-(f11 - e6Var.Q)) * AndroidUtilities.dp(140.0f);
                     e6Var.Q = f11;
                     if (e6Var.O == null) {
-                        o1.k kVar = new o1.k(e6Var, o1.h.f16671m);
+                        o1.k kVar = new o1.k(e6Var, o1.h.f16672m);
                         e6Var.O = kVar;
                         o1.l lVar = new o1.l(0.0f);
                         lVar.a(0.32f);
                         lVar.b(300.0f);
-                        kVar.f16690u = lVar;
+                        kVar.f16691u = lVar;
                         e6Var.O.b(new y5(e6Var, 1));
                     }
                     float max2 = Math.max(-AndroidUtilities.dp(1600.0f), Math.min(AndroidUtilities.dp(1600.0f), e6Var.P + dp));
                     e6Var.P = max2;
                     o1.k kVar2 = e6Var.O;
-                    kVar2.f16679a = max2;
+                    kVar2.f16680a = max2;
                     kVar2.g(0.0f);
                 }
                 if (f10 != 0.0f) {
                     e6Var.U = Math.max(-720.0f, Math.min(720.0f, e6Var.U - (f10 * 300.0f)));
-                    if (!e6Var.W && e6Var.f34674n) {
+                    if (!e6Var.W && e6Var.f34676n) {
                         e6Var.W = true;
                         e6Var.V = 0L;
-                        Choreographer.getInstance().postFrameCallback(e6Var.f34658a0);
+                        Choreographer.getInstance().postFrameCallback(e6Var.f34660a0);
                     }
                 }
             }
@@ -124,9 +124,9 @@ public final class c4 extends u91 {
     }
 
     public final void J() {
-        if (this.f31112b >= this.W.size() - 2) {
+        if (this.f31107b >= this.W.size() - 2) {
             k0 k0Var = this.V;
-            if (!k0Var.f34953g) {
+            if (!k0Var.f34955g) {
                 k0Var.e();
             }
         }
@@ -151,14 +151,14 @@ public final class c4 extends u91 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f34545a0).addObserver(this.U, NotificationCenter.walletTransactionsUpdate);
+        NotificationCenter.getInstance(this.f34547a0).addObserver(this.U, NotificationCenter.walletTransactionsUpdate);
         J();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f34545a0).removeObserver(this.U, NotificationCenter.walletTransactionsUpdate);
+        NotificationCenter.getInstance(this.f34547a0).removeObserver(this.U, NotificationCenter.walletTransactionsUpdate);
     }
 
     @Override
@@ -185,7 +185,7 @@ public final class c4 extends u91 {
             ((Runnable) childAt.getTag()).run();
         }
         J();
-        sc scVar = sc.f30532w;
+        sc scVar = sc.f30528w;
         if (scVar != null) {
             scVar.c(0L, false);
         }
@@ -194,7 +194,7 @@ public final class c4 extends u91 {
     @Override
     public final void w(boolean z10) {
         requestLayout();
-        View view = this.f34547c0[0];
+        View view = this.f34549c0[0];
         if (view != null) {
             view.invalidate();
         }

@@ -73,7 +73,7 @@ public final class v71 extends IUpdateLayout {
                     this.f31450a.setVisibility(0);
                     this.f31450a.setTag(1);
                     if (z10) {
-                        this.f31450a.animate().translationY(0.0f).setInterpolator(js.f27628g).setListener(null).setDuration(180L).start();
+                        this.f31450a.animate().translationY(0.0f).setInterpolator(js.f27635g).setListener(null).setDuration(180L).start();
                         return;
                     } else {
                         this.f31450a.setTranslationY(0.0f);
@@ -86,7 +86,7 @@ public final class v71 extends IUpdateLayout {
             if (frameLayout != null && frameLayout.getTag() != null) {
                 this.f31450a.setTag(null);
                 if (z10) {
-                    this.f31450a.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(js.f27628g).setListener(new zd0(this, 28)).setDuration(180L).start();
+                    this.f31450a.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(js.f27635g).setListener(new zd0(this, 28)).setDuration(180L).start();
                     return;
                 }
                 this.f31450a.setTranslationY(AndroidUtilities.dp(44.0f));

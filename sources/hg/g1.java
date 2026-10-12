@@ -69,9 +69,9 @@ public final class g1 extends m2 implements NotificationCenter.NotificationCente
         String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
         int i10 = R.raw.biz_clock;
         u61 u61Var = new u61(2);
-        u61Var.f31076l = string;
-        u61Var.f31079o = string2;
-        u61Var.f31075k = i10;
+        u61Var.f31071l = string;
+        u61Var.f31074o = string2;
+        u61Var.f31070k = i10;
         arrayList.add(u61Var);
         u61 i11 = u61.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
         i11.K(g1Var.f11246e);
@@ -90,8 +90,8 @@ public final class g1 extends m2 implements NotificationCenter.NotificationCente
                     String a02 = a0(g1Var.h[i12]);
                     u61 u61Var2 = new u61(5);
                     u61Var2.d = i12;
-                    u61Var2.f31076l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    u61Var2.f31077m = a02;
+                    u61Var2.f31071l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    u61Var2.f31072m = a02;
                     u61Var2.K(!g1Var.h[i12].isEmpty());
                     arrayList.add(u61Var2);
                     i12++;
@@ -344,18 +344,18 @@ public final class g1 extends m2 implements NotificationCenter.NotificationCente
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 14));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = h6.f20894v8;
+        int i10 = h6.f20895v8;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f11244b = new is(mutate, new lq(h6.x0(null, i10, false)));
         this.f11245c = this.actionBar.p().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f11244b);
         Y(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20503a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
         p71 p71Var = new p71(this, new bi.v(this, 27), new c5(this, 3), null);
         this.f11243a = p71Var;
         p71Var.p1();
         p71 p71Var2 = this.f11243a;
-        p71Var2.W2.f26675r = false;
+        p71Var2.W2.f26679r = false;
         frameLayout.addView(p71Var2, w5.d(-1.0f, -1));
         this.actionBar.B(this.f11243a, true);
         e0();
@@ -364,7 +364,7 @@ public final class g1 extends m2 implements NotificationCenter.NotificationCente
     }
 
     public final void d0() {
-        if (this.f11244b.f27274c > 0.0f) {
+        if (this.f11244b.f27268c > 0.0f) {
             return;
         }
         if (!b0()) {

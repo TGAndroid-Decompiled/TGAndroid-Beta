@@ -1,8 +1,8 @@
 package org.telegram.ui.ActionBar;
 public final class k2 {
-    public boolean f21087a;
-    public Runnable f21088b;
-    public Runnable f21089c;
+    public boolean f21088a;
+    public Runnable f21089b;
+    public Runnable f21090c;
     public Runnable d;
-    public boolean f21090e;
+    public boolean f21091e;
 }

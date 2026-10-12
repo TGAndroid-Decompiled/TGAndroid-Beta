@@ -16,38 +16,38 @@ public final class h4 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         ArticleViewer$WindowView articleViewer$WindowView = this.f38237b;
         i4 i4Var = articleViewer$WindowView.H;
-        boolean z10 = articleViewer$WindowView.f21517e;
+        boolean z10 = articleViewer$WindowView.f21518e;
         boolean z11 = this.f38236a;
         if (z10) {
             Object obj = null;
-            i4Var.f38661u0[0].setBackgroundDrawable(null);
+            i4Var.f38664u0[0].setBackgroundDrawable(null);
             if (!z11) {
-                m3[] m3VarArr = i4Var.f38661u0;
+                m3[] m3VarArr = i4Var.f38664u0;
                 m3 m3Var = m3VarArr[1];
                 m3VarArr[1] = m3VarArr[0];
                 m3VarArr[0] = m3Var;
-                i4Var.f38649h0.i();
-                i4Var.Z0.a(i4Var.f38661u0[0].getBackgroundColor(), true);
-                i4Var.f38642a1.a(i4Var.f38661u0[1].getBackgroundColor(), true);
+                i4Var.f38652h0.i();
+                i4Var.Z0.a(i4Var.f38664u0[0].getBackgroundColor(), true);
+                i4Var.f38645a1.a(i4Var.f38664u0[1].getBackgroundColor(), true);
                 v3 v3Var = i4Var.K;
                 if (v3Var != null) {
                     v3Var.m();
                 }
-                obj = hg.c.A(1, i4Var.f38645d0);
-                i4Var.O0.S(i4Var.f38661u0[0].f39892b);
+                obj = hg.c.A(1, i4Var.f38648d0);
+                i4Var.O0.S(i4Var.f38664u0[0].f39895b);
                 org.telegram.ui.Cells.o9 o9Var = i4Var.O0;
-                o9Var.f22382z0 = i4Var.f38661u0[0].d;
+                o9Var.f22383z0 = i4Var.f38664u0[0].d;
                 o9Var.f(true);
                 i4Var.i0(false);
                 i4Var.f0();
             }
-            i4Var.f38661u0[1].b();
-            i4Var.f38661u0[1].setVisibility(8);
+            i4Var.f38664u0[1].b();
+            i4Var.f38664u0[1].setVisibility(8);
             if (obj instanceof z2) {
                 ((z2) obj).a();
             }
             if (obj instanceof TLRPC.WebPage) {
-                org.telegram.ui.web.h2.o((TLRPC.WebPage) obj);
+                org.telegram.ui.web.i2.o((TLRPC.WebPage) obj);
             }
         } else if (!z11) {
             v3 v3Var2 = i4Var.K;
@@ -59,7 +59,7 @@ public final class h4 extends AnimatorListenerAdapter {
                 i4Var.M();
             }
         }
-        articleViewer$WindowView.f21517e = false;
+        articleViewer$WindowView.f21518e = false;
         articleViewer$WindowView.d = false;
         i4Var.T0 = false;
     }

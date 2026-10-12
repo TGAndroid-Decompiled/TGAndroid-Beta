@@ -7,14 +7,14 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 public final class s implements o0 {
-    public final String f16803a;
-    public final String f16804b;
-    public final List f16805c;
+    public final String f16804a;
+    public final String f16805b;
+    public final List f16806c;
 
     public s(String str, String str2, List list) {
-        this.f16803a = str;
-        this.f16804b = str2;
-        this.f16805c = DesugarCollections.unmodifiableList(new ArrayList(list));
+        this.f16804a = str;
+        this.f16805b = str2;
+        this.f16806c = DesugarCollections.unmodifiableList(new ArrayList(list));
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class s implements o0 {
         }
         if (obj != null && s.class == obj.getClass()) {
             s sVar = (s) obj;
-            if (TextUtils.equals(this.f16803a, sVar.f16803a) && TextUtils.equals(this.f16804b, sVar.f16804b) && this.f16805c.equals(sVar.f16805c)) {
+            if (TextUtils.equals(this.f16804a, sVar.f16804a) && TextUtils.equals(this.f16805b, sVar.f16805b) && this.f16806c.equals(sVar.f16806c)) {
                 return true;
             }
         }
@@ -43,26 +43,26 @@ public final class s implements o0 {
     public final int hashCode() {
         int i10;
         int i11 = 0;
-        String str = this.f16803a;
+        String str = this.f16804a;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i12 = i10 * 31;
-        String str2 = this.f16804b;
+        String str2 = this.f16805b;
         if (str2 != null) {
             i11 = str2.hashCode();
         }
-        return this.f16805c.hashCode() + ((i12 + i11) * 31);
+        return this.f16806c.hashCode() + ((i12 + i11) * 31);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("HlsTrackMetadataEntry");
-        String str2 = this.f16803a;
+        String str2 = this.f16804a;
         if (str2 != null) {
-            str = a1.g.t(a1.g.w(" [", str2, ", "), this.f16804b, "]");
+            str = a1.g.t(a1.g.w(" [", str2, ", "), this.f16805b, "]");
         } else {
             str = "";
         }

@@ -22,7 +22,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.w5;
 public final class d extends db {
-    public static final int f51418a0 = 0;
+    public static final int f51426a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
     public h71 Z;
@@ -34,7 +34,7 @@ public final class d extends db {
         this.v = 0.2f;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f25295e.setTitle(A());
+        this.f25287e.setTitle(A());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new o7(3));
@@ -83,7 +83,7 @@ public final class d extends db {
     public final vm0 x(wm0 wm0Var) {
         h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
         this.Z = h71Var;
-        h71Var.f26675r = false;
+        h71Var.f26679r = false;
         return h71Var;
     }
 }

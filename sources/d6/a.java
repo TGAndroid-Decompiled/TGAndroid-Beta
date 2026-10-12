@@ -235,7 +235,7 @@ public final class a {
             e = e7;
         }
         try {
-            Bundle bundle = a2.f14710a.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
+            Bundle bundle = a2.f14711a.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
             if (bundle == null) {
                 f8150l.c(new Object[0]);
             }

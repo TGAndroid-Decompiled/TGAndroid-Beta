@@ -64,11 +64,11 @@ public final class i implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.k3.f21091r;
+                int i10 = org.telegram.ui.ActionBar.k3.f21092r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = org.telegram.ui.Cells.ua.f23294f;
+                int i11 = org.telegram.ui.Cells.ua.f23295f;
                 return;
             case 9:
                 fd.Y0((View) obj);
@@ -101,8 +101,8 @@ public final class i implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.h5) {
                     org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f21965b.invalidate();
-                    h5Var.f21966c.invalidate();
+                    h5Var.f21966b.invalidate();
+                    h5Var.f21967c.invalidate();
                     return;
                 } else if (view7 instanceof hg.y1) {
                     ((hg.y1) view7).f11452c.invalidate();

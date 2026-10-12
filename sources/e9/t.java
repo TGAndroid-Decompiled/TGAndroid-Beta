@@ -13,7 +13,7 @@ public abstract class t implements Iterator {
 
     public t(x7.j jVar) {
         this.f8798e = jVar;
-        this.f8796b = jVar.f51047e;
+        this.f8796b = jVar.f51055e;
         this.f8797c = jVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
@@ -65,13 +65,13 @@ public abstract class t implements Iterator {
                 throw new ConcurrentModificationException();
             case 1:
                 x7.j jVar = (x7.j) this.f8798e;
-                if (jVar.f51047e == this.f8796b) {
+                if (jVar.f51055e == this.f8796b) {
                     if (hasNext()) {
                         int i12 = this.f8797c;
                         this.d = i12;
                         Object b10 = b(i12);
                         int i13 = this.f8797c + 1;
-                        if (i13 >= jVar.f51048f) {
+                        if (i13 >= jVar.f51056f) {
                             i13 = -1;
                         }
                         this.f8797c = i13;
@@ -82,13 +82,13 @@ public abstract class t implements Iterator {
                 throw new ConcurrentModificationException();
             default:
                 z7.d dVar = (z7.d) this.f8798e;
-                if (dVar.f53851e == this.f8796b) {
+                if (dVar.f53859e == this.f8796b) {
                     if (hasNext()) {
                         int i14 = this.f8797c;
                         this.d = i14;
                         Object b11 = b(i14);
                         int i15 = this.f8797c + 1;
-                        if (i15 >= dVar.f53852f) {
+                        if (i15 >= dVar.f53860f) {
                             i15 = -1;
                         }
                         this.f8797c = i15;
@@ -129,7 +129,7 @@ public abstract class t implements Iterator {
                 throw new ConcurrentModificationException();
             case 1:
                 x7.j jVar = (x7.j) this.f8798e;
-                int i13 = jVar.f51047e;
+                int i13 = jVar.f51055e;
                 int i14 = this.f8796b;
                 if (i13 == i14) {
                     int i15 = this.d;
@@ -140,7 +140,7 @@ public abstract class t implements Iterator {
                     }
                     if (z11) {
                         this.f8796b = i14 + 32;
-                        Object[] objArr = jVar.f51046c;
+                        Object[] objArr = jVar.f51054c;
                         objArr.getClass();
                         jVar.remove(objArr[i15]);
                         this.f8797c--;
@@ -152,7 +152,7 @@ public abstract class t implements Iterator {
                 throw new ConcurrentModificationException();
             default:
                 z7.d dVar = (z7.d) this.f8798e;
-                int i16 = dVar.f53851e;
+                int i16 = dVar.f53859e;
                 int i17 = this.f8796b;
                 if (i16 == i17) {
                     int i18 = this.d;
@@ -163,7 +163,7 @@ public abstract class t implements Iterator {
                     }
                     if (z12) {
                         this.f8796b = i17 + 32;
-                        Object[] objArr2 = dVar.f53850c;
+                        Object[] objArr2 = dVar.f53858c;
                         objArr2.getClass();
                         dVar.remove(objArr2[i18]);
                         this.f8797c--;
@@ -178,7 +178,7 @@ public abstract class t implements Iterator {
 
     public t(z7.d dVar) {
         this.f8798e = dVar;
-        this.f8796b = dVar.f53851e;
+        this.f8796b = dVar.f53859e;
         this.f8797c = dVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }

@@ -228,7 +228,7 @@ public class d4 extends View {
                 i12 = Math.max(max, spanEnd2);
                 if (i12 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(r61VarArr[i13].f30062a);
+                    textPaint3.setTypeface(r61VarArr[i13].f30063a);
                     textPaint3.setTypeface(typeface);
                     f7 = textPaint3.measureText(spanned, max, i12) + f7;
                 }
@@ -447,7 +447,7 @@ public class d4 extends View {
             if (this.I) {
                 f7 = this.P;
             } else {
-                f7 = q6Var.f29715e;
+                f7 = q6Var.f29693e;
             }
             if (this.f4922r) {
                 if (this.f4917n == null) {
@@ -615,7 +615,7 @@ public class d4 extends View {
         invalidate();
         Runnable runnable2 = this.f4916l0;
         if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, g6Var.f26303c * ((float) g6Var.f26306g));
+            AndroidUtilities.runOnUIThread(runnable2, g6Var.f26301c * ((float) g6Var.f26304g));
         }
         this.Q.d(true);
     }
@@ -640,7 +640,7 @@ public class d4 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f29718i;
+            return this.H.f29696i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -653,7 +653,7 @@ public class d4 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f29710a;
+        return this.H.f29688a;
     }
 
     public final void h(int i10) {
@@ -689,8 +689,8 @@ public class d4 extends View {
             this.d = Math.max(this.d, fk0Var3.r());
         }
         fk0 fk0Var4 = this.f4905c0;
-        this.f4910f0 = fk0Var4.f26102b;
-        this.f4911g0 = fk0Var4.f26104c;
+        this.f4910f0 = fk0Var4.f26104b;
+        this.f4911g0 = fk0Var4.f26106c;
         this.f4912h0 = true;
     }
 
@@ -833,7 +833,7 @@ public class d4 extends View {
             this.f4918n0 = ofFloat;
             ofFloat.addUpdateListener(new ai.a(this, 19));
             this.f4918n0.addListener(new ai.b(this, 14));
-            this.f4918n0.setInterpolator(js.f27631k);
+            this.f4918n0.setInterpolator(js.f27638k);
             this.f4918n0.setDuration(300L);
             this.f4918n0.start();
         }

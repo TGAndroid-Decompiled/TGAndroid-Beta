@@ -1,50 +1,43 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.xi1;
+import org.telegram.ui.e50;
+import org.telegram.ui.i60;
 public final class x implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32096a;
-    public final float f32097b;
-    public final float f32098c;
-    public final float d;
-    public final Object f32099e;
+    public final int f32082a;
+    public final n0 f32083b;
 
-    public x(Object obj, float f7, float f10, float f11, int i10) {
-        this.f32096a = i10;
-        this.f32099e = obj;
-        this.f32097b = f7;
-        this.f32098c = f10;
-        this.d = f11;
+    public x(n0 n0Var, int i10) {
+        this.f32082a = i10;
+        this.f32083b = n0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32096a) {
+        float f7;
+        switch (this.f32082a) {
             case 0:
-                n0 n0Var = (n0) this.f32099e;
+                n0 n0Var = this.f32083b;
                 n0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n0Var.f31846y0 = com.google.android.gms.internal.vision.e2.y(1.0f, floatValue, 1.0f, this.f32097b * floatValue);
-                n0Var.f31835r0 = this.f32098c * floatValue;
-                n0Var.f31837s0 = this.d * floatValue;
+                n0Var.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 n0Var.invalidate();
                 return;
-            case 1:
-                xi1 xi1Var = (xi1) this.f32099e;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                xi1Var.f43994f1 = com.google.android.gms.internal.vision.e2.y(1.0f, floatValue2, 1.0f, this.f32097b * floatValue2);
-                xi1Var.Y0 = this.f32098c * floatValue2;
-                xi1Var.Z0 = this.d * floatValue2;
-                xi1Var.f44014s.invalidate();
-                return;
             default:
-                sg.n nVar = (sg.n) this.f32099e;
-                nVar.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sg.g gVar = nVar.f48309b;
-                gVar.d = this.f32097b * floatValue3;
-                gVar.f48274e = this.f32098c * floatValue3;
-                gVar.f48277i = floatValue3 * this.d;
+                n0 n0Var2 = this.f32083b;
+                n0Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n0Var2.f31801c = floatValue;
+                i60 i60Var = n0Var2.f31811j0;
+                i60Var.f38786z1.setAlpha(1.0f - floatValue);
+                e50 e50Var = i60Var.O;
+                if (e50Var.getTag() != null) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                e50Var.setAlpha((1.0f - i60Var.a2.f31801c) * f7);
+                i60Var.F1(i60Var.f38782y0);
+                n0Var2.l();
                 return;
         }
     }

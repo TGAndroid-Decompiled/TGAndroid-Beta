@@ -122,7 +122,7 @@ public abstract class d5 {
                 if (hVar != null) {
                     TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
                     pageblockpreformatted.text = g6.f(subSequence2);
-                    String str = hVar.f14884a;
+                    String str = hVar.f14885a;
                     if (str == null) {
                         str = "";
                     }
@@ -132,7 +132,7 @@ public abstract class d5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = g6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (ak0Var != null && ak0Var.f24421e) {
+                    if (ak0Var != null && ak0Var.f24418e) {
                         z11 = z10;
                     } else {
                         z11 = false;
@@ -549,7 +549,7 @@ public abstract class d5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f33249a = i10;
+        obj.f33255a = i10;
         spannableStringBuilder2.setSpan(new a21(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }

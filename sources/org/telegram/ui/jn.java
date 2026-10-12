@@ -8,38 +8,38 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class jn extends org.telegram.ui.Components.sr0 {
-    public final MessageObject f39253b1;
-    public final pn f39254c1;
+    public final MessageObject f39256b1;
+    public final pn f39257c1;
 
     public jn(pn pnVar, Activity activity, eo eoVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.c6 c6Var, boolean z12, MessageObject messageObject) {
         super(activity, eoVar, arrayList, null, null, z10, null, null, false, false, z11, null, c6Var);
-        this.f39254c1 = pnVar;
-        this.f39253b1 = messageObject;
-        this.f30630a0 = z12;
+        this.f39257c1 = pnVar;
+        this.f39256b1 = messageObject;
+        this.f30632a0 = z12;
     }
 
     @Override
     public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        pn pnVar = this.f39254c1;
-        eo eoVar = pnVar.f40998a;
+        pn pnVar = this.f39257c1;
+        eo eoVar = pnVar.f41000a;
         int i11 = eo.Hc;
         eoVar.T7();
-        if (pnVar.f40998a.y3 != null && z10) {
+        if (pnVar.f41000a.y3 != null && z10) {
             if (iVar.m() == 1) {
-                if (((TLRPC.Dialog) iVar.n(0)).f19806id != pnVar.f40998a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.zc.a0(pnVar.f40998a).g0(i10, ((TLRPC.Dialog) iVar.n(0)).f19806id)) {
-                    pnVar.f40998a.y3.k(((TLRPC.Dialog) iVar.n(0)).f19806id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) iVar.n(0)).f19807id != pnVar.f41000a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.zc.a0(pnVar.f41000a).g0(i10, ((TLRPC.Dialog) iVar.n(0)).f19807id)) {
+                    pnVar.f41000a.y3.k(((TLRPC.Dialog) iVar.n(0)).f19807id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            pnVar.f40998a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+            pnVar.f41000a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }
     }
 
     @Override
     public final void T0(final View view) {
         ci.ec ecVar;
-        eo eoVar = this.f39254c1.f40998a;
+        eo eoVar = this.f39257c1.f41000a;
         MessageObject.GroupedMessages groupedMessages = null;
         if (view instanceof org.telegram.ui.Cells.f7) {
             ecVar = ci.gc.b((org.telegram.ui.Cells.f7) view);
@@ -47,9 +47,9 @@ public final class jn extends org.telegram.ui.Components.sr0 {
             ecVar = null;
         }
         ArrayList arrayList = new ArrayList();
-        MessageObject messageObject = this.f39253b1;
+        MessageObject messageObject = this.f39256b1;
         if (messageObject.getGroupId() != 0) {
-            groupedMessages = (MessageObject.GroupedMessages) eoVar.f37484x6.f(messageObject.getGroupId());
+            groupedMessages = (MessageObject.GroupedMessages) eoVar.f37489x6.f(messageObject.getGroupId());
         }
         if (groupedMessages != null) {
             arrayList.addAll(groupedMessages.messages);
@@ -87,7 +87,7 @@ public final class jn extends org.telegram.ui.Components.sr0 {
     @Override
     public final void dismissInternal() {
         int i10;
-        eo eoVar = this.f39254c1.f40998a;
+        eo eoVar = this.f39257c1.f41000a;
         Activity parentActivity = eoVar.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
         AndroidUtilities.requestAdjustResize(parentActivity, i10);

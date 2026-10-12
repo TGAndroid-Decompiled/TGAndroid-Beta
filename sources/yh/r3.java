@@ -17,8 +17,8 @@ import org.telegram.ui.Components.wa;
 import org.telegram.ui.Components.wm0;
 import org.telegram.ui.Components.x01;
 public final class r3 extends wa {
-    public final ArrayList f53349a0;
-    public final LimitPreviewView f53350b0;
+    public final ArrayList f53361a0;
+    public final LimitPreviewView f53362b0;
 
     public r3(Context context, long j3, ArrayList arrayList, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, c6Var);
@@ -26,10 +26,10 @@ public final class r3 extends wa {
         TL_stars.StarGiftUpgradePrice starGiftUpgradePrice;
         float f10;
         int i10;
-        this.f53349a0 = arrayList;
+        this.f53361a0 = arrayList;
         float f11 = this.backgroundPaddingLeft / AndroidUtilities.density;
         LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.star, 0, c6Var, 0);
-        this.f53350b0 = limitPreviewView;
+        this.f53362b0 = limitPreviewView;
         float f12 = 14.0f;
         limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
         limitPreviewView.setIconScale(1.8f);
@@ -81,16 +81,16 @@ public final class r3 extends wa {
         }
         float f15 = f14 + f7;
         this.X.addView(x01Var, w7.w5.r(-1, -2, 7, f15, 16.0f, f15, 15.0f));
-        TextView b12 = w7.a6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f20945y6, false, null);
+        TextView b12 = w7.a6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f20946y6, false, null);
         b12.setGravity(17);
         b12.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
         this.X.addView(b12, w7.w5.t(-1, -2, 17, 32, 0, 32, 15));
         float f16 = this.backgroundPaddingLeft / AndroidUtilities.density;
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.Y = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20630h5, this.resourcesProvider));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20631h5, this.resourcesProvider));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d7, this.resourcesProvider));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20561d7, this.resourcesProvider));
         this.Y.addView(view, w7.w5.b(-1.0f, 1.0f / AndroidUtilities.density, 55));
         ci.d dVar = new ci.d(getContext(), this.resourcesProvider, true);
         this.Z = dVar;
@@ -105,24 +105,24 @@ public final class r3 extends wa {
 
     public final void Q(long j3) {
         int w02;
-        ArrayList arrayList = this.f53349a0;
+        ArrayList arrayList = this.f53361a0;
         if (arrayList != null && !arrayList.isEmpty()) {
             TL_stars.StarGiftUpgradePrice starGiftUpgradePrice = (TL_stars.StarGiftUpgradePrice) arrayList.get(0);
             TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) hg.c.h(1, arrayList);
-            LimitPreviewView limitPreviewView = this.f53350b0;
+            LimitPreviewView limitPreviewView = this.f53362b0;
             limitPreviewView.M = true;
             Paint paint = limitPreviewView.K;
             int i10 = org.telegram.ui.ActionBar.h6.Oh;
             org.telegram.ui.ActionBar.c6 c6Var = limitPreviewView.S;
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-            limitPreviewView.f24012a = AndroidUtilities.ilerp((float) j3, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
+            limitPreviewView.f24013a = AndroidUtilities.ilerp((float) j3, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
             org.telegram.ui.Components.r6 r6Var = limitPreviewView.N;
             r6Var.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice.upgrade_stars));
             org.telegram.ui.Components.r6 r6Var2 = limitPreviewView.v;
             r6Var2.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice2.upgrade_stars));
             ((FrameLayout.LayoutParams) r6Var2.getLayoutParams()).gravity = 5;
             limitPreviewView.setType(17);
-            limitPreviewView.f24031w.setVisibility(8);
+            limitPreviewView.f24032w.setVisibility(8);
             limitPreviewView.O.setVisibility(8);
             if (limitPreviewView.L) {
                 w02 = -1;

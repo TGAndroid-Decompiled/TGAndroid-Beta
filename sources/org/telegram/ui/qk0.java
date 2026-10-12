@@ -12,16 +12,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class qk0 extends og.b {
     public final Context d;
-    public final NotificationsCustomSettingsActivity f41345e;
+    public final NotificationsCustomSettingsActivity f41349e;
 
     public qk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
-        this.f41345e = notificationsCustomSettingsActivity;
+        this.f41349e = notificationsCustomSettingsActivity;
         this.d = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 0 && i10 != 4) {
             return true;
         }
@@ -30,15 +30,15 @@ public final class qk0 extends og.b {
 
     @Override
     public final int h() {
-        return this.f41345e.I.size();
+        return this.f41349e.I.size();
     }
 
     @Override
     public final int j(int i10) {
         if (i10 >= 0) {
-            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41345e;
+            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41349e;
             if (i10 < notificationsCustomSettingsActivity.I.size()) {
-                return ((pk0) notificationsCustomSettingsActivity.I.get(i10)).f16876a;
+                return ((pk0) notificationsCustomSettingsActivity.I.get(i10)).f16877a;
             }
             return 5;
         }
@@ -49,64 +49,64 @@ public final class qk0 extends og.b {
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
         float f7;
-        ArrayList arrayList = this.f41345e.I;
+        ArrayList arrayList = this.f41349e.I;
         if (i10 >= 0 && i10 < arrayList.size()) {
             pk0 pk0Var = (pk0) arrayList.get(i10);
             boolean z11 = true;
             int i11 = i10 + 1;
-            if (i11 < arrayList.size() && ((pk0) arrayList.get(i11)).f16876a != 4) {
+            if (i11 < arrayList.size() && ((pk0) arrayList.get(i11)).f16877a != 4) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i12 = d1Var.f47893f;
-            View view = d1Var.f47889a;
+            int i12 = d1Var.f47901f;
+            View view = d1Var.f47897a;
             switch (i12) {
                 case 0:
-                    ((org.telegram.ui.Cells.m4) view).setText(pk0Var.f40983e);
+                    ((org.telegram.ui.Cells.m4) view).setText(pk0Var.f40985e);
                     return;
                 case 1:
-                    ((org.telegram.ui.Cells.w8) view).f("" + ((Object) pk0Var.f40983e), pk0Var.f40986i, z10);
+                    ((org.telegram.ui.Cells.w8) view).f("" + ((Object) pk0Var.f40985e), pk0Var.f40988i, z10);
                     return;
                 case 2:
-                    ((org.telegram.ui.Cells.xa) view).g(pk0Var.f40985g, null, z10);
+                    ((org.telegram.ui.Cells.xa) view).g(pk0Var.f40987g, null, z10);
                     return;
                 case 3:
-                    ((org.telegram.ui.Cells.y8) view).b(pk0Var.h, "" + ((Object) pk0Var.f40983e), z10);
+                    ((org.telegram.ui.Cells.y8) view).b(pk0Var.h, "" + ((Object) pk0Var.f40985e), z10);
                     return;
                 case 4:
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                    if (pk0Var.f40983e == null) {
+                    if (pk0Var.f40985e == null) {
                         e9Var.setFixedSize(12);
                         e9Var.setText(null);
                         return;
                     }
                     e9Var.setFixedSize(0);
-                    e9Var.setText(pk0Var.f40983e);
+                    e9Var.setText(pk0Var.f40985e);
                     return;
                 case 5:
-                    ((org.telegram.ui.Cells.ca) view).c(pk0Var.f40983e, pk0Var.f40984f, false, z10);
+                    ((org.telegram.ui.Cells.ca) view).c(pk0Var.f40985e, pk0Var.f40986f, false, z10);
                     return;
                 case 6:
                     org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) view;
                     j5Var.setDrawLine(true);
-                    j5Var.setChecked(pk0Var.f40986i);
-                    j5Var.b(pk0Var.f40983e, pk0Var.f40984f, pk0Var.d, pk0Var.f40986i, 0, false, z10, true);
+                    j5Var.setChecked(pk0Var.f40988i);
+                    j5Var.b(pk0Var.f40985e, pk0Var.f40986f, pk0Var.d, pk0Var.f40988i, 0, false, z10, true);
                     return;
                 case 7:
                     org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
                     if (pk0Var.d == 0) {
-                        r8Var.e(-1, org.telegram.ui.ActionBar.h6.f20780p7);
-                        r8Var.i("" + ((Object) pk0Var.f40983e), z10);
+                        r8Var.e(-1, org.telegram.ui.ActionBar.h6.f20781p7);
+                        r8Var.i("" + ((Object) pk0Var.f40985e), z10);
                         return;
                     }
-                    r8Var.e(org.telegram.ui.ActionBar.h6.f20892v6, org.telegram.ui.ActionBar.h6.f20874u6);
-                    r8Var.m(pk0Var.d, "" + ((Object) pk0Var.f40983e), z10);
+                    r8Var.e(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
+                    r8Var.m(pk0Var.d, "" + ((Object) pk0Var.f40985e), z10);
                     return;
                 case 8:
                     ok0 ok0Var = (ok0) view;
-                    ok0Var.e(org.telegram.ui.ActionBar.h6.f20892v6, org.telegram.ui.ActionBar.h6.f20874u6);
-                    CharSequence charSequence = pk0Var.f40983e;
+                    ok0Var.e(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
+                    CharSequence charSequence = pk0Var.f40985e;
                     if (pk0Var.d != 1) {
                         z11 = false;
                     }
@@ -130,7 +130,7 @@ public final class qk0 extends og.b {
         View m4Var;
         org.telegram.ui.ActionBar.c6 c6Var;
         int i11;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41345e;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41349e;
         Context context = this.d;
         switch (i10) {
             case 0:
@@ -164,7 +164,7 @@ public final class qk0 extends og.b {
                 ImageView imageView = new ImageView(context);
                 r8Var.R = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.h6.f20892v6), PorterDuff.Mode.SRC_IN));
+                imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.h6.f20893v6), PorterDuff.Mode.SRC_IN));
                 imageView.setImageResource(R.drawable.msg_expand);
                 if (LocaleController.isRTL) {
                     i11 = 3;
@@ -184,13 +184,13 @@ public final class qk0 extends og.b {
         pk0 pk0Var;
         ArrayList arrayList;
         ArrayList arrayList2;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41345e;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41349e;
         ArrayList arrayList3 = notificationsCustomSettingsActivity.I;
-        int i10 = notificationsCustomSettingsActivity.f33671s;
-        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f33672w) != null && arrayList2.isEmpty())) {
+        int i10 = notificationsCustomSettingsActivity.f33673s;
+        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f33674w) != null && arrayList2.isEmpty())) {
             if (i10 == 3) {
-                Boolean bool = notificationsCustomSettingsActivity.f33669n;
-                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f33672w) == null || arrayList.isEmpty())) {
+                Boolean bool = notificationsCustomSettingsActivity.f33671n;
+                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f33674w) == null || arrayList.isEmpty())) {
                     isGlobalNotificationsEnabled = false;
                 } else {
                     isGlobalNotificationsEnabled = true;
@@ -199,14 +199,14 @@ public final class qk0 extends og.b {
                 isGlobalNotificationsEnabled = notificationsCustomSettingsActivity.getNotificationsController().isGlobalNotificationsEnabled(i10);
             }
             int b10 = d1Var.b();
-            View view = d1Var.f47889a;
+            View view = d1Var.f47897a;
             if (b10 >= 0 && b10 < arrayList3.size()) {
                 pk0Var = (pk0) arrayList3.get(b10);
             } else {
                 pk0Var = null;
             }
-            if (pk0Var == null || pk0Var.f40982c != 102) {
-                int i11 = d1Var.f47893f;
+            if (pk0Var == null || pk0Var.f40984c != 102) {
+                int i11 = d1Var.f47901f;
                 if (i11 != 0) {
                     if (i11 != 1) {
                         if (i11 != 3) {

@@ -12,26 +12,26 @@ import java.util.concurrent.TimeUnit;
 import k2.g0;
 import v7.t;
 public final class h implements androidx.emoji2.text.k, v0.h {
-    public static h f14709b;
-    public final Context f14710a;
+    public static h f14710b;
+    public final Context f14711a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f14710a = context.getApplicationContext();
+                this.f14711a = context.getApplicationContext();
                 return;
             case 2:
-                this.f14710a = context.getApplicationContext();
+                this.f14711a = context.getApplicationContext();
                 return;
             case 3:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f14710a = context;
+                this.f14711a = context;
                 return;
             case 4:
-                this.f14710a = context;
+                this.f14711a = context;
                 return;
             default:
-                this.f14710a = context.getApplicationContext();
+                this.f14711a = context.getApplicationContext();
                 return;
         }
     }
@@ -40,15 +40,15 @@ public final class h implements androidx.emoji2.text.k, v0.h {
         n6.m.h(context);
         synchronized (h.class) {
             try {
-                if (f14709b == null) {
+                if (f14710b == null) {
                     o.a(context);
-                    f14709b = new h(context, 0);
+                    f14710b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f14709b;
+        return f14710b;
     }
 
     public static final l e(PackageInfo packageInfo, l... lVarArr) {
@@ -87,7 +87,7 @@ public final class h implements androidx.emoji2.text.k, v0.h {
         g0 g0Var = new g0(mVar, 27);
         a3.b bVar = new a3.b(2);
         kotlin.jvm.internal.i.e(context, "context");
-        v0.j b10 = l5.j.b(new l5.j(this.f14710a, 2), eVar);
+        v0.j b10 = l5.j.b(new l5.j(this.f14711a, 2), eVar);
         if (b10 == null) {
             g0Var.onError(new w0.c("createCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
         } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
@@ -96,11 +96,11 @@ public final class h implements androidx.emoji2.text.k, v0.h {
             b10.onCreateCredential(context, eVar, cancellationSignal, bVar, g0Var);
         }
         Object r10 = mVar.r();
-        kd.a aVar = kd.a.f14780a;
+        kd.a aVar = kd.a.f14781a;
         return r10;
     }
 
     public PackageInfo d(int i10, String str) {
-        return this.f14710a.getPackageManager().getPackageInfo(str, i10);
+        return this.f14711a.getPackageManager().getPackageInfo(str, i10);
     }
 }

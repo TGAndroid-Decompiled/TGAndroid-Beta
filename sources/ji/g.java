@@ -9,70 +9,70 @@ import java.util.logging.Level;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.m2;
 public final class g implements Runnable {
-    public final int f14230a;
-    public boolean f14231b;
-    public Object f14232c;
+    public final int f14231a;
+    public boolean f14232b;
+    public Object f14233c;
     public final Object d;
 
     public g(Object obj, Object obj2, boolean z10, int i10) {
-        this.f14230a = i10;
+        this.f14231a = i10;
         this.d = obj;
-        this.f14232c = obj2;
-        this.f14231b = z10;
+        this.f14233c = obj2;
+        this.f14232b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f14230a) {
+        switch (this.f14231a) {
             case 0:
                 n nVar = (n) this.d;
-                ArrayList arrayList = (ArrayList) this.f14232c;
+                ArrayList arrayList = (ArrayList) this.f14233c;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.i iVar = (s4.i) obj;
-                    nVar.T(iVar.f47939a, iVar, this.f14231b);
+                    nVar.T(iVar.f47947a, iVar, this.f14232b);
                 }
                 arrayList.clear();
-                nVar.f47955u.remove(arrayList);
+                nVar.f47963u.remove(arrayList);
                 return;
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (actionBarLayout.f20091e == this) {
-                    actionBarLayout.f20091e = null;
-                    ((m2) this.f14232c).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f14231b);
+                if (actionBarLayout.f20092e == this) {
+                    actionBarLayout.f20092e = null;
+                    ((m2) this.f14233c).onTransitionAnimationStart(true, false);
+                    actionBarLayout.d0(true, true, this.f14232b);
                     return;
                 }
                 return;
             default:
                 try {
-                    ((zc.i) this.d).f54580a.bind(new InetSocketAddress(61578));
-                    this.f14231b = true;
+                    ((zc.i) this.d).f54588a.bind(new InetSocketAddress(61578));
+                    this.f14232b = true;
                     do {
                         try {
-                            Socket accept = ((zc.i) this.d).f54580a.accept();
+                            Socket accept = ((zc.i) this.d).f54588a.accept();
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
                             zc.i iVar2 = (zc.i) this.d;
-                            iVar2.f54582c.x(new zc.a(iVar2, inputStream, accept));
+                            iVar2.f54590c.x(new zc.a(iVar2, inputStream, accept));
                         } catch (IOException e7) {
                             zc.i.d.log(Level.FINE, "Communication with the client broken", (Throwable) e7);
                         }
-                    } while (!((zc.i) this.d).f54580a.isClosed());
+                    } while (!((zc.i) this.d).f54588a.isClosed());
                     return;
                 } catch (IOException e10) {
-                    this.f14232c = e10;
+                    this.f14233c = e10;
                     return;
                 }
         }
     }
 
     public g(zc.i iVar) {
-        this.f14230a = 2;
+        this.f14231a = 2;
         this.d = iVar;
-        this.f14231b = false;
+        this.f14232b = false;
     }
 }

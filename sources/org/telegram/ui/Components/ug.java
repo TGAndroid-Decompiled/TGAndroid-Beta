@@ -1,39 +1,39 @@
 package org.telegram.ui.Components;
 public final class ug implements Runnable {
-    public final int f31162a;
-    public final wg f31163b;
-    public final ci.d4 f31164c;
+    public final int f31157a;
+    public final wg f31158b;
+    public final ci.d4 f31159c;
 
     public ug(wg wgVar, ci.d4 d4Var, int i10) {
-        this.f31162a = i10;
-        this.f31163b = wgVar;
-        this.f31164c = d4Var;
+        this.f31157a = i10;
+        this.f31158b = wgVar;
+        this.f31159c = d4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f31162a) {
+        switch (this.f31157a) {
             case 0:
-                wg wgVar = this.f31163b;
-                ci.d4 d4Var = this.f31164c;
+                wg wgVar = this.f31158b;
+                ci.d4 d4Var = this.f31159c;
                 wgVar.removeView(d4Var);
-                if (wgVar.f32387b == d4Var) {
-                    wgVar.f32387b = null;
+                if (wgVar.f32375c == d4Var) {
+                    wgVar.f32375c = null;
                     return;
                 }
                 return;
             case 1:
-                this.f31163b.removeView(this.f31164c);
+                this.f31158b.removeView(this.f31159c);
                 return;
             case 2:
-                this.f31163b.removeView(this.f31164c);
+                this.f31158b.removeView(this.f31159c);
                 return;
             default:
-                wg wgVar2 = this.f31163b;
-                ci.d4 d4Var2 = this.f31164c;
+                wg wgVar2 = this.f31158b;
+                ci.d4 d4Var2 = this.f31159c;
                 wgVar2.removeView(d4Var2);
-                if (wgVar2.f32385a == d4Var2) {
-                    wgVar2.f32385a = null;
+                if (wgVar2.f32373b == d4Var2) {
+                    wgVar2.f32373b = null;
                     return;
                 }
                 return;

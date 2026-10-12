@@ -24,12 +24,12 @@ public final class k extends h3 {
     public final k2.a0 E;
     public ArrayList F;
     public final ArrayMap G;
-    public final MediaRouter2 f45261r;
-    public final y0 f45262s;
+    public final MediaRouter2 f45266r;
+    public final y0 f45267s;
     public final ArrayMap v;
-    public final MediaRouter2$RouteCallback f45263w;
-    public final j f45264x;
-    public final f f45265y;
+    public final MediaRouter2$RouteCallback f45268w;
+    public final j f45269x;
+    public final f f45270y;
 
     static {
         Log.isLoggable("MR2Provider", 3);
@@ -38,17 +38,17 @@ public final class k extends h3 {
     public k(Context context, y0 y0Var) {
         super(context, null);
         this.v = new ArrayMap();
-        this.f45264x = new j(this);
-        this.f45265y = new f(this);
+        this.f45269x = new j(this);
+        this.f45270y = new f(this);
         this.F = new ArrayList();
         this.G = new ArrayMap();
-        this.f45261r = MediaRouter2.getInstance(context);
-        this.f45262s = y0Var;
+        this.f45266r = MediaRouter2.getInstance(context);
+        this.f45267s = y0Var;
         this.E = new k2.a0(new Handler(Looper.getMainLooper()), 0);
         if (Build.VERSION.SDK_INT >= 34) {
-            this.f45263w = new i(this, 1);
+            this.f45268w = new i(this, 1);
         } else {
-            this.f45263w = new i(this, 0);
+            this.f45268w = new i(this, 0);
         }
     }
 
@@ -62,7 +62,7 @@ public final class k extends h3 {
 
     public static String p(q qVar) {
         MediaRouter2.RoutingController routingController;
-        if (!(qVar instanceof g) || (routingController = ((g) qVar).f45241g) == null) {
+        if (!(qVar instanceof g) || (routingController = ((g) qVar).f45246g) == null) {
             return null;
         }
         return routingController.getId();
@@ -72,7 +72,7 @@ public final class k extends h3 {
     public final p c(String str) {
         for (Map.Entry entry : this.v.entrySet()) {
             g gVar = (g) entry.getValue();
-            if (TextUtils.equals(str, gVar.f45240f)) {
+            if (TextUtils.equals(str, gVar.f45245f)) {
                 return gVar;
             }
         }
@@ -103,26 +103,26 @@ public final class k extends h3 {
         ArrayList<String> arrayList;
         s sVar;
         RouteDiscoveryPreference build;
-        if (y.f45356c == null) {
+        if (y.f45361c == null) {
             i10 = 0;
         } else {
             i10 = y.c().B;
         }
-        MediaRouter2$RouteCallback mediaRouter2$RouteCallback = this.f45263w;
-        f fVar = this.f45265y;
-        j jVar = this.f45264x;
+        MediaRouter2$RouteCallback mediaRouter2$RouteCallback = this.f45268w;
+        f fVar = this.f45270y;
+        j jVar = this.f45269x;
         if (i10 > 0) {
-            a0 a0Var = y.c().f45232u;
+            a0 a0Var = y.c().f45237u;
             if (a0Var == null) {
                 z10 = false;
             } else {
                 z10 = a0Var.d;
             }
             if (nVar == null) {
-                nVar = new n(s.f45310c, false);
+                nVar = new n(s.f45315c, false);
             }
             nVar.a();
-            ArrayList c10 = nVar.f45278b.c();
+            ArrayList c10 = nVar.f45283b.c();
             if (z10) {
                 if (!c10.contains("android.media.intent.category.LIVE_AUDIO")) {
                     c10.add("android.media.intent.category.LIVE_AUDIO");
@@ -153,7 +153,7 @@ public final class k extends h3 {
                 arrayList = null;
             }
             if (arrayList == null) {
-                sVar = s.f45310c;
+                sVar = s.f45315c;
             } else {
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("controlCategories", arrayList);
@@ -162,11 +162,11 @@ public final class k extends h3 {
             boolean b10 = nVar.b();
             if (sVar != null) {
                 Bundle bundle2 = new Bundle();
-                bundle2.putBundle("selector", sVar.f45311a);
+                bundle2.putBundle("selector", sVar.f45316a);
                 bundle2.putBoolean("activeScan", b10);
-                MediaRouter2 mediaRouter2 = this.f45261r;
+                MediaRouter2 mediaRouter2 = this.f45266r;
                 sVar.a();
-                if (sVar.f45312b.contains(null)) {
+                if (sVar.f45317b.contains(null)) {
                     build = new RouteDiscoveryPreference.Builder(new ArrayList(), false).build();
                 } else {
                     boolean z11 = bundle2.getBoolean("activeScan");
@@ -217,15 +217,15 @@ public final class k extends h3 {
                 }
                 k2.a0 a0Var2 = this.E;
                 mediaRouter2.registerRouteCallback(a0Var2, mediaRouter2$RouteCallback, build);
-                this.f45261r.registerTransferCallback(a0Var2, jVar);
-                this.f45261r.registerControllerCallback(a0Var2, fVar);
+                this.f45266r.registerTransferCallback(a0Var2, jVar);
+                this.f45266r.registerControllerCallback(a0Var2, fVar);
                 return;
             }
             throw new IllegalArgumentException("selector must not be null");
         }
-        this.f45261r.unregisterRouteCallback(mediaRouter2$RouteCallback);
-        this.f45261r.unregisterTransferCallback(jVar);
-        this.f45261r.unregisterControllerCallback(fVar);
+        this.f45266r.unregisterRouteCallback(mediaRouter2$RouteCallback);
+        this.f45266r.unregisterTransferCallback(jVar);
+        this.f45266r.unregisterControllerCallback(fVar);
     }
 
     public final MediaRoute2Info o(String str) {
@@ -249,7 +249,7 @@ public final class k extends h3 {
     public final void q() {
         ArrayList arrayList = new ArrayList();
         ArraySet arraySet = new ArraySet();
-        for (MediaRoute2Info mediaRoute2Info : this.f45261r.getRoutes()) {
+        for (MediaRoute2Info mediaRoute2Info : this.f45266r.getRoutes()) {
             MediaRoute2Info c10 = c80.c(mediaRoute2Info);
             if (c10 != null && !arraySet.contains(c10) && !c10.isSystemRoute()) {
                 arraySet.add(c10);
@@ -346,20 +346,20 @@ public final class k extends h3 {
         }
         if (mVar == null) {
             lVar = new l(routingController.getId(), string);
-            Bundle bundle2 = lVar.f45271a;
+            Bundle bundle2 = lVar.f45276a;
             bundle2.putInt("connectionState", 2);
             bundle2.putInt("playbackType", 1);
         } else {
             lVar = new l(mVar);
         }
         int volume = routingController.getVolume();
-        Bundle bundle3 = lVar.f45271a;
+        Bundle bundle3 = lVar.f45276a;
         bundle3.putInt("volume", volume);
         bundle3.putInt("volumeMax", routingController.getVolumeMax());
         bundle3.putInt("volumeHandling", routingController.getVolumeHandling());
-        lVar.f45273c.clear();
+        lVar.f45278c.clear();
         lVar.a(w10.b());
-        ArrayList arrayList = lVar.f45272b;
+        ArrayList arrayList = lVar.f45277b;
         arrayList.clear();
         if (!h.isEmpty()) {
             int size = h.size();
@@ -397,7 +397,7 @@ public final class k extends h3 {
                 arrayList2.add(new o(mVar2, i10, h11.contains(d), h10.contains(d), true));
             }
         }
-        gVar.f45248o = b10;
+        gVar.f45253o = b10;
         gVar.l(b10, arrayList2);
     }
 
@@ -407,6 +407,6 @@ public final class k extends h3 {
             Log.w("MR2Provider", "transferTo: Specified route not found. routeId=" + str);
             return;
         }
-        this.f45261r.transferTo(o9);
+        this.f45266r.transferTo(o9);
     }
 }

@@ -34,44 +34,44 @@ public final class ds extends hs {
         }
         int keyCode = keyEvent.getKeyCode();
         fs fsVar = this.O;
-        int length = fsVar.f37837f.length;
+        int length = fsVar.f37834f.length;
         int i10 = this.M;
         if (i10 >= length) {
             return false;
         }
         if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && fsVar.f37837f[i10].length() == 1) {
-                fsVar.f37837f[i10].m();
-                fsVar.f37837f[i10].setText("");
+            if (keyCode == 67 && fsVar.f37834f[i10].length() == 1) {
+                fsVar.f37834f[i10].m();
+                fsVar.f37834f[i10].setText("");
                 return true;
-            } else if (keyCode == 67 && fsVar.f37837f[i10].length() == 0 && i10 > 0) {
-                hs[] hsVarArr = fsVar.f37837f;
+            } else if (keyCode == 67 && fsVar.f37834f[i10].length() == 0 && i10 > 0) {
+                hs[] hsVarArr = fsVar.f37834f;
                 hsVarArr[i10 - 1].setSelection(hsVarArr[i10 - 1].length());
                 for (int i11 = 0; i11 < i10; i11++) {
                     if (i11 == i10 - 1) {
-                        fsVar.f37837f[i10 - 1].requestFocus();
+                        fsVar.f37834f[i10 - 1].requestFocus();
                     } else {
-                        fsVar.f37837f[i11].clearFocus();
+                        fsVar.f37834f[i11].clearFocus();
                     }
                 }
-                fsVar.f37837f[i10 - 1].m();
-                fsVar.f37837f[i10 - 1].setText("");
+                fsVar.f37834f[i10 - 1].m();
+                fsVar.f37834f[i10 - 1].setText("");
                 return true;
             } else {
                 if (keyCode >= 7 && keyCode <= 16) {
                     String num = Integer.toString(keyCode - 7);
-                    if (fsVar.f37837f[i10].getText() != null && num.equals(fsVar.f37837f[i10].getText().toString())) {
+                    if (fsVar.f37834f[i10].getText() != null && num.equals(fsVar.f37834f[i10].getText().toString())) {
                         if (i10 >= this.N - 1) {
                             fsVar.a();
                         } else {
-                            fsVar.f37837f[i10 + 1].requestFocus();
+                            fsVar.f37834f[i10 + 1].requestFocus();
                         }
                         return true;
                     }
-                    if (fsVar.f37837f[i10].length() > 0) {
-                        fsVar.f37837f[i10].m();
+                    if (fsVar.f37834f[i10].length() > 0) {
+                        fsVar.f37834f[i10].m();
                     }
-                    fsVar.f37837f[i10].setText(num);
+                    fsVar.f37834f[i10].setText(num);
                 }
                 return true;
             }

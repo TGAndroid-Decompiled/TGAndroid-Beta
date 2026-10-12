@@ -5,25 +5,29 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import org.telegram.ui.web.f2;
+import pi.n;
 import pi.r;
-import pi.s;
+import pi.t;
 public final class AudioRecorderV2Controller {
     private boolean finishRequested;
     private final Listener listener;
     private volatile boolean released;
-    private final pi.s session;
+    private final pi.t session;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private final Object outputLock = new Object();
     private final HashMap<Long, File> outputFiles = new HashMap<>();
     private final HashSet<Long> deliveredOutputIds = new HashSet<>();
-    private pi.q previousState = pi.q.f45803a;
+    private r previousState = r.f45811a;
 
     public interface Listener {
-        void onCompleted(pi.p pVar);
+        void onCompleted(pi.q qVar);
 
         void onError(Exception exc);
 
@@ -45,21 +49,21 @@ public final class AudioRecorderV2Controller {
     public AudioRecorderV2Controller(Context context, File file, final Listener listener) {
         this.listener = listener;
         ?? obj = new Object();
-        obj.f7952c = pi.l.f45790a;
-        obj.f7954f = pi.s.G;
+        obj.f7952c = pi.m.f45798a;
+        obj.f7954f = pi.t.G;
         obj.f7950a = context;
         obj.f7951b = file;
-        pi.l lVar = (pi.l) ri.e.f47790c.a();
-        if (lVar != null) {
-            obj.f7952c = lVar;
-            obj.d = new pi.j() {
+        pi.m mVar = (pi.m) ri.e.f47798c.a();
+        if (mVar != null) {
+            obj.f7952c = mVar;
+            obj.d = new pi.k() {
                 {
                     AudioRecorderV2Controller.this = this;
                 }
 
                 @Override
-                public void onCompleted(pi.p pVar) {
-                    listener.onCompleted(pVar);
+                public void onCompleted(pi.q qVar) {
+                    listener.onCompleted(qVar);
                 }
 
                 @Override
@@ -72,15 +76,15 @@ public final class AudioRecorderV2Controller {
                     File file2;
                     if (AudioRecorderV2Controller.this.finishRequested) {
                         AudioRecorderV2Controller.this.finishRequested = false;
-                        AudioRecorderV2Controller.this.session.h();
+                        AudioRecorderV2Controller.this.session.j();
                         return;
                     }
-                    pi.s sVar = AudioRecorderV2Controller.this.session;
-                    sVar.getClass();
-                    pi.s.p();
-                    pi.m mVar = sVar.f45834z;
-                    if (sVar.f45822m == pi.q.f45806e && mVar != null) {
-                        file2 = mVar.f45794b;
+                    pi.t tVar = AudioRecorderV2Controller.this.session;
+                    tVar.getClass();
+                    pi.t.r();
+                    pi.n nVar = tVar.f45842z;
+                    if (tVar.f45830m == r.f45814e && nVar != null) {
+                        file2 = nVar.f45802b;
                     } else {
                         file2 = null;
                     }
@@ -102,17 +106,17 @@ public final class AudioRecorderV2Controller {
                 }
 
                 @Override
-                public void onStateChanged(r rVar) {
-                    pi.q qVar = rVar.f45811a;
-                    pi.q qVar2 = AudioRecorderV2Controller.this.previousState;
-                    AudioRecorderV2Controller.this.previousState = qVar;
-                    if (qVar == pi.q.f45805c) {
-                        if (!AudioRecorderV2Controller.this.finishRequested && qVar2 == pi.q.f45804b) {
+                public void onStateChanged(pi.s sVar) {
+                    r rVar = sVar.f45819a;
+                    r rVar2 = AudioRecorderV2Controller.this.previousState;
+                    AudioRecorderV2Controller.this.previousState = rVar;
+                    if (rVar == r.f45813c) {
+                        if (!AudioRecorderV2Controller.this.finishRequested && rVar2 == r.f45812b) {
                             listener.onRecordingStarted();
-                        } else if (!AudioRecorderV2Controller.this.finishRequested && qVar2 == pi.q.f45807f) {
+                        } else if (!AudioRecorderV2Controller.this.finishRequested && rVar2 == r.f45815f) {
                             listener.onRecordingResumed();
                         }
-                        AudioRecorderV2Controller.this.completePendingFinish(qVar);
+                        AudioRecorderV2Controller.this.completePendingFinish(rVar);
                     }
                 }
 
@@ -129,7 +133,7 @@ public final class AudioRecorderV2Controller {
                 }
             };
             obj.f7953e = new AnonymousClass2(listener);
-            obj.f7954f = new pi.k() {
+            obj.f7954f = new pi.l() {
                 {
                     AudioRecorderV2Controller.this = this;
                 }
@@ -146,9 +150,9 @@ public final class AudioRecorderV2Controller {
                     }
                 }
             };
-            if (((pi.j) obj.d) != null) {
-                if (((pi.o) obj.f7953e) != null) {
-                    this.session = new pi.s(obj);
+            if (((pi.k) obj.d) != null) {
+                if (((pi.p) obj.f7953e) != null) {
+                    this.session = new pi.t(obj);
                     return;
                 }
                 throw new IllegalStateException("Output listener is required");
@@ -158,13 +162,13 @@ public final class AudioRecorderV2Controller {
         throw new IllegalArgumentException("Noise suppression mode is required");
     }
 
-    public void completePendingFinish(pi.q qVar) {
+    public void completePendingFinish(r rVar) {
         if (this.finishRequested) {
-            if (qVar != pi.q.f45805c && qVar != pi.q.f45806e) {
+            if (rVar != r.f45813c && rVar != r.f45814e) {
                 return;
             }
             this.finishRequested = false;
-            this.session.h();
+            this.session.j();
         }
     }
 
@@ -202,178 +206,211 @@ public final class AudioRecorderV2Controller {
     }
 
     public boolean detachPreviewOutput() {
-        pi.s sVar = this.session;
-        sVar.getClass();
-        pi.s.p();
-        pi.p pVar = null;
-        byte[] bArr = null;
-        pVar = null;
-        pVar = null;
-        pVar = null;
-        pVar = null;
-        if (sVar.f45822m == pi.q.f45806e && sVar.f45834z != null && sVar.f45827r == 0 && sVar.f45828s == sVar.j()) {
-            sVar.o();
-            pi.m mVar = sVar.f45834z;
-            long j3 = sVar.j();
-            long length = mVar.f45794b.length();
-            sVar.a(mVar, length);
-            synchronized (sVar.f45820k) {
-                if (mVar.d && !mVar.f45796e) {
-                    mVar.f45796e = true;
-                    sVar.f45819j.execute(new pi.e(sVar, mVar, length, j3, 1));
-                    File file = mVar.f45794b;
-                    byte[] bArr2 = sVar.B;
-                    if (bArr2 != null) {
-                        bArr = (byte[]) bArr2.clone();
+        if (isPreviewing()) {
+            pi.t tVar = this.session;
+            if (tVar.v(0L, tVar.l())) {
+                pi.t tVar2 = this.session;
+                tVar2.getClass();
+                pi.t.r();
+                pi.q qVar = null;
+                byte[] bArr = null;
+                qVar = null;
+                qVar = null;
+                qVar = null;
+                qVar = null;
+                if (tVar2.f45830m == r.f45814e && tVar2.f45842z != null && tVar2.f45835r == 0 && tVar2.f45836s == tVar2.l()) {
+                    tVar2.q();
+                    pi.n nVar = tVar2.f45842z;
+                    long l4 = tVar2.l();
+                    long length = nVar.f45802b.length();
+                    tVar2.a(nVar, length);
+                    synchronized (tVar2.f45828k) {
+                        if (nVar.d && !nVar.f45804e) {
+                            nVar.f45804e = true;
+                            tVar2.f45827j.execute(new pi.g(tVar2, nVar, length, l4, 2));
+                            File file = nVar.f45802b;
+                            byte[] bArr2 = tVar2.B;
+                            if (bArr2 != null) {
+                                bArr = (byte[]) bArr2.clone();
+                            }
+                            tVar2.C = new pi.q(file, l4, bArr);
+                            tVar2.u(r.f45816n);
+                            tVar2.t();
+                            tVar2.n("detached_preview");
+                            qVar = tVar2.C;
+                        }
                     }
-                    sVar.C = new pi.p(file, j3, bArr);
-                    sVar.s(pi.q.f45808n);
-                    sVar.r();
-                    sVar.l("detached_preview");
-                    pVar = sVar.C;
                 }
+                if (qVar == null) {
+                    return false;
+                }
+                this.session.p();
+                this.released = true;
+                return true;
             }
-        }
-        if (pVar == null) {
             return false;
         }
-        this.session.n();
-        this.released = true;
-        return true;
+        return false;
     }
 
     public void finishWhenReady() {
         this.finishRequested = true;
-        pi.s sVar = this.session;
-        sVar.getClass();
-        pi.s.p();
-        completePendingFinish(sVar.d().f45811a);
+        pi.t tVar = this.session;
+        tVar.getClass();
+        pi.t.r();
+        completePendingFinish(tVar.d().f45819a);
     }
 
     public boolean isPreviewing() {
-        pi.s sVar = this.session;
-        sVar.getClass();
-        pi.s.p();
-        if (sVar.d().f45811a == pi.q.f45806e) {
+        pi.t tVar = this.session;
+        tVar.getClass();
+        pi.t.r();
+        if (tVar.d().f45819a == r.f45814e) {
             return true;
         }
         return false;
     }
 
     public void release() {
-        this.session.n();
+        this.session.p();
         this.released = true;
     }
 
-    public boolean setTrimRange(long j3, long j10) {
-        pi.s sVar = this.session;
-        sVar.getClass();
-        pi.j jVar = sVar.f45815e;
-        pi.s.p();
-        if (sVar.f45822m == pi.q.f45806e) {
-            long j11 = sVar.j();
-            long max = Math.max(0L, Math.min(j11, j3));
-            long max2 = Math.max(max, Math.min(j11, j10));
-            if (max2 - max < Math.min(sVar.f45814c, j11)) {
-                return false;
-            }
-            sVar.f45827r = max;
-            sVar.f45828s = max2;
-            i2.f0 f0Var = sVar.A;
-            if (f0Var != null) {
-                f0Var.W0(5, max);
-            }
-            jVar.onPreviewProgress(sVar.f45827r, j11);
-            jVar.onStateChanged(sVar.d());
+    public boolean restorePreview(final File file, long j3) {
+        final pi.t tVar = this.session;
+        tVar.getClass();
+        pi.t.r();
+        if (tVar.f45830m == r.f45811a && j3 > 0 && file.isFile() && file.length() != 0 && tVar.f()) {
+            final pi.n c10 = tVar.c();
+            tVar.f45833p = (j3 * 48000) / 1000;
+            tVar.f45835r = 0L;
+            tVar.f45836s = tVar.l();
+            tVar.u(r.d);
+            tVar.f45826i.execute(new Runnable() {
+                @Override
+                public final void run() {
+                    File file2 = file;
+                    n nVar = c10;
+                    File file3 = nVar.f45802b;
+                    t tVar2 = t.this;
+                    Handler handler = tVar2.h;
+                    try {
+                        FileInputStream fileInputStream = new FileInputStream(file2);
+                        FileOutputStream fileOutputStream = new FileOutputStream(file3);
+                        try {
+                            byte[] bArr = new byte[32768];
+                            while (true) {
+                                int read = fileInputStream.read(bArr);
+                                if (read != -1) {
+                                    fileOutputStream.write(bArr, 0, read);
+                                } else {
+                                    fileOutputStream.close();
+                                    fileInputStream.close();
+                                    handler.post(new pi.f(tVar2, nVar, AudioRecorderNative.e(file3.getAbsolutePath()), 0));
+                                    return;
+                                }
+                            }
+                        } catch (Throwable th2) {
+                            try {
+                                fileOutputStream.close();
+                            } catch (Throwable th3) {
+                                th2.addSuppressed(th3);
+                            }
+                            throw th2;
+                        }
+                    } catch (Exception e7) {
+                        handler.post(new f2(4, tVar2, e7));
+                    }
+                }
+            });
             return true;
         }
         return false;
+    }
+
+    public boolean setTrimRange(long j3, long j10) {
+        return this.session.v(j3, j10);
     }
 
     public boolean start() {
-        pi.s sVar = this.session;
-        sVar.getClass();
-        pi.s.p();
-        if (sVar.f45822m != pi.q.f45803a) {
+        pi.t tVar = this.session;
+        tVar.getClass();
+        pi.t.r();
+        if (tVar.f45830m != r.f45811a || !tVar.f()) {
             return false;
         }
-        File file = sVar.f45813b;
-        if ((file.isDirectory() || file.mkdirs()) && file.canWrite()) {
-            sVar.f45817g.b("start requested");
-            sVar.c();
-            sVar.s(pi.q.f45804b);
-            sVar.t(null);
-            return true;
-        }
-        sVar.g(new IllegalStateException("Output directory is not writable: " + file));
-        return false;
+        tVar.f45825g.b("start requested");
+        tVar.c();
+        tVar.u(r.f45812b);
+        tVar.w(null);
+        return true;
     }
 
     public boolean togglePause() {
-        pi.s sVar = this.session;
-        sVar.getClass();
-        pi.s.p();
-        pi.q qVar = sVar.d().f45811a;
-        if (qVar == pi.q.f45805c) {
-            return this.session.m();
+        pi.t tVar = this.session;
+        tVar.getClass();
+        pi.t.r();
+        r rVar = tVar.d().f45819a;
+        if (rVar == r.f45813c) {
+            return this.session.o();
         }
-        pi.q qVar2 = pi.q.f45806e;
-        if (qVar == qVar2) {
-            final pi.s sVar2 = this.session;
-            sVar2.getClass();
-            pi.s.p();
-            if (sVar2.f45822m == qVar2) {
-                pi.b bVar = sVar2.f45817g;
-                bVar.b("resume requested: trim=" + sVar2.f45827r + ".." + sVar2.f45828s + ", sourceDurationMs=" + sVar2.j());
-                sVar2.o();
-                sVar2.s(pi.q.f45807f);
-                final pi.m mVar = sVar2.f45834z;
-                if (mVar == null) {
-                    sVar2.g(new IllegalStateException("Output generation is missing"));
+        r rVar2 = r.f45814e;
+        if (rVar == rVar2) {
+            final pi.t tVar2 = this.session;
+            tVar2.getClass();
+            pi.t.r();
+            if (tVar2.f45830m == rVar2) {
+                pi.b bVar = tVar2.f45825g;
+                bVar.b("resume requested: trim=" + tVar2.f45835r + ".." + tVar2.f45836s + ", sourceDurationMs=" + tVar2.l());
+                tVar2.q();
+                tVar2.u(r.f45815f);
+                final pi.n nVar = tVar2.f45842z;
+                if (nVar == null) {
+                    tVar2.i(new IllegalStateException("Output generation is missing"));
                     return true;
                 }
-                final long j3 = sVar2.f45827r;
-                final long j10 = sVar2.f45828s;
+                final long j3 = tVar2.f45835r;
+                final long j10 = tVar2.f45836s;
                 final long j11 = ((j10 - j3) * 48000) / 1000;
-                sVar2.k(pi.n.f45797a);
-                sVar2.f45818i.execute(new Runnable() {
+                tVar2.m(pi.o.f45805a);
+                tVar2.f45826i.execute(new Runnable() {
                     @Override
                     public final void run() {
                         File file;
                         File file2;
                         long j12 = j11;
-                        s sVar3 = s.this;
-                        Handler handler = sVar3.h;
+                        t tVar3 = t.this;
+                        Handler handler = tVar3.h;
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        File file3 = mVar.f45794b;
+                        File file3 = nVar.f45802b;
                         long j13 = j3;
                         int i10 = (j13 > 0L ? 1 : (j13 == 0L ? 0 : -1));
                         long j14 = j10;
                         if (i10 <= 0) {
                             file = file3;
                             try {
-                                if (j14 >= s.q(sVar3.f45825p)) {
+                                if (j14 >= t.s(tVar3.f45833p)) {
                                     file2 = file;
-                                    pi.b bVar2 = sVar3.f45817g;
+                                    pi.b bVar2 = tVar3.f45825g;
                                     bVar2.b("resume prefix prepared: source=" + file.getName() + ", prefix=" + file2.getName() + ", trim=" + j13 + ".." + j14 + ", bytes=" + file2.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
-                                    handler.post(new pi.f(sVar3, j12, file2, 0));
+                                    handler.post(new pi.d(tVar3, j12, file2, 0));
                                 }
                             } catch (Throwable th2) {
-                                handler.post(new pi.d(sVar3, th2, 1));
+                                handler.post(new pi.e(tVar3, th2, 0));
                                 return;
                             }
                         } else {
                             file = file3;
                         }
-                        file2 = sVar3.e("trim");
+                        file2 = tVar3.e("trim");
                         boolean b10 = AudioRecorderNative.b(file.getAbsolutePath(), file2.getAbsolutePath(), j13, j14);
                         j14 = j14;
                         if (!b10) {
                             throw new IllegalStateException("Unable to trim Opus prefix");
                         }
-                        pi.b bVar22 = sVar3.f45817g;
+                        pi.b bVar22 = tVar3.f45825g;
                         bVar22.b("resume prefix prepared: source=" + file.getName() + ", prefix=" + file2.getName() + ", trim=" + j13 + ".." + j14 + ", bytes=" + file2.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
-                        handler.post(new pi.f(sVar3, j12, file2, 0));
+                        handler.post(new pi.d(tVar3, j12, file2, 0));
                     }
                 });
                 return true;
@@ -383,7 +420,7 @@ public final class AudioRecorderV2Controller {
         return false;
     }
 
-    public class AnonymousClass2 implements pi.o {
+    public class AnonymousClass2 implements pi.p {
         final Listener val$listener;
 
         public AnonymousClass2(Listener listener) {
@@ -413,7 +450,7 @@ public final class AudioRecorderV2Controller {
         }
 
         @Override
-        public void onOutputInvalidated(long j3, pi.n nVar) {
+        public void onOutputInvalidated(long j3, pi.o oVar) {
             File file;
             synchronized (AudioRecorderV2Controller.this.outputLock) {
                 file = (File) AudioRecorderV2Controller.this.outputFiles.remove(Long.valueOf(j3));

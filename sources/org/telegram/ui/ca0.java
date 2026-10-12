@@ -11,29 +11,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class ca0 implements Runnable {
-    public final LaunchActivity f36377a;
-    public final org.telegram.ui.ActionBar.m2 f36378b;
-    public final int f36379c;
+    public final LaunchActivity f36379a;
+    public final org.telegram.ui.ActionBar.m2 f36380b;
+    public final int f36381c;
     public final TLRPC.User d;
-    public final TLRPC.TL_messages_botApp f36380e;
-    public final AtomicBoolean f36381f;
+    public final TLRPC.TL_messages_botApp f36382e;
+    public final AtomicBoolean f36383f;
     public final String h;
-    public final boolean f36382n;
-    public final boolean f36383r;
-    public final boolean f36384s;
+    public final boolean f36384n;
+    public final boolean f36385r;
+    public final boolean f36386s;
     public final boolean v;
 
     public ca0(LaunchActivity launchActivity, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f36377a = launchActivity;
-        this.f36378b = m2Var;
-        this.f36379c = i10;
+        this.f36379a = launchActivity;
+        this.f36380b = m2Var;
+        this.f36381c = i10;
         this.d = user;
-        this.f36380e = tL_messages_botApp;
-        this.f36381f = atomicBoolean;
+        this.f36382e = tL_messages_botApp;
+        this.f36383f = atomicBoolean;
         this.h = str;
-        this.f36382n = z10;
-        this.f36383r = z11;
-        this.f36384s = z12;
+        this.f36384n = z10;
+        this.f36385r = z11;
+        this.f36386s = z12;
         this.v = z13;
     }
 
@@ -42,26 +42,26 @@ public final class ca0 implements Runnable {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
         String formatString;
         Pattern pattern = LaunchActivity.B1;
-        org.telegram.ui.ActionBar.m2 m2Var = this.f36378b;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f36380b;
         if (m2Var != null && LaunchActivity.C1) {
-            LaunchActivity launchActivity = this.f36377a;
+            LaunchActivity launchActivity = this.f36379a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TLRPC.User user = this.d;
-                long j3 = user.f19949id;
-                TLRPC.TL_messages_botApp tL_messages_botApp = this.f36380e;
+                long j3 = user.f19950id;
+                TLRPC.TL_messages_botApp tL_messages_botApp = this.f36382e;
                 TLRPC.BotApp botApp = tL_messages_botApp.app;
-                boolean z10 = this.f36381f.get();
-                int i10 = this.f36379c;
+                boolean z10 = this.f36383f.get();
+                int i10 = this.f36381c;
                 String str = this.h;
-                boolean z11 = this.f36382n;
-                boolean z12 = this.f36383r;
+                boolean z11 = this.f36384n;
+                boolean z12 = this.f36385r;
                 ei.e5 b10 = ei.e5.b(i10, j3, j3, null, null, 3, 0, 0L, botApp, z10, str, user, 0, z11, z12);
                 if (launchActivity.P() == null || launchActivity.P().k(b10) == null) {
-                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f19949id, true);
+                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f19950id, true);
                     ei.k3 k3Var = new ei.k3(launchActivity, m2Var.getResourceProvider());
                     ei.b3 b3Var = k3Var.f9180x;
                     if (b3Var != null) {
-                        b3Var.setWasOpenedByLinkIntent(this.f36384s);
+                        b3Var.setWasOpenedByLinkIntent(this.f36386s);
                     }
                     k3Var.x(!z11);
                     if (z12) {

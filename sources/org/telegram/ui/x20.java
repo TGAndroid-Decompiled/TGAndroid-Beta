@@ -4,27 +4,27 @@ import java.util.Calendar;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class x20 implements org.telegram.ui.Components.ud0 {
-    public final int f43737a;
-    public final long f43738b;
-    public final Calendar f43739c;
+    public final int f43742a;
+    public final long f43743b;
+    public final Calendar f43744c;
     public final int d;
 
     public x20(long j3, Calendar calendar, int i10, int i11) {
-        this.f43737a = i11;
-        this.f43738b = j3;
-        this.f43739c = calendar;
+        this.f43742a = i11;
+        this.f43743b = j3;
+        this.f43744c = calendar;
         this.d = i10;
     }
 
     @Override
     public final String e(int i10) {
-        switch (this.f43737a) {
+        switch (this.f43742a) {
             case 0:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
                 }
-                long j3 = (i10 * 86400000) + this.f43738b;
-                Calendar calendar = this.f43739c;
+                long j3 = (i10 * 86400000) + this.f43743b;
+                Calendar calendar = this.f43744c;
                 calendar.setTimeInMillis(j3);
                 if (calendar.get(1) == this.d) {
                     return LocaleController.getInstance().getFormatterWeek().format(j3) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j3);
@@ -34,8 +34,8 @@ public final class x20 implements org.telegram.ui.Components.ud0 {
                 if (i10 == 0) {
                     return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
                 }
-                long j10 = (i10 * 86400000) + this.f43738b;
-                Calendar calendar2 = this.f43739c;
+                long j10 = (i10 * 86400000) + this.f43743b;
+                Calendar calendar2 = this.f43744c;
                 calendar2.setTimeInMillis(j10);
                 if (calendar2.get(1) == this.d) {
                     return LocaleController.getInstance().getFormatterScheduleDay().format(j10);

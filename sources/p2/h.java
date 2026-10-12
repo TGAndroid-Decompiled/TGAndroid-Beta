@@ -1,11 +1,14 @@
 package p2;
-public final class h extends k {
-    public final boolean f45099w;
-    public final boolean f45100x;
 
-    public h(String str, j jVar, long j3, int i10, long j10, b2.o oVar, String str2, String str3, long j11, long j12, boolean z10, boolean z11, boolean z12) {
-        super(str, jVar, j3, i10, j10, oVar, str2, str3, j11, j12, z10);
-        this.f45099w = z11;
-        this.f45100x = z12;
+import android.net.Uri;
+public final class h {
+    public final Uri f45106a;
+    public final long f45107b;
+    public final int f45108c;
+
+    public h(Uri uri, long j3, int i10) {
+        this.f45106a = uri;
+        this.f45107b = j3;
+        this.f45108c = i10;
     }
 }

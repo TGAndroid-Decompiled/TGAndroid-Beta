@@ -39,7 +39,7 @@ public final class b4 extends FrameLayout {
         addView(y9Var, w5.a(46.0f, 13.0f, 0.0f, 13.0f, 0.0f, 46, 19));
         View view = new View(context);
         this.d = view;
-        view.setBackground(h6.K(AndroidUtilities.dp(11.0f), h6.w0(h6.f20559d6, c6Var)));
+        view.setBackground(h6.K(AndroidUtilities.dp(11.0f), h6.w0(h6.f20560d6, c6Var)));
         addView(view, w5.a(22.0f, 40.0f, 15.0f, 0.0f, 0.0f, 22, 19));
         View view2 = new View(context);
         this.f8967e = view2;
@@ -69,7 +69,7 @@ public final class b4 extends FrameLayout {
         h.setSingleLine(true);
         h.setEllipsize(truncateAt);
         h.setTextSize(1, 14.0f);
-        h.setTextColor(h6.w0(h6.f20963z6, c6Var));
+        h.setTextColor(h6.w0(h6.f20964z6, c6Var));
         linearLayout.addView(h, w5.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
         this.f8970r = imageView2;
@@ -83,7 +83,7 @@ public final class b4 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.f8971s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), h6.f20681k0);
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), h6.f20682k0);
         }
     }
 

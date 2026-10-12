@@ -23,36 +23,36 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class j11 extends LinearLayout {
-    public final int f27336a;
-    public final long f27337b;
-    public final org.telegram.ui.ActionBar.c6 f27338c;
+    public final int f27330a;
+    public final long f27331b;
+    public final org.telegram.ui.ActionBar.c6 f27332c;
     public final nv0 d;
-    public final j9 f27339e;
-    public final y9 f27340f;
+    public final j9 f27333e;
+    public final y9 f27334f;
     public final org.telegram.ui.Cells.d6 h;
-    public final r6 f27341n;
-    public MessageObject f27342r;
-    public boolean f27343s;
+    public final r6 f27335n;
+    public MessageObject f27336r;
+    public boolean f27337s;
     public boolean v;
-    public Utilities.Callback f27344w;
-    public boolean f27345x;
-    public float f27346y;
+    public Utilities.Callback f27338w;
+    public boolean f27339x;
+    public float f27340y;
 
     public j11(int i10, long j3, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f27346y = -6.0f;
-        this.f27336a = i10;
-        this.f27337b = j3;
-        this.f27338c = c6Var;
+        this.f27340y = -6.0f;
+        this.f27330a = i10;
+        this.f27331b = j3;
+        this.f27332c = c6Var;
         setOrientation(1);
         org.telegram.ui.y8 y8Var = new org.telegram.ui.y8(this, context, 2);
         y8Var.V(ci.b7.e(null, i10, j3, org.telegram.ui.ActionBar.h6.I.q()));
         nv0 nv0Var = new nv0(context, i10);
         this.d = nv0Var;
         y8Var.addView(nv0Var, w7.w5.a(-2.0f, 0.0f, 12.0f, 0.0f, 12.0f, -1, 87));
-        this.f27339e = new j9((org.telegram.ui.ActionBar.c6) null);
+        this.f27333e = new j9((org.telegram.ui.ActionBar.c6) null);
         y9 y9Var = new y9(context);
-        this.f27340f = y9Var;
+        this.f27334f = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(21.0f));
         y8Var.addView(y9Var, w7.w5.a(42.0f, 8.0f, 0.0f, 0.0f, 12.0f, 42, 83));
         addView(y8Var, w7.w5.q(-1, -2, 7));
@@ -65,15 +65,15 @@ public final class j11 extends LinearLayout {
         d6Var.setTextRight(114);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.menu_delete_old);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20945y6, c6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20946y6, c6Var), PorterDuff.Mode.SRC_IN));
         d6Var.addView(imageView, w7.w5.a(24.0f, 0.0f, 0.0f, 20.0f, 0.0f, 24, 21));
         w7.y5.a(imageView);
         imageView.setOnClickListener(new f90(textView, 20));
         r6 r6Var = new r6(context, false, true, false);
-        this.f27341n = r6Var;
-        r6Var.f30058n = false;
+        this.f27335n = r6Var;
+        r6Var.f30059n = false;
         r6Var.setTypeface(AndroidUtilities.bold());
-        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20799q7, c6Var));
+        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20800q7, c6Var));
         r6Var.setTextSize(AndroidUtilities.dp(14.0f));
         r6Var.setGravity(17);
         r6Var.setAllowCancel(true);
@@ -150,7 +150,7 @@ public final class j11 extends LinearLayout {
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str2);
         if (!z11 && !z10) {
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20749nd, false)), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20750nd, false)), 0, spannableStringBuilder.length(), 33);
         } else {
             if (z11) {
                 i13 = -6988581;
@@ -203,7 +203,7 @@ public final class j11 extends LinearLayout {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             org.telegram.ui.ActionBar.e3 e3Var2 = i20;
             LinearLayout linearLayout5 = linearLayout4;
-            tL_message.from_id = MessagesController.getInstance(i19).getPeer(user.f19949id);
+            tL_message.from_id = MessagesController.getInstance(i19).getPeer(user.f19950id);
             tL_message.peer_id = MessagesController.getInstance(i19).getPeer(j10);
             tL_message.message = "";
             tL_message.date = ConnectionsManager.getInstance(i19).getCurrentTime();
@@ -240,7 +240,7 @@ public final class j11 extends LinearLayout {
             z13 = false;
         }
         if (!z13 && !ChatObject.canManageTags(chat) && !chat.creator && chat.admin_rights == null && !z11) {
-            TextView b12 = w7.a6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f20945y6, false, null);
+            TextView b12 = w7.a6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f20946y6, false, null);
             b12.setGravity(1);
             b12.setText(LocaleController.getString(R.string.CantEditTagAdmins));
             linearLayout = linearLayout6;
@@ -252,7 +252,7 @@ public final class j11 extends LinearLayout {
         final boolean[] zArr = new boolean[1];
         if (!z13) {
             f7.setText(yh.s3.i2(LocaleController.getString(R.string.Understood)));
-            f7.setOnClickListener(new wt(17, e3Var3, zArr));
+            f7.setOnClickListener(new xt(17, e3Var3, zArr));
             e3Var = e3Var3;
         } else {
             if (UserObject.isUserSelf(user)) {
@@ -284,7 +284,7 @@ public final class j11 extends LinearLayout {
             f7.setOnClickListener(onClickListener);
         }
         e3Var.smoothKeyboardAnimationEnabled = true;
-        e3Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var2));
+        e3Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var2));
         e3Var.setOnDismissListener(new ur0(zArr, 14));
         if (MessagesController.getGlobalMainSettings().getInt("showchattagsinfo", 3) <= 0 && z13) {
             c(context, i10, j3, user, str, z10, z11, c6Var2);
@@ -314,7 +314,7 @@ public final class j11 extends LinearLayout {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_close_white);
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i13, c6Var), PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var), 1, AndroidUtilities.dp(18.0f)));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var), 1, AndroidUtilities.dp(18.0f)));
         linearLayout2.addView(imageView, w7.w5.t(32, 32, 21, 0, 0, 10, 0));
         linearLayout.addView(linearLayout2, w7.w5.k(0.0f, 6.0f, 0.0f, 6.0f, -1, -2));
         final ci.d f7 = org.telegram.messenger.am.f(24, context, c6Var, true);
@@ -340,7 +340,7 @@ public final class j11 extends LinearLayout {
         j11 j11Var = new j11(i10, j3, context, c6Var);
         j11Var.setClipToOutline(true);
         j11Var.setOutlineProvider(new ViewOutlineProvider());
-        j11Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var));
+        j11Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var));
         j11Var.a(user, str, z10, z11, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -370,7 +370,7 @@ public final class j11 extends LinearLayout {
         linearLayout.addView(e9Var, w7.w5.t(-1, -2, 7, 0, 0, 0, 0));
         linearLayout.addView(f7, w7.w5.t(-1, 48, 7, 14, 19, 14, 12));
         i12.smoothKeyboardAnimationEnabled = true;
-        i12.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20503a7, c6Var));
+        i12.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20504a7, c6Var));
         if (TextUtils.isEmpty(str) && !z10 && !z11) {
             z13 = true;
         } else {
@@ -388,23 +388,23 @@ public final class j11 extends LinearLayout {
         boolean z13;
         int i10;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        int i11 = this.f27336a;
-        tL_message.from_id = MessagesController.getInstance(i11).getPeer(user.f19949id);
+        int i11 = this.f27330a;
+        tL_message.from_id = MessagesController.getInstance(i11).getPeer(user.f19950id);
         MessagesController messagesController = MessagesController.getInstance(i11);
-        long j3 = this.f27337b;
+        long j3 = this.f27331b;
         tL_message.peer_id = messagesController.getPeer(j3);
         tL_message.message = "";
         tL_message.date = ConnectionsManager.getInstance(i11).getCurrentTime();
         tL_message.out = false;
-        this.f27343s = z10;
+        this.f27337s = z10;
         this.v = z11;
         MessageObject messageObject = new MessageObject(i11, tL_message, true, false);
-        this.f27342r = messageObject;
+        this.f27336r = messageObject;
         messageObject.forceAvatar = true;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("_\n_  ");
         spannableStringBuilder.setSpan(new i11((int) Math.min(AndroidUtilities.displaySize.x * 0.5f, AndroidUtilities.dp(200.0f))), 0, 1, 33);
         spannableStringBuilder.setSpan(new i11((int) Math.min(AndroidUtilities.displaySize.x * 0.44f, AndroidUtilities.dp(160.0f))), 2, 3, 33);
-        this.f27342r.messageText = spannableStringBuilder;
+        this.f27336r.messageText = spannableStringBuilder;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
         if (chat != null) {
             z12 = true;
@@ -419,19 +419,19 @@ public final class j11 extends LinearLayout {
             z13 = false;
         }
         nv0Var.S7 = z13;
-        this.f27342r.generateLayout(null);
-        this.d.X3(this.f27342r, null, false, false, false, false);
-        j9 j9Var = this.f27339e;
+        this.f27336r.generateLayout(null);
+        this.d.X3(this.f27336r, null, false, false, false, false);
+        j9 j9Var = this.f27333e;
         j9Var.r(user);
-        this.f27340f.e(user, j9Var);
-        this.f27344w = callback;
-        this.f27345x = true;
+        this.f27334f.e(user, j9Var);
+        this.f27338w = callback;
+        this.f27339x = true;
         if (TextUtils.isEmpty(str) && !z10) {
             i10 = R.string.MemberTagHintAdd;
         } else {
             i10 = R.string.MemberTagHintEdit;
         }
         this.h.o(str, LocaleController.getString(i10), false);
-        this.f27345x = false;
+        this.f27339x = false;
     }
 }

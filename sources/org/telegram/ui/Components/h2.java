@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class h2 implements DialogInterface.OnDismissListener {
-    public final int f26611a;
-    public final boolean[] f26612b;
+    public final int f26615a;
+    public final boolean[] f26616b;
 
     public h2(int i10, Runnable runnable, boolean[] zArr) {
-        this.f26611a = i10;
-        this.f26612b = zArr;
+        this.f26615a = i10;
+        this.f26616b = zArr;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f26611a;
-        boolean[] zArr = this.f26612b;
+        int i10 = this.f26615a;
+        boolean[] zArr = this.f26616b;
         switch (i10) {
             case 0:
                 if (zArr[0]) {
-                    int i11 = no.f28872m1;
+                    int i11 = no.f28876m1;
                     return;
                 }
                 return;

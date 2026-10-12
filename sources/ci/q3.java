@@ -111,8 +111,8 @@ public final class q3 extends FrameLayout {
         o3Var.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
         CheckBoxBase checkBoxBase = o3Var.getCheckBoxBase();
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        if (checkBoxBase.f23878u != i10) {
-            checkBoxBase.f23878u = i10;
+        if (checkBoxBase.f23879u != i10) {
+            checkBoxBase.f23879u = i10;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -538,7 +538,7 @@ public final class q3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             o3 o3Var = this.J;
-            if (o3Var != null && o3Var.f26150a.f23874q) {
+            if (o3Var != null && o3Var.f26152a.f23875q) {
                 z10 = true;
             } else {
                 z10 = false;

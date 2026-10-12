@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ti implements org.telegram.ui.Components.nm0 {
-    public final eo f42200a;
+    public final eo f42202a;
 
     public ti(eo eoVar) {
-        this.f42200a = eoVar;
+        this.f42202a = eoVar;
     }
 
     @Override

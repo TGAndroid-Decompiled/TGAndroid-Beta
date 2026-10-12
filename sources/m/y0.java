@@ -48,11 +48,11 @@ import org.telegram.ui.n9;
 import org.telegram.ui.vs0;
 import org.telegram.ui.x9;
 public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, com.google.android.gms.common.api.internal.o, w2.d, Continuation, ml0 {
-    public final int f15626a;
-    public Object f15627b;
+    public final int f15627a;
+    public Object f15628b;
 
     public y0(int i10, boolean z10) {
-        this.f15626a = i10;
+        this.f15627a = i10;
     }
 
     public static float[] g(ArrayList arrayList) {
@@ -273,13 +273,13 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ((ChatActivityEnterView) this.f15627b).W0(i10, z10, 0, true, 0L);
+        ((ChatActivityEnterView) this.f15628b).W0(i10, z10, 0, true, 0L);
     }
 
     @Override
     public void K(String str) {
         String trim;
-        c5 c5Var = (c5) this.f15627b;
+        c5 c5Var = (c5) this.f15628b;
         if (str == null) {
             trim = "";
         } else {
@@ -300,9 +300,9 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void T(boolean z10) {
-        zf0 zf0Var = (zf0) this.f15627b;
+        zf0 zf0Var = (zf0) this.f15628b;
         zf0Var.getClass();
-        yf0 yf0Var = zf0Var.f33341a;
+        yf0 yf0Var = zf0Var.f33349a;
         if (yf0Var != null) {
             ((vs0) yf0Var).a(z10);
         }
@@ -310,10 +310,10 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void X() {
-        yf0 yf0Var = ((zf0) this.f15627b).f33341a;
+        yf0 yf0Var = ((zf0) this.f15628b).f33349a;
         if (yf0Var != null) {
-            PhotoViewer photoViewer = ((vs0) yf0Var).f42845a;
-            if (photoViewer.f33724c2 == 1) {
+            PhotoViewer photoViewer = ((vs0) yf0Var).f42847a;
+            if (photoViewer.f33726c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.q3();
             }
@@ -327,12 +327,12 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public Paint.FontMetricsInt b() {
-        return ((aj) this.f15627b).H0.getEditText().getPaint().getFontMetricsInt();
+        return ((aj) this.f15628b).H0.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15627b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15628b;
         if (contentProviderClient != null) {
             contentProviderClient.release();
         }
@@ -340,7 +340,7 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public Cursor d(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15627b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15628b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -354,30 +354,30 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void g0(ah.a aVar) {
-        aVar.a(((sr0) this.f15627b).getThemedColor(h6.f20559d6));
+        aVar.a(((sr0) this.f15628b).getThemedColor(h6.f20560d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
     @Override
     public Object mo27get() {
-        switch (this.f15626a) {
+        switch (this.f15627a) {
             case 1:
-                return new f3((Context) ((l2.g) this.f15627b).f15080b, new qb.b(24), new ob.a(24), 3);
+                return new f3((Context) ((l2.g) this.f15628b).f15081b, new qb.b(24), new ob.a(24), 3);
             default:
-                return new s5.i((Context) ((gd.a) this.f15627b).mo27get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
+                return new s5.i((Context) ((gd.a) this.f15628b).mo27get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
         }
     }
 
     @Override
     public void h(View view, zg.n0 n0Var, boolean z10, boolean z11) {
-        zg.t tVar = (zg.t) this.f15627b;
-        tVar.f54886a.eb(null, tVar.f54889e, tVar.f54887b, view, 0.0f, 0.0f, n0Var, false, z10, z11, false);
+        zg.t tVar = (zg.t) this.f15628b;
+        tVar.f54894a.eb(null, tVar.f54897e, tVar.f54895b, view, 0.0f, 0.0f, n0Var, false, z10, z11, false);
         AndroidUtilities.runOnUIThread(new yh.f0(this, 13));
     }
 
     @Override
     public void i(int i10, int i11, CharSequence charSequence, boolean z10) {
-        aj ajVar = (aj) this.f15627b;
+        aj ajVar = (aj) this.f15628b;
         if (ajVar.o1() == null) {
             return;
         }
@@ -396,7 +396,7 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void invalidate() {
-        ((org.telegram.ui.Cells.u1) ((org.telegram.ui.Cells.h1) this.f15627b).f21956b).invalidate();
+        ((org.telegram.ui.Cells.u1) ((org.telegram.ui.Cells.h1) this.f15628b).f21957b).invalidate();
     }
 
     @Override
@@ -411,8 +411,8 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void l(Canvas canvas) {
-        sr0 sr0Var = (sr0) this.f15627b;
-        canvas.drawColor(sr0Var.getThemedColor(h6.f20559d6));
+        sr0 sr0Var = (sr0) this.f15628b;
+        canvas.drawColor(sr0Var.getThemedColor(h6.f20560d6));
         if (SharedConfig.chatBlurEnabled()) {
             sr0Var.O0.b(canvas, -3);
         }
@@ -420,13 +420,13 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void l0(float f7) {
-        qg.w0 w0Var = (qg.w0) this.f15627b;
-        pg.t0.e(w0Var.f46524a).k("-1", f7);
-        w0Var.f46527e.setBrushSize(f7);
+        qg.w0 w0Var = (qg.w0) this.f15628b;
+        pg.t0.e(w0Var.f46532a).k("-1", f7);
+        w0Var.f46535e.setBrushSize(f7);
     }
 
     public void m(za.b0 b0Var) {
-        ((l5.r) ((i5.f) ((pa.b) this.f15627b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new za.k(this)).a(new i5.a(null, b0Var, i5.d.f12012a, null), new j2.e(16));
+        ((l5.r) ((i5.f) ((pa.b) this.f15628b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new za.k(this)).a(new i5.a(null, b0Var, i5.d.f12012a, null), new j2.e(16));
     }
 
     @Override
@@ -435,7 +435,7 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
     }
 
     public void r(aa.a aVar) {
-        h8.j jVar = (h8.j) this.f15627b;
+        h8.j jVar = (h8.j) this.f15628b;
         jVar.f11040a = aVar;
         Iterator it = jVar.f11042c.iterator();
         while (it.hasNext()) {
@@ -447,17 +447,17 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public Object then(Task task) {
-        return ((Callable) this.f15627b).call();
+        return ((Callable) this.f15628b).call();
     }
 
     public String toString() {
-        switch (this.f15626a) {
+        switch (this.f15627a) {
             case 20:
-                se.b bVar = se.b.f48201e;
+                se.b bVar = se.b.f48209e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((ra.a) this.f15627b).n());
+                stringBuffer.append(((ra.a) this.f15628b).n());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -467,76 +467,76 @@ public class y0 implements x0, n5.b, o0.a, g81, f5, qb0, lg.o, ah.j, x9, qg.v1, 
 
     @Override
     public void u() {
-        yf0 yf0Var = ((zf0) this.f15627b).f33341a;
+        yf0 yf0Var = ((zf0) this.f15628b).f33349a;
         if (yf0Var != null) {
-            ((vs0) yf0Var).f42845a.f33741e0.invalidate();
+            ((vs0) yf0Var).f42847a.f33743e0.invalidate();
         }
     }
 
     @Override
     public void v(Object obj) {
-        ((g8.c) obj).onLocationResult((LocationResult) this.f15627b);
+        ((g8.c) obj).onLocationResult((LocationResult) this.f15628b);
     }
 
     @Override
     public void z(boolean z10) {
-        ((zf0) this.f15627b).f33343c.setAspectLock(z10);
+        ((zf0) this.f15628b).f33351c.setAspectLock(z10);
     }
 
     public y0(Object obj, int i10) {
-        this.f15626a = i10;
-        this.f15627b = obj;
+        this.f15627a = i10;
+        this.f15628b = obj;
     }
 
     public y0(int i10) {
-        this.f15626a = i10;
+        this.f15627a = i10;
         switch (i10) {
             case 23:
-                this.f15627b = new qb.b(28);
+                this.f15628b = new qb.b(28);
                 return;
             case 26:
-                this.f15627b = new CopyOnWriteArrayList();
+                this.f15628b = new CopyOnWriteArrayList();
                 return;
             default:
-                this.f15627b = new LinkedHashMap(5, 1.0f, false);
+                this.f15628b = new LinkedHashMap(5, 1.0f, false);
                 return;
         }
     }
 
     public y0(int i10, int i11, int[] iArr) {
-        this.f15626a = 6;
+        this.f15627a = 6;
         d70[] d70VarArr = new d70[(iArr.length / 2) + 1];
-        this.f15627b = d70VarArr;
+        this.f15628b = d70VarArr;
         d70 d70Var = new d70(i10, i11);
         int i12 = 0;
         d70VarArr[0] = d70Var;
         while (i12 < iArr.length / 2) {
             int i13 = i12 + 1;
             int i14 = i12 * 2;
-            ((d70[]) this.f15627b)[i13] = new d70(iArr[i14], iArr[i14 + 1]);
+            ((d70[]) this.f15628b)[i13] = new d70(iArr[i14], iArr[i14 + 1]);
             i12 = i13;
         }
     }
 
     @Override
     public float get() {
-        qg.w0 w0Var = (qg.w0) this.f15627b;
-        int i10 = w0Var.f46524a;
-        pg.m currentBrush = w0Var.f46527e.getCurrentBrush();
+        qg.w0 w0Var = (qg.w0) this.f15628b;
+        int i10 = w0Var.f46532a;
+        pg.m currentBrush = w0Var.f46535e.getCurrentBrush();
         if (currentBrush == null) {
-            return pg.t0.e(i10).f45685i;
+            return pg.t0.e(i10).f45690i;
         }
         return pg.t0.e(i10).f("-1", currentBrush.d());
     }
 
     public y0(TextView textView) {
-        this.f15626a = 15;
-        this.f15627b = new q1.g(textView);
+        this.f15627a = 15;
+        this.f15628b = new q1.g(textView);
     }
 
     public y0(Context context, Uri uri) {
-        this.f15626a = 3;
-        this.f15627b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f15627a = 3;
+        this.f15628b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     @Override

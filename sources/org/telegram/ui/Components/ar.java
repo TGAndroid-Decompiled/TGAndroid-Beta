@@ -12,20 +12,20 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class ar extends EditTextBoldCursor {
-    public final int f24461b;
-    public final int f24462c;
+    public final int f24458b;
+    public final int f24459c;
     public final FrameLayout d;
 
     public ar(FrameLayout frameLayout, Context context, int i10, int i11) {
         super(context);
-        this.f24461b = i11;
+        this.f24458b = i11;
         this.d = frameLayout;
-        this.f24462c = i10;
+        this.f24459c = i10;
     }
 
     @Override
     public boolean getGlobalVisibleRect(Rect rect, Point point) {
-        switch (this.f24461b) {
+        switch (this.f24458b) {
             case 1:
                 boolean globalVisibleRect = super.getGlobalVisibleRect(rect, point);
                 rect.bottom = AndroidUtilities.dp(40.0f) + rect.bottom;
@@ -37,10 +37,10 @@ public final class ar extends EditTextBoldCursor {
 
     @Override
     public void invalidate() {
-        switch (this.f24461b) {
+        switch (this.f24458b) {
             case 1:
                 super.invalidate();
-                ((er) this.d).E[this.f24462c - 1].invalidate();
+                ((er) this.d).E[this.f24459c - 1].invalidate();
                 return;
             default:
                 super.invalidate();
@@ -64,8 +64,8 @@ public final class ar extends EditTextBoldCursor {
         boolean z11;
         dz dzVar;
         float f7;
-        int i13 = this.f24461b;
-        int i14 = this.f24462c;
+        int i13 = this.f24458b;
+        int i14 = this.f24459c;
         FrameLayout frameLayout = this.d;
         int i15 = 1;
         boolean z12 = false;
@@ -100,19 +100,19 @@ public final class ar extends EditTextBoldCursor {
                 }
                 if (motionEvent.getAction() == 0) {
                     int i16 = 2;
-                    if (!d00Var.f25134t1.z()) {
+                    if (!d00Var.f25126t1.z()) {
                         wm0 wm0Var2 = d00Var.D0;
                         wm0 wm0Var3 = d00Var.P;
-                        hz hzVar = d00Var.f25102j0;
-                        wm0 wm0Var4 = d00Var.f25096h0;
+                        hz hzVar = d00Var.f25094j0;
+                        wm0 wm0Var4 = d00Var.f25088h0;
                         AnimatorSet animatorSet = d00Var.M0;
                         if (animatorSet != null) {
                             animatorSet.cancel();
                             d00Var.M0 = null;
                         }
                         d00Var.I0 = false;
-                        d00Var.f25122q0 = false;
-                        d00Var.f25079c0 = false;
+                        d00Var.f25114q0 = false;
+                        d00Var.f25071c0 = false;
                         int i17 = 0;
                         while (i17 < 3) {
                             if (i17 == 0) {
@@ -124,9 +124,9 @@ public final class ar extends EditTextBoldCursor {
                             } else {
                                 boolean z13 = z12;
                                 if (i17 == i15) {
-                                    pzVar = d00Var.f25116o0;
-                                    view = d00Var.f25119p0;
-                                    d0Var = d00Var.f25099i0;
+                                    pzVar = d00Var.f25108o0;
+                                    view = d00Var.f25111p0;
+                                    d0Var = d00Var.f25091i0;
                                     wm0Var = wm0Var4;
                                     r16 = z13;
                                 } else {
@@ -141,7 +141,7 @@ public final class ar extends EditTextBoldCursor {
                                 arVar2 = arVar3;
                                 i12 = i16;
                                 z10 = r16;
-                            } else if (pzVar2 == pzVar && (dzVar = d00Var.f25134t1) != null && dzVar.A()) {
+                            } else if (pzVar2 == pzVar && (dzVar = d00Var.f25126t1) != null && dzVar.A()) {
                                 AnimatorSet animatorSet2 = new AnimatorSet();
                                 d00Var.M0 = animatorSet2;
                                 Property property = View.TRANSLATION_Y;
@@ -181,7 +181,7 @@ public final class ar extends EditTextBoldCursor {
                                     animatorSet2.playTogether(animatorArr2);
                                 }
                                 d00Var.M0.setDuration(220L);
-                                d00Var.M0.setInterpolator(js.f27627f);
+                                d00Var.M0.setInterpolator(js.f27634f);
                                 d00Var.M0.addListener(new ai.z(24, d00Var, wm0Var));
                                 d00Var.M0.start();
                                 z10 = r16;
@@ -195,17 +195,17 @@ public final class ar extends EditTextBoldCursor {
                                 }
                                 if (wm0Var == wm0Var2) {
                                     int i19 = r16;
-                                    wm0Var.setPadding(i19, i19, i19, d00Var.f25121p2);
+                                    wm0Var.setPadding(i19, i19, i19, d00Var.f25113p2);
                                 } else {
                                     int i20 = r16;
                                     if (wm0Var == wm0Var3) {
-                                        wm0Var.setPadding(AndroidUtilities.dp(5.0f), i20, AndroidUtilities.dp(5.0f), d00Var.f25121p2);
+                                        wm0Var.setPadding(AndroidUtilities.dp(5.0f), i20, AndroidUtilities.dp(5.0f), d00Var.f25113p2);
                                     } else if (wm0Var == wm0Var4) {
-                                        wm0Var.setPadding(i20, d00Var.f25076b1, i20, d00Var.f25121p2);
+                                        wm0Var.setPadding(i20, d00Var.f25068b1, i20, d00Var.f25113p2);
                                     }
                                 }
                                 if (wm0Var == wm0Var4) {
-                                    if (d00Var.f25113n0.f26995x.size() > 0) {
+                                    if (d00Var.f25105n0.f26980x.size() > 0) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
@@ -234,7 +234,7 @@ public final class ar extends EditTextBoldCursor {
                         arVar = arVar3;
                         i10 = 2;
                     }
-                    dz dzVar2 = d00Var.f25134t1;
+                    dz dzVar2 = d00Var.f25126t1;
                     if (i14 == 1) {
                         i11 = i10;
                     } else {

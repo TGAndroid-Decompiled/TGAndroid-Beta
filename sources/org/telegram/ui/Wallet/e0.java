@@ -8,21 +8,21 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.w21;
 public final class e0 implements Utilities.Callback2 {
-    public final int f34640a;
-    public final f0 f34641b;
+    public final int f34642a;
+    public final f0 f34643b;
 
     public e0(f0 f0Var, int i10) {
-        this.f34640a = i10;
-        this.f34641b = f0Var;
+        this.f34642a = i10;
+        this.f34643b = f0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f34640a) {
+        switch (this.f34642a) {
             case 0:
                 WalletEngine2.ImportedWalletProof importedWalletProof = (WalletEngine2.ImportedWalletProof) obj;
                 String str = (String) obj2;
-                f0 f0Var = this.f34641b;
+                f0 f0Var = this.f34643b;
                 l0 l0Var = f0Var.d;
                 if (importedWalletProof == null) {
                     if (str == null) {
@@ -32,17 +32,17 @@ public final class e0 implements Utilities.Callback2 {
                     return;
                 }
                 TL_wallet.disableBackup disablebackup = new TL_wallet.disableBackup();
-                disablebackup.new_public_key = f0Var.f34693c;
+                disablebackup.new_public_key = f0Var.f34695c;
                 TL_wallet.walletOwnershipProof walletownershipproof = new TL_wallet.walletOwnershipProof();
                 disablebackup.proof = walletownershipproof;
                 walletownershipproof.signature = importedWalletProof.signature;
                 walletownershipproof.timestamp = importedWalletProof.timestamp;
-                ConnectionsManager.getInstance(l0Var.f34994a).sendRequestTyped(disablebackup, new Object(), new e0(f0Var, 1));
+                ConnectionsManager.getInstance(l0Var.f34996a).sendRequestTyped(disablebackup, new Object(), new e0(f0Var, 1));
                 return;
             default:
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 Object obj3 = (TLRPC.TL_error) obj2;
-                l0 l0Var2 = this.f34641b.d;
+                l0 l0Var2 = this.f34643b.d;
                 if (walletState == null) {
                     StringBuilder sb2 = new StringBuilder("disable backup: failed to disable backup on server: ");
                     if (obj3 == null) {

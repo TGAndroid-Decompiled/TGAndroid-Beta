@@ -18,9 +18,9 @@ public final class dl extends org.telegram.ui.Components.to0 {
         eo eoVar = this.I;
         eoVar.w7();
         eoVar.u7();
-        il ilVar = eoVar.f37213bb;
+        il ilVar = eoVar.f37218bb;
         if (ilVar != null) {
-            ilVar.setTranslationY(eoVar.f37473w9 + getCurrentHeight());
+            ilVar.setTranslationY(eoVar.f37478w9 + getCurrentHeight());
         }
         if (z10) {
             eoVar.D9 = true;
@@ -34,13 +34,13 @@ public final class dl extends org.telegram.ui.Components.to0 {
         int i10;
         boolean z11;
         eo eoVar = this.I;
-        eoVar.f37389q3 = n0Var;
+        eoVar.f37394q3 = n0Var;
         if (n0Var != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        eoVar.f37402r3 = z10;
+        eoVar.f37407r3 = z10;
         if (n0Var == null) {
             eoVar.getMediaDataController().clearFoundMessageObjects();
             eoVar.ob(false);
@@ -48,22 +48,22 @@ public final class dl extends org.telegram.ui.Components.to0 {
         }
         eoVar.Mc();
         eoVar.zc();
-        eoVar.f37429t3 = eoVar.f37302j0.getSearchField().getText().toString();
+        eoVar.f37434t3 = eoVar.f37307j0.getSearchField().getText().toString();
         MediaDataController mediaDataController = eoVar.getMediaDataController();
-        String str = eoVar.f37429t3;
+        String str = eoVar.f37434t3;
         long j3 = eoVar.T5;
         long j10 = eoVar.L6;
         i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
-        long j11 = eoVar.f37232d4;
-        TLRPC.User user = eoVar.f37365o3;
-        TLRPC.Chat chat = eoVar.f37377p3;
-        if (TextUtils.isEmpty(eoVar.f37429t3) && eoVar.f37389q3 == null) {
+        long j11 = eoVar.f37237d4;
+        TLRPC.User user = eoVar.f37370o3;
+        TLRPC.Chat chat = eoVar.f37382p3;
+        if (TextUtils.isEmpty(eoVar.f37434t3) && eoVar.f37394q3 == null) {
             z11 = false;
         } else {
             z11 = true;
         }
-        mediaDataController.searchMessagesInChat(str, j3, j10, i10, 0, j11, false, user, chat, z11, eoVar.f37389q3);
-        AndroidUtilities.hideKeyboard(eoVar.f37302j0.getSearchField());
+        mediaDataController.searchMessagesInChat(str, j3, j10, i10, 0, j11, false, user, chat, z11, eoVar.f37394q3);
+        AndroidUtilities.hideKeyboard(eoVar.f37307j0.getSearchField());
         return true;
     }
 
@@ -72,8 +72,8 @@ public final class dl extends org.telegram.ui.Components.to0 {
         boolean z11;
         super.h(z10);
         eo eoVar = this.I;
-        org.telegram.ui.ActionBar.u0 u0Var = eoVar.f37302j0;
-        if (u0Var != null && u0Var.s() && a() && eoVar.f37441u3 == null) {
+        org.telegram.ui.ActionBar.u0 u0Var = eoVar.f37307j0;
+        if (u0Var != null && u0Var.s() && a() && eoVar.f37446u3 == null) {
             z11 = true;
         } else {
             z11 = false;

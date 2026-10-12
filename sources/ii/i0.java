@@ -60,7 +60,7 @@ public final class i0 implements Runnable {
                 i1 i1Var = (i1) obj3;
                 o9 o9Var = (o9) obj2;
                 k0 k0Var = (k0) obj;
-                l0 l0Var = (l0) ((n4.y) obj4).f16363c;
+                l0 l0Var = (l0) ((n4.y) obj4).f16364c;
                 if (i1Var.length() >= i15 && i1Var.getSelectionStart() != i1Var.getSelectionEnd() && o9Var.j0(k0Var.L(), 0, i14, i15)) {
                     l0Var.d = true;
                     i1Var.setSelection(i15);
@@ -72,12 +72,12 @@ public final class i0 implements Runnable {
                 final m4.r rVar = (m4.r) obj3;
                 final m4.c0 c0Var = (m4.c0) obj2;
                 final m4.b1 b1Var = (m4.b1) obj;
-                oi.f fVar = ((m4.c1) obj4).f15755b;
+                oi.f fVar = ((m4.c1) obj4).f15756b;
                 if (!fVar.B(rVar, i15)) {
                     m4.c1.N0(c0Var, rVar, i14, new m4.m1(-4));
                     return;
                 }
-                na.d dVar = c0Var.f15734e;
+                na.d dVar = c0Var.f15735e;
                 c0Var.s(rVar);
                 dVar.getClass();
                 if (i15 == 27) {
@@ -173,7 +173,7 @@ public final class i0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f19949id, 1);
+                                longSparseIntArray.put(user4.f19950id, 1);
                             }
                             arrayList4.add(contact);
                             i17++;
@@ -242,13 +242,13 @@ public final class i0 implements Runnable {
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 eo eoVar2 = (eo) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f23798q1;
-                aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f23799q1;
+                aj ajVar = chatAttachAlertPhotoLayout.f30570b;
                 if (ajVar.F && !ajVar.G) {
                     PhotoViewer.t1().K2(null, m2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f33817n = false;
+                    t12.f33819n = false;
                     i12 = 3;
                 } else {
                     i12 = i15;
@@ -258,7 +258,7 @@ public final class i0 implements Runnable {
                 }
                 int i22 = i12;
                 PhotoViewer t13 = PhotoViewer.t1();
-                qm qmVar = chatAttachAlertPhotoLayout.f23818h1;
+                qm qmVar = chatAttachAlertPhotoLayout.f23819h1;
                 if (ajVar.H) {
                     eoVar = null;
                 } else {
@@ -284,8 +284,8 @@ public final class i0 implements Runnable {
                 if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer t15 = PhotoViewer.t1();
                     Editable text = ajVar.o1().getText();
-                    t15.f33842p7 = true;
-                    t15.f33850q7 = text;
+                    t15.f33844p7 = true;
+                    t15.f33852q7 = text;
                     t15.A2(null, text, false, false);
                     t15.t3(null);
                     return;

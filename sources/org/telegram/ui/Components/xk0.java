@@ -26,34 +26,34 @@ public final class xk0 extends FrameLayout {
     public final ArrayList I;
     public zb0 J;
     public final org.telegram.ui.ActionBar.c6 K;
-    public int f32794a;
-    public final int f32795b;
-    public final MessageObject f32796c;
+    public int f32784a;
+    public final int f32785b;
+    public final MessageObject f32786c;
     public final TLRPC.Reaction d;
-    public final pk0 f32797e;
-    public final qk0 f32798f;
+    public final pk0 f32787e;
+    public final qk0 f32788f;
     public final sk0 h;
-    public final ArrayList f32799n;
-    public final LongSparseArray f32800r;
-    public String f32801s;
+    public final ArrayList f32789n;
+    public final LongSparseArray f32790r;
+    public String f32791s;
     public boolean v;
-    public boolean f32802w;
-    public boolean f32803x;
-    public vk0 f32804y;
+    public boolean f32792w;
+    public boolean f32793x;
+    public vk0 f32794y;
 
     public xk0(Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10, MessageObject messageObject, TLRPC.ReactionCount reactionCount, boolean z10) {
         super(context);
         TLRPC.Reaction reaction;
         int i11;
         int i12;
-        this.f32799n = new ArrayList();
-        this.f32800r = new LongSparseArray();
-        this.f32803x = true;
+        this.f32789n = new ArrayList();
+        this.f32790r = new LongSparseArray();
+        this.f32793x = true;
         ArrayList arrayList = new ArrayList();
         this.H = arrayList;
         this.I = new ArrayList();
-        this.f32795b = i10;
-        this.f32796c = messageObject;
+        this.f32785b = i10;
+        this.f32786c = messageObject;
         if (reactionCount == null) {
             reaction = null;
         } else {
@@ -66,16 +66,16 @@ public final class xk0 extends FrameLayout {
         } else {
             i11 = reactionCount.count;
         }
-        this.f32794a = i11;
+        this.f32784a = i11;
         pk0 pk0Var = new pk0(this, context, c6Var);
-        this.f32797e = pk0Var;
+        this.f32787e = pk0Var;
         s4.d0 d0Var = new s4.d0();
         pk0Var.setLayoutManager(d0Var);
         if (Build.VERSION.SDK_INT >= 29) {
-            pk0Var.setVerticalScrollbarThumbDrawable(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20650i6, false)));
+            pk0Var.setVerticalScrollbarThumbDrawable(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false)));
         }
         qk0 qk0Var = new qk0(this, i10, context, c6Var, z10);
-        this.f32798f = qk0Var;
+        this.f32788f = qk0Var;
         pk0Var.setAdapter(qk0Var);
         pk0Var.setOnItemClickListener(new j(this, 10));
         pk0Var.setOnItemLongClickListener(new ew(this, 15));
@@ -85,9 +85,9 @@ public final class xk0 extends FrameLayout {
         addView(pk0Var, w7.w5.d(-1.0f, -1));
         sk0 sk0Var = new sk0(this, context, c6Var);
         this.h = sk0Var;
-        sk0Var.f(org.telegram.ui.ActionBar.h6.G8, org.telegram.ui.ActionBar.h6.f20650i6, -1);
+        sk0Var.f(org.telegram.ui.ActionBar.h6.G8, org.telegram.ui.ActionBar.h6.f20651i6, -1);
         sk0Var.setIsSingleCell(true);
-        sk0Var.setItemsCount(this.f32794a);
+        sk0Var.setItemsCount(this.f32784a);
         addView(sk0Var, w7.w5.d(-1.0f, -1));
         if (reaction != null && (reaction instanceof TLRPC.TL_reactionCustomEmoji) && !MessagesController.getInstance(i10).premiumFeaturesBlocked()) {
             arrayList.clear();
@@ -104,9 +104,9 @@ public final class xk0 extends FrameLayout {
 
     public static void a(xk0 xk0Var, TLObject tLObject) {
         ArrayList arrayList = xk0Var.H;
-        LongSparseArray longSparseArray = xk0Var.f32800r;
-        ArrayList arrayList2 = xk0Var.f32799n;
-        int i10 = xk0Var.f32795b;
+        LongSparseArray longSparseArray = xk0Var.f32790r;
+        ArrayList arrayList2 = xk0Var.f32789n;
+        int i10 = xk0Var.f32785b;
         if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
             TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
             MessagesController.getInstance(i10).putUsers(tL_messages_messageReactionsList.users, false);
@@ -128,7 +128,7 @@ public final class xk0 extends FrameLayout {
                     i12++;
                 }
                 zg.n0 d = zg.n0.d(tL_messages_messageReactionsList.reactions.get(i11).reaction);
-                if (d.f54842g != 0) {
+                if (d.f54850g != 0) {
                     hashSet.add(d);
                 }
                 arrayList3.add(tL_messages_messageReactionsList.reactions.get(i11));
@@ -140,20 +140,20 @@ public final class xk0 extends FrameLayout {
                 xk0Var.i();
             }
             Collections.sort(arrayList2, Comparator$CC.comparingInt(new ai.h7(13)));
-            xk0Var.f32798f.l();
-            if (!xk0Var.f32802w) {
+            xk0Var.f32788f.l();
+            if (!xk0Var.f32792w) {
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                duration.setInterpolator(js.f27627f);
+                duration.setInterpolator(js.f27634f);
                 duration.addUpdateListener(new m80(xk0Var, 6));
                 duration.addListener(new zd0(xk0Var, 7));
                 duration.start();
                 xk0Var.j();
-                xk0Var.f32802w = true;
+                xk0Var.f32792w = true;
             }
             String str = tL_messages_messageReactionsList.next_offset;
-            xk0Var.f32801s = str;
+            xk0Var.f32791s = str;
             if (str == null) {
-                xk0Var.f32803x = false;
+                xk0Var.f32793x = false;
             }
             xk0Var.v = false;
             return;
@@ -170,16 +170,16 @@ public final class xk0 extends FrameLayout {
 
     public final void c() {
         this.v = true;
-        int i10 = this.f32795b;
+        int i10 = this.f32785b;
         MessagesController messagesController = MessagesController.getInstance(i10);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
-        MessageObject messageObject = this.f32796c;
+        MessageObject messageObject = this.f32786c;
         tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(messageObject.getDialogId());
-        tL_messages_getMessageReactionsList.f19895id = messageObject.getId();
+        tL_messages_getMessageReactionsList.f19896id = messageObject.getId();
         tL_messages_getMessageReactionsList.limit = getLoadCount();
         TLRPC.Reaction reaction = this.d;
         tL_messages_getMessageReactionsList.reaction = reaction;
-        String str = this.f32801s;
+        String str = this.f32791s;
         tL_messages_getMessageReactionsList.offset = str;
         if (reaction != null) {
             tL_messages_getMessageReactionsList.flags = 1 | tL_messages_getMessageReactionsList.flags;
@@ -195,7 +195,7 @@ public final class xk0 extends FrameLayout {
     }
 
     public final void e(org.telegram.ui.d7 d7Var) {
-        this.f32804y = d7Var;
+        this.f32794y = d7Var;
     }
 
     public final void f(org.telegram.ui.gg ggVar) {
@@ -207,19 +207,19 @@ public final class xk0 extends FrameLayout {
     }
 
     public final void h(List list) {
-        ArrayList arrayList = this.f32799n;
+        ArrayList arrayList = this.f32789n;
         if (arrayList != null && !arrayList.isEmpty()) {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 mk0 mk0Var = (mk0) it.next();
-                TLObject tLObject = mk0Var.f28597a;
-                if (mk0Var.f28599c > 0) {
+                TLObject tLObject = mk0Var.f28587a;
+                if (mk0Var.f28589c > 0) {
                     int i10 = 0;
                     while (true) {
                         if (i10 < arrayList.size()) {
                             TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) arrayList.get(i10);
-                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == mk0Var.f28598b) {
-                                messagePeerReaction.date = mk0Var.f28599c;
+                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == mk0Var.f28588b) {
+                                messagePeerReaction.date = mk0Var.f28589c;
                                 messagePeerReaction.dateIsSeen = true;
                                 break;
                             }
@@ -235,22 +235,22 @@ public final class xk0 extends FrameLayout {
         Iterator it2 = list.iterator();
         while (it2.hasNext()) {
             mk0 mk0Var2 = (mk0) it2.next();
-            long j3 = mk0Var2.f28598b;
-            TLObject tLObject2 = mk0Var2.f28597a;
-            LongSparseArray longSparseArray = this.f32800r;
+            long j3 = mk0Var2.f28588b;
+            TLObject tLObject2 = mk0Var2.f28587a;
+            LongSparseArray longSparseArray = this.f32790r;
             if (((ArrayList) longSparseArray.get(j3)) == null) {
                 TLRPC.TL_messagePeerReaction tL_messagePeerReaction = new TLRPC.TL_messagePeerReaction();
                 tL_messagePeerReaction.reaction = null;
                 if (tLObject2 instanceof TLRPC.User) {
                     TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                     tL_messagePeerReaction.peer_id = tL_peerUser;
-                    tL_peerUser.user_id = ((TLRPC.User) tLObject2).f19949id;
+                    tL_peerUser.user_id = ((TLRPC.User) tLObject2).f19950id;
                 } else if (tLObject2 instanceof TLRPC.Chat) {
                     TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
                     tL_messagePeerReaction.peer_id = tL_peerChat;
-                    tL_peerChat.chat_id = ((TLRPC.Chat) tLObject2).f19802id;
+                    tL_peerChat.chat_id = ((TLRPC.Chat) tLObject2).f19803id;
                 }
-                tL_messagePeerReaction.date = mk0Var2.f28599c;
+                tL_messagePeerReaction.date = mk0Var2.f28589c;
                 tL_messagePeerReaction.dateIsSeen = true;
                 ArrayList arrayList3 = new ArrayList();
                 arrayList3.add(tL_messagePeerReaction);
@@ -261,7 +261,7 @@ public final class xk0 extends FrameLayout {
         arrayList.isEmpty();
         arrayList.addAll(arrayList2);
         Collections.sort(arrayList, Comparator$CC.comparingInt(new ai.h7(12)));
-        this.f32798f.l();
+        this.f32788f.l();
         j();
     }
 
@@ -275,14 +275,14 @@ public final class xk0 extends FrameLayout {
         while (true) {
             ArrayList arrayList3 = this.H;
             int size = arrayList3.size();
-            i10 = this.f32795b;
+            i10 = this.f32785b;
             if (i11 >= size) {
                 break;
             }
-            TLRPC.InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(s5.f(i10, ((zg.n0) arrayList3.get(i11)).f54842g));
-            if (inputStickerSet != null && !hashSet.contains(Long.valueOf(inputStickerSet.f19822id))) {
+            TLRPC.InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(s5.f(i10, ((zg.n0) arrayList3.get(i11)).f54850g));
+            if (inputStickerSet != null && !hashSet.contains(Long.valueOf(inputStickerSet.f19823id))) {
                 arrayList2.add(inputStickerSet);
-                hashSet.add(Long.valueOf(inputStickerSet.f19822id));
+                hashSet.add(Long.valueOf(inputStickerSet.f19823id));
             }
             i11++;
         }
@@ -290,40 +290,40 @@ public final class xk0 extends FrameLayout {
             return;
         }
         arrayList.addAll(arrayList2);
-        zb0 zb0Var = new zb0(this.f32795b, 1, getContext(), arrayList2, this.K);
+        zb0 zb0Var = new zb0(this.f32785b, 1, getContext(), arrayList2, this.K);
         this.J = zb0Var;
         zb0Var.K = false;
     }
 
     public final void j() {
-        if (this.f32804y != null) {
-            int size = this.f32799n.size();
+        if (this.f32794y != null) {
+            int size = this.f32789n.size();
             if (size == 0) {
-                size = this.f32794a;
+                size = this.f32784a;
             }
             int dp = AndroidUtilities.dp(size * 50);
             zb0 zb0Var = this.J;
             if (zb0Var != null) {
                 dp = org.telegram.messenger.v0.C(8.0f, zb0Var.getMeasuredHeight(), dp);
             }
-            pk0 pk0Var = this.f32797e;
+            pk0 pk0Var = this.f32787e;
             if (pk0Var.getMeasuredHeight() != 0) {
                 dp = Math.min(pk0Var.getMeasuredHeight(), dp);
             }
-            this.f32804y.a(this, dp);
+            this.f32794y.a(this, dp);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (!this.f32802w && !this.v) {
+        if (!this.f32792w && !this.v) {
             c();
         }
     }
 
     public void setPredictiveCount(int i10) {
-        this.f32794a = i10;
+        this.f32784a = i10;
         this.h.setItemsCount(i10);
     }
 }

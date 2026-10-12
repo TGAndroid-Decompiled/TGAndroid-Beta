@@ -13,29 +13,29 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g6 {
-    public final int f21910a;
-    public boolean f21911b;
-    public boolean f21912c;
-    public int f21913e;
-    public long f21914f;
-    public int f21915g;
+    public final int f21911a;
+    public boolean f21912b;
+    public boolean f21913c;
+    public int f21914e;
+    public long f21915f;
+    public int f21916g;
     public final ArrayList d = new ArrayList();
     public final ArrayList h = new ArrayList();
 
     public g6(int i10) {
-        this.f21910a = i10;
+        this.f21911a = i10;
     }
 
     public static void a(g6 g6Var, TLObject tLObject, MessagesStorage messagesStorage, long j3, int i10, ArrayList arrayList) {
         ArrayList arrayList2 = g6Var.d;
-        int i11 = g6Var.f21910a;
+        int i11 = g6Var.f21911a;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             MessagesController.getInstance(i11).putUsers(messages_messages.users, false);
             MessagesController.getInstance(i11).putChats(messages_messages.chats, false);
             messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
             messagesStorage.putMessages(messages_messages, -j3, 3, 0, false, 0, 0L);
-            if (i10 == g6Var.f21913e && !messages_messages.messages.isEmpty()) {
+            if (i10 == g6Var.f21914e && !messages_messages.messages.isEmpty()) {
                 arrayList2.clear();
                 Collections.sort(arrayList, Comparator$CC.comparingInt(new ai.h7(8)));
                 TLRPC.Message message = (TLRPC.Message) hg.c.h(1, messages_messages.messages);
@@ -59,16 +59,16 @@ public final class g6 {
                     g6Var.c();
                 }
             }
-        } else if (i10 != g6Var.f21913e) {
+        } else if (i10 != g6Var.f21914e) {
         } else {
             g6Var.c();
         }
     }
 
     public static void b(g6 g6Var, int i10, ArrayList arrayList, long j3, int i11, MessagesStorage messagesStorage) {
-        int i12 = g6Var.f21910a;
+        int i12 = g6Var.f21911a;
         ArrayList arrayList2 = g6Var.d;
-        if (i10 != g6Var.f21913e) {
+        if (i10 != g6Var.f21914e) {
             return;
         }
         if (!arrayList.isEmpty()) {
@@ -100,7 +100,7 @@ public final class g6 {
         for (int i14 = 10; i14 >= 0; i14--) {
             int i15 = i11 - i14;
             if (i15 >= 0) {
-                tL_channels_getMessages.f19840id.add(Integer.valueOf(i15));
+                tL_channels_getMessages.f19841id.add(Integer.valueOf(i15));
             }
         }
         ConnectionsManager.getInstance(i12).sendRequest(tL_channels_getMessages, new ld(g6Var, messagesStorage, j3, i10, arrayList));
@@ -108,8 +108,8 @@ public final class g6 {
 
     public final void c() {
         int i10 = 0;
-        this.f21911b = false;
-        this.f21912c = true;
+        this.f21912b = false;
+        this.f21913c = true;
         ArrayList arrayList = this.h;
         int size = arrayList.size();
         while (i10 < size) {
@@ -125,26 +125,26 @@ public final class g6 {
         if (userFull != null && (userFull.flags2 & 64) != 0) {
             long j3 = userFull.personal_channel_id;
             int i10 = userFull.personal_channel_message;
-            if (this.f21912c || this.f21911b) {
-                if (this.f21914f == j3 && this.f21915g == i10) {
+            if (this.f21913c || this.f21912b) {
+                if (this.f21915f == j3 && this.f21916g == i10) {
                     return;
                 }
-                this.f21912c = false;
+                this.f21913c = false;
                 arrayList.clear();
             }
-            int i11 = this.f21913e + 1;
-            this.f21913e = i11;
-            this.f21911b = true;
-            this.f21914f = j3;
-            this.f21915g = i10;
-            int i12 = this.f21910a;
+            int i11 = this.f21914e + 1;
+            this.f21914e = i11;
+            this.f21912b = true;
+            this.f21915f = j3;
+            this.f21916g = i10;
+            int i12 = this.f21911a;
             long clientUserId = UserConfig.getInstance(i12).getClientUserId();
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i12);
             messagesStorage.getStorageQueue().postRunnable(new uf(this, i10, messagesStorage, j3, clientUserId, i11));
             return;
         }
-        this.f21913e++;
-        this.f21912c = true;
+        this.f21914e++;
+        this.f21913c = true;
         arrayList.clear();
         c();
     }

@@ -148,19 +148,23 @@ public final class v1 implements dz {
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
     public final void n() {
     }
 
     @Override
-    public final void o(q61 q61Var) {
+    public final void q() {
     }
 
     @Override
-    public final void q() {
+    public final void u() {
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(q61 q61Var) {
     }
 
     @Override
@@ -169,10 +173,6 @@ public final class v1 implements dz {
 
     @Override
     public final void s(int i10) {
-    }
-
-    @Override
-    public final void u() {
     }
 
     @Override

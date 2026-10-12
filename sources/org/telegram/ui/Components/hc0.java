@@ -17,7 +17,7 @@ public final class hc0 extends s4.t {
     public final boolean B1(int i10) {
         byte b10;
         tc0 tc0Var = this.S;
-        MessageObject messageObject = tc0Var.f30860r.previewMessages.get(i10);
+        MessageObject messageObject = tc0Var.f30863r.previewMessages.get(i10);
         MessageObject.GroupedMessages a2 = tc0.a(tc0Var, messageObject);
         if (a2 != null) {
             MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);

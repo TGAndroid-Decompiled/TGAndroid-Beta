@@ -5,10 +5,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class kb extends wu0 {
-    public final yb f39434a;
+    public final yb f39437a;
 
     public kb(yb ybVar) {
-        this.f39434a = ybVar;
+        this.f39437a = ybVar;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class kb extends wu0 {
         MessageObject messageObject2;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject3;
-        yb ybVar = this.f39434a;
+        yb ybVar = this.f39437a;
         int childCount = ybVar.v.getChildCount();
         int i11 = 0;
         while (true) {

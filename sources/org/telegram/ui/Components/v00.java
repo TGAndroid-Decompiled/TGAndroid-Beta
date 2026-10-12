@@ -18,21 +18,21 @@ public final class v00 extends s4.j {
     @Override
     public final void C(s4.d1 d1Var, s4.i iVar) {
         super.C(d1Var, iVar);
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (view instanceof b10) {
             b10 b10Var = (b10) view;
-            if (b10Var.f24545w) {
-                ValueAnimator valueAnimator = b10Var.f24525a;
+            if (b10Var.f24533w) {
+                ValueAnimator valueAnimator = b10Var.f24513a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    b10Var.f24525a.removeAllUpdateListeners();
-                    b10Var.f24525a.cancel();
+                    b10Var.f24513a.removeAllUpdateListeners();
+                    b10Var.f24513a.cancel();
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new u00(b10Var, 0));
                 ofFloat.addListener(new t8(b10Var, 21));
-                b10Var.f24525a = ofFloat;
-                ofFloat.setDuration(this.f47982e);
+                b10Var.f24513a = ofFloat;
+                ofFloat.setDuration(this.f47990e);
                 ofFloat.start();
             }
         }
@@ -41,7 +41,7 @@ public final class v00 extends s4.j {
     @Override
     public final void f(s4.d1 d1Var) {
         super.f(d1Var);
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         view.setTranslationX(0.0f);
         if (view instanceof b10) {
             ((b10) view).a();
@@ -50,14 +50,14 @@ public final class v00 extends s4.j {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f47950p.isEmpty();
-        boolean isEmpty2 = this.f47952r.isEmpty();
-        boolean isEmpty3 = this.f47953s.isEmpty();
-        boolean isEmpty4 = this.f47951q.isEmpty();
+        boolean isEmpty = this.f47958p.isEmpty();
+        boolean isEmpty2 = this.f47960r.isEmpty();
+        boolean isEmpty3 = this.f47961s.isEmpty();
+        boolean isEmpty4 = this.f47959q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
             ofFloat.addUpdateListener(new m6(this, 24));
-            ofFloat.setDuration(this.f47982e);
+            ofFloat.setDuration(this.f47990e);
             ofFloat.start();
         }
         super.m();
@@ -91,7 +91,7 @@ public final class v00 extends s4.j {
         boolean z17;
         boolean z18;
         int i24;
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         if (view instanceof b10) {
             int translationX = i10 + ((int) view.getTranslationX());
             int translationY = i11 + ((int) view.getTranslationY());
@@ -106,18 +106,18 @@ public final class v00 extends s4.j {
             }
             b10 b10Var = (b10) view;
             d10 d10Var = b10Var.m0;
-            TextPaint textPaint = d10Var.f25165b;
-            TextPaint textPaint2 = d10Var.f25167c;
-            int i27 = b10Var.f24527b.d;
+            TextPaint textPaint = d10Var.f25157b;
+            TextPaint textPaint2 = d10Var.f25159c;
+            int i27 = b10Var.f24515b.d;
             int i28 = b10Var.I;
             if (i27 != i28) {
                 b10Var.H = true;
                 b10Var.J = i28;
-                b10Var.f24535f0 = b10Var.f24531d0;
-                b10Var.f24536g0 = b10Var.f24533e0;
+                b10Var.f24523f0 = b10Var.f24519d0;
+                b10Var.f24524g0 = b10Var.f24521e0;
                 if (i28 > 0 && i27 > 0) {
                     String valueOf = String.valueOf(i28);
-                    String valueOf2 = String.valueOf(b10Var.f24527b.d);
+                    String valueOf2 = String.valueOf(b10Var.f24515b.d);
                     if (valueOf.length() == valueOf2.length()) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
@@ -172,7 +172,7 @@ public final class v00 extends s4.j {
                 r32 = 0;
                 z10 = false;
             }
-            int i32 = b10Var.f24527b.d;
+            int i32 = b10Var.f24515b.d;
             if (i32 > 0) {
                 Object[] objArr = new Object[i16];
                 objArr[r32] = Integer.valueOf(i32);
@@ -182,12 +182,12 @@ public final class v00 extends s4.j {
                 i17 = r32;
                 str = null;
             }
-            int i33 = b10Var.f24527b.f33236c;
+            int i33 = b10Var.f24515b.f33242c;
             if (i17 != 0) {
                 if (str != null) {
                     f10 = 1.0f;
                 } else {
-                    f10 = d10Var.f25192w;
+                    f10 = d10Var.f25184w;
                 }
                 i18 = AndroidUtilities.dp(f10 * 6.0f) + i17;
             } else {
@@ -203,13 +203,13 @@ public final class v00 extends s4.j {
                 z11 = z10;
             }
             CharSequence charSequence3 = b10Var.N;
-            if (charSequence3 != null && !b10Var.f24527b.f33235b.equals(charSequence3)) {
-                if (b10Var.N.length() > b10Var.f24527b.f33235b.length()) {
+            if (charSequence3 != null && !b10Var.f24515b.f33241b.equals(charSequence3)) {
+                if (b10Var.N.length() > b10Var.f24515b.f33241b.length()) {
                     charSequence = b10Var.N;
-                    charSequence2 = b10Var.f24527b.f33235b;
+                    charSequence2 = b10Var.f24515b.f33241b;
                     z14 = i16;
                 } else {
-                    charSequence = b10Var.f24527b.f33235b;
+                    charSequence = b10Var.f24515b.f33241b;
                     charSequence2 = b10Var.N;
                     z14 = r32;
                 }
@@ -231,8 +231,8 @@ public final class v00 extends s4.j {
                     int i35 = r32;
                     StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint, dp, alignment3, 1.0f, 0.0f, false);
                     b10Var.P = staticLayout;
-                    if (b10Var.f24541l0) {
-                        if (b10Var.f24527b.f33239g) {
+                    if (b10Var.f24529l0) {
+                        if (b10Var.f24515b.f33245g) {
                             i23 = 26;
                         } else {
                             i23 = i35 == 1 ? 1 : 0;
@@ -244,8 +244,8 @@ public final class v00 extends s4.j {
                     }
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint, AndroidUtilities.dp(400.0f), alignment3, 1.0f, 0.0f, false);
                     b10Var.T = staticLayout2;
-                    if (b10Var.f24541l0) {
-                        if (b10Var.f24527b.f33239g) {
+                    if (b10Var.f24529l0) {
+                        if (b10Var.f24515b.f33245g) {
                             i22 = 26;
                         } else {
                             i22 = i35 == 1 ? 1 : 0;
@@ -265,20 +265,20 @@ public final class v00 extends s4.j {
                     } else {
                         f7 = -b10Var.T.getPrimaryHorizontal(charSequenceIndexOf);
                     }
-                    b10Var.f24526a0 = f7;
-                    b10Var.f24530c0 = b10Var.f24528b0;
+                    b10Var.f24514a0 = f7;
+                    b10Var.f24518c0 = b10Var.f24516b0;
                     b10Var.R = null;
                     b6.release(b10Var, b10Var.Q);
                     i21 = i35;
                 } else {
                     int i36 = r32;
-                    CharSequence charSequence4 = b10Var.f24527b.f33235b;
+                    CharSequence charSequence4 = b10Var.f24515b.f33241b;
                     int dp2 = AndroidUtilities.dp(400.0f);
                     Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
                     StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, dp2, alignment4, 1.0f, 0.0f, false);
                     b10Var.P = staticLayout3;
-                    if (b10Var.f24541l0) {
-                        if (b10Var.f24527b.f33239g) {
+                    if (b10Var.f24529l0) {
+                        if (b10Var.f24515b.f33245g) {
                             i20 = 26;
                         } else {
                             i20 = i36;
@@ -290,8 +290,8 @@ public final class v00 extends s4.j {
                     }
                     StaticLayout staticLayout4 = new StaticLayout(b10Var.N, textPaint, AndroidUtilities.dp(400.0f), alignment4, 1.0f, 0.0f, false);
                     b10Var.R = staticLayout4;
-                    if (b10Var.f24541l0) {
-                        if (b10Var.f24527b.f33239g) {
+                    if (b10Var.f24529l0) {
+                        if (b10Var.f24515b.f33245g) {
                             i19 = 26;
                         } else {
                             i19 = i36;
@@ -307,8 +307,8 @@ public final class v00 extends s4.j {
                     b10Var.T = null;
                     b6.release(b10Var, b10Var.S);
                     b10Var.U = z15;
-                    b10Var.f24526a0 = 0.0f;
-                    b10Var.f24530c0 = b10Var.f24528b0;
+                    b10Var.f24514a0 = 0.0f;
+                    b10Var.f24518c0 = b10Var.f24516b0;
                     i21 = i36;
                 }
                 z11 = true;
@@ -316,17 +316,17 @@ public final class v00 extends s4.j {
             } else {
                 z12 = r32;
             }
-            if (i34 != b10Var.f24537h0 || b10Var.getMeasuredWidth() != b10Var.f24539j0) {
+            if (i34 != b10Var.f24525h0 || b10Var.getMeasuredWidth() != b10Var.f24527j0) {
                 z13 = true;
                 b10Var.W = true;
-                b10Var.f24538i0 = b10Var.f24537h0;
+                b10Var.f24526i0 = b10Var.f24525h0;
                 z11 = true;
             } else {
                 z13 = true;
             }
             if (z11) {
-                b10Var.f24546x = 0.0f;
-                b10Var.f24545w = z13;
+                b10Var.f24534x = 0.0f;
+                b10Var.f24533w = z13;
                 d10 d10Var2 = this.F;
                 d10Var2.F.invalidate();
                 d10Var2.invalidate();
@@ -335,7 +335,7 @@ public final class v00 extends s4.j {
                 v(d1Var);
                 return z12;
             }
-            this.f47952r.add(new s4.i(d1Var, i14, i15, i12, i13));
+            this.f47960r.add(new s4.i(d1Var, i14, i15, i12, i13));
             return z13;
         }
         return super.r(d1Var, q0Var, i10, i11, i12, i13);
@@ -343,8 +343,8 @@ public final class v00 extends s4.j {
 
     @Override
     public final void x(s4.d1 d1Var) {
-        d1Var.f47889a.setTranslationX(0.0f);
-        View view = d1Var.f47889a;
+        d1Var.f47897a.setTranslationX(0.0f);
+        View view = d1Var.f47897a;
         if (view instanceof b10) {
             ((b10) view).a();
         }

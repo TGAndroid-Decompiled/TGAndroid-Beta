@@ -2,14 +2,14 @@ package qh;
 
 import org.telegram.messenger.Utilities;
 public final class r implements Utilities.Callback2 {
-    public final int f46658a;
-    public final Object f46659b;
-    public final Object f46660c;
+    public final int f46666a;
+    public final Object f46667b;
+    public final Object f46668c;
 
     public r(int i10, Object obj, Object obj2) {
-        this.f46658a = i10;
-        this.f46659b = obj;
-        this.f46660c = obj2;
+        this.f46666a = i10;
+        this.f46667b = obj;
+        this.f46668c = obj2;
     }
 
     @Override

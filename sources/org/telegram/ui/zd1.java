@@ -141,88 +141,88 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     public boolean Z;
     public int Z0;
     public float Z1;
-    public final zc1 f44729a;
-    public ci.r6 f44730a0;
-    public int f44731a1;
+    public final zc1 f44734a;
+    public ci.r6 f44735a0;
+    public int f44736a1;
     public boolean a2;
-    public final int f44732b;
-    public FrameLayout f44733b0;
-    public int f44734b1;
-    public int f44735b2;
-    public Scroller f44736c;
-    public TextView f44737c0;
-    public int f44738c1;
-    public ValueAnimator f44739c2;
+    public final int f44737b;
+    public FrameLayout f44738b0;
+    public int f44739b1;
+    public int f44740b2;
+    public Scroller f44741c;
+    public TextView f44742c0;
+    public int f44743c1;
+    public ValueAnimator f44744c2;
     public final boolean d;
-    public TextView f44740d0;
-    public int f44741d1;
-    public boolean f44742d2;
-    public org.telegram.ui.Components.rm f44743e;
-    public final org.telegram.ui.ActionBar.g6 f44744e0;
-    public int f44745e1;
-    public TextView f44746e2;
-    public org.telegram.ui.ActionBar.u0 f44747f;
-    public final boolean f44748f0;
-    public int f44749f1;
-    public WeakReference f44750f2;
-    public final boolean f44751g0;
-    public int f44752g1;
-    public BitmapDrawable f44753g2;
+    public TextView f44745d0;
+    public int f44746d1;
+    public boolean f44747d2;
+    public org.telegram.ui.Components.rm f44748e;
+    public final org.telegram.ui.ActionBar.g6 f44749e0;
+    public int f44750e1;
+    public TextView f44751e2;
+    public org.telegram.ui.ActionBar.u0 f44752f;
+    public final boolean f44753f0;
+    public int f44754f1;
+    public WeakReference f44755f2;
+    public final boolean f44756g0;
+    public int f44757g1;
+    public BitmapDrawable f44758g2;
     public TextView h;
-    public final boolean f44754h0;
-    public int f44755h1;
-    public pc f44756h2;
-    public ArrayList f44757i0;
-    public int f44758i1;
-    public float f44759i2;
-    public z4.g f44760j0;
-    public int f44761j1;
-    public ValueAnimator f44762j2;
-    public ci.m6 f44763k0;
-    public int f44764k1;
-    public UndoView f44765l0;
+    public final boolean f44759h0;
+    public int f44760h1;
+    public pc f44761h2;
+    public ArrayList f44762i0;
+    public int f44763i1;
+    public float f44764i2;
+    public z4.g f44765j0;
+    public int f44766j1;
+    public ValueAnimator f44767j2;
+    public ci.m6 f44768k0;
+    public int f44769k1;
+    public UndoView f44770l0;
     public float l1;
     public FrameLayout m0;
-    public float f44766m1;
-    public int f44767n;
-    public org.telegram.ui.Components.wm0 f44768n0;
-    public float f44769n1;
-    public rd1 f44770o0;
-    public float f44771o1;
-    public org.telegram.ui.Components.s20 f44772p0;
-    public qd1 f44773p1;
-    public MessageObject f44774q0;
-    public org.telegram.ui.Components.gr f44775q1;
-    public Drawable f44776r;
-    public boolean f44777r0;
-    public AnimatorSet f44778r1;
-    public final org.telegram.ui.ActionBar.e6 f44779s;
-    public org.telegram.ui.ActionBar.k f44780s0;
-    public final PorterDuff.Mode f44781s1;
-    public org.telegram.ui.ActionBar.p0 f44782t0;
-    public int f44783t1;
-    public uc1 f44784u0;
-    public org.telegram.ui.Components.s9 f44785u1;
+    public float f44771m1;
+    public int f44772n;
+    public org.telegram.ui.Components.wm0 f44773n0;
+    public float f44774n1;
+    public rd1 f44775o0;
+    public float f44776o1;
+    public org.telegram.ui.Components.s20 f44777p0;
+    public qd1 f44778p1;
+    public MessageObject f44779q0;
+    public org.telegram.ui.Components.gr f44780q1;
+    public Drawable f44781r;
+    public boolean f44782r0;
+    public AnimatorSet f44783r1;
+    public final org.telegram.ui.ActionBar.e6 f44784s;
+    public org.telegram.ui.ActionBar.k f44785s0;
+    public final PorterDuff.Mode f44786s1;
+    public org.telegram.ui.ActionBar.p0 f44787t0;
+    public int f44788t1;
+    public uc1 f44789u0;
+    public org.telegram.ui.Components.s9 f44790u1;
     public boolean v;
-    public vd1 f44786v0;
-    public org.telegram.ui.Components.x91 f44787v1;
-    public final int f44788w;
-    public final od1[] f44789w0;
-    public Bitmap f44790w1;
-    public final int f44791x;
-    public od1 f44792x0;
-    public Bitmap f44793x1;
-    public final int f44794y;
-    public FrameLayout f44795y0;
-    public float f44796y1;
-    public FrameLayout f44797z0;
-    public pd1 f44798z1;
+    public vd1 f44791v0;
+    public org.telegram.ui.Components.x91 f44792v1;
+    public final int f44793w;
+    public final od1[] f44794w0;
+    public Bitmap f44795w1;
+    public final int f44796x;
+    public od1 f44797x0;
+    public Bitmap f44798x1;
+    public final int f44799y;
+    public FrameLayout f44800y0;
+    public float f44801y1;
+    public FrameLayout f44802z0;
+    public pd1 f44803z1;
 
     public zd1(Object obj, Bitmap bitmap, boolean z10) {
         super(null);
-        this.f44729a = new zc1(this);
+        this.f44734a = new zc1(this);
         this.d = true;
-        this.f44767n = 1;
+        this.f44772n = 1;
         org.telegram.ui.ActionBar.o5 o5Var = new org.telegram.ui.ActionBar.o5(this, 0, false);
         this.R = o5Var;
         org.telegram.ui.ActionBar.o5 o5Var2 = new org.telegram.ui.ActionBar.o5(this, 0, true);
@@ -233,30 +233,30 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         this.U = o5Var4;
         this.X = -1;
         this.Y = new mc1(this, 0);
-        this.f44789w0 = new od1[2];
+        this.f44794w0 = new od1[2];
         this.L0 = new FrameLayout[2];
         this.M0 = new TextView[2];
         this.N0 = new TextView[2];
         this.O0 = new FrameLayout[2];
         this.V0 = new HashMap();
         this.l1 = 0.5f;
-        this.f44769n1 = 0.0f;
-        this.f44781s1 = PorterDuff.Mode.SRC_IN;
-        this.f44796y1 = 1.0f;
+        this.f44774n1 = 0.0f;
+        this.f44786s1 = PorterDuff.Mode.SRC_IN;
+        this.f44801y1 = 1.0f;
         this.G1 = "640_360";
         this.H1 = 1920;
         this.K1 = true;
         this.S1 = new org.telegram.ui.Components.d30(getParentActivity(), new bd1(this));
         this.T1 = false;
         this.U1 = false;
-        this.f44732b = 2;
+        this.f44737b = 2;
         this.B1 = obj;
         this.C1 = bitmap;
         this.D1 = z10;
         if (obj instanceof jj1) {
             jj1 jj1Var = (jj1) obj;
-            this.E1 = jj1Var.f39231j;
-            TLRPC.TL_wallPaper tL_wallPaper = jj1Var.f39229g;
+            this.E1 = jj1Var.f39234j;
+            TLRPC.TL_wallPaper tL_wallPaper = jj1Var.f39232g;
             this.W0 = tL_wallPaper;
             if (tL_wallPaper != null) {
                 float f7 = jj1Var.h;
@@ -276,7 +276,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         if (zd1Var.getParentActivity() == null) {
             return;
         }
-        rg.j0 j0Var = new rg.j0(23, zd1Var.currentAccount, zd1Var.getParentActivity(), zd1Var, zd1Var.f44729a);
+        rg.j0 j0Var = new rg.j0(23, zd1Var.currentAccount, zd1Var.getParentActivity(), zd1Var, zd1Var.f44734a);
         j0Var.H1(canApplyBoost);
         j0Var.G1(zd1Var.V1, true);
         j0Var.I1(zd1Var.J1);
@@ -294,34 +294,34 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         }
         int i10 = g6Var.Z;
         if (i10 >= 0) {
-            k10 = (org.telegram.ui.ActionBar.e6) g6Var.f20429a0.get(i10);
+            k10 = (org.telegram.ui.ActionBar.e6) g6Var.f20430a0.get(i10);
         } else {
             k10 = g6Var.k(false);
         }
-        if (zd1Var.f44779s != null) {
+        if (zd1Var.f44784s != null) {
             zd1Var.W0();
-            org.telegram.ui.ActionBar.h6.u1(zd1Var.f44744e0, true, false, false, false, false);
+            org.telegram.ui.ActionBar.h6.u1(zd1Var.f44749e0, true, false, false, false, false);
             if (org.telegram.ui.ActionBar.h6.M != null) {
                 org.telegram.ui.ActionBar.h6.O = false;
                 org.telegram.ui.ActionBar.h6.P = false;
                 org.telegram.ui.ActionBar.h6.M = null;
             }
-            org.telegram.ui.ActionBar.h6.t(zd1Var.f44744e0, true, zd1Var.f44748f0);
+            org.telegram.ui.ActionBar.h6.t(zd1Var.f44749e0, true, zd1Var.f44753f0);
             ((ActionBarLayout) zd1Var.parentLayout).U(false, false);
         } else {
             ((ActionBarLayout) zd1Var.parentLayout).U(false, false);
-            File file = new File(zd1Var.f44744e0.f20430b);
-            org.telegram.ui.ActionBar.g6 g6Var2 = zd1Var.f44744e0;
-            org.telegram.ui.ActionBar.h6.u(file, g6Var2.f20428a, g6Var2.F, false);
-            MessagesController.getInstance(zd1Var.f44744e0.E).saveTheme(zd1Var.f44744e0, null, false, false);
+            File file = new File(zd1Var.f44749e0.f20431b);
+            org.telegram.ui.ActionBar.g6 g6Var2 = zd1Var.f44749e0;
+            org.telegram.ui.ActionBar.h6.u(file, g6Var2.f20429a, g6Var2.F, false);
+            MessagesController.getInstance(zd1Var.f44749e0.E).saveTheme(zd1Var.f44749e0, null, false, false);
             SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-            edit.putString("lastDayTheme", zd1Var.f44744e0.m());
+            edit.putString("lastDayTheme", zd1Var.f44749e0.m());
             edit.commit();
         }
         org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) zd1Var.getParentLayout().getFragmentStack().get(Math.max(0, zd1Var.getParentLayout().getFragmentStack().size() - 2));
         zd1Var.finishFragment();
-        if (zd1Var.f44732b == 0) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didApplyNewTheme, g6Var, k10, Boolean.valueOf(zd1Var.f44754h0));
+        if (zd1Var.f44737b == 0) {
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didApplyNewTheme, g6Var, k10, Boolean.valueOf(zd1Var.f44759h0));
         }
         org.telegram.ui.ActionBar.h6.G1(m2Var);
     }
@@ -330,7 +330,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         TLRPC.TL_wallPaper tL_wallPaper;
         String str;
         HashMap hashMap = zd1Var.V0;
-        org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44779s;
+        org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44784s;
         if (tLObject instanceof TL_account.TL_wallPapers) {
             TL_account.TL_wallPapers tL_wallPapers = (TL_account.TL_wallPapers) tLObject;
             zd1Var.U0.clear();
@@ -342,11 +342,11 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     TLRPC.TL_wallPaper tL_wallPaper2 = (TLRPC.TL_wallPaper) tL_wallPapers.wallpapers.get(i10);
                     if (tL_wallPaper2.pattern) {
                         TLRPC.Document document = tL_wallPaper2.document;
-                        if (document != null && !hashMap.containsKey(Long.valueOf(document.f19808id))) {
+                        if (document != null && !hashMap.containsKey(Long.valueOf(document.f19809id))) {
                             zd1Var.U0.add(tL_wallPaper2);
-                            hashMap.put(Long.valueOf(tL_wallPaper2.document.f19808id), tL_wallPaper2);
+                            hashMap.put(Long.valueOf(tL_wallPaper2.document.f19809id), tL_wallPaper2);
                         }
-                        if (e6Var != null && (str = e6Var.f20361o) != null && str.equals(tL_wallPaper2.slug)) {
+                        if (e6Var != null && (str = e6Var.f20362o) != null && str.equals(tL_wallPaper2.slug)) {
                             zd1Var.W0 = tL_wallPaper2;
                             zd1Var.b1(false);
                             zd1Var.j1();
@@ -373,39 +373,39 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
             }
             MessagesStorage.getInstance(zd1Var.currentAccount).putWallpapers(tL_wallPapers.wallpapers, 1);
         }
-        if (zd1Var.W0 == null && e6Var != null && !TextUtils.isEmpty(e6Var.f20361o)) {
+        if (zd1Var.W0 == null && e6Var != null && !TextUtils.isEmpty(e6Var.f20362o)) {
             TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
             TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
-            tL_inputWallPaperSlug.slug = e6Var.f20361o;
+            tL_inputWallPaperSlug.slug = e6Var.f20362o;
             getwallpaper.wallpaper = tL_inputWallPaperSlug;
             ConnectionsManager.getInstance(zd1Var.currentAccount).bindRequestToGuid(zd1Var.getConnectionsManager().sendRequest(getwallpaper, new sc1(zd1Var, 0)), zd1Var.classGuid);
         }
     }
 
     public static void X(zd1 zd1Var) {
-        org.telegram.ui.Components.rm rmVar = zd1Var.f44743e;
+        org.telegram.ui.Components.rm rmVar = zd1Var.f44748e;
         int i10 = 0;
         if (rmVar != null) {
             rmVar.B(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.G8));
-            zd1Var.f44743e.G(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.E8), false);
+            zd1Var.f44748e.G(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.E8), false);
         }
-        Drawable drawable = zd1Var.f44776r;
+        Drawable drawable = zd1Var.f44781r;
         if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6), PorterDuff.Mode.MULTIPLY));
+            drawable.setColorFilter(new PorterDuffColorFilter(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6), PorterDuff.Mode.MULTIPLY));
         }
         x4 x4Var = zd1Var.C0;
         if (x4Var != null) {
             x4Var.invalidate();
         }
-        if (zd1Var.f44773p1 != null) {
+        if (zd1Var.f44778p1 != null) {
             org.telegram.ui.ActionBar.b5 b5Var = zd1Var.parentLayout;
             if (b5Var != null && b5Var.getBottomSheet() != null) {
-                zd1Var.parentLayout.getBottomSheet().fixNavigationBar(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20630h5));
-                if (zd1Var.f44732b == 2 && zd1Var.J1 != 0) {
+                zd1Var.parentLayout.getBottomSheet().fixNavigationBar(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20631h5));
+                if (zd1Var.f44737b == 2 && zd1Var.J1 != 0) {
                     zd1Var.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
                 }
             } else {
-                zd1Var.setNavigationBarColor(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20630h5));
+                zd1Var.setNavigationBarColor(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20631h5));
             }
         }
         if (zd1Var.J0 != null) {
@@ -435,7 +435,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 i10++;
             }
         }
-        TextView textView = zd1Var.f44746e2;
+        TextView textView = zd1Var.f44751e2;
         if (textView != null) {
             textView.setTextColor(zd1Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
         }
@@ -443,7 +443,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         if (erVar != null) {
             erVar.invalidate();
         }
-        org.telegram.ui.Components.s20 s20Var = zd1Var.f44772p0;
+        org.telegram.ui.Components.s20 s20Var = zd1Var.f44777p0;
         if (s20Var != null) {
             s20Var.g();
         }
@@ -457,11 +457,11 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.B0 = animatorSet2;
         if (this.E1) {
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.f44792x0, View.SCALE_X, this.f44796y1), ObjectAnimator.ofFloat(this.f44792x0, View.SCALE_Y, this.f44796y1));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.f44797x0, View.SCALE_X, this.f44801y1), ObjectAnimator.ofFloat(this.f44797x0, View.SCALE_Y, this.f44801y1));
         } else {
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.f44792x0, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.f44792x0, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.f44792x0, View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this.f44792x0, View.TRANSLATION_Y, 0.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.f44797x0, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.f44797x0, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.f44797x0, View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this.f44797x0, View.TRANSLATION_Y, 0.0f));
         }
-        this.B0.setInterpolator(org.telegram.ui.Components.js.f27628g);
+        this.B0.setInterpolator(org.telegram.ui.Components.js.f27635g);
         this.B0.addListener(new dd1(this, 1));
         this.B0.start();
     }
@@ -471,7 +471,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     }
 
     public final void O0(boolean z10) {
-        int i10 = this.f44732b;
+        int i10 = this.f44737b;
         if (i10 == 2) {
             if (!z10) {
                 finishFragment();
@@ -481,34 +481,34 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         }
         org.telegram.ui.ActionBar.h6.o();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
-        org.telegram.ui.ActionBar.e6 e6Var = this.f44779s;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f44784s;
         if (i10 == 1) {
-            if (this.f44751g0) {
-                e6Var.f20351c = this.f44788w;
-                e6Var.d = this.f44791x;
-                e6Var.f20352e = this.f44794y;
-                e6Var.f20353f = this.E;
-                e6Var.f20354g = this.F;
+            if (this.f44756g0) {
+                e6Var.f20352c = this.f44793w;
+                e6Var.d = this.f44796x;
+                e6Var.f20353e = this.f44799y;
+                e6Var.f20354f = this.E;
+                e6Var.f20355g = this.F;
                 e6Var.h = this.G;
-                e6Var.f20355i = this.H;
-                e6Var.f20356j = this.I;
-                e6Var.f20357k = this.J;
-                e6Var.f20358l = this.K;
-                e6Var.f20359m = this.L;
-                e6Var.f20360n = this.O;
-                e6Var.f20361o = this.N;
-                e6Var.f20362p = this.M;
+                e6Var.f20356i = this.H;
+                e6Var.f20357j = this.I;
+                e6Var.f20358k = this.J;
+                e6Var.f20359l = this.K;
+                e6Var.f20360m = this.L;
+                e6Var.f20361n = this.O;
+                e6Var.f20362o = this.N;
+                e6Var.f20363p = this.M;
             }
-            org.telegram.ui.ActionBar.h6.u1(this.f44744e0, false, true, false, false, false);
+            org.telegram.ui.ActionBar.h6.u1(this.f44749e0, false, true, false, false, false);
         } else {
             if (e6Var != null) {
-                org.telegram.ui.ActionBar.h6.u1(this.f44744e0, false, this.f44754h0, false, false, false);
+                org.telegram.ui.ActionBar.h6.u1(this.f44749e0, false, this.f44759h0, false, false, false);
             }
             ((ActionBarLayout) this.parentLayout).U(false, false);
-            if (this.f44754h0) {
-                org.telegram.ui.ActionBar.g6 g6Var = this.f44744e0;
-                if (g6Var.f20430b != null && org.telegram.ui.ActionBar.h6.H.get(g6Var.m()) == null) {
-                    new File(g6Var.f20430b).delete();
+            if (this.f44759h0) {
+                org.telegram.ui.ActionBar.g6 g6Var = this.f44749e0;
+                if (g6Var.f20431b != null && org.telegram.ui.ActionBar.h6.H.get(g6Var.m()) == null) {
+                    new File(g6Var.f20431b).delete();
                 }
             }
         }
@@ -518,17 +518,17 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     }
 
     public final BitmapDrawable P0(Drawable drawable) {
-        WeakReference weakReference = this.f44750f2;
+        WeakReference weakReference = this.f44755f2;
         if (weakReference != null && weakReference.get() == drawable) {
-            return this.f44753g2;
+            return this.f44758g2;
         }
-        WeakReference weakReference2 = this.f44750f2;
+        WeakReference weakReference2 = this.f44755f2;
         if (weakReference2 != null) {
             weakReference2.clear();
         }
-        this.f44750f2 = null;
+        this.f44755f2 = null;
         if (drawable != null && drawable.getIntrinsicWidth() != 0 && drawable.getIntrinsicHeight() != 0) {
-            this.f44750f2 = new WeakReference(drawable);
+            this.f44755f2 = new WeakReference(drawable);
             int intrinsicWidth = (int) ((drawable.getIntrinsicWidth() / drawable.getIntrinsicHeight()) * 24.0f);
             Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, 24, Bitmap.Config.ARGB_8888);
             drawable.setBounds(0, 0, intrinsicWidth, 24);
@@ -541,11 +541,11 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
             drawable.setColorFilter(colorFilter);
             Utilities.blurBitmap(createBitmap, 3);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(getParentActivity().getResources(), createBitmap);
-            this.f44753g2 = bitmapDrawable;
+            this.f44758g2 = bitmapDrawable;
             bitmapDrawable.setFilterBitmap(true);
-            return this.f44753g2;
+            return this.f44758g2;
         }
-        this.f44753g2 = null;
+        this.f44758g2 = null;
         return null;
     }
 
@@ -564,34 +564,34 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         yy0 yy0Var = new yy0(7, this);
         ArrayList arrayList = new ArrayList();
         FrameLayout frameLayout = this.m0;
-        int i10 = org.telegram.ui.ActionBar.h6.f20559d6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20560d6;
         arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayout, 1, null, null, null, yy0Var, i10));
-        z4.g gVar = this.f44760j0;
-        int i11 = org.telegram.ui.ActionBar.h6.f20839s8;
+        z4.g gVar = this.f44765j0;
+        int i11 = org.telegram.ui.ActionBar.h6.f20840s8;
         arrayList.add(new org.telegram.ui.ActionBar.j6(gVar, 32768, null, null, null, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1, null, null, null, null, i11));
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i12 = org.telegram.ui.ActionBar.h6.f20858t8;
+        int i12 = org.telegram.ui.ActionBar.h6.f20859t8;
         arrayList.add(new org.telegram.ui.ActionBar.j6(kVar, 256, null, null, null, null, i12));
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i13 = org.telegram.ui.ActionBar.h6.A8;
         arrayList.add(new org.telegram.ui.ActionBar.j6(kVar2, 128, null, null, null, null, i13));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 134217728, null, null, null, null, org.telegram.ui.ActionBar.h6.C8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 67108864, null, null, null, null, org.telegram.ui.ActionBar.h6.D8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44780s0, 1, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44780s0, 128, null, null, null, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44780s0, 1024, null, null, null, null, org.telegram.ui.ActionBar.h6.B8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44780s0, 256, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44780s0, Integer.MIN_VALUE, null, null, null, yy0Var, org.telegram.ui.ActionBar.h6.G8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44780s0, 1073741824, null, null, null, yy0Var, org.telegram.ui.ActionBar.h6.E8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44768n0, 32768, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 32768, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44785s0, 1, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44785s0, 128, null, null, null, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44785s0, 1024, null, null, null, null, org.telegram.ui.ActionBar.h6.B8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44785s0, 256, null, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44785s0, Integer.MIN_VALUE, null, null, null, yy0Var, org.telegram.ui.ActionBar.h6.G8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44785s0, 1073741824, null, null, null, yy0Var, org.telegram.ui.ActionBar.h6.E8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44773n0, 32768, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 32768, null, null, null, null, i11));
         if (!this.d) {
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44733b0, 1, null, null, null, null, i10));
-            TextView textView = this.f44740d0;
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44738b0, 1, null, null, null, null, i10));
+            TextView textView = this.f44745d0;
             int i14 = org.telegram.ui.ActionBar.h6.Ae;
             arrayList.add(new org.telegram.ui.ActionBar.j6(textView, 4, null, null, null, null, i14));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44737c0, 4, null, null, null, null, i14));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44742c0, 4, null, null, null, null, i14));
         }
         org.telegram.ui.Components.er erVar = this.V;
         if (erVar != null) {
@@ -604,8 +604,8 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 16777216, null, null, null, null, i16));
                 arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 8388608, null, null, null, null, org.telegram.ui.ActionBar.h6.H6));
                 arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 8390656, null, null, null, null, org.telegram.ui.ActionBar.h6.L6));
-                arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 32, null, null, null, null, org.telegram.ui.ActionBar.h6.f20687k6));
-                arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 65568, null, null, null, null, org.telegram.ui.ActionBar.h6.f20705l6));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 32, null, null, null, null, org.telegram.ui.ActionBar.h6.f20688k6));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursorArr[i15], 65568, null, null, null, null, org.telegram.ui.ActionBar.h6.f20706l6));
             }
             org.telegram.ui.ActionBar.j0 j0Var = erVar.F;
             int i17 = org.telegram.ui.ActionBar.h6.G6;
@@ -625,8 +625,8 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         FrameLayout[] frameLayoutArr = this.L0;
         if (frameLayoutArr != null) {
             for (int i19 = 0; i19 < frameLayoutArr.length; i19++) {
-                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr[i19], 0, null, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20647i3}, null, org.telegram.ui.ActionBar.h6.Td));
-                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr[i19], 0, null, org.telegram.ui.ActionBar.h6.f20665j2, null, null, org.telegram.ui.ActionBar.h6.Sd));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr[i19], 0, null, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20648i3}, null, org.telegram.ui.ActionBar.h6.Td));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr[i19], 0, null, org.telegram.ui.ActionBar.h6.f20666j2, null, null, org.telegram.ui.ActionBar.h6.Sd));
             }
             int i20 = 0;
             while (true) {
@@ -634,12 +634,12 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 if (i20 >= frameLayoutArr2.length) {
                     break;
                 }
-                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr2[i20], 0, null, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20647i3}, null, org.telegram.ui.ActionBar.h6.Td));
-                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr2[i20], 0, null, org.telegram.ui.ActionBar.h6.f20665j2, null, null, org.telegram.ui.ActionBar.h6.Sd));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr2[i20], 0, null, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20648i3}, null, org.telegram.ui.ActionBar.h6.Td));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(frameLayoutArr2[i20], 0, null, org.telegram.ui.ActionBar.h6.f20666j2, null, null, org.telegram.ui.ActionBar.h6.Sd));
                 i20++;
             }
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.C0, 0, null, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20647i3}, null, org.telegram.ui.ActionBar.h6.Td));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.C0, 0, null, org.telegram.ui.ActionBar.h6.f20665j2, null, null, org.telegram.ui.ActionBar.h6.Sd));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.C0, 0, null, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20648i3}, null, org.telegram.ui.ActionBar.h6.Td));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.C0, 0, null, org.telegram.ui.ActionBar.h6.f20666j2, null, null, org.telegram.ui.ActionBar.h6.Sd));
             int i21 = 0;
             while (true) {
                 TextView[] textViewArr = this.N0;
@@ -661,49 +661,49 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
             arrayList.add(new org.telegram.ui.ActionBar.j6(this.T0, 0, new Class[]{org.telegram.ui.Components.qp0.class}, new String[]{"innerPaint1"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.Ti));
             arrayList.add(new org.telegram.ui.ActionBar.j6(this.T0, 0, new Class[]{org.telegram.ui.Components.qp0.class}, new String[]{"outerPaint1"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.Vi));
             arrayList.add(new org.telegram.ui.ActionBar.j6(this.S0, 0, new Class[]{org.telegram.ui.Cells.m4.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.L6));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20721m3, org.telegram.ui.ActionBar.h6.f20796q3}, null, org.telegram.ui.ActionBar.h6.f20822ra));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20741n3, org.telegram.ui.ActionBar.h6.f20815r3}, null, org.telegram.ui.ActionBar.h6.f20565dc));
-            Drawable[] drawableArr = org.telegram.ui.ActionBar.h6.f20721m3.A;
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20722m3, org.telegram.ui.ActionBar.h6.f20797q3}, null, org.telegram.ui.ActionBar.h6.f20823ra));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20742n3, org.telegram.ui.ActionBar.h6.f20816r3}, null, org.telegram.ui.ActionBar.h6.f20566dc));
+            Drawable[] drawableArr = org.telegram.ui.ActionBar.h6.f20722m3.A;
             int i23 = org.telegram.ui.ActionBar.h6.ta;
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, drawableArr, null, i23));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, org.telegram.ui.ActionBar.h6.f20796q3.A, null, i23));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, drawableArr, null, i23));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, org.telegram.ui.ActionBar.h6.f20797q3.A, null, i23));
             org.telegram.ui.ActionBar.o5 o5Var = this.R;
             org.telegram.ui.ActionBar.o5 o5Var2 = this.T;
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Aa));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Da));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Ea));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Fa));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20777p3, org.telegram.ui.ActionBar.h6.f20853t3}, null, org.telegram.ui.ActionBar.h6.Ba));
-            Drawable[] drawableArr2 = org.telegram.ui.ActionBar.h6.f20759o3.A;
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Aa));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Da));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Ea));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{o5Var, o5Var2}, null, org.telegram.ui.ActionBar.h6.Fa));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20778p3, org.telegram.ui.ActionBar.h6.f20854t3}, null, org.telegram.ui.ActionBar.h6.Ba));
+            Drawable[] drawableArr2 = org.telegram.ui.ActionBar.h6.f20760o3.A;
             int i24 = org.telegram.ui.ActionBar.h6.Ca;
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, drawableArr2, null, i24));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, org.telegram.ui.ActionBar.h6.f20834s3.A, null, i24));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.ec));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20601fc));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.y3}, null, org.telegram.ui.ActionBar.h6.Ja));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20960z3}, null, org.telegram.ui.ActionBar.h6.Ka));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.A3, org.telegram.ui.ActionBar.h6.C3}, null, org.telegram.ui.ActionBar.h6.La));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.B3, org.telegram.ui.ActionBar.h6.D3}, null, org.telegram.ui.ActionBar.h6.Ma));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.F3, org.telegram.ui.ActionBar.h6.G3}, null, org.telegram.ui.ActionBar.h6.f20843sc));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.Uc));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20507ab));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.Wc));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.cb));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.Yc));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20564db));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20509ad));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20600fb));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20749nd));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20842sb));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20768od));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44784u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.nb));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, drawableArr2, null, i24));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, org.telegram.ui.ActionBar.h6.f20835s3.A, null, i24));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.ec));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20602fc));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.y3}, null, org.telegram.ui.ActionBar.h6.Ja));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.f20961z3}, null, org.telegram.ui.ActionBar.h6.Ka));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.A3, org.telegram.ui.ActionBar.h6.C3}, null, org.telegram.ui.ActionBar.h6.La));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.B3, org.telegram.ui.ActionBar.h6.D3}, null, org.telegram.ui.ActionBar.h6.Ma));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.F3, org.telegram.ui.ActionBar.h6.G3}, null, org.telegram.ui.ActionBar.h6.f20844sc));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.Uc));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20508ab));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.Wc));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.cb));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.Yc));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20565db));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20510ad));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20601fb));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20750nd));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20843sb));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20769od));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.f44789u0, 0, new Class[]{org.telegram.ui.Cells.u1.class}, null, null, null, org.telegram.ui.ActionBar.h6.nb));
         }
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.f20560d7));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.f20630h5));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.f20561d7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.f20631h5));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.f20649i5));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, null, -1, yy0Var, org.telegram.ui.ActionBar.h6.f20650i5));
         for (int i25 = 0; i25 < arrayList.size(); i25++) {
-            ((org.telegram.ui.ActionBar.j6) arrayList.get(i25)).f21029o = this.f44729a;
+            ((org.telegram.ui.ActionBar.j6) arrayList.get(i25)).f21030o = this.f44734a;
         }
         return arrayList;
     }
@@ -711,19 +711,19 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     public final boolean T0(int i10) {
         int C0;
         long j3;
-        if (this.f44751g0) {
+        if (this.f44756g0) {
             return false;
         }
-        org.telegram.ui.ActionBar.e6 e6Var = this.f44779s;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f44784s;
         if (i10 == 1 || i10 == 2) {
             long j10 = this.I;
             if (j10 != 0) {
-                if (j10 != e6Var.f20356j) {
+                if (j10 != e6Var.f20357j) {
                     return true;
                 }
             } else {
                 int C02 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Nd);
-                int i11 = (int) e6Var.f20356j;
+                int i11 = (int) e6Var.f20357j;
                 if (i11 == 0) {
                     i11 = C02;
                 }
@@ -739,13 +739,13 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 for (int i13 = 0; i13 < 3; i13++) {
                     if (i13 == 0) {
                         C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Od);
-                        j3 = e6Var.f20357k;
+                        j3 = e6Var.f20358k;
                     } else if (i13 == 1) {
                         C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Pd);
-                        j3 = e6Var.f20358l;
+                        j3 = e6Var.f20359l;
                     } else {
                         C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Qd);
-                        j3 = e6Var.f20359m;
+                        j3 = e6Var.f20360m;
                     }
                     int i14 = (int) j3;
                     if (i14 == 0 && j3 != 0) {
@@ -757,42 +757,42 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         return true;
                     }
                 }
-            } else if (j11 != e6Var.f20357k || j13 != e6Var.f20358l || j12 != e6Var.f20359m) {
+            } else if (j11 != e6Var.f20358k || j13 != e6Var.f20359l || j12 != e6Var.f20360m) {
                 return true;
             }
-            if (e6Var.f20360n != this.O) {
+            if (e6Var.f20361n != this.O) {
                 return true;
             }
         }
         if (i10 == 1 || i10 == 3) {
-            if (this.f44788w != e6Var.d) {
+            if (this.f44793w != e6Var.d) {
                 return true;
             }
-            int i15 = this.f44794y;
+            int i15 = this.f44799y;
             if (i15 != 0) {
-                if (i15 != e6Var.f20352e) {
+                if (i15 != e6Var.f20353e) {
                     return true;
                 }
             } else {
-                int i16 = e6Var.f20352e;
-                if (i16 != 0 && i16 != e6Var.f20351c) {
+                int i16 = e6Var.f20353e;
+                if (i16 != 0 && i16 != e6Var.f20352c) {
                     return true;
                 }
             }
             int i17 = this.E;
             if (i17 != 0) {
-                if (i17 != e6Var.f20353f) {
+                if (i17 != e6Var.f20354f) {
                     return true;
                 }
-            } else if (e6Var.f20353f != 0) {
+            } else if (e6Var.f20354f != 0) {
                 return true;
             }
             int i18 = this.F;
             if (i18 != 0) {
-                if (i18 != e6Var.f20354g) {
+                if (i18 != e6Var.f20355g) {
                     return true;
                 }
-            } else if (e6Var.f20354g != 0) {
+            } else if (e6Var.f20355g != 0) {
                 return true;
             }
             int i19 = this.G;
@@ -803,7 +803,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
             } else if (e6Var.h != 0) {
                 return true;
             }
-            if (this.H != e6Var.f20355i) {
+            if (this.H != e6Var.f20356i) {
                 return true;
             }
         }
@@ -824,18 +824,18 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         if (w5Var != null) {
             w5Var.invalidate();
         }
-        FrameLayout frameLayout = this.f44795y0;
+        FrameLayout frameLayout = this.f44800y0;
         if (frameLayout != null) {
             int childCount = frameLayout.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
-                this.f44795y0.getChildAt(i10).invalidate();
+                this.f44800y0.getChildAt(i10).invalidate();
             }
         }
-        FrameLayout frameLayout2 = this.f44797z0;
+        FrameLayout frameLayout2 = this.f44802z0;
         if (frameLayout2 != null) {
             int childCount2 = frameLayout2.getChildCount();
             for (int i11 = 0; i11 < childCount2; i11++) {
-                this.f44797z0.getChildAt(i11).invalidate();
+                this.f44802z0.getChildAt(i11).invalidate();
             }
         }
         if (this.J0 != null) {
@@ -848,7 +848,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 org.telegram.ui.Components.v91 v91Var = v91VarArr[i12];
                 if (v91Var != null) {
                     if (this.M1) {
-                        f7 = this.f44769n1 * this.f44771o1;
+                        f7 = this.f44774n1 * this.f44776o1;
                     } else {
                         f7 = 0.0f;
                     }
@@ -858,25 +858,25 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 i12++;
             }
         }
-        if (this.f44768n0 != null) {
-            for (int i13 = 0; i13 < this.f44768n0.getChildCount(); i13++) {
-                View childAt = this.f44768n0.getChildAt(i13);
+        if (this.f44773n0 != null) {
+            for (int i13 = 0; i13 < this.f44773n0.getChildCount(); i13++) {
+                View childAt = this.f44773n0.getChildAt(i13);
                 if (childAt instanceof org.telegram.ui.Cells.w0) {
                     d1((org.telegram.ui.Cells.w0) childAt);
                     childAt.invalidate();
                 }
             }
         }
-        if (this.f44784u0 != null) {
-            for (int i14 = 0; i14 < this.f44784u0.getChildCount(); i14++) {
-                View childAt2 = this.f44784u0.getChildAt(i14);
+        if (this.f44789u0 != null) {
+            for (int i14 = 0; i14 < this.f44789u0.getChildCount(); i14++) {
+                View childAt2 = this.f44789u0.getChildAt(i14);
                 if (childAt2 instanceof org.telegram.ui.Cells.w0) {
                     d1((org.telegram.ui.Cells.w0) childAt2);
                     childAt2.invalidate();
                 }
             }
         }
-        pd1 pd1Var = this.f44798z1;
+        pd1 pd1Var = this.f44803z1;
         if (pd1Var != null) {
             pd1Var.invalidate();
         }
@@ -891,12 +891,12 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     }
 
     public final void W0() {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f44779s;
-        if (e6Var != null && !TextUtils.isEmpty(e6Var.f20361o)) {
+        org.telegram.ui.ActionBar.e6 e6Var = this.f44784s;
+        if (e6Var != null && !TextUtils.isEmpty(e6Var.f20362o)) {
             try {
                 File d = e6Var.d();
-                Drawable background = this.f44792x0.getBackground();
-                Bitmap bitmap = this.f44792x0.getImageReceiver().getBitmap();
+                Drawable background = this.f44797x0.getBackground();
+                Bitmap bitmap = this.f44797x0.getImageReceiver().getBitmap();
                 if (background instanceof org.telegram.ui.Components.gd0) {
                     FileOutputStream fileOutputStream = new FileOutputStream(d);
                     bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
@@ -908,7 +908,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 background.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
                 background.draw(canvas);
                 Paint paint = new Paint(2);
-                paint.setColorFilter(new PorterDuffColorFilter(this.f44761j1, this.f44781s1));
+                paint.setColorFilter(new PorterDuffColorFilter(this.f44766j1, this.f44786s1));
                 paint.setAlpha((int) (this.l1 * 255.0f));
                 canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
                 FileOutputStream fileOutputStream2 = new FileOutputStream(d);
@@ -933,32 +933,32 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         int i15;
         int i16;
         int i17;
-        if (getParentActivity() != null && this.f44767n != i10 && this.f44778r1 == null && (e6Var = this.f44779s) != null) {
-            if (z10 && i10 == 2 && (org.telegram.ui.ActionBar.h6.a1() || e6Var.f20356j == 4294967296L)) {
+        if (getParentActivity() != null && this.f44772n != i10 && this.f44783r1 == null && (e6Var = this.f44784s) != null) {
+            if (z10 && i10 == 2 && (org.telegram.ui.ActionBar.h6.a1() || e6Var.f20357j == 4294967296L)) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ChangeChatBackground);
-                if (org.telegram.ui.ActionBar.h6.a1() && (!org.telegram.ui.ActionBar.h6.a1() || org.telegram.ui.ActionBar.h6.I.f20441i0.d == 0)) {
-                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.ChangeWallpaperToColor);
+                alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.ChangeChatBackground);
+                if (org.telegram.ui.ActionBar.h6.a1() && (!org.telegram.ui.ActionBar.h6.a1() || org.telegram.ui.ActionBar.h6.I.f20442i0.d == 0)) {
+                    alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.ChangeWallpaperToColor);
                     alertDialog$Builder.k(LocaleController.getString(R.string.Change), new oc1(this, 7));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                 } else {
-                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.ChangeColorToColor);
+                    alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.ChangeColorToColor);
                     alertDialog$Builder.k(LocaleController.getString(R.string.Reset), new oc1(this, 5));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Continue), new oc1(this, 6));
                 }
-                showDialog(alertDialog$Builder.f20141a);
+                showDialog(alertDialog$Builder.f20142a);
                 return;
             }
-            int i18 = this.f44767n;
-            this.f44767n = i10;
+            int i18 = this.f44772n;
+            this.f44772n = i10;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 == 3) {
                         this.h.setText(LocaleController.getString(R.string.ColorPickerMyMessages));
-                        if (e6Var.f20353f != 0) {
+                        if (e6Var.f20354f != 0) {
                             if (e6Var.h != 0) {
                                 i17 = 4;
-                            } else if (e6Var.f20354g != 0) {
+                            } else if (e6Var.f20355g != 0) {
                                 i17 = 3;
                             } else {
                                 i17 = 2;
@@ -970,28 +970,28 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         T0(3);
                         erVar.f(2, 4, i17, true);
                         this.V.e(e6Var.h, 3);
-                        this.V.e(e6Var.f20354g, 2);
-                        this.V.e(e6Var.f20353f, 1);
+                        this.V.e(e6Var.f20355g, 2);
+                        this.V.e(e6Var.f20354f, 1);
                         org.telegram.ui.Components.er erVar2 = this.V;
-                        int i19 = e6Var.f20352e;
+                        int i19 = e6Var.f20353e;
                         if (i19 == 0) {
-                            i19 = e6Var.f20351c;
+                            i19 = e6Var.f20352c;
                         }
                         erVar2.e(i19, 0);
-                        this.K0[1].b(0, e6Var.f20352e);
-                        this.K0[1].b(1, e6Var.f20353f);
-                        this.K0[1].b(2, e6Var.f20354g);
+                        this.K0[1].b(0, e6Var.f20353e);
+                        this.K0[1].b(1, e6Var.f20354f);
+                        this.K0[1].b(2, e6Var.f20355g);
                         this.K0[1].b(3, e6Var.h);
-                        if (e6Var.f20354g != 0) {
+                        if (e6Var.f20355g != 0) {
                             if (i18 == 1) {
-                                this.f44786v0.o(0);
+                                this.f44791v0.o(0);
                             } else {
-                                this.f44786v0.m(0);
+                                this.f44791v0.m(0);
                             }
                         } else if (i18 == 2) {
-                            this.f44786v0.u(0);
+                            this.f44791v0.u(0);
                         }
-                        this.f44784u0.v0(0, AndroidUtilities.dp(60.0f), null);
+                        this.f44789u0.v0(0, AndroidUtilities.dp(60.0f), null);
                         e1();
                     }
                 } else {
@@ -1015,22 +1015,22 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     } else {
                         i14 = 0;
                     }
-                    long j3 = e6Var.f20357k;
+                    long j3 = e6Var.f20358k;
                     int i23 = (int) j3;
                     if (i23 == 0 && j3 != 0) {
                         i12 = 0;
                     }
-                    long j10 = e6Var.f20358l;
+                    long j10 = e6Var.f20359l;
                     int i24 = (int) j10;
                     if (i24 == 0 && j10 != 0) {
                         i13 = 0;
                     }
-                    long j11 = e6Var.f20359m;
+                    long j11 = e6Var.f20360m;
                     int i25 = (int) j11;
                     if (i25 == 0 && j11 != 0) {
                         i14 = 0;
                     }
-                    int i26 = (int) e6Var.f20356j;
+                    int i26 = (int) e6Var.f20357j;
                     if (i23 == 0 && i12 == 0) {
                         i15 = i24;
                         i16 = 1;
@@ -1069,12 +1069,12 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         themedColor = i26;
                     }
                     erVar7.e(themedColor, 0);
-                    if (i18 != 1 && e6Var.f20354g != 0) {
-                        this.f44786v0.m(0);
+                    if (i18 != 1 && e6Var.f20355g != 0) {
+                        this.f44791v0.m(0);
                     } else {
-                        this.f44786v0.o(0);
+                        this.f44791v0.o(0);
                     }
-                    this.f44784u0.v0(0, AndroidUtilities.dp(60.0f), null);
+                    this.f44789u0.v0(0, AndroidUtilities.dp(60.0f), null);
                 }
             } else {
                 this.h.setText(LocaleController.getString(R.string.ColorPickerMainColor));
@@ -1086,13 +1086,13 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 org.telegram.ui.Components.er erVar8 = this.V;
                 T0(1);
                 erVar8.f(1, 2, i11, false);
-                this.V.e(e6Var.f20351c, 0);
+                this.V.e(e6Var.f20352c, 0);
                 int i27 = e6Var.d;
                 if (i27 != 0) {
                     this.V.e(i27, 1);
                 }
-                if (i18 == 2 || (i18 == 3 && e6Var.f20354g != 0)) {
-                    this.f44786v0.u(0);
+                if (i18 == 2 || (i18 == 3 && e6Var.f20355g != 0)) {
+                    this.f44791v0.u(0);
                 }
             }
             if (i10 != 1 && i10 != 3) {
@@ -1104,7 +1104,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 f1(0, true, true);
             }
             if (i10 == 1) {
-                if (this.f44744e0.q()) {
+                if (this.f44749e0.q()) {
                     this.V.setMinBrightness(0.2f);
                     return;
                 }
@@ -1128,35 +1128,35 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         if (tL_wallPaper2 == null) {
             return;
         }
-        ValueAnimator valueAnimator = this.f44739c2;
+        ValueAnimator valueAnimator = this.f44744c2;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f44739c2.cancel();
+            this.f44744c2.cancel();
         }
-        od1[] od1VarArr = this.f44789w0;
+        od1[] od1VarArr = this.f44794w0;
         od1 od1Var = od1VarArr[0];
         od1 od1Var2 = od1VarArr[1];
         od1VarArr[0] = od1Var2;
         od1VarArr[1] = od1Var;
-        this.f44782t0.removeView(od1Var2);
-        this.f44782t0.addView(od1VarArr[0], this.f44782t0.indexOfChild(od1VarArr[1]) + 1);
+        this.f44787t0.removeView(od1Var2);
+        this.f44787t0.addView(od1VarArr[0], this.f44787t0.indexOfChild(od1VarArr[1]) + 1);
         od1 od1Var3 = od1VarArr[0];
-        this.f44792x0 = od1Var3;
+        this.f44797x0 = od1Var3;
         od1Var3.setBackground(od1VarArr[1].getBackground());
         k1();
         od1VarArr[1].setVisibility(0);
         od1VarArr[1].setAlpha(1.0f);
-        this.f44792x0.setVisibility(0);
+        this.f44797x0.setVisibility(0);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f44739c2 = ofFloat;
+        this.f44744c2 = ofFloat;
         ofFloat.addUpdateListener(new hj(2, this));
-        this.f44739c2.addListener(new dd1(this, 0));
-        this.f44739c2.setInterpolator(org.telegram.ui.Components.js.f27627f);
-        this.f44739c2.setDuration(300L);
-        this.f44739c2.start();
-        this.f44792x0.getImageReceiver().setCrossfadeDuration(300);
-        this.f44792x0.getImageReceiver().setImage(ImageLocation.getForDocument(tL_wallPaper2.document), this.G1, null, null, null, tL_wallPaper2.document.size, "jpg", tL_wallPaper2, 1);
-        this.f44792x0.d();
+        this.f44744c2.addListener(new dd1(this, 0));
+        this.f44744c2.setInterpolator(org.telegram.ui.Components.js.f27634f);
+        this.f44744c2.setDuration(300L);
+        this.f44744c2.start();
+        this.f44797x0.getImageReceiver().setCrossfadeDuration(300);
+        this.f44797x0.getImageReceiver().setImage(ImageLocation.getForDocument(tL_wallPaper2.document), this.G1, null, null, null, tL_wallPaper2.document.size, "jpg", tL_wallPaper2, 1);
+        this.f44797x0.d();
         this.W0 = tL_wallPaper2;
         this.E1 = this.J0[2].f31472s;
         j1();
@@ -1167,11 +1167,11 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         if (i11 == 0) {
             this.Z0 = i10;
         } else if (i11 == 1) {
-            this.f44734b1 = i10;
+            this.f44739b1 = i10;
         } else if (i11 == 2) {
-            this.f44738c1 = i10;
+            this.f44743c1 = i10;
         } else if (i11 == 3) {
-            this.f44741d1 = i10;
+            this.f44746d1 = i10;
         }
         m1(z10);
         if (this.J0 != null) {
@@ -1188,69 +1188,69 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 i12++;
             }
         }
-        if (this.f44738c1 != 0) {
+        if (this.f44743c1 != 0) {
             if (this.T0 != null && org.telegram.ui.ActionBar.h6.I.q()) {
                 this.T0.setTwoSided(true);
             }
-            Drawable background = this.f44792x0.getBackground();
+            Drawable background = this.f44797x0.getBackground();
             if (background instanceof org.telegram.ui.Components.gd0) {
                 gd0Var = (org.telegram.ui.Components.gd0) background;
             } else {
                 gd0Var = new org.telegram.ui.Components.gd0();
-                gd0Var.r(this.f44792x0);
+                gd0Var.r(this.f44797x0);
                 if (this.D1) {
                     gd0Var.m(false);
                 }
             }
-            gd0Var.n(this.Z0, this.f44734b1, this.f44738c1, this.f44741d1);
-            this.f44792x0.setBackground(gd0Var);
-            this.f44761j1 = gd0Var.f();
-            this.f44764k1 = 754974720;
-        } else if (this.f44734b1 != 0) {
-            this.f44792x0.setBackground(new GradientDrawable(org.telegram.ui.Components.x9.d(this.f44755h1), new int[]{this.Z0, this.f44734b1}));
-            int patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(this.Z0, this.f44734b1));
-            this.f44764k1 = patternColor;
-            this.f44761j1 = patternColor;
+            gd0Var.n(this.Z0, this.f44739b1, this.f44743c1, this.f44746d1);
+            this.f44797x0.setBackground(gd0Var);
+            this.f44766j1 = gd0Var.f();
+            this.f44769k1 = 754974720;
+        } else if (this.f44739b1 != 0) {
+            this.f44797x0.setBackground(new GradientDrawable(org.telegram.ui.Components.x9.d(this.f44760h1), new int[]{this.Z0, this.f44739b1}));
+            int patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(this.Z0, this.f44739b1));
+            this.f44769k1 = patternColor;
+            this.f44766j1 = patternColor;
         } else {
-            this.f44792x0.setBackgroundColor(this.Z0);
+            this.f44797x0.setBackgroundColor(this.Z0);
             int patternColor2 = AndroidUtilities.getPatternColor(this.Z0);
-            this.f44764k1 = patternColor2;
-            this.f44761j1 = patternColor2;
+            this.f44769k1 = patternColor2;
+            this.f44766j1 = patternColor2;
         }
-        int i13 = org.telegram.ui.ActionBar.h6.f20711lc;
+        int i13 = org.telegram.ui.ActionBar.h6.f20712lc;
         boolean d12 = org.telegram.ui.ActionBar.h6.d1(i13);
-        zc1 zc1Var = this.f44729a;
-        if (d12 && !(this.f44792x0.getBackground() instanceof org.telegram.ui.Components.gd0)) {
+        zc1 zc1Var = this.f44734a;
+        if (d12 && !(this.f44797x0.getBackground() instanceof org.telegram.ui.Components.gd0)) {
             if (org.telegram.ui.ActionBar.h6.t0() instanceof org.telegram.ui.Components.gd0) {
                 getThemedColor(i13);
-                zc1Var.b(this.f44792x0.getBackground(), this.f44792x0.getBackground(), Float.valueOf(this.l1));
+                zc1Var.b(this.f44797x0.getBackground(), this.f44797x0.getBackground(), Float.valueOf(this.l1));
             }
         } else {
-            zc1Var.b(this.f44792x0.getBackground(), this.f44792x0.getBackground(), Float.valueOf(this.l1));
+            zc1Var.b(this.f44797x0.getBackground(), this.f44797x0.getBackground(), Float.valueOf(this.l1));
         }
         ImageView imageView = this.F0;
         if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20656ic), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20657ic), PorterDuff.Mode.MULTIPLY));
         }
         ImageView imageView2 = this.G0;
         if (imageView2 != null) {
-            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20656ic), PorterDuff.Mode.MULTIPLY));
+            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20657ic), PorterDuff.Mode.MULTIPLY));
         }
-        od1 od1Var = this.f44792x0;
+        od1 od1Var = this.f44797x0;
         if (od1Var != null) {
-            od1Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.f44761j1, this.f44781s1));
-            this.f44792x0.getImageReceiver().setAlpha(Math.abs(this.l1));
-            this.f44792x0.invalidate();
-            if (org.telegram.ui.ActionBar.h6.I.q() && (this.f44792x0.getBackground() instanceof org.telegram.ui.Components.gd0)) {
+            od1Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.f44766j1, this.f44786s1));
+            this.f44797x0.getImageReceiver().setAlpha(Math.abs(this.l1));
+            this.f44797x0.invalidate();
+            if (org.telegram.ui.ActionBar.h6.I.q() && (this.f44797x0.getBackground() instanceof org.telegram.ui.Components.gd0)) {
                 org.telegram.ui.Cells.j0 j0Var = this.T0;
                 if (j0Var != null) {
                     j0Var.setTwoSided(true);
                 }
                 if (this.l1 < 0.0f) {
-                    this.f44792x0.getImageReceiver().setGradientBitmap(((org.telegram.ui.Components.gd0) this.f44792x0.getBackground()).f26407k);
+                    this.f44797x0.getImageReceiver().setGradientBitmap(((org.telegram.ui.Components.gd0) this.f44797x0.getBackground()).f26405k);
                 }
             } else {
-                this.f44792x0.getImageReceiver().setGradientBitmap(null);
+                this.f44797x0.getImageReceiver().setGradientBitmap(null);
                 org.telegram.ui.Cells.j0 j0Var2 = this.T0;
                 if (j0Var2 != null) {
                     j0Var2.setTwoSided(false);
@@ -1261,22 +1261,22 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 j0Var3.setProgress(this.l1);
             }
         }
-        uc1 uc1Var = this.f44784u0;
+        uc1 uc1Var = this.f44789u0;
         if (uc1Var != null) {
             uc1Var.f1();
         }
-        FrameLayout frameLayout = this.f44795y0;
+        FrameLayout frameLayout = this.f44800y0;
         if (frameLayout != null) {
             int childCount = frameLayout.getChildCount();
             for (int i14 = 0; i14 < childCount; i14++) {
-                this.f44795y0.getChildAt(i14).invalidate();
+                this.f44800y0.getChildAt(i14).invalidate();
             }
         }
-        FrameLayout frameLayout2 = this.f44797z0;
+        FrameLayout frameLayout2 = this.f44802z0;
         if (frameLayout2 != null) {
             int childCount2 = frameLayout2.getChildCount();
             for (int i15 = 0; i15 < childCount2; i15++) {
-                this.f44797z0.getChildAt(i15).invalidate();
+                this.f44802z0.getChildAt(i15).invalidate();
             }
         }
     }
@@ -1287,10 +1287,10 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         int i10;
         int g10;
         TLRPC.PhotoSize photoSize;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f44779s;
-        int i11 = this.f44732b;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f44784s;
+        int i11 = this.f44737b;
         if (i11 == 0 && e6Var == null) {
-            this.f44792x0.setBackground(org.telegram.ui.ActionBar.h6.s0());
+            this.f44797x0.setBackground(org.telegram.ui.ActionBar.h6.s0());
         } else {
             TLRPC.PhotoSize photoSize2 = null;
             BitmapDrawable bitmapDrawable = null;
@@ -1306,17 +1306,17 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
                         bitmapDrawable = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(photoSize.bytes, "b"));
                     }
-                    od1 od1Var = this.f44792x0;
-                    od1Var.f33001a.setImage(ImageLocation.getForDocument(tL_wallPaper.document), this.G1, ImageLocation.getForDocument(photoSize, tL_wallPaper.document), "100_100_b", bitmapDrawable, tL_wallPaper.document.size, "jpg", tL_wallPaper, 1);
+                    od1 od1Var = this.f44797x0;
+                    od1Var.f32994a.setImage(ImageLocation.getForDocument(tL_wallPaper.document), this.G1, ImageLocation.getForDocument(photoSize, tL_wallPaper.document), "100_100_b", bitmapDrawable, tL_wallPaper.document.size, "jpg", tL_wallPaper, 1);
                     od1Var.d();
                 } else if (obj instanceof jj1) {
                     jj1 jj1Var = (jj1) obj;
-                    int i12 = jj1Var.f39228f;
-                    int i13 = jj1Var.f39227e;
+                    int i12 = jj1Var.f39231f;
+                    int i13 = jj1Var.f39230e;
                     int i14 = jj1Var.d;
-                    int i15 = jj1Var.f39226c;
-                    int i16 = jj1Var.f39225b;
-                    this.f44755h1 = i12;
+                    int i15 = jj1Var.f39229c;
+                    int i16 = jj1Var.f39228b;
+                    this.f44760h1 = i12;
                     a1(i16, 0, false);
                     if (i15 != 0) {
                         a1(i15, 1, false);
@@ -1325,12 +1325,12 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     a1(i13, 3, false);
                     TLRPC.TL_wallPaper tL_wallPaper2 = this.W0;
                     if (tL_wallPaper2 != null) {
-                        od1 od1Var2 = this.f44792x0;
+                        od1 od1Var2 = this.f44797x0;
                         ImageLocation forDocument = ImageLocation.getForDocument(tL_wallPaper2.document);
                         String str = this.G1;
                         TLRPC.TL_wallPaper tL_wallPaper3 = this.W0;
                         od1Var2.k(forDocument, str, null, null, tL_wallPaper3.document.size, "jpg", tL_wallPaper3, 1);
-                    } else if ("d".equals(jj1Var.f39224a)) {
+                    } else if ("d".equals(jj1Var.f39227a)) {
                         Point point = AndroidUtilities.displaySize;
                         int min = Math.min(point.x, point.y);
                         Point point2 = AndroidUtilities.displaySize;
@@ -1340,28 +1340,28 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         } else {
                             g10 = org.telegram.ui.Components.gd0.g(i16, i15, i14, i13);
                         }
-                        this.f44792x0.setImageBitmap(SvgHelper.getBitmap(R.raw.default_pattern, min, max, g10));
+                        this.f44797x0.setImageBitmap(SvgHelper.getBitmap(R.raw.default_pattern, min, max, g10));
                     }
                 } else if (obj instanceof kj1) {
                     Bitmap bitmap = this.C1;
                     if (bitmap != null) {
-                        this.f44792x0.setImageBitmap(bitmap);
+                        this.f44797x0.setImageBitmap(bitmap);
                     } else {
                         kj1 kj1Var = (kj1) obj;
-                        File file = kj1Var.f39537e;
+                        File file = kj1Var.f39531e;
                         if (file != null) {
-                            this.f44792x0.f(file.getAbsolutePath(), this.G1, null);
+                            this.f44797x0.f(file.getAbsolutePath(), this.G1, null);
                         } else {
                             File file2 = kj1Var.d;
                             if (file2 != null) {
-                                this.f44792x0.f(file2.getAbsolutePath(), this.G1, null);
-                            } else if ("t".equals(kj1Var.f39534a)) {
-                                od1 od1Var3 = this.f44792x0;
+                                this.f44797x0.f(file2.getAbsolutePath(), this.G1, null);
+                            } else if ("t".equals(kj1Var.f39528a)) {
+                                od1 od1Var3 = this.f44797x0;
                                 od1Var3.setImageDrawable(org.telegram.ui.ActionBar.h6.X0(od1Var3, false));
                             } else {
-                                int i17 = kj1Var.f39535b;
+                                int i17 = kj1Var.f39529b;
                                 if (i17 != 0) {
-                                    this.f44792x0.setImageResource(i17);
+                                    this.f44797x0.setImageResource(i17);
                                 }
                             }
                         }
@@ -1380,9 +1380,9 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         } else {
                             i10 = 0;
                         }
-                        this.f44792x0.k(ImageLocation.getForPhoto(photoSize2, searchImage.photo), this.G1, ImageLocation.getForPhoto(closestPhotoSizeWithSize, searchImage.photo), "100_100_b", i10, "jpg", searchImage, 1);
+                        this.f44797x0.k(ImageLocation.getForPhoto(photoSize2, searchImage.photo), this.G1, ImageLocation.getForPhoto(closestPhotoSizeWithSize, searchImage.photo), "100_100_b", i10, "jpg", searchImage, 1);
                     } else {
-                        od1 od1Var4 = this.f44792x0;
+                        od1 od1Var4 = this.f44797x0;
                         String str2 = searchImage.imageUrl;
                         String str3 = this.G1;
                         String str4 = searchImage.thumbUrl;
@@ -1391,20 +1391,20 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     }
                 }
             } else if (e6Var == null) {
-                this.f44792x0.setBackground(org.telegram.ui.ActionBar.h6.s0());
+                this.f44797x0.setBackground(org.telegram.ui.ActionBar.h6.s0());
             } else {
-                org.telegram.ui.Components.s9 s9Var = this.f44785u1;
+                org.telegram.ui.Components.s9 s9Var = this.f44790u1;
                 if (s9Var != null) {
                     s9Var.dispose();
-                    this.f44785u1 = null;
+                    this.f44790u1 = null;
                 }
                 int C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Nd);
-                int i18 = (int) e6Var.f20356j;
+                int i18 = (int) e6Var.f20357j;
                 if (i18 != 0) {
                     C0 = i18;
                 }
                 int C02 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Od);
-                long j3 = e6Var.f20357k;
+                long j3 = e6Var.f20358k;
                 int i19 = (int) j3;
                 if (i19 == 0 && j3 != 0) {
                     C02 = 0;
@@ -1412,7 +1412,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     C02 = i19;
                 }
                 int C03 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Pd);
-                long j10 = e6Var.f20358l;
+                long j10 = e6Var.f20359l;
                 int i20 = (int) j10;
                 if (i20 == 0 && j10 != 0) {
                     C03 = 0;
@@ -1420,21 +1420,21 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     C03 = i20;
                 }
                 int C04 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Qd);
-                long j11 = e6Var.f20359m;
+                long j11 = e6Var.f20360m;
                 int i21 = (int) j11;
                 if (i21 == 0 && j11 != 0) {
                     C04 = 0;
                 } else if (i21 != 0) {
                     C04 = i21;
                 }
-                if (!TextUtils.isEmpty(e6Var.f20361o) && !org.telegram.ui.ActionBar.h6.a1()) {
+                if (!TextUtils.isEmpty(e6Var.f20362o) && !org.telegram.ui.ActionBar.h6.a1()) {
                     if (C03 != 0) {
-                        Drawable background = this.f44792x0.getBackground();
+                        Drawable background = this.f44797x0.getBackground();
                         if (background instanceof org.telegram.ui.Components.gd0) {
                             gd0Var2 = (org.telegram.ui.Components.gd0) background;
                         } else {
                             org.telegram.ui.Components.gd0 gd0Var3 = new org.telegram.ui.Components.gd0();
-                            gd0Var3.r(this.f44792x0);
+                            gd0Var3.r(this.f44797x0);
                             gd0Var2 = gd0Var3;
                             if (this.D1) {
                                 gd0Var3.m(false);
@@ -1444,16 +1444,16 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         gd0Var2.n(C0, C02, C03, C04);
                         gd0Var = gd0Var2;
                     } else if (C02 != 0) {
-                        org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(org.telegram.ui.Components.x9.d(e6Var.f20360n), new int[]{C0, C02});
-                        this.f44785u1 = x9Var.f(m.y0.n(0.5f, 3), new hd1(this, 0), 100L);
+                        org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(org.telegram.ui.Components.x9.d(e6Var.f20361n), new int[]{C0, C02});
+                        this.f44790u1 = x9Var.f(m.y0.n(0.5f, 3), new hd1(this, 0), 100L);
                         gd0Var = x9Var;
                     } else {
                         gd0Var = new ColorDrawable(C0);
                     }
-                    this.f44792x0.setBackground(gd0Var);
+                    this.f44797x0.setBackground(gd0Var);
                     TLRPC.TL_wallPaper tL_wallPaper4 = this.W0;
                     if (tL_wallPaper4 != null) {
-                        od1 od1Var5 = this.f44792x0;
+                        od1 od1Var5 = this.f44797x0;
                         ImageLocation forDocument2 = ImageLocation.getForDocument(tL_wallPaper4.document);
                         String str5 = this.G1;
                         TLRPC.TL_wallPaper tL_wallPaper5 = this.W0;
@@ -1463,38 +1463,38 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     Drawable t02 = org.telegram.ui.ActionBar.h6.t0();
                     if (t02 != null) {
                         if (t02 instanceof org.telegram.ui.Components.gd0) {
-                            ((org.telegram.ui.Components.gd0) t02).r(this.f44792x0);
+                            ((org.telegram.ui.Components.gd0) t02).r(this.f44797x0);
                         }
-                        this.f44792x0.setBackground(t02);
+                        this.f44797x0.setBackground(t02);
                     }
                 }
                 if (C02 == 0) {
                     int patternColor = AndroidUtilities.getPatternColor(C0);
-                    this.f44764k1 = patternColor;
-                    this.f44761j1 = patternColor;
+                    this.f44769k1 = patternColor;
+                    this.f44766j1 = patternColor;
                 } else if (C03 != 0) {
-                    this.f44761j1 = org.telegram.ui.Components.gd0.g(C0, C02, C03, C04);
-                    this.f44764k1 = 754974720;
+                    this.f44766j1 = org.telegram.ui.Components.gd0.g(C0, C02, C03, C04);
+                    this.f44769k1 = 754974720;
                 } else {
                     int patternColor2 = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(C0, C02));
-                    this.f44764k1 = patternColor2;
-                    this.f44761j1 = patternColor2;
+                    this.f44769k1 = patternColor2;
+                    this.f44766j1 = patternColor2;
                 }
-                od1 od1Var6 = this.f44792x0;
+                od1 od1Var6 = this.f44797x0;
                 if (od1Var6 != null) {
-                    od1Var6.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.f44761j1, this.f44781s1));
-                    this.f44792x0.getImageReceiver().setAlpha(Math.abs(this.l1));
-                    this.f44792x0.invalidate();
-                    if (org.telegram.ui.ActionBar.h6.I.q() && (this.f44792x0.getBackground() instanceof org.telegram.ui.Components.gd0)) {
+                    od1Var6.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.f44766j1, this.f44786s1));
+                    this.f44797x0.getImageReceiver().setAlpha(Math.abs(this.l1));
+                    this.f44797x0.invalidate();
+                    if (org.telegram.ui.ActionBar.h6.I.q() && (this.f44797x0.getBackground() instanceof org.telegram.ui.Components.gd0)) {
                         org.telegram.ui.Cells.j0 j0Var = this.T0;
                         if (j0Var != null) {
                             j0Var.setTwoSided(true);
                         }
                         if (this.l1 < 0.0f) {
-                            this.f44792x0.getImageReceiver().setGradientBitmap(((org.telegram.ui.Components.gd0) this.f44792x0.getBackground()).f26407k);
+                            this.f44797x0.getImageReceiver().setGradientBitmap(((org.telegram.ui.Components.gd0) this.f44797x0.getBackground()).f26405k);
                         }
                     } else {
-                        this.f44792x0.getImageReceiver().setGradientBitmap(null);
+                        this.f44797x0.getImageReceiver().setGradientBitmap(null);
                         org.telegram.ui.Cells.j0 j0Var2 = this.T0;
                         if (j0Var2 != null) {
                             j0Var2.setTwoSided(false);
@@ -1521,11 +1521,11 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 }
                 ImageView imageView = this.F0;
                 if (imageView != null) {
-                    imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20656ic), PorterDuff.Mode.MULTIPLY));
+                    imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20657ic), PorterDuff.Mode.MULTIPLY));
                 }
                 ImageView imageView2 = this.G0;
                 if (imageView2 != null) {
-                    imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20656ic), PorterDuff.Mode.MULTIPLY));
+                    imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.f20657ic), PorterDuff.Mode.MULTIPLY));
                 }
                 V0();
             }
@@ -1552,28 +1552,28 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     public final void d1(org.telegram.ui.Cells.w0 w0Var) {
         zc1 zc1Var;
         float f7;
-        if (this.f44792x0 == null) {
+        if (this.f44797x0 == null) {
             return;
         }
-        Bitmap bitmap = this.f44729a.f44720r;
+        Bitmap bitmap = this.f44734a.f44725r;
         float f10 = 0.0f;
         if (bitmap != null) {
             float width = bitmap.getWidth();
-            f7 = ((this.f44792x0.getMeasuredWidth() - (Math.max(this.f44792x0.getMeasuredWidth() / width, this.f44792x0.getMeasuredHeight() / zc1Var.f44720r.getHeight()) * width)) / 2.0f) + this.X1 + 0.0f;
+            f7 = ((this.f44797x0.getMeasuredWidth() - (Math.max(this.f44797x0.getMeasuredWidth() / width, this.f44797x0.getMeasuredHeight() / zc1Var.f44725r.getHeight()) * width)) / 2.0f) + this.X1 + 0.0f;
         } else {
             f7 = this.X1 + 0.0f;
         }
-        float y3 = w0Var.getY() - ((-this.f44792x0.J) + 0.0f);
-        int measuredHeight = this.f44792x0.getMeasuredHeight();
+        float y3 = w0Var.getY() - ((-this.f44797x0.J) + 0.0f);
+        int measuredHeight = this.f44797x0.getMeasuredHeight();
         if (this.M1) {
-            f10 = this.f44769n1 * this.f44771o1;
+            f10 = this.f44774n1 * this.f44776o1;
         }
-        w0Var.f23406w0 = true;
-        w0Var.f23403v0 = measuredHeight;
-        w0Var.f23399t0 = y3;
-        w0Var.f23401u0 = f7;
-        w0Var.f23346b2 = f10;
-        w0Var.f23349c2.setColor(i0.a.k(-16777216, (int) (f10 * 255.0f)));
+        w0Var.f23407w0 = true;
+        w0Var.f23404v0 = measuredHeight;
+        w0Var.f23400t0 = y3;
+        w0Var.f23402u0 = f7;
+        w0Var.f23347b2 = f10;
+        w0Var.f23350c2.setColor(i0.a.k(-16777216, (int) (f10 * 255.0f)));
         w0Var.invalidate();
     }
 
@@ -1587,31 +1587,31 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 h1(true);
             }
         } else if (i10 == NotificationCenter.emojiLoaded) {
-            org.telegram.ui.Components.wm0 wm0Var = this.f44768n0;
+            org.telegram.ui.Components.wm0 wm0Var = this.f44773n0;
             if (wm0Var != null) {
                 int childCount = wm0Var.getChildCount();
                 for (int i12 = 0; i12 < childCount; i12++) {
-                    View childAt = this.f44768n0.getChildAt(i12);
+                    View childAt = this.f44773n0.getChildAt(i12);
                     if (childAt instanceof org.telegram.ui.Cells.s2) {
                         ((org.telegram.ui.Cells.s2) childAt).b0(0, true);
                     }
                 }
             }
         } else if (i10 == NotificationCenter.invalidateMotionBackground) {
-            uc1 uc1Var = this.f44784u0;
+            uc1 uc1Var = this.f44789u0;
             if (uc1Var != null) {
                 uc1Var.f1();
             }
         } else if (i10 == NotificationCenter.didSetNewWallpapper) {
-            if (this.f44782t0 != null) {
+            if (this.f44787t0 != null) {
                 b1(true);
             }
         } else if (i10 == NotificationCenter.wallpapersNeedReload) {
             Object obj = this.B1;
             if (obj instanceof kj1) {
                 kj1 kj1Var = (kj1) obj;
-                if (kj1Var.f39534a == null) {
-                    kj1Var.f39534a = (String) objArr[0];
+                if (kj1Var.f39528a == null) {
+                    kj1Var.f39528a = (String) objArr[0];
                 }
             }
         } else {
@@ -1627,12 +1627,12 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) arrayList.get(i13);
                     if ((wallPaper instanceof TLRPC.TL_wallPaper) && wallPaper.pattern) {
                         TLRPC.Document document = wallPaper.document;
-                        if (document != null && !hashMap.containsKey(Long.valueOf(document.f19808id))) {
+                        if (document != null && !hashMap.containsKey(Long.valueOf(document.f19809id))) {
                             this.U0.add(wallPaper);
-                            hashMap.put(Long.valueOf(wallPaper.document.f19808id), wallPaper);
+                            hashMap.put(Long.valueOf(wallPaper.document.f19809id), wallPaper);
                         }
-                        org.telegram.ui.ActionBar.e6 e6Var = this.f44779s;
-                        if (e6Var != null && (str = e6Var.f20361o) != null && str.equals(wallPaper.slug)) {
+                        org.telegram.ui.ActionBar.e6 e6Var = this.f44784s;
+                        if (e6Var != null && (str = e6Var.f20362o) != null && str.equals(wallPaper.slug)) {
                             this.W0 = (TLRPC.TL_wallPaper) wallPaper;
                             b1(false);
                             j1();
@@ -1660,7 +1660,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 for (int i14 = 0; i14 < size2; i14++) {
                     TLRPC.WallPaper wallPaper2 = (TLRPC.WallPaper) arrayList.get(i14);
                     if (wallPaper2 instanceof TLRPC.TL_wallPaper) {
-                        j3 = MediaDataController.calcHash(j3, wallPaper2.f19954id);
+                        j3 = MediaDataController.calcHash(j3, wallPaper2.f19955id);
                     }
                 }
                 TL_account.getWallPapers getwallpapers = new TL_account.getWallPapers();
@@ -1673,7 +1673,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     }
 
     public final void e1() {
-        if (this.f44782t0 != null && this.K0 != null && this.f44779s.f20354g != 0) {
+        if (this.f44787t0 != null && this.K0 != null && this.f44784s.f20355g != 0) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("bganimationhint", false)) {
                 if (this.A0 == null) {
@@ -1684,9 +1684,9 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     this.A0.setVisibility(4);
                     this.A0.setText(LocaleController.getString(R.string.BackgroundAnimateInfo));
                     this.A0.setExtraTranslationY(AndroidUtilities.dp(6.0f));
-                    this.f44763k0.addView(this.A0, w7.w5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
+                    this.f44768k0.addView(this.A0, w7.w5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
                 }
-                AndroidUtilities.runOnUIThread(new w31(12, this, globalMainSettings), 500L);
+                AndroidUtilities.runOnUIThread(new u31(13, this, globalMainSettings), 500L);
             }
         }
     }
@@ -1720,18 +1720,18 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         } else {
             z12 = false;
         }
-        int i17 = this.f44732b;
+        int i17 = this.f44737b;
         if (z10) {
             if (i10 == 0) {
                 if (i17 == 2) {
-                    this.f44731a1 = this.Z0;
-                    int i18 = this.f44734b1;
-                    this.f44745e1 = i18;
-                    int i19 = this.f44738c1;
-                    this.f44749f1 = i19;
-                    int i20 = this.f44741d1;
-                    this.f44752g1 = i20;
-                    this.f44758i1 = this.O;
+                    this.f44736a1 = this.Z0;
+                    int i18 = this.f44739b1;
+                    this.f44750e1 = i18;
+                    int i19 = this.f44743c1;
+                    this.f44754f1 = i19;
+                    int i20 = this.f44746d1;
+                    this.f44757g1 = i20;
+                    this.f44763i1 = this.O;
                     if (i20 != 0) {
                         i16 = 4;
                     } else if (i19 != 0) {
@@ -1742,14 +1742,14 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                         i16 = 1;
                     }
                     this.V.f(0, 4, i16, false);
-                    this.V.e(this.f44741d1, 3);
-                    this.V.e(this.f44738c1, 2);
-                    this.V.e(this.f44734b1, 1);
+                    this.V.e(this.f44746d1, 3);
+                    this.V.e(this.f44743c1, 2);
+                    this.V.e(this.f44739b1, 1);
                     this.V.e(this.Z0, 0);
                 }
             } else {
                 this.X0 = this.W0;
-                this.f44766m1 = this.l1;
+                this.f44771m1 = this.l1;
                 this.Q0.l();
                 ArrayList arrayList = this.U0;
                 if (arrayList != null) {
@@ -1793,7 +1793,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         float f21 = 1.0f;
         FrameLayout[] frameLayoutArr = this.L0;
         if (z11) {
-            this.f44778r1 = new AnimatorSet();
+            this.f44783r1 = new AnimatorSet();
             ArrayList arrayList2 = new ArrayList();
             if (i10 == 0) {
                 i12 = 1;
@@ -1803,7 +1803,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
             if (z10) {
                 frameLayoutArr[i10].setVisibility(0);
                 if (i17 == 1) {
-                    uc1 uc1Var = this.f44784u0;
+                    uc1 uc1Var = this.f44789u0;
                     Property property = View.TRANSLATION_Y;
                     if (i10 == 1) {
                         f16 = -AndroidUtilities.dp(21.0f);
@@ -1834,7 +1834,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     }
                     AndroidUtilities.hideKeyboard(this.V.E[1]);
                 } else if (i17 == 2) {
-                    uc1 uc1Var2 = this.f44784u0;
+                    uc1 uc1Var2 = this.f44789u0;
                     Property property3 = View.TRANSLATION_Y;
                     int i22 = -frameLayoutArr[i10].getMeasuredHeight();
                     if (this.A1 == null) {
@@ -1877,7 +1877,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     AndroidUtilities.hideKeyboard(this.V.E[1]);
                 }
             } else {
-                uc1 uc1Var3 = this.f44784u0;
+                uc1 uc1Var3 = this.f44789u0;
                 Property property5 = View.TRANSLATION_Y;
                 arrayList2.add(ObjectAnimator.ofFloat(uc1Var3, property5, 0.0f));
                 arrayList2.add(ObjectAnimator.ofFloat(frameLayoutArr[i10], property5, frameLayout2.getMeasuredHeight()));
@@ -1885,13 +1885,13 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 Property property6 = View.ALPHA;
                 arrayList2.add(ObjectAnimator.ofFloat(v91Var5, property6, 1.0f));
                 arrayList2.add(ObjectAnimator.ofFloat(this.J0[2], property6, 0.0f));
-                arrayList2.add(ObjectAnimator.ofFloat(this.f44792x0, property6, 1.0f));
+                arrayList2.add(ObjectAnimator.ofFloat(this.f44797x0, property6, 1.0f));
             }
-            this.f44778r1.playTogether(arrayList2);
-            this.f44778r1.addListener(new gd1(this, z10, i12, i10, z12));
-            this.f44778r1.setInterpolator(org.telegram.ui.Components.js.f27628g);
-            this.f44778r1.setDuration(200L);
-            this.f44778r1.start();
+            this.f44783r1.playTogether(arrayList2);
+            this.f44783r1.addListener(new gd1(this, z10, i12, i10, z12));
+            this.f44783r1.setInterpolator(org.telegram.ui.Components.js.f27635g);
+            this.f44783r1.setDuration(200L);
+            this.f44783r1.start();
             return;
         }
         if (i10 == 0) {
@@ -1902,7 +1902,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         if (z10) {
             frameLayoutArr[i10].setVisibility(0);
             if (i17 == 1) {
-                uc1 uc1Var4 = this.f44784u0;
+                uc1 uc1Var4 = this.f44789u0;
                 if (i10 == 1) {
                     f12 = -AndroidUtilities.dp(21.0f);
                 } else {
@@ -1931,7 +1931,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 }
                 AndroidUtilities.hideKeyboard(this.V.E[1]);
             } else if (i17 == 2) {
-                uc1 uc1Var5 = this.f44784u0;
+                uc1 uc1Var5 = this.f44789u0;
                 if (i10 == 0) {
                     f7 = 343.0f;
                 } else {
@@ -1979,11 +1979,11 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 AndroidUtilities.hideKeyboard(this.V.E[1]);
             }
         } else {
-            this.f44784u0.setTranslationY(0.0f);
+            this.f44789u0.setTranslationY(0.0f);
             frameLayoutArr[i10].setTranslationY(frameLayout.getMeasuredHeight());
             this.J0[0].setAlpha(1.0f);
             this.J0[2].setAlpha(1.0f);
-            this.f44792x0.setAlpha(1.0f);
+            this.f44797x0.setAlpha(1.0f);
         }
         if (z10 && frameLayoutArr[c11].getVisibility() == 0) {
             frameLayoutArr[c11].setAlpha(1.0f);
@@ -2007,7 +2007,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
 
     public final void g1() {
         Window window;
-        if (this.f44756h2 != null) {
+        if (this.f44761h2 != null) {
             return;
         }
         if (U0()) {
@@ -2034,28 +2034,28 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
         pc pcVar = new pc(this, getParentActivity(), canvas, (this.O1.getMeasuredWidth() / 2.0f) + f7, (this.O1.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 2);
-        this.f44756h2 = pcVar;
+        this.f44761h2 = pcVar;
         pcVar.setOnTouchListener(new bi.d(2));
-        this.f44759i2 = 0.0f;
+        this.f44764i2 = 0.0f;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f44762j2 = ofFloat;
+        this.f44767j2 = ofFloat;
         ofFloat.addUpdateListener(new ci.ub(this, 3));
-        this.f44762j2.addListener(new dd1(this, 4));
-        this.f44762j2.setDuration(400L);
-        this.f44762j2.setInterpolator(org.telegram.ui.Components.cu.f25018e);
-        this.f44762j2.start();
-        frameLayout.addView(this.f44756h2, new ViewGroup.LayoutParams(-1, -1));
+        this.f44767j2.addListener(new dd1(this, 4));
+        this.f44767j2.setDuration(400L);
+        this.f44767j2.setInterpolator(org.telegram.ui.Components.du.f25466e);
+        this.f44767j2.start();
+        frameLayout.addView(this.f44761h2, new ViewGroup.LayoutParams(-1, -1));
         AndroidUtilities.runOnUIThread(new mc1(this, 2));
     }
 
     @Override
     public final int getObserverTag() {
-        return this.f44783t1;
+        return this.f44788t1;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.c6 getResourceProvider() {
-        return this.f44729a;
+        return this.f44734a;
     }
 
     @Override
@@ -2069,22 +2069,22 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     public final void h1(boolean z10) {
         int i10 = (this.J1 > 0L ? 1 : (this.J1 == 0L ? 0 : -1));
         if (i10 > 0) {
-            this.f44798z1.d(LocaleController.getString(R.string.ApplyWallpaperForMe));
+            this.f44803z1.d(LocaleController.getString(R.string.ApplyWallpaperForMe));
         } else if (i10 < 0) {
             TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-this.J1));
             if (chat != null) {
-                this.f44798z1.d(LocaleController.formatString(R.string.ApplyWallpaperForChannel, chat.title));
+                this.f44803z1.d(LocaleController.formatString(R.string.ApplyWallpaperForChannel, chat.title));
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.V1;
                 if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < R0()) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("l");
-                    if (this.f44775q1 == null) {
+                    if (this.f44780q1 == null) {
                         org.telegram.ui.Components.gr grVar = new org.telegram.ui.Components.gr(R.drawable.mini_switch_lock, 0);
-                        this.f44775q1 = grVar;
+                        this.f44780q1 = grVar;
                         grVar.setTopOffset(1);
                     }
-                    spannableStringBuilder.setSpan(this.f44775q1, 0, 1, 33);
+                    spannableStringBuilder.setSpan(this.f44780q1, 0, 1, 33);
                     spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.formatPluralString("ReactionLevelRequiredBtn", R0(), new Object[0]));
-                    this.f44798z1.c(spannableStringBuilder, z10);
+                    this.f44803z1.c(spannableStringBuilder, z10);
                     return;
                 }
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = this.V1;
@@ -2096,33 +2096,33 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     }
                     return;
                 }
-                this.f44798z1.c(null, z10);
+                this.f44803z1.c(null, z10);
                 return;
             }
-            this.f44798z1.d(LocaleController.formatString(R.string.ApplyWallpaperForChannel, LocaleController.getString(R.string.AccDescrChannel).toLowerCase()));
+            this.f44803z1.d(LocaleController.formatString(R.string.ApplyWallpaperForChannel, LocaleController.getString(R.string.AccDescrChannel).toLowerCase()));
         } else {
-            this.f44798z1.d(LocaleController.getString(R.string.ApplyWallpaper));
+            this.f44803z1.d(LocaleController.getString(R.string.ApplyWallpaper));
         }
     }
 
     public final void i1() {
-        if (this.F1 && this.f44790w1 == null) {
+        if (this.F1 && this.f44795w1 == null) {
             Bitmap bitmap = this.C1;
             if (bitmap != null) {
-                this.f44793x1 = bitmap;
-                this.f44790w1 = Utilities.blurWallpaper(bitmap);
+                this.f44798x1 = bitmap;
+                this.f44795w1 = Utilities.blurWallpaper(bitmap);
             } else {
-                ImageReceiver imageReceiver = this.f44792x0.getImageReceiver();
+                ImageReceiver imageReceiver = this.f44797x0.getImageReceiver();
                 if (imageReceiver.hasNotThumb() || imageReceiver.hasStaticThumb()) {
-                    this.f44793x1 = imageReceiver.getBitmap();
-                    this.f44790w1 = Utilities.blurWallpaper(imageReceiver.getBitmap());
+                    this.f44798x1 = imageReceiver.getBitmap();
+                    this.f44795w1 = Utilities.blurWallpaper(imageReceiver.getBitmap());
                 }
             }
         }
         if (this.F1) {
-            Bitmap bitmap2 = this.f44790w1;
+            Bitmap bitmap2 = this.f44795w1;
             if (bitmap2 != null) {
-                this.f44792x0.setImageBitmap(bitmap2);
+                this.f44797x0.setImageBitmap(bitmap2);
                 return;
             }
             return;
@@ -2132,7 +2132,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        if (this.f44732b == 2) {
+        if (this.f44737b == 2) {
             if (this.a2 && motionEvent != null) {
                 if (motionEvent.getY() > org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) {
                     return false;
@@ -2191,26 +2191,26 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 }
             }
             boolean exists = file.exists();
-            int i11 = this.f44732b;
+            int i11 = this.f44737b;
             if (exists) {
                 DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                this.f44792x0.invalidate();
+                this.f44797x0.invalidate();
                 if (i11 == 2) {
                     if (j3 != 0 && this.J1 == 0) {
-                        this.f44780s0.setSubtitle(AndroidUtilities.formatFileSize(j3));
+                        this.f44785s0.setSubtitle(AndroidUtilities.formatFileSize(j3));
                     } else {
-                        this.f44780s0.setSubtitle(null);
+                        this.f44785s0.setSubtitle(null);
                     }
                 }
             } else {
                 DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(str, null, this);
                 if (i11 == 2 && this.J1 == 0) {
-                    this.f44780s0.setSubtitle(LocaleController.getString(R.string.LoadingFullImage));
+                    this.f44785s0.setSubtitle(LocaleController.getString(R.string.LoadingFullImage));
                 }
-                this.f44792x0.invalidate();
+                this.f44797x0.invalidate();
             }
             float f11 = 0.5f;
-            if (this.W0 == null && (frameLayout = this.f44795y0) != null) {
+            if (this.W0 == null && (frameLayout = this.f44800y0) != null) {
                 if (exists) {
                     f10 = 1.0f;
                 } else {
@@ -2219,15 +2219,15 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 frameLayout.setAlpha(f10);
             }
             if (i11 == 0) {
-                this.f44737c0.setEnabled(exists);
-                TextView textView = this.f44737c0;
+                this.f44742c0.setEnabled(exists);
+                TextView textView = this.f44742c0;
                 if (exists) {
                     f11 = 1.0f;
                 }
                 textView.setAlpha(f11);
             } else if (i11 == 2) {
                 this.C0.setEnabled(exists);
-                pd1 pd1Var = this.f44798z1;
+                pd1 pd1Var = this.f44803z1;
                 if (pd1Var != null) {
                     if (exists) {
                         f7 = 1.0f;
@@ -2244,8 +2244,8 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                     pd1Var2.setAlpha(f11);
                 }
             } else {
-                this.f44747f.setEnabled(exists);
-                org.telegram.ui.ActionBar.u0 u0Var = this.f44747f;
+                this.f44752f.setEnabled(exists);
+                org.telegram.ui.ActionBar.u0 u0Var = this.f44752f;
                 if (exists) {
                     f11 = 1.0f;
                 }
@@ -2255,20 +2255,20 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     }
 
     public final void k1() {
-        this.f44792x0.getImageReceiver().setAlpha(Math.abs(this.l1));
-        this.f44792x0.invalidate();
+        this.f44797x0.getImageReceiver().setAlpha(Math.abs(this.l1));
+        this.f44797x0.invalidate();
         this.P0.f1();
         if (this.l1 >= 0.0f) {
-            this.f44792x0.getImageReceiver().setGradientBitmap(null);
+            this.f44797x0.getImageReceiver().setGradientBitmap(null);
         } else {
             if (Build.VERSION.SDK_INT >= 29) {
-                this.f44792x0.getImageReceiver().setBlendMode(null);
+                this.f44797x0.getImageReceiver().setBlendMode(null);
             }
-            if (this.f44792x0.getBackground() instanceof org.telegram.ui.Components.gd0) {
-                this.f44792x0.getImageReceiver().setGradientBitmap(((org.telegram.ui.Components.gd0) this.f44792x0.getBackground()).f26407k);
+            if (this.f44797x0.getBackground() instanceof org.telegram.ui.Components.gd0) {
+                this.f44797x0.getImageReceiver().setGradientBitmap(((org.telegram.ui.Components.gd0) this.f44797x0.getBackground()).f26405k);
             }
         }
-        this.f44729a.b(this.f44792x0.getBackground(), this.f44792x0.getBackground(), Float.valueOf(this.l1));
+        this.f44734a.b(this.f44797x0.getBackground(), this.f44797x0.getBackground(), Float.valueOf(this.l1));
         V0();
     }
 
@@ -2280,7 +2280,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         float f10;
         float f11 = 1.0f;
         float f12 = 0.0f;
-        int i10 = this.f44732b;
+        int i10 = this.f44737b;
         if (i10 != 1 && i10 != 2) {
             boolean isEnabled = this.J0[0].isEnabled();
             TLRPC.TL_wallPaper tL_wallPaper = this.W0;
@@ -2326,7 +2326,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
                 f12 = -dp;
             }
             animatorSet.playTogether(ObjectAnimator.ofFloat(v91Var4, property2, f12));
-            animatorSet.setInterpolator(org.telegram.ui.Components.js.f27628g);
+            animatorSet.setInterpolator(org.telegram.ui.Components.js.f27635g);
             animatorSet.setDuration(200L);
             animatorSet.addListener(new fd1(this));
             animatorSet.start();
@@ -2357,7 +2357,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         }
         animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(v91Var6, property3, f11));
         animatorSet2.addListener(new ed1(this));
-        animatorSet2.setInterpolator(org.telegram.ui.Components.js.f27628g);
+        animatorSet2.setInterpolator(org.telegram.ui.Components.js.f27635g);
         animatorSet2.setDuration(200L);
         animatorSet2.start();
     }
@@ -2390,8 +2390,8 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         super.onBottomSheetCreated();
         org.telegram.ui.ActionBar.b5 b5Var = this.parentLayout;
         if (b5Var != null && b5Var.getBottomSheet() != null) {
-            this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20630h5));
-            if (this.f44732b == 2 && this.J1 != 0) {
+            this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20631h5));
+            if (this.f44737b == 2 && this.J1 != 0) {
                 this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
             }
         }
@@ -2408,15 +2408,15 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.invalidateMotionBackground);
         getNotificationCenter().addObserver(this, NotificationCenter.wallpaperSettedToUser);
-        int i10 = this.f44732b;
+        int i10 = this.f44737b;
         if (i10 == 1 || i10 == 0) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewWallpapper);
         }
         if (i10 == 2 || i10 == 1) {
             org.telegram.ui.ActionBar.h6.N = true;
         }
-        if (i10 == 0 && this.f44779s == null) {
-            this.E1 = org.telegram.ui.ActionBar.h6.f20644i0;
+        if (i10 == 0 && this.f44784s == null) {
+            this.E1 = org.telegram.ui.ActionBar.h6.f20645i0;
         } else {
             Point point = AndroidUtilities.displaySize;
             int min = Math.min(point.x, point.y);
@@ -2430,7 +2430,7 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
             this.H1 = Math.max(point3.x, point3.y);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersNeedReload);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersDidLoad);
-            this.f44783t1 = DownloadController.getInstance(this.currentAccount).generateObserverTag();
+            this.f44788t1 = DownloadController.getInstance(this.currentAccount).generateObserverTag();
             if (this.U0 == null) {
                 this.U0 = new ArrayList();
                 MessagesStorage.getInstance(this.currentAccount).getWallpapers();
@@ -2445,26 +2445,26 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.invalidateMotionBackground);
         getNotificationCenter().removeObserver(this, NotificationCenter.wallpaperSettedToUser);
-        ci.m6 m6Var = this.f44763k0;
+        ci.m6 m6Var = this.f44768k0;
         if (m6Var != null && this.Q != null) {
             m6Var.getViewTreeObserver().removeOnGlobalLayoutListener(this.Q);
         }
-        int i10 = this.f44732b;
-        if ((i10 == 2 || i10 == 1) && this.f44773p1 == null) {
+        int i10 = this.f44737b;
+        if ((i10 == 2 || i10 == 1) && this.f44778p1 == null) {
             AndroidUtilities.runOnUIThread(new w21(3));
         }
         if (i10 == 2) {
-            Bitmap bitmap = this.f44790w1;
+            Bitmap bitmap = this.f44795w1;
             if (bitmap != null) {
                 bitmap.recycle();
-                this.f44790w1 = null;
+                this.f44795w1 = null;
             }
-            this.f44729a.b(null, null, null);
+            this.f44734a.b(null, null, null);
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
         } else if (i10 == 1 || i10 == 0) {
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
         }
-        if (i10 != 0 || this.f44779s != null) {
+        if (i10 != 0 || this.f44784s != null) {
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.wallpapersNeedReload);
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.wallpapersDidLoad);
         }
@@ -2476,26 +2476,26 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     public final void onPause() {
         super.onPause();
         if (this.E1) {
-            this.f44787v1.c(false);
+            this.f44792v1.c(false);
         }
-        org.telegram.ui.ActionBar.h6.f20515b = false;
+        org.telegram.ui.ActionBar.h6.f20516b = false;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        rd1 rd1Var = this.f44770o0;
+        rd1 rd1Var = this.f44775o0;
         if (rd1Var != null) {
             rd1Var.l();
         }
-        vd1 vd1Var = this.f44786v0;
+        vd1 vd1Var = this.f44791v0;
         if (vd1Var != null) {
             vd1Var.l();
         }
         if (this.E1) {
-            this.f44787v1.c(true);
+            this.f44792v1.c(true);
         }
-        org.telegram.ui.ActionBar.h6.f20515b = true;
+        org.telegram.ui.ActionBar.h6.f20516b = true;
     }
 
     @Override
@@ -2506,22 +2506,22 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
     @Override
     public final void onTransitionAnimationStart(boolean z10, boolean z11) {
         super.onTransitionAnimationStart(z10, z11);
-        if (!z10 && this.f44732b == 2) {
-            this.f44729a.b(null, null, null);
+        if (!z10 && this.f44737b == 2) {
+            this.f44734a.b(null, null, null);
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
         }
     }
 
     @Override
     public final void setResourceProvider(org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f44729a.f44714a = c6Var;
+        this.f44734a.f44719a = c6Var;
     }
 
     public zd1(org.telegram.ui.ActionBar.g6 g6Var, boolean z10, int i10, boolean z11, boolean z12) {
         super(null);
-        this.f44729a = new zc1(this);
+        this.f44734a = new zc1(this);
         this.d = true;
-        this.f44767n = 1;
+        this.f44772n = 1;
         org.telegram.ui.ActionBar.o5 o5Var = new org.telegram.ui.ActionBar.o5(this, 0, false);
         this.R = o5Var;
         org.telegram.ui.ActionBar.o5 o5Var2 = new org.telegram.ui.ActionBar.o5(this, 0, true);
@@ -2532,62 +2532,62 @@ public class zd1 extends org.telegram.ui.ActionBar.m2 implements DownloadControl
         this.U = o5Var4;
         this.X = -1;
         this.Y = new mc1(this, 0);
-        this.f44789w0 = new od1[2];
+        this.f44794w0 = new od1[2];
         this.L0 = new FrameLayout[2];
         this.M0 = new TextView[2];
         this.N0 = new TextView[2];
         this.O0 = new FrameLayout[2];
         this.V0 = new HashMap();
         this.l1 = 0.5f;
-        this.f44769n1 = 0.0f;
-        this.f44781s1 = PorterDuff.Mode.SRC_IN;
-        this.f44796y1 = 1.0f;
+        this.f44774n1 = 0.0f;
+        this.f44786s1 = PorterDuff.Mode.SRC_IN;
+        this.f44801y1 = 1.0f;
         this.G1 = "640_360";
         this.H1 = 1920;
         this.K1 = true;
         this.S1 = new org.telegram.ui.Components.d30(getParentActivity(), new bd1(this));
         this.T1 = false;
         this.U1 = false;
-        this.f44732b = i10;
-        this.f44748f0 = z12;
-        this.f44744e0 = g6Var;
-        this.f44754h0 = z10;
-        this.f44751g0 = z11;
+        this.f44737b = i10;
+        this.f44753f0 = z12;
+        this.f44749e0 = g6Var;
+        this.f44759h0 = z10;
+        this.f44756g0 = z11;
         if (i10 == 1) {
             org.telegram.ui.ActionBar.e6 k10 = g6Var.k(!z11);
-            this.f44779s = k10;
+            this.f44784s = k10;
             if (k10 != null) {
                 this.d = false;
-                this.f44788w = k10.f20351c;
-                this.f44791x = k10.d;
-                this.f44794y = k10.f20352e;
-                this.E = k10.f20353f;
-                this.F = k10.f20354g;
+                this.f44793w = k10.f20352c;
+                this.f44796x = k10.d;
+                this.f44799y = k10.f20353e;
+                this.E = k10.f20354f;
+                this.F = k10.f20355g;
                 this.G = k10.h;
-                this.H = k10.f20355i;
-                this.I = k10.f20356j;
-                this.J = k10.f20357k;
-                this.K = k10.f20358l;
-                this.L = k10.f20359m;
-                this.M = k10.f20362p;
-                this.N = k10.f20361o;
-                this.O = k10.f20360n;
+                this.H = k10.f20356i;
+                this.I = k10.f20357j;
+                this.J = k10.f20358k;
+                this.K = k10.f20359l;
+                this.L = k10.f20360m;
+                this.M = k10.f20363p;
+                this.N = k10.f20362o;
+                this.O = k10.f20361n;
             }
         } else {
             if (i10 == 0) {
                 this.d = false;
             }
             org.telegram.ui.ActionBar.e6 k11 = g6Var.k(false);
-            this.f44779s = k11;
+            this.f44784s = k11;
             if (k11 != null) {
-                this.W0 = k11.f20365s;
+                this.W0 = k11.f20366s;
             }
         }
-        org.telegram.ui.ActionBar.e6 e6Var = this.f44779s;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f44784s;
         if (e6Var != null) {
-            this.E1 = e6Var.f20363q;
-            if (!TextUtils.isEmpty(e6Var.f20361o)) {
-                this.l1 = this.f44779s.f20362p;
+            this.E1 = e6Var.f20364q;
+            if (!TextUtils.isEmpty(e6Var.f20362o)) {
+                this.l1 = this.f44784s.f20363p;
             }
             org.telegram.ui.ActionBar.h6.M = org.telegram.ui.ActionBar.h6.B0();
             org.telegram.ui.ActionBar.h6.O = true;

@@ -18,7 +18,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ThemeEditorView;
 public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
-    public static BubbleActivity f21525a0;
+    public static BubbleActivity f21526a0;
     public boolean P;
     public final ArrayList Q = new ArrayList();
     public org.telegram.ui.Components.xe0 R;
@@ -53,7 +53,7 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
                 this.Y = null;
             }
             this.P = true;
-            f21525a0 = null;
+            f21526a0 = null;
         }
         finish();
         return false;
@@ -61,7 +61,7 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.z4 z4Var) {
-        org.telegram.ui.ActionBar.m2 m2Var = z4Var.f21489a;
+        org.telegram.ui.ActionBar.m2 m2Var = z4Var.f21490a;
         return true;
     }
 
@@ -69,8 +69,8 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
     public final void onActivityResult(int i10, int i11, Intent intent) {
         org.telegram.ui.Components.ba1 ba1Var;
         super.onActivityResult(i10, i11, intent);
-        ThemeEditorView themeEditorView = ThemeEditorView.f24125n;
-        if (themeEditorView != null && (ba1Var = themeEditorView.f24134k) != null) {
+        ThemeEditorView themeEditorView = ThemeEditorView.f24126n;
+        if (themeEditorView != null && (ba1Var = themeEditorView.f24135k) != null) {
             ba1Var.a(i10, i11, intent);
         }
         if (!this.S.getFragmentStack().isEmpty()) {
@@ -146,7 +146,7 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
             z10 = false;
         }
         y(intent, false, z10, false, UserConfig.selectedAccount);
-        f21525a0 = this;
+        f21526a0 = this;
     }
 
     @Override
@@ -164,9 +164,9 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
                 this.Y = null;
             }
             this.P = true;
-            f21525a0 = null;
+            f21526a0 = null;
         }
-        f21525a0 = null;
+        f21526a0 = null;
     }
 
     @Override
@@ -211,7 +211,7 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
         if (xe0Var != null) {
             xe0Var.j();
         }
-        f21525a0 = null;
+        f21526a0 = null;
     }
 
     @Override
@@ -249,7 +249,7 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
             this.S.n();
             this.R.k();
         }
-        f21525a0 = this;
+        f21526a0 = this;
     }
 
     public final void y(Intent intent, boolean z10, boolean z11, boolean z12, int i10) {
@@ -303,7 +303,7 @@ public class BubbleActivity extends k5 implements org.telegram.ui.ActionBar.y4 {
             return;
         }
         SharedConfig.appLocked = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34290s) {
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34292s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(false, true);

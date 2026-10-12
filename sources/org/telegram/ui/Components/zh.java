@@ -7,15 +7,15 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class zh implements org.telegram.ui.cr0 {
-    public boolean f33376a;
-    public final HashMap f33377b;
-    public final ArrayList f33378c;
+    public boolean f33384a;
+    public final HashMap f33385b;
+    public final ArrayList f33386c;
     public final aj d;
 
     public zh(aj ajVar, HashMap hashMap, ArrayList arrayList) {
         this.d = ajVar;
-        this.f33377b = hashMap;
-        this.f33378c = arrayList;
+        this.f33385b = hashMap;
+        this.f33386c = arrayList;
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class zh implements org.telegram.ui.cr0 {
     public final void i(int i10, boolean z10, boolean z11) {
         String str;
         if (!z10) {
-            HashMap hashMap = this.f33377b;
-            if (!hashMap.isEmpty() && !this.f33376a) {
-                this.f33376a = true;
+            HashMap hashMap = this.f33385b;
+            if (!hashMap.isEmpty() && !this.f33384a) {
+                this.f33384a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f33378c;
+                    ArrayList arrayList2 = this.f33386c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -65,7 +65,7 @@ public final class zh implements org.telegram.ui.cr0 {
                         searchImage.date = (int) (System.currentTimeMillis() / 1000);
                         i11++;
                     } else {
-                        ((org.telegram.ui.eo) this.d.f24342f0).g8(i10, arrayList, z11);
+                        ((org.telegram.ui.eo) this.d.f24338f0).g8(i10, arrayList, z11);
                         return;
                     }
                 }

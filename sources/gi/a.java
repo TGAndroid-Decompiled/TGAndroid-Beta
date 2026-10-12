@@ -35,7 +35,7 @@ public final class a extends View {
         this.f10894e = s61Var;
         s61Var.setCallback(this);
         s61Var.b(-1);
-        s61Var.f30431i = true;
+        s61Var.f30427i = true;
     }
 
     @Override
@@ -100,7 +100,7 @@ public final class a extends View {
                 Paint paint = this.f10892b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, AndroidUtilities.dp(19.0f), paint);
-                float f7 = ((me.b) this.f10893c).f16087e;
+                float f7 = ((me.b) this.f10893c).f16088e;
                 float f10 = 1.0f - f7;
                 if (f10 > 0.0f) {
                     p.b(canvas, (s61) this.f10894e, f10 * 1.35f);
@@ -116,12 +116,12 @@ public final class a extends View {
             case 2:
                 e4 e4Var = (e4) this.f10894e;
                 e4Var.getClass();
-                int themedColor = e4Var.getThemedColor(h6.f20559d6);
+                int themedColor = e4Var.getThemedColor(h6.f20560d6);
                 Paint paint2 = this.f10892b;
                 paint2.setColor(themedColor);
-                e4Var.f34649b0.getLocationInWindow((int[]) this.f10893c);
+                e4Var.f34651b0.getLocationInWindow((int[]) this.f10893c);
                 getLocationInWindow((int[]) this.d);
-                for (View view : ((u91) e4Var.f34649b0).getViewPages()) {
+                for (View view : ((u91) e4Var.f34651b0).getViewPages()) {
                     if (view != null && view.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view.getLeft() + (iArr[0] - iArr2[0]), view.getTop() + (iArr[1] - iArr2[1]));
@@ -178,7 +178,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f10891a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((s61) this.f10894e) || ((me.b) this.f10893c).f16088f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((s61) this.f10894e) || ((me.b) this.f10893c).f16089f)) {
                     return false;
                 }
                 return true;
@@ -197,7 +197,7 @@ public final class a extends View {
         this.d = paint3;
         this.f10894e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(h6.w0(h6.f20559d6, c6Var));
+        paint.setColor(h6.w0(h6.f20560d6, c6Var));
         paint3.setColor(h6.w0(h6.wj, c6Var));
     }
 

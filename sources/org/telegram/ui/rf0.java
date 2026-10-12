@@ -25,7 +25,7 @@ public final class rf0 implements RequestDelegate {
                     AndroidUtilities.runOnUIThread(new pf0(zf0Var, this.f41628c, tLObject, 1));
                     return;
                 } else if (tL_error != null && tL_error.text != null) {
-                    AndroidUtilities.runOnUIThread(new t70(26, zf0Var, tL_error));
+                    AndroidUtilities.runOnUIThread(new q70(27, zf0Var, tL_error));
                     return;
                 } else {
                     return;

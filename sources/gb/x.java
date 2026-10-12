@@ -55,7 +55,7 @@ public final class x implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        Class cls = aVar.f14775a;
+        Class cls = aVar.f14776a;
         if (!Object.class.isAssignableFrom(cls)) {
             return null;
         }

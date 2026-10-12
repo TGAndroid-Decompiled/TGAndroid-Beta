@@ -56,7 +56,7 @@ public final class wa {
         this.f1874k = new vh.l(xaVar, arrayList, new a1.c(this, 9));
         ma0 ma0Var = new ma0();
         this.f1882s = ma0Var;
-        ma0Var.f28487y = path;
+        ma0Var.f28482y = path;
         ma0Var.k(4.0f);
         ma0Var.g(org.telegram.ui.ActionBar.h6.m1(0.3f, -1), org.telegram.ui.ActionBar.h6.m1(0.1f, -1), org.telegram.ui.ActionBar.h6.m1(0.2f, -1), org.telegram.ui.ActionBar.h6.m1(0.7f, -1));
         ma0Var.setCallback(xaVar);
@@ -204,7 +204,7 @@ public final class wa {
                             arrayList2 = arrayList;
                             i11 = i13;
                             float lerp = AndroidUtilities.lerp(f11, f12, xaVar.f1923w);
-                            float lerp2 = AndroidUtilities.lerp(uaVar.d, uaVar.f1809f, js.f27628g.getInterpolation(xaVar.f1923w));
+                            float lerp2 = AndroidUtilities.lerp(uaVar.d, uaVar.f1809f, js.f27635g.getInterpolation(xaVar.f1923w));
                             canvas.translate(xaVar.E + lerp, xaVar.F + i10 + lerp2);
                             if (z10) {
                                 f(uaVar.f1806b, xaVar.E + lerp, xaVar.F + i10 + lerp2);
@@ -415,7 +415,7 @@ public final class wa {
         int i18 = xaVar.E;
         int i19 = xaVar.F;
         vh.l lVar = this.f1874k;
-        lVar.f49954c = i18;
+        lVar.f49962c = i18;
         lVar.d = i19;
     }
 
@@ -454,8 +454,8 @@ public final class wa {
             taVar.f1767s = vaVar;
             new dn0(xaVar);
             taVar.f1758j.setCallback(xaVar);
-            taVar.h.f26301a = xaVar;
-            taVar.f1757i.f24280a = xaVar;
+            taVar.h.f26299a = xaVar;
+            taVar.f1757i.f24281a = xaVar;
             taVar.c();
         }
         ta taVar3 = this.f1879p;
@@ -465,8 +465,8 @@ public final class wa {
             taVar3.f1767s = vaVar2;
             new dn0(xaVar);
             taVar3.f1758j.setCallback(xaVar);
-            taVar3.h.f26301a = xaVar;
-            taVar3.f1757i.f24280a = xaVar;
+            taVar3.h.f26299a = xaVar;
+            taVar3.f1757i.f24281a = xaVar;
             taVar3.c();
         }
         xaVar.f1922s = 0;

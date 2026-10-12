@@ -26,7 +26,7 @@ public final class mc extends lc {
         if (tL_mediaAreaSuggestedReaction.dark) {
             pbVar.a();
         }
-        e0Var.f54739i = true;
+        e0Var.f54747i = true;
         e0Var.e(zg.n0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
@@ -35,11 +35,11 @@ public final class mc extends lc {
         ImageReceiver imageReceiver;
         int i10;
         zg.e0 e0Var = this.f1433c;
-        org.telegram.ui.Components.s5 s5Var = e0Var.f54734b;
+        org.telegram.ui.Components.s5 s5Var = e0Var.f54742b;
         if (s5Var != null) {
-            imageReceiver = s5Var.f30406k;
+            imageReceiver = s5Var.f30402k;
         } else {
-            imageReceiver = e0Var.f54733a;
+            imageReceiver = e0Var.f54741a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
             fk0 lottieAnimation = imageReceiver.getLottieAnimation();
@@ -50,11 +50,11 @@ public final class mc extends lc {
             double d = pcVar.d;
             TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f1432b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20038x * d) / 100.0d) + pcVar.f1598b);
+            float f10 = (float) (((mediaAreaCoordinates.f20039x * d) / 100.0d) + pcVar.f1598b);
             double d10 = pcVar.f1599c;
             double d11 = pcVar.f1600e;
-            float f11 = (float) (((mediaAreaCoordinates.f20039y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20037w) / 100.0d)) / 2.0f;
+            float f11 = (float) (((mediaAreaCoordinates.f20040y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20038w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
             pb pbVar = this.f1431a;
             pbVar.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));
@@ -90,15 +90,15 @@ public final class mc extends lc {
     @Override
     public final void c(View view) {
         zg.e0 e0Var = this.f1433c;
-        if (e0Var.f54737f == view) {
+        if (e0Var.f54745f == view) {
             return;
         }
-        if (e0Var.f54738g) {
+        if (e0Var.f54746g) {
             e0Var.b(false);
-            e0Var.f54737f = view;
+            e0Var.f54745f = view;
             e0Var.b(true);
             return;
         }
-        e0Var.f54737f = view;
+        e0Var.f54745f = view;
     }
 }

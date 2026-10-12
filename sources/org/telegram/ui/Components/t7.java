@@ -7,19 +7,19 @@ public final class t7 extends ik0 {
     public long F;
     public final float G;
     public final l8 H;
-    public float f30774r;
-    public float f30775s;
+    public float f30777r;
+    public float f30778s;
     public int v;
-    public long f30776w;
-    public long f30777x;
-    public final s7 f30778y;
+    public long f30779w;
+    public long f30780x;
+    public final s7 f30781y;
 
     public t7(l8 l8Var, Context context, float f7) {
         super(context);
         this.H = l8Var;
         this.G = f7;
         this.v = 0;
-        this.f30778y = new s7(this, 0);
+        this.f30781y = new s7(this, 0);
         this.E = new s7(this, 1);
     }
 

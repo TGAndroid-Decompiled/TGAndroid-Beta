@@ -43,7 +43,7 @@ public final class sa implements o1.f {
                 hh0 hh0Var = (hh0) this.f5962c;
                 if (!z10) {
                     jh0 jh0Var = hh0Var.d;
-                    o1.l lVar = jh0Var.M.f16690u;
+                    o1.l lVar = jh0Var.M.f16691u;
                     int i10 = jh0Var.H;
                     float f12 = (i10 / 2.0f) + this.f5961b;
                     int i11 = AndroidUtilities.displaySize.x;
@@ -52,7 +52,7 @@ public final class sa implements o1.f {
                     } else {
                         dp = AndroidUtilities.dp(16.0f);
                     }
-                    lVar.f16697i = dp;
+                    lVar.f16698i = dp;
                     return;
                 }
                 return;

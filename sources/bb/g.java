@@ -6,7 +6,7 @@ public final class g {
 
     static {
         kotlin.jvm.internal.l lVar = new kotlin.jvm.internal.l(g.class);
-        q.f14929a.getClass();
+        q.f14930a.getClass();
         f3820a = new wd.g[]{lVar};
     }
 }

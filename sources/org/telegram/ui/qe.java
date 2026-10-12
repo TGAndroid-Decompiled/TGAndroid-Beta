@@ -17,12 +17,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qe implements Runnable {
-    public final int f41307a;
-    public final eo f41308b;
+    public final int f41311a;
+    public final eo f41312b;
 
     public qe(eo eoVar, int i10) {
-        this.f41307a = i10;
-        this.f41308b = eoVar;
+        this.f41311a = i10;
+        this.f41312b = eoVar;
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class qe implements Runnable {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
         int i11;
-        int i12 = this.f41307a;
+        int i12 = this.f41311a;
         TLRPC.ChatTheme chatTheme = null;
         int i13 = 0;
-        eo eoVar = this.f41308b;
+        eo eoVar = this.f41312b;
         switch (i12) {
             case 0:
                 eoVar.L5 = null;
                 if (eoVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eoVar.getParentActivity(), 0, eoVar.f37251ea);
-                    boolean isChannel = ChatObject.isChannel(eoVar.f37241e);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
-                    if (isChannel && !eoVar.f37241e.megagroup) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eoVar.getParentActivity(), 0, eoVar.f37256ea);
+                    boolean isChannel = ChatObject.isChannel(eoVar.f37246e);
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
+                    if (isChannel && !eoVar.f37246e.megagroup) {
                         a2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         a2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
                     } else {
@@ -63,8 +63,8 @@ public final class qe implements Runnable {
                 eo.n0(eoVar);
                 return;
             case 3:
-                eoVar.ta(null, eoVar.f37421s8);
-                eoVar.f37421s8 = null;
+                eoVar.ta(null, eoVar.f37426s8);
+                eoVar.f37426s8 = null;
                 return;
             case 4:
                 if (!org.telegram.ui.ActionBar.m2.hasSheets(eoVar) && (skVar = eoVar.Y) != null) {
@@ -75,7 +75,7 @@ public final class qe implements Runnable {
                 return;
             case 5:
                 eoVar.t9();
-                AndroidUtilities.forEachViews((RecyclerView) eoVar.f37478x0, (Utilities.Callback<View>) new gf(eoVar, 6));
+                AndroidUtilities.forEachViews((RecyclerView) eoVar.f37483x0, (Utilities.Callback<View>) new gf(eoVar, 6));
                 eoVar.x7();
                 jk jkVar = eoVar.X2;
                 if (jkVar != null) {
@@ -94,22 +94,22 @@ public final class qe implements Runnable {
                 return;
             case 6:
                 df1 a02 = df1.a0(-eoVar.T5, 0L);
-                a02.f36795y = eoVar;
+                a02.f36797y = eoVar;
                 eoVar.presentFragment(a02);
                 return;
             case 7:
                 eoVar.fc(true);
                 return;
             case 8:
-                eoVar.f37303j1.d(true);
+                eoVar.f37308j1.f(true);
                 return;
             case 9:
                 eoVar.getNotificationCenter().onAnimationFinish(eoVar.F9);
                 return;
             case 10:
-                int childCount = eoVar.f37478x0.getChildCount();
+                int childCount = eoVar.f37483x0.getChildCount();
                 while (i13 < childCount) {
-                    View childAt = eoVar.f37478x0.getChildAt(i13);
+                    View childAt = eoVar.f37483x0.getChildAt(i13);
                     if (childAt instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                         if (u1Var2.getMessageObject().type == 4) {
@@ -124,7 +124,7 @@ public final class qe implements Runnable {
                 eoVar.Bc(true);
                 return;
             case 12:
-                il ilVar = eoVar.f37213bb;
+                il ilVar = eoVar.f37218bb;
                 if (ilVar != null) {
                     ilVar.requestLayout();
                     return;
@@ -144,7 +144,7 @@ public final class qe implements Runnable {
                 eoVar.getNotificationCenter().runDelayedNotifications();
                 return;
             case 16:
-                TLRPC.UserFull userFull = eoVar.f37196a8;
+                TLRPC.UserFull userFull = eoVar.f37201a8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -172,7 +172,7 @@ public final class qe implements Runnable {
                 eoVar.Y.J0();
                 return;
             case 21:
-                AndroidUtilities.forEachViews((RecyclerView) eoVar.f37478x0, (Utilities.Callback<View>) new ai.i(11));
+                AndroidUtilities.forEachViews((RecyclerView) eoVar.f37483x0, (Utilities.Callback<View>) new ai.i(11));
                 qm qmVar = eoVar.A0;
                 if (qmVar != null) {
                     qmVar.O(true);
@@ -180,44 +180,44 @@ public final class qe implements Runnable {
                 }
                 return;
             case 22:
-                eo eoVar2 = this.f41308b;
-                int i14 = eoVar2.f37396qb;
+                eo eoVar2 = this.f41312b;
+                int i14 = eoVar2.f37401qb;
                 if (i14 != 0) {
-                    eoVar2.F(i14, eoVar2.f37410rb, eoVar2.f37436tb, eoVar2.f37461vb, eoVar2.f37424sb, eoVar2.f37449ub);
-                    eoVar2.f37396qb = 0;
+                    eoVar2.F(i14, eoVar2.f37415rb, eoVar2.f37441tb, eoVar2.f37466vb, eoVar2.f37429sb, eoVar2.f37454ub);
+                    eoVar2.f37401qb = 0;
                     return;
                 }
                 return;
             case 23:
-                if (!eoVar.f37329l3 && eoVar.f37478x0 != null && eoVar.getParentActivity() != null && eoVar.fragmentView != null) {
-                    org.telegram.ui.Components.iq iqVar = eoVar.f37453v2;
+                if (!eoVar.f37334l3 && eoVar.f37483x0 != null && eoVar.getParentActivity() != null && eoVar.fragmentView != null) {
+                    org.telegram.ui.Components.iq iqVar = eoVar.f37458v2;
                     if (iqVar == null || iqVar.getTag() == null) {
-                        if (eoVar.f37453v2 == null) {
+                        if (eoVar.f37458v2 == null) {
                             wm wmVar = eoVar.X0;
                             int indexOfChild = wmVar.indexOfChild(eoVar.S);
                             if (indexOfChild != -1) {
                                 i10 = 1;
-                                org.telegram.ui.Components.iq iqVar2 = new org.telegram.ui.Components.iq(eoVar.getParentActivity(), eoVar.f37251ea);
-                                eoVar.f37453v2 = iqVar2;
+                                org.telegram.ui.Components.iq iqVar2 = new org.telegram.ui.Components.iq(eoVar.getParentActivity(), eoVar.f37256ea);
+                                eoVar.f37458v2 = iqVar2;
                                 wmVar.addView(iqVar2, indexOfChild + 1, w7.w5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
-                                eoVar.f37453v2.setAlpha(0.0f);
-                                eoVar.f37453v2.setVisibility(4);
+                                eoVar.f37458v2.setAlpha(0.0f);
+                                eoVar.f37458v2.setVisibility(4);
                             } else {
                                 return;
                             }
                         } else {
                             i10 = 1;
                         }
-                        int childCount2 = eoVar.f37478x0.getChildCount();
+                        int childCount2 = eoVar.f37483x0.getChildCount();
                         for (int i15 = 0; i15 < childCount2; i15++) {
-                            View childAt2 = eoVar.f37478x0.getChildAt(i15);
+                            View childAt2 = eoVar.f37483x0.getChildAt(i15);
                             if ((childAt2 instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.iq iqVar3 = eoVar.f37453v2;
-                                ImageView imageView = iqVar3.f27262c;
-                                org.telegram.ui.Components.tg tgVar = iqVar3.f27263e;
+                                org.telegram.ui.Components.iq iqVar3 = eoVar.f37458v2;
+                                ImageView imageView = iqVar3.f27256c;
+                                org.telegram.ui.Components.tg tgVar = iqVar3.f27257e;
                                 if (tgVar != null) {
                                     AndroidUtilities.cancelRunOnUIThread(tgVar);
-                                    iqVar3.f27263e = null;
+                                    iqVar3.f27257e = null;
                                 }
                                 int[] iArr = new int[2];
                                 u1Var.getLocationInWindow(iArr);
@@ -231,7 +231,7 @@ public final class qe implements Runnable {
                                     int dp = AndroidUtilities.dp(5.0f) + u1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
                                     float measuredHeight = C - iqVar3.getMeasuredHeight();
-                                    iqVar3.f27264f = measuredHeight;
+                                    iqVar3.f27258f = measuredHeight;
                                     iqVar3.setTranslationY(measuredHeight);
                                     int left = u1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
@@ -282,7 +282,7 @@ public final class qe implements Runnable {
                                     iqVar3.d.setDuration(180L);
                                     iqVar3.d.start();
                                     while (i13 < 2) {
-                                        ViewPropertyAnimator interpolator = iqVar3.f27260a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.js.f27629i);
+                                        ViewPropertyAnimator interpolator = iqVar3.f27254a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.js.f27636i);
                                         if (i13 == 0) {
                                             i11 = 132;
                                         } else {
@@ -305,7 +305,7 @@ public final class qe implements Runnable {
                 eo.G0(eoVar);
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) eoVar.f37478x0, (Utilities.Callback<View>) new ai.i(10));
+                AndroidUtilities.forEachViews((RecyclerView) eoVar.f37483x0, (Utilities.Callback<View>) new ai.i(10));
                 qm qmVar2 = eoVar.A0;
                 if (qmVar2 != null) {
                     qmVar2.O(false);
@@ -317,15 +317,15 @@ public final class qe implements Runnable {
                 return;
             case 27:
                 sk skVar2 = eoVar.Y;
-                if (skVar2 != null && eoVar.f37372ob != 5) {
+                if (skVar2 != null && eoVar.f37377ob != 5) {
                     skVar2.J0();
                     return;
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.ip ipVar = ((org.telegram.ui.Components.ip[]) eoVar.f37189a0.f931b)[0];
+                org.telegram.ui.Components.ip ipVar = ((org.telegram.ui.Components.ip[]) eoVar.f37194a0.f931b)[0];
                 org.telegram.ui.ActionBar.h5 h5Var = ipVar.d;
-                org.telegram.ui.ActionBar.h5 h5Var2 = ipVar.f27255e;
+                org.telegram.ui.ActionBar.h5 h5Var2 = ipVar.f27249e;
                 eoVar.F1 = !eoVar.F1;
                 h5Var.setPivotX(0.0f);
                 h5Var2.setPivotX(0.0f);

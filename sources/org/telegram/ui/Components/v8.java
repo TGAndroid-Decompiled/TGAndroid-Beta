@@ -17,7 +17,7 @@ public final class v8 extends AnimatorListenerAdapter {
         switch (this.f31454a) {
             case 0:
                 super.onAnimationEnd(animator);
-                this.f31455b.f26356f = false;
+                this.f31455b.f26354f = false;
                 return;
             default:
                 g9 g9Var = this.f31455b;

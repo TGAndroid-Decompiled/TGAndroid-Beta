@@ -4,36 +4,36 @@ import android.graphics.PointF;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class w0 {
-    public float f45711a;
-    public float f45712b;
-    public float f45713c;
+    public float f45716a;
+    public float f45717b;
+    public float f45718c;
     public float d;
-    public float f45714e;
-    public float f45715f;
-    public double f45716g;
+    public float f45719e;
+    public float f45720f;
+    public double f45721g;
     public int h;
-    public int f45717i;
-    public ByteBuffer f45718j;
+    public int f45722i;
+    public ByteBuffer f45723j;
 
     public final boolean a(PointF pointF, float f7, float f10, float f11, int i10) {
-        if ((i10 != -1 && i10 >= this.f45717i) || this.f45718j.position() == this.f45718j.limit()) {
+        if ((i10 != -1 && i10 >= this.f45722i) || this.f45723j.position() == this.f45723j.limit()) {
             d();
             return false;
         }
         if (i10 != -1) {
-            this.f45718j.position(i10 * 20);
+            this.f45723j.position(i10 * 20);
         }
-        this.f45718j.putFloat(pointF.x);
-        this.f45718j.putFloat(pointF.y);
-        this.f45718j.putFloat(f7);
-        this.f45718j.putFloat(f10);
-        this.f45718j.putFloat(f11);
+        this.f45723j.putFloat(pointF.x);
+        this.f45723j.putFloat(pointF.y);
+        this.f45723j.putFloat(f7);
+        this.f45723j.putFloat(f10);
+        this.f45723j.putFloat(f11);
         return true;
     }
 
     public final void b(int i10) {
         int i11 = this.h + i10;
-        if (i11 > this.f45717i || this.f45718j == null) {
+        if (i11 > this.f45722i || this.f45723j == null) {
             d();
         }
         this.h = i11;
@@ -41,25 +41,25 @@ public final class w0 {
 
     public final void c() {
         this.h = 0;
-        if (this.f45718j != null) {
+        if (this.f45723j != null) {
             return;
         }
-        this.f45717i = 256;
+        this.f45722i = 256;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
-        this.f45718j = allocateDirect;
+        this.f45723j = allocateDirect;
         allocateDirect.order(ByteOrder.nativeOrder());
-        this.f45718j.position(0);
+        this.f45723j.position(0);
     }
 
     public final void d() {
-        if (this.f45718j != null) {
-            this.f45718j = null;
+        if (this.f45723j != null) {
+            this.f45723j = null;
         }
-        int max = Math.max(this.f45717i * 2, 256);
-        this.f45717i = max;
+        int max = Math.max(this.f45722i * 2, 256);
+        this.f45722i = max;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
-        this.f45718j = allocateDirect;
+        this.f45723j = allocateDirect;
         allocateDirect.order(ByteOrder.nativeOrder());
-        this.f45718j.position(0);
+        this.f45723j.position(0);
     }
 }

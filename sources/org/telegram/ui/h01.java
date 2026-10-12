@@ -14,13 +14,13 @@ public final class h01 implements nq {
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         i01 i01Var = this.f38210b;
-        i01Var.f38577b.N1 = true;
+        i01Var.f38580b.N1 = true;
         this.f38209a.removeSelfFromStack();
-        NotificationCenter notificationCenter = i01Var.f38577b.getNotificationCenter();
-        ProfileActivity profileActivity = i01Var.f38577b;
+        NotificationCenter notificationCenter = i01Var.f38580b.getNotificationCenter();
+        ProfileActivity profileActivity = i01Var.f38580b;
         int i11 = NotificationCenter.closeChats;
         notificationCenter.removeObserver(profileActivity, i11);
-        i01Var.f38577b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+        i01Var.f38580b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
     }
 
     @Override

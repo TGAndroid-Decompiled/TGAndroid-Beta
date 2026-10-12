@@ -27,17 +27,17 @@ import org.telegram.ui.id0;
 import org.telegram.ui.uv;
 import w7.w5;
 public final class i0 implements l0, IMapsProvider.OnMarkerClickListener {
-    public final float f15857a;
-    public final Object f15858b;
+    public final float f15858a;
+    public final Object f15859b;
 
     public i0(Object obj, float f7) {
-        this.f15858b = obj;
-        this.f15857a = f7;
+        this.f15859b = obj;
+        this.f15858a = f7;
     }
 
     @Override
     public void g(r rVar) {
-        ((m0) this.f15858b).f15905g.f15748t.a(this.f15857a);
+        ((m0) this.f15859b).f15906g.f15749t.a(this.f15858a);
     }
 
     @Override
@@ -46,15 +46,15 @@ public final class i0 implements l0, IMapsProvider.OnMarkerClickListener {
         int i11;
         int i12;
         int i13;
-        id0 id0Var = (id0) this.f15858b;
-        ArrayList arrayList = id0Var.f38853g0;
+        id0 id0Var = (id0) this.f15859b;
+        ArrayList arrayList = id0Var.f38856g0;
         if (iMarker.getTag() instanceof hd0) {
             id0Var.X.setVisibility(4);
             if (!id0Var.C0) {
-                ImageView imageView = id0Var.f38842a;
+                ImageView imageView = id0Var.f38845a;
                 int i14 = h6.ui;
                 imageView.setColorFilter(new PorterDuffColorFilter(id0Var.getThemedColor(i14), PorterDuff.Mode.MULTIPLY));
-                id0Var.f38842a.setTag(Integer.valueOf(i14));
+                id0Var.f38845a.setTag(Integer.valueOf(i14));
                 id0Var.C0 = true;
             }
             int i15 = 0;
@@ -63,22 +63,22 @@ public final class i0 implements l0, IMapsProvider.OnMarkerClickListener {
                     break;
                 }
                 cd0 cd0Var = (cd0) arrayList.get(i15);
-                if (cd0Var != null && cd0Var.f36401e == iMarker) {
-                    id0Var.f38855i0 = cd0Var.f36398a;
-                    if (id0Var.f38856j0) {
-                        id0Var.f38856j0 = false;
+                if (cd0Var != null && cd0Var.f36403e == iMarker) {
+                    id0Var.f38858i0 = cd0Var.f36400a;
+                    if (id0Var.f38859j0) {
+                        id0Var.f38859j0 = false;
                         id0Var.B0();
                     }
-                    id0Var.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(cd0Var.f36401e.getPosition(), this.f15857a));
+                    id0Var.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(cd0Var.f36403e.getPosition(), this.f15858a));
                 } else {
                     i15++;
                 }
             }
-            fd0 fd0Var = id0Var.f38873x;
-            id0 id0Var2 = fd0Var.f37756b;
-            HashMap hashMap = fd0Var.f37755a;
+            fd0 fd0Var = id0Var.f38876x;
+            id0 id0Var2 = fd0Var.f37760b;
+            HashMap hashMap = fd0Var.f37759a;
             hd0 hd0Var = (hd0) iMarker.getTag();
-            if (hd0Var != null && id0Var2.f38860n0 != hd0Var) {
+            if (hd0Var != null && id0Var2.f38863n0 != hd0Var) {
                 id0Var2.x0(false);
                 IMapsProvider.IMarker iMarker2 = id0Var2.m0;
                 if (iMarker2 != null) {
@@ -89,18 +89,18 @@ public final class i0 implements l0, IMapsProvider.OnMarkerClickListener {
                     }
                     id0Var2.m0 = null;
                 }
-                id0Var2.f38860n0 = hd0Var;
+                id0Var2.f38863n0 = hd0Var;
                 id0Var2.m0 = iMarker;
                 Context context = fd0Var.getContext();
                 FrameLayout frameLayout = new FrameLayout(context);
                 fd0Var.addView(frameLayout, w5.d(114.0f, -2));
                 FrameLayout frameLayout2 = new FrameLayout(context);
-                id0Var2.f38861o0 = frameLayout2;
+                id0Var2.f38864o0 = frameLayout2;
                 frameLayout2.setBackgroundResource(R.drawable.venue_tooltip);
-                id0Var2.f38861o0.getBackground().setColorFilter(new PorterDuffColorFilter(id0Var2.getThemedColor(h6.f20630h5), PorterDuff.Mode.MULTIPLY));
-                frameLayout.addView(id0Var2.f38861o0, w5.d(71.0f, -2));
-                id0Var2.f38861o0.setAlpha(0.0f);
-                id0Var2.f38861o0.setOnClickListener(new uv(17, fd0Var, hd0Var));
+                id0Var2.f38864o0.getBackground().setColorFilter(new PorterDuffColorFilter(id0Var2.getThemedColor(h6.f20631h5), PorterDuff.Mode.MULTIPLY));
+                frameLayout.addView(id0Var2.f38864o0, w5.d(71.0f, -2));
+                id0Var2.f38864o0.setAlpha(0.0f);
+                id0Var2.f38864o0.setOnClickListener(new uv(17, fd0Var, hd0Var));
                 TextView textView = new TextView(context);
                 textView.setTextSize(1, 16.0f);
                 textView.setMaxLines(1);
@@ -115,7 +115,7 @@ public final class i0 implements l0, IMapsProvider.OnMarkerClickListener {
                     i10 = 3;
                 }
                 textView.setGravity(i10);
-                FrameLayout frameLayout3 = id0Var2.f38861o0;
+                FrameLayout frameLayout3 = id0Var2.f38864o0;
                 if (LocaleController.isRTL) {
                     i11 = 5;
                 } else {
@@ -133,7 +133,7 @@ public final class i0 implements l0, IMapsProvider.OnMarkerClickListener {
                     i12 = 3;
                 }
                 g10.setGravity(i12);
-                FrameLayout frameLayout4 = id0Var2.f38861o0;
+                FrameLayout frameLayout4 = id0Var2.f38864o0;
                 if (LocaleController.isRTL) {
                     i13 = 5;
                 } else {

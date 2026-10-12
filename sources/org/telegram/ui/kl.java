@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class kl implements org.telegram.ui.Components.ml0 {
-    public final eo f39541a;
+    public final eo f39535a;
 
     public kl(eo eoVar) {
-        this.f39541a = eoVar;
+        this.f39535a = eoVar;
     }
 
     @Override

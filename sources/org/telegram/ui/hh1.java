@@ -26,28 +26,28 @@ public final class hh1 implements TextWatcher {
                 if (!kh1Var.M) {
                     int i10 = kh1Var.O;
                     if (i10 == 0) {
-                        org.telegram.ui.Components.fk0 animatedDrawable = kh1Var.f39497a.getAnimatedDrawable();
-                        if (kh1Var.f39512n.length() > 0) {
-                            if (kh1Var.f39512n.getTransformationMethod() == null) {
-                                org.telegram.ui.Components.fk0[] fk0VarArr = kh1Var.f39507f0;
+                        org.telegram.ui.Components.fk0 animatedDrawable = kh1Var.f39491a.getAnimatedDrawable();
+                        if (kh1Var.f39506n.length() > 0) {
+                            if (kh1Var.f39506n.getTransformationMethod() == null) {
+                                org.telegram.ui.Components.fk0[] fk0VarArr = kh1Var.f39501f0;
                                 if (animatedDrawable != fk0VarArr[3] && animatedDrawable != (fk0Var = fk0VarArr[5])) {
-                                    kh1Var.f39497a.setAnimation(fk0Var);
-                                    kh1Var.f39507f0[5].T(0.0f, false);
-                                    kh1Var.f39497a.d();
+                                    kh1Var.f39491a.setAnimation(fk0Var);
+                                    kh1Var.f39501f0[5].T(0.0f, false);
+                                    kh1Var.f39491a.d();
                                     return;
                                 }
                                 return;
                             }
-                            org.telegram.ui.Components.fk0[] fk0VarArr2 = kh1Var.f39507f0;
+                            org.telegram.ui.Components.fk0[] fk0VarArr2 = kh1Var.f39501f0;
                             if (animatedDrawable != fk0VarArr2[3]) {
                                 org.telegram.ui.Components.fk0 fk0Var2 = fk0VarArr2[2];
                                 if (animatedDrawable != fk0Var2) {
-                                    kh1Var.f39497a.setAnimation(fk0Var2);
-                                    kh1Var.f39507f0[2].P(49);
-                                    kh1Var.f39507f0[2].T(0.0f, false);
-                                    kh1Var.f39497a.d();
+                                    kh1Var.f39491a.setAnimation(fk0Var2);
+                                    kh1Var.f39501f0[2].P(49);
+                                    kh1Var.f39501f0[2].T(0.0f, false);
+                                    kh1Var.f39491a.d();
                                     return;
-                                } else if (fk0Var2.f26101a0 < 49) {
+                                } else if (fk0Var2.f26103a0 < 49) {
                                     fk0Var2.P(49);
                                     return;
                                 } else {
@@ -56,27 +56,27 @@ public final class hh1 implements TextWatcher {
                             }
                             return;
                         }
-                        if (animatedDrawable != kh1Var.f39507f0[3] || kh1Var.f39512n.getTransformationMethod() != null) {
-                            org.telegram.ui.Components.fk0[] fk0VarArr3 = kh1Var.f39507f0;
+                        if (animatedDrawable != kh1Var.f39501f0[3] || kh1Var.f39506n.getTransformationMethod() != null) {
+                            org.telegram.ui.Components.fk0[] fk0VarArr3 = kh1Var.f39501f0;
                             if (animatedDrawable != fk0VarArr3[5]) {
                                 fk0VarArr3[2].P(-1);
-                                org.telegram.ui.Components.fk0 fk0Var3 = kh1Var.f39507f0[2];
+                                org.telegram.ui.Components.fk0 fk0Var3 = kh1Var.f39501f0[2];
                                 if (animatedDrawable != fk0Var3) {
-                                    kh1Var.f39497a.setAnimation(fk0Var3);
-                                    kh1Var.f39507f0[2].N(49, false, false);
+                                    kh1Var.f39491a.setAnimation(fk0Var3);
+                                    kh1Var.f39501f0[2].N(49, false, false);
                                 }
-                                kh1Var.f39497a.d();
+                                kh1Var.f39491a.d();
                                 return;
                             }
                         }
-                        kh1Var.f39497a.setAnimation(kh1Var.f39507f0[4]);
-                        kh1Var.f39507f0[4].T(0.0f, false);
-                        kh1Var.f39497a.d();
+                        kh1Var.f39491a.setAnimation(kh1Var.f39501f0[4]);
+                        kh1Var.f39501f0[4].T(0.0f, false);
+                        kh1Var.f39491a.d();
                         return;
                     } else if (i10 == 1) {
                         try {
-                            kh1Var.f39507f0[6].P((int) ((Math.min(1.0f, kh1Var.f39512n.getLayout().getLineWidth(0) / kh1Var.f39512n.getWidth()) * 142.0f) + 18.0f));
-                            kh1Var.f39497a.d();
+                            kh1Var.f39501f0[6].P((int) ((Math.min(1.0f, kh1Var.f39506n.getLayout().getLineWidth(0) / kh1Var.f39506n.getWidth()) * 142.0f) + 18.0f));
+                            kh1Var.f39491a.d();
                             return;
                         } catch (Exception e7) {
                             FileLog.e(e7);

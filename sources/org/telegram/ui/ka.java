@@ -16,9 +16,9 @@ public final class ka extends ra {
     public final String getUsernameEditable() {
         switch (this.J) {
             case 0:
-                return ((la) this.K).f39678c.f42436r;
+                return ((la) this.K).f39672c.f42438r;
             default:
-                ci.g2 g2Var = ((jp) this.K).f39262c.Y2.f39797a;
+                ci.g2 g2Var = ((jp) this.K).f39265c.Y2.f39800a;
                 if (g2Var == null) {
                     return null;
                 }

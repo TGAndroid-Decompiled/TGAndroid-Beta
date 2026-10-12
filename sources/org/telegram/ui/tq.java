@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.MessagesStorage;
 public final class tq implements MessagesStorage.LongCallback, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.lm0, org.telegram.ui.Components.mm0 {
-    public final int f42263a;
-    public final wr f42264b;
+    public final int f42265a;
+    public final wr f42266b;
 
     public tq(wr wrVar, int i10) {
-        this.f42263a = i10;
-        this.f42264b = wrVar;
+        this.f42265a = i10;
+        this.f42266b = wrVar;
     }
 
     @Override
@@ -18,15 +18,15 @@ public final class tq implements MessagesStorage.LongCallback, org.telegram.ui.A
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        wr.V(this.f42264b, view, i10);
+        wr.V(this.f42266b, view, i10);
     }
 
     @Override
     public boolean d(int i10, View view) {
-        wr wrVar = this.f42264b;
+        wr wrVar = this.f42266b;
         if (wrVar.getParentActivity() != null) {
-            s4.i0 adapter = wrVar.f43614c.getAdapter();
-            sr srVar = wrVar.f43608a;
+            s4.i0 adapter = wrVar.f43619c.getAdapter();
+            sr srVar = wrVar.f43613a;
             if (adapter == srVar) {
                 return wrVar.h0(srVar.E(i10), false, view);
             }
@@ -36,19 +36,19 @@ public final class tq implements MessagesStorage.LongCallback, org.telegram.ui.A
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f42263a) {
+        switch (this.f42265a) {
             case 1:
-                this.f42264b.u0();
+                this.f42266b.u0();
                 return;
             default:
-                this.f42264b.finishFragment();
+                this.f42266b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void run(long j3) {
-        wr.U(this.f42264b, j3);
+        wr.U(this.f42266b, j3);
     }
 
     @Override

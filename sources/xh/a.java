@@ -25,23 +25,23 @@ import yh.d7;
 import yh.f5;
 import yh.p7;
 public final class a implements View.OnClickListener {
-    public final int f51389a;
-    public final Object f51390b;
-    public final Object f51391c;
+    public final int f51397a;
+    public final Object f51398b;
+    public final Object f51399c;
 
     public a(int i10, Object obj, Object obj2) {
-        this.f51389a = i10;
-        this.f51390b = obj;
-        this.f51391c = obj2;
+        this.f51397a = i10;
+        this.f51398b = obj;
+        this.f51399c = obj2;
     }
 
     @Override
     public final void onClick(View view) {
         TL_stars.SavedStarGift savedStarGift;
-        int i10 = this.f51389a;
+        int i10 = this.f51397a;
         yh.n0 n0Var = null;
-        Object obj = this.f51391c;
-        Object obj2 = this.f51390b;
+        Object obj = this.f51399c;
+        Object obj2 = this.f51398b;
         switch (i10) {
             case 0:
                 d.Q((d) obj2, (TL_stars.TL_StarGiftAuctionAcquiredGift) obj);
@@ -49,7 +49,7 @@ public final class a implements View.OnClickListener {
             case 1:
                 h4 h4Var = (h4) obj2;
                 h4Var.getClass();
-                if (((d7) obj).f52627f > 0) {
+                if (((d7) obj).f52633f > 0) {
                     h4Var.presentFragment(new p7());
                     return;
                 }
@@ -66,7 +66,7 @@ public final class a implements View.OnClickListener {
                     Iterator it = hashSet.iterator();
                     while (it.hasNext()) {
                         long longValue = ((Long) it.next()).longValue();
-                        ArrayList arrayList2 = l4Var.Y.f52743l;
+                        ArrayList arrayList2 = l4Var.Y.f52755l;
                         int size = arrayList2.size();
                         int i11 = 0;
                         while (true) {
@@ -95,8 +95,8 @@ public final class a implements View.OnClickListener {
                 }
                 return;
             case 4:
-                f5 f5Var = ((i4) obj2).f51534c.Y;
-                f5Var.f52737e = !f5Var.f52737e;
+                f5 f5Var = ((i4) obj2).f51542c.Y;
+                f5Var.f52749e = !f5Var.f52749e;
                 ((fk) obj).run();
                 f5Var.i(true);
                 return;
@@ -110,27 +110,27 @@ public final class a implements View.OnClickListener {
                 int i13 = 0;
                 int i14 = 0;
                 while (true) {
-                    int[] iArr = yh.y.f53606w0;
+                    int[] iArr = yh.y.f53615w0;
                     if (i13 < 6) {
                         strArr[i13] = LocaleController.formatPluralString("GiftOfferHours", iArr[i13] / 3600, new Object[0]);
-                        if (iArr[i13] == yVar.f53619n0) {
+                        if (iArr[i13] == yVar.f53628n0) {
                             i14 = i13;
                         }
                         i13++;
                     } else {
                         String string = LocaleController.getString(R.string.GiftOfferDuration);
                         ii.q1 q1Var = new ii.q1(yVar, 24);
-                        Pattern pattern = g5.f26280a;
+                        Pattern pattern = g5.f26278a;
                         hg.g2 b10 = hg.g2.b(UserConfig.selectedAccount);
                         b10.g();
                         if (!b10.d.isEmpty()) {
-                            int x02 = h6.x0(null, h6.f20667j5, false);
-                            int x03 = h6.x0(null, h6.f20630h5, false);
+                            int x02 = h6.x0(null, h6.f20668j5, false);
+                            int x03 = h6.x0(null, h6.f20631h5, false);
                             h6.x0(null, h6.Ji, false);
                             h6.x0(null, h6.Ni, false);
                             h6.x0(null, h6.E8, false);
                             h6.x0(null, h6.G8, false);
-                            h6.x0(null, h6.f20650i6, false);
+                            h6.x0(null, h6.f20651i6, false);
                             h6.x0(null, h6.Sh, false);
                             h6.x0(null, h6.Oh, false);
                             h6.x0(null, h6.Qh, false);
@@ -180,9 +180,9 @@ public final class a implements View.OnClickListener {
             case 7:
                 yh.h0 h0Var = (yh.h0) obj2;
                 b7 b7Var = (b7) obj;
-                ci.d dVar2 = h0Var.f52830f;
+                ci.d dVar2 = h0Var.f52842f;
                 if (dVar2.W && !dVar2.N) {
-                    AndroidUtilities.hideKeyboard(h0Var.f52828c);
+                    AndroidUtilities.hideKeyboard(h0Var.f52840c);
                     dVar2.setLoading(true);
                     b7Var.run(h0Var.E);
                     return;
@@ -191,7 +191,7 @@ public final class a implements View.OnClickListener {
             case 8:
                 yh.r0 r0Var = (yh.r0) obj2;
                 ArrayList<TL_stars.StarGiftAttribute> arrayList3 = (ArrayList) obj;
-                yh.l0 l0Var = r0Var.f53328o0;
+                yh.l0 l0Var = r0Var.f53340o0;
                 int i15 = r0Var.C0;
                 if (i15 == 2) {
                     l0Var.setPreviewingAttributes(arrayList3);
@@ -199,7 +199,7 @@ public final class a implements View.OnClickListener {
                     return;
                 } else if (i15 == 1) {
                     yh.n0 n0Var2 = new yh.n0(l0Var.getUpgradeBackdropAttribute(), l0Var.getUpgradePatternAttribute(), l0Var.getUpgradeImageViewAttribute());
-                    r0Var.f53335v0 = n0Var2;
+                    r0Var.f53347v0 = n0Var2;
                     l0Var.setPreviewAttributes(n0Var2);
                     r0Var.T(2);
                     return;
@@ -210,26 +210,26 @@ public final class a implements View.OnClickListener {
                 yh.n0 n0Var3 = (yh.n0) obj;
                 yh.r0 r0Var2 = ((yh.m0) obj2).N;
                 int i16 = r0Var2.C0;
-                yh.l0 l0Var2 = r0Var2.f53328o0;
+                yh.l0 l0Var2 = r0Var2.f53340o0;
                 if (i16 == 1) {
-                    r0Var2.f53335v0 = new yh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
+                    r0Var2.f53347v0 = new yh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
                     r0Var2.T(2);
                 }
-                int i17 = r0Var2.f53324j0.f53280r;
-                yh.n0 n0Var4 = r0Var2.f53335v0;
+                int i17 = r0Var2.f53336j0.f53292r;
+                yh.n0 n0Var4 = r0Var2.f53347v0;
                 if (n0Var4 != null) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f53118a;
-                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f53120c;
-                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f53119b;
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f53130a;
+                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f53132c;
+                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f53131b;
                     if (i17 == 1) {
-                        n0Var = new yh.n0(n0Var3.f53118a, stargiftattributepattern, stargiftattributemodel);
+                        n0Var = new yh.n0(n0Var3.f53130a, stargiftattributepattern, stargiftattributemodel);
                     } else if (i17 == 2) {
-                        n0Var = new yh.n0(stargiftattributebackdrop, n0Var3.f53119b, stargiftattributemodel);
+                        n0Var = new yh.n0(stargiftattributebackdrop, n0Var3.f53131b, stargiftattributemodel);
                     } else if (i17 == 0) {
-                        n0Var = new yh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f53120c);
+                        n0Var = new yh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f53132c);
                     }
                 }
-                r0Var2.f53335v0 = n0Var;
+                r0Var2.f53347v0 = n0Var;
                 l0Var2.setPreviewAttributes(n0Var);
                 r0Var2.V();
                 return;
@@ -242,8 +242,8 @@ public final class a implements View.OnClickListener {
             case 12:
                 yh.t2 t2Var = (yh.t2) obj2;
                 c6 c6Var = (c6) obj;
-                if (t2Var.E.getAlpha() >= 1.0f && !t2Var.f53453h0 && !t2Var.f53455j0 && t2Var.f53447d0 != null) {
-                    new yh.r0(t2Var.getContext(), c6Var, t2Var.W, t2Var.f53446c0, t2Var.f53447d0, true).show();
+                if (t2Var.E.getAlpha() >= 1.0f && !t2Var.f53465h0 && !t2Var.f53467j0 && t2Var.f53459d0 != null) {
+                    new yh.r0(t2Var.getContext(), c6Var, t2Var.W, t2Var.f53458c0, t2Var.f53459d0, true).show();
                     return;
                 }
                 return;

@@ -4,11 +4,11 @@ import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class d91 extends org.telegram.ui.Components.sr0 {
-    public final k91 f36702b1;
+    public final k91 f36704b1;
 
     public d91(k91 k91Var, Activity activity, String str) {
         super(activity, null, str, false, null, false, null);
-        this.f36702b1 = k91Var;
+        this.f36704b1 = k91Var;
     }
 
     @Override
@@ -16,6 +16,6 @@ public final class d91 extends org.telegram.ui.Components.sr0 {
         if (!z10) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new w31(this, iVar, i10), 250L);
+        AndroidUtilities.runOnUIThread(new u31(this, iVar, i10), 250L);
     }
 }

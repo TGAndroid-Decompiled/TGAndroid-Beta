@@ -40,11 +40,11 @@ public final class rh0 extends s4.o {
         TLRPC.TL_chatInviteExported tL_chatInviteExported2;
         int i14 = this.f41646c;
         ai0 ai0Var = this.f41654m;
-        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.f41647e && i10 < this.f41648f)) && ((i11 >= (i13 = ai0Var.f35842y) && i11 < ai0Var.E) || (i11 >= ai0Var.H && i11 < ai0Var.I))) {
+        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.f41647e && i10 < this.f41648f)) && ((i11 >= (i13 = ai0Var.f35844y) && i11 < ai0Var.E) || (i11 >= ai0Var.H && i11 < ai0Var.I))) {
             if (i11 >= i13 && i11 < ai0Var.E) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ai0Var.f35826i0.get(i11 - i13);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ai0Var.f35828i0.get(i11 - i13);
             } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ai0Var.f35827j0.get(i11 - ai0Var.H);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ai0Var.f35829j0.get(i11 - ai0Var.H);
             }
             int i15 = this.f41646c;
             if (i10 >= i15 && i10 < this.d) {
@@ -82,11 +82,11 @@ public final class rh0 extends s4.o {
     public final void f(SparseIntArray sparseIntArray) {
         sparseIntArray.clear();
         ai0 ai0Var = this.f41654m;
-        g(1, ai0Var.f35835r, sparseIntArray);
-        g(2, ai0Var.f35837s, sparseIntArray);
+        g(1, ai0Var.f35837r, sparseIntArray);
+        g(2, ai0Var.f35839s, sparseIntArray);
         g(3, ai0Var.v, sparseIntArray);
-        g(4, ai0Var.f35840w, sparseIntArray);
-        g(5, ai0Var.f35841x, sparseIntArray);
+        g(4, ai0Var.f35842w, sparseIntArray);
+        g(5, ai0Var.f35843x, sparseIntArray);
         g(6, ai0Var.L, sparseIntArray);
         g(7, ai0Var.N, sparseIntArray);
         g(8, ai0Var.O, sparseIntArray);

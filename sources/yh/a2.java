@@ -12,12 +12,12 @@ import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.sr0;
 import org.telegram.ui.Components.zc;
 public final class a2 extends sr0 {
-    public final s3 f52465b1;
+    public final s3 f52473b1;
 
     public a2(s3 s3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, null, null, str, null, false, str2, null, false, false, true, null, c6Var);
-        this.f52465b1 = s3Var;
-        this.f30630a0 = true;
+        this.f52473b1 = s3Var;
+        this.f30632a0 = true;
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class a2 extends sr0 {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     sc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f30548r = false;
-                    G.f30550t = true;
+                    G.f30544r = false;
+                    G.f30546t = true;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -42,19 +42,19 @@ public final class a2 extends sr0 {
                         str = chat.title;
                     }
                     sc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f30548r = false;
-                    G2.f30550t = true;
+                    G2.f30544r = false;
+                    G2.f30546t = true;
                     G2.j();
                 } else {
                     sc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f30548r = false;
-                    G3.f30550t = true;
+                    G3.f30544r = false;
+                    G3.f30546t = true;
                     G3.j();
                 }
             } else {
                 sc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f30548r = false;
-                Q.f30550t = true;
+                Q.f30544r = false;
+                Q.f30546t = true;
                 Q.j();
             }
             try {
@@ -66,6 +66,6 @@ public final class a2 extends sr0 {
 
     @Override
     public final void T0(View view) {
-        s3.l1(this.f52465b1, view);
+        s3.l1(this.f52473b1, view);
     }
 }

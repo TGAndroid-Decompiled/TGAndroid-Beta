@@ -88,8 +88,8 @@ public final class db implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f861c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                w70Var.f43072r = false;
-                if (!((org.telegram.ui.g4) this.f863f).f37918e.isEmpty()) {
+                w70Var.f43074r = false;
+                if (!((org.telegram.ui.g4) this.f863f).f37916e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -98,7 +98,7 @@ public final class db implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            w70Var.f43071n = chat;
+                            w70Var.f43073n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -138,7 +138,7 @@ public final class db implements Runnable {
                     a2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f19819id = groupCall.f19812id;
+                        tL_inputGroupCall.f19820id = groupCall.f19813id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.o0(context, i12, tL_inputGroupCall, groupCall.invite_link, c6Var, true, true);
                         AndroidUtilities.runOnUIThread(u60Var);
@@ -153,7 +153,7 @@ public final class db implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f19819id = groupCall2.f19812id;
+                    tL_inputGroupCall2.f19820id = groupCall2.f19813id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new pi(a2Var, context, i12, exportgroupcallinvite, c6Var, u60Var));
                     return;
@@ -246,11 +246,11 @@ public final class db implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(b1Var.getContext());
-                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new ns0(27, b1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new c80(21));
-                    b1Var.X(3, alertDialog$Builder.f20141a, new org.telegram.ui.web.w(strArr2, i15, y0Var, eaVar, 1));
+                    b1Var.X(3, alertDialog$Builder.f20142a, new org.telegram.ui.web.w(strArr2, i15, y0Var, eaVar, 1));
                     return;
                 }
             case 13:

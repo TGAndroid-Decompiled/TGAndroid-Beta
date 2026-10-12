@@ -13,14 +13,14 @@ public final class rj0 extends ci.d {
     public final float a(float f7, float f10) {
         boolean z10;
         tj0 tj0Var = this.f41668h0;
-        if (tj0Var.f42226n0 == 0.0f) {
+        if (tj0Var.f42228n0 == 0.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        tj0Var.f42226n0 = f7;
+        tj0Var.f42228n0 = f7;
         if (z10) {
-            tj0Var.f42227o0 = new org.telegram.ui.Components.xb0(tj0Var, 1);
+            tj0Var.f42229o0 = new org.telegram.ui.Components.xb0(tj0Var, 1);
             tj0Var.T(false);
         }
         return f7;

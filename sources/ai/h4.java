@@ -36,7 +36,7 @@ public final class h4 extends aj {
             case 2:
                 eo eoVar = (eo) notificationCenterDelegate;
                 h4 h4Var2 = eoVar.J1;
-                if (h4Var2 != null && (h4Var2.isShowing() || this.f24399x0)) {
+                if (h4Var2 != null && (h4Var2.isShowing() || this.f24395x0)) {
                     Activity parentActivity = eoVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -45,7 +45,7 @@ public final class h4 extends aj {
                 eoVar.Y9(false, true);
                 wm wmVar = eoVar.X0;
                 if (wmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f46981a;
+                    WeakHashMap weakHashMap = r0.i0.f46989a;
                     r0.y.c(wmVar);
                     return;
                 }
@@ -87,7 +87,7 @@ public final class h4 extends aj {
                 return;
             default:
                 eo eoVar = (eo) this.T2;
-                boolean z10 = this.f24399x0;
+                boolean z10 = this.f24395x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     eoVar.D3 = false;

@@ -104,6 +104,10 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
+        public void setSizeFromLayout() {
+        }
+
+        @Override
         public void addCallback(SurfaceHolder.Callback callback) {
         }
 
@@ -117,10 +121,6 @@ public class EglBase10Impl implements EglBase10 {
 
         @Override
         public void setKeepScreenOn(boolean z10) {
-        }
-
-        @Override
-        public void setSizeFromLayout() {
         }
 
         @Override

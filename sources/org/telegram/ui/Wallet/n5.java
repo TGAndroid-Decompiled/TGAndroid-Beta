@@ -17,7 +17,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import org.telegram.messenger.R;
 public final class n5 extends sg.g {
-    public static final int[] f35123j0 = {6145};
+    public static final int[] f35125j0 = {6145};
     public final Context H;
     public final float[] I;
     public final float[] J;
@@ -37,15 +37,15 @@ public final class n5 extends sg.g {
     public final e2.a0 X;
     public volatile Bitmap Y;
     public Bitmap Z;
-    public volatile int f35124a0;
-    public int f35125b0;
-    public final int f35126c0;
-    public h5 f35127d0;
-    public boolean f35128e0;
-    public long f35129f0;
-    public long f35130g0;
-    public int f35131h0;
-    public int f35132i0;
+    public volatile int f35126a0;
+    public int f35127b0;
+    public final int f35128c0;
+    public h5 f35129d0;
+    public boolean f35130e0;
+    public long f35131f0;
+    public long f35132g0;
+    public int f35133h0;
+    public int f35134i0;
 
     public n5(Context context, int i10, int i11) {
         super(context, 0, 0);
@@ -58,10 +58,10 @@ public final class n5 extends sg.g {
         this.O = 1.0f;
         this.P = new float[2];
         this.X = new e2.a0(2, (byte) 0);
-        this.f35128e0 = true;
+        this.f35130e0 = true;
         this.H = context.getApplicationContext();
-        this.f35124a0 = i10;
-        this.f35126c0 = i11;
+        this.f35126a0 = i10;
+        this.f35128c0 = i11;
     }
 
     public static void d(float f7, float f10, float[] fArr) {
@@ -83,18 +83,18 @@ public final class n5 extends sg.g {
 
     public final synchronized float c() {
         try {
-            if (!this.f35128e0) {
+            if (!this.f35130e0) {
                 long nanoTime = System.nanoTime();
-                long j3 = this.f35130g0;
+                long j3 = this.f35132g0;
                 if (j3 != 0) {
-                    this.f35129f0 = (nanoTime - j3) + this.f35129f0;
+                    this.f35131f0 = (nanoTime - j3) + this.f35131f0;
                 }
-                this.f35130g0 = nanoTime;
+                this.f35132g0 = nanoTime;
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return ((float) this.f35129f0) * 1.0E-9f;
+        return ((float) this.f35131f0) * 1.0E-9f;
     }
 
     public final synchronized void f(Bitmap bitmap) {
@@ -132,20 +132,20 @@ public final class n5 extends sg.g {
         int i15;
         boolean z10;
         GLES20.glClear(16640);
-        if (this.f35127d0 != null) {
-            int i16 = this.f35124a0;
-            if (i16 != this.f35125b0) {
-                h5 h5Var = this.f35127d0;
+        if (this.f35129d0 != null) {
+            int i16 = this.f35126a0;
+            if (i16 != this.f35127b0) {
+                h5 h5Var = this.f35129d0;
                 Context context = this.H;
-                int i17 = this.f35126c0;
-                int i18 = h5Var.f34852u;
-                h5Var.f34852u = h5.c(context, i16, i17);
+                int i17 = this.f35128c0;
+                int i18 = h5Var.f34854u;
+                h5Var.f34854u = h5.c(context, i16, i17);
                 GLES20.glDeleteTextures(1, new int[]{i18}, 0);
-                this.f35125b0 = i16;
+                this.f35127b0 = i16;
             }
             Bitmap bitmap3 = this.Y;
             if (bitmap3 != null && bitmap3 != this.Z) {
-                h5 h5Var2 = this.f35127d0;
+                h5 h5Var2 = this.f35129d0;
                 h5Var2.getClass();
                 Bitmap createBitmap = Bitmap.createBitmap(2048, 1024, Bitmap.Config.ARGB_8888);
                 i10 = 33984;
@@ -179,9 +179,9 @@ public final class n5 extends sg.g {
                 } else {
                     z10 = false;
                 }
-                h5Var2.f34847p = z10;
+                h5Var2.f34849p = z10;
                 if (z10) {
-                    float[] fArr2 = h5Var2.f34846o;
+                    float[] fArr2 = h5Var2.f34848o;
                     fArr2[0] = i21 / 2048.0f;
                     fArr2[1] = i22 / 1024.0f;
                     fArr2[2] = (i19 + 1) / 2048.0f;
@@ -192,18 +192,18 @@ public final class n5 extends sg.g {
                 h5.i();
                 GLUtils.texImage2D(3553, 0, createBitmap, 0);
                 GLES20.glGenerateMipmap(3553);
-                g5 g5Var = h5Var2.f34844m;
-                GLES20.glUseProgram(g5Var.f34791a);
-                GLES20.glUniform2f(g5Var.f34796g, 4.8828125E-4f, 9.765625E-4f);
-                g5 g5Var2 = h5Var2.f34843l;
-                GLES20.glUseProgram(g5Var2.f34791a);
-                GLES20.glUniform2f(g5Var2.f34796g, 4.8828125E-4f, 9.765625E-4f);
-                g5 g5Var3 = h5Var2.f34848q;
-                GLES20.glUseProgram(g5Var3.f34791a);
-                GLES20.glUniform2f(g5Var3.f34796g, 4.8828125E-4f, 9.765625E-4f);
-                g5 g5Var4 = h5Var2.f34854x;
-                GLES20.glUseProgram(g5Var4.f34791a);
-                GLES20.glUniform2f(g5Var4.f34796g, 4.8828125E-4f, 9.765625E-4f);
+                g5 g5Var = h5Var2.f34846m;
+                GLES20.glUseProgram(g5Var.f34793a);
+                GLES20.glUniform2f(g5Var.f34798g, 4.8828125E-4f, 9.765625E-4f);
+                g5 g5Var2 = h5Var2.f34845l;
+                GLES20.glUseProgram(g5Var2.f34793a);
+                GLES20.glUniform2f(g5Var2.f34798g, 4.8828125E-4f, 9.765625E-4f);
+                g5 g5Var3 = h5Var2.f34850q;
+                GLES20.glUseProgram(g5Var3.f34793a);
+                GLES20.glUniform2f(g5Var3.f34798g, 4.8828125E-4f, 9.765625E-4f);
+                g5 g5Var4 = h5Var2.f34856x;
+                GLES20.glUseProgram(g5Var4.f34793a);
+                GLES20.glUniform2f(g5Var4.f34798g, 4.8828125E-4f, 9.765625E-4f);
                 GLES20.glBindTexture(3553, 0);
                 GLES20.glActiveTexture(33984);
                 createBitmap.recycle();
@@ -221,7 +221,7 @@ public final class n5 extends sg.g {
                 this.Q = null;
             }
             if (bitmap != null) {
-                this.f35127d0.h(bitmap);
+                this.f35129d0.h(bitmap);
                 synchronized (this) {
                     Bitmap bitmap4 = this.R;
                     if (bitmap4 != null) {
@@ -236,7 +236,7 @@ public final class n5 extends sg.g {
                 this.W = j3;
                 this.T = true;
             } else if (!this.T && (bitmap2 = this.R) != null) {
-                this.f35127d0.h(bitmap2);
+                this.f35129d0.h(bitmap2);
                 this.T = true;
             }
             Matrix.setLookAtM(this.J, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
@@ -251,43 +251,43 @@ public final class n5 extends sg.g {
             float sin2 = (float) Math.sin(sin);
             float f12 = (cos * 0.175f) - (sin2 * f7);
             float f13 = (cos * f7) + (sin2 * 0.175f);
-            h5 h5Var3 = this.f35127d0;
+            h5 h5Var3 = this.f35129d0;
             float[] fArr4 = this.N;
             float f14 = this.O;
-            h5Var3.f34839g = fArr4;
+            h5Var3.f34841g = fArr4;
             h5Var3.h = f14;
-            h5 h5Var4 = this.f35127d0;
+            h5 h5Var4 = this.f35129d0;
             float[] fArr5 = this.M;
             float[] fArr6 = this.L;
             float f15 = (f11 * 2.0f) - (f10 * 1.25f);
-            int i25 = this.f35131h0;
-            int i26 = this.f35132i0;
-            float[] fArr7 = h5Var4.f34855y;
-            g5 g5Var5 = h5Var4.f34854x;
-            h5Var4.f34843l.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
+            int i25 = this.f35133h0;
+            int i26 = this.f35134i0;
+            float[] fArr7 = h5Var4.f34857y;
+            g5 g5Var5 = h5Var4.f34856x;
+            h5Var4.f34845l.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
             GLES20.glActiveTexture(33988);
-            GLES20.glBindTexture(3553, h5Var4.f34842k);
+            GLES20.glBindTexture(3553, h5Var4.f34844k);
             GLES20.glActiveTexture(i10);
-            GLES20.glBindTexture(3553, h5Var4.f34852u);
+            GLES20.glBindTexture(3553, h5Var4.f34854u);
             GLES20.glActiveTexture(i11);
             GLES20.glBindTexture(3553, h5Var4.v);
-            ki.r rVar2 = h5Var4.f34850s;
-            g5 g5Var6 = h5Var4.f34843l;
+            ki.r rVar2 = h5Var4.f34852s;
+            g5 g5Var6 = h5Var4.f34845l;
             h5.e(rVar2, g5Var6);
-            if (h5Var4.f34847p) {
+            if (h5Var4.f34849p) {
                 rVar = rVar2;
                 r26 = 0;
-                h5Var4.f34844m.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
-                float[] fArr8 = h5Var4.f34846o;
+                h5Var4.f34846m.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
+                float[] fArr8 = h5Var4.f34848o;
                 i12 = i25;
                 i13 = i26;
-                w7.g6.a(fArr5, i12, i13, fArr8[0], fArr8[1], fArr8[c11], fArr8[c10], 2048, 1024, true, h5Var4.f34845n, h5Var4.f34855y);
+                w7.g6.a(fArr5, i12, i13, fArr8[0], fArr8[1], fArr8[c11], fArr8[c10], 2048, 1024, true, h5Var4.f34847n, h5Var4.f34857y);
                 GLES20.glEnable(3089);
-                int[] iArr3 = h5Var4.f34845n;
+                int[] iArr3 = h5Var4.f34847n;
                 GLES20.glScissor(iArr3[0], iArr3[1], iArr3[c11], iArr3[c10]);
                 GLES20.glDepthFunc(514);
                 GLES20.glDepthMask(false);
-                h5.e(rVar, h5Var4.f34844m);
+                h5.e(rVar, h5Var4.f34846m);
                 GLES20.glDisable(3089);
                 GLES20.glDepthMask(true);
                 GLES20.glDepthFunc(515);
@@ -297,35 +297,35 @@ public final class n5 extends sg.g {
                 r26 = 0;
                 rVar = rVar2;
             }
-            h5Var4.f34848q.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
-            float f16 = 336.0f - h5Var4.f34856z;
-            w7.g6.a(fArr5, i12, i13, (f16 - 50.0f) / 336.0f, 0.35609755f, f16 / 336.0f, 0.54146343f, 1024, 625, false, h5Var4.A, h5Var4.f34855y);
+            h5Var4.f34850q.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
+            float f16 = 336.0f - h5Var4.f34858z;
+            w7.g6.a(fArr5, i12, i13, (f16 - 50.0f) / 336.0f, 0.35609755f, f16 / 336.0f, 0.54146343f, 1024, 625, false, h5Var4.A, h5Var4.f34857y);
             GLES20.glEnable(3089);
             int[] iArr4 = h5Var4.A;
             GLES20.glScissor(iArr4[r26], iArr4[1], iArr4[c11], iArr4[c10]);
             GLES20.glDepthFunc(514);
             GLES20.glDepthMask(r26);
-            h5.e(rVar, h5Var4.f34848q);
+            h5.e(rVar, h5Var4.f34850q);
             GLES20.glDisable(3089);
             GLES20.glDepthMask(true);
             GLES20.glDepthFunc(515);
-            h5Var4.f34854x.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
-            GLES20.glUniform2f(g5Var5.f34798j, Math.min(512.0f, (fArr7[r26] * 512.0f * 4.0f) + 8.0f), Math.min(512.0f, (fArr7[1] * 312.5f * 4.0f) + 8.0f));
+            h5Var4.f34856x.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
+            GLES20.glUniform2f(g5Var5.f34800j, Math.min(512.0f, (fArr7[r26] * 512.0f * 4.0f) + 8.0f), Math.min(512.0f, (fArr7[1] * 312.5f * 4.0f) + 8.0f));
             GLES20.glEnable(32823);
             GLES20.glPolygonOffset(1.0f, 2.0f);
             GLES20.glDepthFunc(516);
             GLES20.glDepthMask(r26);
-            m5 m5Var = h5Var4.f34853w;
-            int i27 = g5Var5.f34792b;
-            int i28 = g5Var5.f34793c;
+            m5 m5Var = h5Var4.f34855w;
+            int i27 = g5Var5.f34794b;
+            int i28 = g5Var5.f34795c;
             int i29 = g5Var5.h;
-            int i30 = g5Var5.f34797i;
+            int i30 = g5Var5.f34799i;
             m5Var.getClass();
             GLES20.glActiveTexture(33986);
-            GLES20.glBindTexture(35866, m5Var.f35081a);
+            GLES20.glBindTexture(35866, m5Var.f35083a);
             GLES20.glActiveTexture(33987);
-            GLES20.glBindTexture(3553, m5Var.f35082b);
-            GLES20.glBindBuffer(34962, m5Var.f35083c);
+            GLES20.glBindTexture(3553, m5Var.f35084b);
+            GLES20.glBindBuffer(34962, m5Var.f35085c);
             GLES20.glEnableVertexAttribArray(i27);
             GLES20.glVertexAttribPointer(i27, 3, 5126, false, 32, 0);
             if (i28 >= 0) {
@@ -347,14 +347,14 @@ public final class n5 extends sg.g {
             GLES20.glDisable(32823);
             GLES20.glDepthMask(true);
             GLES20.glDepthFunc(515);
-            if (h5Var4.h > 0.0f && (fArr = h5Var4.f34839g) != null && fArr[c11] > 0.0f && fArr[c10] > 0.0f) {
-                if (h5Var4.f34837e == null) {
-                    Context context2 = h5Var4.f34841j;
-                    h5Var4.f34837e = new g5(context2, h5.g(context2, "shaders/wallet_card_vertex.glsl"), h5.g(h5Var4.f34841j, "shaders/wallet_card_diamond_fragment.glsl"), "diamond", "");
-                    h5Var4.f34838f = h5.d();
+            if (h5Var4.h > 0.0f && (fArr = h5Var4.f34841g) != null && fArr[c11] > 0.0f && fArr[c10] > 0.0f) {
+                if (h5Var4.f34839e == null) {
+                    Context context2 = h5Var4.f34843j;
+                    h5Var4.f34839e = new g5(context2, h5.g(context2, "shaders/wallet_card_vertex.glsl"), h5.g(h5Var4.f34843j, "shaders/wallet_card_diamond_fragment.glsl"), "diamond", "");
+                    h5Var4.f34840f = h5.d();
                     GLES20.glActiveTexture(i10);
-                    GLES20.glBindTexture(3553, h5Var4.f34838f);
-                    Bitmap decodeResource = BitmapFactory.decodeResource(h5Var4.f34841j.getResources(), R.drawable.wallet_card_diamond);
+                    GLES20.glBindTexture(3553, h5Var4.f34840f);
+                    Bitmap decodeResource = BitmapFactory.decodeResource(h5Var4.f34843j.getResources(), R.drawable.wallet_card_diamond);
                     h5.i();
                     i15 = 0;
                     GLUtils.texImage2D(3553, 0, decodeResource, 0);
@@ -363,24 +363,24 @@ public final class n5 extends sg.g {
                 } else {
                     i15 = 0;
                 }
-                h5Var4.f34837e.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
-                GLES20.glUniform4fv(h5Var4.f34837e.f34801m, 1, h5Var4.f34839g, i15);
-                GLES20.glUniform1f(h5Var4.f34837e.f34802n, h5Var4.h);
+                h5Var4.f34839e.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
+                GLES20.glUniform4fv(h5Var4.f34839e.f34803m, 1, h5Var4.f34841g, i15);
+                GLES20.glUniform1f(h5Var4.f34839e.f34804n, h5Var4.h);
                 GLES20.glActiveTexture(i10);
-                GLES20.glBindTexture(3553, h5Var4.f34838f);
-                float[] fArr9 = h5Var4.f34839g;
+                GLES20.glBindTexture(3553, h5Var4.f34840f);
+                float[] fArr9 = h5Var4.f34841g;
                 float f18 = 0.5f - ((0.618561f - (fArr9[1] * 1.212122f)) / 1.219512f);
                 float f19 = fArr9[0];
-                w7.g6.a(fArr5, i12, i13, f19, f18, f19 + fArr9[c11], f18 + ((fArr9[c10] * 1.212122f) / 1.219512f), 1024, 625, false, h5Var4.f34840i, h5Var4.f34855y);
+                w7.g6.a(fArr5, i12, i13, f19, f18, f19 + fArr9[c11], f18 + ((fArr9[c10] * 1.212122f) / 1.219512f), 1024, 625, false, h5Var4.f34842i, h5Var4.f34857y);
                 GLES20.glEnable(3089);
-                int[] iArr5 = h5Var4.f34840i;
+                int[] iArr5 = h5Var4.f34842i;
                 i14 = 3042;
                 GLES20.glScissor(iArr5[0], iArr5[1], iArr5[c11], iArr5[c10]);
                 GLES20.glEnable(3042);
                 GLES20.glBlendFunc(1, 771);
                 GLES20.glDepthFunc(514);
                 GLES20.glDepthMask(false);
-                h5.e(rVar, h5Var4.f34837e);
+                h5.e(rVar, h5Var4.f34839e);
                 GLES20.glDisable(3042);
                 GLES20.glDisable(3089);
                 GLES20.glDepthMask(true);
@@ -388,26 +388,26 @@ public final class n5 extends sg.g {
             } else {
                 i14 = 3042;
             }
-            if (h5Var4.f34835b != 0) {
-                h5Var4.f34834a.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
+            if (h5Var4.f34837b != 0) {
+                h5Var4.f34836a.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
                 GLES20.glActiveTexture(i10);
-                GLES20.glBindTexture(3553, h5Var4.f34835b);
+                GLES20.glBindTexture(3553, h5Var4.f34837b);
                 GLES20.glEnable(i14);
                 GLES20.glBlendFunc(1, 771);
                 GLES20.glDepthFunc(514);
                 GLES20.glDepthMask(false);
-                h5.e(rVar, h5Var4.f34834a);
+                h5.e(rVar, h5Var4.f34836a);
                 GLES20.glDepthMask(true);
                 GLES20.glDepthFunc(515);
                 GLES20.glDisable(i14);
             }
-            h5Var4.f34849r.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34856z);
-            h5.e(h5Var4.f34851t, h5Var4.f34849r);
-            int i32 = g5Var6.f34792b;
+            h5Var4.f34851r.a(fArr5, fArr6, f12, f13, f15, h5Var4.f34858z);
+            h5.e(h5Var4.f34853t, h5Var4.f34851r);
+            int i32 = g5Var6.f34794b;
             if (i32 >= 0) {
                 GLES20.glDisableVertexAttribArray(i32);
             }
-            int i33 = g5Var6.f34793c;
+            int i33 = g5Var6.f34795c;
             if (i33 >= 0) {
                 GLES20.glDisableVertexAttribArray(i33);
             }
@@ -420,7 +420,7 @@ public final class n5 extends sg.g {
             GLES20.glBindTexture(3553, 0);
             GLES20.glActiveTexture(i10);
             GLES20.glBindTexture(3553, 0);
-            GLES30.glInvalidateFramebuffer(36160, 1, f35123j0, 0);
+            GLES30.glInvalidateFramebuffer(36160, 1, f35125j0, 0);
             long nanoTime = System.nanoTime();
             if (EGLExt.eglPresentationTimeANDROID(EGL14.eglGetCurrentDisplay(), EGL14.eglGetCurrentSurface(12377), nanoTime)) {
                 e2.a0 a0Var = this.X;
@@ -436,8 +436,8 @@ public final class n5 extends sg.g {
 
     @Override
     public final void onSurfaceChanged(GL10 gl10, int i10, int i11) {
-        this.f35131h0 = i10;
-        this.f35132i0 = i11;
+        this.f35133h0 = i10;
+        this.f35134i0 = i11;
         GLES20.glViewport(0, 0, i10, i11);
         e(this.I, i10, i11);
     }
@@ -449,40 +449,40 @@ public final class n5 extends sg.g {
         GLES20.glEnable(2929);
         GLES20.glDepthFunc(515);
         GLES20.glDisable(2884);
-        h5 h5Var = this.f35127d0;
+        h5 h5Var = this.f35129d0;
         if (h5Var != null) {
-            g5 g5Var = h5Var.f34834a;
+            g5 g5Var = h5Var.f34836a;
             if (g5Var != null) {
-                GLES20.glDeleteProgram(g5Var.f34791a);
-                GLES20.glDeleteTextures(1, new int[]{h5Var.f34835b}, 0);
+                GLES20.glDeleteProgram(g5Var.f34793a);
+                GLES20.glDeleteTextures(1, new int[]{h5Var.f34837b}, 0);
             }
-            g5 g5Var2 = h5Var.f34837e;
+            g5 g5Var2 = h5Var.f34839e;
             if (g5Var2 != null) {
-                GLES20.glDeleteProgram(g5Var2.f34791a);
-                GLES20.glDeleteTextures(1, new int[]{h5Var.f34838f}, 0);
+                GLES20.glDeleteProgram(g5Var2.f34793a);
+                GLES20.glDeleteTextures(1, new int[]{h5Var.f34840f}, 0);
             }
-            int[] iArr = h5Var.f34850s.f14915b;
+            int[] iArr = h5Var.f34852s.f14916b;
             GLES20.glDeleteBuffers(iArr.length, iArr, 0);
-            int[] iArr2 = h5Var.f34851t.f14915b;
+            int[] iArr2 = h5Var.f34853t.f14916b;
             GLES20.glDeleteBuffers(iArr2.length, iArr2, 0);
-            GLES20.glDeleteTextures(1, new int[]{h5Var.f34852u}, 0);
+            GLES20.glDeleteTextures(1, new int[]{h5Var.f34854u}, 0);
             GLES20.glDeleteTextures(1, new int[]{h5Var.v}, 0);
-            GLES20.glDeleteTextures(1, new int[]{h5Var.f34842k}, 0);
-            m5 m5Var = h5Var.f34853w;
-            GLES20.glDeleteTextures(2, new int[]{m5Var.f35081a, m5Var.f35082b}, 0);
-            GLES20.glDeleteBuffers(1, new int[]{m5Var.f35083c}, 0);
-            GLES20.glDeleteProgram(h5Var.f34843l.f34791a);
-            GLES20.glDeleteProgram(h5Var.f34844m.f34791a);
-            GLES20.glDeleteProgram(h5Var.f34848q.f34791a);
-            GLES20.glDeleteProgram(h5Var.f34849r.f34791a);
-            GLES20.glDeleteProgram(h5Var.f34854x.f34791a);
+            GLES20.glDeleteTextures(1, new int[]{h5Var.f34844k}, 0);
+            m5 m5Var = h5Var.f34855w;
+            GLES20.glDeleteTextures(2, new int[]{m5Var.f35083a, m5Var.f35084b}, 0);
+            GLES20.glDeleteBuffers(1, new int[]{m5Var.f35085c}, 0);
+            GLES20.glDeleteProgram(h5Var.f34845l.f34793a);
+            GLES20.glDeleteProgram(h5Var.f34846m.f34793a);
+            GLES20.glDeleteProgram(h5Var.f34850q.f34793a);
+            GLES20.glDeleteProgram(h5Var.f34851r.f34793a);
+            GLES20.glDeleteProgram(h5Var.f34856x.f34793a);
         }
-        this.f35127d0 = new h5(this.H, this.f35124a0, this.f35126c0);
-        this.f35125b0 = this.f35124a0;
+        this.f35129d0 = new h5(this.H, this.f35126a0, this.f35128c0);
+        this.f35127b0 = this.f35126a0;
         this.Z = null;
         this.T = false;
         synchronized (this) {
-            this.f35130g0 = 0L;
+            this.f35132g0 = 0L;
         }
     }
 }

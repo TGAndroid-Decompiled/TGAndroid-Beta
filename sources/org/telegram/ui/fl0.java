@@ -11,28 +11,28 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class fl0 implements Utilities.Callback2 {
-    public final int f37810a;
-    public final Serializable f37811b;
-    public final Object f37812c;
+    public final int f37807a;
+    public final Serializable f37808b;
+    public final Object f37809c;
     public final Object d;
-    public final Object f37813e;
+    public final Object f37810e;
 
     public fl0(Object obj, Object obj2, Serializable serializable, Object obj3, int i10) {
-        this.f37810a = i10;
-        this.f37812c = obj;
+        this.f37807a = i10;
+        this.f37809c = obj;
         this.d = obj2;
-        this.f37811b = serializable;
-        this.f37813e = obj3;
+        this.f37808b = serializable;
+        this.f37810e = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         CharSequence replaceSingleLinkBold;
-        int i10 = this.f37810a;
-        Object obj3 = this.f37813e;
-        Serializable serializable = this.f37811b;
+        int i10 = this.f37807a;
+        Object obj3 = this.f37810e;
+        Serializable serializable = this.f37808b;
         Object obj4 = this.d;
-        Object obj5 = this.f37812c;
+        Object obj5 = this.f37809c;
         switch (i10) {
             case 0:
                 org.telegram.ui.Components.v51 v51Var = (org.telegram.ui.Components.v51) obj4;
@@ -44,10 +44,10 @@ public final class fl0 implements Utilities.Callback2 {
                     v51Var.run();
                     return;
                 }
-                org.telegram.ui.ActionBar.e3 e3Var = nl0.f40430a;
+                org.telegram.ui.ActionBar.e3 e3Var = nl0.f40433a;
                 if (e3Var != null) {
                     e3Var.dismiss();
-                    nl0.f40430a = null;
+                    nl0.f40433a = null;
                 }
                 org.telegram.ui.Components.zc a2 = nl0.a();
                 int i11 = R.raw.error;
@@ -66,19 +66,19 @@ public final class fl0 implements Utilities.Callback2 {
                 TLRPC.User user = (TLRPC.User) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.c6 c6Var2 = b1Var.f43186e;
+                org.telegram.ui.ActionBar.c6 c6Var2 = b1Var.f43188e;
                 if (updates != null) {
                     MessagesController.getInstance(b1Var.M).lambda$processUpdates$377(updates, false);
                     b1Var.x(eaVar, "requested_chat_sent", org.telegram.ui.web.b1.A(str2, "req_id"));
-                    long j3 = b1Var.U.f19949id;
+                    long j3 = b1Var.U.f19950id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f19949id);
+                    bundle.putLong("user_id", user.f19950id);
                     org.telegram.ui.web.e0 e0Var = new org.telegram.ui.web.e0(b1Var, bundle, user, j3);
                     org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(e0Var);
                     }
-                    org.telegram.ui.web.g0 g0Var = b1Var.f43183c;
+                    org.telegram.ui.web.g0 g0Var = b1Var.f43185c;
                     if (g0Var != null) {
                         g0Var.b();
                         return;

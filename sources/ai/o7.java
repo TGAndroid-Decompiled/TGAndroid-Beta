@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ie0;
-import org.telegram.ui.Components.mi0;
+import org.telegram.ui.Components.ni0;
 public final class o7 implements z4.e {
     public final int f1532a;
     public final Object f1533b;
@@ -23,7 +23,7 @@ public final class o7 implements z4.e {
                 return;
             case 2:
                 ie0 ie0Var = (ie0) this.f1533b;
-                z4.e eVar = ie0Var.f27150c;
+                z4.e eVar = ie0Var.f27135c;
                 if (eVar != null) {
                     eVar.a(i10);
                 }
@@ -80,16 +80,16 @@ public final class o7 implements z4.e {
                 }
                 return;
             case 1:
-                ((li.e) this.f1533b).f15357f++;
+                ((li.e) this.f1533b).f15358f++;
                 return;
             case 2:
                 ie0 ie0Var = (ie0) this.f1533b;
                 ie0Var.h = i10;
-                ie0Var.f27153n = f7;
+                ie0Var.f27138n = f7;
                 if (ie0Var.d.getChildAt(i10) != null) {
                     ie0.a(ie0Var, i10, (int) (ie0Var.d.getChildAt(i10).getWidth() * f7));
                     ie0Var.invalidate();
-                    z4.e eVar = ie0Var.f27150c;
+                    z4.e eVar = ie0Var.f27135c;
                     if (eVar != null) {
                         eVar.b(f7, i10, i11);
                         return;
@@ -98,23 +98,23 @@ public final class o7 implements z4.e {
                 }
                 return;
             default:
-                mi0 mi0Var = (mi0) this.f1533b;
-                if (!mi0Var.f28559a && Math.abs(i10 - mi0Var.f28567w) == 1) {
-                    int i15 = mi0Var.f28567w;
+                ni0 ni0Var = (ni0) this.f1533b;
+                if (!ni0Var.f28791a && Math.abs(i10 - ni0Var.f28799w) == 1) {
+                    int i15 = ni0Var.f28799w;
                     if (i10 > i15) {
-                        mi0.a(mi0Var, 0, 1, 1);
+                        ni0.a(ni0Var, 0, 1, 1);
                     } else if (i10 < i15) {
-                        mi0.a(mi0Var, 1, 0, 0);
-                        mi0.a(mi0Var, 2, 0, -1);
+                        ni0.a(ni0Var, 1, 0, 0);
+                        ni0.a(ni0Var, 2, 0, -1);
                     }
                 }
-                int i16 = mi0Var.f28567w;
-                int i17 = mi0Var.f28568x;
-                mi0Var.f28567w = i10;
-                mi0Var.f28568x = i11;
+                int i16 = ni0Var.f28799w;
+                int i17 = ni0Var.f28800x;
+                ni0Var.f28799w = i10;
+                ni0Var.f28800x = i11;
                 if (i16 != i10 || i17 != i11) {
-                    mi0Var.H = true;
-                    mi0Var.postInvalidateOnAnimation();
+                    ni0Var.H = true;
+                    ni0Var.postInvalidateOnAnimation();
                     return;
                 }
                 return;
@@ -136,9 +136,9 @@ public final class o7 implements z4.e {
             case 2:
                 ie0 ie0Var = (ie0) this.f1533b;
                 if (i10 == 0) {
-                    ie0.a(ie0Var, ie0Var.f27151e.getCurrentItem(), 0);
+                    ie0.a(ie0Var, ie0Var.f27136e.getCurrentItem(), 0);
                 }
-                z4.e eVar = ie0Var.f27150c;
+                z4.e eVar = ie0Var.f27135c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

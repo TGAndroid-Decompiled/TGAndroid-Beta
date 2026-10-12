@@ -121,7 +121,7 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
             boolean z10 = true;
             for (int i11 = 0; i11 < i10 && z10; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                p pVar = p0.f.f45036a;
+                p pVar = p0.f.f45044a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {

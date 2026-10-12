@@ -15,7 +15,7 @@ public final class hj extends FragmentContextView {
     @Override
     public final void setVisibility(int i10) {
         boolean z10;
-        ct ctVar = this.S0.f28586x;
+        ct ctVar = this.S0.f28572x;
         if (i10 == 0) {
             z10 = true;
         } else {

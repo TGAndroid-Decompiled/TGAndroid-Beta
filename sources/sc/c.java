@@ -19,7 +19,7 @@ public abstract class c {
                         throw new Exception(String.format("[%s] Bad compression type '11' at the bit index '%d'.", c.class.getSimpleName(), Integer.valueOf(iArr[0])));
                     }
                 } else {
-                    b(b0Var, iArr, b0Var2, g.f48137f, f.f48136f);
+                    b(b0Var, iArr, b0Var2, g.f48145f, f.f48144f);
                 }
             } else {
                 int i10 = ((iArr[0] + 7) & (-8)) / 8;

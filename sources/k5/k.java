@@ -2,22 +2,22 @@ package k5;
 
 import java.util.Arrays;
 public final class k extends r {
-    public final long f14669a;
-    public final Integer f14670b;
-    public final long f14671c;
+    public final long f14670a;
+    public final Integer f14671b;
+    public final long f14672c;
     public final byte[] d;
-    public final String f14672e;
-    public final long f14673f;
-    public final v f14674g;
+    public final String f14673e;
+    public final long f14674f;
+    public final v f14675g;
 
     public k(long j3, Integer num, long j10, byte[] bArr, String str, long j11, v vVar) {
-        this.f14669a = j3;
-        this.f14670b = num;
-        this.f14671c = j10;
+        this.f14670a = j3;
+        this.f14671b = num;
+        this.f14672c = j10;
         this.d = bArr;
-        this.f14672e = str;
-        this.f14673f = j11;
-        this.f14674g = vVar;
+        this.f14673e = str;
+        this.f14674f = j11;
+        this.f14675g = vVar;
     }
 
     public final boolean equals(Object obj) {
@@ -31,16 +31,16 @@ public final class k extends r {
         if (obj instanceof r) {
             r rVar = (r) obj;
             k kVar = (k) rVar;
-            v vVar2 = kVar.f14674g;
-            String str2 = kVar.f14672e;
-            Integer num2 = kVar.f14670b;
-            if (this.f14669a == kVar.f14669a && ((num = this.f14670b) != null ? num.equals(num2) : num2 == null) && this.f14671c == kVar.f14671c) {
+            v vVar2 = kVar.f14675g;
+            String str2 = kVar.f14673e;
+            Integer num2 = kVar.f14671b;
+            if (this.f14670a == kVar.f14670a && ((num = this.f14671b) != null ? num.equals(num2) : num2 == null) && this.f14672c == kVar.f14672c) {
                 if (rVar instanceof k) {
                     bArr = ((k) rVar).d;
                 } else {
                     bArr = kVar.d;
                 }
-                if (Arrays.equals(this.d, bArr) && ((str = this.f14672e) != null ? str.equals(str2) : str2 == null) && this.f14673f == kVar.f14673f && ((vVar = this.f14674g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
+                if (Arrays.equals(this.d, bArr) && ((str = this.f14673e) != null ? str.equals(str2) : str2 == null) && this.f14674f == kVar.f14674f && ((vVar = this.f14675g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
                     return true;
                 }
             }
@@ -51,26 +51,26 @@ public final class k extends r {
     public final int hashCode() {
         int hashCode;
         int hashCode2;
-        long j3 = this.f14669a;
+        long j3 = this.f14670a;
         int i10 = (((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003;
         int i11 = 0;
-        Integer num = this.f14670b;
+        Integer num = this.f14671b;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
-        long j10 = this.f14671c;
+        long j10 = this.f14672c;
         int hashCode3 = (((((i10 ^ hashCode) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ Arrays.hashCode(this.d)) * 1000003;
-        String str = this.f14672e;
+        String str = this.f14673e;
         if (str == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str.hashCode();
         }
-        long j11 = this.f14673f;
+        long j11 = this.f14674f;
         int i12 = (((hashCode3 ^ hashCode2) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
-        v vVar = this.f14674g;
+        v vVar = this.f14675g;
         if (vVar != null) {
             i11 = vVar.hashCode();
         }
@@ -78,6 +78,6 @@ public final class k extends r {
     }
 
     public final String toString() {
-        return "LogEvent{eventTimeMs=" + this.f14669a + ", eventCode=" + this.f14670b + ", eventUptimeMs=" + this.f14671c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.f14672e + ", timezoneOffsetSeconds=" + this.f14673f + ", networkConnectionInfo=" + this.f14674g + "}";
+        return "LogEvent{eventTimeMs=" + this.f14670a + ", eventCode=" + this.f14671b + ", eventUptimeMs=" + this.f14672c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.f14673e + ", timezoneOffsetSeconds=" + this.f14674f + ", networkConnectionInfo=" + this.f14675g + "}";
     }
 }

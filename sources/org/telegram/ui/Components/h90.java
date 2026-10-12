@@ -2,32 +2,32 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class h90 implements DialogInterface.OnDismissListener {
-    public final int f26701a;
-    public final Object f26702b;
-    public final boolean f26703c;
+    public final int f26705a;
+    public final Object f26706b;
+    public final boolean f26707c;
 
     public h90(int i10, Object obj, boolean z10) {
-        this.f26701a = i10;
-        this.f26702b = obj;
-        this.f26703c = z10;
+        this.f26705a = i10;
+        this.f26706b = obj;
+        this.f26707c = z10;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f26701a) {
+        switch (this.f26705a) {
             case 0:
-                m90 m90Var = (m90) this.f26702b;
-                m90.y(m90Var.getContext(), m90Var.f28450c, m90Var.f28453n, this.f26703c);
+                m90 m90Var = (m90) this.f26706b;
+                m90.y(m90Var.getContext(), m90Var.f28445c, m90Var.f28448n, this.f26707c);
                 return;
             case 1:
-                m90 m90Var2 = (m90) this.f26702b;
-                m90.y(m90Var2.getContext(), m90Var2.f28450c, m90Var2.f28453n, this.f26703c);
+                m90 m90Var2 = (m90) this.f26706b;
+                m90.y(m90Var2.getContext(), m90Var2.f28445c, m90Var2.f28448n, this.f26707c);
                 return;
             default:
-                ci.lc lcVar = (ci.lc) this.f26702b;
+                ci.lc lcVar = (ci.lc) this.f26706b;
                 lcVar.f5541z2 = false;
                 lcVar.X0.x(7, true);
-                if (this.f26703c) {
+                if (this.f26707c) {
                     lcVar.p(true);
                     return;
                 }

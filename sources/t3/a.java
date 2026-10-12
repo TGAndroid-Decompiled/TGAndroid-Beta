@@ -7,12 +7,12 @@ import b2.s;
 import v7.r6;
 import v7.v7;
 public final class a implements o0 {
-    public final String f48426a;
-    public final String f48427b;
+    public final String f48434a;
+    public final String f48435b;
 
     public a(String str, String str2) {
-        this.f48426a = r6.c(str);
-        this.f48427b = str2;
+        this.f48434a = r6.c(str);
+        this.f48435b = str2;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class a implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        String str = this.f48426a;
+        String str = this.f48434a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -87,7 +87,7 @@ public final class a implements o0 {
                 }
                 break;
         }
-        String str2 = this.f48427b;
+        String str2 = this.f48435b;
         switch (c10) {
             case 0:
                 Integer g10 = v7.g(str2);
@@ -151,7 +151,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f48426a.equals(aVar.f48426a) && this.f48427b.equals(aVar.f48427b)) {
+            if (this.f48434a.equals(aVar.f48434a) && this.f48435b.equals(aVar.f48435b)) {
                 return true;
             }
         }
@@ -159,10 +159,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return this.f48427b.hashCode() + g.h(527, 31, this.f48426a);
+        return this.f48435b.hashCode() + g.h(527, 31, this.f48434a);
     }
 
     public final String toString() {
-        return "VC: " + this.f48426a + "=" + this.f48427b;
+        return "VC: " + this.f48434a + "=" + this.f48435b;
     }
 }

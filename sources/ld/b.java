@@ -1,6 +1,6 @@
 package ld;
 public final class b implements jd.c {
-    public static final b f15240a = new Object();
+    public static final b f15241a = new Object();
 
     @Override
     public final jd.h getContext() {

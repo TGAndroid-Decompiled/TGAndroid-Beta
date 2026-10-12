@@ -34,17 +34,17 @@ public final class v21 extends vm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         int c10;
-        if (d1Var.f47893f == 0) {
+        if (d1Var.f47901f == 0) {
             boolean z10 = true;
             org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.d.get(i10 - 1)).get(0);
-            if (j6Var.f21021f == org.telegram.ui.ActionBar.h6.Nd) {
+            if (j6Var.f21022f == org.telegram.ui.ActionBar.h6.Nd) {
                 c10 = 0;
             } else {
                 c10 = j6Var.c();
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47889a;
-            z8Var.f23584a.setText(org.telegram.ui.ActionBar.e5.i(j6Var.f21021f));
-            z8Var.f23585b = c10;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47897a;
+            z8Var.f23585a.setText(org.telegram.ui.ActionBar.e5.i(j6Var.f21022f));
+            z8Var.f23586b = c10;
             if (c10 != 0) {
                 z10 = false;
             }

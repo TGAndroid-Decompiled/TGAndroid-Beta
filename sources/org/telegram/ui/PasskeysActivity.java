@@ -18,13 +18,13 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
-    public org.telegram.ui.Components.p71 f33697a;
+    public org.telegram.ui.Components.p71 f33699a;
     public int addPasskeyRow;
-    public final ArrayList f33698b;
+    public final ArrayList f33700b;
 
     public PasskeysActivity(ArrayList arrayList) {
         super(null);
-        this.f33698b = arrayList;
+        this.f33700b = arrayList;
     }
 
     public static void U(PasskeysActivity passkeysActivity, TL_account.Passkey passkey, String str) {
@@ -32,8 +32,8 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
             if (!"CANCELLED".equalsIgnoreCase(str)) {
                 if ("EMPTY".equalsIgnoreCase(str)) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(passkeysActivity.getParentActivity());
-                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
-                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
+                    alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
+                    alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
                     org.telegram.messenger.v0.p(R.string.OK, alertDialog$Builder, null);
                     return;
                 }
@@ -46,10 +46,10 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
     }
 
     public static void V(PasskeysActivity passkeysActivity, TL_account.Passkey passkey, String str, int i10) {
-        passkeysActivity.f33698b.remove(passkey);
-        passkeysActivity.f33697a.W2.N(true);
+        passkeysActivity.f33700b.remove(passkey);
+        passkeysActivity.f33699a.W2.N(true);
         TL_account.deletePasskey deletepasskey = new TL_account.deletePasskey();
-        deletepasskey.f20010id = str;
+        deletepasskey.f20011id = str;
         ConnectionsManager.getInstance(passkeysActivity.currentAccount).sendRequestTyped(deletepasskey, new Object(), new og(passkeysActivity, i10, passkey, 2));
     }
 
@@ -66,7 +66,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
         int i10 = passkeysActivity.currentAccount;
         org.telegram.ui.ActionBar.c6 c6Var = passkeysActivity.resourceProvider;
         boolean z10 = true;
-        if (passkeysActivity.f33698b.size() + 1 > passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get()) {
+        if (passkeysActivity.f33700b.size() + 1 > passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get()) {
             z10 = false;
         }
         a0(i10, parentActivity, c6Var, z10);
@@ -81,7 +81,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
         imageView.f(R.raw.passkey, AndroidUtilities.dp(115.0f), AndroidUtilities.dp(115.0f), null);
         imageView.d();
         e7.addView((View) imageView, w7.w5.t(115, 115, 17, 0, 0, 0, 9));
-        int i12 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i12 = org.telegram.ui.ActionBar.h6.f20668j5;
         TextView b10 = w7.a6.b(context, 18.0f, i12, true, c6Var);
         b10.setGravity(17);
         b10.setText(LocaleController.getString(R.string.PasskeyFeatureTitle));
@@ -111,13 +111,13 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
 
     public final void Y(TL_account.Passkey passkey) {
         org.telegram.ui.Components.h71 h71Var;
-        this.f33698b.add(passkey);
-        org.telegram.ui.Components.p71 p71Var = this.f33697a;
+        this.f33700b.add(passkey);
+        org.telegram.ui.Components.p71 p71Var = this.f33699a;
         if (p71Var != null && (h71Var = p71Var.W2) != null) {
             h71Var.N(true);
         }
         org.telegram.ui.Components.sc M = org.telegram.ui.Components.zc.a0(this).M(LocaleController.getString(R.string.PasskeyAddedTitle), LocaleController.formatString(R.string.PasskeyAddedText, passkey.name), R.raw.passcode_lock_close);
-        M.f30540j = 5000;
+        M.f30536j = 5000;
         M.k(true);
     }
 
@@ -129,12 +129,12 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
             viewParent = view.getParent();
         }
         xl0 xl0Var = (xl0) viewParent;
-        String str = xl0Var.f44040r;
+        String str = xl0Var.f44045r;
         int i10 = 0;
         while (true) {
-            arrayList = this.f33698b;
+            arrayList = this.f33700b;
             if (i10 < arrayList.size()) {
-                if (str.equals(((TL_account.Passkey) arrayList.get(i10)).f20009id)) {
+                if (str.equals(((TL_account.Passkey) arrayList.get(i10)).f20010id)) {
                     break;
                 }
                 i10++;
@@ -148,7 +148,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
             TL_account.Passkey passkey = (TL_account.Passkey) arrayList.get(i11);
             org.telegram.ui.Components.s80 H = org.telegram.ui.Components.s80.H(this, xl0Var);
             H.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new org.telegram.ui.Components.w21(this, passkey, str, i11, 8), true);
-            H.W(this.f33697a.V0(xl0Var, false));
+            H.W(this.f33699a.V0(xl0Var, false));
             H.Z();
         }
     }
@@ -160,14 +160,14 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.Passkey));
         this.actionBar.setActionBarMenuOnItemClick(new o70(this, 14));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20503a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false));
         org.telegram.ui.Components.p71 p71Var = new org.telegram.ui.Components.p71(this, new vl0(this, 0), new ju(this, 29), null);
-        this.f33697a = p71Var;
+        this.f33699a = p71Var;
         p71Var.p1();
-        org.telegram.ui.Components.p71 p71Var2 = this.f33697a;
-        p71Var2.W2.f26675r = false;
+        org.telegram.ui.Components.p71 p71Var2 = this.f33699a;
+        p71Var2.W2.f26679r = false;
         frameLayout.addView(p71Var2, w7.w5.d(-1.0f, -1));
-        this.actionBar.setAdaptiveBackground(this.f33697a);
+        this.actionBar.setAdaptiveBackground(this.f33699a);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -179,7 +179,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.m2 {
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f33697a.setPadding(0, 0, 0, i13);
-        this.f33697a.setClipToPadding(false);
+        this.f33699a.setPadding(0, 0, 0, i13);
+        this.f33699a.setClipToPadding(false);
     }
 }

@@ -49,9 +49,9 @@ public abstract class y extends FrameLayout {
             this.f9490a = ofFloat;
             ofFloat.addListener(new ai.b(this, 20));
             this.f9490a.setDuration(150L);
-            this.f9490a.setInterpolator(js.f27627f);
+            this.f9490a.setInterpolator(js.f27634f);
             this.f9490a.start();
-            c0 c0Var = ((sf) this).v.f23685l0;
+            c0 c0Var = ((sf) this).v.f23686l0;
             if (c0Var != null) {
                 c0Var.setOpened(false);
             }
@@ -70,7 +70,7 @@ public abstract class y extends FrameLayout {
             this.f9490a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f9490a.setInterpolator(js.f27627f);
+            this.f9490a.setInterpolator(js.f27634f);
         }
         this.f9490a.start();
     }

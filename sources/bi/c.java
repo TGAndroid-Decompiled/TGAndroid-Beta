@@ -36,7 +36,7 @@ public final class c implements yi {
         z zVar = this.f3894c;
         long j11 = zVar.d;
         aj ajVar = this.f3892a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24354j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24350j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();

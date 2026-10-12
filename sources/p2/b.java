@@ -1,433 +1,235 @@
 package p2;
 
-import android.animation.ValueAnimator;
-import android.app.job.JobParameters;
-import android.graphics.Bitmap;
-import android.graphics.RectF;
 import android.net.Uri;
-import android.opengl.EGL14;
-import android.opengl.EGLDisplay;
-import android.opengl.EGLSurface;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Process;
-import android.os.StrictMode;
 import android.os.SystemClock;
-import android.widget.FrameLayout;
-import androidx.car.app.hardware.common.CarResultStub;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService;
-import ei.v2;
-import java.io.File;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
+import b2.s0;
+import c5.b0;
+import e2.d0;
+import e9.i0;
+import g2.x;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
-import k2.g0;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.b2;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.Components.la0;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.v60;
-import org.telegram.ui.Components.wm0;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.eo;
-import org.telegram.ui.jt;
-import org.telegram.ui.rl;
-import pg.b1;
-import pg.d1;
-import pg.r0;
-import pg.y0;
-import qg.l2;
-import qg.m0;
-import qg.o2;
-import qg.y1;
-import qi.i0;
-import qi.p0;
-import rg.a2;
-import rg.h0;
-import rg.j0;
-import s4.d0;
-import tg.v0;
-import tg.z;
-public final class b implements Runnable {
-    public final int f45043a;
-    public final Object f45044b;
-    public final Object f45045c;
+import org.telegram.ui.web.f2;
+public final class b implements y2.g {
+    public final Uri f45051a;
+    public final y2.l f45052b = new y2.l("DefaultHlsPlaylistTracker:MediaPlaylist");
+    public final g2.h f45053c;
+    public l d;
+    public long f45054e;
+    public long f45055f;
+    public long h;
+    public long f45056n;
+    public boolean f45057r;
+    public IOException f45058s;
+    public boolean v;
+    public final c f45059w;
 
-    public b(int i10, Object obj, Object obj2) {
-        this.f45043a = i10;
-        this.f45044b = obj;
-        this.f45045c = obj2;
+    public b(c cVar, Uri uri) {
+        this.f45059w = cVar;
+        this.f45051a = uri;
+        this.f45053c = ((g2.g) cVar.f45060a.f16326a).createDataSource();
     }
 
-    private final void a() {
-        q9.o oVar = (q9.o) this.f45044b;
-        pa.b bVar = (pa.b) this.f45045c;
-        synchronized (oVar) {
-            try {
-                if (oVar.f45974b == null) {
-                    oVar.f45973a.add(bVar);
-                } else {
-                    oVar.f45974b.add(bVar.get());
+    public static boolean a(b bVar, long j3) {
+        bVar.f45056n = SystemClock.elapsedRealtime() + j3;
+        Uri uri = bVar.f45051a;
+        c cVar = bVar.f45059w;
+        if (!uri.equals(cVar.v)) {
+            return false;
+        }
+        List list = cVar.f45067s.f45149e;
+        int size = list.size();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        for (int i10 = 0; i10 < size; i10++) {
+            b bVar2 = (b) cVar.d.get(((n) list.get(i10)).f45143a);
+            bVar2.getClass();
+            if (elapsedRealtime > bVar2.f45056n) {
+                Uri uri2 = bVar2.f45051a;
+                cVar.v = uri2;
+                bVar2.e(cVar.b(uri2));
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void C(y2.i iVar, long j3, long j10) {
+        y2.o oVar = (y2.o) iVar;
+        p pVar = (p) oVar.f51935f;
+        Uri uri = oVar.d.f10233c;
+        u2.t tVar = new u2.t(j10);
+        if (pVar instanceof l) {
+            f((l) pVar, tVar);
+            this.f45059w.f45064f.q(tVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        } else {
+            s0 b10 = s0.b("Loaded playlist has unexpected type.", null);
+            this.f45058s = b10;
+            this.f45059w.f45064f.s(tVar, 4, b10, true);
+        }
+        this.f45059w.f45062c.getClass();
+    }
+
+    @Override
+    public final void H(y2.i iVar, long j3, long j10, boolean z10) {
+        y2.o oVar = (y2.o) iVar;
+        long j11 = oVar.f51931a;
+        Uri uri = oVar.d.f10233c;
+        u2.t tVar = new u2.t(j10);
+        c cVar = this.f45059w;
+        cVar.f45062c.getClass();
+        cVar.f45064f.p(tVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+    }
+
+    public final Uri b() {
+        String str;
+        l lVar = this.d;
+        Uri uri = this.f45051a;
+        if (lVar != null) {
+            k kVar = lVar.v;
+            if (kVar.f45119a != -9223372036854775807L || kVar.f45122e) {
+                Uri.Builder buildUpon = uri.buildUpon();
+                l lVar2 = this.d;
+                if (lVar2.v.f45122e) {
+                    buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(lVar2.f45128k + lVar2.f45135r.size()));
+                    l lVar3 = this.d;
+                    if (lVar3.f45131n != -9223372036854775807L) {
+                        i0 i0Var = lVar3.f45136s;
+                        int size = i0Var.size();
+                        if (!i0Var.isEmpty() && ((g) e9.q.l(i0Var)).f45105x) {
+                            size--;
+                        }
+                        buildUpon.appendQueryParameter("_HLS_part", String.valueOf(size));
+                    }
                 }
-            } catch (Throwable th2) {
-                throw th2;
+                k kVar2 = this.d.v;
+                if (kVar2.f45119a != -9223372036854775807L) {
+                    if (kVar2.f45120b) {
+                        str = "v2";
+                    } else {
+                        str = "YES";
+                    }
+                    buildUpon.appendQueryParameter("_HLS_skip", str);
+                }
+                return buildUpon.build();
+            }
+        }
+        return uri;
+    }
+
+    public final void c(boolean z10) {
+        Uri uri;
+        if (z10) {
+            uri = b();
+        } else {
+            uri = this.f45051a;
+        }
+        e(uri);
+    }
+
+    public final void d(Uri uri) {
+        c cVar = this.f45059w;
+        y2.n D = cVar.f45061b.D(cVar.f45067s, this.d);
+        Map map = Collections.EMPTY_MAP;
+        e2.d.i(uri, "The uri must be set.");
+        y2.o oVar = new y2.o(this.f45053c, new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, D);
+        this.f45052b.f(oVar, this, cVar.f45062c.J(oVar.f51933c));
+    }
+
+    public final void e(Uri uri) {
+        this.f45056n = 0L;
+        if (!this.f45057r) {
+            y2.l lVar = this.f45052b;
+            if (!lVar.d() && !lVar.c()) {
+                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long j3 = this.h;
+                if (elapsedRealtime < j3) {
+                    this.f45057r = true;
+                    this.f45059w.f45065n.postDelayed(new f2(1, this, uri), j3 - elapsedRealtime);
+                    return;
+                }
+                d(uri);
             }
         }
     }
 
+    public final void f(p2.l r73, u2.t r74) {
+        throw new UnsupportedOperationException("Method not decompiled: p2.b.f(p2.l, u2.t):void");
+    }
+
     @Override
-    public final void run() {
-        pa.a aVar;
-        Exception runtimeException;
-        Exception runtimeException2;
-        Exception runtimeException3;
-        int i10;
-        switch (this.f45043a) {
-            case 0:
-                c cVar = (c) this.f45044b;
-                cVar.f45052r = false;
-                cVar.d((Uri) this.f45045c);
-                return;
-            case 1:
-                r0 r0Var = (r0) this.f45044b;
-                r0Var.v = true;
-                RectF f7 = r0Var.f();
-                Object obj = r0Var.f45628a.f14466b;
-                r0Var.f45647w = new a5.a((ByteBuffer) r0Var.h(r0Var.f(), true, false, false).f16433c, 0, f7);
-                r0Var.a(false);
-                ((y0) this.f45045c).run();
-                return;
-            case 2:
-                Runnable runnable = (Runnable) this.f45045c;
-                b1 b1Var = ((d1) this.f45044b).d;
-                if (b1Var != null && b1Var.f45480f) {
-                    b1.b(b1Var);
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 3:
-                q9.p pVar = (q9.p) this.f45044b;
-                pa.b bVar = (pa.b) this.f45045c;
-                if (pVar.f45977b == q9.p.d) {
-                    synchronized (pVar) {
-                        aVar = pVar.f45976a;
-                        pVar.f45976a = null;
-                        pVar.f45977b = bVar;
-                    }
-                    aVar.g(bVar);
-                    return;
-                }
-                throw new IllegalStateException("provide() can be called only once.");
-            case 4:
-                a();
-                return;
-            case 5:
-                y1 y1Var = (y1) this.f45045c;
-                y1Var.m();
-                ((m0) this.f45044b).s0(y1Var, true);
-                return;
-            case 6:
-                ((y1) this.f45044b).s((Bitmap) this.f45045c);
-                return;
-            case 7:
-                o2 o2Var = (o2) this.f45044b;
-                o2Var.G = false;
-                l2[] l2VarArr = (l2[]) ((ArrayList) this.f45045c).toArray(new l2[0]);
-                o2Var.H = l2VarArr;
-                if (l2VarArr.length > 0) {
-                    o2Var.f46413b0.setScaleX(0.3f);
-                    o2Var.f46413b0.setScaleY(0.3f);
-                    o2Var.f46413b0.setAlpha(0.0f);
-                    o2Var.f46413b0.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).setInterpolator(js.f27627f).start();
-                    return;
-                }
-                return;
-            case 8:
-                ((qi.h) this.f45044b).F((i0) this.f45045c);
-                return;
-            case 9:
-                qi.h hVar = (qi.h) this.f45044b;
-                HandlerThread handlerThread = (HandlerThread) this.f45045c;
-                hVar.d();
-                try {
-                    qi.k kVar = hVar.f46749w;
-                    if (kVar != null) {
-                        long m10 = kVar.m();
-                        qi.p pVar2 = hVar.v;
-                        if (pVar2 != null && m10 != Long.MAX_VALUE) {
-                            pVar2.f46832k = Math.max(0L, m10) * 1000;
-                            Handler handler = pVar2.f46839o;
-                            if (handler != null) {
-                                handler.removeCallbacks(pVar2.f46842p0);
-                            }
-                        }
-                    }
-                    runtimeException = null;
-                } catch (Throwable th2) {
-                    if (th2 instanceof Exception) {
-                        runtimeException = th2;
-                    } else {
-                        runtimeException = new RuntimeException(th2);
-                    }
-                }
-                try {
-                    hVar.h();
-                } catch (Throwable th3) {
-                    if (th3 instanceof Exception) {
-                        runtimeException2 = th3;
-                    } else {
-                        runtimeException2 = new RuntimeException(th3);
-                    }
-                    if (runtimeException == null) {
-                        runtimeException = runtimeException2;
-                    } else if (runtimeException != runtimeException2) {
-                        runtimeException.addSuppressed(runtimeException2);
-                    }
-                }
-                try {
-                    qi.k kVar2 = hVar.f46749w;
-                    if (kVar2 != null) {
-                        kVar2.r();
-                    }
-                } catch (Throwable th4) {
-                    try {
-                        if (th4 instanceof Exception) {
-                            runtimeException3 = th4;
-                        } else {
-                            runtimeException3 = new RuntimeException(th4);
-                        }
-                        if (runtimeException == null) {
-                            runtimeException = runtimeException3;
-                        } else if (runtimeException != runtimeException3) {
-                            runtimeException.addSuppressed(runtimeException3);
-                        }
-                    } finally {
-                        hVar.f46749w = null;
-                        hVar.Y = false;
-                        handlerThread.quitSafely();
-                    }
-                }
-                if (runtimeException != null) {
-                    hVar.f46725j.a("camera release failed", runtimeException);
-                    return;
-                }
-                return;
-            case 10:
-                qi.p pVar3 = (qi.p) this.f45044b;
-                CountDownLatch countDownLatch = (CountDownLatch) this.f45045c;
-                pVar3.getClass();
-                try {
-                    try {
-                        pVar3.e();
-                        pVar3.f46833k0 = true;
-                    } finally {
-                        countDownLatch.countDown();
-                    }
-                } catch (RuntimeException e7) {
-                    pVar3.f46840o0 = e7;
-                    pVar3.h();
-                }
-                return;
-            case 11:
-                i0 i0Var = (i0) this.f45045c;
-                p0 p0Var = (p0) ((g0) this.f45044b).f14466b;
-                p0Var.O++;
-                p0Var.f46872x = true;
-                p0Var.f46863n.b("camera switch started: target=" + i0Var);
-                v60 v60Var = (v60) p0Var.d.f16325a;
-                FrameLayout frameLayout = v60Var.f31439x;
-                v60Var.f31433s0++;
-                ValueAnimator valueAnimator = v60Var.f31413b0;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    v60Var.f31413b0.cancel();
-                    v60Var.f31413b0 = null;
-                }
-                v60Var.f31426n0 = true;
-                v60Var.f31427o0 = false;
-                v60Var.f31428p0 = false;
-                v60Var.f31429q0 = false;
-                v60Var.f31431r0 = SystemClock.elapsedRealtime();
-                rl rlVar = v60Var.E;
-                v60Var.v(false);
-                Bitmap bitmap = v60Var.f31434t0;
-                if (bitmap != null) {
-                    rlVar.setImageBitmap(bitmap);
-                    v60Var.m0 = true;
-                    rlVar.animate().cancel();
-                    rlVar.setAlpha(1.0f);
-                }
-                frameLayout.animate().cancel();
-                frameLayout.setRotationY(0.0f);
-                frameLayout.setCameraDistance(frameLayout.getMeasuredHeight() * 8.0f);
-                int i11 = v60Var.f31433s0;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                v60Var.f31413b0 = ofFloat;
-                ofFloat.setDuration(580L);
-                v60Var.f31413b0.setInterpolator(js.h);
-                v60Var.f31413b0.addUpdateListener(new p2(v60Var, i11, 4));
-                v60Var.f31413b0.addListener(new v2(v60Var, i11, 8));
-                v60Var.f31413b0.start();
-                FileLog.d("RoundVideo camera flip started: facing=" + i0Var + ", minimumDurationMs=580");
-                v60Var.y();
-                p0Var.q();
-                return;
-            case 12:
-                ((p0) ((g0) this.f45044b).f14466b).j((Exception) this.f45045c);
-                return;
-            case 13:
-                CarResultStub.G0((Map.Entry) this.f45044b, this.f45045c);
-                return;
-            case 14:
-                int i12 = JobInfoSchedulerService.f6445a;
-                ((JobInfoSchedulerService) this.f45044b).jobFinished((JobParameters) this.f45045c, false);
-                return;
-            case 15:
-                r9.a aVar2 = (r9.a) this.f45044b;
-                Runnable runnable2 = (Runnable) this.f45045c;
-                Process.setThreadPriority(aVar2.f47315c);
-                StrictMode.ThreadPolicy threadPolicy = aVar2.d;
-                if (threadPolicy != null) {
-                    StrictMode.setThreadPolicy(threadPolicy);
-                }
-                runnable2.run();
-                return;
-            case 16:
-                Callable callable = (Callable) this.f45044b;
-                r9.h hVar2 = (r9.h) ((n4.l) this.f45045c).f16325a;
-                try {
-                    hVar2.k(callable.call());
-                    return;
-                } catch (Exception e10) {
-                    hVar2.l(e10);
-                    return;
-                }
-            case 17:
-                j0 j0Var = (j0) this.f45044b;
-                TLObject tLObject = (TLObject) this.f45045c;
-                ArrayList arrayList = j0Var.f47496i0;
-                wm0 wm0Var = j0Var.d;
-                if (tLObject != null) {
-                    arrayList.clear();
-                    arrayList.addAll(((TLRPC.TL_messages_chats) tLObject).chats);
-                    j0Var.I0 = false;
-                    j0Var.J0.b(j0Var.f47500n0 + 4);
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < wm0Var.getChildCount()) {
-                            if (wm0Var.getChildAt(i13) instanceof rg.i0) {
-                                i10 = wm0Var.getChildAt(i13).getTop();
-                            } else {
-                                i13++;
-                            }
-                        } else {
-                            i10 = 0;
-                        }
-                    }
-                    j0Var.N1();
-                    if (j0Var.f47499l0 >= 0 && i10 != 0) {
-                        ((d0) wm0Var.getLayoutManager()).h1(j0Var.f47499l0 + 1, i10);
-                    }
-                }
-                int max = Math.max(arrayList.size(), j0Var.M0.f2615b);
-                j0Var.f47510x0.g(max, false);
-                j0Var.f47510x0.setBagePosition(max / j0Var.M0.f2616c);
-                h0 h0Var = j0Var.f47510x0;
-                h0Var.H = true;
-                h0Var.requestLayout();
-                return;
-            case 18:
-                ((j0) this.f45044b).n1((la0) this.f45045c, true);
-                return;
-            case 19:
-                a2 a2Var = (a2) this.f45044b;
-                AndroidUtilities.runOnUIThread(new b(20, a2Var, FileLoader.getInstance(a2Var.f47411s).getPathToAttach((TLRPC.Document) this.f45045c)));
-                return;
-            case 20:
-                a2 a2Var2 = (a2) this.f45044b;
-                a2Var2.f47407e = (File) this.f45045c;
-                a2Var2.a();
-                return;
-            case 21:
-                ((sg.f) this.f45044b).c((ArrayList) this.f45045c);
-                return;
-            case 22:
-                sg.p pVar4 = (sg.p) this.f45044b;
-                sg.r rVar = (sg.r) this.f45045c;
-                pVar4.getClass();
-                try {
-                    EGLDisplay eGLDisplay = pVar4.f48359i;
-                    if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
-                        EGLSurface eGLSurface = pVar4.f48361k;
-                        EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, pVar4.f48360j);
-                        EGLSurface eGLSurface2 = rVar.h;
-                        if (eGLSurface2 != EGL14.EGL_NO_SURFACE) {
-                            EGL14.eglDestroySurface(pVar4.f48359i, eGLSurface2);
-                        }
-                        rVar.h = EGL14.EGL_NO_SURFACE;
-                        if (pVar4.f48357f.length == 0) {
-                            pVar4.b();
-                        }
-                    }
-                    rVar.f48373b.release();
-                    return;
-                } catch (Throwable th5) {
-                    rVar.f48373b.release();
-                    throw th5;
-                }
-            case 23:
-                sf.b bVar2 = (sf.b) this.f45045c;
-                if (((AtomicBoolean) ((com.google.android.gms.internal.cast.p) this.f45044b).f6955e).compareAndSet(false, true)) {
-                    bVar2.a(true);
-                    return;
-                }
-                return;
-            case 24:
-                ((v0) this.f45044b).run((ArrayList) this.f45045c);
-                return;
-            case 25:
-                ((tg.u) this.f45044b).run((TLRPC.TL_error) this.f45045c);
-                return;
-            case 26:
-                ((jt) this.f45044b).run((ArrayList) this.f45045c);
-                return;
-            case 27:
-                Utilities.Callback callback = (Utilities.Callback) this.f45045c;
-                HashMap<Long, Integer> smallGroupsParticipantsCount = ((MessagesStorage) this.f45044b).getSmallGroupsParticipantsCount();
-                if (smallGroupsParticipantsCount != null && !smallGroupsParticipantsCount.isEmpty()) {
-                    AndroidUtilities.runOnUIThread(new b2(callback, smallGroupsParticipantsCount, 1));
-                    return;
-                }
-                return;
-            case 28:
-                sc M = zc.a0((eo) this.f45044b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) ((TL_stars.TL_starsGiveawayOption) this.f45045c).stars)), R.raw.stars_send);
-                M.f30540j = 5000;
-                M.k(true);
-                return;
-            default:
-                z zVar = (z) this.f45044b;
-                zVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, zVar.f48661b0, Boolean.TRUE, (TL_stories.PrepaidGiveaway) this.f45045c);
-                return;
+    public final k4.d x(y2.i iVar, long j3, long j10, IOException iOException, int i10) {
+        boolean z10;
+        int i11;
+        k4.d dVar;
+        y2.o oVar = (y2.o) iVar;
+        long j11 = oVar.f51931a;
+        int i12 = oVar.f51933c;
+        Uri uri = oVar.d.f10233c;
+        u2.t tVar = new u2.t(j10);
+        if (uri.getQueryParameter("_HLS_msn") != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        boolean z11 = iOException instanceof q;
+        k4.d dVar2 = y2.l.f51926e;
+        c cVar = this.f45059w;
+        if (z10 || z11) {
+            if (iOException instanceof x) {
+                i11 = ((x) iOException).d;
+            } else {
+                i11 = Integer.MAX_VALUE;
+            }
+            if (z11 || i11 == 400 || i11 == 503) {
+                this.h = SystemClock.elapsedRealtime();
+                c(false);
+                a5.a aVar = cVar.f45064f;
+                String str = d0.f8529a;
+                aVar.s(tVar, i12, iOException, true);
+                return dVar2;
+            }
+        }
+        b0 b0Var = new b0(iOException, i10, 14);
+        Iterator it = cVar.f45063e.iterator();
+        boolean z12 = false;
+        while (it.hasNext()) {
+            z12 |= !((t) it.next()).b(this.f45051a, b0Var, false);
+        }
+        t7.t tVar2 = cVar.f45062c;
+        if (z12) {
+            tVar2.getClass();
+            long K = t7.t.K(b0Var);
+            if (K != -9223372036854775807L) {
+                dVar = new k4.d(0, K, false);
+            } else {
+                dVar = y2.l.f51927f;
+            }
+            dVar2 = dVar;
+        }
+        boolean a2 = dVar2.a();
+        cVar.f45064f.s(tVar, i12, iOException, !a2);
+        if (!a2) {
+            tVar2.getClass();
+        }
+        return dVar2;
+    }
+
+    @Override
+    public final void y(y2.i iVar, long j3, long j10, int i10) {
+        u2.t tVar;
+        y2.o oVar = (y2.o) iVar;
+        if (i10 == 0) {
+            long j11 = oVar.f51931a;
+            tVar = new u2.t(oVar.f51932b);
+        } else {
+            long j12 = oVar.f51931a;
+            Uri uri = oVar.d.f10233c;
+            tVar = new u2.t(j10);
+        }
+        this.f45059w.f45064f.u(tVar, oVar.f51933c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 }

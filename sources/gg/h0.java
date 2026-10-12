@@ -155,7 +155,7 @@ public abstract class h0 extends vm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -220,20 +220,20 @@ public abstract class h0 extends vm0 {
             if (((TLRPC.User) obj).bot) {
                 return vyVar.A2;
             }
-            return vyVar.f43009z2;
+            return vyVar.f43011z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return vyVar.f43006y2;
+                return vyVar.f43008y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (vyVar.f42990v2 || vyVar.f42996w2) {
+                if (vyVar.f42992v2 || vyVar.f42998w2) {
                     return true;
                 }
                 return false;
-            } else if (vyVar.f42990v2 || vyVar.f43001x2) {
+            } else if (vyVar.f42992v2 || vyVar.f43003x2) {
                 return true;
             } else {
                 return false;
@@ -339,12 +339,12 @@ public abstract class h0 extends vm0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f10636s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f19949id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f19950id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f19802id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f19803id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -500,7 +500,7 @@ public abstract class h0 extends vm0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f10636s0).hints.isEmpty()) {
-            if (this.f10623h0 != 14 || this.f10634r0.f43009z2) {
+            if (this.f10623h0 != 14 || this.f10634r0.f43011z2) {
                 return true;
             }
             return false;
@@ -696,7 +696,7 @@ public abstract class h0 extends vm0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f19911q = str;
+                    tL_messages_search.f19912q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -761,7 +761,7 @@ public abstract class h0 extends vm0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f19913q = str;
+                    tL_messages_searchGlobal.f19914q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -928,7 +928,7 @@ public abstract class h0 extends vm0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                i6Var.f22017l0 = z11;
+                i6Var.f22018l0 = z11;
                 hc1Var = i6Var;
                 textView = hc1Var;
                 break;
@@ -958,7 +958,7 @@ public abstract class h0 extends vm0 {
                 break;
             case 6:
                 hc1 hc1Var2 = new hc1(context, 2, null);
-                hc1Var2.setSelectorDrawableColor(h6.x0(null, h6.f20650i6, false));
+                hc1Var2.setSelectorDrawableColor(h6.x0(null, h6.f20651i6, false));
                 hc1Var2.setTag(9);
                 hc1Var2.setItemAnimator(null);
                 hc1Var2.setLayoutAnimation(null);

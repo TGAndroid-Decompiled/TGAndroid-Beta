@@ -51,7 +51,7 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f791c;
-                u1Var.f23019jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.f23020jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u1Var.invalidate();
                 if (this.f790b && u1Var.getParent() != null) {
                     ((View) u1Var.getParent()).invalidate();
@@ -87,8 +87,8 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 g9Var.i0(floatValue4, false);
                 if (this.f790b) {
-                    org.telegram.ui.Components.z8 z8Var = g9Var.f26350a;
-                    z8Var.f25979w = floatValue4;
+                    org.telegram.ui.Components.z8 z8Var = g9Var.f26348a;
+                    z8Var.f25981w = floatValue4;
                     z8Var.invalidate();
                     return;
                 }
@@ -116,15 +116,15 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
             case 8:
                 org.telegram.ui.Components.voip.w2 w2Var = (org.telegram.ui.Components.voip.w2) this.f791c;
                 TextView[] textViewArr = w2Var.h;
-                w2Var.f32092s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w2Var.f32078s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 w2Var.invalidate();
                 if (this.f790b) {
-                    textViewArr[0].setAlpha(1.0f - w2Var.f32092s);
-                    textViewArr[0].setScaleX(1.0f - w2Var.f32092s);
-                    textViewArr[0].setScaleY(1.0f - w2Var.f32092s);
-                    textViewArr[1].setAlpha(w2Var.f32092s);
-                    textViewArr[1].setScaleX(w2Var.f32092s);
-                    textViewArr[1].setScaleY(w2Var.f32092s);
+                    textViewArr[0].setAlpha(1.0f - w2Var.f32078s);
+                    textViewArr[0].setScaleX(1.0f - w2Var.f32078s);
+                    textViewArr[0].setScaleY(1.0f - w2Var.f32078s);
+                    textViewArr[1].setAlpha(w2Var.f32078s);
+                    textViewArr[1].setScaleX(w2Var.f32078s);
+                    textViewArr[1].setScaleY(w2Var.f32078s);
                     return;
                 }
                 return;
@@ -142,26 +142,26 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 10:
                 n51 n51Var = (n51) this.f791c;
-                n51Var.f40228s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n51Var.f40218b.invalidate();
-                n51Var.f40220c.invalidate();
+                n51Var.f40231s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n51Var.f40221b.invalidate();
+                n51Var.f40223c.invalidate();
                 if (n51Var.S) {
                     n51Var.N.invalidate();
                 }
                 n51Var.e();
-                TextView textView = n51Var.f40231y;
+                TextView textView = n51Var.f40234y;
                 if (textView != null) {
-                    textView.setAlpha(n51Var.f40228s);
+                    textView.setAlpha(n51Var.f40231s);
                 }
                 if (!n51Var.S && (l51Var = n51Var.N) != null && l51Var.getSeekBarWaveform() != null) {
                     tp0 seekBarWaveform = n51Var.N.getSeekBarWaveform();
                     if (this.f790b) {
-                        jsVar = js.f27628g;
+                        jsVar = js.f27635g;
                     } else {
-                        jsVar = js.f27629i;
+                        jsVar = js.f27636i;
                     }
-                    seekBarWaveform.L = jsVar.getInterpolation(Utilities.clamp(n51Var.f40228s * 1.25f, 1.0f, 0.0f));
-                    org.telegram.ui.Cells.u1 u1Var2 = seekBarWaveform.f30932n;
+                    seekBarWaveform.L = jsVar.getInterpolation(Utilities.clamp(n51Var.f40231s * 1.25f, 1.0f, 0.0f));
+                    org.telegram.ui.Cells.u1 u1Var2 = seekBarWaveform.f30934n;
                     if (u1Var2 != null) {
                         u1Var2.invalidate();
                         return;
@@ -172,23 +172,23 @@ public final class cb implements ValueAnimator.AnimatorUpdateListener {
             case 11:
                 qg.l0 l0Var = (qg.l0) this.f791c;
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.f46270e = floatValue6;
+                l0Var.f46278e = floatValue6;
                 if (!this.f790b) {
-                    l0Var.f46269c.setAlpha(1.0f - floatValue6);
+                    l0Var.f46277c.setAlpha(1.0f - floatValue6);
                 }
-                l0Var.f46268b.invalidate();
+                l0Var.f46276b.invalidate();
                 return;
             default:
                 zg.a0 a0Var = (zg.a0) this.f791c;
-                a0Var.f54693x = null;
-                a0Var.f54680j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a0Var.f54701x = null;
+                a0Var.f54688j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a0Var.k();
                 a0Var.l();
-                a0Var.f54684n.setCustomEmojiEnterProgress(Utilities.clamp(a0Var.f54680j, 1.0f, 0.0f));
-                a0Var.f54673a.invalidate();
-                a0Var.f54683m.invalidateOutline();
-                if (a0Var.f54692w) {
-                    a0Var.j(a0Var.f54680j, this.f790b);
+                a0Var.f54692n.setCustomEmojiEnterProgress(Utilities.clamp(a0Var.f54688j, 1.0f, 0.0f));
+                a0Var.f54681a.invalidate();
+                a0Var.f54691m.invalidateOutline();
+                if (a0Var.f54700w) {
+                    a0Var.j(a0Var.f54688j, this.f790b);
                     return;
                 }
                 return;

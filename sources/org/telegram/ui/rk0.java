@@ -27,10 +27,10 @@ public final class rk0 implements Runnable {
                 sk0 sk0Var2 = this.f41673b;
                 String str2 = this.f41674c;
                 gg.b2 b2Var = sk0Var2.h;
-                int i10 = sk0Var2.f41949n.f33671s;
+                int i10 = sk0Var2.f41953n.f33673s;
                 boolean z10 = true;
                 b2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
-                Utilities.searchQueue.postRunnable(new pf0(sk0Var2, str2, new ArrayList(sk0Var2.f41949n.f33672w), 8));
+                Utilities.searchQueue.postRunnable(new pf0(sk0Var2, str2, new ArrayList(sk0Var2.f41953n.f33674w), 8));
                 return;
         }
     }

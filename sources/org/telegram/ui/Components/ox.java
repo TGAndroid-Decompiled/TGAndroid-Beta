@@ -13,7 +13,7 @@ public final class ox extends pz {
     public final void setTranslationY(float f7) {
         if (f7 != getTranslationY()) {
             super.setTranslationY(f7);
-            this.H.f25147x0.invalidate();
+            this.H.f25139x0.invalidate();
         }
     }
 }

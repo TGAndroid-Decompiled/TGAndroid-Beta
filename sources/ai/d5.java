@@ -82,7 +82,7 @@ public final class d5 implements Utilities.Callback {
                 }
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(f6Var.C2).getInputPeer(storyItem.dialogId);
-                tL_stories_getStoriesByID.f20048id.add(Integer.valueOf(storyItem.f20041id));
+                tL_stories_getStoriesByID.f20049id.add(Integer.valueOf(storyItem.f20042id));
                 ConnectionsManager.getInstance(f6Var.C2).sendRequest(tL_stories_getStoriesByID, new t5(w5Var, storyItem, callback, 0));
                 return;
             case 2:
@@ -131,8 +131,8 @@ public final class d5 implements Utilities.Callback {
                     org.telegram.ui.Components.g5.K(eoVar.getParentActivity(), eoVar.a(), new r5(noVar, tL_messageMediaToDo, l10, 27));
                     return;
                 }
-                noVar.f28891j0.e(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
-                noVar.f30574b.dismiss(true);
+                noVar.f28895j0.e(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
+                noVar.f30570b.dismiss(true);
                 return;
             case 7:
                 bz bzVar = (bz) obj4;
@@ -147,7 +147,7 @@ public final class d5 implements Utilities.Callback {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(bzVar.f24776a.F.f25080c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
+                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(bzVar.f24771a.F.f25072c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
                         if (stickerSet != null) {
                             arrayList = stickerSet.documents;
                         } else {
@@ -206,14 +206,14 @@ public final class d5 implements Utilities.Callback {
                 j0Var.getClass();
                 ((la0) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
-                    j0Var.f47489b0.boosts++;
-                    if (j0Var.f47495h0 == 32 && (u12 = j0Var.u1()) != null) {
+                    j0Var.f47497b0.boosts++;
+                    if (j0Var.f47503h0 == 32 && (u12 = j0Var.u1()) != null) {
                         u12.boosts_applied++;
                     }
                     j0Var.A1();
-                    j0Var.G1(tL_premium_boostsStatus, j0Var.f47492e0);
-                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f47490c0;
-                    if (j0Var.f47489b0.next_level_boosts <= 0) {
+                    j0Var.G1(tL_premium_boostsStatus, j0Var.f47500e0);
+                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f47498c0;
+                    if (j0Var.f47497b0.next_level_boosts <= 0) {
                         z10 = true;
                     }
                     canApplyBoost.isMaxLvl = z10;
@@ -227,7 +227,7 @@ public final class d5 implements Utilities.Callback {
                 xh.o oVar = (xh.o) obj4;
                 oVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new xh.d(oVar.getContext(), (org.telegram.ui.ActionBar.c6) obj2, oVar.f51647l0, (List) obj).show();
+                new xh.d(oVar.getContext(), (org.telegram.ui.ActionBar.c6) obj2, oVar.f51655l0, (List) obj).show();
                 return;
             case 12:
                 xh.x xVar = (xh.x) obj4;
@@ -253,7 +253,7 @@ public final class d5 implements Utilities.Callback {
                 ((of.e) obj3).b();
                 ((tg.m1[]) obj2)[0].dismiss();
                 if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new tg.c1(19, s3Var2, tL_error));
+                    AndroidUtilities.runOnUIThread(new tg.y(21, s3Var2, tL_error));
                     return;
                 } else {
                     s3Var2.dismiss();

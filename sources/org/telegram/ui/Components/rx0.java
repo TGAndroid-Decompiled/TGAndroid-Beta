@@ -10,24 +10,24 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 public final class rx0 extends View {
-    public final z9 f30274a;
-    public final px0 f30275b;
-    public final g6 f30276c;
+    public final z9 f30270a;
+    public final px0 f30271b;
+    public final g6 f30272c;
     public boolean d;
-    public qx0 f30277e;
-    public boolean f30278f;
+    public qx0 f30273e;
+    public boolean f30274f;
     public boolean h;
 
     public rx0(Context context) {
         super(context);
         ?? obj = new Object();
-        obj.f29607c = -16777216;
+        obj.f29585c = -16777216;
         obj.d = -1;
-        this.f30275b = obj;
+        this.f30271b = obj;
         g6 g6Var = new g6(new ox0(this, 0), 380L, js.h);
-        this.f30276c = g6Var;
+        this.f30272c = g6Var;
         z9 z9Var = new z9(context);
-        this.f30274a = z9Var;
+        this.f30270a = z9Var;
         z9Var.setCallback(this);
         this.d = false;
         g6Var.d(0.0f, false);
@@ -36,72 +36,72 @@ public final class rx0 extends View {
 
     public final void a() {
         boolean z10;
-        if (this.h && this.f30278f) {
+        if (this.h && this.f30274f) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.d = z10;
-        this.f30276c.e(z10);
+        this.f30272c.e(z10);
         setEnabled(this.d);
         setClickable(this.d);
         invalidate();
     }
 
     public final void b(MessagesController.PeerColor peerColor) {
-        this.f30275b.a(peerColor);
+        this.f30271b.a(peerColor);
         invalidate();
     }
 
     public float getVisibilityFactor() {
-        return this.f30276c.f26303c;
+        return this.f30272c.f26301c;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f30274a.getClass();
+        this.f30270a.getClass();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f30274a.getClass();
+        this.f30270a.getClass();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float e7 = this.f30276c.e(this.d);
+        float e7 = this.f30272c.e(this.d);
         int A = org.telegram.messenger.am.A(24.0f, getMeasuredWidth(), 2);
         canvas.save();
         canvas.translate(A, (getMeasuredHeight() - AndroidUtilities.dp(24.0f)) / 2);
         canvas.scale(e7, e7, 0.0f, AndroidUtilities.dp(12.0f));
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
-        z9 z9Var = this.f30274a;
+        z9 z9Var = this.f30270a;
         z9Var.setBounds(0, 0, dp, dp2);
-        px0 px0Var = this.f30275b;
-        int i10 = px0Var.f29607c;
-        if (z9Var.f33301f != i10) {
-            z9Var.f33301f = i10;
-            if (z9Var.f33299c != null) {
+        px0 px0Var = this.f30271b;
+        int i10 = px0Var.f29585c;
+        if (z9Var.f33307f != i10) {
+            z9Var.f33307f = i10;
+            if (z9Var.f33305c != null) {
                 z9Var.d.setColorFilter(i10, PorterDuff.Mode.MULTIPLY);
                 z9Var.invalidateSelf();
             }
         }
         int i11 = px0Var.d;
-        if (z9Var.f33300e != i11) {
-            z9Var.f33300e = i11;
-            Drawable drawable = z9Var.f33299c;
+        if (z9Var.f33306e != i11) {
+            z9Var.f33306e = i11;
+            Drawable drawable = z9Var.f33305c;
             if (drawable != null) {
                 drawable.setColorFilter(i11, PorterDuff.Mode.MULTIPLY);
                 z9Var.invalidateSelf();
             }
         }
-        int i12 = px0Var.f29607c | (-16777216);
+        int i12 = px0Var.f29585c | (-16777216);
         if (z9Var.h != i12) {
             z9Var.h = i12;
-            z9Var.f33298b.v(i12, false);
+            z9Var.f33304b.v(i12, false);
             z9Var.invalidateSelf();
         }
         z9Var.draw(canvas);
@@ -118,22 +118,22 @@ public final class rx0 extends View {
         } else {
             z10 = false;
         }
-        this.f30278f = z10;
+        this.f30274f = z10;
         a();
         if (tl_starsRating == null) {
             return;
         }
         int i11 = tl_starsRating.level;
-        z9 z9Var = this.f30274a;
-        if (z9Var.f33303r != i11 || z9Var.f33299c == null || z9Var.d == null) {
-            q6 q6Var = z9Var.f33298b;
+        z9 z9Var = this.f30270a;
+        if (z9Var.f33309r != i11 || z9Var.f33305c == null || z9Var.d == null) {
+            q6 q6Var = z9Var.f33304b;
             if (i11 >= 0) {
                 str = Integer.toString(i11);
             } else {
                 str = "!";
             }
             q6Var.t(str, true, true);
-            z9Var.f33303r = i11;
+            z9Var.f33309r = i11;
             if (i11 < 0) {
                 b10 = 18;
             } else {
@@ -144,19 +144,19 @@ public final class rx0 extends View {
                 }
                 b10 = w7.n.b(i10, 0, 17);
             }
-            Context context = z9Var.f33297a;
-            if (z9Var.f33302n != b10 || z9Var.f33299c == null || z9Var.d == null) {
+            Context context = z9Var.f33303a;
+            if (z9Var.f33308n != b10 || z9Var.f33305c == null || z9Var.d == null) {
                 int i12 = b10 * 2;
-                Drawable mutate = context.getResources().getDrawable(z9.f33296s[i12]).mutate();
-                z9Var.f33299c = mutate;
-                int i13 = z9Var.f33300e;
+                Drawable mutate = context.getResources().getDrawable(z9.f33302s[i12]).mutate();
+                z9Var.f33305c = mutate;
+                int i13 = z9Var.f33306e;
                 PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                 mutate.setColorFilter(i13, mode);
-                Drawable mutate2 = context.getResources().getDrawable(z9.f33296s[i12 + 1]).mutate();
+                Drawable mutate2 = context.getResources().getDrawable(z9.f33302s[i12 + 1]).mutate();
                 z9Var.d = mutate2;
-                mutate2.setColorFilter(z9Var.f33301f, mode);
-                z9Var.f33302n = b10;
-                Drawable drawable = z9Var.f33299c;
+                mutate2.setColorFilter(z9Var.f33307f, mode);
+                z9Var.f33308n = b10;
+                Drawable drawable = z9Var.f33305c;
                 if (drawable != null) {
                     drawable.setBounds(z9Var.getBounds());
                 }
@@ -175,18 +175,18 @@ public final class rx0 extends View {
     }
 
     public void setDelegate(qx0 qx0Var) {
-        this.f30277e = qx0Var;
+        this.f30273e = qx0Var;
     }
 
     public void setParentExpanded(float f7) {
-        px0 px0Var = this.f30275b;
-        px0Var.f29608e = f7;
-        px0Var.a(px0Var.f29605a);
+        px0 px0Var = this.f30271b;
+        px0Var.f29586e = f7;
+        px0Var.a(px0Var.f29583a);
         invalidate();
     }
 
     public void setResourcesProvider(org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f30275b.f29606b = c6Var;
+        this.f30271b.f29584b = c6Var;
     }
 
     public void setVisibility(boolean z10) {
@@ -196,7 +196,7 @@ public final class rx0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f30274a) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f30270a) {
             return false;
         }
         return true;

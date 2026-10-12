@@ -28,7 +28,7 @@ public final class hi0 extends FrameLayout implements NotificationCenter.Notific
 
     static {
         int i10 = R.drawable.msg_mini_checks;
-        int i11 = org.telegram.ui.ActionBar.h6.f20945y6;
+        int i11 = org.telegram.ui.ActionBar.h6.f20946y6;
         f38434n = new org.telegram.ui.Components.fd0(i10, i11);
         f38435r = new org.telegram.ui.Components.fd0(R.drawable.mini_checklist_done_outline, i11);
     }
@@ -61,7 +61,7 @@ public final class hi0 extends FrameLayout implements NotificationCenter.Notific
         textView.setLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setImportantForAccessibility(2);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20945y6, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20946y6, false));
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
         if (LocaleController.isRTL) {
             addView(y9Var, w7.w5.a(34.0f, 0.0f, 0.0f, 10.0f, 0.0f, 34, 21));
@@ -78,7 +78,7 @@ public final class hi0 extends FrameLayout implements NotificationCenter.Notific
         org.telegram.ui.Components.q5 a2;
         org.telegram.ui.Components.fd0 fd0Var;
         this.h = tLObject;
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20966z9, false);
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20967z9, false);
         boolean z11 = tLObject instanceof TLRPC.User;
         org.telegram.ui.Components.tx0 tx0Var = this.f38440f;
         if (z11) {
@@ -125,9 +125,9 @@ public final class hi0 extends FrameLayout implements NotificationCenter.Notific
             } else {
                 user = null;
             }
-            if (user != null && user2 != null && user.f19949id == user2.f19949id) {
+            if (user != null && user2 != null && user.f19950id == user2.f19950id) {
                 this.h = user2;
-                int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20966z9, false);
+                int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20967z9, false);
                 boolean z10 = user2 instanceof TLRPC.User;
                 org.telegram.ui.Components.tx0 tx0Var = this.f38440f;
                 if (z10) {
@@ -143,14 +143,14 @@ public final class hi0 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f38440f.f30993a.a();
+        this.f38440f.f30988a.a();
         NotificationCenter.getInstance(this.f38436a).addObserver(this, NotificationCenter.userEmojiStatusUpdated);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f38440f.f30993a.b();
+        this.f38440f.f30988a.b();
         NotificationCenter.getInstance(this.f38436a).removeObserver(this, NotificationCenter.userEmojiStatusUpdated);
     }
 

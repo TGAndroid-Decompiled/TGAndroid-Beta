@@ -4,19 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.OrientationEventListener;
 public final class mv extends OrientationEventListener {
-    public final ov f28665a;
+    public final ov f28654a;
 
     public mv(ov ovVar, Context context) {
         super(context);
-        this.f28665a = ovVar;
+        this.f28654a = ovVar;
     }
 
     @Override
     public final void onOrientationChanged(int i10) {
         Activity activity;
-        ov ovVar = this.f28665a;
-        ma1 ma1Var = ovVar.f29297c;
-        if (ovVar.F != null && ma1Var.getVisibility() == 0 && (activity = ovVar.f29301r) != null && ma1Var.T && ovVar.M) {
+        ov ovVar = this.f28654a;
+        ma1 ma1Var = ovVar.f29300c;
+        if (ovVar.F != null && ma1Var.getVisibility() == 0 && (activity = ovVar.f29304r) != null && ma1Var.T && ovVar.M) {
             if (i10 >= 240 && i10 <= 300) {
                 ovVar.N = true;
             } else if (ovVar.N && i10 > 0) {

@@ -12,7 +12,7 @@ public final class y0 implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        Class cls = aVar.f14775a;
+        Class cls = aVar.f14776a;
         if (cls != this.f10507a && cls != this.f10508b) {
             return null;
         }

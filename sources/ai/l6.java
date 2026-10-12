@@ -94,7 +94,7 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 ((org.telegram.ui.Components.y9) this.f1331b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 8:
-                w0 w0Var = ((f80) this.f1331b).f25962e.d;
+                w0 w0Var = ((f80) this.f1331b).f25964e.d;
                 int i11 = w0Var.C1;
                 if (i11 != -1 && (view = w0Var.D1) != null) {
                     w0Var.i1(i11, view);
@@ -104,13 +104,13 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 9:
                 u91 u91Var = (u91) this.f1331b;
-                View[] viewArr = u91Var.f31114e;
-                if (u91Var.f31120x) {
+                View[] viewArr = u91Var.f31109e;
+                if (u91Var.f31115x) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    u91Var.f31113c = abs;
+                    u91Var.f31108c = abs;
                     j91 j91Var = u91Var.M;
                     if (j91Var != null) {
-                        j91Var.e(abs, u91Var.d, u91Var.f31112b);
+                        j91Var.e(abs, u91Var.d, u91Var.f31107b);
                     }
                 }
                 u91Var.w(false);
@@ -119,22 +119,22 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.v1 v1Var = (org.telegram.ui.Components.voip.v1) this.f1331b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v1Var.J = floatValue;
-                org.telegram.ui.Components.voip.u1 u1Var = v1Var.f32062i0;
+                org.telegram.ui.Components.voip.u1 u1Var = v1Var.f32048i0;
                 if (u1Var != null) {
-                    ((fi1) u1Var).f37798b.f43987d0.d(floatValue, v1Var.P);
+                    ((fi1) u1Var).f37795b.f43992d0.d(floatValue, v1Var.P);
                 }
                 v1Var.invalidate();
                 return;
             case 11:
                 rg.q0 q0Var = (rg.q0) this.f1331b;
-                q0Var.f47614n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0Var.f47622n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q0Var.e();
                 return;
             case 12:
                 ((rg.n0) this.f1331b).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ((s4.u) this.f1331b).f48025x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f1331b).f48033x = valueAnimator.getAnimatedFraction();
                 return;
         }
     }

@@ -9,7 +9,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.ud;
+import org.telegram.ui.Components.vd;
 import org.telegram.ui.Components.zc;
 public final class z {
     public static volatile z[] f11457e = new z[4];
@@ -62,7 +62,7 @@ public final class z {
         }
     }
 
-    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, ud udVar) {
+    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, vd vdVar) {
         TL_account.editBusinessChatLink editbusinesschatlink = new TL_account.editBusinessChatLink();
         editbusinesschatlink.slug = tL_businessChatLink.link;
         if (!tL_inputBusinessChatLink.entities.isEmpty()) {
@@ -72,7 +72,7 @@ public final class z {
             tL_inputBusinessChatLink.flags |= 2;
         }
         editbusinesschatlink.link = tL_inputBusinessChatLink;
-        ConnectionsManager.getInstance(this.f11459a).sendRequest(editbusinesschatlink, new t5(this, tL_businessChatLink, udVar, 4));
+        ConnectionsManager.getInstance(this.f11459a).sendRequest(editbusinesschatlink, new t5(this, tL_businessChatLink, vdVar, 4));
     }
 
     public final TL_account.TL_businessChatLink c(String str) {

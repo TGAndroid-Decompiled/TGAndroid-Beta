@@ -302,7 +302,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
             } else if (bundle != null) {
                 bundle2.putAll(bundle);
             }
-            xVar.f6706l = k6.a.f14691e;
+            xVar.f6706l = k6.a.f14692e;
             x.l(xVar);
         } finally {
             xVar.f6709o.unlock();
@@ -631,7 +631,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
 
     @Override
     public void Z(long j3, int i10, e5 e5Var) {
-        int i11 = ProfileStoriesView.f34334s0;
+        int i11 = ProfileStoriesView.f34336s0;
         ((tz0) this.f326b).f(true, false);
         e5Var.run();
     }
@@ -774,7 +774,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         hcVar.f1105c = null;
         tz0 tz0Var = (tz0) this.f326b;
         n01 n01Var = tz0Var.h;
-        ArrayList arrayList = tz0Var.f34360w;
+        ArrayList arrayList = tz0Var.f34362w;
         if (tz0Var.N < 0.2f) {
             hcVar.f1104b = n01Var.getImageReceiver();
             hcVar.f1105c = null;
@@ -782,7 +782,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
             hcVar.h = 0.0f;
             hcVar.f1109i = AndroidUtilities.displaySize.y;
             hcVar.f1108g = (View) tz0Var.getParent();
-            hcVar.d = tz0Var.f34362y;
+            hcVar.d = tz0Var.f34364y;
             hcVar.f1114n = true;
             return true;
         }
@@ -920,9 +920,9 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         int i10 = nbVar.F1;
         pg.m currentBrush = nbVar.O0.getCurrentBrush();
         if (currentBrush == null) {
-            return t0.e(i10).f45685i;
+            return t0.e(i10).f45690i;
         }
-        return t0.e(i10).f(String.valueOf(pg.m.f45582a.indexOf(currentBrush)), currentBrush.d());
+        return t0.e(i10).f(String.valueOf(pg.m.f45587a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -1054,9 +1054,9 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
     @Override
     public void l0(float f7) {
         nb nbVar = (nb) this.f326b;
-        t0.e(nbVar.F1).k(String.valueOf(pg.m.f45582a.indexOf(nbVar.O0.getCurrentBrush())), f7);
+        t0.e(nbVar.F1).k(String.valueOf(pg.m.f45587a.indexOf(nbVar.O0.getCurrentBrush())), f7);
         r1 r1Var = nbVar.A1;
-        r1Var.f45653c = f7;
+        r1Var.f45658c = f7;
         nbVar.D0(r1Var, null, false);
     }
 
@@ -1164,10 +1164,10 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         e2 e2Var = (e2) this.f326b;
         if (aVar != null && (aVar.f12232b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(e2Var)) {
             aj ajVar = new aj(e2Var.getParentActivity(), e2Var, false, false, false, e2Var.getResourceProvider());
-            ajVar.f24333c2 = new qb.b(11);
+            ajVar.f24329c2 = new qb.b(11);
             ajVar.P = true;
             ajVar.A1.setVisibility(8);
-            ajVar.f24397w2 = new r5(e2Var, aVar, ajVar, 11);
+            ajVar.f24393w2 = new r5(e2Var, aVar, ajVar, 11);
             ajVar.t1();
             ajVar.show();
         }

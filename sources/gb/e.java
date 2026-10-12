@@ -4,7 +4,7 @@ import java.util.Date;
 public class e implements db.v {
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        if (aVar.f14775a == Date.class) {
+        if (aVar.f14776a == Date.class) {
             return new h(g.f10446a);
         }
         return null;

@@ -7,26 +7,26 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import org.telegram.messenger.AndroidUtilities;
 public final class kh0 extends Drawable {
-    public final Paint f27860a;
-    public final int f27861b;
-    public boolean f27862c;
+    public final Paint f27863a;
+    public final int f27864b;
+    public boolean f27865c;
     public float d;
-    public long f27863e;
-    public View f27864f;
-    public int f27865g = 255;
+    public long f27866e;
+    public View f27867f;
+    public int f27868g = 255;
     public float h = 300.0f;
 
     public kh0(int i10) {
-        this.f27861b = AndroidUtilities.dp(i10);
+        this.f27864b = AndroidUtilities.dp(i10);
         Paint paint = new Paint(1);
-        this.f27860a = paint;
+        this.f27863a = paint;
         paint.setColor(-1);
     }
 
     public final void a(boolean z10, boolean z11) {
         float f7;
-        if (this.f27862c != z10) {
-            this.f27862c = z10;
+        if (this.f27865c != z10) {
+            this.f27865c = z10;
             if (!z11) {
                 if (z10) {
                     f7 = 1.0f;
@@ -35,7 +35,7 @@ public final class kh0 extends Drawable {
                 }
                 this.d = f7;
             }
-            this.f27863e = AnimationUtils.currentAnimationTimeMillis();
+            this.f27866e = AnimationUtils.currentAnimationTimeMillis();
             invalidateSelf();
         }
     }
@@ -47,12 +47,12 @@ public final class kh0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f27861b;
+        return this.f27864b;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f27861b;
+        return this.f27864b;
     }
 
     @Override
@@ -62,11 +62,11 @@ public final class kh0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f27865g = i10;
+        this.f27868g = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27860a.setColorFilter(colorFilter);
+        this.f27863a.setColorFilter(colorFilter);
     }
 }

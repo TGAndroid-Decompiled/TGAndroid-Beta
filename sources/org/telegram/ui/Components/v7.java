@@ -42,14 +42,14 @@ public final class v7 extends pd {
                 }
                 q81 q81Var = photoViewer.F2;
                 if (q81Var != null) {
-                    if (!b5.d.u() && !photoViewer.f33852r) {
+                    if (!b5.d.u() && !photoViewer.f33854r) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
                     q81Var.O(z11);
                 }
-                org.telegram.ui.as asVar2 = photoViewer.f33900w0;
+                org.telegram.ui.as asVar2 = photoViewer.f33902w0;
                 if (asVar2 != null) {
                     asVar2.a(b5.d.u());
                     return;

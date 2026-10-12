@@ -67,7 +67,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         c6 resourceProvider = m2Var.getResourceProvider();
         this.f3941c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(h6.v(h6.w0(h6.f20559d6, resourceProvider), h6.m1(0.04f, h6.w0(h6.G6, resourceProvider))));
+        setBackgroundColor(h6.v(h6.w0(h6.f20560d6, resourceProvider), h6.m1(0.04f, h6.w0(h6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -94,7 +94,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         addView(aVar, w5.e(-1, -1, 119));
         t91 n10 = aVar.n(9, true);
         this.f3945r = n10;
-        n10.f30822r = 12;
+        n10.f30825r = 12;
         n10.setPreTabClick(new a1.c(ws0Var, 11));
         addView(n10, w5.e(-1, 42, 48));
         i(false);
@@ -107,9 +107,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             ajVar.N1(1, false);
             ajVar.W0 = true;
             ajVar.V0 = false;
-            ajVar.f24362m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            ajVar.f24354j0.f0();
-            ajVar.f24333c2 = new c(this, ajVar, str);
+            ajVar.f24358m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            ajVar.f24350j0.f0();
+            ajVar.f24329c2 = new c(this, ajVar, str);
             ajVar.t1();
             ajVar.show();
         }
@@ -406,7 +406,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         spannableString.setSpan(grVar, 0, 1, 33);
         t91 t91Var = this.f3945r;
         t91Var.a(-1, spannableString);
-        t91Var.f30826x.l();
+        t91Var.f30829x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {

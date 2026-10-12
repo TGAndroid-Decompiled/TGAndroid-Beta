@@ -3,12 +3,12 @@ package org.telegram.ui.Cells;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.wm0;
 public final class i9 implements Runnable {
-    public final int f22060a;
-    public final ba f22061b;
+    public final int f22061a;
+    public final ba f22062b;
 
     public i9(ba baVar, int i10) {
-        this.f22060a = i10;
-        this.f22061b = baVar;
+        this.f22061a = i10;
+        this.f22062b = baVar;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class i9 implements Runnable {
         int m10;
         int i10;
         int p5;
-        switch (this.f22060a) {
+        switch (this.f22061a) {
             case 0:
-                ba baVar = this.f22061b;
+                ba baVar = this.f22062b;
                 if (baVar.N && baVar.E != null) {
                     if (baVar.Z && baVar.W == null) {
                         m10 = AndroidUtilities.dp(8.0f);
@@ -27,7 +27,7 @@ public final class i9 implements Runnable {
                     } else {
                         return;
                     }
-                    if (!baVar.Z && !baVar.f21631j0) {
+                    if (!baVar.Z && !baVar.f21632j0) {
                         if (baVar.O) {
                             if (baVar.W.getBottom() - m10 < baVar.F.getMeasuredHeight() - baVar.o()) {
                                 i10 = baVar.W.getBottom() - baVar.F.getMeasuredHeight();
@@ -52,11 +52,11 @@ public final class i9 implements Runnable {
                 }
                 return;
             default:
-                ba baVar2 = this.f22061b;
+                ba baVar2 = this.f22062b;
                 org.telegram.ui.ActionBar.g4 g4Var = baVar2.Y;
                 if (g4Var != null && !baVar2.P) {
                     g4Var.hide(Long.MAX_VALUE);
-                    AndroidUtilities.runOnUIThread(baVar2.f21638n0, 1000L);
+                    AndroidUtilities.runOnUIThread(baVar2.f21639n0, 1000L);
                     return;
                 }
                 return;

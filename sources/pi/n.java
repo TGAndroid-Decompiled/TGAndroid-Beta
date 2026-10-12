@@ -1,25 +1,15 @@
 package pi;
+
+import java.io.File;
 public final class n {
-    public static final n f45797a;
-    public static final n f45798b;
-    public static final n f45799c;
-    public static final n[] d;
+    public final long f45801a;
+    public final File f45802b;
+    public long f45803c;
+    public boolean d = true;
+    public boolean f45804e;
 
-    static {
-        ?? r02 = new Enum("REBUILT", 0);
-        f45797a = r02;
-        ?? r12 = new Enum("CANCELLED", 1);
-        f45798b = r12;
-        ?? r32 = new Enum("ERROR", 2);
-        f45799c = r32;
-        d = new n[]{r02, r12, r32};
-    }
-
-    public static n valueOf(String str) {
-        return (n) Enum.valueOf(n.class, str);
-    }
-
-    public static n[] values() {
-        return (n[]) d.clone();
+    public n(long j3, File file) {
+        this.f45801a = j3;
+        this.f45802b = file;
     }
 }

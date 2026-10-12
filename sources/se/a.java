@@ -5,14 +5,14 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 import m.y0;
 public final class a {
-    public static final Hashtable f48198b;
-    public static final Object[] f48199c;
+    public static final Hashtable f48206b;
+    public static final Object[] f48207c;
     public static Class d;
-    public final ClassLoader f48200a;
+    public final ClassLoader f48208a;
 
     static {
         Hashtable hashtable = new Hashtable();
-        f48198b = hashtable;
+        f48206b = hashtable;
         hashtable.put("void", Void.TYPE);
         hashtable.put("boolean", Boolean.TYPE);
         hashtable.put("byte", Byte.TYPE);
@@ -22,18 +22,18 @@ public final class a {
         hashtable.put("long", Long.TYPE);
         hashtable.put("float", Float.TYPE);
         hashtable.put("double", Double.TYPE);
-        f48199c = new Object[0];
+        f48207c = new Object[0];
     }
 
     public a(Class cls, String str) {
-        this.f48200a = cls.getClassLoader();
+        this.f48208a = cls.getClassLoader();
     }
 
     public static Class a(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
-        Class cls = (Class) f48198b.get(str);
+        Class cls = (Class) f48206b.get(str);
         if (cls != null) {
             return cls;
         }
@@ -57,7 +57,7 @@ public final class a {
     }
 
     public static s b(y0 y0Var, Object obj, Object obj2) {
-        return new s(y0Var, obj, obj2, f48199c);
+        return new s(y0Var, obj, obj2, f48207c);
     }
 
     public static s c(y0 y0Var, Object obj, Object obj2, Object obj3) {
@@ -66,7 +66,7 @@ public final class a {
 
     public final ra.a d(String str, String str2, String str3, String str4, String str5) {
         int parseInt = Integer.parseInt("1", 16);
-        ClassLoader classLoader = this.f48200a;
+        ClassLoader classLoader = this.f48208a;
         Class a2 = a(classLoader, str2);
         StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int countTokens = stringTokenizer.countTokens();
@@ -88,17 +88,17 @@ public final class a {
         }
         Class a10 = a(classLoader, str5);
         ra.a aVar = new ra.a(3);
-        aVar.f47343b = parseInt;
-        aVar.f47344c = str;
-        aVar.f47345e = a2;
-        aVar.f47347g = clsArr;
+        aVar.f47351b = parseInt;
+        aVar.f47352c = str;
+        aVar.f47353e = a2;
+        aVar.f47355g = clsArr;
         aVar.h = a10;
         return aVar;
     }
 
     public final y0 e(ra.a aVar) {
         y0 y0Var = new y0(20, false);
-        y0Var.f15627b = aVar;
+        y0Var.f15628b = aVar;
         return y0Var;
     }
 }

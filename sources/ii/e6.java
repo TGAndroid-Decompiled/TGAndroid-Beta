@@ -34,7 +34,7 @@ import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Cells.z9;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.dn0;
-import org.telegram.ui.Components.rj0;
+import org.telegram.ui.Components.sj0;
 import org.telegram.ui.Components.su;
 import v7.n8;
 public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x5, n9 {
@@ -46,7 +46,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
     public int I;
     public dn0 J;
     public Drawable K;
-    public rj0 L;
+    public sj0 L;
     public final RectF M;
     public boolean N;
     public int O;
@@ -733,7 +733,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
             LinearLayout linearLayout3 = new LinearLayout(getContext());
             this.f12407s = linearLayout3;
             linearLayout3.setOrientation(0);
-            this.f12407s.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, this.f12400a), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)));
+            this.f12407s.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, this.f12400a), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)));
             this.f12407s.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
             addView(this.f12407s, w7.w5.a(-2.0f, 0.0f, -15.0f, -5.0f, 0.0f, -2, 53));
             TextView textView = new TextView(getContext());
@@ -745,10 +745,10 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
             this.f12408w = imageView;
             imageView.setImageResource(R.drawable.arrows_select);
             this.f12407s.addView(this.f12408w, w7.w5.r(16, 16, 16, 0.0f, 0.66f, 0.0f, 0.0f));
-            ki.q qVar = ki.k.f14892a;
-            synchronized (qVar.f14904a) {
+            ki.q qVar = ki.k.f14893a;
+            synchronized (qVar.f14905a) {
                 try {
-                    if (!qVar.f14911s) {
+                    if (!qVar.f14912s) {
                         qVar.d.execute(new ki.l(qVar, 1));
                     }
                 } catch (Throwable th2) {
@@ -1069,7 +1069,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
             return;
         }
         if (this.L == null) {
-            this.L = new rj0(this);
+            this.L = new sj0(this);
         }
         int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, c6Var);
         float B = org.telegram.messenger.v0.B(8.0f, getHeight(), AndroidUtilities.dp(3.333f));
@@ -1183,14 +1183,14 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
 
     public final int h(int i10, int i11) {
         Layout layout;
-        rj0 rj0Var;
+        sj0 sj0Var;
         int dp;
         boolean z10;
         if (l()) {
             i1 i1Var = this.h;
             if (i1Var.getVisibility() == 0 && (layout = i1Var.getLayout()) != null && layout.getLineCount() > 0) {
                 if (this.L == null) {
-                    this.L = new rj0(this);
+                    this.L = new sj0(this);
                 }
                 boolean z11 = true;
                 int lineCount = layout.getLineCount() - 1;
@@ -1200,7 +1200,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
                 float lineBottom = layout.getLineBottom(lineCount) + i1Var.getPaddingTop() + measuredHeight;
                 int dp2 = AndroidUtilities.dp(3.333f);
                 this.L.getClass();
-                float B = org.telegram.messenger.v0.B(16.0f, i10, dp2) - org.telegram.messenger.v0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + rj0Var.f30169c);
+                float B = org.telegram.messenger.v0.B(16.0f, i10, dp2) - org.telegram.messenger.v0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + sj0Var.f30580c);
                 this.L.getClass();
                 int i12 = i11 - dp2;
                 float dp3 = i12 - AndroidUtilities.dp(17.66f);
@@ -1313,9 +1313,9 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
         if (!super.verifyDrawable(drawable)) {
-            rj0 rj0Var = this.L;
-            if (rj0Var != null) {
-                if (drawable != rj0Var.f30168b && drawable != rj0Var.f30170e) {
+            sj0 sj0Var = this.L;
+            if (sj0Var != null) {
+                if (drawable != sj0Var.f30579b && drawable != sj0Var.f30581e) {
                     return false;
                 }
                 return true;

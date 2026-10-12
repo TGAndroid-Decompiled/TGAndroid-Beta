@@ -8,35 +8,35 @@ import android.util.Property;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class vt0 extends AnimatorListenerAdapter {
-    public final int f42848a;
-    public final boolean f42849b;
-    public final PhotoViewer f42850c;
+    public final int f42850a;
+    public final boolean f42851b;
+    public final PhotoViewer f42852c;
 
     public vt0(PhotoViewer photoViewer, boolean z10, int i10) {
-        this.f42848a = i10;
-        this.f42850c = photoViewer;
-        this.f42849b = z10;
+        this.f42850a = i10;
+        this.f42852c = photoViewer;
+        this.f42851b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f42848a) {
+        switch (this.f42850a) {
             case 1:
-                PhotoViewer photoViewer = this.f42850c;
-                if (animator.equals(photoViewer.f33899w)) {
-                    photoViewer.f33899w = null;
+                PhotoViewer photoViewer = this.f42852c;
+                if (animator.equals(photoViewer.f33901w)) {
+                    photoViewer.f33901w = null;
                     return;
                 }
                 return;
             case 2:
-                PhotoViewer photoViewer2 = this.f42850c;
+                PhotoViewer photoViewer2 = this.f42852c;
                 if (animator.equals(photoViewer2.L)) {
                     photoViewer2.L = null;
                     return;
                 }
                 return;
             case 3:
-                this.f42850c.U7 = null;
+                this.f42852c.U7 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -47,22 +47,22 @@ public final class vt0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        int i11 = this.f42848a;
-        boolean z10 = this.f42849b;
-        PhotoViewer photoViewer = this.f42850c;
+        int i11 = this.f42850a;
+        boolean z10 = this.f42851b;
+        PhotoViewer photoViewer = this.f42852c;
         switch (i11) {
             case 0:
                 if (!z10) {
-                    photoViewer.f33779i3.setVisibility(8);
+                    photoViewer.f33781i3.setVisibility(8);
                     return;
                 }
                 return;
             case 1:
-                if (animator.equals(photoViewer.f33899w)) {
+                if (animator.equals(photoViewer.f33901w)) {
                     if (!z10) {
                         photoViewer.X0.setVisibility(4);
                     }
-                    photoViewer.f33899w = null;
+                    photoViewer.f33901w = null;
                     return;
                 }
                 return;
@@ -70,8 +70,8 @@ public final class vt0 extends AnimatorListenerAdapter {
                 if (animator.equals(photoViewer.L)) {
                     if (!z10) {
                         photoViewer.F.setVisibility(4);
-                        if (photoViewer.f33776i0.getTag() != null) {
-                            photoViewer.f33776i0.setVisibility(4);
+                        if (photoViewer.f33778i0.getTag() != null) {
+                            photoViewer.f33778i0.setVisibility(4);
                         }
                         if (photoViewer.Q1.getTag() != null) {
                             photoViewer.Q1.setVisibility(4);
@@ -93,10 +93,10 @@ public final class vt0 extends AnimatorListenerAdapter {
                         animatorSet.playTogether(ObjectAnimator.ofFloat(iv0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.P7, property, 0.0f));
                     } else {
                         if (photoViewer.S4) {
-                            photoViewer.f33785j0.setVisibility(8);
-                            photoViewer.f33785j0.setAlpha(0.0f);
-                            View view = photoViewer.f33785j0;
-                            if (photoViewer.f33724c2 == 11) {
+                            photoViewer.f33787j0.setVisibility(8);
+                            photoViewer.f33787j0.setAlpha(0.0f);
+                            View view = photoViewer.f33787j0;
+                            if (photoViewer.f33726c2 == 11) {
                                 i10 = -16777216;
                             } else {
                                 i10 = 2130706432;

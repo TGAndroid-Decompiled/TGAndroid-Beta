@@ -10,19 +10,19 @@ import android.graphics.RectF;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class v6 extends LinearLayout {
-    public final Path f53541a;
-    public final Matrix f53542b;
-    public final RadialGradient f53543c;
+    public final Path f53553a;
+    public final Matrix f53554b;
+    public final RadialGradient f53555c;
     public final Paint d;
-    public final org.telegram.ui.Components.q5 f53544e;
+    public final org.telegram.ui.Components.q5 f53556e;
 
     public v6(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.q5 q5Var) {
         super(context);
-        this.f53542b = matrix;
-        this.f53543c = radialGradient;
+        this.f53554b = matrix;
+        this.f53555c = radialGradient;
         this.d = paint;
-        this.f53544e = q5Var;
-        this.f53541a = new Path();
+        this.f53556e = q5Var;
+        this.f53553a = new Path();
     }
 
     @Override
@@ -30,19 +30,19 @@ public final class v6 extends LinearLayout {
         float dp = AndroidUtilities.dp(10.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, AndroidUtilities.dp(2.0f) + 1, getWidth(), getHeight() + dp);
-        Path path = this.f53541a;
+        Path path = this.f53553a;
         path.rewind();
         path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(path);
-        Matrix matrix = this.f53542b;
+        Matrix matrix = this.f53554b;
         matrix.reset();
         matrix.postTranslate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
-        this.f53543c.setLocalMatrix(matrix);
+        this.f53555c.setLocalMatrix(matrix);
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
         canvas.save();
         canvas.translate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
-        i0.a(canvas, 0, this.f53544e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
+        i0.a(canvas, 0, this.f53556e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
         canvas.restore();
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -51,12 +51,12 @@ public final class v6 extends LinearLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f53544e.a();
+        this.f53556e.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f53544e.b();
+        this.f53556e.b();
     }
 }

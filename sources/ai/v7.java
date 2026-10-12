@@ -63,7 +63,7 @@ public final class v7 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f(18));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.g5.f26280a;
+                Pattern pattern = org.telegram.ui.Components.g5.f26278a;
                 return;
             case 13:
                 int i11 = px.H0;
@@ -75,10 +75,10 @@ public final class v7 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f(18));
                 return;
             case 16:
-                int i13 = q11.f29649e;
+                int i13 = q11.f29627e;
                 return;
             case 17:
-                int i14 = zf0.f44807t0;
+                int i14 = zf0.f44812t0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new uk0(tLObject, 3));
@@ -87,10 +87,10 @@ public final class v7 implements RequestDelegate {
                 int i15 = ln0.R;
                 return;
             case 20:
-                List list = xo0.f44083g1;
+                List list = xo0.f44088g1;
                 return;
             default:
-                int i16 = k81.f39374e;
+                int i16 = k81.f39377e;
                 return;
         }
     }

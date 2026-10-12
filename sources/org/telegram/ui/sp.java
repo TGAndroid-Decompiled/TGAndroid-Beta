@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class sp implements Runnable {
-    public final int f41970a;
-    public final tp f41971b;
+    public final int f41974a;
+    public final tp f41975b;
 
     public sp(tp tpVar, int i10) {
-        this.f41970a = i10;
-        this.f41971b = tpVar;
+        this.f41974a = i10;
+        this.f41975b = tpVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41970a) {
+        switch (this.f41974a) {
             case 0:
-                this.f41971b.f42261x.d.P = false;
+                this.f41975b.f42263x.d.P = false;
                 return;
             default:
-                this.f41971b.f42261x.d.P = false;
+                this.f41975b.f42263x.d.P = false;
                 return;
         }
     }

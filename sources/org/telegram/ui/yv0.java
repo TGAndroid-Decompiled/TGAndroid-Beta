@@ -16,7 +16,7 @@ public final class yv0 extends org.telegram.ui.Cells.d6 {
         if (c6Var.isFocused() && c6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                eo.n8(menu, this.F.d.f36547f.h, false, true, true, true);
+                eo.n8(menu, this.F.d.f36549f.h, false, true, true, true);
             }
         }
     }

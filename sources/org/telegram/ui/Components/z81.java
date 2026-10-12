@@ -8,23 +8,23 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public final class z81 extends AsyncTask {
-    public int f33293a = 0;
-    public final Paint f33294b = new Paint(3);
-    public final c91 f33295c;
+    public int f33299a = 0;
+    public final Paint f33300b = new Paint(3);
+    public final c91 f33301c;
 
     public z81(c91 c91Var) {
-        this.f33295c = c91Var;
+        this.f33301c = c91Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Bitmap frameAtTime;
-        c91 c91Var = this.f33295c;
-        this.f33293a = ((Integer[]) objArr)[0].intValue();
+        c91 c91Var = this.f33301c;
+        this.f33299a = ((Integer[]) objArr)[0].intValue();
         Bitmap bitmap = null;
         if (!isCancelled()) {
             try {
-                frameAtTime = c91Var.f24890y.getFrameAtTime(c91Var.H * this.f33293a * 1000, 2);
+                frameAtTime = c91Var.f24885y.getFrameAtTime(c91Var.H * this.f33299a * 1000, 2);
             } catch (Exception e7) {
                 e = e7;
             }
@@ -39,7 +39,7 @@ public final class z81 extends AsyncTask {
                         Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
                         int i10 = c91Var.I;
                         int i11 = c91Var.J;
-                        canvas.drawBitmap(frameAtTime, rect, new Rect((i10 - width) / 2, (i11 - height) / 2, (i10 + width) / 2, (i11 + height) / 2), this.f33294b);
+                        canvas.drawBitmap(frameAtTime, rect, new Rect((i10 - width) / 2, (i11 - height) / 2, (i10 + width) / 2, (i11 + height) / 2), this.f33300b);
                         frameAtTime.recycle();
                         return createBitmap;
                     }
@@ -59,13 +59,13 @@ public final class z81 extends AsyncTask {
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
         if (!isCancelled()) {
-            c91 c91Var = this.f33295c;
+            c91 c91Var = this.f33301c;
             ArrayList arrayList = c91Var.F;
             ?? obj2 = new Object();
-            obj2.f24263a = bitmap;
+            obj2.f24264a = bitmap;
             arrayList.add(obj2);
             c91Var.invalidate();
-            int i10 = this.f33293a;
+            int i10 = this.f33299a;
             if (i10 < c91Var.K) {
                 c91Var.d(i10 + 1);
             }

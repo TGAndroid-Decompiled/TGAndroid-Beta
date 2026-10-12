@@ -43,7 +43,7 @@ public final class ha0 implements ViewTreeObserver.OnGlobalLayoutListener {
             default:
                 zd1 zd1Var = (zd1) obj;
                 zd1Var.P = SystemClock.elapsedRealtime() + 1500;
-                zd1Var.f44763k0.invalidate();
+                zd1Var.f44768k0.invalidate();
                 return;
         }
     }

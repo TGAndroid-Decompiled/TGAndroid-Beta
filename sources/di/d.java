@@ -24,7 +24,7 @@ public final class d extends w1 {
     @Override
     public final void a() {
         v1 v1Var = new v1(this.f8375r);
-        this.f47717a = v1Var;
+        this.f47725a = v1Var;
         v1Var.N = 106;
         int i10 = 0;
         v1Var.M = false;
@@ -32,10 +32,10 @@ public final class d extends w1 {
         v1Var.K = true;
         v1Var.H = true;
         v1Var.J = false;
-        v1Var.f47700m = true;
+        v1Var.f47708m = true;
         v1Var.h = true;
         if (this.f8376s == 1) {
-            v1Var.f47698k = AndroidUtilities.dp(24.0f);
+            v1Var.f47706k = AndroidUtilities.dp(24.0f);
         }
         this.f8374n = new Paint[20];
         while (true) {
@@ -45,11 +45,11 @@ public final class d extends w1 {
                 this.f8374n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f8374n.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
                 i10++;
             } else {
-                v1 v1Var2 = this.f47717a;
-                v1Var2.f47699l = new x7(this, 1);
-                v1Var2.f47705r = 17;
-                v1Var2.f47706s = 18;
-                v1Var2.f47707t = 19;
+                v1 v1Var2 = this.f47725a;
+                v1Var2.f47707l = new x7(this, 1);
+                v1Var2.f47713r = 17;
+                v1Var2.f47714s = 18;
+                v1Var2.f47715t = 19;
                 v1Var2.P = h6.G6;
                 v1Var2.c();
                 return;

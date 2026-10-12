@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class yn {
-    public final bo f44511a;
+    public final bo f44516a;
 
     public yn(bo boVar) {
-        this.f44511a = boVar;
+        this.f44516a = boVar;
     }
 }

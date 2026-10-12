@@ -7,31 +7,31 @@ import android.graphics.PorterDuffXfermode;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public final class qa {
-    public String f29809a;
-    public Bitmap f29810b;
-    public final Paint f29811c;
+    public String f29787a;
+    public Bitmap f29788b;
+    public final Paint f29789c;
     public final int d;
-    public final Runnable f29812e;
-    public org.telegram.messenger.y7 f29813f;
+    public final Runnable f29790e;
+    public org.telegram.messenger.y7 f29791f;
 
     public qa(int i10, Runnable runnable) {
         Paint paint = new Paint(1);
-        this.f29811c = paint;
+        this.f29789c = paint;
         this.d = i10;
-        this.f29812e = runnable;
+        this.f29790e = runnable;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public final void a() {
-        this.f29809a = null;
-        if (this.f29813f != null) {
-            Utilities.globalQueue.cancelRunnable(this.f29813f);
+        this.f29787a = null;
+        if (this.f29791f != null) {
+            Utilities.globalQueue.cancelRunnable(this.f29791f);
         }
-        Bitmap bitmap = this.f29810b;
+        Bitmap bitmap = this.f29788b;
         if (bitmap != null && !bitmap.isRecycled()) {
-            this.f29810b.recycle();
+            this.f29788b.recycle();
         }
-        this.f29810b = null;
+        this.f29788b = null;
     }
 
     public final android.graphics.Bitmap b(android.graphics.Bitmap r9, java.lang.String r10, int r11, int r12, boolean r13) {

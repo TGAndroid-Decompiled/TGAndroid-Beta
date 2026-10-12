@@ -15,8 +15,8 @@ public final class dv extends vh.n {
     public final fa0 U;
     public ja0 V;
     public boolean W;
-    public boolean f25465a0;
-    public boolean f25466b0;
+    public boolean f25470a0;
+    public boolean f25471b0;
 
     public dv(Context context) {
         super(context, null, true);
@@ -50,12 +50,12 @@ public final class dv extends vh.n {
         canvas.save();
         if (!this.W) {
             float f7 = 0.0f;
-            if (this.f25465a0) {
+            if (this.f25470a0) {
                 paddingLeft = 0.0f;
             } else {
                 paddingLeft = getPaddingLeft();
             }
-            if (!this.f25466b0) {
+            if (!this.f25471b0) {
                 f7 = getPaddingTop();
             }
             canvas.translate(paddingLeft, f7);
@@ -79,8 +79,8 @@ public final class dv extends vh.n {
                 this.V = ja0Var;
                 fa0Var.a(ja0Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.V.f27435i);
-                int spanEnd = spannableString.getSpanEnd(this.V.f27435i);
+                int spanStart = spannableString.getSpanStart(this.V.f27429i);
+                int spanEnd = spannableString.getSpanEnd(this.V.f27429i);
                 ca0 b10 = this.V.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
@@ -90,7 +90,7 @@ public final class dv extends vh.n {
             if (motionEvent.getAction() == 1) {
                 fa0Var.d(true);
                 ja0 ja0Var2 = this.V;
-                if (ja0Var2 != null && (characterStyle = ja0Var2.f27435i) == a2) {
+                if (ja0Var2 != null && (characterStyle = ja0Var2.f27429i) == a2) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }
@@ -117,12 +117,12 @@ public final class dv extends vh.n {
 
     @Override
     public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f25465a0 = z10;
+        this.f25470a0 = z10;
     }
 
     @Override
     public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f25466b0 = z10;
+        this.f25471b0 = z10;
     }
 
     @Override

@@ -67,7 +67,7 @@ public final class b extends FrameLayout implements x5 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f19802id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f19803id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -92,14 +92,14 @@ public final class b extends FrameLayout implements x5 {
             paint = null;
         }
         if (paint == null) {
-            paint = h6.f20681k0;
+            paint = h6.f20682k0;
         }
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
 
     @Override
     public final void e() {
-        int i10 = h6.f20963z6;
+        int i10 = h6.f20964z6;
         c6 c6Var = this.f10895a;
         this.f10898e.setColorFilter(h6.w0(i10, c6Var));
         this.f10897c.setTextColor(h6.w0(h6.G6, c6Var));

@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.Timer;
 import org.telegram.messenger.Emoji;
 public final class au extends org.telegram.ui.Components.vm0 {
-    public final Context f35977c;
+    public final Context f35979c;
     public Timer d;
-    public ArrayList f35978e;
-    public final ArrayList f35979f = new ArrayList();
+    public ArrayList f35980e;
+    public final ArrayList f35981f = new ArrayList();
     public final cu h;
 
     public au(cu cuVar, Context context, HashMap hashMap) {
         this.h = cuVar;
-        this.f35977c = context;
+        this.f35979c = context;
         for (List<xt> list : hashMap.values()) {
             for (xt xtVar : list) {
-                this.f35979f.add(xtVar);
+                this.f35981f.add(xtVar);
             }
         }
     }
@@ -31,7 +31,7 @@ public final class au extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final int h() {
-        ArrayList arrayList = this.f35978e;
+        ArrayList arrayList = this.f35980e;
         if (arrayList == null) {
             return 0;
         }
@@ -46,11 +46,11 @@ public final class au extends org.telegram.ui.Components.vm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         String str;
-        xt xtVar = (xt) this.f35978e.get(i10);
-        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47889a;
+        xt xtVar = (xt) this.f35980e.get(i10);
+        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47897a;
         CharSequence replaceEmoji = Emoji.replaceEmoji(cu.V(xtVar), caVar.getTextView().getPaint().getFontMetricsInt(), false);
         if (this.h.h) {
-            str = "+" + xtVar.f44158c;
+            str = "+" + xtVar.f44163c;
         } else {
             str = null;
         }
@@ -59,6 +59,6 @@ public final class au extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(cu.U(this.f35977c));
+        return new s4.d1(cu.U(this.f35979c));
     }
 }

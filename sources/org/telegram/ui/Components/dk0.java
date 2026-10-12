@@ -15,7 +15,7 @@ public class dk0 extends fk0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f25386a1;
+    public int f25389a1;
 
     public dk0(String str, int i10, int i11) {
         super(i10, i11);
@@ -34,7 +34,7 @@ public class dk0 extends fk0 {
         if (TextUtils.isEmpty(str2)) {
             return;
         }
-        this.m0 = RLottieNative.b(str2, this.f26107e, null, null);
+        this.m0 = RLottieNative.b(str2, this.f26109e, null, null);
     }
 
     @Override
@@ -46,12 +46,12 @@ public class dk0 extends fk0 {
         } else if (i10 == 2) {
             rLottieNative = this.U0;
             if (this.X0) {
-                this.f26101a0 = this.f25386a1 - 1;
+                this.f26103a0 = this.f25389a1 - 1;
             }
         } else {
             rLottieNative = this.m0;
         }
-        if (rLottieNative.c(this.f26101a0, bitmap, z10) < 0) {
+        if (rLottieNative.c(this.f26103a0, bitmap, z10) < 0) {
             return 2;
         }
         return 1;
@@ -59,25 +59,25 @@ public class dk0 extends fk0 {
 
     @Override
     public void C(boolean z10) {
-        this.f26115k0 = false;
-        this.f26116l0 = true;
+        this.f26117k0 = false;
+        this.f26118l0 = true;
         n();
         l();
         if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f26132x0) {
+            if (this.P == null && !this.f26134x0) {
                 D(z10);
                 yf.e eVar = this.B0;
                 if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f52373s;
+                    RandomAccessFile randomAccessFile = eVar.f52381s;
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                         } catch (IOException e7) {
                             e7.printStackTrace();
                         }
-                        eVar.f52373s = null;
+                        eVar.f52381s = null;
                     }
-                    eVar.f52372r = true;
+                    eVar.f52380r = true;
                     this.B0 = null;
                 }
                 E();
@@ -98,11 +98,11 @@ public class dk0 extends fk0 {
         if (rLottieNative == null && rLottieNative2 == null) {
             return;
         }
-        sj0 sj0Var = new sj0(1, rLottieNative, rLottieNative2);
+        gi0 gi0Var = new gi0(2, rLottieNative, rLottieNative2);
         if (z10) {
-            DispatchQueuePoolBackground.execute(sj0Var);
+            DispatchQueuePoolBackground.execute(gi0Var);
         } else {
-            Utilities.globalQueue.postRunnable(sj0Var);
+            Utilities.globalQueue.postRunnable(gi0Var);
         }
     }
 
@@ -110,28 +110,28 @@ public class dk0 extends fk0 {
     public void i() {
         int i10 = this.J;
         if (i10 == 1) {
-            int i11 = this.f26101a0 + 1;
+            int i11 = this.f26103a0 + 1;
             int i12 = this.Z0;
             if (i12 == -1) {
-                i12 = this.f26107e[0];
+                i12 = this.f26109e[0];
             }
             if (i11 < i12) {
-                this.f26101a0 = i11;
+                this.f26103a0 = i11;
                 return;
             }
-            this.f26101a0 = 0;
+            this.f26103a0 = 0;
             this.N = false;
             if (this.U0 != null) {
                 this.J = 2;
             }
-            if (this.f26133y) {
-                this.f26131x = null;
-                this.f26133y = false;
+            if (this.f26135y) {
+                this.f26133x = null;
+                this.f26135y = false;
             }
         } else if (i10 == 2) {
-            int i13 = this.f26101a0 + 1;
-            if (i13 < this.f25386a1) {
-                this.f26101a0 = i13;
+            int i13 = this.f26103a0 + 1;
+            if (i13 < this.f25389a1) {
+                this.f26103a0 = i13;
                 return;
             }
             this.N = true;
@@ -141,7 +141,7 @@ public class dk0 extends fk0 {
 
     @Override
     public int j() {
-        if (this.f26116l0) {
+        if (this.f26118l0) {
             return 3;
         }
         if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
@@ -166,7 +166,7 @@ public class dk0 extends fk0 {
         if (!v()) {
             stop();
         }
-        if (this.f26115k0) {
+        if (this.f26117k0) {
             I();
         }
     }

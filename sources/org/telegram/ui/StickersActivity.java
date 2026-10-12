@@ -32,33 +32,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.NumberTextView;
 public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Components.p71 f34323a;
+    public org.telegram.ui.Components.p71 f34325a;
     private int archivedRow;
-    public gg.i0 f34324b;
-    public NumberTextView f34325c;
+    public gg.i0 f34326b;
+    public NumberTextView f34327c;
     public org.telegram.ui.Components.c61 d;
     private int dynamicPackOrder;
-    public ArrayList f34326e;
-    public ArrayList f34327f;
+    public ArrayList f34328e;
+    public ArrayList f34329f;
     private int featuredRow;
     public final ArrayList h;
     private int largeEmojiRow;
-    public org.telegram.ui.ActionBar.u0 f34328n;
-    public int f34329r;
-    public boolean f34330s;
+    public org.telegram.ui.ActionBar.u0 f34330n;
+    public int f34331r;
+    public boolean f34332s;
     private int suggestRow;
     public final int v;
-    public ArrayList f34331w;
-    public final HashSet f34332x;
-    public final eb1 f34333y;
+    public ArrayList f34333w;
+    public final HashSet f34334x;
+    public final eb1 f34335y;
 
     public StickersActivity(int i10, ArrayList arrayList) {
         super(null);
         this.h = new ArrayList();
-        this.f34332x = new HashSet();
-        this.f34333y = new eb1(this, 0);
+        this.f34334x = new HashSet();
+        this.f34335y = new eb1(this, 0);
         this.v = i10;
-        this.f34331w = arrayList;
+        this.f34333w = arrayList;
     }
 
     public static void U(StickersActivity stickersActivity, org.telegram.ui.Components.u61 u61Var, View view) {
@@ -68,7 +68,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         Object obj = u61Var.G;
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-            if (stickersActivity.f34332x.isEmpty()) {
+            if (stickersActivity.f34334x.isEmpty()) {
                 ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
                 if (arrayList != null && !arrayList.isEmpty()) {
                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
@@ -76,7 +76,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                         ArrayList arrayList2 = new ArrayList();
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                         TLRPC.StickerSet stickerSet2 = tL_messages_stickerSet.set;
-                        tL_inputStickerSetID.f19822id = stickerSet2.f19829id;
+                        tL_inputStickerSetID.f19823id = stickerSet2.f19830id;
                         tL_inputStickerSetID.access_hash = stickerSet2.access_hash;
                         arrayList2.add(tL_inputStickerSetID);
                         stickersActivity.showDialog(new org.telegram.ui.Components.lw(stickersActivity, stickersActivity.getParentActivity(), stickersActivity.getResourceProvider(), arrayList2));
@@ -94,7 +94,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         if (obj instanceof TLRPC.StickerSetCovered) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
             TLRPC.StickerSet stickerSet3 = ((TLRPC.StickerSetCovered) obj).set;
-            tL_inputStickerSetID2.f19822id = stickerSet3.f19829id;
+            tL_inputStickerSetID2.f19823id = stickerSet3.f19830id;
             tL_inputStickerSetID2.access_hash = stickerSet3.access_hash;
             if (i10 == 5) {
                 ArrayList arrayList3 = new ArrayList(1);
@@ -117,7 +117,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                             if (stickerSetCovered != null && stickerSetCovered.set != null) {
                                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
                                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
-                                tL_inputStickerSetID3.f19822id = stickerSet4.f19829id;
+                                tL_inputStickerSetID3.f19823id = stickerSet4.f19830id;
                                 tL_inputStickerSetID3.access_hash = stickerSet4.access_hash;
                                 arrayList4.add(tL_inputStickerSetID3);
                             }
@@ -178,7 +178,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
     }
 
     public static void V(StickersActivity stickersActivity, ArrayList arrayList) {
-        eb1 eb1Var = stickersActivity.f34333y;
+        eb1 eb1Var = stickersActivity.f34335y;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -190,8 +190,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                 arrayList2.add((TLRPC.TL_messages_stickerSet) obj2);
             }
         }
-        stickersActivity.f34326e = arrayList2;
-        stickersActivity.f34330s = true;
+        stickersActivity.f34328e = arrayList2;
+        stickersActivity.f34332s = true;
         Collections.sort(MediaDataController.getInstance(stickersActivity.currentAccount).getStickerSets(stickersActivity.v), new yt(stickersActivity, 3));
         AndroidUtilities.cancelRunOnUIThread(eb1Var);
         AndroidUtilities.runOnUIThread(eb1Var, 1000L);
@@ -201,12 +201,12 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         org.telegram.ui.Cells.p3 p3Var = (org.telegram.ui.Cells.p3) view.getParent();
         TLRPC.StickerSetCovered stickerSet = p3Var.getStickerSet();
         ArrayList arrayList = stickersActivity.h;
-        if (arrayList.contains(Long.valueOf(stickerSet.set.f19829id))) {
+        if (arrayList.contains(Long.valueOf(stickerSet.set.f19830id))) {
             return;
         }
-        arrayList.add(Long.valueOf(stickerSet.set.f19829id));
-        p3Var.f22406e.a(true, true);
-        if (p3Var.f22410s) {
+        arrayList.add(Long.valueOf(stickerSet.set.f19830id));
+        p3Var.f22407e.a(true, true);
+        if (p3Var.f22411s) {
             MediaDataController.getInstance(stickersActivity.currentAccount).toggleStickerSet(stickersActivity.getParentActivity(), stickerSet, 0, stickersActivity, false, false);
         } else {
             MediaDataController.getInstance(stickersActivity.currentAccount).toggleStickerSet(stickersActivity.getParentActivity(), stickerSet, 2, stickersActivity, false, false);
@@ -235,11 +235,11 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             ViewGroup viewGroup = (ViewGroup) view.getParent();
             if ((viewGroup.getParent() instanceof org.telegram.ui.Cells.m8) && (stickersSet = (m8Var = (org.telegram.ui.Cells.m8) viewGroup.getParent()).getStickersSet()) != null && stickersSet.set != null) {
                 int i10 = 0;
-                if (m8Var.f22236y == view) {
+                if (m8Var.f22237y == view) {
                     ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = stickersActivity.getMediaDataController().getFeaturedEmojiSets();
                     while (true) {
                         if (i10 < featuredEmojiSets.size()) {
-                            if (stickersSet.set.f19829id == featuredEmojiSets.get(i10).set.f19829id) {
+                            if (stickersSet.set.f19830id == featuredEmojiSets.get(i10).set.f19830id) {
                                 stickerSetCovered = featuredEmojiSets.get(i10);
                                 break;
                             }
@@ -250,8 +250,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                         }
                     }
                     if (stickerSetCovered != null) {
-                        if (!arrayList.contains(Long.valueOf(stickerSetCovered.set.f19829id))) {
-                            arrayList.add(Long.valueOf(stickerSetCovered.set.f19829id));
+                        if (!arrayList.contains(Long.valueOf(stickerSetCovered.set.f19830id))) {
+                            arrayList.add(Long.valueOf(stickerSetCovered.set.f19830id));
                         } else {
                             return;
                         }
@@ -301,7 +301,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                 }
                 TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(stickersActivity.currentAccount).getReactionsMap().get(doubleTapReaction);
                 if (tL_availableReaction != null) {
-                    caVar.getValueBackupImageView().getImageReceiver().setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "100_100_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon.thumbs, org.telegram.ui.ActionBar.h6.f20503a7, 1.0f), "webp", tL_availableReaction, 1);
+                    caVar.getValueBackupImageView().getImageReceiver().setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "100_100_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon.thumbs, org.telegram.ui.ActionBar.h6.f20504a7, 1.0f), "webp", tL_availableReaction, 1);
                 }
             }
         }
@@ -321,27 +321,27 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         ArrayList arrayList2 = stickersActivity.h;
         int i16 = stickersActivity.v;
         MediaDataController mediaDataController = MediaDataController.getInstance(stickersActivity.currentAccount);
-        org.telegram.ui.Components.p71 p71Var = stickersActivity.f34323a;
-        if (p71Var == null || (!p71Var.f29439a3 && !stickersActivity.f34330s && stickersActivity.f34329r <= 0)) {
+        org.telegram.ui.Components.p71 p71Var = stickersActivity.f34325a;
+        if (p71Var == null || (!p71Var.f29442a3 && !stickersActivity.f34332s && stickersActivity.f34331r <= 0)) {
             if (i16 == 5) {
                 ArrayList arrayList3 = new ArrayList(MessagesController.getInstance(stickersActivity.currentAccount).filterPremiumStickers(mediaDataController.getStickerSets(i16)));
-                stickersActivity.f34331w = arrayList3;
-                stickersActivity.f34326e = arrayList3;
+                stickersActivity.f34333w = arrayList3;
+                stickersActivity.f34328e = arrayList3;
             } else {
-                stickersActivity.f34326e = new ArrayList(MessagesController.getInstance(stickersActivity.currentAccount).filterPremiumStickers(mediaDataController.getStickerSets(i16)));
+                stickersActivity.f34328e = new ArrayList(MessagesController.getInstance(stickersActivity.currentAccount).filterPremiumStickers(mediaDataController.getStickerSets(i16)));
             }
         }
-        stickersActivity.f34327f = new ArrayList(stickersActivity.k0());
+        stickersActivity.f34329f = new ArrayList(stickersActivity.k0());
         int i17 = 0;
         int i18 = 0;
-        while (i18 < stickersActivity.f34327f.size()) {
-            if (arrayList2.contains(Long.valueOf(((TLRPC.StickerSetCovered) stickersActivity.f34327f.get(i18)).set.f19829id))) {
-                stickersActivity.f34327f.remove(i18);
+        while (i18 < stickersActivity.f34329f.size()) {
+            if (arrayList2.contains(Long.valueOf(((TLRPC.StickerSetCovered) stickersActivity.f34329f.get(i18)).set.f19830id))) {
+                stickersActivity.f34329f.remove(i18);
                 i18--;
             }
             i18++;
         }
-        int size = stickersActivity.f34327f.size();
+        int size = stickersActivity.f34329f.size();
         int archivedStickersCount = mediaDataController.getArchivedStickersCount(i16);
         int size2 = mediaDataController.getStickerSets(5).size();
         if (i16 == 0) {
@@ -376,9 +376,9 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             }
             org.telegram.ui.Components.u61 u61Var = new org.telegram.ui.Components.u61(43);
             u61Var.d = 3;
-            u61Var.f31075k = i20;
-            u61Var.f31076l = string3;
-            u61Var.f31077m = str2;
+            u61Var.f31070k = i20;
+            u61Var.f31071l = string3;
+            u61Var.f31072m = str2;
             arrayList.add(u61Var);
         } else if (archivedStickersCount > 0) {
             stickersActivity.archivedRow = arrayList.size();
@@ -402,8 +402,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             String string4 = LocaleController.getString(R.string.DoubleTapSetting);
             org.telegram.ui.Components.u61 u61Var2 = new org.telegram.ui.Components.u61(43);
             u61Var2.d = 4;
-            u61Var2.f31075k = i21;
-            u61Var2.f31076l = string4;
+            u61Var2.f31070k = i21;
+            u61Var2.f31071l = string4;
             u61Var2.F = new t3(stickersActivity, 23);
             arrayList.add(u61Var2);
             if (i16 == 5) {
@@ -427,8 +427,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             }
             org.telegram.ui.Components.u61 u61Var3 = new org.telegram.ui.Components.u61(43);
             u61Var3.d = 5;
-            u61Var3.f31076l = string5;
-            u61Var3.f31077m = string;
+            u61Var3.f31071l = string5;
+            u61Var3.f31072m = string;
             arrayList.add(u61Var3);
             stickersActivity.largeEmojiRow = arrayList.size();
             org.telegram.ui.Components.u61 i23 = org.telegram.ui.Components.u61.i(6, LocaleController.getString(R.string.LargeEmoji));
@@ -446,9 +446,9 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             arrayList.add(i25);
             hg.c.p(R.string.SuggestAnimatedEmojiInfo, arrayList);
         }
-        if (stickersActivity.f34326e.size() > 0) {
+        if (stickersActivity.f34328e.size() > 0) {
             h71Var.U();
-            if (i16 == 5 || (!stickersActivity.f34327f.isEmpty() && i16 == 0)) {
+            if (i16 == 5 || (!stickersActivity.f34329f.isEmpty() && i16 == 0)) {
                 if (i16 == 5) {
                     i13 = R.string.ChooseStickerMyEmojiPacks;
                 } else {
@@ -457,20 +457,20 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                 com.google.android.gms.internal.vision.e2.n(i13, arrayList);
             }
             h71Var.M();
-            ArrayList arrayList4 = stickersActivity.f34326e;
+            ArrayList arrayList4 = stickersActivity.f34328e;
             int i26 = 0;
             for (int size3 = arrayList4.size(); i26 < size3; size3 = size3) {
                 Object obj = arrayList4.get(i26);
                 i26++;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                int i27 = org.telegram.ui.Cells.l8.f22191a;
+                int i27 = org.telegram.ui.Cells.l8.f22192a;
                 org.telegram.ui.Components.u61 J = org.telegram.ui.Components.u61.J(org.telegram.ui.Cells.l8.class);
                 J.G = tL_messages_stickerSet;
                 J.D = new View.OnClickListener(stickersActivity) {
-                    public final StickersActivity f37698b;
+                    public final StickersActivity f37702b;
 
                     {
-                        this.f37698b = stickersActivity;
+                        this.f37702b = stickersActivity;
                     }
 
                     @Override
@@ -480,7 +480,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                 if (view != null && (view.getParent() instanceof org.telegram.ui.Cells.m8)) {
                                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view.getParent();
                                     final TLRPC.TL_messages_stickerSet stickersSet = m8Var.getStickersSet();
-                                    final StickersActivity stickersActivity2 = this.f37698b;
+                                    final StickersActivity stickersActivity2 = this.f37702b;
                                     org.telegram.ui.Components.s80 H = org.telegram.ui.Components.s80.H(stickersActivity2, m8Var);
                                     H.c(R.drawable.msg_archive, LocaleController.getString(R.string.StickersHide), new Runnable() {
                                         @Override
@@ -556,7 +556,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                             }
                                         }
                                     }, !stickersSet.set.official);
-                                    H.c(R.drawable.msg_reorder, LocaleController.getString(R.string.StickersReorder), new w31(9, stickersActivity2, m8Var), false);
+                                    H.c(R.drawable.msg_reorder, LocaleController.getString(R.string.StickersReorder), new u31(10, stickersActivity2, m8Var), false);
                                     H.l(R.drawable.msg_share, LocaleController.getString(R.string.StickersShare), new Runnable() {
                                         @Override
                                         public final void run() {
@@ -637,19 +637,19 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                 }
                                 return;
                             case 1:
-                                StickersActivity.Z(this.f37698b, view);
+                                StickersActivity.Z(this.f37702b, view);
                                 return;
                             default:
-                                StickersActivity.X(this.f37698b, view);
+                                StickersActivity.X(this.f37702b, view);
                                 return;
                         }
                     }
                 };
                 J.E = new View.OnClickListener(stickersActivity) {
-                    public final StickersActivity f37698b;
+                    public final StickersActivity f37702b;
 
                     {
-                        this.f37698b = stickersActivity;
+                        this.f37702b = stickersActivity;
                     }
 
                     @Override
@@ -659,7 +659,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                 if (view != null && (view.getParent() instanceof org.telegram.ui.Cells.m8)) {
                                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view.getParent();
                                     final TLRPC.TL_messages_stickerSet stickersSet = m8Var.getStickersSet();
-                                    final StickersActivity stickersActivity2 = this.f37698b;
+                                    final StickersActivity stickersActivity2 = this.f37702b;
                                     org.telegram.ui.Components.s80 H = org.telegram.ui.Components.s80.H(stickersActivity2, m8Var);
                                     H.c(R.drawable.msg_archive, LocaleController.getString(R.string.StickersHide), new Runnable() {
                                         @Override
@@ -735,7 +735,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                             }
                                         }
                                     }, !stickersSet.set.official);
-                                    H.c(R.drawable.msg_reorder, LocaleController.getString(R.string.StickersReorder), new w31(9, stickersActivity2, m8Var), false);
+                                    H.c(R.drawable.msg_reorder, LocaleController.getString(R.string.StickersReorder), new u31(10, stickersActivity2, m8Var), false);
                                     H.l(R.drawable.msg_share, LocaleController.getString(R.string.StickersShare), new Runnable() {
                                         @Override
                                         public final void run() {
@@ -816,15 +816,15 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                 }
                                 return;
                             case 1:
-                                StickersActivity.Z(this.f37698b, view);
+                                StickersActivity.Z(this.f37702b, view);
                                 return;
                             default:
-                                StickersActivity.X(this.f37698b, view);
+                                StickersActivity.X(this.f37702b, view);
                                 return;
                         }
                     }
                 };
-                J.K(stickersActivity.f34332x.contains(Long.valueOf(tL_messages_stickerSet.set.f19829id)));
+                J.K(stickersActivity.f34334x.contains(Long.valueOf(tL_messages_stickerSet.set.f19830id)));
                 arrayList.add(J);
             }
             charSequence = null;
@@ -838,14 +838,14 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         } else {
             charSequence = null;
         }
-        if (stickersActivity.f34327f.size() > 3) {
-            stickersActivity.f34327f = new ArrayList(stickersActivity.f34327f.subList(0, 3));
+        if (stickersActivity.f34329f.size() > 3) {
+            stickersActivity.f34329f = new ArrayList(stickersActivity.f34329f.subList(0, 3));
             z10 = true;
         } else {
             z10 = false;
         }
-        if (i16 == 5 && !stickersActivity.f34327f.isEmpty()) {
-            if (stickersActivity.f34326e.size() > 0) {
+        if (i16 == 5 && !stickersActivity.f34329f.isEmpty()) {
+            if (stickersActivity.f34328e.size() > 0) {
                 arrayList.add(org.telegram.ui.Components.u61.B(charSequence));
             }
             if (i16 == 5) {
@@ -854,20 +854,20 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                 i12 = R.string.FeaturedStickers;
             }
             com.google.android.gms.internal.vision.e2.n(i12, arrayList);
-            ArrayList arrayList5 = stickersActivity.f34327f;
+            ArrayList arrayList5 = stickersActivity.f34329f;
             int size4 = arrayList5.size();
             while (i17 < size4) {
                 Object obj2 = arrayList5.get(i17);
                 i17++;
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) obj2;
-                int i28 = org.telegram.ui.Cells.o3.f22351a;
+                int i28 = org.telegram.ui.Cells.o3.f22352a;
                 org.telegram.ui.Components.u61 J2 = org.telegram.ui.Components.u61.J(org.telegram.ui.Cells.o3.class);
                 J2.G = stickerSetCovered;
                 J2.D = new View.OnClickListener(stickersActivity) {
-                    public final StickersActivity f37698b;
+                    public final StickersActivity f37702b;
 
                     {
-                        this.f37698b = stickersActivity;
+                        this.f37702b = stickersActivity;
                     }
 
                     @Override
@@ -877,7 +877,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                 if (view != null && (view.getParent() instanceof org.telegram.ui.Cells.m8)) {
                                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view.getParent();
                                     final TLRPC.TL_messages_stickerSet stickersSet = m8Var.getStickersSet();
-                                    final StickersActivity stickersActivity2 = this.f37698b;
+                                    final StickersActivity stickersActivity2 = this.f37702b;
                                     org.telegram.ui.Components.s80 H = org.telegram.ui.Components.s80.H(stickersActivity2, m8Var);
                                     H.c(R.drawable.msg_archive, LocaleController.getString(R.string.StickersHide), new Runnable() {
                                         @Override
@@ -953,7 +953,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                             }
                                         }
                                     }, !stickersSet.set.official);
-                                    H.c(R.drawable.msg_reorder, LocaleController.getString(R.string.StickersReorder), new w31(9, stickersActivity2, m8Var), false);
+                                    H.c(R.drawable.msg_reorder, LocaleController.getString(R.string.StickersReorder), new u31(10, stickersActivity2, m8Var), false);
                                     H.l(R.drawable.msg_share, LocaleController.getString(R.string.StickersShare), new Runnable() {
                                         @Override
                                         public final void run() {
@@ -1034,20 +1034,20 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                 }
                                 return;
                             case 1:
-                                StickersActivity.Z(this.f37698b, view);
+                                StickersActivity.Z(this.f37702b, view);
                                 return;
                             default:
-                                StickersActivity.X(this.f37698b, view);
+                                StickersActivity.X(this.f37702b, view);
                                 return;
                         }
                     }
                 };
-                J2.f31084t = arrayList2.contains(Long.valueOf(stickerSetCovered.set.f19829id));
+                J2.f31079t = arrayList2.contains(Long.valueOf(stickerSetCovered.set.f19830id));
                 arrayList.add(J2);
             }
             if (z10) {
                 org.telegram.ui.Components.u61 c10 = org.telegram.ui.Components.u61.c(8, R.drawable.msg2_trending, LocaleController.getString(R.string.ShowMoreEmojiPacks));
-                c10.f31081q = true;
+                c10.f31076q = true;
                 arrayList.add(c10);
             }
         }
@@ -1069,10 +1069,10 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         int i12 = 0;
         if (i10 == 2) {
             StringBuilder sb2 = new StringBuilder();
-            int size = stickersActivity.f34326e.size();
+            int size = stickersActivity.f34328e.size();
             for (int i13 = 0; i13 < size; i13++) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) stickersActivity.f34326e.get(i13);
-                if (stickersActivity.f34332x.contains(Long.valueOf(tL_messages_stickerSet.set.f19829id))) {
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) stickersActivity.f34328e.get(i13);
+                if (stickersActivity.f34334x.contains(Long.valueOf(tL_messages_stickerSet.set.f19830id))) {
                     if (sb2.length() != 0) {
                         sb2.append("\n");
                     }
@@ -1081,14 +1081,14 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             }
             String sb3 = sb2.toString();
             org.telegram.ui.Components.sr0 O0 = org.telegram.ui.Components.sr0.O0(stickersActivity.fragmentView.getContext(), null, sb3, false, sb3);
-            O0.f30654s0 = new lw0(stickersActivity, 2);
+            O0.f30656s0 = new lw0(stickersActivity, 2);
             O0.show();
         } else if (i10 == 0 || i10 == 1) {
-            ArrayList arrayList = new ArrayList(stickersActivity.f34332x.size());
-            int size2 = stickersActivity.f34326e.size();
+            ArrayList arrayList = new ArrayList(stickersActivity.f34334x.size());
+            int size2 = stickersActivity.f34328e.size();
             for (int i14 = 0; i14 < size2; i14++) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) stickersActivity.f34326e.get(i14);
-                if (stickersActivity.f34332x.contains(Long.valueOf(tL_messages_stickerSet2.set.f19829id))) {
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) stickersActivity.f34328e.get(i14);
+                if (stickersActivity.f34334x.contains(Long.valueOf(tL_messages_stickerSet2.set.f19830id))) {
                     arrayList.add(tL_messages_stickerSet2.set);
                 }
             }
@@ -1097,29 +1097,29 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                 if (size3 != 1) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(stickersActivity.getParentActivity());
                     if (i10 == 1) {
-                        alertDialog$Builder.f20141a.R = LocaleController.formatString(R.string.DeleteStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3, new Object[0]));
-                        alertDialog$Builder.f20141a.T = LocaleController.formatString(R.string.DeleteStickersAlertMessage, Integer.valueOf(size3));
+                        alertDialog$Builder.f20142a.R = LocaleController.formatString(R.string.DeleteStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3, new Object[0]));
+                        alertDialog$Builder.f20142a.T = LocaleController.formatString(R.string.DeleteStickersAlertMessage, Integer.valueOf(size3));
                         string = LocaleController.getString(R.string.Delete);
                     } else {
-                        alertDialog$Builder.f20141a.R = LocaleController.formatString(R.string.ArchiveStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3, new Object[0]));
-                        alertDialog$Builder.f20141a.T = LocaleController.formatString(R.string.ArchiveStickersAlertMessage, Integer.valueOf(size3));
+                        alertDialog$Builder.f20142a.R = LocaleController.formatString(R.string.ArchiveStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3, new Object[0]));
+                        alertDialog$Builder.f20142a.T = LocaleController.formatString(R.string.ArchiveStickersAlertMessage, Integer.valueOf(size3));
                         string = LocaleController.getString(R.string.Archive);
                     }
                     alertDialog$Builder.k(string, new gg.c2(stickersActivity, arrayList, i10, 17));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
                     stickersActivity.showDialog(a2Var);
                     if (i10 == 1 && (textView = (TextView) a2Var.d(-1)) != null) {
-                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20799q7, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20800q7, false));
                         return;
                     }
                     return;
                 }
-                int size4 = stickersActivity.f34326e.size();
+                int size4 = stickersActivity.f34328e.size();
                 while (true) {
                     if (i12 < size4) {
-                        TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) stickersActivity.f34326e.get(i12);
-                        if (stickersActivity.f34332x.contains(Long.valueOf(tL_messages_stickerSet3.set.f19829id))) {
+                        TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) stickersActivity.f34328e.get(i12);
+                        if (stickersActivity.f34334x.contains(Long.valueOf(tL_messages_stickerSet3.set.f19830id))) {
                             if (i10 == 0) {
                                 MediaDataController mediaDataController = MediaDataController.getInstance(stickersActivity.currentAccount);
                                 Activity parentActivity = stickersActivity.getParentActivity();
@@ -1151,13 +1151,13 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                                         FileLog.e(e10);
                                     }
                                 } else if (i10 == 4) {
-                                    HashSet hashSet = stickersActivity2.f34332x;
-                                    if (hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f19829id))) {
-                                        hashSet.remove(Long.valueOf(tL_messages_stickerSet3.set.f19829id));
+                                    HashSet hashSet = stickersActivity2.f34334x;
+                                    if (hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f19830id))) {
+                                        hashSet.remove(Long.valueOf(tL_messages_stickerSet3.set.f19830id));
                                     } else {
-                                        hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f19829id));
+                                        hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f19830id));
                                     }
-                                    stickersActivity2.f34323a.W2.N(true);
+                                    stickersActivity2.f34325a.W2.N(true);
                                     stickersActivity2.i0();
                                 }
                             }
@@ -1190,24 +1190,24 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         this.actionBar.setActionBarMenuOnItemClick(new f51(this, 4));
         org.telegram.ui.ActionBar.y k10 = this.actionBar.k(null);
         NumberTextView numberTextView = new NumberTextView(k10.getContext());
-        this.f34325c = numberTextView;
+        this.f34327c = numberTextView;
         numberTextView.setTextSize(18);
-        this.f34325c.setTypeface(AndroidUtilities.bold());
-        this.f34325c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20947y8, false));
-        k10.addView(this.f34325c, w7.w5.m(1.0f, 0, -1, 72, 0, 0));
-        this.f34325c.setOnTouchListener(new bi.d(2));
+        this.f34327c.setTypeface(AndroidUtilities.bold());
+        this.f34327c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20948y8, false));
+        k10.addView(this.f34327c, w7.w5.m(1.0f, 0, -1, 72, 0, 0));
+        this.f34327c.setOnTouchListener(new bi.d(2));
         k10.g(2, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
         k10.g(0, R.drawable.msg_archive, AndroidUtilities.dp(54.0f));
-        this.f34328n = k10.g(1, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
-        if (i10 == 5 && (arrayList = this.f34331w) != null) {
-            this.f34326e = arrayList;
+        this.f34330n = k10.g(1, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
+        if (i10 == 5 && (arrayList = this.f34333w) != null) {
+            this.f34328e = arrayList;
         } else {
-            this.f34326e = new ArrayList(MessagesController.getInstance(this.currentAccount).filterPremiumStickers(MediaDataController.getInstance(this.currentAccount).getStickerSets(i10)));
+            this.f34328e = new ArrayList(MessagesController.getInstance(this.currentAccount).filterPremiumStickers(MediaDataController.getInstance(this.currentAccount).getStickerSets(i10)));
         }
-        this.f34327f = k0();
+        this.f34329f = k0();
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20503a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false));
         org.telegram.ui.Components.p71 p71Var = new org.telegram.ui.Components.p71(this, new Utilities.Callback2(this) {
             public final StickersActivity f38322b;
 
@@ -1228,12 +1228,12 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                 }
             }
         }, new ib1(this), new ib1(this));
-        this.f34323a = p71Var;
+        this.f34325a = p71Var;
         p71Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f34323a);
-        this.f34323a.setFocusable(true);
-        this.f34323a.setTag(7);
-        this.f34323a.C1(new Utilities.Callback2(this) {
+        this.actionBar.setAdaptiveBackground(this.f34325a);
+        this.f34325a.setFocusable(true);
+        this.f34325a.setTag(7);
+        this.f34325a.C1(new Utilities.Callback2(this) {
             public final StickersActivity f38322b;
 
             {
@@ -1254,10 +1254,10 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             }
         }, false);
         gg.i0 i0Var = new gg.i0(this, 7);
-        this.f34324b = i0Var;
+        this.f34326b = i0Var;
         i0Var.j1(1);
-        this.f34323a.setLayoutManager(this.f34324b);
-        frameLayout.addView(this.f34323a, w7.w5.d(-1.0f, -1));
+        this.f34325a.setLayoutManager(this.f34326b);
+        frameLayout.addView(this.f34325a, w7.w5.d(-1.0f, -1));
         return this.fragmentView;
     }
 
@@ -1269,51 +1269,51 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             if (((Integer) objArr[0]).intValue() == i13) {
                 this.h.clear();
             }
-            this.f34323a.W2.N(true);
+            this.f34325a.W2.N(true);
         } else if (i10 != NotificationCenter.featuredStickersDidLoad && i10 != NotificationCenter.featuredEmojiDidLoad) {
             if (i10 == NotificationCenter.archivedStickersCountDidLoad && ((Integer) objArr[0]).intValue() == i13) {
-                this.f34323a.W2.N(true);
+                this.f34325a.W2.N(true);
             }
         } else {
-            this.f34323a.W2.N(true);
+            this.f34325a.W2.N(true);
         }
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        int i10 = org.telegram.ui.ActionBar.h6.f20559d6;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 16, new Class[]{org.telegram.ui.Cells.m8.class, org.telegram.ui.Cells.ca.class, org.telegram.ui.Cells.w8.class}, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f20503a7));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 32768, null, null, null, null, org.telegram.ui.ActionBar.h6.f20839s8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.h6.f20894v8));
+        int i10 = org.telegram.ui.ActionBar.h6.f20560d6;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 16, new Class[]{org.telegram.ui.Cells.m8.class, org.telegram.ui.Cells.ca.class, org.telegram.ui.Cells.w8.class}, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f20504a7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 32768, null, null, null, null, org.telegram.ui.ActionBar.h6.f20840s8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.h6.f20895v8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.h6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f20858t8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f20859t8));
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i11 = org.telegram.ui.ActionBar.h6.f20947y8;
+        int i11 = org.telegram.ui.ActionBar.h6.f20948y8;
         arrayList.add(new org.telegram.ui.ActionBar.j6(kVar, 512, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1048576, null, null, null, null, org.telegram.ui.ActionBar.h6.f20912w8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 2097152, null, null, null, null, org.telegram.ui.ActionBar.h6.f20931x8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 4194304, null, null, null, null, org.telegram.ui.ActionBar.h6.f20965z8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325c, 4, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 4096, null, null, null, null, org.telegram.ui.ActionBar.h6.f20650i6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.h6.f20681k0, null, null, org.telegram.ui.ActionBar.h6.f20560d7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1048576, null, null, null, null, org.telegram.ui.ActionBar.h6.f20913w8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 2097152, null, null, null, null, org.telegram.ui.ActionBar.h6.f20932x8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 4194304, null, null, null, null, org.telegram.ui.ActionBar.h6.f20966z8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34327c, 4, null, null, null, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 4096, null, null, null, null, org.telegram.ui.ActionBar.h6.f20651i6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.h6.f20682k0, null, null, org.telegram.ui.ActionBar.h6.f20561d7));
         int i12 = org.telegram.ui.ActionBar.h6.G6;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"textView"}, null, null, -1, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.M6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.N6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.e9.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.B6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 2, new Class[]{org.telegram.ui.Cells.e9.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.J6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"textView"}, null, null, -1, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.I6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"textView"}, null, null, -1, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.f20963z6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 196608, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"optionsButton"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.Vh));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"textView"}, null, null, -1, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.M6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.N6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.e9.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.B6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 2, new Class[]{org.telegram.ui.Cells.e9.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.J6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"textView"}, null, null, -1, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.I6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"textView"}, null, null, -1, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.f20964z6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 196608, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"optionsButton"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.Vh));
         int i13 = org.telegram.ui.ActionBar.h6.Uh;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"optionsButton"}, null, null, -1, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"reorderButton"}, null, null, -1, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 8192, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"checkBox"}, null, null, -1, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34323a, 16384, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.f20688k7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"optionsButton"}, null, null, -1, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 0, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"reorderButton"}, null, null, -1, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 8192, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"checkBox"}, null, null, -1, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34325a, 16384, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.f20689k7));
         org.telegram.ui.Components.c61 c61Var = this.d;
         if (c61Var != null) {
             arrayList.addAll(c61Var.getThemeDescriptions());
@@ -1336,13 +1336,13 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
     }
 
     public final void i0() {
-        HashSet hashSet = this.f34332x;
+        HashSet hashSet = this.f34334x;
         int size = hashSet.size();
         boolean u10 = this.actionBar.u();
         int i10 = 0;
         if (size > 0) {
             if (hashSet.size() > 0) {
-                ArrayList arrayList = this.f34326e;
+                ArrayList arrayList = this.f34328e;
                 int size2 = arrayList.size();
                 int i11 = 0;
                 while (true) {
@@ -1352,7 +1352,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                     Object obj = arrayList.get(i11);
                     i11++;
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                    if (hashSet.contains(Long.valueOf(tL_messages_stickerSet.set.f19829id))) {
+                    if (hashSet.contains(Long.valueOf(tL_messages_stickerSet.set.f19830id))) {
                         TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                         if (stickerSet.official && !stickerSet.emojis) {
                             i10 = 8;
@@ -1360,14 +1360,14 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
                         }
                     }
                 }
-                if (this.f34328n.getVisibility() != i10) {
-                    this.f34328n.setVisibility(i10);
+                if (this.f34330n.getVisibility() != i10) {
+                    this.f34330n.setVisibility(i10);
                 }
             }
-            this.f34325c.a(size, u10);
+            this.f34327c.a(size, u10);
             if (!u10) {
                 this.actionBar.P(null, null);
-                this.f34323a.x1(true);
+                this.f34325a.x1(true);
                 if (!SharedConfig.stickersReorderingHintUsed && this.v != 5) {
                     SharedConfig.setStickersReorderingHintUsed(true);
                     org.telegram.ui.Components.sc.g(this, new org.telegram.ui.Components.zm0(getParentActivity(), LocaleController.getString(R.string.StickersReorderHint)), 3250).j();
@@ -1375,7 +1375,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             }
         } else if (u10) {
             this.actionBar.t();
-            this.f34323a.x1(false);
+            this.f34325a.x1(false);
             m0();
         }
     }
@@ -1386,8 +1386,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
     }
 
     public final void j0() {
-        this.f34332x.clear();
-        this.f34323a.W2.N(true);
+        this.f34334x.clear();
+        this.f34325a.W2.N(true);
         i0();
     }
 
@@ -1397,7 +1397,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             ArrayList arrayList = new ArrayList(mediaDataController.getFeaturedEmojiSets());
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (arrayList.get(i10) == null || mediaDataController.isStickerPackInstalled(((TLRPC.StickerSetCovered) arrayList.get(i10)).set.f19829id, false)) {
+                if (arrayList.get(i10) == null || mediaDataController.isStickerPackInstalled(((TLRPC.StickerSetCovered) arrayList.get(i10)).set.f19830id, false)) {
                     arrayList.remove(i10);
                     i10--;
                 }
@@ -1425,12 +1425,12 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
     public final void m0() {
         boolean z10;
         boolean z11;
-        if (this.f34330s) {
-            this.f34330s = false;
+        if (this.f34332s) {
+            this.f34332s = false;
             MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
             int i10 = this.v;
             mediaDataController.calcNewHash(i10);
-            this.f34329r++;
+            this.f34331r++;
             TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
             if (i10 == 1) {
                 z10 = true;
@@ -1445,15 +1445,15 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
             }
             tL_messages_reorderStickerSets.emojis = z11;
             int i11 = 0;
-            while (i11 < this.f34326e.size()) {
-                i11 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) this.f34326e.get(i11)).set.f19829id, tL_messages_reorderStickerSets.order, i11, 1);
+            while (i11 < this.f34328e.size()) {
+                i11 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) this.f34328e.get(i11)).set.f19830id, tL_messages_reorderStickerSets.order, i11, 1);
             }
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_reorderStickerSets, new m(this, 21));
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i10), Boolean.TRUE);
             if (SharedConfig.updateStickersOrderOnSend) {
                 SharedConfig.toggleUpdateStickersOrderOnSend();
                 org.telegram.ui.Components.zc.a0(this).M(LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), R.raw.filter_reorder).j();
-                this.f34323a.W2.N(true);
+                this.f34325a.W2.N(true);
             }
         }
     }
@@ -1463,22 +1463,22 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
         if (stickersSet == null) {
             return;
         }
-        Long valueOf = Long.valueOf(stickersSet.set.f19829id);
-        HashSet hashSet = this.f34332x;
+        Long valueOf = Long.valueOf(stickersSet.set.f19830id);
+        HashSet hashSet = this.f34334x;
         if (hashSet.contains(valueOf)) {
-            hashSet.remove(Long.valueOf(stickersSet.set.f19829id));
+            hashSet.remove(Long.valueOf(stickersSet.set.f19830id));
             m8Var.b(false, true);
         } else {
-            hashSet.add(Long.valueOf(stickersSet.set.f19829id));
+            hashSet.add(Long.valueOf(stickersSet.set.f19830id));
             m8Var.b(true, true);
         }
-        this.f34323a.W2.N(true);
+        this.f34325a.W2.N(true);
         i0();
     }
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        if (!this.f34332x.isEmpty()) {
+        if (!this.f34334x.isEmpty()) {
             if (z10) {
                 j0();
                 return false;
@@ -1523,14 +1523,14 @@ public class StickersActivity extends org.telegram.ui.ActionBar.m2 implements No
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f34323a.setPadding(0, 0, 0, i13);
-        this.f34323a.setClipToPadding(false);
+        this.f34325a.setPadding(0, 0, 0, i13);
+        this.f34325a.setClipToPadding(false);
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        org.telegram.ui.Components.p71 p71Var = this.f34323a;
+        org.telegram.ui.Components.p71 p71Var = this.f34325a;
         if (p71Var != null) {
             p71Var.W2.N(true);
         }

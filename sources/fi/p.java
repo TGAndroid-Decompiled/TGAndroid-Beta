@@ -86,7 +86,7 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
         Object obj = u61Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            j3 = -chat.f19802id;
+            j3 = -chat.f19803id;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, pVar.H);
             z11 = isChannelAndNotMegaGroup;
@@ -94,7 +94,7 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j3 = user.f19949id;
+                j3 = user.f19950id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, pVar.H);
                 z10 = isBot;
@@ -190,9 +190,9 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
         } else {
             Object obj = u61Var.G;
             if (obj instanceof TLRPC.Chat) {
-                pVar.presentFragment(eo.W9(-((TLRPC.Chat) obj).f19802id));
+                pVar.presentFragment(eo.W9(-((TLRPC.Chat) obj).f19803id));
             } else if (obj instanceof TLRPC.User) {
-                pVar.presentFragment(eo.W9(((TLRPC.User) obj).f19949id));
+                pVar.presentFragment(eo.W9(((TLRPC.User) obj).f19950id));
             }
         }
     }
@@ -302,12 +302,12 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 4));
         fh.c cVar = new fh.c();
-        cVar.a(getThemedColor(h6.f20559d6));
+        cVar.a(getThemedColor(h6.f20560d6));
         this.actionBar.N(new ah.c(cVar), eh.b.o(this.resourceProvider), false);
         this.actionBar.P0 = true;
         x7 x7Var = new x7(this, context);
         this.f10021c = x7Var;
-        x7Var.setBackgroundColor(h6.x0(null, h6.f20503a7, false));
+        x7Var.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
         this.f10029y = new j9(this.H);
         n nVar = new n(context);
         this.f10025r = nVar;
@@ -364,14 +364,14 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
         this.d = p71Var;
         p71Var.setClipToPadding(false);
         p71 p71Var2 = this.d;
-        p71Var2.W2.f26675r = false;
+        p71Var2.W2.f26679r = false;
         p71Var2.p1();
         this.actionBar.setBackground(null);
         this.f10021c.addView(this.d, w5.d(-1.0f, -1));
         this.f10021c.addView(this.actionBar, w5.e(-1, -2, 48));
         x7 x7Var2 = this.f10021c;
         j jVar = new j(this);
-        WeakHashMap weakHashMap = r0.i0.f46981a;
+        WeakHashMap weakHashMap = r0.i0.f46989a;
         r0.a0.i(x7Var2, jVar);
         x7 x7Var3 = this.f10021c;
         this.fragmentView = x7Var3;
@@ -382,7 +382,7 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            if (chatFull.f19803id == this.f10020b) {
+            if (chatFull.f19804id == this.f10020b) {
                 this.I = chatFull;
                 this.d.W2.N(true);
             }
@@ -399,7 +399,7 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.E.f29380c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.E.f29383c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -467,8 +467,8 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
         this.I = getMessagesController().getChatFull(this.f10020b);
         p50 p50Var = new p50(3, true, true);
         this.E = p50Var;
-        p50Var.f29378a = this;
-        p50Var.f29379b = this;
+        p50Var.f29381a = this;
+        p50Var.f29382b = this;
         getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
@@ -504,7 +504,7 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
     public final void restoreSelfArgs(Bundle bundle) {
         p50 p50Var = this.E;
         if (p50Var != null) {
-            p50Var.f29382f = bundle.getString("path");
+            p50Var.f29385f = bundle.getString("path");
         }
     }
 
@@ -512,7 +512,7 @@ public final class p extends m2 implements o50, NotificationCenter.NotificationC
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         p50 p50Var = this.E;
-        if (p50Var != null && (str = p50Var.f29382f) != null) {
+        if (p50Var != null && (str = p50Var.f29385f) != null) {
             bundle.putString("path", str);
         }
         ai.f0 f0Var = this.f10024n;

@@ -46,91 +46,91 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
     public final RectF T;
     public final Paint U;
     public lq0 V;
-    public CharSequence f40107a;
-    public final HashMap f40108b;
-    public final ArrayList f40109c;
+    public CharSequence f40110a;
+    public final HashMap f40111b;
+    public final ArrayList f40112c;
     public ArrayList d;
-    public boolean f40110e;
-    public int f40111f;
+    public boolean f40113e;
+    public int f40114f;
     public org.telegram.ui.Components.wm0 h;
-    public kq0 f40112n;
-    public FrameLayout f40113r;
-    public TextView f40114s;
+    public kq0 f40115n;
+    public FrameLayout f40116r;
+    public TextView f40117s;
     public boolean v;
-    public final int f40115w;
-    public boolean f40116x;
-    public final boolean f40117y;
+    public final int f40118w;
+    public boolean f40119x;
+    public final boolean f40120y;
 
     public mq0(int i10, boolean z10, boolean z11, eo eoVar) {
         super(null);
-        this.f40108b = new HashMap();
-        this.f40109c = new ArrayList();
+        this.f40111b = new HashMap();
+        this.f40112c = new ArrayList();
         this.d = null;
-        this.f40110e = false;
-        this.f40111f = 2;
-        this.f40116x = true;
+        this.f40113e = false;
+        this.f40114f = 2;
+        this.f40119x = true;
         this.H = true;
         this.S = new TextPaint(1);
         this.T = new RectF();
         this.U = new Paint(1);
         this.F = eoVar;
-        this.f40115w = i10;
-        this.f40117y = z10;
+        this.f40118w = i10;
+        this.f40120y = z10;
         this.E = z11;
     }
 
     public static void U(mq0 mq0Var, MediaController.AlbumEntry albumEntry) {
         if (albumEntry != null) {
-            dr0 dr0Var = new dr0(0, albumEntry, mq0Var.f40108b, mq0Var.f40109c, mq0Var.f40115w, mq0Var.E, mq0Var.F, false);
+            dr0 dr0Var = new dr0(0, albumEntry, mq0Var.f40111b, mq0Var.f40112c, mq0Var.f40118w, mq0Var.E, mq0Var.F, false);
             Editable text = mq0Var.M.getText();
-            mq0Var.f40107a = text;
+            mq0Var.f40110a = text;
             dr0Var.d = text;
-            org.telegram.ui.Components.cv cvVar = dr0Var.f36872d0;
+            org.telegram.ui.Components.cv cvVar = dr0Var.f36875d0;
             if (cvVar != null) {
                 cvVar.setText(text);
             }
-            dr0Var.f36891s0 = new hq0(mq0Var);
+            dr0Var.f36894s0 = new hq0(mq0Var);
             dr0Var.f0(mq0Var.G, mq0Var.H);
             mq0Var.presentFragment(dr0Var);
             return;
         }
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
-        if (mq0Var.f40117y) {
-            ir0 ir0Var = new ir0(hashMap, arrayList, mq0Var.f40115w, mq0Var.E, mq0Var.F);
+        if (mq0Var.f40120y) {
+            ir0 ir0Var = new ir0(hashMap, arrayList, mq0Var.f40118w, mq0Var.E, mq0Var.F);
             Editable text2 = mq0Var.M.getText();
-            mq0Var.f40107a = text2;
-            dr0 dr0Var2 = ir0Var.f38974a;
+            mq0Var.f40110a = text2;
+            dr0 dr0Var2 = ir0Var.f38976a;
             if (dr0Var2 != null) {
                 dr0Var2.d = text2;
-                org.telegram.ui.Components.cv cvVar2 = dr0Var2.f36872d0;
+                org.telegram.ui.Components.cv cvVar2 = dr0Var2.f36875d0;
                 if (cvVar2 != null) {
                     cvVar2.setText(text2);
                 }
             }
             iq0 iq0Var = new iq0(mq0Var, hashMap, arrayList);
-            dr0 dr0Var3 = ir0Var.f38974a;
-            dr0Var3.f36891s0 = iq0Var;
-            dr0 dr0Var4 = ir0Var.f38975b;
-            dr0Var4.f36891s0 = iq0Var;
-            dr0Var3.f36892t0 = new hr0(ir0Var, 0);
-            dr0Var4.f36892t0 = new hr0(ir0Var, 1);
+            dr0 dr0Var3 = ir0Var.f38976a;
+            dr0Var3.f36894s0 = iq0Var;
+            dr0 dr0Var4 = ir0Var.f38977b;
+            dr0Var4.f36894s0 = iq0Var;
+            dr0Var3.f36895t0 = new hr0(ir0Var, 0);
+            dr0Var4.f36895t0 = new hr0(ir0Var, 1);
             int i10 = mq0Var.G;
             boolean z10 = mq0Var.H;
             dr0Var3.f0(i10, z10);
-            ir0Var.f38975b.f0(i10, z10);
+            ir0Var.f38977b.f0(i10, z10);
             mq0Var.presentFragment(ir0Var);
             return;
         }
-        dr0 dr0Var5 = new dr0(0, albumEntry, hashMap, arrayList, mq0Var.f40115w, mq0Var.E, mq0Var.F, false);
+        dr0 dr0Var5 = new dr0(0, albumEntry, hashMap, arrayList, mq0Var.f40118w, mq0Var.E, mq0Var.F, false);
         Editable text3 = mq0Var.M.getText();
-        mq0Var.f40107a = text3;
+        mq0Var.f40110a = text3;
         dr0Var5.d = text3;
-        org.telegram.ui.Components.cv cvVar3 = dr0Var5.f36872d0;
+        org.telegram.ui.Components.cv cvVar3 = dr0Var5.f36875d0;
         if (cvVar3 != null) {
             cvVar3.setText(text3);
         }
-        dr0Var5.f36891s0 = new eq0(mq0Var, hashMap, arrayList);
+        dr0Var5.f36894s0 = new eq0(mq0Var, hashMap, arrayList);
         dr0Var5.f0(mq0Var.G, mq0Var.H);
         mq0Var.presentFragment(dr0Var5);
     }
@@ -288,17 +288,17 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
     public final View createView(Context context) {
         ArrayList arrayList;
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i10 = org.telegram.ui.ActionBar.h6.f20630h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f20631h5;
         kVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
-        int i11 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f20668j5;
         kVar2.setTitleColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         this.actionBar.E(org.telegram.ui.ActionBar.h6.x0(null, i11, false), false);
         this.actionBar.D(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.I5, false), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new fq0(this));
         org.telegram.ui.ActionBar.y p5 = this.actionBar.p();
-        if (this.f40116x) {
+        if (this.f40119x) {
             p5.a(2, R.drawable.outline_header_search).setContentDescription(LocaleController.getString(R.string.Search));
         }
         org.telegram.ui.ActionBar.u0 a2 = p5.a(0, R.drawable.ic_ab_other);
@@ -320,25 +320,25 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
         this.P.addView(this.h, w7.w5.e(-1, -1, 51));
         org.telegram.ui.Components.wm0 wm0Var2 = this.h;
         kq0 kq0Var = new kq0(this, context);
-        this.f40112n = kq0Var;
+        this.f40115n = kq0Var;
         wm0Var2.setAdapter(kq0Var);
         this.h.setGlowColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         TextView textView = new TextView(context);
-        this.f40114s = textView;
+        this.f40117s = textView;
         textView.setTextColor(-8355712);
-        this.f40114s.setTextSize(1, 20.0f);
-        this.f40114s.setGravity(17);
-        this.f40114s.setVisibility(8);
-        this.f40114s.setText(LocaleController.getString(R.string.NoPhotos));
-        this.P.addView(this.f40114s, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 48.0f, -1, 51));
-        this.f40114s.setOnTouchListener(new bi.d(2));
+        this.f40117s.setTextSize(1, 20.0f);
+        this.f40117s.setGravity(17);
+        this.f40117s.setVisibility(8);
+        this.f40117s.setText(LocaleController.getString(R.string.NoPhotos));
+        this.P.addView(this.f40117s, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 48.0f, -1, 51));
+        this.f40117s.setOnTouchListener(new bi.d(2));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f40113r = frameLayout;
+        this.f40116r = frameLayout;
         frameLayout.setVisibility(8);
-        this.P.addView(this.f40113r, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 48.0f, -1, 51));
+        this.P.addView(this.f40116r, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 48.0f, -1, 51));
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         radialProgressView.setProgressColor(-11371101);
-        this.f40113r.addView(radialProgressView, w7.w5.e(-2, -2, 17));
+        this.f40116r.addView(radialProgressView, w7.w5.e(-2, -2, 17));
         View view = new View(context);
         this.R = view;
         view.setBackgroundResource(R.drawable.header_shadow_reverse);
@@ -362,7 +362,7 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
         editText.setMaxLines(1);
         editText.setSingleLine(true);
         this.L.addView(this.M, w7.w5.a(-1.0f, 0.0f, 0.0f, 84.0f, 0.0f, -1, 51));
-        CharSequence charSequence = this.f40107a;
+        CharSequence charSequence = this.f40110a;
         if (charSequence != null) {
             this.M.setText(charSequence);
         }
@@ -394,15 +394,15 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
         this.Q.setScaleX(0.2f);
         this.Q.setScaleY(0.2f);
         this.P.addView(this.Q, w7.w5.a(24.0f, 0.0f, 0.0f, -2.0f, 9.0f, 42, 85));
-        if (this.f40115w != 0) {
+        if (this.f40118w != 0) {
             this.M.setVisibility(8);
         }
-        if (this.f40110e && ((arrayList = this.d) == null || arrayList.isEmpty())) {
-            this.f40113r.setVisibility(0);
+        if (this.f40113e && ((arrayList = this.d) == null || arrayList.isEmpty())) {
+            this.f40116r.setVisibility(0);
             this.h.setEmptyView(null);
         } else {
-            this.f40113r.setVisibility(8);
-            this.h.setEmptyView(this.f40114s);
+            this.f40116r.setVisibility(8);
+            this.h.setEmptyView(this.f40117s);
         }
         return this.fragmentView;
     }
@@ -411,25 +411,25 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.albumsDidLoad) {
             if (this.classGuid == ((Integer) objArr[0]).intValue()) {
-                int i12 = this.f40115w;
-                if (i12 != 1 && i12 != 2 && i12 != 10 && this.f40116x) {
+                int i12 = this.f40118w;
+                if (i12 != 1 && i12 != 2 && i12 != 10 && this.f40119x) {
                     this.d = (ArrayList) objArr[1];
                 } else {
                     this.d = (ArrayList) objArr[2];
                 }
-                FrameLayout frameLayout = this.f40113r;
+                FrameLayout frameLayout = this.f40116r;
                 if (frameLayout != null) {
                     frameLayout.setVisibility(8);
                 }
                 org.telegram.ui.Components.wm0 wm0Var = this.h;
                 if (wm0Var != null && wm0Var.getEmptyView() == null) {
-                    this.h.setEmptyView(this.f40114s);
+                    this.h.setEmptyView(this.f40117s);
                 }
-                kq0 kq0Var = this.f40112n;
+                kq0 kq0Var = this.f40115n;
                 if (kq0Var != null) {
                     kq0Var.l();
                 }
-                this.f40110e = false;
+                this.f40113e = false;
             }
         } else if (i10 == NotificationCenter.closeChats) {
             removeSelfFromStack(true);
@@ -440,16 +440,16 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
         View view = this.fragmentView;
-        int i10 = org.telegram.ui.ActionBar.h6.f20630h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f20631h5;
         arrayList.add(new org.telegram.ui.ActionBar.j6(view, 1, null, null, null, null, i10));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1, null, null, null, null, i10));
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i11 = org.telegram.ui.ActionBar.h6.f20667j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f20668j5;
         arrayList.add(new org.telegram.ui.ActionBar.j6(kVar, 64, null, null, null, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 128, null, null, null, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.I5));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 32768, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 0, new Class[]{View.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.R4}, null, org.telegram.ui.ActionBar.h6.f20563da));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 0, new Class[]{View.class}, null, new Drawable[]{org.telegram.ui.ActionBar.h6.R4}, null, org.telegram.ui.ActionBar.h6.f20564da));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 0, new Class[]{View.class}, null, null, null, org.telegram.ui.ActionBar.h6.X9));
         return arrayList;
     }
@@ -457,7 +457,7 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Components.cv cvVar = this.M;
-        if (cvVar != null && cvVar.f25026e) {
+        if (cvVar != null && cvVar.f25018e) {
             if (z10) {
                 cvVar.k(true);
                 return false;
@@ -478,9 +478,9 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
 
     @Override
     public final boolean onFragmentCreate() {
-        int i10 = this.f40115w;
+        int i10 = this.f40118w;
         boolean z10 = true;
-        if (i10 != 1 && i10 != 2 && i10 != 10 && this.f40116x) {
+        if (i10 != 1 && i10 != 2 && i10 != 10 && this.f40119x) {
             this.d = MediaController.allMediaAlbums;
         } else {
             this.d = MediaController.allPhotoAlbums;
@@ -488,7 +488,7 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
         if (this.d != null) {
             z10 = false;
         }
-        this.f40110e = z10;
+        this.f40113e = z10;
         MediaController.loadGalleryPhotosAlbums(this.classGuid);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.albumsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.closeChats);
@@ -509,7 +509,7 @@ public final class mq0 extends org.telegram.ui.ActionBar.m2 implements Notificat
     @Override
     public final void onResume() {
         super.onResume();
-        kq0 kq0Var = this.f40112n;
+        kq0 kq0Var = this.f40115n;
         if (kq0Var != null) {
             kq0Var.l();
         }

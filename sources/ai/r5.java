@@ -85,13 +85,13 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
         switch (this.f1653a) {
             case 26:
                 zl zlVar = (zl) this.f1654b;
-                zlVar.f33425x0.b((TLRPC.TL_messageMediaGeo) this.f1655c, zlVar.f33427y0, z10, i10, ((Long) this.d).longValue());
-                zlVar.f30574b.dismiss(true);
+                zlVar.f33427x0.b((TLRPC.TL_messageMediaGeo) this.f1655c, zlVar.f33429y0, z10, i10, ((Long) this.d).longValue());
+                zlVar.f30570b.dismiss(true);
                 return;
             default:
                 no noVar = (no) this.f1654b;
-                noVar.f28891j0.e((TLRPC.TL_messageMediaToDo) this.f1655c, null, null, null, z10, i10, ((Long) this.d).longValue());
-                noVar.f30574b.dismiss(true);
+                noVar.f28895j0.e((TLRPC.TL_messageMediaToDo) this.f1655c, null, null, null, z10, i10, ((Long) this.d).longValue());
+                noVar.f30570b.dismiss(true);
                 return;
         }
     }
@@ -134,7 +134,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
         switch (i10) {
             case 14:
                 m4.c0 c0Var = (m4.c0) obj4;
-                Handler handler = c0Var.f15740l;
+                Handler handler = c0Var.f15741l;
                 m4.w wVar = new m4.w(c0Var, (m4.r) obj3, new gg.t(c0Var, (m4.r0) obj2, (m4.s) obj, 24));
                 m4.m1 m1Var = new m4.m1(0);
                 String str = e2.d0.f8529a;
@@ -145,7 +145,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                 m4.c0 c0Var2 = (m4.c0) obj4;
                 m4.r rVar = (m4.r) obj3;
                 List list = (List) obj;
-                Handler handler2 = c0Var2.f15740l;
+                Handler handler2 = c0Var2.f15741l;
                 m4.w wVar2 = new m4.w(c0Var2, rVar, new i5(c0Var2, (m4.a1) obj2, rVar, list, 24));
                 m4.m1 m1Var2 = new m4.m1(0);
                 String str2 = e2.d0.f8529a;
@@ -171,8 +171,8 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                     TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f12232b;
                     pageblockmap.geo = messageMedia.geo;
                     pageblockmap.zoom = 15;
-                    if (pageblockmap.f20027w <= 0 || pageblockmap.h <= 0) {
-                        pageblockmap.f20027w = 600;
+                    if (pageblockmap.f20028w <= 0 || pageblockmap.h <= 0) {
+                        pageblockmap.f20028w = 600;
                         pageblockmap.h = 400;
                     }
                     ii.i2 i2Var2 = x3Var.H3;
@@ -197,8 +197,8 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                     TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f12232b;
                     pageblockmap2.geo = messageMedia.geo;
                     pageblockmap2.zoom = 15;
-                    if (pageblockmap2.f20027w <= 0 || pageblockmap2.h <= 0) {
-                        pageblockmap2.f20027w = 600;
+                    if (pageblockmap2.f20028w <= 0 || pageblockmap2.h <= 0) {
+                        pageblockmap2.f20028w = 600;
                         pageblockmap2.h = 400;
                     }
                     ii.i2 i2Var4 = e2Var.P.H3;
@@ -275,7 +275,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                 ((boolean[]) this.f1655c)[0] = true;
                 if (user != null) {
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(j1Var.f10671f).edit();
-                    edit.putBoolean("inlinegeo_" + user.f19949id, true).commit();
+                    edit.putBoolean("inlinegeo_" + user.f19950id, true).commit();
                     j1Var.G();
                     return;
                 }
@@ -331,7 +331,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                     ConnectionsManager.getInstance(i12).sendRequest(tL_messages_toggleBotInAttachMenu, new so(6, ajVar, tL_attachMenuBot), 66);
                     return;
                 }
-                MediaDataController.getInstance(i12).removeInline(user2.f19949id);
+                MediaDataController.getInstance(i12).removeInline(user2.f19950id);
                 return;
             case 25:
                 il ilVar = (il) this.f1654b;
@@ -339,8 +339,8 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                 org.telegram.ui.Cells.a2 a2Var2 = (org.telegram.ui.Cells.a2) this.d;
                 TextView textView = ilVar.R;
                 if (b1Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i13 = -ilVar.f27212s0;
-                    ilVar.f27212s0 = i13;
+                    int i13 = -ilVar.f27206s0;
+                    ilVar.f27206s0 = i13;
                     AndroidUtilities.shakeViewSpring(b1Var, i13);
                     return;
                 }
@@ -348,12 +348,12 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                 if (TextUtils.isEmpty(trim3)) {
                     trim3 = null;
                 }
-                ilVar.f27207p0 = trim3;
-                ilVar.f27208q0 = !a2Var2.b();
-                if (TextUtils.isEmpty(ilVar.f27207p0)) {
+                ilVar.f27201p0 = trim3;
+                ilVar.f27202q0 = !a2Var2.b();
+                if (TextUtils.isEmpty(ilVar.f27201p0)) {
                     textView.setVisibility(8);
                 } else {
-                    textView.setText(ilVar.f27207p0);
+                    textView.setText(ilVar.f27201p0);
                     textView.setVisibility(0);
                 }
                 ilVar.i0();
@@ -374,7 +374,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
     public void g(m4.r rVar) {
         Bundle bundle = (Bundle) this.f1655c;
         ResultReceiver resultReceiver = (ResultReceiver) this.d;
-        m4.c0 c0Var = ((m4.m0) this.f1654b).f15905g;
+        m4.c0 c0Var = ((m4.m0) this.f1654b).f15906g;
         if (bundle == null) {
             Bundle bundle2 = Bundle.EMPTY;
         }
@@ -396,7 +396,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
         } else {
             t7Var.e(canvas, rectF, f7);
         }
-        if (dm0Var != null && dm0Var.f25393a0 && dm0Var.getVisibility() == 0) {
+        if (dm0Var != null && dm0Var.f25396a0 && dm0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f7 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
             dm0Var.draw(canvas);
@@ -412,7 +412,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
         org.telegram.ui.ActionBar.z2 z2Var = (org.telegram.ui.ActionBar.z2) this.d;
         if (i10 == 1) {
             f5Var.J(2147483646, 0, zArr[0]);
-            runnable = z2Var.f21484a.dismissRunnable;
+            runnable = z2Var.f21485a.dismissRunnable;
             runnable.run();
         }
     }
@@ -446,7 +446,7 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
         a6.m c10 = FirebaseMessaging.c(firebaseMessaging.f7888b);
         k9.h hVar = firebaseMessaging.f7887a;
         hVar.a();
-        if ("[DEFAULT]".equals(hVar.f14744b)) {
+        if ("[DEFAULT]".equals(hVar.f14745b)) {
             d = "";
         } else {
             d = hVar.d();
@@ -463,11 +463,11 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
         if (tVar == null || !str2.equals(tVar.f7970a)) {
             k9.h hVar2 = firebaseMessaging.f7887a;
             hVar2.a();
-            if ("[DEFAULT]".equals(hVar2.f14744b)) {
+            if ("[DEFAULT]".equals(hVar2.f14745b)) {
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
                     StringBuilder sb2 = new StringBuilder("Invoking onNewToken for app: ");
                     hVar2.a();
-                    sb2.append(hVar2.f14744b);
+                    sb2.append(hVar2.f14745b);
                     Log.d("FirebaseMessaging", sb2.toString());
                 }
                 Intent intent = new Intent("com.google.firebase.messaging.NEW_TOKEN");
@@ -668,10 +668,10 @@ public final class r5 implements MessagesStorage.StringCallback, fc, androidx.ca
                 return;
             default:
                 Runnable runnable = (Runnable) this.d;
-                cz czVar = ((bz) this.f1654b).f24776a;
+                cz czVar = ((bz) this.f1654b).f24771a;
                 if (((String) this.f1655c).equals(czVar.v)) {
-                    czVar.f25057w = str;
-                    czVar.f25054n.addAll(arrayList5);
+                    czVar.f25049w = str;
+                    czVar.f25046n.addAll(arrayList5);
                     runnable.run();
                     return;
                 }

@@ -50,7 +50,7 @@ public final class t extends wm0 implements NotificationCenter.NotificationCente
         if (MessagesController.getInstance(this.X2).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (((kb0) arrayList.get(i10)).f39439e) {
+                if (((kb0) arrayList.get(i10)).f39442e) {
                     arrayList.remove(i10);
                     i10--;
                 }

@@ -17,9 +17,9 @@ import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.fg0;
+import org.telegram.ui.gg0;
 import org.telegram.ui.i4;
-import org.telegram.ui.t70;
+import org.telegram.ui.q70;
 import org.telegram.ui.u60;
 import org.telegram.ui.vy;
 import org.telegram.ui.yq;
@@ -137,31 +137,31 @@ public final class d1 implements Runnable {
         this.f10572n = str;
     }
 
-    public d1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.ActionBar.a2 a2Var, t70 t70Var, String str) {
+    public d1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.ActionBar.a2 a2Var, q70 q70Var, String str) {
         this.f10567a = 9;
         this.d = launchActivity;
         this.f10571f = tL_error;
         this.h = tLObject;
         this.f10568b = i10;
         this.f10569c = a2Var;
-        this.f10570e = t70Var;
+        this.f10570e = q70Var;
         this.f10572n = str;
     }
 
-    public d1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, t70 t70Var, int i10, String str) {
+    public d1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, q70 q70Var, int i10, String str) {
         this.f10567a = 10;
         this.d = launchActivity;
         this.f10571f = tL_error;
         this.h = tLObject;
         this.f10569c = tL_inputInvoiceSlug;
-        this.f10570e = t70Var;
+        this.f10570e = q70Var;
         this.f10568b = i10;
         this.f10572n = str;
     }
 
-    public d1(fg0 fg0Var, String str, c5.h hVar, List list, String str2, String str3, int i10) {
+    public d1(gg0 gg0Var, String str, c5.h hVar, List list, String str2, String str3, int i10) {
         this.f10567a = 12;
-        this.d = fg0Var;
+        this.d = gg0Var;
         this.f10569c = str;
         this.f10570e = hVar;
         this.f10571f = list;

@@ -57,12 +57,12 @@ public final class g extends cv {
         if (emojiView != null) {
             m mVar = this.f5112c0;
             if (mVar.getEditTextStyle() == 2 || mVar.getEditTextStyle() == 3) {
-                emojiView.f25143w0 = false;
-                emojiView.f25145w2 = false;
+                emojiView.f25135w0 = false;
+                emojiView.f25137w2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (mVar instanceof od) {
                     emojiView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-                    emojiView.f25078c = 3;
+                    emojiView.f25070c = 3;
                 }
                 emojiView.S();
             }

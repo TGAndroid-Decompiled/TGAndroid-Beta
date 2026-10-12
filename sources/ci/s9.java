@@ -57,10 +57,10 @@ public final class s9 extends s4.t0 {
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5959c;
                 mm mmVar = chatAttachAlertPhotoLayout.E;
-                aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+                aj ajVar = chatAttachAlertPhotoLayout.f30570b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = ajVar.f24335d1;
+                    org.telegram.ui.ActionBar.u0 u0Var = ajVar.f24331d1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
@@ -68,8 +68,8 @@ public final class s9 extends s4.t0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = ajVar.getBackgroundPaddingTop();
-                    if (((ajVar.f24340e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (ajVar.R0.getAlpha() * ajVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gm0Var = (gm0) mmVar.K(0)) != null) {
-                        View view = gm0Var.f47889a;
+                    if (((ajVar.f24336e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (ajVar.R0.getAlpha() * ajVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gm0Var = (gm0) mmVar.K(0)) != null) {
+                        View view = gm0Var.f47897a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -125,7 +125,7 @@ public final class s9 extends s4.t0 {
                 return;
             case 1:
                 org.telegram.ui.b7 b7Var = (org.telegram.ui.b7) this.f5959c;
-                if (b7Var.f36081c.L0() <= 0 && !org.telegram.ui.b7.a0(b7Var).u()) {
+                if (b7Var.f36083c.L0() <= 0 && !org.telegram.ui.b7.a0(b7Var).u()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -139,7 +139,7 @@ public final class s9 extends s4.t0 {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5959c;
-                aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+                aj ajVar = chatAttachAlertPhotoLayout.f30570b;
                 mm mmVar = chatAttachAlertPhotoLayout.E;
                 if (mmVar.getChildCount() > 0) {
                     ajVar.b2(chatAttachAlertPhotoLayout, i11);

@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14702a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14703a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;

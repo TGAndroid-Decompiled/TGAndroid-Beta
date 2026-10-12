@@ -6,30 +6,30 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 public final class yn implements lk {
-    public final Utilities.Callback f33135a;
-    public final un f33136b;
-    public final org.telegram.ui.ActionBar.m2 f33137c;
+    public final Utilities.Callback f33143a;
+    public final un f33144b;
+    public final org.telegram.ui.ActionBar.m2 f33145c;
 
     public yn(Utilities.Callback callback, org.telegram.ui.ActionBar.m2 m2Var, un unVar) {
-        this.f33135a = callback;
-        this.f33136b = unVar;
-        this.f33137c = m2Var;
+        this.f33143a = callback;
+        this.f33144b = unVar;
+        this.f33145c = m2Var;
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
         if (!arrayList.isEmpty()) {
-            this.f33135a.run(new rh.c((String) arrayList.get(0)));
+            this.f33143a.run(new rh.c((String) arrayList.get(0)));
         }
-        this.f33136b.dismiss(true);
+        this.f33144b.dismiss(true);
     }
 
     @Override
     public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
         if (!arrayList.isEmpty()) {
-            this.f33135a.run(new rh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+            this.f33143a.run(new rh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
         }
-        this.f33136b.dismiss(true);
+        this.f33144b.dismiss(true);
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class yn implements lk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f33137c.getParentActivity().startActivityForResult(intent, 28);
+            this.f33145c.getParentActivity().startActivityForResult(intent, 28);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

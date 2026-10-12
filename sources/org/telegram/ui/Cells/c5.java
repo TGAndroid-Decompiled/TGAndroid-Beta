@@ -9,10 +9,10 @@ import org.telegram.ui.Components.o91;
 import org.telegram.ui.Components.pp0;
 import org.telegram.ui.iu;
 public final class c5 implements pp0 {
-    public final iu f21680a;
+    public final iu f21681a;
 
     public c5(iu iuVar) {
-        this.f21680a = iuVar;
+        this.f21681a = iuVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class c5 implements pp0 {
             }
         }
         int i11 = (int) e7;
-        iu iuVar = this.f21680a;
+        iu iuVar = this.f21681a;
         long j3 = i11;
         boolean z11 = true;
-        iuVar.f21731b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
+        iuVar.f21732b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         iuVar.d = j3;
         w8[] w8VarArr = iuVar.h;
-        AnimatorSet[] animatorSetArr = iuVar.f38998n;
-        int i12 = iuVar.f38996e;
-        i10 = iuVar.f38999r.videosRow;
+        AnimatorSet[] animatorSetArr = iuVar.f39000n;
+        int i12 = iuVar.f38998e;
+        i10 = iuVar.f39001r.videosRow;
         if (i12 == i10) {
-            iuVar.f38997f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            iuVar.f38999f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -70,10 +70,10 @@ public final class c5 implements pp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        iu iuVar = this.f21680a;
-        sb2.append((Object) iuVar.f21730a.getText());
+        iu iuVar = this.f21681a;
+        sb2.append((Object) iuVar.f21731a.getText());
         sb2.append(" ");
-        sb2.append((Object) iuVar.f21731b.getText());
+        sb2.append((Object) iuVar.f21732b.getText());
         return sb2.toString();
     }
 

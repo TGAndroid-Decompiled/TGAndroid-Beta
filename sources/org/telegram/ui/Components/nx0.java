@@ -6,13 +6,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class nx0 extends db {
-    public kt X;
+    public lt X;
 
     public nx0(Context context) {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f25302y = true;
+        this.f25294y = true;
         L();
         wm0 wm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -41,9 +41,9 @@ public final class nx0 extends db {
 
     @Override
     public final vm0 x(wm0 wm0Var) {
-        kt ktVar = new kt(wm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.X = ktVar;
-        ktVar.f26675r = false;
-        return ktVar;
+        lt ltVar = new lt(wm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
+        this.X = ltVar;
+        ltVar.f26679r = false;
+        return ltVar;
     }
 }

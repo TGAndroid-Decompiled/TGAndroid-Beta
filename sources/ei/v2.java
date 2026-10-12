@@ -10,8 +10,8 @@ import org.telegram.ui.Components.cu0;
 import org.telegram.ui.Components.f8;
 import org.telegram.ui.Components.iq;
 import org.telegram.ui.Components.js;
-import org.telegram.ui.Components.pi0;
 import org.telegram.ui.Components.q6;
+import org.telegram.ui.Components.qi0;
 import org.telegram.ui.Components.uy;
 import org.telegram.ui.Components.v60;
 import org.telegram.ui.cr;
@@ -72,16 +72,16 @@ public final class v2 extends AnimatorListenerAdapter {
                 if (!e4Var.c()) {
                     e4Var.b(this.f9426b);
                 }
-                e4Var.f21789d0 = null;
+                e4Var.f21790d0 = null;
                 return;
             case 4:
                 ((q6) this.f9427c).u(this.f9426b);
                 return;
             case 5:
-                ((f8) this.f9427c).f25949a[this.f9426b].setVisibility(8);
+                ((f8) this.f9427c).f25951a[this.f9426b].setVisibility(8);
                 return;
             case 6:
-                ((iq) this.f9427c).f27260a[this.f9426b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(js.f27628g).setStartDelay(0L).setDuration(100L).start();
+                ((iq) this.f9427c).f27254a[this.f9426b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(js.f27635g).setStartDelay(0L).setDuration(100L).start();
                 return;
             case 7:
                 uy uyVar = (uy) this.f9427c;
@@ -119,27 +119,27 @@ public final class v2 extends AnimatorListenerAdapter {
                 }
                 return;
             case 9:
-                pi0 pi0Var = (pi0) this.f9427c;
-                pi0Var.H = null;
-                pi0Var.P.f31528d1.delete(this.f9426b);
+                qi0 qi0Var = (qi0) this.f9427c;
+                qi0Var.H = null;
+                qi0Var.P.f32406d1.delete(this.f9426b);
                 return;
             case 10:
                 cr crVar = (cr) this.f9427c;
-                ((bm0) crVar.d).f24685b.remove(this.f9426b);
+                ((bm0) crVar.d).f24680b.remove(this.f9426b);
                 bm0 bm0Var = (bm0) crVar.d;
                 bm0Var.d = true;
-                bm0Var.f24684a.invalidate();
+                bm0Var.f24679a.invalidate();
                 return;
             case 11:
                 cu0 cu0Var = (cu0) this.f9427c;
-                cu0Var.f25022e.O1.remove(this.f9426b);
-                cu0Var.f25019a.invalidate();
+                cu0Var.f25014e.O1.remove(this.f9426b);
+                cu0Var.f25011a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.e1 e1Var = (org.telegram.ui.Components.voip.e1) this.f9427c;
-                e1Var.f31668x = -1;
+                e1Var.f31653x = -1;
                 e1Var.v = this.f9426b;
-                e1Var.f31666s = 0.0f;
+                e1Var.f31651s = 0.0f;
                 e1Var.U = null;
                 e1Var.e();
                 return;

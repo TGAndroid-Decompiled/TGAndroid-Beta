@@ -168,7 +168,7 @@ public final class p8 implements Runnable {
                 return;
             case 11:
                 String str = e2.d0.f8529a;
-                e2.c cVar = ((i2.c0) ((k2.j) ((n4.y) obj).f16363c)).f11618a.E;
+                e2.c cVar = ((i2.c0) ((k2.j) ((n4.y) obj).f16364c)).f11618a.E;
                 i2.w wVar = new i2.w(i13, 2);
                 cVar.getClass();
                 if (Looper.myLooper() == ((e2.z) cVar.f8525c).f8590a.getLooper()) {
@@ -204,86 +204,86 @@ public final class p8 implements Runnable {
                 ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
                 return;
             case 15:
-                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f19802id, 0, true);
+                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f19803id, 0, true);
                 return;
             case 16:
-                ((org.telegram.ui.s4) ((org.telegram.ui.g) obj).f37879b).V(i13, true);
+                ((org.telegram.ui.s4) ((org.telegram.ui.g) obj).f37877b).V(i13, true);
                 return;
             case 17:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj;
-                int i15 = u1Var.f23185v7;
+                int i15 = u1Var.f23186v7;
                 if (i13 == i15) {
-                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23084o7.get(i15);
+                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23085o7.get(i15);
                     if (e0Var2 != null) {
-                        org.telegram.ui.Cells.z zVar = e0Var2.f21775s;
+                        org.telegram.ui.Cells.z zVar = e0Var2.f21776s;
                         if (zVar != null) {
                             zVar.setState(StateSet.NOTHING);
                         }
                         e0Var2.b(false);
-                        if (!u1Var.f23230y7.scheduled) {
-                            if (e0Var2.f21766j != null) {
+                        if (!u1Var.f23231y7.scheduled) {
+                            if (e0Var2.f21767j != null) {
                                 u1Var.k();
-                            } else if (e0Var2.f21765i != null) {
+                            } else if (e0Var2.f21766i != null) {
                                 u1Var.k();
                                 org.telegram.ui.Cells.l1 l1Var = u1Var.Jc;
                                 if (l1Var != null) {
-                                    l1Var.N1(u1Var, e0Var2.f21765i);
+                                    l1Var.N1(u1Var, e0Var2.f21766i);
                                 }
                             }
                         }
                     }
-                    u1Var.f23185v7 = -1;
+                    u1Var.f23186v7 = -1;
                     u1Var.a3();
                     return;
                 }
                 return;
             case 18:
-                ((je) obj).f39189f.c(i13);
+                ((je) obj).f39191f.c(i13);
                 return;
             case 19:
-                eo eoVar = ((dj) obj).f36837g;
-                if (eoVar.f37475wb == i13) {
+                eo eoVar = ((dj) obj).f36840g;
+                if (eoVar.f37480wb == i13) {
                     eoVar.Qa();
                     return;
                 }
                 return;
             case 20:
-                eo eoVar2 = ((ej) obj).f37124g;
-                if (eoVar2.f37475wb == i13) {
+                eo eoVar2 = ((ej) obj).f37129g;
+                if (eoVar2.f37480wb == i13) {
                     eoVar2.Qa();
                     return;
                 }
                 return;
             case 21:
-                ((mj) obj).f40057a.F(this.f1575b, 0, 0, 0, true, true);
+                ((mj) obj).f40060a.F(this.f1575b, 0, 0, 0, true, true);
                 return;
             case 22:
-                eo eoVar3 = ((dj) obj).f36837g;
-                if (eoVar3.f37475wb == i13) {
+                eo eoVar3 = ((dj) obj).f36840g;
+                if (eoVar3.f37480wb == i13) {
                     eoVar3.Qa();
                     return;
                 }
                 return;
             case 23:
-                eo eoVar4 = ((ej) obj).f37124g;
-                if (eoVar4.f37475wb == i13) {
+                eo eoVar4 = ((ej) obj).f37129g;
+                if (eoVar4.f37480wb == i13) {
                     eoVar4.Qa();
                     return;
                 }
                 return;
             case 24:
-                eo eoVar5 = ((ej) obj).f37124g;
-                if (eoVar5.f37475wb == i13) {
+                eo eoVar5 = ((ej) obj).f37129g;
+                if (eoVar5.f37480wb == i13) {
                     eoVar5.Qa();
                     return;
                 }
                 return;
             case 25:
                 eo eoVar6 = ((wm) obj).J0;
-                eoVar6.f37502z0.h1(i13, eoVar6.f37494y4);
+                eoVar6.f37507z0.h1(i13, eoVar6.f37499y4);
                 return;
             case 26:
-                i11 = ((org.telegram.ui.ActionBar.m2) ((pn) obj).f40998a).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.m2) ((pn) obj).f41000a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
             case 27:

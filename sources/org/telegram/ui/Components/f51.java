@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class f51 extends s4.i0 {
-    public Context f25896c;
+    public Context f25898c;
     public View d;
-    public int f25897e;
+    public int f25899e;
 
     public final void D(View view) {
         if (this.d == view) {
             return;
         }
-        this.f25897e++;
+        this.f25899e++;
         this.d = view;
         m(1);
     }
@@ -27,13 +27,13 @@ public final class f51 extends s4.i0 {
         if (i10 == 0) {
             return 0;
         }
-        return this.f25897e;
+        return this.f25899e;
     }
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         if (i10 == 0) {
-            return new s4.d1(new co(this.f25896c, 13));
+            return new s4.d1(new co(this.f25898c, 13));
         }
         return new s4.d1(this.d);
     }

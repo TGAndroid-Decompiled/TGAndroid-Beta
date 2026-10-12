@@ -5,20 +5,20 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class e00 extends ReplacementSpan {
-    public final int f25533a;
+    public final int f25538a;
 
     public e00(int i10) {
-        this.f25533a = i10;
+        this.f25538a = i10;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f25533a;
+        int i15 = this.f25538a;
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f25533a) {
+        switch (this.f25538a) {
             case 0:
                 return (int) paint.measureText(charSequence, i10, i11);
             case 1:
@@ -33,7 +33,7 @@ public final class e00 extends ReplacementSpan {
     }
 
     public e00(boolean z10) {
-        this.f25533a = 0;
+        this.f25538a = 0;
     }
 
     private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {

@@ -103,7 +103,7 @@ public final class c1 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(oeVar.f40679y0).sendRequest(new TL_account.getPassword(), new u1(oeVar, twoStepVerificationActivity, z10, 2), 8);
+                            ConnectionsManager.getInstance(oeVar.f40682y0).sendRequest(new TL_account.getPassword(), new u1(oeVar, twoStepVerificationActivity, z10, 2), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
@@ -117,13 +117,13 @@ public final class c1 implements Runnable {
                         twoStepVerificationActivity.o0();
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                    alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                     LinearLayout linearLayout = new LinearLayout(activity);
                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                     linearLayout.setOrientation(1);
                     alertDialog$Builder.n(linearLayout);
                     TextView textView = new TextView(activity);
-                    int i17 = h6.f20667j5;
+                    int i17 = h6.f20668j5;
                     textView.setTextColor(h6.x0(null, i17, false));
                     textView.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -225,10 +225,10 @@ public final class c1 implements Runnable {
                         alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                     }
                     if (twoStepVerificationActivity != null) {
-                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f20141a);
+                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f20142a);
                         return;
                     } else {
-                        oeVar.f40676w0.showDialog(alertDialog$Builder.f20141a);
+                        oeVar.f40679w0.showDialog(alertDialog$Builder.f20142a);
                         return;
                     }
                 }
@@ -261,7 +261,7 @@ public final class c1 implements Runnable {
                         return;
                     }
                     try {
-                        AndroidUtilities.openForView(messageObject, eoVar.getParentActivity(), eoVar.f37251ea, false);
+                        AndroidUtilities.openForView(messageObject, eoVar.getParentActivity(), eoVar.f37256ea, false);
                         return;
                     } catch (Exception e7) {
                         FileLog.e(e7);
@@ -274,7 +274,7 @@ public final class c1 implements Runnable {
                 ip ipVar = (ip) this.f11621c;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f11623f;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.h;
-                kp kpVar = ipVar.f38956a;
+                kp kpVar = ipVar.f38958a;
                 lp lpVar = kpVar.Y2;
                 lpVar.P.remove(((TLRPC.TL_channels_toggleUsername) this.d).username);
                 boolean z11 = ((TLObject) this.f11622e) instanceof TLRPC.TL_boolTrue;

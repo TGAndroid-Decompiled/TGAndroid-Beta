@@ -162,7 +162,7 @@ public abstract class m extends FrameLayout {
         this.S = new org.telegram.ui.Components.pa(laVar, this, 8, false);
         this.Q = new org.telegram.ui.Components.pa(laVar, this, 9, false);
         lVar.f613j = true;
-        int i17 = org.telegram.ui.ActionBar.h6.f20559d6;
+        int i17 = org.telegram.ui.ActionBar.h6.f20560d6;
         lVar.a(new f(c6Var, i17, 0.0f, 0));
         lVar.f611g.setColor(0);
         lVar.invalidateSelf();
@@ -219,12 +219,12 @@ public abstract class m extends FrameLayout {
         Drawable mutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
         this.h = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.U5, false), PorterDuff.Mode.SRC_IN));
-        hr hrVar = new hr(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20972zf, c6Var)), mutate, 0, AndroidUtilities.dp(1.0f));
+        hr hrVar = new hr(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20973zf, c6Var)), mutate, 0, AndroidUtilities.dp(1.0f));
         this.f5561n = hrVar;
         int dp = AndroidUtilities.dp(36.0f);
         int dp2 = AndroidUtilities.dp(36.0f);
         hrVar.h = dp;
-        hrVar.f26894n = dp2;
+        hrVar.f26880n = dp2;
         jVar.setImageDrawable(hrVar);
         jVar.setScaleType(ImageView.ScaleType.CENTER);
         jVar.setContentDescription(LocaleController.getString(R.string.Done));
@@ -329,7 +329,7 @@ public abstract class m extends FrameLayout {
                             this.L.b(false);
                             gVar.getEditText().setForceCursorEnd(true);
                             gVar.getEditText().requestFocus();
-                            xu xuVar = gVar.f25023a;
+                            xu xuVar = gVar.f25015a;
                             xuVar.requestFocus();
                             AndroidUtilities.showKeyboard(xuVar);
                             gVar.getEditText().setScrollY(0);
@@ -426,7 +426,7 @@ public abstract class m extends FrameLayout {
     }
 
     public int getEditTextHeight() {
-        return (int) this.f5572v0.f26303c;
+        return (int) this.f5572v0.f26301c;
     }
 
     public int getEditTextHeightClosedKeyboard() {
@@ -442,7 +442,7 @@ public abstract class m extends FrameLayout {
     }
 
     public float getOver2Alpha() {
-        return this.M0.f26303c;
+        return this.M0.f26301c;
     }
 
     public int getSelectionLength() {
@@ -526,7 +526,7 @@ public abstract class m extends FrameLayout {
 
     public final boolean p() {
         g gVar = this.f5553f;
-        boolean z10 = gVar.f25032x;
+        boolean z10 = gVar.f25024x;
         h4 h4Var = this.L;
         if (z10 && gVar.getEmojiView() != null) {
             if (h4Var.c()) {
@@ -539,7 +539,7 @@ public abstract class m extends FrameLayout {
                 gVar.d.u(false);
             }
             return true;
-        } else if (gVar.f25026e) {
+        } else if (gVar.f25018e) {
             gVar.k(true);
             return true;
         } else if ((!gVar.v && !h4Var.c()) || h4Var.d) {
@@ -630,7 +630,7 @@ public abstract class m extends FrameLayout {
         }
         g gVar = this.f5553f;
         boolean z10 = false;
-        if (gVar.f25026e) {
+        if (gVar.f25018e) {
             i10 = Math.max(0, gVar.getEmojiPadding() + a());
         } else if (gVar.N) {
             i10 = Math.max(0, gVar.getKeyboardHeight() + a());
@@ -652,7 +652,7 @@ public abstract class m extends FrameLayout {
             }
             this.f5560l0 = ObjectAnimator.ofFloat(view, FrameLayout.TRANSLATION_Y, view.getTranslationY(), -max);
             if (max > AndroidUtilities.dp(20.0f)) {
-                this.f5560l0.setInterpolator(org.telegram.ui.ActionBar.o1.f21181w);
+                this.f5560l0.setInterpolator(org.telegram.ui.ActionBar.o1.f21182w);
                 this.f5560l0.setDuration(250L);
             } else {
                 this.f5560l0.setInterpolator(js.h);
@@ -675,7 +675,7 @@ public abstract class m extends FrameLayout {
 
     public void y() {
         if (this.M != null) {
-            float translationY = ((View) getParent()).getTranslationY() - this.f5572v0.f26303c;
+            float translationY = ((View) getParent()).getTranslationY() - this.f5572v0.f26301c;
             if (this.M.getY() != translationY) {
                 this.M.setTranslationY(translationY);
                 this.M.invalidate();
@@ -686,13 +686,13 @@ public abstract class m extends FrameLayout {
     public void n() {
     }
 
+    public void t() {
+    }
+
     public void q(boolean z10) {
     }
 
     public void r(int i10) {
-    }
-
-    public void t() {
     }
 
     public void j(Canvas canvas, RectF rectF) {

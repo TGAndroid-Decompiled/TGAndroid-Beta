@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class d70 {
-    public final int f25258a;
-    public final int f25259b;
+    public final int f25250a;
+    public final int f25251b;
 
     public d70(int i10, int i11) {
-        this.f25258a = i10;
-        this.f25259b = i11;
+        this.f25250a = i10;
+        this.f25251b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class d70 {
         }
         if (obj != null && d70.class == obj.getClass()) {
             d70 d70Var = (d70) obj;
-            if (this.f25258a == d70Var.f25258a && this.f25259b == d70Var.f25259b) {
+            if (this.f25250a == d70Var.f25250a && this.f25251b == d70Var.f25251b) {
                 return true;
             }
         }
@@ -22,13 +22,13 @@ public final class d70 {
     }
 
     public final int hashCode() {
-        return (this.f25258a * 31) + this.f25259b;
+        return (this.f25250a * 31) + this.f25251b;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f25258a);
+        sb2.append(this.f25250a);
         sb2.append(", ");
-        return a1.g.o(this.f25259b, ")", sb2);
+        return a1.g.o(this.f25251b, ")", sb2);
     }
 }

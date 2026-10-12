@@ -3,39 +3,39 @@ package org.telegram.ui.web;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class e2 implements Utilities.Callback {
-    public final int f43237a;
-    public final f2 f43238b;
+    public final int f43239a;
+    public final g2 f43240b;
 
-    public e2(f2 f2Var, int i10) {
-        this.f43237a = i10;
-        this.f43238b = f2Var;
+    public e2(g2 g2Var, int i10) {
+        this.f43239a = i10;
+        this.f43240b = g2Var;
     }
 
     @Override
     public final void run(Object obj) {
-        h2 h2Var = (h2) obj;
-        switch (this.f43237a) {
+        i2 i2Var = (i2) obj;
+        switch (this.f43239a) {
             case 0:
-                f2 f2Var = this.f43238b;
-                f2Var.f43252l = null;
-                f2Var.f43249i = true;
-                TLRPC.TL_webPage tL_webPage = f2Var.f43250j;
+                g2 g2Var = this.f43240b;
+                g2Var.f43264l = null;
+                g2Var.f43261i = true;
+                TLRPC.TL_webPage tL_webPage = g2Var.f43262j;
                 if (tL_webPage != null) {
-                    h2.o(tL_webPage);
+                    i2.o(tL_webPage);
                 }
-                f2Var.f43250j = h2Var.f43282c;
-                f2Var.c();
+                g2Var.f43262j = i2Var.f43299c;
+                g2Var.c();
                 return;
             default:
-                f2 f2Var2 = this.f43238b;
-                f2Var2.f43252l = null;
-                f2Var2.f43249i = true;
-                TLRPC.TL_webPage tL_webPage2 = f2Var2.f43250j;
+                g2 g2Var2 = this.f43240b;
+                g2Var2.f43264l = null;
+                g2Var2.f43261i = true;
+                TLRPC.TL_webPage tL_webPage2 = g2Var2.f43262j;
                 if (tL_webPage2 != null) {
-                    h2.o(tL_webPage2);
+                    i2.o(tL_webPage2);
                 }
-                f2Var2.f43250j = h2Var.f43282c;
-                f2Var2.c();
+                g2Var2.f43262j = i2Var.f43299c;
+                g2Var2.c();
                 return;
         }
     }

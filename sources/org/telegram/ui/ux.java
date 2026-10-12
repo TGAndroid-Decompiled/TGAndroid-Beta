@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class ux implements k70 {
-    public final org.telegram.ui.ActionBar.a2 f42604a;
-    public final vy f42605b;
+    public final org.telegram.ui.ActionBar.a2 f42606a;
+    public final vy f42607b;
 
     public ux(vy vyVar, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f42605b = vyVar;
-        this.f42604a = a2Var;
+        this.f42607b = vyVar;
+        this.f42606a = a2Var;
     }
 
     @Override
     public final void a(l70 l70Var, final long j3) {
         final org.telegram.ui.ActionBar.m2[] m2VarArr = {l70Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final ux f42017b;
+            public final ux f42021b;
 
             {
-                this.f42017b = this;
+                this.f42021b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class ux implements k70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        vy vyVar = this.f42017b.f42605b;
+                        vy vyVar = this.f42021b.f42607b;
                         Boolean bool = vyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class ux implements k70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", vyVar.G.has_username.booleanValue());
                             qd qdVar = new qd(bundle);
-                            qdVar.f41296t0 = new e5(runnable, 12);
+                            qdVar.f41300t0 = new e5(runnable, 12);
                             vyVar.presentFragment(qdVar);
                             m2VarArr[1] = qdVar;
                             return;
@@ -44,18 +44,18 @@ public final class ux implements k70 {
                         runnable.run();
                         return;
                     default:
-                        ux uxVar = this.f42017b;
-                        vy vyVar2 = uxVar.f42605b;
-                        vyVar2.N4(vyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new org.telegram.ui.Components.voip.y(13, uxVar, m2VarArr));
+                        ux uxVar = this.f42021b;
+                        vy vyVar2 = uxVar.f42607b;
+                        vyVar2.N4(vyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new org.telegram.ui.Components.voip.p(14, uxVar, m2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final ux f42017b;
+            public final ux f42021b;
 
             {
-                this.f42017b = this;
+                this.f42021b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class ux implements k70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        vy vyVar = this.f42017b.f42605b;
+                        vy vyVar = this.f42021b.f42607b;
                         Boolean bool = vyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class ux implements k70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", vyVar.G.has_username.booleanValue());
                             qd qdVar = new qd(bundle);
-                            qdVar.f41296t0 = new e5(runnable, 12);
+                            qdVar.f41300t0 = new e5(runnable, 12);
                             vyVar.presentFragment(qdVar);
                             m2VarArr[1] = qdVar;
                             return;
@@ -79,19 +79,19 @@ public final class ux implements k70 {
                         runnable.run();
                         return;
                     default:
-                        ux uxVar = this.f42017b;
-                        vy vyVar2 = uxVar.f42605b;
-                        vyVar2.N4(vyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new org.telegram.ui.Components.voip.y(13, uxVar, m2VarArr));
+                        ux uxVar = this.f42021b;
+                        vy vyVar2 = uxVar.f42607b;
+                        vyVar2.N4(vyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new org.telegram.ui.Components.voip.p(14, uxVar, m2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.a2 a2Var = this.f42604a;
+        org.telegram.ui.ActionBar.a2 a2Var = this.f42606a;
         Utilities.doCallbacks(callback, callback2, new mu(this, a2Var, j3, 1), new Utilities.Callback(this) {
-            public final ux f42306b;
+            public final ux f42308b;
 
             {
-                this.f42306b = this;
+                this.f42308b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class ux implements k70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        vy vyVar = this.f42306b.f42605b;
+                        vy vyVar = this.f42308b.f42607b;
                         if (vyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = vyVar.getMessagesController().getUser(Long.valueOf(vyVar.H));
                             MessagesController messagesController = vyVar.getMessagesController();
@@ -120,7 +120,7 @@ public final class ux implements k70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        vy vyVar2 = this.f42306b.f42605b;
+                        vy vyVar2 = this.f42308b.f42607b;
                         if (vyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = vyVar2.getMessagesController();
                             long j10 = j3;
@@ -132,10 +132,10 @@ public final class ux implements k70 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final ux f42306b;
+            public final ux f42308b;
 
             {
-                this.f42306b = this;
+                this.f42308b = this;
             }
 
             @Override
@@ -144,7 +144,7 @@ public final class ux implements k70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        vy vyVar = this.f42306b.f42605b;
+                        vy vyVar = this.f42308b.f42607b;
                         if (vyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = vyVar.getMessagesController().getUser(Long.valueOf(vyVar.H));
                             MessagesController messagesController = vyVar.getMessagesController();
@@ -164,7 +164,7 @@ public final class ux implements k70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        vy vyVar2 = this.f42306b.f42605b;
+                        vy vyVar2 = this.f42308b.f42607b;
                         if (vyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = vyVar2.getMessagesController();
                             long j10 = j3;

@@ -38,7 +38,7 @@ public final class z0 extends t61 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f19823id = -Long.valueOf(i10.f19808id).hashCode();
+                tL_message.f19824id = -Long.valueOf(i10.f19809id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -74,7 +74,7 @@ public final class z0 extends t61 {
     @Override
     public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
         a1 a1Var = new a1(context, i10, c6Var);
-        a1Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var)));
+        a1Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var)));
         return a1Var;
     }
 

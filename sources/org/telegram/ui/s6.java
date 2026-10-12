@@ -22,7 +22,7 @@ public final class s6 extends View {
     }
 
     public void a() {
-        this.f41816b.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ((pg.x) this.f41818e).f45723f}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f41816b.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ((pg.x) this.f41818e).f45728f}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
     public void b(float f7) {
@@ -30,7 +30,7 @@ public final class s6 extends View {
         float a2 = w7.n.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f41817c.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
         this.d = a2;
         pg.x xVar = (pg.x) this.f41818e;
-        xVar.o(i0.a.k(xVar.f45723f, (int) (a2 * 255.0f)), 1);
+        xVar.o(i0.a.k(xVar.f45728f, (int) (a2 * 255.0f)), 1);
         invalidate();
     }
 
@@ -55,9 +55,9 @@ public final class s6 extends View {
                 rectF2.set(dp, f7, getWidth() - dp, f10);
                 canvas.save();
                 pg.x xVar = (pg.x) this.f41818e;
-                xVar.f45722e.rewind();
-                xVar.f45722e.addRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-                canvas.clipPath(xVar.f45722e);
+                xVar.f45727e.rewind();
+                xVar.f45727e.addRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+                canvas.clipPath(xVar.f45727e);
                 qg.i1.x1(canvas, rectF2, AndroidUtilities.dp(6.0f));
                 canvas.restore();
                 rectF2.set(dp, f7, getWidth() - dp, f10);
@@ -67,7 +67,7 @@ public final class s6 extends View {
                 float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
                 float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.d) + dp) - strokeWidth);
                 canvas.drawCircle(max, height, dp2, paint);
-                qg.i1.y1(max, height, strokeWidth, i0.a.k(xVar.f45723f, (int) (this.d * 255.0f)), canvas);
+                qg.i1.y1(max, height, strokeWidth, i0.a.k(xVar.f45728f, (int) (this.d * 255.0f)), canvas);
                 return;
         }
     }

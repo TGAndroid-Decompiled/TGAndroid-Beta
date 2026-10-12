@@ -34,7 +34,7 @@ public final class v01 extends FrameLayout {
         if (z10 || this.d) {
             canvas2 = canvas;
             float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = x01Var.f32601c;
+            float[] fArr = x01Var.f32600c;
             boolean z11 = this.f31319c;
             if (z11) {
                 f7 = dp;
@@ -63,7 +63,7 @@ public final class v01 extends FrameLayout {
             }
             fArr[7] = dp;
             fArr[6] = dp;
-            x01Var.f32600b.rewind();
+            x01Var.f32599b.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             float f13 = x01Var.h;
             float width = getWidth() - x01Var.h;
@@ -75,11 +75,11 @@ public final class v01 extends FrameLayout {
                 f12 = 1.0f;
             }
             rectF.set(f13, f13, width, (f14 * f12) + height);
-            x01Var.f32600b.addRoundRect(rectF, x01Var.f32601c, Path.Direction.CW);
+            x01Var.f32599b.addRoundRect(rectF, x01Var.f32600c, Path.Direction.CW);
             if (this.f31318b) {
-                canvas2.drawPath(x01Var.f32600b, x01Var.d);
+                canvas2.drawPath(x01Var.f32599b, x01Var.d);
             }
-            canvas2.drawPath(x01Var.f32600b, x01Var.f32602e);
+            canvas2.drawPath(x01Var.f32599b, x01Var.f32601e);
         } else {
             if (this.f31318b) {
                 float f15 = x01Var.h;
@@ -89,7 +89,7 @@ public final class v01 extends FrameLayout {
                 canvas2 = canvas;
             }
             float f16 = x01Var.h;
-            canvas2.drawRect(f16, f16, getWidth() - x01Var.h, getHeight() + x01Var.h, x01Var.f32602e);
+            canvas2.drawRect(f16, f16, getWidth() - x01Var.h, getHeight() + x01Var.h, x01Var.f32601e);
         }
         super.onDraw(canvas2);
     }

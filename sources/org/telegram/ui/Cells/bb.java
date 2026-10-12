@@ -25,24 +25,24 @@ import org.telegram.ui.Components.gd0;
 import org.telegram.ui.jj1;
 import org.telegram.ui.kj1;
 public final class bb extends FrameLayout {
-    public final ai.z5 f21651a;
-    public final ImageView f21652b;
-    public final CheckBox f21653c;
+    public final ai.z5 f21652a;
+    public final ImageView f21653b;
+    public final CheckBox f21654c;
     public final View d;
-    public boolean f21654e;
-    public AnimatorSet f21655f;
+    public boolean f21655e;
+    public AnimatorSet f21656f;
     public Object h;
-    public final cb f21656n;
+    public final cb f21657n;
 
     public bb(cb cbVar, Context context) {
         super(context);
-        this.f21656n = cbVar;
+        this.f21657n = cbVar;
         setWillNotDraw(false);
         ai.z5 z5Var = new ai.z5(this, context, 4);
-        this.f21651a = z5Var;
+        this.f21652a = z5Var;
         addView(z5Var, w7.w5.e(-1, -1, 51));
         ImageView imageView = new ImageView(context);
-        this.f21652b = imageView;
+        this.f21653b = imageView;
         imageView.setImageResource(R.drawable.ic_gallery_background);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, w7.w5.e(-1, -1, 51));
@@ -51,9 +51,9 @@ public final class bb extends FrameLayout {
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
         addView(view, w7.w5.d(-1.0f, -1));
         CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
-        this.f21653c = checkBox;
+        this.f21654c = checkBox;
         checkBox.setVisibility(4);
-        checkBox.c(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20688k7, false));
+        checkBox.c(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20652i7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20689k7, false));
         addView(checkBox, w7.w5.a(22.0f, 0.0f, 2.0f, 2.0f, 0.0f, 22, 53));
     }
 
@@ -66,9 +66,9 @@ public final class bb extends FrameLayout {
         int patternColor2;
         org.telegram.ui.Components.y9 y9Var;
         this.h = obj;
-        org.telegram.ui.Components.y9 y9Var2 = this.f21651a;
+        org.telegram.ui.Components.y9 y9Var2 = this.f21652a;
         y9Var2.setVisibility(0);
-        this.f21652b.setVisibility(4);
+        this.f21653b.setVisibility(4);
         TLRPC.PhotoSize photoSize = null;
         y9Var2.setBackgroundDrawable(null);
         y9Var2.getImageReceiver().setColorFilter(null);
@@ -80,7 +80,7 @@ public final class bb extends FrameLayout {
         } else {
             z10 = false;
         }
-        this.f21654e = z10;
+        this.f21655e = z10;
         if (obj instanceof TLRPC.TL_wallPaper) {
             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_wallPaper.document.thumbs, AndroidUtilities.dp(100));
@@ -99,7 +99,7 @@ public final class bb extends FrameLayout {
                     TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
                     gd0 gd0Var = new gd0(true, wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color);
                     if (tL_wallPaper.settings.intensity < 0 && org.telegram.ui.ActionBar.h6.I.q()) {
-                        y9Var2.getImageReceiver().setGradientBitmap(gd0Var.f26407k);
+                        y9Var2.getImageReceiver().setGradientBitmap(gd0Var.f26405k);
                     } else {
                         y9Var2.setBackground(gd0Var);
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -133,14 +133,14 @@ public final class bb extends FrameLayout {
             }
         } else if (obj instanceof jj1) {
             jj1 jj1Var = (jj1) obj;
-            File file = jj1Var.f39230i;
+            File file = jj1Var.f39233i;
             int i11 = jj1Var.d;
-            int i12 = jj1Var.f39226c;
-            int i13 = jj1Var.f39225b;
-            if (file == null && jj1Var.f39229g == null && !"d".equals(jj1Var.f39224a)) {
+            int i12 = jj1Var.f39229c;
+            int i13 = jj1Var.f39228b;
+            if (file == null && jj1Var.f39232g == null && !"d".equals(jj1Var.f39227a)) {
                 y9Var2.setImageBitmap(null);
-                if (jj1Var.f39232k) {
-                    y9Var2.setBackground(new gd0(true, jj1Var.f39225b, jj1Var.f39226c, jj1Var.d, jj1Var.f39227e));
+                if (jj1Var.f39235k) {
+                    y9Var2.setBackground(new gd0(true, jj1Var.f39228b, jj1Var.f39229c, jj1Var.d, jj1Var.f39230e));
                     return;
                 } else if (i12 != 0) {
                     y9Var2.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{i13 | (-16777216), i12 | (-16777216)}));
@@ -151,36 +151,36 @@ public final class bb extends FrameLayout {
                 }
             }
             if (i11 != 0) {
-                gd0 gd0Var2 = new gd0(true, jj1Var.f39225b, jj1Var.f39226c, jj1Var.d, jj1Var.f39227e);
+                gd0 gd0Var2 = new gd0(true, jj1Var.f39228b, jj1Var.f39229c, jj1Var.d, jj1Var.f39230e);
                 if (jj1Var.h >= 0.0f) {
-                    y9Var2.setBackground(new gd0(true, jj1Var.f39225b, jj1Var.f39226c, jj1Var.d, jj1Var.f39227e));
+                    y9Var2.setBackground(new gd0(true, jj1Var.f39228b, jj1Var.f39229c, jj1Var.d, jj1Var.f39230e));
                     if (Build.VERSION.SDK_INT >= 29) {
                         y9Var2.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
                     }
                 } else {
-                    y9Var2.getImageReceiver().setGradientBitmap(gd0Var2.f26407k);
+                    y9Var2.getImageReceiver().setGradientBitmap(gd0Var2.f26405k);
                 }
-                patternColor = gd0.g(i13, i12, i11, jj1Var.f39227e);
+                patternColor = gd0.g(i13, i12, i11, jj1Var.f39230e);
             } else {
                 patternColor = AndroidUtilities.getPatternColor(i13);
             }
             int i14 = patternColor;
-            if ("d".equals(jj1Var.f39224a)) {
-                if (jj1Var.f39234m == null) {
-                    jj1Var.f39234m = SvgHelper.getBitmap(R.raw.default_pattern, 100, 180, -16777216);
+            if ("d".equals(jj1Var.f39227a)) {
+                if (jj1Var.f39237m == null) {
+                    jj1Var.f39237m = SvgHelper.getBitmap(R.raw.default_pattern, 100, 180, -16777216);
                 }
-                y9Var2.setImageBitmap(jj1Var.f39234m);
+                y9Var2.setImageBitmap(jj1Var.f39237m);
                 y9Var2.getImageReceiver().setAlpha(Math.abs(jj1Var.h));
             } else if (file != null) {
                 y9Var2.f(file.getAbsolutePath(), "180_180", null);
             } else {
-                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(jj1Var.f39229g.document.thumbs, 100);
+                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(jj1Var.f39232g.document.thumbs, 100);
                 if (closestPhotoSizeWithSize3 != null) {
                     j3 = closestPhotoSizeWithSize3.size;
                 } else {
-                    j3 = jj1Var.f39229g.document.size;
+                    j3 = jj1Var.f39232g.document.size;
                 }
-                y9Var2.k(ImageLocation.getForDocument(closestPhotoSizeWithSize3, jj1Var.f39229g.document), "180_180", null, null, j3, "jpg", jj1Var.f39229g, 1);
+                y9Var2.k(ImageLocation.getForDocument(closestPhotoSizeWithSize3, jj1Var.f39232g.document), "180_180", null, null, j3, "jpg", jj1Var.f39232g, 1);
                 y9Var2.getImageReceiver().setAlpha(Math.abs(jj1Var.h));
                 if (Build.VERSION.SDK_INT >= 29 && i11 != 0) {
                     return;
@@ -189,7 +189,7 @@ public final class bb extends FrameLayout {
             }
         } else if (obj instanceof kj1) {
             kj1 kj1Var = (kj1) obj;
-            File file2 = kj1Var.f39537e;
+            File file2 = kj1Var.f39531e;
             if (file2 != null) {
                 y9Var2.f(file2.getAbsolutePath(), "180_180", null);
                 return;
@@ -197,10 +197,10 @@ public final class bb extends FrameLayout {
             File file3 = kj1Var.d;
             if (file3 != null) {
                 y9Var2.f(file3.getAbsolutePath(), "180_180", null);
-            } else if ("t".equals(kj1Var.f39534a)) {
+            } else if ("t".equals(kj1Var.f39528a)) {
                 y9Var2.setImageDrawable(org.telegram.ui.ActionBar.h6.X0(y9Var2, true));
             } else {
-                y9Var2.setImageResource(kj1Var.f39536c);
+                y9Var2.setImageResource(kj1Var.f39530c);
             }
         } else if (obj instanceof MediaController.SearchImage) {
             MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
@@ -221,36 +221,36 @@ public final class bb extends FrameLayout {
             }
             y9Var2.f(searchImage.thumbUrl, "180_180", null);
         } else {
-            this.f21654e = false;
+            this.f21655e = false;
         }
     }
 
     @Override
     public final void clearAnimation() {
         super.clearAnimation();
-        AnimatorSet animatorSet = this.f21655f;
+        AnimatorSet animatorSet = this.f21656f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f21655f = null;
+            this.f21656f = null;
         }
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f21651a.invalidate();
+        this.f21652a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        cb cbVar = this.f21656n;
-        if (!cbVar.f21711b || !this.f21653c.f23858x) {
-            ai.z5 z5Var = this.f21651a;
+        cb cbVar = this.f21657n;
+        if (!cbVar.f21712b || !this.f21654c.f23859x) {
+            ai.z5 z5Var = this.f21652a;
             if (z5Var.getImageReceiver().hasBitmapImage() && z5Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
                 return;
             }
         }
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), cbVar.f21717s);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), cbVar.f21718s);
     }
 
     @Override

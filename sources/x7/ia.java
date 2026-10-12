@@ -1,15 +1,15 @@
 package x7;
 public abstract class ia {
-    public static t7.r f51042a;
+    public static t7.r f51050a;
 
     public static synchronized fa a(ba baVar) {
         fa faVar;
         synchronized (ia.class) {
             try {
-                if (f51042a == null) {
-                    f51042a = new t7.r(3);
+                if (f51050a == null) {
+                    f51050a = new t7.r(3);
                 }
-                faVar = (fa) f51042a.O0(baVar);
+                faVar = (fa) f51050a.O0(baVar);
             } catch (Throwable th2) {
                 throw th2;
             }

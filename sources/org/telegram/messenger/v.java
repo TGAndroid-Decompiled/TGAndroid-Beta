@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class v implements Runnable {
-    public final int f19147a;
-    public final BetaUpdaterController f19148b;
+    public final int f19148a;
+    public final BetaUpdaterController f19149b;
 
     public v(BetaUpdaterController betaUpdaterController, int i10) {
-        this.f19147a = i10;
-        this.f19148b = betaUpdaterController;
+        this.f19148a = i10;
+        this.f19149b = betaUpdaterController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19147a) {
+        switch (this.f19148a) {
             case 0:
-                BetaUpdaterController.b(this.f19148b);
+                BetaUpdaterController.b(this.f19149b);
                 return;
             default:
-                BetaUpdaterController.c(this.f19148b);
+                BetaUpdaterController.c(this.f19149b);
                 return;
         }
     }

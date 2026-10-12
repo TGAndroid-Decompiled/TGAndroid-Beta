@@ -27,8 +27,8 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements db.v {
     @Override
     public <R> db.u create(final db.g gVar, final kb.a<R> aVar) {
         db.a aVar2 = this.exclusionStrategy;
-        Class cls = aVar.f14775a;
-        Class cls2 = aVar.f14775a;
+        Class cls = aVar.f14776a;
+        Class cls2 = aVar.f14776a;
         if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.au;
-public final class m1 extends au {
+import org.telegram.ui.Components.bu;
+public final class m1 extends bu {
     public int M;
     public int N;
     public ArrayList O;

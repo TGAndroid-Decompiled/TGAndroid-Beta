@@ -12,36 +12,36 @@ import org.telegram.tgnet.tl.TL_bots;
 public final class sr implements Runnable {
     public final nd E;
     public final org.telegram.ui.ActionBar.e3 F;
-    public final boolean[] f30618a;
-    public final int[] f30619b;
-    public final ai.d9 f30620c;
+    public final boolean[] f30620a;
+    public final int[] f30621b;
+    public final ai.d9 f30622c;
     public final String[] d;
-    public final ci.d f30621e;
-    public final org.telegram.ui.Cells.j3 f30622f;
+    public final ci.d f30623e;
+    public final org.telegram.ui.Cells.j3 f30624f;
     public final TreeSet h;
-    public final org.telegram.tgnet.h f30623n;
-    public final org.telegram.ui.Cells.e9 f30624r;
-    public final org.telegram.ui.ActionBar.c6 f30625s;
+    public final org.telegram.tgnet.h f30625n;
+    public final org.telegram.ui.Cells.e9 f30626r;
+    public final org.telegram.ui.ActionBar.c6 f30627s;
     public final int[] v;
-    public final Runnable[] f30626w;
-    public final int[] f30627x;
-    public final int f30628y;
+    public final Runnable[] f30628w;
+    public final int[] f30629x;
+    public final int f30630y;
 
     public sr(boolean[] zArr, int[] iArr, ai.d9 d9Var, String[] strArr, ci.d dVar, org.telegram.ui.Cells.j3 j3Var, TreeSet treeSet, org.telegram.tgnet.h hVar, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.ActionBar.c6 c6Var, int[] iArr2, Runnable[] runnableArr, int[] iArr3, int i10, nd ndVar, org.telegram.ui.ActionBar.e3 e3Var) {
-        this.f30618a = zArr;
-        this.f30619b = iArr;
-        this.f30620c = d9Var;
+        this.f30620a = zArr;
+        this.f30621b = iArr;
+        this.f30622c = d9Var;
         this.d = strArr;
-        this.f30621e = dVar;
-        this.f30622f = j3Var;
+        this.f30623e = dVar;
+        this.f30624f = j3Var;
         this.h = treeSet;
-        this.f30623n = hVar;
-        this.f30624r = e9Var;
-        this.f30625s = c6Var;
+        this.f30625n = hVar;
+        this.f30626r = e9Var;
+        this.f30627s = c6Var;
         this.v = iArr2;
-        this.f30626w = runnableArr;
-        this.f30627x = iArr3;
-        this.f30628y = i10;
+        this.f30628w = runnableArr;
+        this.f30629x = iArr3;
+        this.f30630y = i10;
         this.E = ndVar;
         this.F = e3Var;
     }
@@ -49,15 +49,15 @@ public final class sr implements Runnable {
     @Override
     public final void run() {
         int i10;
-        final boolean[] zArr = this.f30618a;
-        if (!zArr[0] && this.f30619b[0] < 0) {
-            this.f30620c.run();
+        final boolean[] zArr = this.f30620a;
+        if (!zArr[0] && this.f30621b[0] < 0) {
+            this.f30622c.run();
             final String[] strArr = this.d;
             strArr[0] = null;
-            final ci.d dVar = this.f30621e;
+            final ci.d dVar = this.f30623e;
             dVar.setLoading(false);
             dVar.setEnabled(false);
-            String charSequence = this.f30622f.getText().toString();
+            String charSequence = this.f30624f.getText().toString();
             StringBuilder v = a1.g.v(charSequence);
             String str = "bot";
             boolean a2 = vr.a(charSequence, "bot");
@@ -65,22 +65,22 @@ public final class sr implements Runnable {
             v.append((a2 || vr.c(charSequence, treeSet) != null) ? "" : "");
             final String sb2 = v.toString();
             boolean isEmpty = TextUtils.isEmpty(charSequence);
-            final org.telegram.tgnet.h hVar = this.f30623n;
+            final org.telegram.tgnet.h hVar = this.f30625n;
             if (isEmpty) {
                 hVar.run();
                 return;
             }
             int length = sb2.length();
-            final org.telegram.ui.Cells.e9 e9Var = this.f30624r;
-            final org.telegram.ui.ActionBar.c6 c6Var = this.f30625s;
+            final org.telegram.ui.Cells.e9 e9Var = this.f30626r;
+            final org.telegram.ui.ActionBar.c6 c6Var = this.f30627s;
             if (length >= 4 && sb2.length() <= 32) {
                 e9Var.setText(LocaleController.getString(R.string.UsernameChecking));
                 e9Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.B6, c6Var));
                 final int[] iArr = this.v;
                 final int i11 = iArr[0];
-                final Runnable[] runnableArr = this.f30626w;
-                final int[] iArr2 = this.f30627x;
-                final int i12 = this.f30628y;
+                final Runnable[] runnableArr = this.f30628w;
+                final int[] iArr2 = this.f30629x;
+                final int i12 = this.f30630y;
                 final nd ndVar = this.E;
                 final org.telegram.ui.ActionBar.e3 e3Var = this.F;
                 Runnable runnable = new Runnable() {
@@ -145,7 +145,7 @@ public final class sr implements Runnable {
                                                 }
                                                 org.telegram.ui.Cells.e9 e9Var3 = e9Var2;
                                                 e9Var3.setText(string);
-                                                e9Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20799q7, c6Var3));
+                                                e9Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20800q7, c6Var3));
                                                 if (d == null && tL_error != null) {
                                                     dVar3.setEnabled(true);
                                                     org.telegram.ui.Cells.c1.p(e3Var2.topBulletinContainer, c6Var3, tL_error, false);
@@ -168,7 +168,7 @@ public final class sr implements Runnable {
                 i10 = R.string.UsernameInvalidLong;
             }
             e9Var.setText(LocaleController.getString(i10));
-            e9Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20799q7, c6Var));
+            e9Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20800q7, c6Var));
         }
     }
 }

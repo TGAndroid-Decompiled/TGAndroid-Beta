@@ -6,36 +6,36 @@ import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.ui.PhotoViewer;
 public final class d30 {
-    public static final int f25213x;
-    public static final int f25214y;
-    public final int f25215a;
-    public final int f25216b;
-    public final int f25217c;
+    public static final int f25205x;
+    public static final int f25206y;
+    public final int f25207a;
+    public final int f25208b;
+    public final int f25209c;
     public final int d;
-    public final int f25218e;
-    public final androidx.mediarouter.app.c f25219f;
-    public final c30 f25220g;
+    public final int f25210e;
+    public final androidx.mediarouter.app.c f25211f;
+    public final c30 f25212g;
     public b30 h;
-    public boolean f25221i;
-    public boolean f25222j;
-    public boolean f25223k;
-    public boolean f25224l;
-    public boolean f25225m;
-    public MotionEvent f25226n;
-    public MotionEvent f25227o;
-    public MotionEvent f25228p;
-    public boolean f25229q;
-    public float f25230r;
-    public float f25231s;
-    public float f25232t;
-    public float f25233u;
+    public boolean f25213i;
+    public boolean f25214j;
+    public boolean f25215k;
+    public boolean f25216l;
+    public boolean f25217m;
+    public MotionEvent f25218n;
+    public MotionEvent f25219o;
+    public MotionEvent f25220p;
+    public boolean f25221q;
+    public float f25222r;
+    public float f25223s;
+    public float f25224t;
+    public float f25225u;
     public boolean v;
-    public VelocityTracker f25234w;
+    public VelocityTracker f25226w;
 
     static {
         ViewConfiguration.getLongPressTimeout();
-        f25213x = ViewConfiguration.getTapTimeout();
-        f25214y = ViewConfiguration.getDoubleTapTimeout();
+        f25205x = ViewConfiguration.getTapTimeout();
+        f25206y = ViewConfiguration.getDoubleTapTimeout();
     }
 
     public d30(Context context, PhotoViewer photoViewer) {
@@ -54,8 +54,8 @@ public final class d30 {
         int scaledTouchSlop;
         int i10;
         int i11;
-        this.f25219f = new androidx.mediarouter.app.c(this, 7);
-        this.f25220g = c30Var;
+        this.f25211f = new androidx.mediarouter.app.c(this, 7);
+        this.f25212g = c30Var;
         if (c30Var instanceof b30) {
             this.h = (b30) c30Var;
         }
@@ -63,7 +63,7 @@ public final class d30 {
         if (context == null) {
             i10 = ViewConfiguration.getTouchSlop();
             this.d = ViewConfiguration.getMinimumFlingVelocity();
-            this.f25218e = ViewConfiguration.getMaximumFlingVelocity();
+            this.f25210e = ViewConfiguration.getMaximumFlingVelocity();
             i11 = 100;
             scaledTouchSlop = i10;
         } else {
@@ -72,12 +72,12 @@ public final class d30 {
             scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
             int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
             this.d = viewConfiguration.getScaledMinimumFlingVelocity();
-            this.f25218e = viewConfiguration.getScaledMaximumFlingVelocity();
+            this.f25210e = viewConfiguration.getScaledMaximumFlingVelocity();
             i10 = scaledTouchSlop2;
             i11 = scaledDoubleTapSlop;
         }
-        this.f25215a = i10 * i10;
-        this.f25216b = scaledTouchSlop * scaledTouchSlop;
-        this.f25217c = i11 * i11;
+        this.f25207a = i10 * i10;
+        this.f25208b = scaledTouchSlop * scaledTouchSlop;
+        this.f25209c = i11 * i11;
     }
 }

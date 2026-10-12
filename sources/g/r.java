@@ -296,14 +296,14 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                     if (!i7.h) {
                         try {
                             Field declaredField = Resources.class.getDeclaredField("mResourcesImpl");
-                            i7.f49455g = declaredField;
+                            i7.f49463g = declaredField;
                             declaredField.setAccessible(true);
                         } catch (NoSuchFieldException e7) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mResourcesImpl field", e7);
                         }
                         i7.h = true;
                     }
-                    Field field = i7.f49455g;
+                    Field field = i7.f49463g;
                     if (field != null) {
                         try {
                             obj = field.get(resources);
@@ -312,17 +312,17 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                             obj = null;
                         }
                         if (obj != null) {
-                            if (!i7.f49451b) {
+                            if (!i7.f49459b) {
                                 try {
                                     Field declaredField2 = obj.getClass().getDeclaredField("mDrawableCache");
-                                    i7.f49450a = declaredField2;
+                                    i7.f49458a = declaredField2;
                                     declaredField2.setAccessible(true);
                                 } catch (NoSuchFieldException e11) {
                                     Log.e("ResourcesFlusher", "Could not retrieve ResourcesImpl#mDrawableCache field", e11);
                                 }
-                                i7.f49451b = true;
+                                i7.f49459b = true;
                             }
-                            Field field2 = i7.f49450a;
+                            Field field2 = i7.f49458a;
                             if (field2 != null) {
                                 try {
                                     obj2 = field2.get(obj);
@@ -336,17 +336,17 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                         }
                     }
                 } else {
-                    if (!i7.f49451b) {
+                    if (!i7.f49459b) {
                         try {
                             Field declaredField3 = Resources.class.getDeclaredField("mDrawableCache");
-                            i7.f49450a = declaredField3;
+                            i7.f49458a = declaredField3;
                             declaredField3.setAccessible(true);
                         } catch (NoSuchFieldException e13) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mDrawableCache field", e13);
                         }
-                        i7.f49451b = true;
+                        i7.f49459b = true;
                     }
-                    Field field3 = i7.f49450a;
+                    Field field3 = i7.f49458a;
                     if (field3 != null) {
                         try {
                             obj2 = field3.get(resources);
@@ -404,7 +404,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                 if (obtainStyledAttributes.hasValue(0) && (resourceId = obtainStyledAttributes.getResourceId(0, 0)) != 0) {
                     m.q a2 = m.q.a();
                     synchronized (a2) {
-                        drawable = a2.f15538a.f(resourceId, context, true);
+                        drawable = a2.f15539a.f(resourceId, context, true);
                     }
                 } else {
                     drawable = null;
@@ -463,12 +463,12 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
         this.T = true;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f10184s;
         actionBarOverlayLayout.f();
-        ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f2229e).f15497a.f2271a;
+        ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f2229e).f15498a.f2271a;
         if (actionMenuView != null && (hVar = actionMenuView.J) != null) {
             hVar.f();
             m.d dVar = hVar.J;
             if (dVar != null && dVar.b()) {
-                dVar.f15046i.dismiss();
+                dVar.f15047i.dismiss();
             }
         }
         Window.Callback callback = this.f10171f.getCallback();
@@ -485,7 +485,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
         if (z10 && qVar.f10148a == 0 && (k1Var = this.f10184s) != null) {
             ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) k1Var;
             actionBarOverlayLayout.f();
-            ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f2229e).f15497a.f2271a;
+            ActionMenuView actionMenuView = ((n3) actionBarOverlayLayout.f2229e).f15498a.f2271a;
             if (actionMenuView != null && (hVar = actionMenuView.J) != null && hVar.g()) {
                 g(qVar.h);
                 return;
@@ -593,12 +593,12 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                 }
                 if (viewGroup != null) {
                     a4.l lVar = new a4.l(this, 16);
-                    WeakHashMap weakHashMap = i0.f46981a;
+                    WeakHashMap weakHashMap = i0.f46989a;
                     r0.a0.i(viewGroup, lVar);
                     if (this.f10184s == null) {
                         this.K = (TextView) viewGroup.findViewById(2131296712);
                     }
-                    Method method = u3.f15585a;
+                    Method method = u3.f15586a;
                     try {
                         Method method2 = viewGroup.getClass().getMethod("makeOptionalFitsSystemWindows", null);
                         if (!method2.isAccessible()) {
@@ -638,12 +638,12 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                             a0 a0Var = this.f10179n;
                             if (a0Var != null) {
                                 n3 n3Var = (n3) a0Var.f10078e;
-                                if (!n3Var.f15502g) {
-                                    Toolbar toolbar = n3Var.f15497a;
+                                if (!n3Var.f15503g) {
+                                    Toolbar toolbar = n3Var.f15498a;
                                     n3Var.h = charSequence;
-                                    if ((n3Var.f15498b & 8) != 0) {
+                                    if ((n3Var.f15499b & 8) != 0) {
                                         toolbar.setTitle(charSequence);
-                                        if (n3Var.f15502g) {
+                                        if (n3Var.f15503g) {
                                             i0.k(toolbar.getRootView(), charSequence);
                                         }
                                     }
@@ -659,7 +659,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.J.findViewById(16908290);
                     View decorView = this.f10171f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = i0.f46981a;
+                    WeakHashMap weakHashMap2 = i0.f46989a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -782,7 +782,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
         this.f10175i0 = (1 << i10) | this.f10175i0;
         if (!this.f10174h0) {
             View decorView = this.f10171f.getDecorView();
-            WeakHashMap weakHashMap = i0.f46981a;
+            WeakHashMap weakHashMap = i0.f46989a;
             decorView.postOnAnimation(this.f10176j0);
             this.f10174h0 = true;
         }
@@ -807,14 +807,14 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                 return true;
             }
             a0 p5 = p();
-            if (p5 == null || (l1Var = p5.f10078e) == null || (i3Var = ((n3) l1Var).f15497a.f2279e0) == null || i3Var.f15456b == null) {
+            if (p5 == null || (l1Var = p5.f10078e) == null || (i3Var = ((n3) l1Var).f15498a.f2279e0) == null || i3Var.f15457b == null) {
                 return false;
             }
-            i3 i3Var2 = ((n3) l1Var).f15497a.f2279e0;
+            i3 i3Var2 = ((n3) l1Var).f15498a.f2279e0;
             if (i3Var2 == null) {
                 mVar = null;
             } else {
-                mVar = i3Var2.f15456b;
+                mVar = i3Var2.f15457b;
             }
             if (mVar != null) {
                 mVar.collapseActionView();

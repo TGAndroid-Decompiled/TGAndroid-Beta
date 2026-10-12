@@ -70,7 +70,7 @@ public final class v31 extends p71 {
             View childAt = getChildAt(i12);
             if (childAt instanceof c41) {
                 c41 c41Var = (c41) childAt;
-                if (c41Var.f24814s) {
+                if (c41Var.f24809s) {
                     if (width > c41Var.getX()) {
                         width = c41Var.getX();
                         RecyclerView.R(c41Var);
@@ -96,7 +96,7 @@ public final class v31 extends p71 {
             if (this.j3 == null) {
                 this.j3 = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
             }
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20525b9, c6Var);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20526b9, c6Var);
             if (this.f31379k3 != w02) {
                 Drawable drawable = this.j3;
                 this.f31379k3 = w02;
@@ -125,7 +125,7 @@ public final class v31 extends p71 {
             View childAt2 = getChildAt(i15);
             if (childAt2 instanceof c41) {
                 c41 c41Var4 = (c41) childAt2;
-                if (!c41Var4.f24816x) {
+                if (!c41Var4.f24811x) {
                     i10 = i11;
                     if (c41Var4.getTopicId() == h41Var.V) {
                         c41Var2 = c41Var4;

@@ -13,33 +13,33 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qo0 extends WebViewClient {
-    public final Context f41376a;
-    public final xo0 f41377b;
+    public final Context f41380a;
+    public final xo0 f41381b;
 
     public qo0(xo0 xo0Var, Context context) {
-        this.f41377b = xo0Var;
-        this.f41376a = context;
+        this.f41381b = xo0Var;
+        this.f41380a = context;
     }
 
     @Override
     public final void onPageFinished(WebView webView, String str) {
         super.onPageFinished(webView, str);
-        xo0 xo0Var = this.f41377b;
-        xo0Var.f44126z0 = false;
+        xo0 xo0Var = this.f41381b;
+        xo0Var.f44131z0 = false;
         xo0Var.H0(true, false);
         xo0Var.K0();
     }
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        xo0 xo0Var = this.f41377b;
+        xo0 xo0Var = this.f41381b;
         try {
             if (!AndroidUtilities.isSafeToShow(xo0Var.getParentActivity())) {
                 return true;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xo0Var.getParentActivity(), 0, xo0Var.Y0);
-            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20141a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new uk0(this, 10));
+            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20142a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new uk0(this, 10));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             alertDialog$Builder.o();
             return true;
@@ -53,8 +53,8 @@ public final class qo0 extends WebViewClient {
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
         Uri parse;
         boolean z10;
-        xo0 xo0Var = this.f41377b;
-        xo0Var.f44124y = !str.equals(xo0Var.f44122x);
+        xo0 xo0Var = this.f41381b;
+        xo0Var.f44129y = !str.equals(xo0Var.f44127x);
         try {
             parse = Uri.parse(str);
         } catch (Exception unused) {
@@ -63,8 +63,8 @@ public final class qo0 extends WebViewClient {
             xo0Var.t0();
             return true;
         }
-        if (!xo0.f44084h1.contains(parse.getScheme())) {
-            if (!xo0.f44083g1.contains(parse.getScheme())) {
+        if (!xo0.f44089h1.contains(parse.getScheme())) {
+            if (!xo0.f44088g1.contains(parse.getScheme())) {
                 try {
                     if (xo0Var.getParentActivity() != null) {
                         z10 = true;
@@ -76,9 +76,9 @@ public final class qo0 extends WebViewClient {
                         return true;
                     }
                 } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f41376a);
-                    alertDialog$Builder.f20141a.R = xo0Var.f44111p0;
-                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f41380a);
+                    alertDialog$Builder.f20142a.R = xo0Var.f44116p0;
+                    alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
                     alertDialog$Builder.o();
                 }

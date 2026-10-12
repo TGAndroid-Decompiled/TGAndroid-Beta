@@ -7,7 +7,7 @@ public final class t extends w1 implements s {
     @Override
     public final Object await(jd.c cVar) {
         Object h = h(cVar);
-        kd.a aVar = kd.a.f14780a;
+        kd.a aVar = kd.a.f14781a;
         return h;
     }
 }

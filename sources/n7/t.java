@@ -2,16 +2,16 @@ package n7;
 
 import java.util.NoSuchElementException;
 public final class t extends d0 {
-    public static final Object f16552b = new Object();
-    public Object f16553a;
+    public static final Object f16553b = new Object();
+    public Object f16554a;
 
     public t(Object obj) {
-        this.f16553a = obj;
+        this.f16554a = obj;
     }
 
     @Override
     public final boolean hasNext() {
-        if (this.f16553a != f16552b) {
+        if (this.f16554a != f16553b) {
             return true;
         }
         return false;
@@ -19,10 +19,10 @@ public final class t extends d0 {
 
     @Override
     public final Object next() {
-        Object obj = this.f16553a;
-        Object obj2 = f16552b;
+        Object obj = this.f16554a;
+        Object obj2 = f16553b;
         if (obj != obj2) {
-            this.f16553a = obj2;
+            this.f16554a = obj2;
             return obj;
         }
         throw new NoSuchElementException();

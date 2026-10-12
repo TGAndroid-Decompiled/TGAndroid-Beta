@@ -3,16 +3,16 @@ package org.telegram.ui.Wallet;
 import android.hardware.biometrics.BiometricPrompt;
 import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
 public final class u0 extends BiometricPrompt$AuthenticationCallback {
-    public final w0 f35405a;
+    public final w0 f35407a;
 
     public u0(w0 w0Var) {
-        this.f35405a = w0Var;
+        this.f35407a = w0Var;
     }
 
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        if (this.f35405a.f()) {
-            w0 w0Var = this.f35405a;
-            if (!w0Var.f35462f) {
+        if (this.f35407a.f()) {
+            w0 w0Var = this.f35407a;
+            if (!w0Var.f35464f) {
                 if (i10 != 10 && i10 != 5) {
                     w0Var.a();
                 } else {
@@ -23,6 +23,6 @@ public final class u0 extends BiometricPrompt$AuthenticationCallback {
     }
 
     public final void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult authenticationResult) {
-        this.f35405a.c(null);
+        this.f35407a.c(null);
     }
 }

@@ -24,7 +24,7 @@ import org.telegram.ui.Components.wd0;
 import org.telegram.ui.Components.yd0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.df;
-import org.telegram.ui.fg0;
+import org.telegram.ui.gg0;
 import org.telegram.ui.n71;
 import org.telegram.ui.tz0;
 public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBar.z1, wd0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
@@ -44,14 +44,14 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void a(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new df((Object) ((fg0) this.f1085a), (Object) hVar, (Object) list, (String) this.f1086b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f1087c), (Object) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((uo0) this.f1088e), 4));
+        AndroidUtilities.runOnUIThread(new df((Object) ((gg0) this.f1085a), (Object) hVar, (Object) list, (String) this.f1086b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f1087c), (Object) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((uo0) this.f1088e), 4));
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         org.telegram.ui.ActionBar.m3 m3Var = (org.telegram.ui.ActionBar.m3) this.f1085a;
         ((boolean[]) this.f1086b)[0] = true;
-        m3Var.h(m3Var.f21159w, (org.telegram.ui.ActionBar.l3) this.f1087c, true);
+        m3Var.h(m3Var.f21160w, (org.telegram.ui.ActionBar.l3) this.f1087c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.a2[]) this.f1088e)[0].dismiss();
     }
@@ -77,7 +77,7 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f34334s0;
+        int i10 = ProfileStoriesView.f34336s0;
         ((tz0) iVar.f326b).a(canvas, i6Var, i6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
@@ -93,7 +93,7 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
         kotlin.jvm.internal.i.e(e7, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.p pVar : request.f49251a) {
+        for (v0.p pVar : request.f49259a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.f9551e).g(request, cancellationSignal, executor, iVar);

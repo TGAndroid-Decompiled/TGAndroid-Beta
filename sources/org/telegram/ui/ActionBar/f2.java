@@ -7,63 +7,63 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class f2 extends Drawable {
-    public final Paint f20380a;
-    public boolean f20381b;
-    public long f20382c;
+    public final Paint f20381a;
+    public boolean f20382b;
+    public long f20383c;
     public float d;
-    public float f20383e;
-    public int f20384f;
-    public final boolean f20385g;
+    public float f20384e;
+    public int f20385f;
+    public final boolean f20386g;
     public final DecelerateInterpolator h;
-    public int f20386i;
-    public int f20387j;
-    public float f20388k;
-    public int f20389l;
+    public int f20387i;
+    public int f20388j;
+    public float f20389k;
+    public int f20390l;
 
     public f2(boolean z10) {
         Paint paint = new Paint(1);
-        this.f20380a = paint;
+        this.f20381a = paint;
         Paint paint2 = new Paint(1);
         this.h = new DecelerateInterpolator();
-        this.f20386i = -1;
-        this.f20387j = -9079435;
-        this.f20388k = 300.0f;
+        this.f20387i = -1;
+        this.f20388j = -9079435;
+        this.f20389k = 300.0f;
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setColor(-65536);
-        this.f20385g = z10;
+        this.f20386g = z10;
     }
 
     public final void a(int i10) {
-        this.f20386i = i10;
+        this.f20387i = i10;
         invalidateSelf();
     }
 
     public final void b(int i10) {
-        this.f20387j = i10;
+        this.f20388j = i10;
         invalidateSelf();
     }
 
     public final void c(float f7, boolean z10) {
-        this.f20382c = 0L;
-        float f10 = this.f20383e;
+        this.f20383c = 0L;
+        float f10 = this.f20384e;
         if (f10 == 1.0f) {
-            this.f20381b = true;
+            this.f20382b = true;
         } else if (f10 == 0.0f) {
-            this.f20381b = false;
+            this.f20382b = false;
         }
-        this.f20382c = 0L;
+        this.f20383c = 0L;
         if (z10) {
             if (f10 < f7) {
-                this.f20384f = (int) (f10 * this.f20388k);
+                this.f20385f = (int) (f10 * this.f20389k);
             } else {
-                this.f20384f = (int) ((1.0f - f10) * this.f20388k);
+                this.f20385f = (int) ((1.0f - f10) * this.f20389k);
             }
-            this.f20382c = System.currentTimeMillis();
+            this.f20383c = System.currentTimeMillis();
             this.d = f7;
         } else {
-            this.f20383e = f7;
+            this.f20384e = f7;
             this.d = f7;
         }
         invalidateSelf();
@@ -73,49 +73,49 @@ public final class f2 extends Drawable {
     public final void draw(Canvas canvas) {
         int i10;
         int i11;
-        if (this.f20383e != this.d) {
-            if (this.f20382c != 0) {
-                int currentTimeMillis = this.f20384f + ((int) (System.currentTimeMillis() - this.f20382c));
-                this.f20384f = currentTimeMillis;
+        if (this.f20384e != this.d) {
+            if (this.f20383c != 0) {
+                int currentTimeMillis = this.f20385f + ((int) (System.currentTimeMillis() - this.f20383c));
+                this.f20385f = currentTimeMillis;
                 float f7 = currentTimeMillis;
-                float f10 = this.f20388k;
+                float f10 = this.f20389k;
                 if (f7 >= f10) {
-                    this.f20383e = this.d;
+                    this.f20384e = this.d;
                 } else {
-                    int i12 = (this.f20383e > this.d ? 1 : (this.f20383e == this.d ? 0 : -1));
+                    int i12 = (this.f20384e > this.d ? 1 : (this.f20384e == this.d ? 0 : -1));
                     DecelerateInterpolator decelerateInterpolator = this.h;
                     if (i12 < 0) {
-                        this.f20383e = decelerateInterpolator.getInterpolation(f7 / f10) * this.d;
+                        this.f20384e = decelerateInterpolator.getInterpolation(f7 / f10) * this.d;
                     } else {
-                        this.f20383e = 1.0f - decelerateInterpolator.getInterpolation(f7 / f10);
+                        this.f20384e = 1.0f - decelerateInterpolator.getInterpolation(f7 / f10);
                     }
                 }
             }
-            this.f20382c = System.currentTimeMillis();
+            this.f20383c = System.currentTimeMillis();
             invalidateSelf();
         }
-        int d = i0.a.d(this.f20383e, this.f20386i, this.f20387j);
-        Paint paint = this.f20380a;
+        int d = i0.a.d(this.f20384e, this.f20387i, this.f20388j);
+        Paint paint = this.f20381a;
         paint.setColor(d);
         canvas.save();
         canvas.translate(AndroidUtilities.dp(24.0f) / 2.0f, AndroidUtilities.dp(24.0f) / 2.0f);
-        int i13 = this.f20389l;
+        int i13 = this.f20390l;
         if (i13 != 0) {
             canvas.rotate(i13);
         }
-        float f11 = this.f20383e;
+        float f11 = this.f20384e;
         canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
-        if (!this.f20385g) {
-            float f12 = this.f20383e;
-            if (this.f20381b) {
+        if (!this.f20386g) {
+            float f12 = this.f20384e;
+            if (this.f20382b) {
                 i11 = -225;
             } else {
                 i11 = 135;
             }
             canvas.rotate(f12 * i11);
         } else {
-            float f13 = this.f20383e;
-            if (this.f20381b) {
+            float f13 = this.f20384e;
+            if (this.f20382b) {
                 i10 = -180;
             } else {
                 i10 = 180;
@@ -150,11 +150,11 @@ public final class f2 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f20380a.setAlpha(i10);
+        this.f20381a.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f20380a.setColorFilter(colorFilter);
+        this.f20381a.setColorFilter(colorFilter);
     }
 }

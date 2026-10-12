@@ -25,7 +25,7 @@ public final class re1 extends s4.t0 {
                 return;
             case 2:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f41622b).f34431c);
+                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f41622b).f34433c);
                     return;
                 }
                 return;
@@ -38,7 +38,7 @@ public final class re1 extends s4.t0 {
                 if (i10 == 0) {
                     z10 = false;
                 }
-                wallpapersListActivity.f35626j0 = z10;
+                wallpapersListActivity.f35628j0 = z10;
                 return;
         }
     }
@@ -49,10 +49,10 @@ public final class re1 extends s4.t0 {
         switch (this.f41621a) {
             case 1:
                 dg1 dg1Var = (dg1) this.f41622b;
-                if (dg1Var.m0 && dg1Var.V.N0() + 5 >= dg1Var.f36815k0) {
-                    dg1Var.J(dg1Var.f36806b0);
+                if (dg1Var.m0 && dg1Var.V.N0() + 5 >= dg1Var.f36818k0) {
+                    dg1Var.J(dg1Var.f36809b0);
                 }
-                hg1 hg1Var = dg1Var.f36823t0;
+                hg1 hg1Var = dg1Var.f36826t0;
                 if (hg1Var.f38413s0) {
                     if (i10 != 0 || i11 != 0) {
                         AndroidUtilities.hideKeyboard(hg1Var.f38408p0.getSearchField());
@@ -77,8 +77,8 @@ public final class re1 extends s4.t0 {
                         int B = wallpapersListActivity.K.B();
                         if (abs != 0 && L0 + abs > B - 2) {
                             mj1 mj1Var = wallpapersListActivity.J;
-                            if (!mj1Var.f40076f && mj1Var.f40079s == 0) {
-                                mj1Var.F(mj1Var.h, mj1Var.f40078r, true);
+                            if (!mj1Var.f40079f && mj1Var.f40082s == 0) {
+                                mj1Var.F(mj1Var.h, mj1Var.f40081r, true);
                                 return;
                             }
                             return;

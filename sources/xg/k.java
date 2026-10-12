@@ -10,7 +10,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wm0;
 public final class k extends t61 {
-    public static final int f51384a = 0;
+    public static final int f51392a = 0;
 
     static {
         t61.setup(new t61());
@@ -20,7 +20,7 @@ public final class k extends t61 {
     public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
         l lVar = (l) view;
         lVar.setUser((TLRPC.User) u61Var.G);
-        lVar.c(u61Var.f31070e, false);
+        lVar.c(u61Var.f31065e, false);
         lVar.setDivider(z10);
     }
 

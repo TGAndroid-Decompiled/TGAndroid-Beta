@@ -28,11 +28,11 @@ public final class h3 implements q0.a {
                 m3 m3Var = (m3) this.f38233b;
                 Float f7 = (Float) obj;
                 i4 i4Var = m3Var.K;
-                if (m3Var == i4Var.f38661u0[0]) {
-                    if (i4Var.f38649h0.f43420d0.getCurrentProgress() > f7.floatValue()) {
-                        i4Var.f38649h0.f43420d0.a(0.0f, false);
+                if (m3Var == i4Var.f38664u0[0]) {
+                    if (i4Var.f38652h0.f43425d0.getCurrentProgress() > f7.floatValue()) {
+                        i4Var.f38652h0.f43425d0.a(0.0f, false);
                     }
-                    i4Var.f38649h0.f43420d0.a(f7.floatValue(), true);
+                    i4Var.f38652h0.f43425d0.a(f7.floatValue(), true);
                     return;
                 }
                 return;
@@ -41,7 +41,7 @@ public final class h3 implements q0.a {
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                wr wrVar = ((mr) this.f38233b).f40119b;
+                wr wrVar = ((mr) this.f38233b).f40122b;
                 pr w02 = wrVar.w0();
                 ArrayList arrayList2 = wrVar.F;
                 a0.i iVar = wrVar.M;
@@ -53,22 +53,22 @@ public final class h3 implements q0.a {
                 if (iVar == null || iVar.m() == 0) {
                     iVar = wrVar.K;
                 }
-                if (iVar.f(user.f19949id) == null) {
-                    if (ChatObject.isChannel(wrVar.f43646r)) {
+                if (iVar.f(user.f19950id) == null) {
+                    if (ChatObject.isChannel(wrVar.f43651r)) {
                         TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
                         tL_channelParticipant.inviter_id = wrVar.getUserConfig().getClientUserId();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_channelParticipant.peer = tL_peerUser;
-                        tL_peerUser.user_id = user.f19949id;
+                        tL_peerUser.user_id = user.f19950id;
                         tL_channelParticipant.date = wrVar.getConnectionsManager().getCurrentTime();
                         arrayList.add(0, tL_channelParticipant);
-                        iVar.k(tL_channelParticipant, user.f19949id);
+                        iVar.k(tL_channelParticipant, user.f19950id);
                     } else {
                         TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                        tL_chatParticipant.user_id = user.f19949id;
+                        tL_chatParticipant.user_id = user.f19950id;
                         tL_chatParticipant.inviter_id = wrVar.getUserConfig().getClientUserId();
                         arrayList.add(0, tL_chatParticipant);
-                        iVar.k(tL_chatParticipant, user.f19949id);
+                        iVar.k(tL_chatParticipant, user.f19950id);
                     }
                 }
                 if (arrayList == arrayList2) {
@@ -84,7 +84,7 @@ public final class h3 implements q0.a {
                 } else {
                     responseCodeString = BillingController.getResponseCodeString(i10);
                 }
-                AndroidUtilities.runOnUIThread(new t70(29, t3Var, responseCodeString));
+                AndroidUtilities.runOnUIThread(new cg0(0, t3Var, responseCodeString));
                 return;
             case 4:
                 ti0 ti0Var = (ti0) this.f38233b;
@@ -99,16 +99,16 @@ public final class h3 implements q0.a {
             case 6:
                 ProfileActivity profileActivity = (ProfileActivity) this.f38233b;
                 TLRPC.User user2 = (TLRPC.User) obj;
-                for (int i11 = 0; i11 < profileActivity.f34191u2.participants.participants.size(); i11++) {
-                    if (profileActivity.f34191u2.participants.participants.get(i11).user_id == user2.f19949id) {
-                        profileActivity.f34191u2.participants.participants.remove(i11);
+                for (int i11 = 0; i11 < profileActivity.f34193u2.participants.participants.size(); i11++) {
+                    if (profileActivity.f34193u2.participants.participants.get(i11).user_id == user2.f19950id) {
+                        profileActivity.f34193u2.participants.participants.remove(i11);
                         profileActivity.e5(true, false);
                         return;
                     }
                 }
                 return;
             default:
-                View view = ((ProxyListActivity) this.f38233b).f34230b.T((View) obj).f47889a;
+                View view = ((ProxyListActivity) this.f38233b).f34232b.T((View) obj).f47897a;
                 if (view instanceof i21) {
                     i21 i21Var = (i21) view;
                     if (i21Var.d == SharedConfig.currentProxy) {

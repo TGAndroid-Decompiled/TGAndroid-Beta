@@ -10,20 +10,20 @@ import java.io.IOException;
 import n6.m;
 import w7.t;
 public abstract class d {
-    public static String f49085a;
-    public static int f49086b;
-    public static Boolean f49087c;
+    public static String f49093a;
+    public static int f49094b;
+    public static Boolean f49095c;
 
     public static String a() {
         BufferedReader bufferedReader;
-        if (f49085a == null) {
+        if (f49093a == null) {
             if (Build.VERSION.SDK_INT >= 28) {
-                f49085a = Application.getProcessName();
+                f49093a = Application.getProcessName();
             } else {
-                int i10 = f49086b;
+                int i10 = f49094b;
                 if (i10 == 0) {
                     i10 = Process.myPid();
-                    f49086b = i10;
+                    f49094b = i10;
                 }
                 String str = null;
                 str = null;
@@ -53,14 +53,14 @@ public abstract class d {
                     }
                     b.a(bufferedReader);
                 }
-                f49085a = str;
+                f49093a = str;
             }
         }
-        return f49085a;
+        return f49093a;
     }
 
     public static boolean b() {
-        Boolean bool = f49087c;
+        Boolean bool = f49095c;
         if (bool == null) {
             if (Build.VERSION.SDK_INT >= 28) {
                 bool = Boolean.valueOf(Process.isIsolated());
@@ -77,7 +77,7 @@ public abstract class d {
                     bool = Boolean.FALSE;
                 }
             }
-            f49087c = bool;
+            f49095c = bool;
         }
         return bool.booleanValue();
     }

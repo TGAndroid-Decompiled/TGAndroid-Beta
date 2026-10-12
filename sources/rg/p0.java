@@ -7,25 +7,25 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.eg0;
+import org.telegram.ui.fg0;
 import yh.f2;
 import yh.p7;
 import yh.s3;
 public final class p0 extends FrameLayout {
-    public final int f47593a;
-    public final Object f47594b;
+    public final int f47601a;
+    public final Object f47602b;
 
     public p0(Object obj, Context context, int i10) {
         super(context);
-        this.f47593a = i10;
-        this.f47594b = obj;
+        this.f47601a = i10;
+        this.f47602b = obj;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f47593a) {
+        switch (this.f47601a) {
             case 5:
-                if (((p7) this.f47594b).f53275f0) {
+                if (((p7) this.f47602b).f53287f0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -39,12 +39,12 @@ public final class p0 extends FrameLayout {
         CharSequence charSequence;
         o0 o0Var;
         o0 o0Var2;
-        switch (this.f47593a) {
+        switch (this.f47601a) {
             case 0:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName("android.widget.Button");
-                q0 q0Var = (q0) this.f47594b;
-                if (q0Var.h && (o0Var2 = q0Var.f47612e) != null) {
+                q0 q0Var = (q0) this.f47602b;
+                if (q0Var.h && (o0Var2 = q0Var.f47620e) != null) {
                     charSequence = o0Var2.getText();
                 } else {
                     charSequence = null;
@@ -69,16 +69,16 @@ public final class p0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f47593a) {
+        switch (this.f47601a) {
             case 6:
                 super.onLayout(z10, i10, i11, i12, i13);
-                zg.q qVar = (zg.q) this.f47594b;
+                zg.q qVar = (zg.q) this.f47602b;
                 if (qVar.K && z10) {
-                    qVar.f54879w.setTranslationY(-qVar.f54873c.getMeasuredHeight());
-                    int measuredHeight = qVar.f54873c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f54881y.getLayoutParams();
+                    qVar.f54887w.setTranslationY(-qVar.f54881c.getMeasuredHeight());
+                    int measuredHeight = qVar.f54881c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f54889y.getLayoutParams();
                     marginLayoutParams.bottomMargin = measuredHeight;
-                    qVar.f54881y.setLayoutParams(marginLayoutParams);
+                    qVar.f54889y.setLayoutParams(marginLayoutParams);
                     return;
                 }
                 return;
@@ -95,24 +95,24 @@ public final class p0 extends FrameLayout {
         float top;
         int measuredHeight;
         ei.f fVar;
-        switch (this.f47593a) {
+        switch (this.f47601a) {
             case 1:
-                y0 y0Var = (y0) this.f47594b;
+                y0 y0Var = (y0) this.f47602b;
                 z10 = ((e3) y0Var).isPortrait;
                 if (z10) {
-                    y0Var.f47741s = View.MeasureSpec.getSize(i10);
+                    y0Var.f47749s = View.MeasureSpec.getSize(i10);
                 } else {
-                    y0Var.f47741s = (int) (Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11)) * 0.8f);
+                    y0Var.f47749s = (int) (Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11)) * 0.8f);
                 }
                 super.onMeasure(i10, i11);
                 return;
             case 2:
                 super.onMeasure(i10, i11);
-                l1 l1Var = ((k1) this.f47594b).f47523c;
-                eg0 eg0Var = l1Var.f47551r0;
-                if (eg0Var != null) {
-                    top = eg0Var.getTop();
-                    measuredHeight = l1Var.f47551r0.getMeasuredHeight();
+                l1 l1Var = ((k1) this.f47602b).f47531c;
+                fg0 fg0Var = l1Var.f47559r0;
+                if (fg0Var != null) {
+                    top = fg0Var.getTop();
+                    measuredHeight = l1Var.f47559r0.getMeasuredHeight();
                 } else {
                     View view = l1Var.B0;
                     if (view != null) {
@@ -120,16 +120,16 @@ public final class p0 extends FrameLayout {
                         measuredHeight = l1Var.B0.getMeasuredHeight();
                     } else {
                         f7 = 0.0f;
-                        l1Var.f47550q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
+                        l1Var.f47558q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
                         return;
                     }
                 }
                 f7 = (measuredHeight / 2.0f) + top;
-                l1Var.f47550q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
+                l1Var.f47558q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
                 return;
             case 3:
                 super.onMeasure(i10, i11);
-                ((xh.i1) this.f47594b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                ((xh.i1) this.f47602b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -139,13 +139,13 @@ public final class p0 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f47593a) {
+        switch (this.f47601a) {
             case 4:
                 super.setTranslationY(f7);
-                s3 s3Var = (s3) this.f47594b;
-                f2 f2Var = s3Var.f53391e0;
+                s3 s3Var = (s3) this.f47602b;
+                f2 f2Var = s3Var.f53403e0;
                 if (f2Var != null && f2Var.getVisibility() == 0) {
-                    s3Var.f53391e0.invalidate();
+                    s3Var.f53403e0.invalidate();
                     return;
                 }
                 return;

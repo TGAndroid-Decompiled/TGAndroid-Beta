@@ -189,7 +189,7 @@ public final class e1 extends m2 implements NotificationCenter.NotificationCente
     public final void W() {
         boolean z10;
         String trim;
-        if (this.f11204b.f27274c > 0.0f) {
+        if (this.f11204b.f27268c > 0.0f) {
             return;
         }
         if (this.f11212x == null && TextUtils.isEmpty(this.f11213y)) {
@@ -320,13 +320,13 @@ public final class e1 extends m2 implements NotificationCenter.NotificationCente
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 13));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = h6.f20894v8;
+        int i10 = h6.f20895v8;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f11204b = new is(mutate, new lq(h6.x0(null, i10, false)));
         this.f11205c = this.actionBar.p().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f11204b);
         U(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20503a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
         b1 b1Var = new b1(this, getParentActivity());
         this.f11207f = b1Var;
         b1Var.setTextSize(1, 17.0f);
@@ -355,7 +355,7 @@ public final class e1 extends m2 implements NotificationCenter.NotificationCente
         this.f11206e = frameLayout2;
         frameLayout2.addView(this.f11207f, w5.a(-1.0f, 21.0f, 15.0f, 21.0f, 15.0f, -1, 48));
         FrameLayout frameLayout3 = this.f11206e;
-        int i13 = h6.f20559d6;
+        int i13 = h6.f20560d6;
         frameLayout3.setBackgroundColor(getThemedColor(i13));
         b1 b1Var4 = this.f11207f;
         if (b1Var4 != null) {
@@ -384,7 +384,7 @@ public final class e1 extends m2 implements NotificationCenter.NotificationCente
         this.f11203a = p71Var;
         p71Var.p1();
         p71 p71Var2 = this.f11203a;
-        p71Var2.W2.f26675r = false;
+        p71Var2.W2.f26679r = false;
         frameLayout.addView(p71Var2, w5.d(-1.0f, -1));
         this.actionBar.B(this.f11203a, true);
         X();
@@ -420,11 +420,11 @@ public final class e1 extends m2 implements NotificationCenter.NotificationCente
         if (V() && !z11) {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
+                alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new z0(this, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new z0(this, 2));
-                showDialog(alertDialog$Builder.f20141a);
+                showDialog(alertDialog$Builder.f20142a);
             }
             return false;
         }

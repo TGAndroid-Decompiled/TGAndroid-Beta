@@ -22,7 +22,7 @@ public final class d extends ld.j implements p {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        kd.a aVar = kd.a.f14780a;
+        kd.a aVar = kd.a.f14781a;
         a8.b(obj);
         Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f3812a));
         return hd.i.f11090a;

@@ -315,7 +315,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     daVar.finishFragment();
                     return;
-                } else if (i10 == 1 && daVar.f36703a.getText().length() != 0) {
+                } else if (i10 == 1 && daVar.f36705a.getText().length() != 0) {
                     da.U(daVar);
                     daVar.finishFragment();
                     return;

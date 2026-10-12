@@ -28,19 +28,19 @@ public final class x7 implements Utilities.CallbackReturn {
                 di.d dVar = (di.d) this.f6308b;
                 return dVar.f8374n[((Integer) obj).intValue() % dVar.f8374n.length];
             case 2:
-                return new org.telegram.ui.Wallet.s(26, (org.telegram.ui.l0) this.f6308b, (Integer) obj);
+                return new org.telegram.ui.Wallet.s(27, (org.telegram.ui.l0) this.f6308b, (Integer) obj);
             case 3:
                 qg.m0 m0Var = (qg.m0) this.f6308b;
                 if (((Integer) obj).intValue() == 2) {
                     aj ajVar = new aj(m0Var.getContext(), new qg.x(m0Var), false, false, false, m0Var.Q1);
                     ajVar.drawNavigationBar = true;
                     ajVar.P1(LocaleController.getString(R.string.AddImage));
-                    ajVar.f24333c2 = new qg.y(m0Var, ajVar);
+                    ajVar.f24329c2 = new qg.y(m0Var, ajVar);
                     ajVar.setOnDismissListener(new e1(7));
                     ajVar.N1(1, false);
                     ajVar.t1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    ajVar.f24354j0.f0();
+                    ajVar.f24350j0.f0();
                     ajVar.show();
                 }
                 return Boolean.TRUE;
@@ -49,7 +49,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
                 yh.r6 r6Var = (yh.r6) this.f6308b;
-                return r6Var.f53359n[((Integer) obj).intValue() % r6Var.f53359n.length];
+                return r6Var.f53371n[((Integer) obj).intValue() % r6Var.f53371n.length];
         }
     }
 }

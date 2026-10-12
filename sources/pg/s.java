@@ -14,35 +14,35 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class s extends View {
-    public final Paint f45654a;
-    public final Paint f45655b;
-    public final Paint f45656c;
+    public final Paint f45659a;
+    public final Paint f45660b;
+    public final Paint f45661c;
     public float d;
-    public float f45657e;
-    public final Drawable f45658f;
+    public float f45662e;
+    public final Drawable f45663f;
     public final float[] h;
-    public final x f45659n;
+    public final x f45664n;
 
     public s(x xVar, Context context) {
         super(context);
-        this.f45659n = xVar;
-        this.f45654a = new Paint(1);
-        this.f45655b = new Paint(1);
+        this.f45664n = xVar;
+        this.f45659a = new Paint(1);
+        this.f45660b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f45656c = paint;
+        this.f45661c = paint;
         this.h = new float[3];
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f));
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        this.f45658f = context.getDrawable(R.drawable.knob_shadow);
+        this.f45663f = context.getDrawable(R.drawable.knob_shadow);
     }
 
     public final void a(MotionEvent motionEvent) {
         float f7;
         this.d = (motionEvent.getX() - getPaddingLeft()) / ((getWidth() - getPaddingLeft()) - getPaddingRight());
         float y3 = (motionEvent.getY() - getPaddingTop()) / ((getHeight() - getPaddingTop()) - getPaddingBottom());
-        this.f45657e = y3;
+        this.f45662e = y3;
         float[] fArr = this.h;
         fArr[0] = y3 * 360.0f;
         float f10 = this.d;
@@ -65,8 +65,8 @@ public final class s extends View {
             fArr[2] = f11;
         }
         int HSVToColor = Color.HSVToColor(fArr);
-        x xVar = this.f45659n;
-        xVar.f45723f = HSVToColor;
+        x xVar = this.f45664n;
+        xVar.f45728f = HSVToColor;
         xVar.o(HSVToColor, 0);
         invalidate();
     }
@@ -76,32 +76,32 @@ public final class s extends View {
         super.onDraw(canvas);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f45654a);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f45655b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f45659a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f45660b);
         float dp = AndroidUtilities.dp(13.0f);
-        Paint paint = this.f45656c;
+        Paint paint = this.f45661c;
         float dp2 = AndroidUtilities.dp(16.0f);
         int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
         int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
         float f7 = width;
         float a2 = w7.n.a(this.d * f7, dp2, f7 - dp2) + getPaddingLeft();
         float f10 = height;
-        float a10 = w7.n.a(this.f45657e * f10, dp2, f10 - dp2) + getPaddingTop();
+        float a10 = w7.n.a(this.f45662e * f10, dp2, f10 - dp2) + getPaddingTop();
         Rect rect = AndroidUtilities.rectTmp2;
-        Drawable drawable = this.f45658f;
+        Drawable drawable = this.f45663f;
         drawable.getPadding(rect);
         int i10 = rect.bottom;
         drawable.setBounds((int) ((a2 - dp) - rect.left), (int) ((a10 - dp) - rect.top), (int) (a2 + dp + i10), (int) (a10 + dp + i10));
         drawable.draw(canvas);
         canvas.drawCircle(a2, a10, dp, paint);
-        qg.i1.y1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f45659n.f45723f, 255), canvas);
+        qg.i1.y1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f45664n.f45728f, 255), canvas);
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        this.f45654a.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i11 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
-        this.f45655b.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i10 - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
+        this.f45659a.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i11 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f45660b.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i10 - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
     }
 
     @Override

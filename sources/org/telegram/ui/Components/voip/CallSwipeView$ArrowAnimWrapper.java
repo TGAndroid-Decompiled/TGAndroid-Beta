@@ -1,12 +1,12 @@
 package org.telegram.ui.Components.voip;
 class CallSwipeView$ArrowAnimWrapper {
     public int getArrowAlpha() {
-        int i10 = f.f31676a;
+        int i10 = f.f31661a;
         throw null;
     }
 
     public void setArrowAlpha(int i10) {
-        int i11 = f.f31676a;
+        int i11 = f.f31661a;
         throw null;
     }
 }

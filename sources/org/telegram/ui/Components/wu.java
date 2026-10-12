@@ -82,7 +82,7 @@ public abstract class wu extends EditText {
         wuVar.isSpoilersRevealed = false;
         wuVar.invalidateSpoilers();
         if (!wuVar.spoilers.isEmpty()) {
-            wuVar.spoilers.get(0).f49922q = new vu(wuVar, 3);
+            wuVar.spoilers.get(0).f49930q = new vu(wuVar, 3);
             float sqrt = (float) Math.sqrt(Math.pow(wuVar.getHeight(), 2.0d) + Math.pow(wuVar.getWidth(), 2.0d));
             for (vh.g gVar : wuVar.spoilers) {
                 gVar.j(wuVar.lastRippleX, wuVar.lastRippleY, sqrt, true);
@@ -142,7 +142,7 @@ public abstract class wu extends EditText {
             this.postedSpoilerTimeout = false;
             removeCallbacks(this.spoilerTimeout);
             setSpoilersRevealed(true, false);
-            gVar.f49922q = new vu(this, 0);
+            gVar.f49930q = new vu(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             for (vh.g gVar2 : this.spoilers) {
                 gVar2.j(f7, f10, sqrt, false);
@@ -169,29 +169,29 @@ public abstract class wu extends EditText {
                 wj0 wj0Var = arrayList.get(i10);
                 i10++;
                 wj0 wj0Var2 = wj0Var;
-                rj0 rj0Var = wj0Var2.f32428e.J;
+                sj0 sj0Var = wj0Var2.f32428e.J;
                 if (wj0Var2.b() && wj0Var2.f32430g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (motionEvent.getAction() == 0) {
-                    if (rj0Var != null) {
-                        rj0Var.b(z11);
+                    if (sj0Var != null) {
+                        sj0Var.b(z11);
                     }
                 } else if (motionEvent.getAction() == 1) {
-                    if (rj0Var != null && rj0Var.h && z11) {
-                        wj0Var2.f32428e.f24421e = !ak0Var.f24421e;
+                    if (sj0Var != null && sj0Var.h && z11) {
+                        wj0Var2.f32428e.f24418e = !ak0Var.f24418e;
                         invalidateQuotes(true);
                         z10 = true;
                     }
-                    if (rj0Var != null) {
-                        rj0Var.b(false);
+                    if (sj0Var != null) {
+                        sj0Var.b(false);
                     }
-                } else if (motionEvent.getAction() == 3 && rj0Var != null) {
-                    rj0Var.b(false);
+                } else if (motionEvent.getAction() == 3 && sj0Var != null) {
+                    sj0Var.b(false);
                 }
-                if ((rj0Var != null && rj0Var.h) || z10) {
+                if ((sj0Var != null && sj0Var.h) || z10) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -199,7 +199,7 @@ public abstract class wu extends EditText {
             }
         }
         if (!z10) {
-            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f49952a.f16325a).onTouchEvent(motionEvent)) {
+            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f49960a.f16326a).onTouchEvent(motionEvent)) {
                 if (motionEvent.getActionMasked() == 1) {
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     super.dispatchTouchEvent(obtain);
@@ -248,11 +248,11 @@ public abstract class wu extends EditText {
             for (a21 a21Var : (a21[]) text.getSpans(0, text.length(), a21.class)) {
                 if (a21Var.c()) {
                     boolean z10 = this.isSpoilersRevealed;
-                    z11 z11Var = a21Var.f24221b;
+                    z11 z11Var = a21Var.f24222b;
                     if (z10) {
-                        z11Var.f33249a |= 512;
+                        z11Var.f33255a |= 512;
                     } else {
-                        z11Var.f33249a &= -513;
+                        z11Var.f33255a &= -513;
                     }
                 }
             }
@@ -316,7 +316,7 @@ public abstract class wu extends EditText {
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
             if (this.drawAnimatedEmojiDrawables && (x5Var2 = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList = x5Var2.f32652a;
+                ArrayList arrayList = x5Var2.f32651a;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((w5) arrayList.get(i10)).d.recordPositions = false;
                 }
@@ -332,7 +332,7 @@ public abstract class wu extends EditText {
             }
             vh.g.a(this, layout2, 0, measuredWidth, (Spanned) getText(), stack, list2, arrayList2);
             if (this.drawAnimatedEmojiDrawables && (x5Var = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList3 = x5Var.f32652a;
+                ArrayList arrayList3 = x5Var.f32651a;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                     ((w5) arrayList3.get(i12)).d.recordPositions = true;
                 }
@@ -385,7 +385,7 @@ public abstract class wu extends EditText {
                 this.wrappedCanvas = new Canvas();
             }
             rd0 rd0Var = this.wrappedCanvas;
-            rd0Var.f30145a = canvas;
+            rd0Var.f30146a = canvas;
             super.onDraw(rd0Var);
         } else {
             super.onDraw(canvas);
@@ -402,7 +402,7 @@ public abstract class wu extends EditText {
         canvas2.restore();
         if (!this.spoilers.isEmpty()) {
             vh.g gVar2 = this.spoilers.get(0);
-            if (gVar2.f49918m > 0.0f && gVar2.f49919n > 0.0f) {
+            if (gVar2.f49926m > 0.0f && gVar2.f49927n > 0.0f) {
                 canvas2.save();
                 canvas2.clipPath(this.path);
                 this.path.rewind();
@@ -414,7 +414,7 @@ public abstract class wu extends EditText {
                         this.wrappedCanvas = new Canvas();
                     }
                     rd0 rd0Var2 = this.wrappedCanvas;
-                    rd0Var2.f30145a = canvas2;
+                    rd0Var2.f30146a = canvas2;
                     super.onDraw(rd0Var2);
                 } else {
                     super.onDraw(canvas2);
@@ -431,7 +431,7 @@ public abstract class wu extends EditText {
                 int i12 = rect.top;
                 int i13 = bounds2.bottom;
                 if ((i12 <= i13 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i13 >= i12)) {
-                    if (gVar3.f49929y) {
+                    if (gVar3.f49937y) {
                         color = this.quoteColor;
                     } else {
                         color = getPaint().getColor();
@@ -514,11 +514,11 @@ public abstract class wu extends EditText {
         if (text != null) {
             for (a21 a21Var : (a21[]) text.getSpans(0, text.length(), a21.class)) {
                 if (a21Var.c()) {
-                    z11 z11Var = a21Var.f24221b;
+                    z11 z11Var = a21Var.f24222b;
                     if (z10) {
-                        z11Var.f33249a |= 512;
+                        z11Var.f33255a |= 512;
                     } else {
-                        z11Var.f33249a &= -513;
+                        z11Var.f33255a &= -513;
                     }
                 }
             }

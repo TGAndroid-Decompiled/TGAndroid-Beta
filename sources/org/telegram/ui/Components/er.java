@@ -111,10 +111,10 @@ public class er extends FrameLayout {
             colorPicker$RadioButton.b(false);
             this.f25777w.addView(this.v[i10], w7.w5.a(30.0f, 0.0f, 0.0f, 0.0f, 0.0f, 30, 48));
             this.v[i10].setOnClickListener(new View.OnClickListener(this) {
-                public final er f33473b;
+                public final er f33475b;
 
                 {
-                    this.f33473b = this;
+                    this.f33475b = this;
                 }
 
                 @Override
@@ -123,7 +123,7 @@ public class er extends FrameLayout {
                     boolean z12;
                     boolean z13;
                     int i12 = r2;
-                    er erVar = this.f33473b;
+                    er erVar = this.f33475b;
                     switch (i12) {
                         case 0:
                             Property property = View.TRANSLATION_X;
@@ -138,22 +138,22 @@ public class er extends FrameLayout {
                                 int i13 = erVar.K;
                                 if (i13 == 1) {
                                     ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                    if (colorPicker$RadioButton2.f23907e == 0) {
+                                    if (colorPicker$RadioButton2.f23908e == 0) {
                                         i11 = 0;
-                                        colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23907e));
+                                        colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23908e));
                                     } else {
                                         i11 = 0;
                                     }
                                     if (erVar.h) {
-                                        drVar2.t0(colorPicker$RadioButtonArr[i11].f23907e, i11, true);
+                                        drVar2.t0(colorPicker$RadioButtonArr[i11].f23908e, i11, true);
                                     }
-                                    drVar2.t0(colorPicker$RadioButtonArr[1].f23907e, 1, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[1].f23908e, 1, true);
                                     erVar.K = 2;
                                 } else if (i13 == 2) {
                                     erVar.K = 3;
-                                    if (colorPicker$RadioButtonArr[2].f23907e == 0) {
+                                    if (colorPicker$RadioButtonArr[2].f23908e == 0) {
                                         float[] fArr = new float[3];
-                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f23907e, fArr);
+                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f23908e, fArr);
                                         float f7 = fArr[0];
                                         if (f7 > 180.0f) {
                                             fArr[0] = f7 - 60.0f;
@@ -162,14 +162,14 @@ public class er extends FrameLayout {
                                         }
                                         colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                     }
-                                    drVar2.t0(colorPicker$RadioButtonArr[2].f23907e, 2, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[2].f23908e, 2, true);
                                 } else if (i13 == 3) {
                                     erVar.K = 4;
                                     ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                    if (colorPicker$RadioButton3.f23907e == 0) {
-                                        colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23907e));
+                                    if (colorPicker$RadioButton3.f23908e == 0) {
+                                        colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23908e));
                                     }
-                                    drVar2.t0(colorPicker$RadioButtonArr[3].f23907e, 3, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[3].f23908e, 3, true);
                                 } else {
                                     return;
                                 }
@@ -200,7 +200,7 @@ public class er extends FrameLayout {
                                 erVar.g(erVar.getMeasuredWidth(), arrayList, false);
                                 erVar.f25779y.playTogether(arrayList);
                                 erVar.f25779y.setDuration(180L);
-                                erVar.f25779y.setInterpolator(js.f27628g);
+                                erVar.f25779y.setInterpolator(js.f27635g);
                                 erVar.f25779y.addListener(new t8(erVar, 14));
                                 erVar.f25779y.start();
                                 return;
@@ -259,7 +259,7 @@ public class er extends FrameLayout {
                                 }
                                 for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                     if (i18 < erVar.K) {
-                                        int i19 = colorPicker$RadioButtonArr2[i18].f23907e;
+                                        int i19 = colorPicker$RadioButtonArr2[i18].f23908e;
                                         if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                             z13 = true;
                                         } else {
@@ -279,7 +279,7 @@ public class er extends FrameLayout {
                                 erVar.g(erVar.getMeasuredWidth(), arrayList2, true);
                                 erVar.f25779y.playTogether(arrayList2);
                                 erVar.f25779y.setDuration(180L);
-                                erVar.f25779y.setInterpolator(js.f27628g);
+                                erVar.f25779y.setInterpolator(js.f27635g);
                                 erVar.f25779y.addListener(new cr(erVar));
                                 erVar.f25779y.start();
                                 return;
@@ -352,10 +352,10 @@ public class er extends FrameLayout {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final er f33473b;
+            public final er f33475b;
 
             {
-                this.f33473b = this;
+                this.f33475b = this;
             }
 
             @Override
@@ -364,7 +364,7 @@ public class er extends FrameLayout {
                 boolean z12;
                 boolean z13;
                 int i122 = r2;
-                er erVar = this.f33473b;
+                er erVar = this.f33475b;
                 switch (i122) {
                     case 0:
                         Property property = View.TRANSLATION_X;
@@ -379,22 +379,22 @@ public class er extends FrameLayout {
                             int i132 = erVar.K;
                             if (i132 == 1) {
                                 ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                if (colorPicker$RadioButton2.f23907e == 0) {
+                                if (colorPicker$RadioButton2.f23908e == 0) {
                                     i112 = 0;
-                                    colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23907e));
+                                    colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23908e));
                                 } else {
                                     i112 = 0;
                                 }
                                 if (erVar.h) {
-                                    drVar2.t0(colorPicker$RadioButtonArr[i112].f23907e, i112, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[i112].f23908e, i112, true);
                                 }
-                                drVar2.t0(colorPicker$RadioButtonArr[1].f23907e, 1, true);
+                                drVar2.t0(colorPicker$RadioButtonArr[1].f23908e, 1, true);
                                 erVar.K = 2;
                             } else if (i132 == 2) {
                                 erVar.K = 3;
-                                if (colorPicker$RadioButtonArr[2].f23907e == 0) {
+                                if (colorPicker$RadioButtonArr[2].f23908e == 0) {
                                     float[] fArr = new float[3];
-                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f23907e, fArr);
+                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f23908e, fArr);
                                     float f7 = fArr[0];
                                     if (f7 > 180.0f) {
                                         fArr[0] = f7 - 60.0f;
@@ -403,14 +403,14 @@ public class er extends FrameLayout {
                                     }
                                     colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                 }
-                                drVar2.t0(colorPicker$RadioButtonArr[2].f23907e, 2, true);
+                                drVar2.t0(colorPicker$RadioButtonArr[2].f23908e, 2, true);
                             } else if (i132 == 3) {
                                 erVar.K = 4;
                                 ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                if (colorPicker$RadioButton3.f23907e == 0) {
-                                    colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23907e));
+                                if (colorPicker$RadioButton3.f23908e == 0) {
+                                    colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23908e));
                                 }
-                                drVar2.t0(colorPicker$RadioButtonArr[3].f23907e, 3, true);
+                                drVar2.t0(colorPicker$RadioButtonArr[3].f23908e, 3, true);
                             } else {
                                 return;
                             }
@@ -441,7 +441,7 @@ public class er extends FrameLayout {
                             erVar.g(erVar.getMeasuredWidth(), arrayList, false);
                             erVar.f25779y.playTogether(arrayList);
                             erVar.f25779y.setDuration(180L);
-                            erVar.f25779y.setInterpolator(js.f27628g);
+                            erVar.f25779y.setInterpolator(js.f27635g);
                             erVar.f25779y.addListener(new t8(erVar, 14));
                             erVar.f25779y.start();
                             return;
@@ -500,7 +500,7 @@ public class er extends FrameLayout {
                             }
                             for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                 if (i18 < erVar.K) {
-                                    int i19 = colorPicker$RadioButtonArr2[i18].f23907e;
+                                    int i19 = colorPicker$RadioButtonArr2[i18].f23908e;
                                     if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                         z13 = true;
                                     } else {
@@ -520,7 +520,7 @@ public class er extends FrameLayout {
                             erVar.g(erVar.getMeasuredWidth(), arrayList2, true);
                             erVar.f25779y.playTogether(arrayList2);
                             erVar.f25779y.setDuration(180L);
-                            erVar.f25779y.setInterpolator(js.f27628g);
+                            erVar.f25779y.setInterpolator(js.f27635g);
                             erVar.f25779y.addListener(new cr(erVar));
                             erVar.f25779y.start();
                             return;
@@ -548,10 +548,10 @@ public class er extends FrameLayout {
         j0Var.setScaleType(scaleType);
         j0Var.setVisibility(4);
         j0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final er f33473b;
+            public final er f33475b;
 
             {
-                this.f33473b = this;
+                this.f33475b = this;
             }
 
             @Override
@@ -560,7 +560,7 @@ public class er extends FrameLayout {
                 boolean z12;
                 boolean z13;
                 int i122 = r2;
-                er erVar = this.f33473b;
+                er erVar = this.f33475b;
                 switch (i122) {
                     case 0:
                         Property property = View.TRANSLATION_X;
@@ -575,22 +575,22 @@ public class er extends FrameLayout {
                             int i132 = erVar.K;
                             if (i132 == 1) {
                                 ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                if (colorPicker$RadioButton2.f23907e == 0) {
+                                if (colorPicker$RadioButton2.f23908e == 0) {
                                     i112 = 0;
-                                    colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23907e));
+                                    colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23908e));
                                 } else {
                                     i112 = 0;
                                 }
                                 if (erVar.h) {
-                                    drVar2.t0(colorPicker$RadioButtonArr[i112].f23907e, i112, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[i112].f23908e, i112, true);
                                 }
-                                drVar2.t0(colorPicker$RadioButtonArr[1].f23907e, 1, true);
+                                drVar2.t0(colorPicker$RadioButtonArr[1].f23908e, 1, true);
                                 erVar.K = 2;
                             } else if (i132 == 2) {
                                 erVar.K = 3;
-                                if (colorPicker$RadioButtonArr[2].f23907e == 0) {
+                                if (colorPicker$RadioButtonArr[2].f23908e == 0) {
                                     float[] fArr = new float[3];
-                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f23907e, fArr);
+                                    Color.colorToHSV(colorPicker$RadioButtonArr[0].f23908e, fArr);
                                     float f7 = fArr[0];
                                     if (f7 > 180.0f) {
                                         fArr[0] = f7 - 60.0f;
@@ -599,14 +599,14 @@ public class er extends FrameLayout {
                                     }
                                     colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                 }
-                                drVar2.t0(colorPicker$RadioButtonArr[2].f23907e, 2, true);
+                                drVar2.t0(colorPicker$RadioButtonArr[2].f23908e, 2, true);
                             } else if (i132 == 3) {
                                 erVar.K = 4;
                                 ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                if (colorPicker$RadioButton3.f23907e == 0) {
-                                    colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23907e));
+                                if (colorPicker$RadioButton3.f23908e == 0) {
+                                    colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23908e));
                                 }
-                                drVar2.t0(colorPicker$RadioButtonArr[3].f23907e, 3, true);
+                                drVar2.t0(colorPicker$RadioButtonArr[3].f23908e, 3, true);
                             } else {
                                 return;
                             }
@@ -637,7 +637,7 @@ public class er extends FrameLayout {
                             erVar.g(erVar.getMeasuredWidth(), arrayList, false);
                             erVar.f25779y.playTogether(arrayList);
                             erVar.f25779y.setDuration(180L);
-                            erVar.f25779y.setInterpolator(js.f27628g);
+                            erVar.f25779y.setInterpolator(js.f27635g);
                             erVar.f25779y.addListener(new t8(erVar, 14));
                             erVar.f25779y.start();
                             return;
@@ -696,7 +696,7 @@ public class er extends FrameLayout {
                             }
                             for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                 if (i18 < erVar.K) {
-                                    int i19 = colorPicker$RadioButtonArr2[i18].f23907e;
+                                    int i19 = colorPicker$RadioButtonArr2[i18].f23908e;
                                     if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                         z13 = true;
                                     } else {
@@ -716,7 +716,7 @@ public class er extends FrameLayout {
                             erVar.g(erVar.getMeasuredWidth(), arrayList2, true);
                             erVar.f25779y.playTogether(arrayList2);
                             erVar.f25779y.setDuration(180L);
-                            erVar.f25779y.setInterpolator(js.f27628g);
+                            erVar.f25779y.setInterpolator(js.f27635g);
                             erVar.f25779y.addListener(new cr(erVar));
                             erVar.f25779y.start();
                             return;
@@ -759,10 +759,10 @@ public class er extends FrameLayout {
             u0Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(i13, this.f25771d0), 1, -1));
             addView(u0Var, w7.w5.a(30.0f, 0.0f, 2.0f, 10.0f, 0.0f, 30, 53));
             u0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final er f33473b;
+                public final er f33475b;
 
                 {
-                    this.f33473b = this;
+                    this.f33475b = this;
                 }
 
                 @Override
@@ -771,7 +771,7 @@ public class er extends FrameLayout {
                     boolean z12;
                     boolean z13;
                     int i122 = r2;
-                    er erVar = this.f33473b;
+                    er erVar = this.f33475b;
                     switch (i122) {
                         case 0:
                             Property property = View.TRANSLATION_X;
@@ -786,22 +786,22 @@ public class er extends FrameLayout {
                                 int i132 = erVar.K;
                                 if (i132 == 1) {
                                     ColorPicker$RadioButton colorPicker$RadioButton2 = colorPicker$RadioButtonArr[1];
-                                    if (colorPicker$RadioButton2.f23907e == 0) {
+                                    if (colorPicker$RadioButton2.f23908e == 0) {
                                         i112 = 0;
-                                        colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23907e));
+                                        colorPicker$RadioButton2.a(er.d(colorPicker$RadioButtonArr[0].f23908e));
                                     } else {
                                         i112 = 0;
                                     }
                                     if (erVar.h) {
-                                        drVar2.t0(colorPicker$RadioButtonArr[i112].f23907e, i112, true);
+                                        drVar2.t0(colorPicker$RadioButtonArr[i112].f23908e, i112, true);
                                     }
-                                    drVar2.t0(colorPicker$RadioButtonArr[1].f23907e, 1, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[1].f23908e, 1, true);
                                     erVar.K = 2;
                                 } else if (i132 == 2) {
                                     erVar.K = 3;
-                                    if (colorPicker$RadioButtonArr[2].f23907e == 0) {
+                                    if (colorPicker$RadioButtonArr[2].f23908e == 0) {
                                         float[] fArr = new float[3];
-                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f23907e, fArr);
+                                        Color.colorToHSV(colorPicker$RadioButtonArr[0].f23908e, fArr);
                                         float f7 = fArr[0];
                                         if (f7 > 180.0f) {
                                             fArr[0] = f7 - 60.0f;
@@ -810,14 +810,14 @@ public class er extends FrameLayout {
                                         }
                                         colorPicker$RadioButtonArr[2].a(Color.HSVToColor(255, fArr));
                                     }
-                                    drVar2.t0(colorPicker$RadioButtonArr[2].f23907e, 2, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[2].f23908e, 2, true);
                                 } else if (i132 == 3) {
                                     erVar.K = 4;
                                     ColorPicker$RadioButton colorPicker$RadioButton3 = colorPicker$RadioButtonArr[3];
-                                    if (colorPicker$RadioButton3.f23907e == 0) {
-                                        colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23907e));
+                                    if (colorPicker$RadioButton3.f23908e == 0) {
+                                        colorPicker$RadioButton3.a(er.d(colorPicker$RadioButtonArr[2].f23908e));
                                     }
-                                    drVar2.t0(colorPicker$RadioButtonArr[3].f23907e, 3, true);
+                                    drVar2.t0(colorPicker$RadioButtonArr[3].f23908e, 3, true);
                                 } else {
                                     return;
                                 }
@@ -848,7 +848,7 @@ public class er extends FrameLayout {
                                 erVar.g(erVar.getMeasuredWidth(), arrayList, false);
                                 erVar.f25779y.playTogether(arrayList);
                                 erVar.f25779y.setDuration(180L);
-                                erVar.f25779y.setInterpolator(js.f27628g);
+                                erVar.f25779y.setInterpolator(js.f27635g);
                                 erVar.f25779y.addListener(new t8(erVar, 14));
                                 erVar.f25779y.start();
                                 return;
@@ -907,7 +907,7 @@ public class er extends FrameLayout {
                                 }
                                 for (int i18 = 0; i18 < colorPicker$RadioButtonArr2.length; i18++) {
                                     if (i18 < erVar.K) {
-                                        int i19 = colorPicker$RadioButtonArr2[i18].f23907e;
+                                        int i19 = colorPicker$RadioButtonArr2[i18].f23908e;
                                         if (i18 == colorPicker$RadioButtonArr2.length - 1) {
                                             z13 = true;
                                         } else {
@@ -927,7 +927,7 @@ public class er extends FrameLayout {
                                 erVar.g(erVar.getMeasuredWidth(), arrayList2, true);
                                 erVar.f25779y.playTogether(arrayList2);
                                 erVar.f25779y.setDuration(180L);
-                                erVar.f25779y.setInterpolator(js.f27628g);
+                                erVar.f25779y.setInterpolator(js.f27635g);
                                 erVar.f25779y.addListener(new cr(erVar));
                                 erVar.f25779y.start();
                                 return;
@@ -967,7 +967,7 @@ public class er extends FrameLayout {
                 }
                 i10++;
             } else {
-                int i11 = colorPicker$RadioButton.f23907e;
+                int i11 = colorPicker$RadioButton.f23908e;
                 erVar.setColorInner(i11);
                 erVar.E[1].setText(String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(i11)), Byte.valueOf((byte) Color.green(i11)), Byte.valueOf((byte) Color.blue(i11))).toUpperCase());
                 return;
@@ -1287,7 +1287,7 @@ public class er extends FrameLayout {
         int y3 = (int) com.google.android.gms.internal.vision.e2.y(1.0f, fArr[1], this.f25776s.getHeight(), f10);
         if (!this.Q) {
             int dp2 = AndroidUtilities.dp(16.0f);
-            float interpolation = js.f27628g.getInterpolation(this.U);
+            float interpolation = js.f27635g.getInterpolation(this.U);
             if (measuredWidth < dp2) {
                 measuredWidth = (int) (((dp2 - measuredWidth) * interpolation) + measuredWidth);
             } else if (measuredWidth > getMeasuredWidth() - dp2) {

@@ -14,32 +14,32 @@ public final class j0 {
     public static int D;
     public static long E;
     public boolean A;
-    public final int f54776a;
-    public final h0 f54777b;
-    public final h0 f54778c;
+    public final int f54784a;
+    public final h0 f54785b;
+    public final h0 f54786c;
     public final h0 d;
-    public final FrameLayout f54779e;
-    public final j0 f54780f;
-    public float f54781g;
+    public final FrameLayout f54787e;
+    public final j0 f54788f;
+    public float f54789g;
     public float h;
-    public final g0 f54782i;
-    public WindowManager f54784k;
-    public boolean f54785l;
-    public float f54786m;
-    public final int f54787n;
-    public final long f54788o;
-    public final n0 f54789p;
-    public float f54790q;
-    public float f54791r;
-    public boolean f54792s;
-    public final ll0 f54793t;
-    public boolean f54794u;
+    public final g0 f54790i;
+    public WindowManager f54792k;
+    public boolean f54793l;
+    public float f54794m;
+    public final int f54795n;
+    public final long f54796o;
+    public final n0 f54797p;
+    public float f54798q;
+    public float f54799r;
+    public boolean f54800s;
+    public final ll0 f54801t;
+    public boolean f54802u;
     public final View v;
-    public boolean f54795w;
-    public long f54797y;
-    public boolean f54798z;
-    public final int[] f54783j = new int[2];
-    public final ArrayList f54796x = new ArrayList();
+    public boolean f54803w;
+    public long f54805y;
+    public boolean f54806z;
+    public final int[] f54791j = new int[2];
+    public final ArrayList f54804x = new ArrayList();
 
     public j0(android.content.Context r32, org.telegram.ui.ActionBar.m2 r33, org.telegram.ui.Components.nl0 r34, android.view.View r35, android.view.View r36, float r37, float r38, zg.n0 r39, int r40, int r41, boolean r42) {
         throw new UnsupportedOperationException("Method not decompiled: zg.j0.<init>(android.content.Context, org.telegram.ui.ActionBar.m2, org.telegram.ui.Components.nl0, android.view.View, android.view.View, float, float, zg.n0, int, int, boolean):void");
@@ -61,7 +61,7 @@ public final class j0 {
                 if (z10) {
                     j0Var.c();
                 } else {
-                    j0Var.f54785l = true;
+                    j0Var.f54793l = true;
                 }
             }
         }
@@ -80,9 +80,9 @@ public final class j0 {
     public static void f() {
         j0 j0Var = B;
         if (j0Var != null) {
-            j0Var.f54792s = true;
-            j0Var.f54797y = System.currentTimeMillis();
-            if (B.f54776a == 0 && System.currentTimeMillis() - E > 200) {
+            j0Var.f54800s = true;
+            j0Var.f54805y = System.currentTimeMillis();
+            if (B.f54784a == 0 && System.currentTimeMillis() - E > 200) {
                 E = System.currentTimeMillis();
                 B.v.performHapticFeedback(3);
                 return;
@@ -94,19 +94,19 @@ public final class j0 {
         if (j0Var2 != null) {
             View view = j0Var2.v;
             if (view instanceof u1) {
-                ((u1) view).N.b(j0Var2.f54789p);
+                ((u1) view).N.b(j0Var2.f54797p);
             } else if (view instanceof w0) {
-                ((w0) view).E0.b(j0Var2.f54789p);
+                ((w0) view).E0.b(j0Var2.f54797p);
             }
         }
     }
 
     public static void g() {
         j0 j0Var = C;
-        if (j0Var != null && !j0Var.f54792s) {
-            j0Var.f54792s = true;
-            j0Var.f54797y = System.currentTimeMillis();
-            if (C.f54776a == 1 && System.currentTimeMillis() - E > 200) {
+        if (j0Var != null && !j0Var.f54800s) {
+            j0Var.f54800s = true;
+            j0Var.f54805y = System.currentTimeMillis();
+            if (C.f54784a == 1 && System.currentTimeMillis() - E > 200) {
                 E = System.currentTimeMillis();
                 View view = C.v;
                 if (view != null) {
@@ -118,10 +118,10 @@ public final class j0 {
 
     public final void c() {
         try {
-            boolean z10 = this.f54795w;
-            g0 g0Var = this.f54782i;
+            boolean z10 = this.f54803w;
+            g0 g0Var = this.f54790i;
             if (z10) {
-                this.f54784k.removeView(g0Var);
+                this.f54792k.removeView(g0Var);
             } else {
                 AndroidUtilities.removeFromParent(g0Var);
             }

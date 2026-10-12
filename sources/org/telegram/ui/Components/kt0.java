@@ -5,33 +5,33 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class kt0 extends s4.o0 {
-    public final dt0 f27946a;
-    public final hw0 f27947b;
+    public final dt0 f27931a;
+    public final hw0 f27932b;
 
     public kt0(hw0 hw0Var, dt0 dt0Var) {
-        this.f27947b = hw0Var;
-        this.f27946a = dt0Var;
+        this.f27932b = hw0Var;
+        this.f27931a = dt0Var;
     }
 
     @Override
     public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
         boolean z10;
         boolean z11;
-        dt0 dt0Var = this.f27946a;
+        dt0 dt0Var = this.f27931a;
         int i10 = 0;
-        if (dt0Var.h.getAdapter() == this.f27947b.O) {
+        if (dt0Var.h.getAdapter() == this.f27932b.O) {
             recyclerView.getClass();
             int R = RecyclerView.R(view);
             rect.left = 0;
             rect.bottom = 0;
-            et0 et0Var = dt0Var.f24503x;
+            et0 et0Var = dt0Var.f24491x;
             et0Var.B1();
             if (R <= et0Var.U) {
                 rect.top = 0;
             } else {
                 rect.top = AndroidUtilities.dp(2.0f);
             }
-            if (!dt0Var.f24503x.E1(R)) {
+            if (!dt0Var.f24491x.E1(R)) {
                 i10 = AndroidUtilities.dp(2.0f);
             }
             rect.right = i10;
@@ -39,14 +39,14 @@ public final class kt0 extends s4.o0 {
             org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
             dt0Var.h.getClass();
             int R2 = RecyclerView.R(t7Var);
-            int i11 = dt0Var.f24503x.J;
+            int i11 = dt0Var.f24491x.J;
             boolean z12 = true;
             if (R2 < i11) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            t7Var.f22834a0 = z10;
+            t7Var.f22835a0 = z10;
             int i12 = R2 % i11;
             if (i12 == 0) {
                 z11 = true;

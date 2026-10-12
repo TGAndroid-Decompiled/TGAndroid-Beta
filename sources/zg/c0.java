@@ -18,16 +18,16 @@ import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.uu;
 import org.telegram.ui.Wallet.z4;
-import yh.e5;
+import yh.v4;
 public abstract class c0 extends uu {
-    public final c6 f54711c;
+    public final c6 f54719c;
     public final n4.l d;
-    public Runnable f54712e;
-    public int f54713f;
+    public Runnable f54720e;
+    public int f54721f;
 
     public c0(Context context, int i10, c6 c6Var) {
         super(context, c6Var);
-        this.f54711c = c6Var;
+        this.f54719c = c6Var;
         this.d = new n4.l(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
@@ -35,19 +35,19 @@ public abstract class c0 extends uu {
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f54713f = i10;
+        this.f54721f = i10;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
         setTextColor(h6.w0(h6.Ud, c6Var));
-        setLinkTextColor(h6.w0(h6.f20636hc, c6Var));
-        setHighlightColor(h6.w0(h6.f20883uf, c6Var));
+        setLinkTextColor(h6.w0(h6.f20637hc, c6Var));
+        setHighlightColor(h6.w0(h6.f20884uf, c6Var));
         int i12 = h6.Vd;
         setHintColor(h6.w0(i12, c6Var));
         setHintTextColor(h6.w0(i12, c6Var));
         setCursorColor(h6.w0(h6.Wd, c6Var));
-        setHandlesColor(h6.w0(h6.f20900vf, c6Var));
+        setHandlesColor(h6.w0(h6.f20901vf, c6Var));
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -59,7 +59,7 @@ public abstract class c0 extends uu {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.d.f16325a).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.d.f16326a).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -97,8 +97,8 @@ public abstract class c0 extends uu {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            b bVar = new b(this.f54711c);
-            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54700f, 255);
+            b bVar = new b(this.f54719c);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54708f, 255);
             ofInt.addUpdateListener(new a(bVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -111,16 +111,16 @@ public abstract class c0 extends uu {
         b[] bVarArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
-            e5 e5Var = new e5(8, this, bVar);
+            v4 v4Var = new v4(10, this, bVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54700f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f54708f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new z4(e5Var, 20));
+                ofInt.addListener(new z4(v4Var, 20));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
-                e5Var.run();
+                v4Var.run();
             }
         }
     }
@@ -134,13 +134,13 @@ public abstract class c0 extends uu {
     }
 
     public void setMaxLength(int i10) {
-        if (this.f54713f != i10) {
-            this.f54713f = i10;
+        if (this.f54721f != i10) {
+            this.f54721f = i10;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         }
     }
 
     public void setOnFocused(Runnable runnable) {
-        this.f54712e = runnable;
+        this.f54720e = runnable;
     }
 }

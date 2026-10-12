@@ -22,17 +22,17 @@ public final class my extends vm0 {
     public int E;
     public final d00 F;
     public ArrayList h;
-    public int f28684y;
-    public int f28676c = -1;
+    public int f28673y;
+    public int f28665c = -1;
     public int d = -1;
-    public int f28677e = -1;
-    public int f28678f = -1;
-    public final ArrayList f28679n = new ArrayList();
-    public final SparseIntArray f28680r = new SparseIntArray();
-    public final SparseIntArray f28681s = new SparseIntArray();
+    public int f28666e = -1;
+    public int f28667f = -1;
+    public final ArrayList f28668n = new ArrayList();
+    public final SparseIntArray f28669r = new SparseIntArray();
+    public final SparseIntArray f28670s = new SparseIntArray();
     public final SparseIntArray v = new SparseIntArray();
-    public final SparseIntArray f28682w = new SparseIntArray();
-    public final ArrayList f28683x = new ArrayList();
+    public final SparseIntArray f28671w = new SparseIntArray();
+    public final ArrayList f28672x = new ArrayList();
 
     public my(d00 d00Var) {
         this.F = d00Var;
@@ -40,7 +40,7 @@ public final class my extends vm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 0 && i10 != 4 && i10 != 3 && i10 != 6) {
             return false;
         }
@@ -54,8 +54,8 @@ public final class my extends vm0 {
         Integer num;
         float f7;
         d00 d00Var = this.F;
-        ArrayList arrayList = d00Var.f25123q1;
-        int i11 = this.f28682w.get(i10);
+        ArrayList arrayList = d00Var.f25115q1;
+        int i11 = this.f28671w.get(i10);
         if (i11 >= 0 && i11 < arrayList.size()) {
             qy qyVar = (qy) arrayList.get(i11);
             if (!qyVar.h) {
@@ -64,27 +64,27 @@ public final class my extends vm0 {
                 } else {
                     z10 = false;
                 }
-                int intValue = ((Integer) this.f28683x.get(i11)).intValue();
-                d00Var.f25117o1.add(Long.valueOf(qyVar.f29947b.f19829id));
-                if (!UserConfig.getInstance(d00Var.f25080c1).isPremium() && !d00Var.U0) {
+                int intValue = ((Integer) this.f28672x.get(i11)).intValue();
+                d00Var.f25109o1.add(Long.valueOf(qyVar.f29948b.f19830id));
+                if (!UserConfig.getInstance(d00Var.f25072c1).isPremium() && !d00Var.U0) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 int i12 = d00Var.Q.J * 3;
-                if ((qyVar.f29950f && !qyVar.f29951g && (qyVar.f29949e || z11)) || qyVar.h) {
-                    min = qyVar.f29948c.size();
+                if ((qyVar.f29951f && !qyVar.f29952g && (qyVar.f29950e || z11)) || qyVar.h) {
+                    min = qyVar.f29949c.size();
                 } else {
-                    min = Math.min(i12, qyVar.f29948c.size());
+                    min = Math.min(i12, qyVar.f29949c.size());
                 }
                 Integer num2 = null;
-                if (qyVar.f29948c.size() > i12) {
+                if (qyVar.f29949c.size() > i12) {
                     num = Integer.valueOf(intValue + 1 + min);
                 } else {
                     num = null;
                 }
                 qyVar.h = true;
-                int size = qyVar.f29948c.size() - min;
+                int size = qyVar.f29949c.size() - min;
                 if (size > 0) {
                     num = Integer.valueOf(intValue + 1 + min);
                     num2 = Integer.valueOf(size);
@@ -92,10 +92,10 @@ public final class my extends vm0 {
                 G(false);
                 H();
                 if (num != null && num2 != null) {
-                    d00Var.f25128r2 = view;
-                    d00Var.f25132s2 = num.intValue();
-                    d00Var.f25135t2 = num2.intValue() + num.intValue();
-                    d00Var.f25138u2 = SystemClock.elapsedRealtime();
+                    d00Var.f25120r2 = view;
+                    d00Var.f25124s2 = num.intValue();
+                    d00Var.f25127t2 = num2.intValue() + num.intValue();
+                    d00Var.f25130u2 = SystemClock.elapsedRealtime();
                     s(num.intValue(), num2.intValue());
                     m(num.intValue());
                     if (z10) {
@@ -114,18 +114,18 @@ public final class my extends vm0 {
 
     public final void F(boolean z10) {
         d00 d00Var = this.F;
-        ArrayList arrayList = d00Var.f25114n1;
+        ArrayList arrayList = d00Var.f25106n1;
         if (d00Var.N2) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f28679n);
-        MediaDataController mediaDataController = MediaDataController.getInstance(d00Var.f25080c1);
+        ArrayList arrayList2 = new ArrayList(this.f28668n);
+        MediaDataController mediaDataController = MediaDataController.getInstance(d00Var.f25072c1);
         ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = mediaDataController.getFeaturedEmojiSets();
         arrayList.clear();
         int size = featuredEmojiSets.size();
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i10);
-            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f19829id) || d00Var.f25120p1.contains(Long.valueOf(stickerSetCovered.set.f19829id))) {
+            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f19830id) || d00Var.f25112p1.contains(Long.valueOf(stickerSetCovered.set.f19830id))) {
                 arrayList.add(stickerSetCovered);
             }
         }
@@ -145,12 +145,12 @@ public final class my extends vm0 {
         TLRPC.StickerSet stickerSet;
         TLRPC.TL_messages_stickerSet groupStickerSetById;
         d00 d00Var = this.F;
-        ArrayList arrayList = d00Var.f25114n1;
-        ArrayList arrayList2 = d00Var.f25117o1;
-        int i11 = d00Var.f25080c1;
-        ArrayList arrayList3 = d00Var.f25123q1;
+        ArrayList arrayList = d00Var.f25106n1;
+        ArrayList arrayList2 = d00Var.f25109o1;
+        int i11 = d00Var.f25072c1;
+        ArrayList arrayList3 = d00Var.f25115q1;
         arrayList3.clear();
-        if (d00Var.f25081c2) {
+        if (d00Var.f25073c2) {
             MediaDataController mediaDataController = MediaDataController.getInstance(i11);
             if (z10 || this.h == null) {
                 this.h = new ArrayList(mediaDataController.getStickerSets(5));
@@ -165,22 +165,22 @@ public final class my extends vm0 {
             TLRPC.ChatFull chatFull = d00Var.J1;
             if (chatFull != null && (stickerSet = chatFull.emojiset) != null && (groupStickerSetById = mediaDataController.getGroupStickerSetById(stickerSet)) != null) {
                 qy qyVar = new qy();
-                qyVar.f29947b = d00Var.J1.emojiset;
-                qyVar.f29948c = new ArrayList(groupStickerSetById.documents);
-                qyVar.f29949e = true;
-                qyVar.f29950f = true;
-                qyVar.f29951g = false;
+                qyVar.f29948b = d00Var.J1.emojiset;
+                qyVar.f29949c = new ArrayList(groupStickerSetById.documents);
+                qyVar.f29950e = true;
+                qyVar.f29951f = true;
+                qyVar.f29952g = false;
                 qyVar.h = true;
-                qyVar.f29952i = true;
+                qyVar.f29953i = true;
                 arrayList3.add(qyVar);
-                TLRPC.StickerSet stickerSet2 = qyVar.f29947b;
+                TLRPC.StickerSet stickerSet2 = qyVar.f29948b;
                 int i12 = 0;
                 while (true) {
                     if (i12 >= arrayList4.size()) {
                         break;
                     }
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList4.get(i12);
-                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f19829id == stickerSet2.f19829id) {
+                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f19830id == stickerSet2.f19830id) {
                         arrayList4.remove(i12);
                         break;
                     }
@@ -193,11 +193,11 @@ public final class my extends vm0 {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) arrayList4.get(i13);
                     if (tL_messages_stickerSet2 != null && !MessageObject.isPremiumEmojiPack(tL_messages_stickerSet2)) {
                         qy qyVar2 = new qy();
-                        qyVar2.f29947b = tL_messages_stickerSet2.set;
-                        qyVar2.f29948c = new ArrayList(tL_messages_stickerSet2.documents);
-                        qyVar2.f29949e = true;
-                        qyVar2.f29950f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f19829id);
-                        qyVar2.f29951g = false;
+                        qyVar2.f29948b = tL_messages_stickerSet2.set;
+                        qyVar2.f29949c = new ArrayList(tL_messages_stickerSet2.documents);
+                        qyVar2.f29950e = true;
+                        qyVar2.f29951f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f19830id);
+                        qyVar2.f29952g = false;
                         qyVar2.h = true;
                         arrayList3.add(qyVar2);
                         arrayList4.remove(i13);
@@ -212,11 +212,11 @@ public final class my extends vm0 {
                 if (z11) {
                     qy qyVar3 = new qy();
                     TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet3.set;
-                    qyVar3.f29947b = stickerSet3;
-                    qyVar3.f29948c = tL_messages_stickerSet3.documents;
-                    qyVar3.f29949e = false;
-                    qyVar3.f29950f = mediaDataController.isStickerPackInstalled(stickerSet3.f19829id);
-                    qyVar3.f29951g = false;
+                    qyVar3.f29948b = stickerSet3;
+                    qyVar3.f29949c = tL_messages_stickerSet3.documents;
+                    qyVar3.f29950e = false;
+                    qyVar3.f29951f = mediaDataController.isStickerPackInstalled(stickerSet3.f19830id);
+                    qyVar3.f29952g = false;
                     qyVar3.h = z13;
                     arrayList3.add(qyVar3);
                     i10 = i14;
@@ -234,12 +234,12 @@ public final class my extends vm0 {
                     }
                     if (arrayList5.size() > 0) {
                         qy qyVar4 = new qy();
-                        qyVar4.f29947b = tL_messages_stickerSet3.set;
-                        qyVar4.f29948c = new ArrayList(arrayList5);
-                        qyVar4.f29949e = z13;
+                        qyVar4.f29948b = tL_messages_stickerSet3.set;
+                        qyVar4.f29949c = new ArrayList(arrayList5);
+                        qyVar4.f29950e = z13;
                         i10 = i14;
-                        qyVar4.f29950f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f19829id);
-                        qyVar4.f29951g = false;
+                        qyVar4.f29951f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f19830id);
+                        qyVar4.f29952g = false;
                         qyVar4.h = true;
                         arrayList3.add(qyVar4);
                     } else {
@@ -247,12 +247,12 @@ public final class my extends vm0 {
                     }
                     if (arrayList6.size() > 0) {
                         qy qyVar5 = new qy();
-                        qyVar5.f29947b = tL_messages_stickerSet3.set;
-                        qyVar5.f29948c = new ArrayList(arrayList6);
-                        qyVar5.f29949e = false;
-                        qyVar5.f29950f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f19829id);
-                        qyVar5.f29951g = false;
-                        qyVar5.h = arrayList2.contains(Long.valueOf(qyVar5.f29947b.f19829id));
+                        qyVar5.f29948b = tL_messages_stickerSet3.set;
+                        qyVar5.f29949c = new ArrayList(arrayList6);
+                        qyVar5.f29950e = false;
+                        qyVar5.f29951f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f19830id);
+                        qyVar5.f29952g = false;
+                        qyVar5.h = arrayList2.contains(Long.valueOf(qyVar5.f29948b.f19830id));
                         arrayList3.add(qyVar5);
                     }
                 }
@@ -262,27 +262,27 @@ public final class my extends vm0 {
             for (int i16 = 0; i16 < arrayList.size(); i16++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i16);
                 qy qyVar6 = new qy();
-                qyVar6.f29950f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f19829id);
+                qyVar6.f29951f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f19830id);
                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
-                qyVar6.f29947b = stickerSet4;
+                qyVar6.f29948b = stickerSet4;
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                    qyVar6.f29948c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                    qyVar6.f29949c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
                     TLRPC.TL_messages_stickerSet stickerSet5 = mediaDataController.getStickerSet(MediaDataController.getInputStickerSet(stickerSet4), Integer.valueOf(stickerSetCovered.set.hash), true);
                     if (stickerSet5 != null) {
-                        qyVar6.f29948c = stickerSet5.documents;
+                        qyVar6.f29949c = stickerSet5.documents;
                     } else {
                         qyVar6.d = MediaDataController.getInputStickerSet(stickerSetCovered.set);
                     }
                 } else {
-                    qyVar6.f29948c = stickerSetCovered.covers;
+                    qyVar6.f29949c = stickerSetCovered.covers;
                 }
-                ArrayList arrayList7 = qyVar6.f29948c;
+                ArrayList arrayList7 = qyVar6.f29949c;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
                     int i17 = 0;
                     while (true) {
-                        if (i17 < qyVar6.f29948c.size()) {
-                            if (!MessageObject.isFreeEmoji((TLRPC.Document) qyVar6.f29948c.get(i17))) {
+                        if (i17 < qyVar6.f29949c.size()) {
+                            if (!MessageObject.isFreeEmoji((TLRPC.Document) qyVar6.f29949c.get(i17))) {
                                 z12 = true;
                                 break;
                             }
@@ -292,9 +292,9 @@ public final class my extends vm0 {
                             break;
                         }
                     }
-                    qyVar6.f29949e = !z12;
-                    qyVar6.h = arrayList2.contains(Long.valueOf(qyVar6.f29947b.f19829id));
-                    qyVar6.f29951g = true;
+                    qyVar6.f29950e = !z12;
+                    qyVar6.h = arrayList2.contains(Long.valueOf(qyVar6.f29948b.f19830id));
+                    qyVar6.f29952g = true;
                     arrayList3.add(qyVar6);
                 }
             }
@@ -311,7 +311,7 @@ public final class my extends vm0 {
 
     @Override
     public final int h() {
-        return this.f28684y;
+        return this.f28673y;
     }
 
     @Override
@@ -324,22 +324,22 @@ public final class my extends vm0 {
         if (i10 == this.d) {
             return 4;
         }
-        if (i10 == this.f28676c || i10 == this.f28678f) {
+        if (i10 == this.f28665c || i10 == this.f28667f) {
             return 1;
         }
-        SparseIntArray sparseIntArray = this.f28680r;
+        SparseIntArray sparseIntArray = this.f28669r;
         if (sparseIntArray.indexOfKey(i10) >= 0) {
             if (sparseIntArray.get(i10) < EmojiData.dataColored.length) {
                 return 1;
             }
             return 5;
-        } else if (this.F.f25082d0 && i10 == 0) {
+        } else if (this.F.f25074d0 && i10 == 0) {
             return 2;
         } else {
             if (this.v.indexOfKey(i10) >= 0) {
                 return 3;
             }
-            if (this.f28682w.indexOfKey(i10) >= 0) {
+            if (this.f28671w.indexOfKey(i10) >= 0) {
                 return 6;
             }
             return 0;
@@ -364,27 +364,27 @@ public final class my extends vm0 {
         int i12;
         int i13 = i10;
         d00 d00Var = this.F;
-        String[] strArr = d00Var.f25073a1;
+        String[] strArr = d00Var.f25065a1;
         dy dyVar = d00Var.Q;
-        int i14 = d00Var.f25080c1;
-        ArrayList arrayList = d00Var.f25123q1;
-        int i15 = d1Var.f47893f;
-        View view = d1Var.f47889a;
+        int i14 = d00Var.f25072c1;
+        ArrayList arrayList = d00Var.f25115q1;
+        int i15 = d1Var.f47901f;
+        View view = d1Var.f47897a;
         boolean z10 = true;
         qy qyVar2 = null;
         if (i15 != 0) {
-            SparseIntArray sparseIntArray = this.f28680r;
+            SparseIntArray sparseIntArray = this.f28669r;
             if (i15 != 1) {
                 if (i15 != 5) {
                     if (i15 == 6) {
                         sy syVar = (sy) view;
-                        int i16 = this.f28682w.get(i13);
+                        int i16 = this.f28671w.get(i13);
                         int i17 = dyVar.J * 3;
                         if (i16 >= 0 && i16 < arrayList.size()) {
                             qyVar2 = (qy) arrayList.get(i16);
                         }
                         if (qyVar2 != null) {
-                            syVar.f30701a.setText("+" + ((qyVar2.f29948c.size() - i17) + 1));
+                            syVar.f30704a.setText("+" + ((qyVar2.f29949c.size() - i17) + 1));
                             return;
                         }
                         return;
@@ -400,7 +400,7 @@ public final class my extends vm0 {
                 } else {
                     qyVar = null;
                 }
-                if (qyVar3 == null || !qyVar3.f29951g || (qyVar != null && !qyVar.f29949e && qyVar.f29950f && !UserConfig.getInstance(i14).isPremium())) {
+                if (qyVar3 == null || !qyVar3.f29952g || (qyVar != null && !qyVar.f29950e && qyVar.f29951f && !UserConfig.getInstance(i14).isPremium())) {
                     z10 = false;
                 }
                 if (qyVar3 != null && qyVar3.d != null) {
@@ -411,15 +411,15 @@ public final class my extends vm0 {
                 if (qyVar3 != null) {
                     uyVar.f31286s = qyVar3;
                     uyVar.v = z10;
-                    uyVar.f31280b.l(qyVar3.f29947b.title, false);
+                    uyVar.f31280b.l(qyVar3.f29948b.title, false);
                     TextView textView = uyVar.f31281c;
-                    if (qyVar3.f29952i) {
+                    if (qyVar3.f29953i) {
                         i12 = 0;
                     } else {
                         i12 = 8;
                     }
                     textView.setVisibility(i12);
-                    if (qyVar3.f29950f && !qyVar3.f29947b.official) {
+                    if (qyVar3.f29951f && !qyVar3.f29948b.official) {
                         q0Var.a(LocaleController.getString(R.string.Restore), new ty(uyVar, 5), false);
                     } else {
                         q0Var.a(LocaleController.getString(R.string.Unlock), new ty(uyVar, 6), false);
@@ -432,15 +432,15 @@ public final class my extends vm0 {
             org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
             o8Var.getClass();
             int i19 = sparseIntArray.get(i13);
-            if (i13 == this.f28676c) {
+            if (i13 == this.f28665c) {
                 o8Var.c(LocaleController.getString(R.string.FeaturedEmojiPacks), R.drawable.msg_close, LocaleController.getString(R.string.AccDescrCloseTrendingEmoji), 0, 0);
                 return;
-            } else if (i13 == this.f28678f) {
+            } else if (i13 == this.f28667f) {
                 o8Var.b(0, LocaleController.getString(R.string.RecentlyUsed));
                 return;
             } else if (i19 >= strArr.length) {
                 try {
-                    o8Var.b(0, ((qy) arrayList.get(i19 - strArr.length)).f29947b.title);
+                    o8Var.b(0, ((qy) arrayList.get(i19 - strArr.length)).f29948b.title);
                     return;
                 } catch (Exception unused) {
                     o8Var.b(0, "");
@@ -452,12 +452,12 @@ public final class my extends vm0 {
             }
         }
         lz lzVar = (lz) view;
-        lzVar.f28322a = i13;
-        lzVar.f28325e = null;
-        if (d00Var.f25082d0) {
+        lzVar.f28317a = i13;
+        lzVar.f28320e = null;
+        if (d00Var.f25074d0) {
             i13--;
         }
-        if (this.f28678f >= 0) {
+        if (this.f28667f >= 0) {
             i13--;
         }
         if (this.d >= 0) {
@@ -511,25 +511,25 @@ public final class my extends vm0 {
                 int i22 = dyVar.J * 3;
                 int i23 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f28683x;
+                    ArrayList arrayList2 = this.f28672x;
                     if (i23 >= arrayList2.size()) {
                         break;
                     }
                     qy qyVar4 = (qy) arrayList.get(i23);
                     int intValue = ((Integer) arrayList2.get(i23)).intValue() + 1;
-                    if ((qyVar4.f29950f && !qyVar4.f29951g && (qyVar4.f29949e || isPremium)) || qyVar4.h) {
-                        min = qyVar4.f29948c.size();
+                    if ((qyVar4.f29951f && !qyVar4.f29952g && (qyVar4.f29950e || isPremium)) || qyVar4.h) {
+                        min = qyVar4.f29949c.size();
                     } else {
-                        min = Math.min(i22, qyVar4.f29948c.size());
+                        min = Math.min(i22, qyVar4.f29949c.size());
                     }
-                    int i24 = lzVar.f28322a;
+                    int i24 = lzVar.f28317a;
                     if (i24 >= intValue && (i11 = i24 - intValue) < min) {
-                        lzVar.f28325e = qyVar4;
-                        TLRPC.Document document2 = (TLRPC.Document) qyVar4.f29948c.get(i11);
+                        lzVar.f28320e = qyVar4;
+                        TLRPC.Document document2 = (TLRPC.Document) qyVar4.f29949c.get(i11);
                         if (document2 == null) {
                             valueOf = null;
                         } else {
-                            valueOf = Long.valueOf(document2.f19808id);
+                            valueOf = Long.valueOf(document2.f19809id);
                         }
                         Long l10 = valueOf;
                         document = document2;
@@ -577,15 +577,15 @@ public final class my extends vm0 {
                         if (i10 != 5) {
                             if (i10 != 6) {
                                 View view = new View(d00Var.getContext());
-                                view.setLayoutParams(new s4.q0(-1, d00Var.f25076b1));
+                                view.setLayoutParams(new s4.q0(-1, d00Var.f25068b1));
                                 w0Var = view;
                             } else {
                                 Context context = d00Var.getContext();
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f30701a = textView;
+                                frameLayout.f30704a = textView;
                                 textView.setTextSize(1, 13.0f);
-                                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var));
+                                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var));
                                 textView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(11.0f), i0.a.k(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Te, c6Var), 99)));
                                 textView.setTypeface(AndroidUtilities.bold());
                                 textView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f));
@@ -624,7 +624,7 @@ public final class my extends vm0 {
                     w0Var = frameLayout2;
                 }
             } else {
-                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(d00Var.getContext(), true, false, d00Var.Z1, d00Var.f25101i2);
+                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(d00Var.getContext(), true, false, d00Var.Z1, d00Var.f25093i2);
                 o8Var.setOnIconClickListener(new f0(this, 13));
                 w0Var = o8Var;
             }

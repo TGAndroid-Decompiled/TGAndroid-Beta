@@ -85,17 +85,17 @@ public final class xb extends FrameLayout {
         lc lcVar = this.d;
         fg0 fg0Var = lcVar.F1;
         if (fg0Var != null) {
-            sl0 sl0Var = fg0Var.f26062e;
-            sl0Var.f30587a = 0.0f;
-            sl0Var.f30588b = 0.0f;
-            sl0Var.f30589c = fg0Var.getMeasuredWidth();
+            sl0 sl0Var = fg0Var.f26064e;
+            sl0Var.f30589a = 0.0f;
+            sl0Var.f30590b = 0.0f;
+            sl0Var.f30591c = fg0Var.getMeasuredWidth();
             sl0Var.d = lcVar.F1.getMeasuredHeight();
         }
         dg0 dg0Var = lcVar.E1;
         if (dg0Var != null) {
             sw0 sw0Var = dg0Var.d;
-            sw0Var.f30696a = dg0Var.getMeasuredWidth();
-            sw0Var.f30697b = lcVar.E1.getMeasuredHeight();
+            sw0Var.f30699a = dg0Var.getMeasuredWidth();
+            sw0Var.f30700b = lcVar.E1.getMeasuredHeight();
         }
     }
 

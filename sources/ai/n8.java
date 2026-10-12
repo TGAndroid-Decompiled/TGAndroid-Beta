@@ -66,7 +66,7 @@ public final class n8 implements Runnable {
                     MessagesController.getInstance(i13).putChats(tL_stories_stories.chats, false);
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f20041id == i12) {
+                            if (tL_stories_stories.stories.get(i11).f20042id == i12) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -148,10 +148,10 @@ public final class n8 implements Runnable {
             case 13:
                 yh.n nVar = (yh.n) obj;
                 TLObject tLObject2 = (TLObject) obj2;
-                int i15 = ((yh.o) obj3).f53167a;
+                int i15 = ((yh.o) obj3).f53179a;
                 boolean[] zArr = nVar.d;
-                boolean[] zArr2 = nVar.f53115b;
-                ArrayList[] arrayListArr = nVar.f53114a;
+                boolean[] zArr2 = nVar.f53127b;
+                ArrayList[] arrayListArr = nVar.f53126a;
                 zArr[i12] = false;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
@@ -164,14 +164,14 @@ public final class n8 implements Runnable {
                         z10 = true;
                     }
                     zArr2[i12] = z10;
-                    boolean[] zArr3 = nVar.f53117e;
+                    boolean[] zArr3 = nVar.f53129e;
                     if ((starsStatus.flags & 1) == 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     zArr3[i12] = z11;
-                    String[] strArr = nVar.f53116c;
+                    String[] strArr = nVar.f53128c;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -184,7 +184,7 @@ public final class n8 implements Runnable {
                 ci.d dVar = (ci.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f20032id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f20033id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 int i16 = this.f1480c;
                 ConnectionsManager.getInstance(i16).sendRequest(tL_fulfillStarsSubscription, new l8(dVar, (org.telegram.ui.ActionBar.e3[]) obj, i16, this.f1479b, 7));

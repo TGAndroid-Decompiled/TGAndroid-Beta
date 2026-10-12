@@ -12,29 +12,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final FrameLayout f36353a;
-    public final ImageView f36354b;
-    public final ImageView f36355c;
+    public final FrameLayout f36355a;
+    public final ImageView f36356b;
+    public final ImageView f36357c;
     public final org.telegram.ui.Components.oh0 d;
-    public final View f36356e;
-    public final org.telegram.ui.Components.jo0 f36357f;
+    public final View f36358e;
+    public final org.telegram.ui.Components.jo0 f36359f;
     public final org.telegram.ui.Cells.c6 h;
-    public b71 f36358n;
-    public float f36359r;
-    public ValueAnimator f36360s;
+    public b71 f36360n;
+    public float f36361r;
+    public ValueAnimator f36362s;
     public pz0 v;
-    public boolean f36361w;
-    public boolean f36362x;
-    public final n71 f36363y;
+    public boolean f36363w;
+    public boolean f36364x;
+    public final n71 f36365y;
 
     public c71(n71 n71Var, Context context, boolean z10) {
         super(context);
         org.telegram.ui.ActionBar.c6 c6Var = n71Var.Z0;
-        this.f36363y = n71Var;
-        this.f36361w = false;
+        this.f36365y = n71Var;
+        this.f36363w = false;
         setClickable(true);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f36353a = frameLayout;
+        this.f36355a = frameLayout;
         if (z10) {
             setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, c6Var));
         }
@@ -42,15 +42,15 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
         int i10 = org.telegram.ui.ActionBar.h6.He;
         frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.w0(i10, c6Var)));
         frameLayout.setClipToOutline(true);
-        ai.l2 l2Var = yf.i0.f52395a;
+        ai.l2 l2Var = yf.i0.f52403a;
         frameLayout.setOutlineProvider(new yf.h0(0, AndroidUtilities.dp(18.0f)));
         addView(frameLayout, w7.w5.a(36.0f, 8.0f, 12.0f, 8.0f, 8.0f, -1, 55));
         ImageView imageView = new ImageView(context);
-        this.f36354b = imageView;
+        this.f36356b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         org.telegram.ui.Components.jo0 jo0Var = new org.telegram.ui.Components.jo0();
-        this.f36357f = jo0Var;
+        this.f36359f = jo0Var;
         jo0Var.c(0, false, false);
         int i11 = org.telegram.ui.ActionBar.h6.Je;
         jo0Var.a(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
@@ -63,14 +63,14 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                     case 0:
                         e61 e61Var2 = e61Var;
                         org.telegram.ui.Cells.c6 c6Var2 = e61Var2.h;
-                        if (e61Var2.f36357f.f27581k == 1) {
+                        if (e61Var2.f36359f.f27588k == 1) {
                             c6Var2.setText("");
-                            e61Var2.f36363y.v(null, true, false);
-                            b71 b71Var = e61Var2.f36358n;
+                            e61Var2.f36365y.v(null, true, false);
+                            b71 b71Var = e61Var2.f36360n;
                             if (b71Var != null) {
                                 b71Var.G1(null);
-                                e61Var2.f36358n.H1(true, true);
-                                e61Var2.f36358n.E1();
+                                e61Var2.f36360n.H1(true, true);
+                                e61Var2.f36360n.E1();
                             }
                             c6Var2.clearAnimation();
                             c6Var2.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.js.h).start();
@@ -80,7 +80,7 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                         return;
                     case 1:
                         e61 e61Var3 = e61Var;
-                        n71 n71Var2 = e61Var3.f36363y;
+                        n71 n71Var2 = e61Var3.f36365y;
                         if (!n71Var2.u()) {
                             n71Var2.q();
                             e61Var3.h.requestFocus();
@@ -92,11 +92,11 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                         e61 e61Var4 = e61Var;
                         org.telegram.ui.Cells.c6 c6Var3 = e61Var4.h;
                         c6Var3.setText("");
-                        e61Var4.f36363y.v(null, true, false);
-                        b71 b71Var2 = e61Var4.f36358n;
+                        e61Var4.f36365y.v(null, true, false);
+                        b71 b71Var2 = e61Var4.f36360n;
                         if (b71Var2 != null) {
                             b71Var2.G1(null);
-                            e61Var4.f36358n.H1(true, true);
+                            e61Var4.f36360n.H1(true, true);
                         }
                         c6Var3.clearAnimation();
                         c6Var3.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.js.h).start();
@@ -132,7 +132,7 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
         oh0Var.addView(c6Var2, w7.w5.a(-1.0f, 0.0f, 0.0f, 32.0f, 0.0f, -1, 119));
         if (z10) {
             View view = new View(context);
-            this.f36356e = view;
+            this.f36358e = view;
             Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_right).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, c6Var), PorterDuff.Mode.MULTIPLY));
             view.setBackground(mutate);
@@ -146,14 +146,14 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                     case 0:
                         e61 e61Var2 = e61Var;
                         org.telegram.ui.Cells.c6 c6Var22 = e61Var2.h;
-                        if (e61Var2.f36357f.f27581k == 1) {
+                        if (e61Var2.f36359f.f27588k == 1) {
                             c6Var22.setText("");
-                            e61Var2.f36363y.v(null, true, false);
-                            b71 b71Var = e61Var2.f36358n;
+                            e61Var2.f36365y.v(null, true, false);
+                            b71 b71Var = e61Var2.f36360n;
                             if (b71Var != null) {
                                 b71Var.G1(null);
-                                e61Var2.f36358n.H1(true, true);
-                                e61Var2.f36358n.E1();
+                                e61Var2.f36360n.H1(true, true);
+                                e61Var2.f36360n.E1();
                             }
                             c6Var22.clearAnimation();
                             c6Var22.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.js.h).start();
@@ -163,7 +163,7 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                         return;
                     case 1:
                         e61 e61Var3 = e61Var;
-                        n71 n71Var2 = e61Var3.f36363y;
+                        n71 n71Var2 = e61Var3.f36365y;
                         if (!n71Var2.u()) {
                             n71Var2.q();
                             e61Var3.h.requestFocus();
@@ -175,11 +175,11 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                         e61 e61Var4 = e61Var;
                         org.telegram.ui.Cells.c6 c6Var3 = e61Var4.h;
                         c6Var3.setText("");
-                        e61Var4.f36363y.v(null, true, false);
-                        b71 b71Var2 = e61Var4.f36358n;
+                        e61Var4.f36365y.v(null, true, false);
+                        b71 b71Var2 = e61Var4.f36360n;
                         if (b71Var2 != null) {
                             b71Var2.G1(null);
-                            e61Var4.f36358n.H1(true, true);
+                            e61Var4.f36360n.H1(true, true);
                         }
                         c6Var3.clearAnimation();
                         c6Var3.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.js.h).start();
@@ -189,10 +189,10 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
             }
         });
         ImageView imageView2 = new ImageView(context);
-        this.f36355c = imageView2;
+        this.f36357c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new ci.i2(e61Var));
-        imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var), 1, AndroidUtilities.dp(15.0f)));
+        imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var), 1, AndroidUtilities.dp(15.0f)));
         imageView2.setAlpha(0.0f);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,14 +201,14 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                     case 0:
                         e61 e61Var2 = e61Var;
                         org.telegram.ui.Cells.c6 c6Var22 = e61Var2.h;
-                        if (e61Var2.f36357f.f27581k == 1) {
+                        if (e61Var2.f36359f.f27588k == 1) {
                             c6Var22.setText("");
-                            e61Var2.f36363y.v(null, true, false);
-                            b71 b71Var = e61Var2.f36358n;
+                            e61Var2.f36365y.v(null, true, false);
+                            b71 b71Var = e61Var2.f36360n;
                             if (b71Var != null) {
                                 b71Var.G1(null);
-                                e61Var2.f36358n.H1(true, true);
-                                e61Var2.f36358n.E1();
+                                e61Var2.f36360n.H1(true, true);
+                                e61Var2.f36360n.E1();
                             }
                             c6Var22.clearAnimation();
                             c6Var22.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.js.h).start();
@@ -218,7 +218,7 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                         return;
                     case 1:
                         e61 e61Var3 = e61Var;
-                        n71 n71Var2 = e61Var3.f36363y;
+                        n71 n71Var2 = e61Var3.f36365y;
                         if (!n71Var2.u()) {
                             n71Var2.q();
                             e61Var3.h.requestFocus();
@@ -230,11 +230,11 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
                         e61 e61Var4 = e61Var;
                         org.telegram.ui.Cells.c6 c6Var3 = e61Var4.h;
                         c6Var3.setText("");
-                        e61Var4.f36363y.v(null, true, false);
-                        b71 b71Var2 = e61Var4.f36358n;
+                        e61Var4.f36365y.v(null, true, false);
+                        b71 b71Var2 = e61Var4.f36360n;
                         if (b71Var2 != null) {
                             b71Var2.G1(null);
-                            e61Var4.f36358n.H1(true, true);
+                            e61Var4.f36360n.H1(true, true);
                         }
                         c6Var3.clearAnimation();
                         c6Var3.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.js.h).start();
@@ -264,7 +264,7 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
             AndroidUtilities.cancelRunOnUIThread(pz0Var2);
             e61Var.v = null;
         }
-        AndroidUtilities.updateViewShow(e61Var.f36355c, false);
+        AndroidUtilities.updateViewShow(e61Var.f36357c, false);
     }
 
     public final void b() {
@@ -273,26 +273,26 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
 
     public final void c(boolean z10) {
         float f7;
-        if (z10 == this.f36361w) {
+        if (z10 == this.f36363w) {
             return;
         }
-        this.f36361w = z10;
-        ValueAnimator valueAnimator = this.f36360s;
+        this.f36363w = z10;
+        ValueAnimator valueAnimator = this.f36362s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f36359r;
+        float f10 = this.f36361r;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f36360s = ofFloat;
+        this.f36362s = ofFloat;
         ofFloat.addUpdateListener(new a21(this, 9));
-        this.f36360s.setDuration(120L);
-        this.f36360s.setInterpolator(org.telegram.ui.Components.js.h);
-        this.f36360s.start();
+        this.f36362s.setDuration(120L);
+        this.f36362s.setInterpolator(org.telegram.ui.Components.js.h);
+        this.f36362s.start();
     }
 
     public final void d(boolean z10) {
@@ -300,20 +300,20 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
         String str;
         b71 b71Var;
         b71 b71Var2;
-        org.telegram.ui.Components.jo0 jo0Var = this.f36357f;
-        int i10 = jo0Var.f27581k;
+        org.telegram.ui.Components.jo0 jo0Var = this.f36359f;
+        int i10 = jo0Var.f27588k;
         org.telegram.ui.Cells.c6 c6Var = this.h;
         int i11 = 2;
-        if (i10 == 2 && ((c6Var.length() != 0 || ((b71Var2 = this.f36358n) != null && b71Var2.getSelectedCategory() != null)) && !z10)) {
+        if (i10 == 2 && ((c6Var.length() != 0 || ((b71Var2 = this.f36360n) != null && b71Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (c6Var.length() <= 0 && ((b71Var = this.f36358n) == null || b71Var.f25816m3 <= 0.5f || (!b71Var.f25812h3 && b71Var.getSelectedCategory() == null))) {
+        if (c6Var.length() <= 0 && ((b71Var = this.f36360n) == null || b71Var.f25818m3 <= 0.5f || (!b71Var.f25814h3 && b71Var.getSelectedCategory() == null))) {
             r62 = 0;
         } else {
             r62 = 1;
         }
         jo0Var.b(r62);
-        ImageView imageView = this.f36354b;
+        ImageView imageView = this.f36356b;
         imageView.setClickable(r62);
         if (r62 != 0) {
             str = LocaleController.getString(R.string.AccDescrGoBack);
@@ -329,8 +329,8 @@ public abstract class c71 extends FrameLayout implements org.telegram.ui.ActionB
 
     @Override
     public final void e() {
-        if (this.f36362x) {
-            this.f36353a.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.m1(0.06f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, this.f36363y.Z0))));
+        if (this.f36364x) {
+            this.f36355a.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.m1(0.06f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, this.f36365y.Z0))));
         }
     }
 

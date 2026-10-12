@@ -295,7 +295,7 @@ public abstract class v3 extends FrameLayout implements NotificationCenter.Notif
         this.f6142s = gy0Var;
         vh.n nVar = gy0Var.d;
         nVar.setTextSize(1, 16.0f);
-        nVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20945y6, c6Var));
+        nVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20946y6, c6Var));
         nVar.setTypeface(null);
         nVar.setText(LocaleController.getString(R.string.SearchImagesType));
         this.v = new h4(this, false, new ai.y1(this, 9));
@@ -406,7 +406,7 @@ public abstract class v3 extends FrameLayout implements NotificationCenter.Notif
             LinearLayout linearLayout = new LinearLayout(context);
             this.I = linearLayout;
             linearLayout.setOrientation(1);
-            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20630h5, c6Var));
+            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20631h5, c6Var));
             linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(AndroidUtilities.navigationBarHeight > 0 ? 0.0f : f11) + AndroidUtilities.navigationBarHeight);
             addView(linearLayout, w7.w5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 87));
             linearLayout.setAlpha(0.0f);
@@ -709,8 +709,8 @@ public abstract class v3 extends FrameLayout implements NotificationCenter.Notif
         e3 e3Var = this.f6133e;
         if (z10) {
             ji.o oVar = new ji.o(getContext(), 2);
-            oVar.f48058a = 1;
-            oVar.f14270p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
+            oVar.f48066a = 1;
+            oVar.f14271p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             e3Var.w0(oVar);
             return;
         }
@@ -812,7 +812,7 @@ public abstract class v3 extends FrameLayout implements NotificationCenter.Notif
     public final void h() {
         a aVar;
         j3 j3Var = this.F;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = j3Var.f21309b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = j3Var.f21310b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }

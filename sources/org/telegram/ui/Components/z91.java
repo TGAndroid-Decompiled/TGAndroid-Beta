@@ -13,25 +13,25 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 public final class z91 implements org.telegram.ui.lq0 {
-    public final ba1 f33305a;
+    public final ba1 f33311a;
 
     public z91(ba1 ba1Var) {
-        this.f33305a = ba1Var;
+        this.f33311a = ba1Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        ba1 ba1Var = this.f33305a;
+        ba1 ba1Var = this.f33311a;
         try {
             if (!arrayList.isEmpty()) {
                 SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
                 if (sendingMediaInfo.path != null) {
                     File directory = FileLoader.getDirectory(4);
-                    ba1Var.f24606e = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    ba1Var.f24594e = new File(directory, Utilities.random.nextInt() + ".jpg");
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(ba1Var.f24606e));
-                    ba1Var.d.b(ba1Var.f24606e, loadBitmap, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(ba1Var.f24594e));
+                    ba1Var.d.b(ba1Var.f24594e, loadBitmap, true);
                 }
             }
         } catch (Throwable th2) {
@@ -44,7 +44,7 @@ public final class z91 implements org.telegram.ui.lq0 {
         try {
             Intent intent = new Intent("android.intent.action.PICK");
             intent.setType("image/*");
-            this.f33305a.f24604b.startActivityForResult(intent, 11);
+            this.f33311a.f24592b.startActivityForResult(intent, 11);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

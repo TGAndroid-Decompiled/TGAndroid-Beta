@@ -27,7 +27,7 @@ public final class so extends y9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         wo woVar = this.K;
-        if (woVar.f32499b && this.f33004e == null) {
+        if (woVar.f32499b && this.f32997e == null) {
             org.telegram.ui.Cells.m6 m6Var = this.G;
             m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             m6Var.f836a = true;
@@ -48,7 +48,7 @@ public final class so extends y9 {
                     j3 = 0;
                 }
             }
-            ai.ja.h(j3, canvas, this.f33001a, m6Var);
+            ai.ja.h(j3, canvas, this.f32994a, m6Var);
             return;
         }
         super.onDraw(canvas);

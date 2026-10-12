@@ -5,33 +5,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.MessageObject;
 public final class wv0 {
-    public boolean f32558g;
+    public boolean f32557g;
     public boolean h;
-    public int f32561k;
-    public int f32563m;
-    public int f32564n;
-    public boolean f32565o;
-    public int f32566p;
-    public boolean f32568r;
-    public int f32570t;
-    public int f32571u;
+    public int f32560k;
+    public int f32562m;
+    public int f32563n;
+    public boolean f32564o;
+    public int f32565p;
+    public boolean f32567r;
+    public int f32569t;
+    public int f32570u;
     public boolean v;
-    public boolean f32572w;
-    public final ArrayList f32553a = new ArrayList();
-    public final SparseArray[] f32554b = {new SparseArray(), new SparseArray()};
-    public final ArrayList f32555c = new ArrayList();
+    public boolean f32571w;
+    public final ArrayList f32552a = new ArrayList();
+    public final SparseArray[] f32553b = {new SparseArray(), new SparseArray()};
+    public final ArrayList f32554c = new ArrayList();
     public final HashMap d = new HashMap();
-    public final ArrayList f32556e = new ArrayList();
-    public final int[] f32557f = {0, 0};
-    public final boolean[] f32559i = {false, true};
-    public final int[] f32560j = {0, 0};
-    public boolean f32562l = true;
-    public int f32567q = 0;
-    public final ArrayList f32569s = new ArrayList();
-    public s4.v0 f32573x = new s4.v0();
+    public final ArrayList f32555e = new ArrayList();
+    public final int[] f32556f = {0, 0};
+    public final boolean[] f32558i = {false, true};
+    public final int[] f32559j = {0, 0};
+    public boolean f32561l = true;
+    public int f32566q = 0;
+    public final ArrayList f32568s = new ArrayList();
+    public s4.v0 f32572x = new s4.v0();
 
     public final boolean a(MessageObject messageObject, int i10, boolean z10, boolean z11) {
-        SparseArray[] sparseArrayArr = this.f32554b;
+        SparseArray[] sparseArrayArr = this.f32553b;
         if (sparseArrayArr[i10].indexOfKey(messageObject.getId()) >= 0) {
             return false;
         }
@@ -41,14 +41,14 @@ public final class wv0 {
         if (arrayList == null) {
             arrayList = new ArrayList();
             hashMap.put(messageObject.monthKey, arrayList);
-            ArrayList arrayList2 = this.f32555c;
+            ArrayList arrayList2 = this.f32554c;
             if (z10) {
                 arrayList2.add(0, messageObject.monthKey);
             } else {
                 arrayList2.add(messageObject.monthKey);
             }
         }
-        ArrayList arrayList3 = this.f32553a;
+        ArrayList arrayList3 = this.f32552a;
         if (z10) {
             arrayList.add(0, messageObject);
             arrayList3.add(0, messageObject);
@@ -57,27 +57,27 @@ public final class wv0 {
             arrayList3.add(messageObject);
         }
         sparseArrayArr[i10].put(messageObject.getId(), messageObject);
-        int[] iArr = this.f32560j;
+        int[] iArr = this.f32559j;
         if (!z11) {
             if (messageObject.getId() > 0) {
                 iArr[i10] = Math.min(messageObject.getId(), iArr[i10]);
-                this.f32561k = Math.max(messageObject.getId(), this.f32561k);
+                this.f32560k = Math.max(messageObject.getId(), this.f32560k);
             }
         } else {
             iArr[i10] = Math.max(messageObject.getId(), iArr[i10]);
-            this.f32561k = Math.min(messageObject.getId(), this.f32561k);
+            this.f32560k = Math.min(messageObject.getId(), this.f32560k);
         }
         if (!this.v && messageObject.isVideo()) {
             this.v = true;
         }
-        if (!this.f32572w && messageObject.isPhoto()) {
-            this.f32572w = true;
+        if (!this.f32571w && messageObject.isPhoto()) {
+            this.f32571w = true;
         }
         return true;
     }
 
     public final MessageObject b(int i10, int i11) {
-        SparseArray[] sparseArrayArr = this.f32554b;
+        SparseArray[] sparseArrayArr = this.f32553b;
         MessageObject messageObject = (MessageObject) sparseArrayArr[i11].get(i10);
         if (messageObject == null) {
             return null;
@@ -89,13 +89,13 @@ public final class wv0 {
             return null;
         }
         arrayList.remove(messageObject);
-        this.f32553a.remove(messageObject);
+        this.f32552a.remove(messageObject);
         sparseArrayArr[i11].remove(messageObject.getId());
         if (arrayList.isEmpty()) {
             hashMap.remove(messageObject.monthKey);
-            this.f32555c.remove(messageObject.monthKey);
+            this.f32554c.remove(messageObject.monthKey);
         }
-        int[] iArr = this.f32557f;
+        int[] iArr = this.f32556f;
         int i12 = iArr[i11] - 1;
         iArr[i11] = i12;
         if (i12 < 0) {
@@ -105,45 +105,45 @@ public final class wv0 {
     }
 
     public final ArrayList c() {
-        if (this.f32568r) {
-            return this.f32569s;
+        if (this.f32567r) {
+            return this.f32568s;
         }
-        return this.f32553a;
+        return this.f32552a;
     }
 
     public final int d() {
-        if (this.f32568r) {
-            return this.f32570t;
+        if (this.f32567r) {
+            return this.f32569t;
         }
-        return this.f32563m;
+        return this.f32562m;
     }
 
     public final int e() {
-        int[] iArr = this.f32557f;
+        int[] iArr = this.f32556f;
         return iArr[0] + iArr[1];
     }
 
     public final void f(int i10, int i11, int i12) {
-        SparseArray[] sparseArrayArr = this.f32554b;
+        SparseArray[] sparseArrayArr = this.f32553b;
         MessageObject messageObject = (MessageObject) sparseArrayArr[i10].get(i11);
         if (messageObject != null) {
             sparseArrayArr[i10].remove(i11);
             sparseArrayArr[i10].put(i12, messageObject);
-            messageObject.messageOwner.f19823id = i12;
-            int[] iArr = this.f32560j;
+            messageObject.messageOwner.f19824id = i12;
+            int[] iArr = this.f32559j;
             iArr[i10] = Math.min(i12, iArr[i10]);
         }
     }
 
     public final void g(boolean z10) {
-        if (this.f32568r != z10) {
-            this.f32568r = z10;
+        if (this.f32567r != z10) {
+            this.f32567r = z10;
             if (z10) {
-                this.f32570t = this.f32563m;
-                this.f32571u = this.f32564n;
-                ArrayList arrayList = this.f32569s;
+                this.f32569t = this.f32562m;
+                this.f32570u = this.f32563n;
+                ArrayList arrayList = this.f32568s;
                 arrayList.clear();
-                arrayList.addAll(this.f32553a);
+                arrayList.addAll(this.f32552a);
             }
         }
     }

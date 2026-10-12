@@ -25,7 +25,7 @@ public final class f0 extends i00 {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f48005n - C();
+                int C = this.f48013n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,27 +43,27 @@ public final class f0 extends i00 {
         switch (this.U) {
             case 0:
                 e0 e0Var = new e0(this, recyclerView.getContext());
-                e0Var.f48058a = i10;
+                e0Var.f48066a = i10;
                 w0(e0Var);
                 return;
             case 1:
                 tj tjVar = new tj(this, recyclerView.getContext());
-                tjVar.f48058a = i10;
+                tjVar.f48066a = i10;
                 w0(tjVar);
                 return;
             case 2:
                 kk kkVar = new kk(this, recyclerView.getContext());
-                kkVar.f48058a = i10;
+                kkVar.f48066a = i10;
                 w0(kkVar);
                 return;
             case 3:
                 rl rlVar = new rl(this, recyclerView.getContext());
-                rlVar.f48058a = i10;
+                rlVar.f48066a = i10;
                 w0(rlVar);
                 return;
             default:
                 ao aoVar = new ao(this, recyclerView.getContext());
-                aoVar.f48058a = i10;
+                aoVar.f48066a = i10;
                 w0(aoVar);
                 return;
         }

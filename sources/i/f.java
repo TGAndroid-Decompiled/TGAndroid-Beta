@@ -13,10 +13,6 @@ public final class f implements Drawable.Callback {
     public final int f11570a;
     public Object f11571b;
 
-    public f() {
-        this.f11570a = 0;
-    }
-
     @Override
     public final void invalidateDrawable(Drawable drawable) {
         switch (this.f11570a) {
@@ -29,7 +25,7 @@ public final class f implements Drawable.Callback {
                 ((wq) this.f11571b).invalidateSelf();
                 return;
             case 3:
-                ((vp0) this.f11571b).f32155b.run();
+                ((vp0) this.f11571b).f32140b.run();
                 return;
             case 4:
                 ((gd) this.f11571b).invalidateSelf();
@@ -38,10 +34,10 @@ public final class f implements Drawable.Callback {
                 ((n41) this.f11571b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f11571b).f50571c.invalidate();
+                ((wg.a) this.f11571b).f50579c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11571b).f50597c.invalidate();
+                ((wg.c) this.f11571b).f50605c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11571b).invalidateSelf();
@@ -87,10 +83,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11571b).f50571c.invalidate();
+                ((wg.a) this.f11571b).f50579c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11571b).f50597c.invalidate();
+                ((wg.c) this.f11571b).f50605c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11571b).scheduleSelf(runnable, j3);
@@ -130,10 +126,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11571b).f50571c.invalidate();
+                ((wg.a) this.f11571b).f50579c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11571b).f50597c.invalidate();
+                ((wg.c) this.f11571b).f50605c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11571b).unscheduleSelf(runnable);

@@ -48,7 +48,7 @@ public class wm0 extends RecyclerView implements bh.a {
     public org.telegram.ui.Cells.z B1;
     public final org.telegram.ui.Cells.l7 B2;
     public int C1;
-    public final gu C2;
+    public final hu C2;
     public View D1;
     public Matrix D2;
     public final Rect E1;
@@ -180,7 +180,7 @@ public class wm0 extends RecyclerView implements bh.a {
         } else {
             paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
         }
-        paint.setColor(org.telegram.ui.ActionBar.h6.m1(f11, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, c6Var)));
+        paint.setColor(org.telegram.ui.ActionBar.h6.m1(f11, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var)));
         if (f7 == f10) {
             if (SharedConfig.shadowsInSections) {
                 canvas.drawRoundRect(rectF, f7, f7, paint2);
@@ -228,7 +228,7 @@ public class wm0 extends RecyclerView implements bh.a {
     }
 
     public final void C0(Runnable runnable) {
-        this.C2.f26523b.add(new du(runnable, 1));
+        this.C2.f26895b.add(new eu(runnable, 1));
     }
 
     public final void D0(ClippingImageView clippingImageView, FrameLayout.LayoutParams layoutParams) {
@@ -395,7 +395,7 @@ public class wm0 extends RecyclerView implements bh.a {
             s4.p0 layoutManager = getLayoutManager();
             if (layoutManager instanceof s4.d0) {
                 s4.d0 d0Var = (s4.d0) layoutManager;
-                if (d0Var.f47877o == 1) {
+                if (d0Var.f47885o == 1) {
                     if (this.f32449e1 != null) {
                         if (this.f32484w1 == 1) {
                             paddingTop = 0;
@@ -507,7 +507,7 @@ public class wm0 extends RecyclerView implements bh.a {
                         if (view6 != null && (T = T(view6)) != null) {
                             int b11 = T.b();
                             int abs = Math.abs(d0Var.N0() - b11) + 1;
-                            if ((this.I1 || z10) && (dm0Var2 = this.f32447d1) != null && !dm0Var2.f25409n && (getAdapter() instanceof em0)) {
+                            if ((this.I1 || z10) && (dm0Var2 = this.f32447d1) != null && !dm0Var2.f25412n && (getAdapter() instanceof em0)) {
                                 this.f32447d1.setProgress(Math.min(1.0f, b11 / ((this.f32449e1.h() - abs) + 1)));
                             }
                             this.f32468o1.addAll(this.f32466n1);
@@ -582,7 +582,7 @@ public class wm0 extends RecyclerView implements bh.a {
                     int L0 = d0Var.L0();
                     Math.abs(d0Var.N0() - L0);
                     if (L0 != -1) {
-                        if ((this.I1 || z10) && (dm0Var = this.f32447d1) != null && !dm0Var.f25409n) {
+                        if ((this.I1 || z10) && (dm0Var = this.f32447d1) != null && !dm0Var.f25412n) {
                             s4.i0 adapter = getAdapter();
                             if (adapter instanceof em0) {
                                 em0 em0Var = (em0) adapter;
@@ -610,7 +610,7 @@ public class wm0 extends RecyclerView implements bh.a {
             org.telegram.ui.fj fjVar = this.f32452f2;
             int[] iArr2 = this.f32462k2;
             org.telegram.ui.eo eoVar = fjVar.d;
-            iArr2[0] = (int) eoVar.f37422s9;
+            iArr2[0] = (int) eoVar.f37427s9;
             iArr2[1] = eoVar.Ba;
             View childAt = getChildAt(i10);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -627,11 +627,11 @@ public class wm0 extends RecyclerView implements bh.a {
                     }
                     org.telegram.ui.eo eoVar2 = this.f32452f2.d;
                     org.telegram.ui.qm qmVar = eoVar2.A0;
-                    ArrayList arrayList = eoVar2.f37444u6;
+                    ArrayList arrayList = eoVar2.f37449u6;
                     int i13 = S - qmVar.J;
                     if (i13 >= 0 && i13 < arrayList.size()) {
                         MessageObject messageObject = (MessageObject) arrayList.get(i13);
-                        if (messageObject.contentType == 0 && messageObject.hasValidGroupId() && (groupedMessages = (MessageObject.GroupedMessages) eoVar2.f37484x6.f(messageObject.getGroupId())) != null) {
+                        if (messageObject.contentType == 0 && messageObject.hasValidGroupId() && (groupedMessages = (MessageObject.GroupedMessages) eoVar2.f37489x6.f(messageObject.getGroupId())) != null) {
                             ArrayList<MessageObject> arrayList2 = groupedMessages.messages;
                             if (z10) {
                                 size = 0;
@@ -644,7 +644,7 @@ public class wm0 extends RecyclerView implements bh.a {
                     if (z10) {
                         int i14 = this.f32450e2;
                         if (S > i14) {
-                            if (!this.f32452f2.f37799a) {
+                            if (!this.f32452f2.f37796a) {
                                 for (int i15 = i14 + 1; i15 <= S; i15++) {
                                     if (i15 != this.f32448d2 && this.f32452f2.a(i15)) {
                                         this.f32452f2.b(i15, true, min2, min);
@@ -668,7 +668,7 @@ public class wm0 extends RecyclerView implements bh.a {
                                 }
                                 i16++;
                             }
-                        } else if (!this.f32452f2.f37799a) {
+                        } else if (!this.f32452f2.f37796a) {
                             for (int i17 = i16 - 1; i17 >= S; i17--) {
                                 if (i17 != this.f32448d2 && this.f32452f2.a(i17)) {
                                     this.f32452f2.b(i17, true, min2, min);
@@ -677,7 +677,7 @@ public class wm0 extends RecyclerView implements bh.a {
                         }
                     }
                 }
-                if (!this.f32452f2.f37799a) {
+                if (!this.f32452f2.f37796a) {
                     this.f32450e2 = S;
                     return;
                 }
@@ -689,7 +689,7 @@ public class wm0 extends RecyclerView implements bh.a {
     public final void N0(Canvas canvas, View view) {
         boolean z10;
         boolean z11;
-        if (view != null && t1(view) && ((Boolean) this.F2.f27229a.run(view)).booleanValue()) {
+        if (view != null && t1(view) && ((Boolean) this.F2.f27223a.run(view)).booleanValue()) {
             int R = RecyclerView.R(view);
             boolean z12 = false;
             if (R == -1) {
@@ -698,12 +698,12 @@ public class wm0 extends RecyclerView implements bh.a {
             } else {
                 View U0 = U0(R - 1);
                 View U02 = U0(R + 1);
-                if (U0 != null && ((Boolean) this.F2.f27229a.run(U0)).booleanValue()) {
+                if (U0 != null && ((Boolean) this.F2.f27223a.run(U0)).booleanValue()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (U02 != null && ((Boolean) this.F2.f27229a.run(U02)).booleanValue()) {
+                if (U02 != null && ((Boolean) this.F2.f27223a.run(U02)).booleanValue()) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -866,7 +866,7 @@ public class wm0 extends RecyclerView implements bh.a {
     public final Drawable V0(View view, boolean z10) {
         boolean z11;
         boolean z12;
-        if (view.getParent() == this && b1() && ((Boolean) this.F2.f27229a.run(view)).booleanValue()) {
+        if (view.getParent() == this && b1() && ((Boolean) this.F2.f27223a.run(view)).booleanValue()) {
             int R = RecyclerView.R(view);
             boolean z13 = true;
             if (R == -1) {
@@ -875,12 +875,12 @@ public class wm0 extends RecyclerView implements bh.a {
             } else {
                 View U0 = U0(R - 1);
                 View U02 = U0(R + 1);
-                if (U0 != null && ((Boolean) this.F2.f27229a.run(U0)).booleanValue()) {
+                if (U0 != null && ((Boolean) this.F2.f27223a.run(U0)).booleanValue()) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (U02 != null && ((Boolean) this.F2.f27229a.run(U02)).booleanValue()) {
+                if (U02 != null && ((Boolean) this.F2.f27223a.run(U02)).booleanValue()) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -898,7 +898,7 @@ public class wm0 extends RecyclerView implements bh.a {
                     z13 = false;
                 }
                 if (z11 && z13) {
-                    return org.telegram.ui.ActionBar.h6.c0(0, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, this.f32467n2));
+                    return org.telegram.ui.ActionBar.h6.c0(0, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, this.f32467n2));
                 }
                 z12 = z13;
             }
@@ -950,9 +950,9 @@ public class wm0 extends RecyclerView implements bh.a {
     }
 
     public final boolean Z0() {
-        fu[] fuVarArr;
-        for (fu fuVar : this.C2.f26522a) {
-            if (fuVar != null && fuVar.b()) {
+        gu[] guVarArr;
+        for (gu guVar : this.C2.f26894a) {
+            if (guVar != null && guVar.b()) {
                 return true;
             }
         }
@@ -1043,13 +1043,13 @@ public class wm0 extends RecyclerView implements bh.a {
         float f7;
         bm0 bm0Var = this.f32463l2;
         if (bm0Var != null) {
-            wm0 wm0Var = bm0Var.f24684a;
-            if (bm0Var.d || bm0Var.f24687e) {
+            wm0 wm0Var = bm0Var.f24679a;
+            if (bm0Var.d || bm0Var.f24682e) {
                 for (int i10 = 0; i10 < wm0Var.getChildCount(); i10++) {
                     View childAt = wm0Var.getChildAt(i10);
                     int R = RecyclerView.R(childAt);
-                    if (R >= 0 && !bm0Var.f24686c.contains(childAt)) {
-                        Float f10 = (Float) bm0Var.f24685b.get(R, null);
+                    if (R >= 0 && !bm0Var.f24681c.contains(childAt)) {
+                        Float f10 = (Float) bm0Var.f24680b.get(R, null);
                         if (f10 == null) {
                             childAt.setAlpha(1.0f);
                         } else {
@@ -1148,7 +1148,7 @@ public class wm0 extends RecyclerView implements bh.a {
             }
         }
         dm0 fastScroll = getFastScroll();
-        if ((fastScroll != null && fastScroll.f25393a0 && fastScroll.f25407k0 && motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) || (this.f32449e1 != null && (view = this.f32470p1) != null && view.getAlpha() != 0.0f && this.f32470p1.dispatchTouchEvent(motionEvent))) {
+        if ((fastScroll != null && fastScroll.f25396a0 && fastScroll.f25410k0 && motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) || (this.f32449e1 != null && (view = this.f32470p1) != null && view.getAlpha() != 0.0f && this.f32470p1.dispatchTouchEvent(motionEvent))) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -1180,7 +1180,7 @@ public class wm0 extends RecyclerView implements bh.a {
         }
         s4.d1 K = K(hm0Var.run());
         if (K != null) {
-            View view = K.f47889a;
+            View view = K.f47897a;
             int c10 = K.c();
             this.f32483v2 = c10;
             i1(c10, view);
@@ -1488,9 +1488,9 @@ public class wm0 extends RecyclerView implements bh.a {
         } else {
             z10 = false;
         }
-        e30 e30Var = (e30) gVar.f15080b;
-        e30Var.f25576t = z10;
-        e30Var.f25577u = j3;
+        e30 e30Var = (e30) gVar.f15081b;
+        e30Var.f25581t = z10;
+        e30Var.f25582u = j3;
     }
 
     public final void o1(int i10, int i11, int i12, int i13) {
@@ -1556,14 +1556,14 @@ public class wm0 extends RecyclerView implements bh.a {
         dm0 dm0Var = this.f32447d1;
         if (dm0Var != null) {
             this.H1 = true;
-            if (dm0Var.f25392a) {
+            if (dm0Var.f25395a) {
                 i14 = getPaddingTop();
             } else {
-                i14 = dm0Var.f25404h0;
+                i14 = dm0Var.f25407h0;
             }
             int i15 = i11 + i14;
             dm0 dm0Var2 = this.f32447d1;
-            if (dm0Var2.f25403g0) {
+            if (dm0Var2.f25406g0) {
                 dm0Var2.layout(0, i15, dm0Var2.getMeasuredWidth(), this.f32447d1.getMeasuredHeight() + i15);
             } else {
                 int measuredWidth = getMeasuredWidth() - this.f32447d1.getMeasuredWidth();
@@ -1586,10 +1586,10 @@ public class wm0 extends RecyclerView implements bh.a {
         dm0 dm0Var = this.f32447d1;
         if (dm0Var != null && dm0Var.getLayoutParams() != null) {
             dm0 dm0Var2 = this.f32447d1;
-            if (dm0Var2.f25392a) {
+            if (dm0Var2.f25395a) {
                 i12 = getPaddingTop();
             } else {
-                i12 = dm0Var2.f25404h0;
+                i12 = dm0Var2.f25407h0;
             }
             int measuredHeight = (getMeasuredHeight() - i12) - getPaddingBottom();
             this.f32447d1.getLayoutParams().height = measuredHeight;
@@ -1621,7 +1621,7 @@ public class wm0 extends RecyclerView implements bh.a {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         dm0 dm0Var = this.f32447d1;
-        if (dm0Var != null && dm0Var.f25409n) {
+        if (dm0Var != null && dm0Var.f25412n) {
             return false;
         }
         boolean z10 = this.f32444b2;
@@ -1640,9 +1640,9 @@ public class wm0 extends RecyclerView implements bh.a {
                 org.telegram.ui.fj fjVar = this.f32452f2;
                 int[] iArr = this.f32462k2;
                 org.telegram.ui.eo eoVar = fjVar.d;
-                iArr[0] = (int) eoVar.f37422s9;
+                iArr[0] = (int) eoVar.f37427s9;
                 iArr[1] = eoVar.Ba;
-                if (motionEvent.getY() > (getMeasuredHeight() - AndroidUtilities.dp(56.0f)) - this.f32462k2[1] && (this.f32450e2 >= this.f32448d2 || !this.f32452f2.f37799a)) {
+                if (motionEvent.getY() > (getMeasuredHeight() - AndroidUtilities.dp(56.0f)) - this.f32462k2[1] && (this.f32450e2 >= this.f32448d2 || !this.f32452f2.f37796a)) {
                     this.f32456h2 = false;
                     if (!this.f32454g2) {
                         this.f32454g2 = true;
@@ -1650,7 +1650,7 @@ public class wm0 extends RecyclerView implements bh.a {
                         AndroidUtilities.runOnUIThread(l7Var);
                         return true;
                     }
-                } else if (motionEvent.getY() < AndroidUtilities.dp(56.0f) + this.f32462k2[0] && (this.f32450e2 <= this.f32448d2 || !this.f32452f2.f37799a)) {
+                } else if (motionEvent.getY() < AndroidUtilities.dp(56.0f) + this.f32462k2[0] && (this.f32450e2 <= this.f32448d2 || !this.f32452f2.f37796a)) {
                     this.f32456h2 = true;
                     if (!this.f32454g2) {
                         this.f32454g2 = true;
@@ -1697,7 +1697,7 @@ public class wm0 extends RecyclerView implements bh.a {
     }
 
     public final void s1(Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i10, float f7, Utilities.Callback5 callback5, boolean z10) {
-        setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20668j6, this.f32467n2));
+        setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20669j6, this.f32467n2));
         this.G2 = callbackReturn2;
         this.J2 = f7;
         this.K2 = new float[]{f7, f7, f7, f7, 0.0f, 0.0f, 0.0f, 0.0f};
@@ -1721,7 +1721,7 @@ public class wm0 extends RecyclerView implements bh.a {
         s4.i0 adapter = getAdapter();
         gg.o1 o1Var = this.f32475r2;
         if (adapter != null) {
-            adapter.f47943a.unregisterObserver(o1Var);
+            adapter.f47951a.unregisterObserver(o1Var);
         }
         ArrayList arrayList = this.f32466n1;
         if (arrayList != null) {
@@ -1816,7 +1816,7 @@ public class wm0 extends RecyclerView implements bh.a {
             i10 = 8;
         }
         dm0Var.setVisibility(i10);
-        this.f32447d1.f25393a0 = z10;
+        this.f32447d1.f25396a0 = z10;
     }
 
     public void setHideIfEmpty(boolean z10) {
@@ -1846,9 +1846,9 @@ public class wm0 extends RecyclerView implements bh.a {
         org.telegram.ui.Cells.z zVar = this.B1;
         if (num == null) {
             if (b1()) {
-                i10 = org.telegram.ui.ActionBar.h6.f20668j6;
+                i10 = org.telegram.ui.ActionBar.h6.f20669j6;
             } else {
-                i10 = org.telegram.ui.ActionBar.h6.f20650i6;
+                i10 = org.telegram.ui.ActionBar.h6.f20651i6;
             }
             intValue = org.telegram.ui.ActionBar.h6.w0(i10, this.f32467n2);
         } else {
@@ -1870,9 +1870,9 @@ public class wm0 extends RecyclerView implements bh.a {
         this.V0 = mm0Var;
         l2.g gVar = this.K1;
         boolean z10 = mm0Var != null;
-        e30 e30Var = (e30) gVar.f15080b;
-        e30Var.f25576t = z10;
-        e30Var.f25577u = longPressTimeout;
+        e30 e30Var = (e30) gVar.f15081b;
+        e30Var.f25581t = z10;
+        e30Var.f25582u = longPressTimeout;
     }
 
     @Override
@@ -2066,11 +2066,11 @@ public class wm0 extends RecyclerView implements bh.a {
         this.B2 = new org.telegram.ui.Cells.l7(this, 18);
         this.N2 = new Path();
         this.f32467n2 = c6Var;
-        gu guVar = new gu();
-        this.C2 = guVar;
-        setEdgeEffectFactory(guVar);
-        setGlowColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20839s8, c6Var));
-        org.telegram.ui.Cells.z g02 = org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var), 2, -1);
+        hu huVar = new hu();
+        this.C2 = huVar;
+        setEdgeEffectFactory(huVar);
+        setGlowColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20840s8, c6Var));
+        org.telegram.ui.Cells.z g02 = org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var), 2, -1);
         this.B1 = g02;
         g02.setCallback(this);
         try {

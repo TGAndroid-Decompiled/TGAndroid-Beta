@@ -17,29 +17,29 @@ import xh.n2;
 import xh.o;
 import xh.r2;
 import xh.x;
+import yh.a5;
 import yh.f7;
 import yh.q4;
 import yh.y;
-import yh.z4;
 public final class e implements View.OnClickListener {
-    public final int f51361a;
-    public final Object f51362b;
-    public final Object f51363c;
+    public final int f51369a;
+    public final Object f51370b;
+    public final Object f51371c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f51361a = i10;
-        this.f51362b = obj;
-        this.f51363c = obj2;
+        this.f51369a = i10;
+        this.f51370b = obj;
+        this.f51371c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f51361a;
+        int i10 = this.f51369a;
         Object obj = this.d;
-        Object obj2 = this.f51363c;
-        Object obj3 = this.f51362b;
+        Object obj2 = this.f51371c;
+        Object obj3 = this.f51370b;
         switch (i10) {
             case 0:
                 ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
@@ -60,7 +60,7 @@ public final class e implements View.OnClickListener {
             case 5:
                 n2 n2Var = (n2) obj3;
                 ((s80) obj2).u();
-                xs0 xs0Var = n2Var.f51622a;
+                xs0 xs0Var = n2Var.f51630a;
                 f2 f2Var = new f2(n2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = r2.T;
                 xs0Var.h(null, f2Var);
@@ -68,7 +68,7 @@ public final class e implements View.OnClickListener {
             case 6:
                 Context context = (Context) obj2;
                 c6 c6Var = (c6) obj;
-                if (((y) obj3).m0.f54665a == zf.b.f54667a) {
+                if (((y) obj3).m0.f54673a == zf.b.f54675a) {
                     new f7(context, c6Var).show();
                     return;
                 }
@@ -140,7 +140,7 @@ public final class e implements View.OnClickListener {
                 final ci.d dVar2 = (ci.d) obj;
                 e3Var2.setCanDismissWithSwipe(false);
                 dVar2.setLoading(true);
-                ((z4) obj3).run(new Utilities.Callback() {
+                ((a5) obj3).run(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj4) {
                         Boolean bool = (Boolean) obj4;

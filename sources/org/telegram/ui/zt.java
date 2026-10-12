@@ -20,24 +20,24 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 public final class zt extends org.telegram.ui.Components.sm0 {
-    public final Context f44913r;
-    public final HashMap f44914s = new HashMap();
+    public final Context f44918r;
+    public final HashMap f44919s = new HashMap();
     public final ArrayList v = new ArrayList();
-    public final cu f44915w;
+    public final cu f44920w;
 
     public zt(cu cuVar, Context context, ArrayList arrayList, boolean z10) {
         Comparator ob1Var;
         Locale locale;
-        this.f44915w = cuVar;
-        this.f44913r = context;
+        this.f44920w = cuVar;
+        this.f44918r = context;
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 xt xtVar = (xt) arrayList.get(i10);
-                String upperCase = xtVar.f44156a.substring(0, 1).toUpperCase();
-                ArrayList arrayList2 = (ArrayList) this.f44914s.get(upperCase);
+                String upperCase = xtVar.f44161a.substring(0, 1).toUpperCase();
+                ArrayList arrayList2 = (ArrayList) this.f44919s.get(upperCase);
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
-                    this.f44914s.put(upperCase, arrayList2);
+                    this.f44919s.put(upperCase, arrayList2);
                     this.v.add(upperCase);
                 }
                 arrayList2.add(xtVar);
@@ -53,16 +53,16 @@ public final class zt extends org.telegram.ui.Components.sm0 {
                     }
                     String[] split = readLine.split(";");
                     ?? obj = new Object();
-                    obj.f44156a = split[2];
-                    obj.f44158c = split[0];
+                    obj.f44161a = split[2];
+                    obj.f44163c = split[0];
                     String str = split[1];
                     obj.d = str;
                     if (!str.equals("FT") || !z10) {
-                        String upperCase2 = obj.f44156a.substring(0, 1).toUpperCase();
-                        ArrayList arrayList3 = (ArrayList) this.f44914s.get(upperCase2);
+                        String upperCase2 = obj.f44161a.substring(0, 1).toUpperCase();
+                        ArrayList arrayList3 = (ArrayList) this.f44919s.get(upperCase2);
                         if (arrayList3 == null) {
                             arrayList3 = new ArrayList();
-                            this.f44914s.put(upperCase2, arrayList3);
+                            this.f44919s.put(upperCase2, arrayList3);
                             this.v.add(upperCase2);
                         }
                         arrayList3.add(obj);
@@ -87,7 +87,7 @@ public final class zt extends org.telegram.ui.Components.sm0 {
             ob1Var = new ob1(9);
         }
         Collections.sort(this.v, ob1Var);
-        for (ArrayList arrayList4 : this.f44914s.values()) {
+        for (ArrayList arrayList4 : this.f44919s.values()) {
             Collections.sort(arrayList4, new yt(ob1Var, 0));
         }
     }
@@ -111,7 +111,7 @@ public final class zt extends org.telegram.ui.Components.sm0 {
     @Override
     public final int M(int i10) {
         ArrayList arrayList = this.v;
-        int size = ((ArrayList) this.f44914s.get(arrayList.get(i10))).size();
+        int size = ((ArrayList) this.f44919s.get(arrayList.get(i10))).size();
         if (i10 != arrayList.size() - 1) {
             return size + 1;
         }
@@ -120,7 +120,7 @@ public final class zt extends org.telegram.ui.Components.sm0 {
 
     @Override
     public final int P(int i10, int i11) {
-        if (i11 < ((ArrayList) this.f44914s.get(this.v.get(i10))).size()) {
+        if (i11 < ((ArrayList) this.f44919s.get(this.v.get(i10))).size()) {
             return 0;
         }
         return 1;
@@ -138,7 +138,7 @@ public final class zt extends org.telegram.ui.Components.sm0 {
 
     @Override
     public final boolean V(int i10, int i11, s4.d1 d1Var) {
-        if (i11 < ((ArrayList) this.f44914s.get(this.v.get(i10))).size()) {
+        if (i11 < ((ArrayList) this.f44919s.get(this.v.get(i10))).size()) {
             return true;
         }
         return false;
@@ -147,12 +147,12 @@ public final class zt extends org.telegram.ui.Components.sm0 {
     @Override
     public final void W(int i10, int i11, s4.d1 d1Var) {
         String str;
-        if (d1Var.f47893f == 0) {
-            xt xtVar = (xt) ((ArrayList) this.f44914s.get(this.v.get(i10))).get(i11);
-            org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47889a;
+        if (d1Var.f47901f == 0) {
+            xt xtVar = (xt) ((ArrayList) this.f44919s.get(this.v.get(i10))).get(i11);
+            org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47897a;
             CharSequence replaceEmoji = Emoji.replaceEmoji(cu.V(xtVar), caVar.getTextView().getPaint().getFontMetricsInt(), false);
-            if (this.f44915w.h) {
-                str = "+" + xtVar.f44158c;
+            if (this.f44920w.h) {
+                str = "+" + xtVar.f44163c;
             } else {
                 str = null;
             }
@@ -165,7 +165,7 @@ public final class zt extends org.telegram.ui.Components.sm0 {
         if (i10 >= 0) {
             ArrayList arrayList = this.v;
             if (i10 < arrayList.size()) {
-                ArrayList arrayList2 = (ArrayList) this.f44914s.get(arrayList.get(i10));
+                ArrayList arrayList2 = (ArrayList) this.f44919s.get(arrayList.get(i10));
                 if (i11 >= 0 && i11 < arrayList2.size()) {
                     return (xt) arrayList2.get(i11);
                 }
@@ -177,7 +177,7 @@ public final class zt extends org.telegram.ui.Components.sm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View U;
-        Context context = this.f44913r;
+        Context context = this.f44918r;
         if (i10 != 0) {
             U = new org.telegram.ui.Cells.d3(context, null);
             U.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f));

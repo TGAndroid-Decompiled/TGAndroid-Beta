@@ -7,49 +7,49 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class r20 {
-    public q20[] f30009a;
-    public q20 f30010b;
-    public q20 f30011c;
+    public q20[] f30010a;
+    public q20 f30011b;
+    public q20 f30012c;
     public q20 d;
-    public float f30012e;
-    public float f30013f;
-    public float f30014g;
+    public float f30013e;
+    public float f30014f;
+    public float f30015g;
     public float h;
-    public float f30015i;
-    public long f30016j;
-    public float f30017k;
-    public ArrayList f30018l;
-    public Paint f30019m;
-    public Path f30020n;
+    public float f30016i;
+    public long f30017j;
+    public float f30018k;
+    public ArrayList f30019l;
+    public Paint f30020m;
+    public Path f30021n;
 
     public final void a(float f7) {
-        this.f30014g = f7;
-        float f10 = this.f30012e;
+        this.f30015g = f7;
+        float f10 = this.f30013e;
         this.h = (f7 - f10) / 250.0f;
-        this.f30015i = (f7 - f10) / 120.0f;
+        this.f30016i = (f7 - f10) / 120.0f;
     }
 
     public final void b(int i10, boolean z10) {
         q20 q20Var;
-        q20 q20Var2 = this.f30010b;
-        if (q20Var2 != null && q20Var2.f29662i == i10) {
+        q20 q20Var2 = this.f30011b;
+        if (q20Var2 != null && q20Var2.f29640i == i10) {
             return;
         }
-        if (VoIPService.getSharedInstance() == null && this.f30010b == null) {
-            this.f30010b = this.d;
+        if (VoIPService.getSharedInstance() == null && this.f30011b == null) {
+            this.f30011b = this.d;
             return;
         }
         if (z10) {
-            q20Var = this.f30010b;
+            q20Var = this.f30011b;
         } else {
             q20Var = null;
         }
-        this.f30011c = q20Var;
-        this.f30010b = this.f30009a[i10];
+        this.f30012c = q20Var;
+        this.f30011b = this.f30010a[i10];
         if (q20Var != null) {
-            this.f30017k = 0.0f;
+            this.f30018k = 0.0f;
         } else {
-            this.f30017k = 1.0f;
+            this.f30018k = 1.0f;
         }
     }
 

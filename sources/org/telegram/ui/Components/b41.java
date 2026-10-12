@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class b41 extends t61 {
-    public static final int f24566a = 0;
+    public static final int f24554a = 0;
 
     static {
         t61.setup(new t61());
@@ -17,7 +17,7 @@ public final class b41 extends t61 {
         int i10;
         c41 c41Var = (c41) view;
         boolean z12 = false;
-        if (u61Var.f31082r) {
+        if (u61Var.f31077r) {
             c41Var.f();
         } else {
             Object obj = u61Var.G;
@@ -25,28 +25,28 @@ public final class b41 extends t61 {
                 if (u61Var.d == -2) {
                     c41Var.c();
                 } else {
-                    if ((u61Var.f31088y & 1) != 0) {
+                    if ((u61Var.f31083y & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    c41Var.d(z11, u61Var.f31081q, u61Var.f31070e);
+                    c41Var.d(z11, u61Var.f31076q, u61Var.f31065e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
                 if (!u61Var.I) {
-                    c41Var.g(u61Var.f31087x, (TLRPC.TL_forumTopic) obj, u61Var.f31070e);
+                    c41Var.g(u61Var.f31082x, (TLRPC.TL_forumTopic) obj, u61Var.f31065e);
                 } else {
-                    c41Var.b(u61Var.f31087x, (TLRPC.TL_forumTopic) obj, u61Var.f31070e);
+                    c41Var.b(u61Var.f31082x, (TLRPC.TL_forumTopic) obj, u61Var.f31065e);
                 }
             }
         }
-        if (w7.f0.a(u61Var.f31088y, 8)) {
+        if (w7.f0.a(u61Var.f31083y, 8)) {
             i10 = AndroidUtilities.dp(10.0f);
         } else {
             i10 = 0;
         }
         c41Var.L = i10;
-        if (p71Var != null && p71Var.f29439a3 && c41Var.f24814s) {
+        if (p71Var != null && p71Var.f29442a3 && c41Var.f24809s) {
             z12 = true;
         }
         c41Var.setReorder(z12);

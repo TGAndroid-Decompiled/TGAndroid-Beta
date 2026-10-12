@@ -6,14 +6,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ze implements Runnable {
-    public final int f44799a;
-    public final eo f44800b;
-    public final MessageObject f44801c;
+    public final int f44804a;
+    public final eo f44805b;
+    public final MessageObject f44806c;
 
     public ze(eo eoVar, MessageObject messageObject, int i10) {
-        this.f44799a = i10;
-        this.f44800b = eoVar;
-        this.f44801c = messageObject;
+        this.f44804a = i10;
+        this.f44805b = eoVar;
+        this.f44806c = messageObject;
     }
 
     @Override
@@ -24,23 +24,23 @@ public final class ze implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f44799a) {
+        switch (this.f44804a) {
             case 0:
-                MessageObject messageObject = this.f44801c;
+                MessageObject messageObject = this.f44806c;
                 TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity == null || launchActivity.P() == null || LaunchActivity.G1.P().l(messageObject) == null) {
-                        this.f44800b.createArticleViewer(false).N(messageObject, null, null, null);
+                        this.f44805b.createArticleViewer(false).N(messageObject, null, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                eo eoVar = this.f44800b;
+                eo eoVar = this.f44805b;
                 eoVar.getClass();
-                MessageObject messageObject2 = this.f44801c;
+                MessageObject messageObject2 = this.f44806c;
                 TLRPC.Message message = messageObject2.messageOwner;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
@@ -63,11 +63,11 @@ public final class ze implements Runnable {
                     return;
                 }
             case 2:
-                eo eoVar2 = this.f44800b;
+                eo eoVar2 = this.f44805b;
                 eoVar2.getClass();
-                MessageObject messageObject3 = this.f44801c;
+                MessageObject messageObject3 = this.f44806c;
                 int replyMsgId = messageObject3.getReplyMsgId();
-                int i15 = messageObject3.messageOwner.f19823id;
+                int i15 = messageObject3.messageOwner.f19824id;
                 if (messageObject3.getDialogId() == eoVar2.L6) {
                     i11 = 1;
                 } else {
@@ -76,11 +76,11 @@ public final class ze implements Runnable {
                 eoVar2.bb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
                 return;
             case 3:
-                eo eoVar3 = this.f44800b;
+                eo eoVar3 = this.f44805b;
                 eoVar3.getClass();
-                MessageObject messageObject4 = this.f44801c;
+                MessageObject messageObject4 = this.f44806c;
                 int replyMsgId2 = messageObject4.getReplyMsgId();
-                int i16 = messageObject4.messageOwner.f19823id;
+                int i16 = messageObject4.messageOwner.f19824id;
                 if (messageObject4.getDialogId() == eoVar3.L6) {
                     i12 = 1;
                 } else {
@@ -89,11 +89,11 @@ public final class ze implements Runnable {
                 eoVar3.bb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
                 return;
             case 4:
-                eo eoVar4 = this.f44800b;
+                eo eoVar4 = this.f44805b;
                 eoVar4.getClass();
-                MessageObject messageObject5 = this.f44801c;
+                MessageObject messageObject5 = this.f44806c;
                 int replyMsgId3 = messageObject5.getReplyMsgId();
-                int i17 = messageObject5.messageOwner.f19823id;
+                int i17 = messageObject5.messageOwner.f19824id;
                 if (messageObject5.getDialogId() == eoVar4.L6) {
                     i13 = 1;
                 } else {
@@ -102,18 +102,18 @@ public final class ze implements Runnable {
                 eoVar4.F(replyMsgId3, i17, i13, 0, true, false);
                 return;
             case 5:
-                int id2 = this.f44801c.getId();
-                eo eoVar5 = this.f44800b;
+                int id2 = this.f44806c.getId();
+                eo eoVar5 = this.f44805b;
                 eoVar5.bb(id2, 0, true, 0, true, 0, null, null, new vf(eoVar5, 23));
-                if (eoVar5.f37283h6.isEmpty()) {
+                if (eoVar5.f37288h6.isEmpty()) {
                     eoVar5.Pb(false);
                     return;
                 }
                 return;
             case 6:
-                eo eoVar6 = this.f44800b;
+                eo eoVar6 = this.f44805b;
                 eoVar6.getClass();
-                MessageObject messageObject6 = this.f44801c;
+                MessageObject messageObject6 = this.f44806c;
                 if (messageObject6.isVideo()) {
                     eoVar6.ma(null, messageObject6);
                     return;
@@ -122,14 +122,14 @@ public final class ze implements Runnable {
                     return;
                 }
             case 7:
-                eo eoVar7 = this.f44800b;
-                eoVar7.getMessagesController().pinMessage(eoVar7.f37241e, eoVar7.f37253f, this.f44801c.getId(), true, false, false);
+                eo eoVar7 = this.f44805b;
+                eoVar7.getMessagesController().pinMessage(eoVar7.f37246e, eoVar7.f37258f, this.f44806c.getId(), true, false, false);
                 eoVar7.A3 = null;
                 return;
             default:
-                eo eoVar8 = this.f44800b;
+                eo eoVar8 = this.f44805b;
                 org.telegram.ui.Components.zc.a0(eoVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f44801c;
+                MessageObject messageObject7 = this.f44806c;
                 eoVar8.Ja(messageObject7);
                 eoVar8.La(messageObject7);
                 return;

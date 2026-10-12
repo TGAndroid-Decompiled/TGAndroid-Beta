@@ -29,7 +29,7 @@ public final class en extends org.telegram.ui.wu0 {
         MediaController.PhotoEntry photoEntry;
         ArrayList arrayList;
         in inVar = this.f25731b;
-        ArrayList arrayList2 = inVar.f27233b;
+        ArrayList arrayList2 = inVar.f27227b;
         jn jnVar = inVar.P;
         if (i10 >= 0 && i10 < this.f25730a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f25730a.get(i10)) != null) {
             int size = arrayList2.size();
@@ -45,7 +45,7 @@ public final class en extends org.telegram.ui.wu0 {
                             break;
                         }
                         gn gnVar2 = (gn) arrayList.get(i12);
-                        if (gnVar2 != null && gnVar2.f26456b == photoEntry && gnVar2.f26463k > 0.5d) {
+                        if (gnVar2 != null && gnVar2.f26458b == photoEntry && gnVar2.f26465k > 0.5d) {
                             gnVar = (gn) arrayList.get(i12);
                             break;
                         }
@@ -61,20 +61,20 @@ public final class en extends org.telegram.ui.wu0 {
                 int[] iArr = new int[2];
                 inVar.getLocationInWindow(iArr);
                 if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - jnVar.f30574b.getLeftInset();
+                    iArr[0] = iArr[0] - jnVar.f30570b.getLeftInset();
                 }
                 gv0Var.f38148b = iArr[0];
-                gv0Var.f38149c = iArr[1] + ((int) hnVar.f26815a);
+                gv0Var.f38149c = iArr[1] + ((int) hnVar.f26801a);
                 gv0Var.f38155k = 1.0f;
                 gv0Var.d = inVar;
-                ImageReceiver imageReceiver = gnVar.f26457c;
+                ImageReceiver imageReceiver = gnVar.f26459c;
                 gv0Var.f38147a = imageReceiver;
                 gv0Var.f38150e = imageReceiver.getBitmapSafe();
                 gv0Var.h = r5;
-                RectF rectF = gnVar.f26469q;
+                RectF rectF = gnVar.f26471q;
                 int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
                 gv0Var.f38154j = (int) (-inVar.getY());
-                gv0Var.f38153i = inVar.getHeight() - ((int) (((-inVar.getY()) + jnVar.f27559r.getHeight()) - jnVar.f30574b.n1()));
+                gv0Var.f38153i = inVar.getHeight() - ((int) (((-inVar.getY()) + jnVar.f27566r.getHeight()) - jnVar.f30570b.n1()));
                 return gv0Var;
             }
         }
@@ -117,21 +117,21 @@ public final class en extends org.telegram.ui.wu0 {
             int i11 = photoEntry.imageId;
             in inVar = this.f25731b;
             inVar.invalidate();
-            for (int i12 = 0; i12 < inVar.f27233b.size(); i12++) {
-                hn hnVar = (hn) inVar.f27233b.get(i12);
+            for (int i12 = 0; i12 < inVar.f27227b.size(); i12++) {
+                hn hnVar = (hn) inVar.f27227b.get(i12);
                 if (hnVar != null && (arrayList = hnVar.h) != null) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         gn gnVar = (gn) arrayList.get(i13);
-                        if (gnVar != null && gnVar.f26456b.imageId == i11) {
+                        if (gnVar != null && gnVar.f26458b.imageId == i11) {
                             gn.a(gnVar, photoEntry);
                         }
                     }
-                    cn cnVar = hnVar.f26823k;
-                    if (cnVar != null && cnVar.f24978g != null) {
+                    cn cnVar = hnVar.f26809k;
+                    if (cnVar != null && cnVar.f24963g != null) {
                         z10 = false;
-                        for (int i14 = 0; i14 < hnVar.f26823k.f24978g.size(); i14++) {
-                            if (((MediaController.PhotoEntry) hnVar.f26823k.f24978g.get(i14)).imageId == i11) {
-                                hnVar.f26823k.f24978g.set(i14, photoEntry);
+                        for (int i14 = 0; i14 < hnVar.f26809k.f24963g.size(); i14++) {
+                            if (((MediaController.PhotoEntry) hnVar.f26809k.f24963g.get(i14)).imageId == i11) {
+                                hnVar.f26809k.f24963g.set(i14, photoEntry);
                                 z10 = true;
                             }
                         }
@@ -139,7 +139,7 @@ public final class en extends org.telegram.ui.wu0 {
                         z10 = false;
                     }
                     if (z10) {
-                        hn.a(hnVar, hnVar.f26823k, true);
+                        hn.a(hnVar, hnVar.f26809k, true);
                     }
                 }
             }

@@ -9,11 +9,11 @@ import com.google.android.gms.common.api.q;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class c extends w implements f {
     public TaskCompletionSource d;
-    public final b[] f45425e;
+    public final b[] f45430e;
 
     public c(b[] bVarArr) {
         super(null, false, 9004);
-        this.f45425e = bVarArr;
+        this.f45430e = bVarArr;
     }
 
     @Override
@@ -55,12 +55,12 @@ public final class c extends w implements f {
         b7.b bVar = new b7.b(this);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i10 = p7.c.f45365a;
+        int i10 = p7.c.f45370a;
         obtain.writeStrongBinder(bVar);
-        obtain.writeTypedArray(this.f45425e, 0);
+        obtain.writeTypedArray(this.f45430e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            aVar.f45364a.transact(7, obtain, obtain2, 0);
+            aVar.f45369a.transact(7, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();

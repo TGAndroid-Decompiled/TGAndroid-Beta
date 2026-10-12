@@ -41,13 +41,13 @@ public final class i5 implements Runnable {
             if (nVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.w1(26, nVar, kVar));
             }
-            synchronized (k2.d0.f14417n0) {
+            synchronized (k2.d0.f14418n0) {
                 try {
-                    int i10 = k2.d0.f14419p0 - 1;
-                    k2.d0.f14419p0 = i10;
+                    int i10 = k2.d0.f14420p0 - 1;
+                    k2.d0.f14420p0 = i10;
                     if (i10 == 0) {
-                        k2.d0.f14418o0.shutdown();
-                        k2.d0.f14418o0 = null;
+                        k2.d0.f14419o0.shutdown();
+                        k2.d0.f14419o0 = null;
                     }
                 } finally {
                 }
@@ -56,13 +56,13 @@ public final class i5 implements Runnable {
             if (nVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.w1(26, nVar, kVar));
             }
-            synchronized (k2.d0.f14417n0) {
+            synchronized (k2.d0.f14418n0) {
                 try {
-                    int i11 = k2.d0.f14419p0 - 1;
-                    k2.d0.f14419p0 = i11;
+                    int i11 = k2.d0.f14420p0 - 1;
+                    k2.d0.f14420p0 = i11;
                     if (i11 == 0) {
-                        k2.d0.f14418o0.shutdown();
-                        k2.d0.f14418o0 = null;
+                        k2.d0.f14419o0.shutdown();
+                        k2.d0.f14419o0 = null;
                     }
                     throw th2;
                 } finally {
@@ -81,7 +81,7 @@ public final class i5 implements Runnable {
 
     private final void e() {
         oi.f fVar = (oi.f) this.f1135b;
-        ((ArrayDeque) fVar.f16926a).addLast(new oi.e((m4.x) this.f1136c, (oi.b) this.d, (RequestTimeDelegate) this.f1137e));
+        ((ArrayDeque) fVar.f16927a).addLast(new oi.e((m4.x) this.f1136c, (oi.b) this.d, (RequestTimeDelegate) this.f1137e));
         fVar.K();
     }
 

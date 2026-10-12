@@ -29,45 +29,45 @@ import x7.r0;
 import x7.s;
 public final class f extends qb.e {
     public boolean d = true;
-    public final h8 f54537e;
-    public final b f54538f;
-    public final fa f54539g;
+    public final h8 f54545e;
+    public final b f54546f;
+    public final fa f54547g;
     public final ga h;
 
     public f(yb.a aVar, b bVar, fa faVar) {
         m.i(aVar, "ImageLabelerOptions can not be null");
-        this.f54538f = bVar;
-        this.f54539g = faVar;
+        this.f54546f = bVar;
+        this.f54547g = faVar;
         ?? obj = new Object();
-        obj.f50465a = Float.valueOf(aVar.f51339a);
-        this.f54537e = new h8(obj);
+        obj.f50473a = Float.valueOf(aVar.f51347a);
+        this.f54545e = new h8(obj);
         this.h = new ga(qb.g.c().b(), 0);
     }
 
     @Override
     public final synchronized void b() {
-        this.f54538f.zzb();
-        fa faVar = this.f54539g;
+        this.f54546f.zzb();
+        fa faVar = this.f54547g;
         ?? obj = new Object();
         obj.f7952c = m7.TYPE_THIN;
         k kVar = new k(28);
-        kVar.f16432b = this.f54537e;
-        x7.m mVar = o.f51113b;
+        kVar.f16433b = this.f54545e;
+        x7.m mVar = o.f51121b;
         Object[] objArr = {n7.NO_ERROR};
         j8.a(1, objArr);
-        kVar.f16433c = new s(1, objArr);
+        kVar.f16434c = new s(1, objArr);
         obj.d = new g8(kVar);
-        qb.m.f46028a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_LOAD, faVar.b(), 7));
+        qb.m.f46036a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_LOAD, faVar.b(), 7));
     }
 
     @Override
     public final synchronized void c() {
-        this.f54538f.zzc();
+        this.f54546f.zzc();
         this.d = true;
-        fa faVar = this.f54539g;
+        fa faVar = this.f54547g;
         ?? obj = new Object();
         obj.f7952c = m7.TYPE_THIN;
-        qb.m.f46028a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_CLOSE, faVar.b(), 7));
+        qb.m.f46036a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_CLOSE, faVar.b(), 7));
     }
 
     @Override
@@ -77,11 +77,11 @@ public final class f extends qb.e {
         synchronized (this) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             try {
-                a2 = this.f54538f.a(aVar);
+                a2 = this.f54546f.a(aVar);
                 f(n7.NO_ERROR, aVar, elapsedRealtime);
                 this.d = false;
             } catch (mb.a e7) {
-                if (e7.f16034a == 14) {
+                if (e7.f16035a == 14) {
                     n7Var = n7.MODEL_NOT_DOWNLOADED;
                 } else {
                     n7Var = n7.UNKNOWN_ERROR;
@@ -97,12 +97,12 @@ public final class f extends qb.e {
         int i10;
         d7 d7Var;
         long elapsedRealtime = SystemClock.elapsedRealtime() - j3;
-        fa faVar = this.f54539g;
+        fa faVar = this.f54547g;
         o7 o7Var = o7.ON_DEVICE_IMAGE_LABEL_DETECT;
         faVar.getClass();
         long elapsedRealtime2 = SystemClock.elapsedRealtime();
         if (faVar.c(o7Var, elapsedRealtime2)) {
-            faVar.f51000i.put(o7Var, Long.valueOf(elapsedRealtime2));
+            faVar.f51008i.put(o7Var, Long.valueOf(elapsedRealtime2));
             ?? obj = new Object();
             obj.f7952c = m7.TYPE_THIN;
             v7.k kVar = new v7.k(11, false);
@@ -113,10 +113,10 @@ public final class f extends qb.e {
             Boolean bool = Boolean.TRUE;
             obj2.d = bool;
             obj2.f6066e = bool;
-            kVar.f49474b = new g7(obj2);
-            int i11 = aVar.f49746e;
+            kVar.f49482b = new g7(obj2);
+            int i11 = aVar.f49754e;
             if (i11 == -1) {
-                Bitmap bitmap = aVar.f49743a;
+                Bitmap bitmap = aVar.f49751a;
                 m.h(bitmap);
                 i10 = bitmap.getAllocationByteCount();
             } else if (i11 != 17 && i11 != 842094169) {
@@ -152,28 +152,28 @@ public final class f extends qb.e {
             } else {
                 d7Var = d7.BITMAP;
             }
-            z0Var.f16572b = d7Var;
-            z0Var.f16573c = Integer.valueOf(i10 & Integer.MAX_VALUE);
+            z0Var.f16573b = d7Var;
+            z0Var.f16574c = Integer.valueOf(i10 & Integer.MAX_VALUE);
             kVar.d = new e7(z0Var);
-            kVar.f49475c = this.f54537e;
+            kVar.f49483c = this.f54545e;
             obj.f7953e = new f8(kVar);
-            qb.m.f46028a.execute(new p(faVar, new a5.a((n) obj, 0), o7Var, faVar.b(), 7));
+            qb.m.f46036a.execute(new p(faVar, new a5.a((n) obj, 0), o7Var, faVar.b(), 7));
         }
         v7.k kVar2 = new v7.k(10, false);
-        kVar2.d = this.f54537e;
-        kVar2.f49474b = n7Var;
-        kVar2.f49475c = Boolean.valueOf(this.d);
-        qb.m.f46028a.execute(new da(this.f54539g, new r0(kVar2), elapsedRealtime));
+        kVar2.d = this.f54545e;
+        kVar2.f49482b = n7Var;
+        kVar2.f49483c = Boolean.valueOf(this.d);
+        qb.m.f46036a.execute(new da(this.f54547g, new r0(kVar2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         ga gaVar = this.h;
-        int i12 = n7Var.f51112a;
+        int i12 = n7Var.f51120a;
         long j10 = currentTimeMillis - elapsedRealtime;
         synchronized (gaVar) {
             long elapsedRealtime3 = SystemClock.elapsedRealtime();
-            if (gaVar.f51015b.get() != -1 && elapsedRealtime3 - gaVar.f51015b.get() <= TimeUnit.MINUTES.toMillis(30L)) {
+            if (gaVar.f51023b.get() != -1 && elapsedRealtime3 - gaVar.f51023b.get() <= TimeUnit.MINUTES.toMillis(30L)) {
                 return;
             }
-            gaVar.f51014a.f(new n6.p(0, Arrays.asList(new j(24305, i12, 0, j10, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new e6.n(gaVar, elapsedRealtime3, 8));
+            gaVar.f51022a.f(new n6.p(0, Arrays.asList(new j(24305, i12, 0, j10, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new e6.n(gaVar, elapsedRealtime3, 8));
         }
     }
 }

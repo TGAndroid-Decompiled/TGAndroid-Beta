@@ -11,14 +11,14 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class b5 extends Drawable {
-    public final Paint f34505a = new Paint(1);
-    public final Path f34506b = new Path();
-    public final RectF f34507c = new RectF();
+    public final Paint f34507a = new Paint(1);
+    public final Path f34508b = new Path();
+    public final RectF f34509c = new RectF();
     public final float[] d = {AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
 
     @Override
     public final void draw(Canvas canvas) {
-        canvas.drawPath(this.f34506b, this.f34505a);
+        canvas.drawPath(this.f34508b, this.f34507a);
     }
 
     @Override
@@ -29,23 +29,23 @@ public final class b5 extends Drawable {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        RectF rectF = this.f34507c;
+        RectF rectF = this.f34509c;
         rectF.set(rect);
-        Path path = this.f34506b;
+        Path path = this.f34508b;
         path.reset();
         path.addRoundRect(rectF, this.d, Path.Direction.CW);
-        this.f34505a.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
+        this.f34507a.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f34505a.setAlpha(i10);
+        this.f34507a.setAlpha(i10);
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34505a.setColorFilter(colorFilter);
+        this.f34507a.setColorFilter(colorFilter);
         invalidateSelf();
     }
 }

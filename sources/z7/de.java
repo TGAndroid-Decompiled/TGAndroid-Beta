@@ -1,10 +1,10 @@
 package z7;
 public final class de {
-    public final gb f53865a;
-    public final we f53866b;
+    public final gb f53873a;
+    public final we f53874b;
 
     public de(ce ceVar) {
-        this.f53865a = (gb) ceVar.f53844a;
-        this.f53866b = (we) ceVar.f53845b;
+        this.f53873a = (gb) ceVar.f53852a;
+        this.f53874b = (we) ceVar.f53853b;
     }
 }

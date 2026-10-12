@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.LaunchActivity;
 public final class h2 extends e3 {
-    public final k2 f20453b;
-    public final b5[] f20454c;
+    public final k2 f20454b;
+    public final b5[] f20455c;
     public final m2 d;
-    public final e3[] f20455e;
+    public final e3[] f20456e;
 
     public h2(Activity activity, c6 c6Var, k2 k2Var, b5[] b5VarArr, m2 m2Var, e3[] e3VarArr) {
         super(1, (Context) activity, c6Var, true);
         boolean z10;
-        this.f20453b = k2Var;
-        this.f20454c = b5VarArr;
+        this.f20454b = k2Var;
+        this.f20455c = b5VarArr;
         this.d = m2Var;
-        this.f20455e = e3VarArr;
-        if (k2Var != null && k2Var.f21090e) {
+        this.f20456e = e3VarArr;
+        if (k2Var != null && k2Var.f21091e) {
             z10 = true;
         } else {
             z10 = false;
@@ -49,8 +49,8 @@ public final class h2 extends e3 {
     public final boolean canSwipeToBack(MotionEvent motionEvent) {
         b5[] b5VarArr;
         b5 b5Var;
-        k2 k2Var = this.f20453b;
-        if (k2Var == null || !k2Var.f21087a || (b5Var = (b5VarArr = this.f20454c)[0]) == null || b5Var.getFragmentStack().size() > 1 || (b5VarArr[0].getFragmentStack().size() == 1 && !((m2) b5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+        k2 k2Var = this.f20454b;
+        if (k2Var == null || !k2Var.f21088a || (b5Var = (b5VarArr = this.f20455c)[0]) == null || b5Var.getFragmentStack().size() > 1 || (b5VarArr[0].getFragmentStack().size() == 1 && !((m2) b5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
             return false;
         }
         return true;
@@ -60,19 +60,19 @@ public final class h2 extends e3 {
     public final void dismiss() {
         k2 k2Var;
         Runnable runnable;
-        if (!isDismissed() && (k2Var = this.f20453b) != null && (runnable = k2Var.d) != null) {
+        if (!isDismissed() && (k2Var = this.f20454b) != null && (runnable = k2Var.d) != null) {
             runnable.run();
         }
         super.dismiss();
         ArrayList arrayList = LaunchActivity.G1.P;
-        b5[] b5VarArr = this.f20454c;
+        b5[] b5VarArr = this.f20455c;
         arrayList.remove(b5VarArr[0]);
         b5VarArr[0] = null;
     }
 
     @Override
     public final void onBackPressed() {
-        b5[] b5VarArr = this.f20454c;
+        b5[] b5VarArr = this.f20455c;
         b5 b5Var = b5VarArr[0];
         if (b5Var != null && b5Var.getFragmentStack().size() > 1) {
             ((ActionBarLayout) b5VarArr[0]).G();
@@ -84,15 +84,15 @@ public final class h2 extends e3 {
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        b5 b5Var = this.f20454c[0];
-        e3[] e3VarArr = this.f20455e;
+        b5 b5Var = this.f20455c[0];
+        e3[] e3VarArr = this.f20456e;
         b5Var.setWindow(e3VarArr[0].getWindow());
         m2 m2Var = this.d;
-        k2 k2Var = this.f20453b;
-        if (k2Var != null && k2Var.f21090e) {
+        k2 k2Var = this.f20454b;
+        if (k2Var != null && k2Var.f21091e) {
             AndroidUtilities.setLightNavigationBar((Dialog) e3VarArr[0], true);
         } else {
-            fixNavigationBar(h6.w0(h6.f20649i5, m2Var.getResourceProvider()));
+            fixNavigationBar(h6.w0(h6.f20650i5, m2Var.getResourceProvider()));
         }
         AndroidUtilities.setLightStatusBar(this, m2Var.isLightStatusBar());
         m2Var.onBottomSheetCreated();
@@ -100,7 +100,7 @@ public final class h2 extends e3 {
 
     @Override
     public final void onInsetsChanged() {
-        b5 b5Var = this.f20454c[0];
+        b5 b5Var = this.f20455c[0];
         if (b5Var != null) {
             for (m2 m2Var : b5Var.getFragmentStack()) {
                 if (m2Var.getFragmentView() != null) {
@@ -114,8 +114,8 @@ public final class h2 extends e3 {
     public final void onOpenAnimationEnd() {
         Runnable runnable;
         this.d.onTransitionAnimationEnd(true, false);
-        k2 k2Var = this.f20453b;
-        if (k2Var != null && (runnable = k2Var.f21089c) != null) {
+        k2 k2Var = this.f20454b;
+        if (k2Var != null && (runnable = k2Var.f21090c) != null) {
             runnable.run();
         }
     }

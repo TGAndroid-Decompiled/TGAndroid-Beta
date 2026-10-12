@@ -86,7 +86,7 @@ public final class d1 extends LinearLayout {
                 RectF rectF = (RectF) this.f802b;
                 Paint paint = (Paint) this.f803c;
                 er erVar = (er) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20649i5, erVar.f25771d0));
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i5, erVar.f25771d0));
                 int left = erVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
                 float dp = AndroidUtilities.dp(91.0f);
                 org.telegram.ui.ActionBar.j0 j0Var = erVar.F;
@@ -131,7 +131,7 @@ public final class d1 extends LinearLayout {
                 TextView textView = new TextView(context);
                 this.f803c = textView;
                 com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView);
-                int i11 = org.telegram.ui.ActionBar.h6.f20667j5;
+                int i11 = org.telegram.ui.ActionBar.h6.f20668j5;
                 textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
                 textView.setGravity(17);
                 addView(textView, w7.w5.t(-2, -2, 1, 0, 2, 0, 0));
@@ -159,7 +159,7 @@ public final class d1 extends LinearLayout {
                 TextView textView2 = new TextView(context);
                 this.f803c = textView2;
                 com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView2);
-                int i12 = org.telegram.ui.ActionBar.h6.f20667j5;
+                int i12 = org.telegram.ui.ActionBar.h6.f20668j5;
                 textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
                 textView2.setGravity(17);
                 addView(textView2, w7.w5.t(-2, -2, 1, 0, 2, 0, 0));

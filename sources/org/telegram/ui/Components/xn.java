@@ -6,12 +6,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class xn implements dz {
-    public final Utilities.Callback f32815a;
-    public final un f32816b;
+    public final Utilities.Callback f32805a;
+    public final un f32806b;
 
     public xn(Utilities.Callback callback, un unVar) {
-        this.f32815a = callback;
-        this.f32816b = unVar;
+        this.f32805a = callback;
+        this.f32806b = unVar;
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class xn implements dz {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f32815a.run(new rh.h(document, obj));
-        this.f32816b.dismiss(true);
+        this.f32805a.run(new rh.h(document, obj));
+        this.f32806b.dismiss(true);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class xn implements dz {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f32815a.run(new rh.h(document, null));
-        this.f32816b.dismiss(true);
+        this.f32805a.run(new rh.h(document, null));
+        this.f32806b.dismiss(true);
     }
 
     @Override

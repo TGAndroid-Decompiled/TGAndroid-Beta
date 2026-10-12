@@ -53,8 +53,8 @@ public final class g implements Runnable {
                 }
             default:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.f14044e;
-                if (actionBarLayout.f20091e == this) {
-                    actionBarLayout.f20091e = null;
+                if (actionBarLayout.f20092e == this) {
+                    actionBarLayout.f20092e = null;
                     m2 m2Var = (m2) this.f14043c;
                     if (m2Var != null) {
                         m2Var.onTransitionAnimationStart(false, false);

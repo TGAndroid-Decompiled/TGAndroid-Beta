@@ -17,50 +17,50 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public abstract class na1 extends FrameLayout {
-    public final Window f40336a;
-    public final ig.g f40337b;
-    public final ig.g f40338c;
+    public final Window f40339a;
+    public final ig.g f40340b;
+    public final ig.g f40341c;
     public final kg.c d;
-    public final RadialProgressView f40339e;
-    public final TextView f40340f;
+    public final RadialProgressView f40342e;
+    public final TextView f40343f;
     public final z51 h;
-    public final ArrayList f40341n;
-    public pa1 f40342r;
-    public final int f40343s;
+    public final ArrayList f40344n;
+    public pa1 f40345r;
+    public final int f40346s;
 
     public na1(Context context, int i10, ig.f fVar, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f40341n = new ArrayList();
+        this.f40344n = new ArrayList();
         setWillNotDraw(false);
         if (context instanceof Activity) {
-            this.f40336a = ((Activity) context).getWindow();
+            this.f40339a = ((Activity) context).getWindow();
         } else {
-            this.f40336a = null;
+            this.f40339a = null;
         }
-        this.f40343s = i10;
+        this.f40346s = i10;
         LinearLayout e7 = org.telegram.messenger.am.e(context, 1);
         this.h = new z51(context, 2);
         kg.c cVar = new kg.c(getContext(), c6Var);
         this.d = cVar;
         cVar.d.setOnTouchListener(new Object());
         cVar.d.setOnClickListener(new View.OnClickListener(this) {
-            public final na1 f39170b;
+            public final na1 f39172b;
 
             {
-                this.f39170b = this;
+                this.f39172b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f39170b.h(true);
+                        this.f39172b.h(true);
                         return;
                     case 1:
-                        this.f39170b.c();
+                        this.f39172b.c();
                         return;
                     default:
-                        this.f39170b.f40338c.c(false);
+                        this.f39172b.f40341c.c(false);
                         return;
                 }
             }
@@ -70,19 +70,19 @@ public abstract class na1 extends FrameLayout {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         if (i10 != 5) {
-                            this.f40337b = new ig.g(getContext(), null);
+                            this.f40340b = new ig.g(getContext(), null);
                             ig.g gVar = new ig.g(getContext(), null);
-                            this.f40338c = gVar;
-                            gVar.f12190t0.f14836y = true;
+                            this.f40341c = gVar;
+                            gVar.f12190t0.f14837y = true;
                         } else {
-                            this.f40337b = new ig.g(getContext(), null);
+                            this.f40340b = new ig.g(getContext(), null);
                             ig.g gVar2 = new ig.g(getContext(), null);
-                            this.f40338c = gVar2;
-                            gVar2.f12190t0.f14836y = true;
+                            this.f40341c = gVar2;
+                            gVar2.f12190t0.f14837y = true;
                         }
                     } else {
                         ig.q qVar = new ig.q(getContext());
-                        this.f40337b = qVar;
+                        this.f40340b = qVar;
                         qVar.f12190t0.E = true;
                         ?? qVar2 = new ig.q(getContext());
                         qVar2.M1 = -1;
@@ -103,99 +103,99 @@ public abstract class na1 extends FrameLayout {
                         textPaint.setColor(-1);
                         textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
                         qVar2.f12174h1 = true;
-                        this.f40338c = qVar2;
+                        this.f40341c = qVar2;
                     }
                 } else {
                     ig.g gVar3 = new ig.g(getContext(), null);
                     gVar3.f12194w0 = true;
                     gVar3.f12196x0 = true;
-                    this.f40337b = gVar3;
+                    this.f40340b = gVar3;
                     ig.g gVar4 = new ig.g(getContext(), null);
-                    this.f40338c = gVar4;
-                    gVar4.f12190t0.f14836y = true;
+                    this.f40341c = gVar4;
+                    gVar4.f12190t0.f14837y = true;
                 }
             } else {
-                this.f40337b = new ig.p(getContext(), c6Var);
+                this.f40340b = new ig.p(getContext(), c6Var);
                 ig.p pVar = new ig.p(getContext(), c6Var);
-                this.f40338c = pVar;
-                pVar.f12190t0.f14836y = true;
+                this.f40341c = pVar;
+                pVar.f12190t0.f14837y = true;
             }
         } else {
-            this.f40337b = new ig.g(getContext(), c6Var);
+            this.f40340b = new ig.g(getContext(), c6Var);
             ig.g gVar5 = new ig.g(getContext(), c6Var);
-            this.f40338c = gVar5;
-            gVar5.f12190t0.f14836y = true;
+            this.f40341c = gVar5;
+            gVar5.f12190t0.f14837y = true;
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f40337b.f12154a = fVar;
-        this.f40338c.f12154a = fVar;
+        this.f40340b.f12154a = fVar;
+        this.f40341c.f12154a = fVar;
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f40339e = radialProgressView;
-        frameLayout.addView(this.f40337b);
-        frameLayout.addView(this.f40337b.f12190t0, -2, -2);
-        frameLayout.addView(this.f40338c);
-        frameLayout.addView(this.f40338c.f12190t0, -2, -2);
+        this.f40342e = radialProgressView;
+        frameLayout.addView(this.f40340b);
+        frameLayout.addView(this.f40340b.f12190t0, -2, -2);
+        frameLayout.addView(this.f40341c);
+        frameLayout.addView(this.f40341c.f12190t0, -2, -2);
         frameLayout.addView(radialProgressView, w7.w5.a(44.0f, 0.0f, 0.0f, 0.0f, 60.0f, 44, 17));
         TextView textView = new TextView(context);
-        this.f40340f = textView;
+        this.f40343f = textView;
         textView.setTextSize(1, 15.0f);
         frameLayout.addView(textView, w7.w5.a(-2.0f, 0.0f, 0.0f, 0.0f, 30.0f, -2, 17));
         radialProgressView.setVisibility(8);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20836s5, c6Var));
-        this.f40337b.setDateSelectionListener(new jq0(this, 18));
-        this.f40337b.f12190t0.d(false, false);
-        this.f40337b.f12190t0.setOnTouchListener(new Object());
-        this.f40337b.f12190t0.setOnClickListener(new View.OnClickListener(this) {
-            public final na1 f39170b;
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20837s5, c6Var));
+        this.f40340b.setDateSelectionListener(new jq0(this, 18));
+        this.f40340b.f12190t0.d(false, false);
+        this.f40340b.f12190t0.setOnTouchListener(new Object());
+        this.f40340b.f12190t0.setOnClickListener(new View.OnClickListener(this) {
+            public final na1 f39172b;
 
             {
-                this.f39170b = this;
+                this.f39172b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f39170b.h(true);
+                        this.f39172b.h(true);
                         return;
                     case 1:
-                        this.f39170b.c();
+                        this.f39172b.c();
                         return;
                     default:
-                        this.f39170b.f40338c.c(false);
+                        this.f39172b.f40341c.c(false);
                         return;
                 }
             }
         });
-        this.f40338c.f12190t0.setOnClickListener(new View.OnClickListener(this) {
-            public final na1 f39170b;
+        this.f40341c.f12190t0.setOnClickListener(new View.OnClickListener(this) {
+            public final na1 f39172b;
 
             {
-                this.f39170b = this;
+                this.f39172b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f39170b.h(true);
+                        this.f39172b.h(true);
                         return;
                     case 1:
-                        this.f39170b.c();
+                        this.f39172b.c();
                         return;
                     default:
-                        this.f39170b.f40338c.c(false);
+                        this.f39172b.f40341c.c(false);
                         return;
                 }
             }
         });
-        this.f40337b.setVisibility(0);
-        this.f40338c.setVisibility(4);
-        this.f40337b.setHeader(this.d);
+        this.f40340b.setVisibility(0);
+        this.f40341c.setVisibility(4);
+        this.f40340b.setHeader(this.d);
         e7.addView(this.d, w7.w5.d(52.0f, -1));
         e7.addView(frameLayout, w7.w5.d(-2.0f, -1));
         e7.addView(this.h, w7.w5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -1, 7));
-        if (this.f40343s == 4) {
+        if (this.f40346s == 4) {
             frameLayout.setClipChildren(false);
             frameLayout.setClipToPadding(false);
             e7.setClipChildren(false);
@@ -206,36 +206,36 @@ public abstract class na1 extends FrameLayout {
 
     public final ValueAnimator a(long j3, boolean z10) {
         float f7;
-        Window window = this.f40336a;
+        Window window = this.f40339a;
         if (window != null) {
             window.setFlags(16, 16);
         }
-        ig.g gVar = this.f40337b;
+        ig.g gVar = this.f40340b;
         gVar.J = false;
-        ig.g gVar2 = this.f40338c;
+        ig.g gVar2 = this.f40341c;
         gVar2.J = false;
         gVar.f12198y0 = 2;
         gVar2.f12198y0 = 1;
         final ?? obj = new Object();
         ig.j jVar = gVar.f12171g0;
-        obj.f14855b = jVar.f12215l;
-        obj.f14854a = jVar.f12214k;
-        int binarySearch = Arrays.binarySearch(this.f40342r.d.f14155a, j3);
+        obj.f14856b = jVar.f12215l;
+        obj.f14855a = jVar.f12214k;
+        int binarySearch = Arrays.binarySearch(this.f40345r.d.f14155a, j3);
         if (binarySearch < 0) {
-            binarySearch = this.f40342r.d.f14155a.length - 1;
+            binarySearch = this.f40345r.d.f14155a.length - 1;
         }
-        obj.f14856c = this.f40342r.d.f14156b[binarySearch];
+        obj.f14857c = this.f40345r.d.f14156b[binarySearch];
         gVar2.setVisibility(0);
         gVar2.f12199z0 = obj;
         gVar.f12199z0 = obj;
         long j10 = 0;
         long j11 = 2147483647L;
-        for (int i10 = 0; i10 < this.f40342r.d.d.size(); i10++) {
-            if (((jg.a) this.f40342r.d.d.get(i10)).f14148a[binarySearch] > j10) {
-                j10 = ((jg.a) this.f40342r.d.d.get(i10)).f14148a[binarySearch];
+        for (int i10 = 0; i10 < this.f40345r.d.d.size(); i10++) {
+            if (((jg.a) this.f40345r.d.d.get(i10)).f14148a[binarySearch] > j10) {
+                j10 = ((jg.a) this.f40345r.d.d.get(i10)).f14148a[binarySearch];
             }
-            if (((jg.a) this.f40342r.d.d.get(i10)).f14148a[binarySearch] < j11) {
-                j11 = ((jg.a) this.f40342r.d.d.get(i10)).f14148a[binarySearch];
+            if (((jg.a) this.f40345r.d.d.get(i10)).f14148a[binarySearch] < j11) {
+                j11 = ((jg.a) this.f40345r.d.d.get(i10)).f14148a[binarySearch];
             }
         }
         float f10 = ((float) j11) + ((float) (j10 - j11));
@@ -257,7 +257,7 @@ public abstract class na1 extends FrameLayout {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 na1 na1Var = na1.this;
-                ig.g gVar3 = na1Var.f40337b;
+                ig.g gVar3 = na1Var.f40340b;
                 float f14 = gVar3.F0;
                 ig.j jVar2 = gVar3.f12171g0;
                 float f15 = jVar2.f12215l;
@@ -266,10 +266,10 @@ public abstract class na1 extends FrameLayout {
                 RectF rectF = gVar3.H0;
                 float height = (rectF.height() * (1.0f - f12)) + rectF.top;
                 kg.j jVar3 = obj;
-                jVar3.f14857e = height;
-                jVar3.d = (gVar3.G0 * jVar3.f14856c) - f17;
-                jVar3.f14858f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ig.g gVar4 = na1Var.f40338c;
+                jVar3.f14858e = height;
+                jVar3.d = (gVar3.G0 * jVar3.f14857c) - f17;
+                jVar3.f14859f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ig.g gVar4 = na1Var.f40341c;
                 gVar4.invalidate();
                 gVar4.q(jVar3);
                 gVar3.invalidate();
@@ -288,45 +288,45 @@ public abstract class na1 extends FrameLayout {
         jg.b bVar;
         ArrayList arrayList;
         int i10;
-        ig.g gVar = this.f40337b;
+        ig.g gVar = this.f40340b;
         gVar.G();
         gVar.invalidate();
-        ig.g gVar2 = this.f40338c;
+        ig.g gVar2 = this.f40341c;
         gVar2.G();
         gVar2.invalidate();
         kg.c cVar = this.d;
         cVar.a();
         cVar.invalidate();
-        pa1 pa1Var = this.f40342r;
+        pa1 pa1Var = this.f40345r;
         if (pa1Var != null && (bVar = pa1Var.d) != null && (arrayList = bVar.d) != null && arrayList.size() > 1) {
-            for (int i11 = 0; i11 < this.f40342r.d.d.size(); i11++) {
-                if (((jg.a) this.f40342r.d.d.get(i11)).f14153g >= 0 && org.telegram.ui.ActionBar.h6.d1(((jg.a) this.f40342r.d.d.get(i11)).f14153g)) {
-                    i10 = org.telegram.ui.ActionBar.h6.x0(null, ((jg.a) this.f40342r.d.d.get(i11)).f14153g, false);
-                } else if (i0.a.f(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false)) < 0.5d) {
-                    i10 = ((jg.a) this.f40342r.d.d.get(i11)).f14154i;
+            for (int i11 = 0; i11 < this.f40345r.d.d.size(); i11++) {
+                if (((jg.a) this.f40345r.d.d.get(i11)).f14153g >= 0 && org.telegram.ui.ActionBar.h6.d1(((jg.a) this.f40345r.d.d.get(i11)).f14153g)) {
+                    i10 = org.telegram.ui.ActionBar.h6.x0(null, ((jg.a) this.f40345r.d.d.get(i11)).f14153g, false);
+                } else if (i0.a.f(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false)) < 0.5d) {
+                    i10 = ((jg.a) this.f40345r.d.d.get(i11)).f14154i;
                 } else {
-                    i10 = ((jg.a) this.f40342r.d.d.get(i11)).h;
+                    i10 = ((jg.a) this.f40345r.d.d.get(i11)).h;
                 }
-                ArrayList arrayList2 = this.f40341n;
+                ArrayList arrayList2 = this.f40344n;
                 if (i11 < arrayList2.size()) {
-                    org.telegram.ui.Components.l10 l10Var = ((ma1) arrayList2.get(i11)).f39979a;
+                    org.telegram.ui.Components.l10 l10Var = ((ma1) arrayList2.get(i11)).f39982a;
                     l10Var.getClass();
-                    l10Var.f27995r = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false);
+                    l10Var.f27980r = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false);
                     l10Var.v = -1;
-                    l10Var.f27996s = i10;
+                    l10Var.f27981s = i10;
                     l10Var.invalidate();
                 }
             }
         }
-        this.f40339e.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h6, false));
-        this.f40340f.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20836s5, false));
+        this.f40342e.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20632h6, false));
+        this.f40343f.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20837s5, false));
     }
 
     public final void e(pa1 pa1Var, boolean z10) {
         boolean z11;
         boolean z12;
         if (pa1Var != null) {
-            String str = pa1Var.f40897j;
+            String str = pa1Var.f40899j;
             kg.c cVar = this.d;
             cVar.setTitle(str);
             if (getContext().getResources().getConfiguration().orientation == 2) {
@@ -334,25 +334,25 @@ public abstract class na1 extends FrameLayout {
             } else {
                 z11 = false;
             }
-            ig.g gVar = this.f40337b;
+            ig.g gVar = this.f40340b;
             gVar.setLandscape(z11);
             ArrayList arrayList = gVar.d;
             ig.j jVar = gVar.f12171g0;
-            ig.g gVar2 = this.f40338c;
+            ig.g gVar2 = this.f40341c;
             gVar2.setLandscape(z11);
-            this.f40342r = pa1Var;
-            boolean z13 = pa1Var.f40899l;
-            ArrayList arrayList2 = this.f40341n;
+            this.f40345r = pa1Var;
+            boolean z13 = pa1Var.f40901l;
+            ArrayList arrayList2 = this.f40344n;
             z51 z51Var = this.h;
-            RadialProgressView radialProgressView = this.f40339e;
-            TextView textView = this.f40340f;
-            if (!z13 && !pa1Var.f40890a) {
+            RadialProgressView radialProgressView = this.f40342e;
+            TextView textView = this.f40343f;
+            if (!z13 && !pa1Var.f40892a) {
                 textView.setVisibility(8);
                 kg.e eVar = gVar.f12190t0;
-                boolean z14 = pa1Var.f40901n;
-                eVar.f14826a = z14;
+                boolean z14 = pa1Var.f40903n;
+                eVar.f14827a = z14;
                 cVar.c(!z14);
-                if (pa1Var.d == null && pa1Var.f40894f != null) {
+                if (pa1Var.d == null && pa1Var.f40896f != null) {
                     radialProgressView.setAlpha(1.0f);
                     radialProgressView.setVisibility(0);
                     b(pa1Var);
@@ -367,10 +367,10 @@ public abstract class na1 extends FrameLayout {
                     jVar.f12215l = 1.0f;
                     jVar.f12206a.A(true, false, false);
                 }
-                cVar.setUseWeekInterval(pa1Var.f40902o);
-                gVar.f12190t0.setUseWeek(pa1Var.f40902o);
+                cVar.setUseWeekInterval(pa1Var.f40904o);
+                gVar.f12190t0.setUseWeek(pa1Var.f40904o);
                 kg.e eVar2 = gVar.f12190t0;
-                if (this.f40342r.f40895g == null && this.f40343s != 4) {
+                if (this.f40345r.f40897g == null && this.f40346s != 4) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -387,17 +387,17 @@ public abstract class na1 extends FrameLayout {
                     for (int i10 = 0; i10 < size; i10++) {
                         kg.f fVar = (kg.f) arrayList.get(i10);
                         ma1 ma1Var = new ma1(this, i10);
-                        ma1Var.f39980b = fVar;
-                        String str2 = fVar.f14837a.d;
-                        org.telegram.ui.Components.l10 l10Var = ma1Var.f39979a;
+                        ma1Var.f39983b = fVar;
+                        String str2 = fVar.f14838a.d;
+                        org.telegram.ui.Components.l10 l10Var = ma1Var.f39982a;
                         l10Var.setText(str2);
-                        l10Var.a(fVar.f14848n, false);
+                        l10Var.a(fVar.f14849n, false);
                         l10Var.setOnTouchListener(new Object());
                         l10Var.setOnClickListener(new xy0(7, ma1Var, fVar));
                         l10Var.setOnLongClickListener(new ai.r3(6, ma1Var, fVar));
                     }
                 }
-                long j3 = this.f40342r.f40892c;
+                long j3 = this.f40345r.f40894c;
                 if (j3 > 0) {
                     gVar.f12189s0 = Arrays.binarySearch(gVar.f12173h0.f14155a, j3);
                     gVar.f12191u0 = true;
@@ -419,7 +419,7 @@ public abstract class na1 extends FrameLayout {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     ?? obj = new Object();
                     gVar.f12199z0 = obj;
-                    obj.f14858f = 0.0f;
+                    obj.f14859f = 0.0f;
                     ofFloat.addUpdateListener(new a21(this, 12));
                     ofFloat.addListener(new la1(this, 2));
                     ofFloat.start();
@@ -428,7 +428,7 @@ public abstract class na1 extends FrameLayout {
                 return;
             }
             radialProgressView.setVisibility(8);
-            String str3 = pa1Var.f40891b;
+            String str3 = pa1Var.f40893b;
             if (str3 != null) {
                 textView.setText(str3);
                 if (textView.getVisibility() == 8) {
@@ -449,39 +449,39 @@ public abstract class na1 extends FrameLayout {
         ArrayList arrayList;
         boolean z11;
         float f7;
-        ig.g gVar = this.f40337b;
+        ig.g gVar = this.f40340b;
         long selectedDate = gVar.getSelectedDate();
-        jg.b bVar = this.f40342r.f40893e;
-        ig.g gVar2 = this.f40338c;
+        jg.b bVar = this.f40345r.f40895e;
+        ig.g gVar2 = this.f40341c;
         if (!z10 || gVar2.getVisibility() != 0) {
             gVar2.J(bVar, selectedDate);
         }
         gVar2.D(bVar);
         ArrayList arrayList2 = gVar2.d;
-        if (this.f40342r.d.d.size() > 1) {
+        if (this.f40345r.d.d.size() > 1) {
             int i10 = 0;
             int i11 = 0;
             while (true) {
-                int size = this.f40342r.d.d.size();
-                arrayList = this.f40341n;
+                int size = this.f40345r.d.d.size();
+                arrayList = this.f40344n;
                 if (i10 >= size) {
                     break;
                 }
                 int i12 = 0;
                 while (true) {
                     if (i12 < bVar.d.size()) {
-                        if (((jg.a) bVar.d.get(i12)).f14150c.equals(((jg.a) this.f40342r.d.d.get(i10)).f14150c)) {
-                            boolean z12 = ((ma1) arrayList.get(i10)).f39979a.f27990b;
-                            ((kg.f) arrayList2.get(i12)).f14848n = z12;
+                        if (((jg.a) bVar.d.get(i12)).f14150c.equals(((jg.a) this.f40345r.d.d.get(i10)).f14150c)) {
+                            boolean z12 = ((ma1) arrayList.get(i10)).f39982a.f27975b;
+                            ((kg.f) arrayList2.get(i12)).f14849n = z12;
                             kg.f fVar = (kg.f) arrayList2.get(i12);
                             if (z12) {
                                 f7 = 1.0f;
                             } else {
                                 f7 = 0.0f;
                             }
-                            fVar.f14849o = f7;
-                            ((ma1) arrayList.get(i10)).f39979a.f27991c = true;
-                            ((ma1) arrayList.get(i10)).f39979a.animate().alpha(1.0f).start();
+                            fVar.f14850o = f7;
+                            ((ma1) arrayList.get(i10)).f39982a.f27976c = true;
+                            ((ma1) arrayList.get(i10)).f39982a.animate().alpha(1.0f).start();
                             if (z12) {
                                 i11++;
                             }
@@ -495,20 +495,20 @@ public abstract class na1 extends FrameLayout {
                     }
                 }
                 if (!z11) {
-                    ((ma1) arrayList.get(i10)).f39979a.f27991c = false;
-                    ((ma1) arrayList.get(i10)).f39979a.animate().alpha(0.0f).start();
+                    ((ma1) arrayList.get(i10)).f39982a.f27976c = false;
+                    ((ma1) arrayList.get(i10)).f39982a.animate().alpha(0.0f).start();
                 }
                 i10++;
             }
             if (i11 == 0) {
-                for (int i13 = 0; i13 < this.f40342r.d.d.size(); i13++) {
-                    ((ma1) arrayList.get(i13)).f39979a.f27991c = true;
-                    ((ma1) arrayList.get(i13)).f39979a.animate().alpha(1.0f).start();
+                for (int i13 = 0; i13 < this.f40345r.d.d.size(); i13++) {
+                    ((ma1) arrayList.get(i13)).f39982a.f27976c = true;
+                    ((ma1) arrayList.get(i13)).f39982a.animate().alpha(1.0f).start();
                 }
                 return;
             }
         }
-        this.f40342r.f40892c = selectedDate;
+        this.f40345r.f40894c = selectedDate;
         gVar.f12190t0.setAlpha(0.0f);
         gVar.f12192v0 = 0.0f;
         gVar.f12191u0 = false;
@@ -538,12 +538,12 @@ public abstract class na1 extends FrameLayout {
 
     public final void h(boolean z10) {
         jg.b bVar;
-        pa1 pa1Var = this.f40342r;
+        pa1 pa1Var = this.f40345r;
         if (pa1Var != null && (bVar = pa1Var.d) != null && bVar.f14155a != null) {
             kg.c cVar = this.d;
             TextView textView = cVar.d;
-            TextView textView2 = cVar.f14813a;
-            ig.g gVar = this.f40337b;
+            TextView textView2 = cVar.f14814a;
+            ig.g gVar = this.f40340b;
             cVar.b(gVar.getStartDate(), gVar.getEndDate());
             if (z10) {
                 textView2.setAlpha(0.0f);
@@ -565,23 +565,23 @@ public abstract class na1 extends FrameLayout {
                 textView2.setScaleY(1.0f);
                 textView.setAlpha(0.0f);
             }
-            gVar.f12190t0.f14830f.setAlpha(1.0f);
-            ig.g gVar2 = this.f40338c;
+            gVar.f12190t0.f14831f.setAlpha(1.0f);
+            ig.g gVar2 = this.f40341c;
             gVar2.setHeader(null);
             long selectedDate = gVar.getSelectedDate();
-            this.f40342r.f40892c = 0L;
+            this.f40345r.f40894c = 0L;
             int i10 = 0;
             gVar.setVisibility(0);
             gVar2.d();
             gVar2.setHeader(null);
             gVar.setHeader(cVar);
-            ArrayList arrayList = this.f40341n;
+            ArrayList arrayList = this.f40344n;
             if (!z10) {
                 gVar2.setVisibility(4);
                 gVar.J = true;
                 gVar2.J = false;
                 gVar.invalidate();
-                Window window = this.f40336a;
+                Window window = this.f40339a;
                 if (window != null) {
                     window.clearFlags(16);
                 }
@@ -590,8 +590,8 @@ public abstract class na1 extends FrameLayout {
                     Object obj = arrayList.get(i10);
                     i10++;
                     ma1 ma1Var = (ma1) obj;
-                    ma1Var.f39979a.setAlpha(1.0f);
-                    ma1Var.f39979a.f27991c = true;
+                    ma1Var.f39982a.setAlpha(1.0f);
+                    ma1Var.f39982a.f27976c = true;
                 }
                 return;
             }
@@ -602,8 +602,8 @@ public abstract class na1 extends FrameLayout {
                 Object obj2 = arrayList.get(i10);
                 i10++;
                 ma1 ma1Var2 = (ma1) obj2;
-                ma1Var2.f39979a.animate().alpha(1.0f).start();
-                ma1Var2.f39979a.f27991c = true;
+                ma1Var2.f39982a.animate().alpha(1.0f).start();
+                ma1Var2.f39982a.f27976c = true;
             }
             a2.start();
         }

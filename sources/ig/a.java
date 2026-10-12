@@ -40,15 +40,15 @@ public final class a extends g {
             int i15 = 0;
             while (i15 < size) {
                 kg.a aVar = (kg.a) arrayList3.get(i15);
-                boolean z10 = aVar.f14848n;
-                Paint paint = aVar.f14839c;
-                float[] fArr = aVar.f14845k;
-                if (!z10 && aVar.f14849o == 0.0f) {
+                boolean z10 = aVar.f14849n;
+                Paint paint = aVar.f14840c;
+                float[] fArr = aVar.f14846k;
+                if (!z10 && aVar.f14850o == 0.0f) {
                     i10 = i14;
                     arrayList = arrayList3;
                     i11 = i15;
                 } else {
-                    aVar.f14840e.reset();
+                    aVar.f14841e.reset();
                     float[] fArr2 = this.f12173h0.f14156b;
                     int length = fArr2.length;
                     if (fArr2.length < 2) {
@@ -56,8 +56,8 @@ public final class a extends g {
                     } else {
                         f7 = fArr2[1] * this.C0;
                     }
-                    long[] jArr = aVar.f14837a.f14148a;
-                    float f12 = aVar.f14849o;
+                    long[] jArr = aVar.f14838a.f14148a;
+                    float f12 = aVar.f14850o;
                     int i16 = 0;
                     int i17 = 0;
                     while (i16 < length) {

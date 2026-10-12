@@ -5,40 +5,40 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 public final class ho implements TextWatcher {
-    public final go f26850a;
-    public final int f26851b;
-    public final lo f26852c;
+    public final go f26836a;
+    public final int f26837b;
+    public final lo f26838c;
 
     public ho(lo loVar, go goVar, int i10) {
-        this.f26852c = loVar;
-        this.f26850a = goVar;
-        this.f26851b = i10;
+        this.f26838c = loVar;
+        this.f26836a = goVar;
+        this.f26837b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        no noVar = this.f26852c.d;
-        go goVar = this.f26850a;
+        no noVar = this.f26838c.d;
+        go goVar = this.f26836a;
         if (goVar.getTag() != null) {
             return;
         }
-        int i11 = this.f26851b;
+        int i11 = this.f26837b;
         if (i11 == 11) {
-            i10 = noVar.f28897n0;
+            i10 = noVar.f28901n0;
         } else {
             i10 = noVar.m0;
         }
-        s4.d1 K = noVar.f28903s.K(i10);
-        if (K != null && noVar.f28910x != null) {
+        s4.d1 K = noVar.f28907s.K(i10);
+        if (K != null && noVar.f28914x != null) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, goVar.getEditField().getPaint().getFontMetricsInt(), false);
-            noVar.f28910x.setDirection(1);
-            noVar.f28910x.setDelegate(goVar);
-            noVar.f28910x.setTranslationY(K.f47889a.getY());
-            noVar.f28910x.e();
+            noVar.f28914x.setDirection(1);
+            noVar.f28914x.setDelegate(goVar);
+            noVar.f28914x.setTranslationY(K.f47897a.getY());
+            noVar.f28914x.e();
         }
         if (i11 == 11) {
             noVar.O = editable;
@@ -46,7 +46,7 @@ public final class ho implements TextWatcher {
             noVar.N = editable;
         }
         if (K != null) {
-            no.O(noVar, K.f47889a, i10);
+            no.O(noVar, K.f47897a, i10);
         }
         noVar.W();
     }

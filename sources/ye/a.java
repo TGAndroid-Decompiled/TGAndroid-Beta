@@ -6,14 +6,14 @@ import q3.h;
 import xe.c;
 import ze.d;
 public final class a extends ef.a {
-    public final ArrayList f52334c;
+    public final ArrayList f52342c;
     public final ArrayList d;
-    public final xe.a f52332a = new p();
-    public final ArrayList f52333b = new ArrayList();
-    public boolean f52335e = true;
+    public final xe.a f52340a = new p();
+    public final ArrayList f52341b = new ArrayList();
+    public boolean f52343e = true;
 
     public a(ArrayList arrayList, ArrayList arrayList2) {
-        this.f52334c = arrayList;
+        this.f52342c = arrayList;
         this.d = arrayList2;
     }
 
@@ -53,16 +53,16 @@ public final class a extends ef.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f52335e) {
-            this.f52335e = false;
+        if (this.f52343e) {
+            this.f52343e = false;
         } else {
-            this.f52333b.add(charSequence);
+            this.f52341b.add(charSequence);
         }
     }
 
     @Override
     public final cf.a e() {
-        return this.f52332a;
+        return this.f52340a;
     }
 
     @Override
@@ -72,13 +72,13 @@ public final class a extends ef.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f52332a;
+        ?? r32 = this.f52340a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i10 = 0;
         while (true) {
-            arrayList = this.f52334c;
+            arrayList = this.f52342c;
             if (i10 >= size) {
                 break;
             }
@@ -88,11 +88,11 @@ public final class a extends ef.a {
                 pVar3.h = (c) arrayList.get(i10);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f51349g = true;
+            pVar3.f51357g = true;
             pVar2.b(pVar3);
             i10++;
         }
-        ArrayList arrayList3 = this.f52333b;
+        ArrayList arrayList3 = this.f52341b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i11 = 0;
@@ -125,8 +125,8 @@ public final class a extends ef.a {
 
     @Override
     public final h h(d dVar) {
-        if (dVar.f54604a.toString().contains("|")) {
-            return h.a(dVar.f54605b);
+        if (dVar.f54612a.toString().contains("|")) {
+            return h.a(dVar.f54613b);
         }
         return null;
     }

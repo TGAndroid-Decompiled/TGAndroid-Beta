@@ -43,7 +43,7 @@ public final class kp extends org.telegram.ui.Components.wm0 {
             }
         }
         if (i10 < i11) {
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, this.f32467n2);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, this.f32467n2);
             Paint paint = this.X2;
             paint.setColor(w02);
             canvas2 = canvas;
@@ -127,7 +127,7 @@ public final class kp extends org.telegram.ui.Components.wm0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         jp jpVar = this.V2;
-                        ArrayList arrayList2 = jpVar.f39262c.Y2.N;
+                        ArrayList arrayList2 = jpVar.f39265c.Y2.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             jpVar.p(i12, i13);

@@ -19,23 +19,23 @@ import org.telegram.ui.Components.js;
 import yf.p;
 public final class a extends c implements me.d {
     public final me.b d;
-    public final int[] f48391e;
-    public final Drawable f48392f;
+    public final int[] f48399e;
+    public final Drawable f48400f;
     public final TextPaint h;
-    public StaticLayout f48393n;
-    public int f48394r;
-    public int f48395s;
+    public StaticLayout f48401n;
+    public int f48402r;
+    public int f48403s;
 
     public a(Context context, c6 c6Var) {
         super(c6Var);
         this.d = new me.b(0, this, js.h, 320L, false);
-        this.f48391e = new int[]{16842910, 16842919};
-        this.f48392f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.f48399e = new int[]{16842910, 16842919};
+        this.f48400f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(h6.P2);
-        int w02 = h6.w0(h6.f20650i6, c6Var);
-        if (this.f48408b != w02) {
-            h6.C1(this.f48407a, w02, false);
-            this.f48408b = w02;
+        int w02 = h6.w0(h6.f20651i6, c6Var);
+        if (this.f48416b != w02) {
+            h6.C1(this.f48415a, w02, false);
+            this.f48416b = w02;
         }
         b();
         c();
@@ -43,19 +43,19 @@ public final class a extends c implements me.d {
 
     @Override
     public final void a(int i10) {
-        this.f48407a.setAlpha(i10);
+        this.f48415a.setAlpha(i10);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f48392f;
-        drawable.setAlpha((int) ((1.0f - this.d.f16087e) * this.f48409c));
+        Drawable drawable = this.f48400f;
+        drawable.setAlpha((int) ((1.0f - this.d.f16088e) * this.f48417c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.f16087e) * this.f48409c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f16088e) * this.f48417c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -65,21 +65,21 @@ public final class a extends c implements me.d {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f48407a.draw(canvas);
-        p.b(canvas, this.f48392f, 1.0f - this.d.f16087e);
-        if (this.f48393n != null) {
+        this.f48415a.draw(canvas);
+        p.b(canvas, this.f48400f, 1.0f - this.d.f16088e);
+        if (this.f48401n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f48393n.draw(canvas);
+            this.f48401n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f48395s != i10) {
-            this.f48395s = i10;
+        if (this.f48403s != i10) {
+            this.f48403s = i10;
             this.h.setColor(i10);
-            this.f48392f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f48400f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -98,13 +98,13 @@ public final class a extends c implements me.d {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        p.d(this.f48392f, dp, exactCenterY, 17);
+        p.d(this.f48400f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f48393n != null && this.f48394r == width) {
+        if (this.f48401n != null && this.f48402r == width) {
             return;
         }
-        this.f48394r = width;
-        this.f48393n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f48402r = width;
+        this.f48401n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override

@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class et implements Runnable {
     public final int f25784a;
-    public final kt f25785b;
+    public final lt f25785b;
 
-    public et(kt ktVar, int i10) {
+    public et(lt ltVar, int i10) {
         this.f25784a = i10;
-        this.f25785b = ktVar;
+        this.f25785b = ltVar;
     }
 
     @Override

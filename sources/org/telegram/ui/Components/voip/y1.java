@@ -8,43 +8,43 @@ import org.telegram.ui.Components.a90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.i60;
 public final class y1 implements a90, org.telegram.ui.ActionBar.z1 {
-    public final TLRPC.User f32129a;
-    public final TLRPC.Chat f32130b;
-    public final String f32131c;
+    public final TLRPC.User f32114a;
+    public final TLRPC.Chat f32115b;
+    public final String f32116c;
     public final boolean d;
-    public final boolean f32132e;
-    public final boolean f32133f;
+    public final boolean f32117e;
+    public final boolean f32118f;
     public final Activity h;
-    public final org.telegram.ui.ActionBar.m2 f32134n;
-    public final AccountInstance f32135r;
+    public final org.telegram.ui.ActionBar.m2 f32119n;
+    public final AccountInstance f32120r;
 
     public y1(TLRPC.User user, TLRPC.Chat chat, String str, boolean z10, boolean z11, boolean z12, Activity activity, org.telegram.ui.ActionBar.m2 m2Var, AccountInstance accountInstance) {
-        this.f32129a = user;
-        this.f32130b = chat;
-        this.f32131c = str;
+        this.f32114a = user;
+        this.f32115b = chat;
+        this.f32116c = str;
         this.d = z10;
-        this.f32132e = z11;
-        this.f32133f = z12;
+        this.f32117e = z11;
+        this.f32118f = z12;
         this.h = activity;
-        this.f32134n = m2Var;
-        this.f32135r = accountInstance;
+        this.f32119n = m2Var;
+        this.f32120r = accountInstance;
     }
 
     @Override
     public void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12) {
         boolean z13 = this.d;
         Activity activity = this.h;
-        AccountInstance accountInstance = this.f32135r;
-        TLRPC.Chat chat = this.f32130b;
-        String str = this.f32131c;
+        AccountInstance accountInstance = this.f32120r;
+        TLRPC.Chat chat = this.f32115b;
+        String str = this.f32116c;
         if (z13 && z11) {
             i60.d1((LaunchActivity) activity, accountInstance, chat, inputPeer, z10, str);
             return;
         }
-        TLRPC.User user = this.f32129a;
-        boolean z14 = this.f32132e;
-        boolean z15 = this.f32133f;
-        org.telegram.ui.ActionBar.m2 m2Var = this.f32134n;
+        TLRPC.User user = this.f32114a;
+        boolean z14 = this.f32117e;
+        boolean z15 = this.f32118f;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f32119n;
         if (!z10 && str != null) {
             f2 f2Var = new f2(activity, chat, user, chat, str, inputPeer, z14, z15, z13, activity, m2Var, accountInstance, z12);
             if (m2Var != null) {
@@ -59,20 +59,20 @@ public final class y1 implements a90, org.telegram.ui.ActionBar.z1 {
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        final TLRPC.User user = this.f32129a;
-        final TLRPC.Chat chat = this.f32130b;
-        final String str = this.f32131c;
+        final TLRPC.User user = this.f32114a;
+        final TLRPC.Chat chat = this.f32115b;
+        final String str = this.f32116c;
         final boolean z10 = this.d;
-        final boolean z11 = this.f32132e;
-        final boolean z12 = this.f32133f;
+        final boolean z11 = this.f32117e;
+        final boolean z12 = this.f32118f;
         final Activity activity = this.h;
-        final org.telegram.ui.ActionBar.m2 m2Var = this.f32134n;
-        final AccountInstance accountInstance = this.f32135r;
+        final org.telegram.ui.ActionBar.m2 m2Var = this.f32119n;
+        final AccountInstance accountInstance = this.f32120r;
         if (sharedInstance != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
                 public final void run() {
-                    g2.f31694a = 0L;
+                    g2.f31679a = 0L;
                     g2.b(TLRPC.User.this, chat, str, null, false, z10, z11, z12, activity, m2Var, accountInstance, true, true, false);
                 }
             });
@@ -84,12 +84,12 @@ public final class y1 implements a90, org.telegram.ui.ActionBar.z1 {
     public y1(boolean z10, Activity activity, AccountInstance accountInstance, TLRPC.Chat chat, String str, TLRPC.User user, boolean z11, boolean z12, org.telegram.ui.ActionBar.m2 m2Var) {
         this.d = z10;
         this.h = activity;
-        this.f32135r = accountInstance;
-        this.f32130b = chat;
-        this.f32131c = str;
-        this.f32129a = user;
-        this.f32132e = z11;
-        this.f32133f = z12;
-        this.f32134n = m2Var;
+        this.f32120r = accountInstance;
+        this.f32115b = chat;
+        this.f32116c = str;
+        this.f32114a = user;
+        this.f32117e = z11;
+        this.f32118f = z12;
+        this.f32119n = m2Var;
     }
 }

@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class ps extends org.telegram.ui.ActionBar.j {
-    public final ts f41087a;
+    public final ts f41089a;
 
     public ps(ts tsVar) {
-        this.f41087a = tsVar;
+        this.f41089a = tsVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class ps extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        ts tsVar = this.f41087a;
+        ts tsVar = this.f41089a;
         if (i10 == -1) {
             tsVar.finishFragment();
-        } else if (i10 == 1 && tsVar.f42274b.getText().length() != 0) {
+        } else if (i10 == 1 && tsVar.f42276b.getText().length() != 0) {
             TLRPC.User user = tsVar.getMessagesController().getUser(Long.valueOf(tsVar.H));
             TLRPC.UserFull userFull = tsVar.getMessagesController().getUserFull(tsVar.H);
-            user.first_name = tsVar.f42274b.getText().toString();
-            user.last_name = tsVar.f42275c.getText().toString();
+            user.first_name = tsVar.f42276b.getText().toString();
+            user.last_name = tsVar.f42277c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = tsVar.d.getTextWithEntities();
             tsVar.getMessagesController().putUser(user, false);
@@ -49,7 +49,7 @@ public final class ps extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.m2) tsVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                tsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f19950id), userFull);
+                tsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f19951id), userFull);
             }
             tsVar.finishFragment();
             ss ssVar = tsVar.O;

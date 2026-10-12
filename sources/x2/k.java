@@ -11,9 +11,9 @@ import e2.d0;
 import j$.util.Objects;
 import k2.a0;
 public final class k {
-    public final Spatializer f50735a;
-    public final boolean f50736b;
-    public final Handler f50737c;
+    public final Spatializer f50743a;
+    public final boolean f50744b;
+    public final Handler f50745c;
     public final j d;
 
     public k(Context context, p pVar, Boolean bool) {
@@ -25,20 +25,20 @@ public final class k {
         }
         if (e7 != null && (bool == null || !bool.booleanValue())) {
             Spatializer spatializer = e7.getSpatializer();
-            this.f50735a = spatializer;
-            this.f50736b = spatializer.getImmersiveAudioLevel() != 0;
+            this.f50743a = spatializer;
+            this.f50744b = spatializer.getImmersiveAudioLevel() != 0;
             j jVar = new j(pVar);
             this.d = jVar;
             Looper myLooper = Looper.myLooper();
             e2.d.h(myLooper);
             Handler handler = new Handler(myLooper);
-            this.f50737c = handler;
+            this.f50745c = handler;
             spatializer.addOnSpatializerStateChangedListener(new a0(handler, 0), jVar);
             return;
         }
-        this.f50735a = null;
-        this.f50736b = false;
-        this.f50737c = null;
+        this.f50743a = null;
+        this.f50744b = false;
+        this.f50745c = null;
         this.d = null;
     }
 
@@ -66,19 +66,19 @@ public final class k {
         if (i11 != -1) {
             channelMask.setSampleRate(i11);
         }
-        Spatializer spatializer = this.f50735a;
+        Spatializer spatializer = this.f50743a;
         spatializer.getClass();
         return spatializer.canBeSpatialized((AudioAttributes) eVar.b().f3679a, channelMask.build());
     }
 
     public final boolean b() {
-        Spatializer spatializer = this.f50735a;
+        Spatializer spatializer = this.f50743a;
         spatializer.getClass();
         return spatializer.isAvailable();
     }
 
     public final boolean c() {
-        Spatializer spatializer = this.f50735a;
+        Spatializer spatializer = this.f50743a;
         spatializer.getClass();
         return spatializer.isEnabled();
     }
@@ -86,8 +86,8 @@ public final class k {
     public final void d() {
         j jVar;
         Handler handler;
-        Spatializer spatializer = this.f50735a;
-        if (spatializer != null && (jVar = this.d) != null && (handler = this.f50737c) != null) {
+        Spatializer spatializer = this.f50743a;
+        if (spatializer != null && (jVar = this.d) != null && (handler = this.f50745c) != null) {
             spatializer.removeOnSpatializerStateChangedListener(jVar);
             handler.removeCallbacksAndMessages(null);
         }

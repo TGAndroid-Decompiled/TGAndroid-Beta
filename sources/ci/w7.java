@@ -40,7 +40,7 @@ public final class w7 implements bh.a {
                     if (view instanceof xh.n2) {
                         xh.n2 n2Var = (xh.n2) view;
                         if (n2Var.h == null) {
-                            xh.i2 i2Var = n2Var.f51626f;
+                            xh.i2 i2Var = n2Var.f51634f;
                             ViewGroup viewGroup = r2Var.S;
                             Objects.requireNonNull(i2Var);
                             n2Var.h = new ah.n(i2Var, viewGroup, new org.telegram.ui.x8(i2Var, 0));

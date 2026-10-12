@@ -7,15 +7,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class u10 implements org.telegram.ui.Cells.m7 {
-    public final v10 f42339a;
+    public final v10 f42341a;
 
     public u10(v10 v10Var) {
-        this.f42339a = v10Var;
+        this.f42341a = v10Var;
     }
 
     @Override
     public final void a(String str, boolean z10) {
-        y10 y10Var = this.f42339a.v;
+        y10 y10Var = this.f42341a.v;
         if (z10) {
             org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) y10Var.K, (org.telegram.ui.ActionBar.c6) null, false);
             e3Var.fixNavigationBar();
@@ -28,19 +28,19 @@ public final class u10 implements org.telegram.ui.Cells.m7 {
             y10Var.L.showDialog(e3Var);
             return;
         }
-        SpannableStringBuilder[] spannableStringBuilderArr = y10.f44240s0;
+        SpannableStringBuilder[] spannableStringBuilderArr = y10.f44245s0;
         y10Var.g(str);
     }
 
     @Override
     public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        y10 y10Var = this.f42339a.v;
-        SpannableStringBuilder[] spannableStringBuilderArr = y10.f44240s0;
-        org.telegram.ui.Components.ov.J(y10Var.L, messageObject, y10Var.f44252g0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+        y10 y10Var = this.f42341a.v;
+        SpannableStringBuilder[] spannableStringBuilderArr = y10.f44245s0;
+        org.telegram.ui.Components.ov.J(y10Var.L, messageObject, y10Var.f44257g0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 
     @Override
     public final boolean e() {
-        return !this.f42339a.v.f44260o0.g();
+        return !this.f42341a.v.f44265o0.g();
     }
 }

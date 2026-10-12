@@ -25,8 +25,8 @@ public final class hb0 implements OnBackAnimationCallback {
             this.f38316a.unlock();
             this.f38317b = false;
         }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38320f.f33644q0) != null && actionBarLayout.f20088c1) {
-            actionBarLayout.f20088c1 = false;
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38320f.f33646q0) != null && actionBarLayout.f20089c1) {
+            actionBarLayout.f20089c1 = false;
             actionBarLayout.e(true);
         }
     }
@@ -42,13 +42,13 @@ public final class hb0 implements OnBackAnimationCallback {
         } else if (!this.f38320f.c0(true)) {
         } else {
             LaunchActivity launchActivity = this.f38320f;
-            ActionBarLayout actionBarLayout = launchActivity.f33644q0;
+            ActionBarLayout actionBarLayout = launchActivity.f33646q0;
             if (actionBarLayout != null) {
-                if (!actionBarLayout.f20088c1) {
+                if (!actionBarLayout.f20089c1) {
                     actionBarLayout.G();
                     return;
                 }
-                actionBarLayout.f20088c1 = false;
+                actionBarLayout.f20089c1 = false;
                 actionBarLayout.e(false);
                 return;
             }

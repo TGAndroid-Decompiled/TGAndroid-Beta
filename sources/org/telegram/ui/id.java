@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class id implements View.OnClickListener {
-    public final int f38840a;
-    public final qd f38841b;
+    public final int f38843a;
+    public final qd f38844b;
 
     public id(qd qdVar, int i10) {
-        this.f38840a = i10;
-        this.f38841b = qdVar;
+        this.f38843a = i10;
+        this.f38844b = qdVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f38840a) {
+        switch (this.f38843a) {
             case 0:
-                qd.X(this.f38841b, view);
+                qd.X(this.f38844b, view);
                 return;
             case 1:
-                qd qdVar = this.f38841b;
+                qd qdVar = this.f38844b;
                 org.telegram.ui.Components.p50 p50Var = qdVar.v;
-                if (qdVar.f41301x != null) {
+                if (qdVar.f41305x != null) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -31,21 +31,21 @@ public final class id implements View.OnClickListener {
                 qdVar.h.d();
                 return;
             case 2:
-                qd qdVar2 = this.f38841b;
-                if (!qdVar2.f41284j0) {
+                qd qdVar2 = this.f38844b;
+                if (!qdVar2.f41288j0) {
                     qdVar2.f0();
                     return;
-                } else if (qdVar2.f41271a0) {
-                    qdVar2.f41271a0 = false;
+                } else if (qdVar2.f41275a0) {
+                    qdVar2.f41275a0 = false;
                     qdVar2.h0();
                     return;
                 } else {
                     return;
                 }
             default:
-                qd qdVar3 = this.f38841b;
-                if (!qdVar3.f41271a0) {
-                    qdVar3.f41271a0 = true;
+                qd qdVar3 = this.f38844b;
+                if (!qdVar3.f41275a0) {
+                    qdVar3.f41275a0 = true;
                     qdVar3.h0();
                     return;
                 }

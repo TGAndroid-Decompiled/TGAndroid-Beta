@@ -118,7 +118,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f82b;
-                int i10 = ProfileStoriesView.f34334s0;
+                int i10 = ProfileStoriesView.f34336s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -251,13 +251,13 @@ public final class d implements Runnable {
                         if (pVar.h != null) {
                             try {
                                 o0.h d = pVar.d();
-                                int i11 = d.f16657e;
+                                int i11 = d.f16658e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f16212a;
+                                    int i12 = n0.g.f16213a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     ob.a aVar = pVar.f2621c;
                                     Context context = pVar.f2619a;
@@ -268,7 +268,7 @@ public final class d implements Runnable {
                                     try {
                                         Typeface b10 = i0.e.f11580a.b(context, hVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e7 = g8.e(pVar.f2619a, d.f16654a);
+                                        MappedByteBuffer e7 = g8.e(pVar.f2619a, d.f16655a);
                                         if (e7 != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -283,7 +283,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f16212a;
+                                                int i13 = n0.g.f16213a;
                                                 throw th2;
                                             }
                                         }

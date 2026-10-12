@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class j6 extends FrameLayout {
-    public final TextView f22107a;
-    public final TextView f22108b;
-    public final RadioButton f22109c;
+    public final TextView f22108a;
+    public final TextView f22109b;
+    public final RadioButton f22110c;
     public boolean d;
 
     public j6(Context context, boolean z10) {
@@ -25,12 +25,12 @@ public final class j6 extends FrameLayout {
         int i15;
         int i16;
         RadioButton radioButton = new RadioButton(context);
-        this.f22109c = radioButton;
+        this.f22110c = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         if (z10) {
             radioButton.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D5, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E5, false));
         } else {
-            radioButton.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20616g7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20632h7, false));
+            radioButton.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20617g7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20633h7, false));
         }
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -46,9 +46,9 @@ public final class j6 extends FrameLayout {
         }
         addView(radioButton, w7.w5.a(22.0f, i11, 10.0f, z11 ? 20 : 0, 0.0f, 22, i17));
         TextView textView = new TextView(context);
-        this.f22107a = textView;
+        this.f22108a = textView;
         if (z10) {
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20667j5, false));
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20668j5, false));
         } else {
             textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
         }
@@ -76,11 +76,11 @@ public final class j6 extends FrameLayout {
         }
         addView(textView, w7.w5.a(-2.0f, i14, 10.0f, z12 ? 61 : 23, 0.0f, -2, i18));
         TextView textView2 = new TextView(context);
-        this.f22108b = textView2;
+        this.f22109b = textView2;
         if (z10) {
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20798q5, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20799q5, false));
         } else {
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20963z6, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20964z6, false));
         }
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
@@ -104,13 +104,13 @@ public final class j6 extends FrameLayout {
     }
 
     public final void a(boolean z10) {
-        this.f22109c.a(z10, true);
+        this.f22110c.a(z10, true);
     }
 
     public final void b(String str, String str2, boolean z10, boolean z11) {
-        this.f22107a.setText(str);
-        this.f22108b.setText(str2);
-        this.f22109c.a(z11, false);
+        this.f22108a.setText(str);
+        this.f22109b.setText(str2);
+        this.f22110c.a(z11, false);
         this.d = z10;
     }
 
@@ -130,7 +130,7 @@ public final class j6 extends FrameLayout {
             if (!LocaleController.isRTL) {
                 f10 = 0.0f;
             }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.h6.f20681k0);
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.h6.f20682k0);
         }
     }
 
@@ -139,7 +139,7 @@ public final class j6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f22109c.f24077f);
+        accessibilityNodeInfo.setChecked(this.f22110c.f24078f);
     }
 
     @Override

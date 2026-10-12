@@ -9,26 +9,26 @@ import org.telegram.ui.Components.aj;
 import org.telegram.ui.Components.lh;
 import org.telegram.ui.Components.yi;
 public final class y implements yi {
-    public final aj f46565a;
-    public final m0 f46566b;
+    public final aj f46573a;
+    public final m0 f46574b;
 
     public y(m0 m0Var, aj ajVar) {
-        this.f46566b = m0Var;
-        this.f46565a = ajVar;
+        this.f46574b = m0Var;
+        this.f46573a = ajVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        aj ajVar = this.f46565a;
+        aj ajVar = this.f46573a;
         try {
-            HashMap<Object, Object> selectedPhotos = ajVar.f24354j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = ajVar.f24350j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
                 if (str == null) {
                     str = photoEntry.path;
                 }
-                m0 m0Var = this.f46566b;
+                m0 m0Var = this.f46574b;
                 m0Var.f0(m0Var.h0(str, true));
                 ajVar.dismiss();
             }

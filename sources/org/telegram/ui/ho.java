@@ -52,7 +52,7 @@ public final class ho extends Drawable {
             TLRPC.WallPaperSettings wallPaperSettings3 = wallPaper.settings;
             gd0Var.n(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
             int i10 = UserConfig.selectedAccount;
-            long j3 = wallPaper.f19954id;
+            long j3 = wallPaper.f19955id;
             tc tcVar = new tc(14, this, wallPaper);
             int[] iArr = org.telegram.ui.ActionBar.b4.h;
             boolean z13 = wallPaper.pattern;
@@ -72,7 +72,7 @@ public final class ho extends Drawable {
             o9 = a1.g.o((int) (max / AndroidUtilities.density), "_wallpaper", sb2);
         }
         StringBuilder v = a1.g.v(o9);
-        v.append(wallPaper.f19954id);
+        v.append(wallPaper.f19955id);
         StringBuilder v9 = a1.g.v(v.toString());
         v9.append(e(wallPaper.settings));
         String sb3 = v9.toString();
@@ -136,7 +136,7 @@ public final class ho extends Drawable {
                     }
                     org.telegram.ui.Components.gd0 gd0Var = new org.telegram.ui.Components.gd0();
                     gd0Var.n(k10, k11, k12, i10);
-                    a2 = new BitmapDrawable(gd0Var.f26407k);
+                    a2 = new BitmapDrawable(gd0Var.f26405k);
                 }
             } else {
                 a2 = a(new ColorDrawable(-16777216));
@@ -154,7 +154,7 @@ public final class ho extends Drawable {
             boolean z11 = hoVar.f38473a;
             TLRPC.WallPaper wallPaper2 = hoVar.f38478g;
             String str = wallPaper.uploadingImage;
-            if (str == null ? !(wallPaper.f19954id != wallPaper2.f19954id || !TextUtils.equals(e(wallPaper.settings), e(wallPaper2.settings)) || (wallPaper.document != null && !wallPaper.pattern && (wallPaperSettings = wallPaper.settings) != null && wallPaperSettings.intensity > 0 && z11 != z10)) : !(!str.equals(wallPaper2.uploadingImage) || ((wallPaperSettings2 = wallPaper.settings) != null && wallPaper2.settings != null && wallPaperSettings2.intensity > 0 && z11 != z10))) {
+            if (str == null ? !(wallPaper.f19955id != wallPaper2.f19955id || !TextUtils.equals(e(wallPaper.settings), e(wallPaper2.settings)) || (wallPaper.document != null && !wallPaper.pattern && (wallPaperSettings = wallPaper.settings) != null && wallPaperSettings.intensity > 0 && z11 != z10)) : !(!str.equals(wallPaper2.uploadingImage) || ((wallPaperSettings2 = wallPaper.settings) != null && wallPaper2.settings != null && wallPaperSettings2.intensity > 0 && z11 != z10))) {
                 return hoVar;
             }
         }

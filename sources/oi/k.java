@@ -39,44 +39,44 @@ import org.telegram.ui.Components.z10;
 import org.telegram.ui.web.a2;
 public final class k implements y10 {
     public static k A;
-    public static final Object f16937y = new Object();
-    public static k f16938z;
-    public final String f16940b;
-    public final String f16941c;
+    public static final Object f16938y = new Object();
+    public static k f16939z;
+    public final String f16941b;
+    public final String f16942c;
     public final String d;
-    public final String f16942e;
-    public final String f16943f;
-    public final String f16944g;
+    public final String f16943e;
+    public final String f16944f;
+    public final String f16945g;
     public final String h;
-    public final ServerSocket f16945i;
-    public WebView f16951o;
-    public b5.h f16952p;
-    public boolean f16953q;
-    public boolean f16954r;
-    public boolean f16955s;
-    public boolean f16956t;
-    public boolean f16957u;
+    public final ServerSocket f16946i;
+    public WebView f16952o;
+    public b5.h f16953p;
+    public boolean f16954q;
+    public boolean f16955r;
+    public boolean f16956s;
+    public boolean f16957t;
+    public boolean f16958u;
     public boolean v;
-    public int f16958w;
-    public d f16959x;
-    public final Object f16939a = new Object();
-    public final ExecutorService f16946j = Executors.newCachedThreadPool();
-    public final ExecutorService f16947k = Executors.newSingleThreadExecutor();
-    public final AtomicInteger f16948l = new AtomicInteger(1);
-    public final HashMap f16949m = new HashMap();
-    public final ArrayDeque f16950n = new ArrayDeque();
+    public int f16959w;
+    public d f16960x;
+    public final Object f16940a = new Object();
+    public final ExecutorService f16947j = Executors.newCachedThreadPool();
+    public final ExecutorService f16948k = Executors.newSingleThreadExecutor();
+    public final AtomicInteger f16949l = new AtomicInteger(1);
+    public final HashMap f16950m = new HashMap();
+    public final ArrayDeque f16951n = new ArrayDeque();
 
     public k(f3 f3Var, String str, byte[] bArr) {
         String j3;
-        this.f16940b = (String) f3Var.d;
-        String str2 = (String) f3Var.f15423b;
-        this.f16941c = str2;
-        String str3 = (String) f3Var.f15424c;
+        this.f16941b = (String) f3Var.d;
+        String str2 = (String) f3Var.f15424b;
+        this.f16942c = str2;
+        String str3 = (String) f3Var.f15425c;
         String q6 = str3.isEmpty() ? "/" : a1.g.q("/", str3, "/");
         this.d = q6;
-        this.f16942e = str;
+        this.f16943e = str;
         String concat = "https://".concat(str2);
-        this.f16943f = concat;
+        this.f16944f = concat;
         byte[] bArr2 = new byte[32];
         new SecureRandom().nextBytes(bArr2);
         String encodeToString = Base64.encodeToString(bArr2, 11);
@@ -89,14 +89,14 @@ public final class k implements y10 {
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(new SecretKeySpec(bArr, "HmacSHA256"));
         String encodeToString2 = Base64.encodeToString(mac.doFinal(j3.getBytes(StandardCharsets.UTF_8)), 11);
-        this.f16944g = concat + q6 + "?bridge=" + encodeToString2 + "#android=" + encodeToString;
-        this.f16945i = new ServerSocket(0, 64, InetAddress.getByName("127.0.0.1"));
+        this.f16945g = concat + q6 + "?bridge=" + encodeToString2 + "#android=" + encodeToString;
+        this.f16946i = new ServerSocket(0, 64, InetAddress.getByName("127.0.0.1"));
     }
 
     public static void a(k kVar) {
-        synchronized (kVar.f16939a) {
+        synchronized (kVar.f16940a) {
             try {
-                if (!kVar.f16957u && kVar.f16951o == null) {
+                if (!kVar.f16958u && kVar.f16952o == null) {
                     z10 z10Var = z10.getInstance();
                     if (z10Var != null && z10Var.isBackground()) {
                         kVar.v = true;
@@ -106,9 +106,9 @@ public final class k implements y10 {
                     kVar.e();
                     try {
                         WebView webView = new WebView(ApplicationLoader.applicationContext);
-                        kVar.f16951o = webView;
-                        kVar.f16953q = o.a("WEB_MESSAGE_ARRAY_BUFFER");
-                        kVar.f16954r = false;
+                        kVar.f16952o = webView;
+                        kVar.f16954q = o.a("WEB_MESSAGE_ARRAY_BUFFER");
+                        kVar.f16955r = false;
                         webView.setBackgroundColor(0);
                         WebSettings settings = webView.getSettings();
                         settings.setJavaScriptEnabled(true);
@@ -127,9 +127,9 @@ public final class k implements y10 {
                         }
                         webView.setWebViewClient(new i(kVar, 0));
                         HashSet hashSet = new HashSet();
-                        hashSet.add(kVar.f16943f);
+                        hashSet.add(kVar.f16944f);
                         a5.b.a(webView, "TelegramWebProxy", hashSet, new x(kVar, 8));
-                        webView.loadUrl(kVar.f16944g);
+                        webView.loadUrl(kVar.f16945g);
                     } catch (Exception e7) {
                         FileLog.e(e7);
                         kVar.f();
@@ -144,23 +144,23 @@ public final class k implements y10 {
         int andUpdate;
         while (true) {
             try {
-                Socket accept = kVar.f16945i.accept();
+                Socket accept = kVar.f16946i.accept();
                 accept.setTcpNoDelay(true);
-                synchronized (kVar.f16939a) {
-                    if (!kVar.f16957u && kVar.f16949m.size() < 64) {
+                synchronized (kVar.f16940a) {
+                    if (!kVar.f16958u && kVar.f16950m.size() < 64) {
                         while (true) {
-                            andUpdate = DesugarAtomicInteger.getAndUpdate(kVar.f16948l, new Object());
-                            if (andUpdate != 0 && !kVar.f16949m.containsKey(Integer.valueOf(andUpdate))) {
+                            andUpdate = DesugarAtomicInteger.getAndUpdate(kVar.f16949l, new Object());
+                            if (andUpdate != 0 && !kVar.f16950m.containsKey(Integer.valueOf(andUpdate))) {
                                 break;
                             }
                         }
                         j jVar = new j(andUpdate, accept);
-                        kVar.f16949m.put(Integer.valueOf(andUpdate), jVar);
-                        if (kVar.f16956t) {
-                            jVar.f16936e = true;
+                        kVar.f16950m.put(Integer.valueOf(andUpdate), jVar);
+                        if (kVar.f16957t) {
+                            jVar.f16937e = true;
                             kVar.l(1, andUpdate, null);
                         }
-                        kVar.f16946j.execute(new w(8, kVar, jVar));
+                        kVar.f16947j.execute(new w(8, kVar, jVar));
                     }
                     try {
                         accept.close();
@@ -168,9 +168,9 @@ public final class k implements y10 {
                     }
                 }
             } catch (Exception e7) {
-                synchronized (kVar.f16939a) {
+                synchronized (kVar.f16940a) {
                     try {
-                        if (!kVar.f16957u) {
+                        if (!kVar.f16958u) {
                             FileLog.e(e7);
                             kVar.f();
                             return;
@@ -284,33 +284,33 @@ public final class k implements y10 {
                 z10 = false;
             }
             if (z10) {
-                synchronized (f16937y) {
+                synchronized (f16938y) {
                     try {
-                        k kVar = f16938z;
-                        if (kVar != null && !kVar.f16945i.isClosed() && f16938z.f16940b.equals((String) i10.d) && f16938z.f16942e.equals(str2)) {
-                            return f16938z.f16945i.getLocalPort();
+                        k kVar = f16939z;
+                        if (kVar != null && !kVar.f16946i.isClosed() && f16939z.f16941b.equals((String) i10.d) && f16939z.f16943e.equals(str2)) {
+                            return f16939z.f16946i.getLocalPort();
                         }
-                        k kVar2 = f16938z;
+                        k kVar2 = f16939z;
                         if (kVar2 != null) {
                             kVar2.o();
-                            f16938z = null;
+                            f16939z = null;
                         }
                         try {
                             k kVar3 = new k(i10, str2, d);
-                            f16938z = kVar3;
+                            f16939z = kVar3;
                             z10 z10Var = z10.getInstance();
                             if (z10Var != null) {
                                 z10Var.addListener(kVar3);
                             }
-                            kVar3.f16946j.execute(new g(kVar3, 1));
+                            kVar3.f16947j.execute(new g(kVar3, 1));
                             AndroidUtilities.runOnUIThread(new g(kVar3, 2));
-                            return f16938z.f16945i.getLocalPort();
+                            return f16939z.f16946i.getLocalPort();
                         } catch (Exception e7) {
                             FileLog.e(e7);
-                            k kVar4 = f16938z;
+                            k kVar4 = f16939z;
                             if (kVar4 != null) {
                                 kVar4.o();
-                                f16938z = null;
+                                f16939z = null;
                             }
                         }
                     } catch (Throwable th3) {
@@ -323,12 +323,12 @@ public final class k implements y10 {
     }
 
     public static void n() {
-        synchronized (f16937y) {
+        synchronized (f16938y) {
             try {
-                k kVar = f16938z;
+                k kVar = f16939z;
                 if (kVar != null) {
                     kVar.o();
-                    f16938z = null;
+                    f16939z = null;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -338,24 +338,24 @@ public final class k implements y10 {
 
     public final void c(j jVar, boolean z10) {
         boolean z11;
-        synchronized (this.f16939a) {
+        synchronized (this.f16940a) {
             try {
-                if (this.f16949m.get(Integer.valueOf(jVar.f16933a)) != jVar) {
+                if (this.f16950m.get(Integer.valueOf(jVar.f16934a)) != jVar) {
                     return;
                 }
-                this.f16949m.remove(Integer.valueOf(jVar.f16933a));
-                if (z10 && this.f16956t && jVar.f16936e) {
+                this.f16950m.remove(Integer.valueOf(jVar.f16934a));
+                if (z10 && this.f16957t && jVar.f16937e) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                this.f16939a.notifyAll();
+                this.f16940a.notifyAll();
                 try {
-                    jVar.f16934b.close();
+                    jVar.f16935b.close();
                 } catch (Exception unused) {
                 }
                 if (z11) {
-                    l(3, jVar.f16933a, null);
+                    l(3, jVar.f16934a, null);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -364,10 +364,10 @@ public final class k implements y10 {
     }
 
     public final void e() {
-        WebView webView = this.f16951o;
-        this.f16951o = null;
-        this.f16952p = null;
-        this.f16954r = false;
+        WebView webView = this.f16952o;
+        this.f16952o = null;
+        this.f16953p = null;
+        this.f16955r = false;
         if (webView != null) {
             try {
                 webView.stopLoading();
@@ -381,23 +381,23 @@ public final class k implements y10 {
     }
 
     public final void f() {
-        synchronized (this.f16939a) {
-            if (!this.f16957u && !this.v) {
+        synchronized (this.f16940a) {
+            if (!this.f16958u && !this.v) {
                 this.v = true;
                 int i10 = 0;
-                this.f16956t = false;
-                this.f16952p = null;
-                this.f16950n.clear();
-                this.f16958w = 0;
-                ArrayList arrayList = new ArrayList(this.f16949m.values());
-                this.f16949m.clear();
-                this.f16939a.notifyAll();
+                this.f16957t = false;
+                this.f16953p = null;
+                this.f16951n.clear();
+                this.f16959w = 0;
+                ArrayList arrayList = new ArrayList(this.f16950m.values());
+                this.f16950m.clear();
+                this.f16940a.notifyAll();
                 int size = arrayList.size();
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
                     try {
-                        ((j) obj).f16934b.close();
+                        ((j) obj).f16935b.close();
                     } catch (Exception unused) {
                     }
                 }
@@ -411,15 +411,15 @@ public final class k implements y10 {
             JSONObject jSONObject = new JSONObject(str);
             String optString = jSONObject.optString("t");
             if ("tproxy-android-init".equals(optString) && jSONObject.optInt("v") == 1 && this.h.equals(jSONObject.optString("nonce"))) {
-                synchronized (this.f16939a) {
-                    if (!this.f16957u && this.f16952p == null) {
-                        this.f16952p = hVar;
-                        if (this.f16953q) {
-                            this.f16954r = true;
+                synchronized (this.f16940a) {
+                    if (!this.f16958u && this.f16953p == null) {
+                        this.f16953p = hVar;
+                        if (this.f16954q) {
+                            this.f16955r = true;
                             l(16, 0, new byte[]{1});
                             return;
                         }
-                        WebView webView = this.f16951o;
+                        WebView webView = this.f16952o;
                         t tVar = new t(this, webView, hVar, 26);
                         AndroidUtilities.runOnUIThread(tVar, 5000L);
                         try {
@@ -445,7 +445,7 @@ public final class k implements y10 {
             return false;
         }
         Uri parse = Uri.parse(url);
-        if (!"https".equalsIgnoreCase(parse.getScheme()) || !this.f16941c.equalsIgnoreCase(parse.getHost()) || parse.getUserInfo() != null || parse.getPort() != -1 || !this.d.equals(parse.getPath())) {
+        if (!"https".equalsIgnoreCase(parse.getScheme()) || !this.f16942c.equalsIgnoreCase(parse.getHost()) || parse.getUserInfo() != null || parse.getPort() != -1 || !this.d.equals(parse.getPath())) {
             return false;
         }
         return true;
@@ -460,10 +460,10 @@ public final class k implements y10 {
             bArr = new byte[0];
         }
         byte[] array = ByteBuffer.allocate(bArr.length + 8).put((byte) i10).put((byte) (i11 >> 16)).put((byte) (i11 >> 8)).put((byte) i11).putInt(bArr.length).put(bArr).array();
-        synchronized (this.f16939a) {
-            if (!this.f16957u && this.f16950n.size() < 8192 && this.f16958w <= 67108864 - array.length) {
-                this.f16950n.add(array);
-                this.f16958w += array.length;
+        synchronized (this.f16940a) {
+            if (!this.f16958u && this.f16951n.size() < 8192 && this.f16959w <= 67108864 - array.length) {
+                this.f16951n.add(array);
+                this.f16959w += array.length;
                 AndroidUtilities.runOnUIThread(new g(this, 4));
                 return;
             }
@@ -472,22 +472,22 @@ public final class k implements y10 {
     }
 
     public final void o() {
-        synchronized (this.f16939a) {
+        synchronized (this.f16940a) {
             try {
-                if (this.f16957u) {
+                if (this.f16958u) {
                     return;
                 }
-                this.f16957u = true;
+                this.f16958u = true;
                 int i10 = 0;
-                this.f16956t = false;
+                this.f16957t = false;
                 this.v = false;
-                ArrayList arrayList = new ArrayList(this.f16949m.values());
-                this.f16949m.clear();
-                this.f16950n.clear();
-                this.f16958w = 0;
-                this.f16939a.notifyAll();
+                ArrayList arrayList = new ArrayList(this.f16950m.values());
+                this.f16950m.clear();
+                this.f16951n.clear();
+                this.f16959w = 0;
+                this.f16940a.notifyAll();
                 try {
-                    this.f16945i.close();
+                    this.f16946i.close();
                 } catch (Exception unused) {
                 }
                 z10 z10Var = z10.getInstance();
@@ -499,13 +499,13 @@ public final class k implements y10 {
                     Object obj = arrayList.get(i10);
                     i10++;
                     try {
-                        ((j) obj).f16934b.close();
+                        ((j) obj).f16935b.close();
                     } catch (Exception unused2) {
                     }
                 }
                 AndroidUtilities.runOnUIThread(new g(this, 0));
-                this.f16946j.shutdownNow();
-                this.f16947k.shutdownNow();
+                this.f16947j.shutdownNow();
+                this.f16948k.shutdownNow();
             } catch (Throwable th2) {
                 throw th2;
             }

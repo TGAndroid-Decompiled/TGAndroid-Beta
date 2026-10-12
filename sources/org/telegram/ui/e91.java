@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class e91 extends org.telegram.ui.Components.t61 {
-    public static final int f37038a = 0;
+    public static final int f37042a = 0;
 
     static {
         org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
@@ -11,12 +11,12 @@ public final class e91 extends org.telegram.ui.Components.t61 {
 
     @Override
     public final void bindView(View view, org.telegram.ui.Components.u61 u61Var, boolean z10, org.telegram.ui.Components.h71 h71Var, org.telegram.ui.Components.p71 p71Var) {
-        ((f91) view).set(u61Var.f31089z);
+        ((f91) view).set(u61Var.f31084z);
     }
 
     @Override
     public final boolean contentsEquals(org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.u61 u61Var2) {
-        if (u61Var.f31089z == u61Var2.f31089z) {
+        if (u61Var.f31084z == u61Var2.f31084z) {
             return true;
         }
         return false;

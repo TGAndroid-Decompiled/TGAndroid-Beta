@@ -18,7 +18,7 @@ public final class mm extends wm0 {
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30574b.f24340e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30570b.f24336e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -44,7 +44,7 @@ public final class mm extends wm0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30574b.f24340e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30570b.f24336e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

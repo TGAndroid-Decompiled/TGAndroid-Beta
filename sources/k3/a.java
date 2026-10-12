@@ -14,22 +14,22 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class a implements o {
-    public final int f14582a = 0;
-    public final Object f14583b;
+    public final int f14583a = 0;
+    public final Object f14584b;
 
     public a(int i10) {
         if ((i10 & 1) != 0) {
-            this.f14583b = new d0(65496, 2, "image/jpeg");
+            this.f14584b = new d0(65496, 2, "image/jpeg");
         } else {
-            this.f14583b = new b();
+            this.f14584b = new b();
         }
     }
 
     @Override
     public final boolean b(p pVar) {
-        switch (this.f14582a) {
+        switch (this.f14583a) {
             case 0:
-                return ((o) this.f14583b).b(pVar);
+                return ((o) this.f14584b).b(pVar);
             default:
                 return true;
         }
@@ -37,21 +37,21 @@ public final class a implements o {
 
     @Override
     public final o c() {
-        int i10 = this.f14582a;
+        int i10 = this.f14583a;
         return this;
     }
 
     @Override
     public final void g(q qVar) {
-        switch (this.f14582a) {
+        switch (this.f14583a) {
             case 0:
-                ((o) this.f14583b).g(qVar);
+                ((o) this.f14584b).g(qVar);
                 return;
             default:
                 h0 f22 = qVar.f2(0, 3);
                 qVar.d2(new t(-9223372036854775807L));
                 qVar.k1();
-                s sVar = (s) this.f14583b;
+                s sVar = (s) this.f14584b;
                 r a2 = sVar.a();
                 a2.f3583q = r0.n("text/x-unknown");
                 a2.f3576j = sVar.f3641r;
@@ -62,9 +62,9 @@ public final class a implements o {
 
     @Override
     public final void h(long j3, long j10) {
-        switch (this.f14582a) {
+        switch (this.f14583a) {
             case 0:
-                ((o) this.f14583b).h(j3, j10);
+                ((o) this.f14584b).h(j3, j10);
                 return;
             default:
                 return;
@@ -73,7 +73,7 @@ public final class a implements o {
 
     @Override
     public final List i() {
-        switch (this.f14582a) {
+        switch (this.f14583a) {
             case 0:
             default:
                 g0 g0Var = i0.f8749b;
@@ -83,9 +83,9 @@ public final class a implements o {
 
     @Override
     public final int m(p pVar, c3.s sVar) {
-        switch (this.f14582a) {
+        switch (this.f14583a) {
             case 0:
-                return ((o) this.f14583b).m(pVar, sVar);
+                return ((o) this.f14584b).m(pVar, sVar);
             default:
                 if (pVar.skip(Integer.MAX_VALUE) == -1) {
                     return -1;
@@ -96,9 +96,9 @@ public final class a implements o {
 
     @Override
     public final void release() {
-        switch (this.f14582a) {
+        switch (this.f14583a) {
             case 0:
-                ((o) this.f14583b).release();
+                ((o) this.f14584b).release();
                 return;
             default:
                 return;
@@ -106,7 +106,7 @@ public final class a implements o {
     }
 
     public a(s sVar) {
-        this.f14583b = sVar;
+        this.f14584b = sVar;
     }
 
     private final void a() {

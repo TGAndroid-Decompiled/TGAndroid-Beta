@@ -29,10 +29,10 @@ public final class sb0 extends wm0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         tb0 tb0Var = this.Z2;
-        gg.j1 j1Var = tb0Var.f30842f;
-        gg.p1 p1Var = tb0Var.f30841e;
-        if (!tb0Var.f30840c.f47882t ? this.W2 || p1Var == null || p1Var.f10765e == null || !p1Var.f10766f || motionEvent.getY() >= p1Var.f10765e.getBottom() : this.W2 || p1Var == null || p1Var.f10765e == null || !p1Var.f10766f || motionEvent.getY() <= p1Var.f10765e.getTop()) {
-            if (!this.V2 && org.telegram.ui.ut.q().r(motionEvent, tb0Var.f30839b, null, this.f32467n2)) {
+        gg.j1 j1Var = tb0Var.f30845f;
+        gg.p1 p1Var = tb0Var.f30844e;
+        if (!tb0Var.f30843c.f47890t ? this.W2 || p1Var == null || p1Var.f10765e == null || !p1Var.f10766f || motionEvent.getY() >= p1Var.f10765e.getBottom() : this.W2 || p1Var == null || p1Var.f10765e == null || !p1Var.f10766f || motionEvent.getY() <= p1Var.f10765e.getTop()) {
+            if (!this.V2 && org.telegram.ui.ut.q().r(motionEvent, tb0Var.f30842b, null, this.f32467n2)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -100,7 +100,7 @@ public final class sb0 extends wm0 {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
         tb0 tb0Var = this.Z2;
-        gg.p1 p1Var = tb0Var.f30841e;
+        gg.p1 p1Var = tb0Var.f30844e;
         if (p1Var != null) {
             p1Var.d = Integer.valueOf(size);
             ci.bb bbVar = p1Var.f10765e;
@@ -116,8 +116,8 @@ public final class sb0 extends wm0 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         tb0 tb0Var = this.Z2;
-        gg.p1 p1Var = tb0Var.f30841e;
-        if (tb0Var.f30840c.f47882t) {
+        gg.p1 p1Var = tb0Var.f30844e;
+        if (tb0Var.f30843c.f47890t) {
             if (!this.W2 && p1Var != null && p1Var.f10765e != null && p1Var.f10766f && motionEvent.getY() > p1Var.f10765e.getTop()) {
                 return false;
             }

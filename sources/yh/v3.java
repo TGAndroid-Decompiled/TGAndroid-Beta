@@ -3,29 +3,29 @@ package yh;
 import java.util.ArrayList;
 import org.telegram.ui.Components.fk0;
 public final class v3 implements Runnable {
-    public final int f53533a;
-    public final w3 f53534b;
+    public final int f53545a;
+    public final w3 f53546b;
 
     public v3(w3 w3Var, int i10) {
-        this.f53533a = i10;
-        this.f53534b = w3Var;
+        this.f53545a = i10;
+        this.f53546b = w3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53533a) {
+        switch (this.f53545a) {
             case 0:
-                w3 w3Var = this.f53534b;
-                w3Var.f53561r = false;
+                w3 w3Var = this.f53546b;
+                w3Var.f53573r = false;
                 w3Var.invalidate();
                 w3Var.a();
                 w3Var.c();
                 return;
             case 1:
-                this.f53534b.invalidate();
+                this.f53546b.invalidate();
                 return;
             default:
-                w3 w3Var2 = this.f53534b;
+                w3 w3Var2 = this.f53546b;
                 w3Var2.setMessageCell(null);
                 ArrayList arrayList = w3Var2.J;
                 int size = arrayList.size();

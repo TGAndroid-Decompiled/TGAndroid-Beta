@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class kq {
-    public float f27922g;
-    public float f27925k;
-    public final Path f27917a = new Path();
-    public final float[] f27918b = new float[4];
-    public final float[] f27919c = new float[4];
+    public float f27908g;
+    public float f27911k;
+    public final Path f27903a = new Path();
+    public final float[] f27904b = new float[4];
+    public final float[] f27905c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f27923i = new Random();
-    public final int f27921f = 6;
-    public final float f27920e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f27924j = new float[6];
+    public final Random f27909i = new Random();
+    public final int f27907f = 6;
+    public final float f27906e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f27910j = new float[6];
 
     public kq() {
-        for (int i10 = 0; i10 < this.f27921f; i10++) {
-            this.f27924j[i10] = (this.f27923i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f27907f; i10++) {
+            this.f27910j[i10] = (this.f27909i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class kq {
         int i10;
         float f12;
         kq kqVar = this;
-        float f13 = kqVar.f27922g;
+        float f13 = kqVar.f27908g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
-        float f16 = kqVar.f27920e;
+        float f16 = kqVar.f27906e;
         float f17 = max * f16 * kqVar.h;
-        Path path = kqVar.f27917a;
+        Path path = kqVar.f27903a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = kqVar.f27921f;
+            int i12 = kqVar.f27907f;
             if (i11 < i12) {
                 Matrix matrix = kqVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class kq {
                 } else {
                     f11 = f15;
                 }
-                float f19 = kqVar.f27925k;
-                float[] fArr = kqVar.f27924j;
+                float f19 = kqVar.f27911k;
+                float[] fArr = kqVar.f27910j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = kqVar.f27918b;
+                float[] fArr2 = kqVar.f27904b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class kq {
                 } else {
                     f12 = f22;
                 }
-                float f23 = kqVar.f27925k;
-                float[] fArr3 = kqVar.f27919c;
+                float f23 = kqVar.f27911k;
+                float[] fArr3 = kqVar.f27905c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

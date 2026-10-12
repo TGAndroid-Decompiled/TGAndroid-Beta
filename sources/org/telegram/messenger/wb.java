@@ -2,27 +2,27 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class wb implements Runnable {
-    public final int f19462a;
-    public final MessagesController f19463b;
-    public final TLRPC.Dialog f19464c;
+    public final int f19463a;
+    public final MessagesController f19464b;
+    public final TLRPC.Dialog f19465c;
 
     public wb(MessagesController messagesController, TLRPC.Dialog dialog, int i10) {
-        this.f19462a = i10;
-        this.f19463b = messagesController;
-        this.f19464c = dialog;
+        this.f19463a = i10;
+        this.f19464b = messagesController;
+        this.f19465c = dialog;
     }
 
     @Override
     public final void run() {
-        switch (this.f19462a) {
+        switch (this.f19463a) {
             case 0:
-                this.f19463b.lambda$checkLastDialogMessage$224(this.f19464c);
+                this.f19464b.lambda$checkLastDialogMessage$224(this.f19465c);
                 return;
             case 1:
-                this.f19463b.lambda$checkLastDialogMessage$225(this.f19464c);
+                this.f19464b.lambda$checkLastDialogMessage$225(this.f19465c);
                 return;
             default:
-                this.f19463b.lambda$checkLastDialogMessage$223(this.f19464c);
+                this.f19464b.lambda$checkLastDialogMessage$223(this.f19465c);
                 return;
         }
     }

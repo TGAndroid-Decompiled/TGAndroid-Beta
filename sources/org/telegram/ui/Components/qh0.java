@@ -7,30 +7,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 public final class qh0 extends s4.t0 {
-    public final int f29838a;
-    public final Object f29839b;
+    public final int f29816a;
+    public final Object f29817b;
 
     public qh0(Object obj, int i10) {
-        this.f29838a = i10;
-        this.f29839b = obj;
+        this.f29816a = i10;
+        this.f29817b = obj;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i10) {
         gm0 gm0Var;
-        int i11 = this.f29838a;
+        int i11 = this.f29816a;
         rg.o1 o1Var = null;
         boolean z10 = false;
-        Object obj = this.f29839b;
+        Object obj = this.f29817b;
         switch (i11) {
             case 0:
                 wh0 wh0Var = (wh0) obj;
-                ph0 ph0Var = wh0Var.f32406b;
+                ph0 ph0Var = wh0Var.f32393b;
                 if (i10 == 0 && wh0.J(wh0Var) + ((wh0Var.E - wh0.I(wh0Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && ph0Var.canScrollVertically(1)) {
                     ph0Var.getChildAt(0);
                     gm0 gm0Var2 = (gm0) ph0Var.K(0);
                     if (gm0Var2 != null) {
-                        View view = gm0Var2.f47889a;
+                        View view = gm0Var2.f47897a;
                         if (view.getTop() > AndroidUtilities.dp(7.0f)) {
                             ph0Var.v0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
                             return;
@@ -92,8 +92,8 @@ public final class qh0 extends s4.t0 {
             case 7:
                 y71 y71Var = (y71) obj;
                 ai.w0 w0Var = y71Var.d;
-                if (i10 == 0 && y71Var.G && AndroidUtilities.dp(13.0f) + y71.o(y71Var) + y71Var.f32978y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (gm0Var = (gm0) w0Var.K(0)) != null) {
-                    View view3 = gm0Var.f47889a;
+                if (i10 == 0 && y71Var.G && AndroidUtilities.dp(13.0f) + y71.o(y71Var) + y71Var.f32971y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (gm0Var = (gm0) w0Var.K(0)) != null) {
+                    View view3 = gm0Var.f47897a;
                     if (view3.getTop() > 0) {
                         w0Var.v0(0, view3.getTop(), null);
                         return;
@@ -104,28 +104,28 @@ public final class qh0 extends s4.t0 {
             case 14:
                 rg.t0 t0Var2 = (rg.t0) obj;
                 if (i10 == 1) {
-                    t0Var2.f47596b3 = true;
+                    t0Var2.f47604b3 = true;
                 }
                 if (i10 == 0) {
                     for (int i12 = 0; i12 < recyclerView.getChildCount(); i12++) {
                         rg.o1 o1Var2 = (rg.o1) t0Var2.getChildAt(i12);
-                        if (o1Var == null || o1Var2.f47582a > o1Var.f47582a) {
+                        if (o1Var == null || o1Var2.f47590a > o1Var.f47590a) {
                             o1Var = o1Var2;
                         }
                     }
                     if (o1Var != null) {
                         t0Var2.x1(o1Var, true);
-                        t0Var2.f47596b3 = false;
+                        t0Var2.f47604b3 = false;
                         t0Var2.v0(0, o1Var.getTop() - ((t0Var2.getMeasuredHeight() - o1Var.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     }
                     t0Var2.y1();
                     return;
                 }
-                AndroidUtilities.cancelRunOnUIThread(t0Var2.f47597c3);
+                AndroidUtilities.cancelRunOnUIThread(t0Var2.f47605c3);
                 return;
             case 15:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((tg.y0) obj).Y.getEditText());
+                    AndroidUtilities.hideKeyboard(((tg.z0) obj).Y.getEditText());
                     return;
                 }
                 return;

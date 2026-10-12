@@ -199,7 +199,7 @@ public class FileLog {
             if (!db.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     kb.a aVar2 = new kb.a(byte[].class);
-                    if (aVar2.f14776b == aVar2.f14775a) {
+                    if (aVar2.f14777b == aVar2.f14776a) {
                         z10 = true;
                     } else {
                         z10 = false;

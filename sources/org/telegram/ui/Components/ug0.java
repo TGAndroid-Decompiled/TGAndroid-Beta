@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class ug0 {
-    public final org.telegram.ui.lu0 f31165a;
+    public final org.telegram.ui.lu0 f31160a;
 
     public ug0(org.telegram.ui.lu0 lu0Var) {
-        this.f31165a = lu0Var;
+        this.f31160a = lu0Var;
     }
 
     @JavascriptInterface
@@ -21,22 +21,22 @@ public final class ug0 {
 
     @JavascriptInterface
     public void onPlayerNotifyBufferedPosition(float f7) {
-        this.f31165a.J = f7;
+        this.f31160a.J = f7;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyCurrentPosition(int i10) {
-        this.f31165a.I = i10 * 1000;
+        this.f31160a.I = i10 * 1000;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyDuration(int i10) {
-        org.telegram.ui.lu0 lu0Var = this.f31165a;
+        org.telegram.ui.lu0 lu0Var = this.f31160a;
         lu0Var.H = i10 * 1000;
-        String str = lu0Var.f31510s;
+        String str = lu0Var.f31511s;
         if (str != null) {
             vg0.a(lu0Var, str);
-            lu0Var.f31510s = null;
+            lu0Var.f31511s = null;
         }
     }
 
@@ -44,7 +44,7 @@ public final class ug0 {
     public void onPlayerStateChange(String str) {
         boolean z10;
         int parseInt = Integer.parseInt(str);
-        org.telegram.ui.lu0 lu0Var = this.f31165a;
+        org.telegram.ui.lu0 lu0Var = this.f31160a;
         boolean z11 = lu0Var.G;
         boolean z12 = false;
         int i10 = 1;

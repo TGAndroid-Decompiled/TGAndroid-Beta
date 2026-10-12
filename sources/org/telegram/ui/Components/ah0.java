@@ -22,26 +22,26 @@ public final class ah0 extends View {
     public int K;
     public final org.telegram.ui.ActionBar.c6 L;
     public boolean M;
-    public int f24309a;
-    public int f24310b;
-    public int f24311c;
+    public int f24305a;
+    public int f24306b;
+    public int f24307c;
     public float d;
-    public int f24312e;
-    public int f24313f;
+    public int f24308e;
+    public int f24309f;
     public boolean h;
-    public boolean f24314n;
-    public float f24315r;
-    public float f24316s;
+    public boolean f24310n;
+    public float f24311r;
+    public float f24312s;
     public int v;
-    public int f24317w;
-    public final RectF f24318x;
-    public float f24319y;
+    public int f24313w;
+    public final RectF f24314x;
+    public float f24315y;
 
     public ah0(Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
         super(activity);
-        this.f24309a = -1;
-        this.f24310b = 0;
-        this.f24318x = new RectF();
+        this.f24305a = -1;
+        this.f24306b = 0;
+        this.f24314x = new RectF();
         Paint paint = new Paint(1);
         this.H = paint;
         Paint paint2 = new Paint(1);
@@ -70,10 +70,10 @@ public final class ah0 extends View {
     public final void a() {
         int i10;
         boolean z10;
-        if (this.f24314n) {
-            i10 = Math.max(this.f24312e, this.f24313f);
+        if (this.f24310n) {
+            i10 = Math.max(this.f24308e, this.f24309f);
         } else {
-            i10 = this.f24310b;
+            i10 = this.f24306b;
         }
         int i11 = 0;
         if (i10 > 3) {
@@ -92,35 +92,35 @@ public final class ah0 extends View {
     }
 
     public final void b(int i10) {
-        if (this.f24314n) {
+        if (this.f24310n) {
             this.J = i10;
             return;
         }
         if (this.h) {
-            if (this.f24311c != i10) {
+            if (this.f24307c != i10) {
                 ValueAnimator valueAnimator = this.E;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
                 float f7 = this.d;
-                float f10 = this.f24319y;
-                this.d = (this.f24311c * f10) + ((1.0f - f10) * f7);
+                float f10 = this.f24315y;
+                this.d = (this.f24307c * f10) + ((1.0f - f10) * f7);
             } else {
                 return;
             }
         } else {
-            this.d = this.f24309a;
+            this.d = this.f24305a;
         }
-        if (i10 != this.f24309a) {
-            this.f24311c = i10;
+        if (i10 != this.f24305a) {
+            this.f24307c = i10;
             this.h = true;
-            this.f24319y = 0.0f;
+            this.f24315y = 0.0f;
             invalidate();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.E = ofFloat;
             ofFloat.addUpdateListener(new yg0(this, 1));
             this.E.addListener(new zg0(this, 0));
-            this.E.setInterpolator(js.f27627f);
+            this.E.setInterpolator(js.f27634f);
             this.E.setDuration(220L);
             this.E.start();
         }
@@ -130,8 +130,8 @@ public final class ah0 extends View {
         int dp;
         int i12;
         int i13;
-        int i14 = this.f24309a;
-        if (i14 < 0 || i11 == 0 || this.f24310b == 0) {
+        int i14 = this.f24305a;
+        if (i14 < 0 || i11 == 0 || this.f24306b == 0) {
             z10 = false;
         }
         if (!z10) {
@@ -139,10 +139,10 @@ public final class ah0 extends View {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f24309a = i10;
-            this.f24310b = i11;
+            this.f24305a = i10;
+            this.f24306b = i11;
             invalidate();
-        } else if (this.f24310b == i11 && (Math.abs(i14 - i10) <= 2 || this.h || this.f24314n)) {
+        } else if (this.f24306b == i11 && (Math.abs(i14 - i10) <= 2 || this.h || this.f24310n)) {
             b(i10);
         } else {
             ValueAnimator valueAnimator2 = this.E;
@@ -151,44 +151,44 @@ public final class ah0 extends View {
                 valueAnimator2.cancel();
             }
             int dp2 = AndroidUtilities.dp(8.0f) * 2;
-            this.v = (getMeasuredHeight() - dp2) / Math.min(this.f24310b, 3);
-            this.f24317w = (getMeasuredHeight() - dp2) / Math.min(i11, 3);
-            float f7 = (this.f24309a - 1) * this.v;
-            this.f24315r = f7;
+            this.v = (getMeasuredHeight() - dp2) / Math.min(this.f24306b, 3);
+            this.f24313w = (getMeasuredHeight() - dp2) / Math.min(i11, 3);
+            float f7 = (this.f24305a - 1) * this.v;
+            this.f24311r = f7;
             if (f7 < 0.0f) {
-                this.f24315r = 0.0f;
+                this.f24311r = 0.0f;
             } else {
                 int i15 = this.v;
-                if (hg.c.g(this.f24310b, 1, i12, dp) - f7 < (getMeasuredHeight() - dp) - i15) {
-                    this.f24315r = hg.c.g(this.f24310b, 1, i15, dp) - ((getMeasuredHeight() - dp) - this.v);
+                if (hg.c.g(this.f24306b, 1, i12, dp) - f7 < (getMeasuredHeight() - dp) - i15) {
+                    this.f24311r = hg.c.g(this.f24306b, 1, i15, dp) - ((getMeasuredHeight() - dp) - this.v);
                 }
             }
-            float f10 = (i10 - 1) * this.f24317w;
-            this.f24316s = f10;
+            float f10 = (i10 - 1) * this.f24313w;
+            this.f24312s = f10;
             if (f10 < 0.0f) {
-                this.f24316s = 0.0f;
+                this.f24312s = 0.0f;
             } else {
                 int i16 = i11 - 1;
-                int i17 = this.f24317w;
+                int i17 = this.f24313w;
                 if (((i13 * i16) + dp) - f10 < (getMeasuredHeight() - dp) - i17) {
-                    this.f24316s = ((i16 * i17) + dp) - ((getMeasuredHeight() - dp) - this.f24317w);
+                    this.f24312s = ((i16 * i17) + dp) - ((getMeasuredHeight() - dp) - this.f24313w);
                 }
             }
-            this.d = this.f24309a;
-            this.f24311c = i10;
-            this.f24309a = i10;
-            this.f24312e = this.f24310b;
-            this.f24313f = i11;
-            this.f24310b = i11;
-            this.f24314n = true;
+            this.d = this.f24305a;
+            this.f24307c = i10;
+            this.f24305a = i10;
+            this.f24308e = this.f24306b;
+            this.f24309f = i11;
+            this.f24306b = i11;
+            this.f24310n = true;
             this.h = true;
-            this.f24319y = 0.0f;
+            this.f24315y = 0.0f;
             invalidate();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.E = ofFloat;
             ofFloat.addUpdateListener(new yg0(this, 0));
             this.E.addListener(new zg0(this, 1));
-            this.E.setInterpolator(js.f27627f);
+            this.E.setInterpolator(js.f27634f);
             this.E.setDuration(220L);
             this.E.start();
         }
@@ -196,7 +196,7 @@ public final class ah0 extends View {
     }
 
     public final void d() {
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20585ee, this.L);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20586ee, this.L);
         this.K = w02;
         this.H.setColor(i0.a.k(w02, (int) ((Color.alpha(w02) / 255.0f) * 112.0f)));
         this.I.setColor(this.K);
@@ -214,36 +214,36 @@ public final class ah0 extends View {
         int i13;
         int i14;
         super.onDraw(canvas);
-        if (this.f24309a >= 0 && this.f24310b != 0) {
+        if (this.f24305a >= 0 && this.f24306b != 0) {
             int dp = AndroidUtilities.dp(8.0f);
             float f11 = 1.0f;
-            if (this.f24314n) {
-                float f12 = this.f24319y;
-                measuredHeight = (this.f24317w * f12) + ((1.0f - f12) * this.v);
-            } else if (this.f24310b != 0) {
-                measuredHeight = (getMeasuredHeight() - (dp * 2)) / Math.min(this.f24310b, 3);
+            if (this.f24310n) {
+                float f12 = this.f24315y;
+                measuredHeight = (this.f24313w * f12) + ((1.0f - f12) * this.v);
+            } else if (this.f24306b != 0) {
+                measuredHeight = (getMeasuredHeight() - (dp * 2)) / Math.min(this.f24306b, 3);
             } else {
                 return;
             }
             if (measuredHeight != 0.0f) {
                 float dpf2 = AndroidUtilities.dpf2(0.7f);
-                if (this.f24314n) {
-                    float f13 = this.f24315r;
-                    float f14 = this.f24319y;
-                    f7 = (this.f24316s * f14) + ((1.0f - f14) * f13);
+                if (this.f24310n) {
+                    float f13 = this.f24311r;
+                    float f14 = this.f24315y;
+                    f7 = (this.f24312s * f14) + ((1.0f - f14) * f13);
                 } else {
                     if (this.h) {
-                        float f15 = this.f24319y;
-                        f7 = ((this.f24311c - 1) * measuredHeight * f15) + ((1.0f - f15) * (this.d - 1.0f) * measuredHeight);
+                        float f15 = this.f24315y;
+                        f7 = ((this.f24307c - 1) * measuredHeight * f15) + ((1.0f - f15) * (this.d - 1.0f) * measuredHeight);
                     } else {
-                        f7 = (this.f24309a - 1) * measuredHeight;
+                        f7 = (this.f24305a - 1) * measuredHeight;
                     }
                     if (f7 < 0.0f) {
                         f7 = 0.0f;
                     } else {
                         float f16 = dp;
-                        if ((((this.f24310b - 1) * measuredHeight) + f16) - f7 < (getMeasuredHeight() - dp) - measuredHeight) {
-                            f7 = (((this.f24310b - 1) * measuredHeight) + f16) - ((getMeasuredHeight() - dp) - measuredHeight);
+                        if ((((this.f24306b - 1) * measuredHeight) + f16) - f7 < (getMeasuredHeight() - dp) - measuredHeight) {
+                            f7 = (((this.f24306b - 1) * measuredHeight) + f16) - ((getMeasuredHeight() - dp) - measuredHeight);
                         }
                     }
                 }
@@ -251,14 +251,14 @@ public final class ah0 extends View {
                 float f17 = dp;
                 int max = Math.max(0, (int) (((f17 + f7) / measuredHeight) - 1.0f));
                 int i15 = max + 6;
-                if (this.f24314n) {
-                    i10 = Math.max(this.f24312e, this.f24313f);
+                if (this.f24310n) {
+                    i10 = Math.max(this.f24308e, this.f24309f);
                 } else {
-                    i10 = this.f24310b;
+                    i10 = this.f24306b;
                 }
                 int min = Math.min(i15, i10);
                 while (true) {
-                    rectF = this.f24318x;
+                    rectF = this.f24314x;
                     if (max >= min) {
                         break;
                     }
@@ -268,15 +268,15 @@ public final class ah0 extends View {
                         f10 = f11;
                     } else {
                         rectF.set(0.0f, f18 + dpf2, getMeasuredWidth(), f19 - dpf2);
-                        boolean z10 = this.f24314n;
+                        boolean z10 = this.f24310n;
                         Paint paint = this.H;
                         f10 = f11;
-                        if (z10 && max >= this.f24313f) {
-                            paint.setColor(i0.a.k(this.K, (int) ((f10 - this.f24319y) * (Color.alpha(i13) / 255.0f) * 76.0f)));
+                        if (z10 && max >= this.f24309f) {
+                            paint.setColor(i0.a.k(this.K, (int) ((f10 - this.f24315y) * (Color.alpha(i13) / 255.0f) * 76.0f)));
                             canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
                             paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i14) / 255.0f) * 76.0f)));
-                        } else if (z10 && max >= this.f24312e) {
-                            paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i11) / 255.0f) * 76.0f * this.f24319y)));
+                        } else if (z10 && max >= this.f24308e) {
+                            paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i11) / 255.0f) * 76.0f * this.f24315y)));
                             canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
                             paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i12) / 255.0f) * 76.0f)));
                         } else {
@@ -291,12 +291,12 @@ public final class ah0 extends View {
                 Paint paint2 = this.I;
                 if (z11) {
                     float f21 = this.d;
-                    float f22 = this.f24319y;
-                    float f23 = ((((this.f24311c * f22) + ((f20 - f22) * f21)) * measuredHeight) + f17) - f7;
+                    float f22 = this.f24315y;
+                    float f23 = ((((this.f24307c * f22) + ((f20 - f22) * f21)) * measuredHeight) + f17) - f7;
                     rectF.set(0.0f, f23 + dpf2, getMeasuredWidth(), (f23 + measuredHeight) - dpf2);
                     canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint2);
                 } else {
-                    float f24 = ((this.f24309a * measuredHeight) + f17) - f7;
+                    float f24 = ((this.f24305a * measuredHeight) + f17) - f7;
                     rectF.set(0.0f, f24 + dpf2, getMeasuredWidth(), (f24 + measuredHeight) - dpf2);
                     canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint2);
                 }

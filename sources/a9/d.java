@@ -56,30 +56,30 @@ public final class d implements ServiceConnection {
                 pf.b bVar = d0Var.h;
                 bVar.getClass();
                 try {
-                    bVar.i0(c10, (p3) bVar.f45443b);
+                    bVar.i0(c10, (p3) bVar.f45448b);
                     return;
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
                     return;
                 }
             case 2:
-                int i12 = wf.d.f50568a;
+                int i12 = wf.d.f50576a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof wf.e)) {
                         eVar = (wf.e) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f50567a = iBinder;
+                        obj.f50575a = iBinder;
                         eVar = obj;
                     }
                 }
                 n6.k kVar2 = new n6.k(26, eVar, componentName);
                 if (((of.d) ((WeakReference) this.f343b).get()) != null) {
-                    of.f.f16872b = kVar2;
-                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (kVar = of.f.f16872b) != null) {
+                    of.f.f16873b = kVar2;
+                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (kVar = of.f.f16873b) != null) {
                         try {
-                            ((wf.c) ((wf.e) kVar.f16432b)).G0();
+                            ((wf.c) ((wf.e) kVar.f16433b)).G0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -94,13 +94,13 @@ public final class d implements ServiceConnection {
             default:
                 StringBuilder sb2 = new StringBuilder("Connected to SessionLifecycleService. Queue size ");
                 oi.f fVar = (oi.f) this.f343b;
-                LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) fVar.f16928c;
+                LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) fVar.f16929c;
                 sb2.append(linkedBlockingDeque.size());
                 Log.d("SessionLifecycleClient", sb2.toString());
-                fVar.f16927b = new Messenger(iBinder);
+                fVar.f16928b = new Messenger(iBinder);
                 ArrayList arrayList = new ArrayList();
                 linkedBlockingDeque.drainTo(arrayList);
-                ae.g0.q(ae.g0.b((jd.h) fVar.f16926a), new bb.j(fVar, arrayList, null, 6));
+                ae.g0.q(ae.g0.b((jd.h) fVar.f16927a), new bb.j(fVar, arrayList, null, 6));
                 return;
         }
     }
@@ -121,14 +121,14 @@ public final class d implements ServiceConnection {
                 return;
             case 2:
                 if (((of.d) ((WeakReference) this.f343b).get()) != null) {
-                    of.f.f16872b = null;
+                    of.f.f16873b = null;
                     return;
                 }
                 return;
             default:
                 Log.d("SessionLifecycleClient", "Disconnected from SessionLifecycleService");
                 oi.f fVar = (oi.f) this.f343b;
-                fVar.f16927b = null;
+                fVar.f16928b = null;
                 fVar.getClass();
                 return;
         }

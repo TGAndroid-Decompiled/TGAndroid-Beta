@@ -20,14 +20,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.TelegramQRCodeWriter;
 import org.telegram.ui.Components.js;
 public final class a5 extends FrameLayout {
-    public final TextView f34464a;
-    public final FrameLayout f34465b;
-    public final FrameLayout f34466c;
+    public final TextView f34466a;
+    public final FrameLayout f34467b;
+    public final FrameLayout f34468c;
     public final FrameLayout d;
-    public r0 f34467e;
-    public boolean f34468f;
+    public r0 f34469e;
+    public boolean f34470f;
     public boolean h;
-    public ValueAnimator f34469n;
+    public ValueAnimator f34471n;
 
     public a5(Context context, String str) {
         super(context);
@@ -35,12 +35,12 @@ public final class a5 extends FrameLayout {
         char c10;
         addView(new q4(context, str), w7.w5.e(-1, -1, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f34465b = frameLayout;
+        this.f34467b = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), -1));
         frameLayout.setCameraDistance(AndroidUtilities.dp(8000.0f));
         addView(frameLayout, w7.w5.a(244.0f, 0.0f, 22.0f, 0.0f, 0.0f, 212, 49));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f34466c = frameLayout2;
+        this.f34468c = frameLayout2;
         frameLayout.addView(frameLayout2, w7.w5.d(-1.0f, -1));
         FrameLayout frameLayout3 = new FrameLayout(context);
         frameLayout2.addView(frameLayout3, w7.w5.a(164.0f, 0.0f, 24.0f, 0.0f, 0.0f, 164, 49));
@@ -60,7 +60,7 @@ public final class a5 extends FrameLayout {
         imageView.setImageBitmap(bitmap);
         frameLayout3.addView(imageView, w7.w5.d(-1.0f, -1));
         TextView textView = new TextView(context);
-        this.f34464a = textView;
+        this.f34466a = textView;
         textView.setText(LocaleController.getString(R.string.WalletCopyAddress));
         textView.setTextColor(-15556886);
         textView.setTextSize(1, 14.0f);
@@ -75,12 +75,12 @@ public final class a5 extends FrameLayout {
         mutate.setBounds(0, 0, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         textView.setCompoundDrawables(mutate, null, null, null);
         w7.y5.a(textView);
-        this.f34466c.addView(textView, w7.w5.a(28.0f, 0.0f, 202.0f, 0.0f, 0.0f, -2, 49));
+        this.f34468c.addView(textView, w7.w5.a(28.0f, 0.0f, 202.0f, 0.0f, 0.0f, -2, 49));
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.d = frameLayout4;
         frameLayout4.setVisibility(4);
         frameLayout4.setRotationY(180.0f);
-        this.f34465b.addView(frameLayout4, w7.w5.d(-1.0f, -1));
+        this.f34467b.addView(frameLayout4, w7.w5.d(-1.0f, -1));
         TextView textView2 = new TextView(context);
         String replace = str.replace(" ", "");
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -135,19 +135,19 @@ public final class a5 extends FrameLayout {
         w7.y5.a(g11);
         this.d.addView(g11, w7.w5.a(28.0f, 0.0f, 202.0f, 0.0f, 0.0f, -2, 49));
         View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final a5 f35543b;
+            public final a5 f35545b;
 
             {
-                this.f35543b = this;
+                this.f35545b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        a5 a5Var = this.f35543b;
-                        if (!a5Var.f34468f && !a5Var.h) {
-                            r0 r0Var = a5Var.f34467e;
+                        a5 a5Var = this.f35545b;
+                        if (!a5Var.f34470f && !a5Var.h) {
+                            r0 r0Var = a5Var.f34469e;
                             if (r0Var != null) {
                                 r0Var.run();
                             }
@@ -156,27 +156,27 @@ public final class a5 extends FrameLayout {
                         }
                         return;
                     default:
-                        this.f35543b.a(false);
+                        this.f35545b.a(false);
                         return;
                 }
             }
         };
         frameLayout3.setOnClickListener(onClickListener);
-        this.f34464a.setOnClickListener(onClickListener);
+        this.f34466a.setOnClickListener(onClickListener);
         g11.setOnClickListener(new View.OnClickListener(this) {
-            public final a5 f35543b;
+            public final a5 f35545b;
 
             {
-                this.f35543b = this;
+                this.f35545b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        a5 a5Var = this.f35543b;
-                        if (!a5Var.f34468f && !a5Var.h) {
-                            r0 r0Var = a5Var.f34467e;
+                        a5 a5Var = this.f35545b;
+                        if (!a5Var.f34470f && !a5Var.h) {
+                            r0 r0Var = a5Var.f34469e;
                             if (r0Var != null) {
                                 r0Var.run();
                             }
@@ -185,7 +185,7 @@ public final class a5 extends FrameLayout {
                         }
                         return;
                     default:
-                        this.f35543b.a(false);
+                        this.f35545b.a(false);
                         return;
                 }
             }
@@ -194,10 +194,10 @@ public final class a5 extends FrameLayout {
 
     public final void a(boolean z10) {
         float f7;
-        if (this.f34468f != z10 && !this.h) {
+        if (this.f34470f != z10 && !this.h) {
             this.h = true;
-            this.f34468f = z10;
-            FrameLayout frameLayout = this.f34465b;
+            this.f34470f = z10;
+            FrameLayout frameLayout = this.f34467b;
             frameLayout.setLayerType(2, null);
             float rotationY = frameLayout.getRotationY();
             if (z10) {
@@ -206,12 +206,12 @@ public final class a5 extends FrameLayout {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(rotationY, f7);
-            this.f34469n = ofFloat;
+            this.f34471n = ofFloat;
             ofFloat.setDuration(420L);
-            this.f34469n.setInterpolator(js.h);
-            this.f34469n.addUpdateListener(new u2(this, 3));
-            this.f34469n.addListener(new z4(this, 0));
-            this.f34469n.start();
+            this.f34471n.setInterpolator(js.h);
+            this.f34471n.addUpdateListener(new u2(this, 3));
+            this.f34471n.addListener(new z4(this, 0));
+            this.f34471n.start();
         }
     }
 }

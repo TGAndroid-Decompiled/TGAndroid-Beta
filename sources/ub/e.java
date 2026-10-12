@@ -9,23 +9,23 @@ import n6.m;
 import qb.i;
 public final class e extends i {
     public ThickLanguageIdentifier d;
-    public final Context f49120e;
-    public final tb.a f49121f;
-    public final boolean f49122g;
+    public final Context f49128e;
+    public final tb.a f49129f;
+    public final boolean f49130g;
 
     public e(Context context, tb.a aVar) {
-        this.f49120e = context;
-        this.f49121f = aVar;
+        this.f49128e = context;
+        this.f49129f = aVar;
         aVar.getClass();
-        this.f49122g = true;
+        this.f49130g = true;
     }
 
     @Override
     public final void b() {
-        m.k(Thread.currentThread().equals(((AtomicReference) this.f46018a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f46026a.d).get()));
         if (this.d == null) {
-            this.f49121f.getClass();
-            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f49120e);
+            this.f49129f.getClass();
+            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f49128e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
         }
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        m.k(Thread.currentThread().equals(((AtomicReference) this.f46018a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f46026a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();

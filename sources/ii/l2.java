@@ -33,11 +33,11 @@ public final class l2 implements Runnable {
                             int i10 = e6Var.I + 1;
                             e6Var.I = i10;
                             fi.m0 m0Var = new fi.m0(e6Var, i10, aVar2, obj, 1);
-                            ki.q qVar = ki.k.f14892a;
+                            ki.q qVar = ki.k.f14893a;
                             SpannableString spannableString = new SpannableString(obj);
                             String b10 = ki.q.b(str);
                             if (!b10.isEmpty() && spannableString.length() != 0) {
-                                ki.k.f14892a.d(spannableString.toString(), b10, new ah.b(23, spannableString, m0Var));
+                                ki.k.f14893a.d(spannableString.toString(), b10, new ah.b(23, spannableString, m0Var));
                                 return;
                             } else {
                                 AndroidUtilities.runOnUIThread(new gg.w1(27, m0Var, spannableString));

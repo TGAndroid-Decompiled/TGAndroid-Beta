@@ -10,16 +10,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public class w71 extends FrameLayout {
-    public ValueAnimator f32353a;
-    public float f32354b;
-    public boolean f32355c;
+    public ValueAnimator f32339a;
+    public float f32340b;
+    public boolean f32341c;
     public Boolean d;
-    public final y71 f32356e;
+    public final y71 f32342e;
 
     public w71(y71 y71Var, Context context) {
         super(context);
-        this.f32356e = y71Var;
-        this.f32355c = false;
+        this.f32342e = y71Var;
+        this.f32341c = false;
     }
 
     @Override
@@ -50,13 +50,13 @@ public class w71 extends FrameLayout {
         int i22;
         int i23;
         canvas.save();
-        y71 y71Var = this.f32356e;
+        y71 y71Var = this.f32342e;
         Drawable drawable = y71Var.h;
-        RectF rectF = y71Var.f32977x;
-        int i24 = y71Var.f32978y;
+        RectF rectF = y71Var.f32970x;
+        int i24 = y71Var.f32971y;
         i10 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingTop;
         int dp = AndroidUtilities.dp(6.0f) + (i24 - i10);
-        int i25 = y71Var.f32978y;
+        int i25 = y71Var.f32971y;
         i11 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingTop;
         int dp2 = (i25 - i11) - AndroidUtilities.dp(13.0f);
         int dp3 = AndroidUtilities.dp(50.0f) + getMeasuredHeight();
@@ -92,22 +92,22 @@ public class w71 extends FrameLayout {
         drawable.draw(canvas);
         if (!y71Var.S) {
             if (f7 != 1.0f) {
-                org.telegram.ui.ActionBar.h6.f20850t0.setColor(y71Var.F);
+                org.telegram.ui.ActionBar.h6.f20851t0.setColor(y71Var.F);
                 i18 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingLeft;
                 i19 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingTop;
                 int measuredWidth = getMeasuredWidth();
                 i20 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingLeft;
                 i21 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingTop;
                 rectF.set(i18, i19 + i28, measuredWidth - i20, AndroidUtilities.dp(24.0f) + i21 + i28);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.h6.f20850t0);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.h6.f20851t0);
             }
             int dp4 = AndroidUtilities.dp(36.0f);
             rectF.set((getMeasuredWidth() - dp4) / 2, i29, (getMeasuredWidth() + dp4) / 2, AndroidUtilities.dp(4.0f) + i29);
-            org.telegram.ui.ActionBar.h6.f20850t0.setColor(org.telegram.ui.ActionBar.h6.x0(null, y71Var.I, false));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f20850t0);
+            org.telegram.ui.ActionBar.h6.f20851t0.setColor(org.telegram.ui.ActionBar.h6.x0(null, y71Var.I, false));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f20851t0);
         }
         if (i17 > 0) {
-            org.telegram.ui.ActionBar.h6.f20850t0.setColor(y71Var.F);
+            org.telegram.ui.ActionBar.h6.f20851t0.setColor(y71Var.F);
         }
         if (i17 > AndroidUtilities.statusBarHeight / 2) {
             z10 = true;
@@ -116,12 +116,12 @@ public class w71 extends FrameLayout {
         }
         Boolean bool = this.d;
         if (bool == null || bool.booleanValue() != z10) {
-            if (AndroidUtilities.computePerceivedBrightness(y71Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20630h5)) > 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(y71Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20631h5)) > 0.721f) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(y71Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20839s8), 855638016)) > 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(y71Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20840s8), 855638016)) > 0.721f) {
                 z12 = true;
             }
             this.d = Boolean.valueOf(z10);
@@ -137,8 +137,8 @@ public class w71 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            y71 y71Var = this.f32356e;
-            if (y3 < y71Var.f32978y) {
+            y71 y71Var = this.f32342e;
+            if (y3 < y71Var.f32971y) {
                 y71Var.dismiss();
                 return true;
             }
@@ -149,7 +149,7 @@ public class w71 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f32356e.M();
+        this.f32342e.M();
     }
 
     @Override
@@ -159,54 +159,54 @@ public class w71 extends FrameLayout {
         boolean z10;
         int dp;
         int size = View.MeasureSpec.getSize(i11);
-        this.f32355c = true;
-        y71 y71Var = this.f32356e;
+        this.f32341c = true;
+        y71 y71Var = this.f32342e;
         ai.w0 w0Var = y71Var.d;
         i12 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingLeft;
         int i14 = AndroidUtilities.statusBarHeight;
         i13 = ((org.telegram.ui.ActionBar.e3) y71Var).backgroundPaddingLeft;
         setPadding(i12, i14, i13, 0);
-        this.f32355c = false;
+        this.f32341c = false;
         int paddingTop = size - getPaddingTop();
         z10 = ((org.telegram.ui.ActionBar.e3) y71Var).keyboardVisible;
         if (z10) {
             dp = AndroidUtilities.dp(8.0f);
             y71Var.setAllowNestedScroll(false);
-            int i15 = y71Var.f32978y;
+            int i15 = y71Var.f32971y;
             if (i15 != 0) {
                 float f7 = i15;
-                this.f32354b = f7;
+                this.f32340b = f7;
                 setTranslationY(f7);
-                ValueAnimator valueAnimator = this.f32353a;
+                ValueAnimator valueAnimator = this.f32339a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    this.f32353a.cancel();
+                    this.f32339a.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f32354b, 0.0f);
-                this.f32353a = ofFloat;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f32340b, 0.0f);
+                this.f32339a = ofFloat;
                 ofFloat.addUpdateListener(new z51(2, this));
-                this.f32353a.setDuration(250L);
-                this.f32353a.setInterpolator(org.telegram.ui.ActionBar.o1.f21181w);
-                this.f32353a.addListener(new zd0(this, 29));
-                this.f32353a.start();
-            } else if (this.f32353a != null) {
-                setTranslationY(this.f32354b);
+                this.f32339a.setDuration(250L);
+                this.f32339a.setInterpolator(org.telegram.ui.ActionBar.o1.f21182w);
+                this.f32339a.addListener(new zd0(this, 29));
+                this.f32339a.start();
+            } else if (this.f32339a != null) {
+                setTranslationY(this.f32340b);
             }
         } else {
             dp = (paddingTop - ((paddingTop / 5) * 3)) + AndroidUtilities.dp(8.0f);
             y71Var.setAllowNestedScroll(true);
         }
         if (w0Var.getPaddingTop() != dp) {
-            this.f32355c = true;
+            this.f32341c = true;
             w0Var.setPadding(0, dp, 0, 0);
-            this.f32355c = false;
+            this.f32341c = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32356e.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.f32342e.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -214,7 +214,7 @@ public class w71 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f32355c) {
+        if (this.f32341c) {
             return;
         }
         super.requestLayout();

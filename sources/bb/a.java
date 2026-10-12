@@ -24,7 +24,7 @@ public final class a {
     }
 
     public void b(String str, Bitmap bitmap) {
-        Integer num = (Integer) n.f16333c.get(str);
+        Integer num = (Integer) n.f16334c.get(str);
         if (num != null && num.intValue() != 2) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a Bitmap"));
         }
@@ -32,7 +32,7 @@ public final class a {
     }
 
     public void c(long j3, String str) {
-        Integer num = (Integer) n.f16333c.get(str);
+        Integer num = (Integer) n.f16334c.get(str);
         if (num != null && num.intValue() != 0) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a long"));
         }
@@ -41,13 +41,13 @@ public final class a {
 
     public void d(String str, h0 h0Var) {
         Rating rating;
-        float f7 = h0Var.f16317b;
-        int i10 = h0Var.f16316a;
-        Integer num = (Integer) n.f16333c.get(str);
+        float f7 = h0Var.f16318b;
+        int i10 = h0Var.f16317a;
+        Integer num = (Integer) n.f16334c.get(str);
         if (num != null && num.intValue() != 3) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a Rating"));
         }
-        if (h0Var.f16318c == null) {
+        if (h0Var.f16319c == null) {
             if (h0Var.b()) {
                 boolean z10 = true;
                 switch (i10) {
@@ -55,21 +55,21 @@ public final class a {
                         if (i10 != 1 || f7 != 1.0f) {
                             z10 = false;
                         }
-                        h0Var.f16318c = Rating.newHeartRating(z10);
+                        h0Var.f16319c = Rating.newHeartRating(z10);
                         break;
                     case 2:
                         if (i10 != 2 || f7 != 1.0f) {
                             z10 = false;
                         }
-                        h0Var.f16318c = Rating.newThumbRating(z10);
+                        h0Var.f16319c = Rating.newThumbRating(z10);
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        h0Var.f16318c = Rating.newStarRating(i10, h0Var.a());
+                        h0Var.f16319c = Rating.newStarRating(i10, h0Var.a());
                         break;
                     case 6:
-                        h0Var.f16318c = Rating.newPercentageRating((i10 == 6 && h0Var.b()) ? -1.0f : -1.0f);
+                        h0Var.f16319c = Rating.newPercentageRating((i10 == 6 && h0Var.b()) ? -1.0f : -1.0f);
                         break;
                     default:
                         rating = null;
@@ -77,14 +77,14 @@ public final class a {
                 }
                 this.f3802a.putParcelable(str, rating);
             }
-            h0Var.f16318c = Rating.newUnratedRating(i10);
+            h0Var.f16319c = Rating.newUnratedRating(i10);
         }
-        rating = h0Var.f16318c;
+        rating = h0Var.f16319c;
         this.f3802a.putParcelable(str, rating);
     }
 
     public void e(String str, String str2) {
-        Integer num = (Integer) n.f16333c.get(str);
+        Integer num = (Integer) n.f16334c.get(str);
         if (num != null && num.intValue() != 1) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a String"));
         }
@@ -92,7 +92,7 @@ public final class a {
     }
 
     public void f(CharSequence charSequence, String str) {
-        Integer num = (Integer) n.f16333c.get(str);
+        Integer num = (Integer) n.f16334c.get(str);
         if (num != null && num.intValue() != 1) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a CharSequence"));
         }

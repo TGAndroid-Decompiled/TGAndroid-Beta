@@ -8,7 +8,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.e5;
 import org.telegram.ui.Components.j71;
 public final class f1 extends e5 {
-    public final t0 f43242f = new t0(this, 1);
+    public final t0 f43244f = new t0(this, 1);
     public final g1 h;
 
     public f1(g1 g1Var) {
@@ -36,16 +36,16 @@ public final class f1 extends e5 {
     public final void m() {
         int i10;
         g1 g1Var = this.h;
-        g1Var.f43257n = null;
+        g1Var.f43251n = null;
         g1Var.h = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f43242f);
-        j71 j71Var = g1Var.f27773a;
+        AndroidUtilities.cancelRunOnUIThread(this.f43244f);
+        j71 j71Var = g1Var.f27776a;
         if (j71Var != null) {
             j71Var.W2.N(true);
-            g1Var.f27773a.V2.h1(0, 0);
+            g1Var.f27776a.V2.h1(0, 0);
         }
-        vh.n nVar = g1Var.f43260w.d;
-        if (TextUtils.isEmpty(g1Var.f43257n)) {
+        vh.n nVar = g1Var.f43254w.d;
+        if (TextUtils.isEmpty(g1Var.f43251n)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -57,15 +57,15 @@ public final class f1 extends e5 {
     public final void q(EditText editText) {
         int i10;
         g1 g1Var = this.h;
-        boolean z10 = !TextUtils.isEmpty(g1Var.f43257n);
+        boolean z10 = !TextUtils.isEmpty(g1Var.f43251n);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(g1Var.f43257n, obj)) {
-            g1Var.f43257n = obj;
+        if (!TextUtils.equals(g1Var.f43251n, obj)) {
+            g1Var.f43251n = obj;
             g1Var.h = true;
-            t0 t0Var = this.f43242f;
+            t0 t0Var = this.f43244f;
             AndroidUtilities.cancelRunOnUIThread(t0Var);
             AndroidUtilities.runOnUIThread(t0Var, 500L);
-            vh.n nVar = g1Var.f43260w.d;
+            vh.n nVar = g1Var.f43254w.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +73,11 @@ public final class f1 extends e5 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        j71 j71Var = g1Var.f27773a;
+        j71 j71Var = g1Var.f27776a;
         if (j71Var != null) {
             j71Var.W2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                g1Var.f27773a.V2.h1(0, 0);
+                g1Var.f27776a.V2.h1(0, 0);
             }
         }
     }

@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import j$.util.Objects;
 public final class c9 {
-    public int f24859a;
-    public boolean f24860b;
-    public int f24861c;
+    public int f24854a;
+    public boolean f24855b;
+    public int f24856c;
     public int d;
-    public int f24862e;
-    public int f24863f;
+    public int f24857e;
+    public int f24858f;
 
     public final c9 a() {
         ?? obj = new Object();
-        obj.f24861c = this.f24861c;
+        obj.f24856c = this.f24856c;
         obj.d = this.d;
-        obj.f24862e = this.f24862e;
-        obj.f24863f = this.f24863f;
-        obj.f24860b = this.f24860b;
+        obj.f24857e = this.f24857e;
+        obj.f24858f = this.f24858f;
+        obj.f24855b = this.f24855b;
         return obj;
     }
 
@@ -27,13 +27,13 @@ public final class c9 {
             return false;
         }
         c9 c9Var = (c9) obj;
-        if (this.f24861c == c9Var.f24861c && this.d == c9Var.d && this.f24862e == c9Var.f24862e && this.f24863f == c9Var.f24863f) {
+        if (this.f24856c == c9Var.f24856c && this.d == c9Var.d && this.f24857e == c9Var.f24857e && this.f24858f == c9Var.f24858f) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f24859a), Integer.valueOf(this.f24861c), Integer.valueOf(this.d), Integer.valueOf(this.f24862e), Integer.valueOf(this.f24863f));
+        return Objects.hash(Integer.valueOf(this.f24854a), Integer.valueOf(this.f24856c), Integer.valueOf(this.d), Integer.valueOf(this.f24857e), Integer.valueOf(this.f24858f));
     }
 }

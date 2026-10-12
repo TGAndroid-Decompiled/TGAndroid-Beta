@@ -5,11 +5,11 @@ import android.content.IntentFilter;
 import android.util.SparseArray;
 import e9.a1;
 public final class b {
-    public static final b f14405c = new b(e9.i0.z(a.d));
+    public static final b f14406c = new b(e9.i0.z(a.d));
     public static final a1 d;
-    public static final e9.k0 f14406e;
-    public final SparseArray f14407a = new SparseArray();
-    public final int f14408b;
+    public static final e9.k0 f14407e;
+    public final SparseArray f14408a = new SparseArray();
+    public final int f14409b;
 
     static {
         Object[] objArr = {2, 5, 6};
@@ -24,19 +24,19 @@ public final class b {
         aVar.w(6, 8);
         aVar.w(8, 8);
         aVar.w(14, 8);
-        f14406e = aVar.f();
+        f14407e = aVar.f();
     }
 
     public b(a1 a1Var) {
         for (int i10 = 0; i10 < a1Var.d; i10++) {
             a aVar = (a) a1Var.get(i10);
-            this.f14407a.put(aVar.f14400a, aVar);
+            this.f14408a.put(aVar.f14401a, aVar);
         }
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f14407a.size(); i12++) {
-            i11 = Math.max(i11, ((a) this.f14407a.valueAt(i12)).f14401b);
+        for (int i12 = 0; i12 < this.f14408a.size(); i12++) {
+            i11 = Math.max(i11, ((a) this.f14408a.valueAt(i12)).f14402b);
         }
-        this.f14408b = i11;
+        this.f14409b = i11;
     }
 
     public static a1 a(int i10, int[] iArr) {
@@ -66,7 +66,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (e2.d0.l(this.f14407a, bVar.f14407a) && this.f14408b == bVar.f14408b) {
+                if (e2.d0.l(this.f14408a, bVar.f14408a) && this.f14409b == bVar.f14409b) {
                     return true;
                 }
                 return false;
@@ -77,10 +77,10 @@ public final class b {
     }
 
     public final int hashCode() {
-        return (e2.d0.m(this.f14407a) * 31) + this.f14408b;
+        return (e2.d0.m(this.f14408a) * 31) + this.f14409b;
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f14408b + ", audioProfiles=" + this.f14407a + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f14409b + ", audioProfiles=" + this.f14408a + "]";
     }
 }

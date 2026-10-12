@@ -3,7 +3,7 @@ package y1;
 import android.os.Build;
 import android.text.TextUtils;
 public final class a {
-    public d f51874a;
+    public d f51882a;
 
     public a(String str, int i10, int i11) {
         if (str != null) {
@@ -11,10 +11,10 @@ public final class a {
                 if (Build.VERSION.SDK_INT >= 28) {
                     d dVar = new d(str, i10, i11);
                     b.a(i10, i11, str);
-                    this.f51874a = dVar;
+                    this.f51882a = dVar;
                     return;
                 }
-                this.f51874a = new d(str, i10, i11);
+                this.f51882a = new d(str, i10, i11);
                 return;
             }
             throw new IllegalArgumentException("packageName should be nonempty");
@@ -29,10 +29,10 @@ public final class a {
         if (!(obj instanceof a)) {
             return false;
         }
-        return this.f51874a.equals(((a) obj).f51874a);
+        return this.f51882a.equals(((a) obj).f51882a);
     }
 
     public final int hashCode() {
-        return this.f51874a.hashCode();
+        return this.f51882a.hashCode();
     }
 }

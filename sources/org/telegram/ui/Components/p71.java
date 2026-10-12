@@ -14,9 +14,9 @@ public class p71 extends wm0 {
     public s4.z X2;
     public boolean Y2;
     public boolean Z2;
-    public boolean f29439a3;
-    public s4.d1 f29440b3;
-    public boolean f29441c3;
+    public boolean f29442a3;
+    public s4.d1 f29443b3;
+    public boolean f29444c3;
 
     public p71(org.telegram.ui.ActionBar.m2 m2Var, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return) {
         this(m2Var.getContext(), m2Var.getCurrentAccount(), m2Var.getClassGuid(), false, callback2, callback5, callback5Return, m2Var.getResourceProvider());
@@ -26,7 +26,7 @@ public class p71 extends wm0 {
         int i10 = 0;
         while (true) {
             h71 h71Var = this.W2;
-            if (i10 < h71Var.f26678x.size()) {
+            if (i10 < h71Var.f26682x.size()) {
                 u61 G = h71Var.G(i10);
                 if (G != null && G.G == obj) {
                     break;
@@ -60,13 +60,13 @@ public class p71 extends wm0 {
             ArrayList arrayList = h71Var.F;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 f71 f71Var = (f71) arrayList.get(i11);
-                int i12 = f71Var.f25948b;
+                int i12 = f71Var.f25950b;
                 if (i12 >= 0) {
-                    int i13 = f71Var.f25947a;
-                    if (h71Var.f26674n) {
-                        i10 = org.telegram.ui.ActionBar.h6.f20630h5;
+                    int i13 = f71Var.f25949a;
+                    if (h71Var.f26678n) {
+                        i10 = org.telegram.ui.ActionBar.h6.f20631h5;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.h6.f20559d6;
+                        i10 = org.telegram.ui.ActionBar.h6.f20560d6;
                     }
                     int w02 = org.telegram.ui.ActionBar.h6.w0(i10, h71Var.v);
                     if (i12 >= i13 && i13 >= 0 && i12 >= 0) {
@@ -116,7 +116,7 @@ public class p71 extends wm0 {
     }
 
     public void setReorderLongPressEnabled(boolean z10) {
-        this.f29441c3 = z10;
+        this.f29444c3 = z10;
     }
 
     @Override
@@ -138,10 +138,10 @@ public class p71 extends wm0 {
     }
 
     public final void x1(boolean z10) {
-        if (this.f29439a3 == z10) {
+        if (this.f29442a3 == z10) {
             return;
         }
-        this.f29439a3 = z10;
+        this.f29442a3 = z10;
         this.W2.M = z10;
         AndroidUtilities.forEachViews((RecyclerView) this, (Utilities.Callback<View>) new a3(this, 13));
     }
@@ -150,7 +150,7 @@ public class p71 extends wm0 {
         int i11 = 0;
         while (true) {
             h71 h71Var = this.W2;
-            if (i11 < h71Var.f26678x.size()) {
+            if (i11 < h71Var.f26682x.size()) {
                 u61 G = h71Var.G(i11);
                 if (G != null && G.d == i10) {
                     return i11;
@@ -166,7 +166,7 @@ public class p71 extends wm0 {
         int i11 = 0;
         while (true) {
             h71 h71Var = this.W2;
-            if (i11 < h71Var.f26678x.size()) {
+            if (i11 < h71Var.f26682x.size()) {
                 u61 G = h71Var.G(i11);
                 if (G != null && G.d == i10) {
                     break;
@@ -186,7 +186,7 @@ public class p71 extends wm0 {
 
     public p71(Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, org.telegram.ui.ActionBar.c6 c6Var, int i12, int i13) {
         super(context, c6Var);
-        this.f29441c3 = true;
+        this.f29444c3 = true;
         if (i12 == -1) {
             l71 l71Var = new l71(this, i13);
             this.V2 = l71Var;
@@ -207,7 +207,7 @@ public class p71 extends wm0 {
             setOnItemLongClickListener(new y2(19, this, callback5Return));
         }
         o71 o71Var = new o71(this);
-        o71Var.f47929m = false;
+        o71Var.f47937m = false;
         o71Var.C = false;
         o71Var.o(js.h);
         o71Var.n(350L);

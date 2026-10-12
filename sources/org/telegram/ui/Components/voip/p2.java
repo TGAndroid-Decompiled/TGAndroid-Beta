@@ -3,22 +3,22 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class p2 extends AnimatorListenerAdapter {
-    public final int f31889a;
-    public final q2 f31890b;
+    public final int f31865a;
+    public final q2 f31866b;
 
     public p2(q2 q2Var, int i10) {
-        this.f31889a = i10;
-        this.f31890b = q2Var;
+        this.f31865a = i10;
+        this.f31866b = q2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f31889a) {
+        switch (this.f31865a) {
             case 0:
-                this.f31890b.f31922b.setVisibility(8);
+                this.f31866b.f31909b.setVisibility(8);
                 return;
             default:
-                this.f31890b.f31923c.setVisibility(8);
+                this.f31866b.f31910c.setVisibility(8);
                 return;
         }
     }

@@ -24,7 +24,7 @@ public final class gx0 implements ValueAnimator.AnimatorUpdateListener {
         switch (this.f38171a) {
             case 0:
                 lx0 lx0Var = (lx0) this.f38172b;
-                PremiumPreviewFragment premiumPreviewFragment = lx0Var.f39866n;
+                PremiumPreviewFragment premiumPreviewFragment = lx0Var.f39869n;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 View view = this.f38173c;
                 view.setAlpha(floatValue);
@@ -33,8 +33,8 @@ public final class gx0 implements ValueAnimator.AnimatorUpdateListener {
                 float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
                 for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
                     View childAt = premiumPreviewFragment.U.getChildAt(i10);
-                    if (childAt != lx0Var.f39864e) {
-                        if (childAt == lx0Var.f39863c) {
+                    if (childAt != lx0Var.f39867e) {
+                        if (childAt == lx0Var.f39866c) {
                             dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
                         } else {
                             dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
@@ -46,8 +46,8 @@ public final class gx0 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 nb1 nb1Var = (nb1) this.f38172b;
                 nb1Var.getClass();
-                nb1Var.f40346a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((ChatActivityEnterView) this.f38173c).getEditField().setAlpha(nb1Var.f40346a);
+                nb1Var.f40349a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ChatActivityEnterView) this.f38173c).getEditField().setAlpha(nb1Var.f40349a);
                 ((org.telegram.ui.Components.zi) this.d).invalidate();
                 return;
         }

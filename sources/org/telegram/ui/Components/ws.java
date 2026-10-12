@@ -165,7 +165,7 @@ public final class ws {
                 }
                 this.f32539b = formatString3;
             } else if (i12 == 2) {
-                if (this.f32545j.f32851g0) {
+                if (this.f32545j.f32841g0) {
                     if (b()) {
                         formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
                     } else {

@@ -53,12 +53,12 @@ public final class l90 extends org.telegram.ui.eo {
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
                 sc J = zc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
-                J.f30548r = false;
+                J.f30544r = false;
                 J.k(true);
                 return;
             }
             sc Q = zc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f30548r = false;
+            Q.f30544r = false;
             Q.k(true);
         }
     }

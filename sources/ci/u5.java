@@ -888,8 +888,8 @@ public final class u5 implements ml0, z3.d, me.d, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f6063a;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = oj1.f40735b;
-        BigInteger bigInteger3 = oj1.f40734a;
+        BigInteger bigInteger2 = oj1.f40737b;
+        BigInteger bigInteger3 = oj1.f40736a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -960,7 +960,7 @@ public final class u5 implements ml0, z3.d, me.d, n5.b, q9.b {
 
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
-        ((TextView) this.f6064b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((me.b) this.d).f16087e));
+        ((TextView) this.f6064b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((me.b) this.d).f16088e));
         ((jh.c) this.f6066e).b(this);
     }
 
@@ -988,7 +988,7 @@ public final class u5 implements ml0, z3.d, me.d, n5.b, q9.b {
         }
         if (z10) {
             if (((org.telegram.ui.Components.pa) this.f6063a) == null) {
-                this.f6063a = new org.telegram.ui.Components.pa(q6Var.f5796e2, q6Var.Z1.getReactionsWindow().f54675c, 0, false);
+                this.f6063a = new org.telegram.ui.Components.pa(q6Var.f5796e2, q6Var.Z1.getReactionsWindow().f54683c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;

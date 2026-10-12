@@ -5,70 +5,70 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.fq;
 public final class t0 implements View.OnClickListener {
-    public final int f53436a;
-    public final s3 f53437b;
+    public final int f53448a;
+    public final s3 f53449b;
 
     public t0(s3 s3Var, int i10) {
-        this.f53436a = i10;
-        this.f53437b = s3Var;
+        this.f53448a = i10;
+        this.f53449b = s3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f53436a) {
+        switch (this.f53448a) {
             case 0:
-                this.f53437b.onBackPressed();
+                this.f53449b.onBackPressed();
                 return;
             case 1:
-                this.f53437b.x1();
+                this.f53449b.x1();
                 return;
             case 2:
-                this.f53437b.onBackPressed();
+                this.f53449b.onBackPressed();
                 return;
             case 3:
-                this.f53437b.b2();
+                this.f53449b.b2();
                 return;
             case 4:
-                this.f53437b.dismiss();
+                this.f53449b.dismiss();
                 return;
             case 5:
-                this.f53437b.b2();
+                this.f53449b.b2();
                 return;
             case 6:
-                this.f53437b.onBackPressed();
+                this.f53449b.onBackPressed();
                 return;
             case 7:
-                this.f53437b.R1();
+                this.f53449b.R1();
                 return;
             case 8:
-                this.f53437b.b2();
+                this.f53449b.b2();
                 return;
             case 9:
-                this.f53437b.onBackPressed();
+                this.f53449b.onBackPressed();
                 return;
             case 10:
-                this.f53437b.X1(true);
+                this.f53449b.X1(true);
                 return;
             case 11:
-                this.f53437b.b2();
+                this.f53449b.b2();
                 return;
             case 12:
-                s3 s3Var = this.f53437b;
-                if (!s3Var.f53403k0.N) {
-                    fq fqVar = s3Var.f53420w0;
-                    fqVar.a(!fqVar.f26150a.f23874q, true);
+                s3 s3Var = this.f53449b;
+                if (!s3Var.f53415k0.N) {
+                    fq fqVar = s3Var.f53432w0;
+                    fqVar.a(!fqVar.f26152a.f23875q, true);
                     return;
                 }
                 return;
             case 13:
-                s3.U0(this.f53437b, view);
+                s3.U0(this.f53449b, view);
                 return;
             case 14:
-                this.f53437b.X1(true);
+                this.f53449b.X1(true);
                 return;
             case 15:
                 int i10 = (view.getAlpha() > 0.99f ? 1 : (view.getAlpha() == 0.99f ? 0 : -1));
-                s3 s3Var2 = this.f53437b;
+                s3 s3Var2 = this.f53449b;
                 if (i10 < 0) {
                     s3Var2.v1();
                     return;
@@ -77,52 +77,52 @@ public final class t0 implements View.OnClickListener {
                     return;
                 }
             case 16:
-                s3.c1(this.f53437b);
+                s3.c1(this.f53449b);
                 return;
             case 17:
-                this.f53437b.T1();
+                this.f53449b.T1();
                 return;
             case 18:
-                this.f53437b.S1(view);
+                this.f53449b.S1(view);
                 return;
             case 19:
-                this.f53437b.V1();
+                this.f53449b.V1();
                 return;
             case 20:
                 if (view.getAlpha() >= 1.0f) {
-                    s3 s3Var3 = this.f53437b;
-                    ci.d dVar = s3Var3.f53403k0;
+                    s3 s3Var3 = this.f53449b;
+                    ci.d dVar = s3Var3.f53415k0;
                     dVar.g(LocaleController.getString(R.string.GiftCraftInfoButton), true, true);
                     dVar.f(null, true);
                     dVar.setOnClickListener(new t0(s3Var3, 22));
-                    s3Var3.f53393f0.i(3, LocaleController.getString(R.string.GiftCraftInfoTitle), LocaleController.getString(R.string.GiftCraftInfoText), null);
+                    s3Var3.f53405f0.i(3, LocaleController.getString(R.string.GiftCraftInfoTitle), LocaleController.getString(R.string.GiftCraftInfoText), null);
                     s3Var3.s2(3, true, null);
                     return;
                 }
                 return;
             case 21:
-                s3 s3Var4 = this.f53437b;
+                s3 s3Var4 = this.f53449b;
                 s3Var4.W0 = true;
                 s3Var4.t2(false);
                 return;
             case 22:
-                this.f53437b.X1(false);
+                this.f53449b.X1(false);
                 return;
             case 23:
-                f3 f3Var = this.f53437b.N0;
+                f3 f3Var = this.f53449b.N0;
                 f3Var.h.e();
-                f3Var.f52717i.e();
-                f3Var.f52718j.e();
-                f3Var.f52719k.e();
+                f3Var.f52729i.e();
+                f3Var.f52730j.e();
+                f3Var.f52731k.e();
                 return;
             case 24:
-                this.f53437b.R1();
+                this.f53449b.R1();
                 return;
             case 25:
-                this.f53437b.onBackPressed();
+                this.f53449b.onBackPressed();
                 return;
             default:
-                s3 s3Var5 = this.f53437b;
+                s3 s3Var5 = this.f53449b;
                 s3Var5.W0 = true;
                 s3Var5.t2(false);
                 return;

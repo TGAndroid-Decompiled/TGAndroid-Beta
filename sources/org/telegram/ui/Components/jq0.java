@@ -5,29 +5,29 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class jq0 {
-    public final gv f27621a;
-    public final long f27622b;
-    public final float f27623c;
+    public final gv f27628a;
+    public final long f27629b;
+    public final float f27630c;
     public final float d;
-    public final float f27624e;
+    public final float f27631e;
 
     public jq0(View view) {
         gv gvVar = new gv(1, view);
-        this.f27622b = System.currentTimeMillis();
-        this.f27621a = gvVar;
-        this.f27623c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.f27629b = System.currentTimeMillis();
+        this.f27628a = gvVar;
+        this.f27630c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
         this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.f27624e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.f27631e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
     public final void a(Canvas canvas, float f7) {
         gv gvVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f27622b)) / 1000.0f;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f27629b)) / 1000.0f;
         canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f27623c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.f27624e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.rotate(((float) Math.sin(this.f27630c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.f27631e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
         canvas.translate(-0.0f, -0.0f);
-        if (f7 > 0.0f && (gvVar = this.f27621a) != null) {
+        if (f7 > 0.0f && (gvVar = this.f27628a) != null) {
             gvVar.run();
         }
     }

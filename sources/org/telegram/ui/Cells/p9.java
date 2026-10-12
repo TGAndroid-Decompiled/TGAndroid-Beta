@@ -16,13 +16,13 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public abstract class p9 extends ba {
-    public final SparseArray f22424p0 = new SparseArray();
-    public boolean f22425q0;
-    public boolean f22426r0;
-    public boolean f22427s0;
-    public boolean f22428t0;
-    public boolean f22429u0;
-    public boolean f22430v0;
+    public final SparseArray f22425p0 = new SparseArray();
+    public boolean f22426q0;
+    public boolean f22427r0;
+    public boolean f22428s0;
+    public boolean f22429t0;
+    public boolean f22430u0;
+    public boolean f22431v0;
 
     @Override
     public final boolean C() {
@@ -30,9 +30,9 @@ public abstract class p9 extends ba {
         RichMessageLayout richMessageLayout;
         CharSequence r10;
         String str;
-        if (this.f22429u0 && (w9Var = this.W) != null && ((u1) w9Var).getMessageObject() != null && (richMessageLayout = ((u1) this.W).getMessageObject().richLayout) != null && !richMessageLayout.textBlocks.isEmpty() && (r10 = r()) != null && r10.length() != 0) {
+        if (this.f22430u0 && (w9Var = this.W) != null && ((u1) w9Var).getMessageObject() != null && (richMessageLayout = ((u1) this.W).getMessageObject().richLayout) != null && !richMessageLayout.textBlocks.isEmpty() && (r10 = r()) != null && r10.length() != 0) {
             try {
-                str = richMessageLayout.getSelectionHtml(this.f21646u, this.v);
+                str = richMessageLayout.getSelectionHtml(this.f21647u, this.v);
             } catch (Exception e7) {
                 FileLog.e(e7);
                 str = null;
@@ -52,7 +52,7 @@ public abstract class p9 extends ba {
         if (w9Var != null && ((u1) w9Var).g3() && !z10) {
             u1 u1Var = (u1) this.W;
             int id2 = u1Var.getMessageObject().getId();
-            SparseArray sparseArray = this.f22424p0;
+            SparseArray sparseArray = this.f22425p0;
             Animator animator = (Animator) sparseArray.get(id2);
             if (animator != null) {
                 animator.removeAllListeners();
@@ -78,17 +78,17 @@ public abstract class p9 extends ba {
         } else {
             z10 = true;
         }
-        this.f21647w = u1Var.getMessageObject().getId();
+        this.f21648w = u1Var.getMessageObject().getId();
         try {
             int i10 = u1Var.getMessageObject().messageOwner.edit_date;
         } catch (Exception unused) {
         }
         this.U = 0.0f;
-        this.f22425q0 = this.f22426r0;
-        this.f22427s0 = this.f22428t0;
-        this.f22429u0 = this.f22430v0;
-        int i11 = this.f21647w;
-        SparseArray sparseArray = this.f22424p0;
+        this.f22426q0 = this.f22427r0;
+        this.f22428s0 = this.f22429t0;
+        this.f22430u0 = this.f22431v0;
+        int i11 = this.f21648w;
+        SparseArray sparseArray = this.f22425p0;
         Animator animator = (Animator) sparseArray.get(i11);
         if (animator != null) {
             animator.removeAllListeners();
@@ -98,7 +98,7 @@ public abstract class p9 extends ba {
         ofFloat.addUpdateListener(new ai.cb(3, this, z10));
         ofFloat.setDuration(250L);
         ofFloat.start();
-        sparseArray.put(this.f21647w, ofFloat);
+        sparseArray.put(this.f21648w, ofFloat);
         if (!z10) {
             u1Var.setSelectedBackgroundProgress(0.0f);
         }
@@ -110,27 +110,27 @@ public abstract class p9 extends ba {
             int i10 = messageObject.messageOwner.edit_date;
         } catch (Exception unused) {
         }
-        if (this.f21647w == messageObject.getId()) {
+        if (this.f21648w == messageObject.getId()) {
             f(true);
         }
     }
 
     public final void X(boolean z10, StaticLayout staticLayout, Canvas canvas) {
-        if (!this.f22425q0) {
+        if (!this.f22426q0) {
             return;
         }
-        Paint paint = this.f21641p;
-        Paint paint2 = this.f21639o;
+        Paint paint = this.f21642p;
+        Paint paint2 = this.f21640o;
         if (z10) {
             int i10 = org.telegram.ui.ActionBar.h6.Vb;
             paint2.setColor(t(i10));
             paint.setColor(t(i10));
         } else {
-            int i11 = org.telegram.ui.ActionBar.h6.f20883uf;
+            int i11 = org.telegram.ui.ActionBar.h6.f20884uf;
             paint2.setColor(t(i11));
             paint.setColor(t(i11));
         }
-        h(canvas, staticLayout, this.f21646u, this.v, true, true, 0.0f);
+        h(canvas, staticLayout, this.f21647u, this.v, true, true, 0.0f);
     }
 
     public final void Y(MessageObject messageObject, RichMessageLayout richMessageLayout, Canvas canvas) {
@@ -138,16 +138,16 @@ public abstract class p9 extends ba {
         z9 z9Var;
         Canvas canvas2;
         boolean z10;
-        if (this.f22429u0 && richMessageLayout != null && (w9Var = this.W) != null && ((u1) w9Var).getMessageObject() != null && ((u1) this.W).getMessageObject().getId() == messageObject.getId()) {
+        if (this.f22430u0 && richMessageLayout != null && (w9Var = this.W) != null && ((u1) w9Var).getMessageObject() != null && ((u1) this.W).getMessageObject().getId() == messageObject.getId()) {
             boolean isOutOwner = messageObject.isOutOwner();
-            Paint paint = this.f21641p;
-            Paint paint2 = this.f21639o;
+            Paint paint = this.f21642p;
+            Paint paint2 = this.f21640o;
             if (isOutOwner) {
                 int i10 = org.telegram.ui.ActionBar.h6.Vb;
                 paint2.setColor(t(i10));
                 paint.setColor(t(i10));
             } else {
-                int i11 = org.telegram.ui.ActionBar.h6.f20883uf;
+                int i11 = org.telegram.ui.ActionBar.h6.f20884uf;
                 paint2.setColor(t(i11));
                 paint.setColor(t(i11));
             }
@@ -157,11 +157,11 @@ public abstract class p9 extends ba {
                 if (layout != null && layout.getText() != null) {
                     int intValue = richMessageLayout.textBlockCharOffsets.get(i12).intValue();
                     int length = layout.getText().length();
-                    int clamp = Utilities.clamp(this.f21646u - intValue, length, 0);
+                    int clamp = Utilities.clamp(this.f21647u - intValue, length, 0);
                     int clamp2 = Utilities.clamp(this.v - intValue, length, 0);
                     if (clamp != clamp2) {
                         boolean z11 = true;
-                        if (this.f21646u >= intValue) {
+                        if (this.f21647u >= intValue) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -190,17 +190,17 @@ public abstract class p9 extends ba {
             return;
         }
         this.W = u1Var;
-        this.f21647w = u1Var.getMessageObject().getId();
-        this.f21646u = i10;
+        this.f21648w = u1Var.getMessageObject().getId();
+        this.f21647u = i10;
         this.v = i11;
         w();
         w7.g0 g0Var = this.D;
         if (g0Var != null) {
             g0Var.a(true);
         }
-        this.f21625g = 0.0f;
-        this.f21623f = 0.0f;
-        this.f21621e = false;
+        this.f21626g = 0.0f;
+        this.f21624f = 0.0f;
+        this.f21622e = false;
         aa aaVar = this.C;
         if (aaVar != null) {
             aaVar.setVisibility(0);
@@ -214,25 +214,25 @@ public abstract class p9 extends ba {
         this.X = u1Var;
         MessageObject messageObject = u1Var.getMessageObject();
         t1 t1Var = u1Var.Zc;
-        boolean z10 = this.f22426r0;
+        boolean z10 = this.f22427r0;
         Rect rect = this.B;
         if (z10 && u1Var.getDescriptionlayout() != null) {
-            int i10 = this.f21618c;
+            int i10 = this.f21619c;
             rect.set(i10, this.d, u1Var.getDescriptionlayout().getWidth() + i10, u1Var.getDescriptionlayout().getHeight() + this.d);
-        } else if (this.f22428t0 && u1Var.getFactCheckLayout() != null) {
-            int i11 = this.f21618c;
+        } else if (this.f22429t0 && u1Var.getFactCheckLayout() != null) {
+            int i11 = this.f21619c;
             rect.set(i11, this.d, u1Var.getFactCheckLayout().getWidth() + i11, u1Var.getFactCheckLayout().getHeight() + this.d);
-        } else if (this.f22430v0 && messageObject != null && (richMessageLayout = messageObject.richLayout) != null && !richMessageLayout.textBlocks.isEmpty()) {
+        } else if (this.f22431v0 && messageObject != null && (richMessageLayout = messageObject.richLayout) != null && !richMessageLayout.textBlocks.isEmpty()) {
             RichMessageLayout richMessageLayout2 = messageObject.richLayout;
-            int i12 = this.f21618c;
+            int i12 = this.f21619c;
             rect.set(i12, this.d, richMessageLayout2.getMinWidth() + i12, richMessageLayout2.getHeight() + this.d);
         } else if (u1Var.P2() && u1Var.getCaptionLayout().textLayoutBlocks.size() > 0) {
             MessageObject.TextLayoutBlock textLayoutBlock = (MessageObject.TextLayoutBlock) hg.c.h(1, u1Var.getCaptionLayout().textLayoutBlocks);
-            int i13 = this.f21618c;
+            int i13 = this.f21619c;
             rect.set(i13, this.d, textLayoutBlock.textLayout.getWidth() + i13, (int) (textLayoutBlock.textYOffset(u1Var.getCaptionLayout().textLayoutBlocks, t1Var) + this.d + textLayoutBlock.padTop + textLayoutBlock.textLayout.getHeight()));
         } else if (messageObject != null && (arrayList = messageObject.textLayoutBlocks) != null && arrayList.size() > 0) {
             MessageObject.TextLayoutBlock textLayoutBlock2 = (MessageObject.TextLayoutBlock) hg.c.h(1, messageObject.textLayoutBlocks);
-            int i14 = this.f21618c;
+            int i14 = this.f21619c;
             rect.set(i14, this.d, textLayoutBlock2.textLayout.getWidth() + i14, (int) (textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks, t1Var) + this.d + textLayoutBlock2.padTop + textLayoutBlock2.textLayout.getHeight()));
         } else {
             this.X = null;
@@ -240,20 +240,20 @@ public abstract class p9 extends ba {
     }
 
     public final void b0(int i10, int i11) {
-        if (this.f21614a == i10 && this.f21616b == i11) {
+        if (this.f21615a == i10 && this.f21617b == i11) {
             return;
         }
-        this.f21614a = i10;
-        this.f21616b = i11;
+        this.f21615a = i10;
+        this.f21617b = i11;
         w();
     }
 
     @Override
     public final void f(boolean z10) {
         super.f(z10);
-        this.f22425q0 = false;
-        this.f22427s0 = false;
-        this.f22429u0 = false;
+        this.f22426q0 = false;
+        this.f22428s0 = false;
+        this.f22430u0 = false;
     }
 
     @Override
@@ -276,22 +276,22 @@ public abstract class p9 extends ba {
         }
         u1 u1Var = (u1) w9Var;
         if (u1Var == null) {
-            r9Var.f22492b = null;
+            r9Var.f22493b = null;
             return;
         }
         MessageObject messageObject = u1Var.getMessageObject();
         int i17 = 0;
-        if (this.f22425q0) {
-            r9Var.f22492b = u1Var.getDescriptionlayout();
-            r9Var.f22493c = 0.0f;
+        if (this.f22426q0) {
+            r9Var.f22493b = u1Var.getDescriptionlayout();
+            r9Var.f22494c = 0.0f;
             r9Var.d = 0.0f;
-            r9Var.f22491a = 0;
-        } else if (this.f22427s0) {
-            r9Var.f22492b = u1Var.getFactCheckLayout();
-            r9Var.f22493c = 0.0f;
+            r9Var.f22492a = 0;
+        } else if (this.f22428s0) {
+            r9Var.f22493b = u1Var.getFactCheckLayout();
+            r9Var.f22494c = 0.0f;
             r9Var.d = 0.0f;
-            r9Var.f22491a = 0;
-        } else if (this.f22429u0) {
+            r9Var.f22492a = 0;
+        } else if (this.f22430u0) {
             if (messageObject != null) {
                 richMessageLayout = messageObject.richLayout;
             } else {
@@ -314,18 +314,18 @@ public abstract class p9 extends ba {
                 if (i17 < 0) {
                     i17 = richMessageLayout.textBlocks.size() - 1;
                 }
-                r9Var.f22492b = richMessageLayout.textBlocks.get(i17).getLayout();
-                r9Var.f22493c = z9Var.getY();
+                r9Var.f22493b = richMessageLayout.textBlocks.get(i17).getLayout();
+                r9Var.f22494c = z9Var.getY();
                 r9Var.d = z9Var.getX();
-                r9Var.f22491a = richMessageLayout.textBlockCharOffsets.get(i17).intValue();
+                r9Var.f22492a = richMessageLayout.textBlockCharOffsets.get(i17).intValue();
                 return;
             }
-            r9Var.f22492b = null;
+            r9Var.f22493b = null;
         } else if (u1Var.P2()) {
             MessageObject.TextLayoutBlocks captionLayout = u1Var.getCaptionLayout();
             if (captionLayout.textLayoutBlocks.size() == 1) {
-                r9Var.f22492b = captionLayout.textLayoutBlocks.get(0).textLayout;
-                r9Var.f22493c = textLayoutBlock2.padTop;
+                r9Var.f22493b = captionLayout.textLayoutBlocks.get(0).textLayout;
+                r9Var.f22494c = textLayoutBlock2.padTop;
                 MessageObject.TextLayoutBlock textLayoutBlock3 = captionLayout.textLayoutBlocks.get(0);
                 if (textLayoutBlock3.quote) {
                     i15 = AndroidUtilities.dp(10.0f);
@@ -342,15 +342,15 @@ public abstract class p9 extends ba {
                 if (textLayoutBlock3.code && !textLayoutBlock3.quote) {
                     r9Var.d = f7 + AndroidUtilities.dp(8.0f);
                 }
-                r9Var.f22491a = 0;
+                r9Var.f22492a = 0;
                 return;
             }
             for (int i18 = 0; i18 < captionLayout.textLayoutBlocks.size(); i18++) {
                 MessageObject.TextLayoutBlock textLayoutBlock4 = captionLayout.textLayoutBlocks.get(i18);
                 int i19 = i10 - textLayoutBlock4.charactersOffset;
                 if (i19 >= 0 && i19 <= textLayoutBlock4.textLayout.getText().length()) {
-                    r9Var.f22492b = textLayoutBlock4.textLayout;
-                    r9Var.f22493c = textLayoutBlock4.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock4.padTop;
+                    r9Var.f22493b = textLayoutBlock4.textLayout;
+                    r9Var.f22494c = textLayoutBlock4.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock4.padTop;
                     if (textLayoutBlock4.quote) {
                         i14 = AndroidUtilities.dp(10.0f);
                     } else {
@@ -364,18 +364,18 @@ public abstract class p9 extends ba {
                     if (textLayoutBlock4.code && !textLayoutBlock4.quote) {
                         r9Var.d = f10 + AndroidUtilities.dp(8.0f);
                     }
-                    r9Var.f22491a = textLayoutBlock4.charactersOffset;
+                    r9Var.f22492a = textLayoutBlock4.charactersOffset;
                     return;
                 }
             }
-            r9Var.f22492b = null;
+            r9Var.f22493b = null;
         } else {
             ArrayList<MessageObject.TextLayoutBlock> arrayList = messageObject.textLayoutBlocks;
             if (arrayList == null) {
-                r9Var.f22492b = null;
+                r9Var.f22493b = null;
             } else if (arrayList.size() == 1) {
-                r9Var.f22492b = messageObject.textLayoutBlocks.get(0).textLayout;
-                r9Var.f22493c = textLayoutBlock.padTop;
+                r9Var.f22493b = messageObject.textLayoutBlocks.get(0).textLayout;
+                r9Var.f22494c = textLayoutBlock.padTop;
                 MessageObject.TextLayoutBlock textLayoutBlock5 = messageObject.textLayoutBlocks.get(0);
                 if (textLayoutBlock5.quote) {
                     i12 = AndroidUtilities.dp(10.0f);
@@ -392,14 +392,14 @@ public abstract class p9 extends ba {
                 if (textLayoutBlock5.code && !textLayoutBlock5.quote) {
                     r9Var.d = f11 + AndroidUtilities.dp(8.0f);
                 }
-                r9Var.f22491a = 0;
+                r9Var.f22492a = 0;
             } else {
                 for (int i20 = 0; i20 < messageObject.textLayoutBlocks.size(); i20++) {
                     MessageObject.TextLayoutBlock textLayoutBlock6 = messageObject.textLayoutBlocks.get(i20);
                     int i21 = i10 - textLayoutBlock6.charactersOffset;
                     if (i21 >= 0 && i21 <= textLayoutBlock6.textLayout.getText().length()) {
-                        r9Var.f22492b = textLayoutBlock6.textLayout;
-                        r9Var.f22493c = textLayoutBlock6.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock6.padTop;
+                        r9Var.f22493b = textLayoutBlock6.textLayout;
+                        r9Var.f22494c = textLayoutBlock6.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock6.padTop;
                         if (textLayoutBlock6.quote) {
                             i11 = AndroidUtilities.dp(10.0f);
                         } else {
@@ -413,11 +413,11 @@ public abstract class p9 extends ba {
                         if (textLayoutBlock6.code && !textLayoutBlock6.quote) {
                             r9Var.d = f12 + AndroidUtilities.dp(8.0f);
                         }
-                        r9Var.f22491a = textLayoutBlock6.charactersOffset;
+                        r9Var.f22492a = textLayoutBlock6.charactersOffset;
                         return;
                     }
                 }
-                r9Var.f22492b = null;
+                r9Var.f22493b = null;
             }
         }
     }
@@ -434,11 +434,11 @@ public abstract class p9 extends ba {
         w9 w9Var = this.W;
         if (w9Var != null && ((u1) w9Var).getMessageObject() != null) {
             MessageObject messageObject = ((u1) this.W).getMessageObject();
-            if (this.f22425q0) {
+            if (this.f22426q0) {
                 layout = ((u1) this.W).getDescriptionlayout();
-            } else if (this.f22427s0) {
+            } else if (this.f22428s0) {
                 layout = ((u1) this.W).getFactCheckLayout();
-            } else if (this.f22429u0) {
+            } else if (this.f22430u0) {
                 if (messageObject != null) {
                     richMessageLayout = messageObject.richLayout;
                 } else {
@@ -468,13 +468,13 @@ public abstract class p9 extends ba {
     public final CharSequence s(w9 w9Var, boolean z10) {
         u1 u1Var = (u1) w9Var;
         if (u1Var != null && u1Var.getMessageObject() != null) {
-            if (!z10 ? this.f22425q0 : this.f22426r0) {
+            if (!z10 ? this.f22426q0 : this.f22427r0) {
                 return u1Var.getDescriptionlayout().getText();
             }
-            if (!z10 ? this.f22427s0 : this.f22428t0) {
+            if (!z10 ? this.f22428s0 : this.f22429t0) {
                 return u1Var.getFactCheckLayout().getText();
             }
-            if (!z10 ? this.f22429u0 : this.f22430v0) {
+            if (!z10 ? this.f22430u0 : this.f22431v0) {
                 RichMessageLayout richMessageLayout = u1Var.getMessageObject().richLayout;
                 if (richMessageLayout != null) {
                     return richMessageLayout.joinedText;
@@ -498,7 +498,7 @@ public abstract class p9 extends ba {
         }
         w9 w9Var2 = this.W;
         if (w9Var2 != null) {
-            if (this.f22427s0 || this.f22428t0) {
+            if (this.f22428s0 || this.f22429t0) {
                 ((u1) w9Var2).a3();
             }
         }

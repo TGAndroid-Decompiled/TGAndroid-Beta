@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    iVar.k(user2, user2.f19949id);
+                    iVar.k(user2, user2.f19950id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    iVar2.k(chat2, chat2.f19802id);
+                    iVar2.k(chat2, chat2.f19803id);
                 }
             }
         } catch (Exception e7) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f19823id = queryFinalized.intValue(1);
+                        TLdeserialize.f19824id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j3;
                         i11 = i10;
                         try {
@@ -465,7 +465,7 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f19806id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f19807id), Integer.valueOf(i10));
             }
         }
         Collections.sort(arrayList, new wk(hashMap, 0));
@@ -536,7 +536,7 @@ public class TelegramMediaSession {
         cVar.i((long) (messageObject.getDuration() * 1000.0d));
         cVar.j("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
-            str = aVar.f14793f;
+            str = aVar.f14794f;
         } else {
             str = null;
         }

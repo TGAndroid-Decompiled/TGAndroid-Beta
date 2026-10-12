@@ -7,20 +7,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class l70 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.e3[] f28066a;
-    public final TLRPC.TL_chatInviteImporter f28067b;
+    public final org.telegram.ui.ActionBar.e3[] f28051a;
+    public final TLRPC.TL_chatInviteImporter f28052b;
 
     public l70(org.telegram.ui.ActionBar.e3[] e3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f28066a = e3VarArr;
-        this.f28067b = tL_chatInviteImporter;
+        this.f28051a = e3VarArr;
+        this.f28052b = tL_chatInviteImporter;
     }
 
     @Override
     public final void onClick(View view) {
-        this.f28066a[0].dismiss();
+        this.f28051a[0].dismiss();
         org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
         if (U != null) {
-            U.presentFragment(ProfileActivity.m4(this.f28067b.user_id));
+            U.presentFragment(ProfileActivity.m4(this.f28052b.user_id));
         }
     }
 

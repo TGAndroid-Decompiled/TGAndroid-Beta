@@ -22,9 +22,9 @@ public abstract class r {
     }
 
     public static void b(b2.b1 b1Var, m4.s sVar) {
-        int i10 = sVar.f15971b;
-        long j3 = sVar.f15972c;
-        e9.i0 i0Var = sVar.f15970a;
+        int i10 = sVar.f15972b;
+        long j3 = sVar.f15973c;
+        e9.i0 i0Var = sVar.f15971a;
         if (i10 == -1) {
             if (b1Var.n0(20)) {
                 b1Var.I0(i0Var);
@@ -32,7 +32,7 @@ public abstract class r {
                 b1Var.k0((b2.k0) i0Var.get(0));
             }
         } else if (b1Var.n0(20)) {
-            b1Var.T(j3, sVar.f15971b, i0Var);
+            b1Var.T(j3, sVar.f15972b, i0Var);
         } else if (!i0Var.isEmpty()) {
             b1Var.k((b2.k0) i0Var.get(0), j3);
         }

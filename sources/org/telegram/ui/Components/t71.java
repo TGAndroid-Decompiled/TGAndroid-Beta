@@ -4,17 +4,17 @@ import android.content.Context;
 import androidx.core.widget.NestedScrollView;
 public final class t71 extends NestedScrollView {
     public boolean W;
-    public final u71 f30782a0;
+    public final u71 f30785a0;
 
     public t71(u71 u71Var, Context context) {
         super(context);
-        this.f30782a0 = u71Var;
+        this.f30785a0 = u71Var;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        u71.o(this.f30782a0);
+        u71.o(this.f30785a0);
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class t71 extends NestedScrollView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        u71.o(this.f30782a0);
+        u71.o(this.f30785a0);
     }
 
     @Override

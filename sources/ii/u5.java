@@ -55,12 +55,12 @@ public final class u5 implements View.OnClickListener {
                 if (b6Var2 != null) {
                     a aVar3 = e6Var2.f12409x;
                     x3 x3Var2 = ((f3) b6Var2).f12419a;
-                    if (aVar3 != null && (aVar3.f12232b instanceof TL_iv.pageBlockPreformatted) && (set = ki.k.f14892a.f14913x) != null) {
+                    if (aVar3 != null && (aVar3.f12232b instanceof TL_iv.pageBlockPreformatted) && (set = ki.k.f14893a.f14914x) != null) {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f12232b;
                         s80 J = x3Var2.f12807f3.J(view);
-                        J.W(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20559d6, x3Var2.f12805e3)));
+                        J.W(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, x3Var2.f12805e3)));
                         J.Z = true;
                         J.X = AndroidUtilities.dp(350.0f);
                         J.i(new p2(x3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));

@@ -29,30 +29,30 @@ public final class mn0 extends Dialog {
     public boolean L;
     public boolean M;
     public ValueAnimator N;
-    public final Context f28604a;
-    public final org.telegram.ui.ActionBar.c6 f28605b;
-    public Bitmap f28606c;
+    public final Context f28594a;
+    public final org.telegram.ui.ActionBar.c6 f28595b;
+    public Bitmap f28596c;
     public BitmapShader d;
-    public Paint f28607e;
-    public Matrix f28608f;
+    public Paint f28597e;
+    public Matrix f28598f;
     public final fh.b h;
-    public final ah.c f28609n;
-    public float f28610r;
-    public final ai.f0 f28611s;
+    public final ah.c f28599n;
+    public float f28600r;
+    public final ai.f0 f28601s;
     public final yw0 v;
-    public s80 f28612w;
-    public FrameLayout f28613x;
-    public ViewGroup f28614y;
+    public s80 f28602w;
+    public FrameLayout f28603x;
+    public ViewGroup f28604y;
 
     public mn0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, R.style.TransparentDialog);
         this.J = 1.0f;
         this.K = 1.0f;
         this.M = false;
-        this.f28604a = context;
-        this.f28605b = c6Var;
+        this.f28594a = context;
+        this.f28595b = c6Var;
         ai.f0 f0Var = new ai.f0(this, context, 18);
-        this.f28611s = f0Var;
+        this.f28601s = f0Var;
         f0Var.setOnClickListener(new f90(this, 10));
         yw0 yw0Var = new yw0(context, null);
         this.v = yw0Var;
@@ -61,11 +61,11 @@ public final class mn0 extends Dialog {
         fh.b bVar = new fh.b();
         this.h = bVar;
         ah.c cVar = new ah.c(bVar);
-        this.f28609n = cVar;
+        this.f28599n = cVar;
         cVar.f547f = new hh.j(f0Var);
         cVar.f548g = f0Var;
         k2.g0 g0Var = new k2.g0(this, 14);
-        WeakHashMap weakHashMap = r0.i0.f46981a;
+        WeakHashMap weakHashMap = r0.i0.f46989a;
         r0.a0.i(f0Var, g0Var);
     }
 
@@ -79,7 +79,7 @@ public final class mn0 extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f28610r;
+        float f10 = this.f28600r;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -101,20 +101,20 @@ public final class mn0 extends Dialog {
         }
         this.M = true;
         c(new kn0(this, 1), false);
-        this.f28611s.invalidate();
+        this.f28601s.invalidate();
     }
 
     public final void e(s80 s80Var) {
         int i10 = org.telegram.ui.ActionBar.h6.E8;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f28605b;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f28595b;
         s80Var.T(org.telegram.ui.ActionBar.h6.m1(0.06f, org.telegram.ui.ActionBar.h6.w0(i10, c6Var)));
-        s80Var.Q(this.f28609n, eh.b.k(c6Var), false);
-        this.f28612w = s80Var;
-        this.f28614y = s80Var.A;
-        FrameLayout frameLayout = new FrameLayout(this.f28604a);
-        this.f28613x = frameLayout;
-        frameLayout.addView(this.f28614y, w7.w5.d(-2.0f, -2));
-        this.v.addView(this.f28613x, w7.w5.d(-2.0f, -2));
+        s80Var.Q(this.f28599n, eh.b.k(c6Var), false);
+        this.f28602w = s80Var;
+        this.f28604y = s80Var.A;
+        FrameLayout frameLayout = new FrameLayout(this.f28594a);
+        this.f28603x = frameLayout;
+        frameLayout.addView(this.f28604y, w7.w5.d(-2.0f, -2));
+        this.v.addView(this.f28603x, w7.w5.d(-2.0f, -2));
     }
 
     public final void f(org.telegram.ui.Cells.u1 r30, android.text.style.CharacterStyle r31, java.lang.CharSequence r32, boolean r33) {
@@ -132,7 +132,7 @@ public final class mn0 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ai.f0 f0Var = this.f28611s;
+        ai.f0 f0Var = this.f28601s;
         setContentView(f0Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

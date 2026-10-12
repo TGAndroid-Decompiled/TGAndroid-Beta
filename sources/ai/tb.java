@@ -50,10 +50,10 @@ public final class tb extends AnimatorListenerAdapter {
                 if (hcVar.d != null && (t10 = kcVar.t()) != null && (jk0Var = t10.f989o1.d) != null) {
                     jk0 jk0Var2 = hcVar.d;
                     jk0Var2.getClass();
-                    jk0Var2.f27532c = jk0Var.f27532c;
-                    jk0Var2.f27534f = jk0Var.f27534f;
-                    jk0Var2.f27531b = jk0Var.f27531b;
-                    jk0Var2.f27530a = System.currentTimeMillis();
+                    jk0Var2.f27539c = jk0Var.f27539c;
+                    jk0Var2.f27541f = jk0Var.f27541f;
+                    jk0Var2.f27538b = jk0Var.f27538b;
+                    jk0Var2.f27537a = System.currentTimeMillis();
                     jk0Var2.c();
                 }
                 e6 e6Var = kcVar.G0;

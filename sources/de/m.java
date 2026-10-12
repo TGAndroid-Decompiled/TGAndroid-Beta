@@ -76,10 +76,10 @@ public final class m implements b, lp0, me.d, ne.a {
         int dp = AndroidUtilities.dp(9.0f);
         r71 r71Var = (r71) this.f8335a;
         float f11 = -dp;
-        r71Var.f30073g.inset(f11, f11);
-        boolean contains = r71Var.f30073g.contains(f7, f10);
+        r71Var.f30074g.inset(f11, f11);
+        boolean contains = r71Var.f30074g.contains(f7, f10);
         float f12 = dp;
-        r71Var.f30073g.inset(f12, f12);
+        r71Var.f30074g.inset(f12, f12);
         return contains;
     }
 
@@ -90,7 +90,7 @@ public final class m implements b, lp0, me.d, ne.a {
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((r71) this.f8335a).f30075j;
+        Runnable runnable = ((r71) this.f8335a).f30076j;
         if (runnable != null) {
             runnable.run();
         }

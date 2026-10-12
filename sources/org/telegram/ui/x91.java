@@ -3,34 +3,34 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class x91 implements Runnable {
-    public final int f43864a;
-    public final db1 f43865b;
-    public final ArrayList f43866c;
+    public final int f43869a;
+    public final db1 f43870b;
+    public final ArrayList f43871c;
 
     public x91(db1 db1Var, ArrayList arrayList, int i10) {
-        this.f43864a = i10;
-        this.f43865b = db1Var;
-        this.f43866c = arrayList;
+        this.f43869a = i10;
+        this.f43870b = db1Var;
+        this.f43871c = arrayList;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f43864a) {
+        switch (this.f43869a) {
             case 0:
-                db1 db1Var = this.f43865b;
-                ArrayList arrayList = db1Var.f36747s0;
-                ArrayList arrayList2 = db1Var.f36745r0;
+                db1 db1Var = this.f43870b;
+                ArrayList arrayList = db1Var.f36749s0;
+                ArrayList arrayList2 = db1Var.f36747r0;
                 int i10 = 0;
-                db1Var.f36752w0 = false;
-                ArrayList arrayList3 = this.f43866c;
+                db1Var.f36754w0 = false;
+                ArrayList arrayList3 = this.f43871c;
                 if (!arrayList3.isEmpty()) {
                     int size = arrayList3.size();
                     for (int i11 = 0; i11 < size; i11++) {
                         MessageObject messageObject = (MessageObject) arrayList3.get(i11);
-                        int i12 = db1Var.f36742p0.get(messageObject.getId(), -1);
+                        int i12 = db1Var.f36744p0.get(messageObject.getId(), -1);
                         if (i12 >= 0 && ((ab1) arrayList2.get(i12)).b() == messageObject.getId()) {
-                            ((ab1) arrayList2.get(i12)).f35753b = messageObject;
+                            ((ab1) arrayList2.get(i12)).f35755b = messageObject;
                         }
                     }
                     arrayList.clear();
@@ -38,8 +38,8 @@ public final class x91 implements Runnable {
                     while (true) {
                         if (i10 < size2) {
                             ab1 ab1Var = (ab1) arrayList2.get(i10);
-                            if (ab1Var.f35753b == null) {
-                                db1Var.f36741o0 = ab1Var.b();
+                            if (ab1Var.f35755b == null) {
+                                db1Var.f36743o0 = ab1Var.b();
                             } else {
                                 arrayList.add(ab1Var);
                                 i10++;
@@ -48,15 +48,15 @@ public final class x91 implements Runnable {
                     }
                     db1Var.o0();
                     db1Var.S.setItemAnimator(null);
-                    db1Var.f36756y0.f();
+                    db1Var.f36758y0.f();
                     return;
                 }
                 return;
             default:
-                db1 db1Var2 = this.f43865b;
-                ai.e9 e9Var = db1Var2.f36757z0;
+                db1 db1Var2 = this.f43870b;
+                ai.e9 e9Var = db1Var2.f36759z0;
                 e9Var.getClass();
-                ArrayList arrayList4 = this.f43866c;
+                ArrayList arrayList4 = this.f43871c;
                 int size3 = arrayList4.size();
                 int i13 = 0;
                 while (true) {

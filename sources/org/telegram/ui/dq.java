@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class dq extends s4.i0 {
-    public final Context f36860c;
+    public final Context f36863c;
     public final eq d;
 
     public dq(eq eqVar, Context context) {
         this.d = eqVar;
-        this.f36860c = context;
+        this.f36863c = context;
     }
 
     @Override
     public final int h() {
         eq eqVar = this.d;
-        ArrayList arrayList = eqVar.f37524r;
+        ArrayList arrayList = eqVar.f37529r;
         int i10 = 0;
         if (eqVar.G) {
             if (!eqVar.d.isEmpty()) {
@@ -62,7 +62,7 @@ public final class dq extends s4.i0 {
     public final void v(s4.d1 d1Var, int i10) {
         String string;
         int i11;
-        View view = d1Var.f47889a;
+        View view = d1Var.f47897a;
         int j3 = j(i10);
         int i12 = 2;
         eq eqVar = this.d;
@@ -70,7 +70,7 @@ public final class dq extends s4.i0 {
             if (j3 != 1) {
                 if (j3 == 2) {
                     org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) view;
-                    ArrayList arrayList = eqVar.f37524r;
+                    ArrayList arrayList = eqVar.f37529r;
                     if (!eqVar.G) {
                         i12 = 3;
                     }
@@ -84,13 +84,13 @@ public final class dq extends s4.i0 {
             }
             org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
             m4Var.setText(LocaleController.getString(R.string.OnlyAllowThisReactions));
-            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
             return;
         }
         org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
         e9Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.B6, false));
         if (eqVar.G) {
-            if (ChatObject.isChannelAndNotMegaGroup(eqVar.f37518a)) {
+            if (ChatObject.isChannelAndNotMegaGroup(eqVar.f37523a)) {
                 string = LocaleController.getString(R.string.EnableReactionsChannelInfo);
             } else {
                 string = LocaleController.getString(R.string.EnableReactionsGroupInfo);
@@ -110,7 +110,7 @@ public final class dq extends s4.i0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f36860c;
+        Context context = this.f36863c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -118,10 +118,10 @@ public final class dq extends s4.i0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 eq eqVar = this.d;
-                if (eqVar.f37525s.getParent() != null) {
-                    ((ViewGroup) eqVar.f37525s.getParent()).removeView(eqVar.f37525s);
+                if (eqVar.f37530s.getParent() != null) {
+                    ((ViewGroup) eqVar.f37530s.getParent()).removeView(eqVar.f37530s);
                 }
-                frameLayout.addView(eqVar.f37525s);
+                frameLayout.addView(eqVar.f37530s);
                 frameLayout.setLayoutParams(new s4.q0(-1, -2));
                 return new s4.d1(frameLayout);
             }

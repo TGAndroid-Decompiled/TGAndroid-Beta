@@ -2,19 +2,19 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 public final class e3 extends sg.s {
-    public final f3 f34648x;
+    public final f3 f34650x;
 
     public e3(f3 f3Var, Context context, b3 b3Var) {
         super(context, b3Var);
-        this.f34648x = f3Var;
+        this.f34650x = f3Var;
     }
 
     @Override
     public final void a() {
-        f3 f3Var = this.f34648x;
-        f3Var.f34730o = true;
+        f3 f3Var = this.f34650x;
+        f3Var.f34732o = true;
         setPaused(true);
         setVisibility(8);
-        f3Var.f34705a.invalidate();
+        f3Var.f34707a.invalidate();
     }
 }

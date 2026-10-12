@@ -162,10 +162,10 @@ public final class v60 extends b70 {
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchCamera));
         linearLayout.addView((View) imageView, w7.w5.n(44, 44));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final v60 f30061b;
+            public final v60 f30062b;
 
             {
-                this.f30061b = this;
+                this.f30062b = this;
             }
 
             @Override
@@ -177,34 +177,34 @@ public final class v60 extends b70 {
                 int i11;
                 switch (r2) {
                     case 0:
-                        v60 v60Var = this.f30061b;
+                        v60 v60Var = this.f30062b;
                         qi.p0 p0Var = v60Var.P;
-                        if (p0Var != null && (o0Var = v60Var.R) != null && (h0Var = v60Var.S) != null && o0Var.f46809a == 3 && !o0Var.f46812e && !v60Var.f31426n0) {
-                            qi.i0 i0Var = h0Var.f46757a;
-                            qi.i0 i0Var2 = qi.i0.f46762a;
+                        if (p0Var != null && (o0Var = v60Var.R) != null && (h0Var = v60Var.S) != null && o0Var.f46817a == 3 && !o0Var.f46820e && !v60Var.f31426n0) {
+                            qi.i0 i0Var = h0Var.f46765a;
+                            qi.i0 i0Var2 = qi.i0.f46770a;
                             if (i0Var == i0Var2) {
-                                i0Var2 = qi.i0.f46763b;
+                                i0Var2 = qi.i0.f46771b;
                             }
                             p0Var.getClass();
                             qi.p0.v();
                             int i12 = p0Var.X;
                             if (i12 != 7 && i12 != 8 && i12 != 9 && i12 != 10) {
-                                if (p0Var.f46866q != i0Var2) {
-                                    p0Var.f46863n.b("camera facing requested: " + p0Var.f46866q + " -> " + i0Var2 + ", state=" + org.telegram.ui.Cells.c1.w(p0Var.X));
-                                    p0Var.f46866q = i0Var2;
+                                if (p0Var.f46874q != i0Var2) {
+                                    p0Var.f46871n.b("camera facing requested: " + p0Var.f46874q + " -> " + i0Var2 + ", state=" + org.telegram.ui.Cells.c1.w(p0Var.X));
+                                    p0Var.f46874q = i0Var2;
                                     int i13 = p0Var.X;
                                     if (i13 == 3 || i13 == 2) {
                                         p0Var.e();
-                                        qi.h hVar = p0Var.f46862m;
+                                        qi.h hVar = p0Var.f46870m;
                                         hVar.C = i0Var2;
-                                        Handler handler = hVar.f46732n;
+                                        Handler handler = hVar.f46740n;
                                         if (hVar.S && handler != null) {
-                                            handler.post(new p2.b(8, hVar, i0Var2));
+                                            handler.post(new org.telegram.ui.web.f2(10, hVar, i0Var2));
                                             z10 = true;
                                         } else {
                                             z10 = false;
                                         }
-                                        p0Var.f46872x = z10;
+                                        p0Var.f46880x = z10;
                                     }
                                     p0Var.p();
                                     p0Var.q();
@@ -217,13 +217,13 @@ public final class v60 extends b70 {
                         }
                         return;
                     default:
-                        v60 v60Var2 = this.f30061b;
+                        v60 v60Var2 = this.f30062b;
                         qi.p0 p0Var2 = v60Var2.P;
                         if (p0Var2 != null && (o0Var2 = v60Var2.R) != null && v60Var2.S != null) {
-                            boolean z11 = !o0Var2.f46813f;
-                            qi.h hVar2 = p0Var2.f46862m;
+                            boolean z11 = !o0Var2.f46821f;
+                            qi.h hVar2 = p0Var2.f46870m;
                             qi.p0.v();
-                            if (p0Var2.X == 3 && !p0Var2.f46872x && (i11 = p0Var2.Y) != 1) {
+                            if (p0Var2.X == 3 && !p0Var2.f46880x && (i11 = p0Var2.Y) != 1) {
                                 p0Var2.v = z11;
                                 if (i11 == 3) {
                                     p0Var2.x(z11);
@@ -247,10 +247,10 @@ public final class v60 extends b70 {
         imageView2.setScaleType(scaleType);
         linearLayout.addView((View) imageView2, w7.w5.n(44, 44));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final v60 f30061b;
+            public final v60 f30062b;
 
             {
-                this.f30061b = this;
+                this.f30062b = this;
             }
 
             @Override
@@ -262,34 +262,34 @@ public final class v60 extends b70 {
                 int i11;
                 switch (r2) {
                     case 0:
-                        v60 v60Var = this.f30061b;
+                        v60 v60Var = this.f30062b;
                         qi.p0 p0Var = v60Var.P;
-                        if (p0Var != null && (o0Var = v60Var.R) != null && (h0Var = v60Var.S) != null && o0Var.f46809a == 3 && !o0Var.f46812e && !v60Var.f31426n0) {
-                            qi.i0 i0Var = h0Var.f46757a;
-                            qi.i0 i0Var2 = qi.i0.f46762a;
+                        if (p0Var != null && (o0Var = v60Var.R) != null && (h0Var = v60Var.S) != null && o0Var.f46817a == 3 && !o0Var.f46820e && !v60Var.f31426n0) {
+                            qi.i0 i0Var = h0Var.f46765a;
+                            qi.i0 i0Var2 = qi.i0.f46770a;
                             if (i0Var == i0Var2) {
-                                i0Var2 = qi.i0.f46763b;
+                                i0Var2 = qi.i0.f46771b;
                             }
                             p0Var.getClass();
                             qi.p0.v();
                             int i12 = p0Var.X;
                             if (i12 != 7 && i12 != 8 && i12 != 9 && i12 != 10) {
-                                if (p0Var.f46866q != i0Var2) {
-                                    p0Var.f46863n.b("camera facing requested: " + p0Var.f46866q + " -> " + i0Var2 + ", state=" + org.telegram.ui.Cells.c1.w(p0Var.X));
-                                    p0Var.f46866q = i0Var2;
+                                if (p0Var.f46874q != i0Var2) {
+                                    p0Var.f46871n.b("camera facing requested: " + p0Var.f46874q + " -> " + i0Var2 + ", state=" + org.telegram.ui.Cells.c1.w(p0Var.X));
+                                    p0Var.f46874q = i0Var2;
                                     int i13 = p0Var.X;
                                     if (i13 == 3 || i13 == 2) {
                                         p0Var.e();
-                                        qi.h hVar = p0Var.f46862m;
+                                        qi.h hVar = p0Var.f46870m;
                                         hVar.C = i0Var2;
-                                        Handler handler = hVar.f46732n;
+                                        Handler handler = hVar.f46740n;
                                         if (hVar.S && handler != null) {
-                                            handler.post(new p2.b(8, hVar, i0Var2));
+                                            handler.post(new org.telegram.ui.web.f2(10, hVar, i0Var2));
                                             z10 = true;
                                         } else {
                                             z10 = false;
                                         }
-                                        p0Var.f46872x = z10;
+                                        p0Var.f46880x = z10;
                                     }
                                     p0Var.p();
                                     p0Var.q();
@@ -302,13 +302,13 @@ public final class v60 extends b70 {
                         }
                         return;
                     default:
-                        v60 v60Var2 = this.f30061b;
+                        v60 v60Var2 = this.f30062b;
                         qi.p0 p0Var2 = v60Var2.P;
                         if (p0Var2 != null && (o0Var2 = v60Var2.R) != null && v60Var2.S != null) {
-                            boolean z11 = !o0Var2.f46813f;
-                            qi.h hVar2 = p0Var2.f46862m;
+                            boolean z11 = !o0Var2.f46821f;
+                            qi.h hVar2 = p0Var2.f46870m;
                             qi.p0.v();
-                            if (p0Var2.X == 3 && !p0Var2.f46872x && (i11 = p0Var2.Y) != 1) {
+                            if (p0Var2.X == 3 && !p0Var2.f46880x && (i11 = p0Var2.Y) != 1) {
                                 p0Var2.v = z11;
                                 if (i11 == 3) {
                                     p0Var2.x(z11);
@@ -332,7 +332,7 @@ public final class v60 extends b70 {
         fk0 fk0Var = new fk0(R.raw.roundcamera_flip, dp, dp);
         this.f31414c0 = fk0Var;
         fk0Var.setCallback(imageView);
-        fk0Var.M(fk0Var.f26107e[0] - 1);
+        fk0Var.M(fk0Var.f26109e[0] - 1);
         imageView.setImageDrawable(fk0Var);
         z();
         if (c6Var != null && !c6Var.a()) {
@@ -360,10 +360,10 @@ public final class v60 extends b70 {
         qi.o0 o0Var;
         qi.p0 p0Var = this.P;
         if (p0Var != null && (o0Var = this.R) != null) {
-            if (o0Var.f46809a == 3) {
+            if (o0Var.f46817a == 3) {
                 return p0Var.l();
             }
-            return o0Var.f46810b;
+            return o0Var.f46818b;
         }
         return 0L;
     }
@@ -400,8 +400,8 @@ public final class v60 extends b70 {
             }
             if (this.d != z10) {
                 this.d = z10;
-                z60 z60Var = this.f24578c;
-                if (z60Var != null && (skVar = ((org.telegram.ui.wj) z60Var).f43542a.Y) != null) {
+                z60 z60Var = this.f24566c;
+                if (z60Var != null && (skVar = ((org.telegram.ui.wj) z60Var).f43547a.Y) != null) {
                     skVar.setRoundVideoUiFrameClockActive(z10);
                 }
             }
@@ -437,41 +437,41 @@ public final class v60 extends b70 {
         qi.o0 o0Var = this.R;
         if (o0Var != null) {
             long j3 = o0Var.d;
-            if (o0Var.f46809a == 3) {
-                long min = Math.min(j3, (SystemClock.elapsedRealtime() + o0Var.f46810b) - o0Var.f46811c);
+            if (o0Var.f46817a == 3) {
+                long min = Math.min(j3, (SystemClock.elapsedRealtime() + o0Var.f46818b) - o0Var.f46819c);
                 this.f31435u0 = min;
                 this.f31437w.setProgress(((float) min) / ((float) j3));
-                z60 z60Var = this.f24578c;
-                if (z60Var != null && (skVar = ((org.telegram.ui.wj) z60Var).f43542a.Y) != null && skVar.f23675j1) {
-                    skVar.f23669i1 = min;
+                z60 z60Var = this.f24566c;
+                if (z60Var != null && (skVar = ((org.telegram.ui.wj) z60Var).f43547a.Y) != null && skVar.f23676j1) {
+                    skVar.f23670i1 = min;
                     bh bhVar = skVar.Y0;
-                    if (bhVar != null && bhVar.f24647r) {
+                    if (bhVar != null && bhVar.f24638r) {
                         bhVar.h = min;
                         bhVar.invalidate();
                     }
                     yg ygVar = skVar.l1;
-                    if (ygVar != null && ygVar.f33099n) {
+                    if (ygVar != null && ygVar.f33098n) {
                         if (!ygVar.h) {
-                            long j10 = ygVar.f33100r;
+                            long j10 = ygVar.f33099r;
                             if (j10 >= 0) {
-                                if (!ygVar.f33097e) {
+                                if (!ygVar.f33096e) {
                                     long max = Math.max(0L, min - j10) % 1200;
                                     if (max < 600) {
                                         f7 = 1.0f - (((float) max) / 600.0f);
                                     } else {
                                         f7 = ((float) (max - 600)) / 600.0f;
                                     }
-                                    ygVar.f33094a = f7;
+                                    ygVar.f33093a = f7;
                                 }
                                 ygVar.invalidate();
                             }
                         }
-                        ygVar.f33100r = min;
-                        ygVar.f33094a = 1.0f;
+                        ygVar.f33099r = min;
+                        ygVar.f33093a = 1.0f;
                         ygVar.invalidate();
                     }
-                    ChatActivityEnterView.SlideTextView slideTextView = skVar.f23680k1;
-                    if (slideTextView != null && slideTextView.J && slideTextView.f23792n != 1.0f) {
+                    ChatActivityEnterView.SlideTextView slideTextView = skVar.f23681k1;
+                    if (slideTextView != null && slideTextView.J && slideTextView.f23793n != 1.0f) {
                         slideTextView.invalidate();
                     }
                 }
@@ -505,7 +505,7 @@ public final class v60 extends b70 {
     public final void b(float f7, int i10) {
         qi.o0 o0Var;
         i2.f0 f0Var;
-        if (this.P != null && (o0Var = this.R) != null && o0Var.f46809a == 5) {
+        if (this.P != null && (o0Var = this.R) != null && o0Var.f46817a == 5) {
             o();
             if (i10 == 0) {
                 this.P.s();
@@ -522,7 +522,7 @@ public final class v60 extends b70 {
                 }
             } else if (i10 == 2) {
                 qi.p0 p0Var2 = this.P;
-                long j3 = f7 * ((float) this.R.f46810b);
+                long j3 = f7 * ((float) this.R.f46818b);
                 p0Var2.getClass();
                 qi.p0.v();
                 if (p0Var2.X == 5 && p0Var2.T != null) {
@@ -556,13 +556,13 @@ public final class v60 extends b70 {
             } else {
                 p0Var.e();
                 p0Var.t();
-                p0Var.f46862m.s();
+                p0Var.f46870m.s();
                 p0Var.y(10);
                 p0Var.o("released");
                 if (p0Var.Q == null) {
                     file = null;
                 } else {
-                    file = p0Var.Q.f46800b;
+                    file = p0Var.Q.f46808b;
                 }
                 p0Var.w(file);
             }
@@ -587,7 +587,7 @@ public final class v60 extends b70 {
     public final boolean d() {
         qi.o0 o0Var = this.R;
         if (o0Var != null) {
-            int i10 = o0Var.f46809a;
+            int i10 = o0Var.f46817a;
             if (i10 == 4 || i10 == 5 || i10 == 6) {
                 return true;
             }
@@ -610,7 +610,7 @@ public final class v60 extends b70 {
         if (p0Var != null && (o0Var = this.R) != null) {
             int i13 = 2;
             if (i10 == 3) {
-                if (p0Var != null && o0Var != null && o0Var.f46809a == 3) {
+                if (p0Var != null && o0Var != null && o0Var.f46817a == 3) {
                     u(2);
                     this.P.r();
                 }
@@ -622,7 +622,7 @@ public final class v60 extends b70 {
                     a(false);
                     return;
                 }
-                if (this.R.f46809a == 3) {
+                if (this.R.f46817a == 3) {
                     u(5);
                 } else {
                     o();
@@ -635,15 +635,15 @@ public final class v60 extends b70 {
                 qi.p0.v();
                 int i14 = p0Var2.X;
                 if (i14 == 3 || i14 == 5) {
-                    p0Var2.f46863n.b("finish requested: state=" + org.telegram.ui.Cells.c1.w(p0Var2.X) + ", includeAudio=" + z13 + ", durationMs=" + p0Var2.l() + ", trim=" + p0Var2.H + ".." + p0Var2.I);
+                    p0Var2.f46871n.b("finish requested: state=" + org.telegram.ui.Cells.c1.w(p0Var2.X) + ", includeAudio=" + z13 + ", durationMs=" + p0Var2.l() + ", trim=" + p0Var2.H + ".." + p0Var2.I);
                     p0Var2.A = z13;
                     if (p0Var2.X == 3) {
                         p0Var2.F = p0Var2.l();
-                        p0Var2.f46874z = true;
+                        p0Var2.f46882z = true;
                         p0Var2.e();
-                        p0Var2.f46859j.removeCallbacks(p0Var2.U);
+                        p0Var2.f46867j.removeCallbacks(p0Var2.U);
                         p0Var2.y(7);
-                        boolean D = p0Var2.f46862m.D();
+                        boolean D = p0Var2.f46870m.D();
                         p0Var2.C = D;
                         if (!D) {
                             p0Var2.j(new IllegalStateException("Unable to stop the camera segment"));
@@ -659,7 +659,7 @@ public final class v60 extends b70 {
                     if (p0Var2.n()) {
                         i13 = 1;
                     }
-                    p0Var2.f46860k.execute(new org.telegram.messenger.ej(p0Var2, p0Var2.R, z11, p0Var2.S, z13, i13, p0Var2.Q));
+                    p0Var2.f46868k.execute(new org.telegram.messenger.ej(p0Var2, p0Var2.R, z11, p0Var2.S, z13, i13, p0Var2.Q));
                 }
             }
         }
@@ -741,27 +741,27 @@ public final class v60 extends b70 {
             rlVar.invalidate();
         }
         this.T = new m11(this.h, this.f31430r);
-        this.Q = (qi.n0) ri.e.f47791e.a();
+        this.Q = (qi.n0) ri.e.f47799e.a();
         qi.g0 g0Var = new qi.g0(getContext(), this.f31441y);
-        g0Var.f46701c = new File(ApplicationLoader.getFilesDirFixed(), "cache");
-        g0Var.d = (qi.i0) ri.e.f47795j.a();
-        g0Var.f46702e = this.Q;
+        g0Var.f46709c = new File(ApplicationLoader.getFilesDirFixed(), "cache");
+        g0Var.d = (qi.i0) ri.e.f47803j.a();
+        g0Var.f46710e = this.Q;
         g0Var.h = ri.e.h.a();
-        g0Var.f46703f = (qi.j0) ri.e.f47792f.a();
-        g0Var.f46704g = (qi.k0) ri.e.f47793g.a();
-        ri.a aVar = ri.e.f47794i;
+        g0Var.f46711f = (qi.j0) ri.e.f47800f.a();
+        g0Var.f46712g = (qi.k0) ri.e.f47801g.a();
+        ri.a aVar = ri.e.f47802i;
         aVar.a();
-        g0Var.f46705i = aVar.d;
+        g0Var.f46713i = aVar.d;
         n4.l lVar = this.J0;
-        g0Var.f46706j = lVar;
+        g0Var.f46714j = lVar;
         m11 m11Var = this.T;
-        g0Var.f46707k = m11Var;
-        g0Var.f46708l = new ew(this, 6);
+        g0Var.f46715k = m11Var;
+        g0Var.f46716l = new ew(this, 6);
         if (g0Var.d != null) {
-            if (g0Var.f46702e != null) {
+            if (g0Var.f46710e != null) {
                 if (g0Var.h > 0) {
-                    if (g0Var.f46703f != null) {
-                        if (g0Var.f46704g != null) {
+                    if (g0Var.f46711f != null) {
+                        if (g0Var.f46712g != null) {
                             if (lVar != null) {
                                 if (m11Var != null) {
                                     this.P = new qi.p0(g0Var);
@@ -771,10 +771,10 @@ public final class v60 extends b70 {
                                     qi.p0.v();
                                     if (p0Var.X == 1) {
                                         try {
-                                            p0Var.f46863n.b("start requested");
+                                            p0Var.f46871n.b("start requested");
                                             p0Var.c(true);
                                             p0Var.y(2);
-                                            p0Var.f46862m.C(p0Var.R, 0L, p0Var.f46866q);
+                                            p0Var.f46870m.C(p0Var.R, 0L, p0Var.f46874q);
                                         } catch (Exception e7) {
                                             p0Var.j(e7);
                                         }
@@ -802,7 +802,7 @@ public final class v60 extends b70 {
         qi.o0 o0Var;
         qi.p0 p0Var = this.P;
         if (p0Var != null && (o0Var = this.R) != null) {
-            int i10 = o0Var.f46809a;
+            int i10 = o0Var.f46817a;
             if (i10 == 3) {
                 if (p0Var != null && o0Var != null && i10 == 3) {
                     u(2);
@@ -813,12 +813,12 @@ public final class v60 extends b70 {
                 this.f31419g0 = true;
                 this.f31420h0 = false;
                 qi.p0.v();
-                if (p0Var.X == 5 && p0Var.I - p0Var.H < p0Var.f46865p) {
+                if (p0Var.X == 5 && p0Var.I - p0Var.H < p0Var.f46873p) {
                     p0Var.N++;
-                    p0Var.f46863n.b("resume requested: trim=" + p0Var.H + ".." + p0Var.I + ", sourceDurationMs=" + p0Var.F);
+                    p0Var.f46871n.b("resume requested: trim=" + p0Var.H + ".." + p0Var.I + ", sourceDurationMs=" + p0Var.F);
                     p0Var.t();
                     p0Var.y(6);
-                    p0Var.f46860k.execute(new ci.t1(p0Var, p0Var.n(), p0Var.R, p0Var.Q, p0Var.S));
+                    p0Var.f46868k.execute(new ci.t1(p0Var, p0Var.n(), p0Var.R, p0Var.Q, p0Var.S));
                 }
             }
         }
@@ -828,7 +828,7 @@ public final class v60 extends b70 {
         qi.o0 o0Var;
         VideoEditedInfo videoEditedInfo;
         if (this.P != null && (o0Var = this.R) != null && (videoEditedInfo = this.U) != null) {
-            long j3 = o0Var.f46810b;
+            long j3 = o0Var.f46818b;
             long max = Math.max(0L, videoEditedInfo.startTime);
             long j10 = this.U.endTime;
             if (j10 >= 0) {
@@ -953,13 +953,13 @@ public final class v60 extends b70 {
         if (l11Var == null) {
             j10 = file.length();
         } else {
-            j10 = l11Var.f28000a;
+            j10 = l11Var.f27985a;
         }
         videoEditedInfo.estimatedSize = Math.max(1L, j10);
         videoEditedInfo.roundVideo = true;
         qi.p0 p0Var = this.P;
-        if (p0Var != null && (k0Var = p0Var.f46869t) != null) {
-            i10 = k0Var.f46795a;
+        if (p0Var != null && (k0Var = p0Var.f46877t) != null) {
+            i10 = k0Var.f46803a;
         } else {
             i10 = 30;
         }
@@ -968,7 +968,7 @@ public final class v60 extends b70 {
         if (n0Var == null) {
             i11 = 480;
         } else {
-            i11 = n0Var.f46808a;
+            i11 = n0Var.f46816a;
         }
         videoEditedInfo.originalWidth = i11;
         videoEditedInfo.resultWidth = i11;
@@ -976,10 +976,10 @@ public final class v60 extends b70 {
         videoEditedInfo.resultHeight = i11;
         videoEditedInfo.originalPath = file.getAbsolutePath();
         if (l11Var != null) {
-            videoEditedInfo.file = l11Var.f28001b;
-            videoEditedInfo.encryptedFile = l11Var.f28002c;
+            videoEditedInfo.file = l11Var.f27986b;
+            videoEditedInfo.encryptedFile = l11Var.f27987c;
             videoEditedInfo.key = l11Var.d;
-            videoEditedInfo.iv = l11Var.f28003e;
+            videoEditedInfo.iv = l11Var.f27988e;
         }
         return videoEditedInfo;
     }
@@ -1105,9 +1105,9 @@ public final class v60 extends b70 {
         float f13;
         float f14;
         float f15;
-        x60 x60Var = this.f24576a;
+        x60 x60Var = this.f24564a;
         if (x60Var != null) {
-            ((org.telegram.ui.ve) x60Var).f42768b.f37462vc.a(z10, true);
+            ((org.telegram.ui.ve) x60Var).f42770b.f37467vc.a(z10, true);
         }
         AnimatorSet animatorSet = this.W;
         if (animatorSet != null) {
@@ -1205,13 +1205,13 @@ public final class v60 extends b70 {
         qi.h0 h0Var;
         qi.o0 o0Var = this.R;
         boolean z11 = false;
-        if (o0Var != null && o0Var.f46809a == 3 && !o0Var.f46812e && !this.f31426n0) {
+        if (o0Var != null && o0Var.f46817a == 3 && !o0Var.f46820e && !this.f31426n0) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.G.setEnabled(z10);
-        if (z10 && (h0Var = this.S) != null && h0Var.f46758b != 1) {
+        if (z10 && (h0Var = this.S) != null && h0Var.f46766b != 1) {
             z11 = true;
         }
         this.H.setEnabled(z11);
@@ -1222,7 +1222,7 @@ public final class v60 extends b70 {
         qi.o0 o0Var = this.R;
         int i10 = this.O;
         ci.u2 u2Var = this.H;
-        if (o0Var != null && o0Var.f46813f) {
+        if (o0Var != null && o0Var.f46821f) {
             if (this.f31416e0 == null) {
                 fk0 fk0Var = new fk0(R.raw.roundcamera_flash_off, i10, i10);
                 this.f31416e0 = fk0Var;

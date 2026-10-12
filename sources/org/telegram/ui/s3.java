@@ -17,14 +17,14 @@ public final class s3 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v3 v3Var = this.f41794b;
                 v3Var.I = floatValue;
-                v3Var.f42653c.invalidate();
+                v3Var.f42655c.invalidate();
                 v3Var.i();
                 v3Var.h();
                 return;
             case 1:
                 v3 v3Var2 = this.f41794b;
                 v3Var2.getClass();
-                v3Var2.f42659w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v3Var2.f42661w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v3Var2.n();
                 v3Var2.i();
                 v3Var2.h();
@@ -32,8 +32,8 @@ public final class s3 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v3 v3Var3 = this.f41794b;
-                v3Var3.f42660x = floatValue2;
-                if (!v3Var3.f42656n) {
+                v3Var3.f42662x = floatValue2;
+                if (!v3Var3.f42658n) {
                     v3Var3.n();
                 }
                 v3Var3.i();

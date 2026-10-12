@@ -49,19 +49,19 @@ public final class c0 extends View {
         this.f8976e = fk0Var;
         this.f8978n = LocaleController.getString(R.string.BotsMenuTitle);
         this.E = true;
-        paint.setColor(h6.x0(null, h6.f20549cf, false));
-        int x02 = h6.x0(null, h6.f20586ef, false);
-        zVar.f20278k = x02;
-        zVar.f20277j = x02;
+        paint.setColor(h6.x0(null, h6.f20550cf, false));
+        int x02 = h6.x0(null, h6.f20587ef, false);
+        zVar.f20279k = x02;
+        zVar.f20278j = x02;
         fk0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
         textPaint.setColor(x02);
-        zVar.f20281n = true;
+        zVar.f20282n = true;
         zVar.h = false;
         zVar.a(0.0f, false);
         zVar.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
-        zVar.f20270a.setStrokeCap(Paint.Cap.ROUND);
-        zVar.f20279l = true;
+        zVar.f20271a.setStrokeCap(Paint.Cap.ROUND);
+        zVar.f20280l = true;
         int dp = AndroidUtilities.dp(16.0f);
         int x03 = h6.x0(null, h6.Qh, false);
         org.telegram.ui.Cells.z j02 = h6.j0(dp, dp, dp, dp, 0, x03, x03);
@@ -134,7 +134,7 @@ public final class c0 extends View {
                 fk0Var.stop();
                 fk0Var.h = true;
                 if (z10) {
-                    i10 = fk0Var.f26107e[0];
+                    i10 = fk0Var.f26109e[0];
                 }
                 fk0Var.P(i10);
                 fk0Var.start();

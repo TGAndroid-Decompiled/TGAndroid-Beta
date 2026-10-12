@@ -215,6 +215,10 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             }
 
             @Override
+            public void onFirstFrameAvailable() {
+            }
+
+            @Override
             public void onCameraError(String str2) {
             }
 
@@ -224,10 +228,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
             @Override
             public void onCameraOpening(String str2) {
-            }
-
-            @Override
-            public void onFirstFrameAvailable() {
             }
         } : cameraEventsHandler;
         this.cameraEnumerator = cameraEnumerator;

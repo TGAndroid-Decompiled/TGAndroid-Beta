@@ -13,19 +13,19 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class ze0 extends Dialog {
-    public final FrameLayout f33337a;
-    public final ye0 f33338b;
+    public final FrameLayout f33345a;
+    public final ye0 f33346b;
 
     public ze0(LaunchActivity launchActivity) {
         super(launchActivity, R.style.TransparentDialog);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         FrameLayout frameLayout = new FrameLayout(launchActivity);
-        this.f33337a = frameLayout;
+        this.f33345a = frameLayout;
         je0 je0Var = new je0(1);
-        WeakHashMap weakHashMap = r0.i0.f46981a;
+        WeakHashMap weakHashMap = r0.i0.f46989a;
         r0.a0.i(frameLayout, je0Var);
         ye0 ye0Var = new ye0(this, launchActivity);
-        this.f33338b = ye0Var;
+        this.f33346b = ye0Var;
         frameLayout.addView(ye0Var, w7.w5.e(-1, -1, 119));
     }
 
@@ -36,7 +36,7 @@ public final class ze0 extends Dialog {
     @Override
     public final void dismiss() {
         LaunchActivity launchActivity;
-        if (this.f33338b.h() && (launchActivity = LaunchActivity.G1) != null) {
+        if (this.f33346b.h() && (launchActivity = LaunchActivity.G1) != null) {
             launchActivity.moveTaskToBack(true);
         }
     }
@@ -45,7 +45,7 @@ public final class ze0 extends Dialog {
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         LaunchActivity launchActivity;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            if (this.f33338b.h() && (launchActivity = LaunchActivity.G1) != null) {
+            if (this.f33346b.h() && (launchActivity = LaunchActivity.G1) != null) {
                 launchActivity.moveTaskToBack(true);
             }
             return true;
@@ -56,7 +56,7 @@ public final class ze0 extends Dialog {
     @Override
     public final void onBackPressed() {
         LaunchActivity launchActivity;
-        if (this.f33338b.h() && (launchActivity = LaunchActivity.G1) != null) {
+        if (this.f33346b.h() && (launchActivity = LaunchActivity.G1) != null) {
             launchActivity.moveTaskToBack(true);
         }
     }
@@ -67,7 +67,7 @@ public final class ze0 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        FrameLayout frameLayout = this.f33337a;
+        FrameLayout frameLayout = this.f33345a;
         setContentView(frameLayout, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

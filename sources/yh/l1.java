@@ -4,36 +4,36 @@ import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 public final class l1 implements Runnable {
-    public final int f53034a;
-    public final s3 f53035b;
-    public final TL_stars.TL_starGiftUnique f53036c;
+    public final int f53046a;
+    public final s3 f53047b;
+    public final TL_stars.TL_starGiftUnique f53048c;
     public final zf.a d;
-    public final Runnable f53037e;
+    public final Runnable f53049e;
 
     public l1(s3 s3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, zf.a aVar, Runnable runnable, int i10) {
-        this.f53034a = i10;
-        this.f53035b = s3Var;
-        this.f53036c = tL_starGiftUnique;
+        this.f53046a = i10;
+        this.f53047b = s3Var;
+        this.f53048c = tL_starGiftUnique;
         this.d = aVar;
-        this.f53037e = runnable;
+        this.f53049e = runnable;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        int i10 = this.f53034a;
-        zf.b bVar = zf.b.f54667a;
-        zf.b bVar2 = zf.b.f54668b;
-        Runnable runnable = this.f53037e;
+        int i10 = this.f53046a;
+        zf.b bVar = zf.b.f54675a;
+        zf.b bVar2 = zf.b.f54676b;
+        Runnable runnable = this.f53049e;
         zf.a aVar = this.d;
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f53036c;
-        s3 s3Var = this.f53035b;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f53048c;
+        s3 s3Var = this.f53047b;
         boolean z11 = false;
         switch (i10) {
             case 0:
                 s3Var.getClass();
                 tL_starGiftUnique.flags |= 16;
-                if (aVar.f54665a == bVar2) {
+                if (aVar.f54673a == bVar2) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -43,8 +43,8 @@ public final class l1 implements Runnable {
                 tL_starGiftUnique.resell_amount = arrayList;
                 arrayList.add(aVar.e(bVar).o());
                 tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
-                s3Var.f53393f0.setResellPrice(aVar);
-                xh.c2 c2Var = s3Var.f53392e1;
+                s3Var.f53405f0.setResellPrice(aVar);
+                xh.c2 c2Var = s3Var.f53404e1;
                 if (c2Var != null) {
                     c2Var.run();
                 }
@@ -55,7 +55,7 @@ public final class l1 implements Runnable {
                 return;
             default:
                 tL_starGiftUnique.flags |= 16;
-                if (aVar.f54665a == bVar2) {
+                if (aVar.f54673a == bVar2) {
                     z11 = true;
                 }
                 tL_starGiftUnique.resale_ton_only = z11;
@@ -63,8 +63,8 @@ public final class l1 implements Runnable {
                 tL_starGiftUnique.resell_amount = arrayList2;
                 arrayList2.add(aVar.e(bVar).o());
                 tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
-                s3Var.f53393f0.setResellPrice(aVar);
-                xh.c2 c2Var2 = s3Var.f53392e1;
+                s3Var.f53405f0.setResellPrice(aVar);
+                xh.c2 c2Var2 = s3Var.f53404e1;
                 if (c2Var2 != null) {
                     c2Var2.run();
                 }

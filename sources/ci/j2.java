@@ -26,7 +26,7 @@ public final class j2 extends ey0 {
             while (true) {
                 if (i10 < ay0VarArr.length) {
                     ay0 ay0Var = ay0VarArr[i10];
-                    if (ay0Var != null && ay0Var.f24508b) {
+                    if (ay0Var != null && ay0Var.f24496b) {
                         break;
                     }
                     i10++;

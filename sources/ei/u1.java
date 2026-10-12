@@ -161,10 +161,10 @@ public final class u1 implements py, org.telegram.ui.ActionBar.z1, ki.n, ResultC
         int i10 = this.f9387b;
         synchronized (ki.k.d) {
             try {
-                Spannable spannable = (Spannable) jVar.f14890a.get();
-                if (spannable != null && jVar.f14891b.get(Long.valueOf(j3)) == gVar) {
-                    if ((spannable instanceof ki.e) && !((ki.e) spannable).f14880a) {
-                        ki.k.a(spannable, i10, (com.google.android.gms.internal.play_billing.s0) yVar.f16362b);
+                Spannable spannable = (Spannable) jVar.f14891a.get();
+                if (spannable != null && jVar.f14892b.get(Long.valueOf(j3)) == gVar) {
+                    if ((spannable instanceof ki.e) && !((ki.e) spannable).f14881a) {
+                        ki.k.a(spannable, i10, (com.google.android.gms.internal.play_billing.s0) yVar.f16363b);
                         z10 = true;
                     } else {
                         z10 = false;
@@ -183,7 +183,7 @@ public final class u1 implements py, org.telegram.ui.ActionBar.z1, ki.n, ResultC
         dq dqVar = (dq) this.f9389e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f9388c) {
-            Drawable drawable = dqVar.f25447b;
+            Drawable drawable = dqVar.f25450b;
             if (drawable instanceof gd0) {
                 gd0 gd0Var = (gd0) drawable;
                 if (this.f9387b >= 0) {
@@ -273,7 +273,7 @@ public final class u1 implements py, org.telegram.ui.ActionBar.z1, ki.n, ResultC
         f7.setClipChildren(false);
         f7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(parentActivity);
-        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20552ci, false)));
+        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20553ci, false)));
         y9 y9Var = new y9(parentActivity);
         y9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         j9 j9Var = new j9((c6) null);
@@ -281,12 +281,12 @@ public final class u1 implements py, org.telegram.ui.ActionBar.z1, ki.n, ResultC
         y9Var.e(user2, j9Var);
         frameLayout.addView(y9Var, w5.e(28, 28, 51));
         y9 y9Var2 = new y9(parentActivity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f20966z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f20967z9, false), PorterDuff.Mode.SRC_IN));
         final v1 v1Var2 = v1Var;
         y9Var2.setAnimatedEmojiDrawable(s5.n(i16, botverifiersettings.icon, null, 3));
         frameLayout.addView(y9Var2, w5.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
         h5 h5Var = new h5(parentActivity);
-        h5Var.setTextColor(h6.x0(null, h6.f20667j5, false));
+        h5Var.setTextColor(h6.x0(null, h6.f20668j5, false));
         h5Var.setTextSize(13);
         h5Var.setEllipsizeByGradient(true);
         h5Var.l(str2, false);
@@ -331,8 +331,8 @@ public final class u1 implements py, org.telegram.ui.ActionBar.z1, ki.n, ResultC
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f20883uf, false));
-        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f20900vf, false));
+        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f20884uf, false));
+        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f20901vf, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {

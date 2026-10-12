@@ -90,13 +90,13 @@ public final class v51 implements Runnable {
                                         switch (r5) {
                                             case 0:
                                                 org.telegram.ui.el elVar2 = elVar;
-                                                translateController.setDialogTranslateTo(elVar2.f32658b, str4);
+                                                translateController.setDialogTranslateTo(elVar2.f32657b, str4);
                                                 m1Var.d(true);
                                                 elVar2.b();
                                                 return;
                                             default:
                                                 org.telegram.ui.el elVar3 = elVar;
-                                                translateController.setDialogTranslateTo(elVar3.f32658b, str4);
+                                                translateController.setDialogTranslateTo(elVar3.f32657b, str4);
                                                 m1Var.d(true);
                                                 elVar3.b();
                                                 return;
@@ -135,13 +135,13 @@ public final class v51 implements Runnable {
                                         switch (r5) {
                                             case 0:
                                                 org.telegram.ui.el elVar2 = elVar;
-                                                translateController.setDialogTranslateTo(elVar2.f32658b, str5);
+                                                translateController.setDialogTranslateTo(elVar2.f32657b, str5);
                                                 m1Var.d(true);
                                                 elVar2.b();
                                                 return;
                                             default:
                                                 org.telegram.ui.el elVar3 = elVar;
-                                                translateController.setDialogTranslateTo(elVar3.f32658b, str5);
+                                                translateController.setDialogTranslateTo(elVar3.f32657b, str5);
                                                 m1Var.d(true);
                                                 elVar3.b();
                                                 return;
@@ -167,16 +167,16 @@ public final class v51 implements Runnable {
                 notificationsCustomSettingsActivity.getMessagesController().putUsers((ArrayList) this.f31405b, true);
                 notificationsCustomSettingsActivity.getMessagesController().putChats((ArrayList) this.f31406c, true);
                 notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.f31407e, true);
-                int i15 = notificationsCustomSettingsActivity.f33671s;
+                int i15 = notificationsCustomSettingsActivity.f33673s;
                 if (i15 == 1) {
-                    notificationsCustomSettingsActivity.f33672w = arrayList3;
+                    notificationsCustomSettingsActivity.f33674w = arrayList3;
                 } else if (i15 == 0) {
-                    notificationsCustomSettingsActivity.f33672w = arrayList4;
+                    notificationsCustomSettingsActivity.f33674w = arrayList4;
                 } else if (i15 == 3) {
-                    notificationsCustomSettingsActivity.f33672w = arrayList5;
+                    notificationsCustomSettingsActivity.f33674w = arrayList5;
                     notificationsCustomSettingsActivity.v = arrayList6;
                 } else {
-                    notificationsCustomSettingsActivity.f33672w = arrayList7;
+                    notificationsCustomSettingsActivity.f33674w = arrayList7;
                 }
                 notificationsCustomSettingsActivity.l0(true);
                 return;
@@ -191,13 +191,13 @@ public final class v51 implements Runnable {
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f31410r;
                 ai.db dbVar = (ai.db) this.f31411s;
                 if (!tL_urlAuthResultRequest.request_wallet) {
-                    org.telegram.ui.nl0.f40430a = e3Var;
+                    org.telegram.ui.nl0.f40433a = e3Var;
                     e3Var.show();
                     return;
                 }
-                org.telegram.ui.Wallet.k2 B = org.telegram.ui.Wallet.f2.B(context, iArr[0], null, tL_urlAuthResultRequest, c6Var, new org.telegram.ui.g90(e3VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, e3Var, dbVar, 2), new org.telegram.ui.og0(9, e3VarArr, zArr2));
+                org.telegram.ui.Wallet.k2 B = org.telegram.ui.Wallet.f2.B(context, iArr[0], null, tL_urlAuthResultRequest, c6Var, new org.telegram.ui.g90(e3VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, e3Var, dbVar, 2), new org.telegram.ui.cg0(10, e3VarArr, zArr2));
                 e3VarArr[0] = B;
-                org.telegram.ui.nl0.f40430a = B;
+                org.telegram.ui.nl0.f40433a = B;
                 return;
             case 3:
                 org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.d;
@@ -211,7 +211,7 @@ public final class v51 implements Runnable {
                 ai.m0 m0Var = (ai.m0) this.f31411s;
                 f2Var.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new ai.a9(f2Var, str6, bArr, org.telegram.ui.Wallet.f2.q(i0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, f2Var.f34703f.getCurrentTime()), m0Var, tonconnectsession, 13));
+                    AndroidUtilities.runOnUIThread(new ai.a9(f2Var, str6, bArr, org.telegram.ui.Wallet.f2.q(i0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, f2Var.f34705f.getCurrentTime()), m0Var, tonconnectsession, 13));
                     return;
                 } catch (Exception e7) {
                     m0Var.run(null, org.telegram.ui.Wallet.f2.h("prepare OAuth connect", e7));
@@ -222,17 +222,17 @@ public final class v51 implements Runnable {
                 final String str7 = (String) this.f31408f;
                 final byte[] bArr2 = (byte[]) this.f31407e;
                 final TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.h;
-                String str8 = ((org.telegram.ui.Wallet.c2) this.f31409n).f34541a;
+                String str8 = ((org.telegram.ui.Wallet.c2) this.f31409n).f34543a;
                 final ai.m0 m0Var2 = (ai.m0) this.f31405b;
                 final org.telegram.ui.Wallet.i0 i0Var2 = (org.telegram.ui.Wallet.i0) this.f31406c;
                 final JSONArray jSONArray2 = (JSONArray) this.f31410r;
                 final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest3 = (TLRPC.TL_urlAuthResultRequest) this.f31411s;
-                org.telegram.ui.Wallet.l0 l0Var = f2Var2.f34700b;
+                org.telegram.ui.Wallet.l0 l0Var = f2Var2.f34702b;
                 if (TextUtils.equals(str7, l0Var.r()) && Arrays.equals(bArr2, l0Var.w()) && ((str = tonconnectsession2.client_id) == null || str8.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession2.f20065id;
+                    tonconnectregisterkey.session_id = tonconnectsession2.f20066id;
                     tonconnectregisterkey.client_id = str8;
-                    f2Var2.f34703f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
+                    f2Var2.f34705f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
                             f2 f2Var3 = f2.this;

@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b80 implements Runnable {
-    public final int f24582a;
-    public final c80 f24583b;
-    public final String f24584c;
+    public final int f24570a;
+    public final c80 f24571b;
+    public final String f24572c;
 
     public b80(c80 c80Var, String str, int i10) {
-        this.f24582a = i10;
-        this.f24583b = c80Var;
-        this.f24584c = str;
+        this.f24570a = i10;
+        this.f24571b = c80Var;
+        this.f24572c = str;
     }
 
     @Override
@@ -30,18 +30,18 @@ public final class b80 implements Runnable {
         boolean z10;
         int i11;
         Object obj;
-        switch (this.f24582a) {
+        switch (this.f24570a) {
             case 0:
-                c80 c80Var = this.f24583b;
-                String str2 = this.f24584c;
+                c80 c80Var = this.f24571b;
+                String str2 = this.f24572c;
                 c80Var.getClass();
                 AndroidUtilities.runOnUIThread(new b80(c80Var, str2, 1));
                 return;
             case 1:
-                c80 c80Var2 = this.f24583b;
-                String str3 = this.f24584c;
-                gg.b2 b2Var = c80Var2.f24850e;
-                org.telegram.ui.ju juVar = c80Var2.f24852n.m0;
+                c80 c80Var2 = this.f24571b;
+                String str3 = this.f24572c;
+                gg.b2 b2Var = c80Var2.f24845e;
+                org.telegram.ui.ju juVar = c80Var2.f24847n.m0;
                 boolean z11 = false;
                 boolean z12 = false;
                 if (juVar != null) {
@@ -57,9 +57,9 @@ public final class b80 implements Runnable {
                 dispatchQueue.postRunnable(b80Var);
                 return;
             default:
-                c80 c80Var3 = this.f24583b;
-                String str4 = this.f24584c;
-                ArrayList arrayList2 = c80Var3.f24852n.f26327e0;
+                c80 c80Var3 = this.f24571b;
+                String str4 = this.f24572c;
+                ArrayList arrayList2 = c80Var3.f24847n.f26325e0;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     AndroidUtilities.runOnUIThread(new org.telegram.tgnet.h(c80Var3, new ArrayList(), new ArrayList(), 25));

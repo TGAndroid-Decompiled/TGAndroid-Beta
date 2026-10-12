@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class nt extends org.telegram.ui.ActionBar.m1 {
-    public final qt f40471o;
+    public final qt f40474o;
 
     public nt(qt qtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f40471o = qtVar;
+        this.f40474o = qtVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        ut utVar = this.f40471o.f41429a;
-        utVar.f42577k = null;
+        ut utVar = this.f40474o.f41433a;
+        utVar.f42579k = null;
         utVar.K = false;
         if (utVar.R) {
             utVar.n();

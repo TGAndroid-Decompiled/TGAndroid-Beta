@@ -14,28 +14,28 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.eo;
 public final class k7 implements Runnable {
-    public final int f18043a;
-    public final Object f18044b;
-    public final long f18045c;
+    public final int f18044a;
+    public final Object f18045b;
+    public final long f18046c;
     public final int d;
-    public final Object f18046e;
+    public final Object f18047e;
 
     public k7(Object obj, long j3, int i10, Object obj2, int i11) {
-        this.f18043a = i11;
-        this.f18044b = obj;
-        this.f18045c = j3;
+        this.f18044a = i11;
+        this.f18045b = obj;
+        this.f18046c = j3;
         this.d = i10;
-        this.f18046e = obj2;
+        this.f18047e = obj2;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f18043a;
+        int i10 = this.f18044a;
         boolean z10 = true;
-        long j3 = this.f18045c;
+        long j3 = this.f18046c;
         int i11 = this.d;
-        Object obj = this.f18046e;
-        Object obj2 = this.f18044b;
+        Object obj = this.f18047e;
+        Object obj2 = this.f18045b;
         switch (i10) {
             case 0:
                 ((MediaDataController) obj2).lambda$putMenuBotsToCache$6((TLRPC.TL_attachMenuBots) obj, j3, i11);
@@ -106,22 +106,22 @@ public final class k7 implements Runnable {
                 return;
             case 15:
                 sc.u uVar = (sc.u) obj;
-                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f35577c;
+                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f35579c;
                 if (!a1Var.c(uVar, i11)) {
                     a1Var.d("closing stale connected websocket; attempt=" + i11);
                     uVar.c();
                     return;
                 }
                 a1Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j3) + " ms");
-                org.telegram.ui.Wallet.x0 x0Var = a1Var.f34455o;
+                org.telegram.ui.Wallet.x0 x0Var = a1Var.f34457o;
                 try {
-                    JSONArray put = new JSONArray().put(a1Var.f34444b);
+                    JSONArray put = new JSONArray().put(a1Var.f34446b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = a1Var.f34448g + 1;
-                    a1Var.f34448g = i12;
+                    int i12 = a1Var.f34450g + 1;
+                    a1Var.f34450g = i12;
                     sb2.append(i12);
-                    a1Var.f34447f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f34447f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    a1Var.f34449f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f34449f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     AndroidUtilities.cancelRunOnUIThread(x0Var);
                     AndroidUtilities.runOnUIThread(x0Var, 30000L);
                     a1Var.g(put2.toString());
@@ -135,14 +135,14 @@ public final class k7 implements Runnable {
                 mh mhVar = (mh) obj;
                 f2Var.getClass();
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
-                long j10 = this.f18045c;
+                long j10 = this.f18046c;
                 tonconnectgetpending.session_id = Long.valueOf(j10);
-                f2Var.f34703f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.s1(f2Var, mhVar, j10, this.d, 0));
+                f2Var.f34705f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.s1(f2Var, mhVar, j10, this.d, 0));
                 return;
             case 17:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.c6) obj);
                 String string = LocaleController.getString(R.string.WalletNetworkFee);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
                 a2Var.R = string;
                 a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.l0.v(i11).l(j3, true)));
                 v0.p(R.string.WalletOK, alertDialog$Builder, null);
@@ -164,34 +164,34 @@ public final class k7 implements Runnable {
     }
 
     public k7(Object obj, long j3, Object obj2, int i10, int i11) {
-        this.f18043a = i11;
-        this.f18044b = obj;
-        this.f18045c = j3;
-        this.f18046e = obj2;
+        this.f18044a = i11;
+        this.f18045b = obj;
+        this.f18046c = j3;
+        this.f18047e = obj2;
         this.d = i10;
     }
 
     public k7(Object obj, Object obj2, int i10, long j3, int i11) {
-        this.f18043a = i11;
-        this.f18044b = obj;
-        this.f18046e = obj2;
+        this.f18044a = i11;
+        this.f18045b = obj;
+        this.f18047e = obj2;
         this.d = i10;
-        this.f18045c = j3;
+        this.f18046c = j3;
     }
 
     public k7(Object obj, Object obj2, long j3, int i10, int i11) {
-        this.f18043a = i11;
-        this.f18044b = obj;
-        this.f18046e = obj2;
-        this.f18045c = j3;
+        this.f18044a = i11;
+        this.f18045b = obj;
+        this.f18047e = obj2;
+        this.f18046c = j3;
         this.d = i10;
     }
 
     public k7(MessagesStorage messagesStorage, int i10, long j3, TLObject tLObject, int i11) {
-        this.f18043a = i11;
-        this.f18044b = messagesStorage;
+        this.f18044a = i11;
+        this.f18045b = messagesStorage;
         this.d = i10;
-        this.f18045c = j3;
-        this.f18046e = tLObject;
+        this.f18046c = j3;
+        this.f18047e = tLObject;
     }
 }

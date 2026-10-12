@@ -82,7 +82,7 @@ public final class xa extends View implements org.telegram.ui.Cells.x9 {
             if (LocaleController.isRTL) {
                 alignment = sx0.a();
             } else {
-                Layout.Alignment[] alignmentArr = sx0.f30700a;
+                Layout.Alignment[] alignmentArr = sx0.f30703a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -123,7 +123,7 @@ public final class xa extends View implements org.telegram.ui.Cells.x9 {
             wa waVar4 = waVarArr[1];
             wa waVar5 = waVarArr[0];
             waVar4.f1880q = waVar5.f1880q;
-            waVar4.f1881r.d(waVar5.f1881r.f26303c, true);
+            waVar4.f1881r.d(waVar5.f1881r.f26301c, true);
             waVarArr[0].g(charSequence, taVar, taVar2);
             wa waVar6 = waVarArr[0];
             waVar6.f1880q = z10;
@@ -139,7 +139,7 @@ public final class xa extends View implements org.telegram.ui.Cells.x9 {
             ofFloat.addUpdateListener(new a(this, 13));
             this.I.addListener(new b(this, 10));
             this.I.setDuration(180L);
-            this.I.setInterpolator(js.f27628g);
+            this.I.setInterpolator(js.f27635g);
             this.I.start();
             return;
         }

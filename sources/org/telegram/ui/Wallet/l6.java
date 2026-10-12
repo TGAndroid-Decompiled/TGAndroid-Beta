@@ -3,28 +3,28 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class l6 implements Runnable {
-    public final int f35034a;
-    public final WalletEngine2 f35035b;
-    public final Utilities.Callback2 f35036c;
+    public final int f35036a;
+    public final WalletEngine2 f35037b;
+    public final Utilities.Callback2 f35038c;
     public final TL_wallet.walletTransaction d;
-    public final String f35037e;
+    public final String f35039e;
 
     public l6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, TL_wallet.walletTransaction wallettransaction, String str, int i10) {
-        this.f35034a = i10;
-        this.f35035b = walletEngine2;
-        this.f35036c = callback2;
+        this.f35036a = i10;
+        this.f35037b = walletEngine2;
+        this.f35038c = callback2;
         this.d = wallettransaction;
-        this.f35037e = str;
+        this.f35039e = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f35034a) {
+        switch (this.f35036a) {
             case 0:
-                this.f35035b.lambda$previewTonConnect$1(this.f35036c, this.d, this.f35037e);
+                this.f35037b.lambda$previewTonConnect$1(this.f35038c, this.d, this.f35039e);
                 return;
             default:
-                this.f35035b.lambda$emulateRotateKey$29(this.f35036c, this.d, this.f35037e);
+                this.f35037b.lambda$emulateRotateKey$29(this.f35038c, this.d, this.f35039e);
                 return;
         }
     }

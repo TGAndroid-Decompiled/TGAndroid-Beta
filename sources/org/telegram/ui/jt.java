@@ -35,14 +35,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class jt implements Utilities.Callback {
-    public final int f39276a;
-    public final Object f39277b;
-    public final Object f39278c;
+    public final int f39279a;
+    public final Object f39280b;
+    public final Object f39281c;
 
     public jt(int i10, Object obj, Object obj2) {
-        this.f39276a = i10;
-        this.f39277b = obj;
-        this.f39278c = obj2;
+        this.f39279a = i10;
+        this.f39280b = obj;
+        this.f39281c = obj2;
     }
 
     @Override
@@ -50,12 +50,12 @@ public final class jt implements Utilities.Callback {
         int i10;
         TLRPC.Document document;
         s4.d1 K;
-        int i11 = this.f39276a;
-        float f7 = -0.02f;
+        int i11 = this.f39279a;
+        float f7 = -0.04f;
         float f10 = 0.25f;
         int i12 = 0;
-        Object obj2 = this.f39278c;
-        Object obj3 = this.f39277b;
+        Object obj2 = this.f39281c;
+        Object obj3 = this.f39280b;
         switch (i11) {
             case 0:
                 ut utVar = (ut) obj3;
@@ -77,7 +77,7 @@ public final class jt implements Utilities.Callback {
                 qtVar.getClass();
                 ((Utilities.Callback) obj2).run(bool);
                 if (bool.booleanValue()) {
-                    qtVar.f41429a.p();
+                    qtVar.f41433a.p();
                     return;
                 }
                 return;
@@ -92,7 +92,7 @@ public final class jt implements Utilities.Callback {
             case 3:
                 zp0 zp0Var = (zp0) obj2;
                 Integer num = (Integer) obj;
-                h10 h10Var = ((e10) obj3).f36956e;
+                h10 h10Var = ((e10) obj3).f36960e;
                 if (!h10Var.getUserConfig().isPremium()) {
                     h10Var.showDialog(new rg.y0((org.telegram.ui.ActionBar.m2) h10Var, 35, true));
                     return;
@@ -119,21 +119,21 @@ public final class jt implements Utilities.Callback {
                     r50Var.getClass();
                     s50Var.setVisibility(0);
                 }
-                r50Var.f41507c = bitmap;
+                r50Var.f41511c = bitmap;
                 Paint paint = new Paint(1);
                 r50Var.d = paint;
-                Bitmap bitmap2 = r50Var.f41507c;
+                Bitmap bitmap2 = r50Var.f41511c;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                r50Var.f41508e = bitmapShader;
+                r50Var.f41512e = bitmapShader;
                 paint.setShader(bitmapShader);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.h6.I.q()) {
                     f10 = 0.05f;
                 }
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, f10);
-                if (!org.telegram.ui.ActionBar.h6.I.q()) {
-                    f7 = -0.04f;
+                if (org.telegram.ui.ActionBar.h6.I.q()) {
+                    f7 = -0.02f;
                 }
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f7);
                 r50Var.d.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
@@ -144,9 +144,9 @@ public final class jt implements Utilities.Callback {
                 TLRPC.User user = (TLRPC.User) obj;
                 fc0Var.c();
                 if (user != null) {
-                    long j3 = userArr[0].f19949id;
+                    long j3 = userArr[0].f19950id;
                     Bundle bundle2 = new Bundle();
-                    bundle2.putLong("user_id", user.f19949id);
+                    bundle2.putLong("user_id", user.f19950id);
                     fc0Var.u(new ec0(bundle2, user, userArr, j3), false);
                     return;
                 }
@@ -156,24 +156,24 @@ public final class jt implements Utilities.Callback {
                 String str = (String) obj2;
                 List<TLRPC.User> list = (List) obj;
                 HashSet hashSet = new HashSet();
-                ArrayList arrayList = tj0Var.f42219f0;
+                ArrayList arrayList = tj0Var.f42221f0;
                 arrayList.clear();
                 if (list != null) {
                     for (TLRPC.User user2 : list) {
-                        if (user2 != null && !hashSet.contains(Long.valueOf(user2.f19949id)) && tj0Var.S(user2)) {
+                        if (user2 != null && !hashSet.contains(Long.valueOf(user2.f19950id)) && tj0Var.S(user2)) {
                             arrayList.add(user2);
-                            hashSet.add(Long.valueOf(user2.f19949id));
+                            hashSet.add(Long.valueOf(user2.f19950id));
                         }
                     }
                 }
-                Boolean bool2 = tj0Var.f42230r0;
+                Boolean bool2 = tj0Var.f42232r0;
                 if (bool2 != null && bool2.booleanValue()) {
                     jt jtVar = new jt(7, tj0Var, hashSet);
                     MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
                     if (str != null && !str.isEmpty()) {
                         TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
-                        tL_contacts_search.f19848q = str;
+                        tL_contacts_search.f19849q = str;
                         tL_contacts_search.limit = 50;
                         i12 = connectionsManager.sendRequest(tL_contacts_search, new fj1(3, messagesController, jtVar));
                     } else {
@@ -190,9 +190,9 @@ public final class jt implements Utilities.Callback {
                 List<TLRPC.User> list2 = (List) obj;
                 if (list2 != null) {
                     for (TLRPC.User user3 : list2) {
-                        if (user3 != null && !hashSet2.contains(Long.valueOf(user3.f19949id)) && tj0Var2.S(user3)) {
-                            tj0Var2.f42219f0.add(user3);
-                            hashSet2.add(Long.valueOf(user3.f19949id));
+                        if (user3 != null && !hashSet2.contains(Long.valueOf(user3.f19950id)) && tj0Var2.S(user3)) {
+                            tj0Var2.f42221f0.add(user3);
+                            hashSet2.add(Long.valueOf(user3.f19950id));
                         }
                     }
                 }
@@ -204,13 +204,13 @@ public final class jt implements Utilities.Callback {
                 TLRPC.User user4 = (TLRPC.User) obj;
                 if (user4 == null) {
                     ek0Var.R.setImageDrawable(null);
-                    ek0Var.v.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag("This phone number is not on Telegram. **Invite >**", new og0(5, ek0Var, str2)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+                    ek0Var.v.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag("This phone number is not on Telegram. **Invite >**", new cg0(6, ek0Var, str2)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
                 } else {
                     Drawable mutate = ek0Var.getContext().getResources().getDrawable(R.drawable.msg_text_check).mutate();
-                    mutate.setColorFilter(new PorterDuffColorFilter(ek0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20892v6), PorterDuff.Mode.SRC_IN));
+                    mutate.setColorFilter(new PorterDuffColorFilter(ek0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20893v6), PorterDuff.Mode.SRC_IN));
                     ek0Var.R.setImageDrawable(mutate);
                     if (user4.contact) {
-                        ek0Var.v.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag("This phone number is already in your contacts. **View >**", new og0(6, ek0Var, user4)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+                        ek0Var.v.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag("This phone number is already in your contacts. **View >**", new cg0(7, ek0Var, user4)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
                     } else {
                         ek0Var.v.setText("This phone number is on Telegram.");
                     }
@@ -230,7 +230,7 @@ public final class jt implements Utilities.Callback {
                                 if (!tL_messages_stickerSet.packs.get(i14).documents.isEmpty() && TextUtils.equals(tL_messages_stickerSet.packs.get(i14).emoticon, str3)) {
                                     long longValue = tL_messages_stickerSet.packs.get(i14).documents.get(0).longValue();
                                     for (int i15 = 0; i15 < tL_messages_stickerSet.documents.size(); i15++) {
-                                        if (tL_messages_stickerSet.documents.get(i15).f19808id == longValue) {
+                                        if (tL_messages_stickerSet.documents.get(i15).f19809id == longValue) {
                                             document = tL_messages_stickerSet.documents.get(i15);
                                         }
                                     }
@@ -300,23 +300,23 @@ public final class jt implements Utilities.Callback {
                 TLRPC.Document k10 = n71.k(str4, tL_messages_stickerSet2);
                 if (k10 == null) {
                     StringBuilder w10 = a1.g.w("couldn't find ", str4, " sticker in EmojiAnimations");
-                    String[] strArr = r11.f41466s;
+                    String[] strArr = r11.f41470s;
                     FileLog.e(w10.toString());
                     return;
                 }
                 ?? imageReceiver = new ImageReceiver();
-                o11Var.f40534c = imageReceiver;
-                o11Var.f40535e.add(imageReceiver);
+                o11Var.f40537c = imageReceiver;
+                o11Var.f40538e.add(imageReceiver);
                 int f11 = hz.f();
-                o11Var.f40534c.setAutoRepeat(0);
-                q11 q11Var = o11Var.f40534c;
+                o11Var.f40537c.setAutoRepeat(0);
+                q11 q11Var = o11Var.f40537c;
                 String str5 = f11 + "_" + f11 + "_precache";
                 pz0 pz0Var = new pz0(o11Var, 5);
                 q11Var.getClass();
                 q11Var.setDelegate(new p11(new Runnable[]{pz0Var}));
                 q11Var.setImage(ImageLocation.getForDocument(k10), str5, null, null, tL_messages_stickerSet2, 0);
-                o11Var.f40534c.onAttachedToWindow();
-                o11Var.f40537g[1] = true;
+                o11Var.f40537c.onAttachedToWindow();
+                o11Var.f40540g[1] = true;
                 o11Var.a();
                 return;
             case 15:
@@ -331,10 +331,10 @@ public final class jt implements Utilities.Callback {
                     n51Var.getClass();
                     view.setVisibility(0);
                 }
-                n51Var.f40225f = bitmap3;
+                n51Var.f40228f = bitmap3;
                 Paint paint2 = new Paint(1);
-                n51Var.f40226n = paint2;
-                Bitmap bitmap4 = n51Var.f40225f;
+                n51Var.f40229n = paint2;
+                Bitmap bitmap4 = n51Var.f40228f;
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode2, tileMode2);
                 n51Var.h = bitmapShader2;
@@ -344,12 +344,12 @@ public final class jt implements Utilities.Callback {
                     f10 = 0.05f;
                 }
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix2, f10);
-                if (!org.telegram.ui.ActionBar.h6.I.q()) {
-                    f7 = -0.04f;
+                if (org.telegram.ui.ActionBar.h6.I.q()) {
+                    f7 = -0.02f;
                 }
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, f7);
-                n51Var.f40226n.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-                n51Var.f40227r = new Matrix();
+                n51Var.f40229n.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+                n51Var.f40230r = new Matrix();
                 return;
             case 17:
                 Boolean bool3 = (Boolean) obj;
@@ -363,9 +363,9 @@ public final class jt implements Utilities.Callback {
                     SharedConfig.saveConfig();
                     themeActivity.N0 = true;
                     ((Dialog) atomicReference.get()).dismiss();
-                    org.telegram.ui.Components.wm0 wm0Var = themeActivity.f34368b;
+                    org.telegram.ui.Components.wm0 wm0Var = themeActivity.f34370b;
                     if (wm0Var != null && wm0Var.G && (K = wm0Var.K(themeActivity.M)) != null) {
-                        themeActivity.f34366a.v(K, themeActivity.M);
+                        themeActivity.f34368a.v(K, themeActivity.M);
                         return;
                     }
                     return;
@@ -373,9 +373,9 @@ public final class jt implements Utilities.Callback {
                 return;
             case 19:
                 ThemeActivity themeActivity2 = (ThemeActivity) obj3;
-                w31 w31Var = (w31) obj2;
+                u31 u31Var = (u31) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    w31Var.run();
+                    u31Var.run();
                     return;
                 } else {
                     org.telegram.ui.Components.zc.a0(themeActivity2).M(LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText), R.raw.error).j();
@@ -391,7 +391,7 @@ public final class jt implements Utilities.Callback {
                     return;
                 }
                 org.telegram.ui.Wallet.l0.E("sending disableBackup to server");
-                org.telegram.ui.Wallet.s2.a(l0Var.f34994a, new ei.c(9), null, null, null, new ai.q0(3, l0Var, j7Var), true, true, new jb0((Object) null, 1));
+                org.telegram.ui.Wallet.s2.a(l0Var.f34996a, new ei.c(9), null, null, null, new ai.q0(3, l0Var, j7Var), true, true, new jb0((Object) null, 1));
                 return;
             case 21:
                 org.telegram.ui.Wallet.i0 i0Var = (org.telegram.ui.Wallet.i0) obj3;
@@ -446,10 +446,10 @@ public final class jt implements Utilities.Callback {
                 org.telegram.ui.Wallet.c5 c5Var = (org.telegram.ui.Wallet.c5) obj3;
                 org.telegram.ui.Wallet.l0 l0Var2 = (org.telegram.ui.Wallet.l0) obj2;
                 String str8 = (String) obj;
-                c5Var.f34579y0.setLoading(false);
+                c5Var.f34581y0.setLoading(false);
                 if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str8)) {
                     org.telegram.ui.Wallet.c7 c7Var = new org.telegram.ui.Wallet.c7();
-                    c7Var.f34589s = l0Var2.w();
+                    c7Var.f34591s = l0Var2.w();
                     c5Var.presentFragment(c7Var);
                     return;
                 } else if (str8 != null) {
@@ -463,8 +463,8 @@ public final class jt implements Utilities.Callback {
     }
 
     public jt(org.telegram.ui.Wallet.l0 l0Var, org.telegram.ui.Wallet.g0 g0Var, org.telegram.ui.Wallet.f7 f7Var) {
-        this.f39276a = 23;
-        this.f39277b = g0Var;
-        this.f39278c = f7Var;
+        this.f39279a = 23;
+        this.f39280b = g0Var;
+        this.f39281c = f7Var;
     }
 }

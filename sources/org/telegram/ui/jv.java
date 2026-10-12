@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.R;
 public final class jv extends org.telegram.ui.Components.vm0 {
-    public final lv f39285c;
+    public final lv f39288c;
 
     public jv(lv lvVar) {
-        this.f39285c = lvVar;
+        this.f39288c = lvVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class jv extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final int h() {
-        if (this.f39285c.f39851g0.h()) {
+        if (this.f39288c.f39854g0.h()) {
             return 1;
         }
         return 3;
@@ -29,11 +29,11 @@ public final class jv extends org.telegram.ui.Components.vm0 {
         View view;
         int i11;
         int i12;
-        lv lvVar = this.f39285c;
+        lv lvVar = this.f39288c;
         if (i10 == 0) {
-            view = lvVar.f39848d0;
+            view = lvVar.f39851d0;
         } else if (i10 == 2) {
-            view = lvVar.f39849e0;
+            view = lvVar.f39852e0;
             s4.q0 q0Var = new s4.q0(-1, -2);
             i11 = ((org.telegram.ui.ActionBar.e3) lvVar).backgroundPaddingLeft;
             ((ViewGroup.MarginLayoutParams) q0Var).leftMargin = i11;
@@ -43,8 +43,8 @@ public final class jv extends org.telegram.ui.Components.vm0 {
         } else {
             org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(viewGroup.getContext());
             e9Var.setFixedSize(12);
-            org.telegram.ui.Components.hr hrVar = new org.telegram.ui.Components.hr(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20503a7, false)), org.telegram.ui.ActionBar.h6.W0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20523b7));
-            hrVar.f26897w = true;
+            org.telegram.ui.Components.hr hrVar = new org.telegram.ui.Components.hr(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false)), org.telegram.ui.ActionBar.h6.W0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20524b7));
+            hrVar.f26883w = true;
             e9Var.setBackgroundDrawable(hrVar);
             view = e9Var;
         }

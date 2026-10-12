@@ -6,10 +6,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class lv0 extends org.telegram.ui.wu0 {
-    public final mv0 f28291a;
+    public final mv0 f28286a;
 
     public lv0(mv0 mv0Var) {
-        this.f28291a = mv0Var;
+        this.f28286a = mv0Var;
     }
 
     @Override
@@ -17,12 +17,12 @@ public final class lv0 extends org.telegram.ui.wu0 {
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject2;
-        ov0 ov0Var = this.f28291a.f28668c;
-        zu0 zu0Var = ov0Var.f29310r;
+        ov0 ov0Var = this.f28286a.f28657c;
+        zu0 zu0Var = ov0Var.f29313r;
         if (zu0Var != null) {
             int childCount = zu0Var.getChildCount();
             for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = ov0Var.f29310r.getChildAt(i11);
+                View childAt = ov0Var.f29313r.getChildAt(i11);
                 if ((childAt instanceof org.telegram.ui.Cells.u1) && messageObject != null && (messageObject2 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject2.getId() == messageObject.getId()) {
                     ArrayList<Integer> arrayList = messageObject2.pollMediaMapping;
                     if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
@@ -39,7 +39,7 @@ public final class lv0 extends org.telegram.ui.wu0 {
                     org.telegram.ui.gv0 gv0Var = new org.telegram.ui.gv0();
                     gv0Var.f38148b = iArr[0];
                     gv0Var.f38149c = childAt.getPaddingTop() + iArr[1];
-                    gv0Var.d = ov0Var.f29310r;
+                    gv0Var.d = ov0Var.f29313r;
                     gv0Var.f38157m = null;
                     gv0Var.f38147a = imageReceiver;
                     if (z10) {

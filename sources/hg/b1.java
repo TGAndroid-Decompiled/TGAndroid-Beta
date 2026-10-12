@@ -30,7 +30,7 @@ public final class b1 extends EditTextBoldCursor {
         q6Var.n(0.2f, 160L, js.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
         q6Var.setCallback(this);
-        q6Var.f29712b = 5;
+        q6Var.f29690b = 5;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class b1 extends EditTextBoldCursor {
             case 0:
                 super.dispatchDraw(canvas);
                 if (this.f11169c < 0) {
-                    i10 = h6.f20780p7;
+                    i10 = h6.f20781p7;
                 } else {
                     i10 = h6.P5;
                 }
@@ -55,11 +55,11 @@ public final class b1 extends EditTextBoldCursor {
             case 1:
                 super.dispatchDraw(canvas);
                 if (this.f11169c <= 0) {
-                    i11 = h6.f20780p7;
+                    i11 = h6.f20781p7;
                 } else {
                     i11 = h6.P5;
                 }
-                int a10 = this.d.a(h6.w0(i11, ((il) this.f11171f).f30573a), false);
+                int a10 = this.d.a(h6.w0(i11, ((il) this.f11171f).f30569a), false);
                 q6 q6Var2 = this.f11170e;
                 q6Var2.u(a10);
                 int scrollX = getScrollX();
@@ -71,7 +71,7 @@ public final class b1 extends EditTextBoldCursor {
             default:
                 super.dispatchDraw(canvas);
                 if (this.f11169c <= 0) {
-                    i12 = h6.f20780p7;
+                    i12 = h6.f20781p7;
                 } else {
                     i12 = h6.P5;
                 }
@@ -173,7 +173,7 @@ public final class b1 extends EditTextBoldCursor {
         this.f11170e = q6Var;
         q6Var.n(0.2f, 160L, js.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.f29712b = 5;
+        q6Var.f29690b = 5;
         q6Var.setCallback(this);
     }
 
@@ -186,7 +186,7 @@ public final class b1 extends EditTextBoldCursor {
         this.f11170e = q6Var;
         q6Var.n(0.2f, 160L, js.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.f29712b = 5;
+        q6Var.f29690b = 5;
         q6Var.setCallback(this);
     }
 }

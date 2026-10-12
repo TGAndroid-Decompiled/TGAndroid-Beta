@@ -100,7 +100,7 @@ public class da {
                     if (adVar == null) {
                         this.H = new ad(view, 1.5f, 5.0f);
                     } else {
-                        adVar.f24280a = view;
+                        adVar.f24281a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class da {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 ad adVar2 = this.H;
                 if (adVar2 != null) {
-                    adVar2.f24280a = view;
+                    adVar2.f24281a = view;
                     adVar2.c(false);
                 }
                 ca caVar3 = this.Q;
@@ -137,7 +137,7 @@ public class da {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             ad adVar3 = this.H;
             if (adVar3 != null) {
-                adVar3.f24280a = view;
+                adVar3.f24281a = view;
                 adVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f856x)) {

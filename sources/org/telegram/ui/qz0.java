@@ -14,8 +14,8 @@ public final class qz0 extends n01 {
     public final void dispatchDraw(Canvas canvas) {
         ai.m4 m4Var;
         super.dispatchDraw(canvas);
-        org.telegram.ui.Components.s5 s5Var = this.f33004e;
-        if (s5Var != null && (m4Var = s5Var.f30406k) != null) {
+        org.telegram.ui.Components.s5 s5Var = this.f32997e;
+        if (s5Var != null && (m4Var = s5Var.f30402k) != null) {
             m4Var.startAnimation();
         }
     }

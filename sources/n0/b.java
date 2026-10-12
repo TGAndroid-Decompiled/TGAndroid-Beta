@@ -2,7 +2,7 @@ package n0;
 
 import java.util.Locale;
 public abstract class b {
-    public static final int f16205a = 0;
+    public static final int f16206a = 0;
 
     static {
         new Locale("en", "XA");

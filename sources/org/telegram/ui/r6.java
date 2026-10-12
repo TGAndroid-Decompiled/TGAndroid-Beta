@@ -9,7 +9,7 @@ public final class r6 extends n6 {
     public r6(b7 b7Var, Context context) {
         super(context);
         this.d = b7Var;
-        ((ViewGroup.MarginLayoutParams) this.f40232a.getLayoutParams()).topMargin = AndroidUtilities.dp(5.0f);
-        this.f40232a.setOnClickListener(new a(this, 6));
+        ((ViewGroup.MarginLayoutParams) this.f40235a.getLayoutParams()).topMargin = AndroidUtilities.dp(5.0f);
+        this.f40235a.setOnClickListener(new a(this, 6));
     }
 }

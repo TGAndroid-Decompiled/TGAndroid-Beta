@@ -31,10 +31,10 @@ public final class rt extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        tt ttVar = (tt) d1Var.f47889a;
+        tt ttVar = (tt) d1Var.f47897a;
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f41716c.get(i10);
-        org.telegram.ui.ActionBar.h5 h5Var = ttVar.f42286b;
-        org.telegram.ui.Components.y9 y9Var = ttVar.f42285a;
+        org.telegram.ui.ActionBar.h5 h5Var = ttVar.f42288b;
+        org.telegram.ui.Components.y9 y9Var = ttVar.f42287a;
         ttVar.d = stickerSetCovered;
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
             h5Var.l(LocaleController.getString(R.string.NewStickerPack), false);
@@ -45,7 +45,7 @@ public final class rt extends org.telegram.ui.Components.vm0 {
         TLRPC.Document document = stickerSetCovered.cover;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.cover, org.telegram.ui.ActionBar.h6.f20503a7, 1.0f, 1.0f, ttVar.f42287c);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.cover, org.telegram.ui.ActionBar.h6.f20504a7, 1.0f, 1.0f, ttVar.f42289c);
             if (svgThumb != null) {
                 if (closestPhotoSizeWithSize != null) {
                     y9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerSetCovered.cover), null, "webp", svgThumb, stickerSetCovered);
@@ -63,7 +63,7 @@ public final class rt extends org.telegram.ui.Components.vm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        tt ttVar = new tt(viewGroup.getContext(), this.d.f42569c0);
+        tt ttVar = new tt(viewGroup.getContext(), this.d.f42571c0);
         ttVar.setLayoutParams(new s4.q0(-2, AndroidUtilities.dp(48.0f)));
         return new s4.d1(ttVar);
     }

@@ -30,15 +30,15 @@ public final class yu extends d00 {
         cv cvVar = this.S2;
         if (cvVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && cvVar.f25032x) {
+            if (!this.Q2 && cvVar.f25024x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.am.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21181w, 250L);
+                org.telegram.messenger.am.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21182w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = cvVar.f25032x;
+            this.Q2 = cvVar.f25024x;
             this.P2 = i15;
         }
     }

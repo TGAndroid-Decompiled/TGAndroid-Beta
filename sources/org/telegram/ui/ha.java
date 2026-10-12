@@ -91,15 +91,15 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
         org.telegram.ui.Components.q6 q6Var = (org.telegram.ui.Components.q6) this.f38311c;
         ArrayList arrayList = (ArrayList) this.d;
         ArrayList arrayList2 = (ArrayList) this.f38312e;
-        StaticLayout j3 = q6Var.j(this.f38310b - ((int) Math.ceil(Math.min(q6Var.d, q6Var.f29719j))), charSequence);
+        StaticLayout j3 = q6Var.j(this.f38310b - ((int) Math.ceil(Math.min(q6Var.d, q6Var.f29697j))), charSequence);
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(q6Var, j3, q6Var.d, arrayList.size());
-        org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(q6Var, j3, q6Var.f29719j, arrayList2.size());
+        org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(q6Var, j3, q6Var.f29697j, arrayList2.size());
         arrayList2.add(n6Var);
         arrayList.add(n6Var2);
         float f7 = q6Var.d;
-        float f10 = n6Var.f28742f;
+        float f10 = n6Var.f28731f;
         q6Var.d = f7 + f10;
-        q6Var.f29719j += f10;
+        q6Var.f29697j += f10;
         q6Var.f(n6Var);
         q6Var.g(n6Var2);
     }
@@ -110,7 +110,7 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
         org.telegram.ui.Components.to0 to0Var = (org.telegram.ui.Components.to0) this.f38311c;
         org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.d;
         org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f38312e;
-        ArrayList arrayList = to0Var.f30911r;
+        ArrayList arrayList = to0Var.f30913r;
         if (i10 >= 0 && i10 < arrayList.size()) {
             int i12 = this.f38310b;
             if (UserConfig.getInstance(i12).isPremium()) {
@@ -118,15 +118,15 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
                     new rg.y0(m2Var, 24, true).show();
                     return true;
                 }
-                org.telegram.ui.Components.ro0 ro0Var = ((org.telegram.ui.Components.so0) view).f30598a;
+                org.telegram.ui.Components.ro0 ro0Var = ((org.telegram.ui.Components.so0) view).f30600a;
                 if (ro0Var != null) {
                     ro0Var.q();
                 }
                 org.telegram.ui.Components.qo0 qo0Var = (org.telegram.ui.Components.qo0) arrayList.get(i10);
                 org.telegram.ui.Components.s80 H = org.telegram.ui.Components.s80.H(m2Var, view);
-                H.f30454i = 3;
+                H.f30450i = 3;
                 int i13 = R.drawable.menu_tag_rename;
-                if (TextUtils.isEmpty(qo0Var.f29875c)) {
+                if (TextUtils.isEmpty(qo0Var.f29877c)) {
                     i11 = R.string.SavedTagLabelTag;
                 } else {
                     i11 = R.string.SavedTagRenameTag;
@@ -160,8 +160,8 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
                 final boolean z10 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z11 = !z10;
-                ua uaVar = jaVar.f39165a;
-                long j3 = uaVar.f42439x;
+                ua uaVar = jaVar.f39167a;
+                long j3 = uaVar.f42441x;
                 if (j3 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -182,7 +182,7 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
                         AndroidUtilities.runOnUIThread(new org.telegram.messenger.dj(ja.this, str, tLObject, i13, z11, tL_error, tL_username, z10));
                     }
                 });
-                uaVar.f42438w.add(tL_username.username);
+                uaVar.f42440w.add(tL_username.username);
                 ((ra) view).setLoading(true);
                 return;
             case 1:
@@ -210,14 +210,14 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
                 TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
                 tL_inputMediaPoll.poll = tL_poll;
                 TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-                tL_poll.f19828id = poll.f19828id;
+                tL_poll.f19829id = poll.f19829id;
                 tL_poll.question = poll.question;
                 tL_poll.answers = poll.answers;
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
                 int i14 = this.f38310b;
-                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(hw0Var.f26947j1);
-                tL_messages_editMessage.f19885id = messageObject.getId();
+                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(hw0Var.f26932j1);
+                tL_messages_editMessage.f19886id = messageObject.getId();
                 tL_messages_editMessage.flags |= 16384;
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ms0(a2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new ai.ab(hw0Var, a2VarArr, i14, tL_messages_editMessage, 5)), 1), 500L);
                 return;
@@ -232,7 +232,7 @@ public final class ha implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
         if (VoIPService.getSharedInstance() != null) {
             AndroidUtilities.cancelRunOnUIThread(xi1Var.S0);
             xi1Var.R0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(xi1Var.f43981b, false, Integer.valueOf(this.f38310b));
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(xi1Var.f43986b, false, Integer.valueOf(this.f38310b));
             xi1Var.t(l3Var, voIPService);
         }
     }

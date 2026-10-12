@@ -38,7 +38,7 @@ public abstract class t1 extends vm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47893f;
+        int i10 = d1Var.f47901f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -156,7 +156,7 @@ public abstract class t1 extends vm0 {
                             m10 m10Var = new m10(context, null);
                             m10Var.setIsSingleCell(true);
                             m10Var.setViewType(29);
-                            m10Var.setBackgroundColor(h6.x0(null, h6.f20559d6, false));
+                            m10Var.setBackgroundColor(h6.x0(null, h6.f20560d6, false));
                             v3Var = m10Var;
                         }
                     } else {

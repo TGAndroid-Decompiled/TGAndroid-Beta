@@ -5,12 +5,12 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class po implements org.telegram.ui.ActionBar.z1, MessagesStorage.LongCallback, dd0, MessagesStorage.BooleanCallback {
-    public final int f41060a;
-    public final xo f41061b;
+    public final int f41062a;
+    public final xo f41063b;
 
     public po(xo xoVar, int i10) {
-        this.f41060a = i10;
-        this.f41061b = xoVar;
+        this.f41062a = i10;
+        this.f41063b = xoVar;
     }
 
     @Override
@@ -18,62 +18,62 @@ public final class po implements org.telegram.ui.ActionBar.z1, MessagesStorage.L
         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
         tL_channelLocation.address = messageMedia.address;
         tL_channelLocation.geo_point = messageMedia.geo;
-        xo xoVar = this.f41061b;
-        TLRPC.ChatFull chatFull = xoVar.f44081y0;
+        xo xoVar = this.f41063b;
+        TLRPC.ChatFull chatFull = xoVar.f44086y0;
         chatFull.location = tL_channelLocation;
         chatFull.flags |= 32768;
         xoVar.p0(false, true);
-        xoVar.getMessagesController().loadFullChat(xoVar.f44077w0, 0, true);
+        xoVar.getMessagesController().loadFullChat(xoVar.f44082w0, 0, true);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f41060a) {
+        switch (this.f41062a) {
             case 0:
-                this.f41061b.j0();
+                this.f41063b.j0();
                 return;
             case 1:
-                this.f41061b.finishFragment();
+                this.f41063b.finishFragment();
                 return;
             case 2:
-                this.f41061b.j0();
+                this.f41063b.j0();
                 return;
             default:
-                this.f41061b.finishFragment();
+                this.f41063b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void run(boolean z10) {
-        xo xoVar = this.f41061b;
+        xo xoVar = this.f41063b;
         xoVar.getClass();
         if (AndroidUtilities.isTablet()) {
-            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-xoVar.f44077w0));
+            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-xoVar.f44082w0));
         } else {
             xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
         xoVar.finishFragment();
-        xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-xoVar.f44079x0.f19802id), null, xoVar.f44079x0, Boolean.valueOf(z10));
+        xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-xoVar.f44084x0.f19803id), null, xoVar.f44084x0, Boolean.valueOf(z10));
     }
 
     @Override
     public void run(long j3) {
-        switch (this.f41060a) {
+        switch (this.f41062a) {
             case 4:
-                this.f41061b.t0(Long.valueOf(j3));
+                this.f41063b.t0(Long.valueOf(j3));
                 return;
             default:
                 int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-                xo xoVar = this.f41061b;
+                xo xoVar = this.f41063b;
                 if (i10 == 0) {
                     xoVar.N0 = false;
                     return;
                 }
-                xoVar.f44077w0 = j3;
-                xoVar.f44079x0 = xoVar.getMessagesController().getChat(Long.valueOf(j3));
+                xoVar.f44082w0 = j3;
+                xoVar.f44084x0 = xoVar.getMessagesController().getChat(Long.valueOf(j3));
                 xoVar.N0 = false;
-                TLRPC.ChatFull chatFull = xoVar.f44081y0;
+                TLRPC.ChatFull chatFull = xoVar.f44086y0;
                 if (chatFull != null) {
                     chatFull.hidden_prehistory = true;
                 }

@@ -2,32 +2,32 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLObject;
 public final class gc implements Runnable {
-    public final int f17680a = 0;
-    public final MessagesController f17681b;
-    public final TLObject f17682c;
+    public final int f17681a = 0;
+    public final MessagesController f17682b;
+    public final TLObject f17683c;
     public final long d;
 
     public gc(MessagesController messagesController, long j3, TLObject tLObject) {
-        this.f17681b = messagesController;
+        this.f17682b = messagesController;
         this.d = j3;
-        this.f17682c = tLObject;
+        this.f17683c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f17680a) {
+        switch (this.f17681a) {
             case 0:
-                this.f17681b.lambda$loadPeerSettings$78(this.d, this.f17682c);
+                this.f17682b.lambda$loadPeerSettings$78(this.d, this.f17683c);
                 return;
             default:
-                this.f17681b.lambda$deleteUserPhoto$113(this.f17682c, this.d);
+                this.f17682b.lambda$deleteUserPhoto$113(this.f17683c, this.d);
                 return;
         }
     }
 
     public gc(MessagesController messagesController, TLObject tLObject, long j3) {
-        this.f17681b = messagesController;
-        this.f17682c = tLObject;
+        this.f17682b = messagesController;
+        this.f17683c = tLObject;
         this.d = j3;
     }
 }

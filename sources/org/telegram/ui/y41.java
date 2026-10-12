@@ -9,27 +9,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 public final class y41 implements Runnable {
-    public final int f44293a;
-    public final SecretMediaViewer f44294b;
+    public final int f44298a;
+    public final SecretMediaViewer f44299b;
 
     public y41(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f44293a = i10;
-        this.f44294b = secretMediaViewer;
+        this.f44298a = i10;
+        this.f44299b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i10 = this.f44293a;
-        SecretMediaViewer secretMediaViewer = this.f44294b;
+        int i10 = this.f44298a;
+        SecretMediaViewer secretMediaViewer = this.f44299b;
         switch (i10) {
             case 0:
                 secretMediaViewer.K0 = null;
                 secretMediaViewer.m0 = 0;
-                secretMediaViewer.f34260e.setLayerType(0, null);
-                secretMediaViewer.f34260e.setVisibility(4);
-                secretMediaViewer.f34290s = false;
+                secretMediaViewer.f34262e.setLayerType(0, null);
+                secretMediaViewer.f34262e.setVisibility(4);
+                secretMediaViewer.f34292s = false;
                 secretMediaViewer.N = null;
                 secretMediaViewer.M = false;
                 secretMediaViewer.i();
@@ -37,46 +37,46 @@ public final class y41 implements Runnable {
                 AndroidUtilities.runOnUIThread(new y41(secretMediaViewer, 4), 50L);
                 return;
             case 1:
-                ci.m6 m6Var = secretMediaViewer.f34260e;
+                ci.m6 m6Var = secretMediaViewer.f34262e;
                 if (m6Var != null) {
                     m6Var.setLayerType(0, null);
-                    secretMediaViewer.f34260e.setVisibility(4);
+                    secretMediaViewer.f34262e.setVisibility(4);
                     secretMediaViewer.m0 = 0;
-                    secretMediaViewer.f34290s = false;
+                    secretMediaViewer.f34292s = false;
                     secretMediaViewer.N = null;
                     secretMediaViewer.M = false;
                     secretMediaViewer.i();
                     new ArrayList();
                     AndroidUtilities.runOnUIThread(new y41(secretMediaViewer, 4), 50L);
-                    secretMediaViewer.f34260e.setScaleX(1.0f);
-                    secretMediaViewer.f34260e.setScaleY(1.0f);
+                    secretMediaViewer.f34262e.setScaleX(1.0f);
+                    secretMediaViewer.f34262e.setScaleY(1.0f);
                     return;
                 }
                 return;
             case 2:
-                e51 e51Var = secretMediaViewer.f34304y;
+                e51 e51Var = secretMediaViewer.f34306y;
                 if (e51Var != null) {
                     long n10 = e51Var.n();
-                    long p5 = secretMediaViewer.f34304y.p();
+                    long p5 = secretMediaViewer.f34306y.p();
                     if (p5 == -9223372036854775807L) {
                         n10 = 0;
                         p5 = 0;
                     }
                     if (p5 > 0) {
                         org.telegram.ui.Components.s81 s81Var = secretMediaViewer.Q;
-                        if (!s81Var.f30483f) {
+                        if (!s81Var.f30479f) {
                             s81Var.h(((float) n10) / ((float) p5), false);
                             secretMediaViewer.R.invalidate();
                         }
                     }
-                    int[] iArr = secretMediaViewer.f34273j1;
+                    int[] iArr = secretMediaViewer.f34275j1;
                     Arrays.fill(iArr, 0);
-                    int[] iArr2 = secretMediaViewer.f34275k1;
+                    int[] iArr2 = secretMediaViewer.f34277k1;
                     Arrays.fill(iArr2, 0);
-                    e51 e51Var2 = secretMediaViewer.f34304y;
+                    e51 e51Var2 = secretMediaViewer.f34306y;
                     if (e51Var2 != null) {
                         long max = Math.max(0L, e51Var2.n()) / 1000;
-                        long max2 = Math.max(0L, secretMediaViewer.f34304y.p()) / 1000;
+                        long max2 = Math.max(0L, secretMediaViewer.f34306y.p()) / 1000;
                         iArr[0] = (int) (max / 60);
                         iArr[1] = (int) (max % 60);
                         iArr2[0] = (int) (max2 / 60);
@@ -97,8 +97,8 @@ public final class y41 implements Runnable {
                     org.telegram.ui.ActionBar.h5 h5Var = secretMediaViewer.S;
                     Locale locale = Locale.ROOT;
                     h5Var.l(format + " / " + format2, false);
-                    if (secretMediaViewer.f34304y.y()) {
-                        AndroidUtilities.runOnUIThread(secretMediaViewer.f34271i1, 17L);
+                    if (secretMediaViewer.f34306y.y()) {
+                        AndroidUtilities.runOnUIThread(secretMediaViewer.f34273i1, 17L);
                         return;
                     }
                     return;
@@ -108,26 +108,26 @@ public final class y41 implements Runnable {
                 secretMediaViewer.m(false, true);
                 return;
             default:
-                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f34270i0;
+                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f34272i0;
                 if (bitmapHolder != null) {
                     bitmapHolder.release();
-                    secretMediaViewer.f34270i0 = null;
+                    secretMediaViewer.f34272i0 = null;
                 }
                 secretMediaViewer.h.setImageBitmap((Bitmap) null);
                 try {
                     if (secretMediaViewer.d.getParent() != null) {
-                        ((WindowManager) secretMediaViewer.f34252b.getSystemService("window")).removeView(secretMediaViewer.d);
+                        ((WindowManager) secretMediaViewer.f34254b.getSystemService("window")).removeView(secretMediaViewer.d);
                     }
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
-                secretMediaViewer.f34272j0 = false;
+                secretMediaViewer.f34274j0 = false;
                 return;
         }
     }
 
     public y41(SecretMediaViewer secretMediaViewer, gv0 gv0Var, int i10) {
-        this.f44293a = i10;
-        this.f44294b = secretMediaViewer;
+        this.f44298a = i10;
+        this.f44299b = secretMediaViewer;
     }
 }

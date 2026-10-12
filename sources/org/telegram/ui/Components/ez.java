@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class ez extends t61 {
-    public static final int f25825a = 0;
+    public static final int f25827a = 0;
 
     static {
         t61.setup(new t61());
@@ -13,13 +13,13 @@ public final class ez extends t61 {
 
     public static u61 a(TLRPC.StickerSetCovered stickerSetCovered, vy vyVar, boolean z10) {
         u61 J = u61.J(ez.class);
-        long j3 = stickerSetCovered.set.f19829id;
+        long j3 = stickerSetCovered.set.f19830id;
         long j10 = 1 + j3;
         J.d = (int) (j10 ^ (j10 >>> 32));
         J.B = j3;
         J.G = stickerSetCovered;
         J.H = vyVar;
-        J.f31070e = z10;
+        J.f31065e = z10;
         return J;
     }
 
@@ -30,16 +30,16 @@ public final class ez extends t61 {
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
         } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((vy) u61Var.H).f32211e;
+            TLRPC.Document document = ((vy) u61Var.H).f32197e;
             cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f16614c.d(document, null, null, null, false, false);
+            cVar.f16615c.d(document, null, null, null, false, false);
         }
-        cVar.a(u61Var.f31070e, false);
+        cVar.a(u61Var.f31065e, false);
     }
 
     @Override
     public final boolean contentsEquals(u61 u61Var, u61 u61Var2) {
-        if (u61Var.B == u61Var2.B && u61Var.f31070e == u61Var2.f31070e) {
+        if (u61Var.B == u61Var2.B && u61Var.f31065e == u61Var2.f31065e) {
             return true;
         }
         return false;

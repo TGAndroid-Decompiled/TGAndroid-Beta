@@ -18,7 +18,7 @@ public final class ct0 extends org.telegram.ui.c21 {
         setClipBounds(rect);
         invalidate();
         hw0 hw0Var = this.H;
-        av0[] av0VarArr = hw0Var.f26948k0;
+        av0[] av0VarArr = hw0Var.f26933k0;
         if (av0VarArr != null) {
             for (av0 av0Var : av0VarArr) {
                 if (av0Var != null && (gt0Var = av0Var.h) != null) {
@@ -27,7 +27,7 @@ public final class ct0 extends org.telegram.ui.c21 {
                     int paddingRight = av0Var.h.getPaddingRight();
                     gt0 gt0Var2 = av0Var.h;
                     int Y = hw0Var.Y(hw0Var.v0());
-                    gt0Var2.f33494c3 = Y;
+                    gt0Var2.f33496c3 = Y;
                     gt0Var.setPadding(paddingLeft, Z, paddingRight, Y);
                 }
             }

@@ -13,49 +13,49 @@ public final class ly0 extends FrameLayout {
     public static int G;
     public boolean E;
     public float F;
-    public final int f28311a;
-    public float f28312b;
-    public boolean f28313c;
+    public final int f28306a;
+    public float f28307b;
+    public boolean f28308c;
     public boolean d;
-    public final y9 f28314e;
-    public final ImageView f28315f;
+    public final y9 f28309e;
+    public final ImageView f28310f;
     public final ai.q4 h;
-    public final View f28316n;
-    public boolean f28317r;
-    public final int f28318s;
+    public final View f28311n;
+    public boolean f28312r;
+    public final int f28313s;
     public SvgHelper.SvgDrawable v;
-    public boolean f28319w;
-    public ValueAnimator f28320x;
-    public float f28321y;
+    public boolean f28314w;
+    public ValueAnimator f28315x;
+    public float f28316y;
 
     public ly0(Context context, int i10) {
         super(context);
-        this.f28311a = i10;
+        this.f28306a = i10;
         int i11 = G;
         G = i11 + 1;
-        this.f28318s = i11;
+        this.f28313s = i11;
         if (i10 == 2) {
             y9 y9Var = new y9(getContext());
-            this.f28314e = y9Var;
+            this.f28309e = y9Var;
             y9Var.setLayerNum(1);
             y9Var.setAspectFit(false);
             y9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(y9Var, w7.w5.e(26, 26, 17));
-            this.f28316n = y9Var;
+            this.f28311n = y9Var;
         } else if (i10 == 1) {
             ImageView imageView = new ImageView(context);
-            this.f28315f = imageView;
+            this.f28310f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             addView(imageView, w7.w5.e(24, 24, 17));
-            this.f28316n = imageView;
+            this.f28311n = imageView;
         } else {
             y9 y9Var2 = new y9(getContext());
-            this.f28314e = y9Var2;
+            this.f28309e = y9Var2;
             y9Var2.setLayerNum(1);
             y9Var2.setAspectFit(true);
             y9Var2.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(y9Var2, w7.w5.e(26, 26, 17));
-            this.f28316n = y9Var2;
+            this.f28311n = y9Var2;
         }
         ai.q4 q4Var = new ai.q4(context, 24);
         this.h = q4Var;
@@ -72,12 +72,12 @@ public final class ly0 extends FrameLayout {
     public final void a(float f7) {
         float f10;
         float f11;
-        int i10 = this.f28311a;
+        int i10 = this.f28306a;
         if (i10 == 2) {
             return;
         }
-        boolean z10 = this.f28317r;
-        View view = this.f28316n;
+        boolean z10 = this.f28312r;
+        View view = this.f28311n;
         if (z10) {
             if (i10 == 1) {
                 f10 = 24.0f;
@@ -89,7 +89,7 @@ public final class ly0 extends FrameLayout {
             } else {
                 f11 = 44.0f;
             }
-            int i11 = un0.f31206t0;
+            int i11 = un0.f31198t0;
             float f12 = 1.0f - f7;
             view.setTranslationY((((AndroidUtilities.dp(36.0f - f10) / 2.0f) - (AndroidUtilities.dp(86.0f - f11) / 2.0f)) * f12) - (AndroidUtilities.dp(8.0f) * f7));
             view.setTranslationX(((AndroidUtilities.dp(33.0f - f10) / 2.0f) - (AndroidUtilities.dp(64.0f - f11) / 2.0f)) * f12);
@@ -120,9 +120,9 @@ public final class ly0 extends FrameLayout {
         float f10;
         float f11;
         int i10;
-        int i11 = this.f28311a;
+        int i11 = this.f28306a;
         if (i11 != 2) {
-            this.f28317r = z10;
+            this.f28312r = z10;
             if (i11 == 1) {
                 f7 = 24.0f;
             } else {
@@ -133,7 +133,7 @@ public final class ly0 extends FrameLayout {
             } else {
                 f10 = 44.0f;
             }
-            View view = this.f28316n;
+            View view = this.f28311n;
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (z10) {
                 f11 = f10;
@@ -152,8 +152,8 @@ public final class ly0 extends FrameLayout {
                 i10 = 8;
             }
             this.h.setVisibility(i10);
-            if (i11 != 1 && this.f28319w) {
-                this.f28314e.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
+            if (i11 != 1 && this.f28314w) {
+                this.f28309e.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
             }
         }
     }

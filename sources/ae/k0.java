@@ -3,7 +3,7 @@ public class k0 extends a implements j0 {
     @Override
     public final Object await(jd.c cVar) {
         Object h = h(cVar);
-        kd.a aVar = kd.a.f14780a;
+        kd.a aVar = kd.a.f14781a;
         return h;
     }
 }

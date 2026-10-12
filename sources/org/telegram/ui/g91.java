@@ -14,10 +14,10 @@ public final class g91 extends org.telegram.ui.Components.t61 {
     public static org.telegram.ui.Components.u61 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
         org.telegram.ui.Components.u61 J = org.telegram.ui.Components.u61.J(g91.class);
         J.d = i10;
-        J.f31075k = i13;
-        J.f31076l = charSequence;
-        J.f31077m = charSequence2;
-        J.f31078n = charSequence3;
+        J.f31070k = i13;
+        J.f31071l = charSequence;
+        J.f31072m = charSequence2;
+        J.f31073n = charSequence3;
         J.B = (i11 & 4294967295L) | (i12 << 32);
         return J;
     }
@@ -31,10 +31,10 @@ public final class g91 extends org.telegram.ui.Components.t61 {
         int i11 = (int) j3;
         int i12 = (int) (j3 >>> 32);
         h91 h91Var = (h91) view;
-        int i13 = u61Var.f31075k;
-        CharSequence charSequence = u61Var.f31076l;
-        CharSequence charSequence2 = u61Var.f31077m;
-        CharSequence charSequence3 = u61Var.f31078n;
+        int i13 = u61Var.f31070k;
+        CharSequence charSequence = u61Var.f31071l;
+        CharSequence charSequence2 = u61Var.f31072m;
+        CharSequence charSequence3 = u61Var.f31073n;
         TextView textView = h91Var.f38305e;
         TextView textView2 = h91Var.f38306f;
         int i14 = 0;

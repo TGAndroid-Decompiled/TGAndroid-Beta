@@ -11,17 +11,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class cy extends wu0 {
-    public final boolean[] f36577a;
-    public final vy f36578b;
+    public final boolean[] f36579a;
+    public final vy f36580b;
 
     public cy(vy vyVar, boolean[] zArr) {
-        this.f36578b = vyVar;
-        this.f36577a = zArr;
+        this.f36580b = vyVar;
+        this.f36579a = zArr;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         if (i10 >= 0 && i10 < vyVar.D2.size() && ((MediaController.PhotoEntry) vyVar.D2.get(i10)).isVideo) {
             return null;
         }
@@ -31,7 +31,7 @@ public final class cy extends wu0 {
     @Override
     public final void D() {
         int i10;
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         org.telegram.ui.Components.xr0 xr0Var = vyVar.G2;
         if (xr0Var != null) {
             i10 = ((org.telegram.ui.ActionBar.m2) vyVar).currentAccount;
@@ -42,7 +42,7 @@ public final class cy extends wu0 {
     @Override
     public final gv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Components.y9 y9Var;
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         org.telegram.ui.Components.xr0 xr0Var = vyVar.G2;
         if (xr0Var != null) {
             y9Var = xr0Var.f(i10);
@@ -68,7 +68,7 @@ public final class cy extends wu0 {
 
     @Override
     public final long a() {
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         if (vyVar.I2.isEmpty()) {
             return 0L;
         }
@@ -83,7 +83,7 @@ public final class cy extends wu0 {
     @Override
     public final CharSequence b0(int i10) {
         int i11;
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         ArrayList arrayList = vyVar.D2;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = vyVar.D2.size();
@@ -122,7 +122,7 @@ public final class cy extends wu0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         fx fxVar = vyVar.B1;
         if (fxVar != null) {
             fxVar.setFieldText(charSequence);
@@ -147,7 +147,7 @@ public final class cy extends wu0 {
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
         org.telegram.ui.Components.y9 y9Var;
-        org.telegram.ui.Components.xr0 xr0Var = this.f36578b.G2;
+        org.telegram.ui.Components.xr0 xr0Var = this.f36580b.G2;
         if (xr0Var != null) {
             y9Var = xr0Var.f(i10);
         } else {
@@ -163,7 +163,7 @@ public final class cy extends wu0 {
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         int i13;
         ArrayList arrayList;
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         ArrayList arrayList2 = vyVar.I2;
         if (vyVar.B1 != null && (arrayList = vyVar.D2) != null && !arrayList.isEmpty()) {
             fx fxVar = vyVar.B1;
@@ -201,7 +201,7 @@ public final class cy extends wu0 {
         if (t12.R1() && (f12 = t12.f1()) != null) {
             charSequence = f12.getText();
         }
-        vy vyVar = this.f36578b;
+        vy vyVar = this.f36580b;
         if (charSequence != null && (fxVar = vyVar.B1) != null) {
             fxVar.setFieldText(charSequence);
         }
@@ -219,7 +219,7 @@ public final class cy extends wu0 {
 
     @Override
     public final boolean x(int i10) {
-        return this.f36577a[i10];
+        return this.f36579a[i10];
     }
 
     @Override

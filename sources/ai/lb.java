@@ -107,7 +107,7 @@ public class lb extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                adVar.f24284f = new gv(1, view);
+                adVar.f24285f = new gv(1, view);
             }
             adVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());

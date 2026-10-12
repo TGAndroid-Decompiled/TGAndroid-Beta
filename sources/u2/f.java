@@ -1,9 +1,9 @@
 package u2;
 public final class f extends r {
-    public final long f48778f;
-    public final long f48779g;
+    public final long f48786f;
+    public final long f48787g;
     public final long h;
-    public final boolean f48780i;
+    public final boolean f48788i;
 
     public f(b2.k1 k1Var, long j3, long j10, boolean z10) {
         super(k1Var);
@@ -32,8 +32,8 @@ public final class f extends r {
                     max2 = max;
                 }
             }
-            this.f48778f = max2;
-            this.f48779g = max;
+            this.f48786f = max2;
+            this.f48787g = max;
             int i11 = (max > (-9223372036854775807L) ? 1 : (max == (-9223372036854775807L) ? 0 : -1));
             if (i11 == 0) {
                 j11 = -9223372036854775807L;
@@ -44,7 +44,7 @@ public final class f extends r {
             if (m10.f3383i && (i11 == 0 || (j12 != -9223372036854775807L && max == j12))) {
                 z11 = true;
             }
-            this.f48780i = z11;
+            this.f48788i = z11;
             return;
         }
         throw new g(0);
@@ -52,8 +52,8 @@ public final class f extends r {
 
     @Override
     public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        this.f48906e.f(0, h1Var, z10);
-        long j3 = h1Var.f3328e - this.f48778f;
+        this.f48914e.f(0, h1Var, z10);
+        long j3 = h1Var.f3328e - this.f48786f;
         long j10 = this.h;
         long j11 = -9223372036854775807L;
         if (j10 != -9223372036854775807L) {
@@ -65,17 +65,17 @@ public final class f extends r {
 
     @Override
     public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        this.f48906e.m(0, j1Var, 0L);
+        this.f48914e.m(0, j1Var, 0L);
         long j10 = j1Var.f3390p;
-        long j11 = this.f48778f;
+        long j11 = this.f48786f;
         j1Var.f3390p = j10 + j11;
         j1Var.f3387m = this.h;
-        j1Var.f3383i = this.f48780i;
+        j1Var.f3383i = this.f48788i;
         long j12 = j1Var.f3386l;
         if (j12 != -9223372036854775807L) {
             long max = Math.max(j12, j11);
             j1Var.f3386l = max;
-            long j13 = this.f48779g;
+            long j13 = this.f48787g;
             if (j13 != -9223372036854775807L) {
                 max = Math.min(max, j13);
             }

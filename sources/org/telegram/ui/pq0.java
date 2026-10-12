@@ -13,12 +13,12 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pq0 extends org.telegram.ui.ActionBar.m2 {
-    public Bitmap f41068a;
-    public BitmapDrawable f41069b;
-    public oq0 f41070c;
+    public Bitmap f41070a;
+    public BitmapDrawable f41071b;
+    public oq0 f41072c;
     public nq0 d;
-    public boolean f41071e;
-    public boolean f41072f;
+    public boolean f41073e;
+    public boolean f41074f;
 
     @Override
     public final View createView(Context context) {
@@ -47,7 +47,7 @@ public final class pq0 extends org.telegram.ui.ActionBar.m2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f41068a == null) {
+        if (this.f41070a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -64,12 +64,12 @@ public final class pq0 extends org.telegram.ui.ActionBar.m2 {
             }
             float f7 = max;
             Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f41068a = loadBitmap;
+            this.f41070a = loadBitmap;
             if (loadBitmap == null) {
                 return false;
             }
         }
-        this.f41069b = new BitmapDrawable(this.f41068a);
+        this.f41071b = new BitmapDrawable(this.f41070a);
         super.onFragmentCreate();
         return true;
     }
@@ -77,11 +77,11 @@ public final class pq0 extends org.telegram.ui.ActionBar.m2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f41068a;
-        if (bitmap != null && !this.f41071e) {
+        Bitmap bitmap = this.f41070a;
+        if (bitmap != null && !this.f41073e) {
             bitmap.recycle();
-            this.f41068a = null;
+            this.f41070a = null;
         }
-        this.f41069b = null;
+        this.f41071b = null;
     }
 }

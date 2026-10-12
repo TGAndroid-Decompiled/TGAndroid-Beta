@@ -8,15 +8,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.u61;
 public final class k3 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5, Utilities.Callback5Return {
-    public final c5 f34963a;
+    public final c5 f34965a;
 
     public k3(c5 c5Var) {
-        this.f34963a = c5Var;
+        this.f34965a = c5Var;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        c5 c5Var = this.f34963a;
+        c5 c5Var = this.f34965a;
         c5Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -34,7 +34,7 @@ public final class k3 implements org.telegram.ui.ActionBar.z1, Utilities.Callbac
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f34963a.getClass();
+        this.f34965a.getClass();
         return Boolean.FALSE;
     }
 
@@ -43,6 +43,6 @@ public final class k3 implements org.telegram.ui.ActionBar.z1, Utilities.Callbac
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f34963a.W((u61) obj, (View) obj2);
+        this.f34965a.W((u61) obj, (View) obj2);
     }
 }

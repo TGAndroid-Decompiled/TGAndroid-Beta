@@ -6,17 +6,17 @@ import android.graphics.RectF;
 import android.os.SystemClock;
 import android.view.View;
 public abstract class vb extends org.telegram.ui.Components.yw0 {
-    public final yb f42746w0;
+    public final yb f42748w0;
 
     public vb(yb ybVar, Context context) {
         super(context, null);
-        this.f42746w0 = ybVar;
+        this.f42748w0 = ybVar;
     }
 
     public final void Z(Canvas canvas, RectF rectF) {
         boolean z10;
         long uptimeMillis = SystemClock.uptimeMillis();
-        yb ybVar = this.f42746w0;
+        yb ybVar = this.f42748w0;
         if (ybVar.v.Z0()) {
             canvas.save();
             canvas.clipRect(rectF);

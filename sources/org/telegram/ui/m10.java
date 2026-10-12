@@ -15,9 +15,9 @@ public final class m10 extends org.telegram.ui.Components.m10 {
     public final int getColumnsCount() {
         switch (this.U) {
             case 0:
-                return ((y10) this.V).f44265s;
+                return ((y10) this.V).f44270s;
             default:
-                return ((w10) this.V).d.f44265s;
+                return ((w10) this.V).d.f44270s;
         }
     }
 }

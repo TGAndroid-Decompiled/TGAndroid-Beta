@@ -157,7 +157,7 @@ public final class v91 extends View {
         if (this.I > 0.0f) {
             canvas2.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, this.H);
         }
-        int i10 = org.telegram.ui.ActionBar.h6.f20656ic;
+        int i10 = org.telegram.ui.ActionBar.h6.f20657ic;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i10, c6Var);
         TextPaint textPaint = this.d;
         textPaint.setColor(w02);

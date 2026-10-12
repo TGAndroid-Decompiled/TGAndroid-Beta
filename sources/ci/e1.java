@@ -19,7 +19,7 @@ public final class e1 implements DialogInterface.OnDismissListener {
                 int i10 = r2.G;
                 return;
             case 1:
-                org.telegram.ui.b.f36001a = false;
+                org.telegram.ui.b.f36003a = false;
                 return;
             case 2:
                 return;
@@ -27,7 +27,7 @@ public final class e1 implements DialogInterface.OnDismissListener {
                 SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
                 return;
             case 4:
-                int i11 = j21.f27351e;
+                int i11 = j21.f27345e;
                 return;
             case 5:
                 i60 i60Var = i60.D3;

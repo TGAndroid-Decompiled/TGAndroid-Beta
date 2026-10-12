@@ -22,7 +22,7 @@ public abstract class wa extends db {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f25295e.setTitle(charSequence);
+        this.f25287e.setTitle(charSequence);
     }
 
     @Override

@@ -9,21 +9,21 @@ import org.telegram.messenger.am;
 import org.telegram.ui.i60;
 import org.telegram.ui.n60;
 public abstract class l extends FrameLayout {
-    public int f31782a;
-    public n60 f31783b;
-    public u f31784c;
+    public int f31767a;
+    public n60 f31768b;
+    public v f31769c;
     public ChatObject.VideoParticipant d;
-    public boolean f31785e;
-    public final boolean f31786f;
+    public boolean f31770e;
+    public final boolean f31771f;
 
     public l(Context context, boolean z10) {
         super(context);
-        this.f31786f = z10;
+        this.f31771f = z10;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        n60 n60Var = this.f31783b;
+        n60 n60Var = this.f31768b;
         if (n60Var != null) {
             measuredHeight = n60Var.F();
         } else {
@@ -36,20 +36,20 @@ public abstract class l extends FrameLayout {
         return this.d;
     }
 
-    public u getRenderer() {
-        return this.f31784c;
+    public v getRenderer() {
+        return this.f31769c;
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31785e = true;
+        this.f31770e = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f31785e = false;
+        this.f31770e = false;
     }
 
     @Override
@@ -57,9 +57,9 @@ public abstract class l extends FrameLayout {
         float f7;
         int i12;
         float f10;
-        if (this.f31786f) {
+        if (this.f31771f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f31783b.F(), 1073741824));
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f31768b.F(), 1073741824));
             return;
         }
         if (i60.F3) {
@@ -82,7 +82,7 @@ public abstract class l extends FrameLayout {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (f10 + AndroidUtilities.dp(4.0f)), 1073741824));
     }
 
-    public void setRenderer(u uVar) {
-        this.f31784c = uVar;
+    public void setRenderer(v vVar) {
+        this.f31769c = vVar;
     }
 }

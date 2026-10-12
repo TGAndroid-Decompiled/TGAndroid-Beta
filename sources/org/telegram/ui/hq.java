@@ -23,7 +23,7 @@ public final class hq implements ValueAnimator.AnimatorUpdateListener {
                 qq qqVar2 = this.f38496b;
                 qqVar2.getClass();
                 qqVar2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                FrameLayout frameLayout = qqVar2.f41393e;
+                FrameLayout frameLayout = qqVar2.f41397e;
                 if (frameLayout != null) {
                     frameLayout.invalidate();
                     return;

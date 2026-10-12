@@ -9,7 +9,7 @@ public abstract class s {
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(0);
-            hVar.f15851a.transact(3006, obtain, null, 1);
+            hVar.f15852a.transact(3006, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException unused) {
         }

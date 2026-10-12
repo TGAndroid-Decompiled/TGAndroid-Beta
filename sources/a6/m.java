@@ -201,7 +201,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     public void G(Exception exc) {
         e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new k2.f(yVar, exc, 1));
         }
@@ -255,7 +255,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void N(k2.k kVar) {
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new k2.h(yVar, kVar, 0));
         }
@@ -409,7 +409,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void a0(k2.k kVar) {
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new k2.h(yVar, kVar, 1));
         }
@@ -444,7 +444,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i11 = q7.a.f45937a;
+                int i11 = q7.a.f45945a;
                 obtain.writeStrongBinder(fVar3);
                 q7.a.b(obtain, (GetCredentialRequest) obj3);
                 q7.a.b(obtain, gVar);
@@ -466,7 +466,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void b(long j3) {
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new ai.j(yVar, j3, 13));
         }
@@ -914,7 +914,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void onAudioSessionIdChanged(int i10) {
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new p8(yVar, i10, 11));
         }
@@ -951,7 +951,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new bi.f(8, yVar, z10));
         }
@@ -1018,7 +1018,7 @@ public final class m implements ov0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void s(int i10, long j3, long j10) {
         y yVar = ((FfmpegAudioRenderer) this.f330b).I;
-        Handler handler = (Handler) yVar.f16362b;
+        Handler handler = (Handler) yVar.f16363b;
         if (handler != null) {
             handler.post(new k2.i(yVar, i10, j3, j10, 0));
         }

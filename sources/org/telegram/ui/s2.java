@@ -38,7 +38,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, e3 {
         if (b3Var == null) {
             return -1;
         }
-        int a2 = b3Var.a() + b3Var.f36044s;
+        int a2 = b3Var.a() + b3Var.f36046s;
         this.f41784a.getClass();
         return a2 - AndroidUtilities.dp(18);
     }
@@ -49,7 +49,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, e3 {
         if (b3Var == null) {
             return -1;
         }
-        int b10 = b3Var.b() + b3Var.f36044s;
+        int b10 = b3Var.b() + b3Var.f36046s;
         this.f41784a.getClass();
         return AndroidUtilities.dp(18) + b10;
     }
@@ -60,7 +60,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, e3 {
         if (b3Var == null) {
             return -1;
         }
-        int c10 = b3Var.c() + b3Var.f36044s;
+        int c10 = b3Var.c() + b3Var.f36046s;
         this.f41784a.getClass();
         return AndroidUtilities.dp(18) + c10;
     }
@@ -138,7 +138,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, e3 {
                 w70Var.getClass();
                 i12 = this.f41786c.d.getHeight() + AndroidUtilities.dp(16);
                 b3 b3Var = this.f41786c;
-                b3Var.f36044s = this.d;
+                b3Var.f36046s = this.d;
                 b3Var.v = this.f41787e;
             } else {
                 i12 = 0;

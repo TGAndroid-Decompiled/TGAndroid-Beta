@@ -24,8 +24,8 @@ public abstract class g7 extends wm0 implements t9 {
                 return;
             default:
                 eo eoVar = (eo) this.W2;
-                iArr[0] = ((int) eoVar.f37422s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.v0.z(3.0f, eoVar.f37478x0.getPaddingBottom(), eoVar.f37478x0.getMeasuredHeight());
+                iArr[0] = ((int) eoVar.f37427s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.v0.z(3.0f, eoVar.f37483x0.getPaddingBottom(), eoVar.f37483x0.getMeasuredHeight());
                 return;
         }
     }

@@ -8,32 +8,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 public final class an0 implements Runnable {
-    public final int f35906a;
-    public final bn0 f35907b;
-    public final TLRPC.TL_error f35908c;
+    public final int f35908a;
+    public final bn0 f35909b;
+    public final TLRPC.TL_error f35910c;
     public final TLObject d;
 
     public an0(bn0 bn0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f35906a = 0;
-        this.f35907b = bn0Var;
+        this.f35908a = 0;
+        this.f35909b = bn0Var;
         this.d = tLObject;
-        this.f35908c = tL_error;
+        this.f35910c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f35906a) {
+        switch (this.f35908a) {
             case 0:
-                bn0 bn0Var = this.f35907b;
+                bn0 bn0Var = this.f35909b;
                 TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f35908c;
-                pn0 pn0Var = bn0Var.f36213e;
+                TLRPC.TL_error tL_error = this.f35910c;
+                pn0 pn0Var = bn0Var.f36215e;
                 if (tLObject instanceof Vector) {
-                    pn0Var.f41055y = new TL_account.authorizationForm();
+                    pn0Var.f41057y = new TL_account.authorizationForm();
                     Vector vector = (Vector) tLObject;
                     int size = vector.objects.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        pn0Var.f41055y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
+                        pn0Var.f41057y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
                     }
                     bn0Var.a();
                     return;
@@ -46,12 +46,12 @@ public final class an0 implements Runnable {
                 pn0Var.M1(true, false);
                 return;
             case 1:
-                bn0 bn0Var2 = this.f35907b;
-                TLRPC.TL_error tL_error2 = this.f35908c;
+                bn0 bn0Var2 = this.f35909b;
+                TLRPC.TL_error tL_error2 = this.f35910c;
                 TLObject tLObject2 = this.d;
                 if (tL_error2 == null) {
                     TL_account.Password password = (TL_account.Password) tLObject2;
-                    bn0Var2.f36213e.J = password;
+                    bn0Var2.f36215e.J = password;
                     TwoStepVerificationActivity.m0(password);
                     bn0Var2.b();
                     return;
@@ -59,14 +59,14 @@ public final class an0 implements Runnable {
                 bn0Var2.getClass();
                 return;
             default:
-                bn0 bn0Var3 = this.f35907b;
-                TLRPC.TL_error tL_error3 = this.f35908c;
+                bn0 bn0Var3 = this.f35909b;
+                TLRPC.TL_error tL_error3 = this.f35910c;
                 TLObject tLObject3 = this.d;
                 if (tL_error3 == null) {
                     TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    bn0Var3.f36213e.J = password2;
+                    bn0Var3.f36215e.J = password2;
                     TwoStepVerificationActivity.m0(password2);
-                    Utilities.globalQueue.postRunnable(new pf0(bn0Var3, bn0Var3.f36211b, bn0Var3.d, 12));
+                    Utilities.globalQueue.postRunnable(new pf0(bn0Var3, bn0Var3.f36213b, bn0Var3.d, 12));
                     return;
                 }
                 return;
@@ -74,9 +74,9 @@ public final class an0 implements Runnable {
     }
 
     public an0(bn0 bn0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f35906a = i10;
-        this.f35907b = bn0Var;
-        this.f35908c = tL_error;
+        this.f35908a = i10;
+        this.f35909b = bn0Var;
+        this.f35910c = tL_error;
         this.d = tLObject;
     }
 }

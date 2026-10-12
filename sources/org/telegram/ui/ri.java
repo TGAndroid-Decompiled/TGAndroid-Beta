@@ -43,9 +43,9 @@ public final class ri implements View.OnTouchListener {
             default:
                 i60 i60Var = (i60) this.d;
                 if (motionEvent.getActionMasked() == 0) {
-                    i50 i50Var2 = i60Var.f38703f3;
+                    i50 i50Var2 = i60Var.f38706f3;
                     if (i50Var2 != null && i50Var2.isShowing()) {
-                        View contentView2 = i60Var.f38703f3.getContentView();
+                        View contentView2 = i60Var.f38706f3.getContentView();
                         int[] iArr2 = this.f41661b;
                         contentView2.getLocationInWindow(iArr2);
                         int i11 = iArr2[0];
@@ -53,11 +53,11 @@ public final class ri implements View.OnTouchListener {
                         Rect rect2 = this.f41662c;
                         rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
                         if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            i60Var.f38703f3.dismiss();
+                            i60Var.f38706f3.dismiss();
                         }
                     }
-                } else if (motionEvent.getActionMasked() == 4 && (i50Var = i60Var.f38703f3) != null && i50Var.isShowing()) {
-                    i60Var.f38703f3.dismiss();
+                } else if (motionEvent.getActionMasked() == 4 && (i50Var = i60Var.f38706f3) != null && i50Var.isShowing()) {
+                    i60Var.f38706f3.dismiss();
                 }
                 return false;
         }

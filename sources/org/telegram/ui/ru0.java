@@ -46,13 +46,13 @@ public abstract class ru0 extends NestedScrollView {
         setFadingEdgeLength(AndroidUtilities.dp(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        o1.k kVar = new o1.k(uu0Var, o1.h.f16672n, 0.0f);
+        o1.k kVar = new o1.k(uu0Var, o1.h.f16673n, 0.0f);
         this.f41720a0 = kVar;
-        kVar.f16690u.b(100.0f);
+        kVar.f16691u.b(100.0f);
         kVar.e(1.0f);
         kVar.b(new td0(this, 2));
         kVar.a(new p9(this, 2));
-        kVar.f16690u.a(1.0f);
+        kVar.f16691u.a(1.0f);
         try {
             Method declaredMethod = NestedScrollView.class.getDeclaredMethod("d", null);
             this.f41725f0 = declaredMethod;
@@ -79,8 +79,8 @@ public abstract class ru0 extends NestedScrollView {
             if (this.f41722c0 != 0.0f && (overScroller = this.f41726g0) != null && overScroller.isFinished()) {
                 float f7 = this.f41724e0;
                 o1.k kVar = this.f41720a0;
-                if (!kVar.f16683f) {
-                    kVar.f16679a = f7;
+                if (!kVar.f16684f) {
+                    kVar.f16680a = f7;
                     kVar.h();
                 }
             }
@@ -102,8 +102,8 @@ public abstract class ru0 extends NestedScrollView {
         super.computeScroll();
         if (!this.f41721b0 && this.f41722c0 != 0.0f && (overScroller = this.f41726g0) != null && overScroller.isFinished()) {
             o1.k kVar = this.f41720a0;
-            if (!kVar.f16683f) {
-                kVar.f16679a = 0.0f;
+            if (!kVar.f16684f) {
+                kVar.f16680a = 0.0f;
                 kVar.h();
             }
         }
@@ -192,7 +192,7 @@ public abstract class ru0 extends NestedScrollView {
                 uu0 uu0Var = this.f41732n0;
                 if (!z10) {
                     o1.k kVar = this.f41720a0;
-                    if (!kVar.f16683f) {
+                    if (!kVar.f16684f) {
                         OverScroller overScroller = this.f41726g0;
                         if (overScroller != null) {
                             f7 = overScroller.getCurrVelocity();
@@ -217,8 +217,8 @@ public abstract class ru0 extends NestedScrollView {
                             this.f41722c0 = f12;
                             uu0Var.setTranslationY(f12);
                         }
-                        if (!kVar.f16683f) {
-                            kVar.f16679a = f10;
+                        if (!kVar.f16684f) {
+                            kVar.f16680a = f10;
                             kVar.h();
                         }
                     }

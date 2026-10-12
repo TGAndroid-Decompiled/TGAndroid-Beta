@@ -8,34 +8,34 @@ import android.os.Build;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class k50 implements org.telegram.ui.Components.ml0 {
-    public final Path f39362a = new Path();
-    public final Paint f39363b;
-    public final i60 f39364c;
+    public final Path f39365a = new Path();
+    public final Paint f39366b;
+    public final i60 f39367c;
 
     public k50(i60 i60Var) {
-        this.f39364c = i60Var;
+        this.f39367c = i60Var;
         Paint paint = new Paint(1);
-        this.f39363b = paint;
+        this.f39366b = paint;
         paint.setColor(-14603467);
     }
 
     @Override
     public final void h(View view, zg.n0 n0Var, boolean z10, boolean z11) {
         TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-        String str = n0Var.f54841f;
+        String str = n0Var.f54849f;
         if (str == null) {
             str = "👍";
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         tL_textWithEntities.text = str;
-        long j3 = n0Var.f54842g;
+        long j3 = n0Var.f54850g;
         if (j3 != 0) {
             tL_messageEntityCustomEmoji.document_id = j3;
             tL_messageEntityCustomEmoji.offset = 0;
             tL_messageEntityCustomEmoji.length = str.length();
             tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
         }
-        i60 i60Var = this.f39364c;
+        i60 i60Var = this.f39367c;
         i60Var.B1(tL_textWithEntities);
         i40 i40Var = i60Var.H;
         if (i40Var.m()) {
@@ -44,7 +44,7 @@ public final class k50 implements org.telegram.ui.Components.ml0 {
             i40Var.d();
         }
         zg.a0 reactionsWindow = i60Var.K.getReactionsWindow();
-        if (reactionsWindow != null && !reactionsWindow.f54687q) {
+        if (reactionsWindow != null && !reactionsWindow.f54695q) {
             i60Var.K.getReactionsWindow().e();
             i60Var.K.n();
         }
@@ -63,18 +63,18 @@ public final class k50 implements org.telegram.ui.Components.ml0 {
     @Override
     public final void o(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
         int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        Paint paint = this.f39363b;
+        Paint paint = this.f39366b;
         if (i11 > 0) {
             canvas.drawRoundRect(rectF, f7, f7, paint);
         } else {
             canvas.drawRect(rectF, paint);
         }
         if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            i60 i60Var = this.f39364c;
+            i60 i60Var = this.f39367c;
             if (i60Var.Q2 != null) {
                 canvas.save();
                 if (i11 > 0) {
-                    Path path = this.f39362a;
+                    Path path = this.f39365a;
                     path.rewind();
                     path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                     path.close();

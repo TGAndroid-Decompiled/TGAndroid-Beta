@@ -17,36 +17,36 @@ public abstract class zc0 extends FrameLayout {
     public final ArrayList E;
     public final vc0 F;
     public final ah.c G;
-    public TLRPC.Peer f33324a;
-    public final boolean f33325b;
-    public final org.telegram.ui.eo f33326c;
+    public TLRPC.Peer f33330a;
+    public final boolean f33331b;
+    public final org.telegram.ui.eo f33332c;
     public final MessagePreviewParams d;
-    public final xc0 f33327e;
-    public final bc0 f33328f;
+    public final xc0 f33333e;
+    public final bc0 f33334f;
     public ValueAnimator h;
-    public final TLRPC.User f33329n;
-    public final TLRPC.Chat f33330r;
-    public boolean f33331s;
+    public final TLRPC.User f33335n;
+    public final TLRPC.Chat f33336r;
+    public boolean f33337s;
     public boolean v;
-    public final int f33332w;
-    public boolean f33333x;
-    public final org.telegram.ui.Cells.l7 f33334y;
+    public final int f33338w;
+    public boolean f33339x;
+    public final org.telegram.ui.Cells.l7 f33340y;
 
     public zc0(Context context, org.telegram.ui.eo eoVar, ah.c cVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, vc0 vc0Var, int i11, final boolean z10) {
         super(context);
-        this.f33334y = new org.telegram.ui.Cells.l7(this, 15);
+        this.f33340y = new org.telegram.ui.Cells.l7(this, 15);
         this.E = new ArrayList(10);
-        this.f33325b = z10;
-        this.f33326c = eoVar;
-        this.f33332w = i10;
+        this.f33331b = z10;
+        this.f33332c = eoVar;
+        this.f33338w = i10;
         this.G = cVar;
-        this.f33329n = user;
-        this.f33330r = chat;
+        this.f33335n = user;
+        this.f33336r = chat;
         this.d = messagePreviewParams;
         this.F = vc0Var;
-        this.f33328f = new bc0(this, context, vc0Var);
+        this.f33334f = new bc0(this, context, vc0Var);
         xc0 xc0Var = new xc0(context, vc0Var);
-        this.f33327e = xc0Var;
+        this.f33333e = xc0Var;
         ch.d c10 = cVar.c(xc0Var, null, false);
         c10.o(eh.b.k(vc0Var));
         c10.f4683j.f4666e = true;
@@ -56,24 +56,24 @@ public abstract class zc0 extends FrameLayout {
         int i12 = 0;
         for (int i13 = 0; i13 < 3; i13++) {
             if (i13 == 0 && messagePreviewParams.replyMessage != null) {
-                this.f33327e.a(0, LocaleController.getString(R.string.MessageOptionsReply));
+                this.f33333e.a(0, LocaleController.getString(R.string.MessageOptionsReply));
             } else if (i13 == 1 && messagePreviewParams.forwardMessages != null && !z10) {
-                this.f33327e.a(1, LocaleController.getString(R.string.MessageOptionsForward));
+                this.f33333e.a(1, LocaleController.getString(R.string.MessageOptionsForward));
             } else {
                 if (i13 == 2 && messagePreviewParams.linkMessage != null && !z10) {
-                    this.f33327e.a(2, LocaleController.getString(R.string.MessageOptionsLink));
+                    this.f33333e.a(2, LocaleController.getString(R.string.MessageOptionsLink));
                 }
             }
             if (i13 == i11) {
-                i12 = this.f33327e.f32713a.size() - 1;
+                i12 = this.f33333e.f32712a.size() - 1;
             }
         }
-        this.f33328f.setAdapter(new cc0(this, context));
-        this.f33328f.setPosition(i12);
-        this.f33327e.setSelectedTab(i12);
-        addView(this.f33327e, w7.w5.e(-1, 66, 87));
-        addView(this.f33328f, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 66.0f, -1, 119));
-        this.f33327e.setOnTabClick(new a3(this, 7));
+        this.f33334f.setAdapter(new cc0(this, context));
+        this.f33334f.setPosition(i12);
+        this.f33333e.setSelectedTab(i12);
+        addView(this.f33333e, w7.w5.e(-1, 66, 87));
+        addView(this.f33334f, w7.w5.a(-1.0f, 0.0f, 0.0f, 0.0f, 66.0f, -1, 119));
+        this.f33333e.setOnTabClick(new a3(this, 7));
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
@@ -85,7 +85,7 @@ public abstract class zc0 extends FrameLayout {
                 return true;
             }
         });
-        this.f33331s = true;
+        this.f33337s = true;
         setAlpha(0.0f);
         setScaleX(0.95f);
         setScaleY(0.95f);
@@ -94,19 +94,19 @@ public abstract class zc0 extends FrameLayout {
 
     public final void a(boolean z10) {
         int i10;
-        if (this.f33331s) {
-            this.f33331s = false;
+        if (this.f33337s) {
+            this.f33337s = false;
             animate().alpha(0.0f).scaleX(0.95f).scaleY(0.95f).setDuration(250L).setInterpolator(ji.n.V).setListener(new ea(14, this, z10));
             int i11 = 0;
             while (true) {
-                View[] viewArr = this.f33328f.f31114e;
+                View[] viewArr = this.f33334f.f31109e;
                 if (i11 >= viewArr.length) {
                     break;
                 }
                 View view = viewArr[i11];
                 if (view instanceof tc0) {
                     tc0 tc0Var = (tc0) view;
-                    if (tc0Var.f30851a == 0) {
+                    if (tc0Var.f30854a == 0) {
                         tc0Var.j();
                         break;
                     }
@@ -117,35 +117,35 @@ public abstract class zc0 extends FrameLayout {
             org.telegram.ui.eo eoVar = nlVar.H;
             eoVar.Fa = null;
             eoVar.g7();
-            MessagePreviewParams messagePreviewParams = eoVar.f37259f5;
+            MessagePreviewParams messagePreviewParams = eoVar.f37264f5;
             if (messagePreviewParams != null) {
-                if (eoVar.f37330l5 == null) {
-                    eoVar.f37330l5 = messagePreviewParams.quote;
+                if (eoVar.f37335l5 == null) {
+                    eoVar.f37335l5 = messagePreviewParams.quote;
                 }
                 if (messagePreviewParams.quote == null) {
-                    eoVar.f37330l5 = null;
+                    eoVar.f37335l5 = null;
                 }
-                org.telegram.ui.tn tnVar = eoVar.f37330l5;
+                org.telegram.ui.tn tnVar = eoVar.f37335l5;
                 if (tnVar != null) {
-                    tnVar.f42246f = false;
-                    tnVar.f42243b = messagePreviewParams.quoteStart;
-                    tnVar.f42244c = messagePreviewParams.quoteEnd;
+                    tnVar.f42248f = false;
+                    tnVar.f42245b = messagePreviewParams.quoteStart;
+                    tnVar.f42246c = messagePreviewParams.quoteEnd;
                     tnVar.e();
-                    if (eoVar.f37372ob == 2) {
-                        eoVar.Gb(eoVar.f37356n5, eoVar.f37330l5);
+                    if (eoVar.f37377ob == 2) {
+                        eoVar.Gb(eoVar.f37361n5, eoVar.f37335l5);
                     }
                 } else {
                     ArrayList<MessageObject> arrayList = new ArrayList<>();
-                    MessagePreviewParams.Messages messages = eoVar.f37259f5.forwardMessages;
+                    MessagePreviewParams.Messages messages = eoVar.f37264f5.forwardMessages;
                     if (messages != null) {
                         messages.getSelectedMessages(arrayList);
                     }
                     eoVar.m8();
                 }
             }
-            if (eoVar.f37252eb && z10) {
+            if (eoVar.f37257eb && z10) {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ml(nlVar, 1), 50L);
-                eoVar.f37252eb = false;
+                eoVar.f37257eb = false;
             }
             Activity parentActivity = eoVar.getParentActivity();
             i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
@@ -158,15 +158,15 @@ public abstract class zc0 extends FrameLayout {
     public abstract void c(boolean z10);
 
     public void setSendAsPeer(TLRPC.Peer peer) {
-        this.f33324a = peer;
+        this.f33330a = peer;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.f33328f.f31114e;
+            View[] viewArr = this.f33334f.f31109e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     tc0 tc0Var = (tc0) view;
-                    if (tc0Var.f30851a == 1) {
+                    if (tc0Var.f30854a == 1) {
                         tc0Var.h();
                     }
                 }

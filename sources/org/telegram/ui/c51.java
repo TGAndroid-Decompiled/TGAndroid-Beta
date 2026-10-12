@@ -6,44 +6,44 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class c51 extends AnimatorListenerAdapter {
-    public final int f36330a;
-    public final org.telegram.ui.Components.qn0 f36331b;
+    public final int f36332a;
+    public final org.telegram.ui.Components.qn0 f36333b;
 
     public c51(org.telegram.ui.Components.qn0 qn0Var, int i10) {
-        this.f36330a = i10;
-        this.f36331b = qn0Var;
+        this.f36332a = i10;
+        this.f36333b = qn0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f36330a) {
+        switch (this.f36332a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36331b.f29869b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36333b.f29871b;
                 secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                du0 du0Var = secretMediaViewer.f34250a0;
-                du0Var.f41731l0 = false;
-                if (du0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) du0Var.f41733o0.getLayoutParams()).topMargin = du0Var.m0;
-                    du0Var.m0 = -1;
-                    du0Var.requestLayout();
+                eu0 eu0Var = secretMediaViewer.f34252a0;
+                eu0Var.f41731l0 = false;
+                if (eu0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) eu0Var.f41733o0.getLayoutParams()).topMargin = eu0Var.m0;
+                    eu0Var.m0 = -1;
+                    eu0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f36331b.f29869b).Z.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f36333b.f29871b).Z.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f36330a) {
+        switch (this.f36332a) {
             case 0:
-                du0 du0Var = ((SecretMediaViewer) this.f36331b.f29869b).f34250a0;
-                Method method = du0Var.f41725f0;
+                eu0 eu0Var = ((SecretMediaViewer) this.f36333b.f29871b).f34252a0;
+                Method method = eu0Var.f41725f0;
                 if (method != null) {
                     try {
-                        method.invoke(du0Var, null);
+                        method.invoke(eu0Var, null);
                         return;
                     } catch (Exception e7) {
                         FileLog.e(e7);

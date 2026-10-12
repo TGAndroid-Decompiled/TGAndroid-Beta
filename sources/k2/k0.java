@@ -4,15 +4,15 @@ import android.os.Handler;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FourierTransform;
 import org.telegram.ui.Components.d81;
+import org.telegram.ui.Components.gi0;
 import org.telegram.ui.Components.j81;
 import org.telegram.ui.Components.p81;
 import org.telegram.ui.Components.q81;
-import org.telegram.ui.Components.sj0;
 public final class k0 extends c2.i {
-    public final p81 f14507i;
+    public final p81 f14508i;
 
     public k0(p81 p81Var) {
-        this.f14507i = p81Var;
+        this.f14508i = p81Var;
     }
 
     @Override
@@ -23,13 +23,13 @@ public final class k0 extends c2.i {
         }
         String str = e2.d0.f8529a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        p81 p81Var = this.f14507i;
-        float[] fArr = p81Var.f29443b;
-        ByteBuffer byteBuffer2 = p81Var.f29444c;
-        FourierTransform.FFT fft = p81Var.f29442a;
-        q81 q81Var = p81Var.f29446f;
+        p81 p81Var = this.f14508i;
+        float[] fArr = p81Var.f29446b;
+        ByteBuffer byteBuffer2 = p81Var.f29447c;
+        FourierTransform.FFT fft = p81Var.f29445a;
+        q81 q81Var = p81Var.f29449f;
         j81 j81Var = q81Var.K;
-        Handler handler = q81Var.f29779a0;
+        Handler handler = q81Var.f29757a0;
         if (j81Var != null) {
             if (order != c2.h.f4010a && q81Var.I) {
                 if (j81Var.needUpdate()) {
@@ -93,9 +93,9 @@ public final class k0 extends c2.i {
                                     i10++;
                                 }
                             }
-                            if (System.currentTimeMillis() - p81Var.f29445e >= 64) {
-                                p81Var.f29445e = System.currentTimeMillis();
-                                handler.postDelayed(new sj0(25, p81Var, fArr2), 130L);
+                            if (System.currentTimeMillis() - p81Var.f29448e >= 64) {
+                                p81Var.f29448e = System.currentTimeMillis();
+                                handler.postDelayed(new gi0(26, p81Var, fArr2), 130L);
                             }
                         }
                     }
@@ -125,7 +125,7 @@ public final class k0 extends c2.i {
     public final void k() {
         if (isActive()) {
             int i10 = this.f4011b.f4007a;
-            this.f14507i.getClass();
+            this.f14508i.getClass();
         }
     }
 

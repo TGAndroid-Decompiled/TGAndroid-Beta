@@ -8,10 +8,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ng implements Runnable {
-    public final ChatActivityEnterView f28795a;
+    public final ChatActivityEnterView f28784a;
 
     public ng(ChatActivityEnterView chatActivityEnterView) {
-        this.f28795a = chatActivityEnterView;
+        this.f28784a = chatActivityEnterView;
     }
 
     @Override
@@ -21,24 +21,24 @@ public final class ng implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f28795a;
-        df dfVar = chatActivityEnterView.f23677j4;
+        ChatActivityEnterView chatActivityEnterView = this.f28784a;
+        df dfVar = chatActivityEnterView.f23678j4;
         Activity activity = chatActivityEnterView.O2;
         sg sgVar = chatActivityEnterView.Z2;
         if (sgVar != null && activity != null) {
             sgVar.G();
             chatActivityEnterView.l4 = true;
-            chatActivityEnterView.f23683k4 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23680k1;
+            chatActivityEnterView.f23684k4 = false;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23681k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f23680k1.setTranslationY(0.0f);
+                chatActivityEnterView.f23681k1.setTranslationY(0.0f);
             }
             chatActivityEnterView.B(true);
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f23633c3 = null;
-            chatActivityEnterView.f23626b3 = null;
-            if (chatActivityEnterView.f23631c1) {
+            chatActivityEnterView.f23634c3 = null;
+            chatActivityEnterView.f23627b3 = null;
+            if (chatActivityEnterView.f23632c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z10 = true;
                 } else {
@@ -65,12 +65,12 @@ public final class ng implements Runnable {
                         }
                         bh bhVar = chatActivityEnterView.Y0;
                         if (bhVar != null) {
-                            bhVar.f24641a = false;
+                            bhVar.f24632a = false;
                             bhVar.d = 0L;
-                            bhVar.f24644e = 0L;
+                            bhVar.f24635e = 0L;
                             bhVar.h = 0L;
-                            bhVar.f24646n = 0L;
-                            bhVar.f24642b = false;
+                            bhVar.f24637n = 0L;
+                            bhVar.f24633b = false;
                             return;
                         }
                         return;

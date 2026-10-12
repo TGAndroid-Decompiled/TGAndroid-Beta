@@ -17,21 +17,21 @@ import org.telegram.ui.Components.mh0;
 import org.telegram.ui.Components.xs0;
 import org.telegram.ui.Components.zc;
 public final class b7 implements Utilities.Callback {
-    public final int f34510a;
-    public final Object f34511b;
-    public final Object f34512c;
+    public final int f34512a;
+    public final Object f34513b;
+    public final Object f34514c;
 
     public b7(int i10, Object obj, Object obj2) {
-        this.f34510a = i10;
-        this.f34511b = obj;
-        this.f34512c = obj2;
+        this.f34512a = i10;
+        this.f34513b = obj;
+        this.f34514c = obj2;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f34510a;
-        Object obj2 = this.f34512c;
-        Object obj3 = this.f34511b;
+        int i10 = this.f34512a;
+        Object obj2 = this.f34514c;
+        Object obj3 = this.f34513b;
         switch (i10) {
             case 0:
                 c7 c7Var = (c7) obj3;
@@ -71,20 +71,20 @@ public final class b7 implements Utilities.Callback {
                 }
                 return;
             case 3:
-                ((n7) obj3).f27773a.W2.N(true);
+                ((n7) obj3).f27776a.W2.N(true);
                 ((Utilities.Callback) obj2).run((String) obj);
                 return;
             case 4:
                 u8 u8Var = (u8) obj3;
                 String str4 = (String) obj;
                 ((Utilities.Callback) obj2).run(str4);
-                if (str4 == null && !u8Var.f35425n) {
+                if (str4 == null && !u8Var.f35427n) {
                     if (u8Var.getParentLayout() != null) {
                         for (org.telegram.ui.ActionBar.m2 m2Var2 : u8Var.getParentLayout().getFragmentStack()) {
                             if (m2Var2 instanceof c5) {
                                 c5 c5Var = (c5) m2Var2;
-                                c5Var.f34555f0 = 0;
-                                ci.h1 h1Var = c5Var.f34563n0;
+                                c5Var.f34557f0 = 0;
+                                ci.h1 h1Var = c5Var.f34565n0;
                                 if (h1Var != null) {
                                     h1Var.setPosition(0);
                                 }
@@ -103,18 +103,18 @@ public final class b7 implements Utilities.Callback {
                 org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) obj;
                 y1Var.getClass();
                 ((org.telegram.ui.web.g1[]) obj2)[0].finishFragment();
-                Utilities.Callback callback = y1Var.f43490e;
+                Utilities.Callback callback = y1Var.f43495e;
                 if (callback != null) {
                     y1Var.finishFragment();
                     callback.run(c1Var);
                     return;
                 }
-                of.f.s(y1Var.getParentActivity(), c1Var.f43220c);
+                of.f.s(y1Var.getParentActivity(), c1Var.f43222c);
                 return;
             case 7:
-                org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) obj3;
-                h2Var.getClass();
-                AndroidUtilities.runOnUIThread(new mh0(h2Var, (org.telegram.ui.web.g2) obj2, (Bitmap) obj, 24));
+                org.telegram.ui.web.i2 i2Var = (org.telegram.ui.web.i2) obj3;
+                i2Var.getClass();
+                AndroidUtilities.runOnUIThread(new mh0(i2Var, (org.telegram.ui.web.h2) obj2, (Bitmap) obj, 24));
                 return;
             case 8:
                 xh.q1 q1Var = (xh.q1) obj3;
@@ -140,12 +140,12 @@ public final class b7 implements Utilities.Callback {
                 xs0 xs0Var = (xs0) obj3;
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
                 String str5 = (String) obj;
-                yh.d5 d5Var = xs0Var.f51724e;
+                yh.e5 e5Var = xs0Var.f51732e;
                 int i11 = tL_starGiftCollection.collection_id;
-                d5Var.getClass();
+                e5Var.getClass();
                 TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
-                int i12 = d5Var.f52609a;
-                updatestargiftcollection.peer = MessagesController.getInstance(i12).getInputPeer(d5Var.f52610b);
+                int i12 = e5Var.f52663a;
+                updatestargiftcollection.peer = MessagesController.getInstance(i12).getInputPeer(e5Var.f52664b);
                 updatestargiftcollection.collection_id = i11;
                 updatestargiftcollection.flags |= 1;
                 updatestargiftcollection.title = str5;
@@ -158,7 +158,7 @@ public final class b7 implements Utilities.Callback {
                 TLRPC.User user = (TLRPC.User) obj2;
                 Void r12 = (Void) obj;
                 long j3 = y4Var.Z;
-                Runnable runnable = y4Var.f51842g0;
+                Runnable runnable = y4Var.f51850g0;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -171,9 +171,9 @@ public final class b7 implements Utilities.Callback {
                 yh.s3 s3Var = (yh.s3) obj3;
                 String str6 = (String) obj2;
                 TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                yh.p3 p3Var = s3Var.f53393f0;
-                ei.k[] kVarArr = s3Var.f53417t0;
-                ci.d dVar = s3Var.f53403k0;
+                yh.p3 p3Var = s3Var.f53405f0;
+                ei.k[] kVarArr = s3Var.f53429t0;
+                ci.d dVar = s3Var.f53415k0;
                 if (stargiftupgradepreview != null) {
                     p3Var.setPreviewingAttributes(stargiftupgradepreview.sample_attributes);
                     s3Var.s2(1, false, null);
@@ -181,8 +181,8 @@ public final class b7 implements Utilities.Callback {
                     kVarArr[0].setText(LocaleController.getString(R.string.Gift2UpgradeFeature1TextLearn));
                     kVarArr[1].setText(LocaleController.getString(R.string.Gift2UpgradeFeature2TextLearn));
                     kVarArr[2].setText(LocaleController.getString(R.string.Gift2UpgradeFeature3TextLearn));
-                    s3Var.f53419v0.setVisibility(8);
-                    s3Var.f53418u0.setVisibility(8);
+                    s3Var.f53431v0.setVisibility(8);
+                    s3Var.f53430u0.setVisibility(8);
                     dVar.setFilled(true);
                     dVar.g(LocaleController.getString(R.string.OK), false, true);
                     dVar.f(null, false);
@@ -204,13 +204,13 @@ public final class b7 implements Utilities.Callback {
                 yh.y2 y2Var = (yh.y2) obj3;
                 zf.b bVar = (zf.b) obj2;
                 TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
-                of.e eVar = y2Var.f53644n;
-                if (eVar != null && bVar == y2Var.f53647q) {
+                of.e eVar = y2Var.f53653n;
+                if (eVar != null && bVar == y2Var.f53656q) {
                     eVar.c(false);
                 }
-                y2Var.f53646p.remove(bVar);
+                y2Var.f53655p.remove(bVar);
                 if (tL_payments_paymentFormStarGift != null) {
-                    y2Var.f53645o.put(bVar, new yh.w2(bVar, tL_payments_paymentFormStarGift));
+                    y2Var.f53654o.put(bVar, new yh.w2(bVar, tL_payments_paymentFormStarGift));
                     y2Var.a(true);
                     return;
                 }

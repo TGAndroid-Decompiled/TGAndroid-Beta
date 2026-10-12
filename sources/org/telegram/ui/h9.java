@@ -43,8 +43,8 @@ public final class h9 extends FrameLayout {
         } else {
             f7 = -2.0f;
         }
-        i6Var.f22006b0 = AndroidUtilities.dp(f7);
-        i6Var.f22007c0 = -AndroidUtilities.dp(7.0f);
+        i6Var.f22007b0 = AndroidUtilities.dp(f7);
+        i6Var.f22008c0 = -AndroidUtilities.dp(7.0f);
         addView(i6Var, w7.w5.d(-1.0f, -1));
         org.telegram.ui.Components.m9 m9Var = new org.telegram.ui.Components.m9(context, false);
         this.f38297b = m9Var;
@@ -62,7 +62,7 @@ public final class h9 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.f38298c = imageView;
         imageView.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.il, false), PorterDuff.Mode.SRC_IN);
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20650i6, false), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false), 1, -1));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setContentDescription(LocaleController.getString(R.string.Call));
         if (LocaleController.isRTL) {
@@ -75,11 +75,11 @@ public final class h9 extends FrameLayout {
         this.f38299e = fqVar;
         CheckBoxBase checkBoxBase = fqVar.getCheckBoxBase();
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hl, false);
-        if (checkBoxBase.f23880x != x02) {
-            checkBoxBase.f23880x = x02;
+        if (checkBoxBase.f23881x != x02) {
+            checkBoxBase.f23881x = x02;
             checkBoxBase.b();
         }
-        fqVar.b(-1, org.telegram.ui.ActionBar.h6.f20559d6, org.telegram.ui.ActionBar.h6.f20688k7);
+        fqVar.b(-1, org.telegram.ui.ActionBar.h6.f20560d6, org.telegram.ui.ActionBar.h6.f20689k7);
         fqVar.setDrawUnchecked(false);
         fqVar.setDrawBackgroundAsArc(3);
         addView(fqVar, w7.w5.a(24.0f, 42.0f, 32.0f, 42.0f, 0.0f, 24, (LocaleController.isRTL ? 5 : 3) | 48));
