@@ -1,104 +1,85 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-public final class a81 extends org.telegram.ui.Components.db implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.g00 X;
-    public final ci.d Y;
-    public final ai.e9 Z;
-    public final HashMap f35726a0;
-    public final int f35727b0;
-    public int f35728c0;
-    public org.telegram.ui.Components.h71 f35729d0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class a81 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f34080a;
+    public final TLRPC.Chat f34081b;
+    public TLRPC.ChannelParticipantsFilter f34082c;
+    public boolean f34083f;
+    public boolean h;
+    public boolean f34085r;
+    public boolean f34086s;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public int f34084n = -1;
 
-    public a81(org.telegram.ui.ActionBar.m2 r17, long r18, int r20, org.telegram.ui.Components.vc r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.a81.<init>(org.telegram.ui.ActionBar.m2, long, int, org.telegram.ui.Components.vc):void");
-    }
-
-    @Override
-    public final CharSequence A() {
-        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
-    }
-
-    public final void Q() {
-        int abs;
-        org.telegram.ui.Components.g00 g00Var = this.X;
-        int L0 = g00Var.L0();
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(g00Var.N0() - L0) + 1;
+    public a81(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
+        this.f34080a = i10;
+        this.f34081b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j10);
+        this.f34082c = channelParticipantsFilter;
+        if (chatFull == null) {
+            if (!this.f34086s) {
+                this.f34086s = true;
+                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
+            }
+            MessagesController.getInstance(i10).loadFullChat(j10, 0, false);
         }
-        ai.e9 e9Var = this.Z;
-        if (e9Var != null) {
-            int i10 = L0 + abs;
-            int i11 = e9Var.i();
-            int i12 = this.f35727b0;
-            if (i10 > i11 - i12) {
-                e9Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
+    }
+
+    public final void a() {
+        if (this.f34086s) {
+            return;
+        }
+        this.f34086s = false;
+        int i10 = this.f34080a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+        if (this.f34084n >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f34084n, true);
+            this.f34084n = -1;
+        }
+        this.f34083f = false;
+    }
+
+    public final void b() {
+        int size;
+        if (!this.f34083f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f34082c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f19215q)) {
+                this.f34083f = true;
+                TLRPC.Chat chat = this.f34081b;
+                if (ChatObject.isChannel(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
+                    tL_channels_getParticipants.filter = this.f34082c;
+                    tL_channels_getParticipants.limit = 30;
+                    if (this.f34085r) {
+                        size = 0;
+                    } else {
+                        size = this.d.size();
+                    }
+                    tL_channels_getParticipants.offset = size;
+                    ConnectionsManager.getInstance(this.f34080a).sendRequestTyped(tL_channels_getParticipants, new Object(), new f5(this, 24));
+                }
             }
         }
-    }
-
-    public final boolean R(int i10, View view) {
-        org.telegram.ui.Components.u61 G;
-        org.telegram.ui.Components.h71 h71Var = this.f35729d0;
-        if (h71Var == null || i10 == 0 || (G = h71Var.G(i10 - 1)) == null) {
-            return false;
-        }
-        Object obj = G.G;
-        if (obj instanceof MessageObject) {
-            MessageObject messageObject = (MessageObject) obj;
-            int id2 = messageObject.getId();
-            Integer valueOf = Integer.valueOf(id2);
-            HashMap hashMap = this.f35726a0;
-            if (hashMap.containsKey(valueOf)) {
-                hashMap.remove(Integer.valueOf(id2));
-                G.f31065e = false;
-                ((org.telegram.ui.Cells.t7) view).i(false, true);
-            } else {
-                hashMap.put(Integer.valueOf(id2), messageObject.storyItem);
-                G.f31065e = true;
-                ((org.telegram.ui.Cells.t7) view).i(true, true);
-            }
-            ci.d dVar = this.Y;
-            dVar.setEnabled(!hashMap.isEmpty());
-            dVar.b(hashMap.size(), true);
-        }
-        return true;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storiesListUpdated && ((ai.e9) objArr[0]) == this.Z) {
-            this.f35729d0.N(false);
-            Q();
+        if (i10 == NotificationCenter.chatInfoDidLoad) {
+            long j10 = ((TLRPC.ChatFull) objArr[0]).f19217id;
+            TLRPC.Chat chat = this.f34081b;
+            if (j10 == chat.f19216id && !ChatObject.isChannel(chat) && this.f34083f) {
+                this.f34083f = false;
+                b();
+            }
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f35728c0 = this.Z.o();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.Z.z(this.f35728c0);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    @Override
-    public final org.telegram.ui.Components.vm0 x(org.telegram.ui.Components.wm0 wm0Var) {
-        org.telegram.ui.Components.h71 h71Var = new org.telegram.ui.Components.h71(wm0Var, getContext(), this.currentAccount, 0, false, new e5(this, 25), this.resourcesProvider);
-        this.f35729d0 = h71Var;
-        h71Var.f26679r = false;
-        return h71Var;
     }
 }

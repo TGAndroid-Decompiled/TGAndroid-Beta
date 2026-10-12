@@ -1,117 +1,201 @@
 package qf;
 
-import ai.v2;
-import android.app.PictureInPictureParams;
-import android.graphics.Rect;
-import android.os.Build;
+import android.net.Uri;
 import android.view.View;
-import ci.f4;
-import com.google.firebase.messaging.n;
-import i2.f0;
-import java.util.HashMap;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.DesugarCollections;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import r0.j0;
+import s4.b1;
+import s4.g0;
+import s4.l0;
+import s4.n0;
+import s4.s0;
+import s4.t0;
 public final class e {
-    public static int f46105n;
-    public static final Rect f46106o = new Rect();
-    public final n f46107a;
-    public final sf.e f46108b;
-    public final String f46109c;
-    public final int d;
-    public final int f46110e;
-    public final boolean f46111f;
-    public final sf.a f46112g;
-    public final tf.b h;
-    public final oi.f f46113i;
-    public View f46114j;
-    public View f46115k;
-    public f0 f46116l;
-    public boolean f46117m;
+    public int f43367a;
+    public int f43368b;
+    public final Serializable f43369c;
+    public Serializable d;
+    public Serializable e;
+    public Object f43370f;
+    public Object f43371g;
+    public Object h;
 
-    public e(n nVar, d dVar) {
-        int i10 = f46105n;
-        f46105n = i10 + 1;
-        tf.b bVar = new tf.b();
-        this.h = bVar;
-        f4 f4Var = new f4(this, 1);
-        ?? obj = new Object();
-        obj.d = new v2(obj, 11);
-        obj.f16927a = f4Var;
-        this.f46113i = obj;
-        StringBuilder sb2 = new StringBuilder();
-        String str = dVar.f46098c;
-        sb2.append(str == null ? "pip-source" : str);
-        sb2.append("-");
-        sb2.append(i10);
-        String sb3 = sb2.toString();
-        this.f46109c = sb3;
-        this.f46112g = dVar.f46097b;
-        this.d = dVar.f46099e;
-        this.f46110e = dVar.d;
-        this.f46111f = dVar.f46100f;
-        this.f46107a = nVar;
-        bVar.c(dVar.h, dVar.f46102i);
-        this.f46116l = dVar.f46101g;
-        this.f46115k = dVar.f46104k;
-        this.f46108b = new sf.e(this);
-        View view = dVar.f46103j;
-        obj.P(view);
-        this.f46114j = view;
-        if (view != null) {
-            e(view);
-        }
-        b(false);
-        ((HashMap) nVar.f7950a).put(sb3, this);
-        nVar.I();
+    public e(Uri uri, String str, String str2) {
+        this.f43369c = str;
+        this.f43371g = uri;
+        this.d = str2;
     }
 
-    public final PictureInPictureParams a() {
-        boolean z10;
-        PictureInPictureParams.Builder a2 = this.h.a();
-        a2.setActions(null);
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31) {
-            if (i10 >= 31) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public void a(b1 b1Var, boolean z10) {
+        RecyclerView.m(b1Var);
+        if (b1Var.e(16384)) {
+            b1Var.p(0, 16384);
+            j0.j(b1Var.f44838a, null);
+        }
+        if (z10) {
+            RecyclerView recyclerView = (RecyclerView) this.h;
+            g0 g0Var = recyclerView.f2015w;
+            if (g0Var != null) {
+                g0Var.A(b1Var);
             }
-            a2.setAutoEnterEnabled(z10);
+            if (recyclerView.f2013u0 != null) {
+                recyclerView.f1995f.b0(b1Var);
+            }
         }
-        return a2.build();
+        b1Var.f44854t = null;
+        t0 c10 = c();
+        c10.getClass();
+        int i10 = b1Var.f44841f;
+        ArrayList arrayList = c10.b(i10).f44953a;
+        if (((s0) c10.f44956a.get(i10)).f44954b <= arrayList.size()) {
+            return;
+        }
+        b1Var.o();
+        arrayList.add(b1Var);
     }
 
-    public final void b(boolean z10) {
-        boolean z11;
-        if (this.h.b() && this.f46112g.g()) {
-            z11 = true;
+    public int b(int i10) {
+        RecyclerView recyclerView = (RecyclerView) this.h;
+        if (i10 >= 0 && i10 < recyclerView.f2013u0.b()) {
+            if (!recyclerView.f2013u0.f44998g) {
+                return i10;
+            }
+            return recyclerView.d.g(i10, 0);
+        }
+        StringBuilder k10 = i2.d.k(i10, "invalid position ", ". State item count is ");
+        k10.append(recyclerView.f2013u0.b());
+        k10.append(recyclerView.C());
+        throw new IndexOutOfBoundsException(k10.toString());
+    }
+
+    public t0 c() {
+        if (((t0) this.f43371g) == null) {
+            this.f43371g = new t0();
+        }
+        return (t0) this.f43371g;
+    }
+
+    public void d(g0 g0Var, g0 g0Var2) {
+        ((ArrayList) this.f43369c).clear();
+        e();
+        t0 c10 = c();
+        if (g0Var != null) {
+            c10.f44957b--;
+        }
+        if (c10.f44957b == 0) {
+            c10.a();
+        }
+        if (g0Var2 != null) {
+            c10.f44957b++;
         } else {
-            z11 = false;
+            c10.getClass();
         }
-        if (this.f46117m != z11) {
-            this.f46117m = z11;
-            if (z10) {
-                n nVar = this.f46107a;
-                nVar.I();
-                ((a) nVar.f7952c).invalidate();
+    }
+
+    public void e() {
+        ArrayList arrayList = (ArrayList) this.e;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            f(size);
+        }
+        arrayList.clear();
+        int[] iArr = RecyclerView.Q0;
+        e2.f fVar = ((RecyclerView) this.h).f2012t0;
+        int[] iArr2 = (int[]) fVar.f8343c;
+        if (iArr2 != null) {
+            Arrays.fill(iArr2, -1);
+        }
+        fVar.d = 0;
+    }
+
+    public void f(int i10) {
+        ArrayList arrayList = (ArrayList) this.e;
+        a((b1) arrayList.get(i10), true);
+        arrayList.remove(i10);
+    }
+
+    public void g(View view) {
+        RecyclerView recyclerView = (RecyclerView) this.h;
+        b1 U = RecyclerView.U(view);
+        if (U.l()) {
+            recyclerView.removeDetachedView(view, false);
+        }
+        if (U.k()) {
+            U.f44850p.k(U);
+        } else if (U.s()) {
+            U.f44846l &= -33;
+        }
+        h(U);
+        if (recyclerView.f1992c0 != null && !U.i()) {
+            recyclerView.f1992c0.f(U);
+        }
+    }
+
+    public void h(s4.b1 r12) {
+        throw new UnsupportedOperationException("Method not decompiled: qf.e.h(s4.b1):void");
+    }
+
+    public void i(View view) {
+        l0 l0Var;
+        RecyclerView recyclerView = (RecyclerView) this.h;
+        b1 U = RecyclerView.U(view);
+        if (!U.e(12) && U.m() && (l0Var = recyclerView.f1992c0) != null && !l0Var.c(U, U.d())) {
+            if (((ArrayList) this.d) == null) {
+                this.d = new ArrayList();
             }
+            U.f44850p = this;
+            U.f44851q = true;
+            ((ArrayList) this.d).add(U);
+        } else if (U.h() && !U.j() && !recyclerView.f2015w.f44884b) {
+            throw new IllegalArgumentException("Called scrap view with an invalid view. Invalid views cannot be reused from scrap, they should rebound from recycler pool." + recyclerView.C());
+        } else {
+            U.f44850p = this;
+            U.f44851q = false;
+            ((ArrayList) this.f43369c).add(U);
         }
     }
 
-    public final void c() {
-        this.f46113i.P(null);
-        n nVar = this.f46107a;
-        if (((HashMap) nVar.f7950a).remove(this.f46109c) != null) {
-            nVar.I();
+    public s4.b1 j(int r29, long r30) {
+        throw new UnsupportedOperationException("Method not decompiled: qf.e.j(int, long):s4.b1");
+    }
+
+    public void k(b1 b1Var) {
+        if (b1Var.f44851q) {
+            ((ArrayList) this.d).remove(b1Var);
+        } else {
+            ((ArrayList) this.f43369c).remove(b1Var);
+        }
+        b1Var.f44850p = null;
+        b1Var.f44851q = false;
+        b1Var.f44846l &= -33;
+    }
+
+    public void l() {
+        int i10;
+        ArrayList arrayList = (ArrayList) this.e;
+        n0 n0Var = ((RecyclerView) this.h).f2017x;
+        if (n0Var != null) {
+            i10 = n0Var.f44935i;
+        } else {
+            i10 = 0;
+        }
+        this.f43368b = this.f43367a + i10;
+        for (int size = arrayList.size() - 1; size >= 0 && arrayList.size() > this.f43368b; size--) {
+            f(size);
         }
     }
 
-    public final void d(int i10, int i11) {
-        if (this.h.c(i10, i11)) {
-            b(true);
-            this.f46107a.n(this);
-        }
-    }
-
-    public final void e(android.view.View r12) {
-        throw new UnsupportedOperationException("Method not decompiled: qf.e.e(android.view.View):void");
+    public e(RecyclerView recyclerView) {
+        this.h = recyclerView;
+        ArrayList arrayList = new ArrayList();
+        this.f43369c = arrayList;
+        this.d = null;
+        this.e = new ArrayList();
+        this.f43370f = DesugarCollections.unmodifiableList(arrayList);
+        this.f43367a = 2;
+        this.f43368b = 2;
     }
 }

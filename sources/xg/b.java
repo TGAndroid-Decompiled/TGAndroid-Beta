@@ -1,156 +1,44 @@
 package xg;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.text.TextUtils;
+import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.fq;
-import rg.x1;
-import w7.w5;
-public final class b extends vg.c {
-    public final fq f51359s;
-    public TLRPC.TL_help_country v;
-    public final TextPaint f51360w;
-    public final x1 f51361x;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.fo;
+public final class b implements Runnable {
+    public final int f48415a;
+    public final c f48416b;
+    public final MessageObject f48417c;
+    public final TLRPC.TL_messageMediaGiveawayResults d;
 
-    public b(Context context, c6 c6Var) {
-        super(context, c6Var);
-        int i10;
-        TextPaint textPaint = new TextPaint();
-        this.f51360w = textPaint;
-        this.f51361x = new x1(this, 15);
-        textPaint.setTextSize(AndroidUtilities.dp(20.0f));
-        this.f49814f.setVisibility(8);
-        this.f49812c.setVisibility(8);
-        fq fqVar = new fq(context, 21, c6Var);
-        this.f51359s = fqVar;
-        fqVar.b(h6.B5, h6.f20670j7, h6.C5);
-        fqVar.setDrawUnchecked(true);
-        fqVar.setDrawBackgroundAsArc(10);
-        addView(fqVar);
-        fqVar.a(false, false);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        fqVar.setLayoutParams(w5.a(24.0f, 13.0f, 0.0f, 14.0f, 0.0f, 24, i10 | 16));
+    public b(c cVar, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults, int i10) {
+        this.f48415a = i10;
+        this.f48416b = cVar;
+        this.f48417c = messageObject;
+        this.d = tL_messageMediaGiveawayResults;
     }
 
     @Override
-    public final int a() {
-        return 22;
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final void c(boolean z10, boolean z11) {
-        fq fqVar = this.f51359s;
-        if (fqVar.getVisibility() == 0) {
-            fqVar.a(z10, z11);
+    public final void run() {
+        switch (this.f48415a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new b(this.f48416b, this.f48417c, this.d, 1));
+                return;
+            default:
+                u1 u1Var = this.f48416b.f48420c;
+                long dialogId = this.f48417c.getDialogId();
+                TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
+                if (dialogId == (-tL_messageMediaGiveawayResults.channel_id)) {
+                    u1Var.getDelegate().R1(u1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", tL_messageMediaGiveawayResults.channel_id);
+                bundle.putInt("message_id", tL_messageMediaGiveawayResults.launch_msg_id);
+                LaunchActivity.R().presentFragment(new fo(bundle));
+                return;
         }
-    }
-
-    @Override
-    public final void d() {
-        int i10;
-        float f7;
-        float f10;
-        int i11;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        boolean z10 = LocaleController.isRTL;
-        int i12 = 3;
-        if (z10) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        int i13 = i10 | 16;
-        if (z10) {
-            f7 = 20.0f;
-        } else {
-            f7 = 52.0f;
-        }
-        if (z10) {
-            f10 = 52.0f;
-        } else {
-            f10 = 20.0f;
-        }
-        this.d.setLayoutParams(w5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        int i14 = i11 | 16;
-        if (z11) {
-            f11 = 20.0f;
-        } else {
-            f11 = 52.0f;
-        }
-        if (z11) {
-            f12 = 52.0f;
-        } else {
-            f12 = 20.0f;
-        }
-        this.f49813e.setLayoutParams(w5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
-        boolean z12 = LocaleController.isRTL;
-        if (z12) {
-            i12 = 5;
-        }
-        int i15 = i12 | 16;
-        if (z12) {
-            f13 = 15.0f;
-        } else {
-            f13 = 20.0f;
-        }
-        if (z12) {
-            f14 = 20.0f;
-        } else {
-            f14 = 15.0f;
-        }
-        this.f49814f.setLayoutParams(w5.a(22.0f, f13, 0.0f, f14, 0.0f, 22, i15));
-    }
-
-    public final void f() {
-        TLRPC.TL_help_country tL_help_country = this.v;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.f51360w.getFontMetricsInt(), 0, this.f51361x);
-        if (replaceWithRestrictedEmoji != null) {
-            spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
-            spannableStringBuilder.setSpan(new a(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
-        } else {
-            spannableStringBuilder.append((CharSequence) " ");
-            spannableStringBuilder.setSpan(new a(34), 0, 1, 0);
-        }
-        String countryName = LocaleController.getCountryName(tL_help_country.iso2);
-        if (TextUtils.isEmpty(countryName)) {
-            countryName = tL_help_country.default_name;
-        }
-        spannableStringBuilder.append((CharSequence) countryName);
-        this.d.k(spannableStringBuilder);
-    }
-
-    public TLRPC.TL_help_country getCountry() {
-        return this.v;
-    }
-
-    @Override
-    public int getFullHeight() {
-        return 44;
     }
 }

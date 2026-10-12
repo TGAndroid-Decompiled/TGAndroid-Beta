@@ -1,62 +1,18 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class tg0 extends AnimatedPhoneNumberEditText {
-    public final wg0 G;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+public final class tg0 implements Utilities.Callback3 {
+    public final int f40380a;
+    public final NotificationCenter.NotificationCenterDelegate f40381b;
 
-    public tg0(wg0 wg0Var, Context context) {
-        super(context);
-        this.G = wg0Var;
+    public tg0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f40380a = i10;
+        this.f40381b = notificationCenterDelegate;
     }
 
     @Override
-    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
-        float f7;
-        super.onFocusChanged(z10, i10, rect);
-        wg0 wg0Var = this.G;
-        xg0 xg0Var = wg0Var.V;
-        org.telegram.ui.Components.de0 de0Var = wg0Var.f43521f;
-        if (!z10 && !wg0Var.f43517a.isFocused()) {
-            f7 = 0.0f;
-        } else {
-            f7 = 1.0f;
-        }
-        de0Var.b(f7, f7, true);
-        if (z10) {
-            xg0Var.f43941c.setEditText(this);
-            xg0Var.f43941c.setDispatchBackWhenEmpty(true);
-            if (wg0Var.f43526x == 2) {
-                wg0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
-            }
-        } else if (wg0Var.f43526x == 2) {
-            wg0Var.setCountryButtonText(null);
-        }
-    }
-
-    @Override
-    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        wg0 wg0Var = this.G;
-        ck0 ck0Var = wg0Var.f43517a;
-        if (i10 == 67 && wg0Var.f43518b.length() == 0) {
-            ck0Var.requestFocus();
-            ck0Var.setSelection(ck0Var.length());
-            ck0Var.dispatchKeyEvent(keyEvent);
-        }
-        return super.onKeyDown(i10, keyEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && !xg0.T0(this.G.V, this)) {
-            clearFocus();
-            requestFocus();
-        }
-        return super.onTouchEvent(motionEvent);
+    public final void run(java.lang.Object r18, java.lang.Object r19, java.lang.Object r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.tg0.run(java.lang.Object, java.lang.Object, java.lang.Object):void");
     }
 }

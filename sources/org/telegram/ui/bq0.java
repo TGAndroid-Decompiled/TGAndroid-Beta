@@ -1,141 +1,194 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class bq0 extends FrameLayout {
-    public int E;
-    public mp0 F;
-    public ch.d G;
-    public ch.d H;
-    public boolean I;
-    public final Path J;
-    public int K;
-    public final cq0 L;
-    public final q60 f36234a;
-    public final s4.d0 f36235b;
-    public final y7 f36236c;
-    public int d;
-    public final org.telegram.ui.Components.g6 f36237e;
-    public final ArrayList f36238f;
-    public op0 h;
-    public final RectF f36239n;
-    public final RectF f36240r;
-    public final RectF f36241s;
-    public final Paint v;
-    public final Paint f36242w;
-    public int f36243x;
-    public int f36244y;
+import org.telegram.messenger.MessagesController;
+public final class bq0 extends Drawable {
+    public static final int f34610j = 0;
+    public float f34611a = AndroidUtilities.dpf2(10.6665f);
+    public final boolean f34612b;
+    public Paint f34613c;
+    public final Paint d;
+    public final Paint e;
+    public final Paint f34614f;
+    public final Path f34615g;
+    public final Path h;
+    public final org.telegram.ui.Components.q5 f34616i;
 
-    public bq0(cq0 cq0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.L = cq0Var;
-        this.f36238f = new ArrayList();
-        this.f36239n = new RectF();
-        this.f36240r = new RectF();
-        this.f36241s = new RectF();
-        this.v = new Paint(1);
-        this.f36242w = new Paint(1);
-        this.J = new Path();
-        this.K = Integer.MIN_VALUE;
-        q60 q60Var = new q60(this, context, c6Var, 1);
-        this.f36234a = q60Var;
-        q60Var.setClipToPadding(false);
-        q60Var.setClipChildren(false);
-        q60Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        q60Var.setOverScrollMode(2);
-        q60Var.setHorizontalScrollBarEnabled(false);
-        q60Var.setItemAnimator(null);
-        s4.d0 d0Var = new s4.d0(0, false);
-        this.f36235b = d0Var;
-        q60Var.setLayoutManager(d0Var);
-        y7 y7Var = new y7(this, 5);
-        this.f36236c = y7Var;
-        q60Var.setAdapter(y7Var);
-        q60Var.setOnItemClickListener(new i(this, 21));
-        addView(q60Var, w7.w5.e(-1, -1, 119));
-        setHorizontalScrollBarEnabled(false);
-        setClipToPadding(false);
-        setClipChildren(false);
-        this.f36237e = new org.telegram.ui.Components.g6(q60Var, 0L, 320L, org.telegram.ui.Components.js.h);
+    public bq0(int i10, int i11, int i12) {
+        Paint paint = new Paint(1);
+        this.d = paint;
+        Paint paint2 = new Paint(1);
+        this.e = paint2;
+        Paint paint3 = new Paint(1);
+        this.f34614f = paint3;
+        this.f34615g = new Path();
+        this.h = new Path();
+        this.f34612b = i12 != i10;
+        paint.setColor(i10);
+        paint2.setColor(i11);
+        paint3.setColor(i12);
+        this.f34616i = null;
+        d();
     }
 
-    public final void a(int i10, boolean z10) {
-        int i11 = this.d;
-        this.d = i10;
-        if (!z10) {
-            this.f36237e.d(i10, true);
+    public static bq0 a(int i10, int i11) {
+        MessagesController.PeerColor peerColor = null;
+        if (i11 < 7) {
+            int[] iArr = org.telegram.ui.ActionBar.g6.f20160r8;
+            return new bq0(org.telegram.ui.ActionBar.g6.x0(null, iArr[i11], false), org.telegram.ui.ActionBar.g6.x0(null, iArr[i11], false), org.telegram.ui.ActionBar.g6.x0(null, iArr[i11], false));
         }
-        b(i11);
-        if (i10 != i11) {
-            b(i10);
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(i10).peerColors;
+        if (peerColors != null) {
+            peerColor = peerColors.getColor(i11);
         }
-        ArrayList arrayList = this.f36238f;
-        boolean isEmpty = arrayList.isEmpty();
-        q60 q60Var = this.f36234a;
-        if (!isEmpty) {
-            int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
-            if (z10) {
-                q60Var.x0(clamp);
-            } else {
-                q60Var.u0(clamp);
-            }
-        }
-        q60Var.invalidate();
+        return b(peerColor, false);
     }
 
-    public final void b(int i10) {
-        int i11;
-        View m10 = this.f36235b.m(i10);
-        if (m10 instanceof TextView) {
-            TextView textView = (TextView) m10;
-            if (i10 == this.d) {
-                i11 = this.E;
-            } else {
-                i11 = this.f36244y;
-            }
-            textView.setTextColor(i11);
-            m10.invalidate();
+    public static bq0 b(MessagesController.PeerColor peerColor, boolean z10) {
+        int color2;
+        int color3;
+        if (peerColor == null) {
+            return new bq0(0, 0, 0);
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ch.d dVar;
-        yf.p.g(this.G, 0, 0, getWidth(), getHeight());
-        yf.p.g(this.H, 0, 0, getWidth(), getHeight());
-        if (this.I) {
-            dVar = this.H;
+        int color1 = peerColor.getColor1();
+        if (z10 && !peerColor.hasColor6(org.telegram.ui.ActionBar.g6.I.q())) {
+            color2 = peerColor.getColor1();
         } else {
-            dVar = this.G;
+            color2 = peerColor.getColor2();
         }
-        dVar.draw(canvas);
-        canvas.save();
-        canvas.clipPath(this.J);
-        super.dispatchDraw(canvas);
-        canvas.restore();
+        if (z10) {
+            color3 = peerColor.getColor1();
+        } else {
+            color3 = peerColor.getColor3();
+        }
+        return new bq0(color1, color2, color3);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public static bq0 c(int i10, int i11) {
+        MessagesController.PeerColor color;
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(i10).profilePeerColors;
+        if (peerColors == null) {
+            color = null;
+        } else {
+            color = peerColors.getColor(i11);
+        }
+        return b(color, true);
     }
 
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(3.0f);
-        Path path = this.J;
+    public final void d() {
+        Path path = this.h;
         path.rewind();
-        float f7 = dp;
-        path.addRoundRect(f7, f7, i10 - dp, i11 - dp, AndroidUtilities.dp(18.0f) - dp, AndroidUtilities.dp(18.0f) - dp, Path.Direction.CW);
+        float f7 = this.f34611a;
+        path.addCircle(f7, f7, f7, Path.Direction.CW);
+        Path path2 = this.f34615g;
+        path2.rewind();
+        path2.moveTo(this.f34611a * 2.0f, 0.0f);
+        float f10 = this.f34611a;
+        path2.lineTo(f10 * 2.0f, f10 * 2.0f);
+        path2.lineTo(0.0f, this.f34611a * 2.0f);
+        path2.close();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(getBounds().centerX() - this.f34611a, getBounds().centerY() - this.f34611a);
+        Paint paint = this.f34613c;
+        if (paint != null) {
+            float f7 = this.f34611a;
+            canvas.drawCircle(f7, f7, f7, paint);
+        }
+        canvas.clipPath(this.h);
+        canvas.drawPaint(this.d);
+        canvas.drawPath(this.f34615g, this.e);
+        if (this.f34612b) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(this.f34611a - AndroidUtilities.dp(3.66f), this.f34611a - AndroidUtilities.dp(3.66f), this.f34611a + AndroidUtilities.dp(3.66f), this.f34611a + AndroidUtilities.dp(3.66f));
+            float f10 = this.f34611a;
+            canvas.rotate(45.0f, f10, f10);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.f34614f);
+        }
+        canvas.restore();
+        org.telegram.ui.Components.q5 q5Var = this.f34616i;
+        if (q5Var != null) {
+            int dp = AndroidUtilities.dp(14.0f) / 2;
+            q5Var.setBounds(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
+            q5Var.draw(canvas);
+        }
+    }
+
+    public final void e(View view) {
+        org.telegram.ui.Components.q5 q5Var = this.f34616i;
+        if (view == null) {
+            if (q5Var != null) {
+                q5Var.b();
+                q5Var.l(null);
+                return;
+            }
+            return;
+        }
+        if (q5Var != null) {
+            q5Var.l(view);
+        }
+        view.addOnAttachStateChangeListener(new j5(this, 3));
+    }
+
+    public final void f(float f7, int i10) {
+        if (this.f34613c == null) {
+            Paint paint = new Paint(1);
+            this.f34613c = paint;
+            paint.setStyle(Paint.Style.STROKE);
+        }
+        this.f34613c.setStrokeWidth(f7);
+        this.f34613c.setColor(i10);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return (int) (this.f34611a * 2.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (this.f34611a * 2.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public bq0(long j10, int i10, int i11, int i12) {
+        Paint paint = new Paint(1);
+        this.d = paint;
+        Paint paint2 = new Paint(1);
+        this.e = paint2;
+        Paint paint3 = new Paint(1);
+        this.f34614f = paint3;
+        this.f34615g = new Path();
+        this.h = new Path();
+        this.f34612b = i12 != i10;
+        paint.setColor(i10);
+        paint2.setColor(i11);
+        paint3.setColor(i12);
+        d();
+        org.telegram.ui.Components.q5 q5Var = new org.telegram.ui.Components.q5(AndroidUtilities.dp(14.0f), null);
+        this.f34616i = q5Var;
+        q5Var.j(j10, false);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

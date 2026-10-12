@@ -1,219 +1,70 @@
 package org.telegram.ui;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.View;
-import java.util.HashSet;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class lw0 implements r0.n, org.telegram.ui.Components.r81, org.telegram.ui.Components.hr0, org.telegram.ui.Components.pp0, org.telegram.ui.ActionBar.c6, org.telegram.ui.Components.fp0 {
-    public final int f39859a;
-    public final Object f39860b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class lw0 implements View.OnClickListener {
+    public final li0 f38101a;
+    public final fo f38102b;
+    public final org.telegram.ui.Components.mm0 f38103c;
+    public final LinearLayout d;
+    public final org.telegram.ui.Components.m80 e;
+    public final org.telegram.ui.Components.m80 f38104f;
+    public final sw0 h;
 
-    public lw0(Object obj, int i10) {
-        this.f39859a = i10;
-        this.f39860b = obj;
+    public lw0(sw0 sw0Var, li0 li0Var, fo foVar, org.telegram.ui.Components.mm0 mm0Var, LinearLayout linearLayout, org.telegram.ui.Components.m80 m80Var, org.telegram.ui.Components.m80 m80Var2) {
+        this.h = sw0Var;
+        this.f38101a = li0Var;
+        this.f38102b = foVar;
+        this.f38103c = mm0Var;
+        this.d = linearLayout;
+        this.e = m80Var;
+        this.f38104f = m80Var2;
     }
 
     @Override
-    public Paint G(String str) {
-        return ((vd1) this.f39860b).f42768f.f44734a.G(str);
-    }
-
-    @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        switch (this.f39859a) {
-            case 0:
-                ow0 ow0Var = (ow0) this.f39860b;
-                i0.b g10 = k1Var.f47000a.g(519);
-                ow0Var.f40801r = g10;
-                ow0Var.d.setPadding(g10.f11574a, g10.f11575b, g10.f11576c, g10.d);
-                ow0Var.f40792c.requestLayout();
-                return r0.k1.f46999b;
-            default:
-                oe1 oe1Var = (oe1) this.f39860b;
-                i0.b g11 = k1Var.f47000a.g(519);
-                oe1Var.f40697n = g11;
-                oe1Var.f40691c.setPadding(g11.f11574a, g11.f11575b, g11.f11576c, g11.d);
-                oe1Var.f40689b.requestLayout();
-                return r0.k1.f46999b;
-        }
-    }
-
-    @Override
-    public void U() {
-        ((StickersActivity) this.f39860b).j0();
-    }
-
-    @Override
-    public void X(float f7, boolean z10) {
-        switch (this.f39859a) {
-            case 3:
-                zb1 zb1Var = (zb1) this.f39860b;
-                ThemeActivity.Y(zb1Var.d, Math.round((zb1Var.f44714b * f7) + 0), false);
+    public final void onClick(View view) {
+        li0 li0Var = this.f38101a;
+        ArrayList arrayList = li0Var.f38020b;
+        ArrayList arrayList2 = li0Var.f38021c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            sw0 sw0Var = this.h;
+            fo foVar = this.f38102b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f19363id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f19216id);
+                }
+                foVar.presentFragment(new ProfileActivity(bundle, null));
+                sw0Var.c(false);
                 return;
-            default:
-                kc1 kc1Var = (kc1) this.f39860b;
-                ThemeActivity themeActivity = kc1Var.h;
-                int i10 = kc1Var.f39453c;
-                ThemeActivity.k0(themeActivity, Math.round(((kc1Var.d - i10) * f7) + i10));
-                return;
-        }
-    }
-
-    @Override
-    public boolean a() {
-        return ((vd1) this.f39860b).f42768f.f44734a.a();
-    }
-
-    @Override
-    public void b(float f7) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39860b;
-        e51 e51Var = secretMediaViewer.f34306y;
-        if (e51Var != null) {
-            long p5 = e51Var.p();
-            if (p5 != -9223372036854775807L) {
-                secretMediaViewer.f34306y.L(f7 * ((float) p5), false);
             }
-            secretMediaViewer.f34306y.C();
-        }
-    }
-
-    @Override
-    public void d(float f7) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39860b;
-        e51 e51Var = secretMediaViewer.f34306y;
-        if (e51Var != null) {
-            e51Var.B();
-            long p5 = secretMediaViewer.f34306y.p();
-            if (p5 != -9223372036854775807L) {
-                secretMediaViewer.f34306y.L(f7 * ((float) p5), false);
+            if (SharedConfig.messageSeenHintCount > 0 && foVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.sc t10 = new org.telegram.ui.Components.zc(org.telegram.ui.Components.nb.a(sw0Var.getContext()), sw0Var.f40230b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                foVar.f36034n1 = t10;
+                t10.f29102j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
             }
+            org.telegram.ui.Components.mm0 mm0Var = this.f38103c;
+            mm0Var.requestLayout();
+            this.d.requestLayout();
+            mm0Var.getAdapter().l();
+            this.e.K(this.f38104f);
         }
-    }
-
-    @Override
-    public int d0(int i10) {
-        return ((vd1) this.f39860b).f42768f.f44734a.x0(i10);
-    }
-
-    @Override
-    public void e(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((dg1) this.f39860b).f36826t0.movePreviewFragment(f7);
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.Cells.s2 s2Var) {
-        hg1 hg1Var = ((dg1) this.f39860b).f36826t0;
-        HashSet hashSet = hg1.f38375n1;
-        hg1Var.M0(s2Var);
-    }
-
-    @Override
-    public int f1(int i10) {
-        return ((vd1) this.f39860b).f42768f.f44734a.f1(i10);
-    }
-
-    @Override
-    public void finish() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((dg1) this.f39860b).f36826t0.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        switch (this.f39859a) {
-            case 3:
-                zb1 zb1Var = (zb1) this.f39860b;
-                return String.valueOf(Math.round((zb1Var.f44713a.getProgress() * zb1Var.f44714b) + 0));
-            default:
-                kc1 kc1Var = (kc1) this.f39860b;
-                int i10 = kc1Var.f39453c;
-                return String.valueOf(Math.round((kc1Var.f39452b.getProgress() * (kc1Var.d - i10)) + i10));
-        }
-    }
-
-    @Override
-    public Drawable getDrawable(String str) {
-        zd1 zd1Var = ((vd1) this.f39860b).f42768f;
-        if (str.equals("drawableMsgOut")) {
-            return zd1Var.R;
-        }
-        if (str.equals("drawableMsgOutSelected")) {
-            return zd1Var.S;
-        }
-        if (str.equals("drawableMsgOutMedia")) {
-            return zd1Var.T;
-        }
-        if (str.equals("drawableMsgOutMediaSelected")) {
-            return zd1Var.U;
-        }
-        zc1 zc1Var = zd1Var.f44734a;
-        if (zc1Var != null) {
-            return zc1Var.getDrawable(str);
-        }
-        return org.telegram.ui.ActionBar.h6.P0(str);
-    }
-
-    @Override
-    public boolean l0() {
-        return ((vd1) this.f39860b).f42768f.f44734a.l0();
-    }
-
-    @Override
-    public void m(float f7, float f10, int i10, int i11) {
-        zc1 zc1Var = ((vd1) this.f39860b).f42768f.f44734a;
-        if (zc1Var != null) {
-            zc1Var.m(f7, f10, i10, i11);
-        } else {
-            org.telegram.ui.ActionBar.h6.q(f7, f10, i10, i11);
-        }
-    }
-
-    @Override
-    public int m0() {
-        switch (this.f39859a) {
-            case 3:
-                return ((zb1) this.f39860b).f44714b;
-            default:
-                kc1 kc1Var = (kc1) this.f39860b;
-                return kc1Var.d - kc1Var.f39453c;
-        }
-    }
-
-    @Override
-    public void q0() {
-        ((StickersActivity) this.f39860b).j0();
-    }
-
-    @Override
-    public ColorFilter x() {
-        return org.telegram.ui.ActionBar.h6.f20890v3;
-    }
-
-    @Override
-    public int x0(int i10) {
-        return ((vd1) this.f39860b).f42768f.f44734a.x0(i10);
-    }
-
-    @Override
-    public void z() {
-        int i10 = this.f39859a;
-    }
-
-    private final void c() {
-    }
-
-    private final void g() {
-    }
-
-    @Override
-    public void J0(int i10, int i11) {
     }
 }

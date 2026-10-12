@@ -1,8 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class r3 {
-    public int f41495a;
-    public Object f41496b;
-    public TL_iv.PageBlock f41497c;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class r3 extends FrameLayout {
+    public final TextView f39574a;
+    public final TextView f39575b;
+    public boolean f39576c;
+    public final boolean d;
+    public final k4 e;
+
+    public r3(k4 k4Var, Context context, boolean z10) {
+        super(context);
+        int i10;
+        this.e = k4Var;
+        this.d = z10;
+        setTag(90);
+        TextView textView = new TextView(context);
+        this.f39574a = textView;
+        if (z10) {
+            i10 = R.string.PreviewFeedbackAuto;
+        } else {
+            i10 = R.string.PreviewFeedback2;
+        }
+        textView.setText(LocaleController.getString(i10));
+        textView.setTextSize(1, 12.0f);
+        textView.setGravity(17);
+        textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        addView(textView, w7.a6.a(34.0f, 0.0f, 10.0f, 0.0f, 0.0f, -1, 51));
+        TextView textView2 = new TextView(context);
+        this.f39575b = textView2;
+        textView2.setTextSize(1, 12.0f);
+        textView2.setGravity(19);
+        textView2.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        addView(textView2, w7.a6.a(34.0f, 0.0f, 10.0f, 0.0f, 0.0f, -1, 51));
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+    }
 }

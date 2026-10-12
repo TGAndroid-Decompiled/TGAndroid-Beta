@@ -1,24 +1,33 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.view.View;
-public final class rl extends s4.e0 {
-    public final hg.f0 f30173r;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.IMapsProvider;
+public final class rl extends FrameLayout {
+    public final HashMap f28863a;
+    public final ul f28864b;
 
-    public rl(hg.f0 f0Var, Context context) {
+    public rl(ul ulVar, Context context) {
         super(context);
-        this.f30173r = f0Var;
+        this.f28864b = ulVar;
+        this.f28863a = new HashMap();
     }
 
-    @Override
-    public final int k(int i10, View view) {
-        int k10 = super.k(i10, view);
-        zl zlVar = (zl) this.f30173r.V;
-        return k10 - (zlVar.P.getPaddingTop() - (zlVar.A0 - zlVar.f33430z0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final void a() {
+        IMapsProvider.IMap iMap = this.f28864b.H;
+        if (iMap != null) {
+            IMapsProvider.IProjection projection = iMap.getProjection();
+            for (Map.Entry entry : this.f28863a.entrySet()) {
+                View view = (View) entry.getValue();
+                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
+                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
+                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+            }
+        }
     }
 }

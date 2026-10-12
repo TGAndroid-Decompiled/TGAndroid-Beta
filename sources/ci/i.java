@@ -2,88 +2,91 @@ package ci;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.KeyEvent;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.aj;
-import org.telegram.ui.Components.tb0;
-public final class i extends tb0 {
-    public final int V;
-    public final KeyEvent.Callback W;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.nv0;
+import org.telegram.ui.Components.pu0;
+import org.telegram.ui.Components.ul0;
+public final class i extends nv0 {
+    public final t f4762o3;
 
-    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
-        super(context, j3, 0L, m2Var, c6Var);
-        this.V = i10;
-        this.W = callback;
+    public i(t tVar, Context context) {
+        super(context);
+        this.f4762o3 = tVar;
     }
 
     @Override
-    public void f(Canvas canvas, Rect rect, float f7) {
-        switch (this.V) {
-            case 0:
-                m mVar = (m) this.W;
-                Paint paint = mVar.f5551e;
-                RectF rectF = mVar.f5579z0;
-                rectF.set(rect);
-                if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f5579z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
-                    return;
-                }
-                Paint c10 = mVar.T.c(1.0f);
-                if (c10 == null) {
-                    paint.setAlpha(128);
-                    canvas.drawRoundRect(rectF, f7, f7, paint);
-                    return;
-                }
-                canvas.drawRoundRect(rectF, f7, f7, c10);
-                paint.setAlpha(80);
-                canvas.drawRoundRect(rectF, f7, f7, paint);
-                return;
-            default:
-                super.f(canvas, rect, f7);
-                return;
-        }
+    public final boolean A1() {
+        return this.f4762o3.f4781b;
     }
 
     @Override
-    public boolean h() {
-        switch (this.V) {
-            case 0:
-                return true;
-            default:
-                return super.h();
-        }
+    public final boolean B1() {
+        return true;
     }
 
     @Override
-    public void i() {
-        switch (this.V) {
-            case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((aj) this.W).f24350j0;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.V();
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        int i10 = 0;
+        int i11 = 0;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            int bottom = getChildAt(i12).getBottom() - getPaddingTop();
+            if (bottom > i11) {
+                i11 = bottom;
+            }
         }
+        float f7 = i11;
+        t tVar = this.f4762o3;
+        q qVar = tVar.J;
+        if (tVar.f4781b) {
+            pu0 pu0Var = tVar.f4785r;
+            int i13 = 0;
+            for (int i14 = 0; i14 < pu0Var.getChildCount(); i14++) {
+                int bottom2 = pu0Var.getChildAt(i14).getBottom() - pu0Var.getPaddingTop();
+                if (bottom2 > i13) {
+                    i13 = bottom2;
+                }
+            }
+            f7 = AndroidUtilities.lerp(f7, i13, tVar.f4782c);
+        }
+        if (tVar.v.h() <= 0) {
+            i10 = 8;
+        }
+        qVar.setVisibility(i10);
+        qVar.setTranslationY(f7);
     }
 
     @Override
-    public void n(boolean z10) {
-        switch (this.V) {
-            case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((aj) this.W).f24350j0;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.V();
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final int getAnimateToColumnsCount() {
+        return this.f4762o3.e;
+    }
+
+    @Override
+    public final float getChangeColumnsProgress() {
+        return this.f4762o3.f4782c;
+    }
+
+    @Override
+    public final int getColumnsCount() {
+        return this.f4762o3.d;
+    }
+
+    @Override
+    public final ul0 getMovingAdapter() {
+        t tVar = this.f4762o3;
+        if (tVar.G.f44993y == 0 && !tVar.W.G.C1) {
+            return tVar.v;
         }
+        return null;
+    }
+
+    @Override
+    public final ul0 getSupportingAdapter() {
+        return this.f4762o3.f4787w;
+    }
+
+    @Override
+    public final pu0 getSupportingListView() {
+        return this.f4762o3.f4785r;
     }
 }

@@ -1,28 +1,25 @@
 package org.telegram.ui;
+public final class rj0 implements Runnable {
+    public final int f39814a;
+    public final xj0 f39815b;
 
-import android.content.Context;
-public final class rj0 extends ci.d {
-    public final tj0 f41668h0;
-
-    public rj0(tj0 tj0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var, true);
-        this.f41668h0 = tj0Var;
+    public rj0(xj0 xj0Var, int i10) {
+        this.f39814a = i10;
+        this.f39815b = xj0Var;
     }
 
     @Override
-    public final float a(float f7, float f10) {
-        boolean z10;
-        tj0 tj0Var = this.f41668h0;
-        if (tj0Var.f42228n0 == 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void run() {
+        switch (this.f39814a) {
+            case 0:
+                this.f39815b.dismiss();
+                return;
+            case 1:
+                this.f39815b.V(true, false);
+                return;
+            default:
+                this.f39815b.V(true, false);
+                return;
         }
-        tj0Var.f42228n0 = f7;
-        if (z10) {
-            tj0Var.f42229o0 = new org.telegram.ui.Components.xb0(tj0Var, 1);
-            tj0Var.T(false);
-        }
-        return f7;
     }
 }

@@ -1,25 +1,25 @@
 package q3;
 
-import b2.m0;
+import b2.r0;
 import j$.util.Objects;
 import java.util.Arrays;
-public final class a extends j {
-    public final String f45875b;
-    public final String f45876c;
+public final class a extends i {
+    public final String f43267b;
+    public final String f43268c;
     public final int d;
-    public final byte[] f45877e;
+    public final byte[] e;
 
     public a(int i10, String str, String str2, byte[] bArr) {
         super("APIC");
-        this.f45875b = str;
-        this.f45876c = str2;
+        this.f43267b = str;
+        this.f43268c = str2;
         this.d = i10;
-        this.f45877e = bArr;
+        this.e = bArr;
     }
 
     @Override
-    public final void b(m0 m0Var) {
-        m0Var.a(this.d, this.f45877e);
+    public final void b(r0 r0Var) {
+        r0Var.a(this.d, this.e);
     }
 
     public final boolean equals(Object obj) {
@@ -28,7 +28,7 @@ public final class a extends j {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.d == aVar.d && Objects.equals(this.f45875b, aVar.f45875b) && Objects.equals(this.f45876c, aVar.f45876c) && Arrays.equals(this.f45877e, aVar.f45877e)) {
+            if (this.d == aVar.d && Objects.equals(this.f43267b, aVar.f43267b) && Objects.equals(this.f43268c, aVar.f43268c) && Arrays.equals(this.e, aVar.e)) {
                 return true;
             }
         }
@@ -39,22 +39,22 @@ public final class a extends j {
         int i10;
         int i11 = (527 + this.d) * 31;
         int i12 = 0;
-        String str = this.f45875b;
+        String str = this.f43267b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (i11 + i10) * 31;
-        String str2 = this.f45876c;
+        String str2 = this.f43268c;
         if (str2 != null) {
             i12 = str2.hashCode();
         }
-        return Arrays.hashCode(this.f45877e) + ((i13 + i12) * 31);
+        return Arrays.hashCode(this.e) + ((i13 + i12) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f45898a + ": mimeType=" + this.f45875b + ", description=" + this.f45876c;
+        return this.f43283a + ": mimeType=" + this.f43267b + ", description=" + this.f43268c;
     }
 }

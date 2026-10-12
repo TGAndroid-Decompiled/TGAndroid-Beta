@@ -1,30 +1,30 @@
 package n7;
 
 import java.util.Arrays;
-public final class w0 extends d1 {
-    public final s0 f16562a;
+public final class w0 extends c1 {
+    public final s0 f16230a;
 
     public w0(s0 s0Var) {
-        this.f16562a = s0Var;
+        this.f16230a = s0Var;
     }
 
     @Override
     public final int compareTo(Object obj) {
-        d1 d1Var = (d1) obj;
-        int zza = d1Var.zza();
-        int c10 = d1.c((byte) 64);
+        c1 c1Var = (c1) obj;
+        int zza = c1Var.zza();
+        int c10 = c1.c((byte) 64);
         if (c10 != zza) {
-            return c10 - d1Var.zza();
+            return c10 - c1Var.zza();
         }
-        s0 s0Var = ((w0) d1Var).f16562a;
-        s0 s0Var2 = this.f16562a;
-        byte[] bArr = s0Var2.f16552b;
+        s0 s0Var = ((w0) c1Var).f16230a;
+        s0 s0Var2 = this.f16230a;
+        byte[] bArr = s0Var2.f16220b;
         int length = bArr.length;
-        byte[] bArr2 = s0Var.f16552b;
+        byte[] bArr2 = s0Var.f16220b;
         if (length != bArr2.length) {
             return bArr.length - bArr2.length;
         }
-        return p0.f16543a.compare(s0Var2.u(), s0Var.u());
+        return p0.f16214a.compare(s0Var2.t(), s0Var.t());
     }
 
     public final boolean equals(Object obj) {
@@ -34,11 +34,11 @@ public final class w0 extends d1 {
         if (obj == null || w0.class != obj.getClass()) {
             return false;
         }
-        return this.f16562a.equals(((w0) obj).f16562a);
+        return this.f16230a.equals(((w0) obj).f16230a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) 64)), this.f16562a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) 64)), this.f16230a});
     }
 
     public final String toString() {
@@ -46,10 +46,10 @@ public final class w0 extends d1 {
         int i10;
         boolean z10;
         k0 k0Var = m0.d;
-        m0 m0Var = k0Var.f16532c;
+        m0 m0Var = k0Var.f16203c;
         if (m0Var == null) {
-            j0 j0Var2 = k0Var.f16530a;
-            char[] cArr = j0Var2.f16517b;
+            j0 j0Var2 = k0Var.f16201a;
+            char[] cArr = j0Var2.f16193b;
             int i11 = 0;
             while (true) {
                 if (i11 < cArr.length) {
@@ -78,8 +78,8 @@ public final class w0 extends d1 {
                                 }
                                 cArr2[i13] = (char) c12;
                             }
-                            j0Var = new j0(j0Var2.f16516a.concat(".upperCase()"), cArr2);
-                            byte[] bArr = j0Var.f16521g;
+                            j0Var = new j0(j0Var2.f16192a.concat(".upperCase()"), cArr2);
+                            byte[] bArr = j0Var.f16196g;
                             if (j0Var2.h && !j0Var.h) {
                                 byte[] copyOf = Arrays.copyOf(bArr, bArr.length);
                                 for (i10 = 65; i10 <= 90; i10++) {
@@ -98,7 +98,7 @@ public final class w0 extends d1 {
                                         }
                                     }
                                 }
-                                j0Var = new j0(j0Var.f16516a.concat(".ignoreCase()"), j0Var.f16517b, copyOf, true);
+                                j0Var = new j0(j0Var.f16192a.concat(".ignoreCase()"), j0Var.f16193b, copyOf, true);
                             }
                         } else {
                             throw new IllegalStateException("Cannot call upperCase() on a mixed-case alphabet");
@@ -116,14 +116,14 @@ public final class w0 extends d1 {
             } else {
                 m0Var = new k0(j0Var);
             }
-            k0Var.f16532c = m0Var;
+            k0Var.f16203c = m0Var;
         }
-        byte[] u10 = this.f16562a.u();
-        return a1.g.q("h'", m0Var.c(u10.length, u10), "'");
+        byte[] t10 = this.f16230a.t();
+        return a1.g.p("h'", m0Var.c(t10.length, t10), "'");
     }
 
     @Override
     public final int zza() {
-        return d1.c((byte) 64);
+        return c1.c((byte) 64);
     }
 }

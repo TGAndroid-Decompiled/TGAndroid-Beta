@@ -1,44 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class f51 extends s4.i0 {
-    public Context f25898c;
-    public View d;
-    public int f25899e;
-
-    public final void D(View view) {
-        if (this.d == view) {
-            return;
-        }
-        this.f25899e++;
-        this.d = view;
-        m(1);
-    }
-
+import android.graphics.Canvas;
+public final class f51 extends wh.n {
     @Override
-    public final int h() {
-        return 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        return this.f25899e;
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        if (i10 == 0) {
-            return new s4.d1(new co(this.f25898c, 13));
-        }
-        return new s4.d1(this.d);
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        ax0.a(canvas, getLayout());
+        canvas.restore();
     }
 }

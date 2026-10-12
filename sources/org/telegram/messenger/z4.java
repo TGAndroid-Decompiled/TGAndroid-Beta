@@ -3,40 +3,40 @@ package org.telegram.messenger;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.tgnet.TLObject;
 public final class z4 implements Runnable {
-    public final int f19712a = 0;
-    public final boolean f19713b;
-    public final long f19714c;
+    public final int f19133a = 0;
+    public final boolean f19134b;
+    public final long f19135c;
     public final long d;
-    public final int f19715e;
-    public final Object f19716f;
+    public final int e;
+    public final Object f19136f;
 
-    public z4(int i10, String str, long j3, long j10, boolean z10) {
-        this.f19715e = i10;
-        this.f19716f = str;
-        this.f19714c = j3;
-        this.d = j10;
-        this.f19713b = z10;
+    public z4(int i10, String str, long j10, long j11, boolean z10) {
+        this.e = i10;
+        this.f19136f = str;
+        this.f19135c = j10;
+        this.d = j11;
+        this.f19134b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19712a) {
+        switch (this.f19133a) {
             case 0:
-                long j3 = this.d;
-                boolean z10 = this.f19713b;
-                ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(this.f19715e, (String) this.f19716f, this.f19714c, j3, z10);
+                long j10 = this.d;
+                boolean z10 = this.f19134b;
+                ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(this.e, (String) this.f19136f, this.f19135c, j10, z10);
                 return;
             default:
-                FileLog.lambda$dumpUnparsedMessage$2((TLObject) this.f19716f, this.f19713b, this.f19714c, this.d, this.f19715e);
+                FileLog.lambda$dumpUnparsedMessage$2((TLObject) this.f19136f, this.f19134b, this.f19135c, this.d, this.e);
                 return;
         }
     }
 
-    public z4(TLObject tLObject, boolean z10, long j3, long j10, int i10) {
-        this.f19716f = tLObject;
-        this.f19713b = z10;
-        this.f19714c = j3;
-        this.d = j10;
-        this.f19715e = i10;
+    public z4(TLObject tLObject, boolean z10, long j10, long j11, int i10) {
+        this.f19136f = tLObject;
+        this.f19134b = z10;
+        this.f19135c = j10;
+        this.d = j11;
+        this.e = i10;
     }
 }

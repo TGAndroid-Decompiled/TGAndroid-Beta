@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class ci0 implements Runnable {
-    public final int f36440a;
-    public final int f36441b;
-    public final Object f36442c;
-    public final Object d;
+import android.content.Context;
+public final class ci0 implements org.telegram.ui.Components.v90 {
+    public final org.telegram.ui.Components.w90 f34956a;
+    public final di0 f34957b;
 
-    public ci0(int i10, Utilities.Callback callback, org.telegram.ui.Wallet.l0 l0Var) {
-        this.f36440a = 12;
-        this.f36441b = i10;
-        this.f36442c = callback;
-        this.d = l0Var;
+    public ci0(di0 di0Var, org.telegram.ui.Components.w90 w90Var) {
+        this.f34957b = di0Var;
+        this.f34956a = w90Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ci0.run():void");
+    public final void d() {
+        ei0.W(this.f34957b.d);
     }
 
-    public ci0(Object obj, int i10, Object obj2, int i11) {
-        this.f36440a = i11;
-        this.f36442c = obj;
-        this.f36441b = i10;
-        this.d = obj2;
+    @Override
+    public final void h() {
+        di0 di0Var = this.f34957b;
+        ei0 ei0Var = di0Var.d;
+        Context context = this.f34956a.getContext();
+        ei0 ei0Var2 = di0Var.d;
+        ei0Var.f35599l0 = new org.telegram.ui.Components.p70(context, ei0Var2.e, ei0Var2.d, ei0Var2.f35598k0, ei0Var2, ei0Var2.f35600n, true, ei0Var2.h);
+        di0Var.d.f35599l0.show();
     }
 
-    public ci0(Object obj, Object obj2, int i10, int i11) {
-        this.f36440a = i11;
-        this.f36442c = obj;
-        this.d = obj2;
-        this.f36441b = i10;
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void i() {
     }
 }

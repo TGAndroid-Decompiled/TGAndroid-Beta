@@ -10,32 +10,32 @@ import android.widget.TextView;
 import java.util.Iterator;
 import java.util.Map;
 public final class p {
-    public Parcelable f15517a;
-    public Object f15518b;
-    public boolean f15519c;
+    public Parcelable f15193a;
+    public Object f15194b;
+    public boolean f15195c;
     public boolean d;
-    public boolean f15520e;
-    public final Object f15521f;
+    public boolean e;
+    public final Object f15196f;
 
     public p(TextView textView) {
-        this.f15517a = null;
-        this.f15518b = null;
-        this.f15519c = false;
+        this.f15193a = null;
+        this.f15194b = null;
+        this.f15195c = false;
         this.d = false;
-        this.f15521f = textView;
+        this.f15196f = textView;
     }
 
     public void a() {
-        CompoundButton compoundButton = (CompoundButton) this.f15521f;
+        CompoundButton compoundButton = (CompoundButton) this.f15196f;
         Drawable buttonDrawable = compoundButton.getButtonDrawable();
         if (buttonDrawable != null) {
-            if (this.f15519c || this.d) {
+            if (this.f15195c || this.d) {
                 Drawable mutate = buttonDrawable.mutate();
-                if (this.f15519c) {
-                    mutate.setTintList((ColorStateList) this.f15517a);
+                if (this.f15195c) {
+                    mutate.setTintList((ColorStateList) this.f15193a);
                 }
                 if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f15518b);
+                    mutate.setTintMode((PorterDuff.Mode) this.f15194b);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(compoundButton.getDrawableState());
@@ -46,16 +46,16 @@ public final class p {
     }
 
     public void b() {
-        o oVar = (o) this.f15521f;
+        o oVar = (o) this.f15196f;
         Drawable checkMarkDrawable = oVar.getCheckMarkDrawable();
         if (checkMarkDrawable != null) {
-            if (this.f15519c || this.d) {
+            if (this.f15195c || this.d) {
                 Drawable mutate = checkMarkDrawable.mutate();
-                if (this.f15519c) {
-                    mutate.setTintList((ColorStateList) this.f15517a);
+                if (this.f15195c) {
+                    mutate.setTintList((ColorStateList) this.f15193a);
                 }
                 if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f15518b);
+                    mutate.setTintMode((PorterDuff.Mode) this.f15194b);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(oVar.getDrawableState());
@@ -67,20 +67,20 @@ public final class p {
 
     public Bundle c(String str) {
         if (this.d) {
-            Bundle bundle = (Bundle) this.f15517a;
+            Bundle bundle = (Bundle) this.f15193a;
             if (bundle == null) {
                 return null;
             }
             Bundle bundle2 = bundle.getBundle(str);
-            Bundle bundle3 = (Bundle) this.f15517a;
+            Bundle bundle3 = (Bundle) this.f15193a;
             if (bundle3 != null) {
                 bundle3.remove(str);
             }
-            Bundle bundle4 = (Bundle) this.f15517a;
+            Bundle bundle4 = (Bundle) this.f15193a;
             if (bundle4 != null && !bundle4.isEmpty()) {
                 return bundle2;
             }
-            this.f15517a = null;
+            this.f15193a = null;
             return bundle2;
         }
         throw new IllegalStateException("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
@@ -89,7 +89,7 @@ public final class p {
     public t4.d d() {
         Map.Entry components;
         t4.d dVar;
-        Iterator it = ((o.f) this.f15521f).iterator();
+        Iterator it = ((o.f) this.f15196f).iterator();
         do {
             o.b bVar = (o.b) it;
             if (bVar.hasNext()) {
@@ -110,21 +110,21 @@ public final class p {
     public void f(String str, t4.d provider) {
         Object obj;
         kotlin.jvm.internal.i.e(provider, "provider");
-        o.f fVar = (o.f) this.f15521f;
-        o.c i10 = fVar.i(str);
-        if (i10 != null) {
-            obj = i10.f16629b;
+        o.f fVar = (o.f) this.f15196f;
+        o.c h = fVar.h(str);
+        if (h != null) {
+            obj = h.f16411b;
         } else {
             o.c cVar = new o.c(str, provider);
             fVar.d++;
-            o.c cVar2 = fVar.f16635b;
+            o.c cVar2 = fVar.f16417b;
             if (cVar2 == null) {
-                fVar.f16634a = cVar;
-                fVar.f16635b = cVar;
+                fVar.f16416a = cVar;
+                fVar.f16417b = cVar;
             } else {
-                cVar2.f16630c = cVar;
+                cVar2.f16412c = cVar;
                 cVar.d = cVar2;
-                fVar.f16635b = cVar;
+                fVar.f16417b = cVar;
             }
             obj = null;
         }
@@ -135,29 +135,29 @@ public final class p {
     }
 
     public void g() {
-        if (this.f15520e) {
-            t4.a aVar = (t4.a) this.f15518b;
+        if (this.e) {
+            t4.a aVar = (t4.a) this.f15194b;
             if (aVar == null) {
                 aVar = new t4.a(this);
             }
-            this.f15518b = aVar;
+            this.f15194b = aVar;
             try {
                 androidx.lifecycle.j.class.getDeclaredConstructor(null);
-                t4.a aVar2 = (t4.a) this.f15518b;
+                t4.a aVar2 = (t4.a) this.f15194b;
                 if (aVar2 != null) {
-                    aVar2.f48436a.add(androidx.lifecycle.j.class.getName());
+                    aVar2.f45508a.add(androidx.lifecycle.j.class.getName());
                     return;
                 }
                 return;
-            } catch (NoSuchMethodException e7) {
-                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e7);
+            } catch (NoSuchMethodException e) {
+                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e);
             }
         }
         throw new IllegalStateException("Can not perform this action after onSaveInstanceState");
     }
 
     public p() {
-        this.f15521f = new o.f();
-        this.f15520e = true;
+        this.f15196f = new o.f();
+        this.e = true;
     }
 }

@@ -1,27 +1,28 @@
 package org.telegram.ui.Components;
-public final class up0 extends q6 {
-    public final int f31235d0 = 0;
-    public final Object f31236e0;
+public final class up0 implements tb {
+    public final sc f29747a;
+    public final gf f29748b;
 
-    public up0(Runnable runnable) {
-        super(false, true, true, true, false);
-        this.f31236e0 = runnable;
+    public up0(gf gfVar, sc scVar) {
+        this.f29748b = gfVar;
+        this.f29747a = scVar;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.f31235d0) {
-            case 0:
-                ((Runnable) this.f31236e0).run();
-                return;
-            default:
-                ((org.telegram.ui.b31) this.f31236e0).invalidate();
-                return;
-        }
+    public final void c() {
+        this.f29748b.G.remove(this.f29747a);
     }
 
-    public up0(org.telegram.ui.b31 b31Var) {
-        super(false, true, false);
-        this.f31236e0 = b31Var;
+    @Override
+    public final void d() {
+        this.f29748b.G.add(this.f29747a);
+    }
+
+    @Override
+    public final void a(sc scVar) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

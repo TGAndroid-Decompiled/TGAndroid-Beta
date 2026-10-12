@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.ViewTreeObserver;
 import android.widget.ListAdapter;
-public final class m0 extends e2 implements o0 {
+public final class m0 extends d2 implements o0 {
     public CharSequence S;
     public j0 T;
     public final Rect U;
@@ -24,7 +24,7 @@ public final class m0 extends e2 implements o0 {
     }
 
     @Override
-    public final CharSequence d() {
+    public final CharSequence e() {
         return this.S;
     }
 
@@ -43,46 +43,46 @@ public final class m0 extends e2 implements o0 {
         ViewTreeObserver viewTreeObserver;
         x xVar = this.O;
         boolean isShowing = xVar.isShowing();
-        s();
+        r();
         xVar.setInputMethodMode(2);
         g();
-        s1 s1Var = this.f15412c;
-        s1Var.setChoiceMode(1);
-        g0.d(s1Var, i10);
-        g0.c(s1Var, i11);
+        r1 r1Var = this.f15085c;
+        r1Var.setChoiceMode(1);
+        g0.d(r1Var, i10);
+        g0.c(r1Var, i11);
         p0 p0Var = this.W;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        s1 s1Var2 = this.f15412c;
-        if (xVar.isShowing() && s1Var2 != null) {
-            s1Var2.setListSelectionHidden(false);
-            s1Var2.setSelection(selectedItemPosition);
-            if (s1Var2.getChoiceMode() != 0) {
-                s1Var2.setItemChecked(selectedItemPosition, true);
+        r1 r1Var2 = this.f15085c;
+        if (xVar.isShowing() && r1Var2 != null) {
+            r1Var2.setListSelectionHidden(false);
+            r1Var2.setSelection(selectedItemPosition);
+            if (r1Var2.getChoiceMode() != 0) {
+                r1Var2.setItemChecked(selectedItemPosition, true);
             }
         }
         if (!isShowing && (viewTreeObserver = p0Var.getViewTreeObserver()) != null) {
-            androidx.mediarouter.app.j jVar = new androidx.mediarouter.app.j(this, 4);
-            viewTreeObserver.addOnGlobalLayoutListener(jVar);
-            xVar.setOnDismissListener(new l0(this, jVar));
+            androidx.mediarouter.app.i iVar = new androidx.mediarouter.app.i(this, 4);
+            viewTreeObserver.addOnGlobalLayoutListener(iVar);
+            xVar.setOnDismissListener(new l0(this, iVar));
         }
     }
 
     @Override
-    public final void p(ListAdapter listAdapter) {
-        super.p(listAdapter);
+    public final void o(ListAdapter listAdapter) {
+        super.o(listAdapter);
         this.T = (j0) listAdapter;
     }
 
-    public final void s() {
+    public final void r() {
         int i10;
         int i11;
         p0 p0Var = this.W;
-        Rect rect = p0Var.f15528n;
+        Rect rect = p0Var.f15202n;
         x xVar = this.O;
         Drawable background = xVar.getBackground();
         if (background != null) {
             background.getPadding(rect);
-            if (u3.a(p0Var)) {
+            if (t3.a(p0Var)) {
                 i10 = rect.right;
             } else {
                 i10 = -rect.left;
@@ -102,17 +102,17 @@ public final class m0 extends e2 implements o0 {
             if (a2 > i13) {
                 a2 = i13;
             }
-            r(Math.max(a2, (width - paddingLeft) - paddingRight));
+            q(Math.max(a2, (width - paddingLeft) - paddingRight));
         } else if (i12 == -1) {
-            r((width - paddingLeft) - paddingRight);
+            q((width - paddingLeft) - paddingRight);
         } else {
-            r(i12);
+            q(i12);
         }
-        if (u3.a(p0Var)) {
-            i11 = (((width - paddingRight) - this.f15413e) - this.V) + i10;
+        if (t3.a(p0Var)) {
+            i11 = (((width - paddingRight) - this.e) - this.V) + i10;
         } else {
             i11 = paddingLeft + this.V + i10;
         }
-        this.f15414f = i11;
+        this.f15086f = i11;
     }
 }

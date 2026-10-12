@@ -1,28 +1,17 @@
 package k2;
 
-import android.os.Handler;
-import java.util.concurrent.Executor;
-public final class a0 implements Executor {
-    public final int f14404a;
-    public final Object f14405b;
+import android.media.AudioTimestamp;
+import android.media.AudioTrack;
+public final class a0 {
+    public final AudioTrack f13836a;
+    public final AudioTimestamp f13837b = new AudioTimestamp();
+    public long f13838c;
+    public long d;
+    public long e;
+    public boolean f13839f;
+    public long f13840g;
 
-    public a0(Object obj, int i10) {
-        this.f14404a = i10;
-        this.f14405b = obj;
-    }
-
-    @Override
-    public final void execute(Runnable runnable) {
-        switch (this.f14404a) {
-            case 0:
-                ((Handler) this.f14405b).post(runnable);
-                return;
-            case 1:
-                e2.d0.T(((m4.c0) this.f14405b).f15741l, runnable);
-                return;
-            default:
-                ((p4.b) this.f14405b).post(runnable);
-                return;
-        }
+    public a0(AudioTrack audioTrack) {
+        this.f13836a = audioTrack;
     }
 }

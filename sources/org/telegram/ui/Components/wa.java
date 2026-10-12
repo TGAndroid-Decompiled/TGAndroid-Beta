@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 public abstract class wa extends db {
     public final LinearLayout X;
     public FrameLayout Y;
-    public ci.d Z;
+    public di.d Z;
 
     public wa(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, null, false, false, c6Var);
@@ -22,11 +22,11 @@ public abstract class wa extends db {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f25287e.setTitle(charSequence);
+        this.e.setTitle(charSequence);
     }
 
     @Override
-    public final vm0 x(wm0 wm0Var) {
-        return new gg.m0(this, 1);
+    public final lm0 x(mm0 mm0Var) {
+        return new hg.m0(this, 1);
     }
 }

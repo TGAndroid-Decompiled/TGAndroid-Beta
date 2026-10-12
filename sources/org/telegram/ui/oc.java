@@ -1,15 +1,16 @@
 package org.telegram.ui;
-public final class oc extends e71 {
-    public final fd f40646e;
 
-    public oc(fd fdVar, nc ncVar) {
-        super(ncVar);
-        this.f40646e = fdVar;
+import android.app.Activity;
+public final class oc extends sg.j0 {
+    public final int W0;
+
+    public oc(hd hdVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var, int i12) {
+        super(i10, i11, activity, hdVar, c6Var);
+        this.W0 = i12;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f40646e.Q = null;
+    public final int p1() {
+        return this.W0;
     }
 }

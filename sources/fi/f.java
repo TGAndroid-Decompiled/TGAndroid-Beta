@@ -1,179 +1,128 @@
 package fi;
 
-import ai.h3;
-import ai.y1;
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Cells.i6;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.u61;
-import w7.w5;
-public final class f extends m2 implements NotificationCenter.NotificationCenterDelegate {
-    public long f9958a;
-    public TLRPC.Chat f9959b;
-    public TLRPC.User f9960c;
-    public FrameLayout d;
-    public p71 f9961e;
-    public e f9962f;
-    public ArrayList h;
-    public NotificationCenter.ObserversGroup f9963n;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.g6;
+public final class f extends sg.x1 {
+    public final int f9266n;
 
-    public static void U(f fVar, u61 u61Var) {
-        f fVar2;
-        if (u61Var.d == 1) {
-            fVar2 = fVar;
-            g5.Q(fVar.getParentActivity(), fVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), fVar.resourceProvider, new c(fVar));
-        } else {
-            fVar2 = fVar;
-        }
-        Object obj = u61Var.G;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f9958a));
-            fVar2.showDialog(new hi.b(fVar2.getParentActivity(), chat, fVar2.f9958a, new h3(13, fVar2, chat)));
-        }
-    }
-
-    public final void V(String str, boolean z10) {
-        if (!ChatObject.isChannel(this.f9959b) && this.f9960c == null) {
-            a2 a2Var = new a2(getParentActivity(), 3, null);
-            a2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f9958a, this, new ca.b(this, a2Var, str, z10, 1));
-            return;
-        }
-        getMessagesController().createCommunity(str, this.f9958a, z10, new b(this, 1));
-    }
-
-    public final void W(long j3, boolean z10) {
-        if (!ChatObject.isChannel(this.f9959b) && this.f9960c == null) {
-            a2 a2Var = new a2(getParentActivity(), 3, null);
-            a2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f9958a, this, new d(this, a2Var, j3, z10, 0));
-            return;
-        }
-        int i10 = this.currentAccount;
-        long j10 = -this.f9958a;
-        MessagesController.getInstance(i10).linkCommunity(-j10, j3, z10, new o0(this, j10, 0));
+    public f(Context context, int i10) {
+        super(context);
+        this.f9266n = i10;
     }
 
     @Override
-    public final View createView(Context context) {
-        int i10;
-        setHasOwnBackground(true);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setAllowOverlayTitle(false);
-        hg.c.y(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 3));
-        fh.c cVar = new fh.c();
-        cVar.a(getThemedColor(h6.f20560d6));
-        ah.c cVar2 = new ah.c(cVar);
-        this.actionBar.setBackground(null);
-        this.actionBar.N(cVar2, eh.b.o(this.resourceProvider), false);
-        this.actionBar.P0 = true;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20504a7, false));
-        e eVar = new e(context, this.resourceProvider);
-        this.f9962f = eVar;
-        eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
-        e eVar2 = this.f9962f;
-        if (this.f9960c != null) {
-            i10 = R.string.CommunityDescriptionBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(this.f9959b)) {
-            i10 = R.string.CommunityDescriptionChannel;
-        } else {
-            i10 = R.string.CommunityDescriptionGroup;
-        }
-        eVar2.setSubtitle(LocaleController.getString(i10));
-        this.f9962f.setTag(-33024);
-        TLRPC.User user = this.f9960c;
-        if (user != null) {
-            this.f9962f.f9955a.e(user, new j9(0, this.f9960c));
-        } else {
-            TLRPC.Chat chat = this.f9959b;
-            if (chat != null) {
-                this.f9962f.f9955a.e(chat, new j9(this.f9959b));
-            }
-        }
-        p71 p71Var = new p71(this, new b(this, 0), new c(this), new c(this));
-        this.f9961e = p71Var;
-        p71Var.setClipToPadding(false);
-        p71 p71Var2 = this.f9961e;
-        p71Var2.W2.f26679r = false;
-        p71Var2.p1();
-        this.d.addView(this.f9961e, w5.d(-1.0f, -1));
-        this.d.addView(this.actionBar, w5.e(-1, -2, 48));
-        FrameLayout frameLayout2 = this.d;
-        this.fragmentView = frameLayout2;
-        return frameLayout2;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        if (i10 == NotificationCenter.chatInfoDidLoad) {
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f19804id;
-            View z12 = this.f9961e.z1((int) (j3 ^ (j3 >>> 32)));
-            if (z12 instanceof i6) {
-                i6 i6Var = (i6) z12;
-                ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
-                if (arrayList != null) {
-                    i12 = arrayList.size();
-                } else {
-                    i12 = 0;
-                }
-                i6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
+    public final void a() {
+        switch (this.f9266n) {
+            case 0:
+                super.a();
+                sg.w1 w1Var = this.f45428a;
+                w1Var.f45412q = true;
+                w1Var.K = false;
+                w1Var.L = true;
+                w1Var.H = true;
+                w1Var.c();
                 return;
-            }
-            this.f9961e.W2.N(false);
+            case 1:
+                super.a();
+                sg.w1 w1Var2 = this.f45428a;
+                w1Var2.f45412q = true;
+                w1Var2.K = false;
+                w1Var2.L = true;
+                w1Var2.H = true;
+                w1Var2.c();
+                return;
+            case 2:
+                sg.w1 w1Var3 = new sg.w1(50);
+                this.f45428a = w1Var3;
+                w1Var3.N = 100;
+                w1Var3.M = false;
+                w1Var3.G = false;
+                w1Var3.K = true;
+                w1Var3.H = true;
+                w1Var3.J = false;
+                w1Var3.f45413r = 4;
+                w1Var3.f45417w = 0.98f;
+                w1Var3.v = 0.98f;
+                w1Var3.f45416u = 0.98f;
+                w1Var3.c();
+                return;
+            case 3:
+                sg.w1 w1Var4 = this.f45428a;
+                w1Var4.f45412q = true;
+                w1Var4.K = false;
+                w1Var4.H = true;
+                w1Var4.J = true;
+                w1Var4.f45406k = AndroidUtilities.dp(-14.0f);
+                sg.w1 w1Var5 = this.f45428a;
+                w1Var5.f45418x = 2000L;
+                w1Var5.f45419y = 3000;
+                w1Var5.f45413r = 16;
+                w1Var5.G = false;
+                w1Var5.N = 28;
+                w1Var5.P = g6.Mj;
+                w1Var5.c();
+                return;
+            case 4:
+                sg.w1 w1Var6 = this.f45428a;
+                w1Var6.f45412q = true;
+                w1Var6.K = false;
+                w1Var6.H = true;
+                w1Var6.J = true;
+                w1Var6.f45406k = AndroidUtilities.dp(-14.0f);
+                sg.w1 w1Var7 = this.f45428a;
+                w1Var7.f45418x = 2000L;
+                w1Var7.f45419y = 3000;
+                w1Var7.f45413r = 16;
+                w1Var7.G = false;
+                w1Var7.N = 28;
+                w1Var7.P = g6.Mj;
+                w1Var7.c();
+                return;
+            default:
+                super.a();
+                sg.w1 w1Var8 = this.f45428a;
+                w1Var8.f45412q = true;
+                w1Var8.K = false;
+                w1Var8.L = true;
+                w1Var8.H = true;
+                w1Var8.c();
+                return;
         }
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f9958a = this.arguments.getLong("dialog_id", 0L);
-        this.f9959b = getMessagesController().getChat(Long.valueOf(-this.f9958a));
-        this.f9960c = getMessagesController().getUser(Long.valueOf(this.f9958a));
-        this.h = getMessagesController().getJoinedCommunities();
-        getMessagesController().fetchJoinedCommunities(new y1(this, 19), this.classGuid);
-        this.f9963n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        NotificationCenter.ObserversGroup observersGroup = this.f9963n;
-        if (observersGroup != null) {
-            observersGroup.removeAllObservers();
-            this.f9963n = null;
+    public int getStarsRectWidth() {
+        switch (this.f9266n) {
+            case 0:
+                return getMeasuredWidth();
+            case 1:
+                return getMeasuredWidth();
+            case 2:
+                return getMeasuredWidth();
+            default:
+                return super.getStarsRectWidth();
         }
-        super.onFragmentDestroy();
     }
 
     @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        super.onInsets(i10, i11, i12, i13);
-        this.f9961e.setPadding(0, i11, 0, i13);
+    public void onMeasure(int i10, int i11) {
+        switch (this.f9266n) {
+            case 3:
+                super.onMeasure(i10, i11);
+                this.f45428a.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 4:
+                super.onMeasure(i10, i11);
+                this.f45428a.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 5:
+                super.onMeasure(i10, i11);
+                this.f45428a.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

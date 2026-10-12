@@ -1,47 +1,35 @@
 package e9;
 
-import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Comparator;
-public final class a0 extends y0 implements Serializable {
-    public final Comparator[] f8711a;
+public final class a0 extends b0 {
+    public final int d;
 
-    public a0(p pVar, p pVar2) {
-        this.f8711a = new Comparator[]{pVar, pVar2};
+    public a0(int i10) {
+        this.d = i10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int i10 = 0;
-        while (true) {
-            Comparator[] comparatorArr = this.f8711a;
-            if (i10 >= comparatorArr.length) {
-                return 0;
-            }
-            int compare = comparatorArr[i10].compare(obj, obj2);
-            if (compare != 0) {
-                return compare;
-            }
-            i10++;
-        }
+    public final int e() {
+        return this.d;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof a0) {
-            return Arrays.equals(this.f8711a, ((a0) obj).f8711a);
-        }
-        return false;
+    public final b0 a(int i10, int i11) {
+        return this;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(this.f8711a);
+    @Override
+    public final b0 c(boolean z10, boolean z11) {
+        return this;
     }
 
-    public final String toString() {
-        return a1.g.t(new StringBuilder("Ordering.compound("), Arrays.toString(this.f8711a), ")");
+    @Override
+    public final b0 d(boolean z10, boolean z11) {
+        return this;
+    }
+
+    @Override
+    public final b0 b(Object obj, Object obj2, Comparator comparator) {
+        return this;
     }
 }

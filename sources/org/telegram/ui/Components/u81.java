@@ -1,32 +1,68 @@
 package org.telegram.ui.Components;
 
-import java.util.function.ToDoubleFunction;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class u81 implements ToDoubleFunction {
-    public final int f31101a;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.AsyncTask;
+import org.telegram.messenger.FileLog;
+public final class u81 extends AsyncTask {
+    public int f29607a = 0;
+    public final x81 f29608b;
 
-    public u81(int i10) {
-        this.f31101a = i10;
+    public u81(x81 x81Var) {
+        this.f29608b = x81Var;
     }
 
     @Override
-    public final double applyAsDouble(Object obj) {
-        switch (this.f31101a) {
-            case 0:
-                return ((x81) obj).f32677a;
-            case 1:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 2:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 3:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 4:
-                return yh.r0.Q((TL_stars.starGiftAttributeBackdrop) obj);
-            case 5:
-                return yh.r0.Q((TL_stars.starGiftAttributePattern) obj);
-            default:
-                return yh.r0.Q((TL_stars.starGiftAttributeModel) obj);
+    public final Object doInBackground(Object[] objArr) {
+        Bitmap frameAtTime;
+        x81 x81Var = this.f29608b;
+        this.f29607a = ((Integer[]) objArr)[0].intValue();
+        Bitmap bitmap = null;
+        if (!isCancelled()) {
+            try {
+                frameAtTime = x81Var.f31203r.getFrameAtTime(x81Var.f31206x * this.f29607a * 1000, 2);
+            } catch (Exception e) {
+                e = e;
+            }
+            try {
+                if (!isCancelled()) {
+                    if (frameAtTime != null) {
+                        Bitmap createBitmap = Bitmap.createBitmap(x81Var.f31207y, x81Var.E, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(createBitmap);
+                        float max = Math.max(x81Var.f31207y / frameAtTime.getWidth(), x81Var.E / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * max);
+                        int height = (int) (frameAtTime.getHeight() * max);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((x81Var.f31207y - width) / 2, (x81Var.E - height) / 2, width, height), (Paint) null);
+                        frameAtTime.recycle();
+                        return createBitmap;
+                    }
+                    return frameAtTime;
+                }
+            } catch (Exception e7) {
+                e = e7;
+                bitmap = frameAtTime;
+                FileLog.e(e);
+                return bitmap;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        if (!isCancelled()) {
+            x81 x81Var = this.f29608b;
+            x81Var.v.add(bitmap);
+            x81Var.invalidate();
+            int i10 = this.f29607a;
+            if (i10 < x81Var.F) {
+                x81Var.b(i10 + 1);
+            } else {
+                x81Var.O = true;
+            }
         }
     }
 }

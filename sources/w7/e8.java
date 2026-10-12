@@ -1,23 +1,45 @@
 package w7;
-
-import java.util.Date;
-import org.json.JSONObject;
 public abstract class e8 {
-    public static v7.k a(String str) {
-        String str2;
-        JSONObject jSONObject = new JSONObject(str);
-        String a2 = x8.a(jSONObject.getString("id"));
-        long j3 = jSONObject.getLong("created");
-        jSONObject.getBoolean("livemode");
-        if ("card".equals(x8.a(jSONObject.getString("type")))) {
-            str2 = "card";
-        } else {
-            str2 = null;
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
         }
-        Boolean valueOf = Boolean.valueOf(jSONObject.getBoolean("used"));
-        JSONObject jSONObject2 = jSONObject.getJSONObject("card");
-        vc.a aVar = new vc.a(null, Integer.valueOf(jSONObject2.getInt("exp_month")), Integer.valueOf(jSONObject2.getInt("exp_year")), null, x8.a(jSONObject2.optString("name")), x8.a(jSONObject2.optString("address_line1")), x8.a(jSONObject2.optString("address_line2")), x8.a(jSONObject2.optString("address_city")), x8.a(jSONObject2.optString("address_state")), x8.a(jSONObject2.optString("address_zip")), x8.a(jSONObject2.optString("address_country")), z8.a(x8.a(jSONObject2.optString("brand"))), x8.a(jSONObject2.optString("last4")), x8.a(jSONObject2.optString("fingerprint")), z8.b(x8.a(jSONObject2.optString("funding"))), x8.a(jSONObject2.optString("country")), x8.a(jSONObject2.optString("currency")));
-        new Date(j3 * 1000);
-        return new v7.k(a2, valueOf, aVar, str2);
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(i2.d.i(i11, "negative size: "));
+            }
+            a2 = f8.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = f8.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
+    }
+
+    public static void b(int i10, int i11, int i12) {
+        String c10;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
+        }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                c10 = f8.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                c10 = c(i11, i12, "end index");
+            }
+        } else {
+            c10 = c(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static String c(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return f8.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return f8.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(i2.d.i(i11, "negative size: "));
     }
 }

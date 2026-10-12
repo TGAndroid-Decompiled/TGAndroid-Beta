@@ -1,42 +1,42 @@
 package n3;
 
-import b2.m0;
-import b2.o0;
-import b2.r;
 import b2.r0;
-import b2.s;
+import b2.t0;
+import b2.w;
+import b2.w0;
+import b2.x;
 import j$.util.Objects;
 import java.util.Arrays;
-public final class a implements o0 {
-    public static final s f16285g;
-    public static final s h;
-    public final String f16286a;
-    public final String f16287b;
-    public final long f16288c;
+public final class a implements t0 {
+    public static final x f15986g;
+    public static final x h;
+    public final String f15987a;
+    public final String f15988b;
+    public final long f15989c;
     public final long d;
-    public final byte[] f16289e;
-    public int f16290f;
+    public final byte[] e;
+    public int f15990f;
 
     static {
-        r rVar = new r();
-        rVar.f3583q = r0.n("application/id3");
-        f16285g = new s(rVar);
-        r rVar2 = new r();
-        rVar2.f3583q = r0.n("application/x-scte35");
-        h = new s(rVar2);
+        w wVar = new w();
+        wVar.f2466r = w0.n("application/id3");
+        f15986g = new x(wVar);
+        w wVar2 = new w();
+        wVar2.f2466r = w0.n("application/x-scte35");
+        h = new x(wVar2);
     }
 
-    public a(String str, String str2, long j3, long j10, byte[] bArr) {
-        this.f16286a = str;
-        this.f16287b = str2;
-        this.f16288c = j3;
-        this.d = j10;
-        this.f16289e = bArr;
+    public a(String str, String str2, long j10, long j11, byte[] bArr) {
+        this.f15987a = str;
+        this.f15988b = str2;
+        this.f15989c = j10;
+        this.d = j11;
+        this.e = bArr;
     }
 
     @Override
-    public final s a() {
-        String str = this.f16286a;
+    public final x a() {
+        String str = this.f15987a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -64,7 +64,7 @@ public final class a implements o0 {
                 return h;
             case 1:
             case 2:
-                return f16285g;
+                return f15986g;
             default:
                 return null;
         }
@@ -73,7 +73,7 @@ public final class a implements o0 {
     @Override
     public final byte[] c() {
         if (a() != null) {
-            return this.f16289e;
+            return this.e;
         }
         return null;
     }
@@ -84,7 +84,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f16288c == aVar.f16288c && this.d == aVar.d && Objects.equals(this.f16286a, aVar.f16286a) && Objects.equals(this.f16287b, aVar.f16287b) && Arrays.equals(this.f16289e, aVar.f16289e)) {
+            if (this.f15989c == aVar.f15989c && this.d == aVar.d && Objects.equals(this.f15987a, aVar.f15987a) && Objects.equals(this.f15988b, aVar.f15988b) && Arrays.equals(this.e, aVar.e)) {
                 return true;
             }
         }
@@ -93,31 +93,31 @@ public final class a implements o0 {
 
     public final int hashCode() {
         int i10;
-        if (this.f16290f == 0) {
+        if (this.f15990f == 0) {
             int i11 = 0;
-            String str = this.f16286a;
+            String str = this.f15987a;
             if (str != null) {
                 i10 = str.hashCode();
             } else {
                 i10 = 0;
             }
             int i12 = (527 + i10) * 31;
-            String str2 = this.f16287b;
+            String str2 = this.f15988b;
             if (str2 != null) {
                 i11 = str2.hashCode();
             }
-            long j3 = this.f16288c;
-            long j10 = this.d;
-            this.f16290f = Arrays.hashCode(this.f16289e) + ((((((i12 + i11) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31);
+            long j10 = this.f15989c;
+            long j11 = this.d;
+            this.f15990f = Arrays.hashCode(this.e) + ((((((i12 + i11) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31);
         }
-        return this.f16290f;
+        return this.f15990f;
     }
 
     public final String toString() {
-        return "EMSG: scheme=" + this.f16286a + ", id=" + this.d + ", durationMs=" + this.f16288c + ", value=" + this.f16287b;
+        return "EMSG: scheme=" + this.f15987a + ", id=" + this.d + ", durationMs=" + this.f15989c + ", value=" + this.f15988b;
     }
 
     @Override
-    public final void b(m0 m0Var) {
+    public final void b(r0 r0Var) {
     }
 }

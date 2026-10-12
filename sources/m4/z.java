@@ -1,106 +1,33 @@
 package m4;
+public final class z implements Runnable {
+    public final int f15687a;
+    public final f0 f15688b;
 
-import android.os.DeadObjectException;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.RemoteException;
-public final class z extends Handler {
-    public boolean f16005a;
-    public boolean f16006b;
-    public final c0 f16007c;
-
-    public z(c0 c0Var, Looper looper) {
-        super(looper);
-        this.f16007c = c0Var;
-        this.f16005a = true;
-        this.f16006b = true;
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        boolean z12;
-        boolean z13 = false;
-        if (this.f16005a && z10) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        this.f16005a = z12;
-        if (this.f16006b && z11) {
-            z13 = true;
-        }
-        this.f16006b = z13;
-        if (!hasMessages(1)) {
-            sendEmptyMessage(1);
-        }
+    public z(f0 f0Var, int i10) {
+        this.f15687a = i10;
+        this.f15688b = f0Var;
     }
 
     @Override
-    public final void handleMessage(Message message) {
-        r rVar;
-        int i10;
-        e1 e1Var;
-        c0 c0Var = this.f16007c;
-        c1 c1Var = c0Var.f15737g;
-        if (message.what == 1) {
-            e1 c10 = c0Var.f15748s.c(c0Var.f15749t.Q0(), c0Var.f15749t.O0(), c0Var.f15748s.f15791k);
-            c0Var.f15748s = c10;
-            boolean z10 = this.f16005a;
-            boolean z11 = this.f16006b;
-            e1 G0 = c1Var.G0(c10);
-            oi.f fVar = c1Var.f15756b;
-            e9.i0 s10 = fVar.s();
-            for (int i11 = 0; i11 < s10.size(); i11++) {
-                r rVar2 = (r) s10.get(i11);
-                try {
-                    com.google.android.gms.common.api.internal.v x10 = fVar.x(rVar2);
-                    if (x10 != null) {
-                        i10 = x10.e();
-                    } else if (!c0Var.h(rVar2)) {
-                        break;
-                    } else {
-                        i10 = 0;
-                    }
-                    e1 w10 = fVar.w(rVar2);
-                    if (w10 == null) {
-                        fVar.v(rVar2);
-                        b2.x0 a2 = w7.r.a(fVar.r(rVar2), c0Var.f15749t.t());
-                        try {
-                            q qVar = rVar2.d;
-                            e2.d.h(qVar);
-                            if (w10 == null) {
-                                rVar = rVar2;
-                                e1Var = G0;
-                            } else {
-                                rVar = rVar2;
-                                e1Var = w10;
-                            }
-                            try {
-                                qVar.g(i10, e1Var, a2, z10, z11);
-                            } catch (DeadObjectException unused) {
-                                c1Var.f15756b.M(rVar);
-                            } catch (RemoteException e7) {
-                                e = e7;
-                                e2.a.o("MediaSessionImpl", "Exception in " + rVar, e);
-                            }
-                        } catch (DeadObjectException unused2) {
-                            rVar = rVar2;
-                        } catch (RemoteException e10) {
-                            e = e10;
-                            rVar = rVar2;
-                        }
-                    }
-                } catch (DeadObjectException unused3) {
-                    rVar = rVar2;
-                } catch (RemoteException e11) {
-                    e = e11;
-                    rVar = rVar2;
+    public final void run() {
+        switch (this.f15687a) {
+            case 0:
+                f0 f0Var = this.f15688b;
+                d0 d0Var = f0Var.f15441u;
+                if (d0Var != null) {
+                    f0Var.f15440t.C(d0Var);
+                    return;
                 }
-            }
-            this.f16005a = true;
-            this.f16006b = true;
-            return;
+                return;
+            case 1:
+                this.f15688b.getClass();
+                return;
+            case 2:
+                f0.a(this.f15688b);
+                return;
+            default:
+                this.f15688b.t();
+                return;
         }
-        throw new IllegalStateException("Invalid message what=" + message.what);
     }
 }

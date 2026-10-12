@@ -1,118 +1,39 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class j50 extends s4.o {
-    public final i60 f39104b;
+import android.graphics.Canvas;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class j50 extends org.telegram.ui.ActionBar.k {
+    public final org.telegram.ui.Components.eq f37259u1;
+    public final n60 f37260v1;
 
-    public j50(i60 i60Var) {
-        this.f39104b = i60Var;
+    public j50(n60 n60Var, LaunchActivity launchActivity, org.telegram.ui.Components.eq eqVar) {
+        super(launchActivity, null);
+        this.f37260v1 = n60Var;
+        this.f37259u1 = eqVar;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return true;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
+            org.telegram.ui.Components.eq eqVar = this.f37259u1;
+            eqVar.f24764f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            eqVar.draw(canvas);
+            canvas.restore();
+            invalidate();
+        }
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        i60 i60Var = this.f39104b;
-        c60 c60Var = i60Var.P;
-        int i17 = c60Var.f36341w;
-        if (i17 >= 0) {
-            int i18 = i60Var.f38714h3;
-            if (i10 == i18 && i11 == i17) {
-                return true;
-            }
-            if ((i10 == i18 && i11 != i17) || (i10 != i18 && i11 == i17)) {
-                return false;
-            }
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f37260v1).containerView;
+            viewGroup.invalidate();
         }
-        int i19 = c60Var.f36342x;
-        if (i19 >= 0) {
-            int i20 = i60Var.f38766u3;
-            if (i10 == i20 && i11 == i19) {
-                return true;
-            }
-            if ((i10 == i20 && i11 != i19) || (i10 != i20 && i11 == i19)) {
-                return false;
-            }
-        }
-        int i21 = c60Var.f36343y;
-        if (i21 >= 0) {
-            int i22 = i60Var.f38770v3;
-            if (i10 == i22 && i11 == i21) {
-                return true;
-            }
-            if ((i10 == i22 && i11 != i21) || (i10 != i22 && i11 == i21)) {
-                return false;
-            }
-        }
-        int i23 = c60Var.K;
-        if (i23 >= 0) {
-            int i24 = i60Var.f38710g3;
-            if (i10 == i24 && i11 == i23) {
-                return true;
-            }
-            if ((i10 == i24 && i11 != i23) || (i10 != i24 && i11 == i23)) {
-                return false;
-            }
-        }
-        int i25 = c60Var.J;
-        if (i25 >= 0) {
-            int i26 = i60Var.f38762t3;
-            if (i10 == i26 && i11 == i25) {
-                return true;
-            }
-            if ((i10 == i26 && i11 != i25) || (i10 != i26 && i11 == i25)) {
-                return false;
-            }
-        }
-        int i27 = c60Var.I;
-        if (i27 >= 0 && i27 == i11 && i10 == i60Var.f38758s3) {
-            return true;
-        }
-        int i28 = i60Var.I0;
-        if (i10 == i28 - 1 && i11 == c60Var.F - 1) {
-            return true;
-        }
-        if (i10 != i28 - 1 && i11 != c60Var.F - 1) {
-            if (i11 >= c60Var.G && i11 < c60Var.H && i10 >= (i16 = i60Var.f38748q3) && i10 < i60Var.f38753r3) {
-                return ((ChatObject.VideoParticipant) i60Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) i60Var.f38745q0.get(i11 - i60Var.P.G));
-            }
-            if (i11 >= c60Var.d && i11 < c60Var.f36336e && i10 >= (i15 = i60Var.f38718i3) && i10 < i60Var.j3) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) i60Var.D0.get(i10 - i15);
-                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(i60Var.f38681a1.visibleParticipants.get(i11 - i60Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
-                    return false;
-                }
-                return true;
-            } else if (i11 >= c60Var.f36337f && i11 < c60Var.h && i10 >= (i14 = i60Var.f38725k3) && i10 < i60Var.f38728l3) {
-                return ((Long) i60Var.F0.get(i10 - i14)).equals(i60Var.f38681a1.invitedUsers.get(i11 - i60Var.P.f36337f));
-            } else {
-                if (i11 >= c60Var.f36338n && i11 < c60Var.f36339r && i10 >= (i13 = i60Var.f38731m3) && i10 < i60Var.f38736n3) {
-                    return ((Long) i60Var.G0.get(i10 - i13)).equals(i60Var.f38681a1.shadyJoinParticipants.get(i11 - i60Var.P.f36338n));
-                }
-                if (i11 >= c60Var.f36340s && i11 < c60Var.v && i10 >= (i12 = i60Var.f38740o3) && i10 < i60Var.f38744p3) {
-                    return ((Long) i60Var.H0.get(i10 - i12)).equals(i60Var.f38681a1.shadyLeftParticipants.get(i11 - i60Var.P.f36340s));
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f39104b.P.F;
-    }
-
-    @Override
-    public final int e() {
-        return this.f39104b.I0;
     }
 }

@@ -11,38 +11,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import w7.w5;
+import w7.a6;
 public final class e extends FrameLayout {
-    public final ImageView f43234a;
-    public final TextView f43235b;
-    public final ImageView f43236c;
+    public final ImageView f41333a;
+    public final TextView f41334b;
+    public final ImageView f41335c;
     public final Paint d;
-    public boolean f43237e;
+    public boolean e;
 
     public e(Context context) {
         super(context);
         this.d = new Paint(1);
         ImageView imageView = new ImageView(context);
-        this.f43234a = imageView;
+        this.f41333a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.menu_clear_recent);
-        addView(imageView, w5.a(32.0f, 10.0f, 8.0f, 8.0f, 8.0f, 32, 19));
+        addView(imageView, a6.a(32.0f, 10.0f, 8.0f, 8.0f, 8.0f, 32, 19));
         TextView textView = new TextView(context);
-        this.f43235b = textView;
+        this.f41334b = textView;
         textView.setTextSize(1, 16.0f);
-        addView(textView, w5.a(-2.0f, 64.0f, 8.0f, 64.0f, 8.0f, -1, 19));
+        addView(textView, a6.a(-2.0f, 64.0f, 8.0f, 64.0f, 8.0f, -1, 19));
         ImageView imageView2 = new ImageView(context);
-        this.f43236c = imageView2;
+        this.f41335c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_browser_arrowup);
-        addView(imageView2, w5.a(32.0f, 8.0f, 8.0f, 10.0f, 8.0f, 32, 21));
+        addView(imageView2, a6.a(32.0f, 8.0f, 8.0f, 10.0f, 8.0f, 32, 21));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f43237e) {
+        if (this.e) {
             canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.d);
         }
     }
@@ -54,7 +54,7 @@ public final class e extends FrameLayout {
 
     public void setAsShowMore(k kVar) {
         int i10 = R.drawable.arrow_more;
-        ImageView imageView = this.f43234a;
+        ImageView imageView = this.f41333a;
         imageView.setImageResource(i10);
         imageView.setColorFilter(new PorterDuffColorFilter(kVar.H, PorterDuff.Mode.SRC_IN));
     }

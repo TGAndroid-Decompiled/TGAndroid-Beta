@@ -18,142 +18,142 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class f5 implements Runnable {
-    public final int f17572a;
-    public final Object f17573b;
-    public final Object f17574c;
+    public final int f17215a;
+    public final Object f17216b;
+    public final Object f17217c;
     public final Object d;
-    public final Object f17575e;
-    public final Object f17576f;
+    public final Object e;
+    public final Object f17218f;
 
     public f5(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f17572a = i10;
-        this.f17575e = obj;
-        this.f17576f = obj2;
-        this.f17574c = obj3;
+        this.f17215a = i10;
+        this.e = obj;
+        this.f17218f = obj2;
+        this.f17217c = obj3;
         this.d = obj4;
-        this.f17573b = obj5;
+        this.f17216b = obj5;
     }
 
     @Override
     public final void run() {
-        switch (this.f17572a) {
+        switch (this.f17215a) {
             case 0:
-                ((ImageLoader.CacheImage) this.f17575e).lambda$setImageAndClear$0((Drawable) this.f17576f, (ArrayList) this.f17574c, (ArrayList) this.d, (String) this.f17573b);
+                ((ImageLoader.CacheImage) this.e).lambda$setImageAndClear$0((Drawable) this.f17218f, (ArrayList) this.f17217c, (ArrayList) this.d, (String) this.f17216b);
                 return;
             case 1:
-                ((ImageLoader.ThumbGenerateTask) this.f17575e).lambda$run$1((String) this.f17573b, (ArrayList) this.f17574c, (BitmapDrawable) this.f17576f, (ArrayList) this.d);
+                ((ImageLoader.ThumbGenerateTask) this.e).lambda$run$1((String) this.f17216b, (ArrayList) this.f17217c, (BitmapDrawable) this.f17218f, (ArrayList) this.d);
                 return;
             case 2:
-                ((TranslateController) this.f17575e).lambda$detectPhotoLanguage$39((MessageObject) this.f17576f, (String) this.f17573b, (TranslateController.MessageKey) this.f17574c, (Utilities.Callback) this.d);
+                ((TranslateController) this.e).lambda$detectPhotoLanguage$39((MessageObject) this.f17218f, (String) this.f17216b, (TranslateController.MessageKey) this.f17217c, (Utilities.Callback) this.d);
                 return;
             case 3:
-                ((ChatThemeController) this.f17575e).lambda$requestNextChatThemes$19((TL_account.Tl_chatThemes) this.f17576f, (ArrayList) this.f17574c, (ArrayList) this.d, (ResultCallback) this.f17573b);
+                ((ChatThemeController) this.e).lambda$requestNextChatThemes$19((TL_account.Tl_chatThemes) this.f17218f, (ArrayList) this.f17217c, (ArrayList) this.d, (ResultCallback) this.f17216b);
                 return;
             case 4:
-                ((FactCheckController) this.f17575e).lambda$loadMissing$1((TLObject) this.f17576f, (TLRPC.TL_getFactCheck) this.d, (ArrayList) this.f17574c, (HashMap) this.f17573b);
+                ((FactCheckController) this.e).lambda$loadMissing$1((TLObject) this.f17218f, (TLRPC.TL_getFactCheck) this.d, (ArrayList) this.f17217c, (HashMap) this.f17216b);
                 return;
             case 5:
-                ((MessagesController) this.f17575e).lambda$loadChannelParticipants$147((TLRPC.TL_error) this.f17576f, (TLObject) this.f17574c, (Long) this.d, (Utilities.Callback) this.f17573b);
+                ((MessagesController) this.e).lambda$loadChannelParticipants$147((TLRPC.TL_error) this.f17218f, (TLObject) this.f17217c, (Long) this.d, (Utilities.Callback) this.f17216b);
                 return;
             case 6:
-                ((MessagesController) this.f17575e).lambda$setUserAdminRole$99((TLRPC.User) this.f17576f, (TLRPC.Chat) this.f17574c, (MessagesController.ErrorDelegate) this.d, (TLRPC.TL_error) this.f17573b);
+                ((MessagesController) this.e).lambda$setUserAdminRole$99((TLRPC.User) this.f17218f, (TLRPC.Chat) this.f17217c, (MessagesController.ErrorDelegate) this.d, (TLRPC.TL_error) this.f17216b);
                 return;
             case 7:
-                ((MessagesController) this.f17575e).lambda$saveThemeToServer$118((String) this.f17573b, (String) this.f17576f, (org.telegram.ui.ActionBar.e6) this.f17574c, (org.telegram.ui.ActionBar.g6) this.d);
+                ((MessagesController) this.e).lambda$saveThemeToServer$118((String) this.f17216b, (String) this.f17218f, (org.telegram.ui.ActionBar.e6) this.f17217c, (org.telegram.ui.ActionBar.f6) this.d);
                 return;
             case 8:
-                ((MessagesController) this.f17575e).lambda$getDifference$357((TLRPC.updates_Difference) this.f17576f, (ArrayList) this.f17574c, (a0.i) this.d, (a0.i) this.f17573b);
+                ((MessagesController) this.e).lambda$getDifference$357((TLRPC.updates_Difference) this.f17218f, (ArrayList) this.f17217c, (a0.h) this.d, (a0.h) this.f17216b);
                 return;
             case 9:
-                ((MessagesController) this.f17575e).lambda$saveThemeToServer$119((String) this.f17573b, (File) this.f17576f, (org.telegram.ui.ActionBar.e6) this.f17574c, (org.telegram.ui.ActionBar.g6) this.d);
+                ((MessagesController) this.e).lambda$saveThemeToServer$119((String) this.f17216b, (File) this.f17218f, (org.telegram.ui.ActionBar.e6) this.f17217c, (org.telegram.ui.ActionBar.f6) this.d);
                 return;
             case 10:
-                ((MessagesController) this.f17575e).lambda$updateTimerProc$153((TLRPC.TL_messages_messageViews) this.f17576f, (a0.i) this.f17574c, (a0.i) this.d, (a0.i) this.f17573b);
+                ((MessagesController) this.e).lambda$updateTimerProc$153((TLRPC.TL_messages_messageViews) this.f17218f, (a0.h) this.f17217c, (a0.h) this.d, (a0.h) this.f17216b);
                 return;
             case 11:
-                ((MessagesStorage) this.f17575e).lambda$readAllDialogs$64((ArrayList) this.f17574c, (ArrayList) this.d, (ArrayList) this.f17576f, (a0.i) this.f17573b);
+                ((MessagesStorage) this.e).lambda$readAllDialogs$64((ArrayList) this.f17217c, (ArrayList) this.d, (ArrayList) this.f17218f, (a0.h) this.f17216b);
                 return;
             case 12:
-                ((MessagesStorage) this.f17575e).lambda$updateDialogsWithReadMessages$120((LongSparseIntArray) this.f17576f, (LongSparseIntArray) this.f17574c, (a0.i) this.d, (LongSparseIntArray) this.f17573b);
+                ((MessagesStorage) this.e).lambda$updateDialogsWithReadMessages$120((LongSparseIntArray) this.f17218f, (LongSparseIntArray) this.f17217c, (a0.h) this.d, (LongSparseIntArray) this.f17216b);
                 return;
             case 13:
-                ((Utilities.Callback4) this.f17575e).run((ArrayList) this.f17574c, (ArrayList) this.d, (ArrayList) this.f17576f, (ArrayList) this.f17573b);
+                ((Utilities.Callback4) this.e).run((ArrayList) this.f17217c, (ArrayList) this.d, (ArrayList) this.f17218f, (ArrayList) this.f17216b);
                 return;
             case 14:
-                ((NotificationsController) this.f17575e).lambda$processLoadedUnreadMessages$34((ArrayList) this.f17574c, (a0.i) this.f17576f, (ArrayList) this.d, (Collection) this.f17573b);
+                ((NotificationsController) this.e).lambda$processLoadedUnreadMessages$34((ArrayList) this.f17217c, (a0.h) this.f17218f, (ArrayList) this.d, (Collection) this.f17216b);
                 return;
             case 15:
-                ((SendMessagesHelper) this.f17575e).lambda$prepareImportStickers$115((SendMessagesHelper.ImportingStickers) this.f17576f, (HashMap) this.f17574c, (String) this.f17573b, (MessagesStorage.StringCallback) this.d);
+                ((SendMessagesHelper) this.e).lambda$prepareImportStickers$115((SendMessagesHelper.ImportingStickers) this.f17218f, (HashMap) this.f17217c, (String) this.f17216b, (MessagesStorage.StringCallback) this.d);
                 return;
             case 16:
-                ((SendMessagesHelper) this.f17575e).lambda$didReceivedNotification$2((File) this.f17576f, (MessageObject) this.f17574c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.f17573b);
+                ((SendMessagesHelper) this.e).lambda$didReceivedNotification$2((File) this.f17218f, (MessageObject) this.f17217c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.f17216b);
                 return;
             default:
-                ((SendMessagesHelper) this.f17575e).lambda$didReceivedNotification$3((SendMessagesHelper.DelayedMessage) this.f17576f, (File) this.f17574c, (TLRPC.Document) this.d, (MessageObject) this.f17573b);
+                ((SendMessagesHelper) this.e).lambda$didReceivedNotification$3((SendMessagesHelper.DelayedMessage) this.f17218f, (File) this.f17217c, (TLRPC.Document) this.d, (MessageObject) this.f17216b);
                 return;
         }
     }
 
     public f5(Object obj, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Cloneable cloneable, int i10) {
-        this.f17572a = i10;
-        this.f17575e = obj;
-        this.f17574c = arrayList;
+        this.f17215a = i10;
+        this.e = obj;
+        this.f17217c = arrayList;
         this.d = arrayList2;
-        this.f17576f = arrayList3;
-        this.f17573b = cloneable;
+        this.f17218f = arrayList3;
+        this.f17216b = cloneable;
     }
 
     public f5(String str, MessageObject messageObject, TranslateController.MessageKey messageKey, TranslateController translateController, Utilities.Callback callback) {
-        this.f17572a = 2;
-        this.f17575e = translateController;
-        this.f17576f = messageObject;
-        this.f17573b = str;
-        this.f17574c = messageKey;
+        this.f17215a = 2;
+        this.e = translateController;
+        this.f17218f = messageObject;
+        this.f17216b = str;
+        this.f17217c = messageKey;
         this.d = callback;
     }
 
     public f5(FactCheckController factCheckController, TLObject tLObject, TLRPC.TL_getFactCheck tL_getFactCheck, ArrayList arrayList, HashMap hashMap) {
-        this.f17572a = 4;
-        this.f17575e = factCheckController;
-        this.f17576f = tLObject;
+        this.f17215a = 4;
+        this.e = factCheckController;
+        this.f17218f = tLObject;
         this.d = tL_getFactCheck;
-        this.f17574c = arrayList;
-        this.f17573b = hashMap;
+        this.f17217c = arrayList;
+        this.f17216b = hashMap;
     }
 
     public f5(ImageLoader.ThumbGenerateTask thumbGenerateTask, String str, ArrayList arrayList, BitmapDrawable bitmapDrawable, ArrayList arrayList2) {
-        this.f17572a = 1;
-        this.f17575e = thumbGenerateTask;
-        this.f17573b = str;
-        this.f17574c = arrayList;
-        this.f17576f = bitmapDrawable;
+        this.f17215a = 1;
+        this.e = thumbGenerateTask;
+        this.f17216b = str;
+        this.f17217c = arrayList;
+        this.f17218f = bitmapDrawable;
         this.d = arrayList2;
     }
 
-    public f5(MessagesController messagesController, String str, Object obj, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        this.f17572a = i10;
-        this.f17575e = messagesController;
-        this.f17573b = str;
-        this.f17576f = obj;
-        this.f17574c = e6Var;
-        this.d = g6Var;
+    public f5(MessagesController messagesController, String str, Object obj, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        this.f17215a = i10;
+        this.e = messagesController;
+        this.f17216b = str;
+        this.f17218f = obj;
+        this.f17217c = e6Var;
+        this.d = f6Var;
     }
 
-    public f5(NotificationsController notificationsController, ArrayList arrayList, a0.i iVar, ArrayList arrayList2, Collection collection) {
-        this.f17572a = 14;
-        this.f17575e = notificationsController;
-        this.f17574c = arrayList;
-        this.f17576f = iVar;
+    public f5(NotificationsController notificationsController, ArrayList arrayList, a0.h hVar, ArrayList arrayList2, Collection collection) {
+        this.f17215a = 14;
+        this.e = notificationsController;
+        this.f17217c = arrayList;
+        this.f17218f = hVar;
         this.d = arrayList2;
-        this.f17573b = collection;
+        this.f17216b = collection;
     }
 
     public f5(SendMessagesHelper sendMessagesHelper, SendMessagesHelper.ImportingStickers importingStickers, HashMap hashMap, String str, MessagesStorage.StringCallback stringCallback) {
-        this.f17572a = 15;
-        this.f17575e = sendMessagesHelper;
-        this.f17576f = importingStickers;
-        this.f17574c = hashMap;
-        this.f17573b = str;
+        this.f17215a = 15;
+        this.e = sendMessagesHelper;
+        this.f17218f = importingStickers;
+        this.f17217c = hashMap;
+        this.f17216b = str;
         this.d = stringCallback;
     }
 }

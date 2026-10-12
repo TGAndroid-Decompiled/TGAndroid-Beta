@@ -1,94 +1,296 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class xe implements Runnable {
-    public final int f43906a = 0;
-    public final boolean f43907b;
-    public final Object f43908c;
-    public final boolean d;
-    public final Object f43909e;
-    public final Object f43910f;
-    public final Object h;
-    public final Object f43911n;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.UndoView;
+public final class xe implements org.telegram.ui.Components.q60, org.telegram.ui.Components.t60, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.vo, MessagesStorage.BooleanCallback, org.telegram.ui.Components.nk0, ResultCallback, xh.c, kh.a, kh.b, e70, vs, org.telegram.ui.Components.cm0, kh.d, org.telegram.ui.Components.ol0 {
+    public final int f41838a;
+    public final fo f41839b;
 
-    public xe(eo eoVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, boolean z10, boolean z11) {
-        this.f43909e = eoVar;
-        this.f43908c = str;
-        this.f43910f = characterStyle;
-        this.h = messageObject;
-        this.f43911n = u1Var;
-        this.f43907b = z10;
-        this.d = z11;
+    public xe(fo foVar, int i10) {
+        this.f41838a = i10;
+        this.f41839b = foVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43906a) {
-            case 0:
-                eo eoVar = (eo) this.f43909e;
-                String str = (String) this.f43908c;
-                CharacterStyle characterStyle = (CharacterStyle) this.f43910f;
-                MessageObject messageObject = (MessageObject) this.h;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f43911n;
-                if (str.startsWith("video?")) {
-                    eoVar.X7(characterStyle, false, messageObject, u1Var);
-                    return;
-                } else if (this.f43907b && !this.d) {
-                    eoVar.getParentActivity();
-                    of.f.n(str);
-                    return;
-                } else {
-                    eoVar.O9(messageObject, false, false);
-                    eoVar.ea(characterStyle, str, false, u1Var, messageObject);
-                    return;
+    public boolean a(int i10, View view) {
+        fo foVar = this.f41839b;
+        boolean z10 = false;
+        if (foVar.getParentActivity() != null) {
+            hg.j1 adapter = foVar.I1.getAdapter();
+            if ((adapter.I != null || adapter.J != null) && i10 != 0) {
+                hg.j1 adapter2 = foVar.I1.getAdapter();
+                if (adapter2.f10638w0 != null && !adapter2.f10620h0) {
+                    return false;
                 }
-            case 1:
-                wh.l lVar = (wh.l) this.f43909e;
-                Runnable runnable = (Runnable) this.f43910f;
-                String str2 = (String) this.f43908c;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TLObject tLObject = (TLObject) this.f43911n;
-                lVar.f50684w = false;
-                lVar.f50687z = true;
-                if (this.f43907b) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
+                Object J = foVar.I1.getAdapter().J(i10 - 1);
+                if (J instanceof hg.g1) {
+                    hg.g1 g1Var = (hg.g1) J;
+                    if (foVar.I1.getAdapter().J != null && org.telegram.ui.Components.m61.h) {
+                        foVar.Y.setFieldText("");
+                        sk skVar = foVar.Y;
+                        String str = g1Var.f10561a;
+                        TLRPC.Chat chat = foVar.e;
+                        if (chat != null && chat.megagroup) {
+                            z10 = true;
+                        }
+                        skVar.Y0(null, str, true, z10);
+                        return true;
+                    }
+                } else if (J instanceof String) {
+                    if (foVar.I1.getAdapter().J != null) {
+                        if (org.telegram.ui.Components.m61.h) {
+                            foVar.Y.setFieldText("");
+                            sk skVar2 = foVar.Y;
+                            String str2 = (String) J;
+                            TLRPC.Chat chat2 = foVar.e;
+                            if (chat2 != null && chat2.megagroup) {
+                                z10 = true;
+                            }
+                            skVar2.Y0(null, str2, true, z10);
+                            return true;
+                        }
+                    } else {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getParentActivity(), 0, foVar.f35932ea);
+                        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.ClearSearch);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new xe(foVar, 12));
+                        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                        foVar.showDialog(alertDialog$Builder.f19548a);
+                        return true;
+                    }
                 }
-                wh.l.k(lVar.f50679q, false, false);
-                if (TextUtils.equals(str2, lVar.f50682t) && tL_error == null) {
-                    lVar.f50687z = true;
-                    lVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
-                    return;
-                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void b() {
+        fo foVar = this.f41839b;
+        if (foVar.y3 == null && foVar.getParentActivity() != null) {
+            foVar.T7();
+            foVar.y3.m(foVar.T5, foVar.f35935f, 8);
+        }
+    }
+
+    @Override
+    public void c() {
+        fo foVar = this.f41839b;
+        foVar.v9(1);
+        foVar.w9();
+    }
+
+    @Override
+    public void d(TLRPC.Document document) {
+        switch (this.f41838a) {
+            case 4:
+                fo.j0(this.f41839b, document);
                 return;
             default:
-                yh.s3.B0((yh.s3) this.f43909e, (TLObject) this.f43908c, this.f43907b, (TLRPC.Document) this.f43910f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f43911n);
+                fo.D0(this.f41839b, document);
                 return;
         }
     }
 
-    public xe(wh.l lVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.f43909e = lVar;
-        this.f43907b = z10;
-        this.f43910f = runnable;
-        this.f43908c = str;
-        this.h = tL_error;
-        this.f43911n = tLObject;
-        this.d = z11;
+    @Override
+    public void e(ArrayList arrayList) {
+        switch (this.f41838a) {
+            case 11:
+                fo foVar = this.f41839b;
+                if (foVar.getParentActivity() != null && foVar.getParentActivity() != null) {
+                    ni niVar = new ni(foVar, foVar, foVar.getParentActivity(), foVar.f35932ea, arrayList);
+                    niVar.setCalcMandatoryInsets(foVar.C9());
+                    niVar.setDimBehind(false);
+                    foVar.D7(false);
+                    foVar.showDialog(niVar);
+                    return;
+                }
+                return;
+            default:
+                fo foVar2 = this.f41839b;
+                if (foVar2.getParentActivity() != null && foVar2.getParentActivity() != null) {
+                    kj kjVar = new kj(foVar2, foVar2, foVar2.getParentActivity(), foVar2.f35932ea, arrayList);
+                    kjVar.setCalcMandatoryInsets(foVar2.C9());
+                    kjVar.setDimBehind(false);
+                    foVar2.D7(false);
+                    foVar2.showDialog(kjVar);
+                    return;
+                }
+                return;
+        }
     }
 
-    public xe(yh.s3 s3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.f43909e = s3Var;
-        this.f43908c = tLObject;
-        this.f43907b = z10;
-        this.f43910f = document;
-        this.d = z11;
-        this.h = tL_error;
-        this.f43911n = savestargift;
+    @Override
+    public void f(boolean z10, boolean z11) {
+        fo foVar = this.f41839b;
+        foVar.M0.i(foVar.f35945fa.c(), z10, z11);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f41838a) {
+            case 2:
+                yk ykVar = this.f41839b.B0;
+                if (ykVar != null) {
+                    ykVar.callOnClick();
+                    return;
+                }
+                return;
+            case 3:
+                this.f41839b.finishFragment();
+                return;
+            case 4:
+            case 5:
+            case 9:
+            case 11:
+            case 13:
+            case 14:
+            default:
+                fo foVar = this.f41839b;
+                MessageObject messageObject = (MessageObject) foVar.J4.get(Integer.valueOf(foVar.L4));
+                if (messageObject == null) {
+                    messageObject = (MessageObject) foVar.f36052o6[0].get(foVar.L4);
+                }
+                foVar.gc(messageObject);
+                return;
+            case 6:
+                fo foVar2 = this.f41839b;
+                MessagePreviewParams messagePreviewParams = foVar2.f35941f5;
+                if (messagePreviewParams != null) {
+                    messagePreviewParams.updateForward(null, foVar2.T5);
+                }
+                foVar2.m8();
+                return;
+            case 7:
+                this.f41839b.ha(1);
+                return;
+            case 8:
+                fo foVar3 = this.f41839b;
+                foVar3.getMessagesController().unblockPeer(foVar3.f35935f.f19363id);
+                return;
+            case 10:
+                this.f41839b.finishFragment();
+                return;
+            case 12:
+                hg.j1 adapter = this.f41839b.I1.getAdapter();
+                adapter.f10637w.c();
+                adapter.I.clear();
+                adapter.l();
+                org.telegram.ui.Components.jb0 jb0Var = adapter.V;
+                if (jb0Var != null) {
+                    jb0Var.a(false);
+                    return;
+                }
+                return;
+            case 15:
+                fo foVar4 = this.f41839b;
+                foVar4.showDialog(new bm(foVar4, foVar4.getParentActivity(), foVar4));
+                return;
+            case 16:
+                fo foVar5 = this.f41839b;
+                foVar5.T7();
+                UndoView undoView = foVar5.y3;
+                if (undoView != null) {
+                    undoView.j(75, 0L, null);
+                    return;
+                }
+                return;
+            case 17:
+                fo foVar6 = this.f41839b;
+                MessagePreviewParams messagePreviewParams2 = foVar6.f35941f5;
+                if (messagePreviewParams2 != null && messagePreviewParams2.quote != null) {
+                    foVar6.ha(0);
+                    return;
+                }
+                return;
+            case 18:
+                this.f41839b.j9(true);
+                return;
+        }
+    }
+
+    @Override
+    public void i(int i10, ArrayList arrayList) {
+        fo foVar = this.f41839b;
+        foVar.getMessagesController().addUsersToChat(foVar.e, foVar, arrayList, i10, null, null, null);
+        foVar.getMessagesController().hidePeerSettingsBar(foVar.T5, foVar.f35935f, foVar.e);
+        foVar.Uc(true);
+        foVar.sc(true);
+    }
+
+    @Override
+    public void j(int i10) {
+        fo foVar = this.f41839b;
+        if (i10 == 1) {
+            foVar.Z9();
+        } else if (i10 == 2) {
+            foVar.M9();
+        } else if (i10 == 3) {
+            foVar.D4 = true;
+            foVar.getMessagesController().getNextReactionMention(foVar.T5, foVar.d(), foVar.l1, new rg(foVar, 0));
+        } else if (i10 == 4) {
+            foVar.D4 = true;
+            foVar.getMessagesController().getNextPollVotesMention(foVar.T5, foVar.d(), foVar.f36020m1, new rg(foVar, 1));
+        } else if (i10 == 6) {
+            foVar.d9(true);
+        } else if (i10 == 5) {
+            foVar.d9(false);
+        } else if (i10 == 0) {
+            bi.w3 w3Var = foVar.J1;
+            if (w3Var != null) {
+                w3Var.L1(null, 0);
+            }
+            foVar.ca();
+        }
+    }
+
+    @Override
+    public void onComplete(Object obj) {
+        boolean z10;
+        org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) obj;
+        fo foVar = this.f41839b;
+        co coVar = foVar.f35932ea;
+        TLRPC.WallPaper wallPaper = coVar.h;
+        if (foVar.P5 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        coVar.i(b4Var, wallPaper, z10, null, false);
+    }
+
+    @Override
+    public void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
+    }
+
+    @Override
+    public void run(boolean z10) {
+        fo foVar = this.f41839b;
+        NotificationCenter notificationCenter = foVar.getNotificationCenter();
+        int i10 = NotificationCenter.closeChats;
+        notificationCenter.removeObserver(foVar, i10);
+        foVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
+        foVar.finishFragment();
+        foVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(foVar.T5), foVar.f35935f, foVar.e, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void onError(TLRPC.TL_error tL_error) {
+        org.telegram.tgnet.l.b(this, tL_error);
+    }
+
+    @Override
+    public void h(TLRPC.User user) {
     }
 }

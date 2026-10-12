@@ -1,27 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class j21 extends FrameLayout {
-    public static final int f27345e = 0;
-    public float f27346a;
-    public float f27347b;
-    public boolean f27348c;
-    public final ThemeEditorView d;
+import android.text.TextWatcher;
+public final class j21 implements TextWatcher {
+    public final int f26175a;
+    public final k21 f26176b;
 
-    public j21(ThemeEditorView themeEditorView, Activity activity) {
-        super(activity);
-        this.d = themeEditorView;
+    public j21(k21 k21Var, int i10) {
+        this.f26176b = k21Var;
+        this.f26175a = i10;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
+    public final void afterTextChanged(android.text.Editable r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j21.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j21.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

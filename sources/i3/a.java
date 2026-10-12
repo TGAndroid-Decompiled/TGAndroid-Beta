@@ -1,9 +1,9 @@
 package i3;
 
-import b2.g;
-public final class a extends g {
-    public static final int[] f11941e = {5512, 11025, 22050, 44100};
-    public boolean f11942b;
-    public boolean f11943c;
+import b2.h;
+public final class a extends h {
+    public static final int[] e = {5512, 11025, 22050, 44100};
+    public boolean f11253b;
+    public boolean f11254c;
     public int d;
 }

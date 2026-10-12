@@ -1,70 +1,144 @@
 package k2;
 
 import java.nio.ByteBuffer;
-public final class l0 extends c2.i {
-    public static final int f14510i = Float.floatToIntBits(Float.NaN);
-
-    public static void k(int i10, ByteBuffer byteBuffer) {
-        int floatToIntBits = Float.floatToIntBits((float) (i10 * 4.656612875245797E-10d));
-        if (floatToIntBits == f14510i) {
-            floatToIntBits = Float.floatToIntBits(0.0f);
-        }
-        byteBuffer.putInt(floatToIntBits);
-    }
+import java.nio.ByteOrder;
+import java.util.Arrays;
+import v7.u6;
+public final class l0 extends c2.o {
+    public int[] f13950i;
+    public int[] f13951j;
 
     @Override
     public final void c(ByteBuffer byteBuffer) {
-        ByteBuffer j3;
+        int i10;
+        boolean z10;
+        int i11;
+        int i12;
+        int[] iArr = this.f13951j;
+        iArr.getClass();
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
-        int i10 = limit - position;
-        int i11 = this.f4011b.f4009c;
-        if (i11 != 21) {
-            if (i11 != 22) {
-                if (i11 != 1342177280) {
-                    if (i11 == 1610612736) {
-                        j3 = j(i10);
-                        while (position < limit) {
-                            k((byteBuffer.get(position + 3) & 255) | ((byteBuffer.get(position + 2) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position) & 255) << 24), j3);
-                            position += 4;
+        ByteBuffer l4 = l(((limit - position) / this.f4148b.d) * this.f4149c.d);
+        while (position < limit) {
+            for (int i13 : iArr) {
+                int u10 = (e2.m0.u(this.f4148b.f4144c) * i13) + position;
+                int i14 = this.f4148b.f4144c;
+                if (i14 != 2) {
+                    if (i14 != 3) {
+                        if (i14 != 4) {
+                            if (i14 != 21) {
+                                if (i14 != 22) {
+                                    if (i14 != 268435456) {
+                                        if (i14 != 1342177280) {
+                                            if (i14 != 1610612736) {
+                                                if (i14 == 1879048192) {
+                                                    l4.putDouble(byteBuffer.getDouble(u10));
+                                                } else {
+                                                    throw new IllegalStateException("Unexpected encoding: " + this.f4148b.f4144c);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                l4.putInt(byteBuffer.getInt(u10));
+                            }
+                            ByteOrder order = byteBuffer.order();
+                            ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
+                            if (order == byteOrder) {
+                                i10 = u10;
+                            } else {
+                                i10 = u10 + 2;
+                            }
+                            byte b10 = byteBuffer.get(i10);
+                            byte b11 = byteBuffer.get(u10 + 1);
+                            if (byteBuffer.order() == byteOrder) {
+                                u10 += 2;
+                            }
+                            int i15 = ((((b10 << 24) & (-16777216)) | ((b11 << 16) & 16711680)) | ((byteBuffer.get(u10) << 8) & 65280)) >> 8;
+                            boolean z11 = true;
+                            if ((i15 & (-16777216)) != 0 && (i15 & (-8388608)) != -8388608) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            u6.h(z10, "Value out of range of 24-bit integer: %s", Integer.toHexString(i15));
+                            if (l4.remaining() < 3) {
+                                z11 = false;
+                            }
+                            u6.g(z11);
+                            if (l4.order() == byteOrder) {
+                                i11 = (i15 & 16711680) >> 16;
+                            } else {
+                                i11 = i15 & 255;
+                            }
+                            byte b12 = (byte) i11;
+                            byte b13 = (byte) ((i15 & 65280) >> 8);
+                            if (l4.order() == byteOrder) {
+                                i12 = i15 & 255;
+                            } else {
+                                i12 = (i15 & 16711680) >> 16;
+                            }
+                            l4.put(b12).put(b13).put((byte) i12);
+                        } else {
+                            l4.putFloat(byteBuffer.getFloat(u10));
                         }
                     } else {
-                        throw new IllegalStateException();
-                    }
-                } else {
-                    j3 = j((i10 / 3) * 4);
-                    while (position < limit) {
-                        k(((byteBuffer.get(position + 2) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position) & 255) << 24), j3);
-                        position += 3;
+                        l4.put(byteBuffer.get(u10));
                     }
                 }
-            } else {
-                j3 = j(i10);
-                while (position < limit) {
-                    k((byteBuffer.get(position) & 255) | ((byteBuffer.get(position + 1) & 255) << 8) | ((byteBuffer.get(position + 2) & 255) << 16) | ((byteBuffer.get(position + 3) & 255) << 24), j3);
-                    position += 4;
-                }
+                l4.putShort(byteBuffer.getShort(u10));
             }
-        } else {
-            j3 = j((i10 / 3) * 4);
-            while (position < limit) {
-                k(((byteBuffer.get(position) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position + 2) & 255) << 24), j3);
-                position += 3;
-            }
+            position += this.f4148b.d;
         }
-        byteBuffer.position(byteBuffer.limit());
-        j3.flip();
+        byteBuffer.position(limit);
+        l4.flip();
     }
 
     @Override
-    public final c2.f f(c2.f fVar) {
-        int i10 = fVar.f4009c;
-        if (i10 != 21 && i10 != 1342177280 && i10 != 22 && i10 != 1610612736 && i10 != 4) {
-            throw new c2.g(fVar);
+    public final c2.k h(c2.k kVar) {
+        boolean z10;
+        boolean z11;
+        int i10 = kVar.f4144c;
+        int[] iArr = this.f13950i;
+        if (iArr == null) {
+            return c2.k.e;
         }
-        if (i10 != 4) {
-            return new c2.f(fVar.f4007a, fVar.f4008b, 4);
+        int i11 = kVar.f4143b;
+        if (e2.m0.M(i10)) {
+            if (i11 != iArr.length) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            for (int i12 = 0; i12 < iArr.length; i12++) {
+                int i13 = iArr[i12];
+                if (i13 < i11) {
+                    if (i13 != i12) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    z10 |= z11;
+                } else {
+                    throw new c2.m("Channel map (" + Arrays.toString(iArr) + ") trying to access non-existent input channel.", kVar);
+                }
+            }
+            if (z10) {
+                return new c2.k(kVar.f4142a, iArr.length, i10);
+            }
+            return c2.k.e;
         }
-        return c2.f.f4006e;
+        throw new c2.m(kVar);
+    }
+
+    @Override
+    public final void i() {
+        this.f13951j = this.f13950i;
+    }
+
+    @Override
+    public final void k() {
+        this.f13951j = null;
+        this.f13950i = null;
     }
 }

@@ -1,14 +1,13 @@
 package w7;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.util.Log;
 public abstract class t6 {
-    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
-        byte[] bArr = new byte[8192];
-        int read = inputStream.read(bArr);
-        while (read >= 0) {
-            byteArrayOutputStream.write(bArr, 0, read);
-            read = inputStream.read(bArr);
+    public static void a() {
+        int glGetError = GLES20.glGetError();
+        if (glGetError != 0) {
+            Log.d("Paint", GLUtils.getEGLErrorString(glGetError));
         }
     }
 }

@@ -1,55 +1,108 @@
 package org.telegram.ui.Components;
 
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class hj0 implements ud0, wd0 {
-    public final int f26786a;
-    public final mj0 f26787b;
+import android.animation.ValueAnimator;
+public final class hj0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25690a;
+    public final jj0 f25691b;
 
-    public hj0(mj0 mj0Var, int i10) {
-        this.f26786a = i10;
-        this.f26787b = mj0Var;
+    public hj0(jj0 jj0Var, int i10) {
+        this.f25690a = i10;
+        this.f25691b = jj0Var;
     }
 
     @Override
-    public String e(int i10) {
-        int i11 = this.f26786a;
-        mj0 mj0Var = this.f26787b;
-        switch (i11) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25690a) {
             case 0:
-                if (mj0Var.O) {
-                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0 jj0Var = this.f25691b;
+                jj0Var.v = floatValue;
+                org.telegram.ui.Cells.s2 s2Var = jj0Var.H;
+                if (s2Var != null) {
+                    s2Var.invalidate();
                 }
-                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
+                mm0 mm0Var = jj0Var.I;
+                if (mm0Var != null) {
+                    mm0Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0 jj0Var2 = this.f25691b;
+                jj0Var2.f26392w = floatValue2;
+                org.telegram.ui.Cells.s2 s2Var2 = jj0Var2.H;
+                if (s2Var2 != null) {
+                    s2Var2.invalidate();
+                }
+                mm0 mm0Var2 = jj0Var2.I;
+                if (mm0Var2 != null) {
+                    mm0Var2.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0 jj0Var3 = this.f25691b;
+                jj0Var3.f26386p = floatValue3;
+                org.telegram.ui.Cells.s2 s2Var3 = jj0Var3.H;
+                if (s2Var3 != null) {
+                    s2Var3.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0 jj0Var4 = this.f25691b;
+                jj0Var4.f26385o = floatValue4;
+                org.telegram.ui.Cells.s2 s2Var4 = jj0Var4.H;
+                if (s2Var4 != null) {
+                    s2Var4.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0 jj0Var5 = this.f25691b;
+                jj0Var5.f26393x = floatValue5;
+                org.telegram.ui.Cells.s2 s2Var5 = jj0Var5.H;
+                if (s2Var5 != null) {
+                    s2Var5.invalidate();
+                    return;
+                }
+                return;
+            case 5:
+                jj0 jj0Var6 = this.f25691b;
+                jj0Var6.getClass();
+                jj0Var6.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                org.telegram.ui.Cells.s2 s2Var6 = jj0Var6.H;
+                if (s2Var6 != null) {
+                    s2Var6.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                jj0 jj0Var7 = this.f25691b;
+                jj0Var7.getClass();
+                jj0Var7.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0Var7.F = true;
+                org.telegram.ui.Cells.s2 s2Var7 = jj0Var7.H;
+                if (s2Var7 != null) {
+                    s2Var7.invalidate();
+                    return;
+                }
+                return;
             default:
-                if (mj0Var.O) {
-                    if (i10 == 1) {
-                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                    }
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    Locale locale = Locale.US;
-                    return hg.c.i(i10, ".");
-                } else if (i10 == 1) {
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-                } else {
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
+                jj0 jj0Var8 = this.f25691b;
+                jj0Var8.getClass();
+                jj0Var8.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jj0Var8.F = false;
+                org.telegram.ui.Cells.s2 s2Var8 = jj0Var8.H;
+                if (s2Var8 != null) {
+                    s2Var8.invalidate();
+                    return;
                 }
+                return;
         }
-    }
-
-    @Override
-    public void q(yd0 yd0Var, int i10) {
-        mj0 mj0Var = this.f26787b;
-        try {
-            mj0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        mj0Var.c(true);
     }
 }

@@ -1,218 +1,116 @@
 package fi;
 
-import android.content.DialogInterface;
-import android.text.SpannableStringBuilder;
-import ei.h1;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.zc;
-public abstract class u0 {
-    public static SpannableStringBuilder a(MessageObject messageObject, String str, String str2, boolean z10, boolean z11) {
-        boolean z12;
-        boolean z13;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        TLRPC.Message message = messageObject.messageOwner;
-        TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
-        if (DialogObject.getPeerDialogId(message.peer_id) == DialogObject.getPeerDialogId(message.from_id)) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (tL_messageActionChangeCommunity.community_id == 0) {
-            z13 = true;
-        } else {
-            z13 = false;
-        }
-        if (z12) {
-            if (z13) {
-                if (z11) {
-                    i15 = R.string.CommunityServiceMessageBotRemovedUnknown;
-                } else if (z10) {
-                    i15 = R.string.CommunityServiceMessageChannelRemovedUnknown;
-                } else {
-                    i15 = R.string.CommunityServiceMessageGroupRemovedUnknown;
-                }
-                return AndroidUtilities.replaceTags(LocaleController.getString(i15));
-            }
-            if (z11) {
-                i14 = R.string.CommunityServiceMessageBotAddedUnknown;
-            } else if (z10) {
-                i14 = R.string.CommunityServiceMessageChannelAddedUnknown;
-            } else {
-                i14 = R.string.CommunityServiceMessageGroupAddedUnknown;
-            }
-            return AndroidUtilities.replaceTags(LocaleController.formatString(i14, str));
-        } else if (messageObject.isOut()) {
-            if (z13) {
-                if (z11) {
-                    i13 = R.string.CommunityServiceMessageBotYouRemoved;
-                } else if (z10) {
-                    i13 = R.string.CommunityServiceMessageChannelYouRemoved;
-                } else {
-                    i13 = R.string.CommunityServiceMessageGroupYouRemoved;
-                }
-                return AndroidUtilities.replaceTags(LocaleController.getString(i13));
-            }
-            if (z11) {
-                i12 = R.string.CommunityServiceMessageBotYouAdded;
-            } else if (z10) {
-                i12 = R.string.CommunityServiceMessageChannelYouAdded;
-            } else {
-                i12 = R.string.CommunityServiceMessageGroupYouAdded;
-            }
-            return AndroidUtilities.replaceTags(LocaleController.formatString(i12, str));
-        } else if (z13) {
-            if (z11) {
-                i11 = R.string.CommunityServiceMessageBotRemoved;
-            } else if (z10) {
-                i11 = R.string.CommunityServiceMessageChannelRemoved;
-            } else {
-                i11 = R.string.CommunityServiceMessageGroupRemoved;
-            }
-            return AndroidUtilities.replaceTags(LocaleController.formatString(i11, str2));
-        } else {
-            if (z11) {
-                i10 = R.string.CommunityServiceMessageBotAdded;
-            } else if (z10) {
-                i10 = R.string.CommunityServiceMessageChannelAdded;
-            } else {
-                i10 = R.string.CommunityServiceMessageGroupAdded;
-            }
-            return AndroidUtilities.replaceTags(LocaleController.formatString(i10, str2, str));
-        }
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.a7;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.k9;
+public final class u0 extends Drawable implements a7 {
+    public final Paint f9571a;
+    public final Paint f9572b;
+    public final Paint f9573c;
+    public final ImageReceiver d;
+    public final ImageReceiver e;
+    public final Drawable f9574f;
+
+    public u0(Context context, TLRPC.User user, TLRPC.User user2) {
+        Paint paint = new Paint(1);
+        this.f9571a = paint;
+        this.f9572b = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.f9573c = paint2;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.d = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver();
+        this.e = imageReceiver2;
+        new RectF();
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-1);
+        Drawable mutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
+        this.f9574f = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(g6.x0(null, g6.L5, false), PorterDuff.Mode.SRC_IN));
+        k9 k9Var = new k9((c6) null);
+        k9Var.r(user);
+        imageReceiver.setForUserOrChat(user, k9Var);
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(25.0f));
+        k9 k9Var2 = new k9((c6) null);
+        k9Var2.r(user2);
+        imageReceiver2.setForUserOrChat(user2, k9Var2);
+        imageReceiver2.setRoundRadius(AndroidUtilities.dp(25.0f));
     }
 
-    public static int b(int i10, long j3) {
-        TLRPC.Chat chat;
-        long j10;
-        TLRPC.User user;
-        TLRPC.ChatFull chatFull;
-        ArrayList<TL_communities.CommunityPeer> arrayList;
-        TLRPC.Dialog dialog = null;
-        if (j3 > 0) {
-            TLRPC.User user2 = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
-            if (user2 == null) {
-                return 0;
-            }
-            j10 = user2.linked_community_id;
-            user = user2;
-            chat = null;
-        } else {
-            chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
-            if (chat == null) {
-                return 0;
-            }
-            j10 = chat.linked_community_id;
-            user = null;
-        }
-        if (j10 != 0 && (chatFull = MessagesController.getInstance(i10).getChatFull(j10)) != null && (arrayList = chatFull.linked_peers) != null) {
-            int size = arrayList.size();
-            int i11 = 0;
-            while (i11 < size) {
-                TL_communities.CommunityPeer communityPeer = arrayList.get(i11);
-                i11++;
-                TL_communities.CommunityPeer communityPeer2 = communityPeer;
-                if (DialogObject.getPeerDialogId(communityPeer2.peer) == j3) {
-                    if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f19950id);
-                    }
-                    return c(communityPeer2, chat, user, dialog);
-                }
-            }
-        }
-        return 0;
+    @Override
+    public final void a(bk0 bk0Var) {
+        this.e.setParentView(bk0Var);
+        this.d.setParentView(bk0Var);
     }
 
-    public static int c(TL_communities.CommunityPeer communityPeer, TLRPC.Chat chat, TLRPC.User user, TLRPC.Dialog dialog) {
-        if (communityPeer == null) {
-            return 0;
-        }
-        if (user != null) {
-            if (dialog != null) {
-                return 1;
-            }
-            return 2;
-        } else if (chat == null) {
-            return 0;
-        } else {
-            if (ChatObject.isInChat(chat)) {
-                return 1;
-            }
-            if (!ChatObject.isPublic(chat) && !communityPeer.can_view_history) {
-                if (ChatObject.isCommunityPeerHidden(communityPeer)) {
-                    return 4;
-                }
-                return 3;
-            }
-            return 2;
-        }
+    @Override
+    public final void b(ImageReceiver imageReceiver) {
+        this.d.onDetachedFromWindow();
+        this.e.onDetachedFromWindow();
     }
 
-    public static void d(org.telegram.ui.ActionBar.m2 r8, long r9, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: fi.u0.d(org.telegram.ui.ActionBar.m2, long, int):void");
+    @Override
+    public final void c(ImageReceiver imageReceiver) {
+        this.d.onAttachedToWindow();
+        this.e.onAttachedToWindow();
     }
 
-    public static void e(final a2[] a2VarArr, m2 m2Var, final int i10, TLRPC.Chat chat) {
-        if (a2VarArr[0] != null) {
-            return;
-        }
-        final int fetchChatsToAddToCommunity = MessagesController.getInstance(i10).fetchChatsToAddToCommunity(new h1(a2VarArr, m2Var, i10, chat, 1));
-        ConnectionsManager.getInstance(i10).bindRequestToGuid(fetchChatsToAddToCommunity, m2Var.getClassGuid());
-        a2 a2Var = new a2(m2Var.getContext(), 3, null);
-        a2VarArr[0] = a2Var;
-        a2Var.q(500L);
-        a2VarArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public final void onCancel(DialogInterface dialogInterface) {
-                ConnectionsManager.getInstance(i10).cancelRequest(fetchChatsToAddToCommunity, true);
-                a2VarArr[0] = null;
-            }
-        });
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int x02 = g6.x0(null, g6.L5, false);
+        Paint paint = this.f9572b;
+        paint.setColor(x02);
+        float dp = AndroidUtilities.dp(136.0f) / 2.0f;
+        ImageReceiver imageReceiver = this.d;
+        imageReceiver.setImageCoords(bounds.centerX() - dp, bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+        imageReceiver.draw(canvas);
+        float centerX = (bounds.centerX() - dp) + AndroidUtilities.dp(41.0f);
+        float dp2 = AndroidUtilities.dp(16.0f) + bounds.centerY();
+        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(14.0f), paint);
+        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f9573c);
+        int dp3 = (int) (dp2 + AndroidUtilities.dp(9.0f));
+        Drawable drawable = this.f9574f;
+        drawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (dp2 - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), dp3);
+        drawable.draw(canvas);
+        int centerX2 = bounds.centerX();
+        Paint paint2 = this.f9571a;
+        canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(3.33f) + centerX2, bounds.centerY(), paint2);
+        canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), AndroidUtilities.dp(7.0f) + bounds.centerY(), AndroidUtilities.dp(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
+        ImageReceiver imageReceiver2 = this.e;
+        imageReceiver2.setImageCoords((bounds.centerX() + dp) - AndroidUtilities.dp(50.0f), bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+        imageReceiver2.draw(canvas);
     }
 
-    public static void f(zc zcVar, int i10, boolean z10) {
-        int i11;
-        int i12;
-        String string;
-        int i13;
-        if (i10 == 2) {
-            i11 = R.raw.timer_toast;
-        } else {
-            i11 = R.raw.contact_check;
-        }
-        if (i10 == 2) {
-            i12 = 24;
-        } else {
-            i12 = 36;
-        }
-        if (i10 == 0) {
-            string = LocaleController.getString(R.string.CommunityCommunityCreated);
-        } else if (i10 == 1) {
-            if (z10) {
-                i13 = R.string.CommunityCommunityJoinedChannel;
-            } else {
-                i13 = R.string.CommunityCommunityJoinedGroup;
-            }
-            string = LocaleController.getString(i13);
-        } else {
-            string = LocaleController.getString(R.string.CommunityCommunityPending);
-        }
-        zcVar.G(i11, i12, string).j();
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

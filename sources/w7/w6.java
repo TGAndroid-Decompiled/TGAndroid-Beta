@@ -1,125 +1,27 @@
 package w7;
 
-import android.media.MediaCodec;
-import android.media.MediaExtractor;
-import android.media.MediaFormat;
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+import java.io.Serializable;
 public abstract class w6 {
-    public static a3.z a(File file, qi.s sVar, long j3, long j10, boolean z10) {
-        long d = d(file);
-        long max = Math.max(0L, j3 * 1000);
-        long min = Math.min(d, Math.max(max, j10 * 1000));
-        MediaExtractor mediaExtractor = new MediaExtractor();
-        try {
-            mediaExtractor.setDataSource(file.getAbsolutePath());
-            int c10 = c(mediaExtractor, true);
-            long j11 = -1;
-            if (c10 >= 0) {
-                mediaExtractor.selectTrack(c10);
-                mediaExtractor.seekTo(max, 1);
-                long sampleTime = mediaExtractor.getSampleTime();
-                if (sampleTime >= 0 && sampleTime < min) {
-                    j11 = sampleTime;
-                }
-            }
-            if (j11 >= 0 && j11 < min) {
-                mediaExtractor = new MediaExtractor();
-                try {
-                    mediaExtractor.setDataSource(file.getAbsolutePath());
-                    int c11 = c(mediaExtractor, true);
-                    int c12 = c(mediaExtractor, false);
-                    if (c11 >= 0 && (!z10 || c12 >= 0)) {
-                        sVar.l(mediaExtractor.getTrackFormat(c11), true);
-                        if (z10) {
-                            sVar.l(mediaExtractor.getTrackFormat(c12), false);
-                        }
-                        mediaExtractor.release();
-                        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(2097152);
-                        long j12 = j11;
-                        b(file, sVar, true, j12, min, allocateDirect);
-                        if (z10) {
-                            b(file, sVar, false, j12, min, allocateDirect);
-                        }
-                        return new a3.z(j12 / 1000, (min - j12) / 1000);
-                    }
-                    throw new IOException("Source file has no required tracks");
-                } finally {
-                }
-            }
-            throw new IOException("Trim range has no video sync sample");
-        } finally {
+    public static String a(byte[] bArr) {
+        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+        for (int i10 = 0; i10 < bArr.length; i10++) {
+            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
         }
+        return sb2.toString();
     }
 
-    public static void b(File file, qi.s sVar, boolean z10, long j3, long j10, ByteBuffer byteBuffer) {
-        int i10;
-        boolean z11 = z10;
-        MediaExtractor mediaExtractor = new MediaExtractor();
-        MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-        try {
-            mediaExtractor.setDataSource(file.getAbsolutePath());
-            int c10 = c(mediaExtractor, z11);
-            if (c10 >= 0) {
-                mediaExtractor.selectTrack(c10);
-                if (z11) {
-                    i10 = 1;
-                } else {
-                    i10 = 2;
-                }
-                mediaExtractor.seekTo(j3, i10);
-                while (mediaExtractor.getSampleTime() >= 0 && mediaExtractor.getSampleTime() < j3) {
-                    mediaExtractor.advance();
-                }
-                while (mediaExtractor.getSampleTime() >= 0 && mediaExtractor.getSampleTime() < j10) {
-                    byteBuffer.clear();
-                    int readSampleData = mediaExtractor.readSampleData(byteBuffer, 0);
-                    if (readSampleData >= 0) {
-                        bufferInfo.set(0, readSampleData, mediaExtractor.getSampleTime(), mediaExtractor.getSampleFlags());
-                        sVar.n(z11, byteBuffer, bufferInfo, -j3);
-                        mediaExtractor.advance();
-                        z11 = z10;
-                    }
-                }
-                return;
+    public static long[] b(Serializable serializable) {
+        if (serializable instanceof int[]) {
+            int[] iArr = (int[]) serializable;
+            long[] jArr = new long[iArr.length];
+            for (int i10 = 0; i10 < iArr.length; i10++) {
+                jArr[i10] = iArr[i10];
             }
-            throw new IOException("Source track disappeared");
-        } finally {
-            mediaExtractor.release();
-        }
-    }
-
-    public static int c(MediaExtractor mediaExtractor, boolean z10) {
-        String str;
-        if (z10) {
-            str = "video/";
+            return jArr;
+        } else if (serializable instanceof long[]) {
+            return (long[]) serializable;
         } else {
-            str = "audio/";
-        }
-        for (int i10 = 0; i10 < mediaExtractor.getTrackCount(); i10++) {
-            String string = mediaExtractor.getTrackFormat(i10).getString("mime");
-            if (string != null && string.startsWith(str)) {
-                return i10;
-            }
-        }
-        return -1;
-    }
-
-    public static long d(File file) {
-        MediaExtractor mediaExtractor = new MediaExtractor();
-        try {
-            mediaExtractor.setDataSource(file.getAbsolutePath());
-            long j3 = 0;
-            for (int i10 = 0; i10 < mediaExtractor.getTrackCount(); i10++) {
-                MediaFormat trackFormat = mediaExtractor.getTrackFormat(i10);
-                if (trackFormat.containsKey("durationUs")) {
-                    j3 = Math.max(j3, trackFormat.getLong("durationUs"));
-                }
-            }
-            return j3;
-        } finally {
-            mediaExtractor.release();
+            return null;
         }
     }
 }

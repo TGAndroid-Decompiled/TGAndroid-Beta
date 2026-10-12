@@ -1,45 +1,90 @@
 package ig;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h6;
+import bi.z7;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
 public final class f {
-    public Bitmap f12133a;
-    public Canvas f12134b;
-    public final RectF f12135c = new RectF();
-    public final Paint d;
-    public final c6 f12136e;
-    public int f12137f;
-    public boolean f12138g;
+    public static volatile f[] f11494g = new f[4];
+    public static final Object[] h = new Object[4];
+    public final int f11495a;
+    public long f11496b;
+    public TL_account.connectedBots f11497c;
+    public final ArrayList d = new ArrayList();
+    public boolean e;
+    public boolean f11498f;
 
-    public f(c6 c6Var) {
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f12137f = 0;
-        this.f12138g = true;
-        paint.setColor(0);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.f12136e = c6Var;
+    static {
+        for (int i10 = 0; i10 < 4; i10++) {
+            h[i10] = new Object();
+        }
     }
 
-    public final Bitmap a(int i10, int i11) {
-        int i12 = (i10 + i11) << 10;
-        if (i12 != this.f12137f || this.f12138g) {
-            this.f12138g = false;
-            this.f12137f = i12;
-            this.f12133a = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
-            this.f12134b = new Canvas(this.f12133a);
-            RectF rectF = this.f12135c;
-            rectF.set(0.0f, 0.0f, i11, i10);
-            this.f12134b.drawColor(h6.w0(h6.f20560d6, this.f12136e));
-            this.f12134b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.d);
+    public f(int i10) {
+        this.f11495a = i10;
+    }
+
+    public static f a(int i10) {
+        f fVar;
+        f fVar2 = f11494g[i10];
+        if (fVar2 == null) {
+            synchronized (h[i10]) {
+                try {
+                    fVar = f11494g[i10];
+                    if (fVar == null) {
+                        f[] fVarArr = f11494g;
+                        f fVar3 = new f(i10);
+                        fVarArr[i10] = fVar3;
+                        fVar = fVar3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return fVar;
         }
-        return this.f12133a;
+        return fVar2;
+    }
+
+    public final void b() {
+        this.f11498f = false;
+        c(null);
+    }
+
+    public final void c(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null) {
+            this.d.add(callback);
+        }
+        if (!this.e) {
+            if (System.currentTimeMillis() - this.f11496b <= 60000 && (z10 = this.f11498f)) {
+                if (z10) {
+                    d();
+                    return;
+                }
+                return;
+            }
+            this.e = true;
+            ConnectionsManager.getInstance(this.f11495a).sendRequest(new TL_account.getConnectedBots(), new z7(this, 11));
+        }
+    }
+
+    public final void d() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i10 < arrayList.size()) {
+                if (arrayList.get(i10) != null) {
+                    ((Utilities.Callback) arrayList.get(i10)).run(this.f11497c);
+                }
+                i10++;
+            } else {
+                arrayList.clear();
+                NotificationCenter.getInstance(this.f11495a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+                return;
+            }
+        }
     }
 }

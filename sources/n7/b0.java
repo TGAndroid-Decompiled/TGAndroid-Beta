@@ -14,14 +14,14 @@ public final class b0 extends o {
     }
 
     @Override
-    public final int hashCode() {
-        return this.d.hashCode();
+    public final int h(Object[] objArr) {
+        objArr[0] = this.d;
+        return 1;
     }
 
     @Override
-    public final int i(Object[] objArr) {
-        objArr[0] = this.d;
-        return 1;
+    public final int hashCode() {
+        return this.d.hashCode();
     }
 
     @Override
@@ -30,8 +30,20 @@ public final class b0 extends o {
     }
 
     @Override
-    public final d0 p() {
+    public final d0 o() {
         return new t(this.d);
+    }
+
+    @Override
+    public final m s() {
+        Object[] objArr = {this.d};
+        for (int i10 = 0; i10 < 1; i10++) {
+            i iVar = m.f16200b;
+            if (objArr[i10] == null) {
+                throw new NullPointerException(i2.d.i(i10, "at index "));
+            }
+        }
+        return m.s(1, objArr);
     }
 
     @Override
@@ -40,19 +52,7 @@ public final class b0 extends o {
     }
 
     @Override
-    public final m t() {
-        Object[] objArr = {this.d};
-        for (int i10 = 0; i10 < 1; i10++) {
-            i iVar = m.f16529b;
-            if (objArr[i10] == null) {
-                throw new NullPointerException(hg.c.i(i10, "at index "));
-            }
-        }
-        return m.t(1, objArr);
-    }
-
-    @Override
     public final String toString() {
-        return a1.g.q("[", this.d.toString(), "]");
+        return a1.g.p("[", this.d.toString(), "]");
     }
 }

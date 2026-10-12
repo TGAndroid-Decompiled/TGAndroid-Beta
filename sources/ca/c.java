@@ -1,74 +1,98 @@
 package ca;
 
-import android.os.SystemClock;
+import android.app.Application;
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import i5.d;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import l5.s;
-import n7.z0;
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 public final class c {
-    public final double f4570a;
-    public final double f4571b;
-    public final long f4572c;
-    public final long d;
-    public final int f4573e;
-    public final ArrayBlockingQueue f4574f;
-    public final ThreadPoolExecutor f4575g;
-    public final s h;
-    public final z0 f4576i;
-    public int f4577j;
-    public long f4578k;
+    public final File f4674a;
+    public final File f4675b;
+    public final File f4676c;
+    public final File d;
+    public final File e;
+    public final File f4677f;
 
-    public c(s sVar, da.b bVar, z0 z0Var) {
-        double d = bVar.d;
-        double d10 = bVar.f8227e;
-        this.f4570a = d;
-        this.f4571b = d10;
-        this.f4572c = bVar.f8228f * 1000;
-        this.h = sVar;
-        this.f4576i = z0Var;
-        this.d = SystemClock.elapsedRealtime();
-        int i10 = (int) d;
-        this.f4573e = i10;
-        ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(i10);
-        this.f4574f = arrayBlockingQueue;
-        this.f4575g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
-        this.f4577j = 0;
-        this.f4578k = 0L;
+    public c(Context context) {
+        String str;
+        File filesDir = context.getFilesDir();
+        this.f4674a = filesDir;
+        if (Build.VERSION.SDK_INT >= 28) {
+            str = ".com.google.firebase.crashlytics.files.v2" + File.pathSeparator + Application.getProcessName().replaceAll("[^a-zA-Z0-9.]", "_");
+        } else {
+            str = ".com.google.firebase.crashlytics.files.v1";
+        }
+        File file = new File(filesDir, str);
+        c(file);
+        this.f4675b = file;
+        File file2 = new File(file, "open-sessions");
+        c(file2);
+        this.f4676c = file2;
+        File file3 = new File(file, "reports");
+        c(file3);
+        this.d = file3;
+        File file4 = new File(file, "priority-reports");
+        c(file4);
+        this.e = file4;
+        File file5 = new File(file, "native-reports");
+        c(file5);
+        this.f4677f = file5;
     }
 
-    public final int a() {
-        int max;
-        if (this.f4578k == 0) {
-            this.f4578k = System.currentTimeMillis();
+    public static void a(File file) {
+        if (file.exists() && d(file)) {
+            String str = "Deleted previous Crashlytics file system: " + file.getPath();
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", str, null);
+            }
         }
-        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f4578k) / this.f4572c);
-        if (this.f4574f.size() == this.f4573e) {
-            max = Math.min(100, this.f4577j + currentTimeMillis);
-        } else {
-            max = Math.max(0, this.f4577j - currentTimeMillis);
-        }
-        if (this.f4577j != max) {
-            this.f4577j = max;
-            this.f4578k = System.currentTimeMillis();
-        }
-        return max;
     }
 
-    public final void b(w9.b bVar, TaskCompletionSource taskCompletionSource) {
-        boolean z10;
-        String str = "Sending report through Google DataTransport: " + bVar.f50454b;
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", str, null);
+    public static synchronized void c(File file) {
+        synchronized (c.class) {
+            try {
+                if (file.exists()) {
+                    if (file.isDirectory()) {
+                        return;
+                    }
+                    String str = "Unexpected non-directory file: " + file + "; deleting file and creating new directory.";
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", str, null);
+                    }
+                    file.delete();
+                }
+                if (!file.mkdirs()) {
+                    Log.e("FirebaseCrashlytics", "Could not create Crashlytics-specific directory: " + file, null);
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
-        if (SystemClock.elapsedRealtime() - this.d < 2000) {
-            z10 = true;
-        } else {
-            z10 = false;
+    }
+
+    public static boolean d(File file) {
+        File[] listFiles = file.listFiles();
+        if (listFiles != null) {
+            for (File file2 : listFiles) {
+                d(file2);
+            }
         }
-        this.h.a(new i5.a(null, bVar.f50453a, d.f12014c, null), new b(this, taskCompletionSource, z10, bVar, 0));
+        return file.delete();
+    }
+
+    public static List e(Object[] objArr) {
+        if (objArr == null) {
+            return Collections.EMPTY_LIST;
+        }
+        return Arrays.asList(objArr);
+    }
+
+    public final File b(String str, String str2) {
+        File file = new File(this.f4676c, str);
+        file.mkdirs();
+        return new File(file, str2);
     }
 }

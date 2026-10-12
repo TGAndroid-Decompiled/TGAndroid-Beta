@@ -1,38 +1,46 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class ag implements Utilities.CallbackReturn {
-    public final int f35794a;
-    public final Object f35795b;
-    public final Object f35796c;
+public final class ag implements View.OnLongClickListener {
+    public final int f34209a;
+    public final fo f34210b;
 
-    public ag(int i10, Object obj, Object obj2) {
-        this.f35794a = i10;
-        this.f35795b = obj;
-        this.f35796c = obj2;
+    public ag(fo foVar, int i10) {
+        this.f34209a = i10;
+        this.f34210b = foVar;
     }
 
     @Override
-    public final Object run(Object obj) {
-        org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f35794a) {
+    public final boolean onLongClick(View view) {
+        MessageObject messageObject;
+        MessageObject messageObject2;
+        switch (this.f34209a) {
             case 0:
-                eo eoVar = (eo) this.f35795b;
-                View view = (View) this.f35796c;
-                URLSpan uRLSpan = (URLSpan) obj;
-                MessageObject messageObject = eoVar.f37238d5;
-                if (view instanceof org.telegram.ui.Cells.u1) {
-                    u1Var = (org.telegram.ui.Cells.u1) view;
-                } else {
-                    u1Var = null;
+                fo foVar = this.f34210b;
+                MessageObject messageObject3 = foVar.f35916d5;
+                if (messageObject3 == null) {
+                    return false;
                 }
-                eoVar.X7(uRLSpan, false, messageObject, u1Var);
-                return Boolean.TRUE;
+                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
+                    new org.telegram.ui.Components.zc(org.telegram.ui.Components.nb.a(foVar.getParentActivity()), foVar.f35932ea).k(false).j();
+                }
+                return true;
+            case 1:
+                return fo.W(this.f34210b);
             default:
-                return rh.c.d((View) obj, (String) this.f35795b, (String) this.f35796c, null, null);
+                fo foVar2 = this.f34210b;
+                int i10 = foVar2.ob;
+                if (i10 == 1 && (messageObject2 = foVar2.p5) != null) {
+                    foVar2.j(messageObject2.getId(), 0, true, 0, true, 0);
+                    return true;
+                } else if (foVar2.f35941f5 != null && i10 == 2 && (messageObject = foVar2.f36038n5) != null) {
+                    foVar2.j(messageObject.getId(), 0, true, 0, true, 0);
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
 }

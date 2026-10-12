@@ -1,24 +1,67 @@
 package yh;
 
-import android.content.DialogInterface;
-public final class v1 implements DialogInterface.OnDismissListener {
-    public final int f53540a;
-    public final s3 f53541b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.br;
+import org.telegram.ui.Components.j91;
+import org.telegram.ui.Components.k91;
+import org.telegram.ui.Components.ns0;
+import org.telegram.ui.ProfileActivity;
+public final class v1 extends k91 {
+    public final org.telegram.ui.ActionBar.m2 T;
+    public final ns0 U;
 
-    public v1(s3 s3Var, int i10) {
-        this.f53540a = i10;
-        this.f53541b = s3Var;
+    public v1(ns0 ns0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(context, null);
+        this.U = ns0Var;
+        this.T = m2Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f53540a) {
-            case 0:
-                this.f53541b.f53415k0.setLoading(false);
-                return;
-            default:
-                this.f53541b.f53415k0.setLoading(false);
-                return;
+    public final void h() {
+        ns0 ns0Var = this.U;
+        j91 j91Var = ns0Var.f49093n;
+        if (ns0Var.b() && j91Var != null) {
+            if (ns0Var.J == null) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.q.h(R.string.Gift2NewCollection, new StringBuilder("+ ")));
+                br brVar = new br(R.drawable.poll_add_plus, 0);
+                brVar.spaceScaleX = 0.8f;
+                spannableStringBuilder.setSpan(brVar, 0, 1, 33);
+                ns0Var.J = spannableStringBuilder;
+            }
+            j91Var.a(-1, ns0Var.J);
+        }
+    }
+
+    @Override
+    public final boolean i(MotionEvent motionEvent) {
+        return !this.U.g();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        ns0 ns0Var = this.U;
+        ns0Var.l();
+        org.telegram.ui.ActionBar.m2 m2Var = this.T;
+        if (m2Var instanceof ProfileActivity) {
+            ((ProfileActivity) m2Var).R();
+            View fragmentView = m2Var.getFragmentView();
+            if (fragmentView != null) {
+                fragmentView.invalidate();
+            }
+        }
+        ns0Var.o();
+    }
+
+    @Override
+    public final void z(int i10) {
+        this.U.l();
+        org.telegram.ui.ActionBar.m2 m2Var = this.T;
+        if (m2Var instanceof ProfileActivity) {
+            ((ProfileActivity) m2Var).R();
         }
     }
 }

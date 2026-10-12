@@ -13,7 +13,7 @@ public abstract class a {
             e(mediaStyle, iArr);
         }
         if (mediaSessionCompat$Token != null) {
-            c(mediaStyle, (MediaSession.Token) mediaSessionCompat$Token.f2049b);
+            c(mediaStyle, (MediaSession.Token) mediaSessionCompat$Token.f959b);
         }
         return mediaStyle;
     }

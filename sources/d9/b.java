@@ -1,35 +1,45 @@
 package d9;
-public final class b extends a {
-    public final char f8206a;
+public final class b extends g {
+    public static final b f6425c = new b("CharMatcher.any()", 0);
+    public static final b d = new b("CharMatcher.ascii()", 1);
+    public static final b e = new b("CharMatcher.javaIsoControl()", 2);
+    public static final b f6426f = new b("CharMatcher.none()", 3);
+    public final int f6427b;
 
-    public b(char c10) {
-        this.f8206a = c10;
+    public b(String str, int i10) {
+        super(str);
+        this.f6427b = i10;
     }
 
     @Override
-    public final boolean a(char c10) {
-        if (c10 == this.f8206a) {
-            return true;
+    public final boolean c(char c10) {
+        switch (this.f6427b) {
+            case 0:
+                return true;
+            case 1:
+                if (c10 <= 127) {
+                    return true;
+                }
+                return false;
+            case 2:
+                if (c10 > 31 && (c10 < 127 || c10 > 159)) {
+                    return false;
+                }
+                return true;
+            default:
+                return false;
         }
-        return false;
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("CharMatcher.is('");
-        char[] cArr = new char[6];
-        cArr[0] = '\\';
-        cArr[1] = 'u';
-        cArr[2] = 0;
-        cArr[3] = 0;
-        cArr[4] = 0;
-        cArr[5] = 0;
-        char c10 = this.f8206a;
-        for (int i10 = 0; i10 < 4; i10++) {
-            cArr[5 - i10] = "0123456789ABCDEF".charAt(c10 & 15);
-            c10 = (char) (c10 >> 4);
+    @Override
+    public i d() {
+        switch (this.f6427b) {
+            case 0:
+                return f6426f;
+            case 3:
+                return f6425c;
+            default:
+                return super.d();
         }
-        sb2.append(String.copyValueOf(cArr));
-        sb2.append("')");
-        return sb2.toString();
     }
 }

@@ -72,7 +72,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.virtualDisplay == null) {
             return;
         }
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new p(this, 0));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new q(this, 0));
     }
 
     @Override
@@ -117,7 +117,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        f0.a(this, videoSink);
     }
 
     @Override
@@ -138,6 +138,6 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override
     public synchronized void stopCapture() {
         checkNotDisposed();
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new p(this, 1));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new q(this, 1));
     }
 }

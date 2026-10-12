@@ -1,12 +1,7 @@
 package org.telegram.ui.Components;
-public final class ay extends org.telegram.ui.eo {
-    @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        org.telegram.ui.sk skVar;
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && (skVar = this.Y) != null) {
-            skVar.u1();
-            this.Y.postDelayed(new pq(this, 13), 100L);
-        }
-    }
+
+import org.telegram.tgnet.TLRPC;
+public final class ay {
+    public TLRPC.TL_messages_stickerSet f23634a;
+    public long f23635b;
 }

@@ -1,33 +1,34 @@
 package k4;
 
 import c3.p;
-import e2.v;
+import e2.x;
+import v7.u6;
 public final class d {
-    public final int f14619a;
-    public final long f14620b;
+    public final int f14092a;
+    public final long f14093b;
 
-    public d(int i10, long j3, boolean z10) {
-        this.f14619a = i10;
-        this.f14620b = j3;
+    public d(int i10, long j10, boolean z10) {
+        this.f14092a = i10;
+        this.f14093b = j10;
     }
 
-    public static d b(p pVar, v vVar) {
-        pVar.b(0, 8, vVar.f8581a);
-        vVar.J(0);
-        return new d(vVar.j(), vVar.o(), false);
+    public static d b(p pVar, x xVar) {
+        pVar.a(0, 8, xVar.f8411a);
+        xVar.N(0);
+        return new d(xVar.m(), xVar.r(), false);
     }
 
     public boolean a() {
-        int i10 = this.f14619a;
+        int i10 = this.f14092a;
         if (i10 == 0 || i10 == 1) {
             return true;
         }
         return false;
     }
 
-    public d(int i10, long j3) {
-        e2.d.b(j3 >= 0);
-        this.f14619a = i10;
-        this.f14620b = j3;
+    public d(int i10, long j10) {
+        u6.g(j10 >= 0);
+        this.f14092a = i10;
+        this.f14093b = j10;
     }
 }

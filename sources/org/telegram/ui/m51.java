@@ -1,69 +1,66 @@
 package org.telegram.ui;
 
-import android.graphics.SurfaceTexture;
 import org.telegram.messenger.AndroidUtilities;
-public final class m51 implements org.telegram.ui.Components.n81, org.telegram.ui.Components.j81 {
-    public final n51 f39920a;
+import org.telegram.messenger.MediaController;
+public final class m51 implements Runnable {
+    public final int f38166a;
+    public final r51 f38167b;
 
-    public m51(n51 n51Var) {
-        this.f39920a = n51Var;
+    public m51(r51 r51Var, int i10) {
+        this.f38166a = i10;
+        this.f38167b = r51Var;
     }
 
     @Override
-    public boolean needUpdate() {
-        if (this.f39920a.V.f28425i != null) {
-            return true;
+    public final void run() {
+        switch (this.f38166a) {
+            case 0:
+                r51 r51Var = this.f38167b;
+                m51 m51Var = r51Var.Z;
+                org.telegram.ui.Components.h81 h81Var = r51Var.f39608w;
+                if (h81Var != null) {
+                    r51Var.f39597a0 = ((float) h81Var.n()) / ((float) r51Var.f39608w.p());
+                    p51 p51Var = r51Var.N;
+                    if (p51Var != null) {
+                        p51Var.Xd = (r51Var.f39608w.p() - r51Var.f39608w.n()) / 1000;
+                        r51Var.N.q4();
+                        org.telegram.ui.Components.jp0 seekBarWaveform = r51Var.N.getSeekBarWaveform();
+                        if (seekBarWaveform != null) {
+                            float f7 = r51Var.f39597a0;
+                            seekBarWaveform.J = true;
+                            seekBarWaveform.K = f7;
+                            org.telegram.ui.Cells.u1 u1Var = seekBarWaveform.f26439n;
+                            if (u1Var != null) {
+                                u1Var.invalidate();
+                            }
+                        }
+                    }
+                    if (r51Var.f39608w.y()) {
+                        AndroidUtilities.cancelRunOnUIThread(m51Var);
+                        AndroidUtilities.runOnUIThread(m51Var, 16L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            default:
+                r51 r51Var2 = this.f38167b;
+                if (r51Var2.d == null) {
+                    AndroidUtilities.runOnUIThread(new m51(r51Var2, 2));
+                    org.telegram.ui.Cells.u1 u1Var2 = r51Var2.O;
+                    if (u1Var2 != null) {
+                        u1Var2.setVisibility(0);
+                        r51Var2.O.invalidate();
+                    }
+                }
+                MediaController.getInstance().tryResumePausedAudio();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public void onRenderedFirstFrame(j2.a aVar) {
-    }
-
-    @Override
-    public void onStateChanged(boolean z10, int i10) {
-        n51 n51Var = this.f39920a;
-        if (i10 == 4) {
-            n51Var.dismiss();
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(n51Var.Z);
-        AndroidUtilities.runOnUIThread(n51Var.Z, 16L);
-    }
-
-    @Override
-    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        return false;
-    }
-
-    @Override
-    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
-        this.f39920a.V.e(z10, true, fArr);
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
-        AndroidUtilities.runOnUIThread(new pz0(this, 13));
-    }
-
-    @Override
-    public void onSeekFinished(j2.a aVar) {
-    }
-
-    @Override
-    public void onSeekStarted(j2.a aVar) {
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
-
-    @Override
-    public void onError(org.telegram.ui.Components.q81 q81Var, Exception exc) {
-    }
-
-    @Override
-    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

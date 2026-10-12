@@ -1,49 +1,110 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
-public final class gm extends wu0 {
-    public final MessageObject f38098a;
-    public final MediaController.PhotoEntry f38099b;
-    public final hm f38100c;
+public final class gm implements Runnable {
+    public final int f36437a;
+    public final int f36438b;
+    public final Object f36439c;
+    public final Object d;
 
-    public gm(hm hmVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f38100c = hmVar;
-        this.f38098a = messageObject;
-        this.f38099b = photoEntry;
+    public gm(int i10, Object obj, Object obj2, int i11) {
+        this.f36437a = i11;
+        this.f36438b = i10;
+        this.f36439c = obj;
+        this.d = obj2;
     }
 
-    @Override
-    public final gv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return this.f38100c.f38467a.Q.Ga.E(this.f38098a, fileLocation, i10, z10, false);
+    private final void a() {
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m21((org.telegram.ui.Components.v21) this.f36439c, (org.telegram.ui.Components.yp) this.d, this.f36438b, SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density), 1));
     }
 
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        qm qmVar = this.f38100c.f38467a;
-        MessageObject messageObject = this.f38098a;
-        messageObject.settingAvatar = true;
-        MediaController.PhotoEntry photoEntry = this.f38099b;
-        if (photoEntry.imagePath == null && !photoEntry.isVideo) {
-            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
-            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_photos_updateProfilePhoto.f19935id = tL_inputPhoto;
-            TLRPC.Photo photo = messageObject.messageOwner.action.photo;
-            tL_inputPhoto.f19822id = photo.f19827id;
-            tL_inputPhoto.access_hash = photo.access_hash;
-            tL_inputPhoto.file_reference = photo.file_reference;
-            qmVar.Q.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new ai.v1(29, this, messageObject));
+    private final void b() {
+        MessageObject messageObject = (MessageObject) this.f36439c;
+        org.telegram.ui.Cells.l1 l1Var = (org.telegram.ui.Cells.l1) this.d;
+        HashMap hashMap = org.telegram.ui.Components.f41.P;
+        if (hashMap != null) {
+            hashMap.remove(Integer.valueOf(org.telegram.ui.Components.f41.o(messageObject)));
+        }
+        if (l1Var != null) {
+            l1Var.d0(3);
+        }
+        int i10 = this.f36438b;
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
+    }
+
+    private final void c() {
+        int i10;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        yy yyVar = ((dy) this.f36439c).f35402f0;
+        ArrayList arrayList = yyVar.R1;
+        if (arrayList != null && (i10 = this.f36438b) >= 0 && i10 < arrayList.size()) {
+            yyVar.R1.add(i10, dialog);
+            yyVar.f42325e0[0].q(true);
+        }
+    }
+
+    private final void d() {
+        wy wyVar = (wy) this.f36439c;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        xy xyVar = wyVar.f41693g;
+        yy yyVar = wyVar.h;
+        yyVar.S1 = true;
+        yyVar.getMessagesController().addDialogToFolder(dialog.f19220id, 0, this.f36438b, 0L);
+        yyVar.S1 = false;
+        ArrayList<TLRPC.Dialog> dialogs = yyVar.getMessagesController().getDialogs(0);
+        int indexOf = dialogs.indexOf(dialog);
+        if (indexOf >= 0) {
+            ArrayList<TLRPC.Dialog> dialogs2 = yyVar.getMessagesController().getDialogs(1);
+            if (!dialogs2.isEmpty() || indexOf != 1) {
+                yyVar.x4(true, true);
+                xyVar.f41988x.D();
+                xyVar.q(true);
+                yyVar.l3();
+            }
+            if (dialogs2.isEmpty()) {
+                dialogs.remove(0);
+                if (indexOf == 1) {
+                    yyVar.x4(true, true);
+                    xyVar.q(true);
+                    yyVar.l3();
+                    return;
+                }
+                if (!yyVar.R1.isEmpty()) {
+                    yyVar.R1.remove(0);
+                }
+                xyVar.f41988x.D();
+                xyVar.q(true);
+                return;
+            }
             return;
         }
-        eo eoVar = qmVar.Q;
-        gj gjVar = new gj(messageObject, 5);
-        org.telegram.ui.ActionBar.b5 parentLayout = eoVar.getParentLayout();
-        int currentAccount = eoVar.getCurrentAccount();
-        org.telegram.ui.Components.p50 p50Var = new org.telegram.ui.Components.p50(0, true, true);
-        p50Var.f29381a = eoVar;
-        p50Var.s(photoEntry);
-        p50Var.f29382b = new ha(currentAccount, gjVar, parentLayout, p50Var);
+        xyVar.q(false);
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gm.run():void");
+    }
+
+    public gm(Object obj, int i10, Object obj2, int i11) {
+        this.f36437a = i11;
+        this.f36439c = obj;
+        this.f36438b = i10;
+        this.d = obj2;
+    }
+
+    public gm(Object obj, Object obj2, int i10, int i11) {
+        this.f36437a = i11;
+        this.f36439c = obj;
+        this.d = obj2;
+        this.f36438b = i10;
     }
 }

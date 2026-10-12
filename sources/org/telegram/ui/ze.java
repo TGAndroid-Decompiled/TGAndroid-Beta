@@ -1,138 +1,94 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
+import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 public final class ze implements Runnable {
-    public final int f44804a;
-    public final eo f44805b;
-    public final MessageObject f44806c;
+    public final int f42599a = 0;
+    public final boolean f42600b;
+    public final Object f42601c;
+    public final boolean d;
+    public final Object e;
+    public final Object f42602f;
+    public final Object h;
+    public final Object f42603n;
 
-    public ze(eo eoVar, MessageObject messageObject, int i10) {
-        this.f44804a = i10;
-        this.f44805b = eoVar;
-        this.f44806c = messageObject;
+    public ze(fo foVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, boolean z10, boolean z11) {
+        this.e = foVar;
+        this.f42601c = str;
+        this.f42602f = characterStyle;
+        this.h = messageObject;
+        this.f42603n = u1Var;
+        this.f42600b = z10;
+        this.d = z11;
     }
 
     @Override
     public final void run() {
-        TLRPC.WebPage webPage;
-        boolean z10;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        switch (this.f44804a) {
+        switch (this.f42599a) {
             case 0:
-                MessageObject messageObject = this.f44806c;
-                TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
-                if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
-                    LaunchActivity launchActivity = LaunchActivity.G1;
-                    if (launchActivity == null || launchActivity.P() == null || LaunchActivity.G1.P().l(messageObject) == null) {
-                        this.f44805b.createArticleViewer(false).N(messageObject, null, null, null);
-                        return;
-                    }
+                fo foVar = (fo) this.e;
+                String str = (String) this.f42601c;
+                CharacterStyle characterStyle = (CharacterStyle) this.f42602f;
+                MessageObject messageObject = (MessageObject) this.h;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f42603n;
+                if (str.startsWith("video?")) {
+                    foVar.X7(characterStyle, false, messageObject, u1Var);
+                    return;
+                } else if (this.f42600b && !this.d) {
+                    foVar.getParentActivity();
+                    pf.d.n(str);
+                    return;
+                } else {
+                    foVar.O9(messageObject, false, false);
+                    foVar.ea(characterStyle, str, false, u1Var, messageObject);
                     return;
                 }
-                return;
             case 1:
-                eo eoVar = this.f44805b;
-                eoVar.getClass();
-                MessageObject messageObject2 = this.f44806c;
-                TLRPC.Message message = messageObject2.messageOwner;
-                int i14 = message.ttl;
-                if (i14 != Integer.MAX_VALUE) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                xh.l lVar = (xh.l) this.e;
+                Runnable runnable = (Runnable) this.f42602f;
+                String str2 = (String) this.f42601c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
+                TLObject tLObject = (TLObject) this.f42603n;
+                lVar.f48493w = false;
+                lVar.f48496z = true;
+                if (this.f42600b) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                if (i14 == Integer.MAX_VALUE) {
-                    i10 = 0;
-                } else {
-                    i10 = i14;
-                }
-                message.destroyTime = eoVar.getConnectionsManager().getCurrentTime() + i10;
-                messageObject2.messageOwner.destroyTimeMillis = eoVar.getConnectionsManager().getCurrentTimeMillis() + (i10 * 1000);
-                if (eoVar.h != null) {
-                    eoVar.getMessagesController().markMessageAsRead(eoVar.T5, messageObject2.messageOwner.random_id, i10);
-                    return;
-                } else {
-                    eoVar.getMessagesController().markMessageAsRead2(eoVar.T5, messageObject2.getId(), null, i10, 0L, z10);
+                xh.l.k(lVar.f48488q, false, false);
+                if (TextUtils.equals(str2, lVar.f48491t) && tL_error == null) {
+                    lVar.f48496z = true;
+                    lVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
                     return;
                 }
-            case 2:
-                eo eoVar2 = this.f44805b;
-                eoVar2.getClass();
-                MessageObject messageObject3 = this.f44806c;
-                int replyMsgId = messageObject3.getReplyMsgId();
-                int i15 = messageObject3.messageOwner.f19824id;
-                if (messageObject3.getDialogId() == eoVar2.L6) {
-                    i11 = 1;
-                } else {
-                    i11 = 0;
-                }
-                eoVar2.bb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
-                return;
-            case 3:
-                eo eoVar3 = this.f44805b;
-                eoVar3.getClass();
-                MessageObject messageObject4 = this.f44806c;
-                int replyMsgId2 = messageObject4.getReplyMsgId();
-                int i16 = messageObject4.messageOwner.f19824id;
-                if (messageObject4.getDialogId() == eoVar3.L6) {
-                    i12 = 1;
-                } else {
-                    i12 = 0;
-                }
-                eoVar3.bb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
-                return;
-            case 4:
-                eo eoVar4 = this.f44805b;
-                eoVar4.getClass();
-                MessageObject messageObject5 = this.f44806c;
-                int replyMsgId3 = messageObject5.getReplyMsgId();
-                int i17 = messageObject5.messageOwner.f19824id;
-                if (messageObject5.getDialogId() == eoVar4.L6) {
-                    i13 = 1;
-                } else {
-                    i13 = 0;
-                }
-                eoVar4.F(replyMsgId3, i17, i13, 0, true, false);
-                return;
-            case 5:
-                int id2 = this.f44806c.getId();
-                eo eoVar5 = this.f44805b;
-                eoVar5.bb(id2, 0, true, 0, true, 0, null, null, new vf(eoVar5, 23));
-                if (eoVar5.f37288h6.isEmpty()) {
-                    eoVar5.Pb(false);
-                    return;
-                }
-                return;
-            case 6:
-                eo eoVar6 = this.f44805b;
-                eoVar6.getClass();
-                MessageObject messageObject6 = this.f44806c;
-                if (messageObject6.isVideo()) {
-                    eoVar6.ma(null, messageObject6);
-                    return;
-                } else {
-                    MediaController.getInstance().playMessage(messageObject6);
-                    return;
-                }
-            case 7:
-                eo eoVar7 = this.f44805b;
-                eoVar7.getMessagesController().pinMessage(eoVar7.f37246e, eoVar7.f37258f, this.f44806c.getId(), true, false, false);
-                eoVar7.A3 = null;
                 return;
             default:
-                eo eoVar8 = this.f44805b;
-                org.telegram.ui.Components.zc.a0(eoVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f44806c;
-                eoVar8.Ja(messageObject7);
-                eoVar8.La(messageObject7);
+                zh.r3.B0((zh.r3) this.e, (TLObject) this.f42601c, this.f42600b, (TLRPC.Document) this.f42602f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f42603n);
                 return;
         }
+    }
+
+    public ze(xh.l lVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
+        this.e = lVar;
+        this.f42600b = z10;
+        this.f42602f = runnable;
+        this.f42601c = str;
+        this.h = tL_error;
+        this.f42603n = tLObject;
+        this.d = z11;
+    }
+
+    public ze(zh.r3 r3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
+        this.e = r3Var;
+        this.f42601c = tLObject;
+        this.f42600b = z10;
+        this.f42602f = document;
+        this.d = z11;
+        this.h = tL_error;
+        this.f42603n = savestargift;
     }
 }

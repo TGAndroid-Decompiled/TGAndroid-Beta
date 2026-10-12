@@ -6,90 +6,90 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
+import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.es;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.Components.q6;
+import org.telegram.ui.Components.r6;
 public final class t1 {
-    public final q6 f43408a;
-    public final q6 f43409b;
-    public final g6 f43410c;
+    public final r6 f41490a;
+    public final r6 f41491b;
+    public final g6 f41492c;
     public int d;
-    public boolean f43411e;
-    public int f43412f;
-    public final Drawable f43413g;
-    public final org.telegram.ui.l0 h;
+    public boolean e;
+    public int f41493f;
+    public final Drawable f41494g;
+    public final org.telegram.ui.m0 h;
 
-    public t1(org.telegram.ui.l0 l0Var) {
-        this.h = l0Var;
-        q6 q6Var = new q6(true, true, true);
-        this.f43408a = q6Var;
-        q6 q6Var2 = new q6(true, true, true);
-        this.f43409b = q6Var2;
-        this.f43410c = new g6(l0Var, 0L, 300L, js.h);
-        this.f43411e = false;
-        q6Var.K = true;
-        q6Var.w(AndroidUtilities.dp(18.33f));
-        q6Var.A = 0.6f;
-        q6Var.x(AndroidUtilities.bold());
-        q6Var.q(false);
-        q6Var.setCallback(l0Var);
-        q6Var.M = 9999999;
-        q6Var2.K = true;
-        q6Var2.w(AndroidUtilities.dp(14.0f));
-        q6Var2.q(false);
-        q6Var2.setCallback(l0Var);
-        q6Var2.M = 9999999;
-        this.f43413g = l0Var.getContext().getResources().getDrawable(R.drawable.warning_sign).mutate();
+    public t1(org.telegram.ui.m0 m0Var) {
+        this.h = m0Var;
+        r6 r6Var = new r6(true, true, true);
+        this.f41490a = r6Var;
+        r6 r6Var2 = new r6(true, true, true);
+        this.f41491b = r6Var2;
+        this.f41492c = new g6(m0Var, 0L, 300L, es.h);
+        this.e = false;
+        r6Var.K = true;
+        r6Var.w(AndroidUtilities.dp(18.33f));
+        r6Var.A = 0.6f;
+        r6Var.x(AndroidUtilities.bold());
+        r6Var.q(false);
+        r6Var.setCallback(m0Var);
+        r6Var.M = 9999999;
+        r6Var2.K = true;
+        r6Var2.w(AndroidUtilities.dp(14.0f));
+        r6Var2.q(false);
+        r6Var2.setCallback(m0Var);
+        r6Var2.M = 9999999;
+        this.f41494g = m0Var.getContext().getResources().getDrawable(R.drawable.warning_sign).mutate();
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11) {
-        org.telegram.ui.l0 l0Var = this.h;
-        RectF rectF = l0Var.f43419a;
+        org.telegram.ui.m0 m0Var = this.h;
+        RectF rectF = m0Var.f41500a;
         rectF.set(0.0f, 0.0f, f7, f10);
         canvas.saveLayerAlpha(rectF, (int) (f11 * 255.0f), 31);
-        q6 q6Var = this.f43408a;
-        float i10 = q6Var.i();
-        q6 q6Var2 = this.f43409b;
-        float i11 = q6Var2.i();
-        TextPaint textPaint = q6Var2.f29688a;
+        r6 r6Var = this.f41490a;
+        float i10 = r6Var.i();
+        r6 r6Var2 = this.f41491b;
+        float i11 = r6Var2.i();
+        TextPaint textPaint = r6Var2.f28746a;
         float f12 = i11 * i10;
         canvas.save();
         float f13 = 0.82f * f10;
-        canvas.translate(0.0f, com.google.android.gms.internal.vision.e2.y(1.0f, l0Var.G, f13, -AndroidUtilities.dp(1.0f)));
+        canvas.translate(0.0f, k3.y(1.0f, m0Var.G, f13, -AndroidUtilities.dp(1.0f)));
         canvas.translate(0.0f, (-AndroidUtilities.dp(4.0f)) * f12);
-        float lerp = AndroidUtilities.lerp(1.0f, 0.86f, f12) * l0Var.G;
+        float lerp = AndroidUtilities.lerp(1.0f, 0.86f, f12) * m0Var.G;
         canvas.scale(lerp, lerp, 0.0f, 0.0f);
-        q6Var.o(0.0f, 0.0f, f7, f10);
-        q6Var.draw(canvas);
+        r6Var.o(0.0f, 0.0f, f7, f10);
+        r6Var.draw(canvas);
         canvas.restore();
-        float e7 = this.f43410c.e(this.f43411e);
+        float e = this.f41492c.e(this.e);
         canvas.save();
-        float f14 = ((1.0f - l0Var.G) * f13 * f12) + (-AndroidUtilities.dp(1.0f));
-        canvas.translate(0.0f, com.google.android.gms.internal.vision.e2.b(1.0f, f12, AndroidUtilities.dp(4.0f), (AndroidUtilities.dp(14.0f) * f12) + f14));
-        float lerp2 = AndroidUtilities.lerp(1.15f, 0.9f, f12) * l0Var.G;
+        float f14 = ((1.0f - m0Var.G) * f13 * f12) + (-AndroidUtilities.dp(1.0f));
+        canvas.translate(0.0f, k3.D(1.0f, f12, AndroidUtilities.dp(4.0f), (AndroidUtilities.dp(14.0f) * f12) + f14));
+        float lerp2 = AndroidUtilities.lerp(1.15f, 0.9f, f12) * m0Var.G;
         canvas.scale(lerp2, lerp2, 0.0f, 0.0f);
-        q6Var2.u(i0.a.d(e7, this.d, h6.x0(null, h6.f20800q7, false)));
-        if (e7 > 0.0f) {
-            int i12 = this.f43412f;
+        r6Var2.u(i0.a.d(e, this.d, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20139q7, false)));
+        if (e > 0.0f) {
+            int i12 = this.f41493f;
             int color = textPaint.getColor();
-            Drawable drawable = this.f43413g;
+            Drawable drawable = this.f41494g;
             if (i12 != color) {
                 int color2 = textPaint.getColor();
-                this.f43412f = color2;
+                this.f41493f = color2;
                 drawable.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
             }
-            drawable.setAlpha((int) (e7 * 255.0f));
+            drawable.setAlpha((int) (e * 255.0f));
             drawable.setBounds(0, ((int) (f10 - AndroidUtilities.dp(16.0f))) / 2, AndroidUtilities.dp(16.0f), ((int) (AndroidUtilities.dp(16.0f) + f10)) / 2);
             drawable.draw(canvas);
         }
-        q6Var2.o(AndroidUtilities.dp(20.0f) * e7, 0.0f, f7, f10);
-        q6Var2.draw(canvas);
+        r6Var2.o(AndroidUtilities.dp(20.0f) * e, 0.0f, f7, f10);
+        r6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f7 - AndroidUtilities.dp(12.0f), 0.0f, f7, f10);
-        l0Var.f43442r0.b(canvas, rectF, 2, 1.0f);
+        m0Var.f41522r0.b(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 }

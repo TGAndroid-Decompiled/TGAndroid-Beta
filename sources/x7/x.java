@@ -1,10 +1,10 @@
 package x7;
 public final class x extends com.google.android.gms.internal.cast.j0 {
-    public final transient Object[] f51268e;
+    public final transient Object[] e;
 
     public x(Object[] objArr) {
         super(5);
-        this.f51268e = objArr;
+        this.e = objArr;
     }
 
     @Override

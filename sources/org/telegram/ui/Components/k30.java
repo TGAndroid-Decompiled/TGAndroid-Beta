@@ -1,69 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.LinearGradient;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Shader;
-import android.view.View;
-public final class k30 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27740a;
-    public final int f27741b;
-    public final int f27742c;
-    public final int d;
-    public final int f27743e;
-    public final View f27744f;
+import android.animation.AnimatorSet;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Point;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public final class k30 extends FrameLayout {
+    public float f26568a;
+    public float f26569b;
+    public boolean f26570c;
+    public AnimatorSet d;
+    public final j30 e;
+    public final ve f26571f;
+    public final float h;
+    public final m30 f26572n;
 
-    public k30(View view, int i10, int i11, int i12, int i13, int i14) {
-        this.f27740a = i14;
-        this.f27744f = view;
-        this.f27741b = i10;
-        this.f27742c = i11;
-        this.d = i12;
-        this.f27743e = i13;
+    public k30(m30 m30Var, Context context, float f7) {
+        super(context);
+        this.f26572n = m30Var;
+        this.h = f7;
+        this.e = new j30(this);
+        this.f26571f = new ve(7);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f27740a;
-        int i11 = this.f27743e;
-        int i12 = this.d;
-        int i13 = this.f27742c;
-        int i14 = this.f27741b;
-        View view = this.f27744f;
-        switch (i10) {
-            case 0:
-                l30 l30Var = (l30) view;
-                l30Var.L = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i14, i13);
-                l30Var.M = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
-                l30Var.F.setColorFilter(new PorterDuffColorFilter(l30Var.L, PorterDuff.Mode.MULTIPLY));
-                l30Var.E.setColor(l30Var.L);
-                l30Var.f28001r.setColor(l30Var.M);
-                l30Var.J.d(i0.a.k(l30Var.M, 38));
-                l30Var.invalidate();
-                return;
-            case 1:
-                org.telegram.ui.Components.voip.v vVar = (org.telegram.ui.Components.voip.v) view;
-                vVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vVar.D0 = i0.a.d(floatValue, i14, i13);
-                int d = i0.a.d(floatValue, i12, i11);
-                vVar.F0 = d;
-                vVar.T.setColor(d);
-                if (vVar.S > 0.0f) {
-                    vVar.invalidate();
-                    return;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        Point point = AndroidUtilities.displaySize;
+        int i12 = point.x;
+        m30 m30Var = this.f26572n;
+        if (i12 != m30Var.I || m30Var.J != point.y) {
+            m30Var.I = i12;
+            m30Var.J = point.y;
+            if (m30Var.K < 0.0f) {
+                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
+                this.f26572n.K = sharedPreferences.getFloat("relativeX", 1.0f);
+                this.f26572n.L = sharedPreferences.getFloat("relativeY", 0.4f);
+            }
+            m30 m30Var2 = m30.f27175d0;
+            if (m30Var2 != null) {
+                m30 m30Var3 = this.f26572n;
+                float f7 = m30Var3.K;
+                float f10 = m30Var3.L;
+                float f11 = -AndroidUtilities.dp(36.0f);
+                m30Var2.f27185r.x = (int) com.google.android.gms.internal.play_billing.k3.y(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
+                m30Var2.f27185r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
+                m30Var2.h();
+                k30 k30Var = m30Var2.f27177a;
+                if (k30Var.getParent() != null) {
+                    m30Var2.f27184n.updateViewLayout(k30Var, m30Var2.f27185r);
                 }
-                return;
-            default:
-                yh.e8 e8Var = (yh.e8) view;
-                e8Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e8Var.f52699r = i0.a.d(floatValue2, i14, i13);
-                e8Var.f52700s = i0.a.d(floatValue2, i12, i11);
-                e8Var.f52703y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{e8Var.f52699r, e8Var.f52700s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                e8Var.invalidate();
-                return;
+            }
         }
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k30.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

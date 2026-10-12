@@ -1,40 +1,67 @@
 package org.telegram.ui.Wallet;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class e8 implements TextWatcher {
-    public boolean f34686a;
-    public final TextView f34687b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class e8 extends ReplacementSpan {
+    public final String f33152a;
+    public final String f33153b;
+    public final boolean f33154c;
+    public float d;
+    public int e;
+    public int f33155f;
+    public g8 h;
+    public g8 f33156n;
+    public final h8 f33157r;
 
-    public e8(hg.b1 b1Var, TextView textView) {
-        this.f34687b = textView;
-        this.f34686a = TextUtils.isEmpty(b1Var.getText());
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        if (isEmpty != this.f34686a) {
-            this.f34686a = isEmpty;
-            if (isEmpty) {
-                i10 = R.string.Remove;
-            } else {
-                i10 = R.string.Add;
-            }
-            this.f34687b.setText(LocaleController.getString(i10));
+    public e8(h8 h8Var, String str, boolean z10, boolean z11) {
+        String str2;
+        this.f33157r = h8Var;
+        this.f33152a = str;
+        if (z10) {
+            str2 = h8Var.O;
+        } else {
+            str2 = "";
         }
+        this.f33153b = str2;
+        this.f33154c = z11;
+    }
+
+    public final int a() {
+        int i10 = this.e;
+        return Math.round((h8.R.getInterpolation(this.f33157r.H) * (this.f33155f - i10)) + i10);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        Canvas canvas2;
+        Paint paint2;
+        int i15;
+        float textSize = paint.getTextSize();
+        if (this.f33154c) {
+            paint.setTextSize((28.0f * textSize) / 44.0f);
+        }
+        float f10 = f7 - this.d;
+        g8 g8Var = this.f33156n;
+        if (g8Var != null) {
+            paint2 = paint;
+            i15 = i13;
+            canvas2 = canvas;
+            g8Var.b(canvas2, paint2, this.f33153b, f10, i15);
+        } else {
+            canvas2 = canvas;
+            paint2 = paint;
+            i15 = i13;
+        }
+        this.h.b(canvas2, paint2, this.f33152a, f10, i15);
+        paint2.setTextSize(textSize);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            paint.getFontMetricsInt(fontMetricsInt);
+        }
+        return a();
     }
 }

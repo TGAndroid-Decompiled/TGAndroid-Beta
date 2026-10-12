@@ -1,35 +1,49 @@
 package org.telegram.ui.Components.voip;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.webrtc.RendererCommon;
-public final class j1 implements RendererCommon.RendererEvents {
-    public final k1 f31732a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import w7.a6;
+public final class j1 extends FrameLayout {
+    public final o1 f30250a;
+    public final RectF f30251b;
 
-    public j1(k1 k1Var) {
-        this.f31732a = k1Var;
+    public j1(Context context, o1 o1Var) {
+        super(context);
+        this.f30251b = new RectF();
+        this.f30250a = o1Var;
+        o1Var.a(this);
+        setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        textView.setTextColor(-1);
+        textView.setText(LocaleController.getString(R.string.VoipRateCallTitle));
+        textView.setTextSize(1, 15.0f);
+        textView.setGravity(1);
+        textView.setTypeface(AndroidUtilities.bold());
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 15.0f);
+        textView2.setTextColor(-1);
+        textView2.setGravity(1);
+        textView2.setText(LocaleController.getString(R.string.VoipRateCallDescription));
+        addView(textView, a6.a(-2.0f, 0.0f, 24.0f, 0.0f, 0.0f, -1, 3));
+        addView(textView2, a6.a(-2.0f, 0.0f, 50.0f, 0.0f, 0.0f, -1, 3));
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        k1 k1Var = this.f31732a;
-        k1Var.f31753x = true;
-        com.google.android.gms.internal.cast.p pVar = k1Var.Y;
-        if (pVar != null) {
-            pVar.run();
-            k1Var.Y = null;
-        }
-        AndroidUtilities.runOnUIThread(new i2.h0(this, 21));
-    }
-
-    @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
-        int i13 = (i12 / 90) % 2;
-        k1 k1Var = this.f31732a;
-        if (i13 == 0) {
-            k1Var.U = Float.valueOf(i11 / i10);
-        } else {
-            k1Var.U = Float.valueOf(i10 / i11);
-        }
-        AndroidUtilities.runOnUIThread(new gg.n(this, i10, i11, 10));
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f30251b;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        float x10 = ((View) getParent()).getX() + getX();
+        float y3 = ((View) getParent()).getY() + getY();
+        o1 o1Var = this.f30250a;
+        o1Var.d(x10, y3);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), o1Var.b());
+        super.dispatchDraw(canvas);
     }
 }

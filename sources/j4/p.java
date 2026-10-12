@@ -1,37 +1,37 @@
 package j4;
 
 import android.util.SparseArray;
-import c3.h0;
+import c3.i0;
 public final class p {
-    public final h0 f13883a;
-    public final boolean f13884b;
-    public final boolean f13885c;
-    public final a4.g f13887f;
-    public byte[] f13888g;
+    public final i0 f12712a;
+    public final boolean f12713b;
+    public final boolean f12714c;
+    public final f2.t f12715f;
+    public byte[] f12716g;
     public int h;
-    public int f13889i;
-    public long f13890j;
-    public long f13892l;
-    public long f13896p;
-    public long f13897q;
-    public boolean f13898r;
-    public boolean f13899s;
+    public int f12717i;
+    public long f12718j;
+    public long f12720l;
+    public long f12724p;
+    public long f12725q;
+    public boolean f12726r;
+    public boolean f12727s;
     public final SparseArray d = new SparseArray();
-    public final SparseArray f13886e = new SparseArray();
-    public o f13893m = new Object();
-    public o f13894n = new Object();
-    public boolean f13891k = false;
-    public boolean f13895o = false;
+    public final SparseArray e = new SparseArray();
+    public o f12721m = new Object();
+    public o f12722n = new Object();
+    public boolean f12719k = false;
+    public boolean f12723o = false;
 
-    public p(h0 h0Var, boolean z10, boolean z11) {
-        this.f13883a = h0Var;
-        this.f13884b = z10;
-        this.f13885c = z11;
+    public p(i0 i0Var, boolean z10, boolean z11) {
+        this.f12712a = i0Var;
+        this.f12713b = z10;
+        this.f12714c = z11;
         byte[] bArr = new byte[128];
-        this.f13888g = bArr;
-        this.f13887f = new a4.g(bArr, 0, 0);
-        o oVar = this.f13894n;
-        oVar.f13870b = false;
-        oVar.f13869a = false;
+        this.f12716g = bArr;
+        this.f12715f = new f2.t(bArr, 0, 0);
+        o oVar = this.f12722n;
+        oVar.f12700b = false;
+        oVar.f12699a = false;
     }
 }

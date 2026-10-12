@@ -3,7 +3,7 @@ package w7;
 import android.net.Uri;
 public abstract class u8 {
     public static Uri a(Uri uri) {
-        if (uri.getQueryParameter("CMCD") != null) {
+        if (uri.isHierarchical() && uri.getQueryParameter("CMCD") != null) {
             Uri.Builder buildUpon = uri.buildUpon();
             buildUpon.clearQuery();
             for (String str : uri.getQueryParameterNames()) {

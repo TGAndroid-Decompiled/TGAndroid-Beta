@@ -9,7 +9,7 @@ public final class ContactsLoadingObserver {
     private final int currentAccount;
     private final Handler handler;
     private final NotificationCenter notificationCenter;
-    private final NotificationCenter.NotificationCenterDelegate observer = new a2(this, 0);
+    private final NotificationCenter.NotificationCenterDelegate observer = new z1(this, 0);
     private final Runnable releaseRunnable;
     private boolean released;
 
@@ -21,7 +21,7 @@ public final class ContactsLoadingObserver {
         this.callback = callback;
         int i10 = UserConfig.selectedAccount;
         this.currentAccount = i10;
-        this.releaseRunnable = new i1(this, 16);
+        this.releaseRunnable = new h1(this, 16);
         this.contactsController = ContactsController.getInstance(i10);
         this.notificationCenter = NotificationCenter.getInstance(i10);
         this.handler = new Handler(Looper.myLooper());
@@ -41,8 +41,8 @@ public final class ContactsLoadingObserver {
         onContactsLoadingStateUpdated(this.currentAccount, true);
     }
 
-    public static void observe(Callback callback, long j3) {
-        new ContactsLoadingObserver(callback).start(j3);
+    public static void observe(Callback callback, long j10) {
+        new ContactsLoadingObserver(callback).start(j10);
     }
 
     private boolean onContactsLoadingStateUpdated(int i10, boolean z10) {
@@ -72,10 +72,10 @@ public final class ContactsLoadingObserver {
         }
     }
 
-    public void start(long j3) {
+    public void start(long j10) {
         if (!onContactsLoadingStateUpdated(this.currentAccount, false)) {
             this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
-            this.handler.postDelayed(this.releaseRunnable, j3);
+            this.handler.postDelayed(this.releaseRunnable, j10);
         }
     }
 }

@@ -1,119 +1,45 @@
 package org.telegram.messenger;
-
-import android.os.Bundle;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.BotFullscreenButtons;
-import org.telegram.messenger.CompoundEmoji;
-import org.telegram.messenger.FilesMigrationService;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationBadge;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class i1 implements Runnable {
-    public final int f17837a;
-    public final Object f17838b;
+    public final int f17456a;
+    public final ContactsController f17457b;
 
-    public i1(Object obj, int i10) {
-        this.f17837a = i10;
-        this.f17838b = obj;
+    public i1(ContactsController contactsController, int i10) {
+        this.f17456a = i10;
+        this.f17457b = contactsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f17837a) {
+        switch (this.f17456a) {
             case 0:
-                CompoundEmoji.DrawableInfo.a((CompoundEmoji.DrawableInfo) this.f17838b);
+                ContactsController.e0(this.f17457b);
                 return;
             case 1:
-                ((FeedRemoteViewsFactory) this.f17838b).lambda$onDataSetChanged$0();
+                ContactsController.G(this.f17457b);
                 return;
             case 2:
-                ((FilesMigrationService.AnonymousClass1) this.f17838b).lambda$run$0();
+                ContactsController.n(this.f17457b);
                 return;
             case 3:
-                ((ImageLoader.AnonymousClass6) this.f17838b).lambda$onReceive$0();
+                ContactsController.N(this.f17457b);
                 return;
             case 4:
-                ((LocaleController.TimeZoneChangedReceiver) this.f17838b).lambda$onReceive$0();
+                ContactsController.b(this.f17457b);
                 return;
             case 5:
-                ((MediaController.AnonymousClass7) this.f17838b).lambda$onSurfaceDestroyed$0();
+                ContactsController.B(this.f17457b);
                 return;
             case 6:
-                ((MediaController.AnonymousClass9) this.f17838b).lambda$onSurfaceDestroyed$0();
+                ContactsController.k(this.f17457b);
                 return;
             case 7:
-                ((MediaController.GalleryObserverInternal) this.f17838b).lambda$scheduleReloadRunnable$0();
+                ContactsController.a(this.f17457b);
                 return;
             case 8:
-                ((MediaController.MusicListenReporter) this.f17838b).report();
-                return;
-            case 9:
-                MediaController.VideoConvertRunnable.lambda$runConversion$0((MediaController.VideoConvertMessage) this.f17838b);
-                return;
-            case 10:
-                ((TelegramMediaSession.SessionCallback) this.f17838b).lambda$notifyPlayStateForNotificationRefresh$0();
-                return;
-            case 11:
-                ANRDetector.a((ANRDetector) this.f17838b);
-                return;
-            case 12:
-                AndroidUtilities.lambda$notifyDataSetChanged$26((RecyclerView) this.f17838b);
-                return;
-            case 13:
-                BotFullscreenButtons.a((BotFullscreenButtons) this.f17838b);
-                return;
-            case 14:
-                ((BotFullscreenButtons.OptionsIcon) this.f17838b).invalidateSelf();
-                return;
-            case 15:
-                CompoundEmoji.CompoundEmojiDrawable.a((CompoundEmoji.CompoundEmojiDrawable) this.f17838b);
-                return;
-            case 16:
-                ContactsLoadingObserver.b((ContactsLoadingObserver) this.f17838b);
-                return;
-            case 17:
-                ((FactCheckController) this.f17838b).loadMissing();
-                return;
-            case 18:
-                FileLoaderPriorityQueue.a((FileLoaderPriorityQueue) this.f17838b);
-                return;
-            case 19:
-                ((FilePathDatabase) this.f17838b).lambda$clear$3();
-                return;
-            case 20:
-                FileRefController.lambda$onRequestComplete$46((TLRPC.TL_theme) this.f17838b);
-                return;
-            case 21:
-                ((ImageReceiver) this.f17838b).invalidate();
-                return;
-            case 22:
-                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.a2) this.f17838b);
-                return;
-            case 23:
-                ((org.telegram.ui.Components.qc) this.f17838b).f();
-                return;
-            case 24:
-                MediaDataController.lambda$addRecentGif$27((TLRPC.Document) this.f17838b);
-                return;
-            case 25:
-                MessagesController.lambda$setContentSettings$506((TLRPC.TL_error) this.f17838b);
-                return;
-            case 26:
-                MessagesController.lambda$performLogout$320((TLObject) this.f17838b);
-                return;
-            case 27:
-                MessagesController.lambda$convertToGigaGroup$267((MessagesStorage.BooleanCallback) this.f17838b);
-                return;
-            case 28:
-                ((MusicPlayerService) this.f17838b).stopSelf();
+                ContactsController.s(this.f17457b);
                 return;
             default:
-                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f17838b);
+                ContactsController.t(this.f17457b);
                 return;
         }
     }

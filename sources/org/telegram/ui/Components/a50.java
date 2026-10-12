@@ -1,54 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class a50 extends AnimatorListenerAdapter {
-    public final int f24236a;
-    public final c50 f24237b;
+public final class a50 extends Drawable {
+    public byte[] f23438a;
+    public final Paint f23439b = new Paint();
+    public final int[] f23440c = {-1, -2758925, -13805707, -13657655};
 
-    public a50(c50 c50Var, int i10) {
-        this.f24236a = i10;
-        this.f24237b = c50Var;
+    @Override
+    public final void draw(Canvas canvas) {
+        byte[] bArr = this.f23438a;
+        if (bArr != null) {
+            int length = bArr.length;
+            int[] iArr = this.f23440c;
+            Paint paint = this.f23439b;
+            if (length == 16) {
+                float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+                float f7 = 8.0f * floor;
+                float max = Math.max(0.0f, (getBounds().width() - f7) / 2.0f);
+                float max2 = Math.max(0.0f, (getBounds().height() - f7) / 2.0f);
+                int i10 = 0;
+                for (int i11 = 0; i11 < 8; i11++) {
+                    int i12 = 0;
+                    while (i12 < 8) {
+                        int i13 = i10 + 2;
+                        paint.setColor(iArr[Math.abs((this.f23438a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
+                        float f10 = (i12 * floor) + max;
+                        float f11 = i11 * floor;
+                        canvas.drawRect(f10, f11 + max2, f10 + floor, f11 + floor + max2, paint);
+                        i12++;
+                        i10 = i13;
+                    }
+                }
+                return;
+            }
+            float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
+            float f12 = 12.0f * floor2;
+            float max3 = Math.max(0.0f, (getBounds().width() - f12) / 2.0f);
+            float max4 = Math.max(0.0f, (getBounds().height() - f12) / 2.0f);
+            int i14 = 0;
+            int i15 = 0;
+            while (i15 < 12) {
+                int i16 = i14;
+                for (int i17 = 0; i17 < 12; i17++) {
+                    paint.setColor(iArr[Math.abs((this.f23438a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
+                    float f13 = (i17 * floor2) + max3;
+                    float f14 = i15 * floor2;
+                    canvas.drawRect(f13, f14 + max4, f13 + floor2, f14 + floor2 + max4, paint);
+                    i16 += 2;
+                }
+                i15++;
+                i14 = i16;
+            }
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        long j3;
-        switch (this.f24236a) {
-            case 0:
-                c50 c50Var = this.f24237b;
-                c50Var.f24818f = null;
-                if (!c50Var.H) {
-                    pq pqVar = new pq(this, 21);
-                    c50Var.h = pqVar;
-                    if (c50Var.f24819n == 0) {
-                        j3 = 10000;
-                    } else {
-                        j3 = 2000;
-                    }
-                    AndroidUtilities.runOnUIThread(pqVar, j3);
-                    return;
-                }
-                return;
-            case 1:
-                c50 c50Var2 = this.f24237b;
-                c50Var2.f24818f = null;
-                if (!c50Var2.H) {
-                    pq pqVar2 = new pq(this, 22);
-                    c50Var2.h = pqVar2;
-                    AndroidUtilities.runOnUIThread(pqVar2, c50Var2.E);
-                    return;
-                }
-                return;
-            default:
-                c50 c50Var3 = this.f24237b;
-                c50Var3.setVisibility(4);
-                c50Var3.getClass();
-                c50Var3.f24817e = null;
-                c50Var3.d = null;
-                c50Var3.f24818f = null;
-                return;
-        }
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

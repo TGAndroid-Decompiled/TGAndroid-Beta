@@ -1,128 +1,72 @@
 package rg;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import java.util.ArrayList;
+import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h6;
-public class v1 {
-    public boolean B;
-    public Matrix[] C;
-    public float[][] D;
-    public int[] E;
-    public float[] F;
-    public boolean G;
-    public c6 O;
-    public long Q;
-    public long R;
-    public boolean f47703g;
-    public boolean h;
-    public Utilities.CallbackReturn f47707l;
-    public boolean f47708m;
-    public final int f47711p;
-    public boolean f47712q;
-    public int f47720z;
-    public final RectF f47698a = new RectF();
-    public final RectF f47699b = new RectF();
-    public final RectF f47700c = new RectF();
-    public Bitmap[] d = new Bitmap[3];
-    public boolean[] f47701e = new boolean[3];
-    public boolean[] f47702f = new boolean[3];
-    public final Paint f47704i = new Paint();
-    public float f47705j = 0.0f;
-    public float f47706k = 0.0f;
-    public final ArrayList f47709n = new ArrayList();
-    public float f47710o = 1.0f;
-    public int f47713r = 14;
-    public int f47714s = 12;
-    public int f47715t = 10;
-    public float f47716u = 0.85f;
-    public float v = 0.85f;
-    public float f47717w = 0.9f;
-    public long f47718x = 2000;
-    public int f47719y = 1000;
-    public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
-    public boolean H = false;
-    public boolean I = true;
-    public boolean J = true;
-    public boolean K = false;
-    public boolean L = false;
-    public boolean M = true;
-    public int N = -1;
-    public int P = h6.Uj;
-    public int S = 0;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.yh;
+import org.telegram.ui.Components.mm0;
+public final class v1 extends mm0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Path V2;
+    public q0.a W2;
 
-    public v1(int i10) {
-        this.f47711p = i10;
-        this.B = i10 < 50;
+    public v1(Context context) {
+        super(context, null);
+        this.V2 = new Path();
+        setWillNotDraw(false);
+        setLayoutManager(new s4.b0());
+        setAdapter(new s4.g0());
+        setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        setClipToPadding(false);
     }
 
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: rg.v1.a():void");
+    @Override
+    public final Integer W0(int i10) {
+        return 285212671;
     }
 
-    public int b() {
-        if (this.N == 100) {
-            return i0.a.k(h6.w0(this.P, this.O), 200);
-        }
-        return h6.w0(this.P, this.O);
-    }
-
-    public final void c() {
-        a();
-        boolean z10 = this.G;
-        int i10 = this.f47711p;
-        if (z10) {
-            int length = this.d.length;
-            this.C = new Matrix[length];
-            this.D = new float[length];
-            this.E = new int[length];
-            this.F = new float[length];
-            for (int i11 = 0; i11 < length; i11++) {
-                this.C[i11] = new Matrix();
-                this.D[i11] = new float[i10 * 2];
-            }
-        }
-        ArrayList arrayList = this.f47709n;
-        if (arrayList.isEmpty()) {
-            for (int i12 = 0; i12 < i10; i12++) {
-                arrayList.add(new u1(this));
-            }
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.customTypefacesLoaded) {
+            getAdapter().l();
         }
     }
 
-    public final void d(Canvas canvas) {
-        e(canvas, 1.0f);
-    }
-
-    public final void e(android.graphics.Canvas r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.v1.e(android.graphics.Canvas, float):void");
-    }
-
-    public final void f() {
-        long currentTimeMillis = System.currentTimeMillis();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f47709n;
-            if (i10 < arrayList.size()) {
-                ((u1) arrayList.get(i10)).b(currentTimeMillis);
-                i10++;
-            } else {
-                return;
-            }
+    @Override
+    public final void draw(Canvas canvas) {
+        q0.a aVar = this.W2;
+        if (aVar != null) {
+            Path path = this.V2;
+            aVar.accept(path);
+            canvas.save();
+            canvas.clipPath(path);
+        }
+        super.draw(canvas);
+        if (this.W2 != null) {
+            canvas.restore();
         }
     }
 
-    public final void g() {
-        int w02 = h6.w0(this.P, this.O);
-        if (this.f47720z != w02) {
-            this.f47720z = w02;
-            a();
-        }
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, yh.D(16.0f, AndroidUtilities.dp(48.0f) * Math.min(qg.j0.c().size(), 6), 1073741824));
+    }
+
+    public void setMaskProvider(q0.a aVar) {
+        this.W2 = aVar;
+        invalidate();
     }
 }

@@ -1,28 +1,24 @@
 package org.telegram.ui;
+public final class s81 implements Runnable {
+    public final int f39996a;
+    public final SessionsActivity f39997b;
+    public final boolean f39998c;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class s81 extends UndoView {
-    public final SessionsActivity f41835f0;
-
-    public s81(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f41835f0 = sessionsActivity;
+    public s81(SessionsActivity sessionsActivity, boolean z10, int i10) {
+        this.f39996a = i10;
+        this.f39997b = sessionsActivity;
+        this.f39998c = z10;
     }
 
     @Override
-    public final void e(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.m2) this.f41835f0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new bc0(19, this, tL_authorization));
+    public final void run() {
+        switch (this.f39996a) {
+            case 0:
+                this.f39997b.k0(this.f39998c);
+                return;
+            default:
+                this.f39997b.k0(this.f39998c);
+                return;
         }
-        super.e(i10, z10);
     }
 }

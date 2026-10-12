@@ -14,7 +14,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 public abstract class h extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f16506a = new Object[0];
+    public static final Object[] f16181a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -36,33 +36,33 @@ public abstract class h extends AbstractCollection implements Serializable, Coll
         Iterable$CC.$default$forEach(this, consumer);
     }
 
-    public int i(Object[] objArr) {
-        d0 p5 = p();
+    public int h(Object[] objArr) {
+        d0 o10 = o();
         int i10 = 0;
-        while (p5.hasNext()) {
-            objArr[i10] = p5.next();
+        while (o10.hasNext()) {
+            objArr[i10] = o10.next();
             i10++;
         }
         return i10;
+    }
+
+    public int m() {
+        throw new UnsupportedOperationException();
     }
 
     public int n() {
         throw new UnsupportedOperationException();
     }
 
-    public int o() {
-        throw new UnsupportedOperationException();
-    }
+    public abstract d0 o();
 
-    public abstract d0 p();
+    public Object[] p() {
+        return null;
+    }
 
     @Override
     public Stream parallelStream() {
         return Stream.Wrapper.convert(parallelStream());
-    }
-
-    public Object[] q() {
-        return null;
     }
 
     @Override
@@ -119,7 +119,7 @@ public abstract class h extends AbstractCollection implements Serializable, Coll
 
     @Override
     public final Object[] toArray() {
-        return toArray(f16506a);
+        return toArray(f16181a);
     }
 
     @Override
@@ -128,19 +128,19 @@ public abstract class h extends AbstractCollection implements Serializable, Coll
         int size = size();
         int length = objArr.length;
         if (length < size) {
-            Object[] q6 = q();
-            if (q6 == null) {
+            Object[] p5 = p();
+            if (p5 == null) {
                 if (length != 0) {
                     objArr = Arrays.copyOf(objArr, 0);
                 }
                 objArr = Arrays.copyOf(objArr, size);
             } else {
-                return Arrays.copyOfRange(q6, o(), n(), objArr.getClass());
+                return Arrays.copyOfRange(p5, n(), m(), objArr.getClass());
             }
         } else if (length > size) {
             objArr[size] = null;
         }
-        i(objArr);
+        h(objArr);
         return objArr;
     }
 }

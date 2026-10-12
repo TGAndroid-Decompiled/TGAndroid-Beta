@@ -1,10 +1,10 @@
 package ac;
 
 import java.util.ArrayList;
-public final class b {
-    public final ArrayList f410a;
+public interface b {
+    ArrayList a(wb.a aVar);
 
-    public b(ArrayList arrayList) {
-        this.f410a = arrayList;
-    }
+    void zzb();
+
+    void zzc();
 }

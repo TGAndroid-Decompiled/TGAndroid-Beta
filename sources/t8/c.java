@@ -4,48 +4,47 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseArray;
-import b2.g;
-import com.google.android.gms.internal.vision.g3;
-import com.google.android.gms.internal.vision.u2;
+import b2.h;
+import com.google.android.gms.internal.vision.f3;
+import com.google.android.gms.internal.vision.t2;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
-import m.f3;
-import n6.m;
-import sc.v;
-public final class c extends g {
-    public final q8.a f48476b;
-    public final u2 f48477c;
+import li.k;
+import n6.l;
+public final class c extends h {
+    public final q8.a f45542b;
+    public final t2 f45543c;
     public final Object d;
-    public boolean f48478e;
+    public boolean e;
 
-    public c(u2 u2Var) {
+    public c(t2 t2Var) {
         super(3);
-        this.f48476b = new q8.a();
+        this.f45542b = new q8.a();
         this.d = new Object();
-        this.f48478e = true;
-        this.f48477c = u2Var;
+        this.e = true;
+        this.f45543c = t2Var;
     }
 
     @Override
-    public final void U0() {
-        super.U0();
+    public final void X0() {
+        super.X0();
         synchronized (this.d) {
             try {
-                if (!this.f48478e) {
+                if (!this.e) {
                     return;
                 }
-                this.f48477c.l();
-                this.f48478e = false;
+                this.f45543c.l();
+                this.e = false;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    public final SparseArray b1(f3 f3Var) {
+    public final SparseArray e1(k kVar) {
         ByteBuffer I;
         a[] n10;
-        Bitmap bitmap = (Bitmap) f3Var.d;
+        Bitmap bitmap = (Bitmap) kVar.d;
         if (bitmap != null) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
@@ -61,22 +60,22 @@ public final class c extends g {
                 float blue = Color.blue(pixel);
                 I.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
                 if (i14 % 2 == 0 && i13 % 2 == 0) {
-                    float d = v.d(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
-                    float d10 = v.d(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
+                    float c10 = b.c(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
+                    float c11 = b.c(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
                     int i15 = i11 + 1;
-                    I.put(i11, (byte) d);
+                    I.put(i11, (byte) c10);
                     i11 += 2;
-                    I.put(i15, (byte) d10);
+                    I.put(i15, (byte) c11);
                 }
             }
         } else {
-            I = f3Var.I();
+            I = kVar.I();
         }
         synchronized (this.d) {
-            if (this.f48478e) {
-                u2 u2Var = this.f48477c;
-                m.h(I);
-                n10 = u2Var.n(I, g3.b(f3Var));
+            if (this.e) {
+                t2 t2Var = this.f45543c;
+                l.h(I);
+                n10 = t2Var.n(I, f3.b(kVar));
             } else {
                 throw new IllegalStateException("Cannot use detector after release()");
             }
@@ -85,14 +84,14 @@ public final class c extends g {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f48470a;
+            int i17 = aVar.f45539a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f48476b.a(i17), aVar);
+            sparseArray.append(this.f45542b.a(i17), aVar);
         }
         return sparseArray;
     }
@@ -100,9 +99,9 @@ public final class c extends g {
     public final void finalize() {
         try {
             synchronized (this.d) {
-                if (this.f48478e) {
+                if (this.e) {
                     Log.w("FaceDetector", "FaceDetector was not released with FaceDetector.release()");
-                    U0();
+                    X0();
                 }
             }
         } finally {

@@ -1,18 +1,41 @@
 package w7;
+
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 public abstract class d8 {
-    public static int a(int i10) {
-        if (i10 != 0) {
-            if (i10 != 90) {
-                if (i10 != 180) {
-                    if (i10 == 270) {
-                        return 3;
-                    }
-                    throw new IllegalArgumentException(hg.c.i(i10, "Invalid rotation: "));
-                }
-                return 2;
-            }
-            return 1;
+    public static long f47234a;
+    public static Method f47235b;
+
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
         }
-        return 0;
+        Trace.beginSection(str);
+    }
+
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return w4.a.a();
+        }
+        try {
+            if (f47235b == null) {
+                f47234a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f47235b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+            }
+            return ((Boolean) f47235b.invoke(null, Long.valueOf(f47234a))).booleanValue();
+        } catch (Exception e) {
+            if (e instanceof InvocationTargetException) {
+                Throwable cause = e.getCause();
+                if (cause instanceof RuntimeException) {
+                    throw ((RuntimeException) cause);
+                }
+                throw new RuntimeException(cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e);
+            return false;
+        }
     }
 }

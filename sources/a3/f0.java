@@ -1,126 +1,81 @@
 package a3;
 
-import android.os.SystemClock;
-import b2.r0;
-import b2.x1;
-import java.util.NoSuchElementException;
+import android.content.Context;
+import android.os.Build;
+import android.view.Surface;
 public final class f0 {
-    public final n4.y f111a;
-    public final a0 f112b;
-    public final z f113c = new z();
-    public final e2.a0 d = new e2.a0(0, (byte) 0);
-    public final e2.a0 f114e = new e2.a0(0, (byte) 0);
-    public final e2.q f115f;
-    public long f116g;
-    public long h;
-    public long f117i;
-    public x1 f118j;
-    public long f119k;
+    public final h f86a;
+    public final Context f87b;
+    public c0 f88c;
+    public boolean d;
+    public Surface e;
+    public float f89f;
+    public float f90g;
+    public float h;
+    public float f91i;
+    public int f92j;
+    public long f93k;
+    public long f94l;
+    public long f95m;
+    public long f96n;
+    public long f97o;
+    public long f98p;
+    public long f99q;
+    public long f100r;
+    public long f101s;
 
-    public f0(n4.y yVar, a0 a0Var) {
-        this.f111a = yVar;
-        this.f112b = a0Var;
+    public f0(Context context) {
+        this.f87b = context;
         ?? obj = new Object();
-        int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f8566a = 0;
-        obj.f8567b = -1;
-        obj.f8568c = 0;
-        obj.f8569e = new long[highestOneBit];
-        obj.d = highestOneBit - 1;
-        this.f115f = obj;
-        this.f116g = -9223372036854775807L;
-        this.f118j = x1.d;
-        this.h = -9223372036854775807L;
-        this.f117i = -9223372036854775807L;
+        obj.f116a = new g();
+        obj.f117b = new g();
+        obj.d = -9223372036854775807L;
+        this.f86a = obj;
+        this.f89f = -1.0f;
+        this.f91i = 1.0f;
+        this.f92j = 0;
     }
 
-    public final void a(long j3, long j10) {
-        boolean z10;
-        long j11;
-        b2.s sVar;
-        n4.y yVar = this.f111a;
-        f fVar = (f) yVar.f16364c;
-        while (true) {
-            e2.q qVar = this.f115f;
-            int i10 = qVar.f8568c;
-            if (i10 == 0) {
-                return;
-            }
-            if (i10 != 0) {
-                long j12 = ((long[]) qVar.f8569e)[qVar.f8566a];
-                Long l4 = (Long) this.f114e.i(j12);
-                a0 a0Var = this.f112b;
-                if (l4 != null && l4.longValue() != this.f119k) {
-                    this.f119k = l4.longValue();
-                    a0Var.f(2);
+    public final void a() {
+        Surface surface;
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.e) != null && this.f92j != Integer.MIN_VALUE && this.h != 0.0f && surface.isValid()) {
+            this.h = 0.0f;
+            g0.f.v(this.e, 0.0f);
+        }
+    }
+
+    public final void b() {
+        this.f95m = 0L;
+        this.f99q = -1L;
+        this.f96n = -1L;
+        this.f93k = 0L;
+        this.f94l = 0L;
+    }
+
+    public final void c() {
+        throw new UnsupportedOperationException("Method not decompiled: a3.f0.c():void");
+    }
+
+    public final void d(boolean z10) {
+        Surface surface;
+        float f7;
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.e) != null && this.f92j != Integer.MIN_VALUE && surface.isValid()) {
+            if (this.d) {
+                float f10 = this.f90g;
+                if (f10 != -1.0f) {
+                    f7 = f10 * this.f91i;
+                    if (!z10 || this.h != f7) {
+                        this.h = f7;
+                        g0.f.v(this.e, f7);
+                    }
+                    return;
                 }
-                long j13 = this.f119k;
-                a0 a0Var2 = this.f112b;
-                z zVar = this.f113c;
-                int a2 = a0Var2.a(j12, j3, j10, j13, false, false, zVar);
-                boolean z11 = true;
-                if (a2 != 0 && a2 != 1) {
-                    if (a2 != 2 && a2 != 3) {
-                        if (a2 != 4) {
-                            if (a2 == 5) {
-                                return;
-                            }
-                            throw new IllegalStateException(String.valueOf(a2));
-                        }
-                        this.h = j12;
-                    } else {
-                        this.h = j12;
-                        qVar.d();
-                        fVar.h.execute(new e(1, yVar));
-                        j jVar = (j) fVar.f106c.remove();
-                        jVar.f142c.M0(jVar.f140a, jVar.f141b);
-                    }
-                } else {
-                    this.h = j12;
-                    if (a2 == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    long d = qVar.d();
-                    x1 x1Var = (x1) this.d.i(d);
-                    if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f118j)) {
-                        this.f118j = x1Var;
-                        b2.r rVar = new b2.r();
-                        rVar.f3589x = x1Var.f3688a;
-                        rVar.f3590y = x1Var.f3689b;
-                        rVar.f3583q = r0.n("video/raw");
-                        yVar.f16363b = new b2.s(rVar);
-                        fVar.h.execute(new e(yVar, x1Var));
-                    }
-                    if (z10) {
-                        j11 = System.nanoTime();
-                    } else {
-                        j11 = zVar.f221b;
-                    }
-                    long j14 = j11;
-                    if (a0Var.f66e == 3) {
-                        z11 = false;
-                    }
-                    a0Var.f66e = 3;
-                    a0Var.f72l.getClass();
-                    a0Var.f68g = e2.d0.P(SystemClock.elapsedRealtime());
-                    if (z11 && fVar.d != null) {
-                        fVar.h.execute(new e(0, yVar));
-                    }
-                    b2.s sVar2 = (b2.s) yVar.f16363b;
-                    if (sVar2 == null) {
-                        sVar = new b2.s(new b2.r());
-                    } else {
-                        sVar = sVar2;
-                    }
-                    fVar.f110i.c(d, j14, sVar, null);
-                    j jVar2 = (j) fVar.f106c.remove();
-                    jVar2.f142c.I0(jVar2.f140a, jVar2.f141b, j14);
-                }
-            } else {
-                throw new NoSuchElementException();
             }
+            f7 = 0.0f;
+            if (!z10) {
+            }
+            this.h = f7;
+            g0.f.v(this.e, f7);
         }
     }
 }

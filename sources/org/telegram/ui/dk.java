@@ -8,11 +8,11 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class dk extends s4.t {
     public boolean S;
-    public final eo T;
+    public final fo T;
 
-    public dk(eo eoVar, boolean z10) {
+    public dk(fo foVar, boolean z10) {
         super(z10);
-        this.T = eoVar;
+        this.T = foVar;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class dk extends s4.t {
         MessageObject messageObject;
         MessageObject.GroupedMessages c92;
         byte b10;
-        eo eoVar = this.T;
-        qm qmVar = eoVar.A0;
-        int i12 = qmVar.J;
-        if (i10 >= i12 && i10 < qmVar.K && (i11 = i10 - i12) >= 0 && i11 < qmVar.L().size() && (c92 = eoVar.c9((messageObject = (MessageObject) eoVar.A0.L().get(i11)))) != null) {
+        fo foVar = this.T;
+        rm rmVar = foVar.A0;
+        int i12 = rmVar.J;
+        if (i10 >= i12 && i10 < rmVar.K && (i11 = i10 - i12) >= 0 && i11 < rmVar.L().size() && (c92 = foVar.c9((messageObject = (MessageObject) foVar.A0.L().get(i11)))) != null) {
             MessageObject.GroupedMessagePosition position = c92.getPosition(messageObject);
             if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
                 int size = c92.posArray.size();
@@ -54,7 +54,7 @@ public final class dk extends s4.t {
     @Override
     public final int G() {
         if (this.S) {
-            return (int) this.T.f37427s9;
+            return (int) this.T.f36104s9;
         }
         return 0;
     }
@@ -62,7 +62,7 @@ public final class dk extends s4.t {
     @Override
     public final int J() {
         if (this.S) {
-            return (int) this.T.f37427s9;
+            return (int) this.T.f36104s9;
         }
         return F();
     }
@@ -70,26 +70,26 @@ public final class dk extends s4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f48013n - this.T.f37427s9) - C());
+            return (int) ((this.f44940n - this.T.f36104s9) - C());
         }
         return super.K();
     }
 
     @Override
     public final int X0() {
-        return (int) this.T.f37427s9;
+        return (int) this.T.f36104s9;
     }
 
     @Override
-    public final void b0(pf.e eVar, s4.a1 a1Var) {
+    public final void b0(qf.e eVar, s4.y0 y0Var) {
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(eVar, a1Var);
+            super.b0(eVar, y0Var);
             return;
         }
         try {
-            super.b0(eVar, a1Var);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            super.b0(eVar, y0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
             AndroidUtilities.runOnUIThread(new gj(this, 3));
         }
     }
@@ -97,45 +97,45 @@ public final class dk extends s4.t {
     @Override
     public final void i1(int i10, int i11, boolean z10) {
         if (!z10) {
-            i11 = (int) ((i11 - F()) + this.T.f37427s9);
+            i11 = (int) ((i11 - F()) + this.T.f36104s9);
         }
         super.i1(i10, i11, z10);
     }
 
     @Override
-    public final int j(s4.a1 a1Var) {
+    public final int j(s4.y0 y0Var) {
         this.S = true;
-        int B0 = B0(a1Var);
+        int B0 = B0(y0Var);
         this.S = false;
         return B0;
     }
 
     @Override
-    public final int k(s4.a1 a1Var) {
+    public final int k(s4.y0 y0Var) {
         this.S = true;
-        int C0 = C0(a1Var);
+        int C0 = C0(y0Var);
         this.S = false;
         return C0;
     }
 
     @Override
-    public final int l(s4.a1 a1Var) {
+    public final int l(s4.y0 y0Var) {
         this.S = true;
-        int D0 = D0(a1Var);
+        int D0 = D0(y0Var);
         this.S = false;
         return D0;
     }
 
     @Override
-    public final int o0(int r11, pf.e r12, s4.a1 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dk.o0(int, pf.e, s4.a1):int");
+    public final int o0(int r11, qf.e r12, s4.y0 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dk.o0(int, qf.e, s4.y0):int");
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
-        this.T.f37428sa = false;
-        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f48066a = i10;
+    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
+        this.T.f36105sa = false;
+        ki.o oVar = new ki.o(recyclerView.getContext(), 0);
+        oVar.f44979a = i10;
         w0(oVar);
     }
 

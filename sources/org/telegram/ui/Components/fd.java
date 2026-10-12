@@ -20,10 +20,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 public abstract class fd extends View {
     public static final int[] W;
-    public static final int[] f26012a0;
-    public static long f26013b0;
-    public static Long f26014c0;
-    public static Long f26015d0;
+    public static final int[] f24997a0;
+    public static long f24998b0;
+    public static Long f24999c0;
+    public static Long f25000d0;
     public RectF E;
     public final Path F;
     public final Paint G;
@@ -32,41 +32,41 @@ public abstract class fd extends View {
     public final LinearGradient J;
     public final Matrix K;
     public final Matrix L;
-    public final q6 M;
-    public final q6 N;
-    public final q6 O;
-    public final q6 P;
-    public rg.v1 Q;
+    public final r6 M;
+    public final r6 N;
+    public final r6 O;
+    public final r6 P;
+    public sg.w1 Q;
     public boolean R;
     public boolean S;
     public int T;
     public int[] U;
     public float[] V;
-    public final RectF f26016a;
-    public final RectF f26017b;
-    public final RectF f26018c;
+    public final RectF f25001a;
+    public final RectF f25002b;
+    public final RectF f25003c;
     public final int d;
-    public final boolean f26019e;
-    public final int[] f26020f;
+    public final boolean e;
+    public final int[] f25004f;
     public boolean h;
-    public final g6 f26021n;
-    public boolean f26022r;
-    public final g6 f26023s;
+    public final g6 f25005n;
+    public boolean f25006r;
+    public final g6 f25007s;
     public final dd[] v;
-    public final float[] f26024w;
-    public final RectF f26025x;
-    public final Paint f26026y;
+    public final float[] f25008w;
+    public final RectF f25009x;
+    public final Paint f25010y;
 
     static {
-        int i10 = org.telegram.ui.ActionBar.h6.lj;
-        int i11 = org.telegram.ui.ActionBar.h6.hj;
-        int i12 = org.telegram.ui.ActionBar.h6.ij;
-        int i13 = org.telegram.ui.ActionBar.h6.pj;
-        int i14 = org.telegram.ui.ActionBar.h6.mj;
-        int i15 = org.telegram.ui.ActionBar.h6.jj;
-        int i16 = org.telegram.ui.ActionBar.h6.nj;
-        int i17 = org.telegram.ui.ActionBar.h6.qj;
-        int i18 = org.telegram.ui.ActionBar.h6.kj;
+        int i10 = org.telegram.ui.ActionBar.g6.lj;
+        int i11 = org.telegram.ui.ActionBar.g6.hj;
+        int i12 = org.telegram.ui.ActionBar.g6.ij;
+        int i13 = org.telegram.ui.ActionBar.g6.pj;
+        int i14 = org.telegram.ui.ActionBar.g6.mj;
+        int i15 = org.telegram.ui.ActionBar.g6.jj;
+        int i16 = org.telegram.ui.ActionBar.g6.nj;
+        int i17 = org.telegram.ui.ActionBar.g6.qj;
+        int i18 = org.telegram.ui.ActionBar.g6.kj;
         W = new int[]{i10, i11, i12, i13, i14, i15, i16, i17, i13, i18, i18};
         int i19 = R.raw.cache_photos;
         int i20 = R.raw.cache_videos;
@@ -75,47 +75,47 @@ public abstract class fd extends View {
         int i23 = R.raw.cache_stickers;
         int i24 = R.raw.cache_profile_photos;
         int i25 = R.raw.cache_other;
-        f26012a0 = new int[]{i19, i20, i21, i22, i20, i22, i23, i24, i25, i25, i21};
-        f26013b0 = -1L;
+        f24997a0 = new int[]{i19, i20, i21, i22, i20, i22, i23, i24, i25, i25, i21};
+        f24998b0 = -1L;
     }
 
     public fd(Context context, int i10, int[] iArr, int i11, int[] iArr2) {
         super(context);
-        this.f26016a = new RectF();
-        this.f26017b = new RectF();
-        this.f26018c = new RectF();
+        this.f25001a = new RectF();
+        this.f25002b = new RectF();
+        this.f25003c = new RectF();
         this.h = true;
-        js jsVar = js.h;
-        this.f26021n = new g6(this, 750L, jsVar);
-        this.f26022r = false;
-        this.f26023s = new g6(this, 650L, jsVar);
-        this.f26024w = new float[2];
-        this.f26025x = new RectF();
+        es esVar = es.h;
+        this.f25005n = new g6(this, 750L, esVar);
+        this.f25006r = false;
+        this.f25007s = new g6(this, 650L, esVar);
+        this.f25008w = new float[2];
+        this.f25009x = new RectF();
         Paint paint = new Paint(1);
-        this.f26026y = paint;
+        this.f25010y = paint;
         this.F = new Path();
         Paint paint2 = new Paint(1);
         this.G = paint2;
         Paint paint3 = new Paint(1);
         this.H = paint3;
-        q6 q6Var = new q6(false, true, true);
-        this.M = q6Var;
-        q6 q6Var2 = new q6(false, true, true);
-        this.N = q6Var2;
-        q6 q6Var3 = new q6(false, true, true);
-        this.O = q6Var3;
-        q6 q6Var4 = new q6(false, true, true);
-        this.P = q6Var4;
+        r6 r6Var = new r6(false, true, true);
+        this.M = r6Var;
+        r6 r6Var2 = new r6(false, true, true);
+        this.N = r6Var2;
+        r6 r6Var3 = new r6(false, true, true);
+        this.O = r6Var3;
+        r6 r6Var4 = new r6(false, true, true);
+        this.P = r6Var4;
         this.R = true;
         this.T = -1;
         setLayerType(2, null);
-        this.f26020f = iArr2;
+        this.f25004f = iArr2;
         this.d = i11;
-        this.f26019e = i11 == 0;
+        this.e = i11 == 0;
         this.v = new dd[i10];
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false));
+        paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19990i6, false));
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(200.0f), new int[]{7263574, -9513642, -12469647, 4307569}, new float[]{0.0f, 0.07f, 0.93f, 1.0f}, tileMode);
@@ -129,44 +129,44 @@ public abstract class fd extends View {
         paint2.setStyle(style);
         paint2.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStrokeJoin(Paint.Join.ROUND);
-        q6Var.n(0.2f, 450L, jsVar);
-        q6Var.A = 0.6f;
-        q6Var.u(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        q6Var.x(AndroidUtilities.bold());
-        q6Var.w(AndroidUtilities.dp(32.0f));
-        q6Var.f29690b = 17;
-        q6Var2.n(0.6f, 450L, jsVar);
-        q6Var2.A = 0.6f;
-        q6Var2.u(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20946y6, false));
-        q6Var2.w(AndroidUtilities.dp(12.0f));
-        q6Var2.f29690b = 17;
-        q6Var3.n(0.2f, 450L, jsVar);
-        q6Var3.A = 0.6f;
-        q6Var3.f29688a.setShader(linearGradient2);
-        q6Var3.x(AndroidUtilities.bold());
-        q6Var3.w(AndroidUtilities.dp(32.0f));
-        q6Var3.f29690b = 17;
-        q6Var4.n(0.6f, 450L, jsVar);
-        q6Var4.A = 0.6f;
-        q6Var4.f29688a.setShader(linearGradient2);
-        q6Var4.x(AndroidUtilities.bold());
-        q6Var4.w(AndroidUtilities.dp(12.0f));
-        q6Var4.f29690b = 17;
+        r6Var.n(0.2f, 450L, esVar);
+        r6Var.A = 0.6f;
+        r6Var.u(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
+        r6Var.x(AndroidUtilities.bold());
+        r6Var.w(AndroidUtilities.dp(32.0f));
+        r6Var.f28748b = 17;
+        r6Var2.n(0.6f, 450L, esVar);
+        r6Var2.A = 0.6f;
+        r6Var2.u(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20288y6, false));
+        r6Var2.w(AndroidUtilities.dp(12.0f));
+        r6Var2.f28748b = 17;
+        r6Var3.n(0.2f, 450L, esVar);
+        r6Var3.A = 0.6f;
+        r6Var3.f28746a.setShader(linearGradient2);
+        r6Var3.x(AndroidUtilities.bold());
+        r6Var3.w(AndroidUtilities.dp(32.0f));
+        r6Var3.f28748b = 17;
+        r6Var4.n(0.6f, 450L, esVar);
+        r6Var4.A = 0.6f;
+        r6Var4.f28746a.setShader(linearGradient2);
+        r6Var4.x(AndroidUtilities.bold());
+        r6Var4.w(AndroidUtilities.dp(12.0f));
+        r6Var4.f28748b = 17;
         int i12 = 0;
         while (true) {
             dd[] ddVarArr = this.v;
             if (i12 < ddVarArr.length) {
                 dd ddVar = new dd(this);
                 ddVarArr[i12] = ddVar;
-                int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, iArr[i12], false), 50331648);
-                int v9 = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, iArr[i12], false), 822083583);
+                int v = org.telegram.ui.ActionBar.g6.v(org.telegram.ui.ActionBar.g6.x0(null, iArr[i12], false), 50331648);
+                int v10 = org.telegram.ui.ActionBar.g6.v(org.telegram.ui.ActionBar.g6.x0(null, iArr[i12], false), 822083583);
                 AndroidUtilities.dp(50.0f);
-                RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(86.0f), new int[]{v9, v}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
+                RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(86.0f), new int[]{v10, v}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
                 ddVar.v = radialGradient;
                 Matrix matrix = new Matrix();
-                ddVar.f25320w = matrix;
+                ddVar.f24372w = matrix;
                 radialGradient.setLocalMatrix(matrix);
-                ddVar.f25315q.setShader(ddVar.v);
+                ddVar.f24367q.setShader(ddVar.v);
                 i12++;
             } else {
                 return;
@@ -178,18 +178,18 @@ public abstract class fd extends View {
         return (float) ((f7 / 180.0f) * 3.141592653589793d);
     }
 
-    public static boolean b(Canvas canvas, q6 q6Var, float f7, float f10, float f11, float f12) {
+    public static boolean b(Canvas canvas, r6 r6Var, float f7, float f10, float f11, float f12) {
         if (f12 <= 0.0f) {
             return false;
         }
-        q6Var.B = (int) (f12 * 255.0f);
-        q6Var.setBounds(0, 0, 0, 0);
+        r6Var.B = (int) (f12 * 255.0f);
+        r6Var.setBounds(0, 0, 0, 0);
         canvas.save();
         canvas.translate(f7, f10);
         canvas.scale(f11, f11);
-        q6Var.draw(canvas);
+        r6Var.draw(canvas);
         canvas.restore();
-        return q6Var.h();
+        return r6Var.h();
     }
 
     public int c() {
@@ -225,13 +225,13 @@ public abstract class fd extends View {
             dd[] ddVarArr = this.v;
             if (i10 < ddVarArr.length) {
                 dd ddVar = ddVarArr[i10];
-                if (ddVar.f25302b == null) {
-                    boolean z10 = this.f26019e;
-                    int[] iArr = this.f26020f;
+                if (ddVar.f24355b == null) {
+                    boolean z10 = this.e;
+                    int[] iArr = this.f25004f;
                     if (z10) {
-                        ddVar.f25302b = SvgHelper.getBitmap(iArr[i10], AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), -1);
+                        ddVar.f24355b = SvgHelper.getBitmap(iArr[i10], AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), -1);
                     } else {
-                        ddVar.f25302b = BitmapFactory.decodeResource(getContext().getResources(), iArr[i10]);
+                        ddVar.f24355b = BitmapFactory.decodeResource(getContext().getResources(), iArr[i10]);
                     }
                 }
                 i10++;
@@ -255,10 +255,10 @@ public abstract class fd extends View {
         while (true) {
             dd[] ddVarArr = this.v;
             if (i10 < ddVarArr.length) {
-                Bitmap bitmap = ddVarArr[i10].f25302b;
+                Bitmap bitmap = ddVarArr[i10].f24355b;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    ddVarArr[i10].f25302b = null;
+                    ddVarArr[i10].f24355b = null;
                 }
                 i10++;
             } else {
@@ -272,7 +272,7 @@ public abstract class fd extends View {
         int size = View.MeasureSpec.getSize(i10);
         int dp = AndroidUtilities.dp(c());
         int dp2 = AndroidUtilities.dp(172.0f);
-        RectF rectF = this.f26016a;
+        RectF rectF = this.f25001a;
         rectF.set((size - dp2) / 2.0f, (dp - dp2) / 2.0f, (size + dp2) / 2.0f, (dp2 + dp) / 2.0f);
         Matrix matrix = this.K;
         matrix.reset();
@@ -282,11 +282,11 @@ public abstract class fd extends View {
         matrix2.reset();
         matrix2.setTranslate(rectF.left, -rectF.centerY());
         this.J.setLocalMatrix(matrix2);
-        rg.v1 v1Var = this.Q;
-        if (v1Var != null) {
-            v1Var.f47698a.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
-            this.Q.f47698a.offset((getMeasuredWidth() - this.Q.f47698a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f47698a.height()) / 2.0f);
-            this.Q.f47699b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        sg.w1 w1Var = this.Q;
+        if (w1Var != null) {
+            w1Var.f45399a.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
+            this.Q.f45399a.offset((getMeasuredWidth() - this.Q.f45399a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f45399a.height()) / 2.0f);
+            this.Q.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.Q.f();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
@@ -314,7 +314,7 @@ public abstract class fd extends View {
                 } else {
                     z10 = false;
                 }
-                ddVar.f25312n = z10;
+                ddVar.f24364n = z10;
                 i11++;
             } else {
                 this.T = i10;

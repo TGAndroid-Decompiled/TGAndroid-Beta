@@ -1,35 +1,23 @@
 package rg;
 
-import android.content.Context;
-import org.telegram.messenger.MessagesController;
-public final class e1 implements Runnable {
-    public final int f47463a;
-    public final l1 f47464b;
+import di.a6;
+import org.telegram.messenger.MessageObject;
+public final class e1 extends g.o {
+    public final a6 f44243c;
 
-    public e1(l1 l1Var, int i10) {
-        this.f47463a = i10;
-        this.f47464b = l1Var;
+    public e1(a6 a6Var) {
+        this.f44243c = a6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47463a) {
-            case 0:
-                l1 l1Var = this.f47464b;
-                Context context = l1Var.getContext();
-                of.f.s(context, "https://" + MessagesController.getInstance(l1Var.Y).linkPrefix + "/nft/" + l1Var.D0.slug);
-                return;
-            case 1:
-                l1 l1Var2 = this.f47464b;
-                try {
-                    l1Var2.container.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                l1Var2.f47556o0.c(l1Var2.K0);
-                return;
-            default:
-                this.f47464b.O0[0].setVisibility(8);
-                return;
+    public final int i(int i10) {
+        MessageObject.GroupedMessagePosition position;
+        a6 a6Var = this.f44243c;
+        int size = (a6Var.f44260s0.size() - 1) - i10;
+        MessageObject.GroupedMessages groupedMessages = a6Var.f44261t0;
+        if (groupedMessages != null && size >= 0 && size < groupedMessages.messages.size() && (position = groupedMessages.getPosition(groupedMessages.messages.get(size))) != null) {
+            return position.spanSize;
         }
+        return 1000;
     }
 }

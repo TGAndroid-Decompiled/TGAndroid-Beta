@@ -1,61 +1,62 @@
 package x3;
 
 import c3.b0;
-import e2.d0;
+import e2.m0;
+import v7.u6;
 public final class b implements g {
-    public final f f50786a;
-    public final long f50787b;
-    public final long f50788c;
+    public final f f47796a;
+    public final long f47797b;
+    public final long f47798c;
     public final i d;
-    public int f50789e;
-    public long f50790f;
+    public int e;
+    public long f47799f;
     public long h;
-    public long f50791n;
-    public long f50792r;
-    public long f50793s;
+    public long f47800n;
+    public long f47801r;
+    public long f47802s;
     public long v;
-    public long f50794w;
+    public long f47803w;
 
-    public b(i iVar, long j3, long j10, long j11, long j12, boolean z10) {
+    public b(i iVar, long j10, long j11, long j12, long j13, boolean z10) {
         boolean z11;
-        if (j3 >= 0 && j10 > j3) {
+        if (j10 >= 0 && j11 > j10) {
             z11 = true;
         } else {
             z11 = false;
         }
-        e2.d.b(z11);
+        u6.g(z11);
         this.d = iVar;
-        this.f50787b = j3;
-        this.f50788c = j10;
-        if (j11 != j10 - j3 && !z10) {
-            this.f50789e = 0;
+        this.f47797b = j10;
+        this.f47798c = j11;
+        if (j12 != j11 - j10 && !z10) {
+            this.e = 0;
         } else {
-            this.f50790f = j12;
-            this.f50789e = 4;
+            this.f47799f = j13;
+            this.e = 4;
         }
-        this.f50786a = new f();
+        this.f47796a = new f();
     }
 
     @Override
-    public final b0 A1() {
-        if (this.f50790f != 0) {
+    public final void W(long j10) {
+        this.f47800n = m0.j(j10, 0L, this.f47799f - 1);
+        this.e = 2;
+        this.f47801r = this.f47797b;
+        this.f47802s = this.f47798c;
+        this.v = 0L;
+        this.f47803w = this.f47799f;
+    }
+
+    @Override
+    public final long k(c3.p r28) {
+        throw new UnsupportedOperationException("Method not decompiled: x3.b.k(c3.p):long");
+    }
+
+    @Override
+    public final b0 v() {
+        if (this.f47799f != 0) {
             return new a(this);
         }
         return null;
-    }
-
-    @Override
-    public final void A2(long j3) {
-        this.f50791n = d0.i(j3, 0L, this.f50790f - 1);
-        this.f50789e = 2;
-        this.f50792r = this.f50787b;
-        this.f50793s = this.f50788c;
-        this.v = 0L;
-        this.f50794w = this.f50790f;
-    }
-
-    @Override
-    public final long L0(c3.p r28) {
-        throw new UnsupportedOperationException("Method not decompiled: x3.b.L0(c3.p):long");
     }
 }

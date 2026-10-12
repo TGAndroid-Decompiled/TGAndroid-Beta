@@ -1,94 +1,263 @@
 package yh;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Path;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
+import android.graphics.drawable.NinePatchDrawable;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class l0 extends p3 {
-    public final float[] A0;
-    public final Path B0;
-    public final float[] C0;
-    public final r0 D0;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.b6;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.k9;
+import org.telegram.ui.Components.x5;
+import v7.v7;
+public final class l0 extends Drawable {
+    public NinePatchDrawable f48954a;
+    public NinePatchDrawable f48955b;
+    public final TextPaint f48956c;
+    public final ImageReceiver d;
+    public final k9 e;
+    public final int f48957f;
+    public final int f48958g;
+    public final float h;
+    public final float f48959i;
+    public final int f48960j;
+    public final int f48961k;
+    public boolean f48962l;
+    public CharSequence f48963m;
+    public StaticLayout f48964n;
+    public float f48965o;
+    public float f48966p;
+    public x5 f48967q;
+    public View f48968r;
+    public int f48969s;
+    public int f48970t;
+    public int f48971u;
 
-    public l0(r0 r0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, j0 j0Var, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
-        super(context, c6Var, j0Var, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
-        this.D0 = r0Var;
-        this.A0 = new float[3];
-        this.B0 = new Path();
-        this.C0 = new float[8];
+    public l0() {
+        TextPaint textPaint = new TextPaint(1);
+        this.f48956c = textPaint;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.d = imageReceiver;
+        this.e = new k9((c6) null);
+        int dp = AndroidUtilities.dp(10.66f);
+        this.f48957f = dp * 2;
+        this.f48958g = AndroidUtilities.dp(4.0f);
+        this.h = AndroidUtilities.dpf2(15.33f);
+        this.f48959i = AndroidUtilities.dpf2(7.33f);
+        this.f48960j = AndroidUtilities.dp(8.0f);
+        this.f48961k = (int) AndroidUtilities.dpf2(22.66f);
+        es esVar = es.f24771f;
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setColor(-1);
+        imageReceiver.setRoundRadius(dp);
+    }
+
+    public final void a() {
+        if (this.f48954a == null) {
+            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_24);
+            int intrinsicWidth = drawable.getIntrinsicWidth();
+            int intrinsicHeight = drawable.getIntrinsicHeight();
+            Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+            drawable.draw(canvas);
+            int i10 = (intrinsicHeight * 4) / 144;
+            this.f48954a = v7.a(createBitmap, new Rect((intrinsicWidth * 27) / 168, i10, (intrinsicWidth * 5) / 168, i10), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+        }
+        if (this.f48955b == null) {
+            Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
+            int intrinsicWidth2 = drawable2.getIntrinsicWidth();
+            int intrinsicHeight2 = drawable2.getIntrinsicHeight();
+            Bitmap createBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ARGB_8888);
+            Canvas canvas2 = new Canvas(createBitmap2);
+            drawable2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
+            drawable2.draw(canvas2);
+            Paint paint = new Paint(1);
+            float f7 = intrinsicWidth2;
+            float f10 = intrinsicHeight2;
+            paint.setShader(new LinearGradient(f7, 0.0f, 0.0f, f10, new int[]{1090519039, -805306369, 1090519039}, (float[]) null, Shader.TileMode.CLAMP));
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+            canvas2.drawRect(0.0f, 0.0f, f7, f10, paint);
+            int i11 = (intrinsicHeight2 * 4) / 144;
+            this.f48955b = v7.a(createBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i11, (intrinsicWidth2 * 5) / 168, i11), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
+        }
+    }
+
+    public final void b(int i10) {
+        int i11;
+        int ceil;
+        a();
+        if (i10 == this.f48969s && this.f48964n != null) {
+            return;
+        }
+        this.f48969s = i10;
+        if (!this.f48962l) {
+            i11 = 0;
+        } else {
+            i11 = this.f48958g + this.f48957f;
+        }
+        int i12 = this.f48960j;
+        int i13 = i11 + i12;
+        int i14 = (i10 - i13) - i12;
+        int i15 = this.f48961k;
+        if (i14 > 0 && !TextUtils.isEmpty(this.f48963m)) {
+            CharSequence charSequence = this.f48963m;
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            TextPaint textPaint = this.f48956c;
+            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i14, alignment, 1.0f, 0.0f, false);
+            int lineCount = staticLayout.getLineCount();
+            float f7 = 0.0f;
+            float f10 = 0.0f;
+            for (int i16 = 0; i16 < lineCount; i16++) {
+                f10 = Math.max(f10, staticLayout.getLineWidth(i16));
+            }
+            if (lineCount > 1 && (ceil = (int) Math.ceil(f10)) < i14) {
+                StaticLayout staticLayout2 = new StaticLayout(this.f48963m, textPaint, ceil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                if (staticLayout2.getLineCount() == lineCount) {
+                    for (int i17 = 0; i17 < staticLayout2.getLineCount(); i17++) {
+                        f7 = Math.max(f7, staticLayout2.getLineWidth(i17));
+                    }
+                    f10 = f7;
+                    staticLayout = staticLayout2;
+                }
+            }
+            this.f48964n = staticLayout;
+            this.f48965o = i13;
+            this.f48970t = ((int) Math.ceil(f10)) + i13 + i12;
+            float lineBaseline = this.f48964n.getLineBaseline(0);
+            StaticLayout staticLayout3 = this.f48964n;
+            float f11 = this.h;
+            this.f48971u = Math.max(i15, (int) Math.ceil((staticLayout3.getLineBaseline(this.f48964n.getLineCount() - 1) - lineBaseline) + f11 + this.f48959i));
+            this.f48966p = f11 - lineBaseline;
+            return;
+        }
+        this.f48964n = null;
+        this.f48970t = i15;
+        this.f48971u = i15;
+    }
+
+    public final void c(TLObject tLObject) {
+        boolean z10;
+        if (tLObject != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f48962l = z10;
+        if (z10) {
+            k9 k9Var = this.e;
+            k9Var.p(tLObject);
+            boolean z11 = tLObject instanceof TLRPC.User;
+            ImageReceiver imageReceiver = this.d;
+            if (z11) {
+                imageReceiver.setImage(ImageLocation.getForUser((TLRPC.User) tLObject, 1), "48_48", k9Var, null, null, 0);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                imageReceiver.setImage(ImageLocation.getForChat((TLRPC.Chat) tLObject, 1), "48_48", k9Var, null, null, 0);
+            } else {
+                imageReceiver.setImageBitmap(k9Var);
+            }
+        }
+        this.f48969s = -1;
     }
 
     @Override
-    public final void d(f4.d dVar) {
-        super.d(dVar);
-        this.D0.U(true);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
+        float f7;
+        int i10;
+        int i11;
+        a();
+        Rect bounds = getBounds();
         canvas.save();
-        canvas.clipPath(this.B0);
-        super.dispatchDraw(canvas);
+        boolean z10 = this.f48962l;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        NinePatchDrawable ninePatchDrawable = this.f48954a;
+        int i12 = bounds.left;
+        int i13 = this.f48958g;
+        int i14 = this.f48957f;
+        if (z10) {
+            i10 = i13 + i14;
+        } else {
+            i10 = 0;
+        }
+        zf.q.g(ninePatchDrawable, i12 + i10, bounds.top, bounds.right, bounds.bottom);
+        this.f48954a.draw(canvas);
+        NinePatchDrawable ninePatchDrawable2 = this.f48955b;
+        int i15 = bounds.left;
+        if (this.f48962l) {
+            i11 = i13 + i14;
+        } else {
+            i11 = 0;
+        }
+        zf.q.g(ninePatchDrawable2, i15 + i11, bounds.top, bounds.right, bounds.bottom);
+        this.f48955b.draw(canvas);
+        if (this.f48964n != null) {
+            canvas.save();
+            canvas.translate(bounds.left + this.f48965o, bounds.top + this.f48966p);
+            this.f48964n.draw(canvas);
+            View view = this.f48968r;
+            if (view != null && (this.f48963m instanceof Spanned)) {
+                x5 update = b6.update(0, view, false, this.f48967q, this.f48964n);
+                this.f48967q = update;
+                b6.drawAnimatedEmojis(canvas, this.f48964n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
+            }
+            canvas.restore();
+        }
+        if (f7 > 0.0f) {
+            int i16 = bounds.left;
+            ImageReceiver imageReceiver = this.d;
+            imageReceiver.setImageCoords(i16, bounds.bottom - i14, i14, i14);
+            canvas.save();
+            canvas.scale(f7, f7, imageReceiver.getCenterX(), imageReceiver.getCenterY());
+            imageReceiver.draw(canvas);
+            canvas.restore();
+        }
         canvas.restore();
     }
 
     @Override
-    public final int getFinalHeight() {
-        return AndroidUtilities.dp(315.0f);
+    public final int getMinimumHeight() {
+        return this.f48971u;
     }
 
     @Override
-    public final float getRealHeight() {
-        return AndroidUtilities.dp(315.0f);
+    public final int getMinimumWidth() {
+        return this.f48970t;
     }
 
     @Override
-    public final void j(int i10) {
-        ai.x7[] x7VarArr;
-        r0 r0Var = this.D0;
-        ImageView imageView = r0Var.m0;
-        if (imageView != null && org.telegram.ui.ActionBar.h6.C1(imageView.getBackground(), i10, false)) {
-            r0Var.m0.invalidate();
-        }
-        ImageView imageView2 = r0Var.f53339n0;
-        if (imageView2 != null && org.telegram.ui.ActionBar.h6.C1(imageView2.getBackground(), i10, false)) {
-            r0Var.f53339n0.invalidate();
-        }
-        for (ai.x7 x7Var : r0Var.Z) {
-            Drawable background = x7Var.getBackground();
-            org.telegram.ui.Components.r6 r6Var = (org.telegram.ui.Components.r6) x7Var.d;
-            if (org.telegram.ui.ActionBar.h6.C1(background, i10, false)) {
-                x7Var.invalidate();
-            }
-            int d = i0.a.d(0.33f, i10, -1);
-            float[] fArr = this.A0;
-            Color.colorToHSV(d, fArr);
-            fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
-            fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
-            int HSVToColor = Color.HSVToColor(fArr);
-            if (r6Var.getSizeableBackground() instanceof g3) {
-                ((g3) r6Var.getSizeableBackground()).f52820b.setColor(HSVToColor);
-                r6Var.invalidate();
-            } else if (org.telegram.ui.ActionBar.h6.C1(r6Var.getSizeableBackground(), HSVToColor, false)) {
-                r6Var.invalidate();
-            }
-        }
+    public final int getOpacity() {
+        return -3;
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        float dp = AndroidUtilities.dp(12.0f);
-        float[] fArr = this.C0;
-        fArr[3] = dp;
-        fArr[2] = dp;
-        fArr[1] = dp;
-        fArr[0] = dp;
-        Path path = this.B0;
-        path.rewind();
-        path.addRoundRect(0.0f, 0.0f, i10, i11, this.C0, Path.Direction.CW);
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

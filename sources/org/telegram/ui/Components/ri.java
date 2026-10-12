@@ -1,17 +1,23 @@
 package org.telegram.ui.Components;
-public final class ri implements xw0 {
-    public final aj f30159a;
 
-    public ri(aj ajVar) {
-        this.f30159a = ajVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ri extends o20 {
+    public final vi J;
+
+    public ri(Context context, org.telegram.ui.ActionBar.c6 c6Var, vi viVar) {
+        super(context, c6Var);
+        this.J = viVar;
     }
 
     @Override
-    public final void H(int i10, boolean z10) {
-        aj ajVar = this.f30159a;
-        si siVar = ajVar.B0;
-        if (siVar == ajVar.f24370q0) {
-            siVar.invalidate();
-        }
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        this.J.w1(this.f27815r, true);
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

@@ -1,16 +1,10 @@
 package ld;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-@Retention(RetentionPolicy.RUNTIME)
-public @interface e {
-    String c() default "";
-
-    String f() default "";
-
-    int[] l() default {};
-
-    String m() default "";
-
-    int v() default 1;
+import v7.i8;
+public final class e extends md.c {
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        i8.b(obj);
+        return obj;
+    }
 }

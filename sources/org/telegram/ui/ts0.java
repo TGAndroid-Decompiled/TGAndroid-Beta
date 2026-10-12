@@ -1,22 +1,28 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-public final class ts0 extends org.telegram.ui.Components.dz0 {
-    public final us0 f42286v0;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class ts0 implements Utilities.Callback {
+    public final int f40480a;
+    public final zs0 f40481b;
+    public final boolean f40482c;
 
-    public ts0(us0 us0Var, Activity activity, MessageObject messageObject, TLObject tLObject, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(activity, messageObject, tLObject, c6Var);
-        this.f42286v0 = us0Var;
+    public ts0(zs0 zs0Var, boolean z10, int i10) {
+        this.f40480a = i10;
+        this.f40481b = zs0Var;
+        this.f40482c = z10;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        PhotoViewer photoViewer = this.f42286v0.f42563b;
-        if (photoViewer.U3 == this) {
-            photoViewer.U3 = null;
+    public final void run(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f40480a) {
+            case 0:
+                org.telegram.ui.Components.zc.F(this.f40481b.f42710b.f32226e0, this.f40482c).j();
+                return;
+            default:
+                org.telegram.ui.Components.zc.F(this.f40481b.f42710b.f32226e0, this.f40482c).j();
+                return;
         }
     }
 }

@@ -1,18 +1,15 @@
 package v7;
-public final class s3 implements ia.d {
-    public static final s3 f49543a = new Object();
-    public static final ia.c f49544b = new ia.c("inferenceCommonLogEvent", hg.c.o(sc.v.l(h.class, new e(1))));
-    public static final ia.c f49545c = new ia.c("options", hg.c.o(sc.v.l(h.class, new e(2))));
-    public static final ia.c d = new ia.c("identifyLanguageResult", hg.c.o(sc.v.l(h.class, new e(3))));
-    public static final ia.c f49546e = new ia.c("identifyPossibleLanguagesResult", hg.c.o(sc.v.l(h.class, new e(4))));
+public final class s3 implements ja.d {
+    public static final s3 f46744a = new Object();
+    public static final ja.c f46745b = new ja.c("confidence", i2.d.n(t8.b.k(h.class, new e(1))));
+    public static final ja.c f46746c = new ja.c("languageCode", i2.d.n(t8.b.k(h.class, new e(2))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        h7 h7Var = (h7) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f49544b, h7Var.f49442a);
-        eVar.a(f49545c, h7Var.f49443b);
-        eVar.a(d, h7Var.f49444c);
-        eVar.a(f49546e, null);
+        c7 c7Var = (c7) obj;
+        ja.e eVar = (ja.e) obj2;
+        c7Var.getClass();
+        eVar.d(f46745b, null);
+        eVar.d(f46746c, c7Var.f46598a);
     }
 }

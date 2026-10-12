@@ -1,40 +1,24 @@
 package wf;
 
-import android.os.Bundle;
+import org.telegram.messenger.NotificationCenter;
 public final class a implements Runnable {
-    public final int f50571a;
-    public final b f50572b;
+    public final int f47541a;
+    public final c f47542b;
 
-    public a(b bVar, String str, Bundle bundle, int i10) {
-        this.f50571a = i10;
-        this.f50572b = bVar;
+    public a(c cVar, int i10) {
+        this.f47541a = i10;
+        this.f47542b = cVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f50571a) {
+        switch (this.f47541a) {
             case 0:
-                this.f50572b.f50574b.getClass();
-                return;
-            case 1:
-                this.f50572b.f50574b.getClass();
-                return;
-            case 2:
-                this.f50572b.f50574b.getClass();
+                this.f47542b.g(false);
                 return;
             default:
-                this.f50572b.f50574b.getClass();
+                NotificationCenter.getInstance(this.f47542b.f47550c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                 return;
         }
-    }
-
-    public a(b bVar, int i10, Bundle bundle) {
-        this.f50571a = 0;
-        this.f50572b = bVar;
-    }
-
-    public a(b bVar, Bundle bundle) {
-        this.f50571a = 2;
-        this.f50572b = bVar;
     }
 }

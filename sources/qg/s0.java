@@ -1,426 +1,239 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
-import ci.c4;
-import ci.d4;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.js;
-public class s0 extends View {
-    public float E;
-    public StaticLayout F;
-    public float G;
-    public float H;
-    public final int I;
-    public final int J;
-    public boolean K;
-    public boolean L;
-    public float M;
-    public float N;
-    public final RectF O;
-    public final g6 P;
-    public int f46488a;
-    public String f46489b;
-    public boolean f46490c;
-    public final RectF d;
-    public final TextPaint f46491e;
-    public final Paint f46492f;
-    public final Drawable h;
-    public boolean f46493n;
-    public final ImageReceiver f46494r;
-    public final ImageReceiver f46495s;
-    public TLRPC.Document v;
-    public TLRPC.Document f46496w;
-    public boolean f46497x;
-    public final float f46498y;
+import android.content.SharedPreferences;
+import com.google.android.gms.internal.play_billing.k3;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import org.telegram.messenger.ApplicationLoader;
+public final class s0 {
+    public static final List f43559m;
+    public static final List f43560n;
+    public static final int f43561o;
+    public static final int f43562p;
+    public static final int f43563q;
+    public static final s0[] f43564r;
+    public final SharedPreferences f43565a;
+    public final ArrayList f43566b;
+    public final HashMap f43567c;
+    public List d;
+    public boolean e;
+    public int f43568f;
+    public int f43569g;
+    public int h;
+    public float f43570i;
+    public String f43571j;
+    public boolean f43572k;
+    public boolean f43573l;
 
-    public s0(Context context, float f7) {
-        super(context);
-        this.f46489b = "";
-        this.d = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
-        TextPaint textPaint = new TextPaint(1);
-        this.f46491e = textPaint;
-        this.f46492f = new Paint(1);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f46494r = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f46495s = imageReceiver2;
-        this.E = 1.0f;
-        this.O = new RectF();
-        new Path();
-        this.P = new g6(this, 350L, js.h);
-        this.f46498y = f7;
-        imageReceiver.setCrossfadeWithOldImage(true);
-        imageReceiver.setInvalidateAll(true);
-        imageReceiver2.setCrossfadeWithOldImage(true);
-        imageReceiver2.setInvalidateAll(true);
-        int i10 = (int) (3.0f * f7);
-        this.I = i10;
-        int i11 = (int) (1.0f * f7);
-        this.J = i11;
-        setPadding(i10, i11, i10, i11);
-        this.h = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
-        textPaint.setTextSize(f7 * 24.0f);
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        NotificationCenter.listenEmojiLoading(this);
+    static {
+        List asList = Arrays.asList(-2645892, -8409090, -5926949, -2386514, -4531041);
+        f43559m = asList;
+        List asList2 = Arrays.asList(-47814, -30208, -10742, -13318311, -10230046, -16087809, -4236558, -16777216, -1);
+        f43560n = asList2;
+        int size = asList.size();
+        f43561o = size;
+        int size2 = asList2.size();
+        f43562p = size2;
+        f43563q = size + size2;
+        f43564r = new s0[4];
     }
 
-    public static org.telegram.tgnet.TLRPC.Document b(java.lang.String r7, org.telegram.tgnet.TLRPC.TL_messages_stickerSet r8) {
-        throw new UnsupportedOperationException("Method not decompiled: qg.s0.b(java.lang.String, org.telegram.tgnet.TLRPC$TL_messages_stickerSet):org.telegram.tgnet.TLRPC$Document");
-    }
-
-    public static c4 c(String str) {
-        Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str);
-        if (emojiBigDrawable instanceof Emoji.SimpleEmojiDrawable) {
-            ((Emoji.SimpleEmojiDrawable) emojiBigDrawable).fullSize = false;
+    public s0(int i10) {
+        List list;
+        int i11 = f43563q;
+        this.f43566b = new ArrayList(i11);
+        HashMap hashMap = new HashMap(m.f43485a.size());
+        this.f43567c = hashMap;
+        this.d = new ArrayList(i11);
+        int i12 = 0;
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("photo_color_palette_" + i10, 0);
+        this.f43565a = sharedPreferences;
+        this.f43568f = sharedPreferences.getInt("brush", 0);
+        this.f43570i = sharedPreferences.getFloat("weight", 0.5f);
+        this.f43571j = sharedPreferences.getString("typeface", "roboto");
+        this.f43569g = sharedPreferences.getInt("text_alignment", 0);
+        this.h = sharedPreferences.getInt("text_type", 0);
+        this.f43572k = sharedPreferences.getBoolean("fill_shapes", false);
+        int i13 = 0;
+        while (i13 < f43561o) {
+            i13 = k3.f((int) sharedPreferences.getLong(i2.d.i(i13, "color_"), ((Integer) f43559m.get(i13)).intValue()), i13, 1, this.f43566b);
         }
-        if (emojiBigDrawable == null) {
-            return null;
-        }
-        return new c4(emojiBigDrawable, 6);
-    }
-
-    public final void a(Canvas canvas) {
-        float f7;
-        f();
-        if (this.F == null) {
-            return;
-        }
-        int i10 = this.I;
-        float f10 = i10;
-        int i11 = this.J;
-        float f11 = i11;
-        RectF rectF = this.O;
-        rectF.set(f10, f11, this.M + f10, this.N + f11);
-        float f12 = this.N * 0.2f;
-        canvas.drawRoundRect(rectF, f12, f12, this.f46492f);
-        boolean z10 = this.f46493n;
-        float f13 = this.f46498y;
-        RectF rectF2 = this.d;
-        if (z10) {
-            float e7 = this.P.e(this.L);
-            if (e7 > 0.0f) {
-                float f14 = f13 * 21.33f;
-                float z11 = com.google.android.gms.internal.vision.e2.z(this.N, f14, 2.0f, f11);
-                ImageReceiver imageReceiver = this.f46495s;
-                imageReceiver.setImageCoords(((rectF2.left + 2.25f) * f13) + f10, z11, f14, f14);
-                canvas.save();
-                canvas.scale(1.2f, 1.2f, imageReceiver.getCenterX(), imageReceiver.getCenterY());
-                imageReceiver.setAlpha(e7);
-                imageReceiver.draw(canvas);
-                canvas.restore();
-            }
-            if (e7 < 1.0f) {
-                float f15 = f13 * 21.33f;
-                float z12 = com.google.android.gms.internal.vision.e2.z(this.N, f15, 2.0f, f11);
-                ImageReceiver imageReceiver2 = this.f46494r;
-                imageReceiver2.setImageCoords(((rectF2.left + 2.25f) * f13) + f10, z12, f15, f15);
-                canvas.save();
-                canvas.scale(1.2f, 1.2f, imageReceiver2.getCenterX(), imageReceiver2.getCenterY());
-                imageReceiver2.setAlpha(1.0f - e7);
-                imageReceiver2.draw(canvas);
-                canvas.restore();
-            }
-        } else if (!this.f46497x) {
-            float f16 = rectF2.left;
-            float f17 = this.N;
-            float f18 = f13 * 21.33f;
-            Drawable drawable = this.h;
-            drawable.setBounds(((int) (f16 * f13)) + i10, ((int) ((f17 - f18) / 2.0f)) + i11, i10 + ((int) ((f16 + 21.33f) * f13)), i11 + ((int) ((f18 + f17) / 2.0f)));
-            drawable.draw(canvas);
-        }
-        canvas.save();
-        float f19 = rectF2.left;
-        if (!this.f46493n && !this.f46497x) {
-            f7 = 0.0f;
-        } else {
-            f7 = 2.25f;
-        }
-        canvas.translate(((f19 + f7 + 21.33f + 3.25f) * f13) + f10, (this.N / 2.0f) + f11);
-        float f20 = this.E;
-        canvas.scale(f20, f20);
-        canvas.translate(-this.H, (-this.F.getHeight()) / 2.0f);
-        this.F.draw(canvas);
-        canvas.restore();
-    }
-
-    public final void d(int i10, final String str) {
-        boolean isEmpty = TextUtils.isEmpty(str);
-        ImageReceiver imageReceiver = this.f46495s;
-        ImageReceiver imageReceiver2 = this.f46494r;
-        if (isEmpty) {
-            this.f46493n = false;
-            this.v = null;
-            this.f46496w = null;
-            imageReceiver2.clearImage();
-            imageReceiver.clearImage();
-        } else {
-            this.f46493n = true;
-            this.v = null;
-            this.f46496w = null;
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName.short_name = "StaticEmoji";
-            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback(this) {
-                public final s0 f46473b;
-
-                {
-                    this.f46473b = this;
-                }
-
-                @Override
-                public final void run(Object obj) {
-                    switch (r3) {
-                        case 0:
-                            s0 s0Var = this.f46473b;
-                            s0Var.getClass();
-                            String str2 = str;
-                            TLRPC.Document b10 = s0.b(str2, (TLRPC.TL_messages_stickerSet) obj);
-                            s0Var.v = b10;
-                            s0Var.f46494r.setImage(ImageLocation.getForDocument(b10), "80_80", s0.c(str2), null, null, 0);
-                            s0Var.f46495s.setImage(ImageLocation.getForDocument(s0Var.f46496w), "80_80", ImageLocation.getForDocument(s0Var.v), "80_80", null, null, s0.c(str2), 0L, null, null, 0);
-                            return;
-                        default:
-                            s0 s0Var2 = this.f46473b;
-                            s0Var2.getClass();
-                            String str3 = str;
-                            TLRPC.Document b11 = s0.b(str3, (TLRPC.TL_messages_stickerSet) obj);
-                            s0Var2.f46496w = b11;
-                            if (b11 != null) {
-                                s0Var2.f46495s.setImage(ImageLocation.getForDocument(b11), "80_80", ImageLocation.getForDocument(s0Var2.v), "80_80", null, null, s0.c(str3), 0L, null, null, 0);
-                                return;
-                            }
-                            return;
-                    }
-                }
-            });
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
-            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback(this) {
-                public final s0 f46473b;
-
-                {
-                    this.f46473b = this;
-                }
-
-                @Override
-                public final void run(Object obj) {
-                    switch (r3) {
-                        case 0:
-                            s0 s0Var = this.f46473b;
-                            s0Var.getClass();
-                            String str2 = str;
-                            TLRPC.Document b10 = s0.b(str2, (TLRPC.TL_messages_stickerSet) obj);
-                            s0Var.v = b10;
-                            s0Var.f46494r.setImage(ImageLocation.getForDocument(b10), "80_80", s0.c(str2), null, null, 0);
-                            s0Var.f46495s.setImage(ImageLocation.getForDocument(s0Var.f46496w), "80_80", ImageLocation.getForDocument(s0Var.v), "80_80", null, null, s0.c(str2), 0L, null, null, 0);
-                            return;
-                        default:
-                            s0 s0Var2 = this.f46473b;
-                            s0Var2.getClass();
-                            String str3 = str;
-                            TLRPC.Document b11 = s0.b(str3, (TLRPC.TL_messages_stickerSet) obj);
-                            s0Var2.f46496w = b11;
-                            if (b11 != null) {
-                                s0Var2.f46495s.setImage(ImageLocation.getForDocument(b11), "80_80", ImageLocation.getForDocument(s0Var2.v), "80_80", null, null, s0.c(str3), 0L, null, null, 0);
-                                return;
-                            }
-                            return;
-                    }
-                }
-            });
-            imageReceiver2.setImage(ImageLocation.getForDocument(this.v), "80_80", c(str), null, null, 0);
-            imageReceiver.setImage(ImageLocation.getForDocument(this.f46496w), "80_80", ImageLocation.getForDocument(this.v), "80_80", null, null, c(str), 0L, null, null, 0);
-        }
-        this.f46490c = true;
-        requestLayout();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a(canvas);
-    }
-
-    public final void e(int i10, int i11) {
-        int i12 = -16777216;
-        Drawable drawable = this.h;
-        TextPaint textPaint = this.f46491e;
-        Paint paint = this.f46492f;
-        if (i10 == 0) {
-            paint.setColor(-16777216);
-            textPaint.setColor(-1);
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        } else if (i10 == 1) {
-            paint.setColor(1275068416);
-            textPaint.setColor(-1);
-            drawable.setColorFilter(null);
-        } else if (i10 == 2) {
-            paint.setColor(-1);
-            textPaint.setColor(-16777216);
-            drawable.setColorFilter(null);
-        } else {
-            paint.setColor(i11);
-            if (AndroidUtilities.computePerceivedBrightness(i11) < 0.721f) {
-                i12 = -1;
-            }
-            textPaint.setColor(i12);
-            drawable.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    public final void f() {
-        float f7;
-        float f10;
-        if (!this.f46490c) {
-            return;
-        }
-        String str = this.f46489b;
-        TextPaint textPaint = this.f46491e;
-        float measureText = textPaint.measureText(str);
-        int i10 = this.f46488a;
-        int i11 = this.I;
-        float f11 = (i10 - i11) - i11;
-        RectF rectF = this.d;
-        float f12 = rectF.left;
-        float f13 = 2.25f;
-        if (!this.f46493n && !this.f46497x) {
-            f7 = 0.0f;
-        } else {
-            f7 = 2.25f;
-        }
-        float f14 = this.f46498y;
-        float f15 = f11 - (((((f12 + f7) + 21.33f) + 3.25f) + rectF.right) * f14);
-        float min = Math.min(1.0f, f15 / measureText);
-        this.E = min;
-        if (min < 0.4f) {
-            f10 = 1.0f;
-            String str2 = this.f46489b;
-            this.F = new StaticLayout(str2, textPaint, d4.a(str2, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        } else {
-            f10 = 1.0f;
-            this.F = new StaticLayout(this.f46489b, textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        this.G = 0.0f;
-        this.H = Float.MAX_VALUE;
-        for (int i12 = 0; i12 < this.F.getLineCount(); i12++) {
-            this.G = Math.max(this.G, this.F.getLineWidth(i12));
-            this.H = Math.min(this.H, this.F.getLineLeft(i12));
-        }
-        if (this.F.getLineCount() > 2) {
-            this.E = 0.3f;
-        } else {
-            this.E = Math.min(f10, f15 / this.G);
-        }
-        float f16 = rectF.left;
-        if (!this.f46493n && !this.f46497x) {
-            f13 = 0.0f;
-        }
-        this.M = (this.G * this.E) + ((f16 + f13 + 21.33f + 3.25f + rectF.right) * f14);
-        this.N = Math.max(f14 * 21.33f, this.F.getHeight() * this.E) + ((rectF.top + rectF.bottom) * f14);
-        this.f46490c = false;
-    }
-
-    public TLRPC.Document getCodeEmojiDocument() {
-        TLRPC.Document document;
-        if (this.L && (document = this.f46496w) != null) {
-            return document;
-        }
-        return this.v;
-    }
-
-    public int getHeightInternal() {
-        int round = Math.round(this.N);
-        int i10 = this.J;
-        return round + i10 + i10;
-    }
-
-    public float getRadius() {
-        return this.N * 0.2f;
-    }
-
-    public String getText() {
-        return this.f46489b;
-    }
-
-    public int getTypesCount() {
-        return 4;
-    }
-
-    public int getWidthInternal() {
-        int round = Math.round(this.M);
-        int i10 = this.I;
-        return round + i10 + i10;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.K = true;
-        if (this.L) {
-            this.f46495s.onAttachedToWindow();
-        } else {
-            this.f46494r.onAttachedToWindow();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.K = false;
-        this.f46494r.onDetachedFromWindow();
-        this.f46495s.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        f();
-        setMeasuredDimension(getWidthInternal(), getHeightInternal());
-    }
-
-    public void setIsVideo(boolean z10) {
-        if (this.L != z10 && this.K) {
-            ImageReceiver imageReceiver = this.f46495s;
-            ImageReceiver imageReceiver2 = this.f46494r;
-            if (z10) {
-                imageReceiver2.onDetachedFromWindow();
-                imageReceiver.onAttachedToWindow();
+        while (true) {
+            if (i12 < m.f43485a.size()) {
+                hashMap.put(Integer.valueOf(i12), Integer.valueOf((int) sharedPreferences.getLong(i2.d.i(i12, "brush_color_"), ((m) list.get(i12)).c())));
+                i12++;
             } else {
-                imageReceiver2.onAttachedToWindow();
-                imageReceiver.onDetachedFromWindow();
+                hashMap.put(-1, Integer.valueOf((int) sharedPreferences.getLong("brush_color_-1", -1L)));
+                return;
             }
         }
-        this.L = z10;
-        invalidate();
     }
 
-    public void setMaxWidth(int i10) {
-        this.f46488a = i10;
-        this.f46490c = true;
+    public static s0 e(int i10) {
+        s0[] s0VarArr = f43564r;
+        if (s0VarArr[i10] == null) {
+            s0VarArr[i10] = new s0(i10);
+        }
+        return s0VarArr[i10];
     }
 
-    public void setText(String str) {
-        this.f46489b = str;
-        this.f46490c = true;
-        requestLayout();
+    public final void a() {
+        this.d.clear();
+        this.d.addAll(f43559m);
+        SharedPreferences.Editor edit = this.f43565a.edit();
+        for (int i10 = 0; i10 < m.f43485a.size(); i10++) {
+            edit.remove("brush_color_" + i10);
+        }
+        edit.remove("brush_color_-1");
+        this.f43567c.clear();
+        edit.apply();
+        g();
+    }
+
+    public final int b(int i10) {
+        int i11 = f43563q;
+        if (i10 >= 0 && i10 < i11) {
+            List list = f43560n;
+            ArrayList arrayList = new ArrayList(list);
+            arrayList.addAll(this.f43566b);
+            if (i10 >= arrayList.size()) {
+                int i12 = f43562p;
+                if (i10 < i12) {
+                    return ((Integer) list.get(i10)).intValue();
+                }
+                return ((Integer) f43559m.get(i10 - i12)).intValue();
+            }
+            return ((Integer) arrayList.get(i10)).intValue();
+        }
+        throw new IndexOutOfBoundsException(i2.d.i(i11, "Color palette index should be in range 0 ... "));
+    }
+
+    public final int c() {
+        long c10;
+        Integer valueOf = Integer.valueOf(this.f43568f);
+        HashMap hashMap = this.f43567c;
+        Integer num = (Integer) hashMap.get(valueOf);
+        if (num == null) {
+            String str = "brush_color_" + this.f43568f;
+            int i10 = this.f43568f;
+            if (i10 == -1) {
+                c10 = -1;
+            } else {
+                c10 = ((m) m.f43485a.get(i10)).c();
+            }
+            num = Integer.valueOf((int) this.f43565a.getLong(str, c10));
+            hashMap.put(Integer.valueOf(this.f43568f), num);
+        }
+        return num.intValue();
+    }
+
+    public final int d() {
+        int c10 = c();
+        ArrayList arrayList = new ArrayList(f43560n);
+        arrayList.addAll(this.f43566b);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (((Integer) arrayList.get(i10)).intValue() == c10) {
+                return i10;
+            }
+        }
+        return 0;
+    }
+
+    public final float f(String str, float f7) {
+        return this.f43565a.getFloat("weight_" + str, f7);
+    }
+
+    public final void g() {
+        Integer num;
+        List list;
+        if (this.d.isEmpty() && !this.e) {
+            return;
+        }
+        SharedPreferences.Editor edit = this.f43565a.edit();
+        if (!this.d.isEmpty()) {
+            for (int i10 = 0; i10 < f43561o; i10++) {
+                String i11 = i2.d.i(i10, "color_");
+                if (i10 < this.d.size()) {
+                    list = this.d;
+                } else {
+                    list = f43559m;
+                }
+                edit.putLong(i11, ((Integer) list.get(i10)).intValue());
+            }
+            ArrayList arrayList = this.f43566b;
+            arrayList.clear();
+            arrayList.addAll(this.d);
+            this.d.clear();
+        }
+        if (this.e) {
+            if (((Integer) this.f43567c.get(Integer.valueOf(this.f43568f))) != null) {
+                edit.putLong("brush_color_" + this.f43568f, num.intValue());
+            }
+            this.e = false;
+        }
+        edit.apply();
+    }
+
+    public final void h(int i10, boolean z10) {
+        ArrayList arrayList = new ArrayList(f43560n);
+        Collection collection = this.f43566b;
+        arrayList.addAll(collection);
+        int indexOf = arrayList.indexOf(Integer.valueOf(i10));
+        HashMap hashMap = this.f43567c;
+        if (indexOf != -1) {
+            if (z10) {
+                hashMap.put(Integer.valueOf(this.f43568f), Integer.valueOf(b(indexOf)));
+                this.e = true;
+                return;
+            }
+            return;
+        }
+        if (!this.d.isEmpty()) {
+            collection = this.d;
+        }
+        ArrayList arrayList2 = new ArrayList(collection);
+        this.d.clear();
+        this.d.add(Integer.valueOf(i10));
+        for (int i11 = 0; i11 < arrayList2.size() - 1; i11++) {
+            this.d.add((Integer) arrayList2.get(i11));
+        }
+        int size = this.d.size();
+        List list = f43559m;
+        if (size < list.size()) {
+            for (int size2 = this.d.size(); size2 < list.size(); size2++) {
+                this.d.add((Integer) list.get(size2));
+            }
+        } else if (this.d.size() > list.size()) {
+            this.d = this.d.subList(0, list.size());
+        }
+        if (z10) {
+            hashMap.put(Integer.valueOf(this.f43568f), Integer.valueOf(i10));
+            this.e = true;
+        }
+    }
+
+    public final void i(int i10, boolean z10) {
+        this.f43568f = i10;
+        if (z10) {
+            this.f43565a.edit().putInt("brush", i10).apply();
+        }
+        Integer num = (Integer) this.f43567c.get(Integer.valueOf(i10));
+        if (num != null) {
+            h(num.intValue(), false);
+            g();
+        }
+    }
+
+    public final void j(float f7) {
+        this.f43570i = f7;
+        this.f43565a.edit().putFloat("weight", f7).apply();
+    }
+
+    public final void k(String str, float f7) {
+        SharedPreferences.Editor edit = this.f43565a.edit();
+        edit.putFloat("weight_" + str, f7).apply();
     }
 }

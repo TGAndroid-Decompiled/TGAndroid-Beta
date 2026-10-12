@@ -3,22 +3,23 @@ package p1;
 import android.os.Build;
 import android.view.View;
 import java.nio.ByteBuffer;
-import r0.i0;
+import oa.d;
+import r0.j0;
 public abstract class c {
-    public int f45047a;
-    public int f45048b;
-    public int f45049c;
+    public int f42830a;
+    public int f42831b;
+    public int f42832c;
     public Object d;
 
     public c() {
-        if (rb.a.f47366c == null) {
-            rb.a.f47366c = new rb.a(18, false);
+        if (d.f16628b == null) {
+            d.f16628b = new d(19);
         }
     }
 
     public int a(int i10) {
-        if (i10 < this.f45049c) {
-            return ((ByteBuffer) this.d).getShort(this.f45048b + i10);
+        if (i10 < this.f42832c) {
+            return ((ByteBuffer) this.d).getShort(this.f42831b + i10);
         }
         return 0;
     }
@@ -30,33 +31,33 @@ public abstract class c {
     public void d(View view, Object obj) {
         Object tag;
         r0.b bVar;
-        if (Build.VERSION.SDK_INT >= this.f45048b) {
+        if (Build.VERSION.SDK_INT >= this.f42831b) {
             c(view, obj);
             return;
         }
-        if (Build.VERSION.SDK_INT >= this.f45048b) {
+        if (Build.VERSION.SDK_INT >= this.f42831b) {
             tag = b(view);
         } else {
-            tag = view.getTag(this.f45047a);
+            tag = view.getTag(this.f42830a);
             if (!((Class) this.d).isInstance(tag)) {
                 tag = null;
             }
         }
         if (e(tag, obj)) {
-            View.AccessibilityDelegate d = i0.d(view);
+            View.AccessibilityDelegate d = j0.d(view);
             if (d == null) {
                 bVar = null;
             } else if (d instanceof r0.a) {
-                bVar = ((r0.a) d).f46950a;
+                bVar = ((r0.a) d).f43692a;
             } else {
                 bVar = new r0.b(d);
             }
             if (bVar == null) {
                 bVar = new r0.b();
             }
-            i0.j(view, bVar);
-            view.setTag(this.f45047a, obj);
-            i0.f(this.f45049c, view);
+            j0.j(view, bVar);
+            view.setTag(this.f42830a, obj);
+            j0.f(this.f42832c, view);
         }
     }
 

@@ -1,23 +1,41 @@
 package e9;
-public final class r extends t {
-    public final int f8788f;
-    public final v h;
 
-    public r(v vVar, int i10) {
-        super(vVar);
-        this.f8788f = i10;
-        this.h = vVar;
+import java.io.Serializable;
+import java.util.Arrays;
+public final class r extends v1 implements Serializable {
+    public final d9.k f8608a;
+    public final v1 f8609b;
+
+    public r(d9.k kVar, v1 v1Var) {
+        this.f8608a = kVar;
+        this.f8609b = v1Var;
     }
 
     @Override
-    public final Object a(int i10) {
-        switch (this.f8788f) {
-            case 0:
-                return this.h.i()[i10];
-            case 1:
-                return new u(this.h, i10);
-            default:
-                return this.h.j()[i10];
+    public final int compare(Object obj, Object obj2) {
+        d9.k kVar = this.f8608a;
+        return this.f8609b.compare(kVar.apply(obj), kVar.apply(obj2));
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
+        if (obj instanceof r) {
+            r rVar = (r) obj;
+            if (this.f8608a.equals(rVar.f8608a) && this.f8609b.equals(rVar.f8609b)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f8608a, this.f8609b});
+    }
+
+    public final String toString() {
+        return this.f8609b + ".onResultOf(" + this.f8608a + ")";
     }
 }

@@ -1,121 +1,121 @@
 package p4;
 
 import android.os.Bundle;
-import e9.a1;
+import e9.x1;
 import java.util.ArrayList;
 public final class r implements w2.a {
-    public ArrayList f45308a;
+    public ArrayList f43093a;
 
     @Override
-    public long a(long j3) {
-        ArrayList arrayList = this.f45308a;
+    public long a(long j10) {
+        ArrayList arrayList = this.f43093a;
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((z3.a) arrayList.get(0)).f53721b) {
-            return ((z3.a) arrayList.get(0)).f53721b;
+        if (j10 < ((z3.b) arrayList.get(0)).f49253b) {
+            return ((z3.b) arrayList.get(0)).f49253b;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            z3.a aVar = (z3.a) arrayList.get(i10);
-            long j10 = aVar.f53721b;
-            long j11 = aVar.f53721b;
-            if (j3 < j10) {
-                long j12 = ((z3.a) arrayList.get(i10 - 1)).d;
-                if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
-                    return j12;
+            z3.b bVar = (z3.b) arrayList.get(i10);
+            long j11 = bVar.f49253b;
+            long j12 = bVar.f49253b;
+            if (j10 < j11) {
+                long j13 = ((z3.b) arrayList.get(i10 - 1)).d;
+                if (j13 != -9223372036854775807L && j13 > j10 && j13 < j12) {
+                    return j13;
                 }
-                return j11;
+                return j12;
             }
         }
-        long j13 = ((z3.a) e9.q.l(arrayList)).d;
-        if (j13 == -9223372036854775807L || j3 >= j13) {
+        long j14 = ((z3.b) e9.s.m(arrayList)).d;
+        if (j14 == -9223372036854775807L || j10 >= j14) {
             return Long.MIN_VALUE;
         }
-        return j13;
+        return j14;
     }
 
     @Override
-    public e9.i0 b(long j3) {
-        int g10 = g(j3);
+    public e9.n0 b(long j10) {
+        int g10 = g(j10);
         if (g10 == 0) {
-            e9.g0 g0Var = e9.i0.f8749b;
-            return a1.f8712e;
+            e9.l0 l0Var = e9.n0.f8592b;
+            return x1.e;
         }
-        z3.a aVar = (z3.a) this.f45308a.get(g10 - 1);
-        long j10 = aVar.d;
-        if (j10 != -9223372036854775807L && j3 >= j10) {
-            e9.g0 g0Var2 = e9.i0.f8749b;
-            return a1.f8712e;
+        z3.b bVar = (z3.b) this.f43093a.get(g10 - 1);
+        long j11 = bVar.d;
+        if (j11 != -9223372036854775807L && j10 >= j11) {
+            e9.l0 l0Var2 = e9.n0.f8592b;
+            return x1.e;
         }
-        return aVar.f53720a;
+        return bVar.f49252a;
     }
 
     @Override
-    public boolean c(z3.a r11, long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: p4.r.c(z3.a, long):boolean");
+    public boolean c(z3.b r11, long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: p4.r.c(z3.b, long):boolean");
     }
 
     @Override
     public void clear() {
-        this.f45308a.clear();
+        this.f43093a.clear();
     }
 
     @Override
-    public long d(long j3) {
-        ArrayList arrayList = this.f45308a;
-        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f53721b) {
+    public long d(long j10) {
+        ArrayList arrayList = this.f43093a;
+        if (arrayList.isEmpty() || j10 < ((z3.b) arrayList.get(0)).f49253b) {
             return -9223372036854775807L;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j10 = ((z3.a) arrayList.get(i10)).f53721b;
-            int i11 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
+            long j11 = ((z3.b) arrayList.get(i10)).f49253b;
+            int i11 = (j10 > j11 ? 1 : (j10 == j11 ? 0 : -1));
             if (i11 == 0) {
-                return j10;
+                return j11;
             }
             if (i11 < 0) {
-                z3.a aVar = (z3.a) arrayList.get(i10 - 1);
-                long j11 = aVar.d;
-                if (j11 != -9223372036854775807L && j11 <= j3) {
-                    return j11;
+                z3.b bVar = (z3.b) arrayList.get(i10 - 1);
+                long j12 = bVar.d;
+                if (j12 != -9223372036854775807L && j12 <= j10) {
+                    return j12;
                 }
-                return aVar.f53721b;
+                return bVar.f49253b;
             }
         }
-        z3.a aVar2 = (z3.a) e9.q.l(arrayList);
-        long j12 = aVar2.d;
-        if (j12 != -9223372036854775807L && j3 >= j12) {
-            return j12;
+        z3.b bVar2 = (z3.b) e9.s.m(arrayList);
+        long j13 = bVar2.d;
+        if (j13 != -9223372036854775807L && j10 >= j13) {
+            return j13;
         }
-        return aVar2.f53721b;
+        return bVar2.f49253b;
     }
 
     @Override
-    public void e(long j3) {
-        ArrayList arrayList = this.f45308a;
-        int g10 = g(j3);
+    public void e(long j10) {
+        ArrayList arrayList = this.f43093a;
+        int g10 = g(j10);
         if (g10 == 0) {
             return;
         }
-        long j10 = ((z3.a) arrayList.get(g10 - 1)).d;
-        if (j10 == -9223372036854775807L || j10 >= j3) {
+        long j11 = ((z3.b) arrayList.get(g10 - 1)).d;
+        if (j11 == -9223372036854775807L || j11 >= j10) {
             g10--;
         }
         arrayList.subList(0, g10).clear();
     }
 
     public s f() {
-        if (this.f45308a == null) {
-            return s.f45315c;
+        if (this.f43093a == null) {
+            return s.f43099c;
         }
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f45308a);
-        return new s(bundle, this.f45308a);
+        bundle.putStringArrayList("controlCategories", this.f43093a);
+        return new s(bundle, this.f43093a);
     }
 
-    public int g(long j3) {
-        ArrayList arrayList = this.f45308a;
+    public int g(long j10) {
+        ArrayList arrayList = this.f43093a;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j3 < ((z3.a) arrayList.get(i10)).f53721b) {
+            if (j10 < ((z3.b) arrayList.get(i10)).f49253b) {
                 return i10;
             }
         }

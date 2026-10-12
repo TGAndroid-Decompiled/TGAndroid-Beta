@@ -1,226 +1,485 @@
 package pf;
 
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.net.wifi.WifiManager;
-import android.util.Log;
-import android.util.Pair;
-import e6.n;
-import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
+import android.os.RemoteException;
+import android.text.TextUtils;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import n6.o;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-import org.telegram.ui.Components.ch;
-import org.telegram.ui.c80;
-import t7.t;
-import zc.i;
-public final class d extends i {
-    public static final f f45453l;
-    public static final HashMap f45454m;
-    public final ExtendedDefaultDataSourceFactory f45455e;
-    public final c80 f45456f;
-    public final t f45457g;
-    public final HashMap h;
-    public Pair f45458i;
-    public boolean f45459j;
-    public final AtomicInteger f45460k;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.l3;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.m3;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.b3;
+import org.telegram.ui.k4;
+import org.telegram.ui.lz;
+import org.telegram.ui.o3;
+import org.telegram.ui.web.y0;
+import x9.l;
+import xf.e;
+public abstract class d {
+    public static o f43199a;
+    public static l f43200b;
+    public static a9.d f43201c;
+    public static String d;
+    public static WeakReference e;
+    public static Pattern f43202f;
 
-    static {
-        f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f45453l = fVar;
-        f[] fVarArr = {fVar};
-        HashMap hashMap = new HashMap();
-        f45454m = hashMap;
-        f fVar2 = fVarArr[0];
-        hashMap.put(fVar2.d, fVar2);
+    public static java.lang.String a(java.lang.String r3) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.d.a(java.lang.String):java.lang.String");
     }
 
-    public d() {
-        this.f54590c = new n(10);
-        this.h = new HashMap();
-        this.f45458i = null;
-        this.f45459j = false;
-        this.f45460k = new AtomicInteger();
-        this.f45456f = new c80(26);
-        this.f45457g = new Object();
-        this.f45455e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+    public static String b(String str) {
+        if (str != null && !TextUtils.isEmpty(str)) {
+            if (str.startsWith("@")) {
+                return str.substring(1);
+            }
+            if (str.startsWith("t.me/")) {
+                return str.substring(5);
+            }
+            if (str.startsWith("http://t.me/")) {
+                return str.substring(12);
+            }
+            if (str.startsWith("https://t.me/")) {
+                return str.substring(13);
+            }
+            Matcher matcher = LaunchActivity.B1.matcher(str);
+            if (matcher.find()) {
+                return matcher.group(1);
+            }
+        }
+        return null;
     }
 
-    public static String i() {
-        int ipAddress = ((WifiManager) ApplicationLoader.applicationContext.getSystemService("wifi")).getConnectionInfo().getIpAddress();
-        if (ipAddress == 0) {
+    public static o c() {
+        l lVar = f43200b;
+        o oVar = null;
+        if (lVar == null) {
+            f43199a = null;
+        } else if (f43199a == null) {
+            rb.b bVar = new rb.b(19);
+            e eVar = (e) lVar.f48300a;
+            xf.b bVar2 = new xf.b(bVar);
             try {
-                Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-                while (networkInterfaces.hasMoreElements()) {
-                    Enumeration<InetAddress> inetAddresses = networkInterfaces.nextElement().getInetAddresses();
-                    while (inetAddresses.hasMoreElements()) {
-                        InetAddress nextElement = inetAddresses.nextElement();
-                        if (nextElement.isSiteLocalAddress()) {
-                            byte[] address = nextElement.getAddress();
-                            ipAddress = (((address[3] + 256) % 256) << 24) + ((address[0] + 256) % 256) + (((address[1] + 256) % 256) << 8) + (((address[2] + 256) % 256) << 16);
+                if (((xf.c) eVar).F0(bVar2)) {
+                    oVar = new o(27, bVar2, (ComponentName) lVar.f48301b);
+                }
+            } catch (RemoteException unused) {
+            }
+            f43199a = oVar;
+            new WeakReference(oVar);
+        }
+        return f43199a;
+    }
+
+    public static boolean d(android.content.Context r8, java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.d.d(android.content.Context, java.lang.String):boolean");
+    }
+
+    public static boolean e() {
+        lz sheetFragment;
+        m2 U = LaunchActivity.U();
+        if (U != null && (U.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) U.getParentLayout()).getSheetFragment()) != null && sheetFragment.getArticleViewer() != null) {
+            return true;
+        }
+        if (U != null && U.getArticleViewer() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean f(Uri uri, boolean z10, boolean[] zArr) {
+        String str;
+        String str2;
+        String str3;
+        String hostAuthority = AndroidUtilities.getHostAuthority(uri);
+        String str4 = "";
+        if (hostAuthority == null) {
+            str = "";
+        } else {
+            str = hostAuthority.toLowerCase();
+        }
+        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(str)) {
+            if (zArr != null) {
+                zArr[0] = true;
+                return false;
+            }
+        } else {
+            Matcher matcher = LaunchActivity.B1.matcher(str);
+            if (matcher.find()) {
+                StringBuilder sb2 = new StringBuilder("https://t.me/");
+                sb2.append(matcher.group(1));
+                if (TextUtils.isEmpty(uri.getPath())) {
+                    str2 = "";
+                } else {
+                    str2 = "/" + uri.getPath();
+                }
+                sb2.append(str2);
+                if (TextUtils.isEmpty(uri.getQuery())) {
+                    str3 = "";
+                } else {
+                    str3 = "?" + uri.getQuery();
+                }
+                sb2.append(str3);
+                uri = Uri.parse(sb2.toString());
+                String host = uri.getHost();
+                if (host != null) {
+                    str4 = host.toLowerCase();
+                }
+                str = str4;
+            }
+            if ("ton".equals(uri.getScheme())) {
+                try {
+                    List<ResolveInfo> queryIntentActivities = ApplicationLoader.applicationContext.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
+                    if (queryIntentActivities != null) {
+                        if (queryIntentActivities.size() >= 1) {
+                        }
+                    }
+                } catch (Exception unused) {
+                }
+                return true;
+            }
+            if (!"tg".equals(uri.getScheme())) {
+                if ("telegram.dog".equals(str)) {
+                    String path = uri.getPath();
+                    if (path != null && path.length() > 1) {
+                        if (!z10) {
+                            String lowerCase = path.substring(1).toLowerCase();
+                            if (lowerCase.startsWith("blog") || lowerCase.equals("iv") || lowerCase.startsWith("faq") || lowerCase.equals("apps") || lowerCase.startsWith("s/")) {
+                                if (zArr != null) {
+                                    zArr[0] = true;
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                } else if (!"telegram.me".equals(str) && !"t.me".equals(str)) {
+                    if ((!"telegram.org".equals(str) || uri.getPath() == null || !uri.getPath().startsWith("/blog/")) && (!z10 || (!str.endsWith("telegram.org") && !str.endsWith("telegra.ph") && !str.endsWith("telesco.pe")))) {
+                    }
+                } else {
+                    String path2 = uri.getPath();
+                    if (path2 != null && path2.length() > 1) {
+                        if (!z10) {
+                            String lowerCase2 = path2.substring(1).toLowerCase();
+                            if (lowerCase2.equals("iv") || lowerCase2.startsWith("s/")) {
+                                if (zArr != null) {
+                                    zArr[0] = true;
+                                }
+                            }
                         }
                     }
                 }
-            } catch (SocketException e7) {
-                FileLog.e(e7);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean g(String str) {
+        try {
+            return TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            return false;
+        }
+    }
+
+    public static boolean h(String str, boolean z10, boolean z11) {
+        String str2;
+        if (z10) {
+            if (!str.equals("telegra.ph") && !str.equals("te.legra.ph") && !str.equals("graph.org")) {
+                return false;
+            }
+            return true;
+        }
+        StringBuilder sb2 = new StringBuilder("^(https");
+        if (z11) {
+            str2 = "";
+        } else {
+            str2 = "?";
+        }
+        sb2.append(str2);
+        sb2.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
+        return str.matches(sb2.toString());
+    }
+
+    public static boolean i(String str) {
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            return true;
+        }
+        Uri parse = Uri.parse(str);
+        if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean j(String str) {
+        boolean matches;
+        if (f43202f == null) {
+            f43202f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        }
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            matches = f43202f.matcher(hostAuthority).matches();
+        } else {
+            Uri parse = Uri.parse(str);
+            if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
+                matches = f43202f.matcher(parse.getScheme()).matches();
+            } else {
+                return false;
             }
         }
+        return !matches;
+    }
+
+    public static boolean k(Context context, String str, boolean z10, boolean z11, c cVar) {
+        LaunchActivity launchActivity;
+        if (str == null) {
+            return false;
+        }
+        if (AndroidUtilities.findActivity(context) instanceof LaunchActivity) {
+            launchActivity = (LaunchActivity) AndroidUtilities.findActivity(context);
+        } else {
+            launchActivity = LaunchActivity.G1;
+            if (launchActivity == null) {
+                return false;
+            }
+        }
+        if (launchActivity == null) {
+            return false;
+        }
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+        intent.setComponent(new ComponentName(context.getPackageName(), LaunchActivity.class.getName()));
+        intent.putExtra("create_new_tab", true);
+        intent.putExtra("com.android.browser.application_id", context.getPackageName());
+        intent.putExtra("force_not_internal_apps", z10);
+        intent.putExtra("force_request", z11);
+        launchActivity.e0(intent, cVar);
+        return true;
+    }
+
+    public static boolean l(android.content.Context r5, java.lang.String r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.d.l(android.content.Context, java.lang.String, boolean):boolean");
+    }
+
+    public static boolean m(Context context, String str, boolean z10, String str2) {
+        boolean z11;
+        Intent intent;
+        if (str != null) {
+            try {
+                Uri parse = Uri.parse(str);
+                if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent")) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                if (!z11 || z10) {
+                    if (z11) {
+                        intent = Intent.parseUri(parse.toString(), 1);
+                    } else {
+                        intent = new Intent("android.intent.action.VIEW", parse);
+                    }
+                    if (!TextUtils.isEmpty(str2)) {
+                        intent.setPackage(str2);
+                    }
+                    intent.putExtra("create_new_tab", true);
+                    intent.putExtra("com.android.browser.application_id", context.getPackageName());
+                    context.startActivity(intent);
+                    return true;
+                }
+            } catch (Exception e7) {
+                FileLog.e(e7);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static void n(String str) {
+        m3 P;
+        l3 l3Var;
+        String openURL;
+        o3[] o3VarArr;
+        o3 o3Var;
+        LaunchActivity launchActivity = LaunchActivity.G1;
+        if (launchActivity != null && (P = launchActivity.P()) != null) {
+            if (!TextUtils.isEmpty(str)) {
+                ArrayList<l3> tabs = P.getTabs();
+                for (int i10 = 0; i10 < tabs.size(); i10++) {
+                    l3Var = tabs.get(i10);
+                    k4 k4Var = l3Var.J;
+                    if (k4Var != null && !k4Var.f37541d0.isEmpty()) {
+                        Object g10 = i2.d.g(1, l3Var.J.f37541d0);
+                        if (g10 instanceof b3) {
+                            y0 y0Var = ((b3) g10).f20486b;
+                            if (y0Var == null && (o3VarArr = l3Var.J.f37557u0) != null && (o3Var = o3VarArr[0]) != null) {
+                                y0Var = o3Var.getWebView();
+                            }
+                            if (y0Var != null) {
+                                if (y0Var.canGoBack()) {
+                                    openURL = y0Var.getUrl();
+                                } else {
+                                    openURL = y0Var.getOpenURL();
+                                }
+                                if (TextUtils.equals(m3.p(openURL), m3.p(str))) {
+                                    P.e(l3Var);
+                                    break;
+                                }
+                            } else {
+                                continue;
+                            }
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+            l3Var = null;
+            if (l3Var != null) {
+                return;
+            }
+        }
+        m2 U = LaunchActivity.U();
+        if (U != null && U.getArticleViewer() != null) {
+            U.getArticleViewer().N(null, null, null, str);
+            return;
+        }
+        if (U != null && (U.getParentLayout() instanceof ActionBarLayout)) {
+            U = ((ActionBarLayout) U.getParentLayout()).getSheetFragment();
+        }
+        if (U == null) {
+            return;
+        }
+        U.createArticleViewer(false).N(null, null, null, str);
+    }
+
+    public static void o(Activity activity, String str, boolean z10) {
+        if (activity != null && str != null) {
+            p(activity, Uri.parse(str), z10, true);
+        }
+    }
+
+    public static void p(Context context, Uri uri, boolean z10, boolean z11) {
+        r(context, uri, z10, z11, false, null, null, false, true, false);
+    }
+
+    public static void q(Context context, Uri uri, boolean z10, boolean z11, c cVar) {
+        r(context, uri, z10, z11, false, cVar, null, false, true, false);
+    }
+
+    public static void r(android.content.Context r19, android.net.Uri r20, boolean r21, boolean r22, boolean r23, pf.c r24, java.lang.String r25, boolean r26, boolean r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.d.r(android.content.Context, android.net.Uri, boolean, boolean, boolean, pf.c, java.lang.String, boolean, boolean, boolean):void");
+    }
+
+    public static void s(Context context, String str) {
+        if (str == null) {
+            return;
+        }
+        p(context, Uri.parse(str), true, true);
+    }
+
+    public static void t(LaunchActivity launchActivity, Uri uri) {
+        p(launchActivity, uri, true, true);
+    }
+
+    public static void u(Context context, String str) {
+        if (str == null) {
+            return;
+        }
+        r(context, Uri.parse(str), false, true, false, null, null, false, false, false);
+    }
+
+    public static String v(Uri uri, String str, String str2, String str3, String str4) {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(String.valueOf(ipAddress & 255) + '.' + ((ipAddress >> 8) & 255) + '.' + ((ipAddress >> 16) & 255) + '.' + ((ipAddress >> 24) & 255));
-        sb2.append(":61578");
+        if (str == null) {
+            str = uri.getScheme();
+        }
+        if (str != null) {
+            sb2.append(str);
+            sb2.append("://");
+        }
+        if (str2 == null) {
+            if (uri.getUserInfo() != null) {
+                sb2.append(uri.getUserInfo());
+                sb2.append("@");
+            }
+        } else if (!TextUtils.isEmpty(str2)) {
+            sb2.append(str2);
+            sb2.append("@");
+        }
+        if (str3 == null) {
+            if (uri.getHost() != null) {
+                sb2.append(uri.getHost());
+            }
+        } else {
+            sb2.append(str3);
+        }
+        if (uri.getPort() != -1) {
+            sb2.append(":");
+            sb2.append(uri.getPort());
+        }
+        if (str4 != null) {
+            sb2.append(str4);
+        } else if (uri.getPath() != null) {
+            sb2.append(uri.getPath());
+        }
+        if (uri.getQuery() != null) {
+            sb2.append("?");
+            sb2.append(uri.getQuery());
+        }
+        if (uri.getFragment() != null) {
+            sb2.append("#");
+            sb2.append(uri.getFragment());
+        }
         return sb2.toString();
     }
 
-    public static String j(String str, String str2) {
-        return a1.g.q("http://", str, str2);
+    public static String w(Uri uri, String str) {
+        return v(uri, null, null, str, null);
     }
 
-    @Override
-    public final zc.g e(zc.d dVar) {
-        String str;
-        int incrementAndGet = this.f45460k.incrementAndGet();
-        StringBuilder l4 = hg.c.l(incrementAndGet, "Request ", " ");
-        switch (dVar.f54566g) {
-            case 1:
-                str = "GET";
-                break;
-            case 2:
-                str = "PUT";
-                break;
-            case 3:
-                str = "POST";
-                break;
-            case 4:
-                str = "DELETE";
-                break;
-            case 5:
-                str = "HEAD";
-                break;
-            case 6:
-                str = "OPTIONS";
-                break;
-            case 7:
-                str = "TRACE";
-                break;
-            case 8:
-                str = "CONNECT";
-                break;
-            case 9:
-                str = "PATCH";
-                break;
-            case 10:
-                str = "PROPFIND";
-                break;
-            case 11:
-                str = "PROPPATCH";
-                break;
-            case 12:
-                str = "MKCOL";
-                break;
-            case 13:
-                str = "MOVE";
-                break;
-            case 14:
-                str = "COPY";
-                break;
-            case 15:
-                str = "LOCK";
-                break;
-            case 16:
-                str = "UNLOCK";
-                break;
-            default:
-                str = "null";
-                break;
+    public static void x(Activity activity) {
+        Activity activity2;
+        if (f43201c == null) {
+            return;
         }
-        l4.append(str);
-        l4.append(" ");
-        l4.append(dVar.f54565f);
-        l4.append(" ");
-        l4.append((String) dVar.f54567i.get("range"));
-        Log.d("CAST_SERVER", l4.toString());
-        try {
-            zc.g k10 = k(dVar);
-            ch chVar = k10.f54582e;
-            chVar.put("Access-Control-Allow-Origin", "*");
-            chVar.put("Access-Control-Max-Age", "3628800");
-            chVar.put("Access-Control-Allow-Methods", "*");
-            chVar.put("Access-Control-Allow-Headers", "*");
-            return k10;
-        } catch (Throwable unused) {
-            Log.d("CAST_SERVER", "Error " + incrementAndGet);
-            zc.g c10 = i.c(zc.f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            ch chVar2 = c10.f54582e;
-            chVar2.put("Access-Control-Allow-Origin", "*");
-            chVar2.put("Access-Control-Max-Age", "3628800");
-            chVar2.put("Access-Control-Allow-Methods", "*");
-            chVar2.put("Access-Control-Allow-Headers", "*");
-            return c10;
-        }
-    }
-
-    public final void h() {
-        if (this.h.isEmpty()) {
-            if (this.f45459j) {
-                try {
-                    i.d(this.f54588a);
-                    n nVar = this.f54590c;
-                    nVar.getClass();
-                    ArrayList arrayList = new ArrayList((List) nVar.f8687c);
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        zc.a aVar = (zc.a) obj;
-                        i.d(aVar.f54551a);
-                        i.d(aVar.f54552b);
-                    }
-                    Thread thread = this.f54589b;
-                    if (thread != null) {
-                        thread.join();
-                    }
-                } catch (Exception e7) {
-                    i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e7);
-                }
-                this.f45459j = false;
-            }
-        } else if (!this.f45459j) {
-            try {
-                f();
-                this.f45459j = true;
-            } catch (IOException e10) {
-                throw new RuntimeException(e10);
-            }
-        }
-    }
-
-    public final zc.g k(zc.d r44) {
-        throw new UnsupportedOperationException("Method not decompiled: pf.d.k(zc.d):zc.g");
-    }
-
-    public final void l(File file, String str) {
-        if (str != null && file != null) {
-            this.f45458i = new Pair(str, file);
+        WeakReference weakReference = e;
+        if (weakReference == null) {
+            activity2 = null;
         } else {
-            Pair pair = this.f45458i;
-            if (pair != null && ((File) pair.second).exists()) {
-                try {
-                    ((File) this.f45458i.second).delete();
-                } catch (Exception unused) {
-                }
-            }
-            this.f45458i = null;
+            activity2 = (Activity) weakReference.get();
         }
-        h();
+        if (activity2 == activity) {
+            e.clear();
+        }
+        try {
+            activity.unbindService(f43201c);
+        } catch (Exception unused) {
+        }
+        f43200b = null;
+        f43199a = null;
+    }
+
+    public static boolean y(String str) {
+        if (!h(str, false, true) && !str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") && !str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") && !str.matches("^(https://)?fragment\\.com(/.*|$)")) {
+            return false;
+        }
+        return true;
     }
 }

@@ -2,80 +2,120 @@ package yg;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import ji.o4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.xa;
-import org.telegram.ui.Components.j9;
-import tg.r;
-public final class c extends xa {
-    public final a f52464a0;
-    public TL_stories.PrepaidGiveaway f52465b0;
+import org.telegram.messenger.yh;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.f2;
+import org.telegram.ui.ActionBar.g6;
+import w7.a6;
+public class c extends FrameLayout {
+    public final c6 f48751a;
+    public final ImageView f48752b;
+    public final TextView f48753c;
+    public Runnable d;
+    public final f2 e;
+    public final Paint f48754f;
 
-    public c(Context context) {
-        super(0, 0, context, false);
-        this.f52464a0 = new a(context);
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.f52465b0;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
+    public c(Context context, c6 c6Var) {
+        super(context);
         int i10;
-        if (this.S) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(70.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(70.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f20682k0);
+        float f7;
+        float f10;
+        this.f48754f = new Paint(1);
+        this.f48751a = c6Var;
+        TextView textView = new TextView(context);
+        this.f48753c = textView;
+        yh.k(20.0f, 1, textView);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
+        textView.setGravity(i10);
+        int i11 = g6.f20007j5;
+        textView.setTextColor(g6.w0(i11, c6Var));
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            f7 = 16.0f;
+        } else {
+            f7 = 53.0f;
+        }
+        if (z10) {
+            f10 = 53.0f;
+        } else {
+            f10 = 16.0f;
+        }
+        addView(textView, a6.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, 23));
+        ImageView imageView = new ImageView(context);
+        this.f48752b = imageView;
+        f2 f2Var = new f2(false);
+        this.e = f2Var;
+        imageView.setImageDrawable(f2Var);
+        f2Var.a(g6.w0(i11, c6Var));
+        f2Var.b(g6.w0(i11, c6Var));
+        f2Var.f19781k = 220.0f;
+        addView(imageView, a6.a(24.0f, 16.0f, 0.0f, 16.0f, 0.0f, 24, (LocaleController.isRTL ? 5 : 3) | 16));
+        imageView.setOnClickListener(new o4(this, 15));
     }
 
-    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f52465b0 = prepaidGiveaway;
-        boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        j9 j9Var = this.E;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        int w02 = g6.w0(g6.f19902d7, this.f48751a);
+        Paint paint = this.f48754f;
+        paint.setColor(w02);
+        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
+    }
+
+    public int getHeaderHeight() {
+        return AndroidUtilities.dp(56.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
+    }
+
+    public void setBackImage(int i10) {
+        this.f48752b.setImageResource(i10);
+    }
+
+    public void setCloseImageVisible(boolean z10) {
+        int i10;
+        float f7;
+        float f10;
         if (z10) {
-            j9Var.g(26);
-            String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.f52464a0;
-            aVar.f52457f = valueOf;
-            aVar.f52456e = aVar.f52453a.measureText(valueOf);
-            aVar.invalidateSelf();
-        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            j9Var.g(16);
-            int i10 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
-            if (i10 == 12) {
-                j9Var.i(-31392, -2796986);
-            } else if (i10 == 6) {
-                j9Var.i(-10703110, -12481584);
-            } else {
-                j9Var.i(-6631068, -11945404);
-            }
-            String valueOf2 = String.valueOf(r.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.f52464a0;
-            aVar2.f52457f = valueOf2;
-            aVar2.f52456e = aVar2.f52453a.measureText(valueOf2);
-            aVar2.invalidateSelf();
+            i10 = 0;
+        } else {
+            i10 = 8;
         }
-        this.f23503b.i(this.f52464a0);
+        this.f48752b.setVisibility(i10);
+        boolean z11 = LocaleController.isRTL;
+        if (!z11 && z10) {
+            f7 = 53.0f;
+        } else {
+            f7 = 22.0f;
+        }
+        if (z11 && z10) {
+            f10 = 53.0f;
+        } else {
+            f10 = 22.0f;
+        }
+        this.f48753c.setLayoutParams(a6.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, 23));
+    }
+
+    public void setOnCloseClickListener(Runnable runnable) {
+        this.d = runnable;
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f48753c.setText(charSequence);
     }
 }

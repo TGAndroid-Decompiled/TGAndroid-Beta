@@ -1,51 +1,21 @@
 package org.telegram.ui.Components;
 
-import java.util.concurrent.atomic.AtomicReference;
-public final class po implements Runnable {
-    public final int f29536a;
-    public final wo f29537b;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class po extends org.telegram.ui.ActionBar.m1 {
+    public final ro f28393o;
 
-    public po(wo woVar, int i10) {
-        this.f29536a = i10;
-        this.f29537b = woVar;
+    public po(ro roVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f28393o = roVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29536a) {
-            case 0:
-                wo woVar = this.f29537b;
-                AtomicReference atomicReference = woVar.f32514n;
-                org.telegram.ui.ActionBar.h5 h5Var = (org.telegram.ui.ActionBar.h5) atomicReference.get();
-                if (h5Var != null) {
-                    woVar.removeView(h5Var);
-                    atomicReference.set(null);
-                    return;
-                }
-                return;
-            case 1:
-                wo woVar2 = this.f29537b;
-                AtomicReference atomicReference2 = woVar2.v;
-                org.telegram.ui.ActionBar.h5 h5Var2 = (org.telegram.ui.ActionBar.h5) atomicReference2.get();
-                if (h5Var2 != null) {
-                    woVar2.removeView(h5Var2);
-                    atomicReference2.set(null);
-                    if (!woVar2.f32499b) {
-                        woVar2.setClipChildren(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                wo woVar3 = this.f29537b;
-                woVar3.f32511j0 = false;
-                woVar3.f32509h0.c(false);
-                if (woVar3.a()) {
-                    woVar3.f();
-                    return;
-                }
-                return;
+    public final void dismiss() {
+        d(true);
+        org.telegram.ui.fo foVar = this.f28393o.G;
+        if (foVar != null) {
+            foVar.getClass();
+            foVar.j8(false, true, 0.0f);
         }
     }
 }

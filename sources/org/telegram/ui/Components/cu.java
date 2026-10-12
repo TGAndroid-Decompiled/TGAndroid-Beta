@@ -1,80 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.PowerManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class cu implements SensorEventListener {
-    public int E;
-    public int F;
-    public long G;
-    public boolean I;
-    public boolean J;
-    public float L;
-    public final SensorManager f25000a;
-    public final AudioManager f25001b;
-    public final Sensor f25002c;
-    public final Sensor d;
-    public final Sensor f25003e;
-    public final Sensor f25004f;
-    public final PowerManager.WakeLock h;
-    public boolean f25005n;
-    public boolean f25006r;
-    public q81 f25007s;
-    public boolean v;
-    public long f25008w;
-    public int f25009x;
-    public int f25010y;
-    public long H = 0;
-    public float K = -100.0f;
-    public final float[] M = new float[3];
-    public final float[] N = new float[3];
-    public final float[] O = new float[3];
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public class cu extends View {
+    public final h11 f24213a;
+    public final Drawable f24214b;
+    public final ImageReceiver f24215c;
+    public final Rect d;
+    public final RectF e;
+    public dh.d f24216f;
 
-    public cu() {
-        SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-        this.f25000a = sensorManager;
-        this.f25002c = sensorManager.getDefaultSensor(8);
-        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.f25003e = defaultSensor;
-        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f25004f = defaultSensor2;
-        if (defaultSensor == null || defaultSensor2 == null) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("gravity or linear sensor not found");
-            }
-            this.d = sensorManager.getDefaultSensor(1);
-            this.f25003e = null;
-            this.f25004f = null;
-        }
-        this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f25001b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+    public cu(Context context, CharSequence charSequence) {
+        super(context);
+        this.d = new Rect();
+        this.e = new RectF();
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f24215c = imageReceiver;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(22.66f));
+        this.f24213a = new h11(charSequence, 14.0f, AndroidUtilities.bold());
+        Drawable mutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
+        this.f24214b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
-    public final void a() {
-        int i10;
-        q81 q81Var = this.f25007s;
-        if (q81Var == null) {
-            return;
+    public final void a(TLRPC.Photo photo, Object obj) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(24.0f), false, closestPhotoSizeWithSize, false);
+        this.f24215c.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), "24_24", 0L, null, obj, 0);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!this.d.contains((int) motionEvent.getX(), (int) motionEvent.getY()) && motionEvent.getAction() == 0) {
+            return false;
         }
-        if (this.f25006r) {
-            i10 = 0;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f24215c.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f24215c.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        int dp;
+        ImageReceiver imageReceiver = this.f24215c;
+        boolean hasBitmapImage = imageReceiver.hasBitmapImage();
+        if (hasBitmapImage) {
+            f7 = 30.33f;
         } else {
-            i10 = 3;
+            f7 = 11.33f;
         }
-        q81Var.S(i10);
+        int dp2 = AndroidUtilities.dp(19.0f) + ((int) Math.ceil(this.f24213a.f25473c)) + AndroidUtilities.dp(f7);
+        int dp3 = AndroidUtilities.dp(24.0f);
+        int width = (getWidth() - dp2) / 2;
+        int height = getHeight() / 2;
+        int i10 = height - (dp3 / 2);
+        int i11 = dp2 + width;
+        Rect rect = this.d;
+        rect.set(width, i10, i11, dp3 + i10);
+        rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+        dh.d dVar = this.f24216f;
+        if (dVar != null) {
+            dVar.setBounds(rect);
+            this.f24216f.draw(canvas);
+        }
+        if (hasBitmapImage) {
+            float f10 = height;
+            float dp4 = (AndroidUtilities.dp(22.66f) / 2.0f) + f10;
+            RectF rectF = this.e;
+            rectF.set(AndroidUtilities.dp(0.66f) + width, f10 - (AndroidUtilities.dp(22.66f) / 2.0f), AndroidUtilities.dp(23.32f) + width, dp4);
+            imageReceiver.setImageCoords(rectF);
+            imageReceiver.draw(canvas);
+        }
+        this.f24213a.c(width + dp, height, 1.0f, -1, canvas);
+        Drawable drawable = this.f24214b;
+        drawable.setBounds(i11 - AndroidUtilities.dp(17.0f), height - AndroidUtilities.dp(6.0f), i11 - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f) + height);
+        drawable.draw(canvas);
     }
 
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cu.onSensorChanged(android.hardware.SensorEvent):void");
+    public void setBlurredBackgroundDrawable(dh.d dVar) {
+        dVar.p(AndroidUtilities.dp(4.0f));
+        dVar.q(AndroidUtilities.dp(11.0f));
+        this.f24216f = dVar;
     }
 
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public void setImage(Bitmap bitmap) {
+        this.f24215c.setImageBitmap(bitmap);
+        invalidate();
+    }
+
+    public void setImage(String str) {
+        if (str == null) {
+            setImage((Bitmap) null);
+        } else {
+            Utilities.globalQueue.postRunnable(new sk(14, this, str));
+        }
     }
 }

@@ -1,140 +1,149 @@
 package vg;
 
-import ai.a6;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.y9;
-import org.telegram.ui.xy0;
-import w7.w5;
-public final class g extends c {
-    public final ImageView f49829s;
-    public f v;
-    public TLRPC.Chat f49830w;
-    public boolean f49831x;
+import org.telegram.ui.Components.cr;
+import org.telegram.ui.bz0;
+import ug.c1;
+public final class g extends pg.a {
+    public TLRPC.User f46976c;
+    public TLRPC.InputPeer d;
+    public TLRPC.Chat e;
+    public TLRPC.TL_help_country f46977f;
+    public CharSequence f46978g;
+    public String h;
+    public int f46979i;
+    public int f46980j;
+    public boolean f46981k;
+    public int f46982l;
+    public bz0 f46983m;
+    public bz0 f46984n;
+    public c1 f46985o;
+    public c1 f46986p;
+    public View f46987q;
+    public cr f46988r;
 
-    public g(Context context, c6 c6Var) {
-        super(context, c6Var);
-        int i10;
-        float f7;
-        float f10;
-        float f11;
-        this.d.setTypeface(AndroidUtilities.bold());
-        ImageView imageView = new ImageView(context);
-        this.f49829s = imageView;
-        imageView.setFocusable(false);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setBackground(h6.g0(h6.x0(null, h6.Vh, false), 1, -1));
-        imageView.setImageResource(R.drawable.poll_remove);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f20725m6, false), PorterDuff.Mode.MULTIPLY));
-        imageView.setContentDescription(LocaleController.getString(R.string.Delete));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i10 = 3;
-        } else {
-            i10 = 5;
-        }
-        int i11 = i10 | 17;
-        if (z10) {
-            f7 = 3.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z10) {
-            f10 = 0.0f;
-        } else {
-            f10 = 3.0f;
-        }
-        addView(imageView, w5.a(50.0f, f7, 0.0f, f10, 0.0f, 48, i11));
-        a6 a6Var = this.d;
-        if (LocaleController.isRTL) {
-            f11 = 24.0f;
-        } else {
-            f11 = 0.0f;
-        }
-        a6Var.setPadding(AndroidUtilities.dp(f11), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
+    public g(int i10, boolean z10) {
+        super(i10, z10);
+        this.f46982l = -1;
+    }
+
+    public static g b(CharSequence charSequence) {
+        g gVar = new g(8, false);
+        gVar.f46978g = charSequence;
+        return gVar;
+    }
+
+    public static g c(TLRPC.User user, boolean z10) {
+        g gVar = new g(3, true);
+        gVar.f46976c = user;
+        gVar.d = null;
+        gVar.e = null;
+        gVar.f46981k = z10;
+        return gVar;
     }
 
     @Override
-    public final boolean b() {
-        return false;
-    }
-
-    public final void f(TLRPC.Chat chat, int i10, boolean z10, int i11) {
-        String str;
-        int i12;
-        String string;
-        String str2;
-        this.f49831x = z10;
-        this.f49830w = chat;
-        j9 j9Var = this.f49811b;
-        j9Var.q(chat);
-        int dp = AndroidUtilities.dp(20.0f);
-        y9 y9Var = this.f49812c;
-        y9Var.setRoundRadius(dp);
-        y9Var.e(chat, j9Var);
-        String str3 = chat.title;
-        a6 a6Var = this.d;
-        a6Var.k(Emoji.replaceEmoji(str3, a6Var.getPaint().getFontMetricsInt(), false));
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-        if (z10) {
-            if (i11 >= 1) {
-                if (isChannelAndNotMegaGroup) {
-                    str2 = "Subscribers";
-                } else {
-                    str2 = "Members";
+    public final boolean a(pg.a aVar) {
+        boolean z10;
+        boolean z11;
+        if (this != aVar) {
+            if (g.class == aVar.getClass()) {
+                g gVar = (g) aVar;
+                if (this.f46981k == gVar.f46981k) {
+                    if (this.f43203a == 8) {
+                        if (TextUtils.equals(this.h, gVar.h)) {
+                            if (this.f46983m == null) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            if (gVar.f46983m == null) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            if (z10 == z11) {
+                            }
+                        }
+                    }
                 }
-                string = LocaleController.formatPluralString(str2, i11, new Object[0]);
-            } else {
-                if (isChannelAndNotMegaGroup) {
-                    i12 = R.string.DiscussChannel;
-                } else {
-                    i12 = R.string.AccDescrGroup;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        long j10;
+        if (this != obj) {
+            if (obj != null && g.class == obj.getClass()) {
+                g gVar = (g) obj;
+                int i10 = this.f43203a;
+                if (i10 == gVar.f43203a) {
+                    if (i10 != -1 || this.f46982l == gVar.f46982l) {
+                        if (i10 == 3) {
+                            TLRPC.User user = this.f46976c;
+                            long j11 = 0;
+                            if (user != null) {
+                                j10 = user.f19363id;
+                            } else {
+                                TLRPC.Chat chat = this.e;
+                                if (chat != null) {
+                                    j10 = -chat.f19216id;
+                                } else {
+                                    TLRPC.InputPeer inputPeer = this.d;
+                                    if (inputPeer != null) {
+                                        j10 = DialogObject.getPeerDialogId(inputPeer);
+                                    } else {
+                                        j10 = 0;
+                                    }
+                                }
+                            }
+                            TLRPC.User user2 = gVar.f46976c;
+                            if (user2 != null) {
+                                j11 = user2.f19363id;
+                            } else {
+                                TLRPC.Chat chat2 = gVar.e;
+                                if (chat2 != null) {
+                                    j11 = -chat2.f19216id;
+                                } else {
+                                    TLRPC.InputPeer inputPeer2 = gVar.d;
+                                    if (inputPeer2 != null) {
+                                        j11 = DialogObject.getPeerDialogId(inputPeer2);
+                                    }
+                                }
+                            }
+                            if (j10 != j11) {
+                                return false;
+                            }
+                        }
+                        int i11 = this.f43203a;
+                        if (i11 != 6 || this.f46977f == gVar.f46977f) {
+                            if (i11 != 7 || TextUtils.equals(this.f46978g, gVar.f46978g)) {
+                                if (this.f43203a != 8 || TextUtils.equals(this.f46978g, gVar.f46978g)) {
+                                    if (this.f43203a != 9 || (TextUtils.equals(this.f46978g, gVar.f46978g) && this.f46979i == gVar.f46979i && this.f46980j == gVar.f46980j)) {
+                                        if (this.f43203a != 10 || this.f46987q == gVar.f46987q) {
+                                            return true;
+                                        }
+                                        return false;
+                                    }
+                                    return false;
+                                }
+                                return false;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
-                string = LocaleController.getString(i12);
+                return false;
             }
-            setSubtitle(string);
-        } else {
-            if (isChannelAndNotMegaGroup) {
-                str = "BoostingChannelWillReceiveBoost";
-            } else {
-                str = "BoostingGroupWillReceiveBoost";
-            }
-            setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
+            return false;
         }
-        this.f49813e.setTextColor(h6.w0(h6.f20818r5, this.f49810a));
-        setDivider(true);
-        ImageView imageView = this.f49829s;
-        if (z10) {
-            imageView.setVisibility(0);
-        } else {
-            imageView.setVisibility(4);
-        }
-        imageView.setOnClickListener(new xy0(27, this, chat));
-    }
-
-    public TLRPC.Chat getChat() {
-        return this.f49830w;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f49829s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-    }
-
-    public void setChatDeleteListener(f fVar) {
-        this.v = fVar;
+        return true;
     }
 }

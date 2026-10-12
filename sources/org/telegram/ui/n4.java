@@ -1,90 +1,138 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class n4 extends org.telegram.ui.Components.vm0 {
-    public final Context f40203c;
+import android.graphics.Matrix;
+import android.view.TextureView;
+import android.view.View;
+import android.widget.FrameLayout;
+public class n4 extends FrameLayout {
+    public final m4 f38420a;
+    public float f38421b;
+    public int f38422c;
+    public boolean d;
+    public int e;
+    public final Matrix f38423f;
 
     public n4(Context context) {
-        this.f40203c = context;
+        super(context);
+        this.f38423f = new Matrix();
+        this.f38422c = 0;
+        this.f38420a = new m4(this, 0);
+    }
+
+    public final void a(float f7, int i10) {
+        if (this.f38421b != f7) {
+            this.f38421b = f7;
+            this.e = i10;
+            requestLayout();
+        }
+    }
+
+    public float getAspectRatio() {
+        return this.f38421b;
+    }
+
+    public int getResizeMode() {
+        return this.f38422c;
+    }
+
+    public int getVideoRotation() {
+        return this.e;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        int b10 = d1Var.b();
-        if (b10 != 1) {
-            ri.a aVar = ri.e.f47797b;
-            aVar.a();
-            if (!aVar.d || b10 != 2) {
-                return false;
+    public void onMeasure(int i10, int i11) {
+        float f7;
+        float f10;
+        super.onMeasure(i10, i11);
+        if (this.f38421b > 0.0f) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            float f11 = measuredWidth;
+            float f12 = measuredHeight;
+            float f13 = (this.f38421b / (f11 / f12)) - 1.0f;
+            int i12 = (Math.abs(f13) > 0.01f ? 1 : (Math.abs(f13) == 0.01f ? 0 : -1));
+            m4 m4Var = this.f38420a;
+            if (i12 <= 0) {
+                if (!m4Var.f38159b) {
+                    m4Var.f38159b = true;
+                    ((n4) m4Var.f38160c).post(m4Var);
+                    return;
+                }
+                return;
             }
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return 4;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 == 1) {
-            return 1;
-        }
-        if (i10 == 2) {
-            return 2;
-        }
-        return 3;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        int i11;
-        ri.a aVar = ri.e.f47797b;
-        aVar.a();
-        boolean z10 = aVar.d;
-        int i12 = d1Var.f47901f;
-        if (i12 == 0) {
-            ((org.telegram.ui.Cells.m4) d1Var.f47897a).setText(LocaleController.getString(R.string.AudioRecorderGeneral));
-        } else if (i12 == 1) {
-            ((org.telegram.ui.Cells.w8) d1Var.f47897a).f(LocaleController.getString(R.string.AudioRecorderUseNewRecorder), z10, false);
-        } else if (i12 == 2) {
-            org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) d1Var.f47897a;
-            caVar.setEnabled(z10);
-            String string = LocaleController.getString(R.string.AudioRecorderNoiseSuppression);
-            if (((pi.m) ri.e.f47798c.a()) == pi.m.f45799b) {
-                i11 = R.string.AudioRecorderNoiseSuppressionRNNoise;
+            int i13 = this.f38422c;
+            if (i13 != 0) {
+                if (i13 != 1) {
+                    if (i13 != 2) {
+                        if (i13 != 3) {
+                            if (i13 == 4) {
+                                if (f13 > 0.0f) {
+                                    f7 = this.f38421b;
+                                } else {
+                                    f10 = this.f38421b;
+                                }
+                            }
+                        } else if (f13 <= 0.0f) {
+                            f10 = this.f38421b;
+                        } else {
+                            f7 = this.f38421b;
+                        }
+                    } else {
+                        f7 = this.f38421b;
+                    }
+                    measuredWidth = (int) (f12 * f7);
+                } else {
+                    f10 = this.f38421b;
+                }
+                measuredHeight = (int) (f11 / f10);
+            } else if (f13 > 0.0f) {
+                f10 = this.f38421b;
+                measuredHeight = (int) (f11 / f10);
             } else {
-                i11 = R.string.AudioRecorderNoiseSuppressionOff;
+                f7 = this.f38421b;
+                measuredWidth = (int) (f12 * f7);
             }
-            caVar.c(string, LocaleController.getString(i11), false, false);
-        } else {
-            ((org.telegram.ui.Cells.e9) d1Var.f47897a).setText(LocaleController.getString(R.string.AudioRecorderGeneralInfo));
+            if (!m4Var.f38159b) {
+                m4Var.f38159b = true;
+                ((n4) m4Var.f38160c).post(m4Var);
+            }
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
+            int childCount = getChildCount();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                View childAt = getChildAt(i14);
+                if (childAt instanceof TextureView) {
+                    Matrix matrix = this.f38423f;
+                    matrix.reset();
+                    float width = getWidth() / 2;
+                    float height = getHeight() / 2;
+                    matrix.postRotate(this.e, width, height);
+                    int i15 = this.e;
+                    if (i15 == 90 || i15 == 270) {
+                        float height2 = getHeight() / getWidth();
+                        matrix.postScale(1.0f / height2, height2, width, height);
+                    }
+                    ((TextureView) childAt).setTransform(matrix);
+                    return;
+                }
+            }
         }
     }
 
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.ca caVar;
-        Context context = this.f40203c;
-        if (i10 == 0) {
-            caVar = new org.telegram.ui.Cells.m4(context);
-        } else if (i10 == 1) {
-            caVar = new org.telegram.ui.Cells.w8(context);
-        } else if (i10 == 2) {
-            org.telegram.ui.Cells.ca caVar2 = new org.telegram.ui.Cells.ca(context);
-            caVar2.setCanDisable(true);
-            caVar = caVar2;
-        } else {
-            caVar = new org.telegram.ui.Cells.e9(context);
+    public void setDrawingReady(boolean z10) {
+        if (this.d == z10) {
+            return;
         }
-        caVar.setLayoutParams(new s4.q0(-1, -2));
-        return new s4.d1(caVar);
+        this.d = z10;
+    }
+
+    public void setResizeMode(int i10) {
+        if (this.f38422c != i10) {
+            this.f38422c = i10;
+            requestLayout();
+        }
+    }
+
+    public void setAspectRatioListener(l4 l4Var) {
     }
 }

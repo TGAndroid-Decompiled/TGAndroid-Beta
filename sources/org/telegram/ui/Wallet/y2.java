@@ -1,53 +1,43 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-public final class y2 {
-    public final HashSet f35541a = new HashSet();
-    public final HashMap f35542b = new HashMap();
+import android.view.View;
+public final class y2 implements o1.g {
+    public final int f33879a;
+    public final d3 f33880b;
 
-    public static String c(int i10, String str) {
-        if (str.length() <= (i10 * 2) + 1) {
-            return str;
-        }
-        return str.substring(0, i10) + "…" + str.substring(str.length() - i10);
+    public y2(d3 d3Var, int i10) {
+        this.f33879a = i10;
+        this.f33880b = d3Var;
     }
 
-    public final String a(String str) {
-        if (str == null) {
-            return null;
-        }
-        String str2 = (String) this.f35542b.get(str);
-        if (str2 == null) {
-            return str;
-        }
-        return str2;
-    }
-
-    public final void b(int i10, ArrayList arrayList) {
-        HashMap hashMap = new HashMap();
-        int size = arrayList.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            String str = (String) obj;
-            String c10 = c(i10, str);
-            ArrayList arrayList2 = (ArrayList) hashMap.get(c10);
-            if (arrayList2 == null) {
-                arrayList2 = new ArrayList();
-                hashMap.put(c10, arrayList2);
-            }
-            arrayList2.add(str);
-        }
-        for (ArrayList arrayList3 : hashMap.values()) {
-            if (arrayList3.size() == 1) {
-                String str2 = (String) arrayList3.get(0);
-                this.f35542b.put(str2, c(i10, str2));
-            } else {
-                b(i10 + 1, arrayList3);
-            }
+    @Override
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f33879a) {
+            case 0:
+                d3 d3Var = this.f33880b;
+                d3Var.C = f7;
+                d3Var.f33045a.invalidate();
+                return;
+            case 1:
+                d3 d3Var2 = this.f33880b;
+                d3Var2.f33050c0 = f7;
+                org.telegram.ui.Cells.x0 x0Var = d3Var2.f33045a;
+                x0Var.invalidate();
+                if (x0Var.getParent() instanceof View) {
+                    ((View) x0Var.getParent()).invalidate();
+                    return;
+                }
+                return;
+            default:
+                d3 d3Var3 = this.f33880b;
+                d3Var3.f33046a0 = f7;
+                org.telegram.ui.Cells.x0 x0Var2 = d3Var3.f33045a;
+                x0Var2.invalidate();
+                if (x0Var2.getParent() instanceof View) {
+                    ((View) x0Var2.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
     }
 }

@@ -97,14 +97,14 @@ public class Utilities {
     static {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
-        long a2 = v7.q6.a(nextLong);
-        random2.f8148a = a2;
-        long a10 = v7.q6.a(a2);
-        random2.f8149b = a10;
-        if (random2.f8148a == 0 && a10 == 0) {
-            long a11 = v7.q6.a(3735928559L);
-            random2.f8148a = a11;
-            random2.f8149b = v7.q6.a(a11);
+        long a2 = v7.r6.a(nextLong);
+        random2.f6368a = a2;
+        long a10 = v7.r6.a(a2);
+        random2.f6369b = a10;
+        if (random2.f6368a == 0 && a10 == 0) {
+            long a11 = v7.r6.a(3735928559L);
+            random2.f6368a = a11;
+            random2.f6369b = v7.r6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");
@@ -121,8 +121,8 @@ public class Utilities {
             fileInputStream.read(bArr);
             fileInputStream.close();
             random.setSeed(bArr);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -137,8 +137,8 @@ public class Utilities {
                 sb2.append(Integer.toHexString((b10 & 255) | 256).substring(1, 3));
             }
             return sb2.toString();
-        } catch (NoSuchAlgorithmException e7) {
-            FileLog.e(e7);
+        } catch (NoSuchAlgorithmException e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -154,8 +154,8 @@ public class Utilities {
                 sb2.append(Integer.toHexString((b10 & 255) | 256).substring(1, 3));
             }
             return sb2.toString();
-        } catch (NoSuchAlgorithmException e7) {
-            FileLog.e(e7);
+        } catch (NoSuchAlgorithmException e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -170,7 +170,7 @@ public class Utilities {
 
     public static native void aesCtrDecryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i10, int i11);
 
-    public static native void aesCtrDecryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, int i10, long j3, int i11);
+    public static native void aesCtrDecryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, int i10, long j10, int i11);
 
     private static native void aesIgeEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, boolean z10, int i10, int i11);
 
@@ -260,7 +260,7 @@ public class Utilities {
         return clamp(f7, 1.0f, 0.0f);
     }
 
-    public static native void clearDir(String str, int i10, long j3, boolean z10);
+    public static native void clearDir(String str, int i10, long j10, boolean z10);
 
     public static byte[] computePBKDF2(byte[] bArr, byte[] bArr2) {
         byte[] bArr3 = new byte[64];
@@ -273,8 +273,8 @@ public class Utilities {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
             messageDigest.update(bArr, i10, i11);
             return messageDigest.digest();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[20];
         }
     }
@@ -288,8 +288,8 @@ public class Utilities {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
             return messageDigest.digest();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -458,27 +458,27 @@ public class Utilities {
     }
 
     public static Long parseLong(String str) {
-        long j3 = 0;
+        long j10 = 0;
         if (str == null) {
             return 0L;
         }
         try {
             Matcher matcher = pattern.matcher(str);
             if (matcher.find()) {
-                j3 = Long.parseLong(matcher.group(0));
+                j10 = Long.parseLong(matcher.group(0));
             }
         } catch (Exception unused) {
         }
-        return Long.valueOf(j3);
+        return Long.valueOf(j10);
     }
 
     private static native int pbkdf2(byte[] bArr, byte[] bArr2, byte[] bArr3, int i10);
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
-        if (callbackArr != 0 && callbackArr.length != 0) {
-            bm bmVar = new bm(new int[]{0}, callbackArr, runnable, 0);
-            for (ai.j3 j3Var : callbackArr) {
-                j3Var.run(bmVar);
+        if (callbackArr != null && callbackArr.length != 0) {
+            m8 m8Var = new m8(new int[]{0}, callbackArr, runnable, 29);
+            for (Callback<Runnable> callback : callbackArr) {
+                callback.run(m8Var);
             }
         } else if (runnable != null) {
             runnable.run();
@@ -516,11 +516,11 @@ public class Utilities {
         list.set(i11, t10);
     }
 
-    public static long tryParseLong(String str, long j3) {
+    public static long tryParseLong(String str, long j10) {
         try {
             return Long.parseLong(str);
         } catch (Exception unused) {
-            return j3;
+            return j10;
         }
     }
 
@@ -532,17 +532,17 @@ public class Utilities {
         }
     }
 
-    public static long clamp(long j3, long j10, long j11) {
-        return Math.max(Math.min(j3, j10), j11);
+    public static long clamp(long j10, long j11, long j12) {
+        return Math.max(Math.min(j10, j11), j12);
     }
 
-    public static byte[] computeSHA256(byte[] bArr, int i10, long j3) {
+    public static byte[] computeSHA256(byte[] bArr, int i10, long j10) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(bArr, i10, (int) j3);
+            messageDigest.update(bArr, i10, (int) j10);
             return messageDigest.digest();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -598,8 +598,8 @@ public class Utilities {
                 byteBuffer.limit(i11);
                 messageDigest.update(byteBuffer);
                 return messageDigest.digest();
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[20];
@@ -616,8 +616,8 @@ public class Utilities {
             messageDigest.update(bArr, 0, bArr.length);
             messageDigest.update(bArr2, 0, bArr2.length);
             return messageDigest.digest();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -629,8 +629,8 @@ public class Utilities {
                 messageDigest.update(bArr2, 0, bArr2.length);
             }
             return messageDigest.digest();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -659,8 +659,8 @@ public class Utilities {
             messageDigest.update(bArr2, 0, bArr2.length);
             messageDigest.update(bArr3, 0, bArr3.length);
             return messageDigest.digest();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -676,8 +676,8 @@ public class Utilities {
                 byteBuffer.limit(i13);
                 messageDigest.update(byteBuffer);
                 return messageDigest.digest();
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[32];

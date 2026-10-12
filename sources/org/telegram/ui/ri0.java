@@ -1,43 +1,57 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ri0 extends org.telegram.ui.Components.zg {
-    public final org.telegram.ui.Components.zg f41663l0;
-    public final boolean m0;
-    public final ej0 f41664n0;
+import android.graphics.Point;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class ri0 extends s4.g0 {
+    public final Context f39809c;
+    public final org.telegram.ui.ActionBar.c6 d;
+    public final hj0 e;
 
-    public ri0(ej0 ej0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.zg zgVar, boolean z10) {
-        super(i10, context, c6Var, false);
-        this.f41664n0 = ej0Var;
-        this.f41663l0 = zgVar;
-        this.m0 = z10;
+    public ri0(hj0 hj0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.e = hj0Var;
+        this.f39809c = context;
+        this.d = c6Var;
     }
 
     @Override
-    public final boolean d() {
-        return this.f41663l0.d();
+    public final int h() {
+        return this.e.N.size();
     }
 
     @Override
-    public final boolean e() {
-        return this.f41663l0.e();
-    }
-
-    @Override
-    public final boolean f() {
-        if (this.m0 && this.f41664n0.f37151q0 && this.f33377r <= 0) {
-            return false;
+    public final void v(s4.b1 b1Var, int i10) {
+        hj0 hj0Var = this.e;
+        ArrayList arrayList = hj0Var.N;
+        boolean z10 = true;
+        MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
+        org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) b1Var.f44838a;
+        MessageObject.GroupedMessages l4 = hj0Var.l(messageObject);
+        int i11 = 0;
+        if (l4 == null) {
+            z10 = false;
         }
-        return true;
+        u1Var.setInvalidatesParent(z10);
+        u1Var.X3(messageObject, l4, false, false, false, false);
+        if (!hj0Var.P.i() && arrayList.size() >= 10) {
+            i11 = arrayList.size() % 10;
+        }
+        if (i10 == i11 && !messageObject.needDrawForwarded()) {
+            hj0Var.Q = u1Var;
+            Point point = AndroidUtilities.displaySize;
+            u1Var.Z3(point.x, point.y);
+            hj0Var.R = messageObject.getId();
+        }
     }
 
     @Override
-    public final int getFillColor() {
-        return this.f41663l0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.f41663l0.j();
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        hj0 hj0Var = this.e;
+        gj0 gj0Var = new gj0(hj0Var, this.f39809c, hj0Var.f36838c, this.d);
+        gj0Var.setDelegate(new rb.b(17));
+        return new s4.b1(gj0Var);
     }
 }

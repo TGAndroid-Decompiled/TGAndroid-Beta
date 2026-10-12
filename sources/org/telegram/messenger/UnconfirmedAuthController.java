@@ -18,7 +18,7 @@ public class UnconfirmedAuthController {
     private boolean saveAfterFetch;
     private boolean savingCache;
     public final ArrayList<UnconfirmedAuth> auths = new ArrayList<>();
-    private final Runnable checkExpiration = new wl(this, 2);
+    private final Runnable checkExpiration = new tl(this, 2);
     private boolean debug = false;
 
     public UnconfirmedAuthController(int i10) {
@@ -129,16 +129,16 @@ public class UnconfirmedAuthController {
             ArrayList<UnconfirmedAuth> arrayList = this.auths;
             int size = arrayList.size();
             int i10 = 0;
-            long j3 = Long.MAX_VALUE;
+            long j10 = Long.MAX_VALUE;
             while (i10 < size) {
                 UnconfirmedAuth unconfirmedAuth = arrayList.get(i10);
                 i10++;
-                j3 = Math.min(j3, unconfirmedAuth.expiresAfter());
+                j10 = Math.min(j10, unconfirmedAuth.expiresAfter());
             }
-            if (j3 == Long.MAX_VALUE) {
+            if (j10 == Long.MAX_VALUE) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(this.checkExpiration, Math.max(0L, j3 * 1000));
+            AndroidUtilities.runOnUIThread(this.checkExpiration, Math.max(0L, j10 * 1000));
         }
     }
 
@@ -155,7 +155,7 @@ public class UnconfirmedAuthController {
                 }
             };
         }
-        Utilities.raceCallbacks(new ci.t1(this, zArr, arrayList2, z10, callback, 11), callbackArr);
+        Utilities.raceCallbacks(new di.t1(this, zArr, arrayList2, z10, callback, 12), callbackArr);
         if (z10) {
             HashSet hashSet = new HashSet();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
@@ -223,7 +223,7 @@ public class UnconfirmedAuthController {
     public void readCache() {
         if (!this.fetchedCache && !this.fetchingCache) {
             this.fetchingCache = true;
-            MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new wl(this, 0));
+            MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new tl(this, 0));
         }
     }
 
@@ -236,7 +236,7 @@ public class UnconfirmedAuthController {
             return;
         }
         this.savingCache = true;
-        MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new wl(this, 3));
+        MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new tl(this, 3));
     }
 
     public void processUpdate(TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
@@ -308,7 +308,7 @@ public class UnconfirmedAuthController {
         }
 
         public void lambda$confirm$2(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new xl(this, callback, tLObject, tL_error, 0));
+            AndroidUtilities.runOnUIThread(new ul(this, callback, tLObject, tL_error, 0));
         }
 
         public void lambda$deny$3(TLObject tLObject, Utilities.Callback callback, TLRPC.TL_error tL_error) {
@@ -317,7 +317,7 @@ public class UnconfirmedAuthController {
             if (z11) {
                 MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
             }
-            hg.g.a(UnconfirmedAuthController.this.currentAccount).b();
+            ig.f.a(UnconfirmedAuthController.this.currentAccount).b();
             if (callback != null) {
                 if ((z11 && tL_error == null) || UnconfirmedAuthController.this.debug) {
                     z10 = true;
@@ -330,7 +330,7 @@ public class UnconfirmedAuthController {
         }
 
         public void lambda$deny$4(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new xl(this, callback, tLObject, tL_error));
+            AndroidUtilities.runOnUIThread(new ul(this, callback, tLObject, tL_error));
         }
 
         public void lambda$deny$5(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -347,20 +347,20 @@ public class UnconfirmedAuthController {
         }
 
         public void lambda$deny$6(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new xl(this, callback, tLObject, tL_error, 2));
+            AndroidUtilities.runOnUIThread(new ul(this, callback, tLObject, tL_error, 2));
         }
 
         public void confirm(Utilities.Callback<Boolean> callback) {
             if (this.bot) {
                 TL_account.confirmBotConnection confirmbotconnection = new TL_account.confirmBotConnection();
                 confirmbotconnection.bot_id = MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).getInputUser(this.bot_id);
-                ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequestTyped(confirmbotconnection, new h1(4, this, callback));
+                ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequestTyped(confirmbotconnection, new g1(4, this, callback));
                 return;
             }
             TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
             changeauthorizationsettings.hash = this.hash;
             changeauthorizationsettings.confirmed = true;
-            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(changeauthorizationsettings, new yl(this, callback, 2));
+            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(changeauthorizationsettings, new vl(this, callback, 2));
         }
 
         public void deny(Utilities.Callback<Boolean> callback) {
@@ -369,12 +369,12 @@ public class UnconfirmedAuthController {
                 updateconnectedbot.deleted = true;
                 updateconnectedbot.bot = MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).getInputUser(this.bot_id);
                 updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(updateconnectedbot, new yl(this, callback, 0));
+                ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(updateconnectedbot, new vl(this, callback, 0));
                 return;
             }
             TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
             resetauthorization.hash = this.hash;
-            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(resetauthorization, new yl(this, callback, 1));
+            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(resetauthorization, new vl(this, callback, 1));
         }
 
         public boolean expired() {
@@ -416,9 +416,9 @@ public class UnconfirmedAuthController {
         public UnconfirmedAuth(TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
             UnconfirmedAuthController.this = r3;
             this.bot = true;
-            long j3 = tL_updateNewBotConnection.bot_id;
-            this.bot_id = j3;
-            this.hash = j3;
+            long j10 = tL_updateNewBotConnection.bot_id;
+            this.bot_id = j10;
+            this.hash = j10;
             this.date = tL_updateNewBotConnection.date;
             this.device = tL_updateNewBotConnection.device;
             this.location = tL_updateNewBotConnection.location;

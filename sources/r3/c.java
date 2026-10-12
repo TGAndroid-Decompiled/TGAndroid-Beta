@@ -1,35 +1,19 @@
 package r3;
 
-import b2.m0;
-import b2.o0;
-import b2.s;
-import java.util.ArrayList;
-public final class c implements o0 {
-    public final ArrayList f47173a;
+import b2.r0;
+import b2.t0;
+import b2.x;
+public final class c implements t0 {
+    public final float f43896a;
+    public final int f43897b;
 
-    public c(ArrayList arrayList) {
-        this.f47173a = arrayList;
-        boolean z10 = false;
-        if (!arrayList.isEmpty()) {
-            long j3 = ((b) arrayList.get(0)).f47171b;
-            int i10 = 1;
-            while (true) {
-                if (i10 >= arrayList.size()) {
-                    break;
-                } else if (((b) arrayList.get(i10)).f47170a < j3) {
-                    z10 = true;
-                    break;
-                } else {
-                    j3 = ((b) arrayList.get(i10)).f47171b;
-                    i10++;
-                }
-            }
-        }
-        e2.d.b(!z10);
+    public c(float f7, int i10) {
+        this.f43896a = f7;
+        this.f43897b = i10;
     }
 
     @Override
-    public final s a() {
+    public final x a() {
         return null;
     }
 
@@ -43,20 +27,23 @@ public final class c implements o0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return this.f47173a.equals(((c) obj).f47173a);
+            c cVar = (c) obj;
+            if (this.f43896a == cVar.f43896a && this.f43897b == cVar.f43897b) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f47173a.hashCode();
+        return ((Float.valueOf(this.f43896a).hashCode() + 527) * 31) + this.f43897b;
     }
 
     public final String toString() {
-        return "SlowMotion: segments=" + this.f47173a;
+        return "smta: captureFrameRate=" + this.f43896a + ", svcTemporalLayerCount=" + this.f43897b;
     }
 
     @Override
-    public final void b(m0 m0Var) {
+    public final void b(r0 r0Var) {
     }
 }

@@ -1,86 +1,48 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.fk0;
-import w7.w5;
-public final class l3 extends FrameLayout {
-    public final r1 f31779a;
-    public k3 f31780b;
-    public int f31781c;
-    public final TextView d;
-    public final TextView f31782e;
-    public int f31783f;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class l3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30321a;
+    public final n3 f30322b;
 
-    public l3(Activity activity, r1 r1Var) {
-        super(activity);
-        this.f31779a = r1Var;
-        setWillNotDraw(true);
-        k3 k3Var = new k3(activity, r1Var);
-        this.f31780b = k3Var;
-        addView(k3Var, w5.b(53.5f, 53.5f, 1));
-        TextView textView = new TextView(activity);
-        this.d = textView;
-        textView.setGravity(1);
-        textView.setTextSize(1, 11.0f);
-        textView.setTextColor(-1);
-        textView.setImportantForAccessibility(2);
-        addView(textView, w5.a(-2.0f, 0.0f, 58.0f, 0.0f, 2.0f, -1, 0));
-        TextView textView2 = new TextView(activity);
-        this.f31782e = textView2;
-        textView2.setGravity(1);
-        textView2.setTextSize(1, 11.0f);
-        textView2.setTextColor(-1);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, w5.a(-2.0f, 0.0f, 58.0f, 0.0f, 2.0f, -1, 0));
-        textView.setVisibility(8);
-        textView2.setVisibility(8);
+    public l3(n3 n3Var, int i10) {
+        this.f30321a = i10;
+        this.f30322b = n3Var;
     }
 
-    public final void a(int i10) {
-        this.f31780b.f31756a = new fk0(R.raw.bt_to_speaker, i10, i10, true, null);
-        this.f31780b.f31757b = new fk0(R.raw.bt_to_speaker, i10, i10, true, null);
-        this.f31780b.f31757b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-    }
-
-    public final void b(int i10, int i11, int i12, boolean z10) {
-        k3 k3Var = new k3(getContext(), this.f31779a);
-        if (i10 == R.raw.camera_flip2) {
-            fk0 fk0Var = new fk0(i10, i11, i11, true, null);
-            k3Var.f31758c = fk0Var;
-            fk0Var.R(k3Var);
-        } else {
-            k3Var.f31756a = new fk0(i10, i11, i11, true, null);
-            fk0 fk0Var2 = new fk0(i10, i11, i11, true, null);
-            k3Var.f31757b = fk0Var2;
-            fk0Var2.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30321a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n3 n3Var = this.f30322b;
+                n3Var.f30349n = floatValue;
+                n3Var.f30346k.invalidate();
+                if (n3Var.f30349n > 1.0f && n3Var.f30353r == null) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(AndroidUtilities.dp(12), 0);
+                    n3Var.f30353r = ofInt;
+                    ofInt.addUpdateListener(new l3(n3Var, 2));
+                    n3Var.f30353r.setDuration(350 - valueAnimator.getCurrentPlayTime());
+                    n3Var.f30353r.start();
+                    return;
+                }
+                return;
+            case 1:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                n3 n3Var2 = this.f30322b;
+                n3Var2.f30348m = intValue;
+                n3Var2.f30346k.invalidate();
+                return;
+            default:
+                int intValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                n3 n3Var3 = this.f30322b;
+                if (n3Var3.f30344i <= n3Var3.f30350o / 2) {
+                    intValue2 = -intValue2;
+                }
+                n3Var3.f30351p = intValue2;
+                n3Var3.f30346k.invalidate();
+                return;
         }
-        k3Var.a(i12, z10, false);
-        k3Var.setAlpha(0.0f);
-        k3Var.setOnBtnClickedListener(this.f31780b.f31765x);
-        addView(k3Var, w5.b(53.5f, 53.5f, 1));
-        k3 k3Var2 = this.f31780b;
-        this.f31780b = k3Var;
-        k3Var.animate().alpha(1.0f).setDuration(250L).start();
-        k3Var2.animate().alpha(0.0f).setDuration(250L).setListener(new am0(5, this, k3Var2)).start();
-    }
-
-    public final void c(int i10) {
-        this.f31780b.f31756a = new fk0(R.raw.speaker_to_bt, i10, i10, true, null);
-        this.f31780b.f31757b = new fk0(R.raw.speaker_to_bt, i10, i10, true, null);
-        this.f31780b.f31757b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-    }
-
-    public final void d(int r17, boolean r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.l3.d(int, boolean, boolean):void");
-    }
-
-    public void setOnBtnClickedListener(j3 j3Var) {
-        this.f31780b.setOnBtnClickedListener(j3Var);
     }
 }

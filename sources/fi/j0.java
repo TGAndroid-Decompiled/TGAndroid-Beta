@@ -1,108 +1,94 @@
 package fi;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.am;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.p71;
-import w7.w5;
-public final class j0 extends h0 {
-    public final k0 h;
+import android.app.DownloadManager;
+import android.net.Uri;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Pair;
+import di.x8;
+import java.io.File;
+import org.json.JSONObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class j0 {
+    public Long f9324a;
+    public final String f9325b;
+    public final String f9326c;
+    public File d;
+    public final String e;
+    public long f9327f;
+    public long f9328g;
+    public boolean h;
+    public boolean f9329i;
+    public long f9330j;
+    public boolean f9331k;
+    public boolean f9332l;
+    public final Runnable f9333m = new x8(this, 14);
+    public final k0 f9334n;
 
-    public j0(k0 k0Var, Context context) {
-        super(k0Var, context);
-        int i10;
-        c6 c6Var;
-        c6 c6Var2;
-        c6 c6Var3;
-        c6 c6Var4;
-        this.h = k0Var;
-        i10 = ((e3) k0Var).currentAccount;
-        t tVar = new t(k0Var, 5);
-        u uVar = new u(k0Var, 5);
-        c6Var = ((e3) k0Var).resourcesProvider;
-        p71 p71Var = new p71(context, i10, 0, false, tVar, uVar, null, c6Var);
-        this.d = p71Var;
-        p71Var.p1();
-        p71 p71Var2 = this.d;
-        p71Var2.W2.f26679r = false;
-        p71Var2.setClipToPadding(false);
-        this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
-        this.d.j(new ai.r(this, 7));
-        this.f9973c.addView(this.d, 0, w5.d(-1.0f, -1));
-        c6Var2 = ((e3) k0Var).resourcesProvider;
-        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, c6Var2);
-        this.f9971a = kVar;
-        kVar.setOccupyStatusBar(false);
-        org.telegram.ui.ActionBar.k kVar2 = this.f9971a;
-        int i11 = h6.G6;
-        kVar2.setTitleColor(k0Var.getThemedColor(i11));
-        this.f9971a.D(k0Var.getThemedColor(h6.f20966z8), false);
-        this.f9971a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f9971a.E(k0Var.getThemedColor(h6.f20948y8), false);
-        this.f9971a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
-        this.f9971a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
-        this.f9971a.setActionBarMenuOnItemClick(new ei.t(this, 8));
-        this.f9973c.addView(this.f9971a, w5.e(-1, 56, 48));
-        LinearLayout e7 = am.e(context, 0);
-        e7.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
-        c6Var3 = ((e3) k0Var).resourcesProvider;
-        ci.d dVar = new ci.d(context, c6Var3, true);
-        dVar.d();
-        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(h6.f20560d6), k0Var.getThemedColor(i11)));
-        dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
-        dVar.e();
-        dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f9979b;
+    public j0(k0 k0Var, String str, String str2) {
+        this.f9334n = k0Var;
+        this.f9325b = str;
+        this.f9326c = str2;
+        TLRPC.User user = MessagesController.getInstance(k0Var.f9347b).getUser(Long.valueOf(k0Var.f9348c));
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
+        request.setTitle(UserObject.getUserName(user));
+        request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : a1.g.p("Downloading ", str2, "..."));
+        request.setNotificationVisibility(0);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
+        this.f9324a = Long.valueOf(k0Var.d.enqueue(request));
+    }
 
-            {
-                this.f9979b = this;
+    public final void a() {
+        k0 k0Var = this.f9334n;
+        k0Var.getClass();
+        this.f9329i = true;
+        Long l4 = this.f9324a;
+        if (l4 != null) {
+            k0Var.d.remove(l4.longValue());
+            this.f9324a = null;
+        }
+        k0Var.e.remove(this);
+        k0Var.e();
+    }
+
+    public final Pair b() {
+        if (this.h) {
+            return new Pair(Long.valueOf(this.f9328g), Long.valueOf(this.f9328g));
+        }
+        if (this.f9324a != null && !this.f9329i) {
+            if (System.currentTimeMillis() - this.f9330j < 150) {
+                return new Pair(Long.valueOf(this.f9327f), Long.valueOf(this.f9328g));
             }
+            d();
+            return new Pair(Long.valueOf(this.f9327f), Long.valueOf(this.f9328g));
+        }
+        return new Pair(Long.valueOf(this.f9327f), Long.valueOf(this.f9328g));
+    }
 
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f9979b.h.M.f(false, true);
-                        return;
-                    default:
-                        this.f9979b.h.M.f(true, true);
-                        return;
-                }
-            }
-        });
-        e7.addView(dVar, w5.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
-        c6Var4 = ((e3) k0Var).resourcesProvider;
-        ci.d dVar2 = new ci.d(context, c6Var4, true);
-        dVar2.setText(LocaleController.getString(R.string.CommunityPendingRequestAddAll));
-        dVar2.e();
-        dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f9979b;
+    public final boolean c() {
+        if (!this.h && this.f9324a != null) {
+            return true;
+        }
+        return false;
+    }
 
-            {
-                this.f9979b = this;
-            }
+    public final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: fi.j0.d():void");
+    }
 
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f9979b.h.M.f(false, true);
-                        return;
-                    default:
-                        this.f9979b.h.M.f(true, true);
-                        return;
-                }
-            }
-        });
-        e7.addView(dVar2, w5.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
-        this.f9973c.addView(e7, w5.f(-2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
-        a();
+    public j0(k0 k0Var, JSONObject jSONObject) {
+        this.f9334n = k0Var;
+        this.f9325b = jSONObject.optString("url");
+        this.f9326c = jSONObject.optString("file_name");
+        this.f9328g = jSONObject.optLong("size");
+        this.h = jSONObject.optBoolean("done");
+        this.e = jSONObject.optString("mime");
+        String optString = jSONObject.optString("path");
+        if (TextUtils.isEmpty(optString)) {
+            return;
+        }
+        this.d = new File(optString);
     }
 }

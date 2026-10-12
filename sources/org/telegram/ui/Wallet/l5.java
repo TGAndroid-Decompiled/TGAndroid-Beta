@@ -1,30 +1,57 @@
 package org.telegram.ui.Wallet;
-
-import android.graphics.LinearGradient;
-import android.graphics.Path;
-import android.graphics.Shader;
 public final class l5 {
-    public final Path f35034a;
-    public final LinearGradient f35035b;
+    public boolean f33434a;
+    public float f33435b;
+    public float f33436c;
+    public float d;
+    public float e;
+    public float f33437f;
+    public float f33438g;
+    public long h;
+    public long f33439i;
+    public long f33440j;
 
-    public l5(float f7, float f10, float f11, float f12, float f13, int i10, int i11) {
-        Path path = new Path();
-        this.f35034a = path;
-        float f14 = 0.14999998f * f11;
-        path.rewind();
-        path.moveTo(f7 - f11, f10);
-        float f15 = f7 - f14;
-        float f16 = f10 - f14;
-        path.lineTo(f15, f16);
-        path.lineTo(f7, f10 - f11);
-        float f17 = f7 + f14;
-        path.lineTo(f17, f16);
-        path.lineTo(f7 + f11, f10);
-        float f18 = f14 + f10;
-        path.lineTo(f17, f18);
-        path.lineTo(f7, f10 + f11);
-        path.lineTo(f15, f18);
-        path.close();
-        this.f35035b = new LinearGradient(f7 - f12, f10 - f13, f7 + f12, f10 + f13, i10, i11, Shader.TileMode.CLAMP);
+    public final void a(float f7, float f10, long j10) {
+        if (!Float.isNaN(f7) && !Float.isInfinite(f7) && !Float.isNaN(f10) && !Float.isInfinite(f10)) {
+            this.f33435b = f7;
+            this.f33436c = f10;
+            this.f33439i = j10;
+            if (!this.f33434a) {
+                this.f33434a = true;
+                this.d = f7;
+                this.e = f10;
+                this.f33437f = f7;
+                this.f33438g = f10;
+                this.h = j10;
+                return;
+            }
+            float f11 = f7 - this.f33437f;
+            float f12 = f10 - this.f33438g;
+            if ((f12 * f12) + (f11 * f11) > 1.265625f) {
+                this.f33437f = f7;
+                this.f33438g = f10;
+                this.h = j10;
+            }
+        }
+    }
+
+    public final void b(long j10) {
+        if (this.f33434a) {
+            long j11 = this.f33440j;
+            if (j11 == 0) {
+                this.f33440j = j10;
+                return;
+            }
+            float min = Math.min(0.1f, Math.max(0.0f, ((float) (j10 - j11)) * 1.0E-9f));
+            this.f33440j = j10;
+            if (this.f33439i - this.h < 1000000000) {
+                return;
+            }
+            float exp = 1.0f - ((float) Math.exp((-min) / 1.0f));
+            float f7 = this.d;
+            this.d = com.google.android.gms.internal.play_billing.k3.y(this.f33435b, f7, exp, f7);
+            float f10 = this.e;
+            this.e = com.google.android.gms.internal.play_billing.k3.y(this.f33436c, f10, exp, f10);
+        }
     }
 }

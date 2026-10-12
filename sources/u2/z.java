@@ -1,54 +1,50 @@
 package u2;
-public final class z extends b2.k1 {
-    public final b2.k0 f48978e;
 
-    public z(b2.k0 k0Var) {
-        this.f48978e = k0Var;
+import j$.util.Objects;
+public final class z extends s {
+    public static final Object h = new Object();
+    public final Object f46108f;
+    public final Object f46109g;
+
+    public z(b2.p1 p1Var, Object obj, Object obj2) {
+        super(p1Var);
+        this.f46108f = obj;
+        this.f46109g = obj2;
     }
 
     @Override
     public final int b(Object obj) {
-        if (obj == y.h) {
-            return 0;
+        Object obj2;
+        if (h.equals(obj) && (obj2 = this.f46109g) != null) {
+            obj = obj2;
         }
-        return -1;
+        return this.e.b(obj);
     }
 
     @Override
-    public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        Integer num;
-        Object obj = null;
-        if (z10) {
-            num = 0;
-        } else {
-            num = null;
+    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
+        this.e.f(i10, m1Var, z10);
+        if (Objects.equals(m1Var.f2212b, this.f46109g) && z10) {
+            m1Var.f2212b = h;
         }
-        if (z10) {
-            obj = y.h;
-        }
-        h1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.b.f3237c, true);
-        return h1Var;
-    }
-
-    @Override
-    public final int h() {
-        return 1;
+        return m1Var;
     }
 
     @Override
     public final Object l(int i10) {
-        return y.h;
+        Object l4 = this.e.l(i10);
+        if (Objects.equals(l4, this.f46109g)) {
+            return h;
+        }
+        return l4;
     }
 
     @Override
-    public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        j1Var.b(b2.j1.f3368q, this.f48978e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-        j1Var.f3385k = true;
-        return j1Var;
-    }
-
-    @Override
-    public final int o() {
-        return 1;
+    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
+        this.e.m(i10, o1Var, j10);
+        if (Objects.equals(o1Var.f2258a, this.f46108f)) {
+            o1Var.f2258a = b2.o1.f2249q;
+        }
+        return o1Var;
     }
 }

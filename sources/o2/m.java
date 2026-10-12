@@ -1,55 +1,36 @@
 package o2;
 
-import e2.d0;
+import b2.x;
+import e2.m0;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import n4.y;
-import u2.a1;
-import v7.v7;
-public final class m implements a1 {
-    public final int f16763a;
-    public final q f16764b;
-    public int f16765c = -1;
+import u2.d1;
+import v7.b8;
+import v7.u6;
+public final class m implements d1 {
+    public final int f16536a;
+    public final q f16537b;
+    public int f16538c = -1;
 
     public m(q qVar, int i10) {
-        this.f16764b = qVar;
-        this.f16763a = i10;
+        this.f16537b = qVar;
+        this.f16536a = i10;
     }
 
-    @Override
     public final void a() {
-        int i10 = this.f16765c;
-        q qVar = this.f16764b;
-        if (i10 != -2) {
-            if (i10 == -1) {
-                qVar.B();
-                return;
-            } else if (i10 != -3) {
-                qVar.B();
-                qVar.L[i10].z();
-                return;
-            } else {
-                return;
-            }
-        }
-        qVar.e();
-        throw new IOException(a1.g.q("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f16763a).d[0].f3641r, "."));
-    }
-
-    public final void b() {
         boolean z10;
-        if (this.f16765c == -1) {
+        if (this.f16538c == -1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.b(z10);
-        q qVar = this.f16764b;
+        u6.g(z10);
+        q qVar = this.f16537b;
         qVar.e();
-        qVar.f16776a0.getClass();
-        int[] iArr = qVar.f16776a0;
-        int i10 = this.f16763a;
+        qVar.f16548a0.getClass();
+        int[] iArr = qVar.f16548a0;
+        int i10 = this.f16536a;
         int i11 = iArr[i10];
         if (i11 == -1) {
             if (qVar.Z.contains(qVar.Y.a(i10))) {
@@ -57,17 +38,17 @@ public final class m implements a1 {
             }
             i11 = -2;
         } else {
-            boolean[] zArr = qVar.f16781d0;
+            boolean[] zArr = qVar.f16553d0;
             if (!zArr[i11]) {
                 zArr[i11] = true;
             }
             i11 = -2;
         }
-        this.f16765c = i11;
+        this.f16538c = i11;
     }
 
-    public final boolean c() {
-        int i10 = this.f16765c;
+    public final boolean b() {
+        int i10 = this.f16538c;
         if (i10 != -1 && i10 != -3 && i10 != -2) {
             return true;
         }
@@ -75,12 +56,32 @@ public final class m implements a1 {
     }
 
     @Override
+    public final void d() {
+        int i10 = this.f16538c;
+        q qVar = this.f16537b;
+        if (i10 != -2) {
+            if (i10 == -1) {
+                qVar.E();
+                return;
+            } else if (i10 != -3) {
+                qVar.E();
+                qVar.L[i10].C();
+                return;
+            } else {
+                return;
+            }
+        }
+        qVar.e();
+        throw new IOException(a1.g.p("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f16536a).d[0].f2519s, "."));
+    }
+
+    @Override
     public final boolean e() {
-        if (this.f16765c != -3) {
-            if (c()) {
-                int i10 = this.f16765c;
-                q qVar = this.f16764b;
-                if (qVar.z() || !qVar.L[i10].x(qVar.f16789j0)) {
+        if (this.f16538c != -3) {
+            if (b()) {
+                int i10 = this.f16538c;
+                q qVar = this.f16537b;
+                if (qVar.A() || !qVar.L[i10].A(qVar.f16560j0)) {
                     return false;
                 }
                 return true;
@@ -91,17 +92,17 @@ public final class m implements a1 {
     }
 
     @Override
-    public final int f(y yVar, h2.h hVar, int i10) {
-        b2.s sVar;
-        if (this.f16765c == -3) {
+    public final int f(qf.b bVar, h2.h hVar, int i10) {
+        x xVar;
+        if (this.f16538c == -3) {
             hVar.addFlag(4);
             return -4;
         }
-        if (c()) {
-            int i11 = this.f16765c;
-            q qVar = this.f16764b;
-            ArrayList arrayList = qVar.f16798y;
-            if (!qVar.z()) {
+        if (b()) {
+            int i11 = this.f16538c;
+            q qVar = this.f16537b;
+            ArrayList arrayList = qVar.f16570y;
+            if (!qVar.A()) {
                 int i12 = 0;
                 if (!arrayList.isEmpty()) {
                     int i13 = 0;
@@ -109,41 +110,41 @@ public final class m implements a1 {
                         int i14 = ((j) arrayList.get(i13)).v;
                         int length = qVar.L.length;
                         for (int i15 = 0; i15 < length; i15++) {
-                            if (qVar.f16781d0[i15] && qVar.L[i15].B() == i14) {
+                            if (qVar.f16553d0[i15] && qVar.L[i15].E() == i14) {
                                 break loop0;
                             }
                         }
                         i13++;
                     }
-                    d0.U(0, i13, arrayList);
+                    m0.X(0, i13, arrayList);
                     j jVar = (j) arrayList.get(0);
-                    b2.s sVar2 = jVar.d;
-                    if (!sVar2.equals(qVar.W)) {
-                        qVar.v.l(qVar.f16777b, sVar2, jVar.f49289e, jVar.f49290f, jVar.h);
+                    x xVar2 = jVar.d;
+                    if (!xVar2.equals(qVar.W)) {
+                        qVar.v.m(qVar.f16549b, xVar2, jVar.e, jVar.f46501f, jVar.h);
                     }
-                    qVar.W = sVar2;
+                    qVar.W = xVar2;
                 }
                 if (arrayList.isEmpty() || ((j) arrayList.get(0)).g()) {
-                    int C = qVar.L[i11].C(yVar, hVar, i10, qVar.f16789j0);
-                    if (C == -5) {
-                        b2.s sVar3 = (b2.s) yVar.f16364c;
-                        sVar3.getClass();
+                    int F = qVar.L[i11].F(bVar, hVar, i10, qVar.f16560j0);
+                    if (F == -5) {
+                        x xVar3 = (x) bVar.f43356c;
+                        xVar3.getClass();
                         if (i11 == qVar.R) {
-                            int b10 = v7.b(qVar.L[i11].B());
+                            int b10 = b8.b(qVar.L[i11].E());
                             while (i12 < arrayList.size() && ((j) arrayList.get(i12)).v != b10) {
                                 i12++;
                             }
                             if (i12 < arrayList.size()) {
-                                sVar = ((j) arrayList.get(i12)).d;
+                                xVar = ((j) arrayList.get(i12)).d;
                             } else {
-                                sVar = qVar.V;
-                                sVar.getClass();
+                                xVar = qVar.V;
+                                xVar.getClass();
                             }
-                            sVar3 = sVar3.d(sVar);
+                            xVar3 = xVar3.d(xVar);
                         }
-                        yVar.f16364c = sVar3;
+                        bVar.f43356c = xVar3;
                     }
-                    return C;
+                    return F;
                 }
             }
         }
@@ -151,19 +152,19 @@ public final class m implements a1 {
     }
 
     @Override
-    public final int j(long j3) {
+    public final int m(long j10) {
         Object next;
         Object obj;
-        if (c()) {
-            int i10 = this.f16765c;
-            q qVar = this.f16764b;
-            if (!qVar.z()) {
+        if (b()) {
+            int i10 = this.f16538c;
+            q qVar = this.f16537b;
+            if (!qVar.A()) {
                 p pVar = qVar.L[i10];
-                int v = pVar.v(j3, qVar.f16789j0);
-                ArrayList arrayList = qVar.f16798y;
+                int x10 = pVar.x(j10, qVar.f16560j0);
+                ArrayList arrayList = qVar.f16570y;
                 if (arrayList != null) {
                     if (!arrayList.isEmpty()) {
-                        obj = hg.c.h(1, arrayList);
+                        obj = i2.d.g(1, arrayList);
                     }
                     obj = null;
                 } else {
@@ -178,10 +179,10 @@ public final class m implements a1 {
                 }
                 j jVar = (j) obj;
                 if (jVar != null && !jVar.g()) {
-                    v = Math.min(v, jVar.f(i10) - pVar.t());
+                    x10 = Math.min(x10, jVar.f(i10) - pVar.v());
                 }
-                pVar.H(v);
-                return v;
+                pVar.L(x10);
+                return x10;
             }
             return 0;
         }

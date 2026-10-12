@@ -1,90 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.os.Build;
 import android.view.MotionEvent;
-import j$.util.Objects;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class lx extends og.d {
-    public boolean W2;
-    public final d00 X2;
+public final class lx extends ImageView {
+    public final wz f27134a;
 
-    public lx(d00 d00Var, Context context) {
-        super(context, null);
-        this.X2 = d00Var;
+    public lx(wz wzVar, Context context) {
+        super(context);
+        this.f27134a = wzVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.X2.f25103m2.h++;
-    }
-
-    @Override
-    public final void k0(int i10, int i11) {
-        int i12;
-        ah.h hVar;
-        d00 d00Var = this.X2;
-        yz yzVar = d00Var.f25146z0;
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = d00Var.f25096j2) != null) {
-            hVar.f(i10, i11);
-        }
-        if (d00Var.C0 != null) {
-            px pxVar = d00Var.B0;
-            if (d00Var.D0.canScrollVertically(-1)) {
-                i12 = AndroidUtilities.getShadowHeight();
-            } else {
-                i12 = 0;
-            }
-            pxVar.setUnderlineHeight(i12);
-        }
-        if (yzVar != null && getAdapter() == yzVar && yzVar.d == 0) {
-            yz yzVar2 = yzVar.O.f32589w;
-            if (!yzVar2.Q.G0.F && !yzVar2.f33236y) {
-                if (d00Var.E0.N0() + 50 > yzVar.h()) {
-                    wz wzVar = yzVar.O;
-                    Objects.requireNonNull(wzVar);
-                    AndroidUtilities.runOnUIThread(new kx(wzVar, 0));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        wy wyVar;
+        int action = motionEvent.getAction();
+        wz wzVar = this.f27134a;
+        if (action == 0) {
+            wzVar.P1 = true;
+            wzVar.Q1 = false;
+            AndroidUtilities.runOnUIThread(new o8(wzVar, 350, 5), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            wzVar.P1 = false;
+            if (!wzVar.Q1 && (wyVar = wzVar.f31067t1) != null && wyVar.k()) {
+                try {
+                    wzVar.f31079x.performHapticFeedback(3);
+                } catch (Exception unused) {
                 }
             }
         }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        d00 d00Var = this.X2;
-        if (!d00Var.f25081f) {
-            org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
-            lx lxVar = d00Var.D0;
-            d00Var.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, lxVar, d00Var.f25087g2, this.f32467n2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        d00 d00Var = this.X2;
-        if (d00Var.I0 && d00Var.f25143y0.h() > 0) {
-            this.W2 = true;
-            d00Var.E0.h1(0, 0);
-            d00Var.I0 = false;
-            this.W2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        d00Var.r(true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W2) {
-            return;
-        }
-        super.requestLayout();
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

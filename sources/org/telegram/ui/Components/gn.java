@@ -1,246 +1,27 @@
 package org.telegram.ui.Components;
+public final class gn implements Runnable {
+    public final int f25365a;
+    public final io f25366b;
+    public final int f25367c;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SharedConfig;
-public final class gn {
-    public TextPaint B;
-    public TextPaint C;
-    public final hn O;
-    public hn f26457a;
-    public MediaController.PhotoEntry f26458b;
-    public ImageReceiver f26459c;
-    public ImageReceiver d;
-    public boolean f26460e;
-    public float f26466l;
-    public float f26467m;
-    public float f26468n;
-    public float f26469o;
-    public vh.f f26473s;
-    public Bitmap v;
-    public RectF f26461f = null;
-    public final RectF f26462g = new RectF();
-    public long h = 0;
-    public int f26463i = 0;
-    public float f26464j = 1.0f;
-    public float f26465k = 0.0f;
-    public RectF f26470p = null;
-    public final RectF f26471q = new RectF();
-    public String f26472r = null;
-    public final Path f26474t = new Path();
-    public final float[] f26475u = new float[8];
-    public float f26476w = 1.0f;
-    public final Paint f26477x = new Paint(1);
-    public final RectF f26478y = new RectF();
-    public final Paint f26479z = new Paint(1);
-    public final Paint A = new Paint(1);
-    public final Paint D = new Paint(1);
-    public Bitmap E = null;
-    public String F = null;
-    public Bitmap G = null;
-    public String H = null;
-    public final Rect I = new Rect();
-    public final Rect J = new Rect();
-    public final Rect K = new Rect();
-    public final Rect L = new Rect();
-    public float M = 1.0f;
-    public long N = 0;
-
-    public gn(hn hnVar) {
-        this.O = hnVar;
-        this.f26457a = hnVar;
+    public gn(io ioVar, int i10, int i11) {
+        this.f25365a = i11;
+        this.f25366b = ioVar;
+        this.f25367c = i10;
     }
 
-    public static void a(gn gnVar, MediaController.PhotoEntry photoEntry) {
-        hn hnVar = gnVar.O;
-        gnVar.f26458b = photoEntry;
-        if (photoEntry.isVideo) {
-            gnVar.f26472r = AndroidUtilities.formatShortDuration(photoEntry.duration);
-        } else {
-            gnVar.f26472r = null;
-        }
-        if (gnVar.f26459c == null) {
-            gnVar.f26459c = new ImageReceiver(hnVar.f26823z);
-            gnVar.d = new ImageReceiver(hnVar.f26823z);
-            gnVar.f26459c.setDelegate(new y2(7, gnVar, photoEntry));
-        }
-        String str = photoEntry.thumbPath;
-        if (str != null) {
-            gnVar.f26459c.setImage(ImageLocation.getForPath(str), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
-        } else if (photoEntry.path != null) {
-            if (photoEntry.isVideo) {
-                ImageReceiver imageReceiver = gnVar.f26459c;
-                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
-                gnVar.f26459c.setAllowStartAnimation(true);
+    @Override
+    public final void run() {
+        switch (this.f25365a) {
+            case 0:
+                this.f25366b.h0(this.f25367c, null);
                 return;
-            }
-            gnVar.f26459c.setOrientation(photoEntry.orientation, true);
-            ImageReceiver imageReceiver2 = gnVar.f26459c;
-            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
-        } else {
-            gnVar.f26459c.setImageBitmap(org.telegram.ui.ActionBar.h6.R4);
+            case 1:
+                this.f25366b.e0(this.f25367c);
+                return;
+            default:
+                this.f25366b.h0(this.f25367c, null);
+                return;
         }
-    }
-
-    public static void b(gn gnVar, cn cnVar, MessageObject.GroupedMessagePosition groupedMessagePosition, boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        RectF rectF = gnVar.f26471q;
-        RectF rectF2 = gnVar.f26462g;
-        if (cnVar != null && groupedMessagePosition != null) {
-            gnVar.f26463i = groupedMessagePosition.flags;
-            if (z10) {
-                float e7 = gnVar.e();
-                RectF rectF3 = gnVar.f26461f;
-                if (rectF3 != null) {
-                    AndroidUtilities.lerp(rectF3, rectF2, e7, rectF3);
-                }
-                RectF rectF4 = gnVar.f26470p;
-                if (rectF4 != null) {
-                    AndroidUtilities.lerp(rectF4, rectF, e7, rectF4);
-                }
-                gnVar.f26464j = AndroidUtilities.lerp(gnVar.f26464j, gnVar.f26465k, e7);
-                gnVar.h = SystemClock.elapsedRealtime();
-            }
-            float f12 = groupedMessagePosition.left;
-            float f13 = cnVar.f24960c;
-            float f14 = f12 / f13;
-            float f15 = groupedMessagePosition.top;
-            float f16 = cnVar.f24962f;
-            float f17 = f15 / f16;
-            gnVar.f26465k = 1.0f;
-            rectF2.set(f14, f17, (groupedMessagePosition.pw / f13) + f14, (groupedMessagePosition.f17001ph / f16) + f17);
-            float dp = AndroidUtilities.dp(2.0f);
-            float dp2 = AndroidUtilities.dp(SharedConfig.bubbleRadius - 1);
-            int i10 = gnVar.f26463i;
-            if ((i10 & 5) == 5) {
-                f7 = dp2;
-            } else {
-                f7 = dp;
-            }
-            if ((i10 & 6) == 6) {
-                f10 = dp2;
-            } else {
-                f10 = dp;
-            }
-            if ((i10 & 10) == 10) {
-                f11 = dp2;
-            } else {
-                f11 = dp;
-            }
-            if ((i10 & 9) == 9) {
-                dp = dp2;
-            }
-            rectF.set(f7, f10, f11, dp);
-            if (gnVar.f26461f == null) {
-                RectF rectF5 = new RectF();
-                gnVar.f26461f = rectF5;
-                rectF5.set(rectF2);
-            }
-            if (gnVar.f26470p == null) {
-                RectF rectF6 = new RectF();
-                gnVar.f26470p = rectF6;
-                rectF6.set(rectF);
-            }
-        } else if (z10) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            gnVar.f26464j = AndroidUtilities.lerp(gnVar.f26464j, gnVar.f26465k, gnVar.e());
-            RectF rectF7 = gnVar.f26461f;
-            if (rectF7 != null) {
-                AndroidUtilities.lerp(rectF7, rectF2, gnVar.e(), gnVar.f26461f);
-            }
-            gnVar.f26465k = 0.0f;
-            gnVar.h = elapsedRealtime;
-        } else {
-            gnVar.f26464j = 0.0f;
-            gnVar.f26465k = 0.0f;
-        }
-    }
-
-    public final boolean c(android.graphics.Canvas r34, boolean r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gn.c(android.graphics.Canvas, boolean):boolean");
-    }
-
-    public final Object clone() {
-        gn gnVar = new gn(this.O);
-        gnVar.f26462g.set(this.f26462g);
-        gnVar.f26459c = this.f26459c;
-        gnVar.f26458b = this.f26458b;
-        return gnVar;
-    }
-
-    public final RectF d() {
-        float f7 = 0.0f;
-        if (this.f26462g != null && this.f26459c != null) {
-            in inVar = this.O.f26823z;
-            gn gnVar = inVar.P.J;
-            if (gnVar != null && gnVar.f26458b == this.f26458b) {
-                f7 = inVar.G;
-            }
-            float lerp = (((1.0f - f7) * 0.2f) + 0.8f) * AndroidUtilities.lerp(this.f26464j, this.f26465k, e());
-            RectF f10 = f(e());
-            float f11 = 1.0f - lerp;
-            float f12 = lerp + 1.0f;
-            f10.set(a1.g.B(f10.width(), f11, 2.0f, f10.left), ((f10.height() * f11) / 2.0f) + f10.top, a1.g.B(f10.width(), f12, 2.0f, f10.left), ((f10.height() * f12) / 2.0f) + f10.top);
-            return f10;
-        }
-        RectF rectF = this.f26478y;
-        rectF.set(0.0f, 0.0f, 0.0f, 0.0f);
-        return rectF;
-    }
-
-    public final float e() {
-        return this.O.f26808j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.h)) / 200.0f));
-    }
-
-    public final RectF f(float f7) {
-        RectF rectF;
-        RectF rectF2 = this.f26478y;
-        RectF rectF3 = this.f26462g;
-        if (rectF3 != null && this.f26459c != null) {
-            hn hnVar = this.O;
-            float f10 = (rectF3.left * hnVar.f26816r) + hnVar.f26812n;
-            float f11 = (rectF3.top * hnVar.f26817s) + hnVar.f26814p;
-            float width = rectF3.width() * hnVar.f26816r;
-            float height = rectF3.height() * hnVar.f26817s;
-            if (f7 < 1.0f && (rectF = this.f26461f) != null) {
-                f10 = AndroidUtilities.lerp((rectF.left * hnVar.f26816r) + hnVar.f26812n, f10, f7);
-                f11 = AndroidUtilities.lerp((this.f26461f.top * hnVar.f26817s) + hnVar.f26814p, f11, f7);
-                width = AndroidUtilities.lerp(this.f26461f.width() * hnVar.f26816r, width, f7);
-                height = AndroidUtilities.lerp(this.f26461f.height() * hnVar.f26817s, height, f7);
-            }
-            int i10 = this.f26463i;
-            if ((i10 & 4) == 0) {
-                int i11 = hnVar.f26811m;
-                f11 += i11;
-                height -= i11;
-            }
-            if ((i10 & 8) == 0) {
-                height -= hnVar.f26811m;
-            }
-            if ((i10 & 1) == 0) {
-                int i12 = hnVar.f26811m;
-                f10 += i12;
-                width -= i12;
-            }
-            if ((i10 & 2) == 0) {
-                width -= hnVar.f26811m;
-            }
-            rectF2.set(f10, f11, width + f10, height + f11);
-            return rectF2;
-        }
-        rectF2.set(0.0f, 0.0f, 0.0f, 0.0f);
-        return rectF2;
     }
 }

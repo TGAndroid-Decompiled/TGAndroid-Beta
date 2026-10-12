@@ -1,28 +1,20 @@
 package e9;
 
-import java.util.Iterator;
-public abstract class n1 implements Iterator {
-    public final Iterator f8775a;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+public interface n1 {
+    Collection a();
 
-    public n1(Iterator it) {
-        it.getClass();
-        this.f8775a = it;
-    }
+    Map b();
 
-    public abstract Object a(Object obj);
+    void clear();
 
-    @Override
-    public final boolean hasNext() {
-        return this.f8775a.hasNext();
-    }
+    Collection get(Object obj);
 
-    @Override
-    public final Object next() {
-        return a(this.f8775a.next());
-    }
+    Set keySet();
 
-    @Override
-    public final void remove() {
-        this.f8775a.remove();
-    }
+    boolean remove(Object obj, Object obj2);
+
+    int size();
 }

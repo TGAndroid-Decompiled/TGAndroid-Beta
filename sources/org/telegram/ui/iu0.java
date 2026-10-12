@@ -1,259 +1,143 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.Rect;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import java.util.ArrayList;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ClippingImageView;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.PhotoViewer;
-public final class iu0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ClippingImageView[] f39002a;
-    public final ViewGroup.LayoutParams f39003b;
-    public final float f39004c;
-    public final gv0 d;
-    public final float f39005e;
-    public final ev0 f39006f;
-    public final ArrayList h;
-    public final Integer f39007n;
-    public final PhotoViewer f39008r;
+import org.telegram.messenger.NotificationCenter;
+public final class iu0 extends vu0 {
+    public final int f37203p0;
+    public final NotificationCenter.NotificationCenterDelegate f37204q0;
 
-    public iu0(PhotoViewer photoViewer, ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f7, gv0 gv0Var, float f10, ev0 ev0Var, ArrayList arrayList, Integer num) {
-        this.f39008r = photoViewer;
-        this.f39002a = clippingImageViewArr;
-        this.f39003b = layoutParams;
-        this.f39004c = f7;
-        this.d = gv0Var;
-        this.f39005e = f10;
-        this.f39006f = ev0Var;
-        this.h = arrayList;
-        this.f39007n = num;
+    public iu0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, yu0 yu0Var, FrameLayout frameLayout, int i10) {
+        super(context, yu0Var, frameLayout);
+        this.f37203p0 = i10;
+        this.f37204q0 = notificationCenterDelegate;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10;
-        int i11;
-        float f7;
-        int i12;
-        float u10;
-        float u11;
-        int i13;
-        boolean z10;
-        int i14;
-        float f10;
-        int i15;
-        int i16;
-        PhotoViewer photoViewer = this.f39008r;
-        Rect rect = photoViewer.f33867s2;
-        PhotoViewer.BackgroundDrawable backgroundDrawable = photoViewer.L0;
-        float[][] fArr = photoViewer.f33799k4;
-        ClippingImageView[] clippingImageViewArr = this.f39002a;
-        if (clippingImageViewArr.length > 1) {
-            clippingImageViewArr[1].setAlpha(1.0f);
-            clippingImageViewArr[1].setAdditionalTranslationX(-rect.left);
+    public boolean C() {
+        switch (this.f37203p0) {
+            case 0:
+                return !((PhotoViewer) this.f37204q0).f32348s;
+            default:
+                return super.C();
         }
-        ClippingImageView clippingImageView = clippingImageViewArr[0];
-        clippingImageView.setTranslationX(clippingImageView.getTranslationX() + rect.left);
-        photoViewer.f33760g0.getViewTreeObserver().removeOnPreDrawListener(this);
-        int i17 = photoViewer.f33726c2;
-        ViewGroup.LayoutParams layoutParams = this.f39003b;
-        if (i17 == 1) {
-            if (!photoViewer.f33864s) {
-                i15 = AndroidUtilities.statusBarHeight;
-            } else {
-                i15 = 0;
-            }
-            float f11 = i15;
-            float measuredHeight = (photoViewer.C1.getMeasuredHeight() - AndroidUtilities.dp(64.0f)) - f11;
-            i10 = 0;
-            float min = Math.min(photoViewer.C1.getMeasuredWidth(), measuredHeight) - (AndroidUtilities.dp(16.0f) * 2);
-            float measuredWidth = photoViewer.C1.getMeasuredWidth() / 2.0f;
-            float f12 = (measuredHeight / 2.0f) + f11;
-            float f13 = min / 2.0f;
-            float f14 = f12 - f13;
-            float f15 = (f12 + f13) - f14;
-            f7 = Math.max(((measuredWidth + f13) - (measuredWidth - f13)) / layoutParams.width, f15 / layoutParams.height);
-            u10 = ((f15 - (layoutParams.height * f7)) / 2.0f) + f14;
-            int measuredWidth2 = photoViewer.f33760g0.getMeasuredWidth();
-            u11 = com.google.android.gms.internal.vision.e2.u(layoutParams.width, f7, (measuredWidth2 - i16) - rect.right, 2.0f) + rect.left;
-        } else {
-            i10 = 0;
-            float measuredWidth3 = photoViewer.f33760g0.getMeasuredWidth() / layoutParams.width;
-            int i18 = AndroidUtilities.displaySize.y;
-            if (!photoViewer.f33864s) {
-                i11 = AndroidUtilities.statusBarHeight;
-            } else {
-                i11 = 0;
-            }
-            float min2 = Math.min(measuredWidth3, (i18 + i11) / layoutParams.height);
-            if (photoViewer.f33726c2 == 11) {
-                f7 = photoViewer.r2(true) * min2;
-            } else {
-                f7 = min2;
-            }
-            int i19 = AndroidUtilities.displaySize.y;
-            if (!photoViewer.f33864s) {
-                i12 = AndroidUtilities.statusBarHeight;
-            } else {
-                i12 = 0;
-            }
-            u10 = com.google.android.gms.internal.vision.e2.u(layoutParams.height, f7, i19 + i12, 2.0f);
-            u11 = com.google.android.gms.internal.vision.e2.u(layoutParams.width, f7, photoViewer.f33760g0.getMeasuredWidth(), 2.0f);
-            photoViewer.f33720b6 = 0.0f;
-            photoViewer.f33758f6 = 0.0f;
-        }
-        gv0 gv0Var = this.d;
-        int abs = (int) Math.abs(this.f39004c - gv0Var.f38147a.getImageX());
-        float imageY = gv0Var.f38147a.getImageY();
-        float f16 = this.f39005e;
-        int abs2 = (int) Math.abs(f16 - imageY);
-        if (gv0Var.f38147a.isAspectFit()) {
-            abs = i10;
-        }
-        int[] iArr = new int[2];
-        int i20 = 2;
-        gv0Var.d.getLocationInWindow(iArr);
-        float f17 = gv0Var.f38149c + f16;
-        int i21 = (int) ((iArr[1] - f17) + gv0Var.f38154j);
-        if (i21 < 0) {
-            i21 = i10;
-        }
-        int height = (int) (((f17 + layoutParams.height) - (gv0Var.d.getHeight() + i13)) + gv0Var.f38153i);
-        if (height < 0) {
-            height = i10;
-        }
-        int max = Math.max(i21, abs2);
-        int max2 = Math.max(height, abs2);
-        fArr[i10][i10] = photoViewer.f33769h0.getScaleX();
-        fArr[i10][1] = photoViewer.f33769h0.getScaleY();
-        fArr[i10][2] = photoViewer.f33769h0.getTranslationX();
-        fArr[i10][3] = photoViewer.f33769h0.getTranslationY();
-        float[] fArr2 = fArr[i10];
-        float f18 = abs;
-        float f19 = gv0Var.f38155k;
-        int i22 = 3;
-        fArr2[4] = f18 * f19;
-        fArr2[5] = max * f19;
-        char c10 = 6;
-        fArr2[6] = max2 * f19;
-        int[] radius = photoViewer.f33769h0.getRadius();
-        int i23 = i10;
-        while (i23 < 4) {
-            float[] fArr3 = fArr[i10];
-            int i24 = i23 + 7;
-            char c11 = c10;
-            if (radius != null) {
-                f10 = radius[i23];
-            } else {
-                f10 = 0.0f;
-            }
-            fArr3[i24] = f10;
-            i23++;
-            c10 = c11;
-        }
-        float[] fArr4 = fArr[i10];
-        float f20 = gv0Var.f38155k;
-        fArr4[11] = abs2 * f20;
-        fArr4[12] = f18 * f20;
-        float[] fArr5 = fArr[1];
-        fArr5[i10] = f7;
-        fArr5[1] = f7;
-        fArr5[2] = u11;
-        fArr5[3] = u10;
-        fArr5[4] = 0.0f;
-        fArr5[5] = 0.0f;
-        fArr5[c10] = 0.0f;
-        fArr5[7] = 0.0f;
-        fArr5[8] = 0.0f;
-        fArr5[9] = 0.0f;
-        fArr5[10] = 0.0f;
-        fArr5[11] = 0.0f;
-        fArr5[12] = 0.0f;
-        for (int i25 = i10; i25 < clippingImageViewArr.length; i25++) {
-            clippingImageViewArr[i25].setAnimationProgress(0.0f);
-        }
-        backgroundDrawable.setAlpha(i10);
-        photoViewer.f33743e0.setAlpha(0.0f);
-        photoViewer.f33787j0.setAlpha(0.0f);
-        i90 i90Var = new i90(this, clippingImageViewArr, this.h, this.f39007n, this.f39006f, 15);
-        photoViewer.f33842p4 = i90Var;
-        if (!photoViewer.f33805l2) {
-            AnimatorSet animatorSet = new AnimatorSet();
-            if (photoViewer.f33726c2 != 1) {
-                i22 = 2;
-            }
-            int length = i22 + clippingImageViewArr.length;
-            if (clippingImageViewArr.length > 1) {
-                i14 = 1;
-            } else {
-                i14 = 0;
-            }
-            ArrayList arrayList = new ArrayList(length + i14);
-            int i26 = 0;
-            while (i26 < clippingImageViewArr.length) {
-                float[] fArr6 = new float[i20];
-                
-                fArr6[0] = 0.0f;
-                fArr6[1] = 1.0f;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(clippingImageViewArr[i26], org.telegram.ui.Components.u6.f31058f, fArr6);
-                if (i26 == 0) {
-                    ofFloat.addUpdateListener(new c3(this, 23));
+    }
+
+    @Override
+    public void D() {
+        switch (this.f37203p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37204q0;
+                if (secretMediaViewer.J && getScrollY() <= 0) {
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f32766r1, 3000L);
+                    return;
                 }
-                arrayList.add(ofFloat);
-                i26++;
-                i20 = 2;
-            }
-            if (clippingImageViewArr.length > 1) {
-                arrayList.add(ObjectAnimator.ofFloat(photoViewer.f33769h0, View.ALPHA, 0.0f, 1.0f));
-            }
-            arrayList.add(ObjectAnimator.ofInt(backgroundDrawable, org.telegram.ui.Components.u6.d, 0, 255));
-            yu0 yu0Var = photoViewer.f33743e0;
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(yu0Var, property, 0.0f, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(photoViewer.f33787j0, property, 0.0f, 1.0f));
-            if (photoViewer.f33726c2 == 1) {
-                arrayList.add(ObjectAnimator.ofFloat(photoViewer.C1, property, 0.0f, 1.0f));
-            }
-            animatorSet.playTogether(arrayList);
-            animatorSet.setDuration(200L);
-            animatorSet.addListener(new gp0(this, 8));
-            photoViewer.f33743e0.setLayerType(2, null);
-            photoViewer.y2(false);
-            photoViewer.f33833o4 = System.currentTimeMillis();
-            AndroidUtilities.runOnUIThread(new du0(1, this, animatorSet));
-        } else {
-            i90Var.run();
-            photoViewer.f33842p4 = null;
-            photoViewer.f33743e0.setAlpha(1.0f);
-            backgroundDrawable.setAlpha(255);
-            for (ClippingImageView clippingImageView2 : clippingImageViewArr) {
-                clippingImageView2.setAnimationProgress(1.0f);
-            }
-            if (photoViewer.f33726c2 == 1) {
-                photoViewer.C1.setAlpha(1.0f);
-            }
+                return;
+            default:
+                return;
         }
-        backgroundDrawable.d = new du0(2, this, gv0Var);
-        eo eoVar = photoViewer.l4;
-        if (eoVar != null && eoVar.getFragmentView() != null) {
-            eo eoVar2 = photoViewer.l4;
-            eoVar2.T7();
-            UndoView undoView = eoVar2.y3;
-            if (undoView != null) {
-                z10 = true;
-                undoView.e(1, false);
-            } else {
-                z10 = true;
-            }
-            photoViewer.l4.getFragmentView().invalidate();
-            return z10;
+    }
+
+    @Override
+    public void F() {
+        switch (this.f37203p0) {
+            case 1:
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f37204q0).f32766r1);
+                return;
+            default:
+                return;
         }
-        return true;
+    }
+
+    @Override
+    public void G() {
+        boolean z10;
+        switch (this.f37203p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37204q0;
+                if (secretMediaViewer.K0 == null) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f32751k0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    secretMediaViewer.k(z10, true);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate() {
+        boolean z10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        switch (this.f37203p0) {
+            case 0:
+                super.invalidate();
+                PhotoViewer photoViewer = (PhotoViewer) this.f37204q0;
+                gv0[] gv0VarArr = photoViewer.W0;
+                ImageView[] imageViewArr = photoViewer.y3;
+                if (photoViewer.J) {
+                    int scrollY = getScrollY();
+                    float translationY = photoViewer.Q1.getTranslationY();
+                    float f7 = 0.0f;
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (!z10) {
+                        int b10 = gv0VarArr[0].b() + gv0VarArr[0].f36490j;
+                        if (C()) {
+                            i10 = AndroidUtilities.statusBarHeight;
+                        } else {
+                            i10 = 0;
+                        }
+                        int top = (((photoViewer.Z1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
+                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (top > b10) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        z11 = z12;
+                    }
+                    if (photoViewer.f32417z3) {
+                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
+                            imageViewArr[0].setTag(2);
+                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new lj0(this, 8)).start();
+                        } else if (imageViewArr[0].getTag() == null && !z11) {
+                            imageViewArr[0].setTag(3);
+                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
+                        }
+                    }
+                    gv0 gv0Var = gv0VarArr[0];
+                    if (z10) {
+                        f7 = 1.0f;
+                    }
+                    gv0Var.e(2, f7, true);
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
+        }
     }
 }

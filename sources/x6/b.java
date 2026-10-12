@@ -3,13 +3,13 @@ package x6;
 import android.os.IBinder;
 import android.os.IInterface;
 import java.lang.reflect.Field;
-import n6.m;
+import n6.l;
 public final class b extends b8.b implements a {
-    public final Object f50924b;
+    public final Object f47919b;
 
     public b(Object obj) {
         super("com.google.android.gms.dynamic.IObjectWrapper", 7);
-        this.f50924b = obj;
+        this.f47919b = obj;
     }
 
     public static a K0(IBinder iBinder) {
@@ -25,7 +25,7 @@ public final class b extends b8.b implements a {
 
     public static Object L0(a aVar) {
         if (aVar instanceof b) {
-            return ((b) aVar).f50924b;
+            return ((b) aVar).f47919b;
         }
         IBinder asBinder = aVar.asBinder();
         Field[] declaredFields = asBinder.getClass().getDeclaredFields();
@@ -38,19 +38,19 @@ public final class b extends b8.b implements a {
             }
         }
         if (i10 == 1) {
-            m.h(field);
+            l.h(field);
             if (!field.isAccessible()) {
                 field.setAccessible(true);
                 try {
                     return field.get(asBinder);
-                } catch (IllegalAccessException e7) {
-                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e7);
-                } catch (NullPointerException e10) {
-                    throw new IllegalArgumentException("Binder object is null.", e10);
+                } catch (IllegalAccessException e) {
+                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e);
+                } catch (NullPointerException e7) {
+                    throw new IllegalArgumentException("Binder object is null.", e7);
                 }
             }
             throw new IllegalArgumentException("IObjectWrapper declared field not private!");
         }
-        throw new IllegalArgumentException(hg.c.i(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
+        throw new IllegalArgumentException(i2.d.i(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
     }
 }

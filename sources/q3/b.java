@@ -1,12 +1,12 @@
 package q3;
 
 import java.util.Arrays;
-public final class b extends j {
-    public final byte[] f45878b;
+public final class b extends i {
+    public final byte[] f43269b;
 
     public b(String str, byte[] bArr) {
         super(str);
-        this.f45878b = bArr;
+        this.f43269b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class b extends j {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f45898a.equals(bVar.f45898a) && Arrays.equals(this.f45878b, bVar.f45878b)) {
+            if (this.f43283a.equals(bVar.f43283a) && Arrays.equals(this.f43269b, bVar.f43269b)) {
                 return true;
             }
         }
@@ -23,6 +23,6 @@ public final class b extends j {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f45878b) + a1.g.h(527, 31, this.f45898a);
+        return Arrays.hashCode(this.f43269b) + a1.g.g(527, 31, this.f43283a);
     }
 }

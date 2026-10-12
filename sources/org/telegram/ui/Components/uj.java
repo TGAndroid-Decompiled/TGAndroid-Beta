@@ -1,42 +1,41 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLRPC;
-public final class uj {
-    public final int f31170a;
-    public final long f31171b;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+public final class uj implements Runnable {
+    public final int f29696a;
+    public final vj f29697b;
+    public final String f29698c;
+    public final int d;
 
-    public uj(int i10, long j3) {
-        this.f31170a = i10;
-        this.f31171b = j3;
+    public uj(vj vjVar, String str, int i10, int i11) {
+        this.f29696a = i11;
+        this.f29697b = vjVar;
+        this.f29698c = str;
+        this.d = i10;
     }
 
-    public static uj a(Object obj) {
-        if (obj instanceof ContactsController.Contact) {
-            return new uj(2, ((ContactsController.Contact) obj).contact_id);
+    @Override
+    public final void run() {
+        switch (this.f29696a) {
+            case 0:
+                vj vjVar = this.f29697b;
+                String str = this.f29698c;
+                int i10 = this.d;
+                vjVar.getClass();
+                AndroidUtilities.runOnUIThread(new uj(vjVar, str, i10, 1));
+                return;
+            default:
+                vj vjVar2 = this.f29697b;
+                String str2 = this.f29698c;
+                int i11 = this.d;
+                vjVar2.getClass();
+                int i12 = UserConfig.selectedAccount;
+                Utilities.searchQueue.postRunnable(new ji.h0(vjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                return;
         }
-        if (obj instanceof TLRPC.User) {
-            return new uj(1, ((TLRPC.User) obj).f19950id);
-        }
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && uj.class == obj.getClass()) {
-                uj ujVar = (uj) obj;
-                if (this.f31171b == ujVar.f31171b && this.f31170a == ujVar.f31170a) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(m1.j.a(this.f31170a), Long.valueOf(this.f31171b));
     }
 }

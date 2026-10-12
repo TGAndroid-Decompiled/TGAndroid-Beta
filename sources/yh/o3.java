@@ -1,34 +1,35 @@
 package yh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
-public final class o3 extends AnimatorListenerAdapter {
-    public final p3 f53198a;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+public final class o3 extends org.telegram.ui.ActionBar.e1 {
+    public final int L;
+    public long M;
+    public m3 N;
 
-    public o3(p3 p3Var) {
-        this.f53198a = p3Var;
+    public o3(Context context, int i10, c6 c6Var) {
+        super(0, context, c6Var, false, false);
+        this.L = i10;
+        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        c(g6.w0(g6.E8, c6Var), g6.w0(g6.F8, c6Var));
+        setIconColor(-1);
+        this.f19721c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f19721c.setScaleX(1.2f);
+        this.f19721c.setScaleY(1.2f);
+        a(2);
+        setBackground(null);
+        this.f19721c.addOnAttachStateChangeListener(new bi.j2(this, 13));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        p3 p3Var = this.f53198a;
-        f0 f0Var = p3Var.f53249i0;
-        p3Var.f53261s0 = p3Var.f53259r0;
-        p3Var.d(p3Var.U);
-        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = p3Var.f53243e;
-        int i10 = 2 - p3Var.f53259r0;
-        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) p3Var.W.f6677f;
-        p7.a1(p3Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - p3Var.f53259r0].document, 160);
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) p3Var.f53237a0.f6677f;
-        if (stargiftattributepattern != null) {
-            org.telegram.ui.Components.s5 m10 = org.telegram.ui.Components.s5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
-            m10.f30404m = true;
-            m10.v();
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+            size = AndroidUtilities.dp(250.0f);
         }
-        AndroidUtilities.cancelRunOnUIThread(f0Var);
-        AndroidUtilities.runOnUIThread(f0Var, 2500L);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
     }
 }

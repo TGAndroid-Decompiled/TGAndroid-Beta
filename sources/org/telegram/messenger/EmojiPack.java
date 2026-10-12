@@ -50,14 +50,14 @@ public final class EmojiPack {
         private static EmojiPack open() {
             try {
                 return new EmojiPack();
-            } catch (IOException e7) {
-                throw new IllegalStateException("Unable to open emoji.pack", e7);
+            } catch (IOException e) {
+                throw new IllegalStateException("Unable to open emoji.pack", e);
             }
         }
     }
 
     private static IllegalStateException damaged(String str) {
-        return new IllegalStateException(sc.v.i("Damaged emoji.pack: ", str));
+        return new IllegalStateException(t8.b.h("Damaged emoji.pack: ", str));
     }
 
     private Bitmap decode(int i10) {
@@ -272,8 +272,8 @@ public final class EmojiPack {
                 } else {
                     throw damaged("Truncated DEFLATE stream");
                 }
-            } catch (DataFormatException e7) {
-                throw new IllegalStateException("Damaged EPK3 DEFLATE stream", e7);
+            } catch (DataFormatException e) {
+                throw new IllegalStateException("Damaged EPK3 DEFLATE stream", e);
             }
         }
         if (!this.inflater.finished() && (this.inflater.inflate(this.indices, 0, 1) != 0 || !this.inflater.finished())) {
@@ -333,9 +333,9 @@ public final class EmojiPack {
         for (int i12 = 0; i12 < 8; i12++) {
             if (this.rootIds[i12] == i10) {
                 long[] jArr = this.rootAges;
-                long j3 = this.age + 1;
-                this.age = j3;
-                jArr[i12] = j3;
+                long j10 = this.age + 1;
+                this.age = j10;
+                jArr[i12] = j10;
                 return this.rootMaps[i12];
             }
             long[] jArr2 = this.rootAges;
@@ -351,9 +351,9 @@ public final class EmojiPack {
         decodeIndices(i10, bArr[i11]);
         this.rootIds[i11] = i10;
         long[] jArr3 = this.rootAges;
-        long j10 = this.age + 1;
-        this.age = j10;
-        jArr3[i11] = j10;
+        long j11 = this.age + 1;
+        this.age = j11;
+        jArr3[i11] = j11;
         return this.rootMaps[i11];
     }
 

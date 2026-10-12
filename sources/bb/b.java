@@ -1,20 +1,27 @@
 package bb;
-public final class b extends ld.c {
-    public Object f3803a;
-    public je.a f3804b;
-    public Object f3805c;
-    public final e d;
-    public int f3806e;
 
-    public b(e eVar, ld.c cVar) {
-        super(cVar);
-        this.d = eVar;
+import java.util.Iterator;
+import java.util.Map;
+public final class b extends md.c {
+    public Map f2617a;
+    public Iterator f2618b;
+    public d f2619c;
+    public ke.d d;
+    public Map e;
+    public Object f2620f;
+    public Object h;
+    public final c f2621n;
+    public int f2622r;
+
+    public b(c cVar, md.c cVar2) {
+        super(cVar2);
+        this.f2621n = cVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f3805c = obj;
-        this.f3806e |= Integer.MIN_VALUE;
-        return this.d.c(this);
+        this.h = obj;
+        this.f2622r |= Integer.MIN_VALUE;
+        return this.f2621n.b(this);
     }
 }

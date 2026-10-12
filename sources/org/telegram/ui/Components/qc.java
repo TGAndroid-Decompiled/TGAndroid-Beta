@@ -9,57 +9,57 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class qc extends ob {
-    public Runnable f29794a;
-    public Runnable f29795b;
-    public sc f29796c;
+    public Runnable f28576a;
+    public Runnable f28577b;
+    public sc f28578c;
     public final TextView d;
-    public boolean f29797e;
+    public boolean e;
 
     public qc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10, boolean z11) {
         super(context);
         int x02;
-        int i10 = org.telegram.ui.ActionBar.h6.Gi;
+        int i10 = org.telegram.ui.ActionBar.g6.Gi;
         if (c6Var != null) {
-            x02 = c6Var.x0(i10);
+            x02 = c6Var.F0(i10);
         } else {
-            x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+            x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
         }
         if (z10) {
             TextView textView = new TextView(context);
             this.d = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.h6.g0((x02 & 16777215) | 419430400, 7, -1));
+            textView.setBackground(org.telegram.ui.ActionBar.g6.g0((x02 & 16777215) | 419430400, 7, -1));
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(x02);
-            org.telegram.messenger.am.m(R.string.UndoNoCaps, textView, 16);
+            org.telegram.messenger.yh.l(R.string.UndoNoCaps, textView, 16);
             float f7 = z11 ? 34.0f : 12.0f;
             boolean z12 = LocaleController.isRTL;
-            w7.c6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
-            addView(textView, w7.w5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+            w7.g6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
+            addView(textView, w7.a6.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         if (z11) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(R.drawable.chats_undo);
             imageView.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
             if (!z10) {
-                imageView.setBackground(org.telegram.ui.ActionBar.h6.g0((x02 & 16777215) | 419430400, 1, -1));
+                imageView.setBackground(org.telegram.ui.ActionBar.g6.g0((x02 & 16777215) | 419430400, 1, -1));
             }
-            w7.c6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, w7.w5.h(56.0f, 48.0f, 16));
+            w7.g6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, w7.a6.h(56.0f, 48.0f, 16));
         }
         setOnClickListener(new f0(this, 5));
     }
 
     @Override
     public final void a(sc scVar) {
-        this.f29796c = scVar;
+        this.f28578c = scVar;
     }
 
     @Override
     public final void b() {
-        this.f29796c = null;
-        Runnable runnable = this.f29795b;
-        if (runnable != null && !this.f29797e) {
+        this.f28578c = null;
+        Runnable runnable = this.f28577b;
+        if (runnable != null && !this.e) {
             runnable.run();
         }
     }
@@ -72,13 +72,13 @@ public final class qc extends ob {
     }
 
     public final void f() {
-        if (this.f29796c != null) {
-            this.f29797e = true;
-            Runnable runnable = this.f29794a;
+        if (this.f28578c != null) {
+            this.e = true;
+            Runnable runnable = this.f28576a;
             if (runnable != null) {
                 runnable.run();
             }
-            sc scVar = this.f29796c;
+            sc scVar = this.f28578c;
             if (scVar != null) {
                 scVar.b();
             }

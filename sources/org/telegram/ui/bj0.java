@@ -1,23 +1,33 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class bj0 extends g.o {
-    public final ej0 f36188c;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class bj0 implements Runnable {
+    public final int f34587a;
+    public final cj0 f34588b;
 
-    public bj0(ej0 ej0Var) {
-        this.f36188c = ej0Var;
+    public bj0(cj0 cj0Var, int i10) {
+        this.f34587a = i10;
+        this.f34588b = cj0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        ej0 ej0Var = this.f36188c;
-        ArrayList arrayList = ej0Var.N;
-        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
-        MessageObject.GroupedMessages l4 = ej0Var.l(messageObject);
-        if (l4 != null) {
-            return l4.getPosition(messageObject).spanSize;
+    public final void run() {
+        switch (this.f34587a) {
+            case 0:
+                this.f34588b.W = null;
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("chatItemAnimator enable notifications");
+                    return;
+                }
+                return;
+            default:
+                this.f34588b.W = null;
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("chatItemAnimator enable notifications");
+                    return;
+                }
+                return;
         }
-        return 1000;
     }
 }

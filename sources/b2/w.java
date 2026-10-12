@@ -1,45 +1,82 @@
 package b2;
 
-import j$.util.Objects;
+import java.util.List;
 public final class w {
-    public static final String f3675c;
-    public static final String d;
-    public final String f3676a;
-    public final String f3677b;
+    public int A;
+    public int B;
+    public float C;
+    public int D;
+    public float E;
+    public byte[] F;
+    public int G;
+    public o H;
+    public int I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public int N;
+    public int O;
+    public int P;
+    public int Q;
+    public int R;
+    public int S;
+    public String f2452a;
+    public String f2453b;
+    public e9.n0 f2454c;
+    public String d;
+    public int e;
+    public int f2455f;
+    public int f2456g;
+    public int h;
+    public int f2457i;
+    public String f2458j;
+    public u0 f2459k;
+    public String f2460l;
+    public boolean f2461m;
+    public long f2462n;
+    public String f2463o;
+    public int f2464p;
+    public String f2465q;
+    public String f2466r;
+    public int f2467s;
+    public int f2468t;
+    public List f2469u;
+    public t v;
+    public long f2470w;
+    public boolean f2471x;
+    public int f2472y;
+    public int f2473z;
 
-    static {
-        String str = e2.d0.f8529a;
-        f3675c = Integer.toString(0, 36);
-        d = Integer.toString(1, 36);
+    public w() {
+        e9.l0 l0Var = e9.n0.f8592b;
+        this.f2454c = e9.x1.e;
+        this.h = -1;
+        this.f2457i = -1;
+        this.f2467s = -1;
+        this.f2468t = -1;
+        this.f2470w = Long.MAX_VALUE;
+        this.f2472y = -1;
+        this.f2473z = -1;
+        this.A = -1;
+        this.B = -1;
+        this.C = -1.0f;
+        this.E = 1.0f;
+        this.G = -1;
+        this.I = -1;
+        this.J = -1;
+        this.K = -1;
+        this.L = -1;
+        this.O = -1;
+        this.P = 1;
+        this.Q = -1;
+        this.R = -1;
+        this.S = 0;
+        this.f2456g = 0;
+        this.f2461m = false;
     }
 
-    public w(String str, String str2) {
-        this.f3676a = e2.d0.Q(str);
-        this.f3677b = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && w.class == obj.getClass()) {
-            w wVar = (w) obj;
-            if (Objects.equals(this.f3676a, wVar.f3676a) && Objects.equals(this.f3677b, wVar.f3677b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i10;
-        int hashCode = this.f3677b.hashCode() * 31;
-        String str = this.f3676a;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        return hashCode + i10;
+    public final x a() {
+        return new x(this);
     }
 }

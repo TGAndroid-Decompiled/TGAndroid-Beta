@@ -1,38 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class n61 {
-    public String[] f28736a = new String[0];
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class n61 extends URLSpan {
+    public final p11 f27595a;
 
-    public boolean a() {
-        return false;
+    public n61(String str, p11 p11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f27595a = p11Var;
     }
 
-    public String[] b() {
-        return this.f28736a;
+    @Override
+    public final void onClick(View view) {
+        pf.d.p(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(g61 g61Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(g61 g61Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f28736a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        p11 p11Var = this.f27595a;
+        if (p11Var != null) {
+            p11Var.a(textPaint);
+        }
+        textPaint.setUnderlineText(true);
     }
 }

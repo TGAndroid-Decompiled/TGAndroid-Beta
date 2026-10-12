@@ -1,27 +1,48 @@
 package org.telegram.ui;
-public final class we implements Runnable {
-    public final int f43144a;
-    public final org.telegram.ui.Components.mn0 f43145b;
 
-    public we(org.telegram.ui.Components.mn0 mn0Var, int i10) {
-        this.f43144a = i10;
-        this.f43145b = mn0Var;
+import android.content.DialogInterface;
+public final class we implements DialogInterface.OnDismissListener {
+    public final int f41255a;
+    public final fo f41256b;
+
+    public we(fo foVar, int i10) {
+        this.f41255a = i10;
+        this.f41256b = foVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43144a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f41255a) {
             case 0:
-                org.telegram.ui.Components.mn0 mn0Var = this.f43145b;
-                if (!mn0Var.M) {
-                    mn0Var.M = true;
-                    mn0Var.c(new org.telegram.ui.Components.kn0(mn0Var, 0), false);
-                    mn0Var.f28601s.invalidate();
+                mk mkVar = this.f41256b.X1;
+                if (mkVar != null) {
+                    mkVar.c(false);
                     return;
                 }
                 return;
+            case 1:
+                fo.a1(this.f41256b);
+                return;
+            case 2:
+                this.f41256b.j8(false, true, 0.0f);
+                return;
+            case 3:
+                this.f41256b.j8(false, true, 0.0f);
+                return;
+            case 4:
+                this.f41256b.j8(false, true, 0.0f);
+                return;
+            case 5:
+                this.f41256b.j8(false, true, 0.0f);
+                return;
+            case 6:
+                this.f41256b.j8(false, true, 0.0f);
+                return;
+            case 7:
+                this.f41256b.j8(false, true, 0.0f);
+                return;
             default:
-                this.f43145b.dismiss();
+                this.f41256b.Gb = null;
                 return;
         }
     }

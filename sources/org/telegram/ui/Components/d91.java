@@ -1,68 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import org.telegram.messenger.FileLog;
-public final class d91 extends AsyncTask {
-    public int f25262a = 0;
-    public final g91 f25263b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class d91 implements bm0, cm0 {
+    public final j91 f24327a;
 
-    public d91(g91 g91Var) {
-        this.f25263b = g91Var;
+    public d91(j91 j91Var) {
+        this.f24327a = j91Var;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        g91 g91Var = this.f25263b;
-        this.f25262a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = g91Var.f26370r.getFrameAtTime(g91Var.f26373x * this.f25262a * 1000, 2);
-            } catch (Exception e7) {
-                e = e7;
-            }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(g91Var.f26374y, g91Var.E, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(g91Var.f26374y / frameAtTime.getWidth(), g91Var.E / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((g91Var.f26374y - width) / 2, (g91Var.E - height) / 2, width, height), (Paint) null);
-                        frameAtTime.recycle();
-                        return createBitmap;
-                    }
-                    return frameAtTime;
-                }
-            } catch (Exception e10) {
-                e = e10;
-                bitmap = frameAtTime;
-                FileLog.e(e);
-                return bitmap;
-            }
+    public boolean a(int i10, View view) {
+        Utilities.Callback2Return callback2Return = this.f24327a.f26275b;
+        if (callback2Return == null) {
+            return false;
         }
-        return null;
+        return ((Boolean) callback2Return.run(Integer.valueOf(((h91) view).f25578a.f25238a), view)).booleanValue();
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            g91 g91Var = this.f25263b;
-            g91Var.v.add(bitmap);
-            g91Var.invalidate();
-            int i10 = this.f25262a;
-            if (i10 < g91Var.F) {
-                g91Var.b(i10 + 1);
-            } else {
-                g91Var.O = true;
+    public boolean c1(View view) {
+        return false;
+    }
+
+    @Override
+    public void d(float f7, float f10, int i10, View view) {
+        j91 j91Var = this.f24327a;
+        i91 i91Var = j91Var.f26299y;
+        if (i91Var != null) {
+            k91 k91Var = (k91) ((l2.f) i91Var).f14503b;
+            if (k91Var.f26647x || k91Var.H) {
+                return;
             }
         }
+        h91 h91Var = (h91) view;
+        if (i10 != j91Var.F || i91Var == null) {
+            Utilities.Callback2Return callback2Return = j91Var.f26288l0;
+            if (callback2Return != null && ((Boolean) callback2Return.run(Integer.valueOf(h91Var.f25578a.f25238a), Integer.valueOf(i10))).booleanValue()) {
+                return;
+            }
+            j91Var.d(h91Var.f25578a.f25238a, i10);
+        }
+    }
+
+    @Override
+    public void p0(View view, float f7, float f10) {
     }
 }

@@ -1,75 +1,73 @@
 package u2;
-public final class h1 implements a1 {
-    public int f48819a;
-    public boolean f48820b;
-    public final j1 f48821c;
+public final class h1 implements i1 {
+    public final int f45926a;
 
-    public h1(j1 j1Var) {
-        this.f48821c = j1Var;
+    public h1(int i10) {
+        this.f45926a = i10;
     }
 
     @Override
-    public final void a() {
-        j1 j1Var = this.f48821c;
-        if (!j1Var.v) {
-            j1Var.f48838r.a();
-        }
-    }
-
-    public final void b() {
-        if (!this.f48820b) {
-            j1 j1Var = this.f48821c;
-            j1Var.f48835e.l(b2.r0.h(j1Var.f48839s.f3641r), j1Var.f48839s, 0, null, 0L);
-            this.f48820b = true;
-        }
+    public final i1 a(int i10, int i11) {
+        return new h1((this.f45926a - i11) + i10);
     }
 
     @Override
-    public final boolean e() {
-        return this.f48821c.f48840w;
+    public final int b() {
+        if (this.f45926a > 0) {
+            return 0;
+        }
+        return -1;
     }
 
     @Override
-    public final int f(n4.y yVar, h2.h hVar, int i10) {
-        b();
-        j1 j1Var = this.f48821c;
-        boolean z10 = j1Var.f48840w;
-        if (z10 && j1Var.f48841x == null) {
-            this.f48819a = 2;
-        }
-        int i11 = this.f48819a;
-        if (i11 == 2) {
-            hVar.addFlag(4);
-            return -4;
-        } else if ((i10 & 2) == 0 && i11 != 0) {
-            if (!z10) {
-                return -3;
-            }
-            j1Var.f48841x.getClass();
-            hVar.addFlag(1);
-            hVar.f10984e = 0L;
-            if ((i10 & 4) == 0) {
-                hVar.b(j1Var.f48842y);
-                hVar.f10983c.put(j1Var.f48841x, 0, j1Var.f48842y);
-            }
-            if ((i10 & 1) == 0) {
-                this.f48819a = 2;
-            }
-            return -4;
-        } else {
-            yVar.f16364c = j1Var.f48839s;
-            this.f48819a = 1;
-            return -5;
-        }
+    public final i1 c(int i10) {
+        return ((h1) i()).f(0, i10);
     }
 
     @Override
-    public final int j(long j3) {
-        b();
-        if (j3 > 0 && this.f48819a != 2) {
-            this.f48819a = 2;
-            return 1;
+    public final int d(int i10) {
+        int i11 = i10 - 1;
+        if (i11 < 0) {
+            return -1;
         }
-        return 0;
+        return i11;
+    }
+
+    @Override
+    public final int e(int i10) {
+        int i11 = i10 + 1;
+        if (i11 < this.f45926a) {
+            return i11;
+        }
+        return -1;
+    }
+
+    @Override
+    public final i1 f(int i10, int i11) {
+        return new h1(this.f45926a + i11);
+    }
+
+    @Override
+    public final int getLength() {
+        return this.f45926a;
+    }
+
+    @Override
+    public final int h() {
+        int i10 = this.f45926a;
+        if (i10 > 0) {
+            return i10 - 1;
+        }
+        return -1;
+    }
+
+    @Override
+    public final i1 i() {
+        return new h1(0);
+    }
+
+    @Override
+    public final i1 g() {
+        return this;
     }
 }

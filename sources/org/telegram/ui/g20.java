@@ -1,50 +1,74 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class g20 extends FrameLayout {
-    public org.telegram.ui.ActionBar.h5 f37897a;
-    public ImageView f37898b;
+import android.text.TextUtils;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class g20 extends pg.a {
+    public CharSequence f36282c;
+    public MessagesController.DialogFilter d;
+    public TLRPC.TL_dialogFilterSuggested e;
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        int measuredWidth;
-        ImageView imageView = this.f37898b;
-        int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.h5 h5Var = this.f37897a;
-        int textHeight = ((i13 - i11) - h5Var.getTextHeight()) / 2;
-        float f7 = 23.0f;
-        if (LocaleController.isRTL) {
-            int measuredWidth2 = getMeasuredWidth() - h5Var.getMeasuredWidth();
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = measuredWidth2 - AndroidUtilities.dp(f7);
-        } else {
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = AndroidUtilities.dp(f7);
+    public final boolean equals(Object obj) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        if (obj == this) {
+            return true;
         }
-        h5Var.layout(dp, textHeight, h5Var.getMeasuredWidth() + dp, h5Var.getMeasuredHeight() + textHeight);
-        if (!LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dp(20.0f);
-        } else {
-            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+        if (!(obj instanceof g20)) {
+            return false;
         }
-        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        AndroidUtilities.dp(48.0f);
-        this.f37897a.measure(org.telegram.messenger.am.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f37898b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
+        g20 g20Var = (g20) obj;
+        int i10 = g20Var.f43203a;
+        int i11 = this.f43203a;
+        if (i10 != i11) {
+            return false;
+        }
+        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f36282c, g20Var.f36282c)) {
+            return false;
+        }
+        int i12 = this.f43203a;
+        if (i12 == 2) {
+            MessagesController.DialogFilter dialogFilter = this.d;
+            if (dialogFilter == null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            MessagesController.DialogFilter dialogFilter2 = g20Var.d;
+            if (dialogFilter2 == null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            if (z12 != z13) {
+                return false;
+            }
+            if (dialogFilter != null && dialogFilter.f16708id != dialogFilter2.f16708id) {
+                return false;
+            }
+        }
+        if (i12 == 5) {
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.e;
+            if (tL_dialogFilterSuggested == null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = g20Var.e;
+            if (tL_dialogFilterSuggested2 == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z10 != z11) {
+                return false;
+            }
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f19221id != tL_dialogFilterSuggested2.filter.f19221id) {
+                return false;
+            }
+        }
+        return true;
     }
 }

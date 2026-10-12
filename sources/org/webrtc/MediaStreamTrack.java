@@ -21,7 +21,7 @@ public class MediaStreamTrack {
                     return mediaType;
                 }
             }
-            throw new IllegalArgumentException(hg.c.i(i10, "Unknown native media type: "));
+            throw new IllegalArgumentException(i2.d.i(i10, "Unknown native media type: "));
         }
 
         public int getNative() {
@@ -38,9 +38,9 @@ public class MediaStreamTrack {
         }
     }
 
-    public MediaStreamTrack(long j3) {
-        if (j3 != 0) {
-            this.nativeTrack = j3;
+    public MediaStreamTrack(long j10) {
+        if (j10 != 0) {
+            this.nativeTrack = j10;
             return;
         }
         throw new IllegalArgumentException("nativeTrack may not be null");
@@ -53,29 +53,29 @@ public class MediaStreamTrack {
         throw new IllegalStateException("MediaStreamTrack has been disposed.");
     }
 
-    public static MediaStreamTrack createMediaStreamTrack(long j3) {
-        if (j3 == 0) {
+    public static MediaStreamTrack createMediaStreamTrack(long j10) {
+        if (j10 == 0) {
             return null;
         }
-        String nativeGetKind = nativeGetKind(j3);
+        String nativeGetKind = nativeGetKind(j10);
         if (nativeGetKind.equals("audio")) {
-            return new AudioTrack(j3);
+            return new AudioTrack(j10);
         }
         if (!nativeGetKind.equals("video")) {
             return null;
         }
-        return new VideoTrack(j3);
+        return new VideoTrack(j10);
     }
 
-    private static native boolean nativeGetEnabled(long j3);
+    private static native boolean nativeGetEnabled(long j10);
 
-    private static native String nativeGetId(long j3);
+    private static native String nativeGetId(long j10);
 
-    private static native String nativeGetKind(long j3);
+    private static native String nativeGetKind(long j10);
 
-    private static native State nativeGetState(long j3);
+    private static native State nativeGetState(long j10);
 
-    private static native boolean nativeSetEnabled(long j3, boolean z10);
+    private static native boolean nativeSetEnabled(long j10, boolean z10);
 
     public void dispose() {
         checkMediaStreamTrackExists();

@@ -2,24 +2,24 @@ package j8;
 
 import android.os.Parcel;
 import android.os.RemoteException;
-import n6.m;
+import n6.l;
 import s7.i;
 public final class f {
-    public final s7.a f14079a;
+    public final s7.a f12892a;
 
     public f(s7.a aVar) {
-        m.h(aVar);
-        this.f14079a = aVar;
+        l.h(aVar);
+        this.f12892a = aVar;
     }
 
-    public final void a(xa.c cVar) {
+    public final void a(qb.c cVar) {
         try {
-            i iVar = (i) this.f14079a;
+            i iVar = (i) this.f12892a;
             Parcel N0 = iVar.N0();
-            s7.b.c(N0, (x6.a) cVar.f51343b);
+            s7.b.c(N0, (x6.a) cVar.f43343b);
             iVar.R0(N0, 18);
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -29,8 +29,8 @@ public final class f {
             return false;
         }
         try {
-            s7.a aVar = this.f14079a;
-            s7.a aVar2 = ((f) obj).f14079a;
+            s7.a aVar = this.f12892a;
+            s7.a aVar2 = ((f) obj).f12892a;
             i iVar = (i) aVar;
             Parcel N0 = iVar.N0();
             s7.b.c(N0, aVar2);
@@ -40,20 +40,20 @@ public final class f {
             }
             M0.recycle();
             return z10;
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public final int hashCode() {
         try {
-            i iVar = (i) this.f14079a;
+            i iVar = (i) this.f12892a;
             Parcel M0 = iVar.M0(iVar.N0(), 17);
             int readInt = M0.readInt();
             M0.recycle();
             return readInt;
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 }

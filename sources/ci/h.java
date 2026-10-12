@@ -1,110 +1,101 @@
 package ci;
 
-import android.animation.ObjectAnimator;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class h implements TextWatcher {
-    public int f5142a;
-    public boolean f5143b;
-    public final m f5144c;
+import org.telegram.ui.Cells.u7;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.iw0;
+import org.telegram.ui.Components.zz;
+import s4.y0;
+public final class h extends zz {
+    public final int X = 0;
+    public final Object Y;
 
-    public h(m mVar) {
-        this.f5144c = mVar;
+    public h() {
+        super(100, false);
+        this.Y = new Object();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        String str;
-        int i10;
-        boolean z10;
-        m mVar = this.f5144c;
-        e eVar = mVar.f5549c0;
-        org.telegram.ui.Components.r6 r6Var = mVar.v;
-        mVar.f5573w = Character.codePointCount(editable, 0, editable.length());
-        int captionLimit = mVar.getCaptionLimit();
-        if (mVar.f5573w + 25 > captionLimit) {
-            str = "" + (captionLimit - mVar.f5573w);
-        } else {
-            str = null;
+    public int A() {
+        switch (this.X) {
+            case 0:
+                return 0;
+            default:
+                return super.A();
         }
-        r6Var.a();
-        r6Var.setText(str);
-        if (mVar.f5573w >= captionLimit) {
-            i10 = -1280137;
-        } else {
-            i10 = -1;
-        }
-        r6Var.setTextColor(i10);
-        if (mVar.f5573w > captionLimit && !UserConfig.getInstance(mVar.U).isPremium() && mVar.f5573w < mVar.getCaptionPremiumLimit() && mVar.f5573w > this.f5142a && (mVar.e() || MessagesController.getInstance(mVar.U).premiumFeaturesBlocked())) {
-            int i11 = -mVar.N;
-            mVar.N = i11;
-            AndroidUtilities.shakeViewSpring(r6Var, i11);
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        }
-        int i12 = mVar.f5573w;
-        this.f5142a = i12;
-        if (i12 > captionLimit) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10 != this.f5143b) {
-            mVar.q(z10);
-        }
-        this.f5143b = z10;
-        if (!mVar.V) {
-            AndroidUtilities.cancelRunOnUIThread(eVar);
-            AndroidUtilities.runOnUIThread(eVar, 1500L);
-        }
-        mVar.V = false;
-        AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(this, 5));
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        m mVar = this.f5144c;
-        ObjectAnimator objectAnimator = mVar.f5555g0;
-        if (objectAnimator != null && objectAnimator.isRunning()) {
-            return;
+    public iw0 D1(int i10) {
+        switch (this.X) {
+            case 0:
+                iw0 iw0Var = (iw0) this.Y;
+                iw0Var.f26117b = 100.0f;
+                iw0Var.f26116a = 100.0f;
+                return iw0Var;
+            default:
+                return super.D1(i10);
         }
-        mVar.f5545a0 = mVar.f5553f.getEditText().getScrollY();
-        mVar.W = true;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        m mVar = this.f5144c;
-        g gVar = mVar.f5553f;
-        if (!gVar.getEditText().suppressOnTextChanged) {
-            if (mVar.M == null) {
-                i iVar = new i(mVar, mVar.getContext(), mVar.f5575x, LaunchActivity.R(), new ai.d(), 0);
-                mVar.M = iVar;
-                mVar.T = new org.telegram.ui.Components.pa(mVar.O, iVar, 0, false);
-                mVar.M.p(new xa.c(mVar, 9));
-                ah.c cVar = mVar.f5556h0;
-                if (cVar != null) {
-                    i iVar2 = mVar.M;
-                    ch.d c10 = cVar.c(iVar2, null, false);
-                    c10.o(eh.b.i(mVar.f5544a));
-                    iVar2.setBackgroundDrawable(c10);
+    public void U(qf.e eVar, y0 y0Var, View view, s0.c cVar) {
+        n5.c cVar2;
+        switch (this.X) {
+            case 0:
+                super.U(eVar, y0Var, view, cVar);
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f44795a;
+                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+                if (collectionItemInfo != null) {
+                    cVar2 = new n5.c(collectionItemInfo);
+                } else {
+                    cVar2 = null;
                 }
-                mVar.f5546b.addView(mVar.M, w7.w5.e(-1, -1, 83));
-                mVar.w();
-            }
-            if (mVar.M.getAdapter() != null) {
-                gg.j1 adapter = mVar.M.getAdapter();
-                MessagesController.getInstance(mVar.U).getUser(Long.valueOf(mVar.f5575x));
-                TLRPC.Chat chat = MessagesController.getInstance(mVar.U).getChat(Long.valueOf(-mVar.f5575x));
-                adapter.getClass();
-                adapter.f10678l0 = chat;
-                mVar.M.getAdapter().U(charSequence, gVar.getEditText().getSelectionStart(), null, false, false);
-            }
+                if (cVar2 != null) {
+                    Object obj = cVar2.f16057a;
+                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
+                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.U(eVar, y0Var, view, cVar);
+                return;
         }
+    }
+
+    @Override
+    public int W0(y0 y0Var) {
+        switch (this.X) {
+            case 1:
+                if (((h71) this.Y).Y2) {
+                    return AndroidUtilities.displaySize.y;
+                }
+                return super.W0(y0Var);
+            default:
+                return super.W0(y0Var);
+        }
+    }
+
+    @Override
+    public void z0(y0 y0Var, int[] iArr) {
+        switch (this.X) {
+            case 0:
+                super.z0(y0Var, iArr);
+                iArr[1] = Math.max(iArr[1], u7.a(1) * 2);
+                return;
+            default:
+                super.z0(y0Var, iArr);
+                return;
+        }
+    }
+
+    public h(h71 h71Var, int i10) {
+        super(i10, false);
+        this.Y = h71Var;
     }
 }

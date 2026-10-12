@@ -1,89 +1,44 @@
 package v7;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
-public abstract class d8 {
-    public d8() {
-        new ConcurrentHashMap();
-    }
+import java.io.Serializable;
+public final class d8 {
+    public String f46606a;
+    public String f46607b;
+    public String f46608c;
+    public String d;
+    public String e;
+    public Object f46609f;
+    public Object f46610g;
+    public Object h;
+    public Integer f46611i;
+    public Object f46612j;
+    public Serializable f46613k;
 
-    public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i10);
-
-    public abstract Typeface b(Context context, o0.h[] hVarArr, int i10);
-
-    public Typeface c(Context context, List list, int i10) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
-    }
-
-    public Typeface d(Context context, InputStream inputStream) {
-        File d = g8.d(context);
-        if (d == null) {
-            return null;
-        }
-        try {
-            if (!g8.c(inputStream, d)) {
-                return null;
-            }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
-        }
-    }
-
-    public Typeface e(Context context, Resources resources, int i10, String str, int i11) {
-        File d = g8.d(context);
-        if (d == null) {
-            return null;
-        }
-        try {
-            if (!g8.b(d, resources, i10)) {
-                return null;
-            }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
-        }
-    }
-
-    public o0.h f(o0.h[] hVarArr, int i10) {
-        int i11;
-        boolean z10;
-        int i12;
-        new ob.a(10);
-        if ((i10 & 1) == 0) {
-            i11 = 400;
+    public z9.a0 a() {
+        String str;
+        if (this.f46606a == null) {
+            str = " sdkVersion";
         } else {
-            i11 = 700;
+            str = "";
         }
-        if ((i10 & 2) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        if (this.f46607b == null) {
+            str = str.concat(" gmpAppId");
         }
-        o0.h hVar = null;
-        int i13 = Integer.MAX_VALUE;
-        for (o0.h hVar2 : hVarArr) {
-            int abs = Math.abs(hVar2.f16657c - i11) * 2;
-            if (hVar2.d == z10) {
-                i12 = 0;
-            } else {
-                i12 = 1;
-            }
-            int i14 = abs + i12;
-            if (hVar == null || i13 > i14) {
-                hVar = hVar2;
-                i13 = i14;
-            }
+        if (this.f46611i == null) {
+            str = t8.b.u(str, " platform");
         }
-        return hVar;
+        if (this.f46608c == null) {
+            str = t8.b.u(str, " installationUuid");
+        }
+        if (((String) this.f46613k) == null) {
+            str = t8.b.u(str, " buildVersion");
+        }
+        if (((String) this.f46609f) == null) {
+            str = t8.b.u(str, " displayVersion");
+        }
+        if (str.isEmpty()) {
+            return new z9.a0(this.f46606a, this.f46607b, this.f46611i.intValue(), this.f46608c, this.d, this.e, (String) this.f46613k, (String) this.f46609f, (z9.d2) this.f46610g, (z9.j1) this.h, (z9.g1) this.f46612j);
+        }
+        throw new IllegalStateException("Missing required properties:".concat(str));
     }
 }

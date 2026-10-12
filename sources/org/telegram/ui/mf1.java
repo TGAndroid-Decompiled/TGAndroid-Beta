@@ -1,23 +1,20 @@
 package org.telegram.ui;
 
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class mf1 implements View.OnClickListener {
-    public final hg1 f40036a;
-
-    public mf1(hg1 hg1Var) {
-        this.f40036a = hg1Var;
-    }
+import java.util.HashSet;
+public final class mf1 implements View.OnTouchListener {
+    public final int f38252a;
 
     @Override
-    public final void onClick(View view) {
-        hg1 hg1Var = this.f40036a;
-        if (hg1Var.M == 1) {
-            org.telegram.ui.Components.g5.i0(hg1Var, -hg1Var.f38376a, null, hg1Var.g(), null, false, hg1Var.J, new ya(this, 5), hg1Var.getResourceProvider());
-            return;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f38252a) {
+            case 0:
+                HashSet hashSet = lg1.f37956n1;
+                return true;
+            default:
+                int[][] iArr = WallpapersListActivity.f33971k0;
+                return true;
         }
-        hg1Var.getMessagesController().addUserToChat(hg1Var.f38376a, hg1Var.getUserConfig().getCurrentUser(), 0, null, hg1Var, false, new ff1(hg1Var, 2), new gf1(hg1Var));
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
-        hg1Var.O0(false);
     }
 }

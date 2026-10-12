@@ -1,49 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class jo0 implements vo0 {
-    public final Runnable f39263a;
-    public final xo0 f39264b;
+public final class jo0 implements ap0 {
+    public final cp0 f37414a;
 
-    public jo0(xo0 xo0Var, Runnable runnable) {
-        this.f39264b = xo0Var;
-        this.f39263a = runnable;
+    public jo0(cp0 cp0Var) {
+        this.f37414a = cp0Var;
     }
 
     @Override
     public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        String str3;
-        xo0 xo0Var = this.f39264b;
-        xo0Var.f44130y0 = tL_paymentSavedCredentialsCard;
-        xo0Var.f44126w0 = str;
-        xo0Var.U0 = z10;
-        xo0Var.f44128x0 = str2;
-        xo0Var.J0 = tL_inputPaymentCredentialsGooglePay;
-        org.telegram.ui.Cells.d9[] d9VarArr = xo0Var.Y;
-        org.telegram.ui.Cells.d9 d9Var = d9VarArr[0];
-        if (d9Var != null) {
-            d9Var.setVisibility(0);
-            org.telegram.ui.Cells.d9 d9Var2 = d9VarArr[0];
-            String str4 = xo0Var.f44128x0;
-            if (str4 != null && str4.length() > 1) {
-                str3 = xo0Var.f44128x0.substring(0, 1).toUpperCase() + xo0Var.f44128x0.substring(1);
-            } else {
-                str3 = xo0Var.f44128x0;
-            }
-            d9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
-            org.telegram.ui.Cells.d9 d9Var3 = d9VarArr[1];
-            if (d9Var3 != null) {
-                d9Var3.setVisibility(0);
-            }
-        }
-        Runnable runnable = this.f39263a;
-        if (runnable != null) {
-            runnable.run();
-        }
         return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        cp0 cp0Var = this.f37414a;
+        cp0Var.I0 = tL_payments_validateRequestedInfo;
+        cp0Var.B0(tL_payments_validateRequestedInfo.info);
     }
 
     @Override
@@ -52,9 +27,5 @@ public final class jo0 implements vo0 {
 
     @Override
     public final void b() {
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

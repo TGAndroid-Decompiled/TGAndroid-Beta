@@ -1,13 +1,8 @@
 package org.telegram.ui.Components;
-public final class vo0 extends s4.j {
-    public final org.telegram.ui.fy F;
+public interface vo0 {
+    void e(float f7);
 
-    public vo0(org.telegram.ui.fy fyVar) {
-        this.F = fyVar;
-    }
+    void f(org.telegram.ui.Cells.s2 s2Var);
 
-    @Override
-    public final void P(s4.d1 d1Var) {
-        this.F.invalidate();
-    }
+    void finish();
 }

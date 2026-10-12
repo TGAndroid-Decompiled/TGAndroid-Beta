@@ -82,14 +82,14 @@ public class WebRtcAudioManager {
         }
     }
 
-    public WebRtcAudioManager(long j3) {
+    public WebRtcAudioManager(long j10) {
         Logging.d("WebRtcAudioManager", "ctor" + WebRtcAudioUtils.getThreadInfo());
-        this.nativeAudioManager = j3;
+        this.nativeAudioManager = j10;
         AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
         this.audioManager = audioManager;
         this.volumeLogger = new VolumeLogger(audioManager);
         storeAudioParameters();
-        nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j3);
+        nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j10);
         WebRtcAudioUtils.logAudioState("WebRtcAudioManager");
     }
 
@@ -241,7 +241,7 @@ public class WebRtcAudioManager {
         return false;
     }
 
-    private native void nativeCacheAudioParameters(int i10, int i11, int i12, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, boolean z16, int i13, int i14, long j3);
+    private native void nativeCacheAudioParameters(int i10, int i11, int i12, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, boolean z16, int i13, int i14, long j10);
 
     public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z10) {
         synchronized (WebRtcAudioManager.class) {

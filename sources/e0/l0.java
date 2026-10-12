@@ -12,16 +12,16 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 public final class l0 {
     public static String d;
-    public static k0 f8444g;
-    public final Context f8445a;
-    public final NotificationManager f8446b;
-    public static final Object f8441c = new Object();
-    public static HashSet f8442e = new HashSet();
-    public static final Object f8443f = new Object();
+    public static k0 f8246g;
+    public final Context f8247a;
+    public final NotificationManager f8248b;
+    public static final Object f8244c = new Object();
+    public static HashSet e = new HashSet();
+    public static final Object f8245f = new Object();
 
     public l0(Context context) {
-        this.f8445a = context;
-        this.f8446b = (NotificationManager) context.getSystemService("notification");
+        this.f8247a = context;
+        this.f8248b = (NotificationManager) context.getSystemService("notification");
     }
 
     public static l0 c(Context context) {
@@ -32,9 +32,9 @@ public final class l0 {
         Method method;
         Integer num;
         if (Build.VERSION.SDK_INT >= 24) {
-            return androidx.emoji2.text.v.a(this.f8446b);
+            return androidx.emoji2.text.w.a(this.f8248b);
         }
-        Context context = this.f8445a;
+        Context context = this.f8247a;
         AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         String packageName = context.getApplicationContext().getPackageName();
@@ -54,7 +54,7 @@ public final class l0 {
     }
 
     public final void b(int i10, String str) {
-        this.f8446b.cancel(str, i10);
+        this.f8248b.cancel(str, i10);
     }
 
     public final void d(int i10, Notification notification) {
@@ -62,16 +62,16 @@ public final class l0 {
     }
 
     public final void e(String str, int i10, Notification notification) {
-        NotificationManager notificationManager = this.f8446b;
+        NotificationManager notificationManager = this.f8248b;
         Bundle bundle = notification.extras;
         if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
-            h0 h0Var = new h0(this.f8445a.getPackageName(), i10, str, notification);
-            synchronized (f8443f) {
+            h0 h0Var = new h0(this.f8247a.getPackageName(), i10, str, notification);
+            synchronized (f8245f) {
                 try {
-                    if (f8444g == null) {
-                        f8444g = new k0(this.f8445a.getApplicationContext());
+                    if (f8246g == null) {
+                        f8246g = new k0(this.f8247a.getApplicationContext());
                     }
-                    f8444g.f8436b.obtainMessage(0, h0Var).sendToTarget();
+                    f8246g.f8240b.obtainMessage(0, h0Var).sendToTarget();
                 } catch (Throwable th2) {
                     throw th2;
                 }

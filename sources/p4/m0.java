@@ -2,19 +2,19 @@ package p4;
 
 import android.util.SparseArray;
 public final class m0 implements Runnable {
-    public final int f45280a;
-    public final n0 f45281b;
+    public final int f43068a;
+    public final n0 f43069b;
 
     public m0(n0 n0Var, int i10) {
-        this.f45280a = i10;
-        this.f45281b = n0Var;
+        this.f43068a = i10;
+        this.f43069b = n0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45280a) {
+        switch (this.f43068a) {
             case 0:
-                SparseArray sparseArray = this.f45281b.h;
+                SparseArray sparseArray = this.f43069b.h;
                 int size = sparseArray.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     ((p0) sparseArray.valueAt(i10)).getClass();
@@ -23,9 +23,9 @@ public final class m0 implements Runnable {
                 sparseArray.clear();
                 return;
             default:
-                n0 n0Var = this.f45281b;
-                s0 s0Var = n0Var.f45290i;
-                if (s0Var.f45322y == n0Var) {
+                n0 n0Var = this.f43069b;
+                s0 s0Var = n0Var.f43077i;
+                if (s0Var.f43106y == n0Var) {
                     s0Var.p();
                     return;
                 }

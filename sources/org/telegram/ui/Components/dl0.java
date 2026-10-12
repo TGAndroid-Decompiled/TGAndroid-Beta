@@ -1,152 +1,146 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class dl0 extends og.b {
-    public final nl0 d;
+import org.telegram.messenger.ImageReceiver;
+public final class dl0 extends z9 {
+    public final int G;
+    public final el0 H;
 
-    public dl0(nl0 nl0Var) {
-        this.d = nl0Var;
+    public dl0(el0 el0Var, Context context, int i10) {
+        super(context);
+        this.G = i10;
+        this.H = el0Var;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.d.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return ((el0) this.d.d.get(i10)).f16877a;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        int i11 = d1Var.f47901f;
-        if (i11 != 0 && i11 != 3) {
-            return;
+    public ImageReceiver c() {
+        switch (this.G) {
+            case 0:
+                return new cl0(0, this);
+            case 1:
+                return new cl0(1, this);
+            default:
+                return super.c();
         }
-        ll0 ll0Var = (ll0) d1Var.f47897a;
-        ll0Var.setScaleX(1.0f);
-        ll0Var.setScaleY(1.0f);
-        ll0.a(ll0Var, ((el0) this.d.d.get(i10)).f25727c, i10);
     }
 
     @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        nl0 nl0Var = this.d;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                view = new ll0(nl0Var, nl0Var.getContext());
-            } else {
-                nl0Var.S = new ci.m6(nl0Var, nl0Var.getContext());
-                ls lsVar = new ls(nl0Var, nl0Var.getContext());
-                nl0Var.f28862v0 = lsVar;
-                lsVar.setImageResource(R.drawable.msg_reactions_expand);
-                nl0Var.f28862v0.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                int i11 = nl0Var.M0;
-                if (i11 != 1 && i11 != 2 && i11 != 4) {
-                    nl0Var.f28862v0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false), PorterDuff.Mode.MULTIPLY));
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.G) {
+            case 0:
+                el0 el0Var = this.H;
+                dl0 dl0Var = el0Var.f24731b;
+                super.dispatchDraw(canvas);
+                if (this.f31813a.getLottieAnimation() != null && !el0Var.E) {
+                    this.f31813a.getLottieAnimation().start();
+                }
+                if (el0Var.f24736s && !el0Var.v && this.f31813a.getLottieAnimation() != null && this.f31813a.getLottieAnimation().A() && dl0Var.f31813a.getLottieAnimation() != null && dl0Var.f31813a.getLottieAnimation().u()) {
+                    el0Var.v = true;
+                    dl0Var.f31813a.getLottieAnimation().N(0, false, true);
+                    dl0Var.setVisibility(0);
+                    Runnable runnable = el0Var.P.P0;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    AndroidUtilities.runOnUIThread(new yc0(this, 18));
+                }
+                invalidate();
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate(Rect rect) {
+        switch (this.G) {
+            case 0:
+                el0 el0Var = this.H;
+                if (ah.x0.c(this, el0Var.P)) {
+                    return;
+                }
+                super.invalidate(rect);
+                el0Var.P.invalidate();
+                return;
+            default:
+                super.invalidate(rect);
+                return;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        ImageReceiver imageReceiver;
+        switch (this.G) {
+            case 1:
+                this.H.b();
+                super.onDraw(canvas);
+                return;
+            case 2:
+                s5 s5Var = this.e;
+                if (s5Var != null) {
+                    imageReceiver = s5Var.f29031k;
                 } else {
-                    nl0Var.f28862v0.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                    imageReceiver = this.f31813a;
                 }
-                nl0Var.f28862v0.setBackground(org.telegram.ui.ActionBar.h6.i0(AndroidUtilities.dp(28.0f), 0, i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false), 40)));
-                nl0Var.f28862v0.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-                nl0Var.f28862v0.setContentDescription(LocaleController.getString(R.string.AccDescrExpandPanel));
-                nl0Var.S.addView(nl0Var.f28862v0, w7.w5.e(30, 30, 17));
-                nl0Var.f28862v0.setOnClickListener(new View.OnClickListener(this) {
-                    public final dl0 f24951b;
-
-                    {
-                        this.f24951b = this;
-                    }
-
-                    @Override
-                    public final void onClick(View view2) {
-                        switch (r2) {
-                            case 0:
-                                dl0 dl0Var = this.f24951b;
-                                dl0Var.getClass();
-                                view2.getLocationOnScreen(new int[2]);
-                                nl0 nl0Var2 = dl0Var.d;
-                                view2.getMeasuredWidth();
-                                view2.getMeasuredHeight();
-                                nl0Var2.getClass();
-                                new rg.y0(nl0Var2.f28860t0, 4, true).show();
-                                return;
-                            default:
-                                nl0.a(this.f24951b.d);
-                                return;
-                        }
-                    }
-                });
-                view = nl0Var.S;
-            }
-        } else {
-            nl0Var.R = new FrameLayout(nl0Var.getContext());
-            rg.c1 c1Var = new rg.c1(nl0Var.getContext(), 0, null);
-            nl0Var.f28861u0 = c1Var;
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.F8, false);
-            int i12 = org.telegram.ui.ActionBar.h6.f20631h5;
-            c1Var.setColor(i0.a.d(0.7f, x02, org.telegram.ui.ActionBar.h6.x0(null, i12, false)));
-            nl0Var.f28861u0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i12, false), PorterDuff.Mode.MULTIPLY));
-            nl0Var.f28861u0.setScaleX(0.0f);
-            nl0Var.f28861u0.setScaleY(0.0f);
-            nl0Var.f28861u0.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            nl0Var.R.addView(nl0Var.f28861u0, w7.w5.e(26, 26, 17));
-            nl0Var.f28861u0.setOnClickListener(new View.OnClickListener(this) {
-                public final dl0 f24951b;
-
-                {
-                    this.f24951b = this;
+                if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
+                    imageReceiver.getLottieAnimation().start();
                 }
-
-                @Override
-                public final void onClick(View view2) {
-                    switch (r2) {
-                        case 0:
-                            dl0 dl0Var = this.f24951b;
-                            dl0Var.getClass();
-                            view2.getLocationOnScreen(new int[2]);
-                            nl0 nl0Var2 = dl0Var.d;
-                            view2.getMeasuredWidth();
-                            view2.getMeasuredHeight();
-                            nl0Var2.getClass();
-                            new rg.y0(nl0Var2.f28860t0, 4, true).show();
-                            return;
-                        default:
-                            nl0.a(this.f24951b.d);
-                            return;
-                    }
-                }
-            });
-            view = nl0Var.R;
+                super.onDraw(canvas);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        int topOffset = ((nl0Var.getLayoutParams().height - ((int) nl0Var.getTopOffset())) - nl0Var.getPaddingTop()) - nl0Var.getPaddingBottom();
-        view.setLayoutParams(new s4.q0(topOffset - AndroidUtilities.dp(12.0f), topOffset));
-        return new s4.d1(view);
     }
 
     @Override
-    public final void y(s4.d1 d1Var) {
-        int b10;
-        ArrayList arrayList = this.d.d;
-        int i10 = d1Var.f47901f;
-        if ((i10 == 0 || i10 == 3) && (b10 = d1Var.b()) >= 0 && b10 < arrayList.size()) {
-            ((ll0) d1Var.f47897a).f(((el0) arrayList.get(b10)).f25727c, false);
+    public void invalidate(int i10, int i11, int i12, int i13) {
+        switch (this.G) {
+            case 0:
+                if (ah.x0.c(this)) {
+                    return;
+                }
+                super.invalidate(i10, i11, i12, i13);
+                return;
+            case 1:
+                if (ah.x0.c(this)) {
+                    return;
+                }
+                super.invalidate(i10, i11, i12, i13);
+                return;
+            default:
+                super.invalidate(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public final void invalidate() {
+        int i10 = this.G;
+        el0 el0Var = this.H;
+        switch (i10) {
+            case 0:
+                if (ah.x0.c(this, el0Var.P)) {
+                    return;
+                }
+                super.invalidate();
+                el0Var.P.invalidate();
+                return;
+            case 1:
+                if (ah.x0.c(this)) {
+                    return;
+                }
+                super.invalidate();
+                return;
+            default:
+                super.invalidate();
+                el0Var.P.invalidate();
+                return;
         }
     }
 }

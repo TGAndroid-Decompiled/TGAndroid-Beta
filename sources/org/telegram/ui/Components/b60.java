@@ -1,23 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class b60 extends k60 {
-    public final w60 d;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+public interface b60 {
+    long a();
 
-    public b60(w60 w60Var, Context context) {
-        super(w60Var, context);
-        this.d = w60Var;
-    }
+    boolean c();
 
-    @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.d.invalidate();
-    }
+    int getClassGuid();
 
-    @Override
-    public final void setRotationY(float f7) {
-        super.setRotationY(f7);
-        this.d.invalidate();
-    }
+    View getFragmentView();
+
+    Activity getParentActivity();
+
+    void s(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11, long j10);
+
+    boolean x();
 }

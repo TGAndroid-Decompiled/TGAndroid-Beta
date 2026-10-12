@@ -1,35 +1,38 @@
 package ci;
 
-import org.telegram.messenger.Utilities;
-public final class o implements Utilities.Callback {
-    public final int f5654a;
-    public final bc f5655b;
+import android.view.View;
+public final class o implements View.OnClickListener {
+    public final int f4768a;
+    public final Runnable f4769b;
 
-    public o(bc bcVar, int i10) {
-        this.f5654a = i10;
-        this.f5655b = bcVar;
+    public o(int i10, Runnable runnable) {
+        this.f4768a = i10;
+        this.f4769b = runnable;
     }
 
     @Override
-    public final void run(Object obj) {
-        Integer num = (Integer) obj;
-        switch (this.f5654a) {
+    public final void onClick(View view) {
+        switch (this.f4768a) {
             case 0:
-                int intValue = num.intValue();
-                bc bcVar = this.f5655b;
-                bcVar.setPeriod(intValue);
-                Utilities.Callback callback = bcVar.B1;
-                if (callback != null) {
-                    callback.run(num);
-                    return;
-                }
+                this.f4769b.run();
+                return;
+            case 1:
+                this.f4769b.run();
+                return;
+            case 2:
+                this.f4769b.run();
+                return;
+            case 3:
+                this.f4769b.run();
+                return;
+            case 4:
+                this.f4769b.run();
+                return;
+            case 5:
+                this.f4769b.run();
                 return;
             default:
-                Utilities.Callback callback2 = this.f5655b.C1;
-                if (callback2 != null) {
-                    callback2.run(num);
-                    return;
-                }
+                this.f4769b.run();
                 return;
         }
     }

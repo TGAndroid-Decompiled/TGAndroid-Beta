@@ -1,11 +1,11 @@
 package e3;
 
-import b2.s;
+import b2.x;
 public final class g implements a {
-    public final s f8627a;
+    public final x f8452a;
 
-    public g(s sVar) {
-        this.f8627a = sVar;
+    public g(x xVar) {
+        this.f8452a = xVar;
     }
 
     @Override

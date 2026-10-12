@@ -1,103 +1,47 @@
 package id;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-public final class d implements Collection {
-    public final Object[] f12106a;
-    public final boolean f12107b;
+import java.io.Serializable;
+public final class d implements Serializable {
+    public final Object f11378a;
+    public final Object f11379b;
 
-    public d(Object[] values, boolean z10) {
-        kotlin.jvm.internal.i.e(values, "values");
-        this.f12106a = values;
-        this.f12107b = z10;
+    public d(Object obj, Object obj2) {
+        this.f11378a = obj;
+        this.f11379b = obj2;
     }
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return f.a(this.f12106a, obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection elements) {
-        kotlin.jvm.internal.i.e(elements, "elements");
-        Collection<Object> collection = elements;
-        if (collection.isEmpty()) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        for (Object obj : collection) {
-            if (!f.a(this.f12106a, obj)) {
-                return false;
-            }
+        if (!(obj instanceof d)) {
+            return false;
         }
-        return true;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        if (this.f12106a.length == 0) {
+        d dVar = (d) obj;
+        if (kotlin.jvm.internal.i.a(this.f11378a, dVar.f11378a) && kotlin.jvm.internal.i.a(this.f11379b, dVar.f11379b)) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final Iterator iterator() {
-        Object[] array = this.f12106a;
-        kotlin.jvm.internal.i.e(array, "array");
-        return new dd.b(array);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final int size() {
-        return this.f12106a.length;
-    }
-
-    @Override
-    public final Object[] toArray() {
-        Object[] objArr = this.f12106a;
-        kotlin.jvm.internal.i.e(objArr, "<this>");
-        if (this.f12107b && objArr.getClass().equals(Object[].class)) {
-            return objArr;
+    public final int hashCode() {
+        int hashCode;
+        int i10 = 0;
+        Object obj = this.f11378a;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
         }
-        Object[] copyOf = Arrays.copyOf(objArr, objArr.length, Object[].class);
-        kotlin.jvm.internal.i.d(copyOf, "copyOf(...)");
-        return copyOf;
+        int i11 = hashCode * 31;
+        Object obj2 = this.f11379b;
+        if (obj2 != null) {
+            i10 = obj2.hashCode();
+        }
+        return i11 + i10;
     }
 
-    @Override
-    public final Object[] toArray(Object[] array) {
-        kotlin.jvm.internal.i.e(array, "array");
-        return kotlin.jvm.internal.i.j(this, array);
+    public final String toString() {
+        return "(" + this.f11378a + ", " + this.f11379b + ')';
     }
 }

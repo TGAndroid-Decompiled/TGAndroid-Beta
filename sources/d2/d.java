@@ -1,30 +1,33 @@
 package d2;
 
-import e2.d0;
-import e9.a1;
-import e9.g0;
-import e9.i0;
-import e9.p;
-import e9.x0;
-import java.util.List;
-public final class d {
-    public static final p f8085c = new p(new c(0), x0.f8814b);
-    public static final d d;
-    public static final String f8086e;
-    public static final String f8087f;
-    public final a1 f8088a;
-    public final long f8089b;
+import android.os.Bundle;
+import android.text.Spanned;
+import e2.m0;
+public abstract class d {
+    public static final String f6316a;
+    public static final String f6317b;
+    public static final String f6318c;
+    public static final String d;
+    public static final String e;
 
     static {
-        g0 g0Var = i0.f8749b;
-        d = new d(0L, a1.f8712e);
-        String str = d0.f8529a;
-        f8086e = Integer.toString(0, 36);
-        f8087f = Integer.toString(1, 36);
+        String str = m0.f8372a;
+        f6316a = Integer.toString(0, 36);
+        f6317b = Integer.toString(1, 36);
+        f6318c = Integer.toString(2, 36);
+        d = Integer.toString(3, 36);
+        e = Integer.toString(4, 36);
     }
 
-    public d(long j3, List list) {
-        this.f8088a = i0.B(f8085c, list);
-        this.f8089b = j3;
+    public static Bundle a(Spanned spanned, Object obj, int i10, Bundle bundle) {
+        Bundle bundle2 = new Bundle();
+        bundle2.putInt(f6316a, spanned.getSpanStart(obj));
+        bundle2.putInt(f6317b, spanned.getSpanEnd(obj));
+        bundle2.putInt(f6318c, spanned.getSpanFlags(obj));
+        bundle2.putInt(d, i10);
+        if (bundle != null) {
+            bundle2.putBundle(e, bundle);
+        }
+        return bundle2;
     }
 }

@@ -8,31 +8,31 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class i implements View.OnLongClickListener {
-    public final int f26984a;
-    public final Object f26985b;
-    public final Object f26986c;
+    public final int f25782a;
+    public final Object f25783b;
+    public final Object f25784c;
     public final Object d;
 
     public i(Object obj, Object obj2, Object obj3, int i10) {
-        this.f26984a = i10;
-        this.f26985b = obj;
-        this.f26986c = obj2;
+        this.f25782a = i10;
+        this.f25783b = obj;
+        this.f25784c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        uf ufVar;
+        rf rfVar;
         boolean z10;
-        switch (this.f26984a) {
+        switch (this.f25782a) {
             case 0:
-                return e0.Y((e0) this.f26985b, (org.telegram.ui.ActionBar.c6) this.f26986c, (Context) this.d);
+                return e0.Y((e0) this.f25783b, (org.telegram.ui.ActionBar.c6) this.f25784c, (Context) this.d);
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f26985b;
-                MessageObject messageObject = (MessageObject) this.f26986c;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f25783b;
+                MessageObject messageObject = (MessageObject) this.f25784c;
                 MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) this.d;
-                org.telegram.ui.ActionBar.c6 c6Var = chatActivityEnterView.f23775z4;
-                if (messageObject.isMediaEmpty() || (ufVar = chatActivityEnterView.E0) == null || TextUtils.isEmpty(ufVar.getTextToUse())) {
+                org.telegram.ui.ActionBar.c6 c6Var = chatActivityEnterView.W3;
+                if (messageObject.isMediaEmpty() || (rfVar = chatActivityEnterView.E0) == null || TextUtils.isEmpty(rfVar.getTextToUse())) {
                     return false;
                 }
                 if (groupedMessages != null && (!groupedMessages.hasCaption || groupedMessages.isDocuments)) {
@@ -42,8 +42,8 @@ public final class i implements View.OnLongClickListener {
                 if (i10 != 1 && i10 != 3 && i10 != 8) {
                     return false;
                 }
-                org.telegram.ui.ej0 ej0Var = new org.telegram.ui.ej0(chatActivityEnterView.getContext(), c6Var);
-                ej0Var.f37142h0 = true;
+                org.telegram.ui.hj0 hj0Var = new org.telegram.ui.hj0(chatActivityEnterView.getContext(), c6Var);
+                hj0Var.f36845h0 = true;
                 ArrayList arrayList = new ArrayList();
                 if (groupedMessages != null) {
                     for (int i11 = 0; i11 < groupedMessages.messages.size(); i11++) {
@@ -53,21 +53,21 @@ public final class i implements View.OnLongClickListener {
                         } else {
                             z10 = false;
                         }
-                        arrayList.add(chatActivityEnterView.h0(messageObject2, z10));
+                        arrayList.add(chatActivityEnterView.e0(messageObject2, z10));
                     }
                 } else {
-                    arrayList.add(chatActivityEnterView.h0(messageObject, true));
+                    arrayList.add(chatActivityEnterView.e0(messageObject, true));
                 }
-                ej0Var.q(arrayList);
-                s80 F = s80.F(chatActivityEnterView.f23690m1, c6Var, chatActivityEnterView.F1);
-                yc0 yc0Var = new yc0(chatActivityEnterView.getContext(), R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), chatActivityEnterView.f23775z4);
-                yc0Var.a(!chatActivityEnterView.f23744u5, false);
-                yc0Var.setOnClickListener(new ai.p5(chatActivityEnterView, arrayList, yc0Var, ej0Var, 10));
-                F.q(yc0Var);
+                hj0Var.q(arrayList);
+                m80 F = m80.F(chatActivityEnterView.f22923m1, c6Var, chatActivityEnterView.F1);
+                uc0 uc0Var = new uc0(chatActivityEnterView.getContext(), R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), chatActivityEnterView.W3);
+                uc0Var.a(!chatActivityEnterView.R4, false);
+                uc0Var.setOnClickListener(new bi.b5(chatActivityEnterView, arrayList, uc0Var, hj0Var, 10));
+                F.q(uc0Var);
                 F.Y();
-                ej0Var.p(F);
-                ej0Var.r(chatActivityEnterView.F1, false, new ai.p5(chatActivityEnterView, groupedMessages, messageObject, ej0Var, 11));
-                ej0Var.show();
+                hj0Var.p(F);
+                hj0Var.r(chatActivityEnterView.F1, false, new bi.b5(chatActivityEnterView, groupedMessages, messageObject, hj0Var, 11));
+                hj0Var.show();
                 return true;
         }
     }

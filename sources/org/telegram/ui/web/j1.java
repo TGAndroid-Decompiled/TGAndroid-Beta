@@ -3,19 +3,19 @@ package org.telegram.ui.web;
 import java.io.File;
 import java.io.FileInputStream;
 public final class j1 extends FileInputStream {
-    public final long f43306a;
+    public final long f41397a;
 
-    public j1(long j3, long j10, File file) {
+    public j1(long j10, long j11, File file) {
         super(file);
-        this.f43306a = j10;
-        if (j3 > 0 && skip(j3) != j3) {
+        this.f41397a = j11;
+        if (j10 > 0 && skip(j10) != j10) {
             throw new RuntimeException("BoundedInputStream failed to skip");
         }
     }
 
     @Override
     public final int read() {
-        if (getChannel().position() >= this.f43306a) {
+        if (getChannel().position() >= this.f41397a) {
             return -1;
         }
         return super.read();
@@ -24,11 +24,11 @@ public final class j1 extends FileInputStream {
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
         long position = getChannel().position();
-        long j3 = this.f43306a;
-        if (position >= j3) {
+        long j10 = this.f41397a;
+        if (position >= j10) {
             return -1;
         }
-        long position2 = j3 - getChannel().position();
+        long position2 = j10 - getChannel().position();
         if (i11 > position2) {
             i11 = (int) position2;
         }

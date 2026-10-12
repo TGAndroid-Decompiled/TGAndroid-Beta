@@ -1,50 +1,44 @@
 package of;
 
-import android.content.Context;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.i4;
-public final class a implements RequestDelegate {
-    public final int f16856a = 0;
-    public final int f16857b;
-    public final boolean f16858c;
-    public final Object d;
-    public final Object f16859e;
-    public final Object f16860f;
-    public final Object f16861g;
+import com.google.firebase.messaging.d;
+import java.io.InputStream;
+public final class a extends d {
+    public final long d;
 
-    public a(e eVar, a2[] a2VarArr, int i10, Uri uri, Context context, boolean z10) {
-        this.d = eVar;
-        this.f16859e = a2VarArr;
-        this.f16857b = i10;
-        this.f16860f = uri;
-        this.f16861g = context;
-        this.f16858c = z10;
+    public a(InputStream inputStream, long j10, long j11) {
+        super(inputStream, j10);
+        this.d = j10 + j11;
+    }
+
+    public final long e() {
+        return this.d - this.f6169b;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16856a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new c((e) this.d, (a2[]) this.f16859e, tLObject, this.f16857b, (Uri) this.f16860f, (Context) this.f16861g, this.f16858c));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new c((i4) this.d, tLObject, this.f16857b, (TLRPC.WebPage) this.f16859e, (MessageObject) this.f16860f, this.f16858c, (String) this.f16861g));
-                return;
+    public final int read() {
+        if (this.f6169b == this.d) {
+            return -1;
         }
+        return super.read();
     }
 
-    public a(i4 i4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
-        this.d = i4Var;
-        this.f16857b = i10;
-        this.f16859e = webPage;
-        this.f16860f = messageObject;
-        this.f16858c = z10;
-        this.f16861g = str;
+    @Override
+    public final long skip(long j10) {
+        long j11 = this.f6169b;
+        long j12 = this.d;
+        if (j11 + j10 > j12) {
+            j10 = (int) (j12 - j11);
+        }
+        return super.skip(j10);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long j10 = this.f6169b;
+        long j11 = this.d;
+        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
+            return super.read(bArr, i10, i11);
+        }
+        return -1;
     }
 }

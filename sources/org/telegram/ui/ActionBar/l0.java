@@ -5,25 +5,25 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import java.util.ArrayList;
 public final class l0 extends AnimatorListenerAdapter {
-    public final int f21102a;
-    public final ArrayList f21103b;
-    public final u0 f21104c;
+    public final int f20482a;
+    public final ArrayList f20483b;
+    public final u0 f20484c;
 
     public l0(u0 u0Var, ArrayList arrayList, int i10) {
-        this.f21102a = i10;
-        this.f21104c = u0Var;
-        this.f21103b = arrayList;
+        this.f20482a = i10;
+        this.f20484c = u0Var;
+        this.f20483b = arrayList;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f21102a) {
+        switch (this.f20482a) {
             case 0:
-                u0 u0Var = this.f21104c;
+                u0 u0Var = this.f20484c;
                 u0Var.F.setAlpha(0.0f);
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f21103b;
+                    ArrayList arrayList = this.f20483b;
                     if (i10 < arrayList.size()) {
                         ((View) arrayList.get(i10)).setAlpha(1.0f);
                         i10++;
@@ -33,10 +33,10 @@ public final class l0 extends AnimatorListenerAdapter {
                     }
                 }
             default:
-                this.f21104c.F.setAlpha(1.0f);
+                this.f20484c.F.setAlpha(1.0f);
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f21103b;
+                    ArrayList arrayList2 = this.f20483b;
                     if (i11 < arrayList2.size()) {
                         ((View) arrayList2.get(i11)).setAlpha(0.0f);
                         i11++;

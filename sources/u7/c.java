@@ -1,43 +1,43 @@
 package u7;
 
-import w7.t7;
+import w7.x7;
 public final class c extends d {
-    public final transient int f49104c;
+    public final transient int f46222c;
     public final transient int d;
-    public final d f49105e;
+    public final d e;
 
     public c(d dVar, int i10, int i11) {
-        this.f49105e = dVar;
-        this.f49104c = i10;
+        this.e = dVar;
+        this.f46222c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        t7.a(i10, this.d);
-        return this.f49105e.get(i10 + this.f49104c);
+        x7.a(i10, this.d);
+        return this.e.get(i10 + this.f46222c);
+    }
+
+    @Override
+    public final int m() {
+        return this.e.n() + this.f46222c + this.d;
     }
 
     @Override
     public final int n() {
-        return this.f49105e.o() + this.f49104c + this.d;
+        return this.e.n() + this.f46222c;
     }
 
     @Override
-    public final int o() {
-        return this.f49105e.o() + this.f49104c;
-    }
-
-    @Override
-    public final Object[] p() {
-        return this.f49105e.p();
+    public final Object[] o() {
+        return this.e.o();
     }
 
     @Override
     public final d subList(int i10, int i11) {
-        t7.b(i10, i11, this.d);
-        int i12 = this.f49104c;
-        return this.f49105e.subList(i10 + i12, i11 + i12);
+        x7.b(i10, i11, this.d);
+        int i12 = this.f46222c;
+        return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

@@ -1,157 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeInterpolator;
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class p51 extends t61 {
-    static {
-        t61.setup(new t61());
-    }
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class p51 extends s4.r0 {
+    public final int f28154a;
+    public int f28155b;
+    public final Object f28156c;
 
-    public static u61 a(int i10, CharSequence charSequence, boolean z10, View.OnClickListener onClickListener, ha0 ha0Var, View.OnClickListener onClickListener2) {
-        u61 J = u61.J(p51.class);
-        J.d = i10;
-        J.f31071l = charSequence;
-        J.f31066f = z10;
-        J.f31079t = false;
-        J.D = onClickListener;
-        J.G = ha0Var;
-        J.E = onClickListener2;
-        return J;
+    public p51(t51 t51Var) {
+        this.f28154a = 0;
+        this.f28156c = t51Var;
     }
 
     @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
-        ha0 ha0Var;
-        CharSequence cloneSpans;
-        int i10;
-        int i11;
-        int i12;
-        boolean z11;
-        int i13;
-        q51 q51Var = (q51) view;
-        CharSequence charSequence = u61Var.f31071l;
-        boolean z12 = u61Var.f31066f;
-        View.OnClickListener onClickListener = u61Var.D;
-        Object obj = u61Var.G;
-        if (obj != null) {
-            ha0Var = (ha0) obj;
-        } else {
-            ha0Var = null;
+    public void a(RecyclerView recyclerView, int i10) {
+        switch (this.f28154a) {
+            case 0:
+                if (i10 == 0) {
+                    this.f28155b = 0;
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        boolean z13 = u61Var.f31079t;
-        View.OnClickListener onClickListener2 = u61Var.E;
-        ImageView imageView = q51Var.f29684n;
-        TextView textView = q51Var.d;
-        n51 n51Var = q51Var.f29681c;
-        o51 o51Var = q51Var.f29683f;
-        if (charSequence == null) {
-            cloneSpans = "";
-        } else {
-            cloneSpans = b6.cloneSpans(charSequence);
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(cloneSpans);
-        na0[] na0VarArr = (na0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), na0.class);
-        if (na0VarArr != null) {
-            int i14 = 0;
-            while (i14 < na0VarArr.length) {
-                int spanStart = spannableStringBuilder.getSpanStart(na0VarArr[i14]);
-                int spanEnd = spannableStringBuilder.getSpanEnd(na0VarArr[i14]);
-                boolean z14 = z13;
-                spannableStringBuilder.removeSpan(na0VarArr[i14]);
-                int i15 = i14;
-                na0 na0Var = na0VarArr[i15];
-                na0 na0Var2 = new na0(o51Var, na0Var.f28754a, na0Var.d, null);
-                na0 na0Var3 = na0VarArr[i15];
-                na0Var2.f28758f = na0Var3.f28758f;
-                na0Var2.h = na0Var3.h;
-                na0Var2.f28759n = na0Var3.f28759n;
-                spannableStringBuilder.setSpan(na0Var2, spanStart, spanEnd, 33);
-                i14 = i15 + 1;
-                z13 = z14;
-                onClickListener2 = onClickListener2;
-            }
-        }
-        View.OnClickListener onClickListener3 = onClickListener2;
-        boolean z15 = z13;
-        if (q51Var.h && !z12) {
-            n51Var.setVisibility(0);
-            o51Var.setVisibility(0);
-            ViewPropertyAnimator withEndAction = n51Var.animate().alpha(0.0f).withEndAction(new ur0(q51Var, 24));
-            TimeInterpolator timeInterpolator = js.h;
-            withEndAction.setInterpolator(timeInterpolator).setDuration(320L).start();
-            o51Var.animate().alpha(1.0f).setInterpolator(timeInterpolator).setDuration(320L).start();
-        } else {
-            if (z12) {
-                i10 = 0;
-            } else {
-                i10 = 8;
-            }
-            n51Var.setVisibility(i10);
-            if (!z12) {
-                i11 = 0;
-            } else {
-                i11 = 8;
-            }
-            o51Var.setVisibility(i11);
-        }
-        q51Var.h = z12;
-        if (z12) {
-            i12 = 0;
-        } else {
-            i12 = 8;
-        }
-        textView.setVisibility(i12);
-        textView.setOnClickListener(onClickListener);
-        q51Var.setClipChildren(z12);
-        n51Var.setText(spannableStringBuilder);
-        o51Var.setText(spannableStringBuilder);
-        if (!z15 && (na0VarArr == null || na0VarArr.length == 0)) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        o51Var.setTextIsSelectable(z11);
-        o51Var.setOnLinkPressListener(ha0Var);
-        if (onClickListener3 != null) {
-            i13 = 0;
-        } else {
-            i13 = 8;
-        }
-        imageView.setVisibility(i13);
-        imageView.setOnClickListener(onClickListener3);
-        q51Var.f29680b = z10;
-        q51Var.setWillNotDraw(true ^ z10);
     }
 
     @Override
-    public final boolean contentsEquals(u61 u61Var, u61 u61Var2) {
-        if (TextUtils.equals(u61Var.f31071l, u61Var2.f31071l) && u61Var.f31066f == u61Var2.f31066f) {
-            return true;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f28154a) {
+            case 0:
+                t51 t51Var = (t51) this.f28156c;
+                this.f28155b += i11;
+                if (recyclerView.getScrollState() == 1 && Math.abs(this.f28155b) > AndroidUtilities.dp(96.0f)) {
+                    View findFocus = t51Var.e.findFocus();
+                    if (findFocus == null) {
+                        findFocus = t51Var.e;
+                    }
+                    AndroidUtilities.hideKeyboard(findFocus);
+                }
+                if (i11 != 0) {
+                    t51.n(t51Var);
+                    return;
+                }
+                return;
+            case 1:
+                int i12 = this.f28155b + i11;
+                this.f28155b = i12;
+                ((org.telegram.ui.k31) this.f28156c).H.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
+                return;
+            default:
+                org.telegram.ui.Wallet.z4 z4Var = ((org.telegram.ui.Wallet.w3) this.f28156c).f33794a;
+                if (this.f28155b == 0) {
+                    z4Var.q0();
+                    return;
+                } else {
+                    recyclerView.post(new org.telegram.ui.Wallet.f3(z4Var, 13));
+                    return;
+                }
         }
-        return false;
     }
 
-    @Override
-    public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new q51(context, c6Var);
+    public p51(org.telegram.ui.k31 k31Var) {
+        this.f28154a = 1;
+        this.f28156c = k31Var;
+        this.f28155b = 0;
     }
 
-    @Override
-    public final boolean equals(u61 u61Var, u61 u61Var2) {
-        if (u61Var.d == u61Var2.d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+    public p51(org.telegram.ui.Wallet.w3 w3Var, int i10) {
+        this.f28154a = 2;
+        this.f28156c = w3Var;
+        this.f28155b = i10;
     }
 }

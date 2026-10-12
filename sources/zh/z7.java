@@ -1,0 +1,68 @@
+package zh;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.jb0;
+import org.telegram.ui.jg0;
+public final class z7 extends AnimatorListenerAdapter {
+    public final ah.g1 f51386a;
+    public final View f51387b;
+    public final bi.z0[] f51388c;
+    public final boolean[] d;
+    public final RectF e;
+    public final Runnable f51389f;
+    public final h8 h;
+
+    public z7(h8 h8Var, ah.g1 g1Var, View view, bi.z0[] z0VarArr, boolean[] zArr, RectF rectF, Runnable runnable) {
+        this.h = h8Var;
+        this.f51386a = g1Var;
+        this.f51387b = view;
+        this.f51388c = z0VarArr;
+        this.d = zArr;
+        this.e = rectF;
+        this.f51389f = runnable;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        jb0 jb0Var;
+        h8 h8Var = this.h;
+        jg0 jg0Var = h8Var.K;
+        jg0Var.setVisibility(4);
+        jg0Var.setPaused(true);
+        ah.g1 g1Var = this.f51386a;
+        if (g1Var != null) {
+            g1Var.f751l = true;
+        }
+        View view = this.f51387b;
+        if (view != null) {
+            view.invalidate();
+        }
+        bi.z0 z0Var = this.f51388c[0];
+        if (z0Var != null) {
+            z0Var.setDrawStar(true);
+        }
+        super/*org.telegram.ui.ActionBar.e3*/.dismissInternal();
+        boolean[] zArr = this.d;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            RectF rectF = this.e;
+            LaunchActivity.b0(rectF.centerX(), rectF.centerY(), 1.5f);
+            try {
+                h8Var.container.performHapticFeedback(0, 1);
+            } catch (Exception unused) {
+            }
+            Runnable runnable = this.f51389f;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+        LaunchActivity launchActivity = LaunchActivity.G1;
+        if (launchActivity != null && (jb0Var = launchActivity.f32147x0) != null) {
+            jb0Var.c(true);
+        }
+    }
+}

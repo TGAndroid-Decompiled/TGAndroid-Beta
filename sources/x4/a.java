@@ -13,22 +13,22 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.InflateException;
 import android.view.animation.AnimationUtils;
-import com.google.android.gms.internal.vision.e2;
+import com.google.android.gms.internal.play_billing.k3;
 import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
-import v7.c8;
+import v7.x7;
 public abstract class a {
-    public static final int[] f50829a = {16842755, 16843041, 16843093, 16843097, 16843551, 16843754, 16843771, 16843778, 16843779};
-    public static final int[] f50830b = {16842755, 16843189, 16843190, 16843556, 16843557, 16843558, 16843866, 16843867};
-    public static final int[] f50831c = {16842755, 16843780, 16843781, 16843782, 16843783, 16843784, 16843785, 16843786, 16843787, 16843788, 16843789, 16843979, 16843980, 16844062};
+    public static final int[] f47835a = {16842755, 16843041, 16843093, 16843097, 16843551, 16843754, 16843771, 16843778, 16843779};
+    public static final int[] f47836b = {16842755, 16843189, 16843190, 16843556, 16843557, 16843558, 16843866, 16843867};
+    public static final int[] f47837c = {16842755, 16843780, 16843781, 16843782, 16843783, 16843784, 16843785, 16843786, 16843787, 16843788, 16843789, 16843979, 16843980, 16844062};
     public static final int[] d = {16842755, 16843781, 16844062};
-    public static final int[] f50832e = {16843161};
-    public static final int[] f50833f = {16842755, 16843213};
-    public static final int[] f50834g = {16843073, 16843160, 16843198, 16843199, 16843200, 16843486, 16843487, 16843488};
+    public static final int[] e = {16843161};
+    public static final int[] f47838f = {16842755, 16843213};
+    public static final int[] f47839g = {16843073, 16843160, 16843198, 16843199, 16843200, 16843486, 16843487, 16843488};
     public static final int[] h = {16843490};
-    public static final int[] f50835i = {16843486, 16843487, 16843488, 16843489};
-    public static final int[] f50836j = {16842788, 16843073, 16843488, 16843992};
-    public static final int[] f50837k = {16843489, 16843781, 16843892, 16843893};
+    public static final int[] f47840i = {16843486, 16843487, 16843488, 16843489};
+    public static final int[] f47841j = {16842788, 16843073, 16843488, 16843992};
+    public static final int[] f47842k = {16843489, 16843781, 16843892, 16843893};
 
     public static android.animation.Animator a(android.content.Context r27, android.content.res.Resources r28, android.content.res.Resources.Theme r29, org.xmlpull.v1.XmlPullParser r30, android.util.AttributeSet r31, android.animation.AnimatorSet r32, int r33) {
         throw new UnsupportedOperationException("Method not decompiled: x4.a.a(android.content.Context, android.content.res.Resources, android.content.res.Resources$Theme, org.xmlpull.v1.XmlPullParser, android.util.AttributeSet, android.animation.AnimatorSet, int):android.animation.Animator");
@@ -86,16 +86,16 @@ public abstract class a {
         if (i10 == 2) {
             String string = typedArray.getString(i11);
             String string2 = typedArray.getString(i12);
-            i0.d[] c10 = c8.c(string);
-            i0.d[] c11 = c8.c(string2);
+            i0.d[] c10 = x7.c(string);
+            i0.d[] c11 = x7.c(string2);
             if (c10 != null || c11 != null) {
                 if (c10 != null) {
                     ?? obj = new Object();
                     if (c11 != null) {
-                        if (c8.a(c10, c11)) {
+                        if (x7.a(c10, c11)) {
                             return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c10, c11);
                         }
-                        throw new InflateException(e2.j(" Can't morph from ", string, " to ", string2));
+                        throw new InflateException(k3.k(" Can't morph from ", string, " to ", string2));
                     }
                     return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c10);
                 } else if (c11 != null) {
@@ -105,7 +105,7 @@ public abstract class a {
             return null;
         }
         if (i10 == 3) {
-            fVar = f.f50845a;
+            fVar = f.f47849a;
         } else {
             fVar = null;
         }
@@ -194,8 +194,8 @@ public abstract class a {
         int i16;
         boolean z11;
         int i17;
-        TypedArray f7 = h0.b.f(resources, theme, attributeSet, f50834g);
-        TypedArray f10 = h0.b.f(resources, theme, attributeSet, f50837k);
+        TypedArray f7 = h0.b.f(resources, theme, attributeSet, f47839g);
+        TypedArray f10 = h0.b.f(resources, theme, attributeSet, f47842k);
         if (objectAnimator == null) {
             valueAnimator = new ValueAnimator();
         } else {
@@ -205,13 +205,13 @@ public abstract class a {
         if (h0.b.c(xmlPullParser, "duration")) {
             i18 = f7.getInt(1, 300);
         }
-        long j3 = i18;
+        long j10 = i18;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "startOffset") != null) {
             i10 = f7.getInt(2, 0);
         } else {
             i10 = 0;
         }
-        long j10 = i10;
+        long j11 = i10;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "valueType") != null) {
             i11 = f7.getInt(7, 4);
         } else {
@@ -252,8 +252,8 @@ public abstract class a {
                 valueAnimator.setValues(b10);
             }
         }
-        valueAnimator.setDuration(j3);
-        valueAnimator.setStartDelay(j10);
+        valueAnimator.setDuration(j10);
+        valueAnimator.setStartDelay(j11);
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "repeatCount") != null) {
             i12 = f7.getInt(3, 0);
         } else {
@@ -277,7 +277,7 @@ public abstract class a {
                 if (b12 == null && b13 == null) {
                     throw new InflateException(f10.getPositionDescription() + " propertyXName or propertyYName is needed for PathData");
                 }
-                Path d10 = c8.d(b11);
+                Path d10 = x7.d(b11);
                 PathMeasure pathMeasure = new PathMeasure(d10, false);
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(Float.valueOf(0.0f));

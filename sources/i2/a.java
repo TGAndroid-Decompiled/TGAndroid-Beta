@@ -1,24 +1,24 @@
 package i2;
 
 import android.util.Pair;
-public abstract class a extends b2.k1 {
-    public static final int f11598g = 0;
-    public final int f11599e;
-    public final u2.f1 f11600f;
+public abstract class a extends b2.p1 {
+    public static final int f10911g = 0;
+    public final int e;
+    public final u2.i1 f10912f;
 
-    public a(u2.f1 f1Var) {
-        this.f11600f = f1Var;
-        this.f11599e = f1Var.getLength();
+    public a(u2.i1 i1Var) {
+        this.f10912f = i1Var;
+        this.e = i1Var.getLength();
     }
 
     @Override
     public final int a(boolean z10) {
         int i10;
-        if (this.f11599e == 0) {
+        if (this.e == 0) {
             return -1;
         }
         if (z10) {
-            i10 = this.f11600f.b();
+            i10 = this.f10912f.b();
         } else {
             i10 = 0;
         }
@@ -50,19 +50,19 @@ public abstract class a extends b2.k1 {
     @Override
     public final int c(boolean z10) {
         int i10;
-        int i11 = this.f11599e;
+        int i11 = this.e;
         if (i11 == 0) {
             return -1;
         }
-        u2.f1 f1Var = this.f11600f;
+        u2.i1 i1Var = this.f10912f;
         if (z10) {
-            i10 = f1Var.g();
+            i10 = i1Var.h();
         } else {
             i10 = i11 - 1;
         }
         while (x(i10).p()) {
             if (z10) {
-                i10 = f1Var.c(i10);
+                i10 = i1Var.d(i10);
                 continue;
             } else if (i10 > 0) {
                 i10--;
@@ -83,23 +83,23 @@ public abstract class a extends b2.k1 {
         int i12;
         int s10 = s(i10);
         int v = v(s10);
-        b2.k1 x10 = x(s10);
+        b2.p1 x10 = x(s10);
         int i13 = i10 - v;
         if (i11 == 2) {
             i12 = 0;
         } else {
             i12 = i11;
         }
-        int e7 = x10.e(i13, i12, z10);
-        if (e7 != -1) {
-            return v + e7;
+        int e = x10.e(i13, i12, z10);
+        if (e != -1) {
+            return v + e;
         }
-        int w10 = w(s10, z10);
-        while (w10 != -1 && x(w10).p()) {
-            w10 = w(w10, z10);
+        int w9 = w(s10, z10);
+        while (w9 != -1 && x(w9).p()) {
+            w9 = w(w9, z10);
         }
-        if (w10 != -1) {
-            return x(w10).a(z10) + v(w10);
+        if (w9 != -1) {
+            return x(w9).a(z10) + v(w9);
         } else if (i11 != 2) {
             return -1;
         } else {
@@ -108,31 +108,31 @@ public abstract class a extends b2.k1 {
     }
 
     @Override
-    public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
+    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
         int r10 = r(i10);
         int v = v(r10);
-        x(r10).f(i10 - u(r10), h1Var, z10);
-        h1Var.f3327c += v;
+        x(r10).f(i10 - u(r10), m1Var, z10);
+        m1Var.f2213c += v;
         if (z10) {
             Object t10 = t(r10);
-            Object obj = h1Var.f3326b;
+            Object obj = m1Var.f2212b;
             obj.getClass();
-            h1Var.f3326b = Pair.create(t10, obj);
+            m1Var.f2212b = Pair.create(t10, obj);
         }
-        return h1Var;
+        return m1Var;
     }
 
     @Override
-    public final b2.h1 g(Object obj, b2.h1 h1Var) {
+    public final b2.m1 g(Object obj, b2.m1 m1Var) {
         Pair pair = (Pair) obj;
         Object obj2 = pair.first;
         Object obj3 = pair.second;
         int q6 = q(obj2);
         int v = v(q6);
-        x(q6).g(obj3, h1Var);
-        h1Var.f3327c += v;
-        h1Var.f3326b = obj;
-        return h1Var;
+        x(q6).g(obj3, m1Var);
+        m1Var.f2213c += v;
+        m1Var.f2212b = obj;
+        return m1Var;
     }
 
     @Override
@@ -147,19 +147,19 @@ public abstract class a extends b2.k1 {
     }
 
     @Override
-    public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
+    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
         int s10 = s(i10);
         int v = v(s10);
         int u10 = u(s10);
-        x(s10).m(i10 - v, j1Var, j3);
+        x(s10).m(i10 - v, o1Var, j10);
         Object t10 = t(s10);
-        if (!b2.j1.f3368q.equals(j1Var.f3377a)) {
-            t10 = Pair.create(t10, j1Var.f3377a);
+        if (!b2.o1.f2249q.equals(o1Var.f2258a)) {
+            t10 = Pair.create(t10, o1Var.f2258a);
         }
-        j1Var.f3377a = t10;
-        j1Var.f3388n += u10;
-        j1Var.f3389o += u10;
-        return j1Var;
+        o1Var.f2258a = t10;
+        o1Var.f2268n += u10;
+        o1Var.f2269o += u10;
+        return o1Var;
     }
 
     public abstract int q(Object obj);
@@ -176,13 +176,13 @@ public abstract class a extends b2.k1 {
 
     public final int w(int i10, boolean z10) {
         if (z10) {
-            return this.f11600f.d(i10);
+            return this.f10912f.e(i10);
         }
-        if (i10 < this.f11599e - 1) {
+        if (i10 < this.e - 1) {
             return i10 + 1;
         }
         return -1;
     }
 
-    public abstract b2.k1 x(int i10);
+    public abstract b2.p1 x(int i10);
 }

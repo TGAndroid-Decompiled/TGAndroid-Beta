@@ -1,11 +1,20 @@
 package ee;
+public final class h extends md.c {
+    public i f8745a;
+    public Object f8746b;
+    public Object f8747c;
+    public final i d;
+    public int e;
 
-import sd.q;
-public final class h extends kotlin.jvm.internal.h implements q {
-    public static final h f8909a = new kotlin.jvm.internal.h(3, de.c.class, "emit", "emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", 0);
+    public h(i iVar, md.c cVar) {
+        super(cVar);
+        this.d = iVar;
+    }
 
     @Override
-    public final Object c(Object obj, Object obj2, ld.c cVar) {
-        return ((de.c) obj).b(obj2, cVar);
+    public final Object invokeSuspend(Object obj) {
+        this.f8747c = obj;
+        this.e |= Integer.MIN_VALUE;
+        return this.d.a(null, this);
     }
 }

@@ -1,142 +1,203 @@
 package hg;
 
-import ai.f4;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.widget.TextView;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import bi.g8;
+import com.google.android.gms.internal.play_billing.k3;
+import di.x8;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
+import java.util.HashSet;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.HashtagSearchController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.hg1;
-import org.telegram.ui.py;
-import org.telegram.ui.vy;
-public final class n1 implements org.telegram.ui.ActionBar.z1, py {
-    public final int f11327a;
-    public final KeyEvent.Callback f11328b;
-    public final Object f11329c;
-    public final Object d;
-    public final Object f11330e;
-    public final Object f11331f;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Cells.s2;
+import org.telegram.ui.Components.f10;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.fo;
+public final class n1 extends lm0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Context f10680c;
+    public final fo f10681f;
+    public int h;
+    public int f10682n;
+    public final c6 f10684s;
+    public final int v;
+    public final boolean f10685w;
+    public String f10686x;
+    public g8 f10687y;
+    public final HashSet d = new HashSet();
+    public final ArrayList e = new ArrayList();
+    public final int f10683r = UserConfig.selectedAccount;
+    public final x8 E = new x8(this, 23);
 
-    public n1(s1 s1Var, f4 f4Var, int i10, b2 b2Var, TextView textView, Utilities.Callback callback) {
-        this.f11328b = s1Var;
-        this.f11329c = f4Var;
-        this.f11327a = i10;
-        this.d = b2Var;
-        this.f11330e = textView;
-        this.f11331f = callback;
+    public n1(Context context, fo foVar, c6 c6Var, int i10, boolean z10) {
+        this.f10684s = c6Var;
+        this.f10680c = context;
+        this.f10681f = foVar;
+        this.v = i10;
+        this.f10685w = z10;
     }
 
     @Override
-    public boolean B() {
-        return false;
-    }
-
-    @Override
-    public boolean K(vy vyVar) {
-        return false;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        int i11;
-        s1 s1Var = (s1) this.f11328b;
-        f4 f4Var = (f4) this.f11329c;
-        b2 b2Var = (b2) this.d;
-        TextView textView = (TextView) this.f11330e;
-        Utilities.Callback callback = (Utilities.Callback) this.f11331f;
-        String obj = s1Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 32) {
-            c2 f7 = c2.f(this.f11327a);
-            if (b2Var == null) {
-                i11 = -1;
-            } else {
-                i11 = b2Var.f11172a;
-            }
-            b2 d = f7.d(obj);
-            if (d != null && d.f11172a != i11) {
-                AndroidUtilities.shakeView(s1Var);
-                textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
-                f4Var.run(Boolean.TRUE);
-                return;
-            }
-            callback.run(obj);
-            a2Var.dismiss();
-            return;
-        }
-        AndroidUtilities.shakeView(s1Var);
-        f4Var.run(Boolean.FALSE);
-    }
-
-    @Override
-    public boolean w(vy vyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, hg1 hg1Var) {
-        String str;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        final LaunchActivity launchActivity = (LaunchActivity) this.f11328b;
-        final TLRPC.User user = (TLRPC.User) this.f11329c;
-        final String str2 = (String) this.d;
-        final String str3 = (String) this.f11330e;
-        final vy vyVar2 = (vy) this.f11331f;
-        Pattern pattern = LaunchActivity.B1;
-        final long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-        final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.O).getChat(Long.valueOf(-j3));
-        final int i12 = this.f11327a;
-        if (chat != null && (chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.add_admins))) {
-            MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
-                @Override
-                public final void run(boolean z12, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str4) {
-                    Pattern pattern2 = LaunchActivity.B1;
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.l8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, vyVar2, user, j3, str4));
-                }
-            });
-        } else {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
-            String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
-            a2Var.R = string;
-            if (chat == null) {
-                str = "";
-            } else {
-                str = chat.title;
-            }
-            a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(user), str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.k(LocaleController.getString(R.string.AddBot), new org.telegram.ui.ActionBar.z1() {
-                @Override
-                public final void f(org.telegram.ui.ActionBar.a2 a2Var2, int i13) {
-                    Pattern pattern2 = LaunchActivity.B1;
-                    Bundle i14 = a1.g.i("scrollToTopOnResume", true);
-                    long j10 = -j3;
-                    i14.putLong("chat_id", j10);
-                    eo eoVar = new eo(i14);
-                    int i15 = i12;
-                    NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    MessagesController.getInstance(i15).addUserToChat(j10, user, 0, str3, eoVar, null);
-                    ((ActionBarLayout) LaunchActivity.this.O()).S(eoVar, true, false);
-                }
-            });
-            alertDialog$Builder.o();
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f44841f;
+        if (i10 != 0 && i10 != 2) {
+            return false;
         }
         return true;
     }
 
-    public n1(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, vy vyVar) {
-        this.f11328b = launchActivity;
-        this.f11327a = i10;
-        this.f11329c = user;
-        this.d = str;
-        this.f11330e = str2;
-        this.f11331f = vyVar;
+    public final Object E(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.e;
+            if (i10 < arrayList.size()) {
+                return arrayList.get(i10);
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f10687y) {
+            l();
+        }
+    }
+
+    @Override
+    public final int h() {
+        return this.e.size() + this.f10682n;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 < this.e.size()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void l() {
+        ArrayList<MessageObject> messages;
+        int h = h();
+        ArrayList arrayList = this.e;
+        arrayList.clear();
+        HashSet hashSet = this.d;
+        hashSet.clear();
+        int i10 = this.f10683r;
+        int i11 = this.v;
+        if (i11 == 0) {
+            messages = MediaDataController.getInstance(i10).getFoundMessageObjects();
+        } else {
+            messages = HashtagSearchController.getInstance(i10).getMessages(i11);
+        }
+        int i12 = 0;
+        for (int i13 = 0; i13 < messages.size(); i13++) {
+            MessageObject messageObject = messages.get(i13);
+            if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !hashSet.contains(Integer.valueOf(messageObject.getId()))) {
+                arrayList.add(messageObject);
+                hashSet.add(Integer.valueOf(messageObject.getId()));
+            }
+        }
+        int i14 = this.f10682n;
+        this.h = arrayList.size();
+        if (i11 != 0) {
+            if (!HashtagSearchController.getInstance(i10).isEndReached(i11) && this.h != 0) {
+                i12 = Utilities.clamp(HashtagSearchController.getInstance(i10).getCount(i11) - this.h, 3, 0);
+            }
+            this.f10682n = i12;
+        } else {
+            if (!MediaDataController.getInstance(i10).searchEndReached() && this.h != 0) {
+                i12 = Utilities.clamp(MediaDataController.getInstance(i10).getSearchCount() - this.h, 3, 0);
+            }
+            this.f10682n = i12;
+        }
+        int h10 = h();
+        if (h < h10) {
+            if (i14 > 0) {
+                q(h - i14, i14);
+            }
+            s(h, h10 - h);
+            return;
+        }
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        int i13 = b1Var.f44841f;
+        View view = b1Var.f44838a;
+        if (i13 == 0) {
+            s2 s2Var = (s2) view;
+            s2Var.f21895s2 = true;
+            MessageObject messageObject = (MessageObject) E(i10);
+            long dialogId = messageObject.getDialogId();
+            int i14 = messageObject.messageOwner.date;
+            if (this.f10685w) {
+                s2Var.f21887r0 = true;
+                long savedDialogId = messageObject.getSavedDialogId();
+                TLRPC.Message message = messageObject.messageOwner;
+                TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+                if (messageFwdHeader != null && ((i11 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
+                    if (i11 == 0) {
+                        i12 = messageFwdHeader.saved_date;
+                    }
+                    z10 = false;
+                    dialogId = savedDialogId;
+                } else {
+                    i12 = message.date;
+                }
+                i11 = i12;
+                z10 = false;
+                dialogId = savedDialogId;
+            } else {
+                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f10683r, dialogId)) {
+                    dialogId = messageObject.getFromChatId();
+                }
+                z10 = true;
+                i11 = i14;
+            }
+            s2Var.W(dialogId, messageObject, i11, z10, false);
+            s2Var.setDialogCellDelegate(new k1(this));
+        } else if (i13 == 2) {
+            ((m1) view).a(this.f10687y);
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View s2Var;
+        f10 f10Var;
+        if (i10 != 0) {
+            c6 c6Var = this.f10684s;
+            Context context = this.f10680c;
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    s2Var = null;
+                } else {
+                    f10Var = new m1(context, c6Var);
+                }
+            } else {
+                f10 f10Var2 = new f10(context, c6Var);
+                f10Var2.setIsSingleCell(true);
+                f10Var2.setViewType(7);
+                f10Var = f10Var2;
+            }
+            s2Var = f10Var;
+        } else {
+            s2Var = new s2(null, this.f10680c, true, this.f10683r, this.f10684s);
+        }
+        return k3.l(s2Var, s2Var, -1, -2);
     }
 }

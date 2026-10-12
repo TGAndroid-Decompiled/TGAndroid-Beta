@@ -1,13 +1,19 @@
 package org.telegram.ui.Wallet;
-public final class y1 extends org.telegram.ui.ActionBar.e5 {
-    public final ci.d f35540f;
 
-    public y1(ci.d dVar) {
-        this.f35540f = dVar;
-    }
+import org.telegram.tgnet.tl.TL_wallet;
+public final class y1 {
+    public final String f33875a;
+    public final String f33876b;
+    public final String f33877c;
+    public final String d;
+    public TL_wallet.tonConnectSession e;
+    public boolean f33878f;
 
-    @Override
-    public final boolean h() {
-        return !this.f35540f.N;
+    public y1(TL_wallet.tonConnectSession tonconnectsession, String str, String str2, String str3, String str4) {
+        this.e = tonconnectsession;
+        this.f33875a = str;
+        this.f33876b = str2;
+        this.f33877c = str3;
+        this.d = str4;
     }
 }

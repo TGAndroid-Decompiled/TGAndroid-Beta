@@ -1,43 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class r30 implements Runnable {
-    public final i60 f41498a;
+import android.view.animation.OvershootInterpolator;
+public final class r30 extends lh.b {
+    public final OvershootInterpolator d;
+    public int e;
+    public final n60 f39577f;
 
-    public r30(i60 i60Var) {
-        this.f41498a = i60Var;
+    public r30(n60 n60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f39577f = n60Var;
+        this.d = new OvershootInterpolator(1.5f);
     }
 
     @Override
-    public final void run() {
-        int i10;
-        i60 i60Var = this.f41498a;
-        org.telegram.ui.ActionBar.h5 h5Var = i60Var.U;
-        n50 n50Var = i60Var.V;
-        if (n50Var != null && !i60Var.isDismissed()) {
-            ChatObject.Call call = i60Var.f38681a1;
-            if (call != null) {
-                i10 = call.call.schedule_date;
-            } else {
-                i10 = i60Var.f38724k2;
-            }
-            if (i10 != 0) {
-                int currentTime = i10 - i60Var.d.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    n50Var.l(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]), false);
-                } else {
-                    n50Var.l(AndroidUtilities.formatFullDuration(Math.abs(currentTime)), false);
-                    if (currentTime < 0 && h5Var.getTag() == null) {
-                        h5Var.setTag(1);
-                        h5Var.l(LocaleController.getString(R.string.VoipChatLateBy), false);
-                    }
-                }
-                i60Var.W.l(LocaleController.formatStartsTime(i10, 3), false);
-                AndroidUtilities.runOnUIThread(i60Var.f38774w2, 1000L);
-            }
-        }
+    public final void dispatchDraw(android.graphics.Canvas r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.r30.dispatchDraw(android.graphics.Canvas):void");
     }
 }

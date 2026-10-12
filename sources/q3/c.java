@@ -2,22 +2,22 @@ package q3;
 
 import j$.util.Objects;
 import java.util.Arrays;
-public final class c extends j {
-    public final String f45879b;
-    public final int f45880c;
+public final class c extends i {
+    public final String f43270b;
+    public final int f43271c;
     public final int d;
-    public final long f45881e;
-    public final long f45882f;
-    public final j[] f45883g;
+    public final long e;
+    public final long f43272f;
+    public final i[] f43273g;
 
-    public c(String str, int i10, int i11, long j3, long j10, j[] jVarArr) {
+    public c(String str, int i10, int i11, long j10, long j11, i[] iVarArr) {
         super("CHAP");
-        this.f45879b = str;
-        this.f45880c = i10;
+        this.f43270b = str;
+        this.f43271c = i10;
         this.d = i11;
-        this.f45881e = j3;
-        this.f45882f = j10;
-        this.f45883g = jVarArr;
+        this.e = j10;
+        this.f43272f = j11;
+        this.f43273g = iVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -26,7 +26,7 @@ public final class c extends j {
         }
         if (obj != null && c.class == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f45880c == cVar.f45880c && this.d == cVar.d && this.f45881e == cVar.f45881e && this.f45882f == cVar.f45882f && Objects.equals(this.f45879b, cVar.f45879b) && Arrays.equals(this.f45883g, cVar.f45883g)) {
+            if (this.f43271c == cVar.f43271c && this.d == cVar.d && this.e == cVar.e && this.f43272f == cVar.f43272f && Objects.equals(this.f43270b, cVar.f43270b) && Arrays.equals(this.f43273g, cVar.f43273g)) {
                 return true;
             }
         }
@@ -35,8 +35,8 @@ public final class c extends j {
 
     public final int hashCode() {
         int i10;
-        int i11 = (((((((527 + this.f45880c) * 31) + this.d) * 31) + ((int) this.f45881e)) * 31) + ((int) this.f45882f)) * 31;
-        String str = this.f45879b;
+        int i11 = (((((((527 + this.f43271c) * 31) + this.d) * 31) + ((int) this.e)) * 31) + ((int) this.f43272f)) * 31;
+        String str = this.f43270b;
         if (str != null) {
             i10 = str.hashCode();
         } else {

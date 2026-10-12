@@ -1,29 +1,36 @@
 package yh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class r1 implements RequestDelegate {
-    public final int f53352a;
-    public final s3 f53353b;
-    public final TwoStepVerificationActivity f53354c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.j91;
+import org.telegram.ui.ProfileActivity;
+public final class r1 implements Utilities.Callback {
+    public final int f49105a;
+    public final q2 f49106b;
 
-    public r1(s3 s3Var, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f53352a = i10;
-        this.f53353b = s3Var;
-        this.f53354c = twoStepVerificationActivity;
+    public r1(q2 q2Var, int i10) {
+        this.f49105a = i10;
+        this.f49106b = q2Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f53352a) {
+    public final void run(Object obj) {
+        switch (this.f49105a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new s0(this.f53353b, tL_error, this.f53354c, tLObject));
+                q2 q2Var = this.f49106b;
+                q2Var.e.b((String) obj, new r1(q2Var, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new s0(this.f53353b, tL_error, tLObject, this.f53354c));
+                q2 q2Var2 = this.f49106b;
+                q2Var2.f(true);
+                j91 j91Var = q2Var2.f49093n;
+                int i10 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
+                j91Var.d(i10, q2Var2.e.f(i10) + 1);
+                org.telegram.ui.ActionBar.m2 m2Var = q2Var2.f49089a;
+                if (m2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) m2Var).G4(true);
+                }
+                q2Var2.n();
                 return;
         }
     }

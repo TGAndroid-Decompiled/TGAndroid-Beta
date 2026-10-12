@@ -1,45 +1,117 @@
 package jc;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 public final class b {
-    public final byte[][] f14105a;
-    public final int f14106b;
-    public final int f14107c;
+    public final ec.b f12956a;
+    public final int f12958c;
+    public final int d;
+    public final int e;
+    public final int f12959f;
+    public final float f12960g;
+    public final ArrayList f12957b = new ArrayList(5);
+    public final int[] h = new int[3];
 
-    public b(int i10, int i11) {
-        this.f14105a = (byte[][]) Array.newInstance(Byte.TYPE, i11, i10);
-        this.f14106b = i10;
-        this.f14107c = i11;
+    public b(ec.b bVar, int i10, int i11, int i12, int i13, float f7) {
+        this.f12956a = bVar;
+        this.f12958c = i10;
+        this.d = i11;
+        this.e = i12;
+        this.f12959f = i13;
+        this.f12960g = f7;
     }
 
-    public final byte a(int i10, int i11) {
-        return this.f14105a[i11][i10];
+    public final boolean a(int[] iArr) {
+        float f7 = this.f12960g;
+        float f10 = f7 / 2.0f;
+        for (int i10 = 0; i10 < 3; i10++) {
+            if (Math.abs(f7 - iArr[i10]) >= f10) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public final void b(int i10, int i11, int i12) {
-        this.f14105a[i11][i10] = (byte) i12;
-    }
-
-    public final String toString() {
-        int i10 = this.f14106b;
-        int i11 = this.f14107c;
-        StringBuilder sb2 = new StringBuilder((i10 * 2 * i11) + 2);
-        for (int i12 = 0; i12 < i11; i12++) {
-            byte[] bArr = this.f14105a[i12];
-            for (int i13 = 0; i13 < i10; i13++) {
-                byte b10 = bArr[i13];
-                if (b10 != 0) {
-                    if (b10 != 1) {
-                        sb2.append("  ");
-                    } else {
-                        sb2.append(" 1");
+    public final a b(int i10, int i11, int[] iArr) {
+        int i12;
+        int i13 = 0;
+        int i14 = iArr[0];
+        int i15 = iArr[1];
+        int i16 = i14 + i15 + iArr[2];
+        float f7 = (i11 - i12) - (i15 / 2.0f);
+        int i17 = (int) f7;
+        int i18 = i15 * 2;
+        ec.b bVar = this.f12956a;
+        int i19 = bVar.f8701b;
+        int[] iArr2 = this.h;
+        iArr2[0] = 0;
+        iArr2[1] = 0;
+        iArr2[2] = 0;
+        int i20 = i10;
+        while (i20 >= 0 && bVar.b(i17, i20)) {
+            int i21 = iArr2[1];
+            if (i21 > i18) {
+                break;
+            }
+            iArr2[1] = i21 + 1;
+            i20--;
+        }
+        float f10 = Float.NaN;
+        if (i20 >= 0 && iArr2[1] <= i18) {
+            while (i20 >= 0 && !bVar.b(i17, i20)) {
+                int i22 = iArr2[0];
+                if (i22 > i18) {
+                    break;
+                }
+                iArr2[0] = i22 + 1;
+                i20--;
+            }
+            if (iArr2[0] <= i18) {
+                int i23 = i10 + 1;
+                while (i23 < i19 && bVar.b(i17, i23)) {
+                    int i24 = iArr2[1];
+                    if (i24 > i18) {
+                        break;
                     }
-                } else {
-                    sb2.append(" 0");
+                    iArr2[1] = i24 + 1;
+                    i23++;
+                }
+                if (i23 != i19 && iArr2[1] <= i18) {
+                    while (i23 < i19 && !bVar.b(i17, i23)) {
+                        int i25 = iArr2[2];
+                        if (i25 > i18) {
+                            break;
+                        }
+                        iArr2[2] = i25 + 1;
+                        i23++;
+                    }
+                    int i26 = iArr2[2];
+                    if (i26 <= i18 && Math.abs(((iArr2[0] + iArr2[1]) + i26) - i16) * 5 < i16 * 2 && a(iArr2)) {
+                        f10 = (i23 - iArr2[2]) - (iArr2[1] / 2.0f);
+                    }
                 }
             }
-            sb2.append('\n');
         }
-        return sb2.toString();
+        if (!Float.isNaN(f10)) {
+            float f11 = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
+            ArrayList arrayList = this.f12957b;
+            int size = arrayList.size();
+            while (i13 < size) {
+                Object obj = arrayList.get(i13);
+                i13++;
+                a aVar = (a) obj;
+                float f12 = aVar.f12955c;
+                float f13 = aVar.f6483a;
+                float f14 = aVar.f6484b;
+                if (Math.abs(f10 - f14) <= f11 && Math.abs(f7 - f13) <= f11) {
+                    float abs = Math.abs(f11 - f12);
+                    if (abs <= 1.0f || abs <= f12) {
+                        return new a((f13 + f7) / 2.0f, (f14 + f10) / 2.0f, (aVar.f12955c + f11) / 2.0f);
+                    }
+                }
+            }
+            arrayList.add(new a(f7, f10, f11));
+            return null;
+        }
+        return null;
     }
 }

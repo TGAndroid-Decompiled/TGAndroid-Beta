@@ -1,22 +1,22 @@
 package l2;
 public interface i {
-    long C(long j3, long j10);
+    long b(long j10);
 
-    boolean T();
+    long c(long j10, long j11);
 
-    long Y();
+    long e(long j10, long j11);
 
-    long a(long j3);
+    long h(long j10, long j11);
 
-    long c0(long j3);
+    m2.j i(long j10);
 
-    long d0(long j3, long j10);
+    long o(long j10, long j11);
 
-    long i(long j3, long j10);
+    boolean t();
 
-    long n(long j3, long j10);
+    long u();
 
-    long p(long j3, long j10);
+    long w(long j10);
 
-    m2.j r(long j3);
+    long x(long j10, long j11);
 }

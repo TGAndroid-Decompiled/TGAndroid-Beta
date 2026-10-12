@@ -1,35 +1,35 @@
 package e9;
 
-import java.util.Comparator;
-public final class y extends z {
-    public final int d;
+import java.io.Serializable;
+import org.telegram.ui.es0;
+public final class y extends v1 implements Serializable {
+    public final es0 f8653a;
 
-    public y(int i10) {
-        this.d = i10;
+    public y(es0 es0Var) {
+        this.f8653a = es0Var;
     }
 
     @Override
-    public final int e() {
-        return this.d;
+    public final int compare(Object obj, Object obj2) {
+        return this.f8653a.compare(obj, obj2);
     }
 
     @Override
-    public final z a(int i10, int i11) {
-        return this;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof y) {
+            return this.f8653a.equals(((y) obj).f8653a);
+        }
+        return false;
     }
 
-    @Override
-    public final z c(boolean z10, boolean z11) {
-        return this;
+    public final int hashCode() {
+        return this.f8653a.hashCode();
     }
 
-    @Override
-    public final z d(boolean z10, boolean z11) {
-        return this;
-    }
-
-    @Override
-    public final z b(Object obj, Object obj2, Comparator comparator) {
-        return this;
+    public final String toString() {
+        return this.f8653a.toString();
     }
 }

@@ -1,52 +1,11 @@
 package org.telegram.ui;
-
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class nz extends org.telegram.ui.ActionBar.m2 {
-    public long f40510a;
-    public TLRPC.Chat f40511b;
-    public boolean f40512c;
-    public boolean d;
-    public kz f40513e;
-    public ai.m0 f40514f;
-
-    public final void U() {
-        if (this.d && getParentLayout() != null) {
-            for (org.telegram.ui.ActionBar.m2 m2Var : getParentLayout().getFragmentStack()) {
-                if (m2Var instanceof vy) {
-                    px pxVar = ((vy) m2Var).F3;
-                    if (pxVar.c()) {
-                        pxVar.a();
-                    }
-                }
-            }
+public final class nz extends org.telegram.ui.Components.h71 {
+    @Override
+    public final Integer W0(int i10) {
+        org.telegram.ui.Components.l61 G = this.W2.G(i10);
+        if (G != null && G.d == 2) {
+            return 0;
         }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new lc(this, 22));
-        this.actionBar.setTitle(LocaleController.getString(R.string.TopicsTitle));
-        FrameLayout frameLayout = new FrameLayout(context);
-        ?? p71Var = new org.telegram.ui.Components.p71(this, new e5(this, 13), new ju(this, 6), null);
-        this.f40513e = p71Var;
-        p71Var.p1();
-        this.f40513e.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20504a7, this.resourceProvider));
-        frameLayout.addView(this.f40513e, w7.w5.e(-1, -1, 119));
-        this.actionBar.setAdaptiveBackground(this.f40513e);
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f40511b = getMessagesController().getChat(Long.valueOf(-this.f40510a));
-        return super.onFragmentCreate();
+        return super.W0(i10);
     }
 }

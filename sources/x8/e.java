@@ -6,64 +6,64 @@ import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Iterator;
 public final class e implements com.google.android.gms.common.api.q, Iterable, Closeable {
-    public final DataHolder f51291a;
-    public boolean f51292b = false;
-    public ArrayList f51293c;
+    public final DataHolder f48258a;
+    public boolean f48259b = false;
+    public ArrayList f48260c;
     public final Status d;
 
     public e(DataHolder dataHolder) {
-        this.f51291a = dataHolder;
-        this.d = new Status(dataHolder.f6738e, null, null, null);
+        this.f48258a = dataHolder;
+        this.d = new Status(dataHolder.e, null, null, null);
     }
 
     @Override
     public final void close() {
-        DataHolder dataHolder = this.f51291a;
+        DataHolder dataHolder = this.f48258a;
         if (dataHolder != null) {
             dataHolder.close();
         }
     }
 
     @Override
-    public final Status i() {
+    public final Status h() {
         return this.d;
     }
 
     @Override
     public final Iterator iterator() {
-        return new dd.b(this);
+        return new ed.b(this);
     }
 
-    public final int n(int i10) {
-        if (i10 >= 0 && i10 < this.f51293c.size()) {
-            return ((Integer) this.f51293c.get(i10)).intValue();
+    public final int m(int i10) {
+        if (i10 >= 0 && i10 < this.f48260c.size()) {
+            return ((Integer) this.f48260c.get(i10)).intValue();
         }
-        throw new IllegalArgumentException(hg.c.j(i10, "Position ", " is out of bounds for this buffer"));
+        throw new IllegalArgumentException(i2.d.j(i10, "Position ", " is out of bounds for this buffer"));
     }
 
-    public final void o() {
+    public final void n() {
         synchronized (this) {
             try {
-                if (!this.f51292b) {
-                    DataHolder dataHolder = this.f51291a;
-                    n6.m.h(dataHolder);
-                    int i10 = dataHolder.f6740n;
+                if (!this.f48259b) {
+                    DataHolder dataHolder = this.f48258a;
+                    n6.l.h(dataHolder);
+                    int i10 = dataHolder.f5088n;
                     ArrayList arrayList = new ArrayList();
-                    this.f51293c = arrayList;
+                    this.f48260c = arrayList;
                     if (i10 > 0) {
                         arrayList.add(0);
-                        int b10 = this.f51291a.b(0);
-                        DataHolder dataHolder2 = this.f51291a;
+                        int b10 = this.f48258a.b(0);
+                        DataHolder dataHolder2 = this.f48258a;
                         dataHolder2.c(0, "path");
-                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6737c.getInt("path"));
+                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f5086c.getInt("path"));
                         for (int i11 = 1; i11 < i10; i11++) {
-                            int b11 = this.f51291a.b(i11);
-                            DataHolder dataHolder3 = this.f51291a;
+                            int b11 = this.f48258a.b(i11);
+                            DataHolder dataHolder3 = this.f48258a;
                             dataHolder3.c(i11, "path");
-                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6737c.getInt("path"));
+                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f5086c.getInt("path"));
                             if (string2 != null) {
                                 if (!string2.equals(string)) {
-                                    this.f51293c.add(Integer.valueOf(i11));
+                                    this.f48260c.add(Integer.valueOf(i11));
                                     string = string2;
                                 }
                             } else {
@@ -71,7 +71,7 @@ public final class e implements com.google.android.gms.common.api.q, Iterable, C
                             }
                         }
                     }
-                    this.f51292b = true;
+                    this.f48259b = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

@@ -1,65 +1,22 @@
 package b2;
+public final class d1 {
+    public final v f2098a;
 
-import android.os.Bundle;
-import j$.util.Objects;
-public final class d1 extends c1 {
-    public static final String d;
-    public static final String f3266e;
-    public final int f3267b;
-    public final float f3268c;
-
-    static {
-        String str = e2.d0.f8529a;
-        d = Integer.toString(1, 36);
-        f3266e = Integer.toString(2, 36);
-    }
-
-    public d1(int i10) {
-        e2.d.a("maxStars must be a positive integer", i10 > 0);
-        this.f3267b = i10;
-        this.f3268c = -1.0f;
-    }
-
-    @Override
-    public final boolean b() {
-        if (this.f3268c != -1.0f) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Bundle c() {
-        Bundle bundle = new Bundle();
-        bundle.putInt(c1.f3261a, 2);
-        bundle.putInt(d, this.f3267b);
-        bundle.putFloat(f3266e, this.f3268c);
-        return bundle;
+    public d1(v vVar) {
+        this.f2098a = vVar;
     }
 
     public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (!(obj instanceof d1)) {
             return false;
         }
-        d1 d1Var = (d1) obj;
-        if (this.f3267b != d1Var.f3267b || this.f3268c != d1Var.f3268c) {
-            return false;
-        }
-        return true;
+        return this.f2098a.equals(((d1) obj).f2098a);
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f3267b), Float.valueOf(this.f3268c));
-    }
-
-    public d1(int i10, float f7) {
-        boolean z10 = false;
-        e2.d.a("maxStars must be a positive integer", i10 > 0);
-        if (f7 >= 0.0f && f7 <= i10) {
-            z10 = true;
-        }
-        e2.d.a("starRating is out of range [0, maxStars]", z10);
-        this.f3267b = i10;
-        this.f3268c = f7;
+        return this.f2098a.hashCode();
     }
 }

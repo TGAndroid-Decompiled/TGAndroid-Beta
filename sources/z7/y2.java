@@ -1,16 +1,16 @@
 package z7;
-public final class y2 implements ia.d {
-    public static final y2 f54380a = new Object();
-    public static final ia.c f54381b = new ia.c("logEventKey", hg.c.o(sc.v.o(w.class, new s(1))));
-    public static final ia.c f54382c = new ia.c("eventCount", hg.c.o(sc.v.o(w.class, new s(2))));
-    public static final ia.c d = new ia.c("inferenceDurationStats", hg.c.o(sc.v.o(w.class, new s(3))));
+public final class y2 implements ja.d {
+    public static final y2 f49875a = new Object();
+    public static final ja.c f49876b = new ja.c("logEventKey", i2.d.n(t8.b.n(w.class, new s(1))));
+    public static final ja.c f49877c = new ja.c("eventCount", i2.d.n(t8.b.n(w.class, new s(2))));
+    public static final ja.c d = new ja.c("inferenceDurationStats", i2.d.n(t8.b.n(w.class, new s(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         j1 j1Var = (j1) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f54381b, j1Var.f54162a);
-        eVar.a(f54382c, j1Var.f54163b);
-        eVar.a(d, j1Var.f54164c);
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f49876b, j1Var.f49674a);
+        eVar.d(f49877c, j1Var.f49675b);
+        eVar.d(d, j1Var.f49676c);
     }
 }

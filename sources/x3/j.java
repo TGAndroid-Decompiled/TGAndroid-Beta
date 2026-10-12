@@ -1,386 +1,386 @@
 package x3;
 
-import a4.l;
-import b2.p0;
-import b2.r;
-import b2.r0;
-import b2.s;
-import b2.s0;
-import c3.j0;
+import b2.u0;
+import b2.w;
+import b2.w0;
+import b2.x0;
+import c3.k0;
 import c3.z;
 import e0.g0;
-import e2.v;
-import e9.i0;
+import e2.x;
+import e9.n0;
 import java.util.ArrayList;
 import java.util.Arrays;
-import n6.k;
+import n6.o;
 public final class j extends i {
-    public g0 f50824n;
-    public int f50825o;
-    public boolean f50826p;
-    public z f50827q;
-    public l f50828r;
+    public g0 f47830n;
+    public int f47831o;
+    public boolean f47832p;
+    public z f47833q;
+    public k0 f47834r;
 
     @Override
-    public final void a(long j3) {
+    public final void a(long j10) {
         boolean z10;
-        this.f50818g = j3;
+        this.f47824g = j10;
         int i10 = 0;
-        if (j3 != 0) {
+        if (j10 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f50826p = z10;
-        z zVar = this.f50827q;
+        this.f47832p = z10;
+        z zVar = this.f47833q;
         if (zVar != null) {
-            i10 = zVar.f4186e;
+            i10 = zVar.e;
         }
-        this.f50825o = i10;
+        this.f47831o = i10;
     }
 
     @Override
-    public final long b(v vVar) {
+    public final long b(x xVar) {
         int i10;
         int i11 = 0;
-        byte b10 = vVar.f8581a[0];
+        byte b10 = xVar.f8411a[0];
         if ((b10 & 1) == 1) {
             return -1L;
         }
-        g0 g0Var = this.f50824n;
-        e2.d.h(g0Var);
-        int i12 = g0Var.f8409a;
-        z zVar = (z) g0Var.f8410b;
-        if (!((j0[]) g0Var.f8412e)[(b10 >> 1) & (255 >>> (8 - i12))].f4130b) {
-            i10 = zVar.f4186e;
+        g0 g0Var = this.f47830n;
+        g0Var.getClass();
+        int i12 = g0Var.f8217a;
+        z zVar = (z) g0Var.f8218b;
+        if (!((ai.a[]) g0Var.e)[(b10 >> 1) & (255 >>> (8 - i12))].f914a) {
+            i10 = zVar.e;
         } else {
-            i10 = zVar.f4187f;
+            i10 = zVar.f4314f;
         }
-        if (this.f50826p) {
-            i11 = (this.f50825o + i10) / 4;
+        if (this.f47832p) {
+            i11 = (this.f47831o + i10) / 4;
         }
-        long j3 = i11;
-        byte[] bArr = vVar.f8581a;
+        long j10 = i11;
+        byte[] bArr = xVar.f8411a;
         int length = bArr.length;
-        int i13 = vVar.f8583c + 4;
+        int i13 = xVar.f8413c + 4;
         if (length < i13) {
             byte[] copyOf = Arrays.copyOf(bArr, i13);
-            vVar.H(copyOf.length, copyOf);
+            xVar.L(copyOf.length, copyOf);
         } else {
-            vVar.I(i13);
+            xVar.M(i13);
         }
-        byte[] bArr2 = vVar.f8581a;
-        int i14 = vVar.f8583c;
-        bArr2[i14 - 4] = (byte) (j3 & 255);
-        bArr2[i14 - 3] = (byte) ((j3 >>> 8) & 255);
-        bArr2[i14 - 2] = (byte) ((j3 >>> 16) & 255);
-        bArr2[i14 - 1] = (byte) ((j3 >>> 24) & 255);
-        this.f50826p = true;
-        this.f50825o = i10;
-        return j3;
+        byte[] bArr2 = xVar.f8411a;
+        int i14 = xVar.f8413c;
+        bArr2[i14 - 4] = (byte) (j10 & 255);
+        bArr2[i14 - 3] = (byte) ((j10 >>> 8) & 255);
+        bArr2[i14 - 2] = (byte) ((j10 >>> 16) & 255);
+        bArr2[i14 - 1] = (byte) ((j10 >>> 24) & 255);
+        this.f47832p = true;
+        this.f47831o = i10;
+        return j10;
     }
 
     @Override
-    public final boolean c(v vVar, long j3, k kVar) {
+    public final boolean c(x xVar, long j10, o oVar) {
         g0 g0Var;
         int i10;
         int i11;
-        long j10;
-        if (this.f50824n != null) {
-            ((s) kVar.f16433b).getClass();
+        long j11;
+        if (this.f47830n != null) {
+            ((b2.x) oVar.f16131b).getClass();
             return false;
         }
-        z zVar = this.f50827q;
+        z zVar = this.f47833q;
         int i12 = 4;
         int i13 = -1;
         if (zVar == null) {
-            c3.b.x(1, vVar, false);
-            vVar.p();
-            int x10 = vVar.x();
-            int p5 = vVar.p();
-            int l4 = vVar.l();
-            if (l4 <= 0) {
-                l4 = -1;
+            c3.b.w(1, xVar, false);
+            xVar.s();
+            int A = xVar.A();
+            int s10 = xVar.s();
+            int o10 = xVar.o();
+            if (o10 <= 0) {
+                o10 = -1;
             }
-            int l10 = vVar.l();
-            if (l10 > 0) {
-                i13 = l10;
+            int o11 = xVar.o();
+            if (o11 > 0) {
+                i13 = o11;
             }
-            vVar.l();
-            int x11 = vVar.x();
-            int pow = (int) Math.pow(2.0d, (x11 & 240) >> 4);
-            vVar.x();
-            ?? copyOf = Arrays.copyOf(vVar.f8581a, vVar.f8583c);
+            xVar.o();
+            int A2 = xVar.A();
+            int pow = (int) Math.pow(2.0d, (A2 & 240) >> 4);
+            xVar.A();
+            ?? copyOf = Arrays.copyOf(xVar.f8411a, xVar.f8413c);
             ?? obj = new Object();
-            obj.f4183a = x10;
-            obj.f4184b = p5;
-            obj.f4185c = l4;
+            obj.f4311a = A;
+            obj.f4312b = s10;
+            obj.f4313c = o10;
             obj.d = i13;
-            obj.f4186e = (int) Math.pow(2.0d, x11 & 15);
-            obj.f4187f = pow;
-            obj.f4188g = copyOf;
-            this.f50827q = obj;
+            obj.e = (int) Math.pow(2.0d, A2 & 15);
+            obj.f4314f = pow;
+            obj.f4315g = copyOf;
+            this.f47833q = obj;
         } else {
-            l lVar = this.f50828r;
-            if (lVar == null) {
-                this.f50828r = c3.b.v(vVar, true, true);
+            k0 k0Var = this.f47834r;
+            if (k0Var == null) {
+                this.f47834r = c3.b.u(xVar, true, true);
             } else {
-                int i14 = vVar.f8583c;
+                int i14 = xVar.f8413c;
                 byte[] bArr = new byte[i14];
-                System.arraycopy(vVar.f8581a, 0, bArr, 0, i14);
-                int i15 = zVar.f4183a;
+                System.arraycopy(xVar.f8411a, 0, bArr, 0, i14);
+                int i15 = zVar.f4311a;
                 int i16 = 5;
-                c3.b.x(5, vVar, false);
-                int x12 = vVar.x() + 1;
-                a4.g gVar = new a4.g(vVar.f8581a);
+                c3.b.w(5, xVar, false);
+                int A3 = xVar.A() + 1;
+                a4.g gVar = new a4.g(xVar.f8411a);
                 int i17 = 8;
-                gVar.t(vVar.f8582b * 8);
+                gVar.o(xVar.f8412b * 8);
                 int i18 = 0;
                 while (true) {
                     int i19 = 16;
-                    if (i18 < x12) {
+                    if (i18 < A3) {
                         int i20 = i17;
-                        if (gVar.i(24) == 5653314) {
-                            int i21 = gVar.i(16);
-                            int i22 = gVar.i(24);
-                            if (!gVar.h()) {
-                                boolean h = gVar.h();
-                                for (int i23 = 0; i23 < i22; i23++) {
-                                    if (h) {
-                                        if (gVar.h()) {
-                                            gVar.t(i16);
+                        if (gVar.g(24) == 5653314) {
+                            int g10 = gVar.g(16);
+                            int g11 = gVar.g(24);
+                            if (!gVar.f()) {
+                                boolean f7 = gVar.f();
+                                for (int i21 = 0; i21 < g11; i21++) {
+                                    if (f7) {
+                                        if (gVar.f()) {
+                                            gVar.o(i16);
                                         }
                                     } else {
-                                        gVar.t(i16);
+                                        gVar.o(i16);
                                     }
                                 }
                             } else {
-                                gVar.t(i16);
-                                int i24 = 0;
-                                while (i24 < i22) {
-                                    int i25 = 0;
-                                    for (int i26 = i22 - i24; i26 > 0; i26 >>>= 1) {
-                                        i25++;
+                                gVar.o(i16);
+                                int i22 = 0;
+                                while (i22 < g11) {
+                                    int i23 = 0;
+                                    for (int i24 = g11 - i22; i24 > 0; i24 >>>= 1) {
+                                        i23++;
                                     }
-                                    i24 += gVar.i(i25);
+                                    i22 += gVar.g(i23);
                                 }
                             }
-                            int i27 = gVar.i(4);
-                            if (i27 <= 2) {
-                                if (i27 == 1 || i27 == 2) {
-                                    gVar.t(32);
-                                    gVar.t(32);
-                                    int i28 = gVar.i(4) + 1;
-                                    gVar.t(1);
-                                    if (i27 == 1) {
-                                        if (i21 != 0) {
-                                            j10 = (long) Math.floor(Math.pow(i22, 1.0d / i21));
+                            int g12 = gVar.g(4);
+                            if (g12 <= 2) {
+                                if (g12 == 1 || g12 == 2) {
+                                    gVar.o(32);
+                                    gVar.o(32);
+                                    int g13 = gVar.g(4) + 1;
+                                    gVar.o(1);
+                                    if (g12 == 1) {
+                                        if (g10 != 0) {
+                                            j11 = (long) Math.floor(Math.pow(g11, 1.0d / g10));
                                         } else {
-                                            j10 = 0;
+                                            j11 = 0;
                                         }
                                     } else {
-                                        j10 = i22 * i21;
+                                        j11 = g11 * g10;
                                     }
-                                    gVar.t((int) (j10 * i28));
+                                    gVar.o((int) (j11 * g13));
                                 }
                                 i18++;
                                 i17 = i20;
                                 i16 = 5;
                             } else {
-                                throw s0.a(null, "lookup type greater than 2 not decodable: " + i27);
+                                throw x0.a(null, "lookup type greater than 2 not decodable: " + g12);
                             }
                         } else {
-                            throw s0.a(null, "expected code book to start with [0x56, 0x43, 0x42] at " + ((gVar.d * 8) + gVar.f278e));
+                            throw x0.a(null, "expected code book to start with [0x56, 0x43, 0x42] at " + ((gVar.d * 8) + gVar.e));
                         }
                     } else {
-                        int i29 = i17;
-                        int i30 = 6;
-                        int i31 = gVar.i(6) + 1;
-                        for (int i32 = 0; i32 < i31; i32++) {
-                            if (gVar.i(16) != 0) {
-                                throw s0.a(null, "placeholder of time domain transforms not zeroed out");
+                        int i25 = i17;
+                        int i26 = 6;
+                        int g14 = gVar.g(6) + 1;
+                        for (int i27 = 0; i27 < g14; i27++) {
+                            if (gVar.g(16) != 0) {
+                                throw x0.a(null, "placeholder of time domain transforms not zeroed out");
                             }
                         }
-                        int i33 = 1;
-                        int i34 = gVar.i(6) + 1;
-                        int i35 = 0;
+                        int i28 = 1;
+                        int g15 = gVar.g(6) + 1;
+                        int i29 = 0;
                         while (true) {
-                            int i36 = 3;
-                            if (i35 < i34) {
-                                int i37 = gVar.i(i19);
-                                if (i37 != 0) {
-                                    if (i37 == i33) {
-                                        int i38 = gVar.i(5);
-                                        int[] iArr = new int[i38];
-                                        int i39 = -1;
-                                        for (int i40 = 0; i40 < i38; i40++) {
-                                            int i41 = gVar.i(i12);
-                                            iArr[i40] = i41;
-                                            if (i41 > i39) {
-                                                i39 = i41;
+                            int i30 = 3;
+                            if (i29 < g15) {
+                                int g16 = gVar.g(i19);
+                                if (g16 != 0) {
+                                    if (g16 == i28) {
+                                        int g17 = gVar.g(5);
+                                        int[] iArr = new int[g17];
+                                        int i31 = -1;
+                                        for (int i32 = 0; i32 < g17; i32++) {
+                                            int g18 = gVar.g(i12);
+                                            iArr[i32] = g18;
+                                            if (g18 > i31) {
+                                                i31 = g18;
                                             }
                                         }
-                                        int i42 = i39 + 1;
-                                        int[] iArr2 = new int[i42];
-                                        int i43 = 0;
-                                        while (i43 < i42) {
-                                            iArr2[i43] = gVar.i(i36) + 1;
-                                            int i44 = gVar.i(2);
-                                            int i45 = i29;
-                                            if (i44 > 0) {
-                                                gVar.t(i45);
+                                        int i33 = i31 + 1;
+                                        int[] iArr2 = new int[i33];
+                                        int i34 = 0;
+                                        while (i34 < i33) {
+                                            iArr2[i34] = gVar.g(i30) + 1;
+                                            int g19 = gVar.g(2);
+                                            int i35 = i25;
+                                            if (g19 > 0) {
+                                                gVar.o(i35);
                                             }
                                             int[] iArr3 = iArr2;
-                                            int i46 = 0;
-                                            for (int i47 = 1; i46 < (i47 << i44); i47 = 1) {
-                                                gVar.t(i45);
-                                                i46++;
-                                                i45 = 8;
+                                            int i36 = 0;
+                                            for (int i37 = 1; i36 < (i37 << g19); i37 = 1) {
+                                                gVar.o(i35);
+                                                i36++;
+                                                i35 = 8;
                                             }
-                                            i43++;
+                                            i34++;
                                             iArr2 = iArr3;
-                                            i29 = 8;
-                                            i36 = 3;
+                                            i25 = 8;
+                                            i30 = 3;
                                         }
                                         int[] iArr4 = iArr2;
-                                        gVar.t(2);
-                                        int i48 = gVar.i(4);
-                                        int i49 = 0;
-                                        int i50 = 0;
-                                        for (int i51 = 0; i51 < i38; i51++) {
-                                            i49 += iArr4[iArr[i51]];
-                                            while (i50 < i49) {
-                                                gVar.t(i48);
-                                                i50++;
+                                        gVar.o(2);
+                                        int g20 = gVar.g(4);
+                                        int i38 = 0;
+                                        int i39 = 0;
+                                        for (int i40 = 0; i40 < g17; i40++) {
+                                            i38 += iArr4[iArr[i40]];
+                                            while (i39 < i38) {
+                                                gVar.o(g20);
+                                                i39++;
                                             }
                                         }
                                     } else {
-                                        throw s0.a(null, "floor type greater than 1 not decodable: " + i37);
+                                        throw x0.a(null, "floor type greater than 1 not decodable: " + g16);
                                     }
                                 } else {
-                                    int i52 = i29;
-                                    gVar.t(i52);
-                                    gVar.t(16);
-                                    gVar.t(16);
-                                    gVar.t(6);
-                                    gVar.t(i52);
-                                    int i53 = gVar.i(4) + 1;
-                                    int i54 = 0;
-                                    while (i54 < i53) {
-                                        gVar.t(i52);
-                                        i54++;
-                                        i52 = 8;
+                                    int i41 = i25;
+                                    gVar.o(i41);
+                                    gVar.o(16);
+                                    gVar.o(16);
+                                    gVar.o(6);
+                                    gVar.o(i41);
+                                    int g21 = gVar.g(4) + 1;
+                                    int i42 = 0;
+                                    while (i42 < g21) {
+                                        gVar.o(i41);
+                                        i42++;
+                                        i41 = 8;
                                     }
                                 }
-                                i35++;
-                                i29 = 8;
-                                i30 = 6;
+                                i29++;
+                                i25 = 8;
+                                i26 = 6;
                                 i12 = 4;
                                 i19 = 16;
-                                i33 = 1;
+                                i28 = 1;
                             } else {
-                                int i55 = gVar.i(i30) + 1;
-                                int i56 = 0;
-                                while (i56 < i55) {
-                                    if (gVar.i(16) <= 2) {
-                                        gVar.t(24);
-                                        gVar.t(24);
-                                        gVar.t(24);
-                                        int i57 = gVar.i(i30) + 1;
-                                        int i58 = 8;
-                                        gVar.t(8);
-                                        int[] iArr5 = new int[i57];
-                                        for (int i59 = 0; i59 < i57; i59++) {
-                                            int i60 = gVar.i(3);
-                                            if (gVar.h()) {
-                                                i11 = gVar.i(5);
+                                int g22 = gVar.g(i26) + 1;
+                                int i43 = 0;
+                                while (i43 < g22) {
+                                    if (gVar.g(16) <= 2) {
+                                        gVar.o(24);
+                                        gVar.o(24);
+                                        gVar.o(24);
+                                        int g23 = gVar.g(i26) + 1;
+                                        int i44 = 8;
+                                        gVar.o(8);
+                                        int[] iArr5 = new int[g23];
+                                        for (int i45 = 0; i45 < g23; i45++) {
+                                            int g24 = gVar.g(3);
+                                            if (gVar.f()) {
+                                                i11 = gVar.g(5);
                                             } else {
                                                 i11 = 0;
                                             }
-                                            iArr5[i59] = (i11 * 8) + i60;
+                                            iArr5[i45] = (i11 * 8) + g24;
                                         }
-                                        int i61 = 0;
-                                        while (i61 < i57) {
-                                            int i62 = 0;
-                                            while (i62 < i58) {
-                                                if ((iArr5[i61] & (1 << i62)) != 0) {
-                                                    gVar.t(i58);
+                                        int i46 = 0;
+                                        while (i46 < g23) {
+                                            int i47 = 0;
+                                            while (i47 < i44) {
+                                                if ((iArr5[i46] & (1 << i47)) != 0) {
+                                                    gVar.o(i44);
                                                 }
-                                                i62++;
-                                                i58 = 8;
+                                                i47++;
+                                                i44 = 8;
                                             }
-                                            i61++;
-                                            i58 = 8;
+                                            i46++;
+                                            i44 = 8;
                                         }
-                                        i56++;
-                                        i30 = 6;
+                                        i43++;
+                                        i26 = 6;
                                     } else {
-                                        throw s0.a(null, "residueType greater than 2 is not decodable");
+                                        throw x0.a(null, "residueType greater than 2 is not decodable");
                                     }
                                 }
-                                int i63 = gVar.i(i30) + 1;
-                                for (int i64 = 0; i64 < i63; i64++) {
-                                    int i65 = gVar.i(16);
-                                    if (i65 != 0) {
-                                        e2.a.e("VorbisUtil", "mapping type other than 0 not supported: " + i65);
+                                int g25 = gVar.g(i26) + 1;
+                                for (int i48 = 0; i48 < g25; i48++) {
+                                    int g26 = gVar.g(16);
+                                    if (g26 != 0) {
+                                        e2.a.c("VorbisUtil", "mapping type other than 0 not supported: " + g26);
                                     } else {
-                                        if (gVar.h()) {
-                                            i10 = gVar.i(4) + 1;
+                                        if (gVar.f()) {
+                                            i10 = gVar.g(4) + 1;
                                         } else {
                                             i10 = 1;
                                         }
-                                        if (gVar.h()) {
-                                            int i66 = gVar.i(8) + 1;
-                                            for (int i67 = 0; i67 < i66; i67++) {
-                                                int i68 = i15 - 1;
-                                                int i69 = 0;
-                                                for (int i70 = i68; i70 > 0; i70 >>>= 1) {
-                                                    i69++;
+                                        if (gVar.f()) {
+                                            int g27 = gVar.g(8) + 1;
+                                            for (int i49 = 0; i49 < g27; i49++) {
+                                                int i50 = i15 - 1;
+                                                int i51 = 0;
+                                                for (int i52 = i50; i52 > 0; i52 >>>= 1) {
+                                                    i51++;
                                                 }
-                                                gVar.t(i69);
-                                                int i71 = 0;
-                                                while (i68 > 0) {
-                                                    i71++;
-                                                    i68 >>>= 1;
+                                                gVar.o(i51);
+                                                int i53 = 0;
+                                                while (i50 > 0) {
+                                                    i53++;
+                                                    i50 >>>= 1;
                                                 }
-                                                gVar.t(i71);
+                                                gVar.o(i53);
                                             }
                                         }
-                                        if (gVar.i(2) == 0) {
+                                        if (gVar.g(2) == 0) {
                                             if (i10 > 1) {
-                                                for (int i72 = 0; i72 < i15; i72++) {
-                                                    gVar.t(4);
+                                                for (int i54 = 0; i54 < i15; i54++) {
+                                                    gVar.o(4);
                                                 }
                                             }
-                                            for (int i73 = 0; i73 < i10; i73++) {
-                                                gVar.t(8);
-                                                gVar.t(8);
-                                                gVar.t(8);
+                                            for (int i55 = 0; i55 < i10; i55++) {
+                                                gVar.o(8);
+                                                gVar.o(8);
+                                                gVar.o(8);
                                             }
                                         } else {
-                                            throw s0.a(null, "to reserved bits must be zero after mapping coupling steps");
+                                            throw x0.a(null, "to reserved bits must be zero after mapping coupling steps");
                                         }
                                     }
                                 }
-                                int i74 = gVar.i(6);
-                                int i75 = i74 + 1;
-                                j0[] j0VarArr = new j0[i75];
-                                for (int i76 = 0; i76 < i75; i76++) {
-                                    boolean h10 = gVar.h();
-                                    gVar.i(16);
-                                    gVar.i(16);
-                                    gVar.i(8);
-                                    j0VarArr[i76] = new j0(h10);
+                                int g28 = gVar.g(6);
+                                int i56 = g28 + 1;
+                                ai.a[] aVarArr = new ai.a[i56];
+                                for (int i57 = 0; i57 < i56; i57++) {
+                                    boolean f10 = gVar.f();
+                                    gVar.g(16);
+                                    gVar.g(16);
+                                    gVar.g(8);
+                                    ?? obj2 = new Object();
+                                    obj2.f914a = f10;
+                                    aVarArr[i57] = obj2;
                                 }
-                                if (gVar.h()) {
-                                    int i77 = 0;
-                                    while (i74 > 0) {
-                                        i77++;
-                                        i74 >>>= 1;
+                                if (gVar.f()) {
+                                    int i58 = 0;
+                                    while (g28 > 0) {
+                                        i58++;
+                                        g28 >>>= 1;
                                     }
-                                    g0Var = new g0(zVar, lVar, bArr, j0VarArr, i77);
+                                    g0Var = new g0(zVar, k0Var, bArr, aVarArr, i58);
                                 } else {
-                                    throw s0.a(null, "framing bit after modes not set as expected");
+                                    throw x0.a(null, "framing bit after modes not set as expected");
                                 }
                             }
                         }
@@ -389,25 +389,25 @@ public final class j extends i {
             }
         }
         g0Var = null;
-        this.f50824n = g0Var;
+        this.f47830n = g0Var;
         if (g0Var == null) {
             return true;
         }
-        z zVar2 = (z) g0Var.f8410b;
+        z zVar2 = (z) g0Var.f8218b;
         ArrayList arrayList = new ArrayList();
-        arrayList.add((byte[]) zVar2.f4188g);
+        arrayList.add((byte[]) zVar2.f4315g);
         arrayList.add((byte[]) g0Var.d);
-        p0 r10 = c3.b.r(i0.w((String[]) ((l) g0Var.f8411c).f297b));
-        r rVar = new r();
-        rVar.f3582p = r0.n("audio/ogg");
-        rVar.f3583q = r0.n("audio/vorbis");
-        rVar.h = zVar2.d;
-        rVar.f3575i = zVar2.f4185c;
-        rVar.I = zVar2.f4183a;
-        rVar.J = zVar2.f4184b;
-        rVar.f3586t = arrayList;
-        rVar.f3577k = r10;
-        kVar.f16433b = new s(rVar);
+        u0 r10 = c3.b.r(n0.v(((k0) g0Var.f8219c).f4266a));
+        w wVar = new w();
+        wVar.f2465q = w0.n("audio/ogg");
+        wVar.f2466r = w0.n("audio/vorbis");
+        wVar.h = zVar2.d;
+        wVar.f2457i = zVar2.f4313c;
+        wVar.J = zVar2.f4311a;
+        wVar.K = zVar2.f4312b;
+        wVar.f2469u = arrayList;
+        wVar.f2459k = r10;
+        oVar.f16131b = new b2.x(wVar);
         return true;
     }
 
@@ -415,11 +415,11 @@ public final class j extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f50824n = null;
-            this.f50827q = null;
-            this.f50828r = null;
+            this.f47830n = null;
+            this.f47833q = null;
+            this.f47834r = null;
         }
-        this.f50825o = 0;
-        this.f50826p = false;
+        this.f47831o = 0;
+        this.f47832p = false;
     }
 }

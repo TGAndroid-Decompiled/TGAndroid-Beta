@@ -1,63 +1,115 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.widget.FrameLayout;
+import android.graphics.Matrix;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class r30 extends FrameLayout {
-    public float f30024a;
-    public float f30025b;
-    public boolean f30026c;
-    public AnimatorSet d;
-    public final q30 f30027e;
-    public final xh f30028f;
-    public final float h;
-    public final t30 f30029n;
+import org.telegram.messenger.Utilities;
+public final class r30 {
+    public float f28726c;
+    public float d;
+    public float e;
+    public float f28727f;
+    public RadialGradient f28728g;
+    public final int f28729i;
+    public int f28730j;
+    public int f28731k;
+    public int f28732l;
+    public float f28724a = -1.0f;
+    public float f28725b = -1.0f;
+    public final Matrix h = new Matrix();
 
-    public r30(t30 t30Var, Context context, float f7) {
-        super(context);
-        this.f30029n = t30Var;
-        this.h = f7;
-        this.f30027e = new q30(this);
-        this.f30028f = new xh(6);
+    public r30(int i10) {
+        this.f28729i = i10;
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Point point = AndroidUtilities.displaySize;
-        int i12 = point.x;
-        t30 t30Var = this.f30029n;
-        if (i12 != t30Var.I || t30Var.J != point.y) {
-            t30Var.I = i12;
-            t30Var.J = point.y;
-            if (t30Var.K < 0.0f) {
-                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
-                this.f30029n.K = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f30029n.L = sharedPreferences.getFloat("relativeY", 0.4f);
+    public final void a(float f7) {
+        float f10;
+        int i10 = this.f28729i;
+        if (i10 == 0) {
+            int i11 = this.f28730j;
+            int i12 = org.telegram.ui.ActionBar.g6.Tg;
+            if (i11 != org.telegram.ui.ActionBar.g6.x0(null, i12, false) || this.f28731k != org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Ug, false)) {
+                int x02 = org.telegram.ui.ActionBar.g6.x0(null, i12, false);
+                this.f28730j = x02;
+                int x03 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Ug, false);
+                this.f28731k = x03;
+                this.f28728g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x02, x03}, (float[]) null, Shader.TileMode.CLAMP);
             }
-            t30 t30Var2 = t30.f30742d0;
-            if (t30Var2 != null) {
-                t30 t30Var3 = this.f30029n;
-                float f7 = t30Var3.K;
-                float f10 = t30Var3.L;
-                float f11 = -AndroidUtilities.dp(36.0f);
-                t30Var2.f30753r.x = (int) com.google.android.gms.internal.vision.e2.y(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
-                t30Var2.f30753r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
-                t30Var2.h();
-                r30 r30Var = t30Var2.f30744a;
-                if (r30Var.getParent() != null) {
-                    t30Var2.f30752n.updateViewLayout(r30Var, t30Var2.f30753r);
-                }
+        } else if (i10 == 1) {
+            int i13 = this.f28730j;
+            int i14 = org.telegram.ui.ActionBar.g6.Vg;
+            if (i13 != org.telegram.ui.ActionBar.g6.x0(null, i14, false) || this.f28731k != org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Wg, false)) {
+                int x04 = org.telegram.ui.ActionBar.g6.x0(null, i14, false);
+                this.f28730j = x04;
+                int x05 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Wg, false);
+                this.f28731k = x05;
+                this.f28728g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x04, x05}, (float[]) null, Shader.TileMode.CLAMP);
             }
+        } else if (i10 == 3) {
+            int i15 = this.f28730j;
+            int i16 = org.telegram.ui.ActionBar.g6.f19999ih;
+            if (i15 != org.telegram.ui.ActionBar.g6.x0(null, i16, false) || this.f28731k != org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20019jh, false) || this.f28732l != org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20038kh, false)) {
+                int x06 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20019jh, false);
+                this.f28731k = x06;
+                int x07 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20038kh, false);
+                this.f28732l = x07;
+                int x08 = org.telegram.ui.ActionBar.g6.x0(null, i16, false);
+                this.f28730j = x08;
+                this.f28728g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x06, x07, x08}, (float[]) null, Shader.TileMode.CLAMP);
+            }
+        } else {
+            return;
         }
+        int dp = AndroidUtilities.dp(130.0f);
+        float f11 = this.e;
+        if (f11 == 0.0f || this.f28727f >= f11) {
+            this.e = Utilities.random.nextInt(700) + 500;
+            this.f28727f = 0.0f;
+            if (this.f28724a == -1.0f) {
+                b();
+            }
+            this.f28726c = this.f28724a;
+            this.d = this.f28725b;
+            b();
+        }
+        float f12 = (float) 16;
+        float f13 = (f12 * 0.02f * f7) + (1.0f * f12) + this.f28727f;
+        this.f28727f = f13;
+        float f14 = this.e;
+        if (f13 > f14) {
+            this.f28727f = f14;
+        }
+        float interpolation = es.f24772g.getInterpolation(this.f28727f / f14);
+        float f15 = dp;
+        float f16 = this.f28726c;
+        float f17 = ((((this.f28724a - f16) * interpolation) + f16) * f15) - 200.0f;
+        float f18 = this.d;
+        float f19 = ((((this.f28725b - f18) * interpolation) + f18) * f15) - 200.0f;
+        if (i10 == 3) {
+            f10 = 2.0f;
+        } else {
+            f10 = 1.5f;
+        }
+        float f20 = (f15 / 400.0f) * f10;
+        Matrix matrix = this.h;
+        matrix.reset();
+        matrix.postTranslate(f17, f19);
+        matrix.postScale(f20, f20, f17 + 200.0f, f19 + 200.0f);
+        this.f28728g.setLocalMatrix(matrix);
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r30.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void b() {
+        int i10 = this.f28729i;
+        if (i10 == 0) {
+            this.f28724a = a1.g.B(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.2f);
+            this.f28725b = a1.g.B(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.7f);
+        } else if (i10 == 3) {
+            this.f28724a = a1.g.B(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.6f);
+            this.f28725b = (Utilities.random.nextInt(100) * 0.1f) / 100.0f;
+        } else {
+            this.f28724a = a1.g.d(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f28725b = Utilities.random.nextInt(100) / 100.0f;
+        }
     }
 }

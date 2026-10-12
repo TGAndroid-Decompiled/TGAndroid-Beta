@@ -238,7 +238,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            throw new IllegalArgumentException(a1.g.t(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            throw new IllegalArgumentException(a1.g.s(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
         throw new RuntimeException("No cameras attached.");
     }
@@ -278,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(sc.v.i("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(t8.b.h("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -328,9 +328,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder m10 = hg.c.m("changeCaptureFormat: ", i10, "x", i11, "@");
-        m10.append(i12);
-        Logging.d("CameraCapturer", m10.toString());
+        StringBuilder l4 = i2.d.l("changeCaptureFormat: ", i10, "x", i11, "@");
+        l4.append(i12);
+        Logging.d("CameraCapturer", l4.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -392,9 +392,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder m10 = hg.c.m("startCapture: ", i10, "x", i11, "@");
-        m10.append(i12);
-        Logging.d("CameraCapturer", m10.toString());
+        StringBuilder l4 = i2.d.l("startCapture: ", i10, "x", i11, "@");
+        l4.append(i12);
+        Logging.d("CameraCapturer", l4.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

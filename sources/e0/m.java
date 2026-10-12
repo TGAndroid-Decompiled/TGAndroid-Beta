@@ -3,29 +3,29 @@ package e0;
 import android.app.Notification;
 import java.util.ArrayList;
 public final class m extends z {
-    public final int f8447e;
-    public Object f8448f;
+    public final int e;
+    public Object f8249f;
 
     public m(boolean z10) {
-        this.f8447e = 0;
+        this.e = 0;
     }
 
     @Override
     public final void b(g0 g0Var) {
-        switch (this.f8447e) {
+        switch (this.e) {
             case 0:
-                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) g0Var.f8411c).setBigContentTitle(this.f8496b).bigText((CharSequence) this.f8448f);
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) g0Var.f8219c).setBigContentTitle(this.f8293b).bigText((CharSequence) this.f8249f);
                 if (this.d) {
-                    bigText.setSummaryText(this.f8497c);
+                    bigText.setSummaryText(this.f8294c);
                     return;
                 }
                 return;
             default:
-                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) g0Var.f8411c).setBigContentTitle(this.f8496b);
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) g0Var.f8219c).setBigContentTitle(this.f8293b);
                 if (this.d) {
-                    bigContentTitle.setSummaryText(this.f8497c);
+                    bigContentTitle.setSummaryText(this.f8294c);
                 }
-                ArrayList arrayList = (ArrayList) this.f8448f;
+                ArrayList arrayList = (ArrayList) this.f8249f;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -39,7 +39,7 @@ public final class m extends z {
 
     @Override
     public final String c() {
-        switch (this.f8447e) {
+        switch (this.e) {
             case 0:
                 return "androidx.core.app.NotificationCompat$BigTextStyle";
             default:
@@ -49,28 +49,28 @@ public final class m extends z {
 
     public void d(String str) {
         if (str != null) {
-            ((ArrayList) this.f8448f).add(r.d(str));
+            ((ArrayList) this.f8249f).add(r.d(str));
         }
     }
 
     public void e(String str) {
-        this.f8448f = r.d(str);
+        this.f8249f = r.d(str);
     }
 
     public void f(String str) {
-        this.f8496b = r.d(str);
+        this.f8293b = r.d(str);
     }
 
     public void g(String str) {
-        this.f8497c = r.d(str);
+        this.f8294c = r.d(str);
         this.d = true;
     }
 
     public m(int i10) {
-        this.f8447e = i10;
+        this.e = i10;
         switch (i10) {
             case 1:
-                this.f8448f = new ArrayList();
+                this.f8249f = new ArrayList();
                 return;
             default:
                 return;

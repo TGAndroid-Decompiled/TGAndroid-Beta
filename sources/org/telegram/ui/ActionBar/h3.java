@@ -9,31 +9,31 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
-import ci.bb;
+import di.ab;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class h3 extends Dialog {
-    public final s3 f20457a;
-    public final g3 f20458b;
-    public final bb f20459c;
+    public final s3 f20322a;
+    public final g3 f20323b;
+    public final ab f20324c;
     public final Paint d;
-    public boolean f20460e;
+    public boolean e;
 
     public h3(s3 s3Var) {
         super(s3Var.mo36getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f20457a = s3Var;
+        this.f20322a = s3Var;
         t3 mo36getWindowView = s3Var.mo36getWindowView();
-        bb bbVar = new bb(this, getContext(), 8);
-        this.f20459c = bbVar;
-        paint.setColor(h6.x0(null, h6.f20504a7, false));
+        ab abVar = new ab(this, getContext(), 8);
+        this.f20324c = abVar;
+        paint.setColor(g6.x0(null, g6.f19843a7, false));
         g3 g3Var = new g3(mo36getWindowView);
-        this.f20458b = g3Var;
+        this.f20323b = g3Var;
         setContentView(g3Var, new ViewGroup.LayoutParams(-1, -1));
-        g3Var.addView(bbVar, w7.w5.e(-1, -2, 80));
+        g3Var.addView(abVar, w7.a6.e(-1, -2, 80));
         g3Var.setClipToPadding(false);
     }
 
@@ -51,31 +51,31 @@ public final class h3 extends Dialog {
             if (AndroidUtilities.isTablet() || s3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
                 h3 h3Var = new h3(s3Var);
                 if (s3Var.c(h3Var)) {
-                    g3 g3Var = h3Var.f20458b;
-                    View view = (View) g3Var.f20411a;
+                    g3 g3Var = h3Var.f20323b;
+                    View view = (View) g3Var.f19819a;
                     AndroidUtilities.removeFromParent(view);
-                    g3Var.addView(view, w7.w5.e(-1, -1, 119));
+                    g3Var.addView(view, w7.a6.e(-1, -1, 119));
                 }
             }
         }
     }
 
     public final void c() {
-        this.f20457a.c(null);
-        if (!this.f20460e) {
+        this.f20322a.c(null);
+        if (!this.e) {
             return;
         }
-        this.f20460e = false;
+        this.e = false;
         try {
             super.dismiss();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
     public final void dismiss() {
-        this.f20457a.dismiss(false);
+        this.f20322a.dismiss(false);
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class h3 extends Dialog {
         }
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        g3 g3Var = this.f20458b;
+        g3 g3Var = this.f20323b;
         g3Var.setFitsSystemWindows(true);
         g3Var.setSystemUiVisibility(1792);
         g3Var.setPadding(0, 0, 0, 0);

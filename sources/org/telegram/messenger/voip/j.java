@@ -1,22 +1,17 @@
 package org.telegram.messenger.voip;
 public final class j implements Runnable {
-    public final int f19350a;
-    public final VideoCapturerDevice f19351b;
+    public final int f18818a;
+    public final Object f18819b;
+    public final Object f18820c;
 
-    public j(VideoCapturerDevice videoCapturerDevice, int i10) {
-        this.f19350a = i10;
-        this.f19351b = videoCapturerDevice;
+    public j(int i10, Object obj, Object obj2) {
+        this.f18818a = i10;
+        this.f18819b = obj;
+        this.f18820c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19350a) {
-            case 0:
-                this.f19351b.lambda$onDestroy$8();
-                return;
-            default:
-                this.f19351b.lambda$onDestroy$9();
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.j.run():void");
     }
 }

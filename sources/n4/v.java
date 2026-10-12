@@ -1,44 +1,45 @@
 package n4;
 
-import android.media.session.MediaSession;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class v implements Parcelable {
-    public static final Parcelable.Creator<v> CREATOR = new m8.h(5);
-    public final m f16355a;
-    public final long f16356b;
-    public MediaSession.QueueItem f16357c;
+import android.text.TextUtils;
+import j$.util.Objects;
+public class v {
+    public final String f16034a;
+    public final int f16035b;
+    public final int f16036c;
 
-    public v(m mVar, long j3) {
-        if (j3 != -1) {
-            this.f16355a = mVar;
-            this.f16356b = j3;
-            this.f16357c = null;
-            return;
+    public v(String str, int i10, int i11) {
+        this.f16034a = str;
+        this.f16035b = i10;
+        this.f16036c = i11;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        throw new IllegalArgumentException("Id cannot be QueueItem.UNKNOWN_ID");
+        if (!(obj instanceof v)) {
+            return false;
+        }
+        v vVar = (v) obj;
+        int i10 = vVar.f16036c;
+        String str = vVar.f16034a;
+        int i11 = vVar.f16035b;
+        int i12 = this.f16036c;
+        String str2 = this.f16034a;
+        int i13 = this.f16035b;
+        if (i13 >= 0 && i11 >= 0) {
+            if (TextUtils.equals(str2, str) && i13 == i11 && i12 == i10) {
+                return true;
+            }
+            return false;
+        } else if (TextUtils.equals(str2, str) && i12 == i10) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("MediaSession.QueueItem { Description=");
-        sb2.append(this.f16355a);
-        sb2.append(", Id=");
-        return a1.g.s(sb2, this.f16356b, " }");
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        this.f16355a.writeToParcel(parcel, i10);
-        parcel.writeLong(this.f16356b);
-    }
-
-    public v(Parcel parcel) {
-        this.f16355a = m.CREATOR.createFromParcel(parcel);
-        this.f16356b = parcel.readLong();
+    public final int hashCode() {
+        return Objects.hash(this.f16034a, Integer.valueOf(this.f16036c));
     }
 }

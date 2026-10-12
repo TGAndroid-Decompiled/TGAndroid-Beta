@@ -1,11 +1,56 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ec1 extends org.telegram.ui.Cells.k0 {
-    public final jc1 f37065e;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ec1 extends View {
+    public static final int f35515c = 0;
+    public final Paint f35516a;
+    public int[] f35517b;
 
-    public ec1(jc1 jc1Var, Context context) {
+    public ec1(Context context) {
         super(context);
-        this.f37065e = jc1Var;
+        this.f35516a = new Paint(1);
+        this.f35517b = new int[7];
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = getMeasuredWidth() * 0.5f;
+        float measuredHeight = getMeasuredHeight() * 0.5f;
+        float dp = AndroidUtilities.dp(5.0f);
+        float dp2 = AndroidUtilities.dp(20.0f) - dp;
+        Paint.Style style = Paint.Style.FILL;
+        Paint paint = this.f35516a;
+        paint.setStyle(style);
+        int i10 = 0;
+        paint.setColor(this.f35517b[0]);
+        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
+        double d = 0.0d;
+        while (i10 < 6) {
+            i10++;
+            paint.setColor(this.f35517b[i10]);
+            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
+            d += 1.0471975511965976d;
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
     }
 }

@@ -1,67 +1,63 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Emoji;
-public final class qb0 implements TextWatcher {
-    public final int f41262a;
-    public final wb0 f41263b;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+public final class qb0 implements org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.rw0 {
+    public final int f39370a;
+    public final ac0 f39371b;
 
-    public qb0(wb0 wb0Var, int i10) {
-        this.f41262a = i10;
-        this.f41263b = wb0Var;
+    public qb0(ac0 ac0Var, int i10) {
+        this.f39370a = i10;
+        this.f39371b = ac0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f41262a) {
-            case 0:
-                Emoji.replaceEmoji(editable, this.f41263b.K.getPaint().getFontMetricsInt(), false);
+    public void J(int i10, int i11, boolean z10) {
+        this.f39371b.V(i10);
+    }
+
+    @Override
+    public void f(int i10) {
+        switch (this.f39370a) {
+            case 2:
+                ac0 ac0Var = this.f39371b;
+                ArrayList arrayList = ac0Var.P;
+                if (i10 < arrayList.size()) {
+                    ac0Var.f34172w.setText(LocaleController.formatDateAudio(ac0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    return;
+                }
+                ac0Var.f34172w.setText("");
                 return;
             default:
-                wb0 wb0Var = this.f41263b;
-                if (!wb0Var.O) {
-                    if (editable.toString().equals("0")) {
-                        wb0Var.F.setText("");
-                        return;
-                    }
-                    try {
-                        int parseInt = Integer.parseInt(editable.toString());
-                        if (parseInt > 100000) {
-                            wb0Var.X();
-                            return;
-                        } else {
-                            wb0Var.W(parseInt);
-                            return;
-                        }
-                    } catch (NumberFormatException unused) {
-                        wb0Var.X();
-                        return;
-                    }
+                ac0 ac0Var2 = this.f39371b;
+                ac0Var2.F.clearFocus();
+                ac0Var2.O = true;
+                ArrayList arrayList2 = ac0Var2.R;
+                if (i10 < arrayList2.size()) {
+                    ac0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
+                } else {
+                    ac0Var2.F.setText("");
                 }
+                ac0Var2.O = false;
                 return;
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f41262a;
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        ac0 ac0Var = this.f39371b;
+        ac0Var.T.a(ac0Var.e);
+        ac0Var.finishFragment();
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f41262a;
+    public void m() {
+        int i10 = this.f39370a;
     }
 
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    private final void a() {
     }
 
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    private final void b() {
     }
 }

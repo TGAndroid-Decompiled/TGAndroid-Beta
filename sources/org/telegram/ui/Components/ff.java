@@ -1,87 +1,19 @@
 package org.telegram.ui.Components;
+public final class ff implements w81, f5 {
+    public final ChatActivityEnterView f25023a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-public final class ff extends AnimatorListenerAdapter {
-    public final int f26050a;
-    public final boolean f26051b;
-    public final ChatActivityEnterView f26052c;
-
-    public ff(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f26050a = i10;
-        this.f26052c = chatActivityEnterView;
-        this.f26051b = z10;
+    public ff(ChatActivityEnterView chatActivityEnterView) {
+        this.f25023a = chatActivityEnterView;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f26050a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f26052c;
-                if (animator.equals(chatActivityEnterView.f23729s2)) {
-                    chatActivityEnterView.f23729s2 = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        cf cfVar;
-        float f7;
-        switch (this.f26050a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f26052c;
-                if (chatActivityEnterView.Q5) {
-                    ImageView imageView = chatActivityEnterView.f23753w1;
-                    if (this.f26051b) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    imageView.setVisibility(i10);
-                    return;
-                }
-                return;
-            case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f26052c;
-                if (animator.equals(chatActivityEnterView2.f23729s2)) {
-                    chatActivityEnterView2.f23709p1.setVisibility(8);
-                    if (this.f26051b && (cfVar = chatActivityEnterView2.J1) != null) {
-                        cfVar.setVisibility(8);
-                    }
-                    chatActivityEnterView2.f23729s2 = null;
-                    return;
-                }
-                return;
-            case 2:
-                ChatActivityEnterView chatActivityEnterView3 = this.f26052c;
-                chatActivityEnterView3.M1 = null;
-                if (!this.f26051b) {
-                    chatActivityEnterView3.J1.setVisibility(8);
-                    return;
-                }
-                return;
-            default:
-                if (this.f26051b) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                ChatActivityEnterView chatActivityEnterView4 = this.f26052c;
-                chatActivityEnterView4.f23752w0 = f7;
-                ig igVar = chatActivityEnterView4.U0;
-                if (igVar != null) {
-                    igVar.Y();
-                    return;
-                }
-                return;
+    public void J(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f25023a;
+        boolean R0 = chatActivityEnterView.R0(i10, z10, i11, true, 0L);
+        of ofVar = chatActivityEnterView.L0;
+        if (ofVar != null) {
+            ofVar.h(!R0);
+            chatActivityEnterView.L0 = null;
         }
     }
 }

@@ -1,13 +1,17 @@
 package org.telegram.ui.Components;
-public final class ht0 extends org.telegram.ui.wu0 {
-    public final hw0 f26893a;
 
-    public ht0(hw0 hw0Var) {
-        this.f26893a = hw0Var;
+import android.content.Context;
+public final class ht0 extends wx0 {
+    public final xv0 K;
+
+    public ht0(xv0 xv0Var, Context context, f10 f10Var) {
+        super(context, f10Var, 1, null);
+        this.K = xv0Var;
     }
 
     @Override
-    public final org.telegram.ui.gv0 E(org.telegram.messenger.MessageObject r19, org.telegram.tgnet.TLRPC.FileLocation r20, int r21, boolean r22, boolean r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ht0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.gv0");
+    public final void a() {
+        invalidate();
+        this.K.E0();
     }
 }

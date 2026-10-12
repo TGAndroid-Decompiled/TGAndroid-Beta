@@ -1,57 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class fx extends wm0 {
-    public boolean V2;
-    public boolean W2;
-    public final d00 X2;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class fx extends s4.s {
+    public final wz Q;
 
-    public fx(d00 d00Var, Context context) {
-        super(context, null);
-        this.X2 = d00Var;
+    public fx(wz wzVar) {
+        super(5);
+        this.Q = wzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
-        d00 d00Var = this.X2;
-        boolean r10 = q6.r(motionEvent, d00Var.f25088h0, d00Var.f25087g2, this.f32467n2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
+    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
+        int o02 = super.o0(i10, eVar, y0Var);
+        wz wzVar = this.Q;
+        if (o02 != 0 && wzVar.D0.getScrollState() == 1) {
+            wzVar.X1 = false;
+            wzVar.Y();
         }
-        return true;
+        if (wzVar.T0 == null) {
+            hg.f1 f1Var = new hg.f1(wzVar, wzVar.f31014c1, wzVar.f31067t1.a(), wzVar.f31067t1.f(), 1);
+            wzVar.T0 = f1Var;
+            f1Var.a();
+        }
+        wzVar.T0.b();
+        return o02;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        d00 d00Var = this.X2;
-        if (d00Var.f25114q0 && d00Var.f25105n0.G > 1) {
-            this.V2 = true;
-            d00Var.f25091i0.h1(0, 0);
-            d00Var.f25108o0.setVisibility(0);
-            d00Var.f25111p0.k(0, 0);
-            d00Var.f25114q0 = false;
-            this.V2 = false;
+    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
+        try {
+            ki.o oVar = new ki.o(recyclerView.getContext(), 2);
+            oVar.f44979a = i10;
+            w0(oVar);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        super.onLayout(z10, i10, i11, i12, i13);
-        d00.f(d00Var, true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.W2) {
-            this.X2.f25105n0.l();
-            this.W2 = true;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.V2) {
-            return;
-        }
-        super.requestLayout();
     }
 }

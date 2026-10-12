@@ -7,16 +7,18 @@ import android.opengl.EGLContext;
 import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES20;
+import android.opengl.GLU;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import java.util.Arrays;
 import java.util.Locale;
 public final class o extends HandlerThread implements Handler.Callback {
-    public e2.j f187a;
-    public Handler f188b;
-    public Error f189c;
+    public e2.l f173a;
+    public Handler f174b;
+    public Error f175c;
     public RuntimeException d;
-    public p f190e;
+    public p e;
 
     public final void a(int i10) {
         boolean z10;
@@ -24,9 +26,9 @@ public final class o extends HandlerThread implements Handler.Callback {
         boolean z12;
         EGLSurface eglCreatePbufferSurface;
         boolean z13;
-        this.f187a.getClass();
-        e2.j jVar = this.f187a;
-        int[] iArr = jVar.f8551b;
+        this.f173a.getClass();
+        e2.l lVar = this.f173a;
+        int[] iArr = lVar.f8368b;
         boolean z14 = false;
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
         if (eglGetDisplay != null) {
@@ -34,31 +36,31 @@ public final class o extends HandlerThread implements Handler.Callback {
         } else {
             z10 = false;
         }
-        e2.a.c("eglGetDisplay failed", z10);
+        e2.e.a("eglGetDisplay failed", z10);
         int[] iArr2 = new int[2];
-        e2.a.c("eglInitialize failed", EGL14.eglInitialize(eglGetDisplay, iArr2, 0, iArr2, 1));
-        jVar.f8552c = eglGetDisplay;
+        e2.e.a("eglInitialize failed", EGL14.eglInitialize(eglGetDisplay, iArr2, 0, iArr2, 1));
+        lVar.f8369c = eglGetDisplay;
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
         int[] iArr3 = new int[1];
-        boolean eglChooseConfig = EGL14.eglChooseConfig(eglGetDisplay, e2.j.h, 0, eGLConfigArr, 0, 1, iArr3, 0);
+        boolean eglChooseConfig = EGL14.eglChooseConfig(eglGetDisplay, e2.l.h, 0, eGLConfigArr, 0, 1, iArr3, 0);
         if (eglChooseConfig && iArr3[0] > 0 && eGLConfigArr[0] != null) {
             z11 = true;
         } else {
             z11 = false;
         }
         Object[] objArr = {Boolean.valueOf(eglChooseConfig), Integer.valueOf(iArr3[0]), eGLConfigArr[0]};
-        String str = e2.d0.f8529a;
-        e2.a.c(String.format(Locale.US, "eglChooseConfig failed: success=%b, numConfigs[0]=%d, configs[0]=%s", objArr), z11);
+        String str = e2.m0.f8372a;
+        e2.e.a(String.format(Locale.US, "eglChooseConfig failed: success=%b, numConfigs[0]=%d, configs[0]=%s", objArr), z11);
         EGLConfig eGLConfig = eGLConfigArr[0];
-        EGLContext eglCreateContext = EGL14.eglCreateContext(jVar.f8552c, eGLConfig, EGL14.EGL_NO_CONTEXT, i10 == 0 ? new int[]{12440, 2, 12344} : new int[]{12440, 2, 12992, 1, 12344}, 0);
+        EGLContext eglCreateContext = EGL14.eglCreateContext(lVar.f8369c, eGLConfig, EGL14.EGL_NO_CONTEXT, i10 == 0 ? new int[]{12440, 2, 12344} : new int[]{12440, 2, 12992, 1, 12344}, 0);
         if (eglCreateContext != null) {
             z12 = true;
         } else {
             z12 = false;
         }
-        e2.a.c("eglCreateContext failed", z12);
-        jVar.d = eglCreateContext;
-        EGLDisplay eGLDisplay = jVar.f8552c;
+        e2.e.a("eglCreateContext failed", z12);
+        lVar.d = eglCreateContext;
+        EGLDisplay eGLDisplay = lVar.f8369c;
         if (i10 == 1) {
             eglCreatePbufferSurface = EGL14.EGL_NO_SURFACE;
         } else {
@@ -68,57 +70,89 @@ public final class o extends HandlerThread implements Handler.Callback {
             } else {
                 z13 = false;
             }
-            e2.a.c("eglCreatePbufferSurface failed", z13);
+            e2.e.a("eglCreatePbufferSurface failed", z13);
         }
-        e2.a.c("eglMakeCurrent failed", EGL14.eglMakeCurrent(eGLDisplay, eglCreatePbufferSurface, eglCreatePbufferSurface, eglCreateContext));
-        jVar.f8553e = eglCreatePbufferSurface;
+        e2.e.a("eglMakeCurrent failed", EGL14.eglMakeCurrent(eGLDisplay, eglCreatePbufferSurface, eglCreatePbufferSurface, eglCreateContext));
+        lVar.e = eglCreatePbufferSurface;
         GLES20.glGenTextures(1, iArr, 0);
-        e2.a.b();
-        SurfaceTexture surfaceTexture = new SurfaceTexture(iArr[0]);
-        jVar.f8554f = surfaceTexture;
-        surfaceTexture.setOnFrameAvailableListener(jVar);
-        SurfaceTexture surfaceTexture2 = this.f187a.f8554f;
-        surfaceTexture2.getClass();
-        if (i10 != 0) {
-            z14 = true;
+        StringBuilder sb2 = new StringBuilder();
+        e9.s.f(4, "initialCapacity");
+        Object[] objArr2 = new Object[4];
+        boolean z15 = false;
+        int i11 = 0;
+        while (true) {
+            int glGetError = GLES20.glGetError();
+            if (glGetError == 0) {
+                break;
+            }
+            if (z15) {
+                sb2.append('\n');
+            }
+            String gluErrorString = GLU.gluErrorString(glGetError);
+            if (gluErrorString == null) {
+                gluErrorString = "error code: 0x" + Integer.toHexString(glGetError);
+            }
+            sb2.append("glError: ");
+            sb2.append(gluErrorString);
+            Integer valueOf = Integer.valueOf(glGetError);
+            int i12 = i11 + 1;
+            int b10 = e9.h0.b(objArr2.length, i12);
+            if (b10 > objArr2.length) {
+                objArr2 = Arrays.copyOf(objArr2, b10);
+            }
+            objArr2[i11] = valueOf;
+            i11 = i12;
+            z15 = true;
         }
-        this.f190e = new p(this, surfaceTexture2, z14);
+        if (!z15) {
+            SurfaceTexture surfaceTexture = new SurfaceTexture(iArr[0]);
+            lVar.f8370f = surfaceTexture;
+            surfaceTexture.setOnFrameAvailableListener(lVar);
+            SurfaceTexture surfaceTexture2 = this.f173a.f8370f;
+            surfaceTexture2.getClass();
+            if (i10 != 0) {
+                z14 = true;
+            }
+            this.e = new p(this, surfaceTexture2, z14);
+            return;
+        }
+        throw new e2.m(sb2.toString(), e9.n0.s(i11, objArr2));
     }
 
     public final void b() {
-        this.f187a.getClass();
-        e2.j jVar = this.f187a;
-        jVar.f8550a.removeCallbacks(jVar);
+        this.f173a.getClass();
+        e2.l lVar = this.f173a;
+        lVar.f8367a.removeCallbacks(lVar);
         try {
-            SurfaceTexture surfaceTexture = jVar.f8554f;
+            SurfaceTexture surfaceTexture = lVar.f8370f;
             if (surfaceTexture != null) {
                 surfaceTexture.release();
-                GLES20.glDeleteTextures(1, jVar.f8551b, 0);
+                GLES20.glDeleteTextures(1, lVar.f8368b, 0);
             }
         } finally {
-            EGLDisplay eGLDisplay = jVar.f8552c;
+            EGLDisplay eGLDisplay = lVar.f8369c;
             if (eGLDisplay != null && !eGLDisplay.equals(EGL14.EGL_NO_DISPLAY)) {
-                EGLDisplay eGLDisplay2 = jVar.f8552c;
+                EGLDisplay eGLDisplay2 = lVar.f8369c;
                 EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
                 EGL14.eglMakeCurrent(eGLDisplay2, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
             }
-            EGLSurface eGLSurface2 = jVar.f8553e;
+            EGLSurface eGLSurface2 = lVar.e;
             if (eGLSurface2 != null && !eGLSurface2.equals(EGL14.EGL_NO_SURFACE)) {
-                EGL14.eglDestroySurface(jVar.f8552c, jVar.f8553e);
+                EGL14.eglDestroySurface(lVar.f8369c, lVar.e);
             }
-            EGLContext eGLContext = jVar.d;
+            EGLContext eGLContext = lVar.d;
             if (eGLContext != null) {
-                EGL14.eglDestroyContext(jVar.f8552c, eGLContext);
+                EGL14.eglDestroyContext(lVar.f8369c, eGLContext);
             }
             EGL14.eglReleaseThread();
-            EGLDisplay eGLDisplay3 = jVar.f8552c;
+            EGLDisplay eGLDisplay3 = lVar.f8369c;
             if (eGLDisplay3 != null && !eGLDisplay3.equals(EGL14.EGL_NO_DISPLAY)) {
-                EGL14.eglTerminate(jVar.f8552c);
+                EGL14.eglTerminate(lVar.f8369c);
             }
-            jVar.f8552c = null;
-            jVar.d = null;
-            jVar.f8553e = null;
-            jVar.f8554f = null;
+            lVar.f8369c = null;
+            lVar.d = null;
+            lVar.e = null;
+            lVar.f8370f = null;
         }
     }
 
@@ -133,7 +167,7 @@ public final class o extends HandlerThread implements Handler.Callback {
                         return true;
                     } catch (Throwable th2) {
                         try {
-                            e2.a.f("PlaceholderSurface", "Failed to release placeholder surface", th2);
+                            e2.a.d("PlaceholderSurface", "Failed to release placeholder surface", th2);
                             return true;
                         } finally {
                             quit();
@@ -147,21 +181,21 @@ public final class o extends HandlerThread implements Handler.Callback {
                         notify();
                     }
                     return true;
-                } catch (e2.k e7) {
-                    e2.a.f("PlaceholderSurface", "Failed to initialize placeholder surface", e7);
-                    this.d = new IllegalStateException(e7);
+                } catch (e2.m e) {
+                    e2.a.d("PlaceholderSurface", "Failed to initialize placeholder surface", e);
+                    this.d = new IllegalStateException(e);
                     synchronized (this) {
                         notify();
                     }
-                } catch (Error e10) {
-                    e2.a.f("PlaceholderSurface", "Failed to initialize placeholder surface", e10);
-                    this.f189c = e10;
+                } catch (Error e7) {
+                    e2.a.d("PlaceholderSurface", "Failed to initialize placeholder surface", e7);
+                    this.f175c = e7;
                     synchronized (this) {
                         notify();
                     }
-                } catch (RuntimeException e11) {
-                    e2.a.f("PlaceholderSurface", "Failed to initialize placeholder surface", e11);
-                    this.d = e11;
+                } catch (RuntimeException e10) {
+                    e2.a.d("PlaceholderSurface", "Failed to initialize placeholder surface", e10);
+                    this.d = e10;
                     synchronized (this) {
                         notify();
                     }

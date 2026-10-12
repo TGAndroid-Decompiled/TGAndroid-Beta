@@ -1,6 +1,6 @@
 package a;
-
-import java.util.ArrayList;
 public abstract class a {
-    public abstract void a(ArrayList arrayList);
+    public static boolean a(java.lang.String r4) {
+        throw new UnsupportedOperationException("Method not decompiled: a.a.a(java.lang.String):boolean");
+    }
 }

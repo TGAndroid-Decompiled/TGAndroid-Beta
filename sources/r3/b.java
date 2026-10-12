@@ -1,25 +1,42 @@
 package r3;
 
-import a1.g;
-import e2.d0;
-import j$.util.Objects;
-import java.util.Locale;
-public final class b {
-    public final long f47170a;
-    public final long f47171b;
-    public final int f47172c;
+import b2.r0;
+import b2.t0;
+import b2.x;
+import java.util.ArrayList;
+import v7.u6;
+public final class b implements t0 {
+    public final ArrayList f43895a;
 
-    public b(long j3, long j10, int i10) {
-        boolean z10;
-        if (j3 < j10) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public b(ArrayList arrayList) {
+        this.f43895a = arrayList;
+        boolean z10 = false;
+        if (!arrayList.isEmpty()) {
+            long j10 = ((a) arrayList.get(0)).f43893b;
+            int i10 = 1;
+            while (true) {
+                if (i10 >= arrayList.size()) {
+                    break;
+                } else if (((a) arrayList.get(i10)).f43892a < j10) {
+                    z10 = true;
+                    break;
+                } else {
+                    j10 = ((a) arrayList.get(i10)).f43893b;
+                    i10++;
+                }
+            }
         }
-        e2.d.b(z10);
-        this.f47170a = j3;
-        this.f47171b = j10;
-        this.f47172c = i10;
+        u6.g(!z10);
+    }
+
+    @Override
+    public final x a() {
+        return null;
+    }
+
+    @Override
+    public final byte[] c() {
+        return null;
     }
 
     public final boolean equals(Object obj) {
@@ -27,25 +44,20 @@ public final class b {
             return true;
         }
         if (obj != null && b.class == obj.getClass()) {
-            b bVar = (b) obj;
-            if (this.f47170a == bVar.f47170a && this.f47171b == bVar.f47171b && this.f47172c == bVar.f47172c) {
-                return true;
-            }
+            return this.f43895a.equals(((b) obj).f43895a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f47170a), Long.valueOf(this.f47171b), Integer.valueOf(this.f47172c));
+        return this.f43895a.hashCode();
     }
 
     public final String toString() {
-        String str = d0.f8529a;
-        Locale locale = Locale.US;
-        StringBuilder u10 = g.u(this.f47170a, "Segment: startTimeMs=", ", endTimeMs=");
-        u10.append(this.f47171b);
-        u10.append(", speedDivisor=");
-        u10.append(this.f47172c);
-        return u10.toString();
+        return "SlowMotion: segments=" + this.f43895a;
+    }
+
+    @Override
+    public final void b(r0 r0Var) {
     }
 }

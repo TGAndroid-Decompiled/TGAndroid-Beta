@@ -1,8 +1,9 @@
 package b2;
 public final class d0 {
-    public long f3262a = -9223372036854775807L;
-    public long f3263b = -9223372036854775807L;
-    public long f3264c = -9223372036854775807L;
-    public float d = -3.4028235E38f;
-    public float f3265e = -3.4028235E38f;
+    public long f2094a;
+    public long f2095b = Long.MIN_VALUE;
+    public boolean f2096c;
+    public boolean d;
+    public boolean e;
+    public boolean f2097f;
 }

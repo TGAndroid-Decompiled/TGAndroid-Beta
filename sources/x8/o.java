@@ -1,14 +1,89 @@
 package x8;
 
-import android.content.ComponentName;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-public final class o implements ServiceConnection {
+import android.os.Parcel;
+import android.os.Parcelable;
+import androidx.versionedparcelable.ParcelImpl;
+import com.google.android.gms.wearable.ConnectionConfiguration;
+import java.util.ArrayList;
+import w7.f0;
+public final class o implements Parcelable.Creator {
+    public final int f48266a;
+
     @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
+    public final Object createFromParcel(Parcel parcel) {
+        switch (this.f48266a) {
+            case 0:
+                int z10 = f0.z(parcel);
+                String str = null;
+                String str2 = null;
+                String str3 = null;
+                String str4 = null;
+                String str5 = null;
+                ArrayList arrayList = null;
+                int i10 = 0;
+                int i11 = 0;
+                boolean z11 = false;
+                boolean z12 = false;
+                boolean z13 = false;
+                int i12 = 0;
+                while (parcel.dataPosition() < z10) {
+                    int readInt = parcel.readInt();
+                    switch ((char) readInt) {
+                        case 2:
+                            str = f0.h(parcel, readInt);
+                            break;
+                        case 3:
+                            str2 = f0.h(parcel, readInt);
+                            break;
+                        case 4:
+                            i10 = f0.u(parcel, readInt);
+                            break;
+                        case 5:
+                            i11 = f0.u(parcel, readInt);
+                            break;
+                        case 6:
+                            z11 = f0.n(parcel, readInt);
+                            break;
+                        case 7:
+                            z12 = f0.n(parcel, readInt);
+                            break;
+                        case '\b':
+                            str3 = f0.h(parcel, readInt);
+                            break;
+                        case '\t':
+                            z13 = f0.n(parcel, readInt);
+                            break;
+                        case '\n':
+                            str4 = f0.h(parcel, readInt);
+                            break;
+                        case 11:
+                            str5 = f0.h(parcel, readInt);
+                            break;
+                        case '\f':
+                            i12 = f0.u(parcel, readInt);
+                            break;
+                        case '\r':
+                            arrayList = f0.j(parcel, readInt);
+                            break;
+                        default:
+                            f0.y(parcel, readInt);
+                            break;
+                    }
+                }
+                f0.m(parcel, z10);
+                return new ConnectionConfiguration(str, str2, i10, i11, z11, z12, str3, z13, str4, str5, i12, arrayList);
+            default:
+                return new ParcelImpl(parcel);
+        }
     }
 
     @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+    public final Object[] newArray(int i10) {
+        switch (this.f48266a) {
+            case 0:
+                return new ConnectionConfiguration[i10];
+            default:
+                return new ParcelImpl[i10];
+        }
     }
 }

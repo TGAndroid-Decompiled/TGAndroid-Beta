@@ -1,12 +1,17 @@
 package org.telegram.ui.Components;
+public final class pd0 implements Runnable {
+    public boolean f28297a;
+    public final ud0 f28298b;
 
-import android.view.View;
-public interface pd0 {
-    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+    public pd0(ud0 ud0Var) {
+        this.f28298b = ud0Var;
+    }
 
-    int getMeasuredHeight();
-
-    int getTop();
-
-    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+    @Override
+    public final void run() {
+        boolean z10 = this.f28297a;
+        ud0 ud0Var = this.f28298b;
+        ud0Var.a(z10);
+        ud0Var.postDelayed(this, ud0Var.L);
+    }
 }

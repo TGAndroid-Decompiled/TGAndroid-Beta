@@ -1,3 +1,3 @@
 package m9;
-public @interface a {
+public interface a {
 }

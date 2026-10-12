@@ -1,17 +1,47 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.content.Context;
 import android.view.View;
-public final class mn0 extends View {
-    public Paint f40097a;
-    public Paint f40098b;
-    public float f40099c;
+import android.widget.Button;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class mn0 extends TextView {
+    public final int f38296a;
+
+    public mn0(Context context, int i10) {
+        super(context);
+        this.f38296a = i10;
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.f40099c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f40098b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f40097a);
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f38296a) {
+            case 3:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f38296a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
+                return;
+            case 3:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+                return;
+        }
     }
 }

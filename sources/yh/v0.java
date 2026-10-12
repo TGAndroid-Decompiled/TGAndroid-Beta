@@ -1,30 +1,13 @@
 package yh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class v0 implements Utilities.Callback {
-    public final int f53538a;
-    public final Utilities.Callback f53539b;
-
-    public v0(int i10, Utilities.Callback callback) {
-        this.f53538a = i10;
-        this.f53539b = callback;
-    }
-
+import android.view.MotionEvent;
+import org.telegram.ui.Components.da0;
+public final class v0 extends da0 {
     @Override
-    public final void run(Object obj) {
-        switch (this.f53538a) {
-            case 0:
-                this.f53539b.run((TL_stars.StarGift) obj);
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                Utilities.Callback callback = this.f53539b;
-                if (callback != null) {
-                    callback.run(bool);
-                    return;
-                }
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() < 0.95f) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

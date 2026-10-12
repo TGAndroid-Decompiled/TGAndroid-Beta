@@ -1,14 +1,14 @@
 package z7;
-public final class b8 implements ia.d {
-    public static final b8 f53830a = new Object();
-    public static final ia.c f53831b = new ia.c("errorCode", hg.c.o(sc.v.o(w.class, new s(1))));
-    public static final ia.c f53832c = new ia.c("subjectSegmenterOptions", hg.c.o(sc.v.o(w.class, new s(2))));
+public final class b8 implements ja.d {
+    public static final b8 f49354a = new Object();
+    public static final ja.c f49355b = new ja.c("errorCode", i2.d.n(t8.b.n(w.class, new s(1))));
+    public static final ja.c f49356c = new ja.c("subjectSegmenterOptions", i2.d.n(t8.b.n(w.class, new s(2))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        de deVar = (de) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f53831b, deVar.f53873a);
-        eVar.a(f53832c, deVar.f53874b);
+        ce ceVar = (ce) obj;
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f49355b, ceVar.f49371a);
+        eVar.d(f49356c, ceVar.f49372b);
     }
 }

@@ -1,31 +1,21 @@
 package b2;
+public final class m {
+    public static final String e;
+    public static final String f2202f;
+    public static final String f2203g;
+    public final byte[] f2204a;
+    public final j f2205b = new j(this);
+    public k f2206c;
+    public l d;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class m implements Parcelable.Creator {
-    public final int f3417a;
-
-    @Override
-    public final Object createFromParcel(Parcel parcel) {
-        switch (this.f3417a) {
-            case 0:
-                return new o(parcel);
-            case 1:
-                return new n(parcel);
-            default:
-                return new e1(parcel);
-        }
+    static {
+        String str = e2.m0.f8372a;
+        e = Integer.toString(0, 36);
+        f2202f = Integer.toString(1, 36);
+        f2203g = Integer.toString(2, 36);
     }
 
-    @Override
-    public final Object[] newArray(int i10) {
-        switch (this.f3417a) {
-            case 0:
-                return new o[i10];
-            case 1:
-                return new n[i10];
-            default:
-                return new e1[i10];
-        }
+    public m(byte[] bArr) {
+        this.f2204a = bArr;
     }
 }

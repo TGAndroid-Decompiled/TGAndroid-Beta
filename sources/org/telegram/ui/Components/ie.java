@@ -1,128 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedPrefsHelper;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class ie implements Runnable {
-    public final int f27131a;
-    public final ChatActivityEnterView f27132b;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.lg1;
+public final class ie implements org.telegram.ui.wj0, org.telegram.ui.sy {
+    public final ChatActivityEnterView f25936a;
+    public final MessageObject f25937b;
+    public final TL_keyboard.TL_buttonTypeRequestPeer f25938c;
 
-    public ie(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f27131a = i10;
-        this.f27132b = chatActivityEnterView;
+    public ie(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer) {
+        this.f25936a = chatActivityEnterView;
+        this.f25937b = messageObject;
+        this.f25938c = tL_buttonTypeRequestPeer;
     }
 
     @Override
-    public final void run() {
-        long S8;
-        ArrayList<TLRPC.RestrictionReason> arrayList;
-        int i10 = this.f27131a;
-        ChatActivityEnterView chatActivityEnterView = this.f27132b;
-        switch (i10) {
-            case 0:
-                uf ufVar = chatActivityEnterView.E0;
-                if (ufVar != null) {
-                    ufVar.setText("");
-                    return;
-                }
-                return;
-            case 1:
-                uf ufVar2 = chatActivityEnterView.E0;
-                if (ufVar2 != null) {
-                    ufVar2.setText("");
-                }
-                chatActivityEnterView.L(true);
-                return;
-            case 2:
-                int i11 = ChatActivityEnterView.S5;
-                chatActivityEnterView.Y0();
-                return;
-            case 3:
-                chatActivityEnterView.N3 = false;
-                chatActivityEnterView.K0();
-                return;
-            case 4:
-                sg sgVar = chatActivityEnterView.Z2;
-                if (sgVar != null) {
-                    sgVar.w1();
-                    return;
-                }
-                return;
-            case 5:
-                g5.L(chatActivityEnterView.O2, chatActivityEnterView.P2.a(), new xd(chatActivityEnterView), chatActivityEnterView.f23775z4);
-                return;
-            case 6:
-                int i12 = ChatActivityEnterView.S5;
-                this.f27132b.W0(0, false, 0, true, 0L);
-                return;
-            case 7:
-                int i13 = ChatActivityEnterView.S5;
-                AndroidUtilities.hideKeyboard(chatActivityEnterView);
-                int i14 = chatActivityEnterView.Q;
-                long j3 = chatActivityEnterView.Q2;
-                String str = chatActivityEnterView.f23669i0;
-                String str2 = chatActivityEnterView.f23675j0;
-                org.telegram.ui.eo eoVar = chatActivityEnterView.P2;
-                if (eoVar == null) {
-                    S8 = 0;
-                } else {
-                    S8 = eoVar.S8();
-                }
-                ei.e5 b10 = ei.e5.b(i14, j3, j3, str, str2, 2, 0, S8, null, false, null, null, 0, false, false);
-                LaunchActivity launchActivity = LaunchActivity.G1;
-                if (launchActivity != null && launchActivity.P() != null && LaunchActivity.G1.P().k(b10) != null) {
-                    ei.c0 c0Var = chatActivityEnterView.f23686l0;
-                    if (c0Var != null) {
-                        c0Var.setOpened(false);
-                        return;
-                    }
-                    return;
-                } else if (org.telegram.ui.fc0.q(chatActivityEnterView.f23675j0)) {
-                    ?? obj = new Object();
-                    obj.f16871c = new vd(chatActivityEnterView, 5);
-                    of.f.k(chatActivityEnterView.getContext(), chatActivityEnterView.f23675j0, false, false, obj);
-                    return;
-                } else {
-                    TLRPC.User user = MessagesController.getInstance(chatActivityEnterView.Q).getUser(Long.valueOf(chatActivityEnterView.Q2));
-                    MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
-                    if (user == null) {
-                        arrayList = null;
-                    } else {
-                        arrayList = user.restriction_reason;
-                    }
-                    String restrictionReason = messagesController.getRestrictionReason(arrayList);
-                    if (!TextUtils.isEmpty(restrictionReason)) {
-                        MessagesController.getInstance(chatActivityEnterView.Q);
-                        MessagesController.showCantOpenAlert(eoVar, restrictionReason);
-                        return;
-                    }
-                    ei.k3 k3Var = new ei.k3(chatActivityEnterView.getContext(), chatActivityEnterView.f23775z4);
-                    k3Var.x(false);
-                    k3Var.A0 = true;
-                    k3Var.f9164k0 = chatActivityEnterView.O2;
-                    k3Var.t(eoVar, b10);
-                    k3Var.show();
-                    ei.c0 c0Var2 = chatActivityEnterView.f23686l0;
-                    if (c0Var2 != null) {
-                        c0Var2.setOpened(false);
-                        return;
-                    }
-                    return;
-                }
-            case 8:
-                if (chatActivityEnterView.f23686l0 != null && !SharedPrefsHelper.isWebViewConfirmShown(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
-                    chatActivityEnterView.f23686l0.setOpened(false);
-                    return;
-                }
-                return;
-            default:
-                int i15 = ChatActivityEnterView.S5;
-                chatActivityEnterView.E();
-                return;
+    public boolean D() {
+        return false;
+    }
+
+    @Override
+    public boolean L(org.telegram.ui.yy yyVar) {
+        return false;
+    }
+
+    @Override
+    public void a(ArrayList arrayList) {
+        int i10 = ChatActivityEnterView.f22849n5;
+        if (!arrayList.isEmpty()) {
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            ChatActivityEnterView chatActivityEnterView = this.f25936a;
+            MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
+            MessageObject messageObject = this.f25937b;
+            tL_messages_sendBotRequestedPeer.peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
+            tL_messages_sendBotRequestedPeer.flags |= 1;
+            tL_messages_sendBotRequestedPeer.msg_id = messageObject.getId();
+            tL_messages_sendBotRequestedPeer.button_id = this.f25938c.button_id;
+            int size = arrayList.size();
+            int i11 = 0;
+            while (i11 < size) {
+                Object obj = arrayList.get(i11);
+                i11++;
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(chatActivityEnterView.Q).getInputPeer(((Long) obj).longValue()));
+            }
+            ConnectionsManager.getInstance(chatActivityEnterView.Q).sendRequest(tL_messages_sendBotRequestedPeer, null);
         }
+    }
+
+    @Override
+    public boolean w(org.telegram.ui.yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, lg1 lg1Var) {
+        int i12 = ChatActivityEnterView.f22849n5;
+        if (!arrayList.isEmpty()) {
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            ChatActivityEnterView chatActivityEnterView = this.f25936a;
+            MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
+            MessageObject messageObject = this.f25937b;
+            tL_messages_sendBotRequestedPeer.peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
+            tL_messages_sendBotRequestedPeer.flags |= 1;
+            tL_messages_sendBotRequestedPeer.msg_id = messageObject.getId();
+            tL_messages_sendBotRequestedPeer.button_id = this.f25938c.button_id;
+            HashSet hashSet = new HashSet();
+            int size = arrayList.size();
+            int i13 = 0;
+            while (i13 < size) {
+                Object obj = arrayList.get(i13);
+                i13++;
+                hashSet.add(Long.valueOf(((MessagesStorage.TopicKey) obj).dialogId));
+            }
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(chatActivityEnterView.Q).getInputPeer(((Long) it.next()).longValue()));
+            }
+            ConnectionsManager.getInstance(chatActivityEnterView.Q).sendRequest(tL_messages_sendBotRequestedPeer, null);
+        }
+        yyVar.finishFragment();
+        return true;
     }
 }

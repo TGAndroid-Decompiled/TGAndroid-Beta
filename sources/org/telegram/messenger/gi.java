@@ -1,27 +1,27 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gi implements RequestDelegate {
-    public final int f17705a;
-    public final SecretChatHelper f17706b;
-    public final TLRPC.EncryptedChat f17707c;
+import android.content.Context;
+public final class gi implements Runnable {
+    public final int f17338a;
+    public final SecretChatHelper f17339b;
+    public final Context f17340c;
+    public final org.telegram.ui.ActionBar.a2 d;
 
-    public gi(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f17705a = i10;
-        this.f17706b = secretChatHelper;
-        this.f17707c = encryptedChat;
+    public gi(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        this.f17338a = i10;
+        this.f17339b = secretChatHelper;
+        this.f17340c = context;
+        this.d = a2Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17705a) {
+    public final void run() {
+        switch (this.f17338a) {
             case 0:
-                this.f17706b.lambda$acceptSecretChat$22(this.f17707c, tLObject, tL_error);
+                this.f17339b.lambda$startSecretChat$27(this.f17340c, this.d);
                 return;
             default:
-                this.f17706b.lambda$acceptSecretChat$23(this.f17707c, tLObject, tL_error);
+                this.f17339b.lambda$startSecretChat$29(this.f17340c, this.d);
                 return;
         }
     }

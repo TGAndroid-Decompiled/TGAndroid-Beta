@@ -1,24 +1,35 @@
 package org.telegram.ui.Components.voip;
 
+import org.telegram.messenger.AndroidUtilities;
 import org.webrtc.RendererCommon;
 public final class g1 implements RendererCommon.RendererEvents {
-    public final k1 f31678a;
+    public final h1 f30188a;
 
-    public g1(k1 k1Var) {
-        this.f31678a = k1Var;
+    public g1(h1 h1Var) {
+        this.f30188a = h1Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        k1 k1Var = this.f31678a;
-        com.google.android.gms.internal.cast.p pVar = k1Var.Y;
+        h1 h1Var = this.f30188a;
+        h1Var.f30219x = true;
+        com.google.android.gms.internal.cast.p pVar = h1Var.Y;
         if (pVar != null) {
             pVar.run();
-            k1Var.Y = null;
+            h1Var.Y = null;
         }
+        AndroidUtilities.runOnUIThread(new ig.t0(this, 27));
     }
 
     @Override
     public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+        int i13 = (i12 / 90) % 2;
+        h1 h1Var = this.f30188a;
+        if (i13 == 0) {
+            h1Var.U = Float.valueOf(i11 / i10);
+        } else {
+            h1Var.U = Float.valueOf(i10 / i11);
+        }
+        AndroidUtilities.runOnUIThread(new hg.n(this, i10, i11, 10));
     }
 }

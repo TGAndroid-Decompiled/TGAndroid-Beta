@@ -1,50 +1,27 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class i4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f34890a;
-    public final TL_wallet.walletTransaction[] f34891b;
-    public final p3 f34892c;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.xs;
+public final class i4 extends xs {
+    public final ji.c2 G;
 
-    public i4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, p3 p3Var) {
-        this.f34890a = i10;
-        this.f34891b = wallettransactionArr;
-        this.f34892c = p3Var;
+    public i4(z4 z4Var, Context context) {
+        super(context);
+        this.G = new ji.c2(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(22.0f), z4Var.getThemedColor(org.telegram.ui.ActionBar.g6.f19901d6)), AndroidUtilities.dpf2(2.67f), AndroidUtilities.dpf2(0.67f));
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = l0.v(this.f34890a).z().f34952c;
-            int size = arrayList.size();
-            int i12 = 0;
-            while (true) {
-                wallettransactionArr = this.f34891b;
-                if (i12 < size) {
-                    Object obj = arrayList.get(i12);
-                    i12++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (l0.d0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f34892c.run(wallettransaction);
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        int ceil = (int) Math.ceil(getMetadata().f16310g.f16316a);
+        if (ceil > 0) {
+            int width = getWidth();
+            ji.c2 c2Var = this.G;
+            c2Var.setBounds(0, 0, width, ceil);
+            c2Var.setAlpha((int) (getMetadata().f16308c.f16316a * 255.0f));
+            c2Var.draw(canvas);
         }
+        super.dispatchDraw(canvas);
     }
 }

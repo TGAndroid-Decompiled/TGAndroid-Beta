@@ -1,13 +1,55 @@
 package v7;
+
+import android.graphics.Path;
 public abstract class x7 {
-    public static byte a(long j3) {
-        boolean z10;
-        if ((j3 >> 8) == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static boolean a(i0.d[] dVarArr, i0.d[] dVarArr2) {
+        if (dVarArr == null || dVarArr2 == null || dVarArr.length != dVarArr2.length) {
+            return false;
         }
-        t6.b(j3, "out of range: %s", z10);
-        return (byte) j3;
+        for (int i10 = 0; i10 < dVarArr.length; i10++) {
+            i0.d dVar = dVarArr[i10];
+            char c10 = dVar.f10892a;
+            i0.d dVar2 = dVarArr2[i10];
+            if (c10 != dVar2.f10892a || dVar.f10893b.length != dVar2.f10893b.length) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static float[] b(float[] fArr, int i10) {
+        if (i10 >= 0) {
+            int length = fArr.length;
+            if (length >= 0) {
+                int min = Math.min(i10, length);
+                float[] fArr2 = new float[i10];
+                System.arraycopy(fArr, 0, fArr2, 0, min);
+                return fArr2;
+            }
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static i0.d[] c(java.lang.String r17) {
+        throw new UnsupportedOperationException("Method not decompiled: v7.x7.c(java.lang.String):i0.d[]");
+    }
+
+    public static Path d(String str) {
+        Path path = new Path();
+        try {
+            i0.d.b(c(str), path);
+            return path;
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error in parsing ".concat(str), e);
+        }
+    }
+
+    public static i0.d[] e(i0.d[] dVarArr) {
+        i0.d[] dVarArr2 = new i0.d[dVarArr.length];
+        for (int i10 = 0; i10 < dVarArr.length; i10++) {
+            dVarArr2[i10] = new i0.d(dVarArr[i10]);
+        }
+        return dVarArr2;
     }
 }

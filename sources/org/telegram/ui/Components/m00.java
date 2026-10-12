@@ -1,42 +1,50 @@
 package org.telegram.ui.Components;
-public final class m00 implements Runnable {
-    public final int f28330a;
-    public final boolean f28331b;
-    public final boolean f28332c;
-    public final boolean d;
-    public final Object f28333e;
 
-    public m00(Object obj, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f28330a = i10;
-        this.f28333e = obj;
-        this.f28331b = z10;
-        this.f28332c = z11;
-        this.d = z12;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class m00 implements bm0, cm0 {
+    public final w00 f27149a;
+
+    public m00(w00 w00Var) {
+        this.f27149a = w00Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28330a) {
-            case 0:
-                o00 o00Var = (o00) this.f28333e;
-                if (this.f28331b) {
-                    s00 s00Var = o00Var.J;
-                    s00Var.f30286a = true;
-                    s00Var.f30289b = true;
+    public boolean a(int r24, android.view.View r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m00.a(int, android.view.View):boolean");
+    }
+
+    @Override
+    public boolean c1(View view) {
+        return false;
+    }
+
+    @Override
+    public void d(float f7, float f10, int i10, View view) {
+        w00 w00Var = this.f27149a;
+        q00 q00Var = w00Var.J;
+        if (!((org.telegram.ui.xw) q00Var).f41972b.f42353j2) {
+            u00 u00Var = (u00) view;
+            if (w00Var.f30711n) {
+                if (i10 != 0) {
+                    int dp = AndroidUtilities.dp(6.0f);
+                    RectF rectF = u00Var.f29543f;
+                    float f11 = dp;
+                    if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
+                        org.telegram.ui.xw xwVar = (org.telegram.ui.xw) w00Var.J;
+                        xwVar.d(xwVar.f41972b.getMessagesController().getDialogFilters().get(u00Var.f29537b.f28978a));
+                    }
                 }
-                if (this.f28332c) {
-                    o00Var.f29014x = true;
-                }
-                long currentTimeMillis = System.currentTimeMillis();
-                if (this.d || Math.abs(o00Var.f29002a0 - currentTimeMillis) > 30) {
-                    o00Var.f29002a0 = currentTimeMillis;
-                    o00Var.f29007d0.run();
-                    return;
-                }
-                return;
-            default:
-                ((org.telegram.ui.xg0) this.f28333e).w1(this.f28331b, this.f28332c, this.d);
-                return;
+            } else if (i10 == w00Var.K && q00Var != null) {
+                ((org.telegram.ui.xw) q00Var).f41972b.u4(true, false);
+            } else {
+                w00Var.f(u00Var.f29537b, i10);
+            }
         }
+    }
+
+    @Override
+    public void p0(View view, float f7, float f10) {
     }
 }

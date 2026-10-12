@@ -1,14 +1,45 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class s70 extends FrameLayout {
-    public TextView f30431a;
+public final class s70 extends wx0 {
+    public final int K;
+
+    public s70(Context context, View view, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
+        super(context, view, i10, c6Var);
+        this.K = i11;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(84.0f), 1073741824));
+    public void onAttachedToWindow() {
+        switch (this.K) {
+            case 0:
+                super.onAttachedToWindow();
+                this.f30996b.getImageReceiver().startAnimation();
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.f30996b.getImageReceiver().startAnimation();
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.K) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    e(false, false);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 }

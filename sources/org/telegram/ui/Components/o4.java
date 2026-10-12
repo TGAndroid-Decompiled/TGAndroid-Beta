@@ -4,14 +4,14 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.StickersActivity;
-public final class o4 extends y61 {
-    public final int f29050e;
-    public Object f29051f;
+public final class o4 extends p61 {
+    public final int e;
+    public Object f27828f;
 
     public o4(Object obj, int i10) {
-        super("@stickers", (z11) null);
-        this.f29050e = i10;
-        this.f29051f = obj;
+        super("@stickers", (p11) null);
+        this.e = i10;
+        this.f27828f = obj;
     }
 
     @Override
@@ -19,32 +19,32 @@ public final class o4 extends y61 {
         int i10;
         int i11;
         int i12;
-        switch (this.f29050e) {
+        switch (this.e) {
             case 0:
-                ((org.telegram.ui.ActionBar.m2) this.f29051f).dismissCurrentDialog();
+                ((org.telegram.ui.ActionBar.m2) this.f27828f).dismissCurrentDialog();
                 super.onClick(view);
                 return;
             case 1:
-                dz0 dz0Var = (dz0) this.f29051f;
-                i10 = ((org.telegram.ui.ActionBar.e3) dz0Var).currentAccount;
-                MessagesController.getInstance(i10).openByUserName(getURL(), dz0Var.L, 1);
-                dz0Var.dismiss();
+                ty0 ty0Var = (ty0) this.f27828f;
+                i10 = ((org.telegram.ui.ActionBar.e3) ty0Var).currentAccount;
+                MessagesController.getInstance(i10).openByUserName(getURL(), ty0Var.L, 1);
+                ty0Var.dismiss();
                 return;
             case 2:
                 AndroidUtilities.addToClipboard(getURL());
-                zc.a0((hg.w) this.f29051f).k(false).j();
+                zc.a0((ig.v) this.f27828f).k(false).j();
                 return;
             case 3:
-                org.telegram.ui.v70 v70Var = ((org.telegram.ui.t70) this.f29051f).d;
-                i11 = ((org.telegram.ui.ActionBar.m2) v70Var).currentAccount;
-                MessagesController.getInstance(i11).openByUserName("stickers", v70Var, 1);
+                org.telegram.ui.y70 y70Var = ((org.telegram.ui.w70) this.f27828f).d;
+                i11 = ((org.telegram.ui.ActionBar.m2) y70Var).currentAccount;
+                MessagesController.getInstance(i11).openByUserName("stickers", y70Var, 1);
                 return;
             case 4:
-                ((org.telegram.ui.xm0) this.f29051f).f44047a.dismissCurrentDialog();
+                ((org.telegram.ui.bn0) this.f27828f).f34600a.dismissCurrentDialog();
                 super.onClick(view);
                 return;
             default:
-                StickersActivity stickersActivity = (StickersActivity) this.f29051f;
+                StickersActivity stickersActivity = (StickersActivity) this.f27828f;
                 i12 = ((org.telegram.ui.ActionBar.m2) stickersActivity).currentAccount;
                 MessagesController.getInstance(i12).openByUserName("stickers", stickersActivity, 3);
                 return;
@@ -52,19 +52,19 @@ public final class o4 extends y61 {
     }
 
     public o4(String str, int i10, Object obj) {
-        super(str, (z11) null);
-        this.f29050e = i10;
-        this.f29051f = obj;
+        super(str, (p11) null);
+        this.e = i10;
+        this.f27828f = obj;
     }
 
-    public o4(String str, z11 z11Var) {
-        super(str, z11Var);
-        this.f29050e = 2;
+    public o4(String str, p11 p11Var) {
+        super(str, p11Var);
+        this.e = 2;
     }
 
     public o4(org.telegram.ui.ActionBar.m2 m2Var, String str) {
-        super(str, (z11) null);
-        this.f29050e = 0;
-        this.f29051f = m2Var;
+        super(str, (p11) null);
+        this.e = 0;
+        this.f27828f = m2Var;
     }
 }

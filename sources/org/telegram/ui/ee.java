@@ -1,55 +1,165 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class ee implements TextWatcher {
-    public final oe f37071a;
+public class ee extends LinearLayout {
+    public static float f35522b = 1.0f;
+    public final int f35523a;
 
-    public ee(oe oeVar) {
-        this.f37071a = oeVar;
+    public ee(Context context, int i10) {
+        super(context);
+        this.f35523a = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long parseLong;
-        oe oeVar = this.f37071a;
-        rd rdVar = oeVar.f40666i1;
-        fi.o oVar = oeVar.Y0;
-        if (oeVar.V0) {
-            return;
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        View childAt;
+        boolean z10;
+        boolean z11;
+        switch (this.f35523a) {
+            case 4:
+                if (getParent() instanceof org.telegram.ui.Components.ap0) {
+                    org.telegram.ui.Components.ap0 ap0Var = (org.telegram.ui.Components.ap0) getParent();
+                    canvas.save();
+                    LinearLayout linearLayout = ap0Var.f23600b;
+                    Path path = ap0Var.f23603n;
+                    if (view != null && org.telegram.ui.Components.ap0.e(view)) {
+                        int indexOfChild = linearLayout.indexOfChild(view);
+                        int i10 = indexOfChild - 1;
+                        View view2 = null;
+                        if (i10 < 0) {
+                            childAt = null;
+                        } else {
+                            childAt = linearLayout.getChildAt(i10);
+                        }
+                        boolean z12 = true;
+                        int i11 = indexOfChild + 1;
+                        if (i11 < linearLayout.getChildCount()) {
+                            view2 = linearLayout.getChildAt(i11);
+                        }
+                        if (childAt != null && org.telegram.ui.Components.ap0.e(childAt)) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (view2 != null && org.telegram.ui.Components.ap0.e(view2)) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        float x10 = view.getX();
+                        float max = Math.max(ap0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
+                        float x11 = view.getX() + view.getWidth();
+                        int height = ap0Var.getHeight();
+                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + ap0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
+                        if (z10 && z11) {
+                            if (view.getY() >= rectF.top) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            if (view.getY() + view.getHeight() > rectF.bottom) {
+                                z12 = false;
+                            }
+                            if (!z10 || !z12) {
+                                z11 = z12;
+                            }
+                        }
+                        if (!z10 && !z11) {
+                            path.rewind();
+                            float f7 = ap0Var.f23601c;
+                            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+                            canvas.clipPath(path);
+                        } else if (!z10) {
+                            path.rewind();
+                            path.addRoundRect(rectF, ap0Var.d, Path.Direction.CW);
+                            canvas.clipPath(path);
+                        } else if (!z11) {
+                            path.rewind();
+                            path.addRoundRect(rectF, ap0Var.e, Path.Direction.CW);
+                            canvas.clipPath(path);
+                        }
+                    }
+                    boolean drawChild = super.drawChild(canvas, view, j10);
+                    canvas.restore();
+                    return drawChild;
+                }
+                return super.drawChild(canvas, view, j10);
+            default:
+                return super.drawChild(canvas, view, j10);
         }
-        if (TextUtils.isEmpty(editable)) {
-            parseLong = 0;
-        } else {
-            parseLong = Long.parseLong(editable.toString());
-        }
-        oeVar.X0 = parseLong;
-        long j3 = oeVar.N0.amount;
-        int i10 = (parseLong > j3 ? 1 : (parseLong == j3 ? 0 : -1));
-        boolean z10 = true;
-        if (i10 > 0) {
-            oeVar.X0 = j3;
-            oeVar.V0 = true;
-            oVar.setText(Long.toString(j3));
-            oVar.setSelection(oVar.getText().length());
-            oeVar.V0 = false;
-        }
-        if (oeVar.X0 != oeVar.N0.amount) {
-            z10 = false;
-        }
-        oeVar.W0 = z10;
-        AndroidUtilities.cancelRunOnUIThread(rdVar);
-        rdVar.run();
-        oeVar.W0 = false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f35523a) {
+            case 2:
+                super.onLayout(z10, i10, i11, i12, i13);
+                setPivotX(getWidth());
+                return;
+            case 3:
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+            case 4:
+                super.onLayout(z10, i10, i11, i12, i13);
+                if (getParent() instanceof org.telegram.ui.Components.ap0) {
+                    ((org.telegram.ui.Components.ap0) getParent()).invalidate();
+                    return;
+                }
+                return;
+        }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void onMeasure(int i10, int i11) {
+        switch (this.f35523a) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            case 2:
+            case 4:
+            case 5:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 3:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)), i11);
+                return;
+            case 6:
+                super.onMeasure(i10, i11);
+                setPivotY(0.0f);
+                setPivotX(0.0f);
+                return;
+            case 7:
+                super.onMeasure(i10, i11);
+                setPivotY(0.0f);
+                setPivotX(getMeasuredWidth());
+                return;
+            case 8:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(800.0f)), 1073741824));
+                return;
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+            case 10:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+                return;
+        }
+    }
+
+    public ee(Context context) {
+        super(context);
+        this.f35523a = 4;
+        setWillNotDraw(false);
     }
 }

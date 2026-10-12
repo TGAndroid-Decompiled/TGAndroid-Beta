@@ -5,65 +5,65 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-public final class dl extends org.telegram.ui.Components.to0 {
-    public final eo I;
+public final class dl extends org.telegram.ui.Components.ko0 {
+    public final fo I;
 
-    public dl(eo eoVar, Context context, eo eoVar2, int i10, long j3, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(i10, j3, context, eoVar2, c6Var);
-        this.I = eoVar;
+    public dl(fo foVar, Context context, fo foVar2, int i10, long j10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(i10, j10, context, foVar2, c6Var);
+        this.I = foVar;
     }
 
     @Override
     public final void b(boolean z10) {
-        eo eoVar = this.I;
-        eoVar.w7();
-        eoVar.u7();
-        il ilVar = eoVar.f37218bb;
+        fo foVar = this.I;
+        foVar.w7();
+        foVar.u7();
+        il ilVar = foVar.f35895bb;
         if (ilVar != null) {
-            ilVar.setTranslationY(eoVar.f37478w9 + getCurrentHeight());
+            ilVar.setTranslationY(foVar.w9 + getCurrentHeight());
         }
         if (z10) {
-            eoVar.D9 = true;
-            eoVar.nc();
+            foVar.D9 = true;
+            foVar.nc();
         }
     }
 
     @Override
-    public final boolean f(zg.n0 n0Var) {
+    public final boolean f(ah.i1 i1Var) {
         boolean z10;
         int i10;
         boolean z11;
-        eo eoVar = this.I;
-        eoVar.f37394q3 = n0Var;
-        if (n0Var != null) {
+        fo foVar = this.I;
+        foVar.f36071q3 = i1Var;
+        if (i1Var != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        eoVar.f37407r3 = z10;
-        if (n0Var == null) {
-            eoVar.getMediaDataController().clearFoundMessageObjects();
-            eoVar.ob(false);
-            eoVar.Jc(0, 0, -1);
+        foVar.f36084r3 = z10;
+        if (i1Var == null) {
+            foVar.getMediaDataController().clearFoundMessageObjects();
+            foVar.ob(false);
+            foVar.Jc(0, 0, -1);
         }
-        eoVar.Mc();
-        eoVar.zc();
-        eoVar.f37434t3 = eoVar.f37307j0.getSearchField().getText().toString();
-        MediaDataController mediaDataController = eoVar.getMediaDataController();
-        String str = eoVar.f37434t3;
-        long j3 = eoVar.T5;
-        long j10 = eoVar.L6;
-        i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
-        long j11 = eoVar.f37237d4;
-        TLRPC.User user = eoVar.f37370o3;
-        TLRPC.Chat chat = eoVar.f37382p3;
-        if (TextUtils.isEmpty(eoVar.f37434t3) && eoVar.f37394q3 == null) {
+        foVar.Mc();
+        foVar.zc();
+        foVar.f36111t3 = foVar.f35983j0.getSearchField().getText().toString();
+        MediaDataController mediaDataController = foVar.getMediaDataController();
+        String str = foVar.f36111t3;
+        long j10 = foVar.T5;
+        long j11 = foVar.L6;
+        i10 = ((org.telegram.ui.ActionBar.m2) foVar).classGuid;
+        long j12 = foVar.f35915d4;
+        TLRPC.User user = foVar.f36049o3;
+        TLRPC.Chat chat = foVar.f36060p3;
+        if (TextUtils.isEmpty(foVar.f36111t3) && foVar.f36071q3 == null) {
             z11 = false;
         } else {
             z11 = true;
         }
-        mediaDataController.searchMessagesInChat(str, j3, j10, i10, 0, j11, false, user, chat, z11, eoVar.f37394q3);
-        AndroidUtilities.hideKeyboard(eoVar.f37307j0.getSearchField());
+        mediaDataController.searchMessagesInChat(str, j10, j11, i10, 0, j12, false, user, chat, z11, foVar.f36071q3);
+        AndroidUtilities.hideKeyboard(foVar.f35983j0.getSearchField());
         return true;
     }
 
@@ -71,9 +71,9 @@ public final class dl extends org.telegram.ui.Components.to0 {
     public final void h(boolean z10) {
         boolean z11;
         super.h(z10);
-        eo eoVar = this.I;
-        org.telegram.ui.ActionBar.u0 u0Var = eoVar.f37307j0;
-        if (u0Var != null && u0Var.s() && a() && eoVar.f37446u3 == null) {
+        fo foVar = this.I;
+        org.telegram.ui.ActionBar.u0 u0Var = foVar.f35983j0;
+        if (u0Var != null && u0Var.s() && a() && foVar.f36124u3 == null) {
             z11 = true;
         } else {
             z11 = false;

@@ -396,10 +396,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f17007id;
+        private int f16711id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f17007id = i10;
+            this.f16711id = i10;
             this.args = objArr;
         }
     }
@@ -419,7 +419,7 @@ public class NotificationCenter {
     public static final class ObserversGroupImpl implements ObserversGroup {
         private NotificationCenterDelegate delegate;
         private ObserversGroupImpl globalGroup;
-        private final a0.l ids;
+        private final a0.k ids;
         private NotificationCenter notificationCenter;
 
         @Override
@@ -427,18 +427,18 @@ public class NotificationCenter {
             if (this.delegate == null) {
                 return this;
             }
-            a0.l lVar = this.ids;
-            int i11 = lVar.f30b + 1;
-            int[] iArr = lVar.f29a;
+            a0.k kVar = this.ids;
+            int i11 = kVar.f24b + 1;
+            int[] iArr = kVar.f23a;
             if (iArr.length < i11) {
                 int[] copyOf = Arrays.copyOf(iArr, Math.max(i11, (iArr.length * 3) / 2));
                 kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
-                lVar.f29a = copyOf;
+                kVar.f23a = copyOf;
             }
-            int[] iArr2 = lVar.f29a;
-            int i12 = lVar.f30b;
+            int[] iArr2 = kVar.f23a;
+            int i12 = kVar.f24b;
             iArr2[i12] = i10;
-            lVar.f30b = i12 + 1;
+            kVar.f24b = i12 + 1;
             this.notificationCenter.addObserverInternal(this.delegate, i10);
             return this;
         }
@@ -465,30 +465,30 @@ public class NotificationCenter {
                 observersGroupImpl.removeAllObservers();
                 this.globalGroup = null;
             }
-            int i10 = this.ids.f30b;
+            int i10 = this.ids.f24b;
             for (int i11 = 0; i11 < i10; i11++) {
                 NotificationCenter notificationCenter = this.notificationCenter;
                 NotificationCenterDelegate notificationCenterDelegate = this.delegate;
-                a0.l lVar = this.ids;
+                a0.k kVar = this.ids;
                 if (i11 >= 0) {
-                    if (i11 < lVar.f30b) {
-                        notificationCenter.removeObserver(notificationCenterDelegate, lVar.f29a[i11]);
+                    if (i11 < kVar.f24b) {
+                        notificationCenter.removeObserver(notificationCenterDelegate, kVar.f23a[i11]);
                     }
                 } else {
-                    lVar.getClass();
+                    kVar.getClass();
                 }
-                StringBuilder l4 = hg.c.l(i11, "Index ", " must be in 0..");
-                l4.append(lVar.f30b - 1);
-                throw new IndexOutOfBoundsException(l4.toString());
+                StringBuilder k10 = i2.d.k(i11, "Index ", " must be in 0..");
+                k10.append(kVar.f24b - 1);
+                throw new IndexOutOfBoundsException(k10.toString());
             }
-            this.ids.f30b = 0;
+            this.ids.f24b = 0;
             this.notificationCenter = null;
             this.delegate = null;
         }
 
         private ObserversGroupImpl(NotificationCenter notificationCenter, NotificationCenterDelegate notificationCenterDelegate) {
             ?? obj = new Object();
-            obj.f29a = new int[16];
+            obj.f23a = new int[16];
             this.ids = obj;
             this.notificationCenter = notificationCenter;
             this.delegate = notificationCenterDelegate;
@@ -915,7 +915,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(hg.c.i(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(i2.d.i(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -925,16 +925,16 @@ public class NotificationCenter {
         this.checkForExpiredNotifications = null;
         if (this.allowedNotifications.size() != 0) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = Long.MAX_VALUE;
+            long j10 = Long.MAX_VALUE;
             for (int i10 = 0; i10 < this.allowedNotifications.size(); i10++) {
-                long j10 = this.allowedNotifications.valueAt(i10).time;
-                if (elapsedRealtime - j10 > 1000) {
+                long j11 = this.allowedNotifications.valueAt(i10).time;
+                if (elapsedRealtime - j11 > 1000) {
                     if (arrayList == null) {
                         arrayList = new ArrayList();
                     }
                     arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i10)));
                 } else {
-                    j3 = Math.min(j10, j3);
+                    j10 = Math.min(j11, j10);
                 }
             }
             if (arrayList != null) {
@@ -942,8 +942,8 @@ public class NotificationCenter {
                     onAnimationFinish(((Integer) arrayList.get(i11)).intValue());
                 }
             }
-            if (j3 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new yg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
+            if (j10 != Long.MAX_VALUE) {
+                AndroidUtilities.runOnUIThread(new yg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
             }
         }
     }
@@ -963,18 +963,18 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder m10 = hg.c.m("key=", keyAt, " CHANGED: ", intValue, " -> ");
-                m10.append(intValue2);
-                Log.i("ObserverDiff", m10.toString());
+                StringBuilder l4 = i2.d.l("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                l4.append(intValue2);
+                Log.i("ObserverDiff", l4.toString());
             }
         }
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder l4 = hg.c.l(keyAt2, "key=", " ADDED (size=");
-                l4.append(sparseArray2.valueAt(i11));
-                l4.append(")");
-                Log.i("ObserverDiff", l4.toString());
+                StringBuilder k10 = i2.d.k(keyAt2, "key=", " ADDED (size=");
+                k10.append(sparseArray2.valueAt(i11));
+                k10.append(")");
+                Log.i("ObserverDiff", k10.toString());
             }
         }
     }
@@ -1055,7 +1055,7 @@ public class NotificationCenter {
     }
 
     public static void listenEmojiLoading(View view) {
-        getGlobalInstance().listen(view, emojiLoaded, new e1(view, 2));
+        getGlobalInstance().listen(view, emojiLoaded, new d1(view, 2));
     }
 
     private void postNotificationDebounced(int i10, Object[] objArr) {
@@ -1218,9 +1218,9 @@ public class NotificationCenter {
                 }
             };
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-            return new ei.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
+            return new fi.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
         }
-        return new z1(17);
+        return new y1(17);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1395,7 +1395,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f17007id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f16711id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

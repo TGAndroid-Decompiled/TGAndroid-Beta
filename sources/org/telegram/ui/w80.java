@@ -1,60 +1,23 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.os.StatFs;
-import java.io.File;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-public final class w80 implements Runnable {
-    public final int f43093a;
-    public final LaunchActivity f43094b;
-    public final int f43095c;
+import android.view.View;
+public final class w80 extends s4.k {
+    public final LanguageSelectActivity F;
 
-    public w80(LaunchActivity launchActivity, int i10, int i11) {
-        this.f43093a = i11;
-        this.f43094b = launchActivity;
-        this.f43095c = i10;
+    public w80(LanguageSelectActivity languageSelectActivity) {
+        this.F = languageSelectActivity;
     }
 
     @Override
-    public final void run() {
-        File directory;
-        int i10 = this.f43093a;
-        int i11 = this.f43095c;
-        LaunchActivity launchActivity = this.f43094b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.B1;
-                if (UserConfig.getInstance(launchActivity.O).isClientActivated()) {
-                    try {
-                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                        if ((((i11 == 2 || i11 == 1) && Math.abs(launchActivity.f33659w1 - System.currentTimeMillis()) > 240000) || Math.abs(globalMainSettings.getLong("last_space_check", 0L) - System.currentTimeMillis()) >= 259200000) && (directory = FileLoader.getDirectory(4)) != null) {
-                            StatFs statFs = new StatFs(directory.getAbsolutePath());
-                            long availableBlocksLong = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
-                            if (i11 > 0 || availableBlocksLong < 52428800) {
-                                if (i11 > 0) {
-                                    launchActivity.f33659w1 = System.currentTimeMillis();
-                                }
-                                globalMainSettings.edit().putLong("last_space_check", System.currentTimeMillis()).commit();
-                                AndroidUtilities.runOnUIThread(new h90(launchActivity, 6));
-                            } else {
-                                return;
-                            }
-                        }
-                        return;
-                    } catch (Throwable unused) {
-                        return;
-                    }
-                }
-                return;
-            default:
-                Pattern pattern2 = LaunchActivity.B1;
-                ConnectionsManager.getInstance(launchActivity.O).cancelRequest(i11, true);
-                return;
+    public final void P(s4.b1 b1Var) {
+        View view;
+        LanguageSelectActivity languageSelectActivity = this.F;
+        languageSelectActivity.f32098b.invalidate();
+        org.telegram.ui.Components.mm0 mm0Var = languageSelectActivity.f32098b;
+        int i10 = mm0Var.C1;
+        if (i10 != -1 && (view = mm0Var.D1) != null) {
+            mm0Var.i1(i10, view);
+            mm0Var.invalidate();
         }
     }
 }

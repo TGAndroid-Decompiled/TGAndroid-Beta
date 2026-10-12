@@ -1,3 +1,3 @@
 package m;
-public abstract class e3 extends o2 {
+public abstract class e3 extends n2 {
 }

@@ -1,11 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public interface vb0 {
-    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+import android.content.Context;
+import android.graphics.Canvas;
+public final class vb0 extends ee {
+    public final ac0 f40954c;
 
-    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
+    public vb0(ac0 ac0Var, Context context) {
+        super(context);
+        this.f40954c = ac0Var;
+    }
 
-    void c(TLObject tLObject);
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.f40954c.getClass();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+    }
 }

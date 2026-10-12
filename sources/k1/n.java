@@ -1,69 +1,42 @@
 package k1;
+public final class n extends md.i implements td.p {
+    public final int f13782a;
+    public int f13783b;
+    public Object f13784c;
+    public final z d;
 
-import v7.a8;
-public final class n extends ld.j implements sd.p {
-    public final int f14348a;
-    public Object f14349b;
-    public final Object f14350c;
-
-    public n(Object obj, jd.c cVar, int i10) {
+    public n(z zVar, kd.c cVar, int i10) {
         super(2, cVar);
-        this.f14348a = i10;
-        this.f14350c = obj;
+        this.f13782a = i10;
+        this.d = zVar;
     }
 
     @Override
-    public final jd.c create(Object obj, jd.c cVar) {
-        switch (this.f14348a) {
+    public final kd.c create(Object obj, kd.c cVar) {
+        switch (this.f13782a) {
             case 0:
-                n nVar = new n((b0) this.f14350c, cVar, 0);
-                nVar.f14349b = obj;
+                n nVar = new n(this.d, cVar, 0);
+                nVar.f13784c = obj;
                 return nVar;
             default:
-                n nVar2 = new n((String) this.f14350c, cVar, 1);
-                nVar2.f14349b = obj;
+                n nVar2 = new n(this.d, cVar, 1);
+                nVar2.f13784c = obj;
                 return nVar2;
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f14348a) {
+        switch (this.f13782a) {
             case 0:
-                return ((n) create((b0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11090a);
+                return ((n) create((k) obj, (kd.c) obj2)).invokeSuspend(id.i.f11386a);
             default:
-                hd.i iVar = hd.i.f11090a;
-                ((n) create((n1.b) obj, (jd.c) obj2)).invokeSuspend(iVar);
-                return iVar;
+                return ((n) create((ee.c) obj, (kd.c) obj2)).invokeSuspend(id.i.f11386a);
         }
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        boolean z10;
-        int i10 = this.f14348a;
-        Object obj2 = this.f14350c;
-        switch (i10) {
-            case 0:
-                kd.a aVar = kd.a.f14781a;
-                a8.b(obj);
-                b0 b0Var = (b0) this.f14349b;
-                b0 b0Var2 = (b0) obj2;
-                if (!(b0Var2 instanceof b) && !(b0Var2 instanceof g) && b0Var == b0Var2) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            default:
-                kd.a aVar2 = kd.a.f14781a;
-                a8.b(obj);
-                n1.b bVar = (n1.b) this.f14349b;
-                bVar.getClass();
-                n1.d key = za.w.f54521a;
-                kotlin.jvm.internal.i.e(key, "key");
-                bVar.b(key, (String) obj2);
-                return hd.i.f11090a;
-        }
+    public final java.lang.Object invokeSuspend(java.lang.Object r8) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.n.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 }

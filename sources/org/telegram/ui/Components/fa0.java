@@ -1,241 +1,93 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.os.SystemClock;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.CharacterStyle;
-import android.util.Pair;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class fa0 {
-    public View f25996a;
-    public org.telegram.ui.Cells.b1 f25997b;
-    public final ArrayList f25998c = new ArrayList();
-    public int d = 0;
-    public final ArrayList f25999e = new ArrayList();
-    public int f26000f = 0;
+import org.telegram.messenger.R;
+public final class fa0 extends View {
+    public final Drawable f24987a;
+    public final Paint f24988b;
+    public final Paint f24989c;
+    public final g6 d;
+    public boolean e;
 
-    public fa0() {
+    public fa0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f24988b = paint;
+        Paint paint2 = new Paint(1);
+        this.f24989c = paint2;
+        this.d = new g6(this, 0L, 320L, es.h);
+        w7.c6.a(this);
+        this.f24987a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint2.setColor(-65536);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint.setStyle(style);
+        paint.setColor(-1);
     }
 
-    public static ma0 i(Layout layout, CharacterStyle characterStyle, float f7) {
-        if (layout != null && characterStyle != null && (layout.getText() instanceof Spanned)) {
-            Spanned spanned = (Spanned) layout.getText();
-            ca0 ca0Var = new ca0(0);
-            int spanStart = spanned.getSpanStart(characterStyle);
-            int spanEnd = spanned.getSpanEnd(characterStyle);
-            ca0Var.d(layout, spanStart, f7);
-            layout.getSelectionPath(spanStart, spanEnd, ca0Var);
-            ma0 ma0Var = new ma0();
-            ma0Var.f28482y = ca0Var;
-            ma0Var.D = true;
-            ma0Var.k(4.0f);
-            ma0Var.l();
-            return ma0Var;
+    public final void a(boolean z10, boolean z11) {
+        if (this.e == z10) {
+            return;
         }
-        return null;
-    }
-
-    public final void a(ja0 ja0Var, Object obj) {
-        this.f25998c.add(new Pair(ja0Var, obj));
-        this.d++;
-        h(obj, true);
-    }
-
-    public final void b(ma0 ma0Var, Object obj) {
-        this.f25999e.add(new Pair(ma0Var, obj));
-        this.f26000f++;
-        h(obj, true);
-    }
-
-    public final void c() {
-        d(true);
-    }
-
-    public final void d(boolean z10) {
-        if (z10) {
-            for (int i10 = 0; i10 < this.d; i10++) {
-                j(i10);
-            }
-        } else if (this.d > 0) {
-            int i11 = 0;
-            while (true) {
-                int i12 = this.d;
-                ArrayList arrayList = this.f25998c;
-                if (i11 < i12) {
-                    ((ja0) ((Pair) arrayList.get(i11)).first).c();
-                    h(((Pair) arrayList.get(i11)).second, false);
-                    i11++;
-                } else {
-                    arrayList.clear();
-                    this.d = 0;
-                    h(null, true);
-                    return;
-                }
-            }
+        this.e = z10;
+        if (!z11) {
+            this.d.a(z10);
         }
+        invalidate();
     }
 
-    public final void e() {
-        for (int i10 = 0; i10 < this.f26000f; i10++) {
-            m(i10, true);
-        }
-    }
-
-    public final boolean f(Canvas canvas) {
-        int i10 = 0;
-        boolean z10 = false;
-        while (i10 < this.f26000f) {
-            ((ma0) ((Pair) this.f25999e.get(i10)).first).draw(canvas);
-            i10++;
-            z10 = true;
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            if (!((ja0) ((Pair) this.f25998c.get(i11)).first).a(canvas) && !z10) {
-                z10 = false;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.d.e(!this.e);
+        int width = getWidth();
+        Drawable drawable = this.f24987a;
+        drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        Rect bounds = drawable.getBounds();
+        float width2 = (bounds.width() * 0.325f) + bounds.left;
+        float height = (bounds.height() * 0.152f) + bounds.top;
+        float height2 = bounds.bottom - (bounds.height() * 0.152f);
+        float width3 = bounds.right - (bounds.width() * 0.101f);
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            Paint paint = this.f24989c;
+            paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+            drawable.draw(canvas);
+            if (this.e) {
+                canvas.drawLine(width3 - AndroidUtilities.dp(4.0f), height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(width3 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + width2, e), AndroidUtilities.lerp(height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + height, e), paint);
+                canvas2 = canvas;
             } else {
-                z10 = true;
+                canvas2 = canvas;
+                canvas2.drawLine(width2 + AndroidUtilities.dp(4.0f), height + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + width2, width3 - AndroidUtilities.dp(4.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + height, height2 - AndroidUtilities.dp(4.0f), e), paint);
             }
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+            drawable.draw(canvas2);
         }
-        return z10;
-    }
-
-    public final boolean g(Canvas canvas, Object obj) {
-        boolean z10 = false;
-        for (int i10 = 0; i10 < this.f26000f; i10++) {
-            ArrayList arrayList = this.f25999e;
-            if (((Pair) arrayList.get(i10)).second == obj) {
-                ((ma0) ((Pair) arrayList.get(i10)).first).draw(canvas);
-                z10 = true;
-            }
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            ArrayList arrayList2 = this.f25998c;
-            if (((Pair) arrayList2.get(i11)).second == obj) {
-                if (!((ja0) ((Pair) arrayList2.get(i11)).first).a(canvas) && !z10) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-            }
-        }
-        h(obj, false);
-        return z10;
-    }
-
-    public final void h(Object obj, boolean z10) {
-        View view;
-        View view2;
-        if (obj instanceof View) {
-            ((View) obj).invalidate();
-        } else if (obj instanceof org.telegram.ui.b3) {
-            org.telegram.ui.b3 b3Var = (org.telegram.ui.b3) obj;
-            if (!b3Var.f36041c && (view2 = b3Var.f36040b) != null) {
-                view2.invalidate();
-            }
-        } else if (z10 && (view = this.f25996a) != null) {
-            view.invalidate();
-        }
-        org.telegram.ui.Cells.b1 b1Var = this.f25997b;
-        if (b1Var != null) {
-            b1Var.run();
-        }
-    }
-
-    public final void j(int i10) {
-        if (i10 >= 0 && i10 < this.d) {
-            Pair pair = (Pair) this.f25998c.get(i10);
-            ja0 ja0Var = (ja0) pair.first;
-            if (ja0Var.f27436p < 0) {
-                ja0Var.f27436p = Math.max(ja0Var.f27435o + ja0Var.f27437q, SystemClock.elapsedRealtime());
-                h(pair.second, true);
-                AndroidUtilities.runOnUIThread(new ea0(this, ja0Var, 1), Math.max(0L, (ja0Var.f27436p - SystemClock.elapsedRealtime()) + 175));
+        if (i10 > 0) {
+            Paint paint2 = this.f24988b;
+            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            if (this.e) {
+                canvas2.drawLine(width3, height2, AndroidUtilities.lerp(width3, width2, e), AndroidUtilities.lerp(height2, height, e), paint2);
+            } else {
+                canvas.drawLine(width2, height, AndroidUtilities.lerp(width2, width3, e), AndroidUtilities.lerp(height, height2, e), paint2);
             }
         }
     }
 
-    public final void k(ja0 ja0Var, boolean z10) {
-        ArrayList arrayList;
-        Pair pair;
-        if (ja0Var != null) {
-            int i10 = 0;
-            while (true) {
-                int i11 = this.d;
-                arrayList = this.f25998c;
-                if (i10 < i11) {
-                    if (((Pair) arrayList.get(i10)).first == ja0Var) {
-                        pair = (Pair) arrayList.get(i10);
-                        break;
-                    }
-                    i10++;
-                } else {
-                    pair = null;
-                    break;
-                }
-            }
-            if (pair != null) {
-                if (z10) {
-                    if (ja0Var.f27436p < 0) {
-                        ja0Var.f27436p = Math.max(ja0Var.f27435o + ja0Var.f27437q, SystemClock.elapsedRealtime());
-                        h(pair.second, true);
-                        AndroidUtilities.runOnUIThread(new ea0(this, ja0Var, 0), Math.max(0L, (ja0Var.f27436p - SystemClock.elapsedRealtime()) + 175));
-                        return;
-                    }
-                    return;
-                }
-                arrayList.remove(pair);
-                ja0Var.c();
-                this.d = arrayList.size();
-                h(pair.second, true);
-            }
-        }
-    }
-
-    public final void l(ma0 ma0Var, boolean z10) {
-        if (ma0Var != null) {
-            for (int i10 = 0; i10 < this.f26000f; i10++) {
-                if (((Pair) this.f25999e.get(i10)).first == ma0Var) {
-                    m(i10, z10);
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void m(int i10, boolean z10) {
-        if (i10 >= 0 && i10 < this.f26000f) {
-            ArrayList arrayList = this.f25999e;
-            Pair pair = (Pair) arrayList.get(i10);
-            if (pair != null) {
-                ma0 ma0Var = (ma0) pair.first;
-                if (z10) {
-                    if (!ma0Var.c()) {
-                        if (!ma0Var.d()) {
-                            ma0Var.a();
-                        }
-                        jt jtVar = new jt(24, this, ma0Var);
-                        long j3 = 0;
-                        if (ma0Var.f28463c > 0) {
-                            j3 = 320 - (SystemClock.elapsedRealtime() - ma0Var.f28463c);
-                        }
-                        AndroidUtilities.runOnUIThread(jtVar, j3);
-                        return;
-                    }
-                    l(ma0Var, false);
-                    return;
-                }
-                arrayList.remove(pair);
-                ma0Var.f28462b = -1L;
-                ma0Var.f28463c = -1L;
-                this.f26000f = arrayList.size();
-                h(pair.second, true);
-            }
-        }
-    }
-
-    public fa0(View view) {
-        this.f25996a = view;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
     }
 }

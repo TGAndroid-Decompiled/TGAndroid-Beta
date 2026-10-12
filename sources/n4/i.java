@@ -1,136 +1,75 @@
 package n4;
 
-import android.os.Binder;
+import android.media.MediaMetadata;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Parcel;
-import android.text.TextUtils;
-import java.lang.ref.WeakReference;
-public final class i extends Binder implements f {
-    public static final int f16320b = 0;
-    public final WeakReference f16321a;
+import android.os.Parcelable;
+public final class i implements Parcelable {
+    public static final Parcelable.Creator<i> CREATOR;
+    public static final a0.f f16005c;
+    public static final String[] d;
+    public final Bundle f16006a;
+    public MediaMetadata f16007b;
 
-    public i() {
-        attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
-        this.f16321a = new WeakReference(null);
+    static {
+        ?? lVar = new a0.l(0);
+        f16005c = lVar;
+        lVar.put("android.media.metadata.TITLE", 1);
+        lVar.put("android.media.metadata.ARTIST", 1);
+        lVar.put("android.media.metadata.DURATION", 0);
+        lVar.put("android.media.metadata.ALBUM", 1);
+        lVar.put("android.media.metadata.AUTHOR", 1);
+        lVar.put("android.media.metadata.WRITER", 1);
+        lVar.put("android.media.metadata.COMPOSER", 1);
+        lVar.put("android.media.metadata.COMPILATION", 1);
+        lVar.put("android.media.metadata.DATE", 1);
+        lVar.put("android.media.metadata.YEAR", 0);
+        lVar.put("android.media.metadata.GENRE", 1);
+        lVar.put("android.media.metadata.TRACK_NUMBER", 0);
+        lVar.put("android.media.metadata.NUM_TRACKS", 0);
+        lVar.put("android.media.metadata.DISC_NUMBER", 0);
+        lVar.put("android.media.metadata.ALBUM_ARTIST", 1);
+        lVar.put("android.media.metadata.ART", 2);
+        lVar.put("android.media.metadata.ART_URI", 1);
+        lVar.put("android.media.metadata.ALBUM_ART", 2);
+        lVar.put("android.media.metadata.ALBUM_ART_URI", 1);
+        lVar.put("android.media.metadata.USER_RATING", 3);
+        lVar.put("android.media.metadata.RATING", 3);
+        lVar.put("android.media.metadata.DISPLAY_TITLE", 1);
+        lVar.put("android.media.metadata.DISPLAY_SUBTITLE", 1);
+        lVar.put("android.media.metadata.DISPLAY_DESCRIPTION", 1);
+        lVar.put("android.media.metadata.DISPLAY_ICON", 2);
+        lVar.put("android.media.metadata.DISPLAY_ICON_URI", 1);
+        lVar.put("android.media.metadata.MEDIA_ID", 1);
+        lVar.put("android.media.metadata.BT_FOLDER_TYPE", 0);
+        lVar.put("android.media.metadata.MEDIA_URI", 1);
+        lVar.put("android.media.metadata.ADVERTISEMENT", 0);
+        lVar.put("android.media.metadata.DOWNLOAD_STATUS", 0);
+        d = new String[]{"android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.ALBUM", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.WRITER", "android.media.metadata.AUTHOR", "android.media.metadata.COMPOSER", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION"};
+        CREATOR = new m8.h(4);
+    }
+
+    public i(Bundle bundle) {
+        Bundle bundle2 = new Bundle(bundle);
+        this.f16006a = bundle2;
+        ClassLoader classLoader = s.class.getClassLoader();
+        classLoader.getClass();
+        bundle2.setClassLoader(classLoader);
     }
 
     @Override
-    public final void h(int i10) {
-        if (this.f16321a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
+    public final int describeContents() {
+        return 0;
     }
 
     @Override
-    public final void onRepeatModeChanged(int i10) {
-        if (this.f16321a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeBundle(this.f16006a);
     }
 
-    @Override
-    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        g0 g0Var;
-        if (i10 != 1598968902) {
-            switch (i10) {
-                case 1:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    parcel.readString();
-                    if (parcel.readInt() != 0) {
-                        Bundle bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                    }
-                    if (this.f16321a.get() != null) {
-                        throw new ClassCastException();
-                    }
-                    break;
-                case 2:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    throw new AssertionError();
-                case 3:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (parcel.readInt() != 0) {
-                        g0Var = g0.CREATOR.createFromParcel(parcel);
-                    } else {
-                        g0Var = null;
-                    }
-                    t(g0Var);
-                    return true;
-                case 4:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (parcel.readInt() != 0) {
-                        n.CREATOR.createFromParcel(parcel);
-                    }
-                    throw new AssertionError();
-                case 5:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    parcel.createTypedArrayList(v.CREATOR);
-                    throw new AssertionError();
-                case 6:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (parcel.readInt() != 0) {
-                        CharSequence charSequence = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
-                    }
-                    throw new AssertionError();
-                case 7:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (parcel.readInt() != 0) {
-                        Bundle bundle2 = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                    }
-                    throw new AssertionError();
-                case 8:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (parcel.readInt() != 0) {
-                        e0.CREATOR.createFromParcel(parcel);
-                    }
-                    throw new AssertionError();
-                case 9:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    onRepeatModeChanged(parcel.readInt());
-                    return true;
-                case 10:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    parcel.readInt();
-                    return true;
-                case 11:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    parcel.readInt();
-                    if (this.f16321a.get() != null) {
-                        throw new ClassCastException();
-                    }
-                    break;
-                case 12:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    h(parcel.readInt());
-                    return true;
-                case 13:
-                    parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (this.f16321a.get() != null) {
-                        throw new ClassCastException();
-                    }
-                    break;
-                default:
-                    return super.onTransact(i10, parcel, parcel2, i11);
-            }
-            return true;
-        }
-        parcel2.getClass();
-        parcel2.writeString("android.support.v4.media.session.IMediaControllerCallback");
-        return true;
-    }
-
-    @Override
-    public final void t(g0 g0Var) {
-        if (this.f16321a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this;
+    public i(Parcel parcel) {
+        Bundle readBundle = parcel.readBundle(s.class.getClassLoader());
+        readBundle.getClass();
+        this.f16006a = readBundle;
     }
 }

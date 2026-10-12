@@ -8,49 +8,33 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 public final class z extends s {
     public static final z h;
-    public final transient m f16571f;
+    public final transient m f16237f;
 
     static {
-        i iVar = m.f16529b;
-        h = new z(x.f16563e, v.f16558b);
+        i iVar = m.f16200b;
+        h = new z(x.e, v.f16226b);
     }
 
     public z(m mVar, Comparator comparator) {
         super(comparator);
-        this.f16571f = mVar;
-    }
-
-    public final z A(int i10, int i11) {
-        m mVar = this.f16571f;
-        if (i10 == 0) {
-            if (i11 != mVar.size()) {
-                i10 = 0;
-            } else {
-                return this;
-            }
-        }
-        Comparator comparator = this.d;
-        if (i10 < i11) {
-            return new z(mVar.subList(i10, i11), comparator);
-        }
-        return s.x(comparator);
+        this.f16237f = mVar;
     }
 
     @Override
     public final Object ceiling(Object obj) {
-        int z10 = z(obj, true);
-        m mVar = this.f16571f;
-        if (z10 == mVar.size()) {
+        int y3 = y(obj, true);
+        m mVar = this.f16237f;
+        if (y3 == mVar.size()) {
             return null;
         }
-        return mVar.get(z10);
+        return mVar.get(y3);
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
             try {
-                if (Collections.binarySearch(this.f16571f, obj, this.d) >= 0) {
+                if (Collections.binarySearch(this.f16237f, obj, this.d) >= 0) {
                     return true;
                 }
             } catch (ClassCastException unused) {
@@ -66,7 +50,7 @@ public final class z extends s {
         }
         Comparator comparator = this.d;
         if (a.i(comparator, collection) && collection.size() > 1) {
-            i listIterator = this.f16571f.listIterator(0);
+            i listIterator = this.f16237f.listIterator(0);
             Iterator it = collection.iterator();
             if (listIterator.hasNext()) {
                 Object next = it.next();
@@ -97,7 +81,7 @@ public final class z extends s {
 
     @Override
     public final Iterator descendingIterator() {
-        return this.f16571f.r().listIterator(0);
+        return this.f16237f.q().listIterator(0);
     }
 
     @Override
@@ -105,7 +89,7 @@ public final class z extends s {
         if (obj != this) {
             if (obj instanceof Set) {
                 Set set = (Set) obj;
-                m mVar = this.f16571f;
+                m mVar = this.f16237f;
                 if (mVar.size() == set.size()) {
                     if (!isEmpty()) {
                         Comparator comparator = this.d;
@@ -140,44 +124,44 @@ public final class z extends s {
     @Override
     public final Object first() {
         if (!isEmpty()) {
-            return this.f16571f.get(0);
+            return this.f16237f.get(0);
         }
         throw new NoSuchElementException();
     }
 
     @Override
     public final Object floor(Object obj) {
-        int y3 = y(obj, true) - 1;
-        if (y3 == -1) {
+        int x10 = x(obj, true) - 1;
+        if (x10 == -1) {
             return null;
         }
-        return this.f16571f.get(y3);
+        return this.f16237f.get(x10);
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        return this.f16237f.h(objArr);
     }
 
     @Override
     public final Object higher(Object obj) {
-        int z10 = z(obj, false);
-        m mVar = this.f16571f;
-        if (z10 == mVar.size()) {
+        int y3 = y(obj, false);
+        m mVar = this.f16237f;
+        if (y3 == mVar.size()) {
             return null;
         }
-        return mVar.get(z10);
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        return this.f16571f.i(objArr);
+        return mVar.get(y3);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f16571f.listIterator(0);
+        return this.f16237f.listIterator(0);
     }
 
     @Override
     public final Object last() {
         if (!isEmpty()) {
-            m mVar = this.f16571f;
+            m mVar = this.f16237f;
             return mVar.get(mVar.size() - 1);
         }
         throw new NoSuchElementException();
@@ -185,46 +169,46 @@ public final class z extends s {
 
     @Override
     public final Object lower(Object obj) {
-        int y3 = y(obj, false) - 1;
-        if (y3 == -1) {
+        int x10 = x(obj, false) - 1;
+        if (x10 == -1) {
             return null;
         }
-        return this.f16571f.get(y3);
+        return this.f16237f.get(x10);
+    }
+
+    @Override
+    public final int m() {
+        return this.f16237f.m();
     }
 
     @Override
     public final int n() {
-        return this.f16571f.n();
+        return this.f16237f.n();
     }
 
     @Override
-    public final int o() {
-        return this.f16571f.o();
+    public final d0 o() {
+        return this.f16237f.listIterator(0);
     }
 
     @Override
-    public final d0 p() {
-        return this.f16571f.listIterator(0);
+    public final Object[] p() {
+        return this.f16237f.p();
     }
 
     @Override
-    public final Object[] q() {
-        return this.f16571f.q();
+    public final m s() {
+        return this.f16237f;
     }
 
     @Override
     public final int size() {
-        return this.f16571f.size();
+        return this.f16237f.size();
     }
 
-    @Override
-    public final m t() {
-        return this.f16571f;
-    }
-
-    public final int y(Object obj, boolean z10) {
+    public final int x(Object obj, boolean z10) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f16571f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f16237f, obj, this.d);
         if (binarySearch >= 0) {
             if (z10) {
                 return binarySearch + 1;
@@ -234,9 +218,9 @@ public final class z extends s {
         return ~binarySearch;
     }
 
-    public final int z(Object obj, boolean z10) {
+    public final int y(Object obj, boolean z10) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f16571f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f16237f, obj, this.d);
         if (binarySearch >= 0) {
             if (z10) {
                 return binarySearch;
@@ -244,5 +228,21 @@ public final class z extends s {
             return binarySearch + 1;
         }
         return ~binarySearch;
+    }
+
+    public final z z(int i10, int i11) {
+        m mVar = this.f16237f;
+        if (i10 == 0) {
+            if (i11 != mVar.size()) {
+                i10 = 0;
+            } else {
+                return this;
+            }
+        }
+        Comparator comparator = this.d;
+        if (i10 < i11) {
+            return new z(mVar.subList(i10, i11), comparator);
+        }
+        return s.w(comparator);
     }
 }

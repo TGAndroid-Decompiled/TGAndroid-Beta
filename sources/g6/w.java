@@ -8,7 +8,7 @@ import android.os.Looper;
 import android.os.RemoteException;
 import c6.y;
 import com.google.android.gms.cast.CastDevice;
-import m.r3;
+import m.q3;
 public final class w extends n6.g {
     public static final b Y = new b("CastClientImplCxless", null);
     public final CastDevice U;
@@ -16,10 +16,10 @@ public final class w extends n6.g {
     public final Bundle W;
     public final String X;
 
-    public w(Context context, Looper looper, r3 r3Var, CastDevice castDevice, long j3, Bundle bundle, String str, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
-        super(context, looper, 10, r3Var, kVar, lVar, 0);
+    public w(Context context, Looper looper, q3 q3Var, CastDevice castDevice, long j10, Bundle bundle, String str, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
+        super(context, looper, 10, q3Var, kVar, lVar, 0);
         this.U = castDevice;
-        this.V = j3;
+        this.V = j10;
         this.W = bundle;
         this.X = str;
     }
@@ -37,8 +37,8 @@ public final class w extends n6.g {
             } finally {
                 super.disconnect();
             }
-        } catch (RemoteException | IllegalStateException e7) {
-            Y.a(e7, "Error while disconnecting the controller interface", new Object[0]);
+        } catch (RemoteException | IllegalStateException e) {
+            Y.a(e, "Error while disconnecting the controller interface", new Object[0]);
         }
     }
 
@@ -61,7 +61,7 @@ public final class w extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return y.f4443e;
+        return y.e;
     }
 
     @Override

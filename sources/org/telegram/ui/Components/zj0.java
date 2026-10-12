@@ -1,77 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class zj0 extends MetricAffectingSpan implements LineHeightSpan {
-    public ak0 f33394a;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class zj0 extends ImageReceiver {
+    public final bk0 f31889a;
 
-    @Override
-    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        int i14;
-        int i15;
-        ak0 ak0Var = this.f33394a;
-        if (ak0Var.f24416b) {
-            int i16 = 2;
-            if (ak0Var.f24419f) {
-                i14 = 7;
-            } else {
-                i14 = 2;
-            }
-            if (i10 <= ak0Var.f24417c) {
-                int i17 = fontMetricsInt.ascent;
-                if (ak0Var.f24420n) {
-                    i15 = 2;
-                } else {
-                    i15 = 0;
-                }
-                fontMetricsInt.ascent = i17 - AndroidUtilities.dp(i15 + i14);
-                int i18 = fontMetricsInt.top;
-                if (!this.f33394a.f24420n) {
-                    i16 = 0;
-                }
-                fontMetricsInt.top = i18 - AndroidUtilities.dp(i16 + i14);
-            }
-            if (i11 >= this.f33394a.d) {
-                float f7 = i14;
-                fontMetricsInt.descent = AndroidUtilities.dp(f7) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = AndroidUtilities.dp(f7) + fontMetricsInt.bottom;
-            }
-        }
+    public zj0(bk0 bk0Var) {
+        this.f31889a = bk0Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f7;
-        if (textPaint == null) {
-            return;
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
+        if (drawable != null) {
+            this.f31889a.c();
         }
-        if (this.f33394a.f24415a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f7;
-        float f10;
-        if (this.f33394a.f24415a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
-        if (this.f33394a.f24415a) {
-            f10 = 1.1f;
-        } else {
-            f10 = 1.0f;
-        }
-        textPaint.setTextScaleX(f10);
+        return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
     }
 }

@@ -1,36 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class vx extends lw {
-    public final TLRPC.StickerSet W;
-    public final d00 X;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class vx extends s4.s {
+    public final wz Q;
 
-    public vx(d00 d00Var, org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(m2Var, context, c6Var, arrayList);
-        this.X = d00Var;
-        this.W = stickerSet;
+    public vx(wz wzVar) {
+        super(8);
+        this.Q = wzVar;
     }
 
     @Override
-    public final void Y(boolean z10) {
-        d00 d00Var = this.X;
-        ArrayList arrayList = d00Var.f25112p1;
-        TLRPC.StickerSet stickerSet = this.W;
-        if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19830id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19830id));
-            }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19830id));
+    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
+        try {
+            di.l1 l1Var = new di.l1(this, recyclerView.getContext(), 2);
+            l1Var.f44979a = i10;
+            w0(l1Var);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        d00Var.T();
-    }
-
-    @Override
-    public final void dismiss() {
-        this.X.f25133v2 = false;
-        super.dismiss();
     }
 }

@@ -1,90 +1,209 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class is extends Drawable {
-    public final Drawable f38986a;
-    public final Drawable f38987b;
-    public int d;
-    public int f38989e;
-    public final ArrayList f38988c = new ArrayList();
-    public boolean f38990f = false;
-    public final org.telegram.ui.Components.g6 f38991g = new org.telegram.ui.Components.g6(new gj(this, 14), 420, org.telegram.ui.Components.js.h);
-    public int h = 255;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui.Components.gw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.qd0, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.sd0 {
+    public final int f37198a;
 
-    public is(Drawable drawable, Drawable drawable2) {
-        this.f38986a = drawable;
-        this.f38987b = drawable2;
-    }
-
-    public final void a(int i10, int i11) {
-        this.d = i10;
-        this.f38989e = i11;
-    }
-
-    public final void b(boolean z10) {
-        if (this.f38990f == z10) {
-            return;
-        }
-        this.f38990f = z10;
-        ArrayList arrayList = this.f38988c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).invalidate();
-        }
-        invalidateSelf();
+    public is(int i10) {
+        this.f37198a = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float e7 = this.f38991g.e(this.f38990f);
-        int i10 = this.h;
-        Drawable drawable = this.f38986a;
-        drawable.setAlpha(i10);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
-        if (e7 > 0.0f) {
-            Drawable drawable2 = this.f38987b;
-            drawable2.setAlpha((int) (this.h * e7));
-            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.f38989e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.f38989e);
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, e7);
-            canvas.save();
-            canvas.scale(lerp, lerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-            drawable2.draw(canvas);
-            canvas.restore();
+    public void b(Object obj, float f7) {
+        ks ksVar = (ks) obj;
+        switch (this.f37198a) {
+            case 1:
+                ksVar.d = f7;
+                if (ksVar.getParent() != null) {
+                    ((View) ksVar.getParent()).invalidate();
+                    return;
+                }
+                return;
+            default:
+                ksVar.e = f7;
+                if (ksVar.getParent() != null) {
+                    ((View) ksVar.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f38986a.getIntrinsicHeight();
+    public String e(int i10) {
+        int i11;
+        switch (this.f37198a) {
+            case 6:
+                return i2.d.i(i10, "");
+            case 7:
+                switch (i10) {
+                    case 0:
+                        return LocaleController.getString(R.string.January);
+                    case 1:
+                        return LocaleController.getString(R.string.February);
+                    case 2:
+                        return LocaleController.getString(R.string.March);
+                    case 3:
+                        return LocaleController.getString(R.string.April);
+                    case 4:
+                        return LocaleController.getString(R.string.May);
+                    case 5:
+                        return LocaleController.getString(R.string.June);
+                    case 6:
+                        return LocaleController.getString(R.string.July);
+                    case 7:
+                        return LocaleController.getString(R.string.August);
+                    case 8:
+                        return LocaleController.getString(R.string.September);
+                    case 9:
+                        return LocaleController.getString(R.string.October);
+                    case 10:
+                        return LocaleController.getString(R.string.November);
+                    default:
+                        return LocaleController.getString(R.string.December);
+                }
+            case 8:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 9:
+            case 10:
+            case 20:
+            case 27:
+            default:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 11:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar = Calendar.getInstance();
+                int i12 = calendar.get(1);
+                calendar.add(6, i10);
+                long timeInMillis = calendar.getTimeInMillis();
+                int i13 = calendar.get(1);
+                if (i13 == i12 && i10 < 7) {
+                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis);
+                } else if (i13 == i12) {
+                    return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis);
+                } else {
+                    return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis);
+                }
+            case 12:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 13:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 14:
+                Calendar calendar2 = Calendar.getInstance();
+                calendar2.set(5, 1);
+                calendar2.set(2, i10);
+                return calendar2.getDisplayName(2, 1, Locale.getDefault());
+            case 15:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 16:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 17:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar3 = Calendar.getInstance();
+                int i14 = calendar3.get(1);
+                calendar3.add(6, i10);
+                long timeInMillis2 = calendar3.getTimeInMillis();
+                if (calendar3.get(1) == i14) {
+                    return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis2);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis2);
+            case 18:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 19:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 21:
+                return LocaleController.formatPluralString("Times", i10 + 1, new Object[0]);
+            case 22:
+                return LocaleController.formatPluralString("Minutes", i10 + 1, new Object[0]);
+            case 23:
+                return LocaleController.getString(R.string.NotificationsFrequencyDivider);
+            case 24:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar4 = Calendar.getInstance();
+                int i15 = calendar4.get(1);
+                calendar4.add(6, i10);
+                long timeInMillis3 = calendar4.getTimeInMillis();
+                if (calendar4.get(1) == i15) {
+                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis3) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis3);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis3);
+            case 25:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 26:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 28:
+                boolean z10 = LocaleController.is24HourFormat;
+                int i16 = 12;
+                if (z10) {
+                    i11 = 24;
+                } else {
+                    i11 = 12;
+                }
+                int i17 = i10 % i11;
+                if (i10 % 12 != 0 || z10) {
+                    i16 = i17;
+                }
+                String format = String.format("%02d", Integer.valueOf(i16));
+                if (i10 >= 24) {
+                    return LocaleController.formatString(R.string.BusinessHoursNextDayPicker, format);
+                }
+                return format;
+        }
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f38986a.getIntrinsicWidth();
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f37198a) {
+            case 9:
+                a2Var.dismiss();
+                return;
+            case 20:
+                a2Var.dismiss();
+                return;
+            default:
+                a2Var.dismiss();
+                return;
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public float get(Object obj) {
+        ks ksVar = (ks) obj;
+        switch (this.f37198a) {
+            case 0:
+                return ksVar.d;
+            default:
+                return ksVar.e;
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.h = i10;
+    public void r(org.telegram.ui.Components.ud0 ud0Var, int i10) {
+        Pattern pattern = org.telegram.ui.Components.g5.f25184a;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f38986a.setColorFilter(colorFilter);
-        this.f38987b.setColorFilter(colorFilter);
+    public void run(Exception exc) {
+        switch (this.f37198a) {
+            case 4:
+                FileLog.e(exc);
+                return;
+            default:
+                FileLog.e(exc);
+                return;
+        }
     }
 }

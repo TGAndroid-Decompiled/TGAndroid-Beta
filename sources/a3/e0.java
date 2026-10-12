@@ -1,95 +1,52 @@
 package a3;
 
-import android.content.Context;
 import android.hardware.display.DisplayManager;
-import android.os.Build;
-import android.view.Display;
-import android.view.Surface;
-public final class e0 {
-    public final h f89a;
-    public final c0 f90b;
-    public final d0 f91c;
-    public boolean d;
-    public Surface f92e;
-    public float f93f;
-    public float f94g;
-    public float h;
-    public float f95i;
-    public int f96j;
-    public long f97k;
-    public long f98l;
-    public long f99m;
-    public long f100n;
-    public long f101o;
-    public long f102p;
-    public long f103q;
+import android.os.Handler;
+import android.view.Choreographer;
+import android.view.Choreographer$VsyncCallback;
+public final class e0 extends c0 implements Choreographer$VsyncCallback {
+    public final Handler e;
 
-    public e0(Context context) {
-        DisplayManager displayManager;
-        c0 c0Var;
-        ?? obj = new Object();
-        obj.f130a = new g();
-        obj.f131b = new g();
-        obj.d = -9223372036854775807L;
-        this.f89a = obj;
-        if (context == null || (displayManager = (DisplayManager) context.getSystemService("display")) == null) {
-            c0Var = null;
-        } else {
-            c0Var = new c0(this, displayManager);
-        }
-        this.f90b = c0Var;
-        this.f91c = c0Var != null ? d0.f83e : null;
-        this.f97k = -9223372036854775807L;
-        this.f98l = -9223372036854775807L;
-        this.f93f = -1.0f;
-        this.f95i = 1.0f;
-        this.f96j = 0;
+    public e0(Choreographer choreographer, DisplayManager displayManager) {
+        super(choreographer, displayManager);
+        this.e = e2.m0.q(null);
     }
 
-    public static void a(e0 e0Var, Display display) {
-        if (display != null) {
-            long refreshRate = (long) (1.0E9d / display.getRefreshRate());
-            e0Var.f97k = refreshRate;
-            e0Var.f98l = (refreshRate * 80) / 100;
-            return;
-        }
-        e2.a.n("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-        e0Var.f97k = -9223372036854775807L;
-        e0Var.f98l = -9223372036854775807L;
+    @Override
+    public final void a() {
+        this.f73b.registerDisplayListener(this, e2.m0.q(null));
+        this.f72a.postVsyncCallback(this);
     }
 
+    @Override
     public final void b() {
-        Surface surface;
-        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f92e) != null && this.f96j != Integer.MIN_VALUE && this.h != 0.0f) {
-            this.h = 0.0f;
-            g0.f.v(surface, 0.0f);
+        this.f73b.unregisterDisplayListener(this);
+        this.e.removeCallbacksAndMessages(null);
+        this.f72a.removeVsyncCallback(this);
+        this.f74c = -9223372036854775807L;
+        this.d = -9223372036854775807L;
+    }
+
+    @Override
+    public final void onDisplayChanged(int i10) {
+        if (i10 == 0) {
+            this.f72a.postVsyncCallback(this);
         }
     }
 
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: a3.e0.c():void");
-    }
-
-    public final void d(boolean z10) {
-        Surface surface;
-        float f7;
-        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f92e) != null && this.f96j != Integer.MIN_VALUE) {
-            if (this.d) {
-                float f10 = this.f94g;
-                if (f10 != -1.0f) {
-                    f7 = f10 * this.f95i;
-                    if (!z10 || this.h != f7) {
-                        this.h = f7;
-                        g0.f.v(surface, f7);
-                    }
-                    return;
-                }
+    public final void onVsync(Choreographer.FrameData frameData) {
+        this.f74c = frameData.getFrameTimeNanos();
+        Choreographer.FrameTimeline[] frameTimelines = frameData.getFrameTimelines();
+        long j10 = -9223372036854775807L;
+        if (frameTimelines.length >= 2) {
+            long expectedPresentationTimeNanos = frameTimelines[1].getExpectedPresentationTimeNanos() - frameTimelines[0].getExpectedPresentationTimeNanos();
+            if (expectedPresentationTimeNanos != 0) {
+                j10 = expectedPresentationTimeNanos;
             }
-            f7 = 0.0f;
-            if (!z10) {
-            }
-            this.h = f7;
-            g0.f.v(surface, f7);
+            this.d = j10;
+        } else {
+            this.d = -9223372036854775807L;
         }
+        this.e.postDelayed(new d(this, 2), 500L);
     }
 }

@@ -2,41 +2,41 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class c implements Runnable {
-    public final int f24772a;
-    public final e0 f24773b;
+    public final int f23883a;
+    public final e0 f23884b;
 
     public c(e0 e0Var, int i10) {
-        this.f24772a = i10;
-        this.f24773b = e0Var;
+        this.f23883a = i10;
+        this.f23884b = e0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24772a) {
+        switch (this.f23883a) {
             case 0:
-                e0 e0Var = this.f24773b;
+                e0 e0Var = this.f23884b;
                 if (!e0Var.K0) {
                     e0Var.D0.setVisibility(8);
                     return;
                 }
                 return;
             case 1:
-                e0 e0Var2 = this.f24773b;
+                e0 e0Var2 = this.f23884b;
                 if (e0Var2.K0) {
                     e0Var2.C0.setVisibility(8);
                     return;
                 }
                 return;
             case 2:
-                AndroidUtilities.showKeyboard(this.f24773b.A0.f22081b);
+                AndroidUtilities.showKeyboard(this.f23884b.A0.f21368b);
                 return;
             case 3:
-                e0 e0Var3 = this.f24773b;
+                e0 e0Var3 = this.f23884b;
                 e0Var3.m0(0, 0, false);
                 e0Var3.dismiss();
                 return;
             default:
-                e0.R(this.f24773b);
+                e0.R(this.f23884b);
                 return;
         }
     }

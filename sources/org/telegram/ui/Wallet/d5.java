@@ -1,282 +1,60 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.Random;
-import org.telegram.messenger.AndroidUtilities;
-public final class d5 extends View {
-    public final dc.g[] E;
-    public Bitmap F;
-    public SweepGradient G;
-    public float H;
-    public float I;
-    public final Paint f34622a;
-    public final Paint f34623b;
-    public final Paint f34624c;
-    public final Paint d;
-    public final Paint f34625e;
-    public final Paint f34626f;
-    public final Paint h;
-    public final Paint f34627n;
-    public final Paint f34628r;
-    public final RectF f34629s;
-    public final RectF v;
-    public final Matrix f34630w;
-    public Drawable f34631x;
-    public final Path f34632y;
+import android.opengl.GLES20;
+public final class d5 {
+    public final int f33085a;
+    public final int f33086b;
+    public final int f33087c;
+    public final int d;
+    public final int e;
+    public final int f33088f;
+    public final int f33089g;
+    public final int h;
+    public final int f33090i;
+    public final int f33091j;
+    public final int f33092k;
+    public final int f33093l;
+    public final int f33094m;
+    public final int f33095n;
 
-    public d5(Context context, int i10, int i11) {
-        super(context);
-        this.f34622a = new Paint(1);
-        this.f34623b = new Paint(1);
-        this.f34624c = new Paint(3);
-        this.d = new Paint(3);
-        this.f34625e = new Paint(1);
-        this.f34626f = new Paint(1);
-        this.h = new Paint(1);
-        this.f34627n = new Paint(1);
-        this.f34628r = new Paint(1);
-        this.f34629s = new RectF();
-        this.v = new RectF();
-        this.f34630w = new Matrix();
-        this.f34632y = new Path();
-        Random random = new Random(3622097293706218323L);
-        dc.g[] gVarArr = new dc.g[16];
-        for (int i12 = 0; i12 < 16; i12++) {
-            ?? obj = new Object();
-            obj.f8288a = (random.nextFloat() * 300.0f) + 18.0f;
-            obj.f8289b = (random.nextFloat() * 173.0f) + 16.0f;
-            obj.f8290c = (random.nextFloat() * 3.5f) + 1.5f;
-            float nextFloat = (random.nextFloat() * 0.48f) + 0.16f;
-            double nextFloat2 = random.nextFloat() * 6.2831855f;
-            float cos = (float) Math.cos(nextFloat2);
-            float sin = (float) Math.sin(nextFloat2);
-            obj.d = cos * nextFloat;
-            obj.f8291e = nextFloat * sin;
-            float f7 = -sin;
-            obj.h = f7;
-            obj.f8294i = cos;
-            obj.f8292f = f7 * 0.08f;
-            obj.f8293g = cos * 0.08f;
-            gVarArr[i12] = obj;
-        }
-        this.E = gVarArr;
-        Paint paint = this.f34624c;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        paint.setColorFilter(new PorterDuffColorFilter(-16748084, mode));
-        this.d.setColorFilter(new PorterDuffColorFilter(Color.argb(15, 255, 255, 255), mode));
-        this.f34627n.setColor(-9208960);
-        this.f34628r.setColor(-1);
-        this.h.setColor(687865856);
-        Paint paint2 = this.h;
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        this.h.setStrokeWidth(1.0f);
-        this.f34622a.setColor(603979776);
-        this.f34622a.setStyle(style);
-        this.f34622a.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f34622a.setMaskFilter(new BlurMaskFilter(AndroidUtilities.dp(1.0f), BlurMaskFilter.Blur.NORMAL));
-        float f10 = 336.0f - i11;
-        this.v.set(f10 - 50.0f, 73.0f, f10, 111.0f);
-        Drawable drawable = getContext().getDrawable(i10);
-        this.f34631x = drawable;
-        if (drawable != null) {
-            this.f34631x = drawable.mutate();
-        }
-        invalidate();
+    public d5(Context context, String str, String str2, String str3, String str4) {
+        int b10 = w7.u7.b(context, "wallet-card-".concat(str3), b(str, str4), b(str2, str4), "aPosition", "aNormal");
+        this.f33085a = b10;
+        this.f33086b = GLES20.glGetAttribLocation(b10, "aPosition");
+        this.f33087c = GLES20.glGetAttribLocation(b10, "aNormal");
+        this.d = GLES20.glGetUniformLocation(b10, "uMVPMatrix");
+        this.e = GLES20.glGetUniformLocation(b10, "uModelViewMatrix");
+        this.f33088f = GLES20.glGetUniformLocation(b10, "uCardGradientRotation");
+        int glGetUniformLocation = GLES20.glGetUniformLocation(b10, "uCardDetailTexture");
+        int glGetUniformLocation2 = GLES20.glGetUniformLocation(b10, "uEngravingTexture");
+        this.f33089g = GLES20.glGetUniformLocation(b10, "uEngravingTexel");
+        this.h = GLES20.glGetAttribLocation(b10, "aFlecksRegion");
+        this.f33090i = GLES20.glGetAttribLocation(b10, "aFlecksCorner");
+        this.f33091j = GLES20.glGetUniformLocation(b10, "uFlecksPadding");
+        this.f33092k = GLES20.glGetUniformLocation(b10, "uMainLightDirection");
+        this.f33093l = GLES20.glGetUniformLocation(b10, "uQrCenter");
+        this.f33094m = GLES20.glGetUniformLocation(b10, "uDiamondBounds");
+        this.f33095n = GLES20.glGetUniformLocation(b10, "uDiamondAlpha");
+        GLES20.glUseProgram(b10);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFinishLut"), 4);
+        GLES20.glUniform1i(glGetUniformLocation, 0);
+        GLES20.glUniform1i(glGetUniformLocation2, 1);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFlecksTiles"), 2);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFlecksTail"), 3);
     }
 
-    public static int b(float f7) {
-        float c10 = f5.c((f7 - 0.78f) / 0.18f, 0.0f, 1.0f);
-        float B = com.google.android.gms.internal.vision.e2.B(c10, 2.0f, 3.0f, c10 * c10);
-        return Color.argb(Math.round(f7 * 145.0f), Math.round((120.0f * B) + 135.0f), Math.round((B * 16.0f) + 239.0f), 255);
+    public static String b(String str, String str2) {
+        int indexOf = str.indexOf(10) + 1;
+        return str.substring(0, indexOf) + str2 + str.substring(indexOf);
     }
 
-    public static float c(float f7, float f10, float f11, float f12, float f13) {
-        float f14 = f7 * f7;
-        float f15 = f10 * f10;
-        float sqrt = (float) Math.sqrt(Math.max(0.0f, (1.0f - f14) - f15));
-        float f16 = sqrt * f13;
-        return (float) Math.pow(Math.max(0.0f, (f16 + ((f10 * f12) + (f7 * f11))) / ((float) Math.sqrt((sqrt * sqrt) + (f14 + f15)))), 6.0d);
-    }
-
-    public final void a(Canvas canvas, int i10) {
-        Drawable drawable = this.f34631x;
-        if (drawable == null) {
-            return;
-        }
-        drawable.setTint(i10);
-        Drawable drawable2 = this.f34631x;
-        RectF rectF = this.v;
-        drawable2.setBounds((int) (rectF.left + 13.0f), (int) (rectF.top + 7.0f), (int) (rectF.right - 13.0f), (int) (rectF.bottom - 7.0f));
-        this.f34631x.draw(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint;
-        float f7;
-        dc.g[] gVarArr;
-        int i10;
-        super.onDraw(canvas);
-        RectF rectF = this.f34629s;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        Path path = new Path();
-        w7.f6.a(path, getWidth(), getHeight());
-        int save = canvas.save();
-        canvas.clipPath(path);
-        RectF rectF2 = new RectF(rectF);
-        rectF2.inset(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f));
-        int save2 = canvas.save();
-        float f10 = 1.0f;
-        canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
-        canvas.drawRoundRect(rectF2, Math.max(0.0f, ((getWidth() * 0.15f) / 2.0f) - AndroidUtilities.dp(0.5f)), Math.max(0.0f, ((getHeight() * 0.15f) / 1.212122f) - AndroidUtilities.dp(0.5f)), this.f34622a);
-        canvas.restoreToCount(save2);
-        canvas.restoreToCount(save);
-        int save3 = canvas.save();
-        canvas.clipPath(path);
-        float sin = (((float) Math.sin(Math.toRadians(this.I))) * 0.72f) + 0.08f;
-        float f11 = (-((float) Math.sin(Math.toRadians(this.H)))) * 0.72f;
-        float f12 = 205.0f;
-        float sqrt = 1.0f / ((float) Math.sqrt(sc.v.d(f11, f11, sin * sin, 1.0f)));
-        float f13 = sin * sqrt;
-        float f14 = f11 * sqrt;
-        double radians = (float) Math.toRadians(((this.I * 2.0f) + 20.99f) - (this.H * 1.25f));
-        float cos = (float) Math.cos(radians);
-        float sin2 = (float) Math.sin(radians);
-        int save4 = canvas.save();
-        canvas.scale(getWidth() / 336.0f, getHeight() / 205.0f);
-        dc.g[] gVarArr2 = this.E;
-        int length = gVarArr2.length;
-        int i11 = 0;
-        while (true) {
-            paint = this.f34623b;
-            if (i11 >= length) {
-                break;
-            }
-            float f15 = f12;
-            dc.g gVar = gVarArr2[i11];
-            float f16 = f10;
-            float f17 = gVar.f8288a - 168.0f;
-            int i12 = i11;
-            float f18 = cos;
-            float c10 = f5.c((Math.abs((((gVar.f8289b - 102.5f) * sin2) + (f17 * f18)) * (f16 / Math.max(0.001f, (float) Math.sqrt((f7 * f7) + (f17 * f17))))) - 0.38f) / 0.34000003f, 0.0f, f16);
-            float f19 = sin2;
-            float B = com.google.android.gms.internal.vision.e2.B(c10, 2.0f, 3.0f, c10 * c10);
-            float c11 = c(gVar.d + gVar.f8292f, gVar.f8291e + gVar.f8293g, f13, f14, sqrt) * B;
-            float c12 = c(gVar.d - gVar.f8292f, gVar.f8291e - gVar.f8293g, f13, f14, sqrt) * B;
-            if (Math.max(c11, c12) < 0.015f) {
-                gVarArr = gVarArr2;
-                i10 = length;
-            } else {
-                int b10 = b(c11);
-                int b11 = b(c12);
-                float f20 = gVar.h;
-                float f21 = gVar.f8290c;
-                float f22 = f20 * f21;
-                float f23 = gVar.f8294i * f21;
-                float f24 = gVar.f8288a;
-                float f25 = gVar.f8289b;
-                paint.setShader(new LinearGradient(f24 - f22, f25 - f23, f24 + f22, f25 + f23, b10, b11, Shader.TileMode.CLAMP));
-                float f26 = gVar.f8288a;
-                float f27 = gVar.f8289b;
-                float f28 = gVar.f8290c;
-                float f29 = f28 * 0.15f;
-                Path path2 = this.f34632y;
-                path2.rewind();
-                path2.moveTo(f26 - f28, f27);
-                float f30 = f26 - f29;
-                gVarArr = gVarArr2;
-                float f31 = f27 - f29;
-                path2.lineTo(f30, f31);
-                i10 = length;
-                path2.lineTo(f26, f27 - f28);
-                float f32 = f26 + f29;
-                path2.lineTo(f32, f31);
-                path2.lineTo(f26 + f28, f27);
-                float f33 = f29 + f27;
-                path2.lineTo(f32, f33);
-                path2.lineTo(f26, f27 + f28);
-                path2.lineTo(f30, f33);
-                path2.close();
-                canvas.drawPath(path2, paint);
-            }
-            i11 = i12 + 1;
-            f12 = f15;
-            cos = f18;
-            sin2 = f19;
-            gVarArr2 = gVarArr;
-            length = i10;
-            f10 = 1.0f;
-        }
-        float f34 = f12;
-        paint.setShader(null);
-        canvas.restoreToCount(save4);
-        canvas.restoreToCount(save3);
-        Bitmap bitmap = this.F;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            int save5 = canvas.save();
-            canvas.clipRect(rectF);
-            canvas.translate(0.0f, AndroidUtilities.dp(1.0f));
-            canvas.drawBitmap(this.F, (Rect) null, rectF, this.d);
-            canvas.restoreToCount(save5);
-            canvas.drawBitmap(this.F, (Rect) null, rectF, this.f34624c);
-        }
-        float width = getWidth() / 336.0f;
-        float height = getHeight() / f34;
-        int save6 = canvas.save();
-        canvas.scale(width, height);
-        Path path3 = new Path();
-        Path.Direction direction = Path.Direction.CW;
-        RectF rectF3 = this.v;
-        path3.addRoundRect(rectF3, 9.0f, 9.0f, direction);
-        canvas.clipPath(path3);
-        canvas.drawRect(rectF3, this.f34625e);
-        canvas.drawRect(rectF3, this.f34626f);
-        canvas.restoreToCount(save6);
-        int save7 = canvas.save();
-        canvas.scale(width, height);
-        RectF rectF4 = new RectF(rectF3);
-        rectF4.inset(-0.5f, -0.5f);
-        canvas.drawRoundRect(rectF4, 9.5f, 9.5f, this.h);
-        canvas.restoreToCount(save7);
-        int save8 = canvas.save();
-        canvas.scale(width, height);
-        canvas.translate(0.0f, 1.0f);
-        a(canvas, this.f34628r.getColor());
-        canvas.restoreToCount(save8);
-        int save9 = canvas.save();
-        canvas.scale(width, height);
-        a(canvas, this.f34627n.getColor());
-        canvas.restoreToCount(save9);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        RectF rectF = this.v;
-        this.f34625e.setShader(new LinearGradient(rectF.left + 5.2f, rectF.top + 3.4f, rectF.right - 4.6f, rectF.bottom - 4.0f, new int[]{-520225025, -524567104}, new float[]{0.0799f, 0.922f}, Shader.TileMode.CLAMP));
-        float centerX = rectF.centerX();
-        float centerY = rectF.centerY();
-        this.G = new SweepGradient(centerX, centerY, new int[]{16777215, 16777215, 1560281087, 16777215, 0, 520093696, 0, 0}, new float[]{0.0f, 0.06f, 0.25f, 0.44f, 0.56f, 0.75f, 0.94f, 1.0f});
-        Matrix matrix = this.f34630w;
-        matrix.setRotate(90.0f, centerX, centerY);
-        this.G.setLocalMatrix(matrix);
-        this.f34626f.setShader(this.G);
+    public final void a(float[] fArr, float[] fArr2, float f7, float f10, float f11, float f12) {
+        GLES20.glUseProgram(this.f33085a);
+        GLES20.glUniform1f(this.f33088f, f11);
+        GLES20.glUniformMatrix4fv(this.d, 1, false, fArr, 0);
+        GLES20.glUniformMatrix4fv(this.e, 1, false, fArr2, 0);
+        GLES20.glUniform3f(this.f33092k, f7, f10, 0.83f);
+        GLES20.glUniform2f(this.f33093l, ((336.0f - f12) - 25.0f) / 336.0f, 0.44878048f);
     }
 }

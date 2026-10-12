@@ -79,7 +79,7 @@ public class BirthdayController {
                         if (i21 < contactbirthdays.users.size()) {
                             arrayList2 = arrayList3;
                             i10 = i17;
-                            if (contactbirthdays.users.get(i21).f19950id == tL_contactBirthday2.contact_id) {
+                            if (contactbirthdays.users.get(i21).f19363id == tL_contactBirthday2.contact_id) {
                                 user = contactbirthdays.users.get(i21);
                                 break;
                             }
@@ -105,14 +105,14 @@ public class BirthdayController {
             return birthdayState;
         }
 
-        public boolean contains(long j3) {
+        public boolean contains(long j10) {
             ArrayList<TLRPC.User> arrayList = this.yesterday;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 TLRPC.User user = arrayList.get(i10);
                 i10++;
-                if (user.f19950id == j3) {
+                if (user.f19363id == j10) {
                     return true;
                 }
             }
@@ -122,7 +122,7 @@ public class BirthdayController {
             while (i11 < size2) {
                 TLRPC.User user2 = arrayList2.get(i11);
                 i11++;
-                if (user2.f19950id == j3) {
+                if (user2.f19363id == j10) {
                     return true;
                 }
             }
@@ -132,7 +132,7 @@ public class BirthdayController {
             while (i12 < size3) {
                 TLRPC.User user3 = arrayList3.get(i12);
                 i12++;
-                if (user3.f19950id == j3) {
+                if (user3.f19363id == j10) {
                     return true;
                 }
             }
@@ -207,8 +207,8 @@ public class BirthdayController {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                 TLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-            } catch (Exception e7) {
-                e = e7;
+            } catch (Exception e) {
+                e = e;
                 birthdayController = this;
             }
             if (TLdeserialize != null && !TLdeserialize.contacts.isEmpty()) {
@@ -216,8 +216,8 @@ public class BirthdayController {
                 for (int i11 = 0; i11 < TLdeserialize.contacts.size(); i11++) {
                     try {
                         arrayList.add(Long.valueOf(TLdeserialize.contacts.get(i11).contact_id));
-                    } catch (Exception e10) {
-                        exc = e10;
+                    } catch (Exception e7) {
+                        exc = e7;
                         birthdayController = this;
                         FileLog.e(exc);
                         birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
@@ -226,8 +226,8 @@ public class BirthdayController {
                 birthdayController = this;
                 try {
                     MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new j0(birthdayController, i10, arrayList, TLdeserialize, 0));
-                } catch (Exception e11) {
-                    e = e11;
+                } catch (Exception e10) {
+                    e = e10;
                     exc = e;
                     FileLog.e(exc);
                     birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
@@ -282,7 +282,7 @@ public class BirthdayController {
     }
 
     public void lambda$check$3(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new q(13, this, tLObject));
+        AndroidUtilities.runOnUIThread(new g3(12, this, tLObject));
     }
 
     public void lambda$new$0(TL_birthdays tL_birthdays, ArrayList arrayList) {
@@ -301,21 +301,21 @@ public class BirthdayController {
         int i10;
         if (!this.loading) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = this.lastCheckDate;
+            long j10 = this.lastCheckDate;
             boolean z11 = false;
-            if (j3 == 0) {
+            if (j10 == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (!z10) {
-                long j10 = currentTimeMillis - j3;
+                long j11 = currentTimeMillis - j10;
                 if (BuildVars.DEBUG_PRIVATE_VERSION) {
                     i10 = 25000;
                 } else {
                     i10 = 43200000;
                 }
-                if (j10 > i10) {
+                if (j11 > i10) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -364,18 +364,18 @@ public class BirthdayController {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
     }
 
-    public boolean isToday(long j3) {
+    public boolean isToday(long j10) {
         BirthdayState birthdayState = this.state;
-        if (birthdayState == null || !birthdayState.contains(j3)) {
-            TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j3);
+        if (birthdayState == null || !birthdayState.contains(j10)) {
+            TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j10);
             return (userFull == null || !isToday(userFull.birthday) || UserObject.areGiftsDisabled(userFull)) ? false : true;
         }
         return true;
     }
 
-    public boolean contains(long j3) {
+    public boolean contains(long j10) {
         BirthdayState state = getState();
-        return state != null && state.contains(j3);
+        return state != null && state.contains(j10);
     }
 
     public static boolean isToday(TLRPC.UserFull userFull) {

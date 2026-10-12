@@ -1,51 +1,54 @@
 package org.telegram.ui.Wallet;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.graphics.RenderEffect;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
+import android.graphics.SweepGradient;
+import android.os.Build;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class b5 extends Drawable {
-    public final Paint f34507a = new Paint(1);
-    public final Path f34508b = new Path();
-    public final RectF f34509c = new RectF();
-    public final float[] d = {AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
+public final class b5 extends View {
+    public final Paint f32961a;
+    public final Matrix f32962b;
+    public final Path f32963c;
+    public SweepGradient d;
+    public float e;
+    public float f32964f;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        canvas.drawPath(this.f34508b, this.f34507a);
+    public b5(Context context) {
+        super(context);
+        this.f32961a = new Paint(1);
+        this.f32962b = new Matrix();
+        this.f32963c = new Path();
+        setClipToOutline(true);
+        setOutlineProvider(new dh.b(this, 7));
+        if (Build.VERSION.SDK_INT >= 31) {
+            setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Shader.TileMode.CLAMP));
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f32961a);
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        RectF rectF = this.f34509c;
-        rectF.set(rect);
-        Path path = this.f34508b;
-        path.reset();
-        path.addRoundRect(rectF, this.d, Path.Direction.CW);
-        this.f34507a.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f34507a.setAlpha(i10);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34507a.setColorFilter(colorFilter);
-        invalidateSelf();
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        this.e = i10 * 0.5f;
+        this.f32964f = i11 * 0.5f;
+        this.d = new SweepGradient(this.e, this.f32964f, new int[]{-16216082, -15291399, -16216082, -15291399, -16216082}, new float[]{0.0f, 0.25f, 0.5f, 0.75f, 1.0f});
+        float f7 = this.e;
+        float f10 = this.f32964f;
+        Matrix matrix = this.f32962b;
+        matrix.setRotate(-69.01f, f7, f10);
+        this.d.setLocalMatrix(matrix);
+        this.f32961a.setShader(this.d);
+        invalidateOutline();
     }
 }

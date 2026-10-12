@@ -1,112 +1,108 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class a30 extends LinearLayout {
-    public final ci.d f24225a;
-    public final ci.d f24226b;
-    public final ci.d f24227c;
-    public final long d;
-
-    public a30(Context context, int i10) {
-        super(context);
-        int i11;
-        TLRPC.TL_emojiList a2 = i9.a(i10);
-        setOrientation(1);
-        y9 y9Var = new y9(context);
-        y9Var.setImageDrawable(new fk0(R.raw.utyan_gallery, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(y9Var, w7.w5.q(110, 110, 49));
-        }
-        TextView g10 = org.telegram.messenger.v0.g(context, 1, 20.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.G6, null, false, g10, 1);
-        g10.setText(LocaleController.getString(R.string.GalleryAccessAllowAccess));
-        g10.setTypeface(AndroidUtilities.bold());
-        addView(g10, w7.w5.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20544c7, null, false, textView, 1);
-        if (UserConfig.getInstance(i10).isPremium()) {
-            i11 = R.string.GalleryAccessAllowAccessTextPremium;
-        } else {
-            i11 = R.string.GalleryAccessAllowAccessTextNonPremium;
-        }
-        textView.setText(LocaleController.getString(i11));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, w7.w5.t(-2, -2, 49, 0, 0, 0, 14));
-        ci.d dVar = new ci.d(context, null, true);
-        this.f24225a = dVar;
-        dVar.e();
-        dVar.g(LocaleController.getString(R.string.GalleryAccessAllowAccessButton), false, true);
-        addView(dVar, w7.w5.q(-2, 44, 49));
-        ci.d dVar2 = new ci.d(context, null, false);
-        this.f24226b = dVar2;
-        dVar2.e();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new gr(R.drawable.outline_attach_camera_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.GalleryAccessAllowAccessOpenCamera));
-        dVar2.g(spannableStringBuilder, false, true);
-        addView(dVar2, w7.w5.t(-2, 44, 49, 0, 8, 0, 0));
-        ci.d dVar3 = new ci.d(context, null, false);
-        this.f24227c = dVar3;
-        dVar3.e();
-        dVar3.setVisibility(8);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
-        ArrayList<Long> arrayList = a2.document_id;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            long longValue = a2.document_id.get(0).longValue();
-            this.d = longValue;
-            spannableStringBuilder2.setSpan(new b6(longValue, (Paint.FontMetricsInt) null), 0, 1, 33);
-            spannableStringBuilder2.append((CharSequence) "  ");
-        } else {
-            this.d = 0L;
-        }
-        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.UseEmoji));
-        dVar3.g(spannableStringBuilder2, false, true);
-        addView(dVar3, w7.w5.t(-2, 44, 49, 0, 1, 0, 0));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824);
-        ci.d dVar = this.f24225a;
-        dVar.setUseWrapContent(true);
-        ci.d dVar2 = this.f24226b;
-        dVar2.setUseWrapContent(true);
-        ci.d dVar3 = this.f24227c;
-        dVar3.setUseWrapContent(true);
-        dVar.measure(makeMeasureSpec, makeMeasureSpec2);
-        dVar2.measure(makeMeasureSpec, makeMeasureSpec2);
-        dVar3.measure(makeMeasureSpec, makeMeasureSpec2);
-        dVar.setUseWrapContent(false);
-        dVar2.setUseWrapContent(false);
-        dVar3.setUseWrapContent(false);
-        int max = Math.max(Math.max(dVar.getMeasuredWidth(), dVar2.getMeasuredWidth()), dVar3.getMeasuredWidth());
-        dVar.getLayoutParams().width = AndroidUtilities.dp(80.0f) + max;
-        dVar2.getLayoutParams().width = AndroidUtilities.dp(80.0f) + max;
-        dVar3.getLayoutParams().width = AndroidUtilities.dp(80.0f) + max;
-        super.onMeasure(i10, i11);
-    }
-
-    public void setUseAnEmojiVisible(boolean z10) {
+public abstract class a30 extends org.telegram.ui.ActionBar.e3 {
+    public a30(Context context, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(context, true);
         int i10;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 8;
+        int i11;
+        setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        setCustomView(linearLayout);
+        ?? imageView = new ImageView(context);
+        imageView.setAutoRepeat(true);
+        imageView.f(R.raw.utyan_gigagroup, 120, 120, null);
+        imageView.d();
+        linearLayout.addView((View) imageView, w7.a6.t(160, 160, 49, 17, 30, 17, 0));
+        TextView textView = new TextView(context);
+        org.telegram.messenger.yh.k(24.0f, 1, textView);
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20007j5, false));
+        textView.setText(LocaleController.getString(R.string.GigagroupConvertTitle));
+        linearLayout.addView(textView, w7.a6.t(-2, -2, 49, 17, 18, 17, 0));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        linearLayout.addView(linearLayout2, w7.a6.t(-2, -2, 1, 0, 12, 0, 0));
+        for (int i12 = 0; i12 < 3; i12++) {
+            LinearLayout e = org.telegram.messenger.yh.e(context, 0);
+            if (LocaleController.isRTL) {
+                i10 = 5;
+            } else {
+                i10 = 3;
+            }
+            linearLayout2.addView(e, w7.a6.t(-2, -2, i10, 0, 8, 0, 0));
+            ImageView imageView2 = new ImageView(context);
+            int i13 = org.telegram.ui.ActionBar.g6.f20157r5;
+            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, i13, false), PorterDuff.Mode.MULTIPLY));
+            imageView2.setImageResource(R.drawable.list_circle);
+            TextView textView2 = new TextView(context);
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
+            if (LocaleController.isRTL) {
+                i11 = 5;
+            } else {
+                i11 = 3;
+            }
+            textView2.setGravity(i11 | 16);
+            textView2.setMaxWidth(AndroidUtilities.dp(260.0f));
+            if (i12 != 0) {
+                if (i12 != 1) {
+                    if (i12 == 2) {
+                        textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo3));
+                    }
+                } else {
+                    textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo2));
+                }
+            } else {
+                textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo1));
+            }
+            if (LocaleController.isRTL) {
+                e.addView(textView2, w7.a6.n(-2, -2));
+                e.addView(imageView2, w7.a6.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
+            } else {
+                e.addView(imageView2, w7.a6.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
+                e.addView(textView2, w7.a6.n(-2, -2));
+            }
         }
-        this.f24227c.setVisibility(i10);
+        ?? frameLayout = new FrameLayout(context);
+        View view = new View(context);
+        frameLayout.f31740a = view;
+        view.setBackground(org.telegram.ui.ActionBar.w5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.g6.Oh));
+        frameLayout.addView(view, w7.a6.a(-1.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 0));
+        TextView textView3 = new TextView(context);
+        frameLayout.f31741b = textView3;
+        textView3.setLines(1);
+        textView3.setSingleLine(true);
+        textView3.setGravity(1);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setGravity(17);
+        org.telegram.messenger.q.n(14.0f, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Sh, false), 1, textView3);
+        frameLayout.addView(textView3, w7.a6.e(-2, -2, 17));
+        frameLayout.setBackground(null);
+        frameLayout.setText(LocaleController.getString(R.string.GigagroupConvertProcessButton));
+        view.setOnClickListener(new bi.x(this, context, m2Var, 22));
+        linearLayout.addView((View) frameLayout, w7.a6.t(-1, 50, 51, 0, 29, 0, 0));
+        TextView textView4 = new TextView(context);
+        textView4.setTextSize(1, 14.0f);
+        textView4.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20083n5, false));
+        org.telegram.messenger.yh.l(R.string.GigagroupConvertCancelButton, textView4, 17);
+        linearLayout.addView(textView4, w7.a6.t(-2, 48, 49, 17, 0, 17, 16));
+        textView4.setOnClickListener(new f0(this, 19));
     }
+
+    public abstract void n();
+
+    public abstract void o();
 }

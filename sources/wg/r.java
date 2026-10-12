@@ -1,0 +1,213 @@
+package wg;
+
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.method.LinkMovementMethod;
+import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import di.w7;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.yh;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.aa0;
+import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.jg0;
+import sg.w1;
+import w7.a6;
+public final class r extends FrameLayout {
+    public final jg0 f47602a;
+    public final o f47603b;
+    public final TextView f47604c;
+    public final da0 d;
+    public final c6 e;
+    public final aa0 f47605f;
+    public final Paint[] h;
+    public ValueAnimator f47606n;
+
+    public r(Context context, c6 c6Var) {
+        super(context);
+        this.e = c6Var;
+        LinearLayout e = yh.e(context, 1);
+        jg0 jg0Var = new jg0(context, 1, 0, 3);
+        this.f47602a = jg0Var;
+        Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        int i10 = g6.Mj;
+        canvas.drawColor(i0.a.d(0.5f, g6.w0(i10, c6Var), g6.w0(g6.f19972h5, c6Var)));
+        jg0Var.setBackgroundBitmap(createBitmap);
+        tg.g gVar = jg0Var.f45740b;
+        gVar.f45724z = i10;
+        gVar.A = g6.Lj;
+        gVar.b();
+        e.addView(jg0Var, a6.q(160, 160, 1));
+        o oVar = new o(this, context);
+        this.f47603b = oVar;
+        this.h = new Paint[20];
+        a(0.0f);
+        w1 w1Var = oVar.f45428a;
+        w1Var.f45412q = false;
+        w1Var.K = false;
+        w1Var.L = true;
+        w1Var.H = true;
+        w1Var.f45407l = new w7(this, 4);
+        w1Var.c();
+        jg0Var.setStarParticlesView(oVar);
+        TextView textView = new TextView(context);
+        this.f47604c = textView;
+        yh.k(22.0f, 1, textView);
+        int i11 = g6.G6;
+        textView.setTextColor(g6.w0(i11, c6Var));
+        textView.setGravity(1);
+        e.addView(textView, a6.t(-2, -2, 1, 24, -8, 24, 0));
+        aa0 aa0Var = new aa0(this);
+        this.f47605f = aa0Var;
+        da0 da0Var = new da0(context, aa0Var, c6Var);
+        this.d = da0Var;
+        da0Var.setTextSize(1, 15.0f);
+        da0Var.setGravity(17);
+        da0Var.setTextColor(g6.w0(i11, c6Var));
+        da0Var.setMovementMethod(LinkMovementMethod.getInstance());
+        da0Var.setLinkTextColor(g6.w0(g6.J6, c6Var));
+        da0Var.setImportantForAccessibility(2);
+        e.addView(da0Var, a6.a(-2.0f, 24.0f, 8.0f, 24.0f, 18.0f, -1, 17));
+        setClipChildren(false);
+        addView(oVar, a6.e(-1, 234, 48));
+        addView(e);
+        setWillNotDraw(false);
+    }
+
+    public final void a(float f7) {
+        int i10 = g6.Lj;
+        c6 c6Var = this.e;
+        int w02 = g6.w0(i10, c6Var);
+        int w03 = g6.w0(g6.Mj, c6Var);
+        int d = i0.a.d(f7, w02, -371690);
+        int d10 = i0.a.d(f7, w03, -14281);
+        int i11 = 0;
+        while (true) {
+            Paint[] paintArr = this.h;
+            if (i11 < paintArr.length) {
+                paintArr[i11] = new Paint(1);
+                paintArr[i11].setColorFilter(new PorterDuffColorFilter(i0.a.d(i11 / (paintArr.length - 1), d, d10), PorterDuff.Mode.SRC_IN));
+                i11++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        aa0 aa0Var = this.f47605f;
+        if (aa0Var != null) {
+            canvas.save();
+            da0 da0Var = this.d;
+            canvas.translate(da0Var.getLeft(), da0Var.getTop());
+            if (aa0Var.f(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        jg0 jg0Var = this.f47602a;
+        float measuredHeight = (jg0Var.getMeasuredHeight() / 2.0f) + jg0Var.getTop();
+        o oVar = this.f47603b;
+        oVar.setTranslationY(measuredHeight - (oVar.getMeasuredHeight() / 2.0f));
+    }
+
+    public void setBoostViaGifsText(TLRPC.Chat chat) {
+        int i10;
+        setOutlineProvider(new ViewOutlineProvider());
+        setClipToOutline(true);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
+        marginLayoutParams.topMargin = -AndroidUtilities.dp(6.0f);
+        setLayoutParams(marginLayoutParams);
+        int i11 = g6.f19843a7;
+        c6 c6Var = this.e;
+        setBackgroundColor(g6.w0(i11, c6Var));
+        this.f47604c.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
+        if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+            i10 = R.string.BoostingGetMoreBoost2;
+        } else {
+            i10 = R.string.BoostingGetMoreBoostGroup;
+        }
+        String formatString = LocaleController.formatString(i10, new Object[0]);
+        da0 da0Var = this.d;
+        da0Var.setText(formatString);
+        da0Var.setTextColor(g6.w0(g6.f20157r5, c6Var));
+    }
+
+    public void setPaused(boolean z10) {
+        this.f47602a.setPaused(z10);
+        this.f47603b.setPaused(z10);
+    }
+
+    public void setStars(final boolean z10) {
+        final float f7;
+        ValueAnimator valueAnimator = this.f47606n;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        jg0 jg0Var = this.f47602a;
+        final float f10 = jg0Var.f45740b.f45711l;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        this.f47606n = ValueAnimator.ofFloat(0.0f, 1.0f);
+        final float[] fArr = {0.0f};
+        AndroidUtilities.cancelRunOnUIThread(jg0Var.f45741b0);
+        jg0Var.d();
+        jg0Var.l();
+        this.f47606n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                int i10;
+                r rVar = r.this;
+                float[] fArr2 = fArr;
+                float f11 = f10;
+                float f12 = f7;
+                boolean z11 = z10;
+                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                float f13 = floatValue - fArr2[0];
+                fArr2[0] = floatValue;
+                rVar.f47602a.f45740b.f45711l = AndroidUtilities.lerp(f11, f12, floatValue);
+                tg.g gVar = rVar.f47602a.f45740b;
+                float f14 = gVar.f45706f;
+                float f15 = f13 * 360.0f;
+                if (z11) {
+                    i10 = 1;
+                } else {
+                    i10 = -1;
+                }
+                gVar.f45706f = (f15 * i10) + f14;
+                rVar.f47602a.f45740b.b();
+                rVar.a(rVar.f47602a.f45740b.f45711l);
+            }
+        });
+        this.f47606n.addListener(new q(this, fArr, f10, f7, z10));
+        this.f47606n.setDuration(680L);
+        this.f47606n.setInterpolator(es.h);
+        this.f47606n.start();
+    }
+}

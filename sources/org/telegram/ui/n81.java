@@ -1,185 +1,95 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class n81 implements RequestDelegate {
-    public final int f40329a;
-    public final SessionsActivity f40330b;
+import org.telegram.ui.Components.Switch;
+public final class n81 extends FrameLayout {
+    public final ImageView f38571a;
+    public final TextView f38572b;
+    public final TextView f38573c;
+    public final Switch d;
+    public boolean e;
 
-    public n81(SessionsActivity sessionsActivity, int i10) {
-        this.f40329a = i10;
-        this.f40330b = sessionsActivity;
+    public n81(Activity activity, boolean z10) {
+        super(activity);
+        int i10;
+        int i11;
+        this.e = false;
+        ImageView imageView = new ImageView(activity);
+        this.f38571a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, w7.a6.a(32.0f, 12.0f, 4.0f, 0.0f, 0.0f, 32, 0));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.a6.a(-2.0f, 64.0f, 4.0f, 0.0f, 4.0f, -1, 0));
+        TextView textView = new TextView(activity);
+        this.f38572b = textView;
+        textView.setTextSize(2, 16.0f);
+        textView.setGravity(3);
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
+        if (z10) {
+            i10 = 64;
+        } else {
+            i10 = 0;
+        }
+        linearLayout.addView(textView, w7.a6.t(-1, -2, 0, 0, 0, i10, 0));
+        TextView textView2 = new TextView(activity);
+        this.f38573c = textView2;
+        textView2.setTextSize(2, 13.0f);
+        textView2.setGravity(3);
+        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20288y6, false));
+        if (z10) {
+            i11 = 64;
+        } else {
+            i11 = 0;
+        }
+        linearLayout.addView(textView2, w7.a6.t(-1, -2, 0, 0, 4, i11, 0));
+        setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+        if (z10) {
+            Switch r22 = new Switch(activity, null);
+            this.d = r22;
+            r22.setDrawIconType(1);
+            addView(r22, w7.a6.a(40.0f, 21.0f, 0.0f, 21.0f, 0.0f, 37, 21));
+        }
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40329a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new pz0(this.f40330b, 18));
-                return;
-            case 1:
-                final SessionsActivity sessionsActivity = this.f40330b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        org.telegram.ui.Components.zc a02;
-                        int i10;
-                        int i11;
-                        switch (r4) {
-                            case 0:
-                                SessionsActivity sessionsActivity2 = sessionsActivity;
-                                if (sessionsActivity2.getParentActivity() != null) {
-                                    if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                        a02 = org.telegram.ui.Components.zc.a0(sessionsActivity2);
-                                        i10 = R.raw.contact_check;
-                                        i11 = R.string.AllWebSessionsTerminated;
-                                    } else {
-                                        a02 = org.telegram.ui.Components.zc.a0(sessionsActivity2);
-                                        i10 = R.raw.error;
-                                        i11 = R.string.UnknownError;
-                                    }
-                                    org.telegram.messenger.v0.q(i11, a02, i10, 36);
-                                    sessionsActivity2.k0(false);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                SessionsActivity sessionsActivity3 = sessionsActivity;
-                                if (sessionsActivity3.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.v0.q(R.string.AllSessionsTerminated, org.telegram.ui.Components.zc.a0(sessionsActivity3), R.raw.contact_check, 36);
-                                    sessionsActivity3.k0(false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                SessionsActivity sessionsActivity4 = sessionsActivity;
-                                if (sessionsActivity4.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.v0.q(R.string.AllSessionsTerminated, org.telegram.ui.Components.zc.a0(sessionsActivity4), R.raw.contact_check, 36);
-                                    sessionsActivity4.k0(false);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                for (int i10 = 0; i10 < 4; i10++) {
-                    UserConfig userConfig = UserConfig.getInstance(i10);
-                    if (userConfig.isClientActivated()) {
-                        userConfig.registeredForPush = false;
-                        userConfig.saveConfig(false);
-                        MessagesController.getInstance(i10).registerForPush(SharedConfig.pushType, SharedConfig.pushString);
-                        ConnectionsManager.getInstance(i10).setUserId(userConfig.getClientUserId());
-                    }
-                }
-                return;
-            case 2:
-                final SessionsActivity sessionsActivity2 = this.f40330b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        org.telegram.ui.Components.zc a02;
-                        int i102;
-                        int i11;
-                        switch (r4) {
-                            case 0:
-                                SessionsActivity sessionsActivity22 = sessionsActivity2;
-                                if (sessionsActivity22.getParentActivity() != null) {
-                                    if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                        a02 = org.telegram.ui.Components.zc.a0(sessionsActivity22);
-                                        i102 = R.raw.contact_check;
-                                        i11 = R.string.AllWebSessionsTerminated;
-                                    } else {
-                                        a02 = org.telegram.ui.Components.zc.a0(sessionsActivity22);
-                                        i102 = R.raw.error;
-                                        i11 = R.string.UnknownError;
-                                    }
-                                    org.telegram.messenger.v0.q(i11, a02, i102, 36);
-                                    sessionsActivity22.k0(false);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                SessionsActivity sessionsActivity3 = sessionsActivity2;
-                                if (sessionsActivity3.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.v0.q(R.string.AllSessionsTerminated, org.telegram.ui.Components.zc.a0(sessionsActivity3), R.raw.contact_check, 36);
-                                    sessionsActivity3.k0(false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                SessionsActivity sessionsActivity4 = sessionsActivity2;
-                                if (sessionsActivity4.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.v0.q(R.string.AllSessionsTerminated, org.telegram.ui.Components.zc.a0(sessionsActivity4), R.raw.contact_check, 36);
-                                    sessionsActivity4.k0(false);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                for (int i11 = 0; i11 < 4; i11++) {
-                    UserConfig userConfig2 = UserConfig.getInstance(i11);
-                    if (userConfig2.isClientActivated()) {
-                        userConfig2.registeredForPush = false;
-                        userConfig2.saveConfig(false);
-                        MessagesController.getInstance(i11).registerForPush(SharedConfig.pushType, SharedConfig.pushString);
-                        ConnectionsManager.getInstance(i11).setUserId(userConfig2.getClientUserId());
-                    }
-                }
-                return;
-            default:
-                final SessionsActivity sessionsActivity3 = this.f40330b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        org.telegram.ui.Components.zc a02;
-                        int i102;
-                        int i112;
-                        switch (r4) {
-                            case 0:
-                                SessionsActivity sessionsActivity22 = sessionsActivity3;
-                                if (sessionsActivity22.getParentActivity() != null) {
-                                    if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                        a02 = org.telegram.ui.Components.zc.a0(sessionsActivity22);
-                                        i102 = R.raw.contact_check;
-                                        i112 = R.string.AllWebSessionsTerminated;
-                                    } else {
-                                        a02 = org.telegram.ui.Components.zc.a0(sessionsActivity22);
-                                        i102 = R.raw.error;
-                                        i112 = R.string.UnknownError;
-                                    }
-                                    org.telegram.messenger.v0.q(i112, a02, i102, 36);
-                                    sessionsActivity22.k0(false);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                SessionsActivity sessionsActivity32 = sessionsActivity3;
-                                if (sessionsActivity32.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.v0.q(R.string.AllSessionsTerminated, org.telegram.ui.Components.zc.a0(sessionsActivity32), R.raw.contact_check, 36);
-                                    sessionsActivity32.k0(false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                SessionsActivity sessionsActivity4 = sessionsActivity3;
-                                if (sessionsActivity4.getParentActivity() != null && tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                                    org.telegram.messenger.v0.q(R.string.AllSessionsTerminated, org.telegram.ui.Components.zc.a0(sessionsActivity4), R.raw.contact_check, 36);
-                                    sessionsActivity4.k0(false);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.e) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f20022k0);
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        int i10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        Switch r02 = this.d;
+        if (r02 != null) {
+            accessibilityNodeInfo.setClassName("android.widget.Switch");
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(r02.h);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append((Object) this.f38572b.getText());
+            sb2.append("\n");
+            sb2.append((Object) this.f38573c.getText());
+            sb2.append("\n");
+            if (r02.h) {
+                i10 = R.string.NotificationsOn;
+            } else {
+                i10 = R.string.NotificationsOff;
+            }
+            sb2.append(LocaleController.getString(i10));
+            accessibilityNodeInfo.setText(sb2.toString());
         }
     }
 }

@@ -1,26 +1,26 @@
 package v7;
 
 import java.util.Map;
-public final class i implements ia.d {
-    public static final i f49448b = new i(0);
-    public static final i f49449c = new i(1);
-    public final int f49450a;
+public final class i implements ja.d {
+    public static final i f46657b = new i(0);
+    public static final i f46658c = new i(1);
+    public final int f46659a;
 
     public i(int i10) {
-        this.f49450a = i10;
+        this.f46659a = i10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f49450a) {
+        switch (this.f46659a) {
             case 0:
                 Map.Entry entry = (Map.Entry) obj;
-                ia.e eVar = (ia.e) obj2;
-                eVar.a(j.f49466g, entry.getKey());
-                eVar.a(j.h, entry.getValue());
+                ja.e eVar = (ja.e) obj2;
+                eVar.d(j.f46669g, entry.getKey());
+                eVar.d(j.h, entry.getValue());
                 return;
             default:
-                ia.e eVar2 = (ia.e) obj2;
+                ja.e eVar2 = (ja.e) obj2;
                 throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
         }
     }

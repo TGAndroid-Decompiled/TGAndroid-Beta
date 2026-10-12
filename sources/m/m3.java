@@ -1,35 +1,95 @@
 package m;
 
-import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
-public final class m3 implements View.OnClickListener {
-    public final l.a f15484a;
-    public final n3 f15485b;
+import androidx.appcompat.widget.Toolbar;
+public final class m3 implements k1 {
+    public Toolbar f15164a;
+    public int f15165b;
+    public View f15166c;
+    public Drawable d;
+    public Drawable e;
+    public Drawable f15167f;
+    public boolean f15168g;
+    public CharSequence h;
+    public CharSequence f15169i;
+    public CharSequence f15170j;
+    public Window.Callback f15171k;
+    public boolean f15172l;
+    public h f15173m;
+    public int f15174n;
+    public Drawable f15175o;
 
-    public m3(n3 n3Var) {
-        this.f15485b = n3Var;
-        Context context = n3Var.f15498a.getContext();
-        CharSequence charSequence = n3Var.h;
-        ?? obj = new Object();
-        obj.f14934e = 4096;
-        obj.f14936g = 4096;
-        obj.f14940l = null;
-        obj.f14941m = null;
-        obj.f14942n = false;
-        obj.f14943o = false;
-        obj.f14944p = 16;
-        obj.f14937i = context;
-        obj.f14931a = charSequence;
-        this.f15484a = obj;
+    public final void a(int i10) {
+        View view;
+        Toolbar toolbar = this.f15164a;
+        int i11 = this.f15165b ^ i10;
+        this.f15165b = i10;
+        if (i11 != 0) {
+            if ((i11 & 4) != 0) {
+                if ((i10 & 4) != 0) {
+                    b();
+                }
+                if ((this.f15165b & 4) != 0) {
+                    Drawable drawable = this.f15167f;
+                    if (drawable == null) {
+                        drawable = this.f15175o;
+                    }
+                    toolbar.setNavigationIcon(drawable);
+                } else {
+                    toolbar.setNavigationIcon((Drawable) null);
+                }
+            }
+            if ((i11 & 3) != 0) {
+                c();
+            }
+            if ((i11 & 8) != 0) {
+                if ((i10 & 8) != 0) {
+                    toolbar.setTitle(this.h);
+                    toolbar.setSubtitle(this.f15169i);
+                } else {
+                    toolbar.setTitle((CharSequence) null);
+                    toolbar.setSubtitle((CharSequence) null);
+                }
+            }
+            if ((i11 & 16) != 0 && (view = this.f15166c) != null) {
+                if ((i10 & 16) != 0) {
+                    toolbar.addView(view);
+                } else {
+                    toolbar.removeView(view);
+                }
+            }
+        }
     }
 
-    @Override
-    public final void onClick(View view) {
-        n3 n3Var = this.f15485b;
-        Window.Callback callback = n3Var.f15506k;
-        if (callback != null && n3Var.f15507l) {
-            callback.onMenuItemSelected(0, this.f15484a);
+    public final void b() {
+        Toolbar toolbar = this.f15164a;
+        if ((this.f15165b & 4) != 0) {
+            if (TextUtils.isEmpty(this.f15170j)) {
+                toolbar.setNavigationContentDescription(this.f15174n);
+            } else {
+                toolbar.setNavigationContentDescription(this.f15170j);
+            }
         }
+    }
+
+    public final void c() {
+        Drawable drawable;
+        int i10 = this.f15165b;
+        if ((i10 & 2) != 0) {
+            if ((i10 & 1) != 0) {
+                drawable = this.e;
+                if (drawable == null) {
+                    drawable = this.d;
+                }
+            } else {
+                drawable = this.d;
+            }
+        } else {
+            drawable = null;
+        }
+        this.f15164a.setLogo(drawable);
     }
 }

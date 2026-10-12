@@ -3,22 +3,23 @@ package j6;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.messaging.r;
 public final class k {
-    public final int f14053a;
-    public final TaskCompletionSource f14054b = new TaskCompletionSource();
-    public final int f14055c;
+    public final int f12869a;
+    public final TaskCompletionSource f12870b = new TaskCompletionSource();
+    public final int f12871c;
     public final Bundle d;
-    public final int f14056e;
+    public final int e;
 
     public k(int i10, int i11, Bundle bundle, int i12) {
-        this.f14056e = i12;
-        this.f14053a = i10;
-        this.f14055c = i11;
+        this.e = i12;
+        this.f12869a = i10;
+        this.f12871c = i11;
         this.d = bundle;
     }
 
     public final boolean a() {
-        switch (this.f14056e) {
+        switch (this.e) {
             case 0:
                 return true;
             default:
@@ -26,13 +27,13 @@ public final class k {
         }
     }
 
-    public final void b(cc.k kVar) {
+    public final void b(r rVar) {
         if (Log.isLoggable("MessengerIpcClient", 3)) {
-            String kVar2 = toString();
-            String obj = kVar.toString();
-            Log.d("MessengerIpcClient", "Failing " + kVar2 + " with " + obj);
+            String kVar = toString();
+            String obj = rVar.toString();
+            Log.d("MessengerIpcClient", "Failing " + kVar + " with " + obj);
         }
-        this.f14054b.setException(kVar);
+        this.f12870b.setException(rVar);
     }
 
     public final void c(Bundle bundle) {
@@ -41,10 +42,10 @@ public final class k {
             String valueOf = String.valueOf(bundle);
             Log.d("MessengerIpcClient", "Finishing " + kVar + " with " + valueOf);
         }
-        this.f14054b.setResult(bundle);
+        this.f12870b.setResult(bundle);
     }
 
     public final String toString() {
-        return "Request { what=" + this.f14055c + " id=" + this.f14053a + " oneWay=" + a() + "}";
+        return "Request { what=" + this.f12871c + " id=" + this.f12869a + " oneWay=" + a() + "}";
     }
 }

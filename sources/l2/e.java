@@ -1,43 +1,44 @@
 package l2;
 
-import b2.e0;
-import b2.h1;
-import b2.j1;
-import b2.k0;
-import b2.k1;
-import e2.d0;
+import b2.j0;
+import b2.m1;
+import b2.o1;
+import b2.p0;
+import b2.p1;
+import e2.m0;
 import java.util.List;
-public final class e extends k1 {
-    public final long f15070e;
-    public final long f15071f;
-    public final long f15072g;
+import v7.u6;
+public final class e extends p1 {
+    public final long e;
+    public final long f14494f;
+    public final long f14495g;
     public final int h;
-    public final long f15073i;
-    public final long f15074j;
-    public final long f15075k;
-    public final m2.c f15076l;
-    public final k0 f15077m;
-    public final e0 f15078n;
+    public final long f14496i;
+    public final long f14497j;
+    public final long f14498k;
+    public final m2.c f14499l;
+    public final p0 f14500m;
+    public final j0 f14501n;
 
-    public e(long j3, long j10, long j11, int i10, long j12, long j13, long j14, m2.c cVar, k0 k0Var, e0 e0Var) {
+    public e(long j10, long j11, long j12, int i10, long j13, long j14, long j15, m2.c cVar, p0 p0Var, j0 j0Var) {
         boolean z10;
         boolean z11 = cVar.d;
-        if (e0Var != null) {
+        if (j0Var != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.g(z11 == z10);
-        this.f15070e = j3;
-        this.f15071f = j10;
-        this.f15072g = j11;
+        u6.p(z11 == z10);
+        this.e = j10;
+        this.f14494f = j11;
+        this.f14495g = j12;
         this.h = i10;
-        this.f15073i = j12;
-        this.f15074j = j13;
-        this.f15075k = j14;
-        this.f15076l = cVar;
-        this.f15077m = k0Var;
-        this.f15078n = e0Var;
+        this.f14496i = j13;
+        this.f14497j = j14;
+        this.f14498k = j15;
+        this.f14499l = cVar;
+        this.f14500m = p0Var;
+        this.f14501n = j0Var;
     }
 
     @Override
@@ -50,108 +51,108 @@ public final class e extends k1 {
     }
 
     @Override
-    public final h1 f(int i10, h1 h1Var, boolean z10) {
+    public final m1 f(int i10, m1 m1Var, boolean z10) {
         String str;
-        e2.d.c(i10, h());
+        u6.j(i10, h());
         Integer num = null;
-        m2.c cVar = this.f15076l;
+        m2.c cVar = this.f14499l;
         if (z10) {
-            str = cVar.b(i10).f15689a;
+            str = cVar.b(i10).f15346a;
         } else {
             str = null;
         }
         if (z10) {
             num = Integer.valueOf(this.h + i10);
         }
-        h1Var.getClass();
-        h1Var.h(str, num, 0, cVar.d(i10), d0.P(cVar.b(i10).f15690b - cVar.b(0).f15690b) - this.f15073i, b2.b.f3237c, false);
-        return h1Var;
+        m1Var.getClass();
+        m1Var.h(str, num, 0, cVar.d(i10), m0.S(cVar.b(i10).f15347b - cVar.b(0).f15347b) - this.f14496i, b2.c.f2086c, false);
+        return m1Var;
     }
 
     @Override
     public final int h() {
-        return this.f15076l.f15671m.size();
+        return this.f14499l.f15330m.size();
     }
 
     @Override
     public final Object l(int i10) {
-        e2.d.c(i10, h());
+        u6.j(i10, h());
         return Integer.valueOf(this.h + i10);
     }
 
     @Override
-    public final j1 m(int i10, j1 j1Var, long j3) {
+    public final o1 m(int i10, o1 o1Var, long j10) {
         boolean z10;
-        long j10;
+        long j11;
         boolean z11;
         boolean z12;
-        long j11;
-        i c10;
-        e2.d.c(i10, 1);
-        m2.c cVar = this.f15076l;
+        long j12;
+        i d;
+        u6.j(i10, 1);
+        m2.c cVar = this.f14499l;
         boolean z13 = cVar.d;
-        long j12 = this.f15075k;
-        if (z13 && cVar.f15664e != -9223372036854775807L && cVar.f15662b == -9223372036854775807L) {
-            long j13 = 0;
-            if (j3 > 0) {
-                j12 += j3;
-                if (j12 > this.f15074j) {
+        long j13 = this.f14498k;
+        if (z13 && cVar.e != -9223372036854775807L && cVar.f15322b == -9223372036854775807L) {
+            long j14 = 0;
+            if (j10 > 0) {
+                j13 += j10;
+                if (j13 > this.f14497j) {
                     z10 = true;
                     z11 = false;
-                    j12 = -9223372036854775807L;
-                    j10 = -9223372036854775807L;
-                    Object obj = j1.f3368q;
-                    if (!cVar.d && cVar.f15664e != j10 && cVar.f15662b == j10) {
+                    j13 = -9223372036854775807L;
+                    j11 = -9223372036854775807L;
+                    Object obj = o1.f2249q;
+                    if (!cVar.d && cVar.e != j11 && cVar.f15322b == j11) {
                         z12 = z10;
                     } else {
                         z12 = z11;
                     }
-                    j1Var.b(obj, this.f15077m, cVar, this.f15070e, this.f15071f, this.f15072g, true, z12, this.f15078n, j12, this.f15074j, 0, h() - 1, this.f15073i);
-                    return j1Var;
+                    o1Var.b(obj, this.f14500m, cVar, this.e, this.f14494f, this.f14495g, true, z12, this.f14501n, j13, this.f14497j, 0, h() - 1, this.f14496i);
+                    return o1Var;
                 }
             }
-            long j14 = this.f15073i + j12;
-            long d = cVar.d(0);
+            long j15 = this.f14496i + j13;
+            long d10 = cVar.d(0);
             int i11 = 0;
-            while (i11 < cVar.f15671m.size() - 1 && j14 >= d) {
-                j14 -= d;
+            while (i11 < cVar.f15330m.size() - 1 && j15 >= d10) {
+                j15 -= d10;
                 i11++;
-                d = cVar.d(i11);
+                d10 = cVar.d(i11);
             }
             m2.h b10 = cVar.b(i11);
-            List list = b10.f15691c;
+            List list = b10.f15348c;
             z10 = true;
             int size = list.size();
-            j10 = -9223372036854775807L;
+            j11 = -9223372036854775807L;
             int i12 = 0;
             while (true) {
                 if (i12 < size) {
-                    j11 = j13;
-                    if (((m2.a) list.get(i12)).f15654b == 2) {
+                    j12 = j14;
+                    if (((m2.a) list.get(i12)).f15315b == 2) {
                         break;
                     }
                     i12++;
-                    j13 = j11;
+                    j14 = j12;
                 } else {
-                    j11 = j13;
+                    j12 = j14;
                     i12 = -1;
                     break;
                 }
             }
-            if (i12 != -1 && (c10 = ((m2.m) ((m2.a) b10.f15691c.get(i12)).f15655c.get(0)).c()) != null && c10.c0(d) != j11) {
-                j12 = (c10.a(c10.C(j14, d)) + j12) - j14;
+            if (i12 != -1 && (d = ((m2.m) ((m2.a) b10.f15348c.get(i12)).f15316c.get(0)).d()) != null && d.w(d10) != j12) {
+                j13 = (d.b(d.o(j15, d10)) + j13) - j15;
             }
         } else {
             z10 = true;
-            j10 = -9223372036854775807L;
+            j11 = -9223372036854775807L;
         }
         z11 = false;
-        Object obj2 = j1.f3368q;
+        Object obj2 = o1.f2249q;
         if (!cVar.d) {
         }
         z12 = z11;
-        j1Var.b(obj2, this.f15077m, cVar, this.f15070e, this.f15071f, this.f15072g, true, z12, this.f15078n, j12, this.f15074j, 0, h() - 1, this.f15073i);
-        return j1Var;
+        o1Var.b(obj2, this.f14500m, cVar, this.e, this.f14494f, this.f14495g, true, z12, this.f14501n, j13, this.f14497j, 0, h() - 1, this.f14496i);
+        return o1Var;
     }
 
     @Override

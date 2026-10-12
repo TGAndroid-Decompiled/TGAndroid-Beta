@@ -1,16 +1,5 @@
 package w7;
-
-import android.util.Log;
 public abstract class i6 {
-    public static void a(String str) {
-        boolean isLoggable;
-        if (Log.isLoggable("FirebaseAppIndex", 3)) {
-            isLoggable = true;
-        } else {
-            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
-        }
-        if (isLoggable) {
-            Log.d("FirebaseAppIndex", str);
-        }
-    }
+    public static int f47326a = 22336;
+    public static org.telegram.ui.Wallet.u0 f47327b;
 }

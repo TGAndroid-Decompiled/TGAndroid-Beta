@@ -1,93 +1,101 @@
 package org.telegram.ui;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import java.io.Serializable;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class jl0 implements Utilities.Callback {
-    public final int[] f39241a;
-    public final ci.d f39242b;
-    public final ci.d f39243c;
-    public final TLRPC.TL_messages_requestUrlAuth d;
-    public final org.telegram.ui.ActionBar.e3 f39244e;
-    public final boolean f39245f;
-    public final String f39246g;
-    public final TLRPC.UrlAuthResult h;
-    public final String[] f39247i;
-    public final boolean f39248j;
-    public final org.telegram.ui.web.b1 f39249k;
-    public final String f39250l;
-    public final org.telegram.ui.ActionBar.c6 f39251m;
+public final class jl0 implements Utilities.Callback2 {
+    public final int f37405a;
+    public final Serializable f37406b;
+    public final Object f37407c;
+    public final Object d;
+    public final Object e;
 
-    public jl0(int[] iArr, ci.d dVar, ci.d dVar2, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.ActionBar.e3 e3Var, boolean z10, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z11, org.telegram.ui.web.b1 b1Var, String str2, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f39241a = iArr;
-        this.f39242b = dVar;
-        this.f39243c = dVar2;
-        this.d = tL_messages_requestUrlAuth;
-        this.f39244e = e3Var;
-        this.f39245f = z10;
-        this.f39246g = str;
-        this.h = urlAuthResult;
-        this.f39247i = strArr;
-        this.f39248j = z11;
-        this.f39249k = b1Var;
-        this.f39250l = str2;
-        this.f39251m = c6Var;
+    public jl0(Object obj, Object obj2, Serializable serializable, Object obj3, int i10) {
+        this.f37405a = i10;
+        this.f37407c = obj;
+        this.d = obj2;
+        this.f37406b = serializable;
+        this.e = obj3;
     }
 
     @Override
-    public final void run(Object obj) {
-        int[] iArr = this.f39241a;
-        ci.d dVar = this.f39242b;
-        ci.d dVar2 = this.f39243c;
-        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.d;
-        final org.telegram.ui.ActionBar.e3 e3Var = this.f39244e;
-        final boolean z10 = this.f39245f;
-        final String str = this.f39246g;
-        final TLRPC.UrlAuthResult urlAuthResult = this.h;
-        final String[] strArr = this.f39247i;
-        final boolean z11 = this.f39248j;
-        final org.telegram.ui.web.b1 b1Var = this.f39249k;
-        final String str2 = this.f39250l;
-        final org.telegram.ui.ActionBar.c6 c6Var = this.f39251m;
-        final Integer num = (Integer) obj;
-        if (iArr[0] != num.intValue() && !dVar.N && !dVar2.N) {
-            final org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(ApplicationLoader.applicationContext, 3, null);
-            a2Var.q(200L);
-            ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new Utilities.Callback2() {
-                @Override
-                public final void run(Object obj2, Object obj3) {
-                    CharSequence replaceSingleLinkBold;
-                    TLRPC.UrlAuthResult urlAuthResult2 = (TLRPC.UrlAuthResult) obj2;
-                    TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
-                    org.telegram.ui.ActionBar.a2.this.dismiss();
-                    org.telegram.ui.ActionBar.e3 e3Var2 = e3Var;
-                    if (urlAuthResult2 != null) {
-                        e3Var2.dismiss();
-                        nl0.b(z10, num.intValue(), tL_messages_requestUrlAuth, urlAuthResult2, str, urlAuthResult, strArr[0], z11, b1Var);
-                    } else if (tL_error != null) {
-                        if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                            e3Var2.dismiss();
-                            org.telegram.ui.Components.zc a2 = nl0.a();
-                            int i10 = R.raw.error;
-                            String string = LocaleController.getString(R.string.BotAuthLoggedInFailTitle);
-                            String str3 = str2;
-                            if (TextUtils.isEmpty(str3)) {
-                                replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
-                            } else {
-                                replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str3), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gi, c6Var));
-                            }
-                            a2.M(string, replaceSingleLinkBold, i10).j();
-                            return;
-                        }
-                        org.telegram.ui.Cells.c1.p(e3Var2.topBulletinContainer, e3Var2.getResourcesProvider(), tL_error, false);
-                    }
+    public final void run(Object obj, Object obj2) {
+        CharSequence replaceSingleLinkBold;
+        int i10 = this.f37405a;
+        Object obj3 = this.e;
+        Serializable serializable = this.f37406b;
+        Object obj4 = this.d;
+        Object obj5 = this.f37407c;
+        switch (i10) {
+            case 0:
+                org.telegram.ui.Components.m51 m51Var = (org.telegram.ui.Components.m51) obj4;
+                String str = (String) serializable;
+                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj3;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                ((org.telegram.ui.ActionBar.a2) obj5).dismiss();
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
+                    m51Var.run();
+                    return;
                 }
-            });
+                org.telegram.ui.ActionBar.e3 e3Var = rl0.f39819a;
+                if (e3Var != null) {
+                    e3Var.dismiss();
+                    rl0.f39819a = null;
+                }
+                org.telegram.ui.Components.zc a2 = rl0.a();
+                int i11 = R.raw.error;
+                String string = LocaleController.getString(R.string.BotAuthLoggedInFailTitle);
+                if (TextUtils.isEmpty(str)) {
+                    replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
+                } else {
+                    replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Gi, c6Var));
+                }
+                a2.M(string, replaceSingleLinkBold, i11).j();
+                return;
+            case 1:
+                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj5;
+                bi.n9 n9Var = (bi.n9) obj4;
+                String str2 = (String) serializable;
+                TLRPC.User user = (TLRPC.User) obj3;
+                TLRPC.Updates updates = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                org.telegram.ui.ActionBar.c6 c6Var2 = b1Var.e;
+                if (updates != null) {
+                    MessagesController.getInstance(b1Var.M).lambda$processUpdates$377(updates, false);
+                    b1Var.x(n9Var, "requested_chat_sent", org.telegram.ui.web.b1.A(str2, "req_id"));
+                    long j10 = b1Var.U.f19363id;
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("user_id", user.f19363id);
+                    org.telegram.ui.web.f0 f0Var = new org.telegram.ui.web.f0(b1Var, bundle, user, j10);
+                    org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                    if (U != null) {
+                        U.presentFragment(f0Var);
+                    }
+                    org.telegram.ui.web.h0 h0Var = b1Var.f41286c;
+                    if (h0Var != null) {
+                        h0Var.b();
+                        return;
+                    }
+                    return;
+                } else if (tL_error2 != null) {
+                    new org.telegram.ui.Components.zc(b1Var, c6Var2).f0(tL_error2, false);
+                    b1Var.x(n9Var, "requested_chat_failed", org.telegram.ui.web.b1.A(str2, "req_id"));
+                    return;
+                } else {
+                    new org.telegram.ui.Components.zc(b1Var, c6Var2).e0("UNKNOWN_BUTTON", false);
+                    b1Var.x(n9Var, "requested_chat_failed", org.telegram.ui.web.b1.A(str2, "req_id"));
+                    return;
+                }
+            default:
+                zh.r3.d0((zh.r3) obj5, (Utilities.Callback2) obj4, (ArrayList) serializable, (Runnable) obj3, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
         }
     }
 }

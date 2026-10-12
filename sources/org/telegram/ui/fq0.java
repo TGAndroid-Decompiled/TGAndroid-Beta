@@ -1,23 +1,141 @@
 package org.telegram.ui;
-public final class fq0 extends org.telegram.ui.ActionBar.j {
-    public final mq0 f37822a;
 
-    public fq0(mq0 mq0Var) {
-        this.f37822a = mq0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class fq0 extends FrameLayout {
+    public int E;
+    public qp0 F;
+    public dh.d G;
+    public dh.d H;
+    public boolean I;
+    public final Path J;
+    public int K;
+    public final gq0 L;
+    public final v60 f36205a;
+    public final s4.b0 f36206b;
+    public final a8 f36207c;
+    public int d;
+    public final org.telegram.ui.Components.g6 e;
+    public final ArrayList f36208f;
+    public sp0 h;
+    public final RectF f36209n;
+    public final RectF f36210r;
+    public final RectF f36211s;
+    public final Paint v;
+    public final Paint f36212w;
+    public int f36213x;
+    public int f36214y;
+
+    public fq0(gq0 gq0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        this.L = gq0Var;
+        this.f36208f = new ArrayList();
+        this.f36209n = new RectF();
+        this.f36210r = new RectF();
+        this.f36211s = new RectF();
+        this.v = new Paint(1);
+        this.f36212w = new Paint(1);
+        this.J = new Path();
+        this.K = Integer.MIN_VALUE;
+        v60 v60Var = new v60(this, context, c6Var, 1);
+        this.f36205a = v60Var;
+        v60Var.setClipToPadding(false);
+        v60Var.setClipChildren(false);
+        v60Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        v60Var.setOverScrollMode(2);
+        v60Var.setHorizontalScrollBarEnabled(false);
+        v60Var.setItemAnimator(null);
+        s4.b0 b0Var = new s4.b0(0, false);
+        this.f36206b = b0Var;
+        v60Var.setLayoutManager(b0Var);
+        a8 a8Var = new a8(this, 5);
+        this.f36207c = a8Var;
+        v60Var.setAdapter(a8Var);
+        v60Var.setOnItemClickListener(new i(this, 21));
+        addView(v60Var, w7.a6.e(-1, -1, 119));
+        setHorizontalScrollBarEnabled(false);
+        setClipToPadding(false);
+        setClipChildren(false);
+        this.e = new org.telegram.ui.Components.g6(v60Var, 0L, 320L, org.telegram.ui.Components.es.h);
+    }
+
+    public final void a(int i10, boolean z10) {
+        int i11 = this.d;
+        this.d = i10;
+        if (!z10) {
+            this.e.d(i10, true);
+        }
+        b(i11);
+        if (i10 != i11) {
+            b(i10);
+        }
+        ArrayList arrayList = this.f36208f;
+        boolean isEmpty = arrayList.isEmpty();
+        v60 v60Var = this.f36205a;
+        if (!isEmpty) {
+            int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
+            if (z10) {
+                v60Var.x0(clamp);
+            } else {
+                v60Var.u0(clamp);
+            }
+        }
+        v60Var.invalidate();
+    }
+
+    public final void b(int i10) {
+        int i11;
+        View m10 = this.f36206b.m(i10);
+        if (m10 instanceof TextView) {
+            TextView textView = (TextView) m10;
+            if (i10 == this.d) {
+                i11 = this.E;
+            } else {
+                i11 = this.f36214y;
+            }
+            textView.setTextColor(i11);
+            m10.invalidate();
+        }
     }
 
     @Override
-    public final void b(int i10) {
-        mq0 mq0Var = this.f37822a;
-        if (i10 == -1) {
-            mq0Var.finishFragment();
-        } else if (i10 == 1) {
-            if (mq0Var.V != null) {
-                mq0Var.finishFragment(false);
-                mq0Var.V.b();
-            }
-        } else if (i10 == 2) {
-            mq0.U(mq0Var, null);
+    public final void dispatchDraw(Canvas canvas) {
+        dh.d dVar;
+        zf.q.g(this.G, 0, 0, getWidth(), getHeight());
+        zf.q.g(this.H, 0, 0, getWidth(), getHeight());
+        if (this.I) {
+            dVar = this.H;
+        } else {
+            dVar = this.G;
         }
+        dVar.draw(canvas);
+        canvas.save();
+        canvas.clipPath(this.J);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        int dp = AndroidUtilities.dp(3.0f);
+        Path path = this.J;
+        path.rewind();
+        float f7 = dp;
+        path.addRoundRect(f7, f7, i10 - dp, i11 - dp, AndroidUtilities.dp(18.0f) - dp, AndroidUtilities.dp(18.0f) - dp, Path.Direction.CW);
     }
 }

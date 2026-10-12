@@ -1,313 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class ah0 extends View {
-    public ValueAnimator E;
-    public final Paint F;
-    public final Paint G;
-    public final Paint H;
-    public final Paint I;
-    public int J;
-    public int K;
-    public final org.telegram.ui.ActionBar.c6 L;
-    public boolean M;
-    public int f24305a;
-    public int f24306b;
-    public int f24307c;
-    public float d;
-    public int f24308e;
-    public int f24309f;
-    public boolean h;
-    public boolean f24310n;
-    public float f24311r;
-    public float f24312s;
-    public int v;
-    public int f24313w;
-    public final RectF f24314x;
-    public float f24315y;
+import org.telegram.ui.PhotoViewer;
+public final class ah0 implements Runnable {
+    public final int f23556a;
+    public final fh0 f23557b;
 
-    public ah0(Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(activity);
-        this.f24305a = -1;
-        this.f24306b = 0;
-        this.f24314x = new RectF();
-        Paint paint = new Paint(1);
-        this.H = paint;
-        Paint paint2 = new Paint(1);
-        this.I = paint2;
-        this.J = -1;
-        this.L = c6Var;
-        Paint.Style style = Paint.Style.FILL;
-        paint.setStyle(style);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        Paint paint3 = new Paint();
-        this.F = paint3;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        paint3.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(6.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode));
-        PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
-        paint3.setXfermode(new PorterDuffXfermode(mode));
-        Paint paint4 = new Paint();
-        this.G = paint4;
-        paint4.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(6.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
-        paint4.setXfermode(new PorterDuffXfermode(mode));
-        d();
-    }
-
-    public final void a() {
-        int i10;
-        boolean z10;
-        if (this.f24310n) {
-            i10 = Math.max(this.f24308e, this.f24309f);
-        } else {
-            i10 = this.f24306b;
-        }
-        int i11 = 0;
-        if (i10 > 3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10) {
-            i11 = 2;
-        }
-        if (getLayerType() != i11) {
-            setLayerType(i11, null);
-            invalidate();
-        }
-        this.M = z10;
-    }
-
-    public final void b(int i10) {
-        if (this.f24310n) {
-            this.J = i10;
-            return;
-        }
-        if (this.h) {
-            if (this.f24307c != i10) {
-                ValueAnimator valueAnimator = this.E;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                }
-                float f7 = this.d;
-                float f10 = this.f24315y;
-                this.d = (this.f24307c * f10) + ((1.0f - f10) * f7);
-            } else {
-                return;
-            }
-        } else {
-            this.d = this.f24305a;
-        }
-        if (i10 != this.f24305a) {
-            this.f24307c = i10;
-            this.h = true;
-            this.f24315y = 0.0f;
-            invalidate();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.E = ofFloat;
-            ofFloat.addUpdateListener(new yg0(this, 1));
-            this.E.addListener(new zg0(this, 0));
-            this.E.setInterpolator(js.f27634f);
-            this.E.setDuration(220L);
-            this.E.start();
-        }
-    }
-
-    public final void c(int i10, int i11, boolean z10) {
-        int dp;
-        int i12;
-        int i13;
-        int i14 = this.f24305a;
-        if (i14 < 0 || i11 == 0 || this.f24306b == 0) {
-            z10 = false;
-        }
-        if (!z10) {
-            ValueAnimator valueAnimator = this.E;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.f24305a = i10;
-            this.f24306b = i11;
-            invalidate();
-        } else if (this.f24306b == i11 && (Math.abs(i14 - i10) <= 2 || this.h || this.f24310n)) {
-            b(i10);
-        } else {
-            ValueAnimator valueAnimator2 = this.E;
-            if (valueAnimator2 != null) {
-                this.J = 0;
-                valueAnimator2.cancel();
-            }
-            int dp2 = AndroidUtilities.dp(8.0f) * 2;
-            this.v = (getMeasuredHeight() - dp2) / Math.min(this.f24306b, 3);
-            this.f24313w = (getMeasuredHeight() - dp2) / Math.min(i11, 3);
-            float f7 = (this.f24305a - 1) * this.v;
-            this.f24311r = f7;
-            if (f7 < 0.0f) {
-                this.f24311r = 0.0f;
-            } else {
-                int i15 = this.v;
-                if (hg.c.g(this.f24306b, 1, i12, dp) - f7 < (getMeasuredHeight() - dp) - i15) {
-                    this.f24311r = hg.c.g(this.f24306b, 1, i15, dp) - ((getMeasuredHeight() - dp) - this.v);
-                }
-            }
-            float f10 = (i10 - 1) * this.f24313w;
-            this.f24312s = f10;
-            if (f10 < 0.0f) {
-                this.f24312s = 0.0f;
-            } else {
-                int i16 = i11 - 1;
-                int i17 = this.f24313w;
-                if (((i13 * i16) + dp) - f10 < (getMeasuredHeight() - dp) - i17) {
-                    this.f24312s = ((i16 * i17) + dp) - ((getMeasuredHeight() - dp) - this.f24313w);
-                }
-            }
-            this.d = this.f24305a;
-            this.f24307c = i10;
-            this.f24305a = i10;
-            this.f24308e = this.f24306b;
-            this.f24309f = i11;
-            this.f24306b = i11;
-            this.f24310n = true;
-            this.h = true;
-            this.f24315y = 0.0f;
-            invalidate();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.E = ofFloat;
-            ofFloat.addUpdateListener(new yg0(this, 0));
-            this.E.addListener(new zg0(this, 1));
-            this.E.setInterpolator(js.f27634f);
-            this.E.setDuration(220L);
-            this.E.start();
-        }
-        a();
-    }
-
-    public final void d() {
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20586ee, this.L);
-        this.K = w02;
-        this.H.setColor(i0.a.k(w02, (int) ((Color.alpha(w02) / 255.0f) * 112.0f)));
-        this.I.setColor(this.K);
+    public ah0(fh0 fh0Var, int i10) {
+        this.f23556a = i10;
+        this.f23557b = fh0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredHeight;
-        float f7;
-        int i10;
-        RectF rectF;
-        float f10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        super.onDraw(canvas);
-        if (this.f24305a >= 0 && this.f24306b != 0) {
-            int dp = AndroidUtilities.dp(8.0f);
-            float f11 = 1.0f;
-            if (this.f24310n) {
-                float f12 = this.f24315y;
-                measuredHeight = (this.f24313w * f12) + ((1.0f - f12) * this.v);
-            } else if (this.f24306b != 0) {
-                measuredHeight = (getMeasuredHeight() - (dp * 2)) / Math.min(this.f24306b, 3);
-            } else {
+    public final void run() {
+        qg0 qg0Var;
+        boolean z10;
+        switch (this.f23556a) {
+            case 0:
+                this.f23557b.u();
                 return;
-            }
-            if (measuredHeight != 0.0f) {
-                float dpf2 = AndroidUtilities.dpf2(0.7f);
-                if (this.f24310n) {
-                    float f13 = this.f24311r;
-                    float f14 = this.f24315y;
-                    f7 = (this.f24312s * f14) + ((1.0f - f14) * f13);
-                } else {
-                    if (this.h) {
-                        float f15 = this.f24315y;
-                        f7 = ((this.f24307c - 1) * measuredHeight * f15) + ((1.0f - f15) * (this.d - 1.0f) * measuredHeight);
+            case 1:
+                fh0 fh0Var = this.f23557b;
+                PhotoViewer photoViewer = fh0Var.V;
+                if (photoViewer != null) {
+                    if (fh0Var.f25053r != null) {
+                        fh0Var.Z = qg0Var.getCurrentPosition() / fh0Var.f25053r.getVideoDuration();
+                        fh0Var.f25037a0 = fh0Var.f25053r.getBufferedPosition();
                     } else {
-                        f7 = (this.f24305a - 1) * measuredHeight;
-                    }
-                    if (f7 < 0.0f) {
-                        f7 = 0.0f;
-                    } else {
-                        float f16 = dp;
-                        if ((((this.f24306b - 1) * measuredHeight) + f16) - f7 < (getMeasuredHeight() - dp) - measuredHeight) {
-                            f7 = (((this.f24306b - 1) * measuredHeight) + f16) - ((getMeasuredHeight() - dp) - measuredHeight);
-                        }
-                    }
-                }
-                float measuredWidth = getMeasuredWidth() / 2.0f;
-                float f17 = dp;
-                int max = Math.max(0, (int) (((f17 + f7) / measuredHeight) - 1.0f));
-                int i15 = max + 6;
-                if (this.f24310n) {
-                    i10 = Math.max(this.f24308e, this.f24309f);
-                } else {
-                    i10 = this.f24306b;
-                }
-                int min = Math.min(i15, i10);
-                while (true) {
-                    rectF = this.f24314x;
-                    if (max >= min) {
-                        break;
-                    }
-                    float f18 = ((max * measuredHeight) + f17) - f7;
-                    float f19 = f18 + measuredHeight;
-                    if (f19 < 0.0f || f18 > getMeasuredHeight()) {
-                        f10 = f11;
-                    } else {
-                        rectF.set(0.0f, f18 + dpf2, getMeasuredWidth(), f19 - dpf2);
-                        boolean z10 = this.f24310n;
-                        Paint paint = this.H;
-                        f10 = f11;
-                        if (z10 && max >= this.f24309f) {
-                            paint.setColor(i0.a.k(this.K, (int) ((f10 - this.f24315y) * (Color.alpha(i13) / 255.0f) * 76.0f)));
-                            canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
-                            paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i14) / 255.0f) * 76.0f)));
-                        } else if (z10 && max >= this.f24308e) {
-                            paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i11) / 255.0f) * 76.0f * this.f24315y)));
-                            canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
-                            paint.setColor(i0.a.k(this.K, (int) ((Color.alpha(i12) / 255.0f) * 76.0f)));
+                        h81 h81Var = photoViewer.F2;
+                        if (h81Var != null) {
+                            float m10 = (float) fh0Var.m();
+                            fh0Var.Z = ((float) h81Var.n()) / m10;
+                            fh0Var.f25037a0 = ((float) h81Var.j()) / m10;
                         } else {
-                            canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
+                            return;
                         }
                     }
-                    max++;
-                    f11 = f10;
+                    fh0Var.f25039b0.invalidate();
+                    AndroidUtilities.runOnUIThread(fh0Var.f25043e0, 500L);
+                    return;
                 }
-                float f20 = f11;
-                boolean z11 = this.h;
-                Paint paint2 = this.I;
-                if (z11) {
-                    float f21 = this.d;
-                    float f22 = this.f24315y;
-                    float f23 = ((((this.f24307c * f22) + ((f20 - f22) * f21)) * measuredHeight) + f17) - f7;
-                    rectF.set(0.0f, f23 + dpf2, getMeasuredWidth(), (f23 + measuredHeight) - dpf2);
-                    canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint2);
-                } else {
-                    float f24 = ((this.f24305a * measuredHeight) + f17) - f7;
-                    rectF.set(0.0f, f24 + dpf2, getMeasuredWidth(), (f24 + measuredHeight) - dpf2);
-                    canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint2);
+                return;
+            case 2:
+                fh0 fh0Var2 = this.f23557b;
+                PhotoViewer photoViewer2 = fh0Var2.V;
+                if (photoViewer2 != null) {
+                    if ((photoViewer2.F2 != null || fh0Var2.f25053r != null) && !fh0Var2.f25041c0 && !fh0Var2.Y && !fh0Var2.f25055w && !fh0Var2.f25054s.isInProgress() && fh0Var2.f25045f0) {
+                        h81 h81Var2 = fh0Var2.V.F2;
+                        if (fh0Var2.f25046g0[0] >= fh0Var2.t() * fh0Var2.J * 0.5f) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        long l4 = fh0Var2.l();
+                        long m11 = fh0Var2.m();
+                        if (l4 != -9223372036854775807L && m11 >= 15000) {
+                            qg0 qg0Var2 = fh0Var2.f25053r;
+                            if (qg0Var2 != null) {
+                                PhotoViewer photoViewer3 = fh0Var2.V;
+                                photoViewer3.f32212c4.startRewind(qg0Var2, z10, fh0Var2.f25046g0[0], photoViewer3.f32359t1, fh0Var2.R);
+                            } else {
+                                PhotoViewer photoViewer4 = fh0Var2.V;
+                                photoViewer4.f32212c4.startRewind(h81Var2, z10, fh0Var2.f25046g0[0], photoViewer4.f32359t1, fh0Var2.R);
+                            }
+                            if (!fh0Var2.E) {
+                                fh0Var2.E = true;
+                                fh0Var2.y(true);
+                                if (!fh0Var2.f25048i0) {
+                                    AndroidUtilities.runOnUIThread(fh0Var2.f25049j0, 1500L);
+                                    fh0Var2.f25048i0 = true;
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
                 }
-                if (this.M) {
-                    Paint paint3 = this.F;
-                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(6.0f), paint3);
-                    canvas.drawRect(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f), getMeasuredWidth(), getMeasuredHeight(), paint3);
-                    canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f));
-                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(6.0f), this.G);
+                return;
+            default:
+                fh0 fh0Var3 = this.f23557b;
+                PhotoViewer photoViewer5 = fh0Var3.V;
+                if (photoViewer5 != null && photoViewer5.f32212c4.rewinding) {
+                    AndroidUtilities.runOnUIThread(fh0Var3.f25049j0, 1500L);
+                    return;
                 }
-            }
+                fh0Var3.E = false;
+                fh0Var3.y(false);
+                fh0Var3.f25048i0 = false;
+                return;
         }
     }
 }

@@ -1,32 +1,30 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class ol implements Runnable {
-    public final int f29235a;
-    public final zl f29236b;
-    public final IMapsProvider.IMapView f29237c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ol extends hg.t0 {
+    public final ul N;
 
-    public ol(zl zlVar, IMapsProvider.IMapView iMapView, int i10) {
-        this.f29235a = i10;
-        this.f29236b = zlVar;
-        this.f29237c = iMapView;
+    public ol(ul ulVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        super(context, c6Var, z10, false);
+        this.N = ulVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29235a) {
-            case 0:
-                zl.V(this.f29236b, this.f29237c);
-                return;
-            default:
-                IMapsProvider.IMapView iMapView = this.f29237c;
-                try {
-                    iMapView.onCreate(null);
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new ol(this.f29236b, iMapView, 0));
-                return;
+    public final void l() {
+        ul ulVar = this.N;
+        ol olVar = ulVar.R;
+        org.telegram.ui.ActionBar.u0 u0Var = ulVar.E;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(olVar.J);
         }
+        TextView textView = ulVar.f29734y;
+        if (textView != null) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, olVar.f10512x)));
+        }
+        super.l();
     }
 }

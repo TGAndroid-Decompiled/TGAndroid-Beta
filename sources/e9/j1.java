@@ -1,219 +1,23 @@
 package e9;
 
-import java.util.AbstractCollection;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.RandomAccess;
-import java.util.Set;
-import v7.t6;
-public class j1 extends AbstractCollection implements Set {
-    public final Set f8755a;
-    public final d9.g f8756b;
+import java.util.Map;
+public final class j1 extends n {
+    public final Map.Entry f8580a;
+    public final l1 f8581b;
 
-    public j1(Set set, d9.g gVar) {
-        this.f8755a = set;
-        this.f8756b = gVar;
+    public j1(Map.Entry entry, l1 l1Var) {
+        this.f8580a = entry;
+        this.f8581b = l1Var;
     }
 
     @Override
-    public final boolean add(Object obj) {
-        if (this.f8756b.apply(obj)) {
-            return this.f8755a.add(obj);
-        }
-        throw new IllegalArgumentException();
+    public final Object getKey() {
+        return this.f8580a.getKey();
     }
 
     @Override
-    public final boolean addAll(Collection collection) {
-        for (Object obj : collection) {
-            if (!this.f8756b.apply(obj)) {
-                throw new IllegalArgumentException();
-            }
-        }
-        return this.f8755a.addAll(collection);
-    }
-
-    @Override
-    public final void clear() {
-        Set set = this.f8755a;
-        boolean z10 = set instanceof RandomAccess;
-        d9.g gVar = this.f8756b;
-        if (z10 && (set instanceof List)) {
-            List list = (List) set;
-            gVar.getClass();
-            int i10 = 0;
-            for (int i11 = 0; i11 < list.size(); i11++) {
-                Object obj = list.get(i11);
-                if (!gVar.apply(obj)) {
-                    if (i11 > i10) {
-                        try {
-                            list.set(i10, obj);
-                        } catch (IllegalArgumentException unused) {
-                            q.r(list, gVar, i10, i11);
-                            return;
-                        } catch (UnsupportedOperationException unused2) {
-                            q.r(list, gVar, i10, i11);
-                            return;
-                        }
-                    }
-                    i10++;
-                }
-            }
-            list.subList(i10, list.size()).clear();
-            return;
-        }
-        Iterator it = set.iterator();
-        gVar.getClass();
-        while (it.hasNext()) {
-            if (gVar.apply(it.next())) {
-                it.remove();
-            }
-        }
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        boolean z10;
-        Set set = this.f8755a;
-        set.getClass();
-        try {
-            z10 = set.contains(obj);
-        } catch (ClassCastException | NullPointerException unused) {
-            z10 = false;
-        }
-        if (!z10) {
-            return false;
-        }
-        return this.f8756b.apply(obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        for (Object obj : collection) {
-            if (!contains(obj)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        return q.i(this, obj);
-    }
-
-    @Override
-    public final int hashCode() {
-        return q.m(this);
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        Iterator it = this.f8755a.iterator();
-        d9.g gVar = this.f8756b;
-        t6.d(gVar, "predicate");
-        boolean z10 = false;
-        int i10 = 0;
-        while (true) {
-            if (it.hasNext()) {
-                if (gVar.apply(it.next())) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
-        }
-        if (i10 != -1) {
-            z10 = true;
-        }
-        return true ^ z10;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        Iterator it = this.f8755a.iterator();
-        it.getClass();
-        d9.g gVar = this.f8756b;
-        gVar.getClass();
-        return new n0(it, gVar);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        if (contains(obj) && this.f8755a.remove(obj)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        Iterator it = this.f8755a.iterator();
-        boolean z10 = false;
-        while (it.hasNext()) {
-            Object next = it.next();
-            if (this.f8756b.apply(next) && collection.contains(next)) {
-                it.remove();
-                z10 = true;
-            }
-        }
-        return z10;
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        Iterator it = this.f8755a.iterator();
-        boolean z10 = false;
-        while (it.hasNext()) {
-            Object next = it.next();
-            if (this.f8756b.apply(next) && !collection.contains(next)) {
-                it.remove();
-                z10 = true;
-            }
-        }
-        return z10;
-    }
-
-    @Override
-    public final int size() {
-        int i10 = 0;
-        for (Object obj : this.f8755a) {
-            if (this.f8756b.apply(obj)) {
-                i10++;
-            }
-        }
-        return i10;
-    }
-
-    @Override
-    public final Object[] toArray() {
-        Iterator it = iterator();
-        ArrayList arrayList = new ArrayList();
-        while (true) {
-            n0 n0Var = (n0) it;
-            if (n0Var.hasNext()) {
-                arrayList.add(n0Var.next());
-            } else {
-                return arrayList.toArray();
-            }
-        }
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        Iterator it = iterator();
-        ArrayList arrayList = new ArrayList();
-        while (true) {
-            n0 n0Var = (n0) it;
-            if (n0Var.hasNext()) {
-                arrayList.add(n0Var.next());
-            } else {
-                return arrayList.toArray(objArr);
-            }
-        }
+    public final Object getValue() {
+        Map.Entry entry = this.f8580a;
+        return this.f8581b.e(entry.getKey(), entry.getValue());
     }
 }

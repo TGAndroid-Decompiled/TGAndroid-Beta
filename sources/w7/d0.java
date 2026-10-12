@@ -1,15 +1,7 @@
 package w7;
-
-import android.os.Parcel;
-import android.os.Parcelable;
 public abstract class d0 {
-    public static o6.b a(byte[] bArr, Parcelable.Creator creator) {
-        n6.m.h(creator);
-        Parcel obtain = Parcel.obtain();
-        obtain.unmarshall(bArr, 0, bArr.length);
-        obtain.setDataPosition(0);
-        o6.b bVar = (o6.b) creator.createFromParcel(obtain);
-        obtain.recycle();
-        return bVar;
+    public static final nd.b a(Enum[] entries) {
+        kotlin.jvm.internal.i.e(entries, "entries");
+        return new nd.b(entries);
     }
 }

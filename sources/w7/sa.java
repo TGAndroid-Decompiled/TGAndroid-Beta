@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class sa extends k9 implements List, RandomAccess {
-    public static final qa f50368b = new qa(ua.f50382e, 0);
+    public static final qa f47433b = new qa(ua.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -63,6 +63,15 @@ public abstract class sa extends k9 implements List, RandomAccess {
     }
 
     @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    @Override
     public final int hashCode() {
         int size = size();
         int i10 = 1;
@@ -70,15 +79,6 @@ public abstract class sa extends k9 implements List, RandomAccess {
             i10 = (i10 * 31) + get(i11).hashCode();
         }
         return i10;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
     }
 
     @Override
@@ -120,13 +120,13 @@ public abstract class sa extends k9 implements List, RandomAccess {
 
     @Override
     public sa subList(int i10, int i11) {
-        b8.b(i10, i11, size());
+        e8.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return ua.f50382e;
+            return ua.e;
         }
         return new ra(this, i10, i12);
     }
@@ -136,11 +136,11 @@ public abstract class sa extends k9 implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f50368b;
+                return f47433b;
             }
             return new qa(this, i10);
         }
-        throw new IndexOutOfBoundsException(b8.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(e8.c(i10, size, "index"));
     }
 
     @Override

@@ -2,17 +2,17 @@ package c3;
 
 import java.util.List;
 public interface o {
-    boolean b(p pVar);
+    boolean a(p pVar);
 
-    o c();
+    o b();
 
-    void g(q qVar);
+    void c(q qVar);
 
-    void h(long j3, long j10);
+    void d(long j10, long j11);
 
-    List i();
+    List e();
 
-    int m(p pVar, s sVar);
+    int f(p pVar, s sVar);
 
     void release();
 }

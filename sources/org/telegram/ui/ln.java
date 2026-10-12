@@ -1,31 +1,26 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ln extends of.e {
-    public final org.telegram.ui.Cells.u1 d;
-    public final pn f39784e;
+import org.telegram.messenger.MessagesController;
+public final class ln implements MessagesController.MessagesLoadedCallback {
+    public final ej f38054a;
+    public final fo f38055b;
+    public final qn f38056c;
 
-    public ln(pn pnVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f39784e = pnVar;
-        this.d = u1Var;
+    public ln(qn qnVar, ej ejVar, fo foVar) {
+        this.f38056c = qnVar;
+        this.f38054a = ejVar;
+        this.f38055b = foVar;
     }
 
     @Override
-    public final void c(boolean z10) {
-        if (!z10) {
-            AndroidUtilities.runOnUIThread(new gk(this.f39784e.f41000a, 9), 250L);
-        }
+    public final void onError() {
+        this.f38054a.c(false);
+        this.f38056c.f39497a.presentFragment(this.f38055b);
     }
 
     @Override
-    public final void d() {
-        pn pnVar = this.f39784e;
-        eo eoVar = pnVar.f41000a;
-        org.telegram.ui.Cells.u1 u1Var = this.d;
-        eoVar.f37480wb = u1Var.getMessageObject().getId();
-        eo eoVar2 = pnVar.f41000a;
-        eoVar2.f37494xb = 2;
-        eoVar2.f37506yb = null;
-        u1Var.invalidate();
+    public final void onMessagesLoaded(boolean z10) {
+        this.f38054a.c(false);
+        this.f38056c.f39497a.presentFragment(this.f38055b);
     }
 }

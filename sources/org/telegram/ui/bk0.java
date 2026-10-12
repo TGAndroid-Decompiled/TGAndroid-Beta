@@ -1,25 +1,24 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.NotificationCenter;
-public final class bk0 extends TextView {
-    public final vt f36194a;
+import org.telegram.messenger.AndroidUtilities;
+public final class bk0 implements Runnable {
+    public final int f34592a;
+    public final ik0 f34593b;
 
-    public bk0(Context context) {
-        super(context);
-        this.f36194a = new vt(1, this);
+    public bk0(ik0 ik0Var, int i10) {
+        this.f34592a = i10;
+        this.f34593b = ik0Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this.f36194a, NotificationCenter.emojiLoaded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this.f36194a, NotificationCenter.emojiLoaded);
+    public final void run() {
+        switch (this.f34592a) {
+            case 0:
+                AndroidUtilities.hideKeyboard(this.f34593b.f37153b);
+                return;
+            default:
+                AndroidUtilities.showKeyboard(this.f34593b.d.getEditText());
+                return;
+        }
     }
 }

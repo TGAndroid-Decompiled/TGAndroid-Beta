@@ -1,50 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class hd1 extends w7.h0 {
-    public final int f38334a;
-    public final NotificationCenter.NotificationCenterDelegate f38335b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class hd1 extends AnimatorListenerAdapter {
+    public final ce1 f36763a;
 
-    public hd1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f38334a = i10;
-        this.f38335b = notificationCenterDelegate;
+    public hd1(ce1 ce1Var) {
+        this.f36763a = ce1Var;
     }
 
     @Override
-    public void a() {
-        switch (this.f38334a) {
-            case 1:
-                ((xi1) this.f38335b).v.invalidate();
-                return;
-            default:
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        char c10;
+        ce1 ce1Var = this.f36763a;
+        org.telegram.ui.Components.l91[] l91VarArr = ce1Var.J0;
+        if (ce1Var.W0 != null) {
+            c10 = 0;
+        } else {
+            c10 = 2;
         }
-    }
-
-    @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f38334a) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((zd1) this.f38335b).f44797x0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+        l91VarArr[c10].setVisibility(4);
     }
 }

@@ -1,121 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.KeyEvent;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class hn0 extends Drawable {
-    public long f26824a;
-    public boolean f26825b;
-    public Paint f26826c;
-    public float d;
-    public float f26827e;
-    public float f26828f;
-    public int f26829g;
-    public int h;
-    public int f26830i;
-    public org.telegram.ui.Cells.u1 f26831j;
-    public float f26832k;
-    public int f26833l;
-    public int f26834m;
-    public org.telegram.ui.ActionBar.c6 f26835n;
+import org.telegram.ui.ic1;
+public final class hn0 extends AnimatorListenerAdapter {
+    public final int f25713a;
+    public final boolean f25714b;
+    public final float f25715c;
+    public final KeyEvent.Callback d;
 
-    public final void a() {
-        if (this.f26825b) {
-            return;
-        }
-        this.f26824a = System.currentTimeMillis();
-        this.f26825b = true;
-        this.f26831j.invalidate();
-    }
-
-    public final void b() {
-        if (!this.f26825b) {
-            return;
-        }
-        this.f26825b = false;
+    public hn0(KeyEvent.Callback callback, boolean z10, float f7, int i10) {
+        this.f25713a = i10;
+        this.d = callback;
+        this.f25714b = z10;
+        this.f25715c = f7;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f26826c;
-        paint.setColor(i0.a.d(this.f26832k, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20657ic, this.f26835n), this.f26833l));
-        int i10 = this.f26834m;
-        if (i10 != 255) {
-            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
-        }
-        int i11 = getBounds().left;
-        int i12 = getBounds().top;
-        int i13 = 0;
-        while (i13 < 3) {
-            Canvas canvas2 = canvas;
-            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.f26827e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f26828f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            i13++;
-            canvas = canvas2;
-        }
-        if (this.f26825b) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f26824a;
-            this.f26824a = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            float f7 = (float) j3;
-            float f10 = ((f7 / 300.0f) * this.f26829g) + this.d;
-            this.d = f10;
-            if (f10 > 1.0f) {
-                this.f26829g = -1;
-                this.d = 1.0f;
-            } else if (f10 < 0.0f) {
-                this.f26829g = 1;
-                this.d = 0.0f;
-            }
-            float f11 = ((f7 / 310.0f) * this.h) + this.f26827e;
-            this.f26827e = f11;
-            if (f11 > 1.0f) {
-                this.h = -1;
-                this.f26827e = 1.0f;
-            } else if (f11 < 0.0f) {
-                this.h = 1;
-                this.f26827e = 0.0f;
-            }
-            float f12 = ((f7 / 320.0f) * this.f26830i) + this.f26828f;
-            this.f26828f = f12;
-            if (f12 > 1.0f) {
-                this.f26830i = -1;
-                this.f26828f = 1.0f;
-            } else if (f12 < 0.0f) {
-                this.f26830i = 1;
-                this.f26828f = 0.0f;
-            }
-            this.f26831j.invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        switch (this.f25713a) {
+            case 0:
+                kn0 kn0Var = (kn0) this.d;
+                ic1 ic1Var = kn0Var.e;
+                kn0Var.f26745h0 = null;
+                boolean z10 = this.f25714b;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                kn0Var.f26746i0 = f7;
+                for (int i10 = 0; i10 < ic1Var.getChildCount(); i10++) {
+                    ic1Var.getChildAt(i10).invalidate();
+                }
+                ic1Var.invalidate();
+                kn0Var.p();
+                if (!z10) {
+                    float childCount = kn0Var.f26748k0 * ic1Var.getChildCount();
+                    float f10 = this.f25715c;
+                    float scrollX = (kn0Var.getScrollX() + f10) / (kn0Var.f26747j0 * ic1Var.getChildCount());
+                    float measuredWidth = (childCount - kn0Var.getMeasuredWidth()) / childCount;
+                    if (scrollX > measuredWidth) {
+                        f10 = 0.0f;
+                        scrollX = measuredWidth;
+                    }
+                    float f11 = childCount * scrollX;
+                    if (f11 - f10 < 0.0f) {
+                        f11 = f10;
+                    }
+                    kn0Var.f26749l0 = (kn0Var.getScrollX() + f10) - f11;
+                    int i11 = (int) (f11 - f10);
+                    kn0Var.m0 = i11;
+                    if (i11 < 0) {
+                        kn0Var.m0 = 0;
+                    }
+                    for (int i12 = 0; i12 < ic1Var.getChildCount(); i12++) {
+                        View childAt = ic1Var.getChildAt(i12);
+                        if (childAt instanceof by0) {
+                            ((by0) childAt).setExpanded(false);
+                        }
+                        childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
+                    }
+                    kn0Var.f26744g0 = false;
+                    kn0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
+                    ic1Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                if (!this.f25714b) {
+                    super/*android.app.Dialog*/.dismiss();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f26834m = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void onAnimationStart(Animator animator) {
+        switch (this.f25713a) {
+            case 1:
+                super.onAnimationStart(animator);
+                xh.j jVar = ((xh.k) this.d).f48474y;
+                jVar.setVisibility(0);
+                if (this.f25714b) {
+                    float f7 = this.f25715c;
+                    jVar.setScaleX(f7);
+                    jVar.setScaleY(f7);
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

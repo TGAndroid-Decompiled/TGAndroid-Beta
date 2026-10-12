@@ -1,41 +1,26 @@
 package org.telegram.ui;
-public final class h30 extends g.o {
-    public final i60 f38234c;
 
-    public h30(i60 i60Var) {
-        this.f38234c = i60Var;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class h30 implements RequestDelegate {
+    public final int f36594a;
+    public final n60 f36595b;
+
+    public h30(n60 n60Var, int i10) {
+        this.f36594a = i10;
+        this.f36595b = n60Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        c60 c60Var;
-        int i12;
-        int i13;
-        int i14;
-        if (i60.F3) {
-            i11 = 6;
-        } else {
-            i11 = 2;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36594a) {
+            case 0:
+                n60.w(this.f36595b, tLObject);
+                return;
+            default:
+                n60.u(this.f36595b, tLObject);
+                return;
         }
-        if (!i60.G3 && i10 >= (i12 = (c60Var = this.f38234c.P).G) && i10 < (i13 = c60Var.H)) {
-            int i15 = i13 - i12;
-            if (i10 == i13 - 1 && (i60.F3 || i15 % 2 != 0)) {
-                i14 = 2;
-            } else {
-                i14 = 1;
-            }
-            if (i60.F3) {
-                if (i15 == 1) {
-                    return 6;
-                }
-                if (i15 != 2) {
-                    return 2;
-                }
-                return 3;
-            }
-            return i14;
-        }
-        return i11;
     }
 }

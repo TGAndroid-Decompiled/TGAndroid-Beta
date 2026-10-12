@@ -1,21 +1,13 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class x30 extends s4.j {
-    public final i60 F;
-
-    public x30(i60 i60Var) {
-        this.F = i60Var;
+import android.view.View;
+public final class x30 extends View {
+    public x30(LaunchActivity launchActivity) {
+        super(launchActivity);
     }
 
     @Override
-    public final void P(s4.d1 d1Var) {
-        ViewGroup viewGroup;
-        i60 i60Var = this.F;
-        i60Var.Q.invalidate();
-        i60Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.e3) i60Var).containerView;
-        viewGroup.invalidate();
-        i60.K0(i60Var);
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
     }
 }

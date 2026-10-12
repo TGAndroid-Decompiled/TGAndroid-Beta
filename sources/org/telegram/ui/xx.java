@@ -1,60 +1,180 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ScrollView;
-import org.telegram.messenger.AndroidUtilities;
-public final class xx extends ScrollView {
-    public final int f44191a;
+import android.os.Bundle;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class xx implements o70 {
+    public final org.telegram.ui.ActionBar.a2 f41975a;
+    public final yy f41976b;
 
-    public xx(Context context, int i10) {
-        super(context);
-        this.f44191a = i10;
+    public xx(yy yyVar, org.telegram.ui.ActionBar.a2 a2Var) {
+        this.f41976b = yyVar;
+        this.f41975a = a2Var;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f44191a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
-                return;
-            case 1:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(320.0f)), Integer.MIN_VALUE));
-                return;
-            case 3:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(360.0f)), Integer.MIN_VALUE));
-                return;
-            case 4:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
-                return;
-        }
-    }
+    public final void a(p70 p70Var, final long j10) {
+        final org.telegram.ui.ActionBar.m2[] m2VarArr = {p70Var, null};
+        Utilities.Callback callback = new Utilities.Callback(this) {
+            public final xx f41096b;
 
-    @Override
-    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
-        switch (this.f44191a) {
-            case 1:
-                return false;
-            default:
-                return super.onRequestFocusInDescendants(i10, rect);
-        }
-    }
+            {
+                this.f41096b = this;
+            }
 
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f44191a) {
-            case 1:
-                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
-                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-        }
+            @Override
+            public final void run(Object obj) {
+                Runnable runnable = (Runnable) obj;
+                switch (r5) {
+                    case 0:
+                        yy yyVar = this.f41096b.f41976b;
+                        Boolean bool = yyVar.G.has_username;
+                        if (bool != null && bool.booleanValue()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("step", 1);
+                            bundle.putLong("chat_id", j10);
+                            bundle.putBoolean("forcePublic", yyVar.G.has_username.booleanValue());
+                            sd sdVar = new sd(bundle);
+                            sdVar.f40088t0 = new f5(runnable, 12);
+                            yyVar.presentFragment(sdVar);
+                            m2VarArr[1] = sdVar;
+                            return;
+                        }
+                        runnable.run();
+                        return;
+                    default:
+                        xx xxVar = this.f41096b;
+                        yy yyVar2 = xxVar.f41976b;
+                        yyVar2.N4(yyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.k31(27, xxVar, m2VarArr));
+                        return;
+                }
+            }
+        };
+        Utilities.Callback callback2 = new Utilities.Callback(this) {
+            public final xx f41096b;
+
+            {
+                this.f41096b = this;
+            }
+
+            @Override
+            public final void run(Object obj) {
+                Runnable runnable = (Runnable) obj;
+                switch (r5) {
+                    case 0:
+                        yy yyVar = this.f41096b.f41976b;
+                        Boolean bool = yyVar.G.has_username;
+                        if (bool != null && bool.booleanValue()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("step", 1);
+                            bundle.putLong("chat_id", j10);
+                            bundle.putBoolean("forcePublic", yyVar.G.has_username.booleanValue());
+                            sd sdVar = new sd(bundle);
+                            sdVar.f40088t0 = new f5(runnable, 12);
+                            yyVar.presentFragment(sdVar);
+                            m2VarArr[1] = sdVar;
+                            return;
+                        }
+                        runnable.run();
+                        return;
+                    default:
+                        xx xxVar = this.f41096b;
+                        yy yyVar2 = xxVar.f41976b;
+                        yyVar2.N4(yyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.k31(27, xxVar, m2VarArr));
+                        return;
+                }
+            }
+        };
+        org.telegram.ui.ActionBar.a2 a2Var = this.f41975a;
+        Utilities.doCallbacks(callback, callback2, new pu(this, a2Var, j10, 1), new Utilities.Callback(this) {
+            public final xx f41688b;
+
+            {
+                this.f41688b = this;
+            }
+
+            @Override
+            public final void run(Object obj) {
+                boolean z10;
+                switch (r4) {
+                    case 0:
+                        Runnable runnable = (Runnable) obj;
+                        yy yyVar = this.f41688b.f41976b;
+                        if (yyVar.G.bot_admin_rights != null) {
+                            TLRPC.User user = yyVar.getMessagesController().getUser(Long.valueOf(yyVar.H));
+                            MessagesController messagesController = yyVar.getMessagesController();
+                            TLRPC.RequestPeerType requestPeerType = yyVar.G;
+                            TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.bot_admin_rights;
+                            Boolean bool = requestPeerType.bot_participant;
+                            if (bool != null && bool.booleanValue()) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            boolean z11 = z10;
+                            messagesController.setUserAdminRole(j10, user, tL_chatAdminRights, null, false, yyVar, z11, true, null, runnable, new tf(6, runnable));
+                            return;
+                        }
+                        runnable.run();
+                        return;
+                    default:
+                        Runnable runnable2 = (Runnable) obj;
+                        yy yyVar2 = this.f41688b.f41976b;
+                        if (yyVar2.G.user_admin_rights != null) {
+                            MessagesController messagesController2 = yyVar2.getMessagesController();
+                            long j11 = j10;
+                            yyVar2.getMessagesController().setUserAdminRole(j11, yyVar2.getAccountInstance().getUserConfig().getCurrentUser(), tq.s0(messagesController2.getChat(Long.valueOf(j11)).admin_rights, yyVar2.G.user_admin_rights), null, false, yyVar2, false, true, null, runnable2, new tf(7, runnable2));
+                            return;
+                        }
+                        runnable2.run();
+                        return;
+                }
+            }
+        }, new Utilities.Callback(this) {
+            public final xx f41688b;
+
+            {
+                this.f41688b = this;
+            }
+
+            @Override
+            public final void run(Object obj) {
+                boolean z10;
+                switch (r4) {
+                    case 0:
+                        Runnable runnable = (Runnable) obj;
+                        yy yyVar = this.f41688b.f41976b;
+                        if (yyVar.G.bot_admin_rights != null) {
+                            TLRPC.User user = yyVar.getMessagesController().getUser(Long.valueOf(yyVar.H));
+                            MessagesController messagesController = yyVar.getMessagesController();
+                            TLRPC.RequestPeerType requestPeerType = yyVar.G;
+                            TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.bot_admin_rights;
+                            Boolean bool = requestPeerType.bot_participant;
+                            if (bool != null && bool.booleanValue()) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            boolean z11 = z10;
+                            messagesController.setUserAdminRole(j10, user, tL_chatAdminRights, null, false, yyVar, z11, true, null, runnable, new tf(6, runnable));
+                            return;
+                        }
+                        runnable.run();
+                        return;
+                    default:
+                        Runnable runnable2 = (Runnable) obj;
+                        yy yyVar2 = this.f41688b.f41976b;
+                        if (yyVar2.G.user_admin_rights != null) {
+                            MessagesController messagesController2 = yyVar2.getMessagesController();
+                            long j11 = j10;
+                            yyVar2.getMessagesController().setUserAdminRole(j11, yyVar2.getAccountInstance().getUserConfig().getCurrentUser(), tq.s0(messagesController2.getChat(Long.valueOf(j11)).admin_rights, yyVar2.G.user_admin_rights), null, false, yyVar2, false, true, null, runnable2, new tf(7, runnable2));
+                            return;
+                        }
+                        runnable2.run();
+                        return;
+                }
+            }
+        }, new bi.i(this, a2Var, j10, m2VarArr, 4));
     }
 }

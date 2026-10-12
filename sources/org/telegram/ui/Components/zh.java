@@ -1,87 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class zh implements org.telegram.ui.cr0 {
-    public boolean f33384a;
-    public final HashMap f33385b;
-    public final ArrayList f33386c;
-    public final aj d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class zh extends View {
+    public final int f31866a;
+    public final vi f31867b;
 
-    public zh(aj ajVar, HashMap hashMap, ArrayList arrayList) {
-        this.d = ajVar;
-        this.f33385b = hashMap;
-        this.f33386c = arrayList;
+    public zh(vi viVar, Context context, int i10) {
+        super(context);
+        this.f31866a = i10;
+        this.f31867b = viVar;
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void i(int i10, boolean z10, boolean z11) {
-        String str;
-        if (!z10) {
-            HashMap hashMap = this.f33385b;
-            if (!hashMap.isEmpty() && !this.f33384a) {
-                this.f33384a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f33386c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                        String str2 = searchImage.imagePath;
-                        if (str2 != null) {
-                            sendingMediaInfo.path = str2;
-                        } else {
-                            sendingMediaInfo.searchImage = searchImage;
-                        }
-                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                        CharSequence charSequence = searchImage.caption;
-                        if (charSequence != null) {
-                            str = charSequence.toString();
-                        } else {
-                            str = null;
-                        }
-                        sendingMediaInfo.caption = str;
-                        sendingMediaInfo.entities = searchImage.entities;
-                        sendingMediaInfo.masks = searchImage.stickers;
-                        sendingMediaInfo.ttl = searchImage.ttl;
-                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                        if (botInlineResult != null && searchImage.type == 1) {
-                            sendingMediaInfo.inlineResult = botInlineResult;
-                            sendingMediaInfo.params = searchImage.params;
-                        }
-                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
-                        i11++;
-                    } else {
-                        ((org.telegram.ui.eo) this.d.f24338f0).g8(i10, arrayList, z11);
-                        return;
-                    }
-                }
-            }
+    public void draw(Canvas canvas) {
+        switch (this.f31866a) {
+            case 0:
+                super.draw(canvas);
+                this.f31867b.f29987b0.draw(canvas);
+                return;
+            default:
+                super.draw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void a() {
+    public void onDraw(Canvas canvas) {
+        switch (this.f31866a) {
+            case 1:
+                vi viVar = this.f31867b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, viVar.B0.getSelectedItemsCount())));
+                int ceil = (int) Math.ceil(viVar.M0.measureText(format));
+                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
+                int measuredWidth = getMeasuredWidth() / 2;
+                int themedColor = viVar.getThemedColor(org.telegram.ui.ActionBar.g6.C5);
+                viVar.M0.setColor(i0.a.k(themedColor, (int) (((viVar.Y0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
+                viVar.O0.setColor(viVar.getThemedColor(org.telegram.ui.ActionBar.g6.f19972h5));
+                int i10 = max / 2;
+                int i11 = measuredWidth - i10;
+                int i12 = i10 + measuredWidth;
+                viVar.N0.set(i11, 0.0f, i12, getMeasuredHeight());
+                canvas.drawRoundRect(viVar.N0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), viVar.O0);
+                viVar.O0.setColor(viVar.getThemedColor(org.telegram.ui.ActionBar.g6.W9));
+                viVar.N0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                canvas.drawRoundRect(viVar.N0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), viVar.O0);
+                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), viVar.M0);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final void b(Editable editable) {
-    }
-
-    @Override
-    public final void g() {
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f31866a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                this.f31867b.f29987b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
     }
 }

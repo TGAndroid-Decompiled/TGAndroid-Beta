@@ -1,29 +1,50 @@
 package org.telegram.ui;
-public final class sh1 implements Runnable {
-    public final int f41932a;
-    public final th1 f41933b;
 
-    public sh1(th1 th1Var, int i10) {
-        this.f41932a = i10;
-        this.f41933b = th1Var;
+import android.app.Activity;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class sh1 implements RequestDelegate {
+    public final int f40146a;
+    public final Object f40147b;
+    public final Object f40148c;
+    public final Object d;
+    public final Object e;
+    public final Object f40149f;
+    public final Object f40150g;
+
+    public sh1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f40146a = i10;
+        this.f40147b = obj;
+        this.f40148c = obj2;
+        this.d = obj3;
+        this.e = obj4;
+        this.f40149f = obj5;
+        this.f40150g = obj6;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41932a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40146a) {
             case 0:
-                org.telegram.ui.Components.j71 j71Var = this.f41933b.f27776a;
-                if (j71Var != null) {
-                    j71Var.W2.N(true);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new ji.k((UserInfoActivity) this.f40147b, tL_error, (TLObject) this.f40148c, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.e, tLObject, (int[]) this.f40149f, (ArrayList) this.f40150g));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new ji.k(tL_error, (ug.v) this.f40147b, tLObject, (List) this.f40148c, (c5.i) this.d, (ug.v) this.e, (org.telegram.ui.ActionBar.m2) this.f40149f, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f40150g, 7));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new ji.k(tL_error, (Utilities.Callback) this.f40147b, tLObject, (List) this.f40148c, (c5.i) this.d, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.m2) this.f40149f, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f40150g, 8));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new ji.k(tLObject, (c5.p) this.f40147b, (c5.i) this.f40148c, (rh.s) this.d, (Activity) this.e, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f40149f, (List) this.f40150g, tL_error, 9));
                 return;
             default:
-                org.telegram.ui.Components.j71 j71Var2 = this.f41933b.f27776a;
-                if (j71Var2 != null) {
-                    j71Var2.W2.N(true);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new ji.k(tLObject, (c5.p) this.f40147b, (c5.i) this.f40148c, (org.telegram.ui.Components.d90) this.d, (Activity) this.e, (TLRPC.TL_inputStorePaymentStarsGift) this.f40149f, (List) this.f40150g, tL_error, 10));
                 return;
         }
     }

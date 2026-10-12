@@ -13,7 +13,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.r11;
+import org.telegram.ui.Components.h11;
 public final class j4 implements DownloadController.FileDownloadProgressListener {
     public TLRPC.MessageExtendedMedia E;
     public String F;
@@ -22,22 +22,22 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
     public final int I;
     public final int J;
     public int K;
-    public r11 L;
+    public h11 L;
     public boolean M;
-    public int f22089a;
-    public int f22090b;
-    public int f22091c;
+    public int f21375a;
+    public int f21376b;
+    public int f21377c;
     public int d;
-    public final u1 f22092e;
-    public final ImageReceiver f22093f;
+    public final u1 e;
+    public final ImageReceiver f21378f;
     public boolean h;
-    public final int f22094n;
-    public final int f22095r;
-    public final float[] f22096s = new float[8];
+    public final int f21379n;
+    public final int f21380r;
+    public final float[] f21381s = new float[8];
     public String v;
-    public final boolean f22097w;
-    public final boolean f22098x;
-    public boolean f22099y;
+    public final boolean f21382w;
+    public final boolean f21383x;
+    public boolean f21384y;
 
     public j4(u1 u1Var, MessageObject messageObject, TLRPC.MessageExtendedMedia messageExtendedMedia, boolean z10, int i10, int i11) {
         boolean z11;
@@ -46,28 +46,28 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
         this.H = 4;
         this.J = 0;
         this.K = 0;
-        this.f22092e = u1Var;
-        this.f22097w = z10;
-        this.f22098x = false;
+        this.e = u1Var;
+        this.f21382w = z10;
+        this.f21383x = false;
         if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
             TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
-            this.f22098x = ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && MessageObject.isVideoDocument(messageMedia.document)) ? z11 : false;
+            this.f21383x = ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && MessageObject.isVideoDocument(messageMedia.document)) ? z11 : false;
             this.J = (int) Math.max(1L, Math.round(MessageObject.getDocumentDuration(messageMedia.document)));
         } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
             TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia;
-            this.f22098x = (4 & tL_messageExtendedMediaPreview.flags) != 0;
+            this.f21383x = (4 & tL_messageExtendedMediaPreview.flags) != 0;
             this.J = tL_messageExtendedMediaPreview.video_duration;
         }
-        if (this.f22098x) {
+        if (this.f21383x) {
             int i12 = this.J;
             this.K = i12;
-            this.L = new r11(AndroidUtilities.formatLongDuration(i12), 12.0f, null);
+            this.L = new h11(AndroidUtilities.formatLongDuration(i12), 12.0f, null);
         }
         ImageReceiver imageReceiver = new ImageReceiver(u1Var);
-        this.f22093f = imageReceiver;
+        this.f21378f = imageReceiver;
         imageReceiver.setColorFilter(null);
-        this.f22094n = i10;
-        this.f22095r = i11;
+        this.f21379n = i10;
+        this.f21380r = i11;
         this.I = DownloadController.getInstance(u1Var.I7).generateObserverTag();
         c(messageExtendedMedia, messageObject);
         RadialProgress2 radialProgress2 = new RadialProgress2(u1Var, u1Var.getResourcesProvider());
@@ -78,7 +78,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
     }
 
     public final int a() {
-        if (this.f22098x && !this.f22099y) {
+        if (this.f21383x && !this.f21384y) {
             return 0;
         }
         return 4;
@@ -98,16 +98,16 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
         String str;
         if (this.E != messageExtendedMedia) {
             this.E = messageExtendedMedia;
-            this.f22099y = false;
-            int i10 = this.f22094n;
-            int i11 = this.f22095r;
-            String l4 = a1.g.l(i10, i11, "_");
+            this.f21384y = false;
+            int i10 = this.f21379n;
+            int i11 = this.f21380r;
+            String k10 = a1.g.k(i10, i11, "_");
             boolean z11 = messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview;
-            ImageReceiver imageReceiver = this.f22093f;
+            ImageReceiver imageReceiver = this.f21378f;
             if (z11) {
                 this.h = true;
                 this.v = null;
-                this.f22093f.setImage(ImageLocation.getForObject(((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).thumb, messageObject.messageOwner), sc.v.v(l4, "_b2"), null, null, messageObject, 0);
+                this.f21378f.setImage(ImageLocation.getForObject(((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).thumb, messageObject.messageOwner), t8.b.u(k10, "_b2"), null, null, messageObject, 0);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 colorMatrix.setSaturation(1.4f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.1f);
@@ -116,7 +116,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
                 boolean z12 = messageObject.isRepostPreview;
                 this.h = z12;
                 if (z12) {
-                    l4 = sc.v.v(l4, "_b3");
+                    k10 = t8.b.u(k10, "_b3");
                 }
                 imageReceiver.setColorFilter(null);
                 TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
@@ -124,44 +124,44 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
                 if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
                     TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = (TLRPC.TL_messageMediaPhoto) messageMedia;
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaPhoto.photo.sizes, AndroidUtilities.getPhotoSize(), true, null, true);
-                    this.f22093f.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tL_messageMediaPhoto.photo), l4, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaPhoto.photo.sizes, Math.min(i10, i11) / 100, false, closestPhotoSizeWithSize, false), tL_messageMediaPhoto.photo), l4, 0L, null, messageObject, 0);
+                    this.f21378f.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tL_messageMediaPhoto.photo), k10, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaPhoto.photo.sizes, Math.min(i10, i11) / 100, false, closestPhotoSizeWithSize, false), tL_messageMediaPhoto.photo), k10, 0L, null, messageObject, 0);
                 } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) messageMedia;
                     boolean z13 = this.h;
-                    boolean z14 = this.f22098x;
-                    boolean z15 = this.f22097w;
+                    boolean z14 = this.f21383x;
+                    boolean z15 = this.f21382w;
                     if (!z13 && !z15 && z14 && SharedConfig.isAutoplayVideo()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    this.f22099y = z10;
+                    this.f21384y = z10;
                     if (!z15 && z14 && (document = tL_messageMediaDocument.document) != null) {
                         TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.getPhotoSize(), true, null, true);
                         TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaDocument.document.thumbs, Math.min(i10, i11), false, closestPhotoSizeWithSize2, false);
                         ImageLocation forDocument = ImageLocation.getForDocument(tL_messageMediaDocument.document);
                         ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize2, tL_messageMediaDocument.document);
                         ImageLocation forDocument3 = ImageLocation.getForDocument(closestPhotoSizeWithSize3, tL_messageMediaDocument.document);
-                        if (this.f22099y) {
+                        if (this.f21384y) {
                             imageLocation = forDocument;
                         } else {
                             imageLocation = null;
                         }
-                        StringBuilder v = a1.g.v(l4);
-                        if (this.f22099y) {
+                        StringBuilder u10 = a1.g.u(k10);
+                        if (this.f21384y) {
                             str = "_g";
                         } else {
                             str = "";
                         }
-                        v.append(str);
-                        String str2 = l4;
-                        this.f22093f.setImage(imageLocation, v.toString(), forDocument2, str2, forDocument3, str2, null, 0L, null, messageObject, 0);
+                        u10.append(str);
+                        String str2 = k10;
+                        this.f21378f.setImage(imageLocation, u10.toString(), forDocument2, str2, forDocument3, str2, null, 0L, null, messageObject, 0);
                         return;
                     }
                     TLRPC.Document document2 = tL_messageMediaDocument.document;
                     if (document2 != null) {
                         TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(document2.thumbs, AndroidUtilities.getPhotoSize(), true, null, true);
-                        this.f22093f.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, tL_messageMediaDocument.document), l4, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaDocument.document.thumbs, Math.min(i10, i11), false, closestPhotoSizeWithSize4, false), tL_messageMediaDocument.document), l4, 0L, null, messageObject, 0);
+                        this.f21378f.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, tL_messageMediaDocument.document), k10, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaDocument.document.thumbs, Math.min(i10, i11), false, closestPhotoSizeWithSize4, false), tL_messageMediaDocument.document), k10, 0L, null, messageObject, 0);
                     }
                 }
             }
@@ -174,13 +174,13 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
     }
 
     @Override
-    public final void onProgressDownload(String str, long j3, long j10) {
+    public final void onProgressDownload(String str, long j10, long j11) {
         float min;
         int a2;
-        if (j10 == 0) {
+        if (j11 == 0) {
             min = 0.0f;
         } else {
-            min = Math.min(1.0f, ((float) j3) / ((float) j10));
+            min = Math.min(1.0f, ((float) j10) / ((float) j11));
         }
         this.E.downloadProgress = min;
         this.G.o(min, true);
@@ -190,29 +190,29 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
             a2 = a();
         }
         b(a2);
-        this.f22092e.invalidate();
+        this.e.invalidate();
     }
 
     @Override
-    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
+    public final void onProgressUpload(String str, long j10, long j11, boolean z10) {
         float min;
         int a2;
-        if (j10 == 0) {
+        if (j11 == 0) {
             min = 0.0f;
         } else {
-            min = Math.min(1.0f, ((float) j3) / ((float) j10));
+            min = Math.min(1.0f, ((float) j10) / ((float) j11));
         }
         this.E.uploadProgress = min;
         this.G.o(min, true);
         if (min < 1.0f) {
             a2 = 3;
-        } else if (this.f22097w) {
+        } else if (this.f21382w) {
             a2 = 6;
         } else {
             a2 = a();
         }
         b(a2);
-        this.f22092e.invalidate();
+        this.e.invalidate();
     }
 
     @Override

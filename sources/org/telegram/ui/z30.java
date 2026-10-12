@@ -1,18 +1,19 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class z30 extends s4.o0 {
+import org.telegram.ui.Components.UndoView;
+public final class z30 extends UndoView {
+    public final n60 f42472f0;
+
+    public z30(n60 n60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f42472f0 = n60Var;
+    }
+
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        recyclerView.getClass();
-        RecyclerView.R(view);
-        if (!i60.F3) {
-            rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        } else {
-            rect.set(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        if (this.f42472f0.f38546z0 != null) {
+            return;
         }
+        super.k(j10, i10, obj, obj2, runnable, runnable2);
     }
 }

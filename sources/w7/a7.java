@@ -1,27 +1,45 @@
 package w7;
-
-import java.io.Serializable;
 public abstract class a7 {
-    public static String a(byte[] bArr) {
-        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-        for (int i10 = 0; i10 < bArr.length; i10++) {
-            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
         }
-        return sb2.toString();
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(i2.d.i(i11, "negative size: "));
+            }
+            a2 = b7.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = b7.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
     }
 
-    public static long[] b(Serializable serializable) {
-        if (serializable instanceof int[]) {
-            int[] iArr = (int[]) serializable;
-            long[] jArr = new long[iArr.length];
-            for (int i10 = 0; i10 < iArr.length; i10++) {
-                jArr[i10] = iArr[i10];
-            }
-            return jArr;
-        } else if (serializable instanceof long[]) {
-            return (long[]) serializable;
-        } else {
-            return null;
+    public static void b(int i10, int i11, int i12) {
+        String c10;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
         }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                c10 = b7.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                c10 = c(i11, i12, "end index");
+            }
+        } else {
+            c10 = c(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static String c(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return b7.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return b7.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(i2.d.i(i11, "negative size: "));
     }
 }

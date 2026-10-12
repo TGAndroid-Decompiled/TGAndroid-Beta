@@ -1,42 +1,78 @@
 package u2;
 
-import m.f3;
-public final class u0 implements e0 {
-    public final g2.g f48945a;
-    public final r5.d f48946b;
-    public final f3 f48947c;
-    public final t7.t d;
-    public final int f48948e;
+import java.io.IOException;
+public final class u0 implements d1 {
+    public final int f46058a;
+    public final w0 f46059b;
 
-    public u0(g2.g gVar, c3.m mVar) {
-        r5.d dVar = new r5.d(mVar, 10);
-        f3 f3Var = new f3(5);
-        ?? obj = new Object();
-        this.f48945a = gVar;
-        this.f48946b = dVar;
-        this.f48947c = f3Var;
-        this.d = obj;
-        this.f48948e = 1048576;
+    public u0(w0 w0Var, int i10) {
+        this.f46059b = w0Var;
+        this.f46058a = i10;
     }
 
     @Override
-    public final v0 a(b2.k0 k0Var) {
-        k0Var.f3398b.getClass();
-        return new v0(k0Var, this.f48945a, this.f48946b, this.f48947c.A(k0Var), this.d, this.f48948e, null);
+    public final void d() {
+        int i10 = this.f46058a;
+        w0 w0Var = this.f46059b;
+        w0Var.L[i10].C();
+        y2.l lVar = w0Var.f46084x;
+        int y3 = w0Var.d.y3(w0Var.V);
+        IOException iOException = lVar.f48545c;
+        if (iOException == null) {
+            y2.h hVar = lVar.f48544b;
+            if (hVar != null) {
+                if (y3 == Integer.MIN_VALUE) {
+                    y3 = hVar.f48535a;
+                }
+                IOException iOException2 = hVar.e;
+                if (iOException2 != null && hVar.f48538f > y3) {
+                    throw iOException2;
+                }
+                return;
+            }
+            return;
+        }
+        throw iOException;
     }
 
     @Override
-    public final e0 c() {
-        return this;
+    public final boolean e() {
+        w0 w0Var = this.f46059b;
+        if (!w0Var.E() && w0Var.L[this.f46058a].A(w0Var.f46078g0)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final e0 b(boolean z10) {
-        return this;
+    public final int f(qf.b bVar, h2.h hVar, int i10) {
+        w0 w0Var = this.f46059b;
+        if (w0Var.E()) {
+            return -3;
+        }
+        int i11 = this.f46058a;
+        w0Var.x(i11);
+        int F = w0Var.L[i11].F(bVar, hVar, i10, w0Var.f46078g0);
+        if (F == -3) {
+            w0Var.y(i11);
+        }
+        return F;
     }
 
     @Override
-    public final e0 d(qb.b bVar) {
-        return this;
+    public final int m(long j10) {
+        w0 w0Var = this.f46059b;
+        if (w0Var.E()) {
+            return 0;
+        }
+        int i10 = this.f46058a;
+        w0Var.x(i10);
+        c1 c1Var = w0Var.L[i10];
+        int x10 = c1Var.x(j10, w0Var.f46078g0);
+        c1Var.L(x10);
+        if (x10 == 0) {
+            w0Var.y(i10);
+        }
+        return x10;
     }
 }

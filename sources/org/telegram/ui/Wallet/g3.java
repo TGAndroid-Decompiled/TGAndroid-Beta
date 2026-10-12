@@ -1,23 +1,25 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-public final class g3 implements View.OnClickListener {
-    public final int f34788a;
-    public final org.telegram.ui.ActionBar.e3 f34789b;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class g3 implements Runnable {
+    public final int f33200a;
+    public final Context f33201b;
 
-    public g3(org.telegram.ui.ActionBar.e3 e3Var, int i10) {
-        this.f34788a = i10;
-        this.f34789b = e3Var;
+    public g3(Context context, int i10) {
+        this.f33200a = i10;
+        this.f33201b = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f34788a) {
+    public final void run() {
+        switch (this.f33200a) {
             case 0:
-                this.f34789b.dismiss();
+                pf.d.u(this.f33201b, LocaleController.getString(R.string.TermsOfServiceUrl));
                 return;
             default:
-                this.f34789b.dismiss();
+                pf.d.u(this.f33201b, LocaleController.getString(R.string.TermsOfServiceUrl));
                 return;
         }
     }

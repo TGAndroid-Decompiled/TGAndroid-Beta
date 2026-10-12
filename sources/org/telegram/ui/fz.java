@@ -1,42 +1,83 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-public final class fz implements ImageReceiver.ImageReceiverDelegate {
-    public final gz f37872a;
-    public final boolean f37873b;
-    public final MessageObject f37874c;
-    public final hz d;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class fz extends s4.v {
+    public boolean d;
+    public final hz e;
 
-    public fz(hz hzVar, gz gzVar, boolean z10, MessageObject messageObject) {
-        this.d = hzVar;
-        this.f37872a = gzVar;
-        this.f37873b = z10;
-        this.f37874c = messageObject;
+    public fz(hz hzVar) {
+        this.e = hzVar;
     }
 
     @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        gz gzVar = this.f37872a;
-        if (gzVar.f38193r.getLottieAnimation() != null) {
-            gzVar.f38193r.getLottieAnimation().N(0, false, true);
+    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
+        super.a(recyclerView, b1Var);
+        b1Var.f44838a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
+        if (b1Var.f44841f != 3) {
+            return s4.v.l(0, 0);
         }
+        return s4.v.l(3, 0);
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.l5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        MessageObject messageObject;
-        if (this.f37873b && (messageObject = this.f37874c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f26133x == null) {
-            try {
-                this.d.G.performHapticFeedback(3, 1);
-            } catch (Exception unused) {
+    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+        boolean z10;
+        boolean z11 = false;
+        if (b1Var.f44841f != b1Var2.f44841f) {
+            return false;
+        }
+        int b10 = b1Var.b();
+        int b11 = b1Var2.b();
+        hz hzVar = this.e;
+        ez ezVar = hzVar.f36984a;
+        hz hzVar2 = ezVar.d;
+        int i10 = hzVar2.f36988n;
+        ArrayList arrayList = hzVar2.e;
+        int i11 = b10 - i10;
+        int i12 = b11 - i10;
+        int i13 = hzVar2.f36989r - i10;
+        if (i11 >= 0 && i12 >= 0 && i11 < i13 && i12 < i13) {
+            arrayList.set(i11, (Long) arrayList.get(i12));
+            arrayList.set(i12, (Long) arrayList.get(i11));
+            ezVar.p(b10, b11);
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) b1Var.f44838a;
+            if (b11 != hzVar.f36989r - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
+            g4Var.setDrawDivider(z10);
+            org.telegram.ui.Cells.g4 g4Var2 = (org.telegram.ui.Cells.g4) b1Var2.f44838a;
+            if (b10 != hzVar.f36989r - 1) {
+                z11 = true;
+            }
+            g4Var2.setDrawDivider(z11);
+            this.d = true;
         }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.b1 b1Var, int i10) {
+        hz hzVar = this.e;
+        if (i10 != 0) {
+            hzVar.f36985b.I0(false);
+            b1Var.f44838a.setPressed(true);
+        } else if (this.d) {
+            gz gzVar = hzVar.f36987f;
+            if (gzVar != null) {
+                gzVar.a();
+            }
+            this.d = false;
+        }
+    }
+
+    @Override
+    public final void q(s4.b1 b1Var) {
     }
 }

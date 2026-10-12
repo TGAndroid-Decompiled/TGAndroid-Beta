@@ -1,52 +1,83 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.u91;
-public final class e4 extends k2 {
-    public final ViewGroup f34651b0;
-    public final View[] f34652c0;
-    public final Context f34653d0;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import java.nio.charset.StandardCharsets;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.es;
+public final class e4 extends EditTextBoldCursor {
+    public int f33121b;
+    public final org.telegram.ui.Components.j5 f33122c;
+    public final org.telegram.ui.Components.r6 d;
+    public final org.telegram.ui.ActionBar.c6 e;
 
-    public e4(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.c6 c6Var, ViewGroup viewGroup2, View[] viewArr, Context context2) {
-        super(context, viewGroup, c6Var);
-        this.f34651b0 = viewGroup2;
-        this.f34652c0 = viewArr;
-        this.f34653d0 = context2;
+    public e4(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        this.e = c6Var;
+        this.f33121b = 960;
+        this.f33122c = new org.telegram.ui.Components.j5(this);
+        org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, true, true);
+        this.d = r6Var;
+        r6Var.n(0.2f, 160L, es.h);
+        r6Var.w(AndroidUtilities.dp(15.33f));
+        r6Var.f28748b = 5;
+        r6Var.setCallback(this);
     }
 
     @Override
-    public final void G(float f7) {
-        super.G(f7);
-        if (this.f34651b0 instanceof u91) {
-            this.shadowDrawable.setBounds(0, (int) f7, this.containerView.getWidth(), this.containerView.getHeight());
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f33121b <= 0) {
+            i10 = org.telegram.ui.ActionBar.g6.f20122p7;
+        } else {
+            i10 = org.telegram.ui.ActionBar.g6.P5;
         }
+        int a2 = this.f33122c.a(org.telegram.ui.ActionBar.g6.w0(i10, this.e), false);
+        org.telegram.ui.Components.r6 r6Var = this.d;
+        r6Var.u(a2);
+        int scrollX = getScrollX();
+        int dp = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX) - getPaddingRight());
+        int height = getHeight() + getScrollY();
+        r6Var.setBounds(dp - AndroidUtilities.dp(48.0f), height - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp, height);
+        r6Var.draw(canvas);
     }
 
     @Override
-    public final boolean M() {
-        return !(this.f34651b0 instanceof u91);
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(getPaddingLeft() + getScrollX(), getScrollY(), (getWidth() + getScrollX()) - getPaddingRight(), getHeight() + getScrollY());
+        super.onDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final int Q() {
-        return getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6);
-    }
-
-    @Override
-    public final void show() {
-        super.show();
-        if (this.f34651b0 instanceof u91) {
-            View[] viewArr = this.f34652c0;
-            if (viewArr[0] == null) {
-                gi.a aVar = new gi.a(this, this.f34653d0);
-                viewArr[0] = aVar;
-                this.containerView.addView(aVar, 0, w7.w5.e(-1, 50, 80));
-            }
-            this.containerView.setBackground(null);
-            this.containerView.setPadding(0, 0, 0, 0);
-            this.d.setPadding(0, 0, 0, 0);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        String str;
+        super.onTextChanged(charSequence, i10, i11, i12);
+        org.telegram.ui.Components.r6 r6Var = this.d;
+        if (r6Var == null) {
+            return;
         }
+        this.f33121b = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
+        r6Var.a();
+        int i13 = this.f33121b;
+        if (i13 <= 100) {
+            str = Integer.toString(i13);
+        } else {
+            str = "";
+        }
+        r6Var.t(str, isAttachedToWindow(), true);
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

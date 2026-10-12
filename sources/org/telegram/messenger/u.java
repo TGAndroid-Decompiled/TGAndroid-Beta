@@ -4,71 +4,71 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u implements Runnable {
-    public final int f19043a;
-    public final Object f19044b;
-    public final int f19045c;
+    public final int f18537a;
+    public final Object f18538b;
+    public final int f18539c;
     public final long d;
-    public final int f19046e;
-    public final Object f19047f;
+    public final int e;
+    public final Object f18540f;
 
-    public u(int i10, int i11, long j3, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f19043a = 4;
-        this.f19044b = messagesStorage;
-        this.d = j3;
-        this.f19047f = arrayList;
-        this.f19045c = i10;
-        this.f19046e = i11;
+    public u(int i10, int i11, long j10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f18537a = 4;
+        this.f18538b = messagesStorage;
+        this.d = j10;
+        this.f18540f = arrayList;
+        this.f18539c = i10;
+        this.e = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19043a) {
+        switch (this.f18537a) {
             case 0:
-                AutoMessageHeardReceiver.lambda$onReceive$0((AccountInstance) this.f19044b, (TLRPC.User) this.f19047f, this.f19045c, this.d, this.f19046e);
+                AutoMessageHeardReceiver.lambda$onReceive$0((AccountInstance) this.f18538b, (TLRPC.User) this.f18540f, this.f18539c, this.d, this.e);
                 return;
             case 1:
-                AutoMessageHeardReceiver.lambda$onReceive$2((AccountInstance) this.f19044b, (TLRPC.Chat) this.f19047f, this.f19045c, this.d, this.f19046e);
+                AutoMessageHeardReceiver.lambda$onReceive$2((AccountInstance) this.f18538b, (TLRPC.Chat) this.f18540f, this.f18539c, this.d, this.e);
                 return;
             case 2:
-                ((MediaDataController) this.f19044b).lambda$putStickersToCache$102((ArrayList) this.f19047f, this.f19045c, this.f19046e, this.d);
+                ((MediaDataController) this.f18538b).lambda$putStickersToCache$102((ArrayList) this.f18540f, this.f18539c, this.e, this.d);
                 return;
             case 3:
-                long j3 = this.d;
-                int i10 = this.f19046e;
-                ((MessagesStorage) this.f19044b).lambda$updateTopicData$49(this.f19045c, (TLRPC.TL_forumTopic) this.f19047f, j3, i10);
+                long j10 = this.d;
+                int i10 = this.e;
+                ((MessagesStorage) this.f18538b).lambda$updateTopicData$49(this.f18539c, (TLRPC.TL_forumTopic) this.f18540f, j10, i10);
                 return;
             default:
-                int i11 = this.f19045c;
-                int i12 = this.f19046e;
-                ((MessagesStorage) this.f19044b).lambda$markMessagesContentAsRead$218(this.d, (ArrayList) this.f19047f, i11, i12);
+                int i11 = this.f18539c;
+                int i12 = this.e;
+                ((MessagesStorage) this.f18538b).lambda$markMessagesContentAsRead$218(this.d, (ArrayList) this.f18540f, i11, i12);
                 return;
         }
     }
 
-    public u(AccountInstance accountInstance, TLObject tLObject, int i10, long j3, int i11, int i12) {
-        this.f19043a = i12;
-        this.f19044b = accountInstance;
-        this.f19047f = tLObject;
-        this.f19045c = i10;
-        this.d = j3;
-        this.f19046e = i11;
+    public u(AccountInstance accountInstance, TLObject tLObject, int i10, long j10, int i11, int i12) {
+        this.f18537a = i12;
+        this.f18538b = accountInstance;
+        this.f18540f = tLObject;
+        this.f18539c = i10;
+        this.d = j10;
+        this.e = i11;
     }
 
-    public u(MediaDataController mediaDataController, ArrayList arrayList, int i10, int i11, long j3) {
-        this.f19043a = 2;
-        this.f19044b = mediaDataController;
-        this.f19047f = arrayList;
-        this.f19045c = i10;
-        this.f19046e = i11;
-        this.d = j3;
+    public u(MediaDataController mediaDataController, ArrayList arrayList, int i10, int i11, long j10) {
+        this.f18537a = 2;
+        this.f18538b = mediaDataController;
+        this.f18540f = arrayList;
+        this.f18539c = i10;
+        this.e = i11;
+        this.d = j10;
     }
 
-    public u(MessagesStorage messagesStorage, int i10, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i11) {
-        this.f19043a = 3;
-        this.f19044b = messagesStorage;
-        this.f19045c = i10;
-        this.f19047f = tL_forumTopic;
-        this.d = j3;
-        this.f19046e = i11;
+    public u(MessagesStorage messagesStorage, int i10, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11) {
+        this.f18537a = 3;
+        this.f18538b = messagesStorage;
+        this.f18539c = i10;
+        this.f18540f = tL_forumTopic;
+        this.d = j10;
+        this.e = i11;
     }
 }

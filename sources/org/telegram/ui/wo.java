@@ -1,40 +1,50 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class wo extends ClickableSpan {
-    public final int f43577a;
+import org.telegram.tgnet.TLRPC;
+public final class wo extends av0 {
+    public final zo f41625a;
 
-    public wo(int i10) {
-        this.f43577a = i10;
+    public wo(zo zoVar) {
+        this.f41625a = zoVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43577a) {
-            case 0:
-                of.f.s(view.getContext(), "https://t.me/BotFather");
-                return;
-            default:
-                return;
-        }
+    public final org.telegram.ui.kv0 E(org.telegram.messenger.MessageObject r8, org.telegram.tgnet.TLRPC.FileLocation r9, int r10, boolean r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wo.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.kv0");
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f43577a) {
-            case 0:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            default:
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(-1);
-                return;
-        }
+    public final void G() {
+        this.f41625a.e.getImageReceiver().setVisible(true, true);
     }
 
-    private final void a(View view) {
+    @Override
+    public final boolean M() {
+        zo zoVar = this.f41625a;
+        long j10 = zoVar.C0;
+        if (j10 == 0) {
+            return true;
+        }
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = zoVar.getMessagesController().getInputUser(j10);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.f19348id = new TLRPC.TL_inputPhotoEmpty();
+        zoVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new m(this, 2));
+        return false;
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f41625a.f42677s.p(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 }

@@ -1,33 +1,30 @@
 package org.telegram.ui.Wallet;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.Utilities;
 public final class n6 implements Runnable {
-    public final int f35135a = 1;
-    public final WalletEngine2 f35136b;
-    public final String f35137c;
-    public final Utilities.Callback d;
+    public final int f33518a;
+    public final AtomicBoolean f33519b;
+    public final Utilities.Callback2 f33520c;
 
-    public n6(WalletEngine2 walletEngine2, String str, Utilities.Callback callback) {
-        this.f35136b = walletEngine2;
-        this.f35137c = str;
-        this.d = callback;
+    public n6(AtomicBoolean atomicBoolean, Utilities.Callback2 callback2, int i10) {
+        this.f33518a = i10;
+        this.f33519b = atomicBoolean;
+        this.f33520c = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f35135a) {
+        switch (this.f33518a) {
             case 0:
-                this.f35136b.lambda$previewSignMessage$7(this.d, this.f35137c);
+                WalletEngine2.lambda$emulateSend$17(this.f33519b, this.f33520c);
+                return;
+            case 1:
+                WalletEngine2.lambda$emulateSendNFT$21(this.f33519b, this.f33520c);
                 return;
             default:
-                this.f35136b.lambda$getTransactionByHash$39(this.f35137c, this.d);
+                WalletEngine2.lambda$emulateSendNFT$22(this.f33519b, this.f33520c);
                 return;
         }
-    }
-
-    public n6(WalletEngine2 walletEngine2, Utilities.Callback callback, String str) {
-        this.f35136b = walletEngine2;
-        this.d = callback;
-        this.f35137c = str;
     }
 }

@@ -1,36 +1,12 @@
 package r9;
 
-import java.util.concurrent.Delayed;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import n4.l;
-public final class h extends c0.h implements ScheduledFuture {
-    public final ScheduledFuture f47340n;
+import java.util.HashSet;
+public final class h {
+    public final a f44042a;
+    public final HashSet f44043b = new HashSet();
+    public final HashSet f44044c = new HashSet();
 
-    public h(g gVar) {
-        this.f47340n = gVar.a(new l(this));
-    }
-
-    @Override
-    public final int compareTo(Delayed delayed) {
-        return this.f47340n.compareTo(delayed);
-    }
-
-    @Override
-    public final void d() {
-        boolean z10;
-        ScheduledFuture scheduledFuture = this.f47340n;
-        Object obj = this.f3971a;
-        if ((obj instanceof c0.a) && ((c0.a) obj).f3955a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        scheduledFuture.cancel(z10);
-    }
-
-    @Override
-    public final long getDelay(TimeUnit timeUnit) {
-        return this.f47340n.getDelay(timeUnit);
+    public h(a aVar) {
+        this.f44042a = aVar;
     }
 }

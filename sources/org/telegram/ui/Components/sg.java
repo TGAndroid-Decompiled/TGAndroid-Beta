@@ -1,98 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public interface sg {
-    void C(boolean z10);
+import android.graphics.Rect;
+import android.graphics.RectF;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class sg extends j1.b {
+    public final tg f29127o;
 
-    void C1(CharSequence charSequence);
+    public sg(tg tgVar, tg tgVar2) {
+        super(tgVar2);
+        this.f29127o = tgVar;
+    }
 
-    boolean D1();
+    @Override
+    public final int g(float f7, float f10) {
+        tg tgVar = this.f29127o;
+        ChatActivityEnterView chatActivityEnterView = tgVar.V;
+        if (chatActivityEnterView.f22960s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
+            return 2;
+        }
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f22933n4 > 0.1f && tgVar.J.contains(f7, f10)) {
+            return 4;
+        }
+        return -1;
+    }
 
-    void D2();
+    @Override
+    public final void h(ArrayList arrayList) {
+        ChatActivityEnterView chatActivityEnterView = this.f29127o.V;
+        if (chatActivityEnterView.f22960s4) {
+            arrayList.add(2);
+        }
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f22933n4 > 0.1f) {
+            arrayList.add(4);
+        }
+    }
 
-    void G();
+    @Override
+    public final boolean k(int i10, int i11) {
+        return true;
+    }
 
-    void G1();
-
-    void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3);
-
-    boolean H0();
-
-    void H2();
-
-    TLRPC.TL_channels_sendAsPeers J();
-
-    void J0(int i10, int i11);
-
-    void K(float f7, int i10);
-
-    void L1();
-
-    void M0();
-
-    void O0();
-
-    void X();
-
-    void Y0();
-
-    void Z(boolean z10);
-
-    void g1(int i10);
-
-    void h();
-
-    int h1();
-
-    TL_stories.StoryItem j1();
-
-    void j2();
-
-    void l();
-
-    boolean l1(long j3);
-
-    void l2(int i10);
-
-    boolean m();
-
-    boolean o1();
-
-    void o2();
-
-    void p0();
-
-    void p2(boolean z10);
-
-    void q2(int i10, int i11, int i12, long j3, long j10, boolean z10);
-
-    void r1(CharSequence charSequence, boolean z10, boolean z11);
-
-    org.telegram.ui.tn t0();
-
-    void t1();
-
-    boolean u1();
-
-    void u2();
-
-    int v();
-
-    void w1();
-
-    TLRPC.Peer x();
-
-    void x1();
-
-    void y();
-
-    void y0();
-
-    void y1();
-
-    void z(float f7);
-
-    void z1(View view, CharSequence charSequence, boolean z10);
+    @Override
+    public final void l(int i10, s0.c cVar) {
+        int i11;
+        int i12;
+        tg tgVar = this.f29127o;
+        ChatActivityEnterView chatActivityEnterView = tgVar.V;
+        if (i10 == 2) {
+            Rect rect = chatActivityEnterView.U3;
+            RectF rectF = chatActivityEnterView.S3;
+            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            cVar.h(chatActivityEnterView.U3);
+            if (chatActivityEnterView.f22943p4 > 0.5f) {
+                i12 = R.string.AccActionResume;
+            } else {
+                i12 = R.string.AccActionPause;
+            }
+            cVar.o(LocaleController.getString(i12));
+        } else if (i10 == 4) {
+            Rect rect2 = chatActivityEnterView.U3;
+            RectF rectF2 = tgVar.J;
+            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
+            cVar.h(chatActivityEnterView.U3);
+            if (chatActivityEnterView.O) {
+                i11 = R.string.AccActionOnceDeactivate;
+            } else {
+                i11 = R.string.AccActionOnceActivate;
+            }
+            cVar.o(LocaleController.getString(i11));
+        }
+    }
 }

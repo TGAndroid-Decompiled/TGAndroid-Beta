@@ -1,24 +1,33 @@
 package org.telegram.ui.Components;
+public final class mn extends org.telegram.ui.av0 {
+    public boolean f27464a;
+    public final int f27465b;
+    public final io f27466c;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class mn implements ul, org.telegram.ui.ActionBar.z1 {
-    public final Utilities.Callback f28593a;
-
-    public mn(Utilities.Callback callback) {
-        this.f28593a = callback;
+    public mn(io ioVar, int i10) {
+        this.f27466c = ioVar;
+        this.f27465b = i10;
     }
 
     @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        this.f28593a.run(new rh.f(messageMedia));
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        Utilities.Callback callback = this.f28593a;
-        if (callback != null) {
-            callback.run(Boolean.FALSE);
+    public final void D() {
+        if (this.f27464a) {
+            this.f27466c.e0(this.f27465b);
         }
+    }
+
+    @Override
+    public final void I() {
+        this.f27466c.h0(this.f27465b, null);
+    }
+
+    @Override
+    public final void V() {
+        this.f27464a = true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

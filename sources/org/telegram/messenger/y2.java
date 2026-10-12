@@ -1,24 +1,27 @@
 package org.telegram.messenger;
-public final class y2 implements Runnable {
-    public final int f19630a;
-    public final FileLoader f19631b;
 
-    public y2(FileLoader fileLoader, int i10) {
-        this.f19630a = i10;
-        this.f19631b = fileLoader;
+import org.telegram.tgnet.TLRPC;
+public final class y2 implements Runnable {
+    public final int f19057a;
+    public final FileLoader f19058b;
+    public final TLRPC.Document f19059c;
+    public final boolean d;
+
+    public y2(FileLoader fileLoader, TLRPC.Document document, boolean z10, int i10) {
+        this.f19057a = i10;
+        this.f19058b = fileLoader;
+        this.f19059c = document;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19630a) {
+        switch (this.f19057a) {
             case 0:
-                this.f19631b.lambda$new$18();
-                return;
-            case 1:
-                this.f19631b.lambda$cancelLoadFile$8();
+                this.f19058b.lambda$setLoadingVideo$0(this.f19059c, this.d);
                 return;
             default:
-                this.f19631b.lambda$cancel$10();
+                this.f19058b.lambda$removeLoadingVideo$1(this.f19059c, this.d);
                 return;
         }
     }

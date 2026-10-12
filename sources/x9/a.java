@@ -1,20 +1,45 @@
 package x9;
-public final class a implements ia.d {
-    public static final a f51305a = new Object();
-    public static final ia.c f51306b = ia.c.c("rolloutId");
-    public static final ia.c f51307c = ia.c.c("parameterKey");
-    public static final ia.c d = ia.c.c("parameterValue");
-    public static final ia.c f51308e = ia.c.c("variantId");
-    public static final ia.c f51309f = ia.c.c("templateVersion");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ia.e eVar = (ia.e) obj2;
-        b bVar = (b) ((l) obj);
-        eVar.a(f51306b, bVar.f51310b);
-        eVar.a(f51307c, bVar.f51311c);
-        eVar.a(d, bVar.d);
-        eVar.a(f51308e, bVar.f51312e);
-        eVar.f(f51309f, bVar.f51313f);
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.os.Build;
+import java.util.ArrayList;
+public final class a {
+    public final String f48273a;
+    public final String f48274b;
+    public final ArrayList f48275c;
+    public final String d;
+    public final String e;
+    public final String f48276f;
+    public final String f48277g;
+    public final m4.c h;
+
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, m4.c cVar) {
+        this.f48273a = str;
+        this.f48274b = str2;
+        this.f48275c = arrayList;
+        this.d = str3;
+        this.e = str4;
+        this.f48276f = str5;
+        this.f48277g = str6;
+        this.h = cVar;
+    }
+
+    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, m4.c cVar) {
+        String num;
+        String packageName = context.getPackageName();
+        String c10 = vVar.c();
+        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        if (Build.VERSION.SDK_INT >= 28) {
+            num = Long.toString(packageInfo.getLongVersionCode());
+        } else {
+            num = Integer.toString(packageInfo.versionCode);
+        }
+        String str3 = num;
+        String str4 = packageInfo.versionName;
+        if (str4 == null) {
+            str4 = "0.0";
+        }
+        return new a(str, str2, arrayList, c10, packageName, str3, str4, cVar);
     }
 }

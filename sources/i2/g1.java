@@ -1,178 +1,131 @@
 package i2;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
-public final class g1 {
-    public final j2.k f11705a;
-    public final p0 f11708e;
-    public final j2.f h;
-    public final e2.z f11711i;
-    public boolean f11713k;
-    public g2.c0 f11714l;
-    public u2.f1 f11712j = new u2.d1();
-    public final IdentityHashMap f11707c = new IdentityHashMap();
-    public final HashMap d = new HashMap();
-    public final ArrayList f11706b = new ArrayList();
-    public final HashMap f11709f = new HashMap();
-    public final HashSet f11710g = new HashSet();
+import android.util.Pair;
+import fi.l3;
+import java.io.IOException;
+public final class g1 implements u2.k0, n2.l {
+    public final i1 f10976a;
+    public final j1 f10977b;
 
-    public g1(p0 p0Var, j2.f fVar, e2.z zVar, j2.k kVar) {
-        this.f11705a = kVar;
-        this.f11708e = p0Var;
-        this.h = fVar;
-        this.f11711i = zVar;
+    public g1(j1 j1Var, i1 i1Var) {
+        this.f10977b = j1Var;
+        this.f10976a = i1Var;
     }
 
-    public final b2.k1 a(int i10, ArrayList arrayList, u2.f1 f1Var) {
-        if (!arrayList.isEmpty()) {
-            this.f11712j = f1Var;
-            for (int i11 = i10; i11 < arrayList.size() + i10; i11++) {
-                f1 f1Var2 = (f1) arrayList.get(i11 - i10);
-                ArrayList arrayList2 = this.f11706b;
-                if (i11 > 0) {
-                    f1 f1Var3 = (f1) arrayList2.get(i11 - 1);
-                    f1Var2.d = f1Var3.f11688a.f48757o.f48914e.o() + f1Var3.d;
-                    f1Var2.f11691e = false;
-                    f1Var2.f11690c.clear();
-                } else {
-                    f1Var2.d = 0;
-                    f1Var2.f11691e = false;
-                    f1Var2.f11690c.clear();
-                }
-                int o9 = f1Var2.f11688a.f48757o.f48914e.o();
-                for (int i12 = i11; i12 < arrayList2.size(); i12++) {
-                    ((f1) arrayList2.get(i12)).d += o9;
-                }
-                arrayList2.add(i11, f1Var2);
-                this.d.put(f1Var2.f11689b, f1Var2);
-                if (this.f11713k) {
-                    e(f1Var2);
-                    if (this.f11707c.isEmpty()) {
-                        this.f11710g.add(f1Var2);
-                    } else {
-                        e1 e1Var = (e1) this.f11709f.get(f1Var2);
-                        if (e1Var != null) {
-                            e1Var.f11639a.d(e1Var.f11640b);
-                        }
+    @Override
+    public final void a(int i10, u2.g0 g0Var, int i11) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new ah.o(this, l4, i11, 13));
+        }
+    }
+
+    @Override
+    public final void b(int i10, u2.g0 g0Var, Exception exc) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new hg.t(this, l4, exc, 7));
+        }
+    }
+
+    @Override
+    public final void c(int i10, u2.g0 g0Var, oa.d dVar) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new hg.t(this, l4, dVar, 6));
+        }
+    }
+
+    @Override
+    public final void d(int i10, u2.g0 g0Var, u2.c0 c0Var) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new c1(this, l4, c0Var, 0));
+        }
+    }
+
+    @Override
+    public final void e(int i10, u2.g0 g0Var, u2.c0 c0Var) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new c1(this, l4, c0Var, 1));
+        }
+    }
+
+    @Override
+    public final void f(int i10, u2.g0 g0Var, u2.u uVar, u2.c0 c0Var) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new d1(this, l4, uVar, c0Var, 1));
+        }
+    }
+
+    @Override
+    public final void g(int i10, u2.g0 g0Var, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new f1(this, l4, uVar, c0Var, iOException, z10, 0));
+        }
+    }
+
+    @Override
+    public final void h(int i10, u2.g0 g0Var) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new e1(this, l4, 0));
+        }
+    }
+
+    @Override
+    public final void i(int i10, u2.g0 g0Var, u2.u uVar, u2.c0 c0Var, int i11) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new l3(this, l4, uVar, c0Var, i11, 4));
+        }
+    }
+
+    @Override
+    public final void j(int i10, u2.g0 g0Var) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new e1(this, l4, 1));
+        }
+    }
+
+    @Override
+    public final void k(int i10, u2.g0 g0Var, u2.u uVar, u2.c0 c0Var) {
+        Pair l4 = l(i10, g0Var);
+        if (l4 != null) {
+            this.f10977b.f11056i.d(new d1(this, l4, uVar, c0Var, 0));
+        }
+    }
+
+    public final Pair l(int i10, u2.g0 g0Var) {
+        u2.g0 g0Var2;
+        i1 i1Var = this.f10976a;
+        u2.g0 g0Var3 = null;
+        if (g0Var != null) {
+            int i11 = 0;
+            while (true) {
+                if (i11 < i1Var.f11044c.size()) {
+                    if (((u2.g0) i1Var.f11044c.get(i11)).d == g0Var.d) {
+                        Object obj = g0Var.f45920a;
+                        Object obj2 = i1Var.f11043b;
+                        int i12 = a.f10911g;
+                        g0Var2 = g0Var.a(Pair.create(obj2, obj));
+                        break;
                     }
+                    i11++;
+                } else {
+                    g0Var2 = null;
+                    break;
                 }
             }
-        }
-        return b();
-    }
-
-    public final b2.k1 b() {
-        ArrayList arrayList = this.f11706b;
-        if (arrayList.isEmpty()) {
-            return b2.k1.f3402a;
-        }
-        int i10 = 0;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            f1 f1Var = (f1) arrayList.get(i11);
-            f1Var.d = i10;
-            i10 += f1Var.f11688a.f48757o.f48914e.o();
-        }
-        return new m1(arrayList, this.f11712j);
-    }
-
-    public final void c() {
-        Iterator it = this.f11710g.iterator();
-        while (it.hasNext()) {
-            f1 f1Var = (f1) it.next();
-            if (f1Var.f11690c.isEmpty()) {
-                e1 e1Var = (e1) this.f11709f.get(f1Var);
-                if (e1Var != null) {
-                    e1Var.f11639a.d(e1Var.f11640b);
-                }
-                it.remove();
+            if (g0Var2 == null) {
+                return null;
             }
+            g0Var3 = g0Var2;
         }
-    }
-
-    public final void d(f1 f1Var) {
-        if (f1Var.f11691e && f1Var.f11690c.isEmpty()) {
-            e1 e1Var = (e1) this.f11709f.remove(f1Var);
-            e1Var.getClass();
-            d1 d1Var = e1Var.f11641c;
-            u2.a aVar = e1Var.f11639a;
-            aVar.p(e1Var.f11640b);
-            aVar.s(d1Var);
-            aVar.r(d1Var);
-            this.f11710g.remove(f1Var);
-        }
-    }
-
-    public final void e(f1 f1Var) {
-        u2.a0 a0Var = f1Var.f11688a;
-        ?? r12 = new u2.g0() {
-            @Override
-            public final void a(u2.a aVar, b2.k1 k1Var) {
-                e2.z zVar = g1.this.f11708e.f11851n;
-                zVar.d(2);
-                zVar.e(22);
-            }
-        };
-        d1 d1Var = new d1(this, f1Var);
-        this.f11709f.put(f1Var, new e1(a0Var, r12, d1Var));
-        String str = e2.d0.f8529a;
-        Looper myLooper = Looper.myLooper();
-        if (myLooper == null) {
-            myLooper = Looper.getMainLooper();
-        }
-        Handler handler = new Handler(myLooper, null);
-        a0Var.getClass();
-        a5.a aVar = a0Var.f48750c;
-        aVar.getClass();
-        ?? obj = new Object();
-        obj.f48824a = handler;
-        obj.f48825b = d1Var;
-        ((CopyOnWriteArrayList) aVar.d).add(obj);
-        Looper myLooper2 = Looper.myLooper();
-        if (myLooper2 == null) {
-            myLooper2 = Looper.getMainLooper();
-        }
-        Handler handler2 = new Handler(myLooper2, null);
-        n2.j jVar = a0Var.d;
-        jVar.getClass();
-        CopyOnWriteArrayList copyOnWriteArrayList = jVar.f16269c;
-        ?? obj2 = new Object();
-        obj2.f16265a = handler2;
-        obj2.f16266b = d1Var;
-        copyOnWriteArrayList.add(obj2);
-        a0Var.l(r12, this.f11714l, this.f11705a);
-    }
-
-    public final void f(u2.d0 d0Var) {
-        IdentityHashMap identityHashMap = this.f11707c;
-        f1 f1Var = (f1) identityHashMap.remove(d0Var);
-        f1Var.getClass();
-        f1Var.f11688a.o(d0Var);
-        f1Var.f11690c.remove(((u2.x) d0Var).f48969a);
-        if (!identityHashMap.isEmpty()) {
-            c();
-        }
-        d(f1Var);
-    }
-
-    public final void g(int i10, int i11) {
-        for (int i12 = i11 - 1; i12 >= i10; i12--) {
-            ArrayList arrayList = this.f11706b;
-            f1 f1Var = (f1) arrayList.remove(i12);
-            this.d.remove(f1Var.f11689b);
-            int i13 = -f1Var.f11688a.f48757o.f48914e.o();
-            for (int i14 = i12; i14 < arrayList.size(); i14++) {
-                ((f1) arrayList.get(i14)).d += i13;
-            }
-            f1Var.f11691e = true;
-            if (this.f11713k) {
-                d(f1Var);
-            }
-        }
+        return Pair.create(Integer.valueOf(i10 + i1Var.d), g0Var3);
     }
 }

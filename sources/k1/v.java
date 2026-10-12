@@ -1,19 +1,22 @@
 package k1;
-public final class v extends ld.c {
-    public a0 f14380a;
-    public Object f14381b;
-    public final a0 f14382c;
-    public int d;
 
-    public v(a0 a0Var, ld.c cVar) {
+import java.io.FileInputStream;
+public final class v extends md.c {
+    public z f13812a;
+    public FileInputStream f13813b;
+    public Object f13814c;
+    public final z d;
+    public int e;
+
+    public v(z zVar, md.c cVar) {
         super(cVar);
-        this.f14382c = a0Var;
+        this.d = zVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f14381b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.f14382c.f(this);
+        this.f13814c = obj;
+        this.e |= Integer.MIN_VALUE;
+        return this.d.g(this);
     }
 }

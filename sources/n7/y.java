@@ -2,32 +2,32 @@ package n7;
 
 import java.util.Iterator;
 public final class y extends o {
-    public static final Object[] f16565r;
-    public static final y f16566s;
+    public static final Object[] f16232r;
+    public static final y f16233s;
     public final transient Object[] d;
-    public final transient int f16567e;
-    public final transient Object[] f16568f;
+    public final transient int e;
+    public final transient Object[] f16234f;
     public final transient int h;
-    public final transient int f16569n;
+    public final transient int f16235n;
 
     static {
         Object[] objArr = new Object[0];
-        f16565r = objArr;
-        f16566s = new y(0, 0, 0, objArr, objArr);
+        f16232r = objArr;
+        f16233s = new y(0, 0, 0, objArr, objArr);
     }
 
     public y(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f16567e = i10;
-        this.f16568f = objArr2;
+        this.e = i10;
+        this.f16234f = objArr2;
         this.h = i11;
-        this.f16569n = i12;
+        this.f16235n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f16568f;
+            Object[] objArr = this.f16234f;
             if (objArr.length != 0) {
                 int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
                 while (true) {
@@ -51,50 +51,50 @@ public final class y extends o {
     }
 
     @Override
-    public final int hashCode() {
-        return this.f16567e;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
+    public final int h(Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i10 = this.f16569n;
+        int i10 = this.f16235n;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
 
     @Override
+    public final int hashCode() {
+        return this.e;
+    }
+
+    @Override
     public final Iterator iterator() {
-        return t().listIterator(0);
+        return s().listIterator(0);
+    }
+
+    @Override
+    public final int m() {
+        return this.f16235n;
     }
 
     @Override
     public final int n() {
-        return this.f16569n;
-    }
-
-    @Override
-    public final int o() {
         return 0;
     }
 
     @Override
-    public final d0 p() {
-        return t().listIterator(0);
+    public final d0 o() {
+        return s().listIterator(0);
     }
 
     @Override
-    public final Object[] q() {
+    public final Object[] p() {
         return this.d;
     }
 
     @Override
     public final int size() {
-        return this.f16569n;
+        return this.f16235n;
     }
 
     @Override
-    public final m u() {
-        return m.t(this.f16569n, this.d);
+    public final m t() {
+        return m.s(this.f16235n, this.d);
     }
 }

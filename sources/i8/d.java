@@ -2,36 +2,15 @@ package i8;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import com.google.android.gms.internal.cast.p;
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-import com.google.mlkit.vision.segmentation.subject.internal.zzd;
-import java.util.concurrent.Executor;
-import m.r3;
-import qb.m;
-import z7.de;
-import z7.fb;
-import z7.gb;
-import z7.hb;
-import z7.xf;
-import z7.zf;
+import n6.l;
 public abstract class d {
-    public static zzd a(ac.e eVar) {
-        bc.b bVar = (bc.b) qb.g.c().a(bc.b.class);
-        xf b10 = zf.b();
-        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3845a.O0(eVar), (Executor) bVar.f3846b.f46017a.get());
-        ?? obj = new Object();
-        obj.f15557c = fb.TYPE_THIN;
-        ?? obj2 = new Object();
-        obj2.f53853b = eVar.a();
-        obj2.f53852a = gb.NO_ERROR;
-        obj.d = new de(obj2);
-        m.f46036a.execute(new p(b10, new a5.a((r3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
-        return mobileVisionBase;
+    public static final long a(int r8, ae.c r9) {
+        throw new UnsupportedOperationException("Method not decompiled: i8.d.a(int, ae.c):long");
     }
 
     public static Parcelable b(String str, Bundle bundle) {
         ClassLoader classLoader = d.class.getClassLoader();
-        n6.m.h(classLoader);
+        l.h(classLoader);
         bundle.setClassLoader(classLoader);
         Bundle bundle2 = bundle.getBundle("map_state");
         if (bundle2 == null) {
@@ -66,7 +45,7 @@ public abstract class d {
 
     public static void d(Bundle bundle, String str, Parcelable parcelable) {
         ClassLoader classLoader = d.class.getClassLoader();
-        n6.m.h(classLoader);
+        l.h(classLoader);
         bundle.setClassLoader(classLoader);
         Bundle bundle2 = bundle.getBundle("map_state");
         if (bundle2 == null) {

@@ -1,202 +1,70 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.View;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class di extends wm0 {
-    public final int V2;
-    public final Paint W2;
-    public final Paint X2;
-    public boolean Y2;
-    public boolean Z2;
-    public final Object f25360a3;
-    public final Object f25361b3;
+public final class di extends vu {
+    public final vi V;
 
-    public di(Context context, int i10) {
-        super(context, null);
-        this.V2 = i10;
-        switch (i10) {
-            case 1:
-                super(context, null);
-                Paint paint = new Paint(1);
-                this.W2 = paint;
-                Paint paint2 = new Paint(1);
-                this.X2 = paint2;
-                this.f25360a3 = new g6(this);
-                this.f25361b3 = new g6(this);
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
-                paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
-                return;
-            default:
-                js jsVar = js.h;
-                this.f25360a3 = new me.b(this, jsVar, 320L);
-                this.f25361b3 = new me.b(this, jsVar, 320L);
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
-                LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
-                Paint paint3 = new Paint(1);
-                this.W2 = paint3;
-                Paint paint4 = new Paint(1);
-                this.X2 = paint4;
-                paint3.setShader(linearGradient);
-                PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
-                paint3.setXfermode(new PorterDuffXfermode(mode));
-                paint4.setShader(linearGradient2);
-                paint4.setXfermode(new PorterDuffXfermode(mode));
-                return;
+    public di(vi viVar, Context context, li liVar, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, liVar, null, 1, true, c6Var);
+        this.V = viVar;
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        wz emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f31076w0 = false;
+            emojiView.f31078w2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        switch (this.V2) {
-            case 0:
-                this.Z2 = false;
-                this.Y2 = false;
-                super.dispatchDraw(canvas);
-                ((me.b) this.f25360a3).a(this.Y2, true);
-                ((me.b) this.f25361b3).a(this.Z2, true);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                g6 g6Var = (g6) this.f25360a3;
-                float f10 = 1.0f;
-                if (this.Y2) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                Paint paint = this.W2;
-                paint.setAlpha((int) (g6Var.d(f7, false) * 255.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                g6 g6Var2 = (g6) this.f25361b3;
-                if (!this.Z2) {
-                    f10 = 0.0f;
-                }
-                int d = (int) (g6Var2.d(f10, false) * 255.0f);
-                Paint paint2 = this.X2;
-                paint2.setAlpha(d);
-                canvas.save();
-                canvas.translate(0.0f, getHeight() - AndroidUtilities.dp(8.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint2);
-                canvas.restore();
-                return;
+    public final void i(Menu menu) {
+        org.telegram.ui.ActionBar.m2 m2Var = this.V.f30001f0;
+        if (m2Var instanceof org.telegram.ui.fo) {
+            org.telegram.ui.fo.n8(menu, ((org.telegram.ui.fo) m2Var).h, true, true, true, true);
         }
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        vi viVar = this.V;
+        di diVar = viVar.S0;
+        if (!viVar.f30059x1) {
+            if (motionEvent.getX() > diVar.getEditText().getLeft() && motionEvent.getX() < diVar.getEditText().getRight() && motionEvent.getY() > diVar.getEditText().getTop() && motionEvent.getY() < diVar.getEditText().getBottom()) {
+                viVar.w1(diVar.getEditText(), true);
+            } else {
+                viVar.w1(diVar.getEditText(), false);
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.V.f2();
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
         boolean z10;
-        boolean z11;
-        switch (this.V2) {
-            case 0:
-                float x10 = view.getX();
-                float width = view.getWidth() + x10;
-                boolean z12 = true;
-                if (x10 < AndroidUtilities.dp(10.0f)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (width > getMeasuredWidth() - AndroidUtilities.dp(10.0f)) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                if (!z10 && !z11) {
-                    z12 = false;
-                }
-                this.Y2 |= z10;
-                this.Z2 |= z11;
-                canvas.save();
-                if (z12) {
-                    canvas.clipRect(AndroidUtilities.dp(19.0f), 0, getMeasuredWidth() - AndroidUtilities.dp(19.0f), getMeasuredHeight());
-                }
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                if (z10) {
-                    float dp = AndroidUtilities.dp(11.0f);
-                    canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j3);
-                    canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((me.b) this.f25360a3).f16088e, AndroidUtilities.dp(8.0f), dp), 0.0f);
-                    canvas.drawPaint(this.W2);
-                    canvas.restore();
-                    canvas.restore();
-                }
-                if (z11) {
-                    float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(19.0f);
-                    canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j3);
-                    canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.y(1.0f, ((me.b) this.f25361b3).f16088e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
-                    canvas.drawPaint(this.X2);
-                    canvas.restore();
-                    canvas.restore();
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void k0(int i10, int i11) {
-        switch (this.V2) {
-            case 1:
-                boolean canScrollVertically = canScrollVertically(-1);
-                boolean canScrollVertically2 = canScrollVertically(1);
-                if (canScrollVertically != this.Y2 || canScrollVertically2 != this.Z2) {
-                    this.Y2 = canScrollVertically;
-                    this.Z2 = canScrollVertically2;
-                    invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        float f7;
-        int i12;
-        switch (this.V2) {
-            case 0:
-                int childCount = getChildCount();
-                int size = (View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight();
-                float f10 = 0.0f;
-                for (int i13 = 0; i13 < childCount; i13++) {
-                    View childAt = getChildAt(i13);
-                    if (childAt instanceof vi) {
-                        f10 = ((vi) childAt).f31525a.c() + f10;
-                    }
-                }
-                if (size > f10 && childCount > 0) {
-                    i12 = (int) Math.floor((f7 - f10) / childCount);
-                } else {
-                    i12 = 0;
-                }
-                for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt2 = getChildAt(i14);
-                    if (childAt2 instanceof vi) {
-                        ((vi) childAt2).f31525a.setAdditionalWidth(i12);
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+        vi viVar = this.V;
+        viVar.f2();
+        if (viVar.f29991c0) {
+            if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            viVar.Q1(z10);
         }
     }
 }

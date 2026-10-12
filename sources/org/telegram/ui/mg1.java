@@ -1,30 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class mg1 extends og.a {
-    public final TLRPC.TL_forumTopic f40042c;
+import java.util.Iterator;
+public final class mg1 implements org.telegram.ui.ActionBar.z1 {
+    public final og1 f38258a;
 
-    public mg1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, false);
-        this.f40042c = tL_forumTopic;
+    public mg1(og1 og1Var) {
+        this.f38258a = og1Var;
     }
 
-    public final boolean equals(Object obj) {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (this == obj) {
-            return true;
+    @Override
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        rg1 rg1Var = this.f38258a.f38954a;
+        Iterator it = rg1Var.e.iterator();
+        while (it.hasNext()) {
+            rg1.U(rg1Var, ((Integer) it.next()).intValue());
         }
-        if (obj == null || mg1.class != obj.getClass()) {
-            return false;
-        }
-        mg1 mg1Var = (mg1) obj;
-        if (this.f16877a != mg1Var.f16877a) {
-            return false;
-        }
-        TLRPC.TL_forumTopic tL_forumTopic2 = this.f40042c;
-        if (tL_forumTopic2 == null || (tL_forumTopic = mg1Var.f40042c) == null || tL_forumTopic2.f19855id == tL_forumTopic.f19855id) {
-            return true;
-        }
-        return false;
+        rg1Var.e.clear();
+        rg1Var.V();
     }
 }

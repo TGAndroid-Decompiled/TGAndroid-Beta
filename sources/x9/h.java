@@ -1,64 +1,138 @@
 package x9;
 
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-public final class h extends InputStream {
-    public int f51325a;
-    public int f51326b;
-    public final j f51327c;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.res.Resources;
+import android.os.Build;
+import android.os.Debug;
+import android.util.Log;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
+public abstract class h {
+    public static final char[] f48291a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    public h(j jVar, g gVar) {
-        this.f51327c = jVar;
-        this.f51325a = jVar.d(gVar.f51323a + 4);
-        this.f51326b = gVar.f51324b;
+    public static ExecutorService a(String str) {
+        ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new c5.x(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        Runtime.getRuntime().addShutdownHook(new Thread(new u(str, unconfigurableExecutorService), "Crashlytics Shutdown Hook for ".concat(str)));
+        return unconfigurableExecutorService;
     }
 
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        if (bArr != null) {
-            if ((i10 | i11) >= 0 && i11 <= bArr.length - i10) {
-                int i12 = this.f51326b;
-                if (i12 > 0) {
-                    if (i11 > i12) {
-                        i11 = i12;
-                    }
-                    int i13 = this.f51325a;
-                    j jVar = this.f51327c;
-                    RandomAccessFile randomAccessFile = jVar.f51328a;
-                    int d = jVar.d(i13);
-                    int i14 = d + i11;
-                    int i15 = jVar.f51329b;
-                    if (i14 <= i15) {
-                        randomAccessFile.seek(d);
-                        randomAccessFile.readFully(bArr, i10, i11);
-                    } else {
-                        int i16 = i15 - d;
-                        randomAccessFile.seek(d);
-                        randomAccessFile.readFully(bArr, i10, i16);
-                        randomAccessFile.seek(16L);
-                        randomAccessFile.readFully(bArr, i10 + i16, i11 - i16);
-                    }
-                    this.f51325a = jVar.d(this.f51325a + i11);
-                    this.f51326b -= i11;
-                    return i11;
-                }
-                return -1;
+    public static synchronized long b(Context context) {
+        long j10;
+        synchronized (h.class) {
+            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            ((ActivityManager) context.getSystemService("activity")).getMemoryInfo(memoryInfo);
+            j10 = memoryInfo.totalMem;
+        }
+        return j10;
+    }
+
+    public static void c(Closeable closeable, String str) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (IOException e) {
+                Log.e("FirebaseCrashlytics", str, e);
             }
-            throw new ArrayIndexOutOfBoundsException();
         }
-        throw new NullPointerException("buffer");
     }
 
-    @Override
-    public final int read() {
-        if (this.f51326b == 0) {
-            return -1;
+    public static int d() {
+        boolean g10 = g();
+        ?? r02 = g10;
+        if (h()) {
+            r02 = (g10 ? 1 : 0) | true;
         }
-        j jVar = this.f51327c;
-        jVar.f51328a.seek(this.f51325a);
-        int read = jVar.f51328a.read();
-        this.f51325a = jVar.d(this.f51325a + 1);
-        this.f51326b--;
-        return read;
+        if (!Debug.isDebuggerConnected() && !Debug.waitingForDebugger()) {
+            return r02;
+        }
+        return r02 | 4;
+    }
+
+    public static int e(Context context, String str, String str2) {
+        String packageName;
+        Resources resources = context.getResources();
+        int i10 = context.getApplicationContext().getApplicationInfo().icon;
+        if (i10 > 0) {
+            try {
+                packageName = context.getResources().getResourcePackageName(i10);
+                if ("android".equals(packageName)) {
+                    packageName = context.getPackageName();
+                }
+            } catch (Resources.NotFoundException unused) {
+                packageName = context.getPackageName();
+            }
+        } else {
+            packageName = context.getPackageName();
+        }
+        return resources.getIdentifier(str, str2, packageName);
+    }
+
+    public static String f(byte[] bArr) {
+        char[] cArr = new char[bArr.length * 2];
+        for (int i10 = 0; i10 < bArr.length; i10++) {
+            byte b10 = bArr[i10];
+            int i11 = i10 * 2;
+            char[] cArr2 = f48291a;
+            cArr[i11] = cArr2[(b10 & 255) >>> 4];
+            cArr[i11 + 1] = cArr2[b10 & 15];
+        }
+        return new String(cArr);
+    }
+
+    public static boolean g() {
+        if (!Build.PRODUCT.contains("sdk")) {
+            String str = Build.HARDWARE;
+            if (!str.contains("goldfish") && !str.contains("ranchu")) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public static boolean h() {
+        boolean g10 = g();
+        String str = Build.TAGS;
+        if ((!g10 && str != null && str.contains("test-keys")) || t8.b.t("/system/app/Superuser.apk")) {
+            return true;
+        }
+        File file = new File("/system/xbin/su");
+        if (!g10 && file.exists()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static String i(String str) {
+        byte[] bytes = str.getBytes();
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+            messageDigest.update(bytes);
+            return f(messageDigest.digest());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("FirebaseCrashlytics", "Could not create hashing algorithm: SHA-1, returning empty string.", e);
+            return "";
+        }
+    }
+
+    public static String j(FileInputStream fileInputStream) {
+        Scanner useDelimiter = new Scanner(fileInputStream).useDelimiter("\\A");
+        if (useDelimiter.hasNext()) {
+            return useDelimiter.next();
+        }
+        return "";
     }
 }

@@ -1,99 +1,142 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class d61 implements org.telegram.ui.Components.nm0 {
-    public final int f36664a;
-    public final Context f36665b;
-    public final org.telegram.ui.ActionBar.c6 f36666c;
-    public final Integer d;
-    public final n71 f36667e;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class d61 extends FrameLayout {
+    public final int f35156a;
 
-    public d61(n71 n71Var, int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, Integer num) {
-        this.f36667e = n71Var;
-        this.f36664a = i10;
-        this.f36665b = context;
-        this.f36666c = c6Var;
-        this.d = num;
+    public d61(Context context, int i10) {
+        super(context);
+        this.f35156a = i10;
     }
 
     @Override
-    public final boolean mo17c(float f7, float f10, int i10, View view) {
-        n71 n71Var = this.f36667e;
-        int i11 = n71Var.V;
-        int i12 = this.f36664a;
-        if (i12 != 11 && i12 != 13 && n71Var.f40276h1) {
-            boolean z10 = view instanceof w61;
-            if (z10 && (i12 == 1 || i12 == 8)) {
-                n71Var.l();
-                try {
-                    n71Var.performHapticFeedback(0);
-                } catch (Exception unused) {
-                }
-                w61 w61Var = (w61) view;
-                if (!w61Var.f43061s && !UserConfig.getInstance(i11).isPremium()) {
-                    org.telegram.ui.Components.b6 b6Var = w61Var.f43057e;
-                    TLRPC.Document document = b6Var.document;
-                    if (document == null) {
-                        document = org.telegram.ui.Components.s5.f(i11, b6Var.documentId);
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f35156a) {
+            case 6:
+                org.telegram.ui.ActionBar.g6.f19987i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.g6.f19987i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.g6.f19987i3.draw(canvas);
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        switch (this.f35156a) {
+            case 9:
+                return super.drawChild(canvas, view, j10);
+            case 10:
+            default:
+                return super.drawChild(canvas, view, j10);
+            case 11:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        switch (this.f35156a) {
+            case 8:
+                return false;
+            default:
+                return super.hasOverlappingRendering();
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f35156a) {
+            case 5:
+                super.onDraw(canvas);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.g6.f20022k0);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f35156a) {
+            case 2:
+                int childCount = getChildCount();
+                int i14 = 0;
+                int i15 = 0;
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
+                        i15 += getChildAt(i16).getMeasuredHeight();
+                        i14 = 0;
                     }
-                    n71Var.p(w61Var, Long.valueOf(w61Var.f43057e.documentId), document, w61Var.v, null);
-                    return true;
+                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
+                    i14 += getChildAt(i16).getMeasuredWidth();
                 }
-                n71Var.S0 = w61Var;
-                n71Var.U0 = 0.0f;
-                n71Var.T0 = false;
-                if (w61Var.f43061s) {
-                    n71Var.setBigReactionAnimatedEmoji(null);
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(n71Var.S0.f43063x.f54849f);
-                    if (tL_availableReaction != null) {
-                        n71Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", n71Var.S0.f43063x, 0);
-                    }
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12;
+        switch (this.f35156a) {
+            case 0:
+                super.onMeasure(i10, org.telegram.messenger.yh.D(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+                int childCount = getChildCount();
+                int i13 = 0;
+                if (childCount > 0) {
+                    i12 = getChildAt(0).getMeasuredHeight();
                 } else {
-                    n71Var.setBigReactionAnimatedEmoji(new org.telegram.ui.Components.s5(4, i11, n71Var.S0.f43057e.documentId));
+                    i12 = 0;
                 }
-                n71Var.f40275h0.invalidate();
-                n71Var.m();
-                return true;
-            } else if (z10) {
-                w61 w61Var2 = (w61) view;
-                if (w61Var2.f43057e != null && (i12 == 0 || i12 == 12 || i12 == 9 || i12 == 10)) {
-                    TL_stars.TL_starGiftUnique tL_starGiftUnique = w61Var2.v;
-                    c61 c61Var = new c61(this, this.f36665b, n71Var.T1, n71Var, w61Var2, this.f36666c, view, tL_starGiftUnique);
-                    n71Var.X0 = c61Var;
-                    c61Var.show();
-                    try {
-                        view.performHapticFeedback(0, 1);
-                    } catch (Exception unused2) {
+                int i14 = 0;
+                int i15 = 0;
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
+                        i15 += getChildAt(i16).getMeasuredHeight();
+                        i14 = 0;
                     }
-                    return true;
+                    i14 += getChildAt(i16).getMeasuredWidth();
                 }
-            }
+                int measuredWidth = getMeasuredWidth();
+                if (getChildCount() != 0) {
+                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
+                }
+                setMeasuredDimension(measuredWidth, i13);
+                return;
+            case 3:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                return;
+            case 4:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                return;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 10:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void h() {
-        n71 n71Var = this.f36667e;
-        if (n71Var.S0 != null) {
-            n71Var.T0 = true;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(n71Var.U0, 0.0f);
-            ofFloat.addUpdateListener(new a21(this, 8));
-            ofFloat.addListener(new gp0(this, 20));
-            ofFloat.setDuration(150L);
-            ofFloat.setInterpolator(org.telegram.ui.Components.js.f27634f);
-            ofFloat.start();
-        }
-    }
-
-    @Override
-    public final void q(float f7) {
     }
 }

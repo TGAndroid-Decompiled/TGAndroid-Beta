@@ -1,66 +1,67 @@
 package x3;
 
-import b2.s0;
+import b2.x0;
 import c3.p;
-import e2.v;
+import e2.x;
 import java.io.EOFException;
+import v7.u6;
 public final class f {
-    public int f50804a;
-    public long f50805b;
-    public int f50806c;
+    public int f47812a;
+    public long f47813b;
+    public int f47814c;
     public int d;
-    public int f50807e;
-    public final int[] f50808f = new int[255];
-    public final v f50809g = new v(255);
+    public int e;
+    public final int[] f47815f = new int[255];
+    public final x f47816g = new x(255);
 
     public final boolean a(p pVar, boolean z10) {
         boolean z11;
         boolean z12;
-        this.f50804a = 0;
-        this.f50805b = 0L;
-        this.f50806c = 0;
+        this.f47812a = 0;
+        this.f47813b = 0L;
+        this.f47814c = 0;
         this.d = 0;
-        this.f50807e = 0;
-        v vVar = this.f50809g;
-        vVar.G(27);
+        this.e = 0;
+        x xVar = this.f47816g;
+        xVar.K(27);
         try {
-            z11 = pVar.f(vVar.f8581a, 0, 27, z10);
-        } catch (EOFException e7) {
+            z11 = pVar.j(xVar.f8411a, 0, 27, z10);
+        } catch (EOFException e) {
             if (z10) {
                 z11 = false;
             } else {
-                throw e7;
+                throw e;
             }
         }
-        if (z11 && vVar.z() == 1332176723) {
-            if (vVar.x() != 0) {
+        if (z11 && xVar.C() == 1332176723) {
+            if (xVar.A() != 0) {
                 if (!z10) {
-                    throw s0.c("unsupported bit stream revision");
+                    throw x0.c("unsupported bit stream revision");
                 }
             } else {
-                this.f50804a = vVar.x();
-                this.f50805b = vVar.m();
-                vVar.o();
-                vVar.o();
-                vVar.o();
-                int x10 = vVar.x();
-                this.f50806c = x10;
-                this.d = x10 + 27;
-                vVar.G(x10);
+                this.f47812a = xVar.A();
+                this.f47813b = xVar.p();
+                xVar.r();
+                xVar.r();
+                xVar.r();
+                int A = xVar.A();
+                this.f47814c = A;
+                this.d = A + 27;
+                xVar.K(A);
                 try {
-                    z12 = pVar.f(vVar.f8581a, 0, this.f50806c, z10);
-                } catch (EOFException e10) {
+                    z12 = pVar.j(xVar.f8411a, 0, this.f47814c, z10);
+                } catch (EOFException e7) {
                     if (z10) {
                         z12 = false;
                     } else {
-                        throw e10;
+                        throw e7;
                     }
                 }
                 if (z12) {
-                    for (int i10 = 0; i10 < this.f50806c; i10++) {
-                        int x11 = vVar.x();
-                        this.f50808f[i10] = x11;
-                        this.f50807e += x11;
+                    for (int i10 = 0; i10 < this.f47814c; i10++) {
+                        int A2 = xVar.A();
+                        this.f47815f[i10] = A2;
+                        this.e += A2;
                     }
                     return true;
                 }
@@ -69,40 +70,40 @@ public final class f {
         return false;
     }
 
-    public final boolean b(p pVar, long j3) {
+    public final boolean b(p pVar, long j10) {
         boolean z10;
         int i10;
         boolean z11;
-        if (pVar.getPosition() == pVar.g()) {
+        if (pVar.getPosition() == pVar.k()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.b(z10);
-        v vVar = this.f50809g;
-        vVar.G(4);
+        u6.g(z10);
+        x xVar = this.f47816g;
+        xVar.K(4);
         while (true) {
-            i10 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
-            if (i10 != 0 && pVar.getPosition() + 4 >= j3) {
+            i10 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
+            if (i10 != 0 && pVar.getPosition() + 4 >= j10) {
                 break;
             }
             try {
-                z11 = pVar.f(vVar.f8581a, 0, 4, true);
+                z11 = pVar.j(xVar.f8411a, 0, 4, true);
             } catch (EOFException unused) {
                 z11 = false;
             }
             if (!z11) {
                 break;
             }
-            vVar.J(0);
-            if (vVar.z() == 1332176723) {
-                pVar.m();
+            xVar.N(0);
+            if (xVar.C() == 1332176723) {
+                pVar.q();
                 return true;
             }
-            pVar.o(1);
+            pVar.r(1);
         }
         do {
-            if (i10 != 0 && pVar.getPosition() >= j3) {
+            if (i10 != 0 && pVar.getPosition() >= j10) {
                 break;
             }
         } while (pVar.skip(1) != -1);

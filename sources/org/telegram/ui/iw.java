@@ -1,66 +1,58 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-import java.util.Collections;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class iw implements Runnable {
-    public final int f39019a;
-    public final vy f39020b;
-    public final long f39021c;
-    public final boolean d;
+public final class iw implements View.OnLongClickListener {
+    public final int f37208a;
+    public final yy f37209b;
 
-    public iw(vy vyVar, long j3, boolean z10, int i10) {
-        this.f39019a = i10;
-        this.f39020b = vyVar;
-        this.f39021c = j3;
-        this.d = z10;
+    public iw(yy yyVar, int i10) {
+        this.f37208a = i10;
+        this.f37209b = yyVar;
     }
 
     @Override
-    public final void run() {
-        String str;
-        TLRPC.Chat chat;
-        SpannableStringBuilder replaceTags;
-        int i10 = this.f39019a;
-        boolean z10 = this.d;
-        long j3 = this.f39021c;
-        vy vyVar = this.f39020b;
-        switch (i10) {
+    public final boolean onLongClick(View view) {
+        switch (this.f37208a) {
             case 0:
-                vy vyVar2 = this.f39020b;
-                ai.m9 storiesController = vyVar2.getMessagesController().getStoriesController();
-                long j10 = this.f39021c;
-                boolean z11 = this.d;
-                storiesController.i0(j10, z11, false);
-                n6.k kVar = new n6.k(5);
-                kVar.f16433b = new iw(vyVar2, j10, z11, 1);
-                kVar.f16434c = new iw(vyVar2, j10, z11, 2);
-                if (j10 >= 0) {
-                    TLRPC.User user = vyVar2.getMessagesController().getUser(Long.valueOf(j10));
-                    str = ContactsController.formatName(user.first_name, null, 15);
-                    chat = user;
-                } else {
-                    TLRPC.Chat chat2 = vyVar2.getMessagesController().getChat(Long.valueOf(-j10));
-                    str = chat2.title;
-                    chat = chat2;
+                yy yyVar = this.f37209b;
+                ArrayList arrayList = yyVar.I2;
+                if (yyVar.getParentActivity() == null) {
+                    return false;
                 }
-                if (vyVar2.b4()) {
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
-                } else {
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
+                boolean z10 = true;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    long longValue = ((Long) arrayList.get(i10)).longValue();
+                    if (DialogObject.isEncryptedDialog(longValue)) {
+                        z10 = false;
+                    }
+                    TLRPC.Chat chat = yyVar.getMessagesController().getChat(Long.valueOf(-longValue));
+                    if (chat != null && !ChatObject.canWriteToChat(chat)) {
+                        z10 = false;
+                    }
                 }
-                vyVar2.S = org.telegram.ui.Components.zc.X().V(Collections.singletonList(chat), replaceTags, null, kVar).j();
-                return;
+                org.telegram.ui.Components.m80 H = org.telegram.ui.Components.m80.H(yyVar, view);
+                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new uv(yyVar, 20), false);
+                H.l(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new uv(yyVar, 21), z10);
+                H.Z();
+                return true;
             case 1:
-                vyVar.getMessagesController().getStoriesController().i0(j3, !z10, false);
-                return;
+                yy yyVar2 = this.f37209b;
+                yyVar2.o4(yyVar2.I2, 104, true, true, null);
+                return true;
+            case 2:
+                this.f37209b.m4(view);
+                return true;
             default:
-                vyVar.getMessagesController().getStoriesController().i0(j3, z10, true);
-                return;
+                yy yyVar3 = this.f37209b;
+                yyVar3.getContactsController().loadGlobalPrivacySetting();
+                yyVar3.H4();
+                return true;
         }
     }
 }

@@ -1,63 +1,63 @@
 package j2;
 
-import b2.k1;
-import u2.f0;
+import b2.p1;
+import u2.g0;
 public final class g {
-    public final String f13694a;
-    public int f13695b;
-    public long f13696c;
-    public final f0 d;
-    public boolean f13697e;
-    public boolean f13698f;
-    public final h f13699g;
+    public final String f12531a;
+    public int f12532b;
+    public long f12533c;
+    public final g0 d;
+    public boolean e;
+    public boolean f12534f;
+    public final h f12535g;
 
-    public g(h hVar, String str, int i10, f0 f0Var) {
-        long j3;
-        this.f13699g = hVar;
-        this.f13694a = str;
-        this.f13695b = i10;
-        if (f0Var == null) {
-            j3 = -1;
+    public g(h hVar, String str, int i10, g0 g0Var) {
+        long j10;
+        this.f12535g = hVar;
+        this.f12531a = str;
+        this.f12532b = i10;
+        if (g0Var == null) {
+            j10 = -1;
         } else {
-            j3 = f0Var.d;
+            j10 = g0Var.d;
         }
-        this.f13696c = j3;
-        if (f0Var != null && f0Var.b()) {
-            this.d = f0Var;
+        this.f12533c = j10;
+        if (g0Var != null && g0Var.b()) {
+            this.d = g0Var;
         }
     }
 
     public final boolean a(a aVar) {
-        f0 f0Var = aVar.d;
-        k1 k1Var = aVar.f13675b;
-        if (f0Var == null) {
-            if (this.f13695b != aVar.f13676c) {
+        g0 g0Var = aVar.d;
+        p1 p1Var = aVar.f12514b;
+        if (g0Var == null) {
+            if (this.f12532b != aVar.f12515c) {
                 return true;
             }
             return false;
         }
-        long j3 = this.f13696c;
-        if (j3 != -1) {
-            if (f0Var.d <= j3) {
-                f0 f0Var2 = this.d;
-                if (f0Var2 != null) {
-                    int i10 = f0Var2.f48790b;
-                    int b10 = k1Var.b(f0Var.f48789a);
-                    int b11 = k1Var.b(f0Var2.f48789a);
-                    if (f0Var.d >= f0Var2.d && b10 >= b11) {
+        long j10 = this.f12533c;
+        if (j10 != -1) {
+            if (g0Var.d <= j10) {
+                g0 g0Var2 = this.d;
+                if (g0Var2 != null) {
+                    int i10 = g0Var2.f45921b;
+                    int b10 = p1Var.b(g0Var.f45920a);
+                    int b11 = p1Var.b(g0Var2.f45920a);
+                    if (g0Var.d >= g0Var2.d && b10 >= b11) {
                         if (b10 <= b11) {
-                            if (f0Var.b()) {
-                                int i11 = f0Var.f48790b;
-                                int i12 = f0Var.f48791c;
+                            if (g0Var.b()) {
+                                int i11 = g0Var.f45921b;
+                                int i12 = g0Var.f45922c;
                                 if (i11 <= i10) {
-                                    if (i11 == i10 && i12 > f0Var2.f48791c) {
+                                    if (i11 == i10 && i12 > g0Var2.f45922c) {
                                         return true;
                                     }
                                     return false;
                                 }
                                 return true;
                             }
-                            int i13 = f0Var.f48792e;
+                            int i13 = g0Var.e;
                             if (i13 == -1 || i13 > i10) {
                                 return true;
                             }
@@ -74,7 +74,7 @@ public final class g {
         return false;
     }
 
-    public final boolean b(b2.k1 r7, b2.k1 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: j2.g.b(b2.k1, b2.k1):boolean");
+    public final boolean b(b2.p1 r7, b2.p1 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: j2.g.b(b2.p1, b2.p1):boolean");
     }
 }

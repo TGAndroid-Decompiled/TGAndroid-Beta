@@ -1,6 +1,6 @@
 package h2;
 public interface e {
-    void a(long j3);
+    void a(long j10);
 
     Object c();
 

@@ -1,44 +1,50 @@
 package i2;
-
-import java.util.Locale;
 public final class g {
-    public int f11692a;
-    public int f11693b;
-    public int f11694c;
-    public int d;
-    public int f11695e;
-    public int f11696f;
-    public int f11697g;
-    public int h;
-    public int f11698i;
-    public int f11699j;
-    public long f11700k;
-    public int f11701l;
+    public final long f10962a;
+    public final long f10963b;
+    public long f10964c = -9223372036854775807L;
+    public long d = -9223372036854775807L;
+    public long f10965f = -9223372036854775807L;
+    public long f10966g = -9223372036854775807L;
+    public float f10968j = 0.97f;
+    public float f10967i = 1.03f;
+    public float f10969k = 1.0f;
+    public long f10970l = -9223372036854775807L;
+    public long e = -9223372036854775807L;
+    public long h = -9223372036854775807L;
+    public long f10971m = -9223372036854775807L;
+    public long f10972n = -9223372036854775807L;
 
-    public final String toString() {
-        int i10 = this.f11692a;
-        int i11 = this.f11693b;
-        int i12 = this.f11694c;
-        int i13 = this.d;
-        int i14 = this.f11695e;
-        int i15 = this.f11696f;
-        int i16 = this.f11697g;
-        int i17 = this.h;
-        int i18 = this.f11698i;
-        int i19 = this.f11699j;
-        long j3 = this.f11700k;
-        int i20 = this.f11701l;
-        String str = e2.d0.f8529a;
-        Locale locale = Locale.US;
-        StringBuilder m10 = hg.c.m("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
-        hg.c.w(m10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
-        hg.c.w(m10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
-        hg.c.w(m10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
-        hg.c.w(m10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
-        m10.append(j3);
-        m10.append("\n videoFrameProcessingOffsetCount=");
-        m10.append(i20);
-        m10.append("\n}");
-        return m10.toString();
+    public g(long j10, long j11) {
+        this.f10962a = j10;
+        this.f10963b = j11;
+    }
+
+    public final void a() {
+        long j10;
+        long j11 = this.f10964c;
+        if (j11 != -9223372036854775807L) {
+            j10 = this.d;
+            if (j10 == -9223372036854775807L) {
+                long j12 = this.f10965f;
+                if (j12 != -9223372036854775807L && j11 < j12) {
+                    j11 = j12;
+                }
+                j10 = this.f10966g;
+                if (j10 == -9223372036854775807L || j11 <= j10) {
+                    j10 = j11;
+                }
+            }
+        } else {
+            j10 = -9223372036854775807L;
+        }
+        if (this.e == j10) {
+            return;
+        }
+        this.e = j10;
+        this.h = j10;
+        this.f10971m = -9223372036854775807L;
+        this.f10972n = -9223372036854775807L;
+        this.f10970l = -9223372036854775807L;
     }
 }

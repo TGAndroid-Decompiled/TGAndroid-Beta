@@ -5,6 +5,6 @@ public class SymbolNotFoundException extends JMathTeXException {
     private static final long serialVersionUID = -3005021333407670912L;
 
     public SymbolNotFoundException(String str) {
-        super(g.q("There's no symbol with the name '", str, "' defined in 'TeXSymbols.xml'!"));
+        super(g.p("There's no symbol with the name '", str, "' defined in 'TeXSymbols.xml'!"));
     }
 }

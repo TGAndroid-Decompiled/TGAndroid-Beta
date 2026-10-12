@@ -1,52 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class yq0 implements org.telegram.ui.Components.xm0 {
-    public final dr0 f44545a;
+import android.widget.EditText;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+public final class yq0 extends org.telegram.ui.ActionBar.e5 {
+    public final yk0 f42211f = new yk0(this, 12);
+    public final hr0 h;
 
-    public yq0(dr0 dr0Var) {
-        this.f44545a = dr0Var;
+    public yq0(hr0 hr0Var) {
+        this.h = hr0Var;
     }
 
     @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.b5 b5Var;
-        dr0 dr0Var = this.f44545a;
-        dr0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            b5Var = ((org.telegram.ui.ActionBar.m2) dr0Var).parentLayout;
-            b5Var.getView().requestDisallowInterceptTouchEvent(true);
-        }
-        dr0Var.K.d1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f44545a.L.j(i10) == 0) {
-            return true;
-        }
+    public final boolean b() {
+        this.h.finishFragment();
         return false;
     }
 
     @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f44545a.X && (view instanceof org.telegram.ui.Cells.t5)) {
-            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-            t5Var.f22820w.b(t5Var);
-        }
+    public final void p(di.g2 g2Var) {
+        this.h.b0(g2Var);
     }
 
     @Override
-    public final boolean d(int i10) {
-        Object obj;
-        dr0 dr0Var = this.f44545a;
-        MediaController.AlbumEntry albumEntry = dr0Var.J;
-        if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
-        } else {
-            obj = ((MediaController.SearchImage) dr0Var.f36878f.get(i10)).f16998id;
+    public final void q(EditText editText) {
+        int i10;
+        if (editText.getText().length() == 0) {
+            hr0 hr0Var = this.h;
+            hr0Var.f36921f.clear();
+            hr0Var.h.clear();
+            hr0Var.v = null;
+            hr0Var.f36936s = true;
+            hr0Var.f36934r = false;
+            if (hr0Var.f36943x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.m2) hr0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(hr0Var.f36943x, true);
+                hr0Var.f36943x = 0;
+            }
+            hr0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            hr0Var.N.e(false, true);
+            hr0Var.j0();
+            return;
         }
-        return dr0Var.f36871b.containsKey(obj);
+        yk0 yk0Var = this.f42211f;
+        AndroidUtilities.cancelRunOnUIThread(yk0Var);
+        AndroidUtilities.runOnUIThread(yk0Var, 1200L);
+    }
+
+    @Override
+    public final void n() {
     }
 }

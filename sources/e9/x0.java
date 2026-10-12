@@ -1,51 +1,33 @@
 package e9;
 
-import java.io.Serializable;
-public final class x0 extends y0 implements Serializable {
-    public static final x0 f8814b = new x0(0);
-    public static final x0 f8815c = new x0(1);
-    public final int f8816a;
-
-    public x0(int i10) {
-        this.f8816a = i10;
-    }
-
+import j$.util.Objects;
+public final class x0 extends g0 {
     @Override
-    public final y0 a() {
-        switch (this.f8816a) {
-            case 0:
-                return f8815c;
-            default:
-                return f8814b;
-        }
+    public final h0 a(Object obj) {
+        f(obj);
+        return this;
     }
 
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f8816a) {
-            case 0:
-                Comparable comparable = (Comparable) obj;
-                Comparable comparable2 = (Comparable) obj2;
-                comparable.getClass();
-                comparable2.getClass();
-                return comparable.compareTo(comparable2);
-            default:
-                Comparable comparable3 = (Comparable) obj;
-                Comparable comparable4 = (Comparable) obj2;
-                comparable3.getClass();
-                if (comparable3 == comparable4) {
-                    return 0;
-                }
-                return comparable4.compareTo(comparable3);
-        }
+    public final void f(Object obj) {
+        obj.getClass();
+        c(obj);
     }
 
-    public final String toString() {
-        switch (this.f8816a) {
-            case 0:
-                return "Ordering.natural()";
-            default:
-                return "Ordering.natural().reverse()";
+    public final y0 g() {
+        int i10 = this.f8564b;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                y0 t10 = y0.t(i10, this.f8563a);
+                this.f8564b = t10.size();
+                this.f8565c = true;
+                return t10;
+            }
+            Object obj = this.f8563a[0];
+            Objects.requireNonNull(obj);
+            int i11 = y0.f8654c;
+            return new k2(obj);
         }
+        int i12 = y0.f8654c;
+        return e2.f8556s;
     }
 }

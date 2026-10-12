@@ -1,349 +1,126 @@
 package c2;
 
-import java.util.Arrays;
+import e9.n0;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import v7.u6;
 public final class j {
-    public final int f4016a;
-    public final int f4017b;
-    public final float f4018c;
-    public final float d;
-    public final float f4019e;
-    public final int f4020f;
-    public final int f4021g;
-    public final int h;
-    public final short[] f4022i;
-    public short[] f4023j;
-    public int f4024k;
-    public short[] f4025l;
-    public int f4026m;
-    public short[] f4027n;
-    public int f4028o;
-    public int f4029p;
-    public int f4030q;
-    public int f4031r;
-    public int f4032s;
-    public int f4033t;
-    public int f4034u;
-    public int v;
-    public double f4035w;
+    public final n0 f4139a;
+    public final ArrayList f4140b = new ArrayList();
+    public ByteBuffer[] f4141c = new ByteBuffer[0];
+    public boolean d;
 
-    public j(int i10, float f7, int i11, float f10, int i12) {
-        this.f4016a = i10;
-        this.f4017b = i11;
-        this.f4018c = f7;
-        this.d = f10;
-        this.f4019e = i10 / i12;
-        this.f4020f = i10 / 400;
-        int i13 = i10 / 65;
-        this.f4021g = i13;
-        int i14 = i13 * 2;
-        this.h = i14;
-        this.f4022i = new short[i14];
-        this.f4023j = new short[i14 * i11];
-        this.f4025l = new short[i14 * i11];
-        this.f4027n = new short[i14 * i11];
+    public j(n0 n0Var) {
+        this.f4139a = n0Var;
+        k kVar = k.e;
+        this.d = false;
     }
 
-    public static void e(int i10, int i11, short[] sArr, int i12, short[] sArr2, int i13, short[] sArr3, int i14) {
-        for (int i15 = 0; i15 < i11; i15++) {
-            int i16 = (i12 * i11) + i15;
-            int i17 = (i14 * i11) + i15;
-            int i18 = (i13 * i11) + i15;
-            for (int i19 = 0; i19 < i10; i19++) {
-                sArr[i16] = (short) (((sArr3[i17] * i19) + ((i10 - i19) * sArr2[i18])) / i10);
-                i16 += i11;
-                i18 += i11;
-                i17 += i11;
-            }
-        }
-    }
-
-    public final void a(short[] sArr, int i10, int i11) {
-        short[] c10 = c(this.f4025l, this.f4026m, i11);
-        this.f4025l = c10;
-        int i12 = this.f4017b;
-        System.arraycopy(sArr, i10 * i12, c10, this.f4026m * i12, i12 * i11);
-        this.f4026m += i11;
-    }
-
-    public final void b(short[] sArr, int i10, int i11) {
-        int i12 = this.h / i11;
-        int i13 = this.f4017b;
-        int i14 = i11 * i13;
-        int i15 = i10 * i13;
-        for (int i16 = 0; i16 < i12; i16++) {
-            int i17 = 0;
-            for (int i18 = 0; i18 < i14; i18++) {
-                i17 += sArr[(i16 * i14) + i15 + i18];
-            }
-            this.f4022i[i16] = (short) (i17 / i14);
-        }
-    }
-
-    public final short[] c(short[] sArr, int i10, int i11) {
-        int length = sArr.length;
-        int i12 = this.f4017b;
-        int i13 = length / i12;
-        if (i10 + i11 <= i13) {
-            return sArr;
-        }
-        return Arrays.copyOf(sArr, (((i13 * 3) / 2) + i11) * i12);
-    }
-
-    public final int d(short[] sArr, int i10, int i11, int i12) {
-        int i13 = i10 * this.f4017b;
-        int i14 = 255;
-        int i15 = 1;
-        int i16 = 0;
-        int i17 = 0;
-        while (i11 <= i12) {
-            int i18 = 0;
-            for (int i19 = 0; i19 < i11; i19++) {
-                i18 += Math.abs(sArr[i13 + i19] - sArr[(i13 + i11) + i19]);
-            }
-            if (i18 * i16 < i15 * i11) {
-                i16 = i11;
-                i15 = i18;
-            }
-            if (i18 * i14 > i17 * i11) {
-                i14 = i11;
-                i17 = i18;
-            }
-            i11++;
-        }
-        this.f4034u = i15 / i16;
-        this.v = i17 / i14;
-        return i16;
-    }
-
-    public final void f() {
-        int i10;
-        float f7;
-        double d;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        long j3;
-        long j10;
+    public final void a() {
         boolean z10;
-        int i19;
-        int i20 = this.f4026m;
-        float f10 = this.f4018c;
-        float f11 = this.d;
-        double d10 = f10 / f11;
-        float f12 = this.f4019e * f11;
-        int i21 = (d10 > 1.0000100135803223d ? 1 : (d10 == 1.0000100135803223d ? 0 : -1));
-        int i22 = this.f4016a;
-        int i23 = 1;
-        int i24 = this.f4017b;
-        int i25 = 0;
-        if (i21 <= 0 && d10 >= 0.9999899864196777d) {
-            a(this.f4023j, 0, this.f4024k);
-            this.f4024k = 0;
-        } else {
-            int i26 = this.f4024k;
-            int i27 = this.h;
-            if (i26 >= i27) {
-                int i28 = 0;
-                while (true) {
-                    int i29 = this.f4031r;
-                    if (i29 > 0) {
-                        int min = Math.min(i27, i29);
-                        a(this.f4023j, i28, min);
-                        this.f4031r -= min;
-                        i28 += min;
-                        f7 = f12;
-                        d = d10;
-                        i13 = i27;
-                    } else {
-                        short[] sArr = this.f4023j;
-                        if (i22 > 4000) {
-                            i10 = i22 / 4000;
-                        } else {
-                            i10 = i23;
-                        }
-                        int i30 = this.f4021g;
-                        int i31 = this.f4020f;
-                        if (i24 == i23 && i10 == i23) {
-                            i11 = d(sArr, i28, i31, i30);
-                            f7 = f12;
-                            d = d10;
-                        } else {
-                            b(sArr, i28, i10);
-                            f7 = f12;
-                            d = d10;
-                            short[] sArr2 = this.f4022i;
-                            int d11 = d(sArr2, i25, i31 / i10, i30 / i10);
-                            if (i10 != 1) {
-                                int i32 = d11 * i10;
-                                int i33 = i10 * 4;
-                                int i34 = i32 - i33;
-                                int i35 = i32 + i33;
-                                if (i34 >= i31) {
-                                    i31 = i34;
-                                }
-                                if (i35 <= i30) {
-                                    i30 = i35;
-                                }
-                                if (i24 == 1) {
-                                    i11 = d(sArr, i28, i31, i30);
-                                } else {
-                                    b(sArr, i28, 1);
-                                    i11 = d(sArr2, i25, i31, i30);
-                                }
-                            } else {
-                                i11 = d11;
-                            }
-                        }
-                        int i36 = this.f4034u;
-                        int i37 = this.v;
-                        if (i36 == 0 || (i12 = this.f4032s) == 0 || i37 > i36 * 3 || i36 * 2 <= this.f4033t * 3) {
-                            i12 = i11;
-                        }
-                        this.f4033t = i36;
-                        this.f4032s = i11;
-                        if (d > 1.0d) {
-                            short[] sArr3 = this.f4023j;
-                            if (d >= 2.0d) {
-                                i13 = i27;
-                                double d12 = (i12 / (d - 1.0d)) + this.f4035w;
-                                i15 = (int) Math.round(d12);
-                                this.f4035w = d12 - i15;
-                            } else {
-                                i13 = i27;
-                                double d13 = (((2.0d - d) * i12) / (d - 1.0d)) + this.f4035w;
-                                int round = (int) Math.round(d13);
-                                this.f4031r = round;
-                                this.f4035w = d13 - round;
-                                i15 = i12;
-                            }
-                            short[] c10 = c(this.f4025l, this.f4026m, i15);
-                            this.f4025l = c10;
-                            int i38 = i28 + i12;
-                            int i39 = i28;
-                            int i40 = i15;
-                            e(i40, this.f4017b, c10, this.f4026m, sArr3, i39, sArr3, i38);
-                            this.f4026m += i40;
-                            i28 = i12 + i40 + i39;
-                        } else {
-                            i13 = i27;
-                            int i41 = i28;
-                            short[] sArr4 = this.f4023j;
-                            if (d < 0.5d) {
-                                double d14 = ((i12 * d) / (1.0d - d)) + this.f4035w;
-                                int round2 = (int) Math.round(d14);
-                                this.f4035w = d14 - round2;
-                                i14 = round2;
-                            } else {
-                                double d15 = ((((d * 2.0d) - 1.0d) * i12) / (1.0d - d)) + this.f4035w;
-                                int round3 = (int) Math.round(d15);
-                                this.f4031r = round3;
-                                this.f4035w = d15 - round3;
-                                i14 = i12;
-                            }
-                            int i42 = i12 + i14;
-                            short[] c11 = c(this.f4025l, this.f4026m, i42);
-                            this.f4025l = c11;
-                            System.arraycopy(sArr4, i41 * i24, c11, this.f4026m * i24, i12 * i24);
-                            e(i14, this.f4017b, this.f4025l, this.f4026m + i12, sArr4, i41 + i12, sArr4, i41);
-                            this.f4026m += i42;
-                            i28 = i41 + i14;
-                        }
-                    }
-                    if (i28 + i13 > i26) {
-                        break;
-                    }
-                    i25 = 0;
-                    i27 = i13;
-                    i23 = 1;
-                    f12 = f7;
-                    d10 = d;
+        l lVar = l.f4145b;
+        ArrayList arrayList = this.f4140b;
+        arrayList.clear();
+        this.d = false;
+        long j10 = lVar.f4146a;
+        int i10 = 0;
+        while (true) {
+            n0 n0Var = this.f4139a;
+            if (i10 >= n0Var.size()) {
+                break;
+            }
+            n nVar = (n) n0Var.get(i10);
+            nVar.d(new l(j10));
+            if (nVar.isActive()) {
+                j10 = nVar.g(j10);
+                if (j10 >= 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                int i43 = this.f4024k - i28;
-                short[] sArr5 = this.f4023j;
-                System.arraycopy(sArr5, i28 * i24, sArr5, 0, i43 * i24);
-                this.f4024k = i43;
-                if (f7 == 1.0f && this.f4026m != i20) {
-                    long j11 = i22 / f7;
-                    long j12 = i22;
-                    while (j11 != 0 && j12 != 0 && j11 % 2 == 0 && j12 % 2 == 0) {
-                        j11 /= 2;
-                        j12 /= 2;
-                    }
-                    int i44 = this.f4026m - i20;
-                    short[] c12 = c(this.f4027n, this.f4028o, i44);
-                    this.f4027n = c12;
-                    System.arraycopy(this.f4025l, i20 * i24, c12, this.f4028o * i24, i44 * i24);
-                    this.f4026m = i20;
-                    this.f4028o += i44;
-                    int i45 = 0;
-                    while (true) {
-                        i16 = this.f4028o;
-                        i17 = i16 - 1;
-                        if (i45 >= i17) {
-                            break;
+                u6.p(z10);
+                arrayList.add(nVar);
+            }
+            i10++;
+        }
+        this.f4141c = new ByteBuffer[arrayList.size()];
+        for (int i11 = 0; i11 <= b(); i11++) {
+            this.f4141c[i11] = ((n) arrayList.get(i11)).a();
+        }
+    }
+
+    public final int b() {
+        return this.f4141c.length - 1;
+    }
+
+    public final boolean c() {
+        if (this.d && ((n) this.f4140b.get(b())).b() && !this.f4141c[b()].hasRemaining()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        return !this.f4140b.isEmpty();
+    }
+
+    public final void e(ByteBuffer byteBuffer) {
+        boolean z10;
+        ByteBuffer byteBuffer2;
+        boolean z11;
+        for (boolean z12 = true; z12; z12 = z10) {
+            z10 = false;
+            for (int i10 = 0; i10 <= b(); i10++) {
+                if (!this.f4141c[i10].hasRemaining()) {
+                    ArrayList arrayList = this.f4140b;
+                    n nVar = (n) arrayList.get(i10);
+                    if (nVar.b()) {
+                        if (!this.f4141c[i10].hasRemaining() && i10 < b()) {
+                            ((n) arrayList.get(i10 + 1)).f();
                         }
-                        while (true) {
-                            i18 = this.f4029p + 1;
-                            j3 = i18;
-                            j10 = this.f4030q;
-                            if (j3 * j11 <= j10 * j12) {
-                                break;
-                            }
-                            this.f4025l = c(this.f4025l, this.f4026m, 1);
-                            int i46 = 0;
-                            while (i46 < i24) {
-                                short[] sArr6 = this.f4027n;
-                                int i47 = (i45 * i24) + i46;
-                                short s10 = sArr6[i47];
-                                short s11 = sArr6[i47 + i24];
-                                long j13 = j11;
-                                int i48 = i45;
-                                long j14 = (i19 + 1) * j13;
-                                long j15 = j14 - (this.f4030q * j12);
-                                long j16 = j14 - (this.f4029p * j13);
-                                this.f4025l[(this.f4026m * i24) + i46] = (short) ((((j16 - j15) * s11) + (s10 * j15)) / j16);
-                                i46++;
-                                i45 = i48;
-                                j11 = j13;
-                            }
-                            this.f4030q++;
-                            this.f4026m++;
-                            i45 = i45;
-                            j11 = j11;
+                    } else {
+                        if (i10 > 0) {
+                            byteBuffer2 = this.f4141c[i10 - 1];
+                        } else if (byteBuffer.hasRemaining()) {
+                            byteBuffer2 = byteBuffer;
+                        } else {
+                            byteBuffer2 = n.f4147a;
                         }
-                        long j17 = j11;
-                        int i49 = i45;
-                        this.f4029p = i18;
-                        if (j3 == j12) {
-                            this.f4029p = 0;
-                            if (j10 == j17) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            e2.d.g(z10);
-                            this.f4030q = 0;
+                        nVar.c(byteBuffer2);
+                        this.f4141c[i10] = nVar.a();
+                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f4141c[i10].hasRemaining()) {
+                            z11 = false;
+                        } else {
+                            z11 = true;
                         }
-                        i45 = i49 + 1;
-                        j11 = j17;
+                        z10 |= z11;
                     }
-                    if (i17 != 0) {
-                        short[] sArr7 = this.f4027n;
-                        System.arraycopy(sArr7, i17 * i24, sArr7, 0, (i16 - i17) * i24);
-                        this.f4028o -= i17;
-                        return;
-                    }
-                    return;
                 }
             }
         }
-        f7 = f12;
-        if (f7 == 1.0f) {
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof j)) {
+            return false;
+        }
+        n0 n0Var = ((j) obj).f4139a;
+        n0 n0Var2 = this.f4139a;
+        if (n0Var2.size() != n0Var.size()) {
+            return false;
+        }
+        for (int i10 = 0; i10 < n0Var2.size(); i10++) {
+            if (n0Var2.get(i10) != n0Var.get(i10)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.f4139a.hashCode();
     }
 }

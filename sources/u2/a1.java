@@ -1,10 +1,10 @@
 package u2;
-public interface a1 {
-    void a();
+public final class a1 {
+    public final b2.x f45864a;
+    public final n2.m f45865b;
 
-    boolean e();
-
-    int f(n4.y yVar, h2.h hVar, int i10);
-
-    int j(long j3);
+    public a1(b2.x xVar, n2.m mVar) {
+        this.f45864a = xVar;
+        this.f45865b = mVar;
+    }
 }

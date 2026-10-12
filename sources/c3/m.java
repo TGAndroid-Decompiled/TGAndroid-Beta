@@ -1,16 +1,20 @@
 package c3;
 
-import ai.w1;
-import e9.a1;
+import bi.w2;
+import e9.l0;
+import e9.n0;
+import e9.x1;
 import java.util.ArrayList;
 public final class m implements r {
-    public static final int[] f4142e = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14, 17, 18, 19, 20, 21};
-    public static final n4.y f4143f = new n4.y(new w1(18));
-    public static final n4.y h = new n4.y(new w1(19));
-    public a1 f4144a;
-    public int d;
-    public qb.b f4146c = new qb.b(28);
-    public boolean f4145b = true;
+    public static final int[] h = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14, 17, 18, 19, 20, 21};
+    public static final n4.s f4271n = new n4.s(new w2(2));
+    public static final n4.s f4272r = new n4.s(new w2(3));
+    public x1 f4273a;
+    public int e;
+    public int f4276f;
+    public t7.u f4275c = new t7.u(28);
+    public boolean f4274b = true;
+    public int d = 3;
 
     public final void a(int i10, ArrayList arrayList) {
         int i11;
@@ -30,9 +34,9 @@ public final class m implements r {
                 arrayList.add(new d3.a(1));
                 return;
             case 4:
-                o I = f4143f.I(0);
-                if (I != null) {
-                    arrayList.add(I);
+                o n10 = f4271n.n(0);
+                if (n10 != null) {
+                    arrayList.add(n10);
                     return;
                 } else {
                     arrayList.add(new h3.b());
@@ -42,29 +46,39 @@ public final class m implements r {
                 arrayList.add(new i3.b());
                 return;
             case 6:
-                qb.b bVar = this.f4146c;
-                if (this.f4145b) {
+                t7.u uVar = this.f4275c;
+                if (this.f4274b) {
                     i12 = 0;
                 }
-                arrayList.add(new u3.d(bVar, i12));
+                arrayList.add(new u3.f(uVar, i12));
                 return;
             case 7:
                 arrayList.add(new v3.d(1));
                 return;
             case 8:
-                qb.b bVar2 = this.f4146c;
-                if (this.f4145b) {
+                t7.u uVar2 = this.f4275c;
+                int g10 = w3.i.g(this.d);
+                int i14 = 32;
+                if (this.f4274b) {
                     i11 = 0;
                 } else {
                     i11 = 32;
                 }
-                e9.g0 g0Var = e9.i0.f8749b;
-                arrayList.add(new w3.i(bVar2, i11, null, a1.f8712e, null));
-                qb.b bVar3 = this.f4146c;
-                if (!this.f4145b) {
+                int i15 = g10 | i11;
+                l0 l0Var = n0.f8592b;
+                arrayList.add(new w3.i(uVar2, i15, null, x1.e, null));
+                t7.u uVar3 = this.f4275c;
+                int i16 = this.d;
+                if ((i16 & 1) == 0) {
+                    i14 = 0;
+                }
+                if ((2 & i16) != 0) {
+                    i14 |= 128;
+                }
+                if (!this.f4274b) {
                     i13 = 16;
                 }
-                arrayList.add(new w3.l(bVar3, i13));
+                arrayList.add(new w3.m(uVar3, i14 | i13));
                 return;
             case 9:
                 arrayList.add(new Object());
@@ -73,47 +87,47 @@ public final class m implements r {
                 arrayList.add(new j4.z());
                 return;
             case 11:
-                if (this.f4144a == null) {
-                    e9.g0 g0Var2 = e9.i0.f8749b;
-                    this.f4144a = a1.f8712e;
+                if (this.f4273a == null) {
+                    l0 l0Var2 = n0.f8592b;
+                    this.f4273a = x1.e;
                 }
-                arrayList.add(new j4.d0(1, !this.f4145b ? 1 : 0, this.f4146c, new e2.b0(0L), new j4.f(0, this.f4144a)));
+                arrayList.add(new j4.d0(1, !this.f4274b ? 1 : 0, this.f4275c, new e2.k0(0L), new j4.f(0, this.f4273a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f14615c = 0;
+                obj.f14089c = 0;
                 obj.d = -1L;
-                obj.f14617f = -1;
-                obj.f14618g = -1L;
+                obj.f14090f = -1;
+                obj.f14091g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:
             default:
                 return;
             case 14:
-                arrayList.add(new k3.a(this.d));
+                arrayList.add(new k3.a(this.e));
                 return;
             case 15:
-                o I2 = h.I(new Object[0]);
-                if (I2 != null) {
-                    arrayList.add(I2);
+                o n11 = f4272r.n(new Object[0]);
+                if (n11 != null) {
+                    arrayList.add(n11);
                     return;
                 }
                 return;
             case 16:
-                arrayList.add(new e3.b(!this.f4145b ? 1 : 0, this.f4146c));
+                arrayList.add(new e3.b(!this.f4274b ? 1 : 0, this.f4275c));
                 return;
             case 17:
                 arrayList.add(new g3.a(1));
                 return;
             case 18:
-                arrayList.add(new f3.a(2));
+                arrayList.add(new f3.a(1));
                 return;
             case 19:
                 arrayList.add(new g3.a(0));
                 return;
             case 20:
-                arrayList.add(new f3.a(1));
+                arrayList.add(new j3.b(this.f4276f));
                 return;
             case 21:
                 arrayList.add(new f3.a(0));
@@ -122,7 +136,7 @@ public final class m implements r {
     }
 
     @Override
-    public final synchronized c3.o[] d(android.net.Uri r7, java.util.Map r8) {
-        throw new UnsupportedOperationException("Method not decompiled: c3.m.d(android.net.Uri, java.util.Map):c3.o[]");
+    public final synchronized c3.o[] e(android.net.Uri r7, java.util.Map r8) {
+        throw new UnsupportedOperationException("Method not decompiled: c3.m.e(android.net.Uri, java.util.Map):c3.o[]");
     }
 }

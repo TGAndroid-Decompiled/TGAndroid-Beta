@@ -1,15 +1,13 @@
 package org.telegram.ui;
-public final class ap0 implements Runnable {
-    public final int f35917a;
-    public final cq0 f35918b;
 
-    public ap0(cq0 cq0Var, int i10) {
-        this.f35917a = i10;
-        this.f35918b = cq0Var;
-    }
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public interface ap0 {
+    void a(TL_account.Password password);
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ap0.run():void");
-    }
+    void b();
+
+    boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard);
+
+    void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo);
 }

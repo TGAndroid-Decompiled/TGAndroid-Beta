@@ -2,28 +2,54 @@ package a3;
 
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
+import android.view.Surface;
+import b2.b2;
 public final class m implements Handler.Callback {
-    public final Handler f158a;
-    public final n f159b;
+    public final Handler f145a;
+    public final n f146b;
 
     public m(n nVar, r2.l lVar) {
-        this.f159b = nVar;
-        Handler o9 = e2.d0.o(this);
-        this.f158a = o9;
-        lVar.d(this, o9);
+        this.f146b = nVar;
+        Handler q6 = e2.m0.q(this);
+        this.f145a = q6;
+        lVar.h(this, q6);
     }
 
-    public final void a(long j3) {
-        n nVar = this.f159b;
-        if (this == nVar.G1 && nVar.f47136b0 != null) {
-            if (j3 == Long.MAX_VALUE) {
-                nVar.L0 = true;
+    public final void a(long j10) {
+        boolean z10;
+        Surface surface;
+        n nVar = this.f146b;
+        n4.s sVar = nVar.f148b1;
+        if (this == nVar.M1 && nVar.f43864d0 != null) {
+            if (j10 == Long.MAX_VALUE) {
+                nVar.M0 = true;
                 return;
             }
             try {
-                nVar.H0(j3);
-            } catch (i2.n e7) {
-                nVar.M0 = e7;
+                nVar.C0(j10);
+                b2 b2Var = nVar.H1;
+                if (!b2Var.equals(b2.d) && !b2Var.equals(nVar.I1)) {
+                    nVar.I1 = b2Var;
+                    sVar.D(b2Var);
+                }
+                nVar.O0.e++;
+                a0 a0Var = nVar.f151e1;
+                if (a0Var.e != 3) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                a0Var.e = 3;
+                a0Var.f64l.getClass();
+                a0Var.f60g = e2.m0.S(SystemClock.elapsedRealtime());
+                if (z10 && (surface = nVar.f163r1) != null) {
+                    sVar.y(surface);
+                    nVar.f166u1 = true;
+                }
+                nVar.h0(j10);
+            } catch (i2.m e) {
+                nVar.N0 = e;
             }
         }
     }
@@ -35,7 +61,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.d0.f8529a;
+        String str = e2.m0.f8372a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

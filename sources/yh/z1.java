@@ -1,53 +1,43 @@
 package yh;
 
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class z1 implements RequestDelegate {
-    public final int f53687a;
-    public final s3 f53688b;
+import org.telegram.messenger.Utilities;
+public final class z1 implements TextView.OnEditorActionListener {
+    public final y1 f49232a;
+    public final Utilities.Callback f49233b;
+    public final org.telegram.ui.ActionBar.a2[] f49234c;
+    public final View d;
 
-    public z1(s3 s3Var, int i10) {
-        this.f53687a = i10;
-        this.f53688b = s3Var;
+    public z1(y1 y1Var, Utilities.Callback callback, org.telegram.ui.ActionBar.a2[] a2VarArr, View view) {
+        this.f49232a = y1Var;
+        this.f49233b = callback;
+        this.f49234c = a2VarArr;
+        this.d = view;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f53687a) {
-            case 0:
-                final s3 s3Var = this.f53688b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                s3.b0(s3Var, tLObject, tL_error);
-                                return;
-                            default:
-                                s3.A0(s3Var, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final s3 s3Var2 = this.f53688b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                s3.b0(s3Var2, tLObject, tL_error);
-                                return;
-                            default:
-                                s3.A0(s3Var2, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
+            return false;
         }
+        y1 y1Var = this.f49232a;
+        String obj = y1Var.getText().toString();
+        if (obj.length() > 0 && obj.length() <= 12) {
+            this.f49233b.run(obj);
+            org.telegram.ui.ActionBar.a2 a2Var = this.f49234c[0];
+            if (a2Var != null) {
+                a2Var.dismiss();
+            }
+            View view = this.d;
+            if (view != null) {
+                view.requestFocus();
+            }
+            return true;
+        }
+        AndroidUtilities.shakeView(y1Var);
+        return true;
     }
 }

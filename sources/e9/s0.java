@@ -1,36 +1,37 @@
 package e9;
 
-import java.io.Serializable;
-import java.util.AbstractSequentialList;
-import java.util.List;
-import java.util.ListIterator;
-public final class s0 extends AbstractSequentialList implements Serializable {
-    public final List f8793a;
-    public final d9.e f8794b;
+import java.util.Collection;
+import java.util.Map;
+public final class s0 extends i0 {
+    public final o0 f8614b;
 
-    public s0(List list, d9.e eVar) {
-        list.getClass();
-        this.f8793a = list;
-        this.f8794b = eVar;
+    public s0(o0 o0Var) {
+        this.f8614b = o0Var;
     }
 
     @Override
-    public final boolean isEmpty() {
-        return this.f8793a.isEmpty();
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            Collection collection = (Collection) this.f8614b.b().get(key);
+            if (collection != null && collection.contains(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final ListIterator listIterator(int i10) {
-        return new q0(this, this.f8793a.listIterator(i10), 1);
-    }
-
-    @Override
-    public final void removeRange(int i10, int i11) {
-        this.f8793a.subList(i10, i11).clear();
+    public final m2 r() {
+        o0 o0Var = this.f8614b;
+        o0Var.getClass();
+        return new r0(o0Var);
     }
 
     @Override
     public final int size() {
-        return this.f8793a.size();
+        return this.f8614b.f8595f;
     }
 }

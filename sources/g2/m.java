@@ -1,85 +1,86 @@
 package g2;
 
 import android.net.Uri;
-import b2.l0;
+import b2.q0;
 import j$.util.DesugarCollections;
 import java.util.HashMap;
 import java.util.Map;
+import v7.u6;
 public final class m {
-    public static final int f10264i = 0;
-    public final Uri f10265a;
-    public final int f10266b;
-    public final byte[] f10267c;
+    public static final int f9882i = 0;
+    public final Uri f9883a;
+    public final int f9884b;
+    public final byte[] f9885c;
     public final Map d;
-    public final long f10268e;
-    public final long f10269f;
-    public final String f10270g;
+    public final long e;
+    public final long f9886f;
+    public final String f9887g;
     public final int h;
 
     static {
-        l0.a("media3.datasource");
+        q0.a("media3.datasource");
     }
 
-    public m(Uri uri, int i10, byte[] bArr, Map map, long j3, long j10, String str, int i11) {
+    public m(Uri uri, int i10, byte[] bArr, Map map, long j10, long j11, String str, int i11) {
         boolean z10;
         boolean z11;
         boolean z12 = false;
-        if (j3 >= 0) {
+        if (j10 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.b(z10);
-        if (j3 >= 0) {
+        u6.g(z10);
+        if (j10 >= 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        e2.d.b(z11);
-        e2.d.b((j10 > 0 || j10 == -1) ? true : z12);
+        u6.g(z11);
+        u6.g((j11 > 0 || j11 == -1) ? true : z12);
         uri.getClass();
-        this.f10265a = uri;
-        this.f10266b = i10;
-        this.f10267c = (bArr == null || bArr.length == 0) ? null : null;
+        this.f9883a = uri;
+        this.f9884b = i10;
+        this.f9885c = (bArr == null || bArr.length == 0) ? null : null;
         this.d = DesugarCollections.unmodifiableMap(new HashMap(map));
-        this.f10268e = j3;
-        this.f10269f = j10;
-        this.f10270g = str;
+        this.e = j10;
+        this.f9886f = j11;
+        this.f9887g = str;
         this.h = i11;
     }
 
     public final l a() {
         ?? obj = new Object();
-        obj.f10261e = this.f10265a;
-        obj.f10258a = this.f10266b;
-        obj.f10262f = this.f10267c;
-        obj.f10263g = this.d;
-        obj.f10259b = this.f10268e;
-        obj.d = this.f10269f;
-        obj.h = this.f10270g;
-        obj.f10260c = this.h;
+        obj.e = this.f9883a;
+        obj.f9877a = this.f9884b;
+        obj.f9880f = this.f9885c;
+        obj.f9881g = this.d;
+        obj.f9878b = this.e;
+        obj.d = this.f9886f;
+        obj.h = this.f9887g;
+        obj.f9879c = this.h;
         return obj;
     }
 
-    public final m b(long j3) {
-        long j10 = this.f10269f;
-        long j11 = -1;
-        if (j10 != -1) {
-            j11 = j10 - j3;
+    public final m b(long j10) {
+        long j11 = this.f9886f;
+        long j12 = -1;
+        if (j11 != -1) {
+            j12 = j11 - j10;
         }
-        long j12 = j11;
-        if (j3 == 0 && j10 == j12) {
+        long j13 = j12;
+        if (j10 == 0 && j11 == j13) {
             return this;
         }
-        String str = this.f10270g;
+        String str = this.f9887g;
         int i10 = this.h;
-        return new m(this.f10265a, this.f10266b, this.f10267c, this.d, this.f10268e + j3, j12, str, i10);
+        return new m(this.f9883a, this.f9884b, this.f9885c, this.d, this.e + j10, j13, str, i10);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("DataSpec[");
-        int i10 = this.f10266b;
+        int i10 = this.f9884b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
@@ -95,14 +96,14 @@ public final class m {
         }
         sb2.append(str);
         sb2.append(" ");
-        sb2.append(this.f10265a);
+        sb2.append(this.f9883a);
         sb2.append(", ");
-        sb2.append(this.f10268e);
+        sb2.append(this.e);
         sb2.append(", ");
-        sb2.append(this.f10269f);
+        sb2.append(this.f9886f);
         sb2.append(", ");
-        sb2.append(this.f10270g);
+        sb2.append(this.f9887g);
         sb2.append(", ");
-        return a1.g.o(this.h, "]", sb2);
+        return a1.g.n(this.h, "]", sb2);
     }
 }

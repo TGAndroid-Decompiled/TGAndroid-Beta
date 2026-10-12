@@ -1,68 +1,51 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-public final class uf1 extends s4.j {
-    public Runnable F;
-    public int G;
-    public final hg1 H;
+public final class uf1 extends AnimatorListenerAdapter {
+    public final int f40672a;
+    public final boolean f40673b;
+    public final lg1 f40674c;
 
-    public uf1(hg1 hg1Var) {
-        this.H = hg1Var;
+    public uf1(lg1 lg1Var, boolean z10, int i10) {
+        this.f40672a = i10;
+        this.f40674c = lg1Var;
+        this.f40673b = z10;
     }
 
     @Override
-    public final void F() {
-        if (this.G == -1) {
-            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
-            Runnable runnable = this.F;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.F = null;
-            }
-        }
-    }
-
-    @Override
-    public final void N() {
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.F = null;
-        }
-        tf1 tf1Var = new tf1(this, 0);
-        this.F = tf1Var;
-        AndroidUtilities.runOnUIThread(tf1Var);
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        tf1 tf1Var = new tf1(this, 1);
-        this.F = tf1Var;
-        AndroidUtilities.runOnUIThread(tf1Var);
-    }
-
-    @Override
-    public final void z(s4.d1 d1Var) {
-        hg1 hg1Var = this.H;
-        View view = hg1Var.f38381b1;
-        if (view == d1Var.f47897a) {
-            view.setTranslationX(0.0f);
-            lf1 lf1Var = hg1Var.O;
-            if (lf1Var != null) {
-                lf1Var.F.clear();
-            }
-            View view2 = hg1Var.f38381b1;
-            if (view2 instanceof eg1) {
-                eg1 eg1Var = (eg1) view2;
-                eg1Var.setTopicIcon(eg1Var.f37097c5);
-            }
-            hg1Var.f38381b1 = null;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        int i10;
+        switch (this.f40672a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                boolean z10 = this.f40673b;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                lg1 lg1Var = this.f40674c;
+                lg1Var.S0(f7);
+                if (z10) {
+                    lg1Var.f37989q0.setVisibility(8);
+                    return;
+                }
+                Activity parentActivity = lg1Var.getParentActivity();
+                i10 = ((org.telegram.ui.ActionBar.m2) lg1Var).classGuid;
+                AndroidUtilities.setAdjustResizeToNothing(parentActivity, i10);
+                lg1Var.f37991r0.setVisibility(8);
+                lg1Var.Q0(true);
+                return;
+            default:
+                if (!this.f40673b) {
+                    this.f40674c.f37987o0.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 }

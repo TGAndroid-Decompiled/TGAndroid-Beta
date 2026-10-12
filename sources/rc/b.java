@@ -1,26 +1,35 @@
 package rc;
 
-import java.util.ArrayList;
-public final class b {
-    public int f47379a;
-    public int f47380b;
-    public int f47381c;
-    public int d;
-    public int f47382e;
-    public ArrayList f47383f;
-    public ArrayList f47384g;
-    public boolean h;
-    public int f47385i;
-    public int f47386j;
-    public int f47387k;
-    public ArrayList f47388l;
-    public int f47389m;
-    public int f47390n;
-    public int f47391o;
-    public int f47392p;
-    public int f47393q;
+import java.nio.ByteBuffer;
+import java.nio.channels.ByteChannel;
+public final class b implements ByteChannel {
+    public ByteBuffer f44127a;
 
-    public final String toString() {
-        return "AvcDecoderConfigurationRecord{configurationVersion=" + this.f47379a + ", avcProfileIndication=" + this.f47380b + ", profileCompatibility=" + this.f47381c + ", avcLevelIndication=" + this.d + ", lengthSizeMinusOne=" + this.f47382e + ", hasExts=" + this.h + ", chromaFormat=" + this.f47385i + ", bitDepthLumaMinus8=" + this.f47386j + ", bitDepthChromaMinus8=" + this.f47387k + ", lengthSizeMinusOnePaddingBits=" + this.f47389m + ", numberOfSequenceParameterSetsPaddingBits=" + this.f47390n + ", chromaFormatPaddingBits=" + this.f47391o + ", bitDepthLumaMinus8PaddingBits=" + this.f47392p + ", bitDepthChromaMinus8PaddingBits=" + this.f47393q + '}';
+    @Override
+    public final boolean isOpen() {
+        return true;
+    }
+
+    @Override
+    public final int read(ByteBuffer byteBuffer) {
+        int remaining = byteBuffer.remaining();
+        ByteBuffer byteBuffer2 = this.f44127a;
+        if (byteBuffer2.remaining() <= 0) {
+            return -1;
+        }
+        byteBuffer.put((ByteBuffer) byteBuffer2.duplicate().limit(byteBuffer.remaining() + byteBuffer2.position()));
+        byteBuffer2.position(byteBuffer2.position() + remaining);
+        return remaining;
+    }
+
+    @Override
+    public final int write(ByteBuffer byteBuffer) {
+        int remaining = byteBuffer.remaining();
+        this.f44127a.put(byteBuffer);
+        return remaining;
+    }
+
+    @Override
+    public final void close() {
     }
 }

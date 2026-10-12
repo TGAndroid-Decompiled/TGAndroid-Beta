@@ -1,34 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-public final class lt0 extends org.telegram.ui.eo {
-    public boolean Qc;
-    public final int Rc;
-    public final hw0 Sc;
+import android.view.ViewGroup;
+public final class lt0 extends g.o {
+    public final int f27123c;
+    public final Object d;
+    public final ViewGroup e;
 
-    public lt0(hw0 hw0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.Sc = hw0Var;
-        this.Rc = i10;
-        this.Qc = true;
+    public lt0(ViewGroup viewGroup, Object obj, int i10) {
+        this.f27123c = i10;
+        this.e = viewGroup;
+        this.d = obj;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        hw0 hw0Var = this.Sc;
-        sv0 sv0Var = hw0Var.S;
-        if (this.Qc) {
-            if (this.f37307j0 != null) {
-                qa("");
-                this.f37307j0.H(sv0Var.f30696w, false);
-            }
-            org.telegram.ui.dl dlVar = this.f37368o1;
-            if (dlVar != null) {
-                dlVar.e(sv0Var.f30697x, false);
-            }
-            hw0Var.f26957v1.getMediaDataController().portSavedSearchResults(getClassGuid(), sv0Var.f30697x, sv0Var.f30696w, sv0Var.f30693n, sv0Var.h, this.Rc, sv0Var.v, sv0Var.f30695s);
-            this.Qc = false;
+    public final int i(int i10) {
+        int i11;
+        switch (this.f27123c) {
+            case 0:
+                qu0 qu0Var = (qu0) this.d;
+                s4.g0 adapter = qu0Var.f28680r.getAdapter();
+                xv0 xv0Var = (xv0) this.e;
+                rv0 rv0Var = xv0Var.I;
+                if (adapter == rv0Var) {
+                    if (rv0Var.j(i10) != 2) {
+                        return 1;
+                    }
+                    return qu0Var.f28681s.J;
+                } else if (xv0.v(xv0Var, adapter) == -1) {
+                    return 1;
+                } else {
+                    ((uv0) adapter).getClass();
+                    return 1;
+                }
+            default:
+                ci.h hVar = (ci.h) this.d;
+                z61 z61Var = ((h71) this.e).W2;
+                if (z61Var == null) {
+                    return hVar.J;
+                }
+                l61 G = z61Var.G(i10);
+                if (G == null || (i11 = G.f26963u) == -1) {
+                    return hVar.J;
+                }
+                return i11;
         }
-        super.onTransitionAnimationStart(z10, z11);
     }
 }

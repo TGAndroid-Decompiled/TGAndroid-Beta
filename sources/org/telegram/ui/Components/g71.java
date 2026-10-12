@@ -1,19 +1,42 @@
 package org.telegram.ui.Components;
+public final class g71 extends s4.k {
+    public final h71 F;
 
-import android.view.View;
-public final class g71 extends View {
-    public int f26317a;
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f26317a, 1073741824));
+    public g71(h71 h71Var) {
+        this.F = h71Var;
     }
 
-    public void setHeight(int i10) {
-        if (this.f26317a == i10) {
-            return;
+    @Override
+    public final void M() {
+        h71 h71Var = this.F;
+        if (h71Var.b1()) {
+            h71Var.invalidate();
         }
-        this.f26317a = i10;
-        requestLayout();
+        h71Var.D1();
+    }
+
+    @Override
+    public final void O() {
+        h71 h71Var = this.F;
+        if (h71Var.b1()) {
+            h71Var.invalidate();
+        }
+        h71Var.D1();
+    }
+
+    @Override
+    public final void P(s4.b1 b1Var) {
+        h71 h71Var = this.F;
+        h71Var.invalidate();
+        h71Var.D1();
+    }
+
+    @Override
+    public final void Q() {
+        h71 h71Var = this.F;
+        if (h71Var.b1()) {
+            h71Var.invalidate();
+        }
+        h71Var.D1();
     }
 }

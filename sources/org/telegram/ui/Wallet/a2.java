@@ -1,19 +1,23 @@
 package org.telegram.ui.Wallet;
 
+import android.util.Base64;
+import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class a2 {
-    public final String f34459a;
-    public final String f34460b;
-    public final String f34461c;
-    public final String d;
-    public TL_wallet.tonConnectSession f34462e;
-    public boolean f34463f;
+    public final String f32918a;
+    public final byte[] f32919b;
+    public final byte[] f32920c;
+    public TL_wallet.walletOwnershipProof d;
 
-    public a2(TL_wallet.tonConnectSession tonconnectsession, String str, String str2, String str3, String str4) {
-        this.f34462e = tonconnectsession;
-        this.f34459a = str;
-        this.f34460b = str2;
-        this.f34461c = str3;
-        this.d = str4;
+    public a2(JSONObject jSONObject) {
+        byte[] bArr;
+        this.f32918a = jSONObject.getString("clientId");
+        if (jSONObject.has("challengeAnswer")) {
+            bArr = Base64.decode(jSONObject.getString("challengeAnswer"), 2);
+        } else {
+            bArr = null;
+        }
+        this.f32919b = bArr;
+        this.f32920c = jSONObject.has("body") ? Base64.decode(jSONObject.getString("body"), 2) : null;
     }
 }

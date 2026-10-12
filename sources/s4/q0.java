@@ -1,63 +1,11 @@
 package s4;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.util.AttributeSet;
-import android.view.ViewGroup;
-public class q0 extends ViewGroup.MarginLayoutParams {
-    public d1 f48019a;
-    public final Rect f48020b;
-    public boolean f48021c;
-    public boolean d;
+import android.view.MotionEvent;
+import androidx.recyclerview.widget.RecyclerView;
+public interface q0 {
+    void a(RecyclerView recyclerView, MotionEvent motionEvent);
 
-    public q0(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet);
-        this.f48020b = new Rect();
-        this.f48021c = true;
-        this.d = false;
-    }
+    boolean b(RecyclerView recyclerView, MotionEvent motionEvent);
 
-    public final int a() {
-        d1 d1Var = this.f48019a;
-        if (d1Var == null) {
-            return -1;
-        }
-        return d1Var.b();
-    }
-
-    public final int b() {
-        d1 d1Var = this.f48019a;
-        if (d1Var == null) {
-            return -1;
-        }
-        return d1Var.c();
-    }
-
-    public q0(int i10, int i11) {
-        super(i10, i11);
-        this.f48020b = new Rect();
-        this.f48021c = true;
-        this.d = false;
-    }
-
-    public q0(ViewGroup.MarginLayoutParams marginLayoutParams) {
-        super(marginLayoutParams);
-        this.f48020b = new Rect();
-        this.f48021c = true;
-        this.d = false;
-    }
-
-    public q0(ViewGroup.LayoutParams layoutParams) {
-        super(layoutParams);
-        this.f48020b = new Rect();
-        this.f48021c = true;
-        this.d = false;
-    }
-
-    public q0(q0 q0Var) {
-        super((ViewGroup.LayoutParams) q0Var);
-        this.f48020b = new Rect();
-        this.f48021c = true;
-        this.d = false;
-    }
+    void c(boolean z10);
 }

@@ -1,44 +1,100 @@
 package fi;
 
-import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.jp0;
-import org.telegram.ui.q10;
-import org.telegram.ui.x10;
-public final class a0 implements x10 {
-    public final k0 f9944a;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.br;
+import org.telegram.ui.Components.lm0;
+import w7.a6;
+public final class a0 extends lm0 {
+    public ArrayList f9155c;
+    public ArrayList d;
+    public ArrayList e;
 
-    public a0(k0 k0Var) {
-        this.f9944a = k0Var;
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    public final void E(a0.h hVar) {
+        ArrayList arrayList = this.f9155c;
+        arrayList.clear();
+        ArrayList arrayList2 = this.d;
+        arrayList2.clear();
+        ArrayList arrayList3 = this.e;
+        arrayList3.clear();
+        for (int i10 = 0; i10 < hVar.m(); i10++) {
+            TL_bots.BotInfo botInfo = (TL_bots.BotInfo) hVar.n(i10);
+            for (int i11 = 0; i11 < botInfo.commands.size(); i11++) {
+                TLRPC.BotCommand botCommand = botInfo.commands.get(i11);
+                if (botCommand != null && botCommand.command != null) {
+                    arrayList.add("/" + botCommand.command);
+                    arrayList2.add(botCommand.description);
+                    arrayList3.add(Boolean.valueOf(botCommand.ephemeral));
+                }
+            }
+        }
+        l();
     }
 
     @Override
-    public final boolean c(q10 q10Var) {
-        return false;
+    public final int h() {
+        return this.f9155c.size();
     }
 
     @Override
-    public final void d(MessageObject messageObject) {
-        int i10;
-        k0 k0Var = this.f9944a;
-        m2 m2Var = k0Var.f9994s;
-        i10 = ((e3) k0Var).currentAccount;
-        m2Var.presentFragment(jp0.K(messageObject, i10));
-        k0Var.dismiss();
+    public final void v(s4.b1 b1Var, int i10) {
+        z zVar = (z) b1Var.f44838a;
+        String str = (String) this.f9155c.get(i10);
+        if (((Boolean) this.e.get(i10)).booleanValue()) {
+            br brVar = new br(R.drawable.mini_ephemeral_hidden_14, 0);
+            brVar.setColorKey(g6.A6);
+            brVar.setTopOffset(1);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+            spannableStringBuilder.append((CharSequence) " *");
+            spannableStringBuilder.setSpan(brVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            zVar.f9681a.setText(spannableStringBuilder);
+        } else {
+            zVar.f9681a.setText(str);
+        }
+        zVar.f9682b.setText((CharSequence) this.d.get(i10));
+        zVar.f9683c = str;
     }
 
     @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void e(MessageObject messageObject, View view, int i10) {
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        Context context = viewGroup.getContext();
+        ?? linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
+        bi.f4 f4Var = new bi.f4(context, 2);
+        linearLayout.f9682b = f4Var;
+        NotificationCenter.listenEmojiLoading(f4Var);
+        f4Var.setTextSize(1, 16.0f);
+        int i11 = g6.G6;
+        f4Var.setTextColor(g6.x0(null, i11, false));
+        f4Var.setTag(Integer.valueOf(i11));
+        f4Var.setMaxLines(2);
+        f4Var.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout.addView(f4Var, a6.p(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
+        TextView textView = new TextView(context);
+        linearLayout.f9681a = textView;
+        textView.setTextSize(1, 14.0f);
+        int i12 = g6.f20288y6;
+        textView.setTextColor(g6.x0(null, i12, false));
+        textView.setTag(Integer.valueOf(i12));
+        linearLayout.addView(textView, a6.o(-2, -2, 0.0f, 16));
+        linearLayout.setLayoutParams(new s4.o0(-1, -2));
+        return new s4.b1(linearLayout);
     }
 }

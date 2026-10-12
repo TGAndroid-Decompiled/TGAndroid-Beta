@@ -4,13 +4,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f16634a;
-    public c f16635b;
-    public final WeakHashMap f16636c = new WeakHashMap();
+    public c f16416a;
+    public c f16417b;
+    public final WeakHashMap f16418c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
         throw new UnsupportedOperationException("Method not decompiled: o.f.equals(java.lang.Object):boolean");
+    }
+
+    public c h(Object obj) {
+        c cVar = this.f16416a;
+        while (cVar != null && !cVar.f16410a.equals(obj)) {
+            cVar = cVar.f16412c;
+        }
+        return cVar;
     }
 
     public final int hashCode() {
@@ -26,48 +34,40 @@ public class f implements Iterable {
         }
     }
 
-    public c i(Object obj) {
-        c cVar = this.f16634a;
-        while (cVar != null && !cVar.f16628a.equals(obj)) {
-            cVar = cVar.f16630c;
-        }
-        return cVar;
-    }
-
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f16634a, this.f16635b, 0);
-        this.f16636c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f16416a, this.f16417b, 0);
+        this.f16418c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 
-    public Object n(Object obj) {
-        c i10 = i(obj);
-        if (i10 == null) {
+    public Object m(Object obj) {
+        c h = h(obj);
+        if (h == null) {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f16636c;
+        WeakHashMap weakHashMap = this.f16418c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
-                eVar.a(i10);
+                eVar.a(h);
             }
         }
-        c cVar = i10.d;
+        c cVar = h.d;
         if (cVar != null) {
-            cVar.f16630c = i10.f16630c;
+            cVar.f16412c = h.f16412c;
         } else {
-            this.f16634a = i10.f16630c;
+            this.f16416a = h.f16412c;
         }
-        c cVar2 = i10.f16630c;
+        c cVar2 = h.f16412c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f16635b = cVar;
+            this.f16417b = cVar;
         }
-        i10.f16630c = null;
-        i10.d = null;
-        return i10.f16629b;
+        h.f16412c = null;
+        h.d = null;
+        return h.f16411b;
     }
 
     public final String toString() {

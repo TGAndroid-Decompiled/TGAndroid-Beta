@@ -1,153 +1,28 @@
 package c2;
 
-import ai.ca;
-import android.app.Notification;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Icon;
-import android.hardware.display.DisplayManager;
-import android.media.AudioFocusRequest;
-import android.media.AudioManager;
-import android.os.Build;
-import android.os.Looper;
-import android.view.Display;
-import android.view.ViewConfiguration;
-public abstract class d {
-    public static AudioManager f4002a;
+public final class d implements d9.u {
+    public final int f4122a;
+    public final Context f4123b;
 
-    public static void a(AudioManager audioManager, c cVar) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = cVar.f4001f;
-            obj.getClass();
-            audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
-            return;
+    public d(Context context, int i10) {
+        this.f4122a = i10;
+        this.f4123b = context;
+    }
+
+    @Override
+    public final Object get() {
+        switch (this.f4122a) {
+            case 0:
+                return i.e(this.f4123b);
+            case 1:
+                return new i2.k(this.f4123b);
+            case 2:
+                return new u2.q(this.f4123b, new c3.m());
+            case 3:
+                return new x2.n(this.f4123b, new oa.d(26));
+            default:
+                return y2.f.b(this.f4123b);
         }
-        audioManager.abandonAudioFocus(cVar.f3998b);
-    }
-
-    public static Notification.Builder b(Context context, String str) {
-        return new Notification.Builder(context, str);
-    }
-
-    public static Icon c(Bitmap bitmap) {
-        return Icon.createWithAdaptiveBitmap(bitmap);
-    }
-
-    public static boolean d(Context context) {
-        Display display;
-        DisplayManager displayManager = (DisplayManager) context.getSystemService("display");
-        if (displayManager != null) {
-            display = displayManager.getDisplay(0);
-        } else {
-            display = null;
-        }
-        if (display != null && display.isHdr()) {
-            for (int i10 : display.getHdrCapabilities().getSupportedHdrTypes()) {
-                if (i10 == 1) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static synchronized AudioManager e(Context context) {
-        synchronized (d.class) {
-            synchronized (d.class) {
-                Context applicationContext = context.getApplicationContext();
-                if (applicationContext != null) {
-                    f4002a = null;
-                }
-                AudioManager audioManager = f4002a;
-                if (audioManager != null) {
-                    return audioManager;
-                }
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null && myLooper != Looper.getMainLooper()) {
-                    e2.g gVar = new e2.g();
-                    e2.a.g().execute(new ca(11, applicationContext, gVar));
-                    gVar.b();
-                    AudioManager audioManager2 = f4002a;
-                    audioManager2.getClass();
-                    return audioManager2;
-                }
-                AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f4002a = audioManager3;
-                audioManager3.getClass();
-                return audioManager3;
-            }
-        }
-    }
-
-    public static float f(ViewConfiguration viewConfiguration) {
-        return viewConfiguration.getScaledHorizontalScrollFactor();
-    }
-
-    public static float g(ViewConfiguration viewConfiguration) {
-        return viewConfiguration.getScaledVerticalScrollFactor();
-    }
-
-    public static int h(AudioManager audioManager, c cVar) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = cVar.f4001f;
-            obj.getClass();
-            return audioManager.requestAudioFocus((AudioFocusRequest) obj);
-        }
-        AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = cVar.f3998b;
-        b2.e eVar = cVar.d;
-        int i10 = 1;
-        if ((eVar.f3276b & 1) != 1) {
-            switch (eVar.f3277c) {
-                case 2:
-                    i10 = 0;
-                    break;
-                case 3:
-                    i10 = 8;
-                    break;
-                case 4:
-                    i10 = 4;
-                    break;
-                case 5:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                    i10 = 5;
-                    break;
-                case 6:
-                    i10 = 2;
-                    break;
-                case 11:
-                    i10 = 10;
-                    break;
-                case 12:
-                default:
-                    i10 = 3;
-                    break;
-                case 13:
-                    break;
-            }
-        }
-        return audioManager.requestAudioFocus(onAudioFocusChangeListener, i10, cVar.f3997a);
-    }
-
-    public static void i(Notification.Builder builder) {
-        builder.setBadgeIconType(0);
-    }
-
-    public static void j(Notification.Builder builder, int i10) {
-        builder.setGroupAlertBehavior(i10);
-    }
-
-    public static void k(Notification.Builder builder) {
-        builder.setSettingsText(null);
-    }
-
-    public static void l(Notification.Builder builder, String str) {
-        builder.setShortcutId(str);
-    }
-
-    public static void m(Notification.Builder builder) {
-        builder.setTimeoutAfter(0L);
     }
 }

@@ -1,70 +1,38 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class w6 extends og.a {
-    public final int f43047c;
-    public CharSequence d;
-    public String f43048e;
-    public int f43049f;
-    public long f43050g;
-    public int h;
-    public boolean f43051i;
-    public boolean f43052j;
+import android.util.SparseArray;
+public final class w6 {
+    public long f41163a;
+    public int f41164b;
+    public long f41165c;
+    public final SparseArray d = new SparseArray();
 
-    public w6(int i10, String str) {
-        super(i10, true);
-        this.f43047c = -1;
-        this.d = str;
+    public w6(long j10) {
+        this.f41163a = j10;
     }
 
-    public static w6 b(int i10, long j3, String str, int i11) {
-        w6 w6Var = new w6(11);
-        w6Var.f43049f = i10;
-        w6Var.d = str;
-        w6Var.f43050g = j3;
-        w6Var.h = i11;
-        w6Var.f43052j = false;
-        return w6Var;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && w6.class == obj.getClass()) {
-                w6 w6Var = (w6) obj;
-                int i10 = this.f16877a;
-                if (i10 == w6Var.f16877a) {
-                    if (i10 != 9 && i10 != 10 && i10 != 8 && i10 != 4 && i10 != 2 && i10 != 0 && i10 != 13) {
-                        if (i10 == 3) {
-                            return Objects.equals(this.d, w6Var.d);
-                        }
-                        if (i10 == 1) {
-                            return Objects.equals(this.f43048e, w6Var.f43048e);
-                        }
-                        if (i10 == 11) {
-                            if (this.f43049f != w6Var.f43049f || this.f43050g != w6Var.f43050g) {
-                                return false;
-                            }
-                        } else if (i10 != 7 || this.f43047c != w6Var.f43047c) {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    public final void a(ai.b bVar, int i10) {
+        SparseArray sparseArray = this.d;
+        x6 x6Var = (x6) sparseArray.get(i10, null);
+        if (x6Var == null) {
+            x6Var = new x6();
+            sparseArray.put(i10, x6Var);
         }
-        return true;
+        long j10 = bVar.f917c;
+        x6Var.f41760a += j10;
+        this.f41165c += j10;
+        this.f41164b++;
+        x6Var.f41761b.add(bVar);
     }
 
-    public w6(int i10, int i11) {
-        super(7, true);
-        this.f43047c = i10;
-    }
-
-    public w6(int i10) {
-        super(i10, true);
-        this.f43047c = -1;
+    public final void b(ai.b bVar) {
+        x6 x6Var = (x6) this.d.get(bVar.d, null);
+        if (x6Var != null && x6Var.f41761b.remove(bVar)) {
+            long j10 = x6Var.f41760a;
+            long j11 = bVar.f917c;
+            x6Var.f41760a = j10 - j11;
+            this.f41165c -= j11;
+            this.f41164b--;
+        }
     }
 }

@@ -1,53 +1,41 @@
 package e9;
 
-import java.io.Serializable;
-import java.util.AbstractList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-public final class r0 extends AbstractList implements RandomAccess, Serializable {
-    public final List f8789a;
-    public final d9.e f8790b;
+import j$.util.Objects;
+import java.util.Map;
+public final class r0 extends m2 {
+    public final m2 f8610a;
+    public Object f8611b;
+    public m2 f8612c;
 
-    public r0(List list, d9.e eVar) {
-        list.getClass();
-        this.f8789a = list;
-        this.f8790b = eVar;
+    public r0(o0 o0Var) {
+        c2 c2Var = o0Var.e;
+        y0 y0Var = c2Var.f8604a;
+        if (y0Var == null) {
+            y0Var = c2Var.b();
+            c2Var.f8604a = y0Var;
+        }
+        this.f8610a = y0Var.iterator();
+        this.f8611b = null;
+        this.f8612c = c1.d;
     }
 
     @Override
-    public final Object get(int i10) {
-        return this.f8790b.apply(this.f8789a.get(i10));
+    public final boolean hasNext() {
+        if (!this.f8612c.hasNext() && !this.f8610a.hasNext()) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final boolean isEmpty() {
-        return this.f8789a.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return listIterator();
-    }
-
-    @Override
-    public final ListIterator listIterator(int i10) {
-        return new q0(this, this.f8789a.listIterator(i10), 0);
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        return this.f8790b.apply(this.f8789a.remove(i10));
-    }
-
-    @Override
-    public final void removeRange(int i10, int i11) {
-        this.f8789a.subList(i10, i11).clear();
-    }
-
-    @Override
-    public final int size() {
-        return this.f8789a.size();
+    public final Object next() {
+        if (!this.f8612c.hasNext()) {
+            Map.Entry entry = (Map.Entry) this.f8610a.next();
+            this.f8611b = entry.getKey();
+            this.f8612c = ((i0) entry.getValue()).iterator();
+        }
+        Object obj = this.f8611b;
+        Objects.requireNonNull(obj);
+        return new j0(obj, this.f8612c.next());
     }
 }

@@ -6,30 +6,30 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import sd.t;
-import sd.u;
-import sd.v;
-import sd.w;
-import w7.h7;
-public final class d implements wd.c, c {
-    public static final Map f14920b;
-    public static final LinkedHashMap f14921c;
-    public final Class f14922a;
+import td.t;
+import td.u;
+import td.v;
+import td.w;
+import w7.o7;
+public final class d implements xd.c, c {
+    public static final Map f14354b;
+    public static final LinkedHashMap f14355c;
+    public final Class f14356a;
 
     static {
         int i10 = 0;
-        List c10 = id.h.c(sd.a.class, sd.l.class, sd.p.class, sd.q.class, sd.r.class, sd.s.class, t.class, u.class, v.class, w.class, sd.b.class, sd.c.class, sd.d.class, sd.e.class, sd.f.class, sd.g.class, sd.h.class, sd.i.class, sd.j.class, sd.k.class, sd.m.class, sd.n.class, sd.o.class);
-        ArrayList arrayList = new ArrayList(id.i.d(c10));
+        List c10 = jd.h.c(td.a.class, td.l.class, td.p.class, td.q.class, td.r.class, td.s.class, t.class, u.class, v.class, w.class, td.b.class, td.c.class, td.d.class, td.e.class, td.f.class, td.g.class, td.h.class, td.i.class, td.j.class, td.k.class, td.m.class, td.n.class, td.o.class);
+        ArrayList arrayList = new ArrayList(jd.i.d(c10));
         for (Object obj : c10) {
             int i11 = i10 + 1;
             if (i10 >= 0) {
-                arrayList.add(new hd.d((Class) obj, Integer.valueOf(i10)));
+                arrayList.add(new id.d((Class) obj, Integer.valueOf(i10)));
                 i10 = i11;
             } else {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f14920b = id.r.d(arrayList);
+        f14354b = jd.r.d(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -75,47 +75,47 @@ public final class d implements wd.c, c {
         for (String str : values) {
             StringBuilder sb2 = new StringBuilder("kotlin.jvm.internal.");
             i.b(str);
-            sb2.append(yd.j.j(str, str));
+            sb2.append(zd.j.j(str, str));
             sb2.append("CompanionObject");
             hashMap3.put(sb2.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f14920b.entrySet()) {
+        for (Map.Entry entry : f14354b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
         }
-        LinkedHashMap linkedHashMap = new LinkedHashMap(id.r.a(hashMap3.size()));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(jd.r.a(hashMap3.size()));
         for (Map.Entry entry2 : hashMap3.entrySet()) {
             Object key = entry2.getKey();
             String str2 = (String) entry2.getValue();
             i.b(str2);
-            linkedHashMap.put(key, yd.j.j(str2, str2));
+            linkedHashMap.put(key, zd.j.j(str2, str2));
         }
-        f14921c = linkedHashMap;
+        f14355c = linkedHashMap;
     }
 
     public d(Class jClass) {
         i.e(jClass, "jClass");
-        this.f14922a = jClass;
+        this.f14356a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f14922a;
+        return this.f14356a;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof d) && h7.a(this).equals(h7.a((wd.c) obj))) {
+        if ((obj instanceof d) && o7.a(this).equals(o7.a((xd.c) obj))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return h7.a(this).hashCode();
+        return o7.a(this).hashCode();
     }
 
     public final String toString() {
-        return this.f14922a + " (Kotlin reflection is not available)";
+        return this.f14356a + " (Kotlin reflection is not available)";
     }
 }

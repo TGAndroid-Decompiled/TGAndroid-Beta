@@ -1,45 +1,47 @@
 package org.telegram.messenger;
 
+import android.content.Context;
 import java.util.ArrayList;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.FactCheckController;
-import org.telegram.messenger.Utilities;
+import java.util.HashMap;
+import org.telegram.messenger.LocationController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_stories;
-public final class k2 implements Utilities.Callback {
-    public final int f18027a;
-    public final Object f18028b;
-    public final Object f18029c;
+public final class k2 implements RequestDelegate {
+    public final int f17651a;
+    public final Object f17652b;
+    public final Object f17653c;
     public final Object d;
+    public final Object e;
 
-    public k2(Object obj, Object obj2, Object obj3, int i10) {
-        this.f18027a = i10;
-        this.f18028b = obj;
-        this.f18029c = obj2;
+    public k2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f17651a = i10;
+        this.f17652b = obj;
+        this.f17653c = obj2;
         this.d = obj3;
+        this.e = obj4;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18027a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17651a) {
             case 0:
-                ((FactCheckController) this.f18028b).lambda$getFactCheck$0((FactCheckController.Key) this.f18029c, (MessageObject) this.d, (TLRPC.TL_factCheck) obj);
+                ((FactCheckController) this.f17652b).lambda$loadMissing$2((TLRPC.TL_getFactCheck) this.f17653c, (ArrayList) this.d, (HashMap) this.e, tLObject, tL_error);
                 return;
             case 1:
-                ChannelBoostsController.lambda$userCanBoostChannel$2((ChannelBoostsController.CanApplyBoost) this.f18028b, (TL_stories.TL_premium_boostsStatus) this.f18029c, (Utilities.Callback) this.d, (TL_stories.TL_premium_myBoosts) obj);
+                ((LocationController) this.f17652b).lambda$broadcastLastKnownLocation$7((LocationController.SharingLocationInfo) this.f17653c, (int[]) this.d, (TLRPC.TL_messages_editMessage) this.e, tLObject, tL_error);
                 return;
             case 2:
-                ((FileRefController) this.f18028b).lambda$requestReferenceFromServer$1((String) this.f18029c, (String) this.d, (ai.u8) obj);
+                ((MessagesController) this.f17652b).lambda$didReceivedNotification$44((org.telegram.ui.ActionBar.z5) this.f17653c, (TLRPC.TL_wallPaperSettings) this.d, (String) this.e, tLObject, tL_error);
                 return;
             case 3:
-                MediaDataController.lambda$fillWithAnimatedEmoji$227((boolean[]) this.f18028b, (ArrayList[]) this.f18029c, (Runnable) this.d, (ArrayList) obj);
+                ((MessagesController) this.f17652b).lambda$deleteUserChannelHistory$132((TLRPC.Chat) this.f17653c, (TLRPC.User) this.d, (TLRPC.Chat) this.e, tLObject, tL_error);
                 return;
             case 4:
-                MediaDataController.lambda$setPlaceholderImage$31((String) this.f18028b, (org.telegram.ui.Components.y9) this.f18029c, (String) this.d, (TLRPC.TL_messages_stickerSet) obj);
+                ((SecretChatHelper) this.f17652b).lambda$startSecretChat$30((Context) this.f17653c, (org.telegram.ui.ActionBar.a2) this.d, (TLRPC.User) this.e, tLObject, tL_error);
                 return;
             default:
-                MessagesController.lambda$openApp$502((boolean[]) this.f18028b, (TL_bots.BotInfo[]) this.f18029c, (Runnable) this.d, (TLRPC.UserFull) obj);
+                ((SendMessagesHelper) this.f17652b).lambda$sendVote$35((MessageObject) this.f17653c, (String) this.d, (Runnable) this.e, tLObject, tL_error);
                 return;
         }
     }

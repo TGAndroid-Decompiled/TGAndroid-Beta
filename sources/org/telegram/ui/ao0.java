@@ -1,79 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ao0 extends LinearLayout {
-    public boolean f35912a;
-    public final int f35913b;
-    public final int[] f35914c;
-    public final int[] d;
+import android.widget.FrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.messenger.FileLog;
+public final class ao0 implements OnCompleteListener, org.telegram.ui.ActionBar.z1, eu {
+    public final int f34288a;
+    public final cp0 f34289b;
 
-    public ao0(Context context, int i10, int[] iArr, int[] iArr2) {
-        super(context);
-        this.f35913b = i10;
-        this.f35914c = iArr;
-        this.d = iArr2;
+    public ao0(cp0 cp0Var, int i10) {
+        this.f34288a = i10;
+        this.f34289b = cp0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View childAt;
-        int size = View.MeasureSpec.getSize(i10);
-        this.f35912a = true;
-        int dp = AndroidUtilities.dp(9.0f);
-        int i12 = this.f35913b;
-        int i13 = (i12 - 1) * dp;
-        int[] iArr = this.f35914c;
-        float f7 = 1.0f;
-        if ((iArr[0] * i12) + i13 <= size) {
-            setWeightSum(1.0f);
-            int childCount = getChildCount();
-            for (int i14 = 0; i14 < childCount; i14++) {
-                getChildAt(i14).getLayoutParams().width = 0;
-                ((LinearLayout.LayoutParams) getChildAt(i14).getLayoutParams()).weight = 1.0f / childCount;
-            }
-        } else if (this.d[0] + i13 <= size) {
-            setWeightSum(1.0f);
-            int i15 = size - i13;
-            int childCount2 = getChildCount();
-            for (int i16 = 0; i16 < childCount2; i16++) {
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i16).getLayoutParams();
-                layoutParams.width = 0;
-                float intValue = ((Integer) childAt.getTag(R.id.width_tag)).intValue() / i15;
-                layoutParams.weight = intValue;
-                f7 -= intValue;
-            }
-            float f10 = f7 / (i12 - 1);
-            if (f10 > 0.0f) {
-                int childCount3 = getChildCount();
-                for (int i17 = 0; i17 < childCount3; i17++) {
-                    View childAt2 = getChildAt(i17);
-                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
-                    if (((Integer) childAt2.getTag(R.id.width_tag)).intValue() != iArr[0]) {
-                        layoutParams2.weight += f10;
-                    }
-                }
-            }
-        } else {
-            setWeightSum(0.0f);
-            int childCount4 = getChildCount();
-            for (int i18 = 0; i18 < childCount4; i18++) {
-                getChildAt(i18).getLayoutParams().width = -2;
-                ((LinearLayout.LayoutParams) getChildAt(i18).getLayoutParams()).weight = 0.0f;
-            }
+    public void a1(au auVar) {
+        switch (this.f34288a) {
+            case 2:
+                cp0 cp0Var = this.f34289b;
+                cp0Var.A0 = auVar;
+                cp0Var.f35008f[4].setText(auVar.f34339a);
+                return;
+            default:
+                cp0 cp0Var2 = this.f34289b;
+                cp0Var2.A0 = auVar;
+                cp0Var2.f35008f[4].setText(auVar.f34339a);
+                cp0Var2.B0 = auVar.d;
+                return;
         }
-        this.f35912a = false;
-        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f35912a) {
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f34288a) {
+            case 1:
+                cp0 cp0Var = this.f34289b;
+                cp0Var.I0(cp0Var.R0[0]);
+                return;
+            case 2:
+            default:
+                cp0 cp0Var2 = this.f34289b;
+                cp0Var2.D0(true);
+                cp0Var2.z0();
+                return;
+            case 3:
+                this.f34289b.A0(true);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        cp0 cp0Var = this.f34289b;
+        cp0Var.getClass();
+        if (task.isSuccessful()) {
+            FrameLayout frameLayout = cp0Var.O;
+            if (frameLayout != null) {
+                frameLayout.setVisibility(0);
+                return;
+            }
             return;
         }
-        super.requestLayout();
+        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

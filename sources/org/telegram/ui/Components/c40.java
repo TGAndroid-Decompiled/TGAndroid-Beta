@@ -1,51 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class c40 extends TextView {
-    public final Paint[] f24800a;
-    public final org.telegram.ui.h50 f24801b;
+import java.util.ArrayList;
+public final class c40 implements hg.z1 {
+    public final d40 f23944a;
 
-    public c40(org.telegram.ui.h50 h50Var, Context context) {
-        super(context);
-        this.f24801b = h50Var;
-        this.f24800a = new Paint[h50Var.f25887e.length];
-        int i10 = 0;
-        while (true) {
-            Paint[] paintArr = this.f24800a;
-            if (i10 < paintArr.length) {
-                paintArr[i10] = new Paint(1);
-                i10++;
-            } else {
-                return;
+    public c40(d40 d40Var) {
+        this.f23944a = d40Var;
+    }
+
+    @Override
+    public final a0.h K() {
+        return this.f23944a.f24291w.f24595e0;
+    }
+
+    @Override
+    public final a0.h j0() {
+        return null;
+    }
+
+    @Override
+    public final void k(int i10) {
+        d40 d40Var = this.f23944a;
+        e40 e40Var = d40Var.f24291w;
+        if (i10 >= 0 && i10 == d40Var.f24288n && !d40Var.h) {
+            boolean z10 = true;
+            int i11 = d40Var.f24287f - 1;
+            if (e40Var.f28541s.getVisibility() != 0) {
+                z10 = false;
+            }
+            d40Var.l();
+            if (d40Var.f24287f > i11) {
+                e40Var.K(i11);
+            }
+            if (!d40Var.d.e() && e40Var.d.S0()) {
+                e40Var.f28541s.e(false, z10);
             }
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        org.telegram.ui.h50 h50Var = this.f24801b;
-        int i11 = h50Var.h;
-        Paint[] paintArr = this.f24800a;
-        paintArr[i11].setAlpha(255);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[h50Var.h]);
-        float f7 = h50Var.f25888f;
-        if (f7 > 0.0f && (i10 = h50Var.h + 1) < paintArr.length) {
-            paintArr[i10].setAlpha((int) (f7 * 255.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[h50Var.h + 1]);
-        }
-        super.onDraw(canvas);
+    public final boolean t0(int i10) {
+        return true;
     }
 
     @Override
-    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c40.onSizeChanged(int, int, int, int):void");
+    public final void I0(ArrayList arrayList) {
     }
 }

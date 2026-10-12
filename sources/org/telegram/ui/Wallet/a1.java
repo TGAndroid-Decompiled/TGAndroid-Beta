@@ -1,449 +1,82 @@
 package org.telegram.ui.Wallet;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import org.json.JSONArray;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_toncenter;
-public final class a1 {
-    public final int f34445a;
-    public final String f34446b;
-    public final l0 f34447c;
-    public boolean d;
-    public boolean f34448e;
-    public String f34449f;
-    public int f34450g;
-    public int h;
-    public int f34452j;
-    public sc.u f34453k;
-    public long f34454l;
-    public int f34451i = -1;
-    public final x0 f34455m = new Runnable(this) {
-        public final a1 f35494b;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.mt;
+public final class a1 implements Utilities.Callback2 {
+    public final int f32913a = 1;
+    public final d2 f32914b;
+    public final TL_wallet.tonConnectSession f32915c;
+    public final String d;
+    public final byte[] e;
+    public final Object f32916f;
+    public final Object f32917g;
+    public final Object h;
 
-        {
-            this.f35494b = this;
-        }
-
-        @Override
-        public final void run() {
-            switch (r2) {
-                case 0:
-                    this.f35494b.e();
-                    return;
-                case 1:
-                    a1 a1Var = this.f35494b;
-                    if (a1Var.d) {
-                        a1Var.d("URL expired; renewing connection");
-                        a1Var.b();
-                        a1Var.e();
-                        return;
-                    }
-                    return;
-                default:
-                    this.f35494b.f("connection or subscription timed out");
-                    return;
-            }
-        }
-    };
-    public final x0 f34456n = new Runnable(this) {
-        public final a1 f35494b;
-
-        {
-            this.f35494b = this;
-        }
-
-        @Override
-        public final void run() {
-            switch (r2) {
-                case 0:
-                    this.f35494b.e();
-                    return;
-                case 1:
-                    a1 a1Var = this.f35494b;
-                    if (a1Var.d) {
-                        a1Var.d("URL expired; renewing connection");
-                        a1Var.b();
-                        a1Var.e();
-                        return;
-                    }
-                    return;
-                default:
-                    this.f35494b.f("connection or subscription timed out");
-                    return;
-            }
-        }
-    };
-    public final x0 f34457o = new Runnable(this) {
-        public final a1 f35494b;
-
-        {
-            this.f35494b = this;
-        }
-
-        @Override
-        public final void run() {
-            switch (r2) {
-                case 0:
-                    this.f35494b.e();
-                    return;
-                case 1:
-                    a1 a1Var = this.f35494b;
-                    if (a1Var.d) {
-                        a1Var.d("URL expired; renewing connection");
-                        a1Var.b();
-                        a1Var.e();
-                        return;
-                    }
-                    return;
-                default:
-                    this.f35494b.f("connection or subscription timed out");
-                    return;
-            }
-        }
-    };
-    public final org.telegram.ui.Cells.l7 f34458p = new org.telegram.ui.Cells.l7(this, 26);
-
-    public a1(int i10, String str, l0 l0Var) {
-        this.f34445a = i10;
-        this.f34446b = str;
-        this.f34447c = l0Var;
+    public a1(d2 d2Var, bi.f0 f0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, JSONArray jSONArray, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest) {
+        this.f32914b = d2Var;
+        this.f32916f = f0Var;
+        this.f32915c = tonconnectsession;
+        this.d = str;
+        this.e = bArr;
+        this.f32917g = jSONArray;
+        this.h = tL_urlAuthResultRequest;
     }
 
-    public static String a(sc.w wVar) {
-        String str;
-        aa.b bVar;
-        switch (wVar.f48197a) {
-            case 1:
-                str = "NOT_IN_CREATED_STATE";
-                break;
-            case 2:
-                str = "SOCKET_INPUT_STREAM_FAILURE";
-                break;
-            case 3:
-                str = "SOCKET_OUTPUT_STREAM_FAILURE";
-                break;
-            case 4:
-                str = "OPENING_HAHDSHAKE_REQUEST_FAILURE";
-                break;
-            case 5:
-                str = "OPENING_HANDSHAKE_RESPONSE_FAILURE";
-                break;
-            case 6:
-                str = "STATUS_LINE_EMPTY";
-                break;
-            case 7:
-                str = "STATUS_LINE_BAD_FORMAT";
-                break;
-            case 8:
-                str = "NOT_SWITCHING_PROTOCOLS";
-                break;
-            case 9:
-                str = "HTTP_HEADER_FAILURE";
-                break;
-            case 10:
-                str = "NO_UPGRADE_HEADER";
-                break;
-            case 11:
-                str = "NO_WEBSOCKET_IN_UPGRADE_HEADER";
-                break;
-            case 12:
-                str = "NO_CONNECTION_HEADER";
-                break;
-            case 13:
-                str = "NO_UPGRADE_IN_CONNECTION_HEADER";
-                break;
-            case 14:
-                str = "NO_SEC_WEBSOCKET_ACCEPT_HEADER";
-                break;
-            case 15:
-                str = "UNEXPECTED_SEC_WEBSOCKET_ACCEPT_HEADER";
-                break;
-            case 16:
-                str = "EXTENSION_PARSE_ERROR";
-                break;
-            case 17:
-                str = "UNSUPPORTED_EXTENSION";
-                break;
-            case 18:
-                str = "EXTENSIONS_CONFLICT";
-                break;
-            case 19:
-                str = "UNSUPPORTED_PROTOCOL";
-                break;
-            case 20:
-                str = "INSUFFICENT_DATA";
-                break;
-            case 21:
-                str = "INVALID_PAYLOAD_LENGTH";
-                break;
-            case 22:
-                str = "TOO_LONG_PAYLOAD";
-                break;
-            case 23:
-                str = "INSUFFICIENT_MEMORY_FOR_PAYLOAD";
-                break;
-            case 24:
-                str = "INTERRUPTED_IN_READING";
-                break;
-            case 25:
-                str = "IO_ERROR_IN_READING";
-                break;
-            case 26:
-                str = "IO_ERROR_IN_WRITING";
-                break;
-            case 27:
-                str = "FLUSH_ERROR";
-                break;
-            case 28:
-                str = "NON_ZERO_RESERVED_BITS";
-                break;
-            case 29:
-                str = "UNEXPECTED_RESERVED_BIT";
-                break;
-            case 30:
-                str = "FRAME_MASKED";
-                break;
-            case 31:
-                str = "UNKNOWN_OPCODE";
-                break;
-            case 32:
-                str = "FRAGMENTED_CONTROL_FRAME";
-                break;
-            case 33:
-                str = "UNEXPECTED_CONTINUATION_FRAME";
-                break;
-            case 34:
-                str = "CONTINUATION_NOT_CLOSED";
-                break;
-            case 35:
-                str = "TOO_LONG_CONTROL_FRAME_PAYLOAD";
-                break;
-            case 36:
-                str = "MESSAGE_CONSTRUCTION_ERROR";
-                break;
-            case 37:
-                str = "TEXT_MESSAGE_CONSTRUCTION_ERROR";
-                break;
-            case 38:
-                str = "UNEXPECTED_ERROR_IN_READING_THREAD";
-                break;
-            case 39:
-                str = "UNEXPECTED_ERROR_IN_WRITING_THREAD";
-                break;
-            case 40:
-                str = "PERMESSAGE_DEFLATE_UNSUPPORTED_PARAMETER";
-                break;
-            case 41:
-                str = "PERMESSAGE_DEFLATE_INVALID_MAX_WINDOW_BITS";
-                break;
-            case 42:
-                str = "COMPRESSION_ERROR";
-                break;
-            case 43:
-                str = "DECOMPRESSION_ERROR";
-                break;
-            case 44:
-                str = "SOCKET_CONNECT_ERROR";
-                break;
-            case 45:
-                str = "PROXY_HANDSHAKE_ERROR";
-                break;
-            case 46:
-                str = "SOCKET_OVERLAY_ERROR";
-                break;
-            case 47:
-                str = "SSL_HANDSHAKE_ERROR";
-                break;
-            case 48:
-                str = "NO_MORE_FRAME";
-                break;
-            case 49:
-                str = "HOSTNAME_UNVERIFIED";
-                break;
-            default:
-                str = "null";
-                break;
-        }
-        if ((wVar instanceof sc.n) && (bVar = ((sc.n) wVar).f48156b) != null) {
-            StringBuilder j3 = sc.v.j(str, ", HTTP ");
-            j3.append(bVar.f390c);
-            return j3.toString();
-        }
-        return str;
-    }
-
-    public final void b() {
-        boolean z10;
-        StringBuilder sb2 = new StringBuilder("disconnecting; socket=");
-        if (this.f34453k != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        sb2.append(z10);
-        sb2.append(", subscribed=");
-        sb2.append(this.f34448e);
-        sb2.append(", URL request=");
-        sb2.append(this.f34451i);
-        d(sb2.toString());
-        this.h++;
-        this.f34448e = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f34455m);
-        AndroidUtilities.cancelRunOnUIThread(this.f34456n);
-        AndroidUtilities.cancelRunOnUIThread(this.f34457o);
-        AndroidUtilities.cancelRunOnUIThread(this.f34458p);
-        if (this.f34451i >= 0) {
-            ConnectionsManager.getInstance(this.f34445a).cancelRequest(this.f34451i, true);
-            this.f34451i = -1;
-        }
-        sc.u uVar = this.f34453k;
-        this.f34453k = null;
-        if (uVar != null) {
-            uVar.c();
-        }
-    }
-
-    public final boolean c(sc.u uVar, int i10) {
-        if (this.d && this.f34453k == uVar && this.h == i10) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d(String str) {
-        FileLog.d("[gram-wallet-streaming] account=" + this.f34445a + " generation=" + this.h + " " + str);
-    }
-
-    public final void e() {
-        if (!this.d) {
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.f34455m);
-        final int i10 = this.h + 1;
-        this.h = i10;
-        final long elapsedRealtime = SystemClock.elapsedRealtime();
-        d("requesting streaming URL; retry=" + this.f34452j);
-        AndroidUtilities.runOnUIThread(this.f34457o, 30000L);
-        this.f34451i = ConnectionsManager.getInstance(this.f34445a).sendRequestTyped(new TL_toncenter.getStreamingUrl(), new Object(), new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                Object valueOf;
-                a1 a1Var = a1.this;
-                int i11 = i10;
-                long j3 = elapsedRealtime;
-                TL_toncenter.streamingUrl streamingurl = (TL_toncenter.streamingUrl) obj;
+    @Override
+    public final void run(Object obj, Object obj2) {
+        int i10 = this.f32913a;
+        d2 d2Var = this.f32914b;
+        switch (i10) {
+            case 0:
+                mt mtVar = (mt) this.f32916f;
+                g0 g0Var = (g0) this.f32917g;
+                TL_wallet.tonConnectSession tonconnectsession = this.f32915c;
+                String str = this.d;
+                byte[] bArr = this.e;
+                y1 y1Var = (y1) this.h;
+                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (a1Var.d && a1Var.h == i11) {
-                    StringBuilder sb2 = new StringBuilder("URL response after ");
-                    sb2.append(SystemClock.elapsedRealtime() - j3);
-                    sb2.append(" ms; errorCode=");
-                    if (tL_error == null) {
-                        valueOf = "none";
-                    } else {
-                        valueOf = Integer.valueOf(tL_error.code);
-                    }
-                    sb2.append(valueOf);
-                    a1Var.d(sb2.toString());
-                    a1Var.f34451i = -1;
-                    AndroidUtilities.cancelRunOnUIThread(a1Var.f34457o);
-                    if (streamingurl != null && !TextUtils.isEmpty(streamingurl.url)) {
-                        long currentTime = (streamingurl.expires - ConnectionsManager.getInstance(a1Var.f34445a).getCurrentTime()) * 1000;
-                        a1Var.d("URL expires=" + streamingurl.expires + ", remaining=" + currentTime + " ms");
-                        if (currentTime <= 0) {
-                            a1Var.f("received expired streaming URL");
-                            return;
-                        }
-                        AndroidUtilities.runOnUIThread(a1Var.f34456n, currentTime);
-                        String str = streamingurl.url;
-                        long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                        a1Var.d("opening websocket; attempt=" + i11);
-                        try {
-                            c5.b0 b0Var = new c5.b0(10, (short) 0);
-                            b0Var.f4201b = 10000;
-                            sc.u g10 = b0Var.g(str);
-                            a1Var.f34453k = g10;
-                            z0 z0Var = new z0(a1Var, i11, elapsedRealtime2);
-                            com.google.firebase.messaging.m mVar = g10.d;
-                            synchronized (((ArrayList) mVar.f7949c)) {
-                                ((ArrayList) mVar.f7949c).add(z0Var);
-                                mVar.f7947a = true;
-                            }
-                            AndroidUtilities.runOnUIThread(a1Var.f34457o, 30000L);
-                            sc.u uVar = a1Var.f34453k;
-                            uVar.getClass();
-                            sc.b bVar = new sc.b("ConnectThread", uVar, 3, 0);
-                            com.google.firebase.messaging.m mVar2 = uVar.d;
-                            if (mVar2 != null) {
-                                ArrayList arrayList = (ArrayList) mVar2.n();
-                                int size = arrayList.size();
-                                int i12 = 0;
-                                while (i12 < size) {
-                                    Object obj3 = arrayList.get(i12);
-                                    i12++;
-                                    z0 z0Var2 = (z0) obj3;
-                                    try {
-                                        try {
-                                            z0Var2.getClass();
-                                        } catch (Throwable unused) {
-                                            z0Var2.getClass();
-                                        }
-                                    } catch (Throwable unused2) {
-                                    }
-                                }
-                            }
-                            bVar.start();
-                            return;
-                        } catch (Exception e7) {
-                            a1Var.f("could not open websocket: ".concat(e7.getClass().getSimpleName()));
-                            return;
-                        }
-                    }
-                    a1Var.f("could not obtain streaming URL");
+                d2Var.getClass();
+                if (tL_error == null && tonconnectchallenge != null) {
+                    Utilities.globalQueue.postRunnable(new ji.k(d2Var, g0Var, tonconnectsession, str, bArr, y1Var, tonconnectchallenge, mtVar, 4));
+                    return;
+                } else {
+                    mtVar.run(d2.x(tL_error, "registerKey"));
                     return;
                 }
-                a1Var.d("ignoring stale URL response; attempt=" + i11);
-            }
-        });
+            default:
+                bi.f0 f0Var = (bi.f0) this.f32916f;
+                TL_wallet.tonConnectSession tonconnectsession2 = this.f32915c;
+                String str2 = this.d;
+                byte[] bArr2 = this.e;
+                JSONArray jSONArray = (JSONArray) this.f32917g;
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.h;
+                g0 g0Var2 = (g0) obj;
+                String str3 = (String) obj2;
+                d2Var.getClass();
+                if (str3 == null && g0Var2 != null) {
+                    g0 b10 = g0Var2.b();
+                    Utilities.globalQueue.postRunnable(new ji.k(d2Var, b10, tonconnectsession2, str2, bArr2, jSONArray, tL_urlAuthResultRequest, new bi.f0(26, b10, f0Var), 5));
+                    return;
+                }
+                if (str3 == null) {
+                    str3 = "Recovery phrase is unavailable";
+                }
+                f0Var.run(null, str3);
+                return;
+        }
     }
 
-    public final void f(String str) {
-        if (!this.d) {
-            return;
-        }
-        b();
-        int i10 = this.f34452j;
-        this.f34452j = i10 + 1;
-        long min = Math.min(30000L, 1000 << Math.min(i10, 5)) + ((long) (Math.random() * 500.0d));
-        d(str + "; retrying in " + min + " ms");
-        AndroidUtilities.runOnUIThread(this.f34455m, min);
-    }
-
-    public final void g(String str) {
-        d("send -> " + str);
-        sc.u uVar = this.f34453k;
-        uVar.getClass();
-        ?? obj = new Object();
-        obj.f48200a = true;
-        obj.f48203e = 1;
-        if (str != null && str.length() != 0) {
-            obj.c(sc.k.a(str));
-        } else {
-            obj.f48205g = null;
-        }
-        uVar.g(obj);
-    }
-
-    public final void h() {
-        if (!this.d) {
-            return;
-        }
-        d("stopping");
-        this.d = false;
-        b();
+    public a1(d2 d2Var, mt mtVar, g0 g0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, y1 y1Var) {
+        this.f32914b = d2Var;
+        this.f32916f = mtVar;
+        this.f32917g = g0Var;
+        this.f32915c = tonconnectsession;
+        this.d = str;
+        this.e = bArr;
+        this.h = y1Var;
     }
 }

@@ -1,35 +1,53 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import org.telegram.messenger.Utilities;
 public final class hf implements Utilities.Callback2 {
-    public final int f38348a;
-    public final Object f38349b;
-    public final Object f38350c;
-    public final Object d;
-    public final Object f38351e;
-    public final Object f38352f;
+    public final int f36776a;
+    public final fo f36777b;
 
-    public hf(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f38348a = i10;
-        this.f38349b = obj;
-        this.d = obj2;
-        this.f38350c = obj3;
-        this.f38351e = obj4;
-        this.f38352f = obj5;
+    public hf(fo foVar, int i10) {
+        this.f36776a = i10;
+        this.f36777b = foVar;
     }
 
     @Override
-    public final void run(java.lang.Object r19, java.lang.Object r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hf.run(java.lang.Object, java.lang.Object):void");
-    }
-
-    public hf(eo eoVar, dj djVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f38348a = 1;
-        this.f38349b = eoVar;
-        this.f38350c = djVar;
-        this.d = u1Var;
-        this.f38351e = str;
-        this.f38352f = characterStyle;
+    public final void run(Object obj, Object obj2) {
+        switch (this.f36776a) {
+            case 0:
+                fo.z1(this.f36777b, (Integer) obj, (Boolean) obj2);
+                return;
+            case 1:
+                fo.p1(this.f36777b, (Long) obj, (Boolean) obj2);
+                return;
+            case 2:
+                Bitmap bitmap = (Bitmap) obj;
+                fo foVar = this.f36777b;
+                gh.b bVar = foVar.f36193z8;
+                bVar.a((Bitmap) obj2);
+                hh.d.c(bVar, foVar.fragmentView);
+                foVar.A8.d();
+                return;
+            default:
+                fo foVar2 = this.f36777b;
+                foVar2.B8 = (Bitmap) obj;
+                Paint paint = new Paint(1);
+                foVar2.D8 = paint;
+                Bitmap bitmap2 = foVar2.B8;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                foVar2.C8 = bitmapShader;
+                paint.setShader(bitmapShader);
+                foVar2.E8 = new Matrix();
+                gh.b bVar2 = foVar2.f36193z8;
+                bVar2.a((Bitmap) obj2);
+                hh.d.c(bVar2, foVar2.fragmentView);
+                foVar2.A8.d();
+                return;
+        }
     }
 }

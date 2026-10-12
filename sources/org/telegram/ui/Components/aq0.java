@@ -1,26 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class aq0 extends LinearLayout {
-    public final int f24456a;
-    public final int f24457b;
+import org.telegram.messenger.NotificationCenter;
+public final class aq0 implements o1.g {
+    public final int f23607a;
+    public final int[] f23608b;
+    public final NotificationCenter.NotificationCenterDelegate f23609c;
+    public final View d;
 
-    public aq0(Context context, int i10, int i11) {
-        super(context);
-        this.f24456a = i10;
-        this.f24457b = i11;
+    public aq0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
+        this.f23607a = i10;
+        this.f23609c = notificationCenterDelegate;
+        this.d = view;
+        this.f23608b = iArr;
     }
 
     @Override
-    public final int getSuggestedMinimumWidth() {
-        return AndroidUtilities.dp(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f24456a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f24457b), View.MeasureSpec.getMode(i11)));
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f23607a) {
+            case 0:
+                ((jr0) this.f23609c).R0((org.telegram.ui.Cells.g7) this.d, this.f23608b, f7 / 1000.0f);
+                return;
+            default:
+                ((qq0) this.f23609c).d.R0(this.d, this.f23608b, f7 / 1000.0f);
+                return;
+        }
     }
 }

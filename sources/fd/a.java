@@ -1,35 +1,331 @@
 package fd;
 
-import cf.p;
-import cf.s;
-import com.google.android.gms.internal.vision.e2;
-import java.util.regex.Pattern;
-import sc.v;
-public final class a extends h {
-    public static final Pattern f9853e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f9854f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Arrays;
+public final class a {
+    public final char[] f9071a;
+    public final StringReader f9072b;
+    public int f9073c;
+    public int d;
+    public int e;
+    public int f9074f;
+    public int f9075g;
+    public final String[] h;
 
-    @Override
-    public final p b() {
-        String a2 = a(f9853e);
-        if (a2 != null) {
-            String i10 = e2.i(1, 1, a2);
-            cf.k kVar = new cf.k(1, v.i("mailto:", i10), null);
-            kVar.b(new s(i10));
-            return kVar;
+    public a(String str) {
+        StringReader stringReader = new StringReader(str);
+        str.getClass();
+        this.h = new String[128];
+        if (stringReader.markSupported()) {
+            this.f9072b = stringReader;
+            this.f9071a = new char[4096];
+            b();
+            return;
         }
-        String a10 = a(f9854f);
-        if (a10 == null) {
-            return null;
-        }
-        String i11 = e2.i(1, 1, a10);
-        cf.k kVar2 = new cf.k(1, i11, null);
-        kVar2.b(new s(i11));
-        return kVar2;
+        throw new IllegalArgumentException("Must be true");
     }
 
-    @Override
+    public static String c(char[] cArr, String[] strArr, int i10, int i11) {
+        if (i11 > 12) {
+            return new String(cArr, i10, i11);
+        }
+        if (i11 < 1) {
+            return "";
+        }
+        int i12 = 0;
+        int i13 = i10;
+        int i14 = 0;
+        int i15 = 0;
+        while (i14 < i11) {
+            i15 = (i15 * 31) + cArr[i13];
+            i14++;
+            i13++;
+        }
+        int length = i15 & (strArr.length - 1);
+        String str = strArr[length];
+        if (str == null) {
+            String str2 = new String(cArr, i10, i11);
+            strArr[length] = str2;
+            return str2;
+        }
+        if (i11 == str.length()) {
+            int i16 = i10;
+            int i17 = i11;
+            while (true) {
+                int i18 = i17 - 1;
+                if (i17 != 0) {
+                    int i19 = i16 + 1;
+                    int i20 = i12 + 1;
+                    if (cArr[i16] != str.charAt(i12)) {
+                        break;
+                    }
+                    i16 = i19;
+                    i17 = i18;
+                    i12 = i20;
+                } else {
+                    return str;
+                }
+            }
+        }
+        String str3 = new String(cArr, i10, i11);
+        strArr[length] = str3;
+        return str3;
+    }
+
+    public final void a() {
+        this.e++;
+    }
+
+    public final void b() {
+        StringReader stringReader = this.f9072b;
+        int i10 = this.e;
+        if (i10 >= this.d) {
+            try {
+                stringReader.skip(i10);
+                stringReader.mark(4096);
+                int read = stringReader.read(this.f9071a);
+                stringReader.reset();
+                if (read != -1) {
+                    this.f9073c = read;
+                    this.f9074f += this.e;
+                    this.e = 0;
+                    this.f9075g = 0;
+                    if (read > 3072) {
+                        read = 3072;
+                    }
+                    this.d = read;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public final char d() {
-        return '<';
+        char c10;
+        b();
+        int i10 = this.e;
+        if (i10 >= this.f9073c) {
+            c10 = 65535;
+        } else {
+            c10 = this.f9071a[i10];
+        }
+        this.e = i10 + 1;
+        return c10;
+    }
+
+    public final String e() {
+        char[] cArr;
+        char c10;
+        b();
+        int i10 = this.e;
+        while (true) {
+            int i11 = this.e;
+            int i12 = this.f9073c;
+            cArr = this.f9071a;
+            if (i11 >= i12 || (((c10 = cArr[i11]) < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && !Character.isLetter(c10)))) {
+                break;
+            }
+            this.e++;
+        }
+        return c(cArr, this.h, i10, this.e - i10);
+    }
+
+    public final String f(char c10) {
+        char[] cArr;
+        int i10;
+        b();
+        int i11 = this.e;
+        while (true) {
+            int i12 = this.f9073c;
+            cArr = this.f9071a;
+            if (i11 < i12) {
+                if (c10 == cArr[i11]) {
+                    i10 = i11 - this.e;
+                    break;
+                }
+                i11++;
+            } else {
+                i10 = -1;
+                break;
+            }
+        }
+        String[] strArr = this.h;
+        if (i10 != -1) {
+            String c11 = c(cArr, strArr, this.e, i10);
+            this.e += i10;
+            return c11;
+        }
+        b();
+        int i13 = this.e;
+        String c12 = c(cArr, strArr, i13, this.f9073c - i13);
+        this.e = this.f9073c;
+        return c12;
+    }
+
+    public final String g(char... cArr) {
+        char[] cArr2;
+        b();
+        int i10 = this.e;
+        int i11 = this.f9073c;
+        loop0: while (true) {
+            int i12 = this.e;
+            cArr2 = this.f9071a;
+            if (i12 >= i11) {
+                break;
+            }
+            for (char c10 : cArr) {
+                if (cArr2[this.e] == c10) {
+                    break loop0;
+                }
+            }
+            this.e++;
+        }
+        int i13 = this.e;
+        if (i13 > i10) {
+            return c(cArr2, this.h, i10, i13 - i10);
+        }
+        return "";
+    }
+
+    public final String h(char... cArr) {
+        char[] cArr2;
+        b();
+        int i10 = this.e;
+        int i11 = this.f9073c;
+        while (true) {
+            int i12 = this.e;
+            cArr2 = this.f9071a;
+            if (i12 >= i11 || Arrays.binarySearch(cArr, cArr2[i12]) >= 0) {
+                break;
+            }
+            this.e++;
+        }
+        int i13 = this.e;
+        if (i13 > i10) {
+            return c(cArr2, this.h, i10, i13 - i10);
+        }
+        return "";
+    }
+
+    public final char i() {
+        b();
+        int i10 = this.e;
+        if (i10 >= this.f9073c) {
+            return (char) 65535;
+        }
+        return this.f9071a[i10];
+    }
+
+    public final boolean j() {
+        b();
+        if (this.e >= this.f9073c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean k(String str) {
+        b();
+        b();
+        int length = str.length();
+        if (length <= this.f9073c - this.e) {
+            for (int i10 = 0; i10 < length; i10++) {
+                if (str.charAt(i10) == this.f9071a[this.e + i10]) {
+                }
+            }
+            this.e = str.length() + this.e;
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean l(String str) {
+        b();
+        int length = str.length();
+        if (length <= this.f9073c - this.e) {
+            for (int i10 = 0; i10 < length; i10++) {
+                if (Character.toUpperCase(str.charAt(i10)) == Character.toUpperCase(this.f9071a[this.e + i10])) {
+                }
+            }
+            this.e = str.length() + this.e;
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean m(char c10) {
+        if (!j() && this.f9071a[this.e] == c10) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean n(char... cArr) {
+        if (!j()) {
+            b();
+            char c10 = this.f9071a[this.e];
+            for (char c11 : cArr) {
+                if (c11 == c10) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public final boolean o() {
+        if (j()) {
+            return false;
+        }
+        char c10 = this.f9071a[this.e];
+        if (c10 < 'A' || c10 > 'Z') {
+            if ((c10 < 'a' || c10 > 'z') && !Character.isLetter(c10)) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public final int p(String str) {
+        b();
+        char charAt = str.charAt(0);
+        int i10 = this.e;
+        while (i10 < this.f9073c) {
+            char[] cArr = this.f9071a;
+            if (charAt != cArr[i10]) {
+                do {
+                    i10++;
+                    if (i10 >= this.f9073c) {
+                        break;
+                    }
+                } while (charAt != cArr[i10]);
+            }
+            int i11 = i10 + 1;
+            int length = (str.length() + i11) - 1;
+            int i12 = this.f9073c;
+            if (i10 < i12 && length <= i12) {
+                int i13 = i11;
+                for (int i14 = 1; i13 < length && str.charAt(i14) == cArr[i13]; i14++) {
+                    i13++;
+                }
+                if (i13 == length) {
+                    return i10 - this.e;
+                }
+            }
+            i10 = i11;
+        }
+        return -1;
+    }
+
+    public final void q() {
+        this.e--;
+    }
+
+    public final String toString() {
+        int i10 = this.e;
+        return new String(this.f9071a, i10, this.f9073c - i10);
     }
 }

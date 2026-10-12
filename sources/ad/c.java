@@ -1,59 +1,34 @@
 package ad;
 
-import cf.p;
-import q3.h;
-import v7.i0;
-public final class c extends ef.a {
-    public final a f419a = new p();
-    public final StringBuilder f420b = new StringBuilder();
-    public final int f421c;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+public final class c implements Iterable {
+    public final HashMap f499a = new HashMap();
+    public final ArrayList f500b = new ArrayList();
 
-    public c(int i10) {
-        this.f421c = i10;
-    }
-
-    @Override
-    public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f420b;
-        sb2.append(charSequence);
-        sb2.append('\n');
-    }
-
-    @Override
-    public final void d() {
-        this.f419a.f417g = this.f420b.toString();
-    }
-
-    @Override
-    public final cf.a e() {
-        return this.f419a;
-    }
-
-    @Override
-    public final h h(ze.d dVar) {
-        int i10;
-        int i11 = dVar.f54615e;
-        CharSequence charSequence = dVar.f54612a;
-        int length = charSequence.length();
-        if (dVar.f54617g < 4) {
-            int i12 = i11;
-            while (true) {
-                if (i12 < length) {
-                    if ('$' != charSequence.charAt(i12)) {
-                        i10 = i12 - i11;
-                        break;
-                    }
-                    i12++;
-                } else {
-                    i10 = length - i11;
-                    break;
+    public c(HashMap hashMap) {
+        String str = (String) hashMap.get("cookie");
+        if (str != null) {
+            for (String str2 : str.split(";")) {
+                String[] split = str2.trim().split("=");
+                if (split.length == 2) {
+                    this.f499a.put(split[0], split[1]);
                 }
             }
-            int i13 = this.f421c;
-            if (i10 == i13 && i0.b(' ', charSequence, i11 + i13, length) == length) {
-                return new h(-1, -1, true);
-            }
         }
-        return h.a(dVar.f54613b);
+    }
+
+    public final void h() {
+        Iterator it = this.f500b.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw a1.g.j(it);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.f499a.keySet().iterator();
     }
 }

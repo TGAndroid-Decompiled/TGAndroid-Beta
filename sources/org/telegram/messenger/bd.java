@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class bd implements Runnable {
-    public final int f17175a;
-    public final boolean[] f17176b;
-    public final Runnable[] f17177c;
+    public final int f16871a;
+    public final boolean[] f16872b;
+    public final Runnable[] f16873c;
 
     public bd(boolean[] zArr, Runnable[] runnableArr, int i10) {
-        this.f17175a = i10;
-        this.f17176b = zArr;
-        this.f17177c = runnableArr;
+        this.f16871a = i10;
+        this.f16872b = zArr;
+        this.f16873c = runnableArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f17175a) {
+        switch (this.f16871a) {
             case 0:
-                MessagesController.P7(this.f17176b, this.f17177c);
+                MessagesController.P7(this.f16872b, this.f16873c);
                 return;
             default:
-                PasskeysController.j(this.f17176b, this.f17177c);
+                PasskeysController.j(this.f16872b, this.f16873c);
                 return;
         }
     }

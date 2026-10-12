@@ -1,100 +1,38 @@
 package vb;
 
-import android.graphics.Bitmap;
-import android.os.SystemClock;
-import c5.v;
-import com.google.android.gms.tasks.Task;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-import n6.i;
-import n6.m;
-import v7.k;
-import w7.d7;
-import w7.e7;
-import w7.j7;
-import w7.la;
-import w7.na;
-import w7.y6;
+import v7.c9;
+import v7.v8;
+import v7.y8;
 public final class a {
-    public volatile Bitmap f49751a;
-    public final int f49752b;
-    public final int f49753c;
-    public final int d;
-    public final int f49754e;
+    public final y8 f46935a;
+    public final e f46936b;
+    public final rb.d f46937c;
 
-    public a(Bitmap bitmap, int i10) {
-        m.h(bitmap);
-        this.f49751a = bitmap;
-        this.f49752b = bitmap.getWidth();
-        this.f49753c = bitmap.getHeight();
-        boolean z10 = true;
-        if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
-            z10 = false;
+    public a(e eVar, rb.d dVar) {
+        String str;
+        y8 b10;
+        this.f46936b = eVar;
+        this.f46937c = dVar;
+        if (true != eVar.f46946g) {
+            str = "play-services-mlkit-language-id";
+        } else {
+            str = "language-id";
         }
-        m.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
-        this.d = i10;
-        this.f49754e = -1;
-    }
-
-    public static a a(Bitmap bitmap, int i10) {
-        la a2;
-        Task task;
-        a aVar;
-        String a10;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        a aVar2 = new a(bitmap, i10);
-        int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
-        int allocationByteCount = bitmap.getAllocationByteCount();
-        synchronized (na.class) {
-            byte b10 = (byte) (((byte) 1) | 2);
-            if (b10 == 3) {
-                a2 = na.a(new Object());
+        synchronized (c9.class) {
+            byte b11 = (byte) (((byte) 1) | 2);
+            if (b11 == 3) {
+                b10 = c9.b(new v8(str));
             } else {
                 StringBuilder sb2 = new StringBuilder();
-                if ((b10 & 1) == 0) {
+                if ((b11 & 1) == 0) {
                     sb2.append(" enableFirelog");
                 }
-                if ((b10 & 2) == 0) {
+                if ((b11 & 2) == 0) {
                     sb2.append(" firelogEventType");
                 }
                 throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
             }
         }
-        long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
-        j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a2.f50297e;
-        long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f50300i;
-        if (hashMap.get(j7Var) == null) {
-            task = task2;
-            aVar = aVar2;
-        } else {
-            task = task2;
-            aVar = aVar2;
-            if (elapsedRealtime3 - ((Long) hashMap.get(j7Var)).longValue() <= TimeUnit.SECONDS.toMillis(30L)) {
-                return aVar;
-            }
-        }
-        hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
-        ?? obj = new Object();
-        obj.f15557c = y6.BITMAP;
-        obj.f15556b = d7.BITMAP;
-        obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f15559f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.f15558e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f15555a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
-        obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
-        e7 e7Var = new e7(obj);
-        k kVar = new k(7, false);
-        kVar.d = e7Var;
-        n6.k kVar2 = new n6.k(kVar);
-        if (task.isSuccessful()) {
-            a10 = (String) task.getResult();
-        } else {
-            a10 = i.f16417c.a(a2.f50299g);
-        }
-        qb.m.f46036a.execute(new v(a2, kVar2, a10));
-        return aVar;
+        this.f46935a = b10;
     }
 }

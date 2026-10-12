@@ -1,116 +1,116 @@
 package m2;
 
-import e2.d0;
+import e2.m0;
 import java.math.RoundingMode;
 import java.util.List;
 public abstract class n extends s {
     public final long d;
-    public final long f15707e;
-    public final List f15708f;
-    public final long f15709g;
+    public final long e;
+    public final List f15362f;
+    public final long f15363g;
     public final long h;
-    public final long f15710i;
+    public final long f15364i;
 
-    public n(j jVar, long j3, long j10, long j11, long j12, List list, long j13, long j14, long j15) {
-        super(jVar, j3, j10);
-        this.d = j11;
-        this.f15707e = j12;
-        this.f15708f = list;
-        this.f15710i = j13;
-        this.f15709g = j14;
-        this.h = j15;
+    public n(j jVar, long j10, long j11, long j12, long j13, List list, long j14, long j15, long j16) {
+        super(jVar, j10, j11);
+        this.d = j12;
+        this.e = j13;
+        this.f15362f = list;
+        this.f15364i = j14;
+        this.f15363g = j15;
+        this.h = j16;
     }
 
-    public final long b(long j3, long j10) {
-        long d = d(j3);
+    public final long b(long j10, long j11) {
+        long d = d(j10);
         if (d != -1) {
             return d;
         }
-        return (int) (f((j10 - this.h) + this.f15710i, j3) - c(j3, j10));
+        return (int) (f((j11 - this.h) + this.f15364i, j10) - c(j10, j11));
     }
 
-    public final long c(long j3, long j10) {
-        int i10 = (d(j3) > (-1L) ? 1 : (d(j3) == (-1L) ? 0 : -1));
-        long j11 = this.d;
+    public final long c(long j10, long j11) {
+        int i10 = (d(j10) > (-1L) ? 1 : (d(j10) == (-1L) ? 0 : -1));
+        long j12 = this.d;
         if (i10 == 0) {
-            long j12 = this.f15709g;
-            if (j12 != -9223372036854775807L) {
-                return Math.max(j11, f((j10 - this.h) - j12, j3));
+            long j13 = this.f15363g;
+            if (j13 != -9223372036854775807L) {
+                return Math.max(j12, f((j11 - this.h) - j13, j10));
             }
         }
-        return j11;
+        return j12;
     }
 
-    public abstract long d(long j3);
+    public abstract long d(long j10);
 
-    public final long e(long j3, long j10) {
-        long j11 = this.f15719b;
-        long j12 = this.d;
-        List list = this.f15708f;
+    public final long e(long j10, long j11) {
+        long j12 = this.f15372b;
+        long j13 = this.d;
+        List list = this.f15362f;
         if (list != null) {
-            return (((q) list.get((int) (j3 - j12))).f15716b * 1000000) / j11;
+            return (((q) list.get((int) (j10 - j13))).f15370b * 1000000) / j12;
         }
-        long d = d(j10);
-        if (d != -1 && j3 == (j12 + d) - 1) {
-            return j10 - g(j3);
+        long d = d(j11);
+        if (d != -1 && j10 == (j13 + d) - 1) {
+            return j11 - g(j10);
         }
-        return (this.f15707e * 1000000) / j11;
+        return (this.e * 1000000) / j12;
     }
 
-    public final long f(long j3, long j10) {
-        long d = d(j10);
+    public final long f(long j10, long j11) {
+        long d = d(j11);
         int i10 = (d > 0L ? 1 : (d == 0L ? 0 : -1));
-        long j11 = this.d;
+        long j12 = this.d;
         if (i10 != 0) {
-            if (this.f15708f == null) {
-                long j12 = (j3 / ((this.f15707e * 1000000) / this.f15719b)) + j11;
-                if (j12 >= j11) {
+            if (this.f15362f == null) {
+                long j13 = (j10 / ((this.e * 1000000) / this.f15372b)) + j12;
+                if (j13 >= j12) {
                     if (d == -1) {
-                        return j12;
+                        return j13;
                     }
-                    return Math.min(j12, (j11 + d) - 1);
+                    return Math.min(j13, (j12 + d) - 1);
                 }
             } else {
-                long j13 = (d + j11) - 1;
-                long j14 = j11;
-                while (j14 <= j13) {
-                    long j15 = ((j13 - j14) / 2) + j14;
-                    int i11 = (g(j15) > j3 ? 1 : (g(j15) == j3 ? 0 : -1));
+                long j14 = (d + j12) - 1;
+                long j15 = j12;
+                while (j15 <= j14) {
+                    long j16 = ((j14 - j15) / 2) + j15;
+                    int i11 = (g(j16) > j10 ? 1 : (g(j16) == j10 ? 0 : -1));
                     if (i11 < 0) {
-                        j14 = j15 + 1;
+                        j15 = j16 + 1;
                     } else if (i11 > 0) {
-                        j13 = j15 - 1;
+                        j14 = j16 - 1;
                     } else {
-                        return j15;
+                        return j16;
                     }
                 }
-                if (j14 == j11) {
-                    return j14;
+                if (j15 == j12) {
+                    return j15;
                 }
-                return j13;
+                return j14;
             }
         }
-        return j11;
+        return j12;
     }
 
-    public final long g(long j3) {
-        long j10;
-        long j11 = this.d;
-        List list = this.f15708f;
+    public final long g(long j10) {
+        long j11;
+        long j12 = this.d;
+        List list = this.f15362f;
         if (list != null) {
-            j10 = ((q) list.get((int) (j3 - j11))).f15715a - this.f15720c;
+            j11 = ((q) list.get((int) (j10 - j12))).f15369a - this.f15373c;
         } else {
-            j10 = (j3 - j11) * this.f15707e;
+            j11 = (j10 - j12) * this.e;
         }
-        long j12 = j10;
-        String str = d0.f8529a;
-        return d0.X(j12, 1000000L, this.f15719b, RoundingMode.DOWN);
+        long j13 = j11;
+        String str = m0.f8372a;
+        return m0.a0(j13, 1000000L, this.f15372b, RoundingMode.DOWN);
     }
 
-    public abstract j h(k kVar, long j3);
+    public abstract j h(k kVar, long j10);
 
     public boolean i() {
-        if (this.f15708f != null) {
+        if (this.f15362f != null) {
             return true;
         }
         return false;

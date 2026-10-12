@@ -1,51 +1,55 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.c6 f35387a;
-    public final ImageView f35388b;
-    public final TextView f35389c;
-    public final TextView d;
+import org.telegram.messenger.Utilities;
+public final class t4 extends LinearLayout {
+    public final RectF f33701a;
+    public final RectF f33702b;
+    public final RectF f33703c;
+    public final Paint d;
+    public final org.telegram.ui.ActionBar.c6 e;
+    public final u4 f33704f;
 
-    public t4(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+    public t4(u4 u4Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f35387a = c6Var;
-        setPadding(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(8.0f));
-        ImageView imageView = new ImageView(context);
-        this.f35388b = imageView;
-        addView(imageView, w7.w5.a(28.0f, 0.0f, 2.0f, 0.0f, 0.0f, 28, 51));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.w5.a(-2.0f, 42.0f, 0.0f, 0.0f, 0.0f, -1, 55));
-        TextView textView = new TextView(context);
-        this.f35389c = textView;
-        com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.w5.t(-1, -2, 55, 0, 0, 0, 2), context);
-        this.d = h;
-        h.setTextSize(1, 14.0f);
-        linearLayout.addView(h, w7.w5.t(-1, -2, 55, 0, 0, 0, 2));
-        e();
-    }
-
-    public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f35388b.setImageResource(i10);
-        this.f35389c.setText(charSequence);
-        this.d.setText(charSequence2);
+        this.f33704f = u4Var;
+        this.e = c6Var;
+        this.f33701a = new RectF();
+        this.f33702b = new RectF();
+        this.f33703c = new RectF();
+        this.d = new Paint(1);
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f35387a;
-        this.f35388b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, c6Var), PorterDuff.Mode.SRC_IN));
-        this.f35389c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
+    public final void dispatchDraw(Canvas canvas) {
+        u4 u4Var = this.f33704f;
+        float d = u4Var.f33733f.d(u4Var.d, false);
+        double d10 = d;
+        TextView[] textViewArr = u4Var.f33732c;
+        int clamp = Utilities.clamp((int) Math.floor(d10), textViewArr.length, 0);
+        int clamp2 = Utilities.clamp((int) Math.ceil(d10), textViewArr.length, 0);
+        RectF rectF = this.f33701a;
+        if (clamp >= 0 && clamp < textViewArr.length) {
+            TextView textView = textViewArr[clamp];
+            rectF.set(textView.getX(), textView.getY(), textView.getX() + textView.getWidth(), textView.getY() + textView.getHeight());
+        }
+        RectF rectF2 = this.f33702b;
+        if (clamp2 >= 0 && clamp2 < textViewArr.length) {
+            TextView textView2 = textViewArr[clamp2];
+            rectF2.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
+        }
+        RectF rectF3 = this.f33703c;
+        AndroidUtilities.lerp(rectF, rectF2, d - clamp, rectF3);
+        int m12 = org.telegram.ui.ActionBar.g6.m1(0.1f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Oh, this.e));
+        Paint paint = this.d;
+        paint.setColor(m12);
+        canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
+        super.dispatchDraw(canvas);
     }
 }

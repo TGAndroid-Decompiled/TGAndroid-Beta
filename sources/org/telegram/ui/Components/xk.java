@@ -1,32 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.view.View;
-public final class xk implements InputFilter {
-    public final int f32782a;
-    public final View f32783b;
+import org.telegram.messenger.AndroidUtilities;
+public final class xk implements Runnable {
+    public final int f31266a;
+    public final dl f31267b;
 
-    public xk(int i10, View view) {
-        this.f32782a = i10;
-        this.f32783b = view;
+    public xk(dl dlVar, int i10) {
+        this.f31266a = i10;
+        this.f31267b = dlVar;
     }
 
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        switch (this.f32782a) {
+    public final void run() {
+        switch (this.f31266a) {
             case 0:
-                return il.Q((il) this.f32783b, charSequence, i10, i11, spanned, i12, i13);
-            default:
-                gz0 gz0Var = (gz0) this.f32783b;
-                if (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0))) {
-                    if (TextUtils.isEmpty(gz0Var.getText()) || i12 == 0) {
-                        return "";
-                    }
-                    return charSequence;
+                this.f31267b.Z();
+                return;
+            case 1:
+                dl dlVar = this.f31267b;
+                EditTextBoldCursor editTextBoldCursor = dlVar.P;
+                if (!dlVar.H && !dlVar.K0 && !dlVar.f27671b.isDismissed() && dlVar.I0 && dlVar.Q0 == null && editTextBoldCursor.hasFocus() && dlVar.isShown()) {
+                    AndroidUtilities.showKeyboard(editTextBoldCursor);
+                    return;
                 }
-                return charSequence;
+                return;
+            case 2:
+                dl dlVar2 = this.f31267b;
+                if (!dlVar2.H && dlVar2.I0 && dlVar2.isShown()) {
+                    dlVar2.c0();
+                    return;
+                }
+                return;
+            case 3:
+                dl dlVar3 = this.f31267b;
+                if (!dlVar3.H) {
+                    float f7 = dlVar3.f24424j0;
+                    if (f7 < 1.0f && dlVar3.f24423i0 == null) {
+                        o1.k kVar = new o1.k(new o1.j(f7));
+                        dlVar3.f24423i0 = kVar;
+                        o1.l lVar = new o1.l(1.0f);
+                        lVar.a(0.55f);
+                        lVar.b(65.0f);
+                        kVar.f16468u = lVar;
+                        dlVar3.f24423i0.e(0.001f);
+                        dlVar3.f24423i0.b(new n7(dlVar3, 4));
+                        dlVar3.f24423i0.a(new jb(dlVar3, 2));
+                        dlVar3.f24423i0.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                dl dlVar4 = this.f31267b;
+                if (dlVar4.I0 && !dlVar4.H) {
+                    dlVar4.b0();
+                    if (dlVar4.J0) {
+                        dlVar4.c0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                dl dlVar5 = this.f31267b;
+                if (!dlVar5.m0) {
+                    dlVar5.f24426l0.setVisibility(4);
+                    return;
+                }
+                return;
         }
     }
 }

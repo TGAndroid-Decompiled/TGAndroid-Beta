@@ -2,41 +2,40 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ep0 extends nt {
-    public final org.telegram.ui.vy f25741d0;
-    public final org.telegram.ui.fy f25742e0;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ProfileActivity;
+public final class ep0 extends g8 {
+    public final Context E;
+    public final Object F;
+    public final int f24760y;
 
-    public ep0(org.telegram.ui.fy fyVar, wm0 wm0Var, Context context, int i10, int i11, org.telegram.ui.vy vyVar) {
-        super(wm0Var, context, i10, i11);
-        this.f25742e0 = fyVar;
-        this.f25741d0 = vyVar;
+    public ep0(Object obj, Context context, Context context2, int i10) {
+        super(context);
+        this.f24760y = i10;
+        this.F = obj;
+        this.E = context2;
     }
 
     @Override
-    public final void N(boolean z10) {
-        boolean z11;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        ArrayList arrayList3;
-        ArrayList arrayList4;
-        super.N(z10);
-        wo0 wo0Var = this.f25742e0.f27603g0;
-        if (!this.W && !this.X && (arrayList = this.P) != null && arrayList.isEmpty() && (arrayList2 = this.Q) != null && arrayList2.isEmpty() && (arrayList3 = this.S) != null && arrayList3.isEmpty() && (arrayList4 = this.R) != null && arrayList4.isEmpty()) {
-            z11 = false;
-        } else {
-            z11 = true;
+    public final TextView a() {
+        switch (this.f24760y) {
+            case 0:
+                sa0 sa0Var = new sa0(this.E);
+                sa0Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Si, ((gp0) this.F).M));
+                sa0Var.setTextSize(1, 12.0f);
+                sa0Var.setEllipsize(TextUtils.TruncateAt.END);
+                sa0Var.setSingleLine(true);
+                sa0Var.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
+                return sa0Var;
+            default:
+                TextView textView = new TextView(this.E);
+                textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Pi, ((ProfileActivity) this.F).f32703z0));
+                textView.setTextSize(0, AndroidUtilities.dp(13.5f));
+                textView.setSingleLine(true);
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                textView.setGravity(3);
+                return textView;
         }
-        wo0Var.e(z11, z10);
-        if (TextUtils.isEmpty(this.f28965b0)) {
-            wo0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
-            wo0Var.f26561e.setVisibility(0);
-            wo0Var.f26561e.setText(LocaleController.getString(R.string.NoChannelsMessage));
-            return;
-        }
-        wo0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        wo0Var.f26561e.setVisibility(8);
     }
 }

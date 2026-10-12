@@ -1,5 +1,5 @@
 package s1;
 public abstract class a {
-    public static final int[] f47828a = {16842755, 16842960, 16842961};
-    public static final int[] f47829b = {16842755, 16842961};
+    public static final int[] f44797a = {16842755, 16842960, 16842961};
+    public static final int[] f44798b = {16842755, 16842961};
 }

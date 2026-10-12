@@ -1,43 +1,21 @@
 package b2;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 public final class r1 {
-    public static final String f3594f;
-    public static final String f3595g;
-    public static final String h;
-    public static final String f3596i;
-    public final int f3597a;
-    public final l1 f3598b;
-    public final boolean f3599c;
-    public final int[] d;
-    public final boolean[] f3600e;
+    public static final String f2317c;
+    public static final String d;
+    public final q1 f2318a;
+    public final e9.n0 f2319b;
 
     static {
-        String str = e2.d0.f8529a;
-        f3594f = Integer.toString(0, 36);
-        f3595g = Integer.toString(1, 36);
-        h = Integer.toString(3, 36);
-        f3596i = Integer.toString(4, 36);
+        String str = e2.m0.f8372a;
+        f2317c = Integer.toString(0, 36);
+        d = Integer.toString(1, 36);
     }
 
-    public r1(l1 l1Var, boolean z10, int[] iArr, boolean[] zArr) {
-        boolean z11;
-        int i10 = l1Var.f3413a;
-        this.f3597a = i10;
-        boolean z12 = false;
-        if (i10 == iArr.length && i10 == zArr.length) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        e2.d.b(z11);
-        this.f3598b = l1Var;
-        if (z10 && i10 > 1) {
-            z12 = true;
-        }
-        this.f3599c = z12;
-        this.d = (int[]) iArr.clone();
-        this.f3600e = (boolean[]) zArr.clone();
+    public r1(q1 q1Var, int i10) {
+        this(q1Var, e9.n0.y(Integer.valueOf(i10)));
     }
 
     public final boolean equals(Object obj) {
@@ -46,7 +24,7 @@ public final class r1 {
         }
         if (obj != null && r1.class == obj.getClass()) {
             r1 r1Var = (r1) obj;
-            if (this.f3599c == r1Var.f3599c && this.f3598b.equals(r1Var.f3598b) && Arrays.equals(this.d, r1Var.d) && Arrays.equals(this.f3600e, r1Var.f3600e)) {
+            if (this.f2318a.equals(r1Var.f2318a) && this.f2319b.equals(r1Var.f2319b)) {
                 return true;
             }
         }
@@ -54,7 +32,14 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        int hashCode = Arrays.hashCode(this.d);
-        return Arrays.hashCode(this.f3600e) + ((hashCode + (((this.f3598b.hashCode() * 31) + (this.f3599c ? 1 : 0)) * 31)) * 31);
+        return (this.f2319b.hashCode() * 31) + this.f2318a.hashCode();
+    }
+
+    public r1(q1 q1Var, List list) {
+        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= q1Var.f2291a)) {
+            throw new IndexOutOfBoundsException();
+        }
+        this.f2318a = q1Var;
+        this.f2319b = e9.n0.u(list);
     }
 }

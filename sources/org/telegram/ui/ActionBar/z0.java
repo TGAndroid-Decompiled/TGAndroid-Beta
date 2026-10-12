@@ -1,22 +1,22 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.g10;
 import org.telegram.ui.Components.gd;
-import org.telegram.ui.Components.n10;
-public final class z0 extends n10 {
-    public final a1 f21484e;
+public final class z0 extends g10 {
+    public final a1 e;
 
     public z0(a1 a1Var) {
         super(false);
-        this.f21484e = a1Var;
+        this.e = a1Var;
     }
 
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(gd.a(this.f21484e.getSpeed()));
+        sb2.append(gd.a(this.e.getSpeed()));
         sb2.append("x  ");
-        return org.telegram.messenger.v0.h(R.string.AccDescrSpeedSlider, sb2);
+        return org.telegram.messenger.q.h(R.string.AccDescrSpeedSlider, sb2);
     }
 
     @Override
@@ -36,11 +36,11 @@ public final class z0 extends n10 {
 
     @Override
     public final float k() {
-        return this.f21484e.getSpeed();
+        return this.e.getSpeed();
     }
 
     @Override
     public final void l(float f7) {
-        this.f21484e.d(f7, true);
+        this.e.d(f7, true);
     }
 }

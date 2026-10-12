@@ -1,33 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class yx extends AnimatorListenerAdapter {
-    public final int f33220a;
-    public final boolean f33221b;
-    public final d00 f33222c;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
+import org.telegram.messenger.AndroidUtilities;
+public final class yx extends vz {
+    public final wz d;
 
-    public yx(d00 d00Var, boolean z10, int i10) {
-        this.f33220a = i10;
-        this.f33222c = d00Var;
-        this.f33221b = z10;
+    public yx(wz wzVar) {
+        super(wzVar, 1);
+        this.d = wzVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33220a) {
-            case 0:
-                if (!this.f33221b) {
-                    this.f33222c.f25138x.setVisibility(4);
-                    return;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 0) {
+            this.d.f31023f0 = false;
+        }
+        super.a(recyclerView, i10);
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        wz wzVar = this.d;
+        vy vyVar = wzVar.S;
+        vx vxVar = wzVar.Q;
+        wzVar.U(vxVar.I0());
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = wzVar.f31037j2) != null) {
+            fVar.f(i10, i11);
+        }
+        super.b(recyclerView, i10, i11);
+        if (vyVar != null && wzVar.P.getAdapter() == vyVar) {
+            vy vyVar2 = vyVar.f30677x.f29818a;
+            if (!vyVar2.F.V.F && !vyVar2.E) {
+                if (vxVar.N0() + 20 > vyVar.h()) {
+                    uy uyVar = vyVar.f30677x;
+                    Objects.requireNonNull(uyVar);
+                    AndroidUtilities.runOnUIThread(new dx(uyVar, 1));
                 }
-                return;
-            default:
-                if (!this.f33221b) {
-                    this.f33222c.f25142y.setVisibility(4);
-                    return;
-                }
-                return;
+            }
         }
     }
 }

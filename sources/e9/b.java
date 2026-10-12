@@ -2,103 +2,58 @@ package e9;
 
 import j$.util.Objects;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-public final class b extends l1 {
-    public final d f8714b;
+public final class b implements Iterator {
+    public final Iterator f8529a;
+    public Object f8530b = null;
+    public Collection f8531c = null;
+    public Iterator d = d1.f8546a;
+    public final p1 e;
+    public final int f8532f;
 
-    public b(d dVar) {
-        super(0);
-        this.f8714b = dVar;
+    public b(p1 p1Var, int i10) {
+        this.f8532f = i10;
+        this.e = p1Var;
+        this.f8529a = p1Var.e.entrySet().iterator();
     }
 
     @Override
-    public final void clear() {
-        this.f8714b.clear();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        Set entrySet = this.f8714b.f8722b.entrySet();
-        entrySet.getClass();
-        try {
-            return entrySet.contains(obj);
-        } catch (ClassCastException | NullPointerException unused) {
+    public final boolean hasNext() {
+        if (!this.f8529a.hasNext() && !this.d.hasNext()) {
             return false;
-        }
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return this.f8714b.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new c(this.f8714b);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        Object obj2;
-        if (!contains(obj)) {
-            return false;
-        }
-        Map.Entry entry = (Map.Entry) obj;
-        Objects.requireNonNull(entry);
-        v0 v0Var = (v0) this.f8714b.f8724e;
-        Object key = entry.getKey();
-        Map map = v0Var.d;
-        map.getClass();
-        try {
-            obj2 = map.remove(key);
-        } catch (ClassCastException | NullPointerException unused) {
-            obj2 = null;
-        }
-        Collection collection = (Collection) obj2;
-        if (collection != null) {
-            int size = collection.size();
-            collection.clear();
-            v0Var.f8811e -= size;
-            return true;
         }
         return true;
     }
 
     @Override
-    public final boolean removeAll(Collection collection) {
-        try {
-            collection.getClass();
-            return super.removeAll(collection);
-        } catch (UnsupportedOperationException unused) {
-            boolean z10 = false;
-            for (Object obj : collection) {
-                z10 |= remove(obj);
-            }
-            return z10;
+    public final Object next() {
+        if (!this.d.hasNext()) {
+            Map.Entry entry = (Map.Entry) this.f8529a.next();
+            this.f8530b = entry.getKey();
+            Collection collection = (Collection) entry.getValue();
+            this.f8531c = collection;
+            this.d = collection.iterator();
+        }
+        Object obj = this.f8530b;
+        Object next = this.d.next();
+        switch (this.f8532f) {
+            case 0:
+                return next;
+            default:
+                return new j0(obj, next);
         }
     }
 
     @Override
-    public final boolean retainAll(Collection collection) {
-        try {
-            collection.getClass();
-            return super.retainAll(collection);
-        } catch (UnsupportedOperationException unused) {
-            HashSet hashSet = new HashSet(q.c(collection.size()));
-            for (Object obj : collection) {
-                if (contains(obj) && (obj instanceof Map.Entry)) {
-                    hashSet.add(((Map.Entry) obj).getKey());
-                }
-            }
-            return this.f8714b.keySet().retainAll(hashSet);
+    public final void remove() {
+        this.d.remove();
+        Collection collection = this.f8531c;
+        Objects.requireNonNull(collection);
+        if (collection.isEmpty()) {
+            this.f8529a.remove();
         }
-    }
-
-    @Override
-    public final int size() {
-        return this.f8714b.f8722b.size();
+        p1 p1Var = this.e;
+        p1Var.f8603f--;
     }
 }

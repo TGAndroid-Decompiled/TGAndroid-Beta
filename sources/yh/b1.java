@@ -1,63 +1,22 @@
 package yh;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class b1 implements Runnable {
-    public final int f52504a;
-    public final s3 f52505b;
-    public final long f52506c;
+import android.content.Context;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.zc;
+public final class b1 extends zh.r3 {
+    public final p1 f48798s1;
 
-    public b1(s3 s3Var, long j3, int i10) {
-        this.f52504a = i10;
-        this.f52505b = s3Var;
-        this.f52506c = j3;
+    public b1(p1 p1Var, Context context, int i10, long j10, c6 c6Var) {
+        super(context, i10, j10, c6Var, null);
+        this.f48798s1 = p1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f52504a) {
-            case 0:
-                s3 s3Var = this.f52505b;
-                a1 a1Var = s3Var.f53422o1;
-                s3Var.s2(1, true, null);
-                if (this.f52506c > 0) {
-                    AndroidUtilities.cancelRunOnUIThread(a1Var);
-                    AndroidUtilities.runOnUIThread(a1Var);
-                    return;
-                }
-                return;
-            case 1:
-                this.f52505b.Y1(this.f52506c);
-                return;
-            case 2:
-                s3.Q0(this.f52505b, this.f52506c);
-                return;
-            case 3:
-                s3.e1(this.f52505b, this.f52506c);
-                return;
-            case 4:
-                this.f52505b.Y1(this.f52506c);
-                return;
-            case 5:
-                s3.m0(this.f52505b, this.f52506c);
-                return;
-            case 6:
-                this.f52505b.Y1(this.f52506c);
-                return;
-            case 7:
-                s3.Q(this.f52505b, this.f52506c);
-                return;
-            case 8:
-                this.f52505b.Y1(this.f52506c);
-                return;
-            case 9:
-                s3.C0(this.f52505b, this.f52506c);
-                return;
-            case 10:
-                this.f52505b.Y1(this.f52506c);
-                return;
-            default:
-                this.f52505b.Y1(this.f52506c);
-                return;
-        }
+    public final zc getBulletinFactory() {
+        c6 c6Var;
+        p1 p1Var = this.f48798s1;
+        org.telegram.ui.ActionBar.c3 c3Var = p1Var.container;
+        c6Var = p1Var.resourcesProvider;
+        return new zc(c3Var, c6Var);
     }
 }

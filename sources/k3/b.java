@@ -1,100 +1,115 @@
 package k3;
 
+import c3.l;
 import c3.o;
 import c3.p;
 import c3.q;
 import c3.t;
-import e2.v;
-import e6.n;
-import e9.a1;
-import e9.g0;
-import e9.i0;
+import e2.x;
+import e9.l0;
+import e9.n0;
+import e9.x1;
+import j$.util.Objects;
 import java.util.List;
-import w3.l;
+import w3.m;
 public final class b implements o {
-    public q f14586b;
-    public int f14587c;
+    public q f14064b;
+    public int f14065c;
     public int d;
-    public int f14588e;
-    public r3.a f14590g;
+    public int e;
+    public l3.b f14067g;
     public p h;
-    public n f14591i;
-    public l f14592j;
-    public final v f14585a = new v(2);
-    public long f14589f = -1;
-
-    public final void a() {
-        q qVar = this.f14586b;
-        qVar.getClass();
-        qVar.k1();
-        this.f14586b.d2(new t(-9223372036854775807L));
-        this.f14587c = 6;
-    }
+    public ad.d f14068i;
+    public m f14069j;
+    public final x f14063a = new x(2);
+    public long f14066f = -1;
 
     @Override
-    public final boolean b(p pVar) {
-        c3.l lVar = (c3.l) pVar;
-        v vVar = this.f14585a;
-        vVar.G(2);
-        lVar.f(vVar.f8581a, 0, 2, false);
-        if (vVar.D() == 65496) {
-            vVar.G(2);
-            lVar.f(vVar.f8581a, 0, 2, false);
-            int D = vVar.D();
-            this.d = D;
-            if (D == 65504) {
-                vVar.G(2);
-                lVar.f(vVar.f8581a, 0, 2, false);
-                lVar.s(vVar.D() - 2, false);
-                vVar.G(2);
-                lVar.f(vVar.f8581a, 0, 2, false);
-                this.d = vVar.D();
-            }
-            if (this.d == 65505) {
-                return true;
+    public final boolean a(p pVar) {
+        String v;
+        l lVar = (l) pVar;
+        x xVar = this.f14063a;
+        xVar.K(2);
+        lVar.j(xVar.f8411a, 0, 2, false);
+        if (xVar.H() == 65496) {
+            while (true) {
+                xVar.K(2);
+                lVar.j(xVar.f8411a, 0, 2, false);
+                int H = xVar.H();
+                this.d = H;
+                if (H == 65498) {
+                    break;
+                }
+                xVar.K(2);
+                lVar.a(0, 2, xVar.f8411a);
+                int H2 = xVar.H() - 2;
+                if (H2 < 0) {
+                    break;
+                } else if (this.d != 65505) {
+                    lVar.v(H2, false);
+                } else {
+                    xVar.K(H2);
+                    lVar.j(xVar.f8411a, 0, H2, false);
+                    if (Objects.equals(xVar.v(), "http://ns.adobe.com/xap/1.0/") && (v = xVar.v()) != null) {
+                        for (int i10 = 0; i10 < 4; i10++) {
+                            if (v.contains(d.f14073a[i10] + "=\"1\"")) {
+                                return true;
+                            }
+                        }
+                        continue;
+                    }
+                }
             }
         }
         return false;
     }
 
     @Override
-    public final void g(q qVar) {
-        this.f14586b = qVar;
+    public final void c(q qVar) {
+        this.f14064b = qVar;
     }
 
     @Override
-    public final void h(long j3, long j10) {
-        if (j3 == 0) {
-            this.f14587c = 0;
-            this.f14592j = null;
-        } else if (this.f14587c == 5) {
-            l lVar = this.f14592j;
-            lVar.getClass();
-            lVar.h(j3, j10);
+    public final void d(long j10, long j11) {
+        if (j10 == 0) {
+            this.f14065c = 0;
+            this.f14069j = null;
+        } else if (this.f14065c == 5) {
+            m mVar = this.f14069j;
+            mVar.getClass();
+            mVar.d(j10, j11);
         }
     }
 
     @Override
-    public final List i() {
-        g0 g0Var = i0.f8749b;
-        return a1.f8712e;
+    public final List e() {
+        l0 l0Var = n0.f8592b;
+        return x1.e;
     }
 
     @Override
-    public final int m(c3.p r26, c3.s r27) {
-        throw new UnsupportedOperationException("Method not decompiled: k3.b.m(c3.p, c3.s):int");
+    public final int f(c3.p r26, c3.s r27) {
+        throw new UnsupportedOperationException("Method not decompiled: k3.b.f(c3.p, c3.s):int");
+    }
+
+    public final void g() {
+        q qVar = this.f14064b;
+        qVar.getClass();
+        qVar.D();
+        this.f14064b.K(new t(-9223372036854775807L));
+        this.f14065c = 6;
     }
 
     @Override
     public final void release() {
-        l lVar = this.f14592j;
-        if (lVar != null) {
-            lVar.getClass();
+        m mVar = this.f14069j;
+        if (mVar != null) {
+            mVar.getClass();
         }
     }
 
     @Override
-    public final o c() {
+    public final o b() {
         return this;
     }
 }

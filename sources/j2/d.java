@@ -1,17 +1,17 @@
 package j2;
 
-import ai.v7;
 import android.content.SharedPreferences;
 import android.widget.EditText;
-import e2.m;
-import e2.v;
+import bi.g7;
+import e2.o;
+import e2.x;
 import java.util.List;
-import m4.b1;
-import m4.c0;
-import m4.c1;
-import m4.g1;
-import m4.r;
-import m4.z0;
+import m4.f0;
+import m4.f1;
+import m4.h1;
+import m4.j1;
+import m4.n1;
+import m4.w;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -25,64 +25,88 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.hw0;
-import z3.n;
-public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, MessagesStorage.StringCallback, e2.h {
-    public final int f13683a;
-    public final int f13684b;
-    public final long f13685c;
+import org.telegram.ui.Components.xv0;
+import v7.u6;
+public final class d implements o, f1, h1, RequestDelegateTimestamp, z1, MessagesStorage.StringCallback, e2.j {
+    public final int f12521a;
+    public final int f12522b;
+    public final long f12523c;
     public final Object d;
 
-    public d(long j3, int i10, Object obj, int i11) {
-        this.f13683a = i11;
-        this.f13685c = j3;
-        this.f13684b = i10;
+    public d(long j10, int i10, Object obj, int i11) {
+        this.f12521a = i11;
+        this.f12523c = j10;
+        this.f12522b = i10;
         this.d = obj;
     }
 
     @Override
     public void accept(Object obj) {
         boolean z10;
-        n nVar = (n) this.d;
-        z3.a aVar = (z3.a) obj;
-        e2.d.h(nVar.h);
-        byte[] I2 = ob.a.I2(aVar.f53720a, aVar.f53722c);
-        v vVar = nVar.f53745c;
-        vVar.getClass();
-        vVar.H(I2.length, I2);
-        nVar.f53743a.d(I2.length, vVar);
-        long j3 = aVar.f53721b;
-        int i10 = (j3 > (-9223372036854775807L) ? 1 : (j3 == (-9223372036854775807L) ? 0 : -1));
-        long j10 = this.f13685c;
+        z3.o oVar = (z3.o) this.d;
+        z3.b bVar = (z3.b) obj;
+        oVar.h.getClass();
+        byte[] s22 = sb.a.s2(bVar.f49252a, bVar.f49254c);
+        x xVar = oVar.f49276c;
+        xVar.getClass();
+        xVar.L(s22.length, s22);
+        oVar.f49274a.d(s22.length, xVar);
+        long j10 = bVar.f49253b;
+        int i10 = (j10 > (-9223372036854775807L) ? 1 : (j10 == (-9223372036854775807L) ? 0 : -1));
+        long j11 = this.f12523c;
         if (i10 == 0) {
-            if (nVar.h.f3645w == Long.MAX_VALUE) {
+            if (oVar.h.f2523x == Long.MAX_VALUE) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            e2.d.g(z10);
+            u6.p(z10);
         } else {
-            long j11 = nVar.h.f3645w;
-            if (j11 == Long.MAX_VALUE) {
-                j10 += j3;
+            long j12 = oVar.h.f2523x;
+            if (j12 == Long.MAX_VALUE) {
+                j11 += j10;
             } else {
-                j10 = j3 + j11;
+                j11 = j10 + j12;
             }
         }
-        nVar.f53743a.c(j10, this.f13684b | 1, I2.length, 0, null);
+        oVar.f49274a.c(j11, this.f12522b | 1, s22.length, 0, null);
     }
 
     @Override
-    public void f(a2 a2Var, int i10) {
-        int i11 = this.f13683a;
+    public Object c(f0 f0Var, w wVar, int i10) {
+        int i11;
+        long j10;
+        List list = (List) this.d;
+        int i12 = this.f12522b;
+        if (i12 == -1) {
+            i11 = f0Var.f15440t.n0();
+        } else {
+            i11 = i12;
+        }
+        if (i12 == -1) {
+            j10 = f0Var.f15440t.M0();
+        } else {
+            j10 = this.f12523c;
+        }
+        return f0Var.q(wVar, list, i11, j10);
+    }
+
+    @Override
+    public void e(n1 n1Var, w wVar) {
+        n1Var.r(((j1) this.d).K0(wVar, n1Var, this.f12522b), this.f12523c);
+    }
+
+    @Override
+    public void g(a2 a2Var, int i10) {
+        int i11 = this.f12521a;
         Object obj = this.d;
-        int i12 = this.f13684b;
-        long j3 = this.f13685c;
+        int i12 = this.f12522b;
+        long j10 = this.f12523c;
         switch (i11) {
             case 4:
                 EditText editText = (EditText) obj;
                 String str = "";
-                if (j3 > 0) {
+                if (j10 > 0) {
                     TLRPC.UserFull userFull = MessagesController.getInstance(i12).getUserFull(UserConfig.getInstance(i12).getClientUserId());
                     String trim = editText.getText().toString().replace("\n", " ").replaceAll(" +", " ").trim();
                     if (userFull != null) {
@@ -96,16 +120,16 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
                             return;
                         }
                         userFull.about = trim;
-                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j3), userFull);
+                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j10), userFull);
                     }
                     TL_account.updateProfile updateprofile = new TL_account.updateProfile();
                     updateprofile.about = trim;
                     updateprofile.flags |= 4;
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j3));
-                    ConnectionsManager.getInstance(i12).sendRequest(updateprofile, new v7(12), 2);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j10));
+                    ConnectionsManager.getInstance(i12).sendRequest(updateprofile, new g7(12), 2);
                 } else {
-                    long j10 = -j3;
-                    TLRPC.ChatFull chatFull = MessagesController.getInstance(i12).getChatFull(j10);
+                    long j11 = -j10;
+                    TLRPC.ChatFull chatFull = MessagesController.getInstance(i12).getChatFull(j11);
                     String obj2 = editText.getText().toString();
                     if (chatFull != null) {
                         String str3 = chatFull.about;
@@ -123,16 +147,16 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
                         Boolean bool = Boolean.FALSE;
                         notificationCenter.lambda$postNotificationNameOnUIThread$1(i13, chatFull, 0, bool, bool);
                     }
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j3));
-                    MessagesController.getInstance(i12).updateChatAbout(j10, obj2, chatFull);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j10));
+                    MessagesController.getInstance(i12).updateChatAbout(j11, obj2, chatFull);
                 }
                 a2Var.dismiss();
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
-                if (j3 != 0) {
-                    edit.putInt("color_" + j3, 0);
+                if (j10 != 0) {
+                    edit.putInt("color_" + j10, 0);
                 } else if (i12 == 1) {
                     edit.putInt("MessagesLed", 0);
                 } else if (i12 == 0) {
@@ -154,63 +178,39 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
     }
 
     @Override
-    public void g(g1 g1Var, r rVar) {
-        g1Var.s(((c1) this.d).J0(rVar, g1Var, this.f13684b), this.f13685c);
-    }
-
-    @Override
-    public Object h(c0 c0Var, r rVar, int i10) {
-        int i11;
-        long j3;
-        List list = (List) this.d;
-        int i12 = this.f13684b;
-        if (i12 == -1) {
-            i11 = c0Var.f15749t.m0();
-        } else {
-            i11 = i12;
-        }
-        if (i12 == -1) {
-            j3 = c0Var.f15749t.J0();
-        } else {
-            j3 = this.f13685c;
-        }
-        return c0Var.q(rVar, list, i11, j3);
-    }
-
-    @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        bVar.f((a) this.d, this.f13684b, this.f13685c);
+        bVar.f((a) this.d, this.f12522b, this.f12523c);
     }
 
     @Override
     public void run(String str) {
-        hw0.i((hw0) this.d, this.f13685c, this.f13684b, str);
+        xv0.i((xv0) this.d, this.f12523c, this.f12522b, str);
     }
 
-    public d(a aVar, int i10, long j3, long j10) {
-        this.f13683a = 0;
+    public d(a aVar, int i10, long j10, long j11) {
+        this.f12521a = 0;
         this.d = aVar;
-        this.f13684b = i10;
-        this.f13685c = j3;
+        this.f12522b = i10;
+        this.f12523c = j10;
     }
 
     @Override
-    public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f13684b, this.f13685c, tLObject, tL_error, j3);
+    public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j10) {
+        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f12522b, this.f12523c, tLObject, tL_error, j10);
     }
 
-    public d(Object obj, int i10, long j3, int i11) {
-        this.f13683a = i11;
+    public d(Object obj, int i10, long j10, int i11) {
+        this.f12521a = i11;
         this.d = obj;
-        this.f13684b = i10;
-        this.f13685c = j3;
+        this.f12522b = i10;
+        this.f12523c = j10;
     }
 
-    public d(Object obj, long j3, int i10, int i11) {
-        this.f13683a = i11;
+    public d(Object obj, long j10, int i10, int i11) {
+        this.f12521a = i11;
         this.d = obj;
-        this.f13685c = j3;
-        this.f13684b = i10;
+        this.f12523c = j10;
+        this.f12522b = i10;
     }
 }

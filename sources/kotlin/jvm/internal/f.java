@@ -1,4 +1,4 @@
 package kotlin.jvm.internal;
-public interface f extends hd.a {
+public interface f extends id.a {
     int getArity();
 }

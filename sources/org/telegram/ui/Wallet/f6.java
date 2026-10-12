@@ -1,30 +1,41 @@
 package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
 public final class f6 implements Runnable {
-    public final int f34759a;
-    public final WalletEngine2 f34760b;
-    public final Utilities.Callback2 f34761c;
-    public final TL_wallet.sendTransfer d;
-    public final String f34762e;
+    public final int f33180a;
+    public final Utilities.Callback2 f33181b;
 
-    public f6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, TL_wallet.sendTransfer sendtransfer, String str, int i10) {
-        this.f34759a = i10;
-        this.f34760b = walletEngine2;
-        this.f34761c = callback2;
-        this.d = sendtransfer;
-        this.f34762e = str;
+    public f6(int i10, Utilities.Callback2 callback2) {
+        this.f33180a = i10;
+        this.f33181b = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f34759a) {
+        switch (this.f33180a) {
             case 0:
-                this.f34760b.lambda$prepareTonConnectTransfer$4(this.f34761c, this.d, this.f34762e);
+                this.f33181b.run(null, "Wallet engine is closed");
+                return;
+            case 1:
+                this.f33181b.run(null, "NO_WALLET_ENGINE");
+                return;
+            case 2:
+                this.f33181b.run(null, "NO_WALLET_ENGINE");
+                return;
+            case 3:
+                this.f33181b.run(null, "Recovery phrase is required");
+                return;
+            case 4:
+                this.f33181b.run(null, "Transaction hash is required");
+                return;
+            case 5:
+                this.f33181b.run(null, "NO_WALLET_ENGINE");
+                return;
+            case 6:
+                this.f33181b.run(null, "NO_WALLET_ENGINE");
                 return;
             default:
-                this.f34760b.lambda$prepareSendNFT$25(this.f34761c, this.d, this.f34762e);
+                this.f33181b.run(null, "NO_WALLET_ENGINE");
                 return;
         }
     }

@@ -1,34 +1,119 @@
 package rg;
 
+import android.content.Context;
+import android.graphics.PointF;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.ActionBar.e3;
-public final class s0 extends s4.t0 {
-    public final int f47657a;
-    public final y0 f47658b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.yh;
+import org.telegram.ui.Components.il0;
+import w7.a6;
+public final class s0 extends j {
+    public final q0 f44537q0;
+    public int f44538r0;
+    public int f44539s0;
+    public boolean f44540t0;
+    public p0 f44541u0;
 
-    public s0(y0 y0Var, int i10) {
-        this.f47657a = i10;
-        this.f47658b = y0Var;
+    public s0(Context context, PointF pointF, int i10, p0 p0Var, float f7, int i11) {
+        super(context, pointF);
+        q0 q0Var = new q0(context, f7);
+        this.f44537q0 = q0Var;
+        q0Var.setMaxWidth(i11);
+        this.f44541u0 = p0Var;
+        q0Var.b(i10, p0Var, false);
+        m();
+        this.f44539s0 = 3;
+        q0Var.c(3, this.f44538r0);
+        addView(q0Var, a6.e(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        switch (this.f47657a) {
-            case 0:
-                y0 y0Var = this.f47658b;
-                viewGroup = ((e3) y0Var).containerView;
-                viewGroup.invalidate();
-                y0Var.A();
-                return;
-            default:
-                y0 y0Var2 = this.f47658b;
-                viewGroup2 = ((e3) y0Var2).containerView;
-                viewGroup2.invalidate();
-                y0Var2.A();
-                return;
+    public final i a() {
+        return new r0(this, getContext());
+    }
+
+    public int getColor() {
+        return this.f44538r0;
+    }
+
+    @Override
+    public float getMaxScale() {
+        return 1.5f;
+    }
+
+    public int getNextType() {
+        int i10 = this.f44539s0 + 1;
+        if (i10 == 4) {
+            return !this.f44540t0 ? 1 : 0;
         }
+        return i10;
+    }
+
+    @Override
+    public il0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float x10 = yh.x(dp, 2.0f, getPositionX(), scaleX);
+        return new il0(x10, yh.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        return this.f44537q0.h;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
+        return this.f44537q0.f44488f;
+    }
+
+    @Override
+    public float getStickyPaddingRight() {
+        return this.f44537q0.f44488f;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f44537q0.h;
+    }
+
+    public int getType() {
+        return this.f44539s0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public void setColor(int i10) {
+        this.f44540t0 = true;
+        this.f44538r0 = i10;
+    }
+
+    public void setMaxWidth(int i10) {
+        this.f44537q0.setMaxWidth(i10);
+    }
+
+    public void setType(int i10) {
+        this.f44539s0 = i10;
+        this.f44537q0.c(i10, this.f44538r0);
     }
 }

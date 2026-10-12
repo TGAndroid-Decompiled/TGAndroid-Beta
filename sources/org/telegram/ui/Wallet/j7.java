@@ -1,88 +1,61 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.zc;
-public final class j7 implements Utilities.Callback {
-    public final int f34928a;
-    public final n7 f34929b;
-    public final of.e f34930c;
+import org.telegram.messenger.yh;
+public final class j7 extends LinearLayout implements org.telegram.ui.ActionBar.x5 {
+    public final org.telegram.ui.ActionBar.c6 f33367a;
+    public final TextView f33368b;
+    public final TextView f33369c;
+    public final ImageView d;
 
-    public j7(n7 n7Var, of.e eVar, int i10) {
-        this.f34928a = i10;
-        this.f34929b = n7Var;
-        this.f34930c = eVar;
+    public j7(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        setOrientation(0);
+        this.f33367a = c6Var;
+        setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(13.0f), 0);
+        LinearLayout e = yh.e(context, 1);
+        e.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(e, w7.a6.p(0, -2, 1.0f, 19, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.f33368b = textView;
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
+        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(e, textView, w7.a6.t(-1, -2, 55, 0, 0, 0, 2), context);
+        this.f33369c = i10;
+        i10.setTextSize(1, 14.0f);
+        e.addView(i10, w7.a6.t(-1, -2, 55, 0, 0, 0, 0));
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.attach_arrow_right);
+        addView(imageView, w7.a6.t(21, 21, 21, 9, 0, 0, 0));
+        d();
     }
 
     @Override
-    public final void run(Object obj) {
-        String str = (String) obj;
-        switch (this.f34928a) {
-            case 0:
-                n7 n7Var = this.f34929b;
-                n7Var.getClass();
-                this.f34930c.b();
-                if (!TextUtils.isEmpty(str)) {
-                    zc.a0(n7Var).e0(str, false);
-                    return;
-                }
-                return;
-            case 1:
-                this.f34930c.c(false);
-                n7 n7Var2 = this.f34929b;
-                org.telegram.ui.ActionBar.b5 parentLayout = n7Var2.getParentLayout();
-                if (parentLayout != null) {
-                    ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj2 = arrayList.get(i10);
-                        i10++;
-                        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj2;
-                        if ((m2Var instanceof u8) || (m2Var instanceof r7) || (m2Var instanceof b9)) {
-                            ((ActionBarLayout) parentLayout).a0(m2Var, false);
-                        }
-                    }
-                }
-                if (str != null) {
-                    zc.a0(n7Var2).e0(str, false);
-                    return;
-                }
-                sc M = zc.a0(n7Var2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                M.f30536j = 5000;
-                M.j();
-                return;
-            default:
-                n7 n7Var3 = this.f34929b;
-                n7Var3.getClass();
-                this.f34930c.b();
-                if (str != null) {
-                    zc.a0(n7Var3).e0(str, false);
-                    return;
-                }
-                org.telegram.ui.ActionBar.b5 parentLayout2 = n7Var3.getParentLayout();
-                if (parentLayout2 == null) {
-                    n7Var3.finishFragment();
-                    return;
-                }
-                ArrayList arrayList2 = new ArrayList(parentLayout2.getFragmentStack());
-                int size2 = arrayList2.size();
-                int i11 = 0;
-                while (i11 < size2) {
-                    Object obj3 = arrayList2.get(i11);
-                    i11++;
-                    org.telegram.ui.ActionBar.m2 m2Var2 = (org.telegram.ui.ActionBar.m2) obj3;
-                    if ((m2Var2 instanceof u8) || (m2Var2 instanceof r7) || (m2Var2 instanceof b9) || (m2Var2 instanceof n7)) {
-                        ((ActionBarLayout) parentLayout2).a0(m2Var2, false);
-                    }
-                }
-                n7Var3.finishFragment();
-                return;
-        }
+    public final void d() {
+        int i10 = org.telegram.ui.ActionBar.g6.G6;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f33367a;
+        this.f33368b.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
+        int i11 = org.telegram.ui.ActionBar.g6.f20305z6;
+        this.f33369c.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
+        this.d.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(i11, c6Var), PorterDuff.Mode.SRC_IN));
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

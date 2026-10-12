@@ -1,36 +1,36 @@
 package v7;
 
 import w7.pa;
-import x7.ja;
-import z7.ag;
-public final class a9 implements pa.b {
-    public final int f49365a;
-    public final l5.r f49366b;
+import x7.ia;
+import z7.zf;
+public final class a9 implements qa.b {
+    public final int f46579a;
+    public final l5.q f46580b;
 
-    public a9(l5.r rVar, int i10) {
-        this.f49365a = i10;
-        this.f49366b = rVar;
+    public a9(l5.q qVar, int i10) {
+        this.f46579a = i10;
+        this.f46580b = qVar;
     }
 
     @Override
     public final Object get() {
-        switch (this.f49365a) {
+        switch (this.f46579a) {
             case 0:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("json"), d9.f49395e);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("json"), d9.e);
             case 1:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("proto"), d9.d);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), d9.d);
             case 2:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("json"), pa.f50343e);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("json"), pa.e);
             case 3:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("proto"), pa.d);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), pa.d);
             case 4:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("json"), ja.f51065e);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("json"), ia.e);
             case 5:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("proto"), ja.d);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), ia.d);
             case 6:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("json"), ag.f53820e);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("json"), zf.e);
             default:
-                return this.f49366b.a("FIREBASE_ML_SDK", new i5.c("proto"), ag.d);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), zf.d);
         }
     }
 }

@@ -1,25 +1,78 @@
 package k1;
 
+import androidx.lifecycle.k0;
+import be.c0;
+import be.f0;
 import java.io.File;
-import java.io.FileOutputStream;
-public final class z extends ld.c {
-    public a0 f14396a;
-    public File f14397b;
-    public FileOutputStream f14398c;
-    public FileOutputStream d;
-    public Object f14399e;
-    public final a0 f14400f;
-    public int h;
+import java.util.LinkedHashSet;
+import java.util.List;
+import v7.h8;
+public final class z implements f {
+    public static final LinkedHashSet f13826r = new LinkedHashSet();
+    public static final Object f13827s = new Object();
+    public final k0 f13828a;
+    public final rb.b f13829b;
+    public final ee.l f13830c = new ee.l(new n(this, null, 1));
+    public final String d = ".tmp";
+    public final id.g e = h8.a(new k0(this, 1));
+    public final ee.n f13831f = new ee.n(b0.f13764a);
+    public List h;
+    public final com.google.firebase.messaging.s f13832n;
 
-    public z(a0 a0Var, ld.c cVar) {
-        super(cVar);
-        this.f14400f = a0Var;
+    public z(k0 k0Var, List list, rb.b bVar, c0 c0Var) {
+        this.f13828a = k0Var;
+        this.f13829b = bVar;
+        this.h = jd.g.m(list);
+        this.f13832n = new com.google.firebase.messaging.s(c0Var, new m(this, 0), new n(this, null, 0));
+    }
+
+    public static final java.lang.Object b(k1.z r8, k1.j r9, md.c r10) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.b(k1.z, k1.j, md.c):java.lang.Object");
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f14399e = obj;
-        this.h |= Integer.MIN_VALUE;
-        return this.f14400f.j(null, this);
+    public final Object a(td.p pVar, md.c cVar) {
+        be.t a2 = f0.a();
+        this.f13832n.o(new j(pVar, a2, (a0) this.f13831f.c(), cVar.getContext()));
+        Object h = a2.h(cVar);
+        ld.a aVar = ld.a.f14658a;
+        return h;
+    }
+
+    public final File c() {
+        return (File) this.e.a();
+    }
+
+    public final java.lang.Object d(md.c r13) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.d(md.c):java.lang.Object");
+    }
+
+    public final java.lang.Object e(md.c r5) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.e(md.c):java.lang.Object");
+    }
+
+    public final java.lang.Object f(md.c r5) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.f(md.c):java.lang.Object");
+    }
+
+    public final java.lang.Object g(md.c r5) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.g(md.c):java.lang.Object");
+    }
+
+    @Override
+    public final ee.b getData() {
+        return this.f13830c;
+    }
+
+    public final java.lang.Object h(md.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.h(md.c):java.lang.Object");
+    }
+
+    public final java.lang.Object i(td.p r11, kd.h r12, md.c r13) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.i(td.p, kd.h, md.c):java.lang.Object");
+    }
+
+    public final java.lang.Object j(java.lang.Object r9, md.c r10) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.z.j(java.lang.Object, md.c):java.lang.Object");
     }
 }

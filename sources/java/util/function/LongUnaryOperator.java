@@ -1,4 +1,4 @@
 package java.util.function;
 public interface LongUnaryOperator {
-    long applyAsLong(long j3);
+    long applyAsLong(long j10);
 }

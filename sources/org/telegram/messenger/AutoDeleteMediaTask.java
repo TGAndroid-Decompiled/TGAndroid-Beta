@@ -32,12 +32,12 @@ public class AutoDeleteMediaTask {
     }
 
     public static int lambda$run$0(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
-        long j3 = fileInfoInternal2.lastUsageDate;
-        long j10 = fileInfoInternal.lastUsageDate;
-        if (j3 > j10) {
+        long j10 = fileInfoInternal2.lastUsageDate;
+        long j11 = fileInfoInternal.lastUsageDate;
+        if (j10 > j11) {
             return -1;
         }
-        if (j3 < j10) {
+        if (j10 < j11) {
             return 1;
         }
         return 0;

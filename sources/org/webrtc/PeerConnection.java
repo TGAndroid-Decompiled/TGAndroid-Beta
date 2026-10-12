@@ -582,13 +582,13 @@ public class PeerConnection {
 
     private native void nativeAddIceCandidateWithObserver(String str, int i10, String str2, AddIceObserver addIceObserver);
 
-    private native boolean nativeAddLocalStream(long j3);
+    private native boolean nativeAddLocalStream(long j10);
 
-    private native RtpSender nativeAddTrack(long j3, List<String> list);
+    private native RtpSender nativeAddTrack(long j10, List<String> list);
 
     private native RtpTransceiver nativeAddTransceiverOfType(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
 
-    private native RtpTransceiver nativeAddTransceiverWithTrack(long j3, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
+    private native RtpTransceiver nativeAddTransceiverWithTrack(long j10, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
 
     private native void nativeClose();
 
@@ -604,7 +604,7 @@ public class PeerConnection {
 
     private native RtpSender nativeCreateSender(String str, String str2);
 
-    private static native void nativeFreeOwnedPeerConnection(long j3);
+    private static native void nativeFreeOwnedPeerConnection(long j10);
 
     private native RtcCertificatePem nativeGetCertificate();
 
@@ -626,17 +626,17 @@ public class PeerConnection {
 
     private native void nativeNewGetStats(RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsReceiver(long j3, RTCStatsCollectorCallback rTCStatsCollectorCallback);
+    private native void nativeNewGetStatsReceiver(long j10, RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsSender(long j3, RTCStatsCollectorCallback rTCStatsCollectorCallback);
+    private native void nativeNewGetStatsSender(long j10, RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native boolean nativeOldGetStats(StatsObserver statsObserver, long j3);
+    private native boolean nativeOldGetStats(StatsObserver statsObserver, long j10);
 
     private native boolean nativeRemoveIceCandidates(IceCandidate[] iceCandidateArr);
 
-    private native void nativeRemoveLocalStream(long j3);
+    private native void nativeRemoveLocalStream(long j10);
 
-    private native boolean nativeRemoveTrack(long j3);
+    private native boolean nativeRemoveTrack(long j10);
 
     private native void nativeRestartIce();
 
@@ -846,12 +846,12 @@ public class PeerConnection {
         nativeStopRtcEventLog();
     }
 
-    public PeerConnection(long j3) {
+    public PeerConnection(long j10) {
         this.localStreams = new ArrayList();
         this.senders = new ArrayList();
         this.receivers = new ArrayList();
         this.transceivers = new ArrayList();
-        this.nativePeerConnection = j3;
+        this.nativePeerConnection = j10;
     }
 
     public void addIceCandidate(IceCandidate iceCandidate, AddIceObserver addIceObserver) {

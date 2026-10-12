@@ -31,19 +31,19 @@ public class UserObject {
         } else if (!(requirementToContact instanceof TL_account.requirementToContactPaidMessages)) {
             return false;
         } else {
-            long j3 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
-            if (!user.contact_require_premium && user.send_paid_messages_stars == j3) {
+            long j10 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+            if (!user.contact_require_premium && user.send_paid_messages_stars == j10) {
                 return false;
             }
             user.contact_require_premium = false;
             user.flags2 |= 16384;
-            user.send_paid_messages_stars = j3;
+            user.send_paid_messages_stars = j10;
         }
         return true;
     }
 
-    public static boolean areGiftsDisabled(long j3) {
-        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j3));
+    public static boolean areGiftsDisabled(long j10) {
+        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j10));
     }
 
     public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
@@ -75,7 +75,7 @@ public class UserObject {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f19950id % 7);
+        return (int) (user.f19363id % 7);
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -213,7 +213,7 @@ public class UserObject {
         if (user != null && !isDeleted(user)) {
             String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
             if (removeRTL.length() == 0 && !TextUtils.isEmpty(user.phone)) {
-                return am.g(new StringBuilder("+"), user.phone, hf.b.c());
+                return yh.g(new StringBuilder("+"), user.phone, jf.b.c());
             }
             return removeRTL;
         }
@@ -254,7 +254,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        if (user != null && user.f19950id == 2666000) {
+        if (user != null && user.f19363id == 2666000) {
             return true;
         }
         return false;
@@ -267,12 +267,12 @@ public class UserObject {
         return false;
     }
 
-    public static boolean isBotForum(int i10, long j3) {
-        return isBotForum(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
+    public static boolean isBotForum(int i10, long j10) {
+        return isBotForum(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
     }
 
-    public static boolean isBotForumWithEditableTopics(int i10, long j3) {
-        return isBotForumWithEditableTopics(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
+    public static boolean isBotForumWithEditableTopics(int i10, long j10) {
+        return isBotForumWithEditableTopics(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
     }
 
     public static boolean isContact(TLRPC.User user) {
@@ -292,12 +292,12 @@ public class UserObject {
         return true;
     }
 
-    public static boolean isReplyUser(long j3) {
-        return j3 == 708513 || j3 == 1271266957;
+    public static boolean isReplyUser(long j10) {
+        return j10 == 708513 || j10 == 1271266957;
     }
 
-    public static boolean isService(long j3) {
-        if (j3 != 333000 && j3 != 777000 && j3 != 42777) {
+    public static boolean isService(long j10) {
+        if (j10 != 333000 && j10 != 777000 && j10 != 42777) {
             return false;
         }
         return true;
@@ -315,7 +315,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.f19951id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f19364id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -354,8 +354,8 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC.User user) {
         if (user != null) {
-            long j3 = user.f19950id;
-            return j3 == 708513 || j3 == 1271266957;
+            long j10 = user.f19363id;
+            return j10 == 708513 || j10 == 1271266957;
         }
         return false;
     }
@@ -408,13 +408,13 @@ public class UserObject {
         } else if (!(requirementToContact instanceof TL_account.requirementToContactPaidMessages)) {
             return false;
         } else {
-            long j3 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
-            if (!userFull.contact_require_premium && userFull.send_paid_messages_stars == j3) {
+            long j10 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+            if (!userFull.contact_require_premium && userFull.send_paid_messages_stars == j10) {
                 return false;
             }
             userFull.contact_require_premium = false;
             userFull.flags2 |= 16384;
-            userFull.send_paid_messages_stars = j3;
+            userFull.send_paid_messages_stars = j10;
         }
         return true;
     }

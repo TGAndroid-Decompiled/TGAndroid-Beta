@@ -26,7 +26,7 @@ public interface OutputSerializedData {
 
     void writeInt32(int i10);
 
-    void writeInt64(long j3);
+    void writeInt64(long j10);
 
     void writeString(String str);
 }

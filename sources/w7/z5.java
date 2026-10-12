@@ -1,12 +1,14 @@
 package w7;
 
-import java.util.ArrayList;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
+import org.telegram.ui.Components.w40;
 public abstract class z5 {
-    public static ArrayList a(org.telegram.ui.ActionBar.i6 i6Var, int... iArr) {
-        ArrayList arrayList = new ArrayList(iArr.length);
-        for (int i10 : iArr) {
-            arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, i6Var, i10));
+    public static void a() {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        for (w40 w40Var : w40.values()) {
+            edit.remove(w40Var.f30794a);
         }
-        return arrayList;
+        edit.apply();
     }
 }

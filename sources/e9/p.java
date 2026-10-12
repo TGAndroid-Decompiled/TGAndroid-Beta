@@ -1,41 +1,89 @@
 package e9;
 
-import java.io.Serializable;
-import java.util.Arrays;
-public final class p extends y0 implements Serializable {
-    public final d9.e f8781a;
-    public final y0 f8782b;
-
-    public p(d9.e eVar, y0 y0Var) {
-        this.f8781a = eVar;
-        this.f8782b = y0Var;
-    }
-
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        d9.e eVar = this.f8781a;
-        return this.f8782b.compare(eVar.apply(obj), eVar.apply(obj2));
-    }
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+public abstract class p implements n1 {
+    public transient Collection f8597a;
+    public transient Set f8598b;
+    public transient Collection f8599c;
+    public transient Map d;
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public Collection a() {
+        Collection collection = this.f8597a;
+        if (collection == null) {
+            Collection e = e();
+            this.f8597a = e;
+            return e;
         }
-        if (obj instanceof p) {
-            p pVar = (p) obj;
-            if (this.f8781a.equals(pVar.f8781a) && this.f8782b.equals(pVar.f8782b)) {
+        return collection;
+    }
+
+    @Override
+    public Map b() {
+        Map map = this.d;
+        if (map == null) {
+            Map d = d();
+            this.d = d;
+            return d;
+        }
+        return map;
+    }
+
+    public boolean c(Object obj) {
+        for (Collection collection : b().values()) {
+            if (collection.contains(obj)) {
                 return true;
             }
         }
         return false;
     }
 
+    public abstract Map d();
+
+    public abstract Collection e();
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof n1) {
+            return b().equals(((n1) obj).b());
+        }
+        return false;
+    }
+
+    public abstract Set f();
+
+    public abstract Iterator g();
+
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f8781a, this.f8782b});
+        return b().hashCode();
+    }
+
+    @Override
+    public Set keySet() {
+        Set set = this.f8598b;
+        if (set == null) {
+            Set f7 = f();
+            this.f8598b = f7;
+            return f7;
+        }
+        return set;
+    }
+
+    @Override
+    public boolean remove(Object obj, Object obj2) {
+        Collection collection = (Collection) b().get(obj);
+        if (collection != null && collection.remove(obj2)) {
+            return true;
+        }
+        return false;
     }
 
     public final String toString() {
-        return this.f8782b + ".onResultOf(" + this.f8781a + ")";
+        return b().toString();
     }
 }

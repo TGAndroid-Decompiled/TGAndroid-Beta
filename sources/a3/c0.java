@@ -1,21 +1,21 @@
 package a3;
 
 import android.hardware.display.DisplayManager;
-public final class c0 implements DisplayManager.DisplayListener {
-    public final DisplayManager f79a;
-    public final e0 f80b;
+import android.view.Choreographer;
+public abstract class c0 implements DisplayManager.DisplayListener {
+    public final Choreographer f72a;
+    public final DisplayManager f73b;
+    public volatile long f74c = -9223372036854775807L;
+    public volatile long d = -9223372036854775807L;
 
-    public c0(e0 e0Var, DisplayManager displayManager) {
-        this.f80b = e0Var;
-        this.f79a = displayManager;
+    public c0(Choreographer choreographer, DisplayManager displayManager) {
+        this.f72a = choreographer;
+        this.f73b = displayManager;
     }
 
-    @Override
-    public final void onDisplayChanged(int i10) {
-        if (i10 == 0) {
-            e0.a(this.f80b, this.f79a.getDisplay(0));
-        }
-    }
+    public abstract void a();
+
+    public abstract void b();
 
     @Override
     public final void onDisplayAdded(int i10) {

@@ -7,23 +7,23 @@ import android.os.StrictMode;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import n6.m;
-import w7.t;
+import n6.l;
+import w7.y;
 public abstract class d {
-    public static String f49093a;
-    public static int f49094b;
-    public static Boolean f49095c;
+    public static String f46212a;
+    public static int f46213b;
+    public static Boolean f46214c;
 
     public static String a() {
         BufferedReader bufferedReader;
-        if (f49093a == null) {
+        if (f46212a == null) {
             if (Build.VERSION.SDK_INT >= 28) {
-                f49093a = Application.getProcessName();
+                f46212a = Application.getProcessName();
             } else {
-                int i10 = f49094b;
+                int i10 = f46213b;
                 if (i10 == 0) {
                     i10 = Process.myPid();
-                    f49094b = i10;
+                    f46213b = i10;
                 }
                 String str = null;
                 str = null;
@@ -37,7 +37,7 @@ public abstract class d {
                         StrictMode.setThreadPolicy(allowThreadDiskReads);
                         try {
                             String readLine = bufferedReader.readLine();
-                            m.h(readLine);
+                            l.h(readLine);
                             str = readLine.trim();
                         } catch (IOException unused) {
                         } catch (Throwable th2) {
@@ -53,14 +53,14 @@ public abstract class d {
                     }
                     b.a(bufferedReader);
                 }
-                f49093a = str;
+                f46212a = str;
             }
         }
-        return f49093a;
+        return f46212a;
     }
 
     public static boolean b() {
-        Boolean bool = f49095c;
+        Boolean bool = f46214c;
         if (bool == null) {
             if (Build.VERSION.SDK_INT >= 28) {
                 bool = Boolean.valueOf(Process.isIsolated());
@@ -71,13 +71,13 @@ public abstract class d {
                     if (invoke != null) {
                         bool = (Boolean) invoke;
                     } else {
-                        throw new RuntimeException(t.a(objArr));
+                        throw new RuntimeException(y.a(objArr));
                     }
                 } catch (ReflectiveOperationException unused) {
                     bool = Boolean.FALSE;
                 }
             }
-            f49095c = bool;
+            f46214c = bool;
         }
         return bool.booleanValue();
     }

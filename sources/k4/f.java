@@ -3,55 +3,60 @@ package k4;
 import c3.a0;
 import c3.b0;
 import c3.c0;
-import e2.d0;
-import e2.q;
+import e2.m0;
+import f2.t;
 import java.math.RoundingMode;
 public final class f implements b0 {
-    public final q f14623a;
-    public final int f14624b;
-    public final long f14625c;
+    public final t f14096a;
+    public final int f14097b;
+    public final long f14098c;
     public final long d;
-    public final long f14626e;
+    public final long e;
 
-    public f(q qVar, int i10, long j3, long j10) {
-        this.f14623a = qVar;
-        this.f14624b = i10;
-        this.f14625c = j3;
-        long j11 = (j10 - j3) / qVar.f8568c;
-        this.d = j11;
-        this.f14626e = b(j11);
-    }
-
-    public final long b(long j3) {
-        long j10 = j3 * this.f14624b;
-        long j11 = this.f14623a.f8567b;
-        String str = d0.f8529a;
-        return d0.X(j10, 1000000L, j11, RoundingMode.DOWN);
+    public f(t tVar, int i10, long j10, long j11) {
+        this.f14096a = tVar;
+        this.f14097b = i10;
+        this.f14098c = j10;
+        long j12 = (j11 - j10) / tVar.f8908c;
+        this.d = j12;
+        this.e = i(j12);
     }
 
     @Override
-    public final boolean f() {
+    public final boolean d() {
         return true;
     }
 
     @Override
-    public final a0 j(long j3) {
-        q qVar = this.f14623a;
-        long j10 = (qVar.f8567b * j3) / (this.f14624b * 1000000);
-        long j11 = this.d;
-        long i10 = d0.i(j10, 0L, j11 - 1);
-        long j12 = this.f14625c;
-        long b10 = b(i10);
-        c0 c0Var = new c0(b10, (qVar.f8568c * i10) + j12);
-        if (b10 < j3 && i10 != j11 - 1) {
-            long j13 = i10 + 1;
-            return new a0(c0Var, new c0(b(j13), (qVar.f8568c * j13) + j12));
+    public final boolean e() {
+        return false;
+    }
+
+    @Override
+    public final a0 f(long j10) {
+        t tVar = this.f14096a;
+        long j11 = (tVar.f8907b * j10) / (this.f14097b * 1000000);
+        long j12 = this.d;
+        long j13 = m0.j(j11, 0L, j12 - 1);
+        long j14 = this.f14098c;
+        long i10 = i(j13);
+        c0 c0Var = new c0(i10, (tVar.f8908c * j13) + j14);
+        if (i10 < j10 && j13 != j12 - 1) {
+            long j15 = j13 + 1;
+            return new a0(c0Var, new c0(i(j15), (tVar.f8908c * j15) + j14));
         }
         return new a0(c0Var, c0Var);
     }
 
     @Override
-    public final long l() {
-        return this.f14626e;
+    public final long h() {
+        return this.e;
+    }
+
+    public final long i(long j10) {
+        long j11 = j10 * this.f14097b;
+        long j12 = this.f14096a.f8907b;
+        String str = m0.f8372a;
+        return m0.a0(j11, 1000000L, j12, RoundingMode.DOWN);
     }
 }

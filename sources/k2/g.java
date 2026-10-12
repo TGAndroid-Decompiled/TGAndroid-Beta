@@ -1,36 +1,31 @@
 package k2;
-public final class g implements Runnable {
-    public final int f14463a;
-    public final n4.y f14464b;
-    public final i2.g f14465c;
+public final class g {
+    public static final g d = new Object().a();
+    public final boolean f13880a;
+    public final boolean f13881b;
+    public final boolean f13882c;
 
-    public g(n4.y yVar, i2.g gVar, int i10) {
-        this.f14463a = i10;
-        this.f14464b = yVar;
-        this.f14465c = gVar;
+    public g(bc.d dVar) {
+        this.f13880a = dVar.f2633a;
+        this.f13881b = dVar.f2634b;
+        this.f13882c = dVar.f2635c;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f14463a) {
-            case 0:
-                n4.y yVar = this.f14464b;
-                i2.g gVar = this.f14465c;
-                synchronized (gVar) {
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && g.class == obj.getClass()) {
+                g gVar = (g) obj;
+                if (this.f13880a == gVar.f13880a && this.f13881b == gVar.f13881b && this.f13882c == gVar.f13882c) {
+                    return true;
                 }
-                String str = e2.d0.f8529a;
-                j2.f fVar = ((i2.c0) ((j) yVar.f16364c)).f11618a.f11681s;
-                j2.a n10 = fVar.n((u2.f0) fVar.d.f7953e);
-                fVar.q(n10, 1013, new j2.c(n10, gVar, 11));
-                return;
-            default:
-                n4.y yVar2 = this.f14464b;
-                i2.g gVar2 = this.f14465c;
-                String str2 = e2.d0.f8529a;
-                j2.f fVar2 = ((i2.c0) ((j) yVar2.f16364c)).f11618a.f11681s;
-                j2.a p5 = fVar2.p();
-                fVar2.q(p5, 1007, new j2.c(p5, gVar2, 4));
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((this.f13880a ? 1 : 0) << 2) + ((this.f13881b ? 1 : 0) << 1) + (this.f13882c ? 1 : 0);
     }
 }

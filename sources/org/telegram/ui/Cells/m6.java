@@ -1,10 +1,10 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.so;
-import org.telegram.ui.Components.wm0;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.no;
 import org.telegram.ui.LaunchActivity;
-public final class m6 extends ai.da {
+public final class m6 extends bi.m9 {
     public final int S = 0;
     public final View T;
 
@@ -14,23 +14,23 @@ public final class m6 extends ai.da {
     }
 
     @Override
-    public final void f(long j3) {
+    public final void f(long j10) {
         switch (this.S) {
             case 0:
-                ((o6) this.T).b(j3);
+                ((o6) this.T).b(j10);
                 return;
             case 1:
                 xa xaVar = (xa) this.T;
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j3, ai.v9.a((wm0) xaVar.getParent()));
+                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j10, bi.g9.a((mm0) xaVar.getParent()));
                     return;
                 }
                 return;
             default:
-                so soVar = (so) this.T;
-                soVar.H.getOrCreateStoryViewer().D(soVar.getContext(), j3, new org.telegram.ui.Components.s(this, 25));
+                no noVar = (no) this.T;
+                noVar.H.getOrCreateStoryViewer().D(noVar.getContext(), j10, new org.telegram.ui.Components.s(this, 25));
                 return;
         }
     }
@@ -40,8 +40,8 @@ public final class m6 extends ai.da {
         this.T = xaVar;
     }
 
-    public m6(so soVar) {
+    public m6(no noVar) {
         super(null, true);
-        this.T = soVar;
+        this.T = noVar;
     }
 }

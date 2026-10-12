@@ -1,48 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import org.telegram.messenger.AndroidUtilities;
-public final class df implements Runnable {
-    public final int f25338a;
-    public final ChatActivityEnterView f25339b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+public final class df extends ImageView {
+    public final int f24388a;
+    public final ChatActivityEnterView f24389b;
 
-    public df(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f25338a = i10;
-        this.f25339b = chatActivityEnterView;
+    public df(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
+        super(context);
+        this.f24388a = i10;
+        this.f24389b = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25338a) {
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f24388a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f25339b;
-                df dfVar = chatActivityEnterView.T3;
-                if ((!chatActivityEnterView.k0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.m2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.M3 && !chatActivityEnterView.f23773z2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
-                    sg sgVar = chatActivityEnterView.Z2;
-                    if (sgVar != null) {
-                        sgVar.x1();
-                    }
-                    chatActivityEnterView.E0.requestFocus();
-                    AndroidUtilities.showKeyboard(chatActivityEnterView.E0);
-                    AndroidUtilities.cancelRunOnUIThread(dfVar);
-                    AndroidUtilities.runOnUIThread(dfVar, 100L);
+                super.onLayout(z10, i10, i11, i12, i13);
+                post(new je(this.f24389b, 5));
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f24388a) {
+            case 2:
+                if (getAlpha() <= 0.0f) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        switch (this.f24388a) {
+            case 0:
+                super.setAlpha(f7);
+                bf bfVar = this.f24389b.J1;
+                if (bfVar != null) {
+                    bfVar.setTranslationX(bfVar.f23748a);
                     return;
                 }
                 return;
             case 1:
-                sg sgVar2 = this.f25339b.Z2;
-                if (sgVar2 != null) {
-                    sgVar2.q2(0, 0, 0, 0L, 0L, true);
+                super.setAlpha(f7);
+                bf bfVar2 = this.f24389b.J1;
+                if (bfVar2 != null) {
+                    bfVar2.setTranslationX(bfVar2.f23748a);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f25339b;
-                AnimatorSet animatorSet = chatActivityEnterView2.V0;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    chatActivityEnterView2.V0.start();
+                super.setAlpha(f7);
+                we weVar = this.f24389b.Z0;
+                if (weVar != null) {
+                    weVar.invalidate();
                     return;
                 }
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f24388a) {
+            case 2:
+                super.setVisibility(i10);
+                we weVar = this.f24389b.Z0;
+                if (weVar != null) {
+                    weVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
                 return;
         }
     }

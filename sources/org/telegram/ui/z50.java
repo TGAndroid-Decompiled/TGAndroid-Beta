@@ -1,29 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class z50 extends org.telegram.ui.Cells.e4 {
-    public final c60 f44624f0;
+import java.util.Iterator;
+public final class z50 implements org.telegram.ui.Components.y5 {
+    public final int f42491a;
+    public final Object f42492b;
 
-    public z50(c60 c60Var, Context context) {
-        super(context);
-        this.f44624f0 = c60Var;
+    public z50(Object obj, int i10) {
+        this.f42491a = i10;
+        this.f42492b = obj;
     }
 
     @Override
-    public final void d(org.telegram.ui.Cells.e4 e4Var) {
-        i60 i60Var = this.f44624f0.M;
-        i60 i60Var2 = i60.D3;
-        i60Var.G1(e4Var);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        if (AndroidUtilities.isTablet()) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
-        } else {
-            super.onMeasure(i10, i11);
+    public final void invalidate() {
+        switch (this.f42491a) {
+            case 0:
+                Iterator it = ((a60) this.f42492b).f34051i.iterator();
+                while (it.hasNext()) {
+                    ((View) it.next()).invalidate();
+                }
+                return;
+            default:
+                a71 a71Var = (a71) this.f42492b;
+                a71Var.getClass();
+                if (!ah.x0.f897b && a71Var.getParent() != null) {
+                    ((View) a71Var.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
     }
 }

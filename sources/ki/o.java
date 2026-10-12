@@ -1,27 +1,100 @@
 package ki;
-public final class o {
-    public final String f14901a;
-    public final String f14902b;
-    public final int f14903c;
 
-    public o(String str, String str2) {
-        this.f14901a = str;
-        this.f14902b = str2;
-        this.f14903c = str2.hashCode() + (str.hashCode() * 31);
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import s4.b0;
+import s4.n0;
+import s4.w0;
+import s4.x0;
+public class o extends x0 {
+    public final LinearInterpolator f14345i;
+    public final DecelerateInterpolator f14346j;
+    public final float f14347k;
+    public int f14348l;
+    public int f14349m;
+    public final int f14350n;
+    public final float f14351o;
+    public int f14352p;
+
+    public o(Context context, int i10) {
+        this.f14345i = new LinearInterpolator();
+        this.f14346j = new DecelerateInterpolator(1.5f);
+        this.f14348l = 0;
+        this.f14349m = 0;
+        this.f14351o = 1.0f;
+        this.f14347k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+        this.f14350n = i10;
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof o)) {
-            return false;
+    @Override
+    public final PointF a(int i10) {
+        n0 n0Var = this.f44981c;
+        if (n0Var instanceof b0) {
+            return ((b0) n0Var).E0(i10);
         }
-        o oVar = (o) obj;
-        if (!this.f14901a.equals(oVar.f14901a) || !this.f14902b.equals(oVar.f14902b)) {
-            return false;
-        }
-        return true;
+        return null;
     }
 
-    public final int hashCode() {
-        return this.f14903c;
+    @Override
+    public final void d(int i10, int i11, w0 w0Var) {
+        if (this.f44980b.f2017x.r() == 0) {
+            h();
+            return;
+        }
+        int i12 = this.f14348l;
+        int i13 = i12 - i10;
+        int i14 = 0;
+        if (i12 * i13 <= 0) {
+            i13 = 0;
+        }
+        this.f14348l = i13;
+        int i15 = this.f14349m;
+        int i16 = i15 - i11;
+        if (i15 * i16 > 0) {
+            i14 = i16;
+        }
+        this.f14349m = i14;
+        if (i13 == 0 && i14 == 0) {
+            PointF a2 = a(this.f44979a);
+            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+                x0.b(a2);
+                this.f14348l = (int) (a2.x * 10000.0f);
+                this.f14349m = (int) (a2.y * 10000.0f);
+                w0Var.b((int) (this.f14348l * 1.2f), (int) (this.f14349m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f14347k)) * 1.2f), this.f14345i);
+                return;
+            }
+            w0Var.d = this.f44979a;
+            h();
+        }
+    }
+
+    @Override
+    public final void f() {
+        this.f14349m = 0;
+        this.f14348l = 0;
+    }
+
+    @Override
+    public final void g(android.view.View r8, s4.w0 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.o.g(android.view.View, s4.w0):void");
+    }
+
+    public o(Context context, int i10, float f7) {
+        this.f14345i = new LinearInterpolator();
+        this.f14346j = new DecelerateInterpolator(1.5f);
+        this.f14348l = 0;
+        this.f14349m = 0;
+        this.f14351o = f7;
+        this.f14347k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f7;
+        this.f14350n = i10;
+    }
+
+    @Override
+    public void e() {
+    }
+
+    public void i() {
     }
 }

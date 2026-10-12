@@ -1,9 +1,14 @@
 package a3;
-public final class n0 extends Exception {
-    public final b2.s f186a;
 
-    public n0(Exception exc, b2.s sVar) {
-        super(exc);
-        this.f186a = sVar;
-    }
+import b2.b2;
+public interface n0 {
+    public static final oa.d f172g = new oa.d(1);
+
+    void b();
+
+    void e();
+
+    void onFirstFrameRendered();
+
+    void onVideoSizeChanged(b2 b2Var);
 }

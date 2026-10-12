@@ -8,30 +8,30 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class e implements Runnable {
-    public final int f34639a;
-    public final f f34640b;
-    public final TL_wallet.currencyRates f34641c;
+    public final int f33108a;
+    public final f f33109b;
+    public final TL_wallet.currencyRates f33110c;
 
     public e(f fVar, TL_wallet.currencyRates currencyrates, int i10) {
-        this.f34639a = i10;
-        this.f34640b = fVar;
-        this.f34641c = currencyrates;
+        this.f33108a = i10;
+        this.f33109b = fVar;
+        this.f33110c = currencyrates;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String str;
-        switch (this.f34639a) {
+        switch (this.f33108a) {
             case 0:
-                f fVar = this.f34640b;
-                TL_wallet.currencyRates currencyrates = this.f34641c;
+                f fVar = this.f33109b;
+                TL_wallet.currencyRates currencyrates = this.f33110c;
                 boolean z11 = true;
                 if (currencyrates != null && currencyrates.rates != null) {
                     try {
                         InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-                        String str2 = e2.d0.f8529a;
-                        JSONObject jSONObject = new JSONObject(new String(f9.b.b(open), d9.d.f8208a));
+                        String str2 = e2.m0.f8372a;
+                        JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f6435a));
                         ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
                         int size = arrayList.size();
                         int i10 = 0;
@@ -84,17 +84,17 @@ public final class e implements Runnable {
                             }
                         }
                         open.close();
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 }
                 AndroidUtilities.runOnUIThread(new e(fVar, currencyrates, 1));
                 return;
             default:
-                f fVar2 = this.f34640b;
-                fVar2.d = this.f34641c;
-                fVar2.f34690c = false;
-                fVar2.f34689b.I();
+                f fVar2 = this.f33109b;
+                fVar2.d = this.f33110c;
+                fVar2.f33161c = false;
+                fVar2.f33160b.I();
                 return;
         }
     }

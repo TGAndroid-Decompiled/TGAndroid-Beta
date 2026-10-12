@@ -3,42 +3,58 @@ package e9;
 import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.SortedSet;
-public class j extends e implements SortedSet {
-    public final v0 d;
+public class j extends e implements SortedMap {
+    public SortedSet f8577f;
+    public final p1 h;
 
-    public j(v0 v0Var, SortedMap sortedMap) {
-        super(v0Var, sortedMap);
-        this.d = v0Var;
+    public j(p1 p1Var, SortedMap sortedMap) {
+        super(p1Var, sortedMap, 0);
+        this.h = p1Var;
+    }
+
+    public SortedSet b() {
+        return new k(this.h, d());
+    }
+
+    @Override
+    public SortedSet keySet() {
+        SortedSet sortedSet = this.f8577f;
+        if (sortedSet == null) {
+            SortedSet b10 = b();
+            this.f8577f = b10;
+            return b10;
+        }
+        return sortedSet;
     }
 
     @Override
     public final Comparator comparator() {
-        return i().comparator();
+        return d().comparator();
+    }
+
+    public SortedMap d() {
+        return (SortedMap) this.f8551b;
     }
 
     @Override
-    public final Object first() {
-        return i().firstKey();
+    public final Object firstKey() {
+        return d().firstKey();
     }
 
-    public SortedSet headSet(Object obj) {
-        return new j(this.d, i().headMap(obj));
-    }
-
-    public SortedMap i() {
-        return (SortedMap) this.f8727b;
+    public SortedMap headMap(Object obj) {
+        return new j(this.h, d().headMap(obj));
     }
 
     @Override
-    public final Object last() {
-        return i().lastKey();
+    public final Object lastKey() {
+        return d().lastKey();
     }
 
-    public SortedSet subSet(Object obj, Object obj2) {
-        return new j(this.d, i().subMap(obj, obj2));
+    public SortedMap subMap(Object obj, Object obj2) {
+        return new j(this.h, d().subMap(obj, obj2));
     }
 
-    public SortedSet tailSet(Object obj) {
-        return new j(this.d, i().tailMap(obj));
+    public SortedMap tailMap(Object obj) {
+        return new j(this.h, d().tailMap(obj));
     }
 }

@@ -43,14 +43,14 @@ public class PushListenerController {
             FirebaseMessaging firebaseMessaging;
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
-                k9.h.f(ApplicationLoader.applicationContext);
-                a6.m mVar = FirebaseMessaging.f7884l;
+                l9.h.f(ApplicationLoader.applicationContext);
+                ya.c cVar = FirebaseMessaging.f6133l;
                 synchronized (FirebaseMessaging.class) {
-                    firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
+                    firebaseMessaging = FirebaseMessaging.getInstance(l9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7891f.execute(new ci.y8(5, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f6139f.execute(new bi.u8(20, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new e0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -72,14 +72,14 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14703a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14168a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     this.hasServices = Boolean.valueOf(z10);
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e) {
+                    FileLog.e(e);
                     this.hasServices = Boolean.FALSE;
                 }
             }
@@ -719,15 +719,15 @@ public class PushListenerController {
         LocationController.getInstance(i10).setNewLocationEndWatchTime();
     }
 
-    public static void lambda$processRemoteMessage$5(int i10, long j3, int i11) {
-        MessagesController.getInstance(i10).reportMessageDelivery(j3, i11, true);
+    public static void lambda$processRemoteMessage$5(int i10, long j10, int i11) {
+        MessagesController.getInstance(i10).reportMessageDelivery(j10, i11, true);
     }
 
     public static void lambda$processRemoteMessage$6(java.lang.String r74, java.lang.String r75, long r76) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
     }
 
-    public static void lambda$processRemoteMessage$7(String str, String str2, long j3) {
+    public static void lambda$processRemoteMessage$7(String str, String str2, long j10) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " PRE INIT APP");
         }
@@ -735,7 +735,7 @@ public class PushListenerController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new vh(0, j3, str, str2));
+        Utilities.stageQueue.postRunnable(new vh(0, j10, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
@@ -800,7 +800,7 @@ public class PushListenerController {
         countDownLatch.countDown();
     }
 
-    public static void processRemoteMessage(int i10, String str, long j3) {
+    public static void processRemoteMessage(int i10, String str, long j10) {
         String str2;
         if (i10 == 2) {
             str2 = "FCM";
@@ -812,15 +812,15 @@ public class PushListenerController {
             FileLog.d(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new vh(1, j3, str3, str));
+        AndroidUtilities.runOnUIThread(new vh(1, j10, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder w10 = a1.g.w("finished ", str3, " service, time = ");
-            w10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
-            FileLog.d(w10.toString());
+            StringBuilder v = a1.g.v("finished ", str3, " service, time = ");
+            v.append(SystemClock.elapsedRealtime() - elapsedRealtime);
+            FileLog.d(v.toString());
         }
     }
 

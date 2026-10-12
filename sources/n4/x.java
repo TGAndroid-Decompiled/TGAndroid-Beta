@@ -1,38 +1,21 @@
 package n4;
 
-import android.media.session.MediaSession;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 public final class x implements Parcelable {
-    public static final Parcelable.Creator<x> CREATOR = new m8.h(7);
-    public final MediaSession.Token f16360b;
-    public h f16361c;
-    public final Object f16359a = new Object();
-    public y4.d d = null;
+    public static final Parcelable.Creator<x> CREATOR = new m8.h(8);
+    public final String f16040a;
+    public final CharSequence f16041b;
+    public final int f16042c;
+    public final Bundle d;
 
-    public x(MediaSession.Token token, r rVar) {
-        this.f16360b = token;
-        this.f16361c = rVar;
-    }
-
-    public final h a() {
-        h hVar;
-        synchronized (this.f16359a) {
-            hVar = this.f16361c;
-        }
-        return hVar;
-    }
-
-    public final void b(h hVar) {
-        synchronized (this.f16359a) {
-            this.f16361c = hVar;
-        }
-    }
-
-    public final void c(y4.d dVar) {
-        synchronized (this.f16359a) {
-            this.d = dVar;
-        }
+    public x(String str, int i10, Bundle bundle) {
+        this.f16040a = str;
+        this.f16041b = "";
+        this.f16042c = i10;
+        this.d = bundle;
     }
 
     @Override
@@ -40,22 +23,26 @@ public final class x implements Parcelable {
         return 0;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof x)) {
-            return false;
-        }
-        return this.f16360b.equals(((x) obj).f16360b);
-    }
-
-    public final int hashCode() {
-        return this.f16360b.hashCode();
+    public final String toString() {
+        return "Action:mName='" + ((Object) this.f16041b) + ", mIcon=" + this.f16042c + ", mExtras=" + this.d;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeParcelable(this.f16360b, i10);
+        parcel.writeString(this.f16040a);
+        TextUtils.writeToParcel(this.f16041b, parcel, i10);
+        parcel.writeInt(this.f16042c);
+        parcel.writeBundle(this.d);
+    }
+
+    public x(Parcel parcel) {
+        String readString = parcel.readString();
+        readString.getClass();
+        this.f16040a = readString;
+        CharSequence charSequence = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+        charSequence.getClass();
+        this.f16041b = charSequence;
+        this.f16042c = parcel.readInt();
+        this.d = parcel.readBundle(s.class.getClassLoader());
     }
 }

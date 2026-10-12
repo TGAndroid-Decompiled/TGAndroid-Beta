@@ -4,15 +4,15 @@ import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Set;
 public abstract class o extends h implements Set, j$.util.Set {
-    public static final int f16538c = 0;
-    public transient m f16539b;
+    public static final int f16209c = 0;
+    public transient m f16210b;
 
-    public static o r(int i10, Object... objArr) {
+    public static o q(int i10, Object... objArr) {
         if (i10 != 0) {
             if (i10 != 1) {
-                int s10 = s(i10);
-                Object[] objArr2 = new Object[s10];
-                int i11 = s10 - 1;
+                int r10 = r(i10);
+                Object[] objArr2 = new Object[r10];
+                int i11 = r10 - 1;
                 int i12 = 0;
                 int i13 = 0;
                 for (int i14 = 0; i14 < i10; i14++) {
@@ -34,7 +34,7 @@ public abstract class o extends h implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(hg.c.i(i14, "at index "));
+                        throw new NullPointerException(i2.d.i(i14, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i13, i10, (Object) null);
@@ -43,8 +43,8 @@ public abstract class o extends h implements Set, j$.util.Set {
                     Objects.requireNonNull(obj3);
                     return new b0(obj3);
                 }
-                if (s(i13) < s10 / 2) {
-                    return r(i13, objArr);
+                if (r(i13) < r10 / 2) {
+                    return q(i13, objArr);
                 }
                 if (i13 <= 0) {
                     objArr = Arrays.copyOf(objArr, i13);
@@ -55,10 +55,10 @@ public abstract class o extends h implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new b0(obj4);
         }
-        return y.f16566s;
+        return y.f16233s;
     }
 
-    public static int s(int i10) {
+    public static int r(int i10) {
         int max = Math.max(i10, 2);
         if (max < 751619276) {
             int highestOneBit = Integer.highestOneBit(max - 1);
@@ -76,7 +76,7 @@ public abstract class o extends h implements Set, j$.util.Set {
     @Override
     public boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f16567e == obj.hashCode()) {
+            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).e == obj.hashCode()) {
                 if (obj != this) {
                     if (obj instanceof Set) {
                         Set set = (Set) obj;
@@ -106,19 +106,19 @@ public abstract class o extends h implements Set, j$.util.Set {
         return a.b(this);
     }
 
-    public m t() {
-        m mVar = this.f16539b;
+    public m s() {
+        m mVar = this.f16210b;
         if (mVar == null) {
-            m u10 = u();
-            this.f16539b = u10;
-            return u10;
+            m t10 = t();
+            this.f16210b = t10;
+            return t10;
         }
         return mVar;
     }
 
-    public m u() {
-        Object[] array = toArray(h.f16506a);
-        i iVar = m.f16529b;
-        return m.t(array.length, array);
+    public m t() {
+        Object[] array = toArray(h.f16181a);
+        i iVar = m.f16200b;
+        return m.s(array.length, array);
     }
 }

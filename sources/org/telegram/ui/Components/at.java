@@ -1,63 +1,62 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
+import android.text.SpannableStringBuilder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-public final class at extends View {
-    public final me.b f24469a;
-    public final Paint f24470b;
-    public final RectF f24471c;
-    public final RectF d;
-    public final RectF f24472e;
-    public final pq f24473f;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class at implements Runnable {
+    public final int f23620a;
+    public final Context f23621b;
+    public final org.telegram.ui.ActionBar.c6 f23622c;
 
-    public at(Context context) {
-        super(context);
-        this.f24469a = new me.b(this, js.h, 380L);
-        Paint paint = new Paint(1);
-        this.f24470b = paint;
-        this.f24471c = new RectF();
-        this.d = new RectF();
-        this.f24472e = new RectF();
-        this.f24473f = new pq(this, 5);
-        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hl, false));
-        invalidate();
+    public at(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f23620a = i10;
+        this.f23621b = context;
+        this.f23622c = c6Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f24473f, 3000L);
+    public final void run() {
+        switch (this.f23620a) {
+            case 0:
+                org.telegram.ui.ActionBar.a2[] a2VarArr = new org.telegram.ui.ActionBar.a2[1];
+                String string = LocaleController.getString(R.string.AppsTabInfoText);
+                ys ysVar = new ys(a2VarArr, 0);
+                org.telegram.ui.ActionBar.c6 c6Var = this.f23622c;
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, c6Var, ysVar));
+                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
+                while (true) {
+                    boolean find = matcher.find();
+                    Context context = this.f23621b;
+                    if (find) {
+                        replaceTags.setSpan(new org.telegram.ui.p0(a2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
+                    } else {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
+                        String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
+                        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+                        a2Var.R = string2;
+                        a2Var.T = replaceTags;
+                        alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
+                        a2VarArr[0] = alertDialog$Builder.o();
+                        return;
+                    }
+                }
+            case 1:
+                org.telegram.ui.Wallet.z4.t0(this.f23621b, this.f23622c);
+                return;
+            default:
+                new zh.f7(this.f23621b, this.f23622c).show();
+                return;
+        }
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f24473f);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7 = this.f24469a.f16088e;
-        RectF rectF = this.d;
-        RectF rectF2 = this.f24471c;
-        RectF rectF3 = this.f24472e;
-        AndroidUtilities.lerp(rectF, rectF2, f7, rectF3);
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), 0, f7);
-        canvas.drawRoundRect(rectF3, lerp, lerp, this.f24470b);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        int paddingTop = getPaddingTop();
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
-        this.f24471c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
-        int dp = ((currentActionBarHeight / 2) + paddingTop) - AndroidUtilities.dp(15.0f);
-        int dp2 = AndroidUtilities.dp(12.0f);
-        this.d.set(AndroidUtilities.dp(12.0f), dp, AndroidUtilities.dp(30.0f) + dp2, AndroidUtilities.dp(30.0f) + dp);
+    public at(et etVar, org.telegram.ui.ActionBar.c6 c6Var, Context context) {
+        this.f23620a = 0;
+        this.f23622c = c6Var;
+        this.f23621b = context;
     }
 }

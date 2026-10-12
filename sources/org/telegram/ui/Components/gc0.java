@@ -1,84 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-public final class gc0 implements View.OnClickListener {
-    public final int f26383a;
-    public final boolean f26384b;
-    public final FrameLayout f26385c;
-    public final Object d;
-    public final Object f26386e;
-    public final Object f26387f;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class gc0 extends org.telegram.ui.Cells.p9 {
+    public final pc0 f25246w0;
 
-    public gc0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f26383a = i10;
-        this.f26385c = frameLayout;
-        this.f26384b = z10;
-        this.d = obj;
-        this.f26386e = obj2;
-        this.f26387f = obj3;
+    public gc0(pc0 pc0Var) {
+        this.f25246w0 = pc0Var;
+        this.f20970g0 = pc0Var.f28286c0.F;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f26383a;
-        Object obj = this.f26387f;
-        Object obj2 = this.f26386e;
-        Object obj3 = this.d;
-        boolean z10 = this.f26384b;
-        FrameLayout frameLayout = this.f26385c;
-        switch (i10) {
-            case 0:
-                tc0 tc0Var = (tc0) frameLayout;
-                Context context = (Context) obj3;
-                yc0 yc0Var = (yc0) obj2;
-                yc0 yc0Var2 = (yc0) obj;
-                zc0 zc0Var = tc0Var.f30859c0;
-                MessagePreviewParams messagePreviewParams = zc0Var.d;
-                if (!z10) {
-                    new zc(zc0Var, zc0Var.F).Q(R.raw.star_premium_2, 36, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new ec0(tc0Var, context, 0))).j();
-                    return;
-                }
-                boolean z11 = messagePreviewParams.hideForwardSendersName;
-                messagePreviewParams.hideForwardSendersName = !z11;
-                zc0Var.f33339x = false;
-                if (z11) {
-                    messagePreviewParams.hideCaption = false;
-                    if (yc0Var != null) {
-                        yc0Var.a(false, true);
-                    }
-                }
-                yc0Var2.a(messagePreviewParams.hideForwardSendersName, true);
-                tc0Var.h();
-                tc0Var.k(true);
-                return;
-            default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
-                s80 s80Var = (s80) obj;
-                xs0 xs0Var = ((xh.n2) frameLayout).f51630a;
-                if (!z10) {
-                    yh.e5 e5Var = xs0Var.f51732e;
-                    int i11 = tL_starGiftCollection.collection_id;
-                    e5Var.getClass();
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(savedStarGift);
-                    e5Var.a(i11, arrayList);
-                    zc.a0(xs0Var.f51729a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                } else {
-                    xs0Var.f51732e.k(tL_starGiftCollection.collection_id, savedStarGift);
-                    zc.a0(xs0Var.f51729a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                }
-                s80Var.u();
-                xs0Var.n();
-                return;
+    public final void I(int i10, int i11, MessageObject messageObject) {
+        org.telegram.ui.un unVar;
+        MessageObject messageObject2;
+        pc0 pc0Var = this.f25246w0;
+        gc0 gc0Var = pc0Var.e;
+        int i12 = gc0Var.v - gc0Var.f20990u;
+        vc0 vc0Var = pc0Var.f28286c0;
+        if (i12 > MessagesController.getInstance(vc0Var.f29940w).quoteLengthMax) {
+            pc0Var.f();
+            return;
         }
+        MessagePreviewParams messagePreviewParams = vc0Var.d;
+        messagePreviewParams.quoteStart = gc0Var.f20990u;
+        messagePreviewParams.quoteEnd = gc0Var.v;
+        MessageObject c10 = pc0Var.c(messageObject);
+        if (c10 != null && ((unVar = vc0Var.d.quote) == null || (messageObject2 = unVar.f40710a) == null || messageObject2.getId() != c10.getId())) {
+            vc0Var.d.quote = org.telegram.ui.un.b(i10, i11, c10);
+        }
+        vc0Var.b();
+        vc0Var.a(true);
+    }
+
+    @Override
+    public final boolean b() {
+        MessageObject c10;
+        TLRPC.Message message;
+        pc0 pc0Var = this.f25246w0;
+        if (pc0Var.f28281a == 0 && (c10 = pc0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
+            return false;
+        }
+        MessagePreviewParams messagePreviewParams = pc0Var.f28286c0.d;
+        if (messagePreviewParams != null && messagePreviewParams.noforwards) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean e() {
+        MessageObject c10;
+        TLRPC.Message message;
+        pc0 pc0Var = this.f25246w0;
+        int i10 = pc0Var.f28281a;
+        if (i10 == 0 && !pc0Var.f28286c0.d.isSecret) {
+            if (i10 != 0 || (c10 = pc0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.c6 q() {
+        return this.f20970g0;
+    }
+
+    @Override
+    public final void w() {
+        super.w();
+        hc0 hc0Var = this.f25246w0.f28287f;
+        if (hc0Var != null) {
+            hc0Var.invalidate();
+        }
+    }
+
+    @Override
+    public final boolean z(MessageObject messageObject) {
+        pc0 pc0Var = this.f25246w0;
+        if (pc0Var.f28281a == 0 && !pc0Var.f28286c0.d.isSecret && x()) {
+            return true;
+        }
+        return false;
     }
 }

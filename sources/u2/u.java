@@ -1,63 +1,28 @@
 package u2;
-public final class u extends r {
-    public final int f48944f;
 
-    public u(b2.k1 k1Var, int i10) {
-        super(k1Var);
-        this.f48944f = i10;
+import android.net.Uri;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+public final class u {
+    public static final AtomicLong f46053g = new AtomicLong();
+    public final g2.m f46054a;
+    public final Uri f46055b;
+    public final Map f46056c;
+    public final long d;
+    public final long e;
+    public final long f46057f;
+
+    public u(g2.m mVar, long j10) {
+        this(mVar, mVar.f9883a, Collections.EMPTY_MAP, j10, 0L, 0L);
     }
 
-    @Override
-    public int e(int i10, int i11, boolean z10) {
-        switch (this.f48944f) {
-            case 0:
-                b2.k1 k1Var = this.f48914e;
-                int e7 = k1Var.e(i10, i11, z10);
-                if (e7 == -1) {
-                    return k1Var.a(z10);
-                }
-                return e7;
-            default:
-                return super.e(i10, i11, z10);
-        }
-    }
-
-    @Override
-    public b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        switch (this.f48944f) {
-            case 1:
-                super.f(i10, h1Var, z10);
-                h1Var.f3329f = true;
-                return h1Var;
-            default:
-                return super.f(i10, h1Var, z10);
-        }
-    }
-
-    @Override
-    public int k(int i10, int i11, boolean z10) {
-        switch (this.f48944f) {
-            case 0:
-                b2.k1 k1Var = this.f48914e;
-                int k10 = k1Var.k(i10, i11, z10);
-                if (k10 == -1) {
-                    return k1Var.c(z10);
-                }
-                return k10;
-            default:
-                return super.k(i10, i11, z10);
-        }
-    }
-
-    @Override
-    public b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        switch (this.f48944f) {
-            case 1:
-                super.m(i10, j1Var, j3);
-                j1Var.f3385k = true;
-                return j1Var;
-            default:
-                return super.m(i10, j1Var, j3);
-        }
+    public u(g2.m mVar, Uri uri, Map map, long j10, long j11, long j12) {
+        this.f46054a = mVar;
+        this.f46055b = uri;
+        this.f46056c = map;
+        this.d = j10;
+        this.e = j11;
+        this.f46057f = j12;
     }
 }

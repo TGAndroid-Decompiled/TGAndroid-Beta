@@ -1,27 +1,24 @@
 package ci;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.camera.CameraController;
-public final class p extends o7 {
-    public final r F;
+import org.telegram.ui.ActionBar.c6;
+public final class p extends di.d {
+    public final int f4770h0;
 
-    public p(r rVar, Context context) {
-        super(context);
-        this.F = rVar;
+    public p(int i10, Context context, c6 c6Var, boolean z10) {
+        super(context, c6Var, z10);
+        this.f4770h0 = i10;
     }
 
     @Override
-    public final void c() {
-        AndroidUtilities.cancelRunOnUIThread(this.h);
-        if (this.f5680c <= 0) {
-            a(true);
-        } else {
-            CameraController.getInstance().stopVideoRecording(this.f5678a.getCameraSessionRecording(), false, false);
-        }
-        r rVar = this.F;
-        if (rVar.O1) {
-            rVar.z(true, false);
+    public boolean i() {
+        switch (this.f4770h0) {
+            case 1:
+                return false;
+            case 2:
+                return false;
+            default:
+                return super.i();
         }
     }
 }

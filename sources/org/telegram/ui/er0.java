@@ -1,72 +1,70 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-public final class er0 implements org.telegram.ui.Components.xn0 {
-    public final ir0 f37542a;
+import org.telegram.tgnet.TLRPC;
+public final class er0 implements org.telegram.ui.Cells.s5 {
+    public final fr0 f35668a;
 
-    public er0(ir0 ir0Var) {
-        this.f37542a = ir0Var;
+    public er0(fr0 fr0Var) {
+        this.f35668a = fr0Var;
     }
 
-    @Override
-    public final void d(int i10, boolean z10) {
-        boolean z11;
-        ir0 ir0Var = this.f37542a;
-        if (ir0Var.f38981n[0].f38129e == i10) {
-            return;
-        }
-        if (i10 == ir0Var.h.getFirstTabId()) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        ir0Var.f38979e = z11;
-        gr0 gr0Var = ir0Var.f38981n[1];
-        gr0Var.f38129e = i10;
-        gr0Var.setVisibility(0);
-        ir0Var.j0(true);
-        ir0Var.v = z10;
-        if (i10 == 0) {
-            ir0Var.f38978c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
-        } else {
-            ir0Var.f38978c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
-        }
-    }
-
-    @Override
-    public final boolean k1(int i10, View view) {
-        return false;
-    }
-
-    @Override
-    public final void v0(float f7) {
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        ir0 ir0Var = this.f37542a;
-        if (i10 != 0 || ir0Var.f38981n[1].getVisibility() == 0) {
-            if (ir0Var.v) {
-                gr0 gr0Var = ir0Var.f38981n[0];
-                gr0Var.setTranslationX((-f7) * gr0Var.getMeasuredWidth());
-                gr0[] gr0VarArr = ir0Var.f38981n;
-                gr0VarArr[1].setTranslationX(gr0VarArr[0].getMeasuredWidth() - (f7 * ir0Var.f38981n[0].getMeasuredWidth()));
-            } else {
-                gr0 gr0Var2 = ir0Var.f38981n[0];
-                gr0Var2.setTranslationX(gr0Var2.getMeasuredWidth() * f7);
-                gr0[] gr0VarArr2 = ir0Var.f38981n;
-                gr0VarArr2[1].setTranslationX((f7 * gr0VarArr2[0].getMeasuredWidth()) - ir0Var.f38981n[0].getMeasuredWidth());
-            }
-            if (i10 == 0) {
-                gr0[] gr0VarArr3 = ir0Var.f38981n;
-                gr0 gr0Var3 = gr0VarArr3[0];
-                gr0VarArr3[0] = gr0VarArr3[1];
-                gr0VarArr3[1] = gr0Var3;
-                gr0Var3.setVisibility(8);
+    public final void a() {
+        fo foVar;
+        TLRPC.Chat chat;
+        hr0 hr0Var = this.f35668a.d;
+        if (hr0Var.I && (foVar = hr0Var.U) != null && (chat = foVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && hr0Var.W != 2) {
+            org.telegram.ui.Components.g5.t0(hr0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
+            if (hr0Var.W == 1) {
+                hr0Var.W = 2;
             }
         }
     }
 
     @Override
-    public final void C() {
+    public final void c(org.telegram.ui.Cells.t5 t5Var) {
+        boolean z10;
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        hr0 hr0Var = this.f35668a.d;
+        MediaController.AlbumEntry albumEntry = hr0Var.J;
+        int i10 = -1;
+        int i11 = 1;
+        if (albumEntry != null) {
+            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
+            boolean containsKey = hr0Var.f36915b.containsKey(Integer.valueOf(photoEntry.imageId));
+            z10 = !containsKey;
+            if (!containsKey && hr0Var.H > 0 && hr0Var.f36915b.size() >= hr0Var.H) {
+                a();
+                return;
+            }
+            if (hr0Var.e && !containsKey) {
+                i10 = hr0Var.f36917c.size();
+            }
+            t5Var.b(i10, z10, true);
+            hr0Var.Y(intValue, photoEntry);
+        } else {
+            AndroidUtilities.hideKeyboard(hr0Var.getParentActivity().getCurrentFocus());
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) hr0Var.f36921f.get(intValue);
+            boolean containsKey2 = hr0Var.f36915b.containsKey(searchImage.f16702id);
+            z10 = !containsKey2;
+            if (!containsKey2 && hr0Var.H > 0 && hr0Var.f36915b.size() >= hr0Var.H) {
+                a();
+                return;
+            }
+            if (hr0Var.e && !containsKey2) {
+                i10 = hr0Var.f36917c.size();
+            }
+            t5Var.b(i10, z10, true);
+            hr0Var.Y(intValue, searchImage);
+        }
+        if (!z10) {
+            i11 = 2;
+        }
+        hr0Var.i0(i11);
+        hr0Var.f36937s0.a();
     }
 }

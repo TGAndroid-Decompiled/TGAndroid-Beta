@@ -5,24 +5,24 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import g7.l;
 import g7.q;
 import kotlin.jvm.internal.i;
-import v7.g5;
+import v7.h5;
 public final class f extends b8.b implements a {
-    public final int f11028b;
-    public final TaskCompletionSource f11029c;
+    public final int f10372b;
+    public final TaskCompletionSource f10373c;
 
     public f(int i10, TaskCompletionSource taskCompletionSource) {
         super(8);
-        this.f11028b = i10;
-        this.f11029c = taskCompletionSource;
+        this.f10372b = i10;
+        this.f10373c = taskCompletionSource;
         attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
     }
 
     @Override
     public void D0(Status status, l lVar) {
-        switch (this.f11028b) {
+        switch (this.f10372b) {
             case 1:
                 i.e(status, "status");
-                g5.a(status, lVar, this.f11029c);
+                h5.a(status, lVar, this.f10373c);
                 return;
             default:
                 i.e(status, "status");
@@ -38,10 +38,10 @@ public final class f extends b8.b implements a {
 
     @Override
     public void o0(Status status, g7.e eVar) {
-        switch (this.f11028b) {
+        switch (this.f10372b) {
             case 0:
                 i.e(status, "status");
-                g5.a(status, eVar, this.f11029c);
+                h5.a(status, eVar, this.f10373c);
                 return;
             default:
                 i.e(status, "status");

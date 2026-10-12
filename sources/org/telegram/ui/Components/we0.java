@@ -1,4 +1,5 @@
 package org.telegram.ui.Components;
-public interface we0 {
-    void i(xe0 xe0Var);
+public final class we0 {
+    public float f30861a;
+    public float f30862b;
 }

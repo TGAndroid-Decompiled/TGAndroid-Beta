@@ -1,76 +1,72 @@
 package a0;
 
-import java.util.LinkedHashMap;
-public class k {
-    public final int f24a;
-    public final a6.i f25b;
-    public final na.d f26c;
-    public int d;
-    public int f27e;
-    public int f28f;
+import w7.g8;
+public final class k {
+    public int[] f23a;
+    public int f24b;
 
-    public k(int i10) {
-        this.f24a = i10;
-        if (i10 > 0) {
-            this.f25b = new a6.i(6);
-            this.f26c = new na.d(3);
-            return;
-        }
-        throw new IllegalArgumentException("maxSize <= 0");
-    }
-
-    public final Object a(Object key) {
-        kotlin.jvm.internal.i.e(key, "key");
-        synchronized (this.f26c) {
-            a6.i iVar = this.f25b;
-            iVar.getClass();
-            Object obj = ((LinkedHashMap) iVar.f326b).get(key);
-            if (obj != null) {
-                this.f27e++;
-                return obj;
-            }
-            this.f28f++;
-            return null;
-        }
-    }
-
-    public final Object b(Object key, Object obj) {
-        Object put;
-        kotlin.jvm.internal.i.e(key, "key");
-        synchronized (this.f26c) {
-            this.d++;
-            a6.i iVar = this.f25b;
-            iVar.getClass();
-            put = ((LinkedHashMap) iVar.f326b).put(key, obj);
-            if (put != null) {
-                this.d--;
+    public final boolean equals(Object obj) {
+        if (obj instanceof k) {
+            k kVar = (k) obj;
+            int i10 = kVar.f24b;
+            int i11 = this.f24b;
+            if (i10 == i11) {
+                int[] iArr = this.f23a;
+                int[] iArr2 = kVar.f23a;
+                wd.e a2 = g8.a(0, i11);
+                int i12 = a2.f47537a;
+                int i13 = a2.f47538b;
+                if (i12 <= i13) {
+                    while (iArr[i12] == iArr2[i12]) {
+                        if (i12 != i13) {
+                            i12++;
+                        } else {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                return true;
             }
         }
-        c(this.f24a);
-        return put;
+        return false;
     }
 
-    public final void c(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: a0.k.c(int):void");
+    public final int hashCode() {
+        int[] iArr = this.f23a;
+        int i10 = this.f24b;
+        int i11 = 0;
+        for (int i12 = 0; i12 < i10; i12++) {
+            i11 += iArr[i12] * 31;
+        }
+        return i11;
     }
 
     public final String toString() {
-        int i10;
-        String str;
-        synchronized (this.f26c) {
-            try {
-                int i11 = this.f27e;
-                int i12 = this.f28f + i11;
-                if (i12 != 0) {
-                    i10 = (i11 * 100) / i12;
-                } else {
-                    i10 = 0;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append((CharSequence) "[");
+        int[] iArr = this.f23a;
+        int i10 = this.f24b;
+        int i11 = 0;
+        while (true) {
+            if (i11 < i10) {
+                int i12 = iArr[i11];
+                if (i11 == -1) {
+                    sb2.append((CharSequence) "...");
+                    break;
                 }
-                str = "LruCache[maxSize=" + this.f24a + ",hits=" + this.f27e + ",misses=" + this.f28f + ",hitRate=" + i10 + "%]";
-            } catch (Throwable th2) {
-                throw th2;
+                if (i11 != 0) {
+                    sb2.append((CharSequence) ", ");
+                }
+                sb2.append(i12);
+                i11++;
+            } else {
+                sb2.append((CharSequence) "]");
+                break;
             }
         }
-        return str;
+        String sb3 = sb2.toString();
+        kotlin.jvm.internal.i.d(sb3, "StringBuilder().apply(builderAction).toString()");
+        return sb3;
     }
 }

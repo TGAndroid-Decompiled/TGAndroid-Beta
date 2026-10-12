@@ -1,34 +1,34 @@
 package t7;
 
 import android.content.Context;
-import c5.x;
+import c5.y;
 import j$.util.Objects;
 import java.util.HashMap;
 public final class q {
-    public static final l f48465b = l.b(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
-    public final String f48466a;
+    public static final l f45532b = l.b(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
+    public final String f45533a;
 
-    public q(Context context, qb.k kVar) {
+    public q(Context context, rb.k kVar) {
         new HashMap();
         new HashMap();
         context.getPackageName();
-        qb.c.a(context);
-        synchronized (t.class) {
-            if (t.f48469a == null) {
-                t.f48469a = new Object();
+        rb.c.a(context);
+        synchronized (u.class) {
+            if (u.f45537b == null) {
+                u.f45537b = new u(0);
             }
         }
-        this.f48466a = "common";
-        qb.f a2 = qb.f.a();
-        x xVar = new x(this, 2);
+        this.f45533a = "common";
+        rb.f a2 = rb.f.a();
+        y yVar = new y(this, 2);
         a2.getClass();
-        qb.f.b(xVar);
-        qb.f a10 = qb.f.a();
+        rb.f.b(yVar);
+        rb.f a10 = rb.f.a();
         Objects.requireNonNull(kVar);
         p pVar = new p(kVar, 0);
         a10.getClass();
-        qb.f.b(pVar);
-        l lVar = f48465b;
+        rb.f.b(pVar);
+        l lVar = f45532b;
         if (lVar.containsKey("common")) {
             y6.e.d(context, (String) lVar.get("common"), false);
         }

@@ -20,8 +20,8 @@ public class TLJsonParser {
     private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, Utilities.CallbackReturn<TLJsonParser, T> callbackReturn) {
         try {
             return callbackReturn.run(tLJsonParser);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -35,8 +35,8 @@ public class TLJsonParser {
                 return Boolean.parseBoolean((String) obj);
             }
             return z10;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return z10;
         }
     }
@@ -50,13 +50,13 @@ public class TLJsonParser {
                 return Integer.parseInt((String) obj, 10);
             }
             return i10;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return i10;
         }
     }
 
-    private long parseInt64(Object obj, long j3) {
+    private long parseInt64(Object obj, long j10) {
         try {
             if (obj instanceof Number) {
                 return ((Number) obj).intValue();
@@ -64,10 +64,10 @@ public class TLJsonParser {
             if (obj instanceof String) {
                 return Long.parseLong((String) obj, 10);
             }
-            return j3;
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            return j3;
+            return j10;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return j10;
         }
     }
 
@@ -113,8 +113,8 @@ public class TLJsonParser {
                     if (parse != null) {
                         arrayList.add(parse);
                     }
-                } catch (JSONException e7) {
-                    FileLog.e(e7);
+                } catch (JSONException e) {
+                    FileLog.e(e);
                 }
             }
         }

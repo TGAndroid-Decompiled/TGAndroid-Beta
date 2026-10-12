@@ -1,48 +1,128 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.tgnet.TLRPC;
 public final class pj1 {
-    public org.telegram.ui.Cells.a2 f40980a;
-    public org.telegram.ui.ActionBar.a2 f40981b;
-    public TextView f40982c;
+    public String f39246a;
+    public final int f39247b;
+    public final int f39248c;
+    public final int d;
+    public final int e;
+    public int f39249f;
+    public TLRPC.TL_wallPaper f39250g;
+    public float h;
+    public final File f39251i;
+    public final boolean f39252j;
+    public final boolean f39253k;
+    public TLRPC.WallPaper f39254l;
+    public Bitmap f39255m;
 
-    public static void a(Context context, Utilities.Callback callback, Runnable runnable) {
-        ?? obj = new Object();
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-        alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.TermsOfUse);
-        LinearLayout e7 = org.telegram.messenger.am.e(context, 1);
-        TextView textView = new TextView(context);
-        textView.setLetterSpacing(0.025f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20668j5, false));
-        textView.setTextSize(1, 14.0f);
-        e7.addView(textView, w7.w5.t(-1, -2, 0, 24, 0, 24, 0));
-        org.telegram.ui.Cells.a2 a2Var = new org.telegram.ui.Cells.a2(context, 1, null);
-        obj.f40980a = a2Var;
-        a2Var.getTextView().getLayoutParams().width = -1;
-        obj.f40980a.getTextView().setTextSize(1, 14.0f);
-        e7.addView(obj.f40980a, w7.w5.t(-1, 48, 3, 8, 0, 8, 0));
-        boolean[] zArr = new boolean[1];
-        org.telegram.messenger.v0.n(R.string.BotWebAppDisclaimerSubtitle, textView);
-        obj.f40980a.e(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebAppDisclaimerCheck), new qv(context, 8)), "", false, false, false);
-        alertDialog$Builder.n(e7);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new org.telegram.ui.Components.d3(1, callback, zArr));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new c80(19));
-        org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f20142a;
-        obj.f40981b = a2Var2;
-        a2Var2.show();
-        TextView textView2 = (TextView) obj.f40981b.d(-1);
-        obj.f40982c = textView2;
-        textView2.setEnabled(false);
-        obj.f40982c.setAlpha(0.5f);
-        obj.f40980a.setOnClickListener(new r41(obj, 8));
-        obj.f40980a.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false), 7, -1));
-        obj.f40981b.setOnDismissListener(new org.telegram.ui.Components.p2(zArr, runnable));
+    public pj1(int i10, int i11, String str, int i12) {
+        this.f39246a = str;
+        this.f39247b = i10 | (-16777216);
+        int i13 = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f39248c = i13;
+        this.f39249f = i13 == 0 ? 0 : i12;
+        this.h = 1.0f;
+    }
+
+    public final String a() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(String.valueOf(this.f39247b));
+        sb2.append(this.f39248c);
+        sb2.append(this.d);
+        sb2.append(this.e);
+        sb2.append(this.f39249f);
+        sb2.append(this.h);
+        String str = this.f39246a;
+        if (str == null) {
+            str = "";
+        }
+        sb2.append(str);
+        return Utilities.MD5(sb2.toString());
+    }
+
+    public final String b() {
+        String str;
+        String str2;
+        String str3 = null;
+        int i10 = this.f39248c;
+        if (i10 != 0) {
+            str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
+        } else {
+            str = null;
+        }
+        int i11 = this.f39247b;
+        String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
+        int i12 = this.d;
+        if (i12 != 0) {
+            str2 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i12 >> 16)) & 255), Integer.valueOf(((byte) (i12 >> 8)) & 255), Byte.valueOf((byte) (i12 & 255))).toLowerCase();
+        } else {
+            str2 = null;
+        }
+        int i13 = this.e;
+        if (i13 != 0) {
+            str3 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i13 >> 16)) & 255), Integer.valueOf(((byte) (i13 >> 8)) & 255), Byte.valueOf((byte) (i13 & 255))).toLowerCase();
+        }
+        if (str != null && str2 != null) {
+            if (str3 != null) {
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(lowerCase);
+                sb2.append("~");
+                sb2.append(str);
+                sb2.append("~");
+                sb2.append(str2);
+                lowerCase = a1.g.s(sb2, "~", str3);
+            } else {
+                lowerCase = lowerCase + "~" + str + "~" + str2;
+            }
+        } else if (str != null) {
+            String D = a1.g.D(lowerCase, "-", str);
+            if (this.f39250g != null) {
+                StringBuilder i14 = t8.b.i(D, "&rotation=");
+                i14.append(AndroidUtilities.getWallpaperRotation(this.f39249f, true));
+                lowerCase = i14.toString();
+            } else {
+                StringBuilder i15 = t8.b.i(D, "?rotation=");
+                i15.append(AndroidUtilities.getWallpaperRotation(this.f39249f, true));
+                lowerCase = i15.toString();
+            }
+        }
+        if (this.f39250g != null) {
+            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f39250g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
+            if (this.f39252j) {
+                return t8.b.u(str4, "&mode=motion");
+            }
+            return str4;
+        }
+        return a1.g.q(MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix, "/bg/", lowerCase, new StringBuilder("https://"));
+    }
+
+    public pj1(String str, int i10, int i11, int i12, int i13) {
+        this.f39246a = str;
+        this.f39247b = i10 | (-16777216);
+        this.f39248c = i11 == 0 ? 0 : i11 | (-16777216);
+        this.d = i12 == 0 ? 0 : i12 | (-16777216);
+        this.e = i13 != 0 ? i13 | (-16777216) : 0;
+        this.h = 1.0f;
+        this.f39253k = true;
+    }
+
+    public pj1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
+        this.f39246a = str;
+        this.f39247b = i10 | (-16777216);
+        int i15 = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f39248c = i15;
+        this.d = i12 == 0 ? 0 : i12 | (-16777216);
+        this.e = i13 != 0 ? i13 | (-16777216) : 0;
+        this.f39249f = i15 == 0 ? 45 : i14;
+        this.h = f7;
+        this.f39251i = file;
+        this.f39252j = z10;
     }
 }

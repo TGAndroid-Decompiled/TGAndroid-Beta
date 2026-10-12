@@ -61,19 +61,19 @@ public final class v1 extends i5 {
         switch (this.d) {
             case 0:
                 super.setTextColor(i10);
-                setBackground(h6.H0(AndroidUtilities.dp(20.0f), i10));
+                setBackground(g6.H0(AndroidUtilities.dp(20.0f), i10));
                 return;
             case 1:
                 super.setTextColor(i10);
-                setBackground(h6.H0(AndroidUtilities.dp(20.0f), i10));
+                setBackground(g6.H0(AndroidUtilities.dp(20.0f), i10));
                 return;
             case 2:
                 super.setTextColor(i10);
-                setBackground(h6.H0(AndroidUtilities.dp(20.0f), i10));
+                setBackground(g6.H0(AndroidUtilities.dp(20.0f), i10));
                 return;
             default:
                 super.setTextColor(i10);
-                setBackgroundDrawable(h6.H0(AndroidUtilities.dp(20.0f), i10));
+                setBackgroundDrawable(g6.H0(AndroidUtilities.dp(20.0f), i10));
                 return;
         }
     }

@@ -1,22 +1,21 @@
 package qi;
 
-import android.util.Size;
-public final class g {
-    public final i0 f46701a;
-    public final j0 f46702b;
-    public final k0 f46703c;
-    public final Size d;
-    public final Size f46704e;
-    public final float f46705f;
-    public final boolean f46706g;
+import j$.util.function.IntUnaryOperator$CC;
+import java.util.function.IntUnaryOperator;
+public final class g implements IntUnaryOperator {
+    public IntUnaryOperator andThen(IntUnaryOperator intUnaryOperator) {
+        return IntUnaryOperator$CC.$default$andThen(this, intUnaryOperator);
+    }
 
-    public g(i0 i0Var, j0 j0Var, k0 k0Var, Size size, Size size2, float f7, boolean z10) {
-        this.f46701a = i0Var;
-        this.f46702b = j0Var;
-        this.f46703c = k0Var;
-        this.d = size;
-        this.f46704e = size2;
-        this.f46705f = f7;
-        this.f46706g = z10;
+    @Override
+    public final int applyAsInt(int i10) {
+        if (i10 >= 16777215) {
+            return 1;
+        }
+        return i10 + 1;
+    }
+
+    public IntUnaryOperator compose(IntUnaryOperator intUnaryOperator) {
+        return IntUnaryOperator$CC.$default$compose(this, intUnaryOperator);
     }
 }

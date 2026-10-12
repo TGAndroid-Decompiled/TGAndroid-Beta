@@ -8,30 +8,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r3 extends j1.b {
-    public final Rect f21235o;
-    public final v3 f21236p;
+    public final Rect f20606o;
+    public final v3 f20607p;
 
     public r3(v3 v3Var, v3 v3Var2) {
         super(v3Var2);
-        this.f21236p = v3Var;
-        this.f21235o = new Rect();
+        this.f20607p = v3Var;
+        this.f20606o = new Rect();
     }
 
     @Override
     public final int g(float f7, float f10) {
-        v3 v3Var = this.f21236p;
+        v3 v3Var = this.f20607p;
         ArrayList arrayList = v3Var.R;
         if (v3Var.V >= 0.5f) {
-            org.telegram.ui.Cells.z zVar = v3Var.f21392i0;
+            org.telegram.ui.Cells.z zVar = v3Var.f20752i0;
             if (zVar != null && zVar.getBounds().contains((int) f7, (int) f10)) {
                 return 1;
             }
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 u3 u3Var = (u3) arrayList.get(size);
-                float f11 = u3Var.f21349i;
-                RectF rectF = u3Var.f21343a;
+                float f11 = u3Var.f20712i;
+                RectF rectF = u3Var.f20707a;
                 if (Math.abs(f11) < 0.4f && rectF.contains(f7, f10)) {
-                    Rect bounds = u3Var.d.f21000l.getBounds();
+                    Rect bounds = u3Var.d.f20395l.getBounds();
                     if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) ((f10 - rectF.top) - AndroidUtilities.dp(24.0f)))) {
                         return size + 2000;
                     }
@@ -45,19 +45,19 @@ public final class r3 extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        v3 v3Var = this.f21236p;
+        v3 v3Var = this.f20607p;
         ArrayList arrayList2 = v3Var.R;
         if (v3Var.V >= 0.5f) {
-            org.telegram.ui.Cells.z zVar = v3Var.f21392i0;
+            org.telegram.ui.Cells.z zVar = v3Var.f20752i0;
             if (zVar != null && !zVar.getBounds().isEmpty()) {
                 arrayList.add(1);
             }
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 u3 u3Var = (u3) arrayList2.get(i10);
-                if (Math.abs(u3Var.f21349i) < 0.4f && !u3Var.f21343a.isEmpty()) {
+                if (Math.abs(u3Var.f20712i) < 0.4f && !u3Var.f20707a.isEmpty()) {
                     arrayList.add(Integer.valueOf(i10 + 1000));
                     j3 j3Var = u3Var.d;
-                    if (j3Var != null && !j3Var.f21000l.getBounds().isEmpty()) {
+                    if (j3Var != null && !j3Var.f20395l.getBounds().isEmpty()) {
                         arrayList.add(Integer.valueOf(i10 + 2000));
                     }
                 }
@@ -69,11 +69,11 @@ public final class r3 extends j1.b {
     public final boolean k(int i10, int i11) {
         int i12;
         boolean z10;
-        v3 v3Var = this.f21236p;
+        v3 v3Var = this.f20607p;
         ArrayList arrayList = v3Var.R;
         if (i11 == 16) {
             if (i10 == 1) {
-                m3 m3Var = v3Var.f21379a;
+                m3 m3Var = v3Var.f20740a;
                 if (m3Var != null) {
                     m3Var.f();
                 }
@@ -90,15 +90,15 @@ public final class r3 extends j1.b {
             if (i12 >= 0 && i12 < arrayList.size()) {
                 u3 u3Var = (u3) arrayList.get(i12);
                 if (z10) {
-                    m3 m3Var2 = v3Var.f21379a;
+                    m3 m3Var2 = v3Var.f20740a;
                     if (m3Var2 != null) {
-                        m3Var2.g(u3Var.f21345c, new ai.h3(26, this, u3Var));
+                        m3Var2.g(u3Var.f20709c, new bi.v2(26, this, u3Var));
                         return true;
                     }
-                } else if (v3Var.f21379a != null) {
+                } else if (v3Var.f20740a != null) {
                     v3Var.a(false);
                     u3Var.getClass();
-                    v3Var.f21379a.e(u3Var.f21345c);
+                    v3Var.f20740a.e(u3Var.f20709c);
                 }
                 return true;
             }
@@ -107,27 +107,27 @@ public final class r3 extends j1.b {
     }
 
     @Override
-    public final void l(int i10, s0.d dVar) {
+    public final void l(int i10, s0.c cVar) {
         int i11;
         boolean z10;
         String str;
         String str2;
         String str3;
-        v3 v3Var = this.f21236p;
+        v3 v3Var = this.f20607p;
         ArrayList arrayList = v3Var.R;
-        dVar.i("android.widget.Button");
-        dVar.b(s0.c.f47819c);
-        Rect rect = this.f21235o;
+        cVar.i("android.widget.Button");
+        cVar.b(s0.b.f44789c);
+        Rect rect = this.f20606o;
         if (i10 == 1) {
-            org.telegram.ui.Cells.z zVar = v3Var.f21392i0;
+            org.telegram.ui.Cells.z zVar = v3Var.f20752i0;
             if (zVar != null) {
                 rect.set(zVar.getBounds());
             } else {
                 rect.set(0, 0, 1, 1);
-                dVar.q(false);
+                cVar.p(false);
             }
-            dVar.h(rect);
-            dVar.j(LocaleController.getString(R.string.BotCloseAllTabs));
+            cVar.h(rect);
+            cVar.j(LocaleController.getString(R.string.BotCloseAllTabs));
             return;
         }
         if (i10 >= 2000) {
@@ -138,43 +138,43 @@ public final class r3 extends j1.b {
             z10 = false;
         } else {
             rect.set(0, 0, 1, 1);
-            dVar.h(rect);
-            dVar.q(false);
+            cVar.h(rect);
+            cVar.p(false);
             return;
         }
         if (i11 >= 0 && i11 < arrayList.size()) {
             u3 u3Var = (u3) arrayList.get(i11);
-            l3 l3Var = u3Var.f21345c;
-            RectF rectF = u3Var.f21343a;
+            l3 l3Var = u3Var.f20709c;
+            RectF rectF = u3Var.f20707a;
             if (l3Var != null && l3Var.b() != null) {
-                str = u3Var.f21345c.b();
+                str = u3Var.f20709c.b();
             } else {
                 str = "";
             }
             if (z10) {
-                Rect bounds = u3Var.d.f21000l.getBounds();
+                Rect bounds = u3Var.d.f20395l.getBounds();
                 rect.set((int) (rectF.left + bounds.left), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.bottom));
-                dVar.h(rect);
+                cVar.h(rect);
                 if (TextUtils.isEmpty(str)) {
                     str3 = LocaleController.getString(R.string.Close);
                 } else {
                     str3 = LocaleController.getString(R.string.Close) + ", " + str;
                 }
-                dVar.j(str3);
+                cVar.j(str3);
                 return;
             }
             rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            dVar.h(rect);
+            cVar.h(rect);
             if (TextUtils.isEmpty(str)) {
                 str2 = LocaleController.getString(R.string.Open);
             } else {
                 str2 = LocaleController.getString(R.string.Open) + ", " + str;
             }
-            dVar.j(str2);
+            cVar.j(str2);
             return;
         }
         rect.set(0, 0, 1, 1);
-        dVar.h(rect);
-        dVar.q(false);
+        cVar.h(rect);
+        cVar.p(false);
     }
 }

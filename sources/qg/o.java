@@ -1,28 +1,38 @@
 package qg;
 
-import android.animation.ValueAnimator;
-public final class o implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46377a;
-    public final m0 f46378b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.g6;
+public final class o extends ScrollView {
+    public final LinearLayout f43497a;
+    public final x f43498b;
 
-    public o(m0 m0Var, int i10) {
-        this.f46377a = i10;
-        this.f46378b = m0Var;
+    public o(x xVar, Context context, LinearLayout linearLayout) {
+        super(context);
+        this.f43498b = xVar;
+        this.f43497a = linearLayout;
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f46377a) {
-            case 0:
-                m0 m0Var = this.f46378b;
-                m0Var.getClass();
-                m0Var.f46315f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                m0 m0Var2 = this.f46378b;
-                m0Var2.getClass();
-                m0Var2.f46315f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float y3 = this.f43497a.getY() + AndroidUtilities.dp(1.0f);
+        int dp = AndroidUtilities.dp(36.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getMeasuredWidth() - dp) / 2.0f, y3, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y3);
+        g6.f20191t0.setColor(-10790053);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), g6.f20191t0);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ((LinearLayout.LayoutParams) this.f43498b.f43609b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
     }
 }

@@ -1,115 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class y30 {
-    public float f32935c;
-    public float d;
-    public float f32936e;
-    public float f32937f;
-    public RadialGradient f32938g;
-    public final int f32939i;
-    public int f32940j;
-    public int f32941k;
-    public int f32942l;
-    public float f32933a = -1.0f;
-    public float f32934b = -1.0f;
-    public final Matrix h = new Matrix();
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public abstract class y30 extends org.telegram.ui.ActionBar.e3 {
+    public z4.g f31466b;
+    public v30 f31467c;
+    public LinearLayout d;
+    public TextView[] e;
+    public float f31468f;
+    public int h;
 
-    public y30(int i10) {
-        this.f32939i = i10;
-    }
-
-    public final void a(float f7) {
-        float f10;
-        int i10 = this.f32939i;
-        if (i10 == 0) {
-            int i11 = this.f32940j;
-            int i12 = org.telegram.ui.ActionBar.h6.Tg;
-            if (i11 != org.telegram.ui.ActionBar.h6.x0(null, i12, false) || this.f32941k != org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ug, false)) {
-                int x02 = org.telegram.ui.ActionBar.h6.x0(null, i12, false);
-                this.f32940j = x02;
-                int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ug, false);
-                this.f32941k = x03;
-                this.f32938g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x02, x03}, (float[]) null, Shader.TileMode.CLAMP);
-            }
-        } else if (i10 == 1) {
-            int i13 = this.f32940j;
-            int i14 = org.telegram.ui.ActionBar.h6.Vg;
-            if (i13 != org.telegram.ui.ActionBar.h6.x0(null, i14, false) || this.f32941k != org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Wg, false)) {
-                int x04 = org.telegram.ui.ActionBar.h6.x0(null, i14, false);
-                this.f32940j = x04;
-                int x05 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Wg, false);
-                this.f32941k = x05;
-                this.f32938g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x04, x05}, (float[]) null, Shader.TileMode.CLAMP);
-            }
-        } else if (i10 == 3) {
-            int i15 = this.f32940j;
-            int i16 = org.telegram.ui.ActionBar.h6.f20661ih;
-            if (i15 != org.telegram.ui.ActionBar.h6.x0(null, i16, false) || this.f32941k != org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20679jh, false) || this.f32942l != org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20699kh, false)) {
-                int x06 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20679jh, false);
-                this.f32941k = x06;
-                int x07 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20699kh, false);
-                this.f32942l = x07;
-                int x08 = org.telegram.ui.ActionBar.h6.x0(null, i16, false);
-                this.f32940j = x08;
-                this.f32938g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x06, x07, x08}, (float[]) null, Shader.TileMode.CLAMP);
-            }
+    public static void n(org.telegram.ui.m50 m50Var) {
+        TextView textView;
+        TextView[] textViewArr = m50Var.e;
+        int i10 = m50Var.h;
+        TextView textView2 = textViewArr[i10];
+        if (i10 < textViewArr.length - 1) {
+            textView = textViewArr[i10 + 1];
         } else {
-            return;
+            textView = null;
         }
-        int dp = AndroidUtilities.dp(130.0f);
-        float f11 = this.f32936e;
-        if (f11 == 0.0f || this.f32937f >= f11) {
-            this.f32936e = Utilities.random.nextInt(700) + 500;
-            this.f32937f = 0.0f;
-            if (this.f32933a == -1.0f) {
-                b();
+        m50Var.containerView.getMeasuredWidth();
+        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
+        float measuredWidth2 = (m50Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
+        if (textView != null) {
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * m50Var.f31468f;
+        }
+        for (int i11 = 0; i11 < textViewArr.length; i11++) {
+            int i12 = m50Var.h;
+            float f7 = 0.9f;
+            float f10 = 0.7f;
+            if (i11 >= i12 && i11 <= i12 + 1) {
+                if (i11 == i12) {
+                    float f11 = m50Var.f31468f;
+                    f10 = 1.0f - (0.3f * f11);
+                    f7 = 1.0f - (f11 * 0.1f);
+                } else {
+                    float f12 = m50Var.f31468f;
+                    f10 = 0.7f + (0.3f * f12);
+                    f7 = 0.9f + (f12 * 0.1f);
+                }
             }
-            this.f32935c = this.f32933a;
-            this.d = this.f32934b;
-            b();
+            textViewArr[i11].setAlpha(f10);
+            textViewArr[i11].setScaleX(f7);
+            textViewArr[i11].setScaleY(f7);
         }
-        float f12 = (float) 16;
-        float f13 = (f12 * 0.02f * f7) + (1.0f * f12) + this.f32937f;
-        this.f32937f = f13;
-        float f14 = this.f32936e;
-        if (f13 > f14) {
-            this.f32937f = f14;
-        }
-        float interpolation = js.f27635g.getInterpolation(this.f32937f / f14);
-        float f15 = dp;
-        float f16 = this.f32935c;
-        float f17 = ((((this.f32933a - f16) * interpolation) + f16) * f15) - 200.0f;
-        float f18 = this.d;
-        float f19 = ((((this.f32934b - f18) * interpolation) + f18) * f15) - 200.0f;
-        if (i10 == 3) {
-            f10 = 2.0f;
-        } else {
-            f10 = 1.5f;
-        }
-        float f20 = (f15 / 400.0f) * f10;
-        Matrix matrix = this.h;
-        matrix.reset();
-        matrix.postTranslate(f17, f19);
-        matrix.postScale(f20, f20, f17 + 200.0f, f19 + 200.0f);
-        this.f32938g.setLocalMatrix(matrix);
-    }
-
-    public final void b() {
-        int i10 = this.f32939i;
-        if (i10 == 0) {
-            this.f32933a = a1.g.B(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.2f);
-            this.f32934b = a1.g.B(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.7f);
-        } else if (i10 == 3) {
-            this.f32933a = a1.g.B(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.6f);
-            this.f32934b = (Utilities.random.nextInt(100) * 0.1f) / 100.0f;
-        } else {
-            this.f32933a = a1.g.e(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
-            this.f32934b = Utilities.random.nextInt(100) / 100.0f;
-        }
+        m50Var.d.setTranslationX(measuredWidth2);
+        m50Var.f31467c.invalidate();
     }
 }

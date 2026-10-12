@@ -1,40 +1,15 @@
 package org.telegram.ui;
+public final class a6 implements Runnable {
+    public final int f34044a;
+    public final Object f34045b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CacheByChatsController;
-public final class a6 implements p80 {
-    public final int f35710a;
-    public final d6 f35711b;
-    public final CacheByChatsController.KeepMediaException f35712c;
-
-    public a6(d6 d6Var, CacheByChatsController.KeepMediaException keepMediaException, int i10) {
-        this.f35710a = i10;
-        this.f35711b = d6Var;
-        this.f35712c = keepMediaException;
+    public a6(Object obj, int i10) {
+        this.f34044a = i10;
+        this.f34045b = obj;
     }
 
     @Override
-    public final void a(int i10) {
-        switch (this.f35710a) {
-            case 0:
-                int i11 = CacheByChatsController.KEEP_MEDIA_DELETE;
-                d6 d6Var = this.f35711b;
-                CacheByChatsController.KeepMediaException keepMediaException = this.f35712c;
-                if (i10 == i11) {
-                    d6Var.d.remove(keepMediaException);
-                    d6Var.U();
-                } else {
-                    keepMediaException.keepMedia = i10;
-                    AndroidUtilities.updateVisibleRows(d6Var.f36655b);
-                }
-                d6Var.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(d6Var.f36657e, d6Var.d);
-                return;
-            default:
-                this.f35712c.keepMedia = i10;
-                d6 d6Var2 = this.f35711b;
-                d6Var2.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(d6Var2.f36657e, d6Var2.d);
-                AndroidUtilities.updateVisibleRows(d6Var2.f36655b);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.a6.run():void");
     }
 }

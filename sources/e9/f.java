@@ -1,180 +1,85 @@
 package e9;
 
-import j$.util.DesugarCollections;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
-import java.util.NavigableSet;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.SortedSet;
-public final class f extends i implements NavigableMap {
-    public final v0 f8733n;
+public class f extends j2 {
+    public final Map f8559b;
+    public final p1 f8560c;
 
-    public f(v0 v0Var, NavigableMap navigableMap) {
-        super(v0Var, navigableMap);
-        this.f8733n = v0Var;
+    public f(p1 p1Var, Map map) {
+        super(0);
+        this.f8560c = p1Var;
+        map.getClass();
+        this.f8559b = map;
     }
 
     @Override
-    public final SortedSet b() {
-        return new g(this.f8733n, d());
-    }
-
-    @Override
-    public final SortedSet c() {
-        return (NavigableSet) super.keySet();
-    }
-
-    @Override
-    public final Map.Entry ceilingEntry(Object obj) {
-        Map.Entry ceilingEntry = d().ceilingEntry(obj);
-        if (ceilingEntry == null) {
-            return null;
+    public final void clear() {
+        Iterator it = iterator();
+        while (true) {
+            d dVar = (d) it;
+            if (dVar.hasNext()) {
+                dVar.next();
+                dVar.remove();
+            } else {
+                return;
+            }
         }
-        return a(ceilingEntry);
     }
 
     @Override
-    public final Object ceilingKey(Object obj) {
-        return d().ceilingKey(obj);
+    public final boolean contains(Object obj) {
+        return this.f8559b.containsKey(obj);
     }
 
     @Override
-    public final NavigableSet descendingKeySet() {
-        return (NavigableSet) super.keySet();
+    public final boolean containsAll(Collection collection) {
+        return this.f8559b.keySet().containsAll(collection);
     }
 
     @Override
-    public final NavigableMap descendingMap() {
-        return new f(this.f8733n, d().descendingMap());
-    }
-
-    public final e0 e(Iterator it) {
-        if (!it.hasNext()) {
-            return null;
+    public final boolean equals(Object obj) {
+        if (this != obj && !this.f8559b.keySet().equals(obj)) {
+            return false;
         }
-        Map.Entry entry = (Map.Entry) it.next();
-        Collection c10 = this.f8733n.c();
-        c10.addAll((Collection) entry.getValue());
-        it.remove();
-        return new e0(entry.getKey(), DesugarCollections.unmodifiableList((List) c10));
+        return true;
     }
 
     @Override
-    public final NavigableMap d() {
-        return (NavigableMap) ((SortedMap) this.f8722b);
+    public final int hashCode() {
+        return this.f8559b.keySet().hashCode();
     }
 
     @Override
-    public final Map.Entry firstEntry() {
-        Map.Entry firstEntry = d().firstEntry();
-        if (firstEntry == null) {
-            return null;
+    public final boolean isEmpty() {
+        return this.f8559b.isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new d(this, this.f8559b.entrySet().iterator(), 1);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        int i10;
+        Collection collection = (Collection) this.f8559b.remove(obj);
+        if (collection != null) {
+            i10 = collection.size();
+            collection.clear();
+            this.f8560c.f8603f -= i10;
+        } else {
+            i10 = 0;
         }
-        return a(firstEntry);
-    }
-
-    @Override
-    public final Map.Entry floorEntry(Object obj) {
-        Map.Entry floorEntry = d().floorEntry(obj);
-        if (floorEntry == null) {
-            return null;
+        if (i10 <= 0) {
+            return false;
         }
-        return a(floorEntry);
+        return true;
     }
 
     @Override
-    public final Object floorKey(Object obj) {
-        return d().floorKey(obj);
-    }
-
-    @Override
-    public final SortedMap headMap(Object obj) {
-        return headMap(obj, false);
-    }
-
-    @Override
-    public final Map.Entry higherEntry(Object obj) {
-        Map.Entry higherEntry = d().higherEntry(obj);
-        if (higherEntry == null) {
-            return null;
-        }
-        return a(higherEntry);
-    }
-
-    @Override
-    public final Object higherKey(Object obj) {
-        return d().higherKey(obj);
-    }
-
-    @Override
-    public final Set keySet() {
-        return (NavigableSet) super.keySet();
-    }
-
-    @Override
-    public final Map.Entry lastEntry() {
-        Map.Entry lastEntry = d().lastEntry();
-        if (lastEntry == null) {
-            return null;
-        }
-        return a(lastEntry);
-    }
-
-    @Override
-    public final Map.Entry lowerEntry(Object obj) {
-        Map.Entry lowerEntry = d().lowerEntry(obj);
-        if (lowerEntry == null) {
-            return null;
-        }
-        return a(lowerEntry);
-    }
-
-    @Override
-    public final Object lowerKey(Object obj) {
-        return d().lowerKey(obj);
-    }
-
-    @Override
-    public final NavigableSet navigableKeySet() {
-        return (NavigableSet) super.keySet();
-    }
-
-    @Override
-    public final Map.Entry pollFirstEntry() {
-        return e(((b) entrySet()).iterator());
-    }
-
-    @Override
-    public final Map.Entry pollLastEntry() {
-        return e(((b) ((d) descendingMap()).entrySet()).iterator());
-    }
-
-    @Override
-    public final SortedMap subMap(Object obj, Object obj2) {
-        return subMap(obj, true, obj2, false);
-    }
-
-    @Override
-    public final SortedMap tailMap(Object obj) {
-        return tailMap(obj, true);
-    }
-
-    @Override
-    public final NavigableMap headMap(Object obj, boolean z10) {
-        return new f(this.f8733n, d().headMap(obj, z10));
-    }
-
-    @Override
-    public final NavigableMap subMap(Object obj, boolean z10, Object obj2, boolean z11) {
-        return new f(this.f8733n, d().subMap(obj, z10, obj2, z11));
-    }
-
-    @Override
-    public final NavigableMap tailMap(Object obj, boolean z10) {
-        return new f(this.f8733n, d().tailMap(obj, z10));
+    public final int size() {
+        return this.f8559b.size();
     }
 }

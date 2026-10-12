@@ -2,60 +2,53 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
+import android.graphics.Paint;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class jx extends FrameLayout {
-    public final boolean f27659a;
-    public final d00 f27660b;
+    public final Paint f26509a;
+    public final wz f26510b;
 
-    public jx(d00 d00Var, Context context, boolean z10) {
+    public jx(wz wzVar, Context context) {
         super(context);
-        this.f27660b = d00Var;
-        this.f27659a = z10;
+        this.f26510b = wzVar;
+        this.f26509a = new Paint();
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        d00 d00Var = this.f27660b;
-        px pxVar = d00Var.B0;
-        lx lxVar = d00Var.D0;
-        ox oxVar = d00Var.G0;
-        if (!this.f27659a && (view == lxVar || view == oxVar)) {
+    public final void dispatchDraw(Canvas canvas) {
+        wz wzVar = this.f26510b;
+        ix ixVar = wzVar.B0;
+        float dp = AndroidUtilities.dp(50.0f) * wzVar.f31067t1.p();
+        if (dp > getMeasuredHeight()) {
+            return;
+        }
+        canvas.save();
+        if (dp != 0.0f) {
+            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
+        }
+        int A = wzVar.A(org.telegram.ui.ActionBar.g6.He);
+        Paint paint = this.f26509a;
+        paint.setColor(A);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), ixVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
+        super.dispatchDraw(canvas);
+        if (ixVar.f26757s != null) {
             canvas.save();
-            float y3 = pxVar.getY() + pxVar.getMeasuredHeight() + 1.0f;
-            if (view == lxVar) {
-                y3 = Math.max(y3, oxVar.getY() + oxVar.getMeasuredHeight() + 1.0f);
+            float f7 = ixVar.f26739c0 - ixVar.f26740d0;
+            float f10 = ixVar.v;
+            if (f10 > 0.0f) {
+                f7 = ((ixVar.f26757s.getX() - ixVar.getScrollX()) * ixVar.v) + ((1.0f - f10) * f7);
             }
-            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * d00Var.f25063a.f16088e), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.translate(f7, 0.0f);
+            ixVar.f26757s.draw(canvas);
             canvas.restore();
-            return drawChild;
         }
-        return super.drawChild(canvas, view, j3);
+        canvas.restore();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        d00 d00Var = this.f27660b;
-        d00Var.K0 = true;
-        d00Var.Y();
-        gg.f1 f1Var = d00Var.T0;
-        if (f1Var != null) {
-            f1Var.a();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        d00 d00Var = this.f27660b;
-        d00Var.K0 = false;
-        d00Var.Y();
-        gg.f1 f1Var = d00Var.T0;
-        if (f1Var != null) {
-            f1Var.a();
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f26510b.Y();
     }
 }

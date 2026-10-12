@@ -1,38 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-public abstract class t6 extends Property {
-    public final int f30773a;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+public final class t6 extends u6 {
+    public final int f29283b;
 
     public t6(String str, int i10) {
-        super(Float.class, str);
-        this.f30773a = i10;
-        switch (i10) {
+        super(str, 1);
+        this.f29283b = i10;
+    }
+
+    @Override
+    public final void b(int i10, Object obj) {
+        switch (this.f29283b) {
+            case 0:
+                ((Paint) obj).setAlpha(i10);
+                return;
             case 1:
-                super(Integer.class, str);
+                ((Paint) obj).setColor(i10);
+                return;
+            case 2:
+                ((Drawable) obj).setAlpha(i10);
                 return;
             default:
+                ((ShapeDrawable) obj).getPaint().setAlpha(i10);
                 return;
         }
     }
 
-    public void a(Object obj, Float f7) {
-        c(obj, f7.floatValue());
-    }
-
-    public abstract void b(int i10, Object obj);
-
-    public abstract void c(Object obj, float f7);
-
     @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f30773a) {
+    public final Object get(Object obj) {
+        switch (this.f29283b) {
             case 0:
-                c(obj, ((Float) obj2).floatValue());
-                return;
+                return Integer.valueOf(((Paint) obj).getAlpha());
+            case 1:
+                return Integer.valueOf(((Paint) obj).getColor());
+            case 2:
+                return Integer.valueOf(((Drawable) obj).getAlpha());
             default:
-                b(((Integer) obj2).intValue(), obj);
-                return;
+                return Integer.valueOf(((ShapeDrawable) obj).getPaint().getAlpha());
         }
     }
 }

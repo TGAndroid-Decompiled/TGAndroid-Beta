@@ -1,30 +1,215 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.ContextThemeWrapper;
 import android.view.View;
-public final class q91 implements View.OnClickListener {
-    public final int f41232a;
-    public final Context f41233b;
-    public final org.telegram.ui.ActionBar.c6 f41234c;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class q91 extends LinearLayout {
+    public final org.telegram.ui.ActionBar.e1[] f39363a;
 
-    public q91(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f41232a = i10;
-        this.f41233b = context;
-        this.f41234c = c6Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f41232a) {
-            case 0:
-                new yh.f7(this.f41233b, this.f41234c).show();
-                return;
-            case 1:
-                new yh.f7(this.f41233b, this.f41234c).show();
-                return;
-            default:
-                new yh.f7(this.f41233b, this.f41234c).show();
-                return;
+    public q91(ContextThemeWrapper contextThemeWrapper, final wr0 wr0Var) {
+        super(contextThemeWrapper);
+        this.f39363a = r1;
+        setOrientation(1);
+        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
+        c10.c(-328966, -328966);
+        c10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                wr0 wr0Var2 = wr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = wr0Var2.f41639a;
+                        Drawable[] drawableArr = PhotoViewer.U8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = wr0Var2.f41639a;
+                        Drawable[] drawableArr2 = PhotoViewer.U8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = wr0Var2.f41639a;
+                        Drawable[] drawableArr3 = PhotoViewer.U8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = wr0Var2.f41639a;
+                        Drawable[] drawableArr4 = PhotoViewer.U8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = wr0Var2.f41639a;
+                        Drawable[] drawableArr5 = PhotoViewer.U8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c10.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
+        c11.c(-328966, -328966);
+        c11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                wr0 wr0Var2 = wr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = wr0Var2.f41639a;
+                        Drawable[] drawableArr = PhotoViewer.U8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = wr0Var2.f41639a;
+                        Drawable[] drawableArr2 = PhotoViewer.U8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = wr0Var2.f41639a;
+                        Drawable[] drawableArr3 = PhotoViewer.U8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = wr0Var2.f41639a;
+                        Drawable[] drawableArr4 = PhotoViewer.U8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = wr0Var2.f41639a;
+                        Drawable[] drawableArr5 = PhotoViewer.U8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c11.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.e1 c12 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
+        c12.c(-328966, -328966);
+        c12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                wr0 wr0Var2 = wr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = wr0Var2.f41639a;
+                        Drawable[] drawableArr = PhotoViewer.U8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = wr0Var2.f41639a;
+                        Drawable[] drawableArr2 = PhotoViewer.U8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = wr0Var2.f41639a;
+                        Drawable[] drawableArr3 = PhotoViewer.U8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = wr0Var2.f41639a;
+                        Drawable[] drawableArr4 = PhotoViewer.U8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = wr0Var2.f41639a;
+                        Drawable[] drawableArr5 = PhotoViewer.U8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c12.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.e1 c13 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
+        c13.c(-328966, -328966);
+        c13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                wr0 wr0Var2 = wr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = wr0Var2.f41639a;
+                        Drawable[] drawableArr = PhotoViewer.U8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = wr0Var2.f41639a;
+                        Drawable[] drawableArr2 = PhotoViewer.U8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = wr0Var2.f41639a;
+                        Drawable[] drawableArr3 = PhotoViewer.U8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = wr0Var2.f41639a;
+                        Drawable[] drawableArr4 = PhotoViewer.U8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = wr0Var2.f41639a;
+                        Drawable[] drawableArr5 = PhotoViewer.U8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c13.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.e1 c14 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
+        c14.c(-328966, -328966);
+        c14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                wr0 wr0Var2 = wr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = wr0Var2.f41639a;
+                        Drawable[] drawableArr = PhotoViewer.U8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = wr0Var2.f41639a;
+                        Drawable[] drawableArr2 = PhotoViewer.U8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = wr0Var2.f41639a;
+                        Drawable[] drawableArr3 = PhotoViewer.U8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = wr0Var2.f41639a;
+                        Drawable[] drawableArr4 = PhotoViewer.U8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = wr0Var2.f41639a;
+                        Drawable[] drawableArr5 = PhotoViewer.U8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c14.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.e1[] e1VarArr = {c10, c11, c12, c13, c14};
+        View d61Var = new d61(contextThemeWrapper, 1);
+        d61Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        d61Var.setBackgroundColor(-15198184);
+        addView(d61Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) d61Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
         }
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(8.0f);
+        d61Var.setLayoutParams(layoutParams);
     }
 }

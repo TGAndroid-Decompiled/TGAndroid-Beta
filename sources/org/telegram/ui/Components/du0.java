@@ -1,56 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-public final class du0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f25467a;
-    public final int f25468b;
-    public final KeyEvent.Callback f25469c;
+import android.content.Context;
+import android.os.Bundle;
+public final class du0 extends org.telegram.ui.ho {
+    public final xv0 f24494f;
 
-    public du0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f25467a = i11;
-        this.f25469c = callback;
-        this.f25468b = i10;
+    public du0(xv0 xv0Var, Context context, org.telegram.ui.ActionBar.b5 b5Var, Bundle bundle) {
+        super(context, b5Var, bundle);
+        this.f24494f = xv0Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10 = this.f25467a;
-        int i11 = this.f25468b;
-        KeyEvent.Callback callback = this.f25469c;
-        switch (i10) {
-            case 0:
-                hw0 hw0Var = (hw0) callback;
-                hw0Var.f26933k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
-                hw0Var.U(i11);
-                return true;
-            default:
-                y71 y71Var = (y71) callback;
-                ai.w0 w0Var = y71Var.d;
-                w0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = w0Var.getChildCount();
-                AnimatorSet animatorSet = new AnimatorSet();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    View childAt = w0Var.getChildAt(i12);
-                    w0Var.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= i11) {
-                        if (R == 1 && w0Var.getAdapter() == y71Var.f32964e && (childAt instanceof org.telegram.ui.Cells.v3)) {
-                            childAt = ((org.telegram.ui.Cells.v3) childAt).getTextView();
-                        }
-                        childAt.setAlpha(0.0f);
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(w0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / w0Var.getMeasuredHeight()) * 100.0f));
-                        ofFloat.setDuration(200L);
-                        animatorSet.playTogether(ofFloat);
-                    }
-                }
-                animatorSet.start();
-                return true;
+    public final void b(boolean z10) {
+        org.telegram.ui.ActionBar.u0 u0Var = this.f24494f.f31369n0;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(z10);
         }
     }
 }

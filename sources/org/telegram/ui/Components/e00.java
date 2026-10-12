@@ -1,53 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class e00 extends ReplacementSpan {
-    public final int f25538a;
+import android.graphics.SurfaceTexture;
+import android.os.Looper;
+import android.view.Surface;
+public final class e00 implements Runnable {
+    public final int f24544a;
+    public final h00 f24545b;
 
-    public e00(int i10) {
-        this.f25538a = i10;
+    public e00(h00 h00Var, int i10) {
+        this.f24544a = i10;
+        this.f24545b = h00Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f25538a;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f25538a) {
+    public final void run() {
+        switch (this.f24544a) {
             case 0:
-                return (int) paint.measureText(charSequence, i10, i11);
+                this.f24545b.finish();
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
             case 1:
-                return AndroidUtilities.dp(16.0f);
-            case 2:
-                return AndroidUtilities.dp(12.0f);
-            case 3:
-                return AndroidUtilities.dp(12.0f);
+                h00.b(this.f24545b);
+                return;
             default:
-                return AndroidUtilities.dp(16.0f);
+                h00 h00Var = this.f24545b;
+                xv xvVar = h00Var.f25445b0;
+                SurfaceTexture surfaceTexture = h00Var.f25453w;
+                x71 x71Var = (x71) xvVar.f31335b;
+                if (x71Var.f31188a != null) {
+                    x71Var.f31188a.T(new Surface(surfaceTexture));
+                    return;
+                }
+                return;
         }
-    }
-
-    public e00(boolean z10) {
-        this.f25538a = 0;
-    }
-
-    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void d(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void e(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

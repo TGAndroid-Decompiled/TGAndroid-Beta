@@ -1,68 +1,65 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import ci.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.pa;
-public final class y0 extends org.telegram.ui.Cells.w0 {
-    public final pa f46575t2;
-    public final TextPaint f46576u2;
-    public final a1 f46577v2;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+import org.telegram.ui.Components.la;
+import org.telegram.ui.Wallet.t8;
+public final class y0 implements TextureView.SurfaceTextureListener {
+    public final la f43621a;
+    public final c1 f43622b;
 
-    public y0(a1 a1Var, Context context, com.google.firebase.messaging.n nVar) {
-        super(context, nVar, false);
-        this.f46577v2 = a1Var;
-        this.f46575t2 = new pa(a1Var.d, this, 10, false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f46576u2 = textPaint;
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-        textPaint.setColor(-1);
+    public y0(c1 c1Var, la laVar) {
+        this.f43622b = c1Var;
+        this.f43621a = laVar;
     }
 
     @Override
-    public final Paint I(String str) {
-        float f7;
-        float f10;
-        if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
-            if ("paintChatActionBackground".equals(str)) {
-                b6 b6Var = this.f46577v2.h;
-                b6Var.f46179v0 = true;
-                boolean z10 = b6Var.B0;
-                pa paVar = this.f46575t2;
-                if (paVar.f29474r != z10) {
-                    paVar.f29474r = z10;
-                    if (paVar.f29465i == 10) {
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setSaturation(1.6f);
-                        if (paVar.f29474r) {
-                            f7 = 0.97f;
-                        } else {
-                            f7 = 0.92f;
-                        }
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, f7);
-                        if (paVar.f29474r) {
-                            f10 = 0.12f;
-                        } else {
-                            f10 = -0.06f;
-                        }
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
-                        paVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        paVar.f29464g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                    }
-                }
-                Paint c10 = paVar.c(1.0f);
-                if (c10 != null) {
-                    return c10;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        if (surfaceTexture != null) {
+            c1 c1Var = this.f43622b;
+            if (c1Var.d == null) {
+                a1 a1Var = new a1(c1Var, surfaceTexture, this.f43621a);
+                c1Var.d = a1Var;
+                a1Var.f43384n = i10;
+                a1Var.f43385r = i11;
+                c1Var.i();
+                c1Var.post(new x0(this, 1));
+                q0 q0Var = c1Var.f43399c;
+                if (q0Var.v) {
+                    q0Var.f43524f.f(new o0(q0Var, q0Var.f43539w, 0));
+                    q0Var.f43539w = null;
+                    q0Var.v = false;
                 }
             }
-            return super.I(str);
         }
-        return this.f46576u2;
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        c1 c1Var = this.f43622b;
+        if (c1Var.d != null && !c1Var.f43406y) {
+            q0 q0Var = c1Var.f43399c;
+            q0Var.f43524f.f(new t8(15, q0Var, new x0(this, 2)));
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        c1 c1Var = this.f43622b;
+        a1 a1Var = c1Var.d;
+        if (a1Var == null) {
+            return;
+        }
+        a1Var.f43384n = i10;
+        a1Var.f43385r = i11;
+        c1Var.i();
+        a1 a1Var2 = c1Var.d;
+        a1Var2.postRunnable(a1Var2.f43387w);
+        c1Var.d.postRunnable(new x0(this, 0));
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

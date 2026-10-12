@@ -1,143 +1,44 @@
 package i2;
 
-import android.content.Context;
-import android.media.AudioManager;
-import android.os.Handler;
-import android.os.Looper;
-import com.google.android.gms.internal.vision.e2;
-import v7.v6;
+import java.util.Locale;
 public final class e {
-    public final d9.j f11630a;
-    public final Handler f11631b;
-    public p0 f11632c;
-    public b2.e d;
-    public int f11634f;
-    public c2.c h;
-    public float f11635g = 1.0f;
-    public int f11633e = 0;
+    public int f10940a;
+    public int f10941b;
+    public int f10942c;
+    public int d;
+    public int e;
+    public int f10943f;
+    public int f10944g;
+    public int h;
+    public int f10945i;
+    public int f10946j;
+    public long f10947k;
+    public int f10948l;
 
-    public e(Context context, Looper looper, p0 p0Var) {
-        this.f11630a = v6.a(new d(context, 0));
-        this.f11632c = p0Var;
-        this.f11631b = new Handler(looper);
-    }
-
-    public final void a() {
-        int i10 = this.f11633e;
-        if (i10 != 1 && i10 != 0 && this.h != null) {
-            c2.d.a((AudioManager) this.f11630a.get(), this.h);
-        }
-    }
-
-    public final void b(int i10) {
-        p0 p0Var = this.f11632c;
-        if (p0Var != null) {
-            e2.z zVar = p0Var.f11851n;
-            zVar.getClass();
-            e2.y b10 = e2.z.b();
-            b10.f8588a = zVar.f8590a.obtainMessage(33, i10, 0);
-            b10.b();
-        }
-    }
-
-    public final void c(int i10) {
-        float f7;
-        if (this.f11633e != i10) {
-            this.f11633e = i10;
-            if (i10 == 4) {
-                f7 = 0.2f;
-            } else {
-                f7 = 1.0f;
-            }
-            if (this.f11635g != f7) {
-                this.f11635g = f7;
-                p0 p0Var = this.f11632c;
-                if (p0Var != null) {
-                    p0Var.f11851n.e(34);
-                }
-            }
-        }
-    }
-
-    public final int d(int i10, boolean z10) {
-        int i11;
-        c2.a aVar;
-        boolean z11 = false;
-        if (i10 != 1 && (i11 = this.f11634f) == 1) {
-            if (z10) {
-                if (this.f11633e != 2) {
-                    c2.c cVar = this.h;
-                    if (cVar == null) {
-                        if (cVar == null) {
-                            ?? obj = new Object();
-                            obj.f3994c = b2.e.h;
-                            obj.f3993b = i11;
-                            aVar = obj;
-                        } else {
-                            ?? obj2 = new Object();
-                            obj2.f3993b = cVar.f3997a;
-                            obj2.f3994c = cVar.d;
-                            obj2.f3992a = cVar.f4000e;
-                            aVar = obj2;
-                        }
-                        b2.e eVar = this.d;
-                        if (eVar != null && eVar.f3275a == 1) {
-                            z11 = true;
-                        }
-                        eVar.getClass();
-                        aVar.f3994c = eVar;
-                        aVar.f3992a = z11;
-                        AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
-                            @Override
-                            public final void onAudioFocusChange(int i12) {
-                                b2.e eVar2;
-                                e eVar3 = e.this;
-                                eVar3.getClass();
-                                if (i12 != -3 && i12 != -2) {
-                                    if (i12 != -1) {
-                                        if (i12 != 1) {
-                                            e2.m(i12, "Unknown focus change type: ", "AudioFocusManager");
-                                            return;
-                                        }
-                                        eVar3.c(2);
-                                        eVar3.b(1);
-                                        return;
-                                    }
-                                    eVar3.b(-1);
-                                    eVar3.a();
-                                    eVar3.c(1);
-                                } else if (i12 != -2 && ((eVar2 = eVar3.d) == null || eVar2.f3275a != 1)) {
-                                    eVar3.c(4);
-                                } else {
-                                    eVar3.b(0);
-                                    eVar3.c(3);
-                                }
-                            }
-                        };
-                        Handler handler = this.f11631b;
-                        handler.getClass();
-                        this.h = new c2.c(aVar.f3993b, onAudioFocusChangeListener, handler, (b2.e) aVar.f3994c, aVar.f3992a);
-                    }
-                    if (c2.d.h((AudioManager) this.f11630a.get(), this.h) == 1) {
-                        c(2);
-                        return 1;
-                    }
-                    c(1);
-                    return -1;
-                }
-            } else {
-                int i12 = this.f11633e;
-                if (i12 == 1) {
-                    return -1;
-                }
-                if (i12 == 3) {
-                    return 0;
-                }
-            }
-            return 1;
-        }
-        a();
-        c(0);
-        return 1;
+    public final String toString() {
+        int i10 = this.f10940a;
+        int i11 = this.f10941b;
+        int i12 = this.f10942c;
+        int i13 = this.d;
+        int i14 = this.e;
+        int i15 = this.f10943f;
+        int i16 = this.f10944g;
+        int i17 = this.h;
+        int i18 = this.f10945i;
+        int i19 = this.f10946j;
+        long j10 = this.f10947k;
+        int i20 = this.f10948l;
+        String str = e2.m0.f8372a;
+        Locale locale = Locale.US;
+        StringBuilder l4 = d.l("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
+        d.u(l4, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
+        d.u(l4, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
+        d.u(l4, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
+        d.u(l4, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
+        l4.append(j10);
+        l4.append("\n videoFrameProcessingOffsetCount=");
+        l4.append(i20);
+        l4.append("\n}");
+        return l4.toString();
     }
 }

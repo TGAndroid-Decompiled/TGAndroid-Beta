@@ -1,277 +1,34 @@
 package vg;
 
-import ai.a6;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.y9;
-import w7.w5;
-public abstract class c extends FrameLayout {
-    public final c6 f49810a;
-    public final j9 f49811b;
-    public final y9 f49812c;
-    public final a6 d;
-    public final h5 f49813e;
-    public final RadioButton f49814f;
-    public final Paint h;
-    public boolean f49815n;
-    public final View f49816r;
+import org.telegram.messenger.yh;
+import org.telegram.ui.web.c0;
+import org.telegram.ui.yy;
+import ug.b0;
+public final class c implements Runnable {
+    public final int f46967a;
+    public final e f46968b;
 
-    public c(Context context, c6 c6Var) {
-        super(context);
-        int i10;
-        j9 j9Var = new j9((c6) null);
-        this.f49811b = j9Var;
-        this.h = new Paint(1);
-        this.f49810a = c6Var;
-        View view = new View(context);
-        this.f49816r = view;
-        addView(view, w5.n(-1, -1));
-        view.setBackgroundColor(h6.w0(h6.f20631h5, c6Var));
-        j9Var.f27405r = AndroidUtilities.dp(40.0f);
-        y9 y9Var = new y9(context);
-        this.f49812c = y9Var;
-        y9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(y9Var);
-        a6 a6Var = new a6(context, 5);
-        this.d = a6Var;
-        NotificationCenter.listenEmojiLoading(a6Var);
-        NotificationCenter.listenEmojiLoading(y9Var);
-        a6Var.setTextSize(16);
-        int i11 = h6.f20668j5;
-        a6Var.setTextColor(h6.w0(i11, c6Var));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        a6Var.setGravity(i10);
-        addView(a6Var);
-        h5 h5Var = new h5(context);
-        this.f49813e = h5Var;
-        h5Var.setTextSize(14);
-        h5Var.setTextColor(h6.w0(i11, c6Var));
-        h5Var.setGravity(LocaleController.isRTL ? 5 : 3);
-        addView(h5Var);
-        RadioButton radioButton = new RadioButton(context);
-        this.f49814f = radioButton;
-        radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(h6.w0(h6.f20670j7, c6Var), h6.w0(h6.E5, c6Var));
-        addView(radioButton);
-        d();
-        if (!b()) {
-            radioButton.setVisibility(8);
-        }
-    }
-
-    public int a() {
-        return 0;
-    }
-
-    public abstract boolean b();
-
-    public void c(boolean z10, boolean z11) {
-        RadioButton radioButton = this.f49814f;
-        if (radioButton.getVisibility() == 0) {
-            radioButton.a(z10, true);
-        }
-    }
-
-    public void d() {
-        int i10;
-        float f7;
-        float f10;
-        int i11;
-        int i12;
-        float f11;
-        float f12;
-        int i13;
-        int i14;
-        float f13;
-        float f14;
-        float f15;
-        float f16;
-        int i15;
-        int i16 = 3;
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        int i17 = i10 | 16;
-        float f17 = 53.0f;
-        if (b()) {
-            f7 = 53.0f;
-        } else {
-            f7 = 53.0f;
-            f17 = 16.0f;
-        }
-        if (b()) {
-            f10 = f7;
-        } else {
-            f10 = 16.0f;
-        }
-        this.f49812c.setLayoutParams(w5.a(40.0f, f17, 0.0f, f10, 0.0f, 40, i17));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        int i18 = i11 | 16;
-        int i19 = 70;
-        if (z10) {
-            f11 = 20.0f;
-        } else {
-            if (b()) {
-                i12 = 105;
-            } else {
-                i12 = 70;
-            }
-            f11 = i12;
-        }
-        if (LocaleController.isRTL) {
-            if (b()) {
-                i15 = 105;
-            } else {
-                i15 = 70;
-            }
-            f12 = i15;
-        } else {
-            f12 = 20.0f;
-        }
-        this.d.setLayoutParams(w5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i18));
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            i13 = 5;
-        } else {
-            i13 = 3;
-        }
-        int i20 = i13 | 16;
-        if (z11) {
-            f13 = 20.0f;
-        } else {
-            if (b()) {
-                i14 = 105;
-            } else {
-                i14 = 70;
-            }
-            f13 = i14;
-        }
-        if (LocaleController.isRTL) {
-            if (b()) {
-                i19 = 105;
-            }
-            f14 = i19;
-        } else {
-            f14 = 20.0f;
-        }
-        this.f49813e.setLayoutParams(w5.a(-2.0f, f13, 0.0f, f14, 0.0f, -1, i20));
-        boolean z12 = LocaleController.isRTL;
-        if (z12) {
-            i16 = 5;
-        }
-        int i21 = i16 | 16;
-        if (z12) {
-            f15 = 15.0f;
-        } else {
-            f15 = 20.0f;
-        }
-        if (z12) {
-            f16 = 20.0f;
-        } else {
-            f16 = 15.0f;
-        }
-        this.f49814f.setLayoutParams(w5.a(22.0f, f15, 0.0f, f16, 0.0f, 22, i21));
+    public c(e eVar, int i10) {
+        this.f46967a = i10;
+        this.f46968b = eVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f49815n) {
-            int w02 = h6.w0(h6.f20561d7, this.f49810a);
-            Paint paint = this.h;
-            paint.setColor(w02);
-            if (b()) {
-                i10 = 105;
-            } else {
-                i10 = 70;
-            }
-            if (this.f49812c.getVisibility() == 8) {
-                i10 -= 40;
-            }
-            int a2 = a() + i10;
-            if (LocaleController.isRTL) {
-                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(a2), getHeight(), paint);
-            } else {
-                canvas.drawRect(AndroidUtilities.dp(a2), getHeight() - 1, getWidth(), getHeight(), paint);
-            }
-        }
-    }
-
-    public final SpannableStringBuilder e(CharSequence charSequence) {
-        SpannableString spannableString = new SpannableString(">");
-        Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
-        gr grVar = new gr(2, drawable);
-        drawable.setBounds(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(12.0f));
-        spannableString.setSpan(grVar, 0, spannableString.length(), 33);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append(charSequence).append((CharSequence) " ").append((CharSequence) spannableString);
-        return spannableStringBuilder;
-    }
-
-    public int getFullHeight() {
-        return 56;
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(getFullHeight()), 1073741824));
-    }
-
-    public void setDivider(boolean z10) {
-        this.f49815n = z10;
-        invalidate();
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        boolean isEmpty = TextUtils.isEmpty(charSequence);
-        a6 a6Var = this.d;
-        h5 h5Var = this.f49813e;
-        if (isEmpty) {
-            a6Var.setTranslationY(0.0f);
-            h5Var.setVisibility(8);
-        } else {
-            a6Var.setTranslationY(AndroidUtilities.dp(-9.0f));
-            h5Var.setTranslationY(AndroidUtilities.dp(12.0f));
-            h5Var.l(charSequence, false);
-            h5Var.setVisibility(0);
-        }
-        if (this.f49812c.getVisibility() == 8) {
-            if (LocaleController.isRTL) {
-                a6Var.setTranslationX(AndroidUtilities.dp(40.0f));
-                h5Var.setTranslationX(AndroidUtilities.dp(40.0f));
+    public final void run() {
+        switch (this.f46967a) {
+            case 0:
+                this.f46968b.E();
                 return;
-            }
-            a6Var.setTranslationX(AndroidUtilities.dp(-40.0f));
-            h5Var.setTranslationX(AndroidUtilities.dp(-40.0f));
+            default:
+                StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
+                e eVar = this.f46968b;
+                sb2.append(eVar.h);
+                String sb3 = sb2.toString();
+                yy yyVar = new yy(yh.d(3, "onlySelect", "dialogsType", true));
+                yyVar.C2 = new c0(17, eVar, sb3);
+                eVar.e.presentFragment(yyVar);
+                ((b0) eVar).f46283r.dismiss();
+                return;
         }
     }
 }

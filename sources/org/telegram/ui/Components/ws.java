@@ -1,186 +1,41 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ws {
-    public final int f32538a;
-    public String f32539b;
-    public final ArrayList f32540c;
-    public final boolean[] d;
-    public boolean[] f32541e;
-    public boolean f32542f;
-    public final int f32543g;
-    public int h;
-    public int f32544i;
-    public final xs f32545j;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+public final class ws extends View {
+    public final Paint f30954a;
+    public final Matrix f30955b;
+    public LinearGradient f30956c;
+    public int d;
+    public float e;
+    public float f30957f;
 
-    public ws(xs xsVar, int i10, ArrayList arrayList) {
-        this.f32545j = xsVar;
-        this.f32538a = i10;
-        int size = arrayList.size();
-        this.f32543g = size;
-        this.f32544i = 0;
-        if (size > 0) {
-            this.f32540c = arrayList;
-            this.d = new boolean[size];
-            this.f32542f = true;
-            g();
-        }
+    public ws(Context context) {
+        super(context);
+        this.f30954a = new Paint(1);
+        this.f30955b = new Matrix();
     }
 
-    public final boolean a() {
-        boolean[] zArr;
-        for (int i10 = 0; i10 < this.f32543g; i10++) {
-            if (!this.d[i10] || ((zArr = this.f32541e) != null && !zArr[i10])) {
-                return false;
-            }
-        }
-        return true;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f30957f, this.f30954a);
     }
 
-    public final boolean b() {
-        int i10;
-        if (this.f32541e != null) {
-            i10 = this.h;
-        } else {
-            i10 = this.f32543g;
-        }
-        if (i10 > 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c() {
-        int i10;
-        if (this.f32541e != null) {
-            i10 = this.h;
-        } else {
-            i10 = this.f32543g;
-        }
-        if (i10 > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        boolean[] zArr;
-        boolean[] zArr2;
-        boolean z10 = false;
-        int i10 = 0;
-        while (true) {
-            int i11 = this.f32543g;
-            zArr = this.d;
-            if (i10 >= i11) {
-                break;
-            } else if (!zArr[i10] || ((zArr2 = this.f32541e) != null && !zArr2[i10])) {
-                i10++;
-            }
-        }
-        z10 = true;
-        Arrays.fill(zArr, !z10);
-        f();
-        this.f32545j.X.N(true);
-    }
-
-    public final void e(int i10) {
-        boolean[] zArr = this.f32541e;
-        if (zArr != null && !zArr[i10]) {
-            return;
-        }
-        boolean[] zArr2 = this.d;
-        boolean z10 = zArr2[i10];
-        zArr2[i10] = !z10;
-        if (!z10) {
-            this.f32544i++;
-        } else {
-            this.f32544i--;
-        }
-        this.f32545j.X.N(true);
-    }
-
-    public final void f() {
-        this.f32544i = 0;
-        this.h = 0;
-        for (int i10 = 0; i10 < this.f32543g; i10++) {
-            boolean[] zArr = this.f32541e;
-            boolean[] zArr2 = this.d;
-            if (zArr == null) {
-                if (zArr2[i10]) {
-                    this.f32544i++;
-                }
-            } else if (zArr[i10]) {
-                this.h++;
-                if (zArr2[i10]) {
-                    this.f32544i++;
-                }
-            }
-        }
-    }
-
-    public final void g() {
-        TLObject tLObject;
-        String formatName;
-        String formatString;
-        String formatString2;
-        String formatString3;
-        String formatString4;
-        int i10 = this.f32543g;
-        if (i10 != 0) {
-            for (int i11 = 0; i11 < i10; i11++) {
-                boolean[] zArr = this.f32541e;
-                if (zArr == null || zArr[i11]) {
-                    tLObject = (TLObject) this.f32540c.get(i11);
-                    break;
-                }
-            }
-            tLObject = null;
-            if (tLObject instanceof TLRPC.User) {
-                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
-            } else {
-                formatName = ContactsController.formatName(tLObject);
-            }
-            int i12 = this.f32538a;
-            if (i12 == 0) {
-                this.f32539b = LocaleController.getString(R.string.DeleteReportSpam);
-            } else if (i12 == 1) {
-                if (b()) {
-                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
-                } else {
-                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
-                }
-                this.f32539b = formatString4;
-            } else if (i12 == 3) {
-                if (b()) {
-                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
-                } else {
-                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
-                }
-                this.f32539b = formatString3;
-            } else if (i12 == 2) {
-                if (this.f32545j.f32841g0) {
-                    if (b()) {
-                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
-                    } else {
-                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
-                    }
-                    this.f32539b = formatString2;
-                    return;
-                }
-                if (b()) {
-                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
-                } else {
-                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
-                }
-                this.f32539b = formatString;
-            }
+    public void setColor(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            int alpha = Color.alpha(i10);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f30956c = linearGradient;
+            this.f30954a.setShader(linearGradient);
+            this.f30956c.setLocalMatrix(this.f30955b);
+            invalidate();
         }
     }
 }

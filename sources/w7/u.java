@@ -1,7 +1,14 @@
 package w7;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class u {
-    public static final md.b a(Enum[] entries) {
-        kotlin.jvm.internal.i.e(entries, "entries");
-        return new md.b(entries);
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.SQLite;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import sc.v;
+import t8.b;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -25,7 +25,7 @@ public class SQLiteDatabase {
         beginTransaction(this.sqliteHandle);
     }
 
-    public native void beginTransaction(long j3);
+    public native void beginTransaction(long j10);
 
     public void checkOpened() {
         if (this.isOpen) {
@@ -39,16 +39,16 @@ public class SQLiteDatabase {
             try {
                 commitTransaction();
                 closedb(this.sqliteHandle);
-            } catch (SQLiteException e7) {
+            } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e7.getMessage(), e7);
+                    FileLog.e(e.getMessage(), e);
                 }
             }
             this.isOpen = false;
         }
     }
 
-    public native void closedb(long j3);
+    public native void closedb(long j10);
 
     public void commitTransaction() {
         if (this.inTransaction) {
@@ -57,7 +57,7 @@ public class SQLiteDatabase {
         }
     }
 
-    public native void commitTransaction(long j3);
+    public native void commitTransaction(long j10);
 
     public SQLitePreparedStatement executeFast(String str) {
         return new SQLitePreparedStatement(this, str);
@@ -79,7 +79,7 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, v.i("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, b.h("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
             StringBuilder sb2 = new StringBuilder();

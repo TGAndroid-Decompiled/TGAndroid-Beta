@@ -1,43 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ScrollView;
-import org.telegram.messenger.R;
-public final class w51 extends ScrollView {
-    public Drawable f32267a;
-    public g6 f32268b;
-    public boolean f32269c;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class w51 extends zn0 {
+    public final h61 h;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        super.dispatchDraw(canvas);
-        g6 g6Var = this.f32268b;
-        if (canScrollVertically(-1)) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = g6Var.d(f7, false) * 0.5f;
-        if (d > 0.0f) {
-            if (this.f32267a == null) {
-                this.f32267a = getContext().getResources().getDrawable(R.drawable.header_shadow);
-            }
-            this.f32267a.setBounds(0, getScrollY(), getWidth(), this.f32267a.getIntrinsicHeight() + getScrollY());
-            this.f32267a.setAlpha((int) (d * 255.0f));
-            this.f32267a.draw(canvas);
-        }
+    public w51(h61 h61Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, 14.0f, c6Var);
+        this.h = h61Var;
     }
 
     @Override
-    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        super.onNestedScroll(view, i10, i11, i12, i13);
-        boolean canScrollVertically = canScrollVertically(-1);
-        if (this.f32269c != canScrollVertically) {
-            invalidate();
-            this.f32269c = canScrollVertically;
+    public final void a(String str) {
+        hg.e2 e2Var = this.h.v;
+        hg.c2 c2Var = e2Var.S;
+        int i10 = e2Var.f10541c;
+        if (e2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.N, true);
+            e2Var.N = 0;
         }
+        if (e2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.O, true);
+            e2Var.O = 0;
+        }
+        if (TextUtils.isEmpty(str)) {
+            e2Var.R = null;
+            e2Var.F.clear();
+            e2Var.I.clear();
+            e2Var.E.clear();
+            e2Var.e.b(false);
+            e2Var.l();
+        } else {
+            e2Var.R = str.toLowerCase();
+        }
+        AndroidUtilities.cancelRunOnUIThread(c2Var);
+        AndroidUtilities.runOnUIThread(c2Var, 300L);
     }
 }

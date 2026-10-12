@@ -1,10 +1,10 @@
 package l5;
-public final class b implements ia.d {
-    public static final b f15140a = new Object();
-    public static final ia.c f15141b = new ia.c("storageMetrics", hg.c.o(hg.c.n(la.e.class, new la.a(1))));
+public final class b implements ja.d {
+    public static final b f14561a = new Object();
+    public static final ja.c f14562b = new ja.c("storageMetrics", i2.d.n(i2.d.m(ma.e.class, new ma.a(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ia.e) obj2).a(f15141b, ((o5.b) obj).f16826a);
+        ((ja.e) obj2).d(f14562b, ((o5.b) obj).f16594a);
     }
 }

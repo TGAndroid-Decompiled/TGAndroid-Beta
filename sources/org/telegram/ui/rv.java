@@ -1,15 +1,29 @@
 package org.telegram.ui;
-public final class rv implements Runnable {
-    public final int f41734a;
-    public final vy f41735b;
 
-    public rv(vy vyVar, int i10) {
-        this.f41734a = i10;
-        this.f41735b = vyVar;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class rv extends FrameLayout {
+    public org.telegram.ui.ActionBar.m2 f39871a;
+    public FrameLayout f39872b;
+    public org.telegram.ui.ActionBar.k f39873c;
+    public org.telegram.ui.Components.mm0 d;
+    public bi.o0 e;
+    public int f39874f;
+    public final sv h;
+
+    public rv(sv svVar, Context context) {
+        super(context);
+        this.h = svVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rv.run():void");
+    public final void setTranslationX(float f7) {
+        rv rvVar;
+        super.setTranslationX(f7);
+        sv svVar = this.h;
+        rv[] rvVarArr = svVar.f40220f;
+        if (svVar.f40221n && (rvVar = rvVarArr[0]) == this) {
+            svVar.e.j(Math.abs(rvVar.getTranslationX()) / rvVarArr[0].getMeasuredWidth(), rvVarArr[1].f39874f);
+        }
     }
 }

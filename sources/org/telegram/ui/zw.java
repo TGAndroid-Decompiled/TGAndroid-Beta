@@ -1,23 +1,29 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-public final class zw implements k70 {
-    public final vy f44930a;
+import android.view.View;
+public final class zw extends org.telegram.ui.Components.ot {
+    public final xy E;
 
-    public zw(vy vyVar) {
-        this.f44930a = vyVar;
+    public zw(uy uyVar, xy xyVar) {
+        super(uyVar);
+        this.E = xyVar;
     }
 
     @Override
-    public final void a(l70 l70Var, long j3) {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
-        vy vyVar = this.f44930a;
-        py pyVar = vyVar.C2;
-        if (vyVar.B2) {
-            vyVar.removeSelfFromStack();
+    public final void y() {
+        xy xyVar = this.E;
+        if (xyVar.f41982c.L0() == 0) {
+            View m10 = xyVar.f41982c.m(0);
+            if (m10 != null) {
+                m10.invalidate();
+            }
+            if (xyVar.v == 2) {
+                xyVar.v = 1;
+            }
+            ex exVar = xyVar.f41984n;
+            if (exVar != null) {
+                exVar.b();
+            }
         }
-        pyVar.w(vyVar, arrayList, null, true, vyVar.J2, vyVar.K2, vyVar.L2, null);
     }
 }

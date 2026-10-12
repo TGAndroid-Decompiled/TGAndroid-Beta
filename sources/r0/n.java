@@ -1,6 +1,6 @@
 package r0;
 
-import android.view.View;
-public interface n {
-    k1 M0(View view, k1 k1Var);
+import android.view.ViewGroup;
+public interface n extends m {
+    void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr);
 }

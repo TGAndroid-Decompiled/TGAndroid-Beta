@@ -1,33 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.UnconfirmedAuthController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class yl implements RequestDelegate {
-    public final int f19697a;
-    public final UnconfirmedAuthController.UnconfirmedAuth f19698b;
-    public final Utilities.Callback f19699c;
+public final class yl implements Runnable {
+    public final int f19118a = 0;
+    public final String f19119b;
+    public final Object f19120c;
+    public final Object d;
 
-    public yl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, int i10) {
-        this.f19697a = i10;
-        this.f19698b = unconfirmedAuth;
-        this.f19699c = callback;
+    public yl(String str, String str2, byte[] bArr) {
+        this.f19119b = str;
+        this.f19120c = str2;
+        this.d = bArr;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19697a) {
+    public final void run() {
+        switch (this.f19118a) {
             case 0:
-                this.f19698b.lambda$deny$4(this.f19699c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f19698b.lambda$deny$6(this.f19699c, tLObject, tL_error);
+                WearAuthListenerService.a(this.f19119b, (String) this.f19120c, (byte[]) this.d);
                 return;
             default:
-                this.f19698b.lambda$confirm$2(this.f19699c, tLObject, tL_error);
+                ((MediaDataController) this.f19120c).lambda$putEmojiKeywords$216((TLRPC.TL_emojiKeywordsDifference) this.d, this.f19119b);
                 return;
         }
+    }
+
+    public yl(MediaDataController mediaDataController, TLRPC.TL_emojiKeywordsDifference tL_emojiKeywordsDifference, String str) {
+        this.f19120c = mediaDataController;
+        this.d = tL_emojiKeywordsDifference;
+        this.f19119b = str;
     }
 }

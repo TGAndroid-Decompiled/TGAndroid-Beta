@@ -1,29 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class ay0 extends org.telegram.ui.Components.vm0 {
-    public final Context f35997c;
-    public final PrivacyControlActivity d;
+import android.util.SparseIntArray;
+public final class ay0 extends s4.o {
+    public int f34370b;
+    public final SparseIntArray f34371c = new SparseIntArray();
+    public final SparseIntArray d = new SparseIntArray();
+    public final PrivacyControlActivity e;
 
-    public ay0(PrivacyControlActivity privacyControlActivity, Context context) {
-        this.d = privacyControlActivity;
-        this.f35997c = context;
+    public ay0(PrivacyControlActivity privacyControlActivity) {
+        this.e = privacyControlActivity;
+    }
+
+    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
+        if (i11 >= 0) {
+            sparseIntArray.put(i11, i10);
+        }
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        int i12 = this.f34371c.get(i10, -1);
+        if (i12 == this.d.get(i11, -1) && i12 >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.e.f32502r0;
+    }
+
+    @Override
+    public final int e() {
+        return this.f34370b;
+    }
+
+    public final void f(SparseIntArray sparseIntArray) {
         int i10;
         int i11;
         int i12;
@@ -31,236 +49,53 @@ public final class ay0 extends org.telegram.ui.Components.vm0 {
         int i14;
         int i15;
         int i16;
-        int b10 = d1Var.b();
-        PrivacyControlActivity privacyControlActivity = this.d;
-        if (b10 == privacyControlActivity.f34003b0) {
-            i16 = ((org.telegram.ui.ActionBar.m2) privacyControlActivity).currentAccount;
-            if (!ContactsController.getInstance(i16).getLoadingPrivacyInfo(3)) {
-                return true;
-            }
-        }
-        i10 = privacyControlActivity.currentPhotoForRestRow;
-        if (b10 != i10 && b10 != privacyControlActivity.Z) {
-            i11 = privacyControlActivity.photoForRestRow;
-            if (b10 != i11) {
-                i12 = privacyControlActivity.readRow;
-                if (b10 != i12) {
-                    i13 = privacyControlActivity.showGiftIconRow;
-                    if (b10 != i13 && b10 != privacyControlActivity.f34008e0 && b10 != privacyControlActivity.f34018n0 && b10 != privacyControlActivity.f34019o0 && b10 != privacyControlActivity.f34020p0 && b10 != privacyControlActivity.m0 && b10 != privacyControlActivity.f34016l0) {
-                        if (privacyControlActivity.f34031x != 12 || !privacyControlActivity.u0()) {
-                            i14 = privacyControlActivity.nobodyRow;
-                            if (b10 != i14 && b10 != privacyControlActivity.O && b10 != privacyControlActivity.f34011g0) {
-                                i15 = privacyControlActivity.everybodyRow;
-                                if (b10 != i15 && b10 != privacyControlActivity.T && b10 != privacyControlActivity.S) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return true;
-                        }
-                        return false;
-                    }
-                    return true;
-                }
-                return true;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public final int E(ArrayList arrayList) {
-        int i10 = 0;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            long longValue = ((Long) arrayList.get(i11)).longValue();
-            if (longValue > 0) {
-                i10++;
-            } else {
-                TLRPC.Chat chat = this.d.getMessagesController().getChat(Long.valueOf(-longValue));
-                if (chat != null) {
-                    i10 += chat.participants_count;
-                }
-            }
-        }
-        return i10;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f34023r0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
         int i17;
-        int i18;
-        int i19;
-        PrivacyControlActivity privacyControlActivity = this.d;
-        if (i10 != privacyControlActivity.S && i10 != privacyControlActivity.T && i10 != privacyControlActivity.f34003b0 && i10 != privacyControlActivity.f34008e0) {
-            if (i10 != privacyControlActivity.U && i10 != privacyControlActivity.P && i10 != privacyControlActivity.Q && i10 != privacyControlActivity.f34014j0 && i10 != privacyControlActivity.f34005c0 && i10 != privacyControlActivity.Z && i10 != privacyControlActivity.f34006d0 && i10 != privacyControlActivity.f34010f0) {
-                i11 = privacyControlActivity.setBirthdayRow;
-                if (i10 != i11 && i10 != privacyControlActivity.f34015k0 && i10 != privacyControlActivity.f34021q0) {
-                    if (i10 != privacyControlActivity.N && i10 != privacyControlActivity.f34012h0 && i10 != privacyControlActivity.R && i10 != privacyControlActivity.f34001a0 && i10 != privacyControlActivity.V) {
-                        i12 = privacyControlActivity.giftTypesHeaderRow;
-                        if (i10 != i12) {
-                            i13 = privacyControlActivity.everybodyRow;
-                            if (i10 != i13 && i10 != privacyControlActivity.O) {
-                                i14 = privacyControlActivity.nobodyRow;
-                                if (i10 != i14 && i10 != privacyControlActivity.f34011g0 && i10 != privacyControlActivity.W && i10 != privacyControlActivity.X) {
-                                    if (i10 == privacyControlActivity.M) {
-                                        return 4;
-                                    }
-                                    if (i10 != privacyControlActivity.Y) {
-                                        i15 = privacyControlActivity.photoForRestRow;
-                                        if (i10 != i15) {
-                                            i16 = privacyControlActivity.currentPhotoForRestRow;
-                                            if (i10 != i16) {
-                                                i17 = privacyControlActivity.readRow;
-                                                if (i10 != i17) {
-                                                    i18 = privacyControlActivity.showGiftIconRow;
-                                                    if (i10 != i18 && i10 != privacyControlActivity.f34018n0 && i10 != privacyControlActivity.f34019o0 && i10 != privacyControlActivity.f34020p0 && i10 != privacyControlActivity.f34016l0 && i10 != privacyControlActivity.m0) {
-                                                        i19 = privacyControlActivity.priceRow;
-                                                        if (i10 == i19) {
-                                                            return 9;
-                                                        }
-                                                        if (i10 == privacyControlActivity.f34013i0) {
-                                                            return 10;
-                                                        }
-                                                        return 0;
-                                                    }
-                                                    return 8;
-                                                }
-                                                return 8;
-                                            }
-                                            return 7;
-                                        }
-                                        return 6;
-                                    }
-                                    return 5;
-                                }
-                                return 3;
-                            }
-                            return 3;
-                        }
-                        return 2;
-                    }
-                    return 2;
-                }
-                return 1;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ay0.v(s4.d1, int):void");
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        int i11;
-        int i12;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        org.telegram.ui.ActionBar.c6 c6Var2;
-        org.telegram.ui.ActionBar.c6 c6Var3;
-        View view;
-        Context context = this.f35997c;
-        PrivacyControlActivity privacyControlActivity = this.d;
-        switch (i10) {
-            case 0:
-                org.telegram.ui.Cells.ca caVar = new org.telegram.ui.Cells.ca(context);
-                caVar.setCanDisable(true);
-                view = caVar;
-                break;
-            case 1:
-                view = new org.telegram.ui.Cells.e9(context);
-                break;
-            case 2:
-                view = new org.telegram.ui.Cells.m4(context);
-                break;
-            case 3:
-                view = new org.telegram.ui.Cells.k6(context, null);
-                break;
-            case 4:
-                view = privacyControlActivity.f34007e;
-                break;
-            case 5:
-            default:
-                view = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
-                break;
-            case 6:
-                org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(privacyControlActivity.getParentActivity());
-                privacyControlActivity.f34027u0 = r8Var;
-                if (privacyControlActivity.f34032x0 == null) {
-                    r8Var.m(R.drawable.msg_addphoto, LocaleController.formatString(R.string.SetPhotoForRest, new Object[0]), false);
-                } else {
-                    r8Var.m(R.drawable.msg_addphoto, LocaleController.formatString("UpdatePhotoForRest", R.string.UpdatePhotoForRest, new Object[0]), true);
-                }
-                privacyControlActivity.f34027u0.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
-                privacyControlActivity.f34027u0.e(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
-                privacyControlActivity.f34026t0 = new org.telegram.ui.Components.fk0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-                privacyControlActivity.f34027u0.f22484e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                privacyControlActivity.f34027u0.f22484e.setAnimation(privacyControlActivity.f34026t0);
-                view = privacyControlActivity.f34027u0;
-                break;
-            case 7:
-                privacyControlActivity.f34028v0 = new org.telegram.ui.Components.y9(privacyControlActivity.getParentActivity());
-                privacyControlActivity.f34030w0 = new rs(this, privacyControlActivity.getParentActivity());
-                TLRPC.PhotoSize photoSize = privacyControlActivity.f34032x0;
-                if (photoSize != null) {
-                    TLRPC.Photo photo = privacyControlActivity.f34034y0;
-                    if (photo != null) {
-                        org.telegram.ui.Components.y9 y9Var = privacyControlActivity.f34028v0;
-                        ImageLocation forPhoto = ImageLocation.getForPhoto(photoSize, photo);
-                        i12 = ((org.telegram.ui.ActionBar.m2) privacyControlActivity).currentAccount;
-                        y9Var.h(forPhoto, "50_50", null, UserConfig.getInstance(i12).getCurrentUser());
-                    } else {
-                        org.telegram.ui.Components.y9 y9Var2 = privacyControlActivity.f34028v0;
-                        ImageLocation forLocal = ImageLocation.getForLocal(photoSize.location);
-                        i11 = ((org.telegram.ui.ActionBar.m2) privacyControlActivity).currentAccount;
-                        y9Var2.h(forLocal, "50_50", null, UserConfig.getInstance(i11).getCurrentUser());
-                    }
-                }
-                privacyControlActivity.f34030w0.addView(privacyControlActivity.f34028v0, w7.w5.a(30.0f, 21.0f, 0.0f, 21.0f, 0.0f, 30, 16));
-                privacyControlActivity.f34030w0.i(LocaleController.getString(R.string.RemovePublicPhoto), false);
-                privacyControlActivity.f34030w0.getImageView().setVisibility(0);
-                privacyControlActivity.f34030w0.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
-                rs rsVar = privacyControlActivity.f34030w0;
-                int i13 = org.telegram.ui.ActionBar.h6.f20781p7;
-                rsVar.e(i13, i13);
-                view = privacyControlActivity.f34030w0;
-                break;
-            case 8:
-                c6Var = ((org.telegram.ui.ActionBar.m2) privacyControlActivity).resourceProvider;
-                view = new org.telegram.ui.Cells.w8(context, c6Var);
-                break;
-            case 9:
-                c6Var2 = ((org.telegram.ui.ActionBar.m2) privacyControlActivity).resourceProvider;
-                view = new org.telegram.ui.Cells.z7(context, c6Var2);
-                break;
-            case 10:
-                FrameLayout frameLayout = new FrameLayout(context);
-                c6Var3 = ((org.telegram.ui.ActionBar.m2) privacyControlActivity).resourceProvider;
-                ci.d dVar = new ci.d(context, c6Var3, true);
-                dVar.setRoundRadius(24);
-                org.telegram.ui.Components.gr grVar = new org.telegram.ui.Components.gr(R.drawable.msg_mini_lock3, 0);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.PrivateMessagesChargePremiumLocked));
-                spannableStringBuilder.append((CharSequence) " l");
-                spannableStringBuilder.setSpan(grVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-                dVar.g(spannableStringBuilder, false, true);
-                dVar.setOnClickListener(new o60(this, 23));
-                frameLayout.addView(dVar, w7.w5.a(48.0f, 18.0f, 0.0f, 18.0f, 16.0f, -1, 119));
-                view = frameLayout;
-                break;
-        }
-        return new s4.d1(view);
+        sparseIntArray.clear();
+        PrivacyControlActivity privacyControlActivity = this.e;
+        g(1, privacyControlActivity.M, sparseIntArray);
+        g(2, privacyControlActivity.N, sparseIntArray);
+        i10 = privacyControlActivity.everybodyRow;
+        g(3, i10, sparseIntArray);
+        g(4, privacyControlActivity.O, sparseIntArray);
+        i11 = privacyControlActivity.nobodyRow;
+        g(5, i11, sparseIntArray);
+        g(6, privacyControlActivity.f32490g0, sparseIntArray);
+        g(7, privacyControlActivity.P, sparseIntArray);
+        g(8, privacyControlActivity.R, sparseIntArray);
+        g(9, privacyControlActivity.S, sparseIntArray);
+        g(10, privacyControlActivity.T, sparseIntArray);
+        g(11, privacyControlActivity.U, sparseIntArray);
+        g(12, privacyControlActivity.V, sparseIntArray);
+        g(13, privacyControlActivity.W, sparseIntArray);
+        g(14, privacyControlActivity.X, sparseIntArray);
+        g(15, privacyControlActivity.Y, sparseIntArray);
+        i12 = privacyControlActivity.photoForRestRow;
+        g(16, i12, sparseIntArray);
+        i13 = privacyControlActivity.currentPhotoForRestRow;
+        g(17, i13, sparseIntArray);
+        g(18, privacyControlActivity.Z, sparseIntArray);
+        g(19, privacyControlActivity.f32481a0, sparseIntArray);
+        g(20, privacyControlActivity.f32483b0, sparseIntArray);
+        g(21, privacyControlActivity.f32485c0, sparseIntArray);
+        i14 = privacyControlActivity.readRow;
+        g(22, i14, sparseIntArray);
+        g(23, privacyControlActivity.f32486d0, sparseIntArray);
+        g(24, privacyControlActivity.f32487e0, sparseIntArray);
+        g(25, privacyControlActivity.f32489f0, sparseIntArray);
+        g(26, privacyControlActivity.f32491h0, sparseIntArray);
+        i15 = privacyControlActivity.priceRow;
+        g(27, i15, sparseIntArray);
+        g(28, privacyControlActivity.f32493j0, sparseIntArray);
+        i16 = privacyControlActivity.showGiftIconRow;
+        g(29, i16, sparseIntArray);
+        g(30, privacyControlActivity.f32494k0, sparseIntArray);
+        i17 = privacyControlActivity.giftTypesHeaderRow;
+        g(31, i17, sparseIntArray);
+        g(32, privacyControlActivity.m0, sparseIntArray);
+        g(33, privacyControlActivity.f32495l0, sparseIntArray);
+        g(34, privacyControlActivity.f32497n0, sparseIntArray);
+        g(35, privacyControlActivity.f32498o0, sparseIntArray);
+        g(36, privacyControlActivity.f32499p0, sparseIntArray);
+        g(37, privacyControlActivity.f32500q0, sparseIntArray);
     }
 }

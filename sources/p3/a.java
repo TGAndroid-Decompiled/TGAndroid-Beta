@@ -1,24 +1,24 @@
 package p3;
 
-import b2.p0;
+import b2.u0;
 import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.r6;
-import w7.k;
-public final class a extends k {
-    public static final Pattern f45196c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f45197a = StandardCharsets.UTF_8.newDecoder();
-    public final CharsetDecoder f45198b = StandardCharsets.ISO_8859_1.newDecoder();
+import v7.s6;
+import w7.m;
+public final class a extends m {
+    public static final Pattern f42987c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f42988a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f42989b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
-    public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
+    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
         String str;
-        CharsetDecoder charsetDecoder = this.f45198b;
-        CharsetDecoder charsetDecoder2 = this.f45197a;
+        CharsetDecoder charsetDecoder = this.f42989b;
+        CharsetDecoder charsetDecoder2 = this.f42988a;
         String str2 = null;
         try {
             str = charsetDecoder2.decode(byteBuffer).toString();
@@ -44,18 +44,18 @@ public final class a extends k {
         byte[] bArr = new byte[byteBuffer.limit()];
         byteBuffer.get(bArr);
         if (str == null) {
-            return new p0(new c(null, null, bArr));
+            return new u0(new c(null, null, bArr));
         }
-        Matcher matcher = f45196c.matcher(str);
+        Matcher matcher = f42987c.matcher(str);
         String str3 = null;
         for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
             String group = matcher.group(1);
             String group2 = matcher.group(2);
             if (group != null) {
-                String b10 = r6.b(group);
-                b10.getClass();
-                if (!b10.equals("streamurl")) {
-                    if (b10.equals("streamtitle")) {
+                String c10 = s6.c(group);
+                c10.getClass();
+                if (!c10.equals("streamurl")) {
+                    if (c10.equals("streamtitle")) {
                         str2 = group2;
                     }
                 } else {
@@ -63,6 +63,6 @@ public final class a extends k {
                 }
             }
         }
-        return new p0(new c(str2, str3, bArr));
+        return new u0(new c(str2, str3, bArr));
     }
 }

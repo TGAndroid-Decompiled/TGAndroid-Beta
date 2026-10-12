@@ -5,19 +5,19 @@ import android.util.AttributeSet;
 import android.view.View;
 import java.lang.reflect.Constructor;
 public final class v {
-    public static final Class[] f10193b = {Context.class, AttributeSet.class};
-    public static final int[] f10194c = {16843375};
+    public static final Class[] f9821b = {Context.class, AttributeSet.class};
+    public static final int[] f9822c = {16843375};
     public static final int[] d = {16844160};
-    public static final int[] f10195e = {16844156};
-    public static final int[] f10196f = {16844148};
-    public static final String[] f10197g = {"android.widget.", "android.view.", "android.webkit."};
-    public static final a0.m h = new a0.m(0);
-    public final Object[] f10198a = new Object[2];
+    public static final int[] e = {16844156};
+    public static final int[] f9823f = {16844148};
+    public static final String[] f9824g = {"android.widget.", "android.view.", "android.webkit."};
+    public static final a0.l h = new a0.l(0);
+    public final Object[] f9825a = new Object[2];
 
     public final View a(Context context, String str, String str2) {
         String concat;
-        a0.m mVar = h;
-        Constructor constructor = (Constructor) mVar.get(str);
+        a0.l lVar = h;
+        Constructor constructor = (Constructor) lVar.get(str);
         if (constructor == null) {
             if (str2 != null) {
                 try {
@@ -28,10 +28,10 @@ public final class v {
             } else {
                 concat = str;
             }
-            constructor = Class.forName(concat, false, context.getClassLoader()).asSubclass(View.class).getConstructor(f10193b);
-            mVar.put(str, constructor);
+            constructor = Class.forName(concat, false, context.getClassLoader()).asSubclass(View.class).getConstructor(f9821b);
+            lVar.put(str, constructor);
         }
         constructor.setAccessible(true);
-        return (View) constructor.newInstance(this.f10198a);
+        return (View) constructor.newInstance(this.f9825a);
     }
 }

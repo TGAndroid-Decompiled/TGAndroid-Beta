@@ -1,63 +1,106 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+import java.lang.reflect.Field;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jv extends WebViewClient {
-    public final ov f27656a;
+public final class jv extends PopupWindow {
+    public static Field f26498f;
+    public static final org.telegram.ui.ActionBar.f1 f26499g = new org.telegram.ui.ActionBar.f1(1);
+    public ViewTreeObserver.OnScrollChangedListener f26500a;
+    public ViewTreeObserver f26501b;
+    public final iv f26502c;
+    public boolean d;
+    public final int e;
 
-    public jv(ov ovVar) {
-        this.f27656a = ovVar;
-    }
-
-    @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        ov ovVar = this.f27656a;
-        ImageView imageView = ovVar.f29307x;
-        if (!ovVar.f29308y) {
-            ovVar.f29303n.setVisibility(4);
-            ovVar.h.setVisibility(4);
-            imageView.setEnabled(true);
-            imageView.setAlpha(1.0f);
+    public jv(iv ivVar) {
+        super(ivVar);
+        float f7;
+        if (AndroidUtilities.isTablet()) {
+            f7 = 40.0f;
+        } else {
+            f7 = 32.0f;
         }
+        this.e = AndroidUtilities.dp(f7);
+        this.f26502c = ivVar;
+        setOutsideTouchable(true);
+        setClippingEnabled(true);
+        setInputMethodMode(2);
+        setSoftInputMode(0);
+        ivVar.setFocusableInTouchMode(true);
+        ivVar.setOnKeyListener(new zn(this, 1));
     }
 
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        org.telegram.ui.ActionBar.c6 c6Var;
-        ov ovVar = this.f27656a;
-        try {
-            if (!AndroidUtilities.isSafeToShow(ovVar.getContext())) {
-                return true;
+    public final void a(View view) {
+        ViewTreeObserver viewTreeObserver;
+        if (this.f26500a != null) {
+            if (view.getWindowToken() != null) {
+                viewTreeObserver = view.getViewTreeObserver();
+            } else {
+                viewTreeObserver = null;
             }
-            Context context = ovVar.getContext();
-            c6Var = ((org.telegram.ui.ActionBar.e3) ovVar).resourcesProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
-            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20142a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new pq(this, 10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            return false;
+            ViewTreeObserver viewTreeObserver2 = this.f26501b;
+            if (viewTreeObserver != viewTreeObserver2) {
+                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
+                    this.f26501b.removeOnScrollChangedListener(this.f26500a);
+                }
+                this.f26501b = viewTreeObserver;
+                if (viewTreeObserver != null) {
+                    viewTreeObserver.addOnScrollChangedListener(this.f26500a);
+                }
+            }
         }
     }
 
     @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        if (this.f27656a.f29308y) {
-            of.f.s(webView.getContext(), str);
-            return true;
+    public final void dismiss() {
+        ViewTreeObserver viewTreeObserver;
+        setFocusable(false);
+        try {
+            super.dismiss();
+        } catch (Exception unused) {
         }
-        return super.shouldOverrideUrlLoading(webView, str);
+        if (this.f26500a != null && (viewTreeObserver = this.f26501b) != null) {
+            if (viewTreeObserver.isAlive()) {
+                this.f26501b.removeOnScrollChangedListener(this.f26500a);
+            }
+            this.f26501b = null;
+        }
+    }
+
+    @Override
+    public final void showAsDropDown(View view, int i10, int i11) {
+        try {
+            super.showAsDropDown(view, i10, i11);
+            a(view);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void showAtLocation(View view, int i10, int i11, int i12) {
+        ViewTreeObserver viewTreeObserver;
+        super.showAtLocation(view, i10, i11, i12);
+        if (this.f26500a != null && (viewTreeObserver = this.f26501b) != null) {
+            if (viewTreeObserver.isAlive()) {
+                this.f26501b.removeOnScrollChangedListener(this.f26500a);
+            }
+            this.f26501b = null;
+        }
+    }
+
+    @Override
+    public final void update(View view, int i10, int i11, int i12, int i13) {
+        super.update(view, i10, i11, i12, i13);
+        a(view);
+    }
+
+    @Override
+    public final void update(View view, int i10, int i11) {
+        super.update(view, i10, i11);
+        a(view);
     }
 }

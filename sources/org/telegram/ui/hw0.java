@@ -1,70 +1,49 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hw0 implements View.OnClickListener {
-    public final ii0 f38553a;
-    public final eo f38554b;
-    public final org.telegram.ui.Components.wm0 f38555c;
-    public final LinearLayout d;
-    public final org.telegram.ui.Components.s80 f38556e;
-    public final org.telegram.ui.Components.s80 f38557f;
-    public final ow0 h;
+public final class hw0 implements Runnable {
+    public final int f36975a;
+    public final sw0 f36976b;
 
-    public hw0(ow0 ow0Var, ii0 ii0Var, eo eoVar, org.telegram.ui.Components.wm0 wm0Var, LinearLayout linearLayout, org.telegram.ui.Components.s80 s80Var, org.telegram.ui.Components.s80 s80Var2) {
-        this.h = ow0Var;
-        this.f38553a = ii0Var;
-        this.f38554b = eoVar;
-        this.f38555c = wm0Var;
-        this.d = linearLayout;
-        this.f38556e = s80Var;
-        this.f38557f = s80Var2;
+    public hw0(sw0 sw0Var, int i10) {
+        this.f36975a = i10;
+        this.f36976b = sw0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        ii0 ii0Var = this.f38553a;
-        ArrayList arrayList = ii0Var.f38916b;
-        ArrayList arrayList2 = ii0Var.f38917c;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            ow0 ow0Var = this.h;
-            eo eoVar = this.f38554b;
-            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject == null) {
+    public final void run() {
+        switch (this.f36975a) {
+            case 0:
+                sw0 sw0Var = this.f36976b;
+                AndroidUtilities.runOnUIThread(new hw0(sw0Var, 3));
+                org.telegram.ui.Cells.u1 u1Var = sw0Var.L;
+                if (u1Var != null) {
+                    u1Var.setVisibility(0);
+                    org.telegram.ui.Cells.u1 u1Var2 = sw0Var.L;
+                    u1Var2.L7 = null;
+                    u1Var2.invalidate();
+                }
+                bn bnVar = sw0Var.f40235e0;
+                if (bnVar != null) {
+                    AndroidUtilities.runOnUIThread(bnVar);
+                    sw0Var.f40235e0 = null;
                     return;
                 }
-                Bundle bundle = new Bundle();
-                if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f19950id);
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f19803id);
-                }
-                eoVar.presentFragment(new ProfileActivity(bundle, null));
-                ow0Var.c(false);
                 return;
-            }
-            if (SharedConfig.messageSeenHintCount > 0 && eoVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.sc t10 = new org.telegram.ui.Components.zc(org.telegram.ui.Components.nb.a(ow0Var.getContext()), ow0Var.f40790b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-                eoVar.f37357n1 = t10;
-                t10.f30536j = 4000;
-                t10.j();
-                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-            }
-            org.telegram.ui.Components.wm0 wm0Var = this.f38555c;
-            wm0Var.requestLayout();
-            this.d.requestLayout();
-            wm0Var.getAdapter().l();
-            this.f38556e.K(this.f38557f);
+            case 1:
+                this.f36976b.c(false);
+                return;
+            case 2:
+                this.f36976b.c(false);
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
         }
+    }
+
+    public hw0(sw0 sw0Var, boolean z10) {
+        this.f36975a = 0;
+        this.f36976b = sw0Var;
     }
 }

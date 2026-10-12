@@ -1,31 +1,25 @@
 package k2;
 
-import java.nio.ByteBuffer;
-import v7.x7;
+import android.content.Context;
 public final class i0 {
-    public static final byte[] d = {79, 103, 103, 83, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, -43, -59, -9, 1, 19, 79, 112, 117, 115, 72, 101, 97, 100, 1, 2, 56, 1, Byte.MIN_VALUE, -69, 0, 0, 0, 0, 0};
-    public static final byte[] f14486e = {79, 103, 103, 83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 11, -103, 87, 83, 1, 16, 79, 112, 117, 115, 84, 97, 103, 115, 0, 0, 0, 0, 0, 0, 0, 0};
-    public ByteBuffer f14487a;
-    public int f14488b;
-    public int f14489c;
+    public final Context f13906a;
+    public m0 f13907b;
+    public t0 f13908c;
+    public b d;
+    public final float e;
 
-    public static void a(ByteBuffer byteBuffer, long j3, int i10, int i11, boolean z10) {
-        byte b10;
-        byteBuffer.put((byte) 79);
-        byteBuffer.put((byte) 103);
-        byteBuffer.put((byte) 103);
-        byteBuffer.put((byte) 83);
-        byteBuffer.put((byte) 0);
-        if (z10) {
-            b10 = 2;
+    public i0(Context context) {
+        Context context2;
+        if (context != null) {
+            context2 = context.getApplicationContext();
         } else {
-            b10 = 0;
+            context2 = null;
         }
-        byteBuffer.put(b10);
-        byteBuffer.putLong(j3);
-        byteBuffer.putInt(0);
-        byteBuffer.putInt(i10);
-        byteBuffer.putInt(0);
-        byteBuffer.put(x7.a(i11));
+        this.f13906a = context2;
+        this.f13908c = t0.f14020a;
+        if (context == null) {
+            this.d = b.f13842f;
+        }
+        this.e = 8.0f;
     }
 }

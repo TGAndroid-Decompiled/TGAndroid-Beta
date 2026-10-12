@@ -1,116 +1,83 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.view.MotionEvent;
+import androidx.core.widget.NestedScrollView;
 import org.telegram.messenger.AndroidUtilities;
-public class lq extends Drawable {
-    public static final u1.a h = new u1.a();
-    public float f28249a;
-    public final float f28250b;
-    public long f28251c;
-    public final float[] d;
-    public final Paint f28252e;
-    public float f28253f;
-    public final RectF f28254g;
+public final class lq extends NestedScrollView {
+    public boolean W;
+    public final pq f27099a0;
 
-    public lq(int i10) {
-        this.f28249a = AndroidUtilities.dp(18.0f);
-        this.f28250b = AndroidUtilities.dp(2.25f);
-        this.f28251c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.f28252e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f28254g = new RectF();
-        b(i10);
+    public lq(pq pqVar, Context context) {
+        super(context);
+        this.f27099a0 = pqVar;
     }
 
-    public static void a(float[] fArr, float f7) {
+    @Override
+    public final void onDraw(Canvas canvas) {
         int i10;
-        float f10 = (1520.0f * f7) / 5400.0f;
-        fArr[0] = Math.max(0.0f, f10 - 20.0f);
-        fArr[1] = f10;
-        for (int i11 = 0; i11 < 4; i11++) {
-            u1.a aVar = h;
-            fArr[1] = (aVar.getInterpolation((f7 - (i11 * 1350)) / 667.0f) * 250.0f) + fArr[1];
-            fArr[0] = (aVar.getInterpolation((f7 - (i10 + 667)) / 667.0f) * 250.0f) + fArr[0];
+        int i11;
+        pq pqVar = this.f27099a0;
+        int i12 = pqVar.f28402f;
+        i10 = ((org.telegram.ui.ActionBar.e3) pqVar).backgroundPaddingTop;
+        int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
+        Drawable drawable = pqVar.f28400b;
+        int measuredWidth = getMeasuredWidth();
+        i11 = ((org.telegram.ui.ActionBar.e3) pqVar).backgroundPaddingTop;
+        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + pqVar.f28401c.getMeasuredHeight() + scrollY);
+        drawable.draw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            pq pqVar = this.f27099a0;
+            if (pqVar.f28402f != 0 && motionEvent.getY() < pqVar.f28402f) {
+                pqVar.dismiss();
+                return true;
+            }
         }
-    }
-
-    public final void b(int i10) {
-        this.f28252e.setColor(i10);
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f28251c < 0) {
-            this.f28251c = SystemClock.elapsedRealtime();
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        pq.n(this.f27099a0);
+    }
+
+    @Override
+    public final void onMeasure(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lq.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        pq.n(this.f27099a0);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f27099a0.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
         }
-        float[] fArr = this.d;
-        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f28251c) % 5400));
-        float f7 = this.f28253f;
-        float f10 = fArr[0];
-        Paint paint = this.f28252e;
-        canvas.drawArc(this.f28254g, f7 + f10, fArr[1] - f10, false, paint);
-        invalidateSelf();
+        return false;
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return (int) (this.f28249a + this.f28250b);
+    public final void requestLayout() {
+        if (this.W) {
+            return;
+        }
+        super.requestLayout();
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return (int) (this.f28249a + this.f28250b);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f28252e.setAlpha(i10);
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        float f7 = i10;
-        float f10 = i12 - i10;
-        float f11 = this.f28250b;
-        float f12 = this.f28249a;
-        float f13 = i11;
-        float f14 = i13 - i11;
-        this.f28254g.set(com.google.android.gms.internal.vision.e2.z(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
-        super.setBounds(i10, i11, i12, i13);
-        this.f28252e.setStrokeWidth(f11);
-    }
-
-    public lq(float f7, float f10, int i10) {
-        this.f28249a = AndroidUtilities.dp(18.0f);
-        this.f28250b = AndroidUtilities.dp(2.25f);
-        this.f28251c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.f28252e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f28254g = new RectF();
-        this.f28249a = f7;
-        this.f28250b = f10;
-        b(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        pq.n(this.f27099a0);
     }
 }

@@ -1,98 +1,55 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
-import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
+import java.util.ArrayList;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class q40 extends db {
-    public final LinearLayout X;
-    public h71 Y;
+import org.telegram.messenger.Utilities;
+public final class q40 extends FrameLayout {
+    public final int f28509a;
+    public final org.telegram.ui.ActionBar.c6 f28510b;
+    public ArrayList f28511c;
+    public final FrameLayout d;
+    public final h71 e;
+    public final z61 f28512f;
+    public Utilities.Callback h;
 
-    public q40(Activity activity, org.telegram.ui.ActionBar.c6 c6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.gq gqVar) {
-        super(activity, null, false, false, 1, c6Var);
-        fixNavigationBar();
-        LinearLayout linearLayout = new LinearLayout(activity);
-        this.X = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
+    public q40(int i10, Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(activity);
+        this.f28509a = i10;
+        this.f28510b = c6Var;
+        h71 h71Var = new h71(activity, i10, 0, false, new d(this, 15), new p40(this), new p40(this), c6Var);
+        this.e = h71Var;
+        h71Var.setClipToPadding(false);
+        z61 z61Var = (z61) h71Var.getAdapter();
+        this.f28512f = z61Var;
+        z61Var.f31780r = false;
+        addView(h71Var, -1, -1);
         FrameLayout frameLayout = new FrameLayout(activity);
-        org.telegram.ui.n01 Q = Q(activity, AndroidUtilities.dp(60.0f), user);
-        org.telegram.ui.n01 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
+        this.d = frameLayout;
         ImageView imageView = new ImageView(activity);
-        imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
+        int i11 = org.telegram.ui.ActionBar.g6.f20064m6;
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(i11, c6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        LinearLayout linearLayout2 = new LinearLayout(activity);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setGravity(16);
-        linearLayout2.setClipChildren(false);
-        linearLayout2.addView(Q, w7.w5.n(60, 60));
-        linearLayout2.addView(imageView, w7.w5.t(24, 24, 16, 7, 0, 7, 0));
-        linearLayout2.addView(Q2, w7.w5.n(60, 60));
-        frameLayout.addView(linearLayout2, w7.w5.e(-2, -2, 17));
-        linearLayout.addView(frameLayout, w7.w5.t(-1, -2, 1, 0, 23, 0, 19));
+        imageView.setImageResource(R.drawable.large_hashtags);
+        frameLayout.addView(imageView, w7.a6.e(56, 56, 49));
         TextView textView = new TextView(activity);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        org.telegram.messenger.am.j(20.0f, R.string.GuardBotReplaceTitle, 1, textView);
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        linearLayout.addView(textView, w7.w5.t(-1, -2, 17, 20, 0, 20, 6));
-        String shortName = DialogObject.getShortName(user);
-        String shortName2 = DialogObject.getShortName(tLObject);
-        TextView textView2 = new TextView(activity);
-        textView2.setGravity(17);
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GuardBotReplaceMessage, shortName, shortName2)));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        textView2.setLineSpacing(AndroidUtilities.dp(2.66f), 1.0f);
-        linearLayout.addView(textView2, w7.w5.t(-1, -2, 17, 24, 0, 24, 29));
-        ci.d dVar = new ci.d(activity, c6Var, true);
-        dVar.e();
-        dVar.g(LocaleController.formatString(R.string.GuardBotReplaceUseNew, shortName2), false, true);
-        dVar.setOnClickListener(new xt(6, this, gqVar));
-        linearLayout.addView(dVar, w7.w5.k(14.0f, 0.0f, 14.0f, 10.0f, -1, 48));
-        ci.d dVar2 = new ci.d(activity, c6Var, true);
-        dVar2.e();
-        dVar2.d();
-        dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
-        dVar2.setOnClickListener(new f0(this, 23));
-        linearLayout.addView(dVar2, w7.w5.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        wm0 wm0Var = this.d;
-        int i11 = this.backgroundPaddingLeft;
-        wm0Var.setPadding(i11, 0, i11, 0);
-        this.Y.N(false);
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
+        org.telegram.messenger.yh.l(R.string.HashtagSearchPlaceholder, textView, 17);
+        frameLayout.addView(textView, w7.a6.a(-2.0f, 0.0f, 56.0f, 0.0f, 0.0f, -2, 81));
+        addView(frameLayout, w7.a6.e(210, -2, 17));
+        h71Var.setEmptyView(frameLayout);
     }
 
-    public static org.telegram.ui.n01 Q(Context context, int i10, TLObject tLObject) {
-        org.telegram.ui.n01 n01Var = new org.telegram.ui.n01(context);
-        n01Var.setRoundRadius(i10 / 2);
-        j9 j9Var = new j9((org.telegram.ui.ActionBar.c6) null);
-        j9Var.p(tLObject);
-        n01Var.setImageDrawable(j9Var);
-        n01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
-        return n01Var;
+    public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
+        this.h = callback;
     }
 
-    @Override
-    public final CharSequence A() {
-        return "";
-    }
-
-    @Override
-    public final vm0 x(wm0 wm0Var) {
-        h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.Y = h71Var;
-        h71Var.f26679r = false;
-        return h71Var;
+    public void setOnScrollListener(s4.r0 r0Var) {
+        this.e.j(r0Var);
     }
 }

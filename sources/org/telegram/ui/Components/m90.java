@@ -1,214 +1,132 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.widget.TextView;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotGuardHelper;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m90 extends org.telegram.ui.ActionBar.e3 {
-    public static final int f28443r = 0;
-    public final String f28444b;
-    public final org.telegram.ui.ActionBar.m2 f28445c;
-    public final TLRPC.ChatInvite d;
-    public final TLRPC.Chat f28446e;
-    public final TextView f28447f;
-    public final RadialProgressView h;
-    public zc f28448n;
+import org.telegram.messenger.FileLog;
+public final class m90 extends Drawable {
+    public static final Paint f27328j = new Paint();
+    public static TextPaint f27329k;
+    public static TextPaint f27330l;
+    public static TextPaint f27331m;
+    public StaticLayout f27333b;
+    public float f27334c;
+    public float d;
+    public float e;
+    public final int f27336g;
+    public final TextPaint h;
+    public final RectF f27332a = new RectF();
+    public final StringBuilder f27335f = new StringBuilder(5);
+    public float f27337i = 1.0f;
 
-    public m90(android.content.Context r27, org.telegram.tgnet.TLObject r28, java.lang.String r29, org.telegram.ui.ActionBar.m2 r30, org.telegram.ui.ActionBar.c6 r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m90.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.m2, org.telegram.ui.ActionBar.c6):void");
-    }
-
-    public static void o(m90 m90Var, long j3, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLRPC.ChatInviteJoinResult chatInviteJoinResult, TLRPC.TL_error tL_error) {
-        TLRPC.Updates updates;
-        m90 m90Var2;
-        if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
-            TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
-            MessagesController.getInstance(m90Var.currentAccount).lambda$processUpdates$377(updates2, false);
-            updates = updates2;
-        } else {
-            updates = null;
-            if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-                g90 g90Var = new g90(m90Var, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, j3, 1);
-                m90Var2 = m90Var;
-                AndroidUtilities.runOnUIThread(g90Var);
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5((Object) m90Var2, (Object) tL_error, (Object) updates, (Object) tL_messages_importChatInvite, 25));
+    public m90(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f27336g = i10;
+        if (i10 == 0) {
+            if (f27329k == null) {
+                f27329k = new TextPaint(1);
             }
+            f27329k.setTextSize(AndroidUtilities.dp(28.0f));
+            f27328j.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Jh, c6Var));
+            f27329k.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Kh, c6Var));
+            this.h = f27329k;
+        } else if (i10 == 1) {
+            if (f27330l == null) {
+                f27330l = new TextPaint(1);
+            }
+            f27330l.setColor(-1);
+            f27330l.setTextSize(AndroidUtilities.dp(13.0f));
+            f27330l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f27330l;
+        } else {
+            if (f27331m == null) {
+                f27331m = new TextPaint(1);
+            }
+            f27331m.setColor(-1);
+            f27331m.setTextSize(org.telegram.ui.ActionBar.g6.f19898d3.getTextSize() * 0.75f);
+            f27331m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f27331m;
         }
-        m90Var2 = m90Var;
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5((Object) m90Var2, (Object) tL_error, (Object) updates, (Object) tL_messages_importChatInvite, 25));
     }
 
-    public static void p(m90 m90Var, TLRPC.TL_error tL_error, TLRPC.Updates updates, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        org.telegram.ui.ActionBar.m2 m2Var = m90Var.f28445c;
-        if (m2Var != null && m2Var.getParentActivity() != null) {
-            if (tL_error == null) {
-                if (updates != null && !updates.chats.isEmpty()) {
-                    TLRPC.Chat chat = updates.chats.get(0);
-                    chat.left = false;
-                    chat.kicked = false;
-                    MessagesController.getInstance(m90Var.currentAccount).putUsers(updates.users, false);
-                    MessagesController.getInstance(m90Var.currentAccount).putChats(updates.chats, false);
-                    long j3 = chat.f19803id;
-                    boolean z10 = !ChatObject.isChannelAndNotMegaGroup(chat);
-                    m90Var.getClass();
-                    Bundle f7 = sc.v.f(j3, "chat_id");
-                    MessagesController messagesController = MessagesController.getInstance(m90Var.currentAccount);
-                    org.telegram.ui.ActionBar.m2 m2Var2 = m90Var.f28445c;
-                    if (messagesController.checkCanOpenChat(f7, m2Var2)) {
-                        m2Var2.presentFragment(new l90(m90Var, f7, z10, j3), m2Var2 instanceof org.telegram.ui.eo);
-                        return;
-                    }
+    public final void a(String str) {
+        StringBuilder sb2 = this.f27335f;
+        sb2.setLength(0);
+        if (str != null && str.length() > 0) {
+            sb2.append(str.substring(0, 1));
+        }
+        if (sb2.length() > 0) {
+            try {
+                StaticLayout staticLayout = new StaticLayout(sb2.toString().toUpperCase(), this.h, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f27333b = staticLayout;
+                if (staticLayout.getLineCount() > 0) {
+                    this.e = this.f27333b.getLineLeft(0);
+                    this.f27334c = this.f27333b.getLineWidth(0);
+                    this.d = this.f27333b.getLineBottom(0);
                     return;
                 }
                 return;
-            }
-            "USER_ALREADY_PARTICIPANT".equals(tL_error.text);
-            g5.e0(m90Var.currentAccount, tL_error, m2Var, tL_messages_importChatInvite, new Object[0]);
-        }
-    }
-
-    public static void q(m90 m90Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3) {
-        MessagesController.getInstance(m90Var.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
-        BotGuardHelper.getInstance(m90Var.currentAccount).openGuardBotWebApp(j3, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
-    }
-
-    public static void r(m90 m90Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3) {
-        MessagesController.getInstance(m90Var.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
-        BotGuardHelper.getInstance(m90Var.currentAccount).openGuardBotWebApp(j3, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
-    }
-
-    public static void s(m90 m90Var, long j3) {
-        m90Var.dismiss();
-        TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = m90Var.f28444b;
-        ConnectionsManager.getInstance(m90Var.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new j90(m90Var, j3, tL_messages_importChatInvite), 2);
-    }
-
-    public static void t(m90 m90Var, boolean z10, long j3) {
-        TLRPC.Chat chat = m90Var.f28446e;
-        AndroidUtilities.runOnUIThread(new Runnable(m90Var) {
-            public final m90 f27795b;
-
-            {
-                this.f27795b = m90Var;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        m90 m90Var2 = this.f27795b;
-                        if (!m90Var2.isDismissed()) {
-                            m90Var2.f28447f.setVisibility(4);
-                            m90Var2.h.setVisibility(0);
-                            return;
-                        }
-                        return;
-                    default:
-                        this.f27795b.dismiss();
-                        return;
-                }
-            }
-        }, 400L);
-        if (m90Var.d == null && chat != null) {
-            MessagesController.getInstance(m90Var.currentAccount).addUserToChat(chat.f19803id, UserConfig.getInstance(m90Var.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable(m90Var) {
-                public final m90 f27795b;
-
-                {
-                    this.f27795b = m90Var;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            m90 m90Var2 = this.f27795b;
-                            if (!m90Var2.isDismissed()) {
-                                m90Var2.f28447f.setVisibility(4);
-                                m90Var2.h.setVisibility(0);
-                                return;
-                            }
-                            return;
-                        default:
-                            this.f27795b.dismiss();
-                            return;
-                    }
-                }
-            }, new ai.k(9, m90Var, z10));
-            return;
-        }
-        TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = m90Var.f28444b;
-        ConnectionsManager.getInstance(m90Var.currentAccount).sendRequest(tL_messages_importChatInvite, new org.telegram.messenger.ba(m90Var, j3, z10, tL_messages_importChatInvite), 2);
-    }
-
-    public static void u(m90 m90Var, long j3, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, TLRPC.TL_error tL_error) {
-        m90 m90Var2;
-        if (tLObject instanceof TLRPC.TL_chatInviteJoinResultOk) {
-            MessagesController.getInstance(m90Var.currentAccount).lambda$processUpdates$377(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
-        } else if (tLObject instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-            g90 g90Var = new g90(m90Var, (TLRPC.TL_chatInviteJoinResultWebView) tLObject, j3, 0);
-            m90Var2 = m90Var;
-            AndroidUtilities.runOnUIThread(g90Var);
-            AndroidUtilities.runOnUIThread(new ai.t4(m90Var2, tL_error, z10, tL_messages_importChatInvite, 18));
-        }
-        m90Var2 = m90Var;
-        AndroidUtilities.runOnUIThread(new ai.t4(m90Var2, tL_error, z10, tL_messages_importChatInvite, 18));
-    }
-
-    public static void v(m90 m90Var, TLRPC.TL_error tL_error, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        org.telegram.ui.ActionBar.m2 m2Var = m90Var.f28445c;
-        if (m2Var != null && m2Var.getParentActivity() != null) {
-            if (tL_error != null) {
-                if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
-                    m90Var.setOnDismissListener(new h90(1, m90Var, z10));
-                } else {
-                    g5.e0(m90Var.currentAccount, tL_error, m2Var, tL_messages_importChatInvite, new Object[0]);
-                }
-            }
-            m90Var.dismiss();
-        }
-    }
-
-    public static CharSequence x(TextView textView, TLRPC.ChatInvite chatInvite, int i10) {
-        String str = chatInvite.participants.get(i10).first_name;
-        if (str == null) {
-            str = "";
-        }
-        return TextUtils.ellipsize(str.trim(), textView.getPaint(), AndroidUtilities.dp(120.0f), TextUtils.TruncateAt.END);
-    }
-
-    public static void y(Context context, org.telegram.ui.ActionBar.m2 m2Var, zc zcVar, boolean z10) {
-        String string;
-        if (context == null) {
-            if (m2Var != null) {
-                m2Var.getContext();
+            } catch (Exception e) {
+                FileLog.e(e);
                 return;
             }
+        }
+        this.f27333b = null;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (bounds == null) {
             return;
         }
-        if (zcVar == null) {
-            zcVar = zc.a0(m2Var);
+        if (this.f27336g == 0) {
+            RectF rectF = this.f27332a;
+            rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f27328j);
         }
-        pc pcVar = new pc(context, m2Var.getResourceProvider());
-        pcVar.f29483a.f(R.raw.timer_3, 28, 28, null);
-        pcVar.f29484b.setText(LocaleController.getString(R.string.RequestToJoinSent));
-        if (z10) {
-            string = LocaleController.getString(R.string.RequestToJoinChannelSentDescription);
-        } else {
-            string = LocaleController.getString(R.string.RequestToJoinGroupSentDescription);
+        canvas.save();
+        float f7 = this.f27337i;
+        if (f7 != 1.0f) {
+            canvas.scale(f7, f7, bounds.centerX(), bounds.centerY());
         }
-        pcVar.f29485c.setText(string);
-        zcVar.b(pcVar, 2750).j();
+        if (this.f27333b != null) {
+            float width = bounds.width();
+            canvas.translate(com.google.android.gms.internal.play_billing.k3.z(width, this.f27334c, 2.0f, bounds.left) - this.e, com.google.android.gms.internal.play_billing.k3.z(width, this.d, 2.0f, bounds.top));
+            this.f27333b.draw(canvas);
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return 0;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return 0;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.h.setAlpha(i10);
+        f27328j.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

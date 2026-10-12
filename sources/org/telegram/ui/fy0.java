@@ -1,47 +1,110 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.Iterator;
-import org.telegram.messenger.GenericProvider;
-public final class fy0 implements GenericProvider, org.telegram.ui.Components.mm0, a70 {
-    public final iy0 f37871a;
+import android.graphics.Canvas;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class fy0 extends FrameLayout {
+    public org.telegram.ui.Components.x9 f36255a;
+    public org.telegram.ui.Cells.u1 f36256b;
+    public Drawable f36257c;
+    public Drawable d;
+    public org.telegram.ui.Components.v40 e;
+    public MessageObject f36258f;
 
-    public fy0(iy0 iy0Var) {
-        this.f37871a = iy0Var;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.e.e(this.f36256b, null, 0, 0, false);
     }
 
     @Override
-    public void b(ArrayList arrayList, boolean z10, boolean z11) {
-        Iterator it = arrayList.iterator();
-        if (!it.hasNext()) {
-            this.f37871a.V();
-        } else {
-            Long l4 = (Long) it.next();
-            throw null;
-        }
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        iy0 iy0Var = this.f37871a;
-        if (i10 >= iy0Var.f39041r && i10 < iy0Var.f39042s) {
-            if (iy0Var.f39045y == 1) {
-                iy0Var.U(Long.valueOf(iy0Var.getMessagesController().blockePeers.keyAt(i10 - iy0Var.f39041r)), view);
-                return true;
-            }
-            throw null;
-        }
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         return false;
     }
 
     @Override
-    public Object provide(Object obj) {
-        iy0 iy0Var = this.f37871a;
-        iy0Var.getClass();
-        if (((Integer) obj).intValue() != iy0Var.f39043w) {
-            return null;
+    public final void invalidate() {
+        super.invalidate();
+        this.f36256b.invalidate();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.ui.Components.x9 x9Var = this.f36255a;
+        if (x9Var != null) {
+            x9Var.dispose();
+            this.f36255a = null;
         }
-        return Integer.valueOf(org.telegram.ui.ActionBar.h6.m1(0.12f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20781p7, false)));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Drawable drawable = this.d;
+        Drawable t02 = org.telegram.ui.ActionBar.g6.t0();
+        if (t02 != null && this.f36257c != t02) {
+            org.telegram.ui.Components.x9 x9Var = this.f36255a;
+            if (x9Var != null) {
+                x9Var.dispose();
+                this.f36255a = null;
+            }
+            this.f36257c = t02;
+        }
+        Drawable drawable2 = this.f36257c;
+        if (!(drawable2 instanceof ColorDrawable) && !(drawable2 instanceof GradientDrawable) && !(drawable2 instanceof org.telegram.ui.Components.cd0)) {
+            if (drawable2 instanceof BitmapDrawable) {
+                if (((BitmapDrawable) drawable2).getTileModeX() == Shader.TileMode.REPEAT) {
+                    canvas.save();
+                    float f7 = 2.0f / AndroidUtilities.density;
+                    canvas.scale(f7, f7);
+                    this.f36257c.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f7), (int) Math.ceil(getMeasuredHeight() / f7));
+                } else {
+                    int measuredHeight = getMeasuredHeight();
+                    float max = Math.max(getMeasuredWidth() / this.f36257c.getIntrinsicWidth(), measuredHeight / this.f36257c.getIntrinsicHeight());
+                    int ceil = (int) Math.ceil(this.f36257c.getIntrinsicWidth() * max);
+                    int ceil2 = (int) Math.ceil(this.f36257c.getIntrinsicHeight() * max);
+                    int measuredWidth = (getMeasuredWidth() - ceil) / 2;
+                    int i10 = (measuredHeight - ceil2) / 2;
+                    canvas.save();
+                    canvas.clipRect(0, 0, ceil, getMeasuredHeight());
+                    this.f36257c.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
+                }
+                this.f36257c.draw(canvas);
+                canvas.restore();
+            } else {
+                super.onDraw(canvas);
+            }
+        } else {
+            drawable2.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            Drawable drawable3 = this.f36257c;
+            if (drawable3 instanceof org.telegram.ui.Components.y9) {
+                this.f36255a = ((org.telegram.ui.Components.y9) drawable3).c(canvas, this);
+            } else {
+                drawable3.draw(canvas);
+            }
+        }
+        drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void dispatchSetPressed(boolean z10) {
     }
 }

@@ -1,94 +1,58 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class y00 extends og.a {
-    public View.OnClickListener f44225c;
-    public CharSequence d;
-    public String f44226e;
-    public boolean f44227f;
-    public boolean f44228g;
-    public long h;
-    public String f44229i;
-    public int f44230j;
-    public int f44231k;
-    public boolean f44232l;
-    public TL_chatlists.TL_exportedChatlistInvite f44233m;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class y00 extends org.telegram.ui.Components.s6 {
+    public final int f41997s = 0;
+    public final Object v;
+    public final ViewGroup f41998w;
 
-    public static y00 b(int i10, String str, boolean z10) {
-        ?? aVar = new og.a(4, false);
-        aVar.f44231k = i10;
-        aVar.d = str;
-        aVar.f44232l = z10;
-        return aVar;
+    public y00(zh.d7 d7Var, Context context, Drawable drawable) {
+        super(context, false, false, false);
+        this.f41998w = d7Var;
+        this.v = drawable;
     }
 
-    public static y00 c(int i10, String str, String str2, boolean z10) {
-        ?? aVar = new og.a(1, false);
-        aVar.f44228g = z10;
-        aVar.d = str;
-        aVar.f44229i = str2;
-        aVar.f44230j = i10;
-        return aVar;
-    }
-
-    public static y00 d(String str) {
-        int i10;
-        if (TextUtils.isEmpty(str)) {
-            i10 = 3;
-        } else {
-            i10 = 6;
-        }
-        ?? aVar = new og.a(i10, false);
-        aVar.d = str;
-        return aVar;
-    }
-
-    public final boolean equals(Object obj) {
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
-        if (this != obj) {
-            if (obj != null && y00.class == obj.getClass()) {
-                y00 y00Var = (y00) obj;
-                int i10 = this.f16877a;
-                if (i10 == y00Var.f16877a) {
-                    if (i10 == 11) {
-                        if (!TextUtils.equals(this.d, y00Var.d) || !TextUtils.equals(this.f44226e, y00Var.f44226e)) {
-                            return false;
-                        }
-                    } else if ((i10 != 0 && i10 != 1 && i10 != 3 && i10 != 4) || TextUtils.equals(this.d, y00Var.d)) {
-                        int i11 = this.f16877a;
-                        if (i11 == 0) {
-                            if (this.f44227f != y00Var.f44227f) {
-                                return false;
-                            }
-                        } else if (i11 == 1) {
-                            if (this.h != y00Var.h || !TextUtils.equals(this.f44229i, y00Var.f44229i) || this.f44230j != y00Var.f44230j) {
-                                return false;
-                            }
-                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f44233m) != (tL_exportedChatlistInvite2 = y00Var.f44233m)) {
-                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f44233m;
-                                boolean z10 = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = y00Var.f44233m;
-                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f44233m.peers.size() != y00Var.f44233m.peers.size()) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return false;
-                    }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        switch (this.f41997s) {
+            case 0:
+                z00 z00Var = (z00) this.f41998w;
+                int a2 = z00Var.f42446w.a(z00Var.v, false);
+                setTextColor(a2);
+                Paint paint = (Paint) this.v;
+                if (org.telegram.ui.ActionBar.g6.I.q()) {
+                    f7 = 0.2f;
                 } else {
-                    return false;
+                    f7 = 0.1f;
                 }
-            } else {
-                return false;
-            }
+                paint.setColor(org.telegram.ui.ActionBar.g6.m1(f7, a2));
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set((getWidth() - getDrawable().c()) - AndroidUtilities.dpf2(9.32f), (getHeight() - AndroidUtilities.dpf2(14.66f)) / 2.0f, getWidth(), (AndroidUtilities.dpf2(14.66f) + getHeight()) / 2.0f);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                Drawable drawable = (Drawable) this.v;
+                if (!((zh.d7) this.f41998w).d) {
+                    int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - AndroidUtilities.dp(20.0f));
+                    drawable.setBounds(measuredWidth, org.telegram.messenger.yh.B(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
+                    drawable.draw(canvas);
+                }
+                super.dispatchDraw(canvas);
+                return;
         }
-        return true;
+    }
+
+    public y00(z00 z00Var, Context context) {
+        super(context, false, true, true);
+        this.f41998w = z00Var;
+        this.v = new Paint(1);
     }
 }

@@ -1,42 +1,62 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class mv implements py, et {
-    public final pv f40141a;
+import android.graphics.drawable.ColorDrawable;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.R;
+public final class mv extends org.telegram.ui.Components.lm0 {
+    public final ov f38355c;
 
-    public mv(pv pvVar) {
-        this.f40141a = pvVar;
+    public mv(ov ovVar) {
+        this.f38355c = ovVar;
     }
 
     @Override
-    public boolean B() {
+    public final boolean D(s4.b1 b1Var) {
         return false;
     }
 
     @Override
-    public boolean K(vy vyVar) {
-        return false;
-    }
-
-    @Override
-    public void b(TLRPC.User user) {
-        this.f40141a.l0(user);
-    }
-
-    @Override
-    public boolean w(vy vyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, hg1 hg1Var) {
-        if (!arrayList.isEmpty()) {
-            long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-            if (DialogObject.isUserDialog(j3)) {
-                pv pvVar = this.f40141a;
-                pvVar.l0(pvVar.getMessagesController().getUser(Long.valueOf(j3)));
-                return true;
-            }
-            return true;
+    public final int h() {
+        if (this.f38355c.f39050g0.h()) {
+            return 1;
         }
-        return true;
+        return 3;
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        int i11;
+        int i12;
+        ov ovVar = this.f38355c;
+        if (i10 == 0) {
+            view = ovVar.f39047d0;
+        } else if (i10 == 2) {
+            view = ovVar.f39048e0;
+            s4.o0 o0Var = new s4.o0(-1, -2);
+            i11 = ((org.telegram.ui.ActionBar.e3) ovVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) o0Var).leftMargin = i11;
+            i12 = ((org.telegram.ui.ActionBar.e3) ovVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) o0Var).rightMargin = i12;
+            view.setLayoutParams(o0Var);
+        } else {
+            org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(viewGroup.getContext());
+            e9Var.setFixedSize(12);
+            org.telegram.ui.Components.cr crVar = new org.telegram.ui.Components.cr(new ColorDrawable(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19843a7, false)), org.telegram.ui.ActionBar.g6.W0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.g6.f19863b7));
+            crVar.f24198w = true;
+            e9Var.setBackgroundDrawable(crVar);
+            view = e9Var;
+        }
+        return new s4.b1(view);
+    }
+
+    @Override
+    public final int j(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
     }
 }

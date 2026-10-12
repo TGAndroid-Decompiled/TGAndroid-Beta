@@ -1,55 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class n41 extends Drawable {
-    public final fk0 f28717a;
-    public int f28718b;
-    public final TextPaint f28719c;
+import android.net.Uri;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import org.json.JSONArray;
+import org.json.JSONTokener;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class n41 extends Thread {
+    public final String f27580a;
+    public final String f27581b;
+    public final String f27582c;
+    public final Utilities.Callback2 d;
 
-    public n41(TextPaint textPaint) {
-        i.f fVar = new i.f(this, 5);
-        this.f28719c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        fk0 fk0Var = new fk0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f28717a = fk0Var;
-        fk0Var.setCallback(fVar);
-        fk0Var.K(1);
-        fk0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        fk0Var.J(true);
-        fk0Var.start();
+    public n41(String str, String str2, String str3, Utilities.Callback2 callback2) {
+        this.f27580a = str;
+        this.f27581b = str2;
+        this.f27582c = str3;
+        this.d = callback2;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f28719c.getColor();
-        int i10 = this.f28718b;
-        fk0 fk0Var = this.f28717a;
-        if (color != i10) {
-            fk0Var.Z = true;
-            fk0Var.Q(color, "Comp 1");
-            fk0Var.o();
-            fk0Var.J(true);
-            fk0Var.V(0L);
-            this.f28718b = color;
+    public final void run() {
+        HttpURLConnection httpURLConnection;
+        Integer num;
+        String str;
+        Utilities.Callback2 callback2 = this.d;
+        String str2 = this.f27582c;
+        boolean z10 = false;
+        String str3 = null;
+        try {
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f27580a) + "&tl=" + Uri.encode(this.f27581b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            try {
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setRequestProperty("User-Agent", x41.R[(int) Math.round(Math.random() * 5)]);
+                httpURLConnection.setRequestProperty("Content-Type", "application/json");
+                StringBuilder sb2 = new StringBuilder();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.j.f6435a));
+                while (true) {
+                    int read = bufferedReader.read();
+                    if (read == -1) {
+                        break;
+                    }
+                    sb2.append((char) read);
+                }
+                bufferedReader.close();
+                JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
+                JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+                try {
+                    str = jSONArray.getString(2);
+                } catch (Exception unused) {
+                    str = null;
+                }
+                if (str != null && str.contains("-")) {
+                    str.substring(0, str.indexOf("-"));
+                }
+                String str4 = "";
+                for (int i10 = 0; i10 < jSONArray2.length(); i10++) {
+                    String string = jSONArray2.getJSONArray(i10).getString(0);
+                    if (string != null && !string.equals("null")) {
+                        str4 = str4 + string;
+                    }
+                }
+                if (str2.length() > 0 && str2.charAt(0) == '\n') {
+                    str4 = "\n" + str4;
+                }
+                AndroidUtilities.runOnUIThread(new m41(str4, 0, callback2));
+            } catch (Exception e) {
+                e = e;
+                try {
+                    StringBuilder sb3 = new StringBuilder();
+                    sb3.append("failed to translate a text ");
+                    if (httpURLConnection != null) {
+                        num = Integer.valueOf(httpURLConnection.getResponseCode());
+                    } else {
+                        num = null;
+                    }
+                    sb3.append(num);
+                    sb3.append(" ");
+                    if (httpURLConnection != null) {
+                        str3 = httpURLConnection.getResponseMessage();
+                    }
+                    sb3.append(str3);
+                    Log.e("translate", sb3.toString());
+                } catch (IOException e7) {
+                    e7.printStackTrace();
+                }
+                e.printStackTrace();
+                if (httpURLConnection != null) {
+                    try {
+                        if (httpURLConnection.getResponseCode() == 429) {
+                            z10 = true;
+                        }
+                    } catch (Exception unused2) {
+                        AndroidUtilities.runOnUIThread(new lr0(callback2, 22));
+                        return;
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new sn0(6, callback2, z10));
+            }
+        } catch (Exception e10) {
+            e = e10;
+            httpURLConnection = null;
         }
-        fk0Var.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

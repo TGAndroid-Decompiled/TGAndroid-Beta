@@ -15,8 +15,8 @@ public final class ExtendedDefaultDataSourceFactory implements g {
         this(context, str, (c0) null);
     }
 
-    public void putDocumentUri(long j3, Uri uri) {
-        this.mtprotoUris.put(j3, uri);
+    public void putDocumentUri(long j10, Uri uri) {
+        this.mtprotoUris.put(j10, uri);
     }
 
     public ExtendedDefaultDataSourceFactory(android.content.Context r2, java.lang.String r3, g2.c0 r4) {

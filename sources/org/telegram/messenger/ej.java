@@ -1,127 +1,138 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.concurrent.ExecutorService;
-import org.telegram.tgnet.TLObject;
+import android.content.SharedPreferences;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.gl0;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.NotificationsSettingsActivity;
+import org.telegram.ui.fo;
 public final class ej implements Runnable {
-    public final int f17537a = 2;
-    public final boolean f17538b;
-    public final boolean f17539c;
-    public final int d;
-    public final Object f17540e;
-    public final Object f17541f;
-    public final Object h;
-    public final Object f17542n;
+    public final int f17189a = 0;
+    public final int f17190b;
+    public final int f17191c;
+    public final boolean d;
+    public final Object e;
+    public final Object f17192f;
 
-    public ej(int i10, ci.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, org.telegram.ui.ActionBar.e3[] e3VarArr) {
-        this.f17540e = dVar;
-        this.f17541f = e3VarArr;
-        this.d = i10;
-        this.f17538b = z10;
-        this.h = starsSubscription;
-        this.f17539c = z11;
-        this.f17542n = tLObject;
+    public ej(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11, boolean z10) {
+        this.e = sendMessagesHelper;
+        this.f17192f = message;
+        this.f17190b = i10;
+        this.f17191c = i11;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        String formatString;
-        switch (this.f17537a) {
+        TLRPC.Document f7;
+        hg.n nVar;
+        int i10;
+        switch (this.f17189a) {
             case 0:
-                ((SendMessagesHelper) this.f17540e).lambda$performSendMessageRequest$98(this.f17538b, (TLRPC.Message) this.f17541f, (ArrayList) this.h, this.f17539c, (ArrayList) this.f17542n, this.d);
+                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$101((TLRPC.Message) this.f17192f, this.f17190b, this.f17191c, this.d);
                 return;
             case 1:
-                qi.p0 p0Var = (qi.p0) this.f17540e;
-                qi.s sVar = (qi.s) this.f17541f;
-                boolean z10 = this.f17538b;
-                File file = (File) this.h;
-                boolean z11 = this.f17539c;
-                int i10 = this.d;
-                qi.l0 l0Var = (qi.l0) this.f17542n;
-                p0Var.getClass();
-                long nanoTime = System.nanoTime();
-                try {
-                    sVar.g();
-                    qi.l lVar = p0Var.f46871n;
-                    lVar.b("preview output finalized: size=" + sVar.f46893a.length() + ", replace=" + z10 + ", elapsedMs=" + qi.p0.f(nanoTime));
-                    p0Var.g();
-                    if (z10) {
-                        p0Var.u(file, p0Var.H, p0Var.I, z11, i10);
-                    } else {
-                        File file2 = sVar.f46893a;
-                        long j3 = p0Var.L;
-                        if (j3 <= 0) {
-                            j3 = p0Var.F;
-                        }
-                        long j10 = j3;
-                        ExecutorService executorService = p0Var.f46869l;
-                        try {
-                            qi.c0 c0Var = new qi.c0(p0Var, l0Var, file2, j10, true);
-                            p0Var = p0Var;
-                            executorService.execute(c0Var);
-                        } catch (Exception e7) {
-                            e = e7;
-                            p0Var = p0Var;
-                            p0Var.f46867j.post(new qi.z(p0Var, e, 0));
-                            return;
-                        }
+                fo foVar = (fo) this.e;
+                gl0 gl0Var = (gl0) this.f17192f;
+                org.telegram.ui.ActionBar.m1 m1Var = foVar.Q8;
+                if (m1Var != null && foVar.fragmentView != null && !m1Var.isShowing() && AndroidUtilities.isActivityRunning(foVar.getParentActivity())) {
+                    foVar.Q8.showAtLocation(foVar.f36160x0, 51, this.f17190b, this.f17191c);
+                    if (this.d && gl0Var != null) {
+                        gl0Var.r(true);
                     }
-                    p0Var.S = null;
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.wf(foVar, 22), 420L);
                     return;
-                } catch (Exception e10) {
-                    e = e10;
                 }
+                return;
+            case 2:
+                org.telegram.ui.Components.cc ccVar = (org.telegram.ui.Components.cc) this.e;
+                ah.i1 i1Var = (ah.i1) this.f17192f;
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                long j10 = i1Var.f780g;
+                if (j10 == 0) {
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(i1Var.f779f);
+                    if (tL_availableReaction != null) {
+                        f7 = tL_availableReaction.activate_animation;
+                    } else {
+                        return;
+                    }
+                } else {
+                    f7 = org.telegram.ui.Components.s5.f(UserConfig.selectedAccount, j10);
+                }
+                if (f7 != null && R != null) {
+                    org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(R);
+                    int i11 = ccVar.f24028a.h;
+                    if (this.d) {
+                        nVar = new hg.n(this.f17190b, this.f17191c, R, 6);
+                    } else {
+                        nVar = null;
+                    }
+                    a02.y(i11, f7, nVar).k(true);
+                    return;
+                }
+                return;
             default:
-                int i11 = this.d;
-                boolean z12 = this.f17538b;
-                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.h;
-                boolean z13 = this.f17539c;
-                TLObject tLObject = (TLObject) this.f17542n;
-                ((ci.d) this.f17540e).setLoading(false);
-                org.telegram.ui.ActionBar.e3 e3Var = ((org.telegram.ui.ActionBar.e3[]) this.f17541f)[0];
-                if (e3Var != null) {
-                    e3Var.dismiss();
-                }
-                yh.n5.y(i11, false).S();
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if (U != null) {
-                    if (z12 && !TextUtils.isEmpty(starsSubscription.title)) {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
-                    } else if (z13 && !TextUtils.isEmpty(starsSubscription.title)) {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.e;
+                org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) this.f17192f;
+                int i12 = this.f17190b;
+                boolean z10 = this.d;
+                if (i12 == 3) {
+                    SharedPreferences.Editor edit = notificationsSettingsActivity.getNotificationsSettings().edit();
+                    if (z10) {
+                        edit.remove("EnableAllStories");
                     } else {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
+                        edit.putBoolean("EnableAllStories", true);
                     }
-                    org.telegram.ui.Components.zc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
-                    return;
+                    edit.apply();
+                    notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
+                } else if (i12 != 4 && i12 != 5) {
+                    NotificationsController notificationsController = notificationsSettingsActivity.getNotificationsController();
+                    if (!z10) {
+                        i10 = 0;
+                    } else {
+                        i10 = Integer.MAX_VALUE;
+                    }
+                    notificationsController.setGlobalNotificationsEnabled(i12, i10);
+                } else {
+                    SharedPreferences.Editor edit2 = notificationsSettingsActivity.getNotificationsSettings().edit();
+                    if (z10) {
+                        edit2.putBoolean("EnableReactionsMessages", false);
+                        edit2.putBoolean("EnableReactionsStories", false);
+                    } else {
+                        edit2.putBoolean("EnableReactionsMessages", true);
+                        edit2.putBoolean("EnableReactionsStories", true);
+                    }
+                    edit2.apply();
+                    notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
+                    notificationsSettingsActivity.getNotificationsController().deleteNotificationChannelGlobal(i12);
                 }
+                j5Var.e.b(0, !z10, true);
+                notificationsSettingsActivity.f32165c.m(this.f17191c);
                 return;
         }
     }
 
-    public ej(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
-        this.f17540e = sendMessagesHelper;
-        this.f17538b = z10;
-        this.f17541f = message;
-        this.h = arrayList;
-        this.f17539c = z11;
-        this.f17542n = arrayList2;
-        this.d = i10;
+    public ej(fo foVar, int i10, int i11, boolean z10, gl0 gl0Var) {
+        this.e = foVar;
+        this.f17190b = i10;
+        this.f17191c = i11;
+        this.d = z10;
+        this.f17192f = gl0Var;
     }
 
-    public ej(qi.p0 p0Var, qi.s sVar, boolean z10, File file, boolean z11, int i10, qi.l0 l0Var) {
-        this.f17540e = p0Var;
-        this.f17541f = sVar;
-        this.f17538b = z10;
-        this.h = file;
-        this.f17539c = z11;
-        this.d = i10;
-        this.f17542n = l0Var;
+    public ej(org.telegram.ui.Components.cc ccVar, ah.i1 i1Var, boolean z10, int i10, int i11) {
+        this.e = ccVar;
+        this.f17192f = i1Var;
+        this.d = z10;
+        this.f17190b = i10;
+        this.f17191c = i11;
+    }
+
+    public ej(NotificationsSettingsActivity notificationsSettingsActivity, int i10, boolean z10, org.telegram.ui.Cells.j5 j5Var, int i11) {
+        this.e = notificationsSettingsActivity;
+        this.f17190b = i10;
+        this.d = z10;
+        this.f17192f = j5Var;
+        this.f17191c = i11;
     }
 }

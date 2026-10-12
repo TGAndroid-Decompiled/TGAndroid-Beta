@@ -6,33 +6,33 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.tl.TL_stars;
 public final class eg implements Runnable {
-    public final int f17528a;
-    public final MessagesStorage f17529b;
-    public final int f17530c;
+    public final int f17180a;
+    public final MessagesStorage f17181b;
+    public final int f17182c;
     public final ArrayList d;
-    public final long f17531e;
+    public final long e;
 
-    public eg(int i10, int i11, long j3, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f17528a = i11;
-        this.f17529b = messagesStorage;
-        this.f17530c = i10;
+    public eg(int i10, int i11, long j10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f17180a = i11;
+        this.f17181b = messagesStorage;
+        this.f17182c = i10;
         this.d = arrayList;
-        this.f17531e = j3;
+        this.e = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17528a) {
+        switch (this.f17180a) {
             case 0:
-                this.f17529b.lambda$loadPendingTasks$27(this.f17530c, this.d, this.f17531e);
+                this.f17181b.lambda$loadPendingTasks$27(this.f17182c, this.d, this.e);
                 return;
             case 1:
-                this.f17529b.lambda$loadPendingTasks$28(this.f17530c, this.d, this.f17531e);
+                this.f17181b.lambda$loadPendingTasks$28(this.f17182c, this.d, this.e);
                 return;
             default:
-                int i10 = this.f17530c;
-                long j3 = this.f17531e;
-                SQLiteDatabase database = this.f17529b.getDatabase();
+                int i10 = this.f17182c;
+                long j10 = this.e;
+                SQLiteDatabase database = this.f17181b.getDatabase();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
@@ -43,12 +43,12 @@ public final class eg implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f20032id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f19441id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
                                 sQLitePreparedStatement.bindLong(3, i10);
-                                sQLitePreparedStatement.bindLong(4, j3);
+                                sQLitePreparedStatement.bindLong(4, j10);
                                 sQLitePreparedStatement.bindInteger(5, i11);
                                 sQLitePreparedStatement.step();
                                 nativeByteBuffer.reuse();
@@ -57,8 +57,8 @@ public final class eg implements Runnable {
                         if (sQLitePreparedStatement == null) {
                             return;
                         }
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                         if (sQLitePreparedStatement == null) {
                             return;
                         }
@@ -74,11 +74,11 @@ public final class eg implements Runnable {
         }
     }
 
-    public eg(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
-        this.f17528a = 2;
-        this.f17529b = messagesStorage;
+    public eg(MessagesStorage messagesStorage, long j10, ArrayList arrayList, int i10) {
+        this.f17180a = 2;
+        this.f17181b = messagesStorage;
         this.d = arrayList;
-        this.f17530c = i10;
-        this.f17531e = j3;
+        this.f17182c = i10;
+        this.e = j10;
     }
 }

@@ -2,13 +2,13 @@ package j8;
 
 import android.os.Parcel;
 import android.os.RemoteException;
-import n6.m;
+import n6.l;
 public final class a {
-    public final s7.h f14066a;
+    public final s7.h f12880a;
 
     public a(s7.h hVar) {
-        m.h(hVar);
-        this.f14066a = hVar;
+        l.h(hVar);
+        this.f12880a = hVar;
     }
 
     public final boolean equals(Object obj) {
@@ -17,8 +17,8 @@ public final class a {
             return false;
         }
         try {
-            s7.h hVar = this.f14066a;
-            s7.h hVar2 = ((a) obj).f14066a;
+            s7.h hVar = this.f12880a;
+            s7.h hVar2 = ((a) obj).f12880a;
             s7.f fVar = (s7.f) hVar;
             Parcel N0 = fVar.N0();
             s7.b.c(N0, hVar2);
@@ -28,20 +28,20 @@ public final class a {
             }
             M0.recycle();
             return z10;
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public final int hashCode() {
         try {
-            s7.f fVar = (s7.f) this.f14066a;
+            s7.f fVar = (s7.f) this.f12880a;
             Parcel M0 = fVar.M0(fVar.N0(), 18);
             int readInt = M0.readInt();
             M0.recycle();
             return readInt;
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -7,18 +7,18 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class sl implements rm {
-    public final eo f41954a;
-    public final eo f41955b;
+public final class sl implements sm {
+    public final fo f40171a;
+    public final fo f40172b;
 
-    public sl(eo eoVar, eo eoVar2) {
-        this.f41955b = eoVar;
-        this.f41954a = eoVar2;
+    public sl(fo foVar, fo foVar2) {
+        this.f40172b = foVar;
+        this.f40171a = foVar2;
     }
 
     @Override
-    public final void O0(int i10) {
-        this.f41955b.F(i10, 0, 0, 0, true, true);
+    public final void U0(int i10) {
+        this.f40172b.j(i10, 0, true, 0, true, 0);
     }
 
     @Override
@@ -27,82 +27,82 @@ public final class sl implements rm {
         ArrayList arrayList;
         org.telegram.ui.Components.ac acVar;
         int i10;
-        eo eoVar = this.f41955b;
+        fo foVar = this.f40172b;
         if (z10) {
-            ArrayList arrayList2 = new ArrayList(eoVar.H4);
-            ArrayList arrayList3 = new ArrayList(eoVar.J4.values());
+            ArrayList arrayList2 = new ArrayList(foVar.H4);
+            ArrayList arrayList3 = new ArrayList(foVar.J4.values());
             org.telegram.ui.Components.sc scVar = null;
             if (z11) {
-                i10 = ((org.telegram.ui.ActionBar.m2) eoVar).currentAccount;
+                i10 = ((org.telegram.ui.ActionBar.m2) foVar).currentAccount;
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
-                if (eoVar.H4.isEmpty()) {
+                if (foVar.H4.isEmpty()) {
                     SharedPreferences.Editor edit = notificationsSettings.edit();
-                    edit.remove("pin_" + eoVar.T5).commit();
+                    edit.remove("pin_" + foVar.T5).commit();
                 } else {
                     SharedPreferences.Editor edit2 = notificationsSettings.edit();
-                    edit2.putInt("pin_" + eoVar.T5, ((Integer) eoVar.H4.get(0)).intValue()).commit();
+                    edit2.putInt("pin_" + foVar.T5, ((Integer) foVar.H4.get(0)).intValue()).commit();
                 }
-                eoVar.Cc(0, true);
+                foVar.Cc(0, true);
             } else {
-                eoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(eoVar.T5), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
+                foVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(foVar.T5), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
             }
-            org.telegram.ui.Components.sc scVar2 = eoVar.A3;
+            org.telegram.ui.Components.sc scVar2 = foVar.A3;
             if (scVar2 != null) {
                 scVar2.b();
             }
-            eoVar.B3 = true;
-            int i11 = eoVar.C3 + 1;
-            eoVar.C3 = i11;
-            boolean z12 = eoVar.f37286h4;
-            eo eoVar2 = this.f41954a;
+            foVar.B3 = true;
+            int i11 = foVar.C3 + 1;
+            foVar.C3 = i11;
+            boolean z12 = foVar.f35964h4;
+            fo foVar2 = this.f40171a;
             if (z12) {
-                L8 = eoVar2.L8();
+                L8 = foVar2.L8();
             } else {
-                L8 = eoVar.L8();
+                L8 = foVar.L8();
             }
             int i12 = L8;
-            if (eoVar.f37286h4) {
-                arrayList = eoVar2.H4;
+            if (foVar.f35964h4) {
+                arrayList = foVar2.H4;
             } else {
-                arrayList = eoVar.H4;
+                arrayList = foVar.H4;
             }
             ArrayList arrayList4 = new ArrayList(arrayList);
             org.telegram.messenger.y7 y7Var = new org.telegram.messenger.y7(this, z11, arrayList2, arrayList3, i12, i11);
-            org.telegram.messenger.voip.m0 m0Var = new org.telegram.messenger.voip.m0(this, z11, arrayList4, i11);
-            bo boVar = eoVar.f37256ea;
-            if (eoVar.getParentActivity() == null) {
-                m0Var.run();
+            org.telegram.messenger.voip.n0 n0Var = new org.telegram.messenger.voip.n0(this, z11, arrayList4, i11);
+            co coVar = foVar.f35932ea;
+            if (foVar.getParentActivity() == null) {
+                n0Var.run();
             } else {
                 if (z11) {
-                    org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(eoVar.getParentActivity(), boVar);
+                    org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(foVar.getParentActivity(), coVar);
                     pcVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    pcVar.f29484b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
-                    pcVar.f29485c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    pcVar.f28279b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    pcVar.f28280c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
                     acVar = pcVar;
                 } else {
-                    org.telegram.ui.Components.ac acVar2 = new org.telegram.ui.Components.ac(eoVar.getParentActivity(), boVar);
+                    org.telegram.ui.Components.ac acVar2 = new org.telegram.ui.Components.ac(foVar.getParentActivity(), coVar);
                     acVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    acVar2.f24277b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    acVar2.f23513b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
                     acVar = acVar2;
                 }
-                org.telegram.ui.Components.qc qcVar = new org.telegram.ui.Components.qc(eoVar.getParentActivity(), boVar, true);
-                qcVar.f29794a = y7Var;
-                qcVar.f29795b = m0Var;
+                org.telegram.ui.Components.qc qcVar = new org.telegram.ui.Components.qc(foVar.getParentActivity(), coVar, true);
+                qcVar.f28576a = y7Var;
+                qcVar.f28577b = n0Var;
                 acVar.setButton(qcVar);
-                scVar = org.telegram.ui.Components.sc.g(eoVar, acVar, 5000);
+                scVar = org.telegram.ui.Components.sc.g(foVar, acVar, 5000);
             }
-            eoVar.A3 = scVar;
+            foVar.A3 = scVar;
             return;
         }
-        MessageObject messageObject = (MessageObject) eoVar.J4.get(Integer.valueOf(eoVar.L4));
+        MessageObject messageObject = (MessageObject) foVar.J4.get(Integer.valueOf(foVar.L4));
         if (messageObject == null) {
-            messageObject = (MessageObject) eoVar.f37373o6[0].get(eoVar.L4);
+            messageObject = (MessageObject) foVar.f36052o6[0].get(foVar.L4);
         }
-        eoVar.gc(messageObject);
+        foVar.gc(messageObject);
     }
 
     @Override
-    public final void p0(String str) {
-        this.f41955b.ia(str, false);
+    public final void r0(String str) {
+        this.f40172b.ia(str, false);
     }
 }

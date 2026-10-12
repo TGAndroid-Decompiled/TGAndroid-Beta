@@ -5,11 +5,7 @@ import com.google.android.gms.identity.intents.model.UserAddress;
 import com.google.android.gms.identitycredentials.GetCredentialRequest;
 import g6.x;
 public final class i implements Parcelable.Creator {
-    public final int f8676a;
-
-    public i(int i10) {
-        this.f8676a = i10;
-    }
+    public final int f8496a;
 
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r43) {
@@ -18,7 +14,7 @@ public final class i implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f8676a) {
+        switch (this.f8496a) {
             case 0:
                 return new f[i10];
             case 1:

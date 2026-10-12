@@ -1,41 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class tq extends FrameLayout {
-    public final View f30946a;
-    public final TextView f30947b;
+import android.text.InputFilter;
+import android.text.Spanned;
+public abstract class tq implements InputFilter {
+    public final int f29478a;
 
-    public tq(Context context) {
-        super(context);
-        View view = new View(context);
-        this.f30946a = view;
-        int dp = AndroidUtilities.dp(4.0f);
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-        view.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, x02, x03, x03));
-        addView(view, w7.w5.a(-1.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 0));
-        TextView textView = new TextView(context);
-        this.f30947b = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(17);
-        org.telegram.messenger.v0.m(14.0f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false), 1, textView);
-        addView(textView, w7.w5.e(-2, -2, 17));
+    public tq(int i10) {
+        this.f29478a = i10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f30947b.setText(charSequence);
+    public CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        int codePointCount = this.f29478a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i12, i13));
+        if (codePointCount <= 0) {
+            return "";
+        }
+        if (codePointCount >= Character.codePointCount(charSequence, i10, i11)) {
+            return null;
+        }
+        int i14 = codePointCount + i10;
+        if (Character.isHighSurrogate(charSequence.charAt(i14 - 1)) && i14 - 1 == i10) {
+            return "";
+        }
+        return charSequence.subSequence(i10, i14);
     }
 }

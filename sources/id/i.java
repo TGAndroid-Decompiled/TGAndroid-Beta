@@ -1,12 +1,8 @@
 package id;
+public final class i {
+    public static final i f11386a = new Object();
 
-import java.util.Collection;
-public abstract class i extends h {
-    public static int d(Iterable iterable) {
-        kotlin.jvm.internal.i.e(iterable, "<this>");
-        if (iterable instanceof Collection) {
-            return ((Collection) iterable).size();
-        }
-        return 10;
+    public final String toString() {
+        return "kotlin.Unit";
     }
 }

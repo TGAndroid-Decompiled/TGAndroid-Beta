@@ -1,31 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class n51 extends vh.n {
-    public final org.telegram.ui.l20 U;
-    public final q51 V;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.messenger.R;
+public final class n51 extends ScrollView {
+    public Drawable f27587a;
+    public g6 f27588b;
+    public boolean f27589c;
 
-    public n51(q51 q51Var, Context context) {
-        super(context);
-        this.V = q51Var;
-        this.U = new org.telegram.ui.l20();
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        super.dispatchDraw(canvas);
+        g6 g6Var = this.f27588b;
+        if (canScrollVertically(-1)) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        float d = g6Var.d(f7, false) * 0.5f;
+        if (d > 0.0f) {
+            if (this.f27587a == null) {
+                this.f27587a = getContext().getResources().getDrawable(R.drawable.header_shadow);
+            }
+            this.f27587a.setBounds(0, getScrollY(), getWidth(), this.f27587a.getIntrinsicHeight() + getScrollY());
+            this.f27587a.setAlpha((int) (d * 255.0f));
+            this.f27587a.draw(canvas);
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(8.0f) + this.V.d.getWidth();
-        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - dp, getHeight(), 255, 31);
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getPaddingLeft(), getPaddingTop());
-        kx0.a(canvas, getLayout());
-        canvas.restore();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getWidth() - dp) - AndroidUtilities.dp(24.0f), 0.0f, getWidth() - dp, getHeight());
-        this.U.b(canvas, rectF, 2, 1.0f);
-        canvas.restore();
+    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
+        super.onNestedScroll(view, i10, i11, i12, i13);
+        boolean canScrollVertically = canScrollVertically(-1);
+        if (this.f27589c != canScrollVertically) {
+            invalidate();
+            this.f27589c = canScrollVertically;
+        }
     }
 }

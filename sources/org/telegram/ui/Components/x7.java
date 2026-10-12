@@ -1,77 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.R;
-public final class x7 extends s4.w {
-    public final l8 d;
+import android.content.Context;
+public final class x7 extends mm0 {
+    public boolean V2;
+    public final m8 W2;
 
-    public x7(l8 l8Var) {
-        this.d = l8Var;
+    public x7(m8 m8Var, Context context) {
+        super(context, null);
+        this.W2 = m8Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
-        super.a(recyclerView, d1Var);
-        View view = d1Var.f47897a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
-        if (d1Var.f47901f != 0) {
-            return 0;
+    public final boolean E0(float f7) {
+        m8 m8Var = this.W2;
+        if (f7 < m8Var.E.getY() - m8Var.f27248n.getTop()) {
+            return true;
         }
-        return s4.w.l(3, 0);
+        return false;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
-        int b10 = d1Var.b();
-        int b11 = d1Var2.b();
-        l8 l8Var = this.d;
-        if (l8Var.f28080v0) {
-            if (b10 > 0 && b11 > 0) {
-                l8Var.f28082w0.move(b10 - 1, b11 - 1);
-            } else {
-                return false;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        m8 m8Var = this.W2;
+        int i14 = m8Var.f27256s0;
+        if (i14 != -1 && !m8Var.f27236c.f20442n0) {
+            this.V2 = true;
+            m8Var.f27253r.h1(i14, m8Var.f27257t0 - m8Var.f27248n.getPaddingTop());
+            super.onLayout(false, i10, i11, i12, i13);
+            this.V2 = false;
+            m8Var.f27256s0 = -1;
+        } else if (m8Var.f27254r0) {
+            m8Var.f27254r0 = false;
+            this.V2 = true;
+            if (m8Var.x0(true)) {
+                super.onLayout(false, i10, i11, i12, i13);
             }
-        } else {
-            l8Var.f28082w0.move(b10, b11);
-        }
-        l8Var.f28084x0.clear();
-        l8Var.f28084x0.addAll(l8Var.f28082w0.list);
-        l8Var.f28076s.p(b10, b11);
-        return true;
-    }
-
-    @Override
-    public final void p(s4.d1 d1Var, int i10) {
-        Boolean bool;
-        w7 w7Var = this.d.f28069n;
-        if (d1Var != null) {
-            w7Var.d1(false);
-        }
-        if (i10 != 0) {
-            w7Var.I0(false);
-            if (d1Var != null) {
-                d1Var.f47897a.setPressed(true);
-            }
-        }
-        if (d1Var != null) {
-            View view = d1Var.f47897a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
+            this.V2 = false;
         }
     }
 
     @Override
-    public final void q(s4.d1 d1Var) {
+    public final void requestLayout() {
+        if (this.V2) {
+            return;
+        }
+        super.requestLayout();
     }
 }

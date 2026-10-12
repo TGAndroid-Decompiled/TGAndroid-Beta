@@ -11,10 +11,10 @@ public final class ga extends ha {
     }
 
     @Override
-    public final void b(long j3) {
+    public final void b(long j10) {
     }
 
     @Override
-    public final void c(long j3) {
+    public final void c(long j10) {
     }
 }

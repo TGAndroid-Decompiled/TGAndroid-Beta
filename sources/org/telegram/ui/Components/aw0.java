@@ -1,4 +1,6 @@
 package org.telegram.ui.Components;
+
+import org.telegram.messenger.LocationController;
 public interface aw0 {
-    void M();
+    void b(LocationController.SharingLocationInfo sharingLocationInfo);
 }

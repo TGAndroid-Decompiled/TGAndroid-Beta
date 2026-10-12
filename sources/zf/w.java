@@ -1,0 +1,10 @@
+package zf;
+
+import android.view.FrameMetrics;
+import android.view.Window;
+public final class w implements Window.OnFrameMetricsAvailableListener {
+    @Override
+    public final void onFrameMetricsAvailable(Window window, FrameMetrics frameMetrics, int i10) {
+        y.a(frameMetrics);
+    }
+}

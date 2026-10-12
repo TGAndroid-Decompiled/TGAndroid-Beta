@@ -1,173 +1,66 @@
 package rg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.SharedConfig;
-public class w1 extends View {
-    public v1 f47725a;
-    public int f47726b;
-    public ii.q1 f47727c;
-    public boolean d;
-    public Paint f47728e;
-    public LinearGradient f47729f;
-    public Matrix h;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import com.google.android.gms.internal.play_billing.k3;
+public final class w1 extends GestureDetector.SimpleOnGestureListener {
+    public float f44591a;
+    public boolean f44592b;
+    public float f44593c;
+    public final y1 d;
 
-    public w1(Context context) {
-        super(context);
-        int i10;
-        if (SharedConfig.getDevicePerformanceClass() == 2) {
-            i10 = 200;
-        } else if (SharedConfig.getDevicePerformanceClass() == 1) {
-            i10 = 100;
-        } else {
-            i10 = 50;
-        }
-        this.d = true;
-        this.f47725a = new v1(i10);
-        a();
-    }
-
-    public void a() {
-        v1 v1Var = this.f47725a;
-        v1Var.N = 100;
-        v1Var.M = true;
-        v1Var.G = true;
-        v1Var.K = true;
-        v1Var.H = true;
-        v1Var.f47713r = 4;
-        v1Var.f47717w = 0.98f;
-        v1Var.v = 0.98f;
-        v1Var.f47716u = 0.98f;
-        v1Var.c();
-    }
-
-    public final void b(float f7) {
-        float f10;
-        if (f7 < 60.0f) {
-            f10 = 5.0f;
-        } else if (f7 < 180.0f) {
-            f10 = 9.0f;
-        } else {
-            f10 = 15.0f;
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        org.telegram.ui.Components.voip.s0 s0Var = new org.telegram.ui.Components.voip.s0(this, 16);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f10);
-        ofFloat.addUpdateListener(s0Var);
-        ofFloat.setDuration(600L);
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f10, 1.0f);
-        ofFloat2.addUpdateListener(s0Var);
-        ofFloat2.setDuration(2000L);
-        animatorSet.playTogether(ofFloat, ofFloat2);
-        animatorSet.start();
-    }
-
-    public final void c() {
-        Paint paint = new Paint(1);
-        this.f47728e = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f47729f = linearGradient;
-        this.f47728e.setShader(linearGradient);
-        this.h = new Matrix();
-    }
-
-    public int getStarsRectWidth() {
-        return AndroidUtilities.dp(140.0f);
+    public w1(y1 y1Var) {
+        this.d = y1Var;
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ii.q1 q1Var = new ii.q1(this, 12);
-        this.f47727c = q1Var;
-        LiteMode.addOnPowerSaverAppliedListener(q1Var);
-        boolean isEnabled = LiteMode.isEnabled(131072);
-        if (this.d != isEnabled) {
-            this.d = isEnabled;
-            invalidate();
+    public final boolean onDown(MotionEvent motionEvent) {
+        float f7;
+        y1 y1Var = this.d;
+        boolean contains = y1Var.e.contains(motionEvent.getX(), motionEvent.getY());
+        if (y1Var.f44620f != contains) {
+            y1Var.f44620f = contains;
+            y1Var.invalidate();
+            if (contains) {
+                x1 x1Var = y1Var.K;
+                if (x1Var != null) {
+                    f7 = x1Var.get();
+                } else {
+                    f7 = y1Var.H.f43545c;
+                }
+                this.f44591a = f7;
+                this.f44592b = false;
+            }
         }
+        return y1Var.f44620f;
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ii.q1 q1Var = this.f47727c;
-        if (q1Var != null) {
-            LiteMode.removeOnPowerSaverAppliedListener(q1Var);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        super.onDraw(canvas);
-        if (this.d) {
-            if (this.f47728e != null) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas2 = canvas;
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        y1 y1Var = this.d;
+        if (y1Var.f44620f) {
+            if (!this.f44592b) {
+                this.f44593c = motionEvent.getY() - motionEvent2.getY();
+                this.f44592b = true;
+            }
+            float f11 = this.f44591a;
+            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f44593c) / y1Var.e.height();
+            float f12 = y1Var.G;
+            float f13 = y1Var.F;
+            float a2 = w7.s.a(k3.y(f12, f13, y3, f11), f13, f12);
+            x1 x1Var = y1Var.K;
+            if (x1Var != null) {
+                x1Var.B0(a2);
             } else {
-                canvas2 = canvas;
+                y1Var.H.f43545c = a2;
             }
-            this.f47725a.d(canvas2);
-            if (this.f47728e != null) {
-                canvas2.save();
-                this.h.reset();
-                this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
-                this.f47729f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.f47728e);
-                this.h.reset();
-                this.h.postRotate(180.0f);
-                this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
-                this.f47729f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.f47728e);
-                canvas2.restore();
-                canvas2.restore();
+            y1Var.f44624w.d(a2, true);
+            Runnable runnable = y1Var.I;
+            if (runnable != null) {
+                runnable.run();
             }
-            if (!this.f47725a.f47703g) {
-                invalidate();
-            }
+            y1Var.invalidate();
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        this.f47725a.f47698a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
-        this.f47725a.f47698a.offset((getMeasuredWidth() - this.f47725a.f47698a.width()) / 2.0f, (getMeasuredHeight() - this.f47725a.f47698a.height()) / 2.0f);
-        this.f47725a.f47699b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
-        if (this.f47726b != measuredHeight) {
-            this.f47726b = measuredHeight;
-            this.f47725a.f();
-        }
-    }
-
-    public void setPaused(boolean z10) {
-        v1 v1Var = this.f47725a;
-        if (z10 == v1Var.f47703g) {
-            return;
-        }
-        v1Var.f47703g = z10;
-        if (z10) {
-            v1Var.Q = System.currentTimeMillis();
-            return;
-        }
-        for (int i10 = 0; i10 < this.f47725a.f47709n.size(); i10++) {
-            u1 u1Var = (u1) this.f47725a.f47709n.get(i10);
-            u1Var.f47676a = (System.currentTimeMillis() - this.f47725a.Q) + u1Var.f47676a;
-        }
-        invalidate();
+        return y1Var.f44620f;
     }
 }

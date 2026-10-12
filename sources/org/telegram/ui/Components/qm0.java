@@ -1,134 +1,175 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class qm0 extends f30 {
-    public View f29866a;
-    public final rm0 f29867b;
+public final class qm0 extends Drawable {
+    public final nw e;
+    public final nw f28648f;
+    public float h;
+    public float f28650i;
+    public final Rect f28645a = new Rect();
+    public final es f28646b = xt.f31325b;
+    public final int f28647c = AndroidUtilities.dp(24.0f);
+    public final int d = AndroidUtilities.dp(24.0f);
+    public long f28649g = -1;
 
-    public qm0(rm0 rm0Var) {
-        this.f29867b = rm0Var;
+    public qm0() {
+        nw nwVar = new nw();
+        this.e = nwVar;
+        nwVar.f27733c.setColor(-2130706433);
+        nw nwVar2 = new nw();
+        this.f28648f = nwVar2;
+        nwVar2.f27733c.setColor(-2130706433);
+    }
+
+    public final void a(Canvas canvas, float f7) {
+        Rect bounds = getBounds();
+        float interpolation = this.f28646b.getInterpolation(f7);
+        Rect rect = this.f28645a;
+        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f28650i));
+        rect.bottom = dp;
+        rect.right = bounds.right - rect.left;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f28650i));
+        nw nwVar = this.f28648f;
+        nwVar.setBounds(rect);
+        nwVar.draw(canvas);
+        int dp2 = AndroidUtilities.dp(12.0f);
+        rect.right = dp2;
+        rect.left = dp2;
+        int dp3 = AndroidUtilities.dp(8.0f);
+        rect.bottom = dp3;
+        rect.top = dp3;
+        rect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
+        nw nwVar2 = this.e;
+        nwVar2.setBounds(rect);
+        nwVar2.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
+        nwVar2.draw(canvas);
+    }
+
+    public final void b(Canvas canvas, float f7) {
+        Rect bounds = getBounds();
+        float interpolation = this.f28646b.getInterpolation(f7);
+        Rect rect = this.f28645a;
+        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f28650i));
+        rect.bottom = dp;
+        rect.right = bounds.right - rect.left;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f28650i));
+        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
+        nw nwVar = this.f28648f;
+        nwVar.setBounds(rect);
+        nwVar.draw(canvas);
+        rect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.h);
+        int dpf2 = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.f28650i);
+        rect.top = dpf2;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.f28650i));
+        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
+        nw nwVar2 = this.e;
+        nwVar2.setBounds(rect);
+        nwVar2.setAlpha(255);
+        nwVar2.draw(canvas);
+    }
+
+    public final void c(Canvas canvas, float f7) {
+        Rect bounds = getBounds();
+        float interpolation = this.f28646b.getInterpolation(f7);
+        Rect rect = this.f28645a;
+        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f28650i));
+        rect.bottom = dp;
+        rect.right = bounds.right - rect.left;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f28650i));
+        rect.offset(0, AndroidUtilities.dp(-8.0f));
+        nw nwVar = this.f28648f;
+        nwVar.setBounds(rect);
+        nwVar.draw(canvas);
+        rect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.h);
+        int dpf2 = (int) (AndroidUtilities.dpf2(6.0f) * this.f28650i);
+        rect.top = dpf2;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(4.0f) * this.f28650i));
+        rect.offset(0, AndroidUtilities.dp(8.0f));
+        nw nwVar2 = this.e;
+        nwVar2.setBounds(rect);
+        nwVar2.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
+        nwVar2.draw(canvas);
     }
 
     @Override
-    public final boolean a() {
-        if (((wm0) this.f29867b.f30188b).W0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void b(MotionEvent motionEvent, View view) {
-        wm0 wm0Var = (wm0) this.f29867b.f30188b;
-        if (view != null) {
-            if (wm0Var.T0 != null || wm0Var.U0 != null) {
-                float x10 = motionEvent.getX();
-                float y3 = motionEvent.getY();
-                wm0Var.h1(view, x10, y3, true);
-                int i10 = wm0Var.M1;
-                if (wm0Var.P1 && i10 != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    km0 km0Var = wm0Var.T0;
-                    if (km0Var != null) {
-                        km0Var.d(i10, view);
+    public final void draw(Canvas canvas) {
+        if (this.f28649g > 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f28649g);
+            int i10 = currentTimeMillis - 300;
+            if (i10 >= 0) {
+                if (i10 < 150) {
+                    a(canvas, i10 / 150.0f);
+                } else {
+                    int i11 = currentTimeMillis - 750;
+                    if (i11 >= 0) {
+                        if (i11 < 200) {
+                            b(canvas, i11 / 200.0f);
+                        } else {
+                            int i12 = currentTimeMillis - 1250;
+                            if (i12 >= 0) {
+                                if (i12 < 150) {
+                                    c(canvas, i12 / 150.0f);
+                                } else {
+                                    c(canvas, 1.0f);
+                                    if (currentTimeMillis - 1400 >= 100) {
+                                        this.f28649g = System.currentTimeMillis();
+                                    }
+                                }
+                            } else {
+                                b(canvas, 1.0f);
+                            }
+                        }
                     } else {
-                        lm0 lm0Var = wm0Var.U0;
-                        if (lm0Var != null) {
-                            lm0Var.c(x10 - view.getX(), y3 - view.getY(), i10, view);
-                        }
+                        a(canvas, 1.0f);
                     }
                 }
-                pm0 pm0Var = new pm0(this, view, i10, x10, y3);
-                wm0Var.Q1 = pm0Var;
-                AndroidUtilities.runOnUIThread(pm0Var, ViewConfiguration.getPressedStateDuration());
-                om0 om0Var = wm0Var.f32445c1;
-                if (om0Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(om0Var);
-                    wm0Var.f32445c1 = null;
-                    wm0Var.L1 = null;
-                    wm0Var.N1 = false;
-                    wm0Var.k1(motionEvent, view);
-                }
+            } else {
+                a(canvas, 0.0f);
             }
+            invalidateSelf();
+            return;
         }
+        a(canvas, 0.0f);
     }
 
     @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        lm0 lm0Var;
-        wm0 wm0Var = (wm0) this.f29867b.f30188b;
-        View view = this.f29866a;
-        if (view != null && (lm0Var = wm0Var.U0) != null && lm0Var.Y0(view)) {
-            wm0Var.U0.n0(this.f29866a, motionEvent.getX(), motionEvent.getY());
-            this.f29866a = null;
-            return true;
-        }
-        return false;
+    public final int getIntrinsicHeight() {
+        return this.d;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
+    public final int getIntrinsicWidth() {
+        return this.f28647c;
     }
 
     @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        int i10;
-        wm0 wm0Var = (wm0) this.f29867b.f30188b;
-        View view = wm0Var.L1;
-        if (view != null && (i10 = wm0Var.M1) != -1) {
-            mm0 mm0Var = wm0Var.V0;
-            if (mm0Var != null || wm0Var.W0 != null) {
-                if (mm0Var != null) {
-                    if (mm0Var.d(i10, view)) {
-                        try {
-                            view.performHapticFeedback(0);
-                        } catch (Exception unused) {
-                        }
-                        view.sendAccessibilityEvent(2);
-                    }
-                } else if (wm0Var.W0.mo17c(motionEvent.getX() - wm0Var.L1.getX(), motionEvent.getY() - wm0Var.L1.getY(), i10, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused2) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    wm0Var.X0 = true;
-                }
-            }
-        }
+    public final int getOpacity() {
+        return -3;
     }
 
     @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        lm0 lm0Var;
-        View view = this.f29866a;
-        if (view != null && (lm0Var = ((wm0) this.f29867b.f30188b).U0) != null && lm0Var.Y0(view)) {
-            b(motionEvent, this.f29866a);
-            this.f29866a = null;
-            return true;
-        }
-        return false;
+    public final void onBoundsChange(Rect rect) {
+        this.h = rect.width() / this.f28647c;
+        this.f28650i = rect.height() / this.d;
     }
 
     @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        wm0 wm0Var = (wm0) this.f29867b.f30188b;
-        View view = wm0Var.L1;
-        if (view != null) {
-            lm0 lm0Var = wm0Var.U0;
-            if (lm0Var != null && lm0Var.Y0(view)) {
-                this.f29866a = wm0Var.L1;
-                return false;
-            }
-            b(motionEvent, wm0Var.L1);
-        }
-        return false;
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.e.setColorFilter(colorFilter);
+        this.f28648f.setColorFilter(colorFilter);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

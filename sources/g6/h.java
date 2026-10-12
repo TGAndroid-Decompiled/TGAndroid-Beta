@@ -10,7 +10,7 @@ public interface h extends IInterface {
 
     void X(int i10);
 
-    void Y(long j3);
+    void Y(long j10);
 
     void c(int i10);
 
@@ -28,7 +28,7 @@ public interface h extends IInterface {
 
     void zzg(int i10);
 
-    void zzm(int i10, long j3);
+    void zzm(int i10, long j10);
 
     void zzn();
 }

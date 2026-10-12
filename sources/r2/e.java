@@ -1,33 +1,34 @@
 package r2;
 
+import ab.o0;
 import android.media.MediaCodec;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.HandlerThread;
-import e2.d0;
+import e2.m0;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
-    public static final ArrayDeque f47090g = new ArrayDeque();
-    public static final Object h = new Object();
-    public final MediaCodec f47091a;
-    public final HandlerThread f47092b;
-    public androidx.mediarouter.app.c f47093c;
+    public static final ArrayDeque h = new ArrayDeque();
+    public static final Object f43818n = new Object();
+    public final MediaCodec f43819a;
+    public final HandlerThread f43820b;
+    public o0 f43821c;
     public final AtomicReference d;
-    public final e2.g f47094e;
-    public boolean f47095f;
+    public final e2.i e;
+    public boolean f43822f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
-        e2.g gVar = new e2.g();
-        this.f47091a = mediaCodec;
-        this.f47092b = handlerThread;
-        this.f47094e = gVar;
+        e2.i iVar = new e2.i();
+        this.f43819a = mediaCodec;
+        this.f43820b = handlerThread;
+        this.e = iVar;
         this.d = new AtomicReference();
     }
 
-    public static d d() {
-        ArrayDeque arrayDeque = f47090g;
+    public static d a() {
+        ArrayDeque arrayDeque = h;
         synchronized (arrayDeque) {
             try {
                 if (arrayDeque.isEmpty()) {
@@ -40,36 +41,36 @@ public final class e implements m {
         }
     }
 
-    public static void e(d dVar) {
-        ArrayDeque arrayDeque = f47090g;
+    public static void c(d dVar) {
+        ArrayDeque arrayDeque = h;
         synchronized (arrayDeque) {
             arrayDeque.add(dVar);
         }
     }
 
     @Override
-    public final void a(long j3, int i10, int i11, int i12) {
-        c();
-        d d = d();
-        d.f47086a = i10;
-        d.f47087b = i11;
-        d.d = j3;
-        d.f47089e = i12;
-        androidx.mediarouter.app.c cVar = this.f47093c;
-        String str = d0.f8529a;
-        cVar.obtainMessage(1, d).sendToTarget();
+    public final void b(long j10, int i10, int i11, int i12) {
+        r0();
+        d a2 = a();
+        a2.f43815a = i10;
+        a2.f43816b = i11;
+        a2.d = j10;
+        a2.e = i12;
+        o0 o0Var = this.f43821c;
+        String str = m0.f8372a;
+        o0Var.obtainMessage(1, a2).sendToTarget();
     }
 
     @Override
-    public final void b(int i10, h2.d dVar, long j3, int i11) {
-        c();
-        d d = d();
-        d.f47086a = i10;
-        d.f47087b = 0;
-        d.d = j3;
-        d.f47089e = i11;
-        MediaCodec.CryptoInfo cryptoInfo = d.f47088c;
-        cryptoInfo.numSubSamples = dVar.f10977f;
+    public final void e(int i10, h2.d dVar, long j10, int i11) {
+        r0();
+        d a2 = a();
+        a2.f43815a = i10;
+        a2.f43816b = 0;
+        a2.d = j10;
+        a2.e = i11;
+        MediaCodec.CryptoInfo cryptoInfo = a2.f43817c;
+        cryptoInfo.numSubSamples = dVar.f10320f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
         if (iArr != null) {
@@ -80,7 +81,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfClearData = iArr2;
-        int[] iArr3 = dVar.f10976e;
+        int[] iArr3 = dVar.e;
         int[] iArr4 = cryptoInfo.numBytesOfEncryptedData;
         if (iArr3 != null) {
             if (iArr4 != null && iArr4.length >= iArr3.length) {
@@ -90,7 +91,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfEncryptedData = iArr4;
-        byte[] bArr = dVar.f10974b;
+        byte[] bArr = dVar.f10318b;
         byte[] bArr2 = cryptoInfo.key;
         if (bArr != null) {
             if (bArr2 != null && bArr2.length >= bArr.length) {
@@ -101,7 +102,7 @@ public final class e implements m {
         }
         bArr2.getClass();
         cryptoInfo.key = bArr2;
-        byte[] bArr3 = dVar.f10973a;
+        byte[] bArr3 = dVar.f10317a;
         byte[] bArr4 = cryptoInfo.iv;
         if (bArr3 != null) {
             if (bArr4 != null && bArr4.length >= bArr3.length) {
@@ -112,17 +113,39 @@ public final class e implements m {
         }
         bArr4.getClass();
         cryptoInfo.iv = bArr4;
-        cryptoInfo.mode = dVar.f10975c;
+        cryptoInfo.mode = dVar.f10319c;
         if (Build.VERSION.SDK_INT >= 24) {
-            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f10978g, dVar.h));
+            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f10321g, dVar.h));
         }
-        androidx.mediarouter.app.c cVar = this.f47093c;
-        String str = d0.f8529a;
-        cVar.obtainMessage(2, d).sendToTarget();
+        o0 o0Var = this.f43821c;
+        String str = m0.f8372a;
+        o0Var.obtainMessage(2, a2).sendToTarget();
     }
 
     @Override
-    public final void c() {
+    public final void flush() {
+        if (this.f43822f) {
+            try {
+                o0 o0Var = this.f43821c;
+                o0Var.getClass();
+                o0Var.removeCallbacksAndMessages(null);
+                e2.i iVar = this.e;
+                synchronized (iVar) {
+                    iVar.f8355b = false;
+                }
+                o0 o0Var2 = this.f43821c;
+                o0Var2.getClass();
+                o0Var2.obtainMessage(3).sendToTarget();
+                iVar.a();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException(e);
+            }
+        }
+    }
+
+    @Override
+    public final void r0() {
         RuntimeException runtimeException = (RuntimeException) this.d.getAndSet(null);
         if (runtimeException == null) {
             return;
@@ -131,51 +154,29 @@ public final class e implements m {
     }
 
     @Override
-    public final void flush() {
-        if (this.f47095f) {
-            try {
-                androidx.mediarouter.app.c cVar = this.f47093c;
-                cVar.getClass();
-                cVar.removeCallbacksAndMessages(null);
-                e2.g gVar = this.f47094e;
-                synchronized (gVar) {
-                    gVar.f8546b = false;
-                }
-                androidx.mediarouter.app.c cVar2 = this.f47093c;
-                cVar2.getClass();
-                cVar2.obtainMessage(3).sendToTarget();
-                gVar.a();
-            } catch (InterruptedException e7) {
-                Thread.currentThread().interrupt();
-                throw new IllegalStateException(e7);
-            }
-        }
-    }
-
-    @Override
     public final void setParameters(Bundle bundle) {
-        c();
-        androidx.mediarouter.app.c cVar = this.f47093c;
-        String str = d0.f8529a;
-        cVar.obtainMessage(4, bundle).sendToTarget();
+        r0();
+        o0 o0Var = this.f43821c;
+        String str = m0.f8372a;
+        o0Var.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f47095f) {
+        if (this.f43822f) {
             flush();
-            this.f47092b.quit();
+            this.f43820b.quit();
         }
-        this.f47095f = false;
+        this.f43822f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f47095f) {
-            HandlerThread handlerThread = this.f47092b;
+        if (!this.f43822f) {
+            HandlerThread handlerThread = this.f43820b;
             handlerThread.start();
-            this.f47093c = new androidx.mediarouter.app.c(this, handlerThread.getLooper(), 11);
-            this.f47095f = true;
+            this.f43821c = new o0(this, handlerThread.getLooper(), 12);
+            this.f43822f = true;
         }
     }
 }

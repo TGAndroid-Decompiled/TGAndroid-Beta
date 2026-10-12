@@ -1,106 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class qv extends PopupWindow {
-    public static Field f29938f;
-    public static final org.telegram.ui.ActionBar.f1 f29939g = new org.telegram.ui.ActionBar.f1(1);
-    public ViewTreeObserver.OnScrollChangedListener f29940a;
-    public ViewTreeObserver f29941b;
-    public final pv f29942c;
-    public boolean d;
-    public final int f29943e;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class qv extends g.o {
+    public final ew f28685c;
 
-    public qv(pv pvVar) {
-        super(pvVar);
-        float f7;
-        if (AndroidUtilities.isTablet()) {
-            f7 = 40.0f;
-        } else {
-            f7 = 32.0f;
-        }
-        this.f29943e = AndroidUtilities.dp(f7);
-        this.f29942c = pvVar;
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(2);
-        setSoftInputMode(0);
-        pvVar.setFocusableInTouchMode(true);
-        pvVar.setOnKeyListener(new fo(this, 1));
+    public qv(ew ewVar) {
+        this.f28685c = ewVar;
     }
 
-    public final void a(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (this.f29940a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
+    @Override
+    public final int i(int i10) {
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        TLRPC.StickerSet stickerSet;
+        ew ewVar = this.f28685c;
+        s4.s sVar = ewVar.f24810y;
+        ov ovVar = ewVar.e;
+        di.v vVar = ewVar.h;
+        if (vVar.getAdapter() != null && vVar.getAdapter().j(i10) == 1) {
+            int i11 = 0;
+            int i12 = 0;
+            while (true) {
+                ArrayList[] arrayListArr = ovVar.f23864c;
+                if (i11 >= arrayListArr.length) {
+                    break;
+                }
+                int size = arrayListArr[i11].size();
+                if (ovVar.f23864c.length > 1) {
+                    size = Math.min(sVar.J * 2, size);
+                }
+                i12 += size + 2;
+                if (i10 < i12) {
+                    break;
+                }
+                i11++;
+            }
+            ArrayList arrayList = ovVar.f23863b;
+            if (arrayList != null && i11 < arrayList.size()) {
+                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) ovVar.f23863b.get(i11);
             } else {
-                viewTreeObserver = null;
+                tL_messages_stickerSet = null;
             }
-            ViewTreeObserver viewTreeObserver2 = this.f29941b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f29941b.removeOnScrollChangedListener(this.f29940a);
-                }
-                this.f29941b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f29940a);
-                }
+            if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && !stickerSet.emojis) {
+                return 8;
             }
+            return 5;
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        ViewTreeObserver viewTreeObserver;
-        setFocusable(false);
-        try {
-            super.dismiss();
-        } catch (Exception unused) {
-        }
-        if (this.f29940a != null && (viewTreeObserver = this.f29941b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f29941b.removeOnScrollChangedListener(this.f29940a);
-            }
-            this.f29941b = null;
-        }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11) {
-        try {
-            super.showAsDropDown(view, i10, i11);
-            a(view);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i10, int i11, int i12) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i10, i11, i12);
-        if (this.f29940a != null && (viewTreeObserver = this.f29941b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f29941b.removeOnScrollChangedListener(this.f29940a);
-            }
-            this.f29941b = null;
-        }
-    }
-
-    @Override
-    public final void update(View view, int i10, int i11, int i12, int i13) {
-        super.update(view, i10, i11, i12, i13);
-        a(view);
-    }
-
-    @Override
-    public final void update(View view, int i10, int i11) {
-        super.update(view, i10, i11);
-        a(view);
+        return sVar.J;
     }
 }

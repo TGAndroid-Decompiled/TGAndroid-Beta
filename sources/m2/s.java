@@ -1,16 +1,16 @@
 package m2;
 public abstract class s {
-    public final j f15718a;
-    public final long f15719b;
-    public final long f15720c;
+    public final j f15371a;
+    public final long f15372b;
+    public final long f15373c;
 
-    public s(j jVar, long j3, long j10) {
-        this.f15718a = jVar;
-        this.f15719b = j3;
-        this.f15720c = j10;
+    public s(j jVar, long j10, long j11) {
+        this.f15371a = jVar;
+        this.f15372b = j10;
+        this.f15373c = j11;
     }
 
     public j a(m mVar) {
-        return this.f15718a;
+        return this.f15371a;
     }
 }

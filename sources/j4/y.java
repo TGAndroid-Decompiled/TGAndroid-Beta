@@ -1,15 +1,17 @@
 package j4;
-public final class y {
-    public final i f14003a;
-    public final e2.b0 f14004b;
-    public final a4.g f14005c = new a4.g(new byte[64], 64);
-    public boolean d;
-    public boolean f14006e;
-    public boolean f14007f;
-    public long f14008g;
 
-    public y(i iVar, e2.b0 b0Var) {
-        this.f14003a = iVar;
-        this.f14004b = b0Var;
+import e2.k0;
+public final class y {
+    public final i f12823a;
+    public final k0 f12824b;
+    public final a4.g f12825c = new a4.g(new byte[64], 64);
+    public boolean d;
+    public boolean e;
+    public boolean f12826f;
+    public long f12827g;
+
+    public y(i iVar, k0 k0Var) {
+        this.f12823a = iVar;
+        this.f12824b = k0Var;
     }
 }

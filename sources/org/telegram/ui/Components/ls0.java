@@ -1,32 +1,32 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ls0 implements org.telegram.ui.ActionBar.z1, MessagesStorage.StringCallback {
-    public final hw0 f28270a;
-    public final TL_stories.StoryItem f28271b;
+import android.content.Context;
+public final class ls0 extends uv0 {
+    public final xv0 G;
 
-    public ls0(hw0 hw0Var, TL_stories.StoryItem storyItem) {
-        this.f28270a = hw0Var;
-        this.f28271b = storyItem;
+    public ls0(xv0 xv0Var, Context context) {
+        super(xv0Var, context, 0, true);
+        this.G = xv0Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.f28271b);
-        hw0 hw0Var = this.f28270a;
-        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
-        m2Var.getMessagesController().getStoriesController().s(hw0Var.f26932j1, arrayList);
-        zc.a0(m2Var).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("StoriesDeleted", 1, new Object[0])).j();
-        hw0Var.L(false);
-    }
-
-    @Override
-    public void run(String str) {
-        r0.getStoriesController().r(r0.f26932j1, str, new org.telegram.ui.tc(29, this.f28270a, this.f28271b));
+    public final void l() {
+        boolean z10;
+        super.l();
+        xv0 xv0Var = this.G;
+        qu0 W = xv0Var.W(9);
+        if (W != null && W.f28680r.getVisibility() == 0) {
+            xv0Var.f31354f0.l();
+        }
+        if (W != null) {
+            ht0 ht0Var = W.f28682w;
+            bi.o8 o8Var = this.f29784s;
+            if (o8Var != null && (o8Var.k() || (xv0Var.i0() && this.f29784s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            ht0Var.e(z10, true);
+        }
     }
 }

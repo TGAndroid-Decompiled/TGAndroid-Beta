@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class vj extends ph.i {
-    public final eo H;
+public final class vj extends qh.i {
+    public final fo H;
 
-    public vj(eo eoVar, vf vfVar) {
-        super(vfVar);
-        this.H = eoVar;
+    public vj(fo foVar, wf wfVar) {
+        super(wfVar);
+        this.H = foVar;
     }
 
     @Override
-    public final r0.k1 b(r0.k1 k1Var) {
-        return this.H.z8(k1Var);
+    public final r0.l1 b(r0.l1 l1Var) {
+        return this.H.z8(l1Var);
     }
 }

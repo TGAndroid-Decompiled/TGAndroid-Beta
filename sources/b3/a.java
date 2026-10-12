@@ -1,37 +1,36 @@
 package b3;
 
-import b2.s;
-import e2.v;
+import e2.m0;
+import e2.x;
 import h2.h;
-import hg.c;
-import i2.d0;
-import i2.f;
+import i2.b;
+import i2.c0;
+import i2.d;
 import java.nio.ByteBuffer;
-import n4.y;
-public final class a extends f {
+public final class a extends b {
     public final h I;
-    public final v J;
-    public d0 K;
+    public final x J;
+    public c0 K;
     public long L;
 
     public a() {
         super(6);
         this.I = new h(1, 0);
-        this.J = new v();
+        this.J = new x();
     }
 
     @Override
-    public final int A(s sVar) {
-        if ("application/x-camera-motion".equals(sVar.f3641r)) {
-            return c.b(4, 0, 0, 0);
+    public final int C(b2.x xVar) {
+        if ("application/x-camera-motion".equals(xVar.f2519s)) {
+            return d.c(4, 0, 0, 0);
         }
-        return c.b(0, 0, 0, 0);
+        return d.c(0, 0, 0, 0);
     }
 
     @Override
-    public final void d(int i10, Object obj) {
+    public final void c(int i10, Object obj) {
         if (i10 == 8) {
-            this.K = (d0) obj;
+            this.K = (c0) obj;
         }
     }
 
@@ -51,59 +50,59 @@ public final class a extends f {
     }
 
     @Override
-    public final void o() {
-        d0 d0Var = this.K;
-        if (d0Var != null) {
-            d0Var.b();
+    public final void n() {
+        c0 c0Var = this.K;
+        if (c0Var != null) {
+            c0Var.d();
         }
     }
 
     @Override
-    public final void q(long j3, boolean z10) {
+    public final void p(long j10, boolean z10, boolean z11) {
         this.L = Long.MIN_VALUE;
-        d0 d0Var = this.K;
-        if (d0Var != null) {
-            d0Var.b();
+        c0 c0Var = this.K;
+        if (c0Var != null) {
+            c0Var.d();
         }
     }
 
     @Override
-    public final void x(long j3, long j10) {
+    public final void x(long j10, long j11) {
         boolean z10;
         float[] fArr;
-        while (!k() && this.L < 100000 + j3) {
+        while (!k() && this.L < 100000 + j10) {
             h hVar = this.I;
             hVar.clear();
-            y yVar = this.f11644c;
-            yVar.f();
-            if (w(yVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
-                long j11 = hVar.f10984e;
-                this.L = j11;
-                if (j11 < this.f11650w) {
+            qf.b bVar = this.f10917c;
+            bVar.y();
+            if (w(bVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
+                long j12 = hVar.e;
+                this.L = j12;
+                if (j12 < this.f10922w) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
-                    hVar.c();
-                    ByteBuffer byteBuffer = hVar.f10983c;
-                    String str = e2.d0.f8529a;
+                    hVar.e();
+                    ByteBuffer byteBuffer = hVar.f10326c;
+                    String str = m0.f8372a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {
                         byte[] array = byteBuffer.array();
                         int limit = byteBuffer.limit();
-                        v vVar = this.J;
-                        vVar.H(limit, array);
-                        vVar.J(byteBuffer.arrayOffset() + 4);
+                        x xVar = this.J;
+                        xVar.L(limit, array);
+                        xVar.N(byteBuffer.arrayOffset() + 4);
                         float[] fArr2 = new float[3];
                         for (int i10 = 0; i10 < 3; i10++) {
-                            fArr2[i10] = Float.intBitsToFloat(vVar.l());
+                            fArr2[i10] = Float.intBitsToFloat(xVar.o());
                         }
                         fArr = fArr2;
                     }
                     if (fArr != null) {
-                        this.K.a();
+                        this.K.b();
                     }
                 }
             } else {

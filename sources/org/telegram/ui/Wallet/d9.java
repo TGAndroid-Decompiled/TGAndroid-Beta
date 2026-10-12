@@ -3,46 +3,100 @@ package org.telegram.ui.Wallet;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.y9;
-public final class d9 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.c6 f34636a;
-    public final y9 f34637b;
-    public final TextView f34638c;
-    public final TextView d;
+public final class d9 extends FrameLayout {
+    public final TextView f33104a;
+    public final ImageView f33105b;
+    public b6 f33106c;
+    public float d;
+    public float e;
+    public boolean f33107f;
 
-    public d9(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+    public d9(Context context) {
         super(context);
-        this.f34636a = c6Var;
-        y9 y9Var = new y9(context);
-        this.f34637b = y9Var;
-        y9Var.setRoundRadius(AndroidUtilities.dp(10.0f));
-        addView(y9Var, w7.w5.a(28.0f, 18.0f, 0.0f, 0.0f, 0.0f, 28, 19));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.w5.a(-2.0f, 62.0f, 0.0f, 20.0f, 0.0f, -1, 23));
+        setClipChildren(false);
+        setClipToPadding(false);
         TextView textView = new TextView(context);
-        this.f34638c = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.w5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2), context);
-        this.d = h;
-        h.setTextSize(1, 14.0f);
-        linearLayout.addView(h, w7.w5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
-        e();
+        this.f33104a = textView;
+        textView.setSingleLine(true);
+        textView.setIncludeFontPadding(false);
+        textView.setGravity(21);
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        addView(textView);
+        ImageView imageView = new ImageView(context);
+        this.f33105b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setImportantForAccessibility(2);
+        addView(imageView, w7.a6.d(16.0f, 16));
+    }
+
+    public final void a() {
+        float f7;
+        float height = (((getHeight() * 0.5f) - AndroidUtilities.dp(19.0f)) * this.d) + AndroidUtilities.dp(19.0f);
+        float width = getWidth() - (c() * 0.5f);
+        TextView textView = this.f33104a;
+        textView.setPivotX(textView.getWidth());
+        textView.setPivotY(textView.getHeight() * 0.5f);
+        textView.setScaleX((this.d * 0.42857146f) + 1.0f);
+        textView.setScaleY((this.d * 0.42857146f) + 1.0f);
+        textView.setTranslationX(((getWidth() - c()) - b()) - textView.getWidth());
+        textView.setTranslationY(height - (textView.getHeight() * 0.5f));
+        ImageView imageView = this.f33105b;
+        imageView.setTranslationX(width - AndroidUtilities.dp(8.0f));
+        imageView.setTranslationY(height - AndroidUtilities.dp(8.0f));
+        imageView.setAlpha(1.0f - this.d);
+        b6 b6Var = this.f33106c;
+        if (b6Var != null) {
+            b6Var.setTranslationX(width - AndroidUtilities.dp(20.0f));
+            this.f33106c.setTranslationY(height - AndroidUtilities.dp(20.0f));
+            this.f33106c.setPivotX(AndroidUtilities.dp(20.0f));
+            this.f33106c.setPivotY(AndroidUtilities.dp(20.0f));
+            this.f33106c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
+            this.f33106c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
+            b6 b6Var2 = this.f33106c;
+            if (this.f33107f) {
+                f7 = 0.0f;
+            } else {
+                f7 = this.d;
+            }
+            b6Var2.setAlpha(f7);
+        }
+    }
+
+    public final float b() {
+        return ((AndroidUtilities.dp(7.0f) - AndroidUtilities.dp(2.0f)) * this.d) + AndroidUtilities.dp(2.0f);
+    }
+
+    public final float c() {
+        return ((AndroidUtilities.dp(23.0f) - AndroidUtilities.dp(16.0f)) * this.d) + AndroidUtilities.dp(16.0f);
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f34636a;
-        this.f34638c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        TextView textView = this.f33104a;
+        textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
+        this.f33105b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        b6 b6Var = this.f33106c;
+        if (b6Var != null) {
+            b6Var.layout(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+        }
+        a();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) (Math.max(0, View.MeasureSpec.getSize(i10) - Math.round(b() + c())) / ((this.d * 0.42857146f) + 1.0f)), Integer.MIN_VALUE);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824);
+        TextView textView = this.f33104a;
+        textView.measure(makeMeasureSpec, makeMeasureSpec2);
+        this.f33105b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
+        b6 b6Var = this.f33106c;
+        if (b6Var != null) {
+            b6Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+        }
+        setMeasuredDimension(View.resolveSize((int) Math.ceil(c() + b() + com.google.android.gms.internal.play_billing.k3.A(this.d, 0.42857146f, 1.0f, textView.getMeasuredWidth())), i10), View.resolveSize(AndroidUtilities.dp(40.0f), i11));
     }
 }

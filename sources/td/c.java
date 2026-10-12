@@ -1,5 +1,3 @@
 package td;
-
-import java.io.Serializable;
-public final class c extends d implements Serializable {
+public interface c extends id.a {
 }

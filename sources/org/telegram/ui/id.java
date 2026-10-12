@@ -1,54 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class id implements View.OnClickListener {
-    public final int f38843a;
-    public final qd f38844b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class id implements RequestDelegate {
+    public final int f37097a;
+    public final sd f37098b;
 
-    public id(qd qdVar, int i10) {
-        this.f38843a = i10;
-        this.f38844b = qdVar;
+    public id(sd sdVar, int i10) {
+        this.f37097a = i10;
+        this.f37098b = sdVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        switch (this.f38843a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f37097a) {
             case 0:
-                qd.X(this.f38844b, view);
+                AndroidUtilities.runOnUIThread(new fc(5, this.f37098b, tLObject));
                 return;
             case 1:
-                qd qdVar = this.f38844b;
-                org.telegram.ui.Components.p50 p50Var = qdVar.v;
-                if (qdVar.f41305x != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    AndroidUtilities.runOnUIThread(new jd(this.f37098b, 3));
+                    return;
                 }
-                p50Var.n(z10, new hd(qdVar, 1), new u5(qdVar, 2), 0);
-                qdVar.J.M(0);
-                qdVar.J.P(43);
-                qdVar.h.d();
                 return;
             case 2:
-                qd qdVar2 = this.f38844b;
-                if (!qdVar2.f41288j0) {
-                    qdVar2.f0();
-                    return;
-                } else if (qdVar2.f41275a0) {
-                    qdVar2.f41275a0 = false;
-                    qdVar2.h0();
-                    return;
-                } else {
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new fc(3, this.f37098b, tL_error));
+                return;
             default:
-                qd qdVar3 = this.f38844b;
-                if (!qdVar3.f41275a0) {
-                    qdVar3.f41275a0 = true;
-                    qdVar3.h0();
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new t1(this.f37098b, tL_error, tLObject, 11));
                 return;
         }
     }

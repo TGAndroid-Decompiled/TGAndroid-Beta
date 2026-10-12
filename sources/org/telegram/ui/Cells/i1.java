@@ -7,13 +7,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 public final class i1 extends o1 {
-    public final int f21991e;
-    public final u1 f21992f;
+    public final int e;
+    public final u1 f21302f;
 
     public i1(int i10, u1 u1Var) {
         super(0);
-        this.f21992f = u1Var;
-        this.f21991e = i10;
+        this.f21302f = u1Var;
+        this.e = i10;
     }
 
     @Override
@@ -26,23 +26,23 @@ public final class i1 extends o1 {
         Rect bounds = getBounds();
         RectF rectF = (RectF) this.d;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        Path path = this.f22350b;
+        Path path = this.f21616b;
         path.rewind();
-        u1 u1Var = this.f21992f;
-        int[] iArr = u1Var.f23213x3;
-        int i12 = this.f21991e;
+        u1 u1Var = this.f21302f;
+        int[] iArr = u1Var.f22469x3;
+        int i12 = this.e;
         int i13 = iArr[i12];
         if (i13 != 3 && i13 != 4) {
             float f10 = 0.0f;
             if (i13 == 2) {
-                MessageObject messageObject = u1Var.f23231y7;
+                MessageObject messageObject = u1Var.f22488y7;
                 if (messageObject != null && messageObject.isOutOwner()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 for (int i14 = 0; i14 < 4; i14++) {
-                    if (!u1Var.f23108q3) {
+                    if (!u1Var.f22364q3) {
                         if (z10) {
                             i10 = 3;
                         } else {
@@ -54,7 +54,7 @@ public final class i1 extends o1 {
                             float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
                             fArr[i15 + 1] = dp;
                             fArr[i15] = dp;
-                        } else if (((u1Var.f23030k8 && u1Var.L == null) || u1Var.F) && (i14 == 2 || i14 == 3)) {
+                        } else if (((u1Var.f22286k8 && u1Var.L == null) || u1Var.F) && (i14 == 2 || i14 == 3)) {
                             float[] fArr2 = u1.Fe;
                             int i16 = i14 * 2;
                             int i17 = i16 + 1;
@@ -73,7 +73,7 @@ public final class i1 extends o1 {
                     fArr3[i18 + 1] = 0.0f;
                     fArr3[i18] = 0.0f;
                 }
-                if (!z10 && !u1Var.J && (groupedMessagePosition = u1Var.L) == null && (groupedMessagePosition == null || u1Var.f22884a3)) {
+                if (!z10 && !u1Var.J && (groupedMessagePosition = u1Var.L) == null && (groupedMessagePosition == null || u1Var.f22139a3)) {
                     path.moveTo(rectF.left + AndroidUtilities.dp(6.0f), rectF.top);
                     path.lineTo(rectF.left + AndroidUtilities.dp(6.0f), (rectF.bottom - AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(5.0f));
                     RectF rectF2 = AndroidUtilities.rectTmp;

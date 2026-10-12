@@ -1,68 +1,32 @@
 package b2;
 
-import java.util.List;
-public interface z0 {
-    void onAudioAttributesChanged(e eVar);
+import android.os.Bundle;
+public abstract class z0 extends Exception {
+    public static final String d;
+    public static final String e;
+    public static final String f2535f;
+    public static final String h;
+    public static final String f2536n;
+    public static final String f2537r;
+    public final int f2538a;
+    public final long f2539b;
+    public final Bundle f2540c;
 
-    void onAudioSessionIdChanged(int i10);
+    static {
+        String str = e2.m0.f8372a;
+        d = Integer.toString(0, 36);
+        e = Integer.toString(1, 36);
+        f2535f = Integer.toString(2, 36);
+        h = Integer.toString(3, 36);
+        f2536n = Integer.toString(4, 36);
+        f2537r = Integer.toString(5, 36);
+    }
 
-    void onAvailableCommandsChanged(x0 x0Var);
-
-    void onCues(d2.d dVar);
-
-    void onCues(List list);
-
-    void onEvents(b1 b1Var, y0 y0Var);
-
-    void onIsLoadingChanged(boolean z10);
-
-    void onIsPlayingChanged(boolean z10);
-
-    void onLoadingChanged(boolean z10);
-
-    void onMediaItemTransition(k0 k0Var, int i10);
-
-    void onMediaMetadataChanged(n0 n0Var);
-
-    void onMetadata(p0 p0Var);
-
-    void onPlayWhenReadyChanged(boolean z10, int i10);
-
-    void onPlaybackParametersChanged(v0 v0Var);
-
-    void onPlaybackStateChanged(int i10);
-
-    void onPlaybackSuppressionReasonChanged(int i10);
-
-    void onPlayerError(u0 u0Var);
-
-    void onPlayerErrorChanged(u0 u0Var);
-
-    void onPlayerStateChanged(boolean z10, int i10);
-
-    void onPlaylistMetadataChanged(n0 n0Var);
-
-    void onPositionDiscontinuity(int i10);
-
-    void onPositionDiscontinuity(a1 a1Var, a1 a1Var2, int i10);
-
-    void onRenderedFirstFrame();
-
-    void onRepeatModeChanged(int i10);
-
-    void onShuffleModeEnabledChanged(boolean z10);
-
-    void onSkipSilenceEnabledChanged(boolean z10);
-
-    void onSurfaceSizeChanged(int i10, int i11);
-
-    void onTimelineChanged(k1 k1Var, int i10);
-
-    void onTrackSelectionParametersChanged(q1 q1Var);
-
-    void onTracksChanged(s1 s1Var);
-
-    void onVideoSizeChanged(x1 x1Var);
-
-    void onVolumeChanged(float f7);
+    public z0(String str, Throwable th2, int i10, long j10) {
+        super(str, th2);
+        Bundle bundle = Bundle.EMPTY;
+        this.f2538a = i10;
+        this.f2540c = bundle;
+        this.f2539b = j10;
+    }
 }

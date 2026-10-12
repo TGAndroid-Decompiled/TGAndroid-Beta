@@ -1,10 +1,187 @@
 package fh;
 
-import android.graphics.Canvas;
-public interface a {
-    void b();
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import eh.d;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+public final class a implements d, c6 {
+    public final int f9151a;
+    public final c6 f9152b;
 
-    ch.d l();
+    public a(int i10, c6 c6Var) {
+        this.f9151a = i10;
+        this.f9152b = c6Var;
+    }
 
-    void v(Canvas canvas, float f7, float f10, float f11, float f12);
+    @Override
+    public int F0(int i10) {
+        if (i10 == g6.G8) {
+            return -14145495;
+        }
+        if (i10 != g6.E8) {
+            if (i10 == g6.f19972h5) {
+                return -14737633;
+            }
+            if (i10 == g6.f20007j5) {
+                return -592138;
+            }
+            if (i10 == g6.f20157r5) {
+                return -8553091;
+            }
+            if (i10 != g6.He) {
+                if (i10 == g6.Ke) {
+                    return -1610612736;
+                }
+                if (i10 == g6.Ne || i10 == g6.Re || i10 == g6.Me) {
+                    return -9539985;
+                }
+                if (i10 != g6.G6) {
+                    int i11 = g6.Mh;
+                    if (i10 == i11) {
+                        return -11754001;
+                    }
+                    if (i10 == g6.f19990i6) {
+                        return 536870911;
+                    }
+                    if (i10 != g6.Fh && i10 != g6.Eh && i10 != g6.Gh) {
+                        if (i10 == g6.Hh) {
+                            return 352321535;
+                        }
+                        if (i10 != g6.Je && i10 != i11) {
+                            if (i10 == g6.Ie) {
+                                return 780633991;
+                            }
+                            if (i10 == g6.f19843a7) {
+                                return -15921907;
+                            }
+                            if (i10 == g6.f20065m7) {
+                                return -12500671;
+                            }
+                            if (i10 == g6.f20046l7) {
+                                return -13133079;
+                            }
+                            if (i10 == g6.f20085n7) {
+                                return -1;
+                            }
+                            if (i10 == g6.f19901d6) {
+                                return -15198183;
+                            }
+                            if (i10 == g6.f19902d7) {
+                                return -16777216;
+                            }
+                            c6 c6Var = this.f9152b;
+                            if (c6Var != null) {
+                                return c6Var.F0(i10);
+                            }
+                            return g6.x0(null, i10, false);
+                        }
+                        return -7895161;
+                    }
+                    return -1;
+                }
+                return -1;
+            }
+            return -16777216;
+        }
+        return -1;
+    }
+
+    @Override
+    public Paint G(String str) {
+        return g6.T0(str);
+    }
+
+    @Override
+    public boolean a() {
+        return g6.I.q();
+    }
+
+    @Override
+    public int b0(int i10) {
+        return F0(i10);
+    }
+
+    @Override
+    public int f(c6 c6Var, boolean z10) {
+        float f7;
+        float f10;
+        int i10;
+        float f11;
+        int i11;
+        switch (this.f9151a) {
+            case 0:
+                if (!b.c(UserConfig.selectedAccount, this.f9152b)) {
+                    return i0.a.k(g6.w0(g6.Sd, c6Var), 255);
+                }
+                if (LiteMode.isEnabled(262144)) {
+                    f7 = 0.85f;
+                } else {
+                    f7 = 0.76f;
+                }
+                return g6.m1(f7, g6.w0(g6.Sd, c6Var));
+            case 1:
+                if (!b.c(UserConfig.selectedAccount, this.f9152b)) {
+                    if (z10) {
+                        i10 = g6.f20180s8;
+                    } else {
+                        i10 = g6.f19890ce;
+                    }
+                    return i0.a.k(g6.w0(i10, c6Var), 255);
+                }
+                if (LiteMode.isEnabled(262144)) {
+                    f10 = 0.85f;
+                } else {
+                    f10 = 0.76f;
+                }
+                return g6.m1(f10, g6.w0(g6.f19890ce, c6Var));
+            default:
+                if (!b.c(UserConfig.selectedAccount, this.f9152b)) {
+                    if (z10) {
+                        i11 = g6.f20180s8;
+                    } else {
+                        i11 = g6.f19890ce;
+                    }
+                    return i0.a.k(g6.w0(i11, c6Var), 255);
+                }
+                if (LiteMode.isEnabled(262144)) {
+                    f11 = 0.85f;
+                } else {
+                    f11 = 0.76f;
+                }
+                return g6.m1(f11, g6.w0(g6.f19890ce, c6Var));
+        }
+    }
+
+    @Override
+    public int g1(int i10) {
+        return F0(i10);
+    }
+
+    @Override
+    public Drawable getDrawable(String str) {
+        return null;
+    }
+
+    @Override
+    public void l(float f7, float f10, int i10, int i11) {
+        g6.q(f7, f10, i10, i11);
+    }
+
+    @Override
+    public boolean m0() {
+        return false;
+    }
+
+    @Override
+    public ColorFilter x() {
+        return g6.f20230v3;
+    }
+
+    @Override
+    public void N0(int i10, int i11) {
+    }
 }

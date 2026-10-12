@@ -1,105 +1,46 @@
 package dc;
+public final class b {
+    public static final b f6465a;
+    public static final b f6466b;
+    public static final b f6467c;
+    public static final b d;
+    public static final b e;
+    public static final b f6468f;
+    public static final b h;
+    public static final b[] f6469n;
 
-import java.util.Arrays;
-public final class b implements Cloneable {
-    public int f8269a;
-    public int f8270b;
-    public int f8271c;
-    public int[] d;
-
-    public b(int i10, int i11) {
-        if (i10 >= 1 && i11 >= 1) {
-            this.f8269a = i10;
-            this.f8270b = i11;
-            int i12 = (i10 + 31) / 32;
-            this.f8271c = i12;
-            this.d = new int[i12 * i11];
-            return;
-        }
-        throw new IllegalArgumentException("Both dimensions must be greater than 0");
+    static {
+        ?? r02 = new Enum("ERROR_CORRECTION", 0);
+        f6465a = r02;
+        ?? r12 = new Enum("CHARACTER_SET", 1);
+        f6466b = r12;
+        Enum r32 = new Enum("DATA_MATRIX_SHAPE", 2);
+        Enum r52 = new Enum("DATA_MATRIX_COMPACT", 3);
+        Enum r72 = new Enum("MIN_SIZE", 4);
+        Enum r92 = new Enum("MAX_SIZE", 5);
+        ?? r11 = new Enum("MARGIN", 6);
+        f6467c = r11;
+        Enum r13 = new Enum("PDF417_COMPACT", 7);
+        Enum r15 = new Enum("PDF417_COMPACTION", 8);
+        Enum r22 = new Enum("PDF417_DIMENSIONS", 9);
+        Enum r42 = new Enum("PDF417_AUTO_ECI", 10);
+        Enum r62 = new Enum("AZTEC_LAYERS", 11);
+        ?? r82 = new Enum("QR_VERSION", 12);
+        d = r82;
+        ?? r10 = new Enum("QR_MASK_PATTERN", 13);
+        e = r10;
+        ?? r122 = new Enum("QR_COMPACT", 14);
+        f6468f = r122;
+        ?? r14 = new Enum("GS1_FORMAT", 15);
+        h = r14;
+        f6469n = new b[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22, r42, r62, r82, r10, r122, r14, new Enum("FORCE_CODE_SET", 16), new Enum("FORCE_C40", 17), new Enum("CODE128_COMPACT", 18)};
     }
 
-    public final void a(int i10, int i11) {
-        int i12 = (i10 / 32) + (i11 * this.f8271c);
-        int[] iArr = this.d;
-        iArr[i12] = (1 << (i10 & 31)) ^ iArr[i12];
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
     }
 
-    public final boolean b(int i10, int i11) {
-        if (((this.d[(i10 / 32) + (i11 * this.f8271c)] >>> (i10 & 31)) & 1) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void c(int i10, int i11, int i12, int i13) {
-        if (i11 >= 0 && i10 >= 0) {
-            if (i13 >= 1 && i12 >= 1) {
-                int i14 = i12 + i10;
-                int i15 = i13 + i11;
-                if (i15 <= this.f8270b && i14 <= this.f8269a) {
-                    while (i11 < i15) {
-                        int i16 = this.f8271c * i11;
-                        for (int i17 = i10; i17 < i14; i17++) {
-                            int[] iArr = this.d;
-                            int i18 = (i17 / 32) + i16;
-                            iArr[i18] = iArr[i18] | (1 << (i17 & 31));
-                        }
-                        i11++;
-                    }
-                    return;
-                }
-                throw new IllegalArgumentException("The region must fit inside the matrix");
-            }
-            throw new IllegalArgumentException("Height and width must be at least 1");
-        }
-        throw new IllegalArgumentException("Left and top must be nonnegative");
-    }
-
-    public final Object clone() {
-        int i10 = this.f8269a;
-        int i11 = this.f8270b;
-        int i12 = this.f8271c;
-        ?? obj = new Object();
-        obj.f8269a = i10;
-        obj.f8270b = i11;
-        obj.f8271c = i12;
-        obj.d = (int[]) this.d.clone();
-        return obj;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        b bVar = (b) obj;
-        if (this.f8269a != bVar.f8269a || this.f8270b != bVar.f8270b || this.f8271c != bVar.f8271c || !Arrays.equals(this.d, bVar.d)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int i10 = this.f8269a;
-        return Arrays.hashCode(this.d) + (((((((i10 * 31) + i10) * 31) + this.f8270b) * 31) + this.f8271c) * 31);
-    }
-
-    public final String toString() {
-        String str;
-        int i10 = this.f8270b;
-        int i11 = this.f8269a;
-        StringBuilder sb2 = new StringBuilder((i11 + 1) * i10);
-        for (int i12 = 0; i12 < i10; i12++) {
-            for (int i13 = 0; i13 < i11; i13++) {
-                if (b(i13, i12)) {
-                    str = "X ";
-                } else {
-                    str = "  ";
-                }
-                sb2.append(str);
-            }
-            sb2.append("\n");
-        }
-        return sb2.toString();
+    public static b[] values() {
+        return (b[]) f6469n.clone();
     }
 }

@@ -1,55 +1,67 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.text.Editable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class ub0 extends org.telegram.ui.Cells.j3 {
-    public boolean f42482x;
-    public final wb0 f42483y;
+import android.text.TextWatcher;
+import org.telegram.messenger.Emoji;
+public final class ub0 implements TextWatcher {
+    public final int f40635a;
+    public final ac0 f40636b;
 
-    public ub0(wb0 wb0Var, Context context, String str, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, str, false, false, -1, c6Var);
-        this.f42483y = wb0Var;
+    public ub0(ac0 ac0Var, int i10) {
+        this.f40635a = i10;
+        this.f40636b = ac0Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        int i10;
-        int i11;
-        if (this.f42482x) {
-            return;
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f40635a) {
+            case 0:
+                Emoji.replaceEmoji(editable, this.f40636b.K.getPaint().getFontMetricsInt(), false);
+                return;
+            default:
+                ac0 ac0Var = this.f40636b;
+                if (!ac0Var.O) {
+                    if (editable.toString().equals("0")) {
+                        ac0Var.F.setText("");
+                        return;
+                    }
+                    try {
+                        int parseInt = Integer.parseInt(editable.toString());
+                        if (parseInt > 100000) {
+                            ac0Var.X();
+                            return;
+                        } else {
+                            ac0Var.W(parseInt);
+                            return;
+                        }
+                    } catch (NumberFormatException unused) {
+                        ac0Var.X();
+                        return;
+                    }
+                }
+                return;
         }
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        wb0 wb0Var = this.f42483y;
-        if (isEmpty) {
-            wb0Var.f43126s.setText("");
-            return;
-        }
-        try {
-            long parseLong = Long.parseLong(editable.toString());
-            if (parseLong > wb0Var.getMessagesController().starsSubscriptionAmountMax) {
-                this.f42482x = true;
-                parseLong = wb0Var.getMessagesController().starsSubscriptionAmountMax;
-                setText(Long.toString(parseLong));
-                this.f42482x = false;
-            }
-            TextView textView = wb0Var.f43126s;
-            if (wb0Var.getConnectionsManager().isTestBackend()) {
-                i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
-            } else {
-                i10 = R.string.RequireMonthlyFeePrice;
-            }
-            BillingController billingController = BillingController.getInstance();
-            i11 = ((org.telegram.ui.ActionBar.m2) wb0Var).currentAccount;
-            textView.setText(LocaleController.formatString(i10, billingController.formatCurrency((long) ((parseLong / 1000.0d) * MessagesController.getInstance(i11).starsUsdWithdrawRate1000), "USD")));
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40635a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40635a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

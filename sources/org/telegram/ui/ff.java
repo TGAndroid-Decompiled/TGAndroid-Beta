@@ -1,53 +1,76 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import org.telegram.messenger.Utilities;
-public final class ff implements Utilities.Callback2 {
-    public final int f37765a;
-    public final eo f37766b;
+import java.util.HashSet;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ff implements Runnable {
+    public final int f35808a;
+    public final Object f35809b;
+    public final Object f35810c;
+    public final Object d;
+    public final Object e;
+    public final Object f35811f;
+    public final Object h;
+    public final Object f35812n;
 
-    public ff(eo eoVar, int i10) {
-        this.f37765a = i10;
-        this.f37766b = eoVar;
+    public ff(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
+        this.f35808a = i10;
+        this.f35809b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f35811f = obj4;
+        this.f35810c = obj5;
+        this.h = obj6;
+        this.f35812n = obj7;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f37765a) {
-            case 0:
-                eo.z1(this.f37766b, (Integer) obj, (Boolean) obj2);
-                return;
-            case 1:
-                eo.p1(this.f37766b, (Long) obj, (Boolean) obj2);
-                return;
-            case 2:
-                Bitmap bitmap = (Bitmap) obj;
-                eo eoVar = this.f37766b;
-                fh.b bVar = eoVar.f37515z8;
-                bVar.a((Bitmap) obj2);
-                gh.d.c(bVar, eoVar.fragmentView);
-                eoVar.A8.d();
-                return;
-            default:
-                eo eoVar2 = this.f37766b;
-                eoVar2.B8 = (Bitmap) obj;
-                Paint paint = new Paint(1);
-                eoVar2.D8 = paint;
-                Bitmap bitmap2 = eoVar2.B8;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                eoVar2.C8 = bitmapShader;
-                paint.setShader(bitmapShader);
-                eoVar2.E8 = new Matrix();
-                fh.b bVar2 = eoVar2.f37515z8;
-                bVar2.a((Bitmap) obj2);
-                gh.d.c(bVar2, eoVar2.fragmentView);
-                eoVar2.A8.d();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ff.run():void");
+    }
+
+    public ff(Object obj, Object obj2, Object obj3, String str, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f35808a = i10;
+        this.f35809b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f35810c = str;
+        this.f35811f = obj4;
+        this.h = obj5;
+        this.f35812n = obj6;
+    }
+
+    public ff(Object obj, Object obj2, String str, TLObject tLObject, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f35808a = i10;
+        this.f35809b = obj;
+        this.d = obj2;
+        this.f35810c = str;
+        this.e = tLObject;
+        this.f35811f = obj3;
+        this.h = obj4;
+        this.f35812n = obj5;
+    }
+
+    public ff(qn qnVar, org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
+        this.f35808a = 2;
+        this.f35809b = qnVar;
+        this.d = a2Var;
+        this.f35811f = tLObject;
+        this.f35810c = hashSet;
+        this.h = tL_inputGroupCallInviteMessage;
+        this.e = messageObject;
+        this.f35812n = tL_error;
+    }
+
+    public ff(fo foVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, kf kfVar, String str, pf.c cVar) {
+        this.f35808a = 1;
+        this.f35809b = foVar;
+        this.d = tL_error;
+        this.e = tLObject;
+        this.f35811f = tLObject2;
+        this.h = kfVar;
+        this.f35810c = str;
+        this.f35812n = cVar;
     }
 }

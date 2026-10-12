@@ -1,122 +1,115 @@
 package fi;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.zc;
-public final class i implements Utilities.Callback2 {
-    public final int f9976a;
-    public final p f9977b;
+import org.telegram.messenger.yh;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import w7.a6;
+public final class i extends FrameLayout {
+    public final ImageView f9311a;
+    public final FrameLayout.LayoutParams f9312b;
+    public final FrameLayout.LayoutParams f9313c;
+    public final TextView d;
+    public final TextView e;
+    public final TextView f9314f;
 
-    public i(p pVar, int i10) {
-        this.f9976a = i10;
-        this.f9977b = pVar;
+    public i(Context context, c6 c6Var) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f9311a = imageView;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        FrameLayout.LayoutParams a2 = a6.a(28.0f, 17.0f, 14.33f, 0.0f, 0.0f, 28, 51);
+        this.f9312b = a2;
+        addView(imageView, a2);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        FrameLayout.LayoutParams a10 = a6.a(-2.0f, 62.0f, 10.0f, 40.0f, 8.66f, -1, 55);
+        this.f9313c = a10;
+        addView(linearLayout, a10);
+        TextView textView = new TextView(context);
+        this.d = textView;
+        yh.k(15.0f, 1, textView);
+        textView.setTextColor(g6.w0(g6.G6, c6Var));
+        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, a6.t(-1, -2, 55, 0, 0, 0, 0), context);
+        this.e = i10;
+        i10.setTextSize(1, 14.0f);
+        i10.setTextColor(g6.w0(g6.f20305z6, c6Var));
+        linearLayout.addView(i10, a6.t(-1, -2, 55, 0, 3, 0, 0));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setColorFilter(new PorterDuffColorFilter(g6.w0(g6.M6, c6Var), mode));
+        imageView2.setImageResource(R.drawable.msg_arrowright);
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, a6.a(24.0f, 0.0f, 0.0f, 10.0f, 0.0f, 24, 21));
+        TextView textView2 = new TextView(context);
+        this.f9314f = textView2;
+        textView2.setTextColor(-1);
+        textView2.setBackground(g6.c0(AndroidUtilities.dp(4.0f), g6.w0(g6.uj, c6Var)));
+        textView2.setTextSize(1, 13.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        textView2.setGravity(17);
+        textView2.setVisibility(8);
+        addView(textView2, a6.a(18.0f, 0.0f, 0.0f, 35.33f, 0.0f, -2, 21));
+    }
+
+    public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
+        ImageView imageView = this.f9311a;
+        imageView.setImageResource(i11);
+        imageView.setBackground(g6.c0(AndroidUtilities.dp(9.0f), i10));
+        TextView textView = this.d;
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        TextView textView2 = this.e;
+        FrameLayout.LayoutParams layoutParams = this.f9313c;
+        FrameLayout.LayoutParams layoutParams2 = this.f9312b;
+        if (isEmpty) {
+            layoutParams2.topMargin = AndroidUtilities.dp(10.0f);
+            layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
+            textView.setTypeface(null);
+            textView.setTextSize(1, 16.0f);
+            layoutParams.topMargin = 0;
+            layoutParams.bottomMargin = 0;
+            layoutParams.gravity = 23;
+            textView2.setVisibility(8);
+            return;
+        }
+        layoutParams2.topMargin = AndroidUtilities.dp(14.33f);
+        layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 15.0f);
+        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
+        layoutParams.bottomMargin = AndroidUtilities.dp(8.66f);
+        layoutParams.gravity = 55;
+        textView2.setText(charSequence2);
+        textView2.setVisibility(0);
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        ArrayList<TL_communities.CommunityPeer> arrayList;
-        String str;
-        String str2;
-        int i10;
-        switch (this.f9976a) {
-            case 0:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                p pVar = this.f9977b;
-                pVar.getClass();
-                if (tL_error != null) {
-                    zc.a0(pVar).f0(tL_error, false);
-                    return;
-                }
-                return;
-            default:
-                ArrayList arrayList2 = (ArrayList) obj;
-                h71 h71Var = (h71) obj2;
-                p pVar2 = this.f9977b;
-                n nVar = pVar2.f10025r;
-                u61 u61Var = new u61(-4);
-                u61Var.d = 140;
-                u61Var.f31064c = nVar;
-                u61Var.f31084z = -1;
-                arrayList2.add(u61Var);
-                int i11 = 0;
-                if (ChatObject.canUserDoAdminAction(pVar2.H, 1)) {
-                    int i12 = R.drawable.outline_profile_photo;
-                    if (ChatObject.hasPhoto(pVar2.H)) {
-                        i10 = R.string.CommunitySettingsChangePhoto;
-                    } else {
-                        i10 = R.string.CommunitySettingsSetPhoto;
-                    }
-                    u61 c10 = u61.c(141, i12, LocaleController.getString(i10));
-                    c10.f31076q = true;
-                    arrayList2.add(c10);
-                    arrayList2.add(u61.D(2, AndroidUtilities.dp(14.0f)));
-                    arrayList2.add(u61.s(0, LocaleController.getString(R.string.CommunitySectionCommunityName)));
-                    arrayList2.add(u61.j(7, pVar2.f10024n));
-                    arrayList2.add(u61.D(1, AndroidUtilities.dp(14.0f)));
-                }
-                if (ChatObject.canBlockUsers(pVar2.H)) {
-                    arrayList2.add(u61.s(3, LocaleController.getString(R.string.CommunitySectionWhoCanAddChats)));
-                    u61 x10 = u61.x(150, LocaleController.getString(R.string.CommunityWhoCanAddChatsAllMembers), LocaleController.getString(R.string.CommunityWhoCanAddChatsAllMembersInfo));
-                    x10.K(pVar2.h);
-                    arrayList2.add(x10);
-                    u61 x11 = u61.x(151, LocaleController.getString(R.string.CommunityWhoCanAddChatsOnlyAdmins), LocaleController.getString(R.string.CommunityWhoCanAddChatsOnlyAdminsInfo));
-                    x11.K(!pVar2.h);
-                    arrayList2.add(x11);
-                    arrayList2.add(u61.D(4, AndroidUtilities.dp(14.0f)));
-                }
-                if (ChatObject.hasAdminRights(pVar2.H)) {
-                    int i13 = R.drawable.msg_admins;
-                    String string = LocaleController.getString(R.string.CommunityAdministrators);
-                    TLRPC.ChatFull chatFull = pVar2.I;
-                    String str3 = "";
-                    if (chatFull == null) {
-                        str = "";
-                    } else {
-                        str = Integer.toString(chatFull.admins_count);
-                    }
-                    arrayList2.add(u61.d(142, i13, string, str));
-                    int i14 = R.drawable.community_requests_outline_24;
-                    String string2 = LocaleController.getString(R.string.CommunityPendingRequests);
-                    TLRPC.ChatFull chatFull2 = pVar2.I;
-                    if (chatFull2 == null) {
-                        str2 = "";
-                    } else {
-                        str2 = Integer.toString(chatFull2.requests_pending);
-                    }
-                    arrayList2.add(u61.d(143, i14, string2, str2));
-                    int i15 = R.drawable.msg_user_remove;
-                    String string3 = LocaleController.getString(R.string.CommunityRemovedUsers);
-                    TLRPC.ChatFull chatFull3 = pVar2.I;
-                    if (chatFull3 != null) {
-                        str3 = Integer.toString(chatFull3.kicked_count);
-                    }
-                    arrayList2.add(u61.d(144, i15, string3, str3));
-                }
-                arrayList2.add(u61.D(5, AndroidUtilities.dp(14.0f)));
-                u61 c11 = u61.c(146, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityMenuAddChat));
-                c11.f31076q = true;
-                arrayList2.add(c11);
-                TLRPC.ChatFull chatFull4 = pVar2.I;
-                if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {
-                    int size = arrayList.size();
-                    while (i11 < size) {
-                        TL_communities.CommunityPeer communityPeer = arrayList.get(i11);
-                        i11++;
-                        arrayList2.add(u61.v(pVar2.getMessagesController().getUserOrChat(DialogObject.getPeerDialogId(communityPeer.peer))));
-                    }
-                    return;
-                }
-                return;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setPercent(CharSequence charSequence) {
+        boolean isEmpty = TextUtils.isEmpty(charSequence);
+        TextView textView = this.f9314f;
+        if (isEmpty) {
+            textView.setVisibility(8);
+            return;
         }
+        textView.setVisibility(0);
+        textView.setText(charSequence);
     }
 }

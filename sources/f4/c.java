@@ -8,40 +8,40 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 public final class c {
-    public final String f9630a;
-    public final String f9631b;
-    public final boolean f9632c;
+    public final String f8919a;
+    public final String f8920b;
+    public final boolean f8921c;
     public final long d;
-    public final long f9633e;
-    public final g f9634f;
-    public final String[] f9635g;
+    public final long e;
+    public final g f8922f;
+    public final String[] f8923g;
     public final String h;
-    public final String f9636i;
-    public final c f9637j;
-    public final HashMap f9638k;
-    public final HashMap f9639l;
-    public ArrayList f9640m;
+    public final String f8924i;
+    public final c f8925j;
+    public final HashMap f8926k;
+    public final HashMap f8927l;
+    public ArrayList f8928m;
 
-    public c(String str, String str2, long j3, long j10, g gVar, String[] strArr, String str3, String str4, c cVar) {
+    public c(String str, String str2, long j10, long j11, g gVar, String[] strArr, String str3, String str4, c cVar) {
         boolean z10;
-        this.f9630a = str;
-        this.f9631b = str2;
-        this.f9636i = str4;
-        this.f9634f = gVar;
-        this.f9635g = strArr;
+        this.f8919a = str;
+        this.f8920b = str2;
+        this.f8924i = str4;
+        this.f8922f = gVar;
+        this.f8923g = strArr;
         if (str2 != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f9632c = z10;
-        this.d = j3;
-        this.f9633e = j10;
+        this.f8921c = z10;
+        this.d = j10;
+        this.e = j11;
         str3.getClass();
         this.h = str3;
-        this.f9637j = cVar;
-        this.f9638k = new HashMap();
-        this.f9639l = new HashMap();
+        this.f8925j = cVar;
+        this.f8926k = new HashMap();
+        this.f8927l = new HashMap();
     }
 
     public static c a(String str) {
@@ -51,17 +51,17 @@ public final class c {
     public static SpannableStringBuilder e(String str, TreeMap treeMap) {
         if (!treeMap.containsKey(str)) {
             d2.a aVar = new d2.a();
-            aVar.f8046a = new SpannableStringBuilder();
-            aVar.f8047b = null;
+            aVar.f6276a = new SpannableStringBuilder();
+            aVar.f6277b = null;
             treeMap.put(str, aVar);
         }
-        CharSequence charSequence = ((d2.a) treeMap.get(str)).f8046a;
+        CharSequence charSequence = ((d2.a) treeMap.get(str)).f6276a;
         charSequence.getClass();
         return (SpannableStringBuilder) charSequence;
     }
 
     public final c b(int i10) {
-        ArrayList arrayList = this.f9640m;
+        ArrayList arrayList = this.f8928m;
         if (arrayList != null) {
             return (c) arrayList.get(i10);
         }
@@ -69,7 +69,7 @@ public final class c {
     }
 
     public final int c() {
-        ArrayList arrayList = this.f9640m;
+        ArrayList arrayList = this.f8928m;
         if (arrayList == null) {
             return 0;
         }
@@ -78,22 +78,22 @@ public final class c {
 
     public final void d(TreeSet treeSet, boolean z10) {
         boolean z11;
-        String str = this.f9630a;
+        String str = this.f8919a;
         boolean equals = "p".equals(str);
         boolean equals2 = "div".equals(str);
-        if (z10 || equals || (equals2 && this.f9636i != null)) {
-            long j3 = this.d;
-            if (j3 != -9223372036854775807L) {
-                treeSet.add(Long.valueOf(j3));
-            }
-            long j10 = this.f9633e;
+        if (z10 || equals || (equals2 && this.f8924i != null)) {
+            long j10 = this.d;
             if (j10 != -9223372036854775807L) {
                 treeSet.add(Long.valueOf(j10));
             }
+            long j11 = this.e;
+            if (j11 != -9223372036854775807L) {
+                treeSet.add(Long.valueOf(j11));
+            }
         }
-        if (this.f9640m != null) {
-            for (int i10 = 0; i10 < this.f9640m.size(); i10++) {
-                c cVar = (c) this.f9640m.get(i10);
+        if (this.f8928m != null) {
+            for (int i10 = 0; i10 < this.f8928m.size(); i10++) {
+                c cVar = (c) this.f8928m.get(i10);
                 if (!z10 && !equals) {
                     z11 = false;
                 } else {
@@ -104,14 +104,14 @@ public final class c {
         }
     }
 
-    public final boolean f(long j3) {
-        long j10 = this.d;
-        int i10 = (j10 > (-9223372036854775807L) ? 1 : (j10 == (-9223372036854775807L) ? 0 : -1));
-        long j11 = this.f9633e;
-        if (i10 != 0 || j11 != -9223372036854775807L) {
-            if (j10 > j3 || j11 != -9223372036854775807L) {
-                if (j10 != -9223372036854775807L || j3 >= j11) {
-                    if (j10 <= j3 && j3 < j11) {
+    public final boolean f(long j10) {
+        long j11 = this.d;
+        int i10 = (j11 > (-9223372036854775807L) ? 1 : (j11 == (-9223372036854775807L) ? 0 : -1));
+        long j12 = this.e;
+        if (i10 != 0 || j12 != -9223372036854775807L) {
+            if (j11 > j10 || j12 != -9223372036854775807L) {
+                if (j11 != -9223372036854775807L || j10 >= j12) {
+                    if (j11 <= j10 && j10 < j12) {
                         return true;
                     }
                     return false;
@@ -123,18 +123,18 @@ public final class c {
         return true;
     }
 
-    public final void g(long j3, String str, ArrayList arrayList) {
+    public final void g(long j10, String str, ArrayList arrayList) {
         String str2;
         String str3 = this.h;
         if (!"".equals(str3)) {
             str = str3;
         }
-        if (f(j3) && "div".equals(this.f9630a) && (str2 = this.f9636i) != null) {
+        if (f(j10) && "div".equals(this.f8919a) && (str2 = this.f8924i) != null) {
             arrayList.add(new Pair(str, str2));
             return;
         }
         for (int i10 = 0; i10 < c(); i10++) {
-            b(i10).g(j3, str, arrayList);
+            b(i10).g(j10, str, arrayList);
         }
     }
 
@@ -142,16 +142,16 @@ public final class c {
         throw new UnsupportedOperationException("Method not decompiled: f4.c.h(long, java.util.Map, java.util.HashMap, java.lang.String, java.util.TreeMap):void");
     }
 
-    public final void i(long j3, boolean z10, String str, TreeMap treeMap) {
+    public final void i(long j10, boolean z10, String str, TreeMap treeMap) {
         String str2;
         boolean z11;
         TreeMap treeMap2;
-        long j10;
-        HashMap hashMap = this.f9638k;
+        long j11;
+        HashMap hashMap = this.f8926k;
         hashMap.clear();
-        HashMap hashMap2 = this.f9639l;
+        HashMap hashMap2 = this.f8927l;
         hashMap2.clear();
-        String str3 = this.f9630a;
+        String str3 = this.f8919a;
         if (!"metadata".equals(str3)) {
             String str4 = this.h;
             if ("".equals(str4)) {
@@ -159,16 +159,16 @@ public final class c {
             } else {
                 str2 = str4;
             }
-            if (this.f9632c && z10) {
-                SpannableStringBuilder e7 = e(str2, treeMap);
-                String str5 = this.f9631b;
+            if (this.f8921c && z10) {
+                SpannableStringBuilder e = e(str2, treeMap);
+                String str5 = this.f8920b;
                 str5.getClass();
-                e7.append((CharSequence) str5);
+                e.append((CharSequence) str5);
             } else if ("br".equals(str3) && z10) {
                 e(str2, treeMap).append('\n');
-            } else if (f(j3)) {
+            } else if (f(j10)) {
                 for (Map.Entry entry : treeMap.entrySet()) {
-                    CharSequence charSequence = ((d2.a) entry.getValue()).f8046a;
+                    CharSequence charSequence = ((d2.a) entry.getValue()).f6276a;
                     charSequence.getClass();
                     hashMap.put((String) entry.getKey(), Integer.valueOf(charSequence.length()));
                 }
@@ -177,27 +177,27 @@ public final class c {
                     c b10 = b(i10);
                     if (!z10 && !equals) {
                         z11 = false;
-                        j10 = j3;
+                        j11 = j10;
                         treeMap2 = treeMap;
                     } else {
                         z11 = true;
                         treeMap2 = treeMap;
-                        j10 = j3;
+                        j11 = j10;
                     }
-                    b10.i(j10, z11, str2, treeMap2);
+                    b10.i(j11, z11, str2, treeMap2);
                 }
                 if (equals) {
-                    SpannableStringBuilder e10 = e(str2, treeMap);
-                    int length = e10.length() - 1;
-                    while (length >= 0 && e10.charAt(length) == ' ') {
+                    SpannableStringBuilder e7 = e(str2, treeMap);
+                    int length = e7.length() - 1;
+                    while (length >= 0 && e7.charAt(length) == ' ') {
                         length--;
                     }
-                    if (length >= 0 && e10.charAt(length) != '\n') {
-                        e10.append('\n');
+                    if (length >= 0 && e7.charAt(length) != '\n') {
+                        e7.append('\n');
                     }
                 }
                 for (Map.Entry entry2 : treeMap.entrySet()) {
-                    CharSequence charSequence2 = ((d2.a) entry2.getValue()).f8046a;
+                    CharSequence charSequence2 = ((d2.a) entry2.getValue()).f6276a;
                     charSequence2.getClass();
                     hashMap2.put((String) entry2.getKey(), Integer.valueOf(charSequence2.length()));
                 }

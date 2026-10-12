@@ -1,112 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.os.Build;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotchInfoUtils;
-import org.telegram.messenger.SharedConfig;
-public final class aj0 extends FrameLayout {
-    public final Paint f24405a;
-    public final Path f24406b;
-    public final zi0 f24407c;
-    public float d;
-    public float f24408e;
-    public float f24409f;
-    public boolean h;
-    public NotchInfoUtils.NotchInfo f24410n;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class aj0 implements qd0, sd0 {
+    public final int f23568a;
+    public final fj0 f23569b;
 
-    public aj0(Context context) {
-        super(context);
-        float f7;
-        Paint paint = new Paint(1);
-        this.f24405a = paint;
-        this.f24406b = new Path();
-        paint.setColor(-16777216);
-        if (Build.VERSION.SDK_INT >= 31 && SharedConfig.getDevicePerformanceClass() >= 1) {
-            if (SharedConfig.getDevicePerformanceClass() == 2) {
-                f7 = 1.0f;
-            } else {
-                f7 = 1.5f;
-            }
-            this.f24407c = new yi0(this, f7);
-        } else {
-            this.f24407c = new xi0(this);
-        }
-        setIntensity(15.0f);
-        setBlurIntensity(0.0f);
-        setWillNotDraw(false);
-    }
-
-    public static void a(aj0 aj0Var, Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(32.0f));
-        super.draw(canvas);
-        canvas.restore();
+    public aj0(fj0 fj0Var, int i10) {
+        this.f23568a = i10;
+        this.f23569b = fj0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (!this.h) {
-            super.draw(canvas);
-            return;
+    public String e(int i10) {
+        int i11 = this.f23568a;
+        fj0 fj0Var = this.f23569b;
+        switch (i11) {
+            case 0:
+                if (fj0Var.O) {
+                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
+                }
+                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
+            default:
+                if (fj0Var.O) {
+                    if (i10 == 1) {
+                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
+                    }
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    Locale locale = Locale.US;
+                    return i2.d.i(i10, ".");
+                } else if (i10 == 1) {
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
+                } else {
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
+                }
         }
-        this.f24407c.c(new ew(this, 13), canvas);
-    }
-
-    public float getAvatarEndScale() {
-        float min;
-        int dp;
-        NotchInfoUtils.NotchInfo notchInfo = this.f24410n;
-        if (notchInfo == null) {
-            return 0.8f;
-        }
-        if (notchInfo.isLikelyCircle) {
-            min = notchInfo.bounds.width() - AndroidUtilities.dp(2.0f);
-            dp = AndroidUtilities.dp(100.0f);
-        } else {
-            min = Math.min(notchInfo.bounds.width(), this.f24410n.bounds.height());
-            dp = AndroidUtilities.dp(100.0f);
-        }
-        return Math.min(0.8f, min / dp);
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
-        this.f24410n = info;
-        if ((info != null && info.gravity != 17) || getWidth() > getHeight()) {
-            this.f24410n = null;
+    public void r(ud0 ud0Var, int i10) {
+        fj0 fj0Var = this.f23569b;
+        try {
+            fj0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
-        this.f24407c.d(i10, i11);
-    }
-
-    public void setBlurIntensity(float f7) {
-        this.f24409f = f7;
-        this.f24407c.b(f7);
-        invalidate();
-    }
-
-    public void setGooeyEnabled(boolean z10) {
-        if (this.h == z10) {
-            return;
-        }
-        this.h = z10;
-        invalidate();
-    }
-
-    public void setIntensity(float f7) {
-        this.d = f7;
-        this.f24407c.a(f7);
-        invalidate();
-    }
-
-    public void setPullProgress(float f7) {
-        this.f24408e = f7;
-        invalidate();
+        fj0Var.c(true);
     }
 }

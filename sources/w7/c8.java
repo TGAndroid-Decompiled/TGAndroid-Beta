@@ -21,19 +21,19 @@ public abstract class c8 {
             } else {
                 try {
                     sb2 = obj.toString();
-                } catch (Exception e7) {
+                } catch (Exception e) {
                     String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e7);
-                    StringBuilder w10 = a1.g.w("<", str2, " threw ");
-                    w10.append(e7.getClass().getName());
-                    w10.append(">");
-                    sb2 = w10.toString();
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e);
+                    StringBuilder v = a1.g.v("<", str2, " threw ");
+                    v.append(e.getClass().getName());
+                    v.append(">");
+                    sb2 = v.toString();
                 }
             }
             objArr[i11] = sb2;
             i11++;
         }
-        StringBuilder sb3 = new StringBuilder(str.length() + (length * 16));
+        StringBuilder sb3 = new StringBuilder((length * 16) + str.length());
         int i12 = 0;
         while (true) {
             length2 = objArr.length;

@@ -1,12 +1,12 @@
 package x7;
 public final class f8 {
-    public final g7 f50997a;
-    public final h8 f50998b;
-    public final e7 f50999c;
+    public final g7 f47987a;
+    public final h8 f47988b;
+    public final e7 f47989c;
 
-    public f8(v7.k kVar) {
-        this.f50997a = (g7) kVar.f49482b;
-        this.f50998b = (h8) kVar.f49483c;
-        this.f50999c = (e7) kVar.d;
+    public f8(u2.c cVar) {
+        this.f47987a = (g7) cVar.f45875b;
+        this.f47988b = (h8) cVar.f45876c;
+        this.f47989c = (e7) cVar.d;
     }
 }

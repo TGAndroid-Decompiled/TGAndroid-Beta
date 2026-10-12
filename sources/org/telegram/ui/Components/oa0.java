@@ -1,96 +1,202 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SvgHelper;
-public final class oa0 extends Drawable {
-    public final Bitmap f29121a;
-    public long f29123c;
-    public LinearGradient d;
-    public float f29125f;
-    public float f29126g;
-    public final y9 h;
-    public int f29127i;
-    public int f29128j;
-    public final Paint f29122b = new Paint(2);
-    public final Matrix f29124e = new Matrix();
+import org.telegram.tgnet.tl.TL_iv;
+public final class oa0 extends v7.x6 {
+    public int f27923a;
+    public final TL_iv.PageBlock f27924b;
+    public TL_iv.textConcat f27925c = new TL_iv.textConcat();
 
-    public oa0(y9 y9Var, String str, int i10, int i11) {
-        this.f29121a = SvgHelper.getBitmapByPathOnly(str, 512, 512, i10, i11);
-        this.h = y9Var;
+    public oa0(TL_iv.PageBlock pageBlock) {
+        this.f27924b = pageBlock;
+    }
+
+    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
+        if (textconcat.texts.isEmpty()) {
+            return new TL_iv.textEmpty();
+        }
+        if (textconcat.texts.size() == 1) {
+            return textconcat.texts.get(0);
+        }
+        return textconcat;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f29121a;
-        if (bitmap == null) {
+    public final void a(df.b bVar) {
+        int i10 = this.f27923a;
+        if (i10 >= 64) {
             return;
         }
-        int i10 = org.telegram.ui.ActionBar.h6.f20631h5;
-        int i11 = org.telegram.ui.ActionBar.h6.f20650i5;
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        int x03 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-        int i12 = this.f29127i;
-        Paint paint = this.f29122b;
-        Matrix matrix = this.f29124e;
-        if (i12 != x02 || this.f29128j != x03) {
-            this.f29127i = x02;
-            this.f29128j = x03;
-            int averageColor = AndroidUtilities.getAverageColor(x03, x02);
-            paint.setColor(x03);
-            float dp = AndroidUtilities.dp(500.0f);
-            this.f29126g = dp;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{x03, averageColor, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
+        this.f27923a = i10 + 1;
+        try {
+            v(bVar);
+        } finally {
+            this.f27923a--;
         }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f29123c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
+    }
+
+    @Override
+    public final void b(df.c cVar) {
+        int i10 = this.f27923a;
+        if (i10 >= 64) {
+            return;
         }
-        this.f29123c = elapsedRealtime;
-        this.f29125f = a1.g.B((float) abs, this.f29126g, 1800.0f, this.f29125f);
-        while (true) {
-            float f7 = this.f29125f;
-            float f10 = this.f29126g * 2.0f;
-            if (f7 >= f10) {
-                this.f29125f = f7 - f10;
-            } else {
-                matrix.setTranslate(f7, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
+        this.f27923a = i10 + 1;
+        try {
+            v(cVar);
+        } finally {
+            this.f27923a--;
+        }
+    }
+
+    @Override
+    public final void c(df.d dVar) {
+        TL_iv.textFixed textfixed = new TL_iv.textFixed();
+        textfixed.text = ra0.j(dVar.h);
+        w(textfixed);
+    }
+
+    @Override
+    public final void d(df.e eVar) {
+        if (eVar instanceof we.a) {
+            TL_iv.textStrike textstrike = new TL_iv.textStrike();
+            textstrike.text = y(eVar);
+            w(textstrike);
+        } else if (eVar instanceof bd.d) {
+            w(ra0.c(((bd.d) eVar).f2643g));
+        } else {
+            v(eVar);
+        }
+    }
+
+    @Override
+    public final void e(df.g gVar) {
+        TL_iv.textItalic textitalic = new TL_iv.textItalic();
+        textitalic.text = y(gVar);
+        w(textitalic);
+    }
+
+    @Override
+    public final void i(df.k kVar) {
+        w(y(kVar));
+    }
+
+    @Override
+    public final void k(df.n nVar) {
+        if (nVar instanceof bd.a) {
+            if (!this.f27925c.texts.isEmpty()) {
+                w(ra0.j("\n"));
             }
+            w(ra0.c(((bd.a) nVar).f2639g));
+            w(ra0.j("\n"));
+            return;
+        }
+        v(nVar);
+    }
+
+    @Override
+    public final void l(df.o oVar) {
+        int i10 = this.f27923a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f27923a = i10 + 1;
+        try {
+            v(oVar);
+        } finally {
+            this.f27923a--;
         }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void m(df.q qVar) {
+        int i10 = this.f27923a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f27923a = i10 + 1;
+        try {
+            v(qVar);
+        } finally {
+            this.f27923a--;
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void n(df.r rVar) {
+        if (!this.f27925c.texts.isEmpty()) {
+            w(ra0.j("\n\n"));
+        }
+        v(rVar);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void o(df.s sVar) {
+        w(ra0.j(sVar.f6532g));
+    }
+
+    @Override
+    public final void q(df.d dVar) {
+        w(ra0.j(dVar.h));
+    }
+
+    @Override
+    public final void r(df.g gVar) {
+        w(ra0.j("\n"));
+    }
+
+    @Override
+    public final void s(df.k kVar) {
+        String str = kVar.h;
+        if (str == null) {
+            str = "";
+        }
+        String trim = str.trim();
+        if (trim.startsWith("mailto:")) {
+            TL_iv.RichText textemail = new TL_iv.textEmail();
+            textemail.text = y(kVar);
+            textemail.email = trim.substring(7);
+            w(textemail);
+        } else if (trim.startsWith("tel:")) {
+            TL_iv.textPhone textphone = new TL_iv.textPhone();
+            textphone.text = y(kVar);
+            textphone.phone = trim.substring(4);
+            w(textphone);
+        } else {
+            TL_iv.RichText texturl = new TL_iv.textUrl();
+            texturl.text = y(kVar);
+            texturl.url = trim;
+            w(texturl);
+        }
+    }
+
+    @Override
+    public final void t(df.g gVar) {
+        String str;
+        if (this.f27924b instanceof TL_iv.pageBlockBlockquote) {
+            str = "\n";
+        } else {
+            str = " ";
+        }
+        w(ra0.j(str));
+    }
+
+    @Override
+    public final void u(df.g gVar) {
+        TL_iv.textBold textbold = new TL_iv.textBold();
+        textbold.text = y(gVar);
+        w(textbold);
+    }
+
+    public final void w(TL_iv.RichText richText) {
+        this.f27925c.texts.add(richText);
+    }
+
+    public final TL_iv.RichText y(df.p pVar) {
+        TL_iv.textConcat textconcat = this.f27925c;
+        this.f27925c = new TL_iv.textConcat();
+        v(pVar);
+        TL_iv.RichText x10 = x(this.f27925c);
+        this.f27925c = textconcat;
+        return x10;
     }
 }

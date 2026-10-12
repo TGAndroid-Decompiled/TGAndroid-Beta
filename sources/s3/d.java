@@ -4,21 +4,21 @@ import a1.g;
 import j$.util.DesugarCollections;
 import java.util.List;
 public final class d extends b {
-    public final long f47837a;
-    public final long f47838b;
-    public final List f47839c;
+    public final long f44806a;
+    public final long f44807b;
+    public final List f44808c;
 
-    public d(long j3, long j10, List list) {
-        this.f47837a = j3;
-        this.f47838b = j10;
-        this.f47839c = DesugarCollections.unmodifiableList(list);
+    public d(long j10, long j11, List list) {
+        this.f44806a = j10;
+        this.f44807b = j11;
+        this.f44808c = DesugarCollections.unmodifiableList(list);
     }
 
     @Override
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("SCTE-35 SpliceInsertCommand { programSplicePts=");
-        sb2.append(this.f47837a);
+        sb2.append(this.f44806a);
         sb2.append(", programSplicePlaybackPositionUs= ");
-        return g.s(sb2, this.f47838b, " }");
+        return g.r(sb2, this.f44807b, " }");
     }
 }

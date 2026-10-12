@@ -2,40 +2,40 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class zi implements Runnable {
-    public final int f44856a;
-    public final aj f44857b;
-    public final int f44858c;
+    public final int f42629a;
+    public final aj f42630b;
+    public final int f42631c;
     public final boolean d;
-    public final org.telegram.ui.Components.nl0 f44859e;
-    public final float f44860f;
+    public final org.telegram.ui.Components.gl0 e;
+    public final float f42632f;
     public final float h;
-    public final zg.n0 f44861n;
+    public final ah.i1 f42633n;
 
-    public zi(aj ajVar, int i10, boolean z10, org.telegram.ui.Components.nl0 nl0Var, float f7, float f10, zg.n0 n0Var, int i11) {
-        this.f44856a = i11;
-        this.f44857b = ajVar;
-        this.f44858c = i10;
+    public zi(aj ajVar, int i10, boolean z10, org.telegram.ui.Components.gl0 gl0Var, float f7, float f10, ah.i1 i1Var, int i11) {
+        this.f42629a = i11;
+        this.f42630b = ajVar;
+        this.f42631c = i10;
         this.d = z10;
-        this.f44859e = nl0Var;
-        this.f44860f = f7;
+        this.e = gl0Var;
+        this.f42632f = f7;
         this.h = f10;
-        this.f44861n = n0Var;
+        this.f42633n = i1Var;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f44856a) {
+        switch (this.f42629a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new zi(this.f44857b, this.f44858c, this.d, this.f44859e, this.f44860f, this.h, this.f44861n, 1), 50L);
+                AndroidUtilities.runOnUIThread(new zi(this.f42630b, this.f42631c, this.d, this.e, this.f42632f, this.h, this.f42633n, 1), 50L);
                 return;
             default:
-                eo eoVar = this.f44857b.f35858s;
-                org.telegram.ui.Cells.a0 t82 = eoVar.t8(this.f44858c, true);
+                fo foVar = this.f42630b.f34236s;
+                org.telegram.ui.Cells.a0 t82 = foVar.t8(this.f42631c, true);
                 if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.m2) eoVar).currentAccount;
-                    zg.j0.d(eoVar, this.f44859e, t82, null, this.f44860f, this.h, this.f44861n, i10, 1);
-                    zg.j0.f();
+                    i10 = ((org.telegram.ui.ActionBar.m2) foVar).currentAccount;
+                    ah.d1.d(foVar, this.e, t82, null, this.f42632f, this.h, this.f42633n, i10, 1);
+                    ah.d1.f();
                     return;
                 }
                 return;

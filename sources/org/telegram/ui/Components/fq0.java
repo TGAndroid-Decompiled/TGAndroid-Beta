@@ -1,44 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class fq0 extends LinearLayout {
-    public final ow0 f26155a;
-    public final TextView f26156b;
-    public final TextView f26157c;
+import android.graphics.Canvas;
+import android.view.View;
+public final class fq0 implements bh.k {
+    public final int f25106a;
+    public final mm0 f25107b;
 
-    public fq0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        setLayoutParams(new s4.q0(-1, -2));
-        setOrientation(0);
-        setGravity(16);
-        int dp = AndroidUtilities.dp(14.0f);
-        int i10 = dp / 2;
-        setPadding(dp, i10, dp, i10);
-        ow0 ow0Var = new ow0(context);
-        this.f26155a = ow0Var;
-        addView(ow0Var, w7.w5.d(40.0f, 40));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.w5.m(1.0f, 0, -1, 12, 0, 0));
-        TextView textView = new TextView(context);
-        this.f26156b = textView;
-        int i11 = org.telegram.ui.ActionBar.h6.E8;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
-        textView.setTextSize(1, 16.0f);
-        textView.setTag(textView);
-        textView.setMaxLines(1);
-        linearLayout.addView(textView);
-        TextView textView2 = new TextView(context);
-        this.f26157c = textView2;
-        textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.h6.w0(i11, c6Var), 102));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTag(textView2);
-        textView2.setMaxLines(1);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(textView2);
+    public fq0(mm0 mm0Var, int i10) {
+        this.f25106a = i10;
+        this.f25107b = mm0Var;
+    }
+
+    @Override
+    public final boolean a(Canvas canvas, View view, long j10) {
+        switch (this.f25106a) {
+            case 0:
+                return ((lq0) this.f25107b).drawChild(canvas, view, j10);
+            default:
+                return ((pu0) this.f25107b).drawChild(canvas, view, j10);
+        }
     }
 }

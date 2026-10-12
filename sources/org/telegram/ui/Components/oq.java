@@ -1,29 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public abstract class oq extends z4.g {
-    public nq f29272w0;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class oq extends FrameLayout {
+    public final View f28015a;
+    public final TextView f28016b;
 
     public oq(Context context) {
         super(context);
-        b(new mq((wi0) this));
+        View view = new View(context);
+        this.f28015a = view;
+        int dp = AndroidUtilities.dp(4.0f);
+        int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false);
+        int x03 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Qh, false);
+        view.setBackground(org.telegram.ui.ActionBar.g6.j0(dp, dp, dp, dp, x02, x03, x03));
+        addView(view, w7.a6.a(-1.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 0));
+        TextView textView = new TextView(context);
+        this.f28016b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.q.n(14.0f, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Sh, false), 1, textView);
+        addView(textView, w7.a6.e(-2, -2, 17));
     }
 
     @Override
-    @Deprecated
-    public void setAdapter(z4.a aVar) {
-        if (aVar instanceof nq) {
-            setAdapter((nq) aVar);
-            return;
-        }
-        throw new IllegalArgumentException();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
     }
 
-    public void setAdapter(nq nqVar) {
-        this.f29272w0 = nqVar;
-        super.setAdapter((z4.a) nqVar);
-        if (nqVar != null) {
-            x(nqVar.j(), false);
-        }
+    public void setText(CharSequence charSequence) {
+        this.f28016b.setText(charSequence);
     }
 }

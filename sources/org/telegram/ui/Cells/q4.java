@@ -10,12 +10,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class q4 extends FrameLayout {
-    public final RadioButton f22444a;
-    public final TextView f22445b;
-    public final TextView f22446c;
+    public final RadioButton f21724a;
+    public final TextView f21725b;
+    public final TextView f21726c;
     public boolean d;
-    public LocaleController.LocaleInfo f22447e;
-    public final int f22448f;
+    public LocaleController.LocaleInfo e;
+    public final int f21727f;
 
     public q4(Context context) {
         super(context);
@@ -28,15 +28,15 @@ public final class q4 extends FrameLayout {
         int i14;
         float f11;
         float f12;
-        this.f22448f = 62;
-        if (org.telegram.ui.ActionBar.h6.f20682k0 == null) {
-            org.telegram.ui.ActionBar.h6.Q(context);
+        this.f21727f = 62;
+        if (org.telegram.ui.ActionBar.g6.f20022k0 == null) {
+            org.telegram.ui.ActionBar.g6.Q(context);
         }
         setWillNotDraw(false);
         RadioButton radioButton = new RadioButton(context);
-        this.f22444a = radioButton;
+        this.f21724a = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D5, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E5, false));
+        radioButton.b(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.D5, false), org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.E5, false));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i10 = 5;
@@ -49,10 +49,10 @@ public final class q4 extends FrameLayout {
         } else {
             i11 = 20;
         }
-        addView(radioButton, w7.w5.a(22.0f, i11, 0.0f, z10 ? 20 : 0, 0.0f, 22, i15));
+        addView(radioButton, w7.a6.a(22.0f, i11, 0.0f, z10 ? 20 : 0, 0.0f, 22, i15));
         TextView textView = new TextView(context);
-        this.f22445b = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20668j5, false));
+        this.f21725b = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20007j5, false));
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -81,10 +81,10 @@ public final class q4 extends FrameLayout {
         } else {
             f10 = 23;
         }
-        addView(textView, w7.w5.a(-1.0f, f13, 0.0f, f10, 17.0f, -1, i16));
+        addView(textView, w7.a6.a(-1.0f, f13, 0.0f, f10, 17.0f, -1, i16));
         TextView textView2 = new TextView(context);
-        this.f22446c = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20818r5, false));
+        this.f21726c = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20157r5, false));
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
@@ -107,11 +107,11 @@ public final class q4 extends FrameLayout {
         } else {
             f12 = 23;
         }
-        addView(textView2, w7.w5.a(-1.0f, f14, 20.0f, f12, 0.0f, -1, i17));
+        addView(textView2, w7.a6.a(-1.0f, f14, 20.0f, f12, 0.0f, -1, i17));
     }
 
     public LocaleController.LocaleInfo getCurrentLocale() {
-        return this.f22447e;
+        return this.e;
     }
 
     @Override
@@ -120,7 +120,7 @@ public final class q4 extends FrameLayout {
         int i10;
         if (this.d) {
             boolean z10 = LocaleController.isRTL;
-            int i11 = this.f22448f;
+            int i11 = this.f21727f;
             if (z10) {
                 dp = 0.0f;
             } else {
@@ -134,7 +134,7 @@ public final class q4 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20682k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f20022k0);
         }
     }
 

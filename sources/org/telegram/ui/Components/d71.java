@@ -1,38 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-public final class d71 extends LinkMovementMethod {
-    public final UndoView f25252a;
+import org.telegram.messenger.AndroidUtilities;
+public final class d71 extends s4.b0 {
+    public final h71 I;
 
-    public d71(UndoView undoView) {
-        this.f25252a = undoView;
+    public d71(h71 h71Var, int i10) {
+        super(i10, false);
+        this.I = h71Var;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f25252a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
-                }
-                return super.onTouchEvent(textView, spannable, motionEvent);
-            }
-            return false;
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            return false;
+    public final int W0(s4.y0 y0Var) {
+        if (this.I.Y2) {
+            return AndroidUtilities.displaySize.y;
         }
+        return super.W0(y0Var);
     }
 }

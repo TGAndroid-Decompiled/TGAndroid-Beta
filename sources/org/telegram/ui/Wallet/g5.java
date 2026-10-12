@@ -1,60 +1,49 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.opengl.GLES20;
-public final class g5 {
-    public final int f34793a;
-    public final int f34794b;
-    public final int f34795c;
-    public final int d;
-    public final int f34796e;
-    public final int f34797f;
-    public final int f34798g;
-    public final int h;
-    public final int f34799i;
-    public final int f34800j;
-    public final int f34801k;
-    public final int f34802l;
-    public final int f34803m;
-    public final int f34804n;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.br;
+public final class g5 extends br {
+    public final h5 f33205a;
 
-    public g5(Context context, String str, String str2, String str3, String str4) {
-        int b10 = w7.m7.b(context, "wallet-card-".concat(str3), b(str, str4), b(str2, str4), "aPosition", "aNormal");
-        this.f34793a = b10;
-        this.f34794b = GLES20.glGetAttribLocation(b10, "aPosition");
-        this.f34795c = GLES20.glGetAttribLocation(b10, "aNormal");
-        this.d = GLES20.glGetUniformLocation(b10, "uMVPMatrix");
-        this.f34796e = GLES20.glGetUniformLocation(b10, "uModelViewMatrix");
-        this.f34797f = GLES20.glGetUniformLocation(b10, "uCardGradientRotation");
-        int glGetUniformLocation = GLES20.glGetUniformLocation(b10, "uCardDetailTexture");
-        int glGetUniformLocation2 = GLES20.glGetUniformLocation(b10, "uEngravingTexture");
-        this.f34798g = GLES20.glGetUniformLocation(b10, "uEngravingTexel");
-        this.h = GLES20.glGetAttribLocation(b10, "aFlecksRegion");
-        this.f34799i = GLES20.glGetAttribLocation(b10, "aFlecksCorner");
-        this.f34800j = GLES20.glGetUniformLocation(b10, "uFlecksPadding");
-        this.f34801k = GLES20.glGetUniformLocation(b10, "uMainLightDirection");
-        this.f34802l = GLES20.glGetUniformLocation(b10, "uQrCenter");
-        this.f34803m = GLES20.glGetUniformLocation(b10, "uDiamondBounds");
-        this.f34804n = GLES20.glGetUniformLocation(b10, "uDiamondAlpha");
-        GLES20.glUseProgram(b10);
-        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFinishLut"), 4);
-        GLES20.glUniform1i(glGetUniformLocation, 0);
-        GLES20.glUniform1i(glGetUniformLocation2, 1);
-        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFlecksTiles"), 2);
-        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFlecksTail"), 3);
+    public g5(m4 m4Var, int i10) {
+        super(i10, 0);
+        this.f33205a = m4Var;
     }
 
-    public static String b(String str, String str2) {
-        int indexOf = str.indexOf(10) + 1;
-        return str.substring(0, indexOf) + str2 + str.substring(indexOf);
-    }
-
-    public final void a(float[] fArr, float[] fArr2, float f7, float f10, float f11, float f12) {
-        GLES20.glUseProgram(this.f34793a);
-        GLES20.glUniform1f(this.f34797f, f11);
-        GLES20.glUniformMatrix4fv(this.d, 1, false, fArr, 0);
-        GLES20.glUniformMatrix4fv(this.f34796e, 1, false, fArr2, 0);
-        GLES20.glUniform3f(this.f34801k, f7, f10, 0.83f);
-        GLES20.glUniform2f(this.f34802l, ((336.0f - f12) - 25.0f) / 336.0f, 0.44878048f);
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        setAlpha(1.0f);
+        h5 h5Var = this.f33205a;
+        boolean z10 = h5Var.f33235a;
+        f5 f5Var = h5Var.L;
+        RectF rectF = h5Var.f33238f;
+        if (z10 && (h5Var.E instanceof p5) && h5Var.F.getWidth() > 0) {
+            p5 p5Var = (p5) h5Var.E;
+            float intrinsicWidth = this.drawable.getIntrinsicWidth() * h5Var.f33236b;
+            float f10 = h5Var.f33236b;
+            float intrinsicHeight = this.drawable.getIntrinsicHeight() * f10;
+            float f11 = f10 * f7;
+            float height = (f5Var.getHeight() / 2.0f) - (intrinsicHeight / 2.0f);
+            rectF.set(f11, height, intrinsicWidth + f11, intrinsicHeight + height);
+            if (h5Var.h && h5Var.R > 0.0f) {
+                h5Var.f33237c.mapRect(rectF);
+            } else {
+                rectF.offset(h5Var.N.leftMargin, (h5Var.F.getHeight() / 2.0f) - AndroidUtilities.dp(22.0f));
+            }
+            p5Var.c(rectF.left / h5Var.F.getWidth(), rectF.top / h5Var.F.getHeight(), rectF.width() / h5Var.F.getWidth(), rectF.height() / h5Var.F.getHeight());
+            if (!p5Var.d && p5Var.f33598c) {
+                f5Var.postInvalidateOnAnimation();
+            } else {
+                float max = Math.max(0.0f, Math.min(1.0f, h5Var.R));
+                setAlpha(max);
+                if (max == 0.0f) {
+                    return;
+                }
+            }
+        }
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
     }
 }

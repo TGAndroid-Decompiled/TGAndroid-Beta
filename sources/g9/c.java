@@ -2,8 +2,10 @@ package g9;
 
 import java.math.RoundingMode;
 import v7.l7;
+import v7.o7;
+import v7.u6;
 public abstract class c {
-    public static final int f10429a = 0;
+    public static final int f10034a = 0;
 
     static {
         Math.log(2.0d);
@@ -39,53 +41,49 @@ public abstract class c {
         } else {
             z10 = false;
         }
-        if (z10) {
-            int exponent = Math.getExponent(d);
-            if (Math.getExponent(d) >= -1022) {
-                switch (b.f10428a[roundingMode.ordinal()]) {
-                    case 1:
-                        if (!b(d)) {
-                            throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
-                        }
+        u6.f("x must be positive and finite", z10);
+        int exponent = Math.getExponent(d);
+        if (Math.getExponent(d) >= -1022) {
+            switch (b.f10033a[roundingMode.ordinal()]) {
+                case 1:
+                    o7.b(b(d));
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    z11 = !b(d);
+                    break;
+                case 4:
+                    if (exponent < 0) {
+                        z11 = true;
+                    }
+                    b10 = b(d);
+                    z11 &= !b10;
+                    break;
+                case 5:
+                    if (exponent >= 0) {
+                        z11 = true;
+                    }
+                    b10 = b(d);
+                    z11 &= !b10;
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    double longBitsToDouble = Double.longBitsToDouble((Double.doubleToRawLongBits(d) & 4503599627370495L) | 4607182418800017408L);
+                    if (longBitsToDouble * longBitsToDouble > 2.0d) {
+                        z11 = true;
                         break;
-                    case 2:
-                        break;
-                    case 3:
-                        z11 = !b(d);
-                        break;
-                    case 4:
-                        if (exponent < 0) {
-                            z11 = true;
-                        }
-                        b10 = b(d);
-                        z11 &= !b10;
-                        break;
-                    case 5:
-                        if (exponent >= 0) {
-                            z11 = true;
-                        }
-                        b10 = b(d);
-                        z11 &= !b10;
-                        break;
-                    case 6:
-                    case 7:
-                    case 8:
-                        double longBitsToDouble = Double.longBitsToDouble((Double.doubleToRawLongBits(d) & 4503599627370495L) | 4607182418800017408L);
-                        if (longBitsToDouble * longBitsToDouble > 2.0d) {
-                            z11 = true;
-                            break;
-                        }
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-                if (z11) {
-                    return exponent + 1;
-                }
-                return exponent;
+                    }
+                    break;
+                default:
+                    throw new AssertionError();
             }
-            return c(d * 4.503599627370496E15d) - 52;
+            if (z11) {
+                return exponent + 1;
+            }
+            return exponent;
         }
-        throw new IllegalArgumentException("x must be positive and finite");
+        return c(d * 4.503599627370496E15d) - 52;
     }
 }

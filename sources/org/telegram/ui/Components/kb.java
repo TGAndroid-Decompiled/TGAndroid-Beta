@@ -4,29 +4,29 @@ import android.graphics.Rect;
 import android.view.GestureDetector;
 import android.widget.FrameLayout;
 public final class kb extends FrameLayout {
-    public final wb f27805a;
-    public final Rect f27806b;
-    public final GestureDetector f27807c;
+    public final wb f26653a;
+    public final Rect f26654b;
+    public final GestureDetector f26655c;
     public boolean d;
-    public boolean f27808e;
-    public float f27809f;
+    public boolean e;
+    public float f26656f;
     public float h;
-    public float f27810n;
-    public boolean f27811r;
-    public boolean f27812s;
+    public float f26657n;
+    public boolean f26658r;
+    public boolean f26659s;
     public boolean v;
-    public boolean f27813w;
-    public final FrameLayout f27814x;
-    public final sc f27815y;
+    public boolean f26660w;
+    public final FrameLayout f26661x;
+    public final sc f26662y;
 
     public kb(sc scVar, wb wbVar, FrameLayout frameLayout) {
         super(wbVar.getContext());
-        this.f27815y = scVar;
-        this.f27814x = frameLayout;
-        this.f27806b = new Rect();
-        this.f27805a = wbVar;
+        this.f26662y = scVar;
+        this.f26661x = frameLayout;
+        this.f26654b = new Rect();
+        this.f26653a = wbVar;
         GestureDetector gestureDetector = new GestureDetector(wbVar.getContext(), new hc(this, wbVar));
-        this.f27807c = gestureDetector;
+        this.f26655c = gestureDetector;
         gestureDetector.setIsLongpressEnabled(false);
         addView(wbVar);
     }

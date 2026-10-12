@@ -1,128 +1,159 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class w41 extends org.telegram.ui.Components.db {
-    public final LinearLayout X;
-    public org.telegram.ui.Components.h71 Y;
+import android.app.Activity;
+public final class w41 extends org.telegram.ui.ActionBar.j {
+    public final int f41151a;
+    public final Object f41152b;
 
-    public w41(Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.gi0 gi0Var) {
-        super(context, null, false, false, c6Var);
-        int i10;
-        fixNavigationBar();
-        this.v = 0.2f;
-        Paint paint = new Paint(1);
-        paint.setStyle(Paint.Style.FILL);
-        int i11 = org.telegram.ui.ActionBar.h6.Oh;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.X = linearLayout;
-        linearLayout.setPadding(AndroidUtilities.dp(6.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(6.0f) + this.backgroundPaddingLeft, 0);
-        linearLayout.setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        ImageView imageView = new ImageView(getContext());
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.large_ads_info);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.h6.w0(i11, c6Var)));
-        frameLayout.addView(imageView, w7.w5.a(80.0f, 0.0f, 20.0f, 0.0f, 0.0f, 80, 1));
-        linearLayout.addView(frameLayout, w7.w5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 100));
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.SearchAdsAboutTitle));
-        textView.setTypeface(AndroidUtilities.bold());
-        int i12 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.messenger.am.o(i12, c6Var, textView, 1, 20.0f);
-        textView.setGravity(1);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.w5.t(-2, -2, 1, 22, 14, 22, 0), context);
-        h.setText(LocaleController.getString(R.string.SearchAdsAboutSubtitle));
-        h.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
-        h.setTextSize(1, 14.0f);
-        h.setGravity(1);
-        linearLayout.addView(h, w7.w5.t(-2, -2, 1, 22, 8, 22, 0));
-        linearLayout.addView(new ai.x5(this, context, R.drawable.menu_privacy, LocaleController.getString(R.string.SearchAdsAbout1Title), LocaleController.getString(R.string.SearchAdsAbout1Subtitle)), w7.w5.p(-1, -2, 0.0f, 0, 0, 20, 0, 0));
-        boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
-        int i13 = R.drawable.menu_feature_noads;
-        String string = LocaleController.getString(R.string.SearchAdsAbout2Title);
-        if (isPremium) {
-            i10 = R.string.SearchAdsAbout2SubtitlePremium;
-        } else {
-            i10 = R.string.SearchAdsAbout2Subtitle;
-        }
-        linearLayout.addView(new ai.x5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new dm0(this, isPremium, gi0Var, 7)), true)), w7.w5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
-        View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20561d7, c6Var));
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
-        layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
-        linearLayout.addView(view, layoutParams);
-        TextView textView2 = new TextView(context);
-        textView2.setText(LocaleController.getString(R.string.SearchAdsAboutLaunchTitle));
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
-        textView2.setTextSize(1, 20.0f);
-        textView2.setTextAlignment(4);
-        textView2.setGravity(17);
-        linearLayout.addView(textView2, w7.w5.t(-2, -2, 1, 22, 0, 22, 0));
-        SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SearchAdsAboutLaunchSubtitle)), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SearchAdsAboutLaunchLearnMore), new pz0(this, 11)), true));
-        org.telegram.ui.Components.ia0 ia0Var = new org.telegram.ui.Components.ia0(context, null);
-        ia0Var.setText(replaceCharSequence);
-        ia0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
-        ia0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.gc, c6Var));
-        ia0Var.setTextSize(1, 14.0f);
-        ia0Var.setGravity(1);
-        ia0Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(ia0Var, w7.w5.t(-2, -2, 1, 26, 8, 26, 0));
-        TextView textView3 = new TextView(context);
-        textView3.setLines(1);
-        textView3.setSingleLine(true);
-        textView3.setGravity(17);
-        textView3.setEllipsize(TextUtils.TruncateAt.END);
-        textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Sh, c6Var));
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextSize(1, 14.0f);
-        textView3.setText(LocaleController.getString(R.string.SearchAdsAboutUnderstood));
-        textView3.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{24.0f}, org.telegram.ui.ActionBar.h6.w0(i11, c6Var)));
-        textView3.setOnClickListener(new r41(this, 1));
-        linearLayout.addView(textView3, w7.w5.t(-1, 48, 0, 14, 22, 14, 14));
-        this.Y.N(false);
+    public w41(Object obj, int i10) {
+        this.f41151a = i10;
+        this.f41152b = obj;
     }
 
-    public static void Q(w41 w41Var, boolean z10, org.telegram.ui.Components.gi0 gi0Var) {
-        if (z10) {
-            MessagesController.getInstance(w41Var.currentAccount).disableAds(true);
-            gi0Var.run();
-        } else {
-            org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-            if (U == null) {
+    @Override
+    public final void b(int i10) {
+        int i11;
+        switch (this.f41151a) {
+            case 0:
+                if (i10 == -1) {
+                    ((SaveToGallerySettingsActivity) this.f41152b).finishFragment();
+                    return;
+                }
                 return;
-            }
-            U.presentFragment(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(3)));
+            case 1:
+                if (i10 == -1) {
+                    ((SecretMediaViewer) this.f41152b).e(true, false);
+                    return;
+                }
+                return;
+            case 2:
+                if (i10 == -1) {
+                    ((SessionsActivity) this.f41152b).finishFragment();
+                    return;
+                }
+                return;
+            case 3:
+                o91 o91Var = (o91) this.f41152b;
+                if (i10 == -1) {
+                    o91Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    o91Var.l0(new org.telegram.ui.ActionBar.m2(null));
+                    return;
+                } else {
+                    return;
+                }
+            case 4:
+                if (i10 == -1) {
+                    ((hb1) this.f41152b).finishFragment();
+                    return;
+                }
+                return;
+            case 5:
+                StickersActivity stickersActivity = (StickersActivity) this.f41152b;
+                if (i10 == -1) {
+                    if (stickersActivity.onBackPressed(true)) {
+                        stickersActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                }
+                StickersActivity.d0(stickersActivity, i10);
+                return;
+            case 6:
+                he1 he1Var = (he1) this.f41152b;
+                if (i10 == -1) {
+                    he1Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    he1.Y(he1Var);
+                    return;
+                } else {
+                    return;
+                }
+            case 7:
+                if (i10 == -1) {
+                    ((af1) this.f41152b).finishFragment();
+                    return;
+                }
+                return;
+            case 8:
+                if (i10 == -1) {
+                    ((rg1) this.f41152b).finishFragment();
+                    return;
+                }
+                return;
+            case 9:
+                if (i10 == -1) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f41152b;
+                    if (twoStepVerificationActivity.X >= 0) {
+                        twoStepVerificationActivity.x0();
+                        return;
+                    } else {
+                        twoStepVerificationActivity.finishFragment();
+                        return;
+                    }
+                }
+                return;
+            case 10:
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f41152b;
+                if (i10 == -1) {
+                    if (userInfoActivity.onBackPressed(true)) {
+                        userInfoActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    userInfoActivity.c0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 11:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f41152b;
+                if (i10 == -1) {
+                    usersSelectActivity.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    usersSelectActivity.X();
+                    return;
+                } else {
+                    return;
+                }
+            case 12:
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.f41152b;
+                if (i10 == -1) {
+                    i8Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    Activity parentActivity = i8Var.getParentActivity();
+                    i11 = ((org.telegram.ui.ActionBar.m2) i8Var).currentAccount;
+                    org.telegram.ui.Wallet.z4.u0(parentActivity, i11, i8Var.getResourceProvider());
+                    return;
+                } else if (i10 == 3) {
+                    i8Var.o0();
+                    return;
+                } else {
+                    return;
+                }
+            case 13:
+                if (i10 == -1) {
+                    ((sg.y0) this.f41152b).dismiss();
+                    return;
+                }
+                return;
+            case 14:
+                if (i10 == -1) {
+                    ((yh.g4) this.f41152b).finishFragment();
+                    return;
+                }
+                return;
+            default:
+                if (i10 == -1) {
+                    ((zh.g) this.f41152b).finishFragment();
+                    return;
+                }
+                return;
         }
-        w41Var.dismiss();
-    }
-
-    @Override
-    public final CharSequence A() {
-        return LocaleController.getString(R.string.AboutRevenueSharingAds);
-    }
-
-    @Override
-    public final org.telegram.ui.Components.vm0 x(org.telegram.ui.Components.wm0 wm0Var) {
-        org.telegram.ui.Components.h71 h71Var = new org.telegram.ui.Components.h71(wm0Var, getContext(), this.currentAccount, 0, true, new e5(this, 21), this.resourcesProvider);
-        this.Y = h71Var;
-        return h71Var;
     }
 }

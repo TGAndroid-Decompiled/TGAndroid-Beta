@@ -4,10 +4,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qb;
 import org.telegram.ui.Components.sc;
 public final class g2 implements qb {
-    public final m2 f20410a;
+    public final m2 f19818a;
 
     public g2(m2 m2Var) {
-        this.f20410a = m2Var;
+        this.f19818a = m2Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class g2 implements qb {
 
     @Override
     public final int f(int i10) {
-        if (this.f20410a.isSupportEdgeToEdge()) {
+        if (this.f19818a.isSupportEdgeToEdge()) {
             return AndroidUtilities.navigationBarHeight;
         }
         return 0;

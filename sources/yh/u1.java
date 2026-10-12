@@ -1,80 +1,32 @@
 package yh;
 
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class u1 implements Utilities.Callback {
-    public final int f53494a;
-    public final s3 f53495b;
+import org.telegram.ui.Components.ns0;
+public final class u1 implements ne.d, Utilities.Callback2Return {
+    public final ns0 f49147a;
 
-    public u1(s3 s3Var, int i10) {
-        this.f53494a = i10;
-        this.f53495b = s3Var;
+    public u1(ns0 ns0Var) {
+        this.f49147a = ns0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        TLRPC.Message message;
-        switch (this.f53494a) {
-            case 0:
-                s3 s3Var = this.f53495b;
-                s3Var.getClass();
-                if (((Boolean) obj).booleanValue()) {
-                    s3Var.skipDismissAnimation();
-                }
-                s3Var.dismiss();
-                return;
-            case 1:
-                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                s3 s3Var2 = this.f53495b;
-                s3Var2.getClass();
-                if (stargiftupgradepreview != null) {
-                    s3Var2.f53412i1 = stargiftupgradepreview.sample_attributes;
-                    s3Var2.f53414j1 = stargiftupgradepreview.prices;
-                    s3Var2.f53416k1 = stargiftupgradepreview.next_prices;
-                    s3Var2.c2();
-                    return;
-                }
-                return;
-            case 2:
-                this.f53495b.dismiss(((Boolean) obj).booleanValue());
-                return;
-            default:
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                s3 s3Var3 = this.f53495b;
-                s3Var3.L0 = false;
-                s3Var3.M0 = true;
-                if (savedStarGift != null) {
-                    s3Var3.f53408g1 = Boolean.valueOf(savedStarGift.unsaved);
-                    MessageObject messageObject = s3Var3.F0;
-                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
-                            boolean z10 = tL_messageActionStarGiftUnique.saved;
-                            boolean z11 = !savedStarGift.unsaved;
-                            if (z10 != z11) {
-                                tL_messageActionStarGiftUnique.saved = z11;
-                            } else {
-                                return;
-                            }
-                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
-                            boolean z12 = tL_messageActionStarGift.saved;
-                            boolean z13 = !savedStarGift.unsaved;
-                            if (z12 != z13) {
-                                tL_messageActionStarGift.saved = z13;
-                            } else {
-                                return;
-                            }
-                        }
-                        s3Var3.k2(messageObject, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public void p(int i10, float f7, float f10, ne.e eVar) {
+        this.f49147a.l();
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        ns0 ns0Var = this.f49147a;
+        ns0Var.i();
+        if (((Integer) obj).intValue() == -1) {
+            ns0Var.h(null, new r1(ns0Var, 0));
+            return Boolean.TRUE;
         }
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void C(float f7, int i10) {
     }
 }

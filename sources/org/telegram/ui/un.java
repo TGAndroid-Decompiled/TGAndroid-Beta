@@ -1,49 +1,190 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class un implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42540a;
-    public final vn f42541b;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class un {
+    public MessageObject f40710a;
+    public int f40711b;
+    public int f40712c;
+    public byte[] e;
+    public boolean f40713f;
+    public boolean h;
+    public String f40715i;
+    public ArrayList f40716j;
+    public TLRPC.TodoItem f40717k;
+    public TLRPC.PollAnswer f40718l;
+    public boolean f40714g = false;
+    public int d = -1;
 
-    public un(vn vnVar, int i10) {
-        this.f42540a = i10;
-        this.f42541b = vnVar;
+    public un(int i10, int i11, MessageObject messageObject) {
+        this.f40710a = messageObject;
+        this.f40711b = i10;
+        this.f40712c = i11;
+        e();
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42540a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vn vnVar = this.f42541b;
-                vnVar.f42817f = floatValue;
-                View view = vnVar.h.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vn vnVar2 = this.f42541b;
-                vnVar2.f42817f = floatValue2;
-                View view2 = vnVar2.h.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vn vnVar3 = this.f42541b;
-                vnVar3.f42817f = floatValue3;
-                View view3 = vnVar3.h.fragmentView;
-                if (view3 != null) {
-                    view3.invalidate();
-                    return;
-                }
-                return;
+    public static un b(int i10, int i11, MessageObject messageObject) {
+        if (messageObject == null) {
+            return null;
         }
+        messageObject.getDialogId();
+        return new un(i10, i11, messageObject);
+    }
+
+    public static un c(MessageObject messageObject) {
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null && message.message != null) {
+            return b(0, Math.min(MessagesController.getInstance(messageObject.currentAccount).quoteLengthMax, messageObject.messageOwner.message.length()), messageObject);
+        }
+        return null;
+    }
+
+    public final void a(MessageObject messageObject) {
+        String str;
+        int i10;
+        int i11;
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null && (str = message.message) != null) {
+            int i12 = this.f40712c;
+            if (i12 >= this.f40711b && i12 <= str.length() && this.f40711b <= messageObject.messageOwner.message.length() && (i10 = this.f40711b) >= 0 && (i11 = this.f40712c) >= 0) {
+                if (TextUtils.equals(this.f40715i, messageObject.messageOwner.message.substring(i10, i11))) {
+                    this.f40710a = messageObject;
+                    e();
+                    this.f40713f = false;
+                    return;
+                }
+                int indexOf = messageObject.messageOwner.message.indexOf(this.f40715i);
+                if (indexOf >= 0) {
+                    this.f40710a = messageObject;
+                    this.f40712c = (this.f40712c - this.f40711b) + indexOf;
+                    this.f40711b = indexOf;
+                    e();
+                    this.f40713f = false;
+                    return;
+                }
+                this.f40710a = messageObject;
+                this.f40711b = 0;
+                this.f40712c = messageObject.messageOwner.message.length();
+                e();
+                this.f40713f = true;
+                return;
+            }
+            FileLog.e("ReplyQuote.checkEdit: start/end are invalid (" + this.f40711b + ", " + this.f40712c + ", len=" + messageObject.messageOwner.message.length() + ")");
+            this.f40713f = false;
+            return;
+        }
+        FileLog.e("ReplyQuote.checkEdit: message is null");
+        this.f40713f = false;
+    }
+
+    public final boolean d() {
+        if (this.f40714g) {
+            if (this.f40717k == null) {
+                return false;
+            }
+        } else if (this.h) {
+            if (this.f40718l == null) {
+                return false;
+            }
+        } else {
+            return !TextUtils.isEmpty(this.f40715i);
+        }
+        return true;
+    }
+
+    public final boolean e() {
+        TLRPC.Message message;
+        String str;
+        int i10;
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji;
+        MessageObject messageObject = this.f40710a;
+        if (messageObject != null && (message = messageObject.messageOwner) != null && (str = message.message) != null) {
+            if (this.f40714g) {
+                TLRPC.TodoItem findTodoItem = MessageObject.findTodoItem(messageObject, this.d);
+                if (findTodoItem == null) {
+                    FileLog.e("ReplyQuote: todo task is not found");
+                    return false;
+                }
+                this.f40717k = findTodoItem;
+                return true;
+            } else if (this.h) {
+                TLRPC.PollAnswer findPollItem = MessageObject.findPollItem(messageObject, this.e);
+                if (findPollItem == null) {
+                    FileLog.e("ReplyQuote: poll item is not found");
+                    return false;
+                }
+                this.f40718l = findPollItem;
+                return true;
+            } else {
+                int i11 = this.f40712c;
+                if (i11 >= this.f40711b && i11 <= str.length() && this.f40711b <= this.f40710a.messageOwner.message.length() && (i10 = this.f40711b) >= 0 && this.f40712c >= 0) {
+                    String str2 = this.f40710a.messageOwner.message;
+                    int max = Math.max(0, i10);
+                    while (max < this.f40712c && Character.isWhitespace(str2.charAt(max))) {
+                        max++;
+                    }
+                    int min = Math.min(this.f40712c, str2.length());
+                    while (min > max && Character.isWhitespace(str2.charAt(min - 1))) {
+                        min--;
+                    }
+                    if (max == min) {
+                        FileLog.e("ReplyQuote: message is full of whitespace");
+                        return false;
+                    }
+                    this.f40715i = this.f40710a.messageOwner.message.substring(max, min);
+                    ArrayList arrayList = this.f40716j;
+                    if (arrayList != null) {
+                        arrayList.clear();
+                    }
+                    ArrayList<TLRPC.MessageEntity> arrayList2 = this.f40710a.messageOwner.entities;
+                    if (arrayList2 != null && !arrayList2.isEmpty()) {
+                        for (int i12 = 0; i12 < this.f40710a.messageOwner.entities.size(); i12++) {
+                            TLRPC.MessageEntity messageEntity = this.f40710a.messageOwner.entities.get(i12);
+                            int i13 = messageEntity.offset;
+                            if (AndroidUtilities.intersect1dInclusive(max, min, i13, messageEntity.length + i13)) {
+                                if (messageEntity instanceof TLRPC.TL_messageEntityBold) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityBold();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityItalic) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityItalic();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityUnderline) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityUnderline();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityStrike) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityStrike();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntitySpoiler) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntitySpoiler();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji2 = new TLRPC.TL_messageEntityCustomEmoji();
+                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji3 = (TLRPC.TL_messageEntityCustomEmoji) messageEntity;
+                                    tL_messageEntityCustomEmoji2.document_id = tL_messageEntityCustomEmoji3.document_id;
+                                    tL_messageEntityCustomEmoji2.document = tL_messageEntityCustomEmoji3.document;
+                                    tL_messageEntityCustomEmoji = tL_messageEntityCustomEmoji2;
+                                }
+                                int i14 = messageEntity.offset;
+                                int i15 = i14 - max;
+                                int i16 = (i14 + messageEntity.length) - max;
+                                if ((i15 >= 0 || i16 >= 0) && (i15 <= min || i16 <= min)) {
+                                    tL_messageEntityCustomEmoji.offset = Math.max(0, i15);
+                                    tL_messageEntityCustomEmoji.length = Math.min(i16, min - max) - tL_messageEntityCustomEmoji.offset;
+                                    if (this.f40716j == null) {
+                                        this.f40716j = new ArrayList();
+                                    }
+                                    this.f40716j.add(tL_messageEntityCustomEmoji);
+                                }
+                            }
+                        }
+                    }
+                    return true;
+                }
+                FileLog.e("ReplyQuote: start/end are invalid (" + this.f40711b + ", " + this.f40712c + ", len=" + this.f40710a.messageOwner.message.length() + ")");
+                return false;
+            }
+        }
+        FileLog.e("ReplyQuote: message is null");
+        return false;
     }
 }

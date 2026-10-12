@@ -1,32 +1,26 @@
 package r3;
 
-import b2.m0;
-import b2.o0;
-import b2.s;
-import v7.w7;
-public final class a implements o0 {
-    public final long f47166a;
-    public final long f47167b;
-    public final long f47168c;
-    public final long d;
-    public final long f47169e;
+import a1.g;
+import e2.m0;
+import j$.util.Objects;
+import java.util.Locale;
+import v7.u6;
+public final class a {
+    public final long f43892a;
+    public final long f43893b;
+    public final int f43894c;
 
-    public a(long j3, long j10, long j11, long j12, long j13) {
-        this.f47166a = j3;
-        this.f47167b = j10;
-        this.f47168c = j11;
-        this.d = j12;
-        this.f47169e = j13;
-    }
-
-    @Override
-    public final s a() {
-        return null;
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
+    public a(long j10, long j11, int i10) {
+        boolean z10;
+        if (j10 < j11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.g(z10);
+        this.f43892a = j10;
+        this.f43893b = j11;
+        this.f43894c = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -35,7 +29,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f47166a == aVar.f47166a && this.f47167b == aVar.f47167b && this.f47168c == aVar.f47168c && this.d == aVar.d && this.f47169e == aVar.f47169e) {
+            if (this.f43892a == aVar.f43892a && this.f43893b == aVar.f43893b && this.f43894c == aVar.f43894c) {
                 return true;
             }
         }
@@ -43,17 +37,16 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        int b10 = w7.b(this.f47167b);
-        int b11 = w7.b(this.f47168c);
-        int b12 = w7.b(this.d);
-        return w7.b(this.f47169e) + ((b12 + ((b11 + ((b10 + ((w7.b(this.f47166a) + 527) * 31)) * 31)) * 31)) * 31);
+        return Objects.hash(Long.valueOf(this.f43892a), Long.valueOf(this.f43893b), Integer.valueOf(this.f43894c));
     }
 
     public final String toString() {
-        return "Motion photo metadata: photoStartPosition=" + this.f47166a + ", photoSize=" + this.f47167b + ", photoPresentationTimestampUs=" + this.f47168c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f47169e;
-    }
-
-    @Override
-    public final void b(m0 m0Var) {
+        String str = m0.f8372a;
+        Locale locale = Locale.US;
+        StringBuilder t10 = g.t(this.f43892a, "Segment: startTimeMs=", ", endTimeMs=");
+        t10.append(this.f43893b);
+        t10.append(", speedDivisor=");
+        t10.append(this.f43894c);
+        return t10.toString();
     }
 }

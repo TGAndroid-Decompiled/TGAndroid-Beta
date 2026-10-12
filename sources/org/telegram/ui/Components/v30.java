@@ -1,44 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class v30 implements Runnable {
-    public final int f31371a;
-    public final Context f31372b;
+public final class v30 extends TextView {
+    public final Paint[] f29872a;
+    public final org.telegram.ui.m50 f29873b;
 
-    public v30(Context context, int i10) {
-        this.f31371a = i10;
-        this.f31372b = context;
+    public v30(org.telegram.ui.m50 m50Var, Context context) {
+        super(context);
+        this.f29873b = m50Var;
+        this.f29872a = new Paint[m50Var.e.length];
+        int i10 = 0;
+        while (true) {
+            Paint[] paintArr = this.f29872a;
+            if (i10 < paintArr.length) {
+                paintArr[i10] = new Paint(1);
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f31371a) {
-            case 0:
-                t30.j(this.f31372b);
-                return;
-            case 1:
-                of.f.s(this.f31372b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 2:
-                Activity findActivity = AndroidUtilities.findActivity(this.f31372b);
-                if (findActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) findActivity).p0(new PremiumPreviewFragment(0, rg.j0.B1(10)));
-                    return;
-                }
-                return;
-            default:
-                Activity findActivity2 = AndroidUtilities.findActivity(this.f31372b);
-                if (findActivity2 instanceof LaunchActivity) {
-                    ((LaunchActivity) findActivity2).p0(new PremiumPreviewFragment(0, rg.j0.B1(9)));
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        org.telegram.ui.m50 m50Var = this.f29873b;
+        int i11 = m50Var.h;
+        Paint[] paintArr = this.f29872a;
+        paintArr[i11].setAlpha(255);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[m50Var.h]);
+        float f7 = m50Var.f31468f;
+        if (f7 > 0.0f && (i10 = m50Var.h + 1) < paintArr.length) {
+            paintArr[i10].setAlpha((int) (f7 * 255.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[m50Var.h + 1]);
         }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.v30.onSizeChanged(int, int, int, int):void");
     }
 }

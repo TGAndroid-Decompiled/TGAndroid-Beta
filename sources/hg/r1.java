@@ -1,73 +1,47 @@
 package hg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.b5;
-import org.telegram.ui.Components.d00;
-import org.telegram.ui.Components.yw0;
-public final class r1 extends yw0 {
-    public final int f11364w0;
+import fi.q3;
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.k31;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.du;
+public final class r1 extends TimerTask {
+    public final int f10721a;
+    public final String f10722b;
+    public final lm0 f10723c;
 
-    public r1(Context context, b5 b5Var, int i10) {
-        super(context, b5Var);
-        this.f11364w0 = i10;
+    public r1(lm0 lm0Var, String str, int i10) {
+        this.f10721a = i10;
+        this.f10723c = lm0Var;
+        this.f10722b = str;
     }
 
     @Override
-    public boolean P() {
-        switch (this.f11364w0) {
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-            default:
-                return super.P();
-            case 5:
-                return false;
-        }
-    }
-
-    @Override
-    public void addView(View view) {
-        switch (this.f11364w0) {
-            case 4:
-                if (view instanceof d00) {
-                    ViewGroup.LayoutParams layoutParams = ((d00) view).getLayoutParams();
-                    if (layoutParams == null) {
-                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
-                    }
-                    if (layoutParams instanceof FrameLayout.LayoutParams) {
-                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
-                    }
-                    view.setLayoutParams(layoutParams);
-                }
-                super.addView(view);
-                return;
-            default:
-                super.addView(view);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.r1.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f11364w0) {
+    public final void run() {
+        switch (this.f10721a) {
             case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                t1 t1Var = (t1) this.f10723c;
+                try {
+                    t1Var.f10749n.cancel();
+                    t1Var.f10749n = null;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                String str = this.f10722b;
+                t1Var.getClass();
+                AndroidUtilities.runOnUIThread(new q3(10, t1Var, str));
                 return;
             default:
-                super.onMeasure(i10, i11);
+                try {
+                    ((du) this.f10723c).d.cancel();
+                    ((du) this.f10723c).d = null;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+                Utilities.searchQueue.postRunnable(new k31(16, (du) this.f10723c, this.f10722b));
                 return;
         }
     }

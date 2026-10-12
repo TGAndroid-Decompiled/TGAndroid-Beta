@@ -1,8 +1,10 @@
 package j4;
+
+import e2.k0;
 public interface g0 {
-    void a(int i10, e2.v vVar);
+    void a(int i10, e2.x xVar);
 
-    void c(e2.b0 b0Var, c3.q qVar, f0 f0Var);
+    void b(k0 k0Var, c3.q qVar, f0 f0Var);
 
-    void d();
+    void c();
 }

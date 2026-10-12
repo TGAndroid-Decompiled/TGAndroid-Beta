@@ -1,47 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class in0 extends TextView {
-    public final int f38954a;
+public final class in0 extends ClickableSpan {
+    public final un0 f37173a;
 
-    public in0(Context context, int i10) {
-        super(context);
-        this.f38954a = i10;
+    public in0(un0 un0Var) {
+        this.f37173a = un0Var;
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f38954a) {
-            case 3:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
-        }
+    public final void onClick(View view) {
+        un0 un0Var = this.f37173a;
+        pf.d.s(un0Var.getParentActivity(), un0Var.f40774y.privacy_policy_url);
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f38954a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
-                return;
-            case 3:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 4:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
-                return;
-        }
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(true);
+        textPaint.setTypeface(AndroidUtilities.bold());
     }
 }

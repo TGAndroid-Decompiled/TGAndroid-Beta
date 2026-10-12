@@ -8,12 +8,12 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Process;
 import android.text.TextUtils;
-import androidx.biometric.n;
+import androidx.biometric.o;
 import e0.l0;
 import j$.util.Objects;
 import java.util.concurrent.Executor;
 public abstract class c {
-    public static final Object f9546a = null;
+    public static final Object f8824a = null;
 
     public static int a(Context context, String str, int i10, int i11, String str2) {
         int noteProxyOpNoThrow;
@@ -39,7 +39,7 @@ public abstract class c {
                             noteProxyOpNoThrow = appOpsManager.checkOpNoThrow(permissionToOp, callingUid, str2);
                         }
                         if (noteProxyOpNoThrow == 0) {
-                            String g10 = b2.c.g(context);
+                            String g10 = b2.d.g(context);
                             if (appOpsManager != null) {
                                 i12 = appOpsManager.checkOpNoThrow(permissionToOp, i11, g10);
                             }
@@ -81,6 +81,6 @@ public abstract class c {
         if (Build.VERSION.SDK_INT >= 28) {
             return b.a(context);
         }
-        return new n(new Handler(context.getMainLooper()), 3);
+        return new o(new Handler(context.getMainLooper()), 3);
     }
 }

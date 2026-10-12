@@ -1,12 +1,15 @@
 package w7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.TextView;
 public abstract class q {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
+    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
+        if (inputConnection != null && editorInfo.hintText == null) {
+            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
+            }
         }
-        return null;
     }
 }

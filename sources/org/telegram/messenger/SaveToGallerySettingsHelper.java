@@ -27,9 +27,9 @@ public class SaveToGallerySettingsHelper {
                     if (sb2.length() != 0) {
                         sb2.append(", ");
                     }
-                    long j3 = this.limitVideo;
-                    if (j3 > 0 && j3 < 4194304000L) {
-                        sb2.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j3, true, false)));
+                    long j10 = this.limitVideo;
+                    if (j10 > 0 && j10 < 4194304000L) {
+                        sb2.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j10, true, false)));
                         return sb2;
                     }
                     sb2.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
@@ -71,7 +71,7 @@ public class SaveToGallerySettingsHelper {
 
         public boolean needSave(FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i10) {
             boolean z10;
-            long j3;
+            long j10;
             DialogException dialogException = UserConfig.getInstance(i10).getSaveGalleryExceptions(this.type).get(fileMeta.dialogId);
             if (messageObject != null && (messageObject.isOutOwner() || messageObject.isSecretMedia())) {
                 return false;
@@ -82,20 +82,20 @@ public class SaveToGallerySettingsHelper {
                 z10 = false;
             }
             if (messageObject != null) {
-                j3 = messageObject.getSize();
+                j10 = messageObject.getSize();
             } else {
-                j3 = fileMeta.messageSize;
+                j10 = fileMeta.messageSize;
             }
             boolean z11 = this.saveVideo;
             boolean z12 = this.savePhoto;
-            long j10 = this.limitVideo;
+            long j11 = this.limitVideo;
             if (dialogException != null) {
                 z11 = dialogException.saveVideo;
                 z12 = dialogException.savePhoto;
-                j10 = dialogException.limitVideo;
+                j11 = dialogException.limitVideo;
             }
             if (z10) {
-                if (z11 && (j10 == -1 || j3 < j10)) {
+                if (z11 && (j11 == -1 || j10 < j11)) {
                     return true;
                 }
             } else if (z12) {
@@ -113,7 +113,7 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(sc.v.v(str, "_save_gallery_photo"), this.savePhoto).putBoolean(sc.v.v(str, "_save_gallery_video"), this.saveVideo).putLong(sc.v.v(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(t8.b.u(str, "_save_gallery_photo"), this.savePhoto).putBoolean(t8.b.u(str, "_save_gallery_video"), this.saveVideo).putLong(t8.b.u(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override
@@ -128,8 +128,8 @@ public class SaveToGallerySettingsHelper {
                         sb2.append(", ");
                     }
                     sb2.append(LocaleController.getString(R.string.SaveToGalleryVideos));
-                    long j3 = this.limitVideo;
-                    if (j3 > 0 && j3 < 4194304000L) {
+                    long j10 = this.limitVideo;
+                    if (j10 > 0 && j10 < 4194304000L) {
                         sb2.append(" (");
                         sb2.append(AndroidUtilities.formatFileSize(this.limitVideo, true, false));
                         sb2.append(")");
@@ -231,9 +231,9 @@ public class SaveToGallerySettingsHelper {
             dialogException.savePhoto = sharedPreferences.getBoolean(i11 + "_photo", false);
             dialogException.saveVideo = sharedPreferences.getBoolean(i11 + "_video", false);
             dialogException.limitVideo = sharedPreferences.getLong(i11 + "_limitVideo", 104857600L);
-            long j3 = dialogException.dialogId;
-            if (j3 != 0) {
-                longSparseArray.put(j3, dialogException);
+            long j10 = dialogException.dialogId;
+            if (j10 != 0) {
+                longSparseArray.put(j10, dialogException);
             }
         }
         return longSparseArray;
@@ -259,7 +259,7 @@ public class SaveToGallerySettingsHelper {
         edit.putInt("count", longSparseArray.size());
         for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
             DialogException valueAt = longSparseArray.valueAt(i10);
-            edit.putLong(a1.g.n(i10, "_dialog_id"), valueAt.dialogId);
+            edit.putLong(a1.g.m(i10, "_dialog_id"), valueAt.dialogId);
             edit.putBoolean(i10 + "_photo", valueAt.savePhoto);
             edit.putBoolean(i10 + "_video", valueAt.saveVideo);
             edit.putLong(i10 + "_limitVideo", valueAt.limitVideo);

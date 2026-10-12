@@ -2,58 +2,58 @@ package x7;
 
 import java.util.List;
 import java.util.ListIterator;
-public final class c extends e9.c implements ListIterator {
-    public final e9.l f50948e;
+public final class c extends e9.d implements ListIterator {
+    public final e9.m e;
 
-    public c(e9.l lVar) {
-        super(lVar, (byte) 0);
-        this.f50948e = lVar;
+    public c(e9.m mVar) {
+        super(mVar, (byte) 0);
+        this.e = mVar;
     }
 
     @Override
     public final void add(Object obj) {
-        e9.l lVar = this.f50948e;
-        boolean isEmpty = lVar.isEmpty();
+        e9.m mVar = this.e;
+        boolean isEmpty = mVar.isEmpty();
         b();
-        ((ListIterator) this.f8717b).add(obj);
-        ((f) lVar.h).d++;
+        ((ListIterator) this.f8544b).add(obj);
+        ((f) mVar.h).d++;
         if (isEmpty) {
-            lVar.p();
+            mVar.o();
         }
     }
 
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f8717b).hasPrevious();
+        return ((ListIterator) this.f8544b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f8717b).nextIndex();
+        return ((ListIterator) this.f8544b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f8717b).previous();
+        return ((ListIterator) this.f8544b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f8717b).previousIndex();
+        return ((ListIterator) this.f8544b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f8717b).set(obj);
+        ((ListIterator) this.f8544b).set(obj);
     }
 
-    public c(e9.l lVar, int i10) {
-        super(lVar, ((List) lVar.f8763c).listIterator(i10), (byte) 0);
-        this.f50948e = lVar;
+    public c(e9.m mVar, int i10) {
+        super(mVar, ((List) mVar.f8587c).listIterator(i10), (byte) 0);
+        this.e = mVar;
     }
 }

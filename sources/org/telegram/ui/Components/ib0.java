@@ -1,47 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public final class ib0 extends wh.l {
-    public final int E = 1;
-    public final Object F;
+import org.telegram.tgnet.TLRPC;
+public final class ib0 extends g.o {
+    public final ob0 f25928c;
 
-    public ib0(org.telegram.ui.bi0 bi0Var, org.telegram.ui.bi0 bi0Var2, FrameLayout frameLayout, long j3) {
-        super(bi0Var2, frameLayout, j3, true);
-        this.F = bi0Var;
+    public ib0(ob0 ob0Var) {
+        this.f25928c = ob0Var;
     }
 
     @Override
-    public final void f(String str, boolean z10, boolean z11) {
-        switch (this.E) {
-            case 0:
-                wh.b bVar = (wh.b) this.F;
-                gy0 gy0Var = bVar.W;
-                if (this.f50668e.isEmpty()) {
-                    if (gy0Var.getVisibility() != 4) {
-                        gy0Var.setVisibility(4);
-                        return;
-                    }
-                    return;
-                } else if (z11) {
-                    bVar.f32969w.J.setText("");
-                    return;
-                } else {
-                    super.f(str, z10, z11);
-                    return;
-                }
-            default:
-                if (z11) {
-                    org.telegram.ui.bi0.U((org.telegram.ui.bi0) this.F).setSearchFieldText("");
-                    return;
-                } else {
-                    super.f(str, z10, z11);
-                    return;
-                }
+    public final int i(int i10) {
+        ob0 ob0Var = this.f25928c;
+        hg.j1 j1Var = ob0Var.f27929f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = j1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
+            }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (j1Var.I() != null || j1Var.U != null) {
+                i10 = i11;
+            }
+            hb0 hb0Var = ob0Var.d;
+            hb0Var.B1();
+            return hb0Var.R.get(i10);
         }
-    }
-
-    public ib0(wh.b bVar, org.telegram.ui.ActionBar.m2 m2Var, FrameLayout frameLayout, long j3) {
-        super(m2Var, frameLayout, j3, false);
-        this.F = bVar;
+        return 100;
     }
 }

@@ -1,34 +1,36 @@
 package w7;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
-import android.util.Property;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
 public abstract class y5 {
-    public static void a(View view) {
-        b(view, 0.1f, 1.5f);
-    }
+    public static RectF f47476a;
 
-    public static void b(View view, float f7, float f10) {
-        if (view == null) {
+    public static void a(Path path, RectF rectF, float f7) {
+        if (path == null) {
             return;
         }
-        AnimatorSet animatorSet = new AnimatorSet();
-        Property property = View.SCALE_X;
-        float f11 = 1.0f - f7;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, f11);
-        Property property2 = View.SCALE_Y;
-        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property2, f11));
-        animatorSet.setDuration(80L);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, 1.0f), ObjectAnimator.ofFloat(view, property2, 1.0f));
-        animatorSet2.setInterpolator(new OvershootInterpolator(f10));
-        animatorSet2.setDuration(350L);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[]{16842919}, animatorSet);
-        stateListAnimator.addState(new int[0], animatorSet2);
-        view.setStateListAnimator(stateListAnimator);
+        if (f47476a == null) {
+            f47476a = new RectF();
+        }
+        float f10 = 2.0f * f7;
+        path.rewind();
+        f47476a.set(0.0f, -rectF.height(), f10, (-rectF.height()) + f10);
+        path.arcTo(f47476a, 180.0f, 90.0f);
+        f47476a.set(rectF.width() - f10, -rectF.height(), rectF.width(), (-rectF.height()) + f10);
+        path.arcTo(f47476a, 270.0f, 90.0f);
+        f47476a.set(rectF.width() - f10, -f10, rectF.width(), 0.0f);
+        path.arcTo(f47476a, 0.0f, 90.0f);
+        path.quadTo(f7, 0.0f, f7, 0.0f);
+        path.cubicTo(AndroidUtilities.dp(7.62f), AndroidUtilities.dp(-0.5f), AndroidUtilities.dp(5.807f), AndroidUtilities.dp(-1.502f), AndroidUtilities.dp(6.02f), AndroidUtilities.dp(-1.386f));
+        path.cubicTo(AndroidUtilities.dp(4.814f), AndroidUtilities.dp(-0.81f), AndroidUtilities.dp(2.706f), AndroidUtilities.dp(-0.133f), AndroidUtilities.dp(3.6f), AndroidUtilities.dp(-0.44f));
+        path.cubicTo(AndroidUtilities.dp(1.004f), AndroidUtilities.dp(-0.206f), AndroidUtilities.dp(-0.047f), AndroidUtilities.dp(-0.32f), AndroidUtilities.dp(0.247f), AndroidUtilities.dp(-0.29f));
+        path.cubicTo(AndroidUtilities.dp(-0.334f), AndroidUtilities.dp(-1.571f), 0.0f, AndroidUtilities.dp(-1.155f), AndroidUtilities.dp(-0.06f), AndroidUtilities.dp(-1.154f));
+        path.cubicTo(AndroidUtilities.dp(1.083f), AndroidUtilities.dp(-2.123f), AndroidUtilities.dp(1.667f), AndroidUtilities.dp(-3.667f), AndroidUtilities.dp(1.453f), AndroidUtilities.dp(-3.12f));
+        path.cubicTo(AndroidUtilities.dp(2.1f), AndroidUtilities.dp(-4.793f), AndroidUtilities.dp(1.24f), AndroidUtilities.dp(-6.267f), AndroidUtilities.dp(1.67f), AndroidUtilities.dp(-5.53f));
+        float f11 = -f7;
+        path.quadTo(0.0f, AndroidUtilities.dp(2.187f) + f11, 0.0f, f11);
+        path.close();
+        path.offset(rectF.left, rectF.bottom);
     }
 }

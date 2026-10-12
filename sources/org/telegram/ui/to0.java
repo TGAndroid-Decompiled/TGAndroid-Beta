@@ -1,81 +1,70 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class to0 extends FrameLayout {
-    public final Paint f42259a;
-    public float f42260b;
-    public o1.k f42261c;
-    public final xo0 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class to0 extends AnimatorListenerAdapter {
+    public final int f40426a;
+    public final boolean f40427b;
+    public final cp0 f40428c;
 
-    public to0(xo0 xo0Var, Context context) {
-        super(context);
-        this.d = xo0Var;
-        this.f42259a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        o1.k kVar = this.f42261c;
-        if (kVar != null) {
-            kVar.c();
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z11) {
-            float f11 = this.f42260b;
-            if (f11 == f7) {
-                return;
-            }
-            o1.k kVar2 = new o1.k(new o1.j(f11 * 100.0f));
-            o1.l lVar = new o1.l(f7 * 100.0f);
-            if (z10) {
-                f10 = 500.0f;
-            } else {
-                f10 = 650.0f;
-            }
-            lVar.b(f10);
-            lVar.a(1.0f);
-            kVar2.f16691u = lVar;
-            this.f42261c = kVar2;
-            kVar2.b(new td0(this, 1));
-            this.f42261c.a(new p9(this, 1));
-            this.f42261c.h();
-            return;
-        }
-        this.f42260b = f7;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f7 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public to0(cp0 cp0Var, boolean z10, int i10) {
+        this.f40426a = i10;
+        this.f40428c = cp0Var;
+        this.f40427b = z10;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        super.onDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.h6.O6;
-        xo0 xo0Var = this.d;
-        canvas.drawColor(xo0Var.getThemedColor(i10));
-        int themedColor = xo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20589ei);
-        Paint paint = this.f42259a;
-        paint.setColor(themedColor);
-        if (LocaleController.isRTL) {
-            dp = getWidth() - AndroidUtilities.dp(28.0f);
-        } else {
-            dp = AndroidUtilities.dp(28.0f);
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f40426a) {
+            case 0:
+                cp0 cp0Var = this.f40428c;
+                AnimatorSet animatorSet = cp0Var.v;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    cp0Var.v = null;
+                    return;
+                }
+                return;
+            default:
+                cp0 cp0Var2 = this.f40428c;
+                AnimatorSet animatorSet2 = cp0Var2.v;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    cp0Var2.v = null;
+                    return;
+                }
+                return;
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f42260b, paint);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40426a) {
+            case 0:
+                cp0 cp0Var = this.f40428c;
+                AnimatorSet animatorSet = cp0Var.v;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f40427b) {
+                        cp0Var.f35022r.setVisibility(4);
+                        return;
+                    } else {
+                        cp0Var.f35017n.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                cp0 cp0Var2 = this.f40428c;
+                AnimatorSet animatorSet2 = cp0Var2.v;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f40427b) {
+                        cp0Var2.f35024s.setVisibility(4);
+                        return;
+                    } else {
+                        cp0Var2.U.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

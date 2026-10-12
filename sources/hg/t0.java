@@ -1,59 +1,150 @@
 package hg;
 
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class t0 implements TextView.OnEditorActionListener {
-    public final int f11376a;
-    public final Object f11377b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Cells.u4;
+import org.telegram.ui.Cells.v3;
+import org.telegram.ui.Components.f10;
+public abstract class t0 extends c {
+    public final Context K;
+    public final c6 L;
+    public boolean M;
 
-    public t0(Object obj, int i10) {
-        this.f11376a = i10;
-        this.f11377b = obj;
+    public t0(Context context, c6 c6Var, boolean z10, boolean z11) {
+        super(z10, z11);
+        this.M = false;
+        this.K = context;
+        this.L = c6Var;
+        new f10(context, null).setIsSingleCell(true);
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        ii.h1 h1Var;
-        switch (this.f11376a) {
-            case 0:
-                u0 u0Var = (u0) this.f11377b;
-                n0 n0Var = u0Var.F;
-                boolean z10 = false;
-                if (i10 == 6) {
-                    u0Var.f11406x = false;
-                    AndroidUtilities.cancelRunOnUIThread(n0Var);
-                    z10 = true;
-                    if (TextUtils.isEmpty(u0Var.f11401f.getText())) {
-                        u0Var.f11407y = null;
-                        u0Var.d.b();
-                        u0Var.f11399c.W2.N(true);
-                    } else {
-                        AndroidUtilities.runOnUIThread(n0Var);
-                    }
-                    u0Var.b0();
-                }
-                return z10;
-            case 1:
-                ii.i1 i1Var = (ii.i1) this.f11377b;
-                if (i10 == 5 && (h1Var = i1Var.f12474c) != null && !i1Var.f12480w) {
-                    if (i1Var.f12478r) {
-                        i1Var.p();
-                    } else {
-                        h1Var.l(i1Var);
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                yh.g gVar = (yh.g) this.f11377b;
-                if (i10 == 5) {
-                    gVar.k0();
-                    return true;
-                }
-                gVar.getClass();
-                return false;
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    public final TLRPC.TL_messageMediaVenue I(int i10) {
+        ArrayList arrayList = this.f10509r;
+        if (!arrayList.isEmpty()) {
+            i10--;
         }
+        if (i10 >= 0 && i10 < arrayList.size()) {
+            return (TLRPC.TL_messageMediaVenue) arrayList.get(i10);
+        }
+        if (!this.J) {
+            int size = i10 - arrayList.size();
+            if (!arrayList.isEmpty()) {
+                size--;
+            }
+            if (size >= 0) {
+                ArrayList arrayList2 = this.f10510s;
+                if (size < arrayList2.size()) {
+                    return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final int h() {
+        int i10;
+        ArrayList arrayList = this.f10509r;
+        if (!arrayList.isEmpty()) {
+            i10 = arrayList.size() + 1;
+        } else {
+            i10 = 0;
+        }
+        if (!this.M) {
+            if (this.J) {
+                return i10 + 3;
+            }
+            boolean isEmpty = arrayList.isEmpty();
+            ArrayList arrayList2 = this.f10510s;
+            if (!isEmpty && !arrayList2.isEmpty()) {
+                i10++;
+            }
+            return arrayList2.size() + i10;
+        }
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        ArrayList arrayList = this.f10509r;
+        if ((i10 == 0 || i10 == arrayList.size() + 1) && !arrayList.isEmpty()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
+        int i12;
+        int i13 = b1Var.f44841f;
+        View view = b1Var.f44838a;
+        boolean z10 = true;
+        ArrayList arrayList = this.f10509r;
+        if (i13 == 0) {
+            if (!arrayList.isEmpty()) {
+                i11 = i10 - 1;
+            } else {
+                i11 = i10;
+            }
+            if (i11 >= 0 && i11 < arrayList.size()) {
+                tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i11);
+                i12 = 2;
+            } else {
+                if (!this.J) {
+                    int size = i11 - arrayList.size();
+                    if (!this.f10508n && !arrayList.isEmpty()) {
+                        size--;
+                    }
+                    i12 = size;
+                    if (i12 >= 0) {
+                        ArrayList arrayList2 = this.f10510s;
+                        if (i12 < arrayList2.size()) {
+                            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i12);
+                        }
+                    }
+                }
+                tL_messageMediaVenue = null;
+                i12 = i10;
+            }
+            u4 u4Var = (u4) view;
+            if (i10 == h() - 1 || (!this.f10508n && !arrayList.isEmpty() && i10 == arrayList.size())) {
+                z10 = false;
+            }
+            u4Var.b(tL_messageMediaVenue, i12, z10, false);
+        } else if (i13 == 1) {
+            if (i10 == 0 && !arrayList.isEmpty()) {
+                ((v3) view).setText(LocaleController.getString(R.string.LocationOnMap));
+            } else {
+                ((v3) view).setText(LocaleController.getString(R.string.NearbyVenue));
+            }
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View v3Var;
+        c6 c6Var = this.L;
+        Context context = this.K;
+        if (i10 == 0) {
+            v3Var = new u4(context, c6Var);
+        } else {
+            v3Var = new v3(context, c6Var);
+        }
+        return new s4.b1(v3Var);
     }
 }

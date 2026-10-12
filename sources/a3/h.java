@@ -1,8 +1,8 @@
 package a3;
 public final class h {
-    public g f130a;
-    public g f131b;
-    public boolean f132c;
+    public g f116a;
+    public g f117b;
+    public boolean f118c;
     public long d;
-    public int f133e;
+    public int e;
 }

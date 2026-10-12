@@ -9,8 +9,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 public abstract class m implements ExecutorService, AutoCloseable {
     @Override
-    public final boolean awaitTermination(long j3, TimeUnit timeUnit) {
-        return ((qb.h) this).f46025a.awaitTermination(j3, timeUnit);
+    public final boolean awaitTermination(long j10, TimeUnit timeUnit) {
+        return ((rb.h) this).f44099a.awaitTermination(j10, timeUnit);
     }
 
     @Override
@@ -20,60 +20,60 @@ public abstract class m implements ExecutorService, AutoCloseable {
 
     @Override
     public final List invokeAll(Collection collection) {
-        return ((qb.h) this).f46025a.invokeAll(collection);
+        return ((rb.h) this).f44099a.invokeAll(collection);
     }
 
     @Override
     public final Object invokeAny(Collection collection) {
-        return ((qb.h) this).f46025a.invokeAny(collection);
+        return ((rb.h) this).f44099a.invokeAny(collection);
     }
 
     @Override
     public final boolean isShutdown() {
-        return ((qb.h) this).f46025a.isShutdown();
+        return ((rb.h) this).f44099a.isShutdown();
     }
 
     @Override
     public final boolean isTerminated() {
-        return ((qb.h) this).f46025a.isTerminated();
+        return ((rb.h) this).f44099a.isTerminated();
     }
 
     @Override
     public final void shutdown() {
-        ((qb.h) this).f46025a.shutdown();
+        ((rb.h) this).f44099a.shutdown();
     }
 
     @Override
     public final List shutdownNow() {
-        return ((qb.h) this).f46025a.shutdownNow();
+        return ((rb.h) this).f44099a.shutdownNow();
     }
 
     @Override
     public final Future submit(Runnable runnable) {
-        return ((qb.h) this).f46025a.submit(runnable);
+        return ((rb.h) this).f44099a.submit(runnable);
     }
 
     public final String toString() {
-        return ((qb.h) this).f46025a.toString();
+        return ((rb.h) this).f44099a.toString();
     }
 
     @Override
-    public final List invokeAll(Collection collection, long j3, TimeUnit timeUnit) {
-        return ((qb.h) this).f46025a.invokeAll(collection, j3, timeUnit);
+    public final List invokeAll(Collection collection, long j10, TimeUnit timeUnit) {
+        return ((rb.h) this).f44099a.invokeAll(collection, j10, timeUnit);
     }
 
     @Override
-    public final Object invokeAny(Collection collection, long j3, TimeUnit timeUnit) {
-        return ((qb.h) this).f46025a.invokeAny(collection, j3, timeUnit);
+    public final Object invokeAny(Collection collection, long j10, TimeUnit timeUnit) {
+        return ((rb.h) this).f44099a.invokeAny(collection, j10, timeUnit);
     }
 
     @Override
     public final Future submit(Runnable runnable, Object obj) {
-        return ((qb.h) this).f46025a.submit(runnable, obj);
+        return ((rb.h) this).f44099a.submit(runnable, obj);
     }
 
     @Override
     public final Future submit(Callable callable) {
-        return ((qb.h) this).f46025a.submit(callable);
+        return ((rb.h) this).f44099a.submit(callable);
     }
 }

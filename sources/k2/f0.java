@@ -1,31 +1,23 @@
 package k2;
 
-import android.content.Context;
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
 import android.media.AudioTrack;
-import android.os.Build;
-public final class f0 implements u {
-    public final AudioTrack a(k kVar, b2.e eVar, int i10, Context context) {
-        AudioAttributes audioAttributes;
-        int i11 = Build.VERSION.SDK_INT;
-        int i12 = kVar.f14504b;
-        int i13 = kVar.f14505c;
-        int i14 = kVar.f14503a;
-        String str = e2.d0.f8529a;
-        AudioFormat build = new AudioFormat.Builder().setSampleRate(i12).setChannelMask(i13).setEncoding(i14).build();
-        if (kVar.d) {
-            audioAttributes = new AudioAttributes.Builder().setContentType(3).setFlags(16).setUsage(1).build();
-        } else {
-            audioAttributes = (AudioAttributes) eVar.b().f3679a;
-        }
-        AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(audioAttributes).setAudioFormat(build).setTransferMode(1).setBufferSizeInBytes(kVar.f14507f).setSessionId(i10);
-        if (i11 >= 29) {
-            sessionId.setOffloadedPlayback(kVar.f14506e);
-        }
-        if (i11 >= 34 && context != null) {
-            sessionId.setContext(context);
-        }
-        return sessionId.build();
+import android.media.AudioTrack$StreamEventCallback;
+public final class f0 extends AudioTrack$StreamEventCallback {
+    public final g0 f13879a;
+
+    public f0(g0 g0Var) {
+        this.f13879a = g0Var;
+    }
+
+    public final void onDataRequest(AudioTrack audioTrack, int i10) {
+        this.f13879a.f13885c.f13896j.e(-1, new j2.e(27));
+    }
+
+    public final void onPresentationEnded(AudioTrack audioTrack) {
+        this.f13879a.f13885c.f13896j.e(-1, new j2.e(28));
+    }
+
+    public final void onTearDown(AudioTrack audioTrack) {
+        this.f13879a.f13885c.f13896j.e(-1, new j2.e(27));
     }
 }

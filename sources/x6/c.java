@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import h8.j;
 import i8.g;
 public final class c implements e {
-    public final Bundle f50925a;
-    public final j f50926b;
+    public final Bundle f47920a;
+    public final j f47921b;
 
     public c(j jVar, Bundle bundle) {
-        this.f50926b = jVar;
-        this.f50925a = bundle;
+        this.f47921b = jVar;
+        this.f47920a = bundle;
     }
 
     @Override
@@ -23,10 +23,10 @@ public final class c implements e {
 
     @Override
     public final void b() {
-        aa.a aVar = this.f50926b.f11040a;
-        Bundle bundle = this.f50925a;
-        ViewGroup viewGroup = (ViewGroup) aVar.f386b;
-        g gVar = (g) aVar.f387c;
+        androidx.biometric.e eVar = this.f47921b.f10384a;
+        Bundle bundle = this.f47920a;
+        ViewGroup viewGroup = (ViewGroup) eVar.f1196b;
+        g gVar = (g) eVar.f1197c;
         try {
             Bundle bundle2 = new Bundle();
             i8.d.c(bundle, bundle2);
@@ -37,11 +37,11 @@ public final class c implements e {
             Parcel M0 = gVar.M0(gVar.N0(), 8);
             a K0 = b.K0(M0.readStrongBinder());
             M0.recycle();
-            aVar.d = (View) b.L0(K0);
+            eVar.d = (View) b.L0(K0);
             viewGroup.removeAllViews();
-            viewGroup.addView((View) aVar.d);
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+            viewGroup.addView((View) eVar.d);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 }

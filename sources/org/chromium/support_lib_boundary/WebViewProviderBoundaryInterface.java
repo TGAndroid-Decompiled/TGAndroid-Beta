@@ -27,7 +27,7 @@ public interface WebViewProviderBoundaryInterface {
 
     InvocationHandler getWebViewRendererClient();
 
-    void insertVisualStateCallback(long j3, InvocationHandler invocationHandler);
+    void insertVisualStateCallback(long j10, InvocationHandler invocationHandler);
 
     boolean isAudioMuted();
 

@@ -830,9 +830,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     @Override
-    public String format(long j3) {
+    public String format(long j10) {
         GregorianCalendar newCalendar = newCalendar();
-        newCalendar.setTimeInMillis(j3);
+        newCalendar.setTimeInMillis(j10);
         return applyRulesToString(newCalendar);
     }
 
@@ -849,8 +849,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     @Override
-    public StringBuffer format(long j3, StringBuffer stringBuffer) {
-        return format(new Date(j3), stringBuffer);
+    public StringBuffer format(long j10, StringBuffer stringBuffer) {
+        return format(new Date(j10), stringBuffer);
     }
 
     @Override

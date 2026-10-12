@@ -1,69 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import org.telegram.messenger.R;
 public final class fd0 {
-    public SpannableStringBuilder f26027a;
-    public int f26028b;
-    public Drawable f26029c;
-    public float d;
-    public final int f26030e;
-    public final int f26031f;
-    public int f26032g = -1;
-    public int h = -1;
-    public float f26033i = 4.66f;
+    public final Paint f25011a;
+    public final gd0 f25012b;
+    public final gd0 f25013c;
+    public final gd0 d;
+    public final ed0 e;
+    public final ed0 f25014f;
+    public final float[] f25015g;
+    public int h;
+    public float f25016i;
 
-    public fd0(int i10, int i11) {
-        this.f26030e = i10;
-        this.f26031f = i11;
+    public fd0() {
+        Paint paint = new Paint();
+        this.f25011a = paint;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.f25012b = new gd0(tileMode);
+        this.f25013c = new gd0(tileMode);
+        this.d = new gd0(Shader.TileMode.REPEAT);
+        this.e = new ed0(R.raw.wallpaper_pos_intensity);
+        this.f25014f = new ed0(R.raw.wallpaper_neg_intensity);
+        this.f25015g = new float[4];
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
     }
 
-    public final CharSequence a(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        int dp;
-        int dp2;
-        SpannableStringBuilder spannableStringBuilder = this.f26027a;
-        int i10 = this.f26031f;
-        if (spannableStringBuilder != null && this.f26029c != null && AndroidUtilities.density == this.d) {
-            if (this.f26028b != org.telegram.ui.ActionBar.h6.w0(i10, c6Var)) {
-                Drawable drawable = this.f26029c;
-                int w02 = org.telegram.ui.ActionBar.h6.w0(i10, c6Var);
-                this.f26028b = w02;
-                drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+    public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i10, int i11) {
+        gd0 gd0Var = this.f25012b;
+        boolean b10 = gd0Var.b(bitmap);
+        gd0 gd0Var2 = this.d;
+        boolean b11 = b10 | gd0Var2.b(bitmap2);
+        Paint paint = this.f25011a;
+        if (i11 >= 0) {
+            gd0 gd0Var3 = this.f25013c;
+            if ((b11 | gd0Var3.b(bitmap3)) || this.h != 1) {
+                this.h = 1;
+                ed0 ed0Var = this.e;
+                ed0Var.f24685a.setInputBuffer("shaderPattern", gd0Var2.d);
+                ed0Var.f24685a.setInputBuffer("shaderGradient", gd0Var.d);
+                ed0Var.f24685a.setInputBuffer("shaderGradientSoftLight", gd0Var3.d);
+                ed0Var.f24685a.setFloatUniform("transformGradient", ed0Var.f24686b);
+                ed0Var.f24685a.setFloatUniform("transformPattern", ed0Var.f24687c);
+                paint.setShader(ed0Var.f24685a);
+                return paint;
             }
-            return this.f26027a;
-        } else if (context == null) {
-            return null;
         } else {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
-            this.d = AndroidUtilities.density;
-            Drawable mutate = context.getResources().getDrawable(this.f26030e).mutate();
-            this.f26029c = mutate;
-            int w03 = org.telegram.ui.ActionBar.h6.w0(i10, c6Var);
-            this.f26028b = w03;
-            mutate.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
-            int i11 = this.f26032g;
-            if (i11 <= 0) {
-                dp = this.f26029c.getIntrinsicWidth();
-            } else {
-                dp = AndroidUtilities.dp(i11);
+            float a2 = w7.s.a((i10 * (-i11)) / 25500.0f, 0.0f, 1.0f);
+            if (b11 || this.f25016i != a2 || this.h != 2) {
+                this.h = 2;
+                this.f25016i = a2;
+                ed0 ed0Var2 = this.f25014f;
+                ed0Var2.f24685a.setInputBuffer("shaderPattern", gd0Var2.d);
+                ed0Var2.f24685a.setInputBuffer("shaderGradient", gd0Var.d);
+                ed0Var2.f24685a.setFloatUniform("intensity", a2);
+                ed0Var2.f24685a.setFloatUniform("transformGradient", ed0Var2.f24686b);
+                ed0Var2.f24685a.setFloatUniform("transformPattern", ed0Var2.f24687c);
+                paint.setShader(ed0Var2.f24685a);
+                return paint;
             }
-            int i12 = this.h;
-            if (i12 <= 0) {
-                dp2 = this.f26029c.getIntrinsicHeight();
-            } else {
-                dp2 = AndroidUtilities.dp(i12);
-            }
-            int dp3 = AndroidUtilities.dp(this.f26033i);
-            this.f26029c.setBounds(0, dp3, dp, dp2 + dp3);
-            spannableStringBuilder2.setSpan(new ImageSpan(this.f26029c, 2), 0, 1, 33);
-            spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(2.0f)), 1, 2, 33);
-            this.f26027a = spannableStringBuilder2;
-            return spannableStringBuilder2;
         }
+        return paint;
     }
 }

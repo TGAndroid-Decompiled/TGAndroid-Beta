@@ -1,111 +1,175 @@
 package org.telegram.ui.Wallet;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.View;
-import android.view.WindowManager;
-import java.util.WeakHashMap;
-import org.telegram.ui.Components.o60;
-public final class o5 implements SensorEventListener {
-    public static o5 G;
-    public float E;
-    public final SensorManager f35166a;
-    public final Sensor f35167b;
-    public final WindowManager f35168c;
-    public boolean f35172r;
-    public boolean f35173s;
-    public float v;
-    public float f35174w;
-    public float f35176y;
-    public final Handler d = new Handler(Looper.getMainLooper());
-    public final WeakHashMap f35169e = new WeakHashMap();
-    public final float[] f35170f = new float[9];
-    public final float[] h = new float[9];
-    public final float[] f35171n = new float[3];
-    public int f35175x = -1;
-    public final o60 F = new o60(this, 1);
+import android.graphics.SurfaceTexture;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import di.xa;
+import org.telegram.ui.fi1;
+public final class o5 extends tg.n {
+    public final j5 f33562f0;
+    public final p5 f33563g0;
+    public final int f33564h0;
+    public final m f33565i0;
+    public float f33566j0;
+    public float f33567k0;
+    public float f33568l0;
+    public float m0;
+    public boolean f33569n0;
+    public ValueAnimator f33570o0;
 
-    public o5(Context context) {
-        Sensor defaultSensor;
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f35166a = sensorManager;
-        this.f35168c = (WindowManager) context.getSystemService("window");
-        if (sensorManager == null) {
-            defaultSensor = null;
-        } else {
-            defaultSensor = sensorManager.getDefaultSensor(15);
-        }
-        if (defaultSensor == null && sensorManager != null) {
-            defaultSensor = sensorManager.getDefaultSensor(11);
-        }
-        this.f35167b = defaultSensor;
-    }
-
-    public final void a() {
-        if (this.f35172r) {
-            this.f35166a.unregisterListener(this);
-        }
-        this.f35173s = false;
-        this.f35172r = false;
-        this.d.removeCallbacks(this.F);
-        this.E = 0.0f;
-        this.f35176y = 0.0f;
+    public o5(Context context, p5 p5Var, int i10, int i11) {
+        super(context, 0, 0);
+        this.f33563g0 = p5Var;
+        this.f33565i0 = new m(p5Var, 9);
+        j5 j5Var = new j5(context, i10, i11);
+        this.f33562f0 = j5Var;
+        setRenderer(j5Var);
+        setOpaque(false);
+        this.f33564h0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        int i10;
-        float[] fArr = sensorEvent.values;
-        float[] fArr2 = this.f35170f;
-        SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-        int rotation = this.f35168c.getDefaultDisplay().getRotation();
-        if (this.f35175x != rotation) {
-            this.f35173s = false;
-            this.f35175x = rotation;
+    public final int getMaxFrameRate() {
+        return 60;
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        removeCallbacks(this.f33565i0);
+        this.f33563g0.setPressed(false);
+        ValueAnimator valueAnimator = this.f33570o0;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33570o0.cancel();
+            this.f33570o0 = null;
         }
-        int i11 = this.f35175x;
-        int i12 = 129;
-        if (i11 == 1) {
-            i10 = 129;
-            i12 = 2;
-        } else {
-            i10 = 130;
-            if (i11 != 2) {
-                if (i11 == 3) {
-                    i12 = 130;
-                    i10 = 1;
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        this.f33562f0.getClass();
+        this.f33563g0.d();
+        super.onSurfaceTextureAvailable(surfaceTexture, i10, i11);
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        this.f33563g0.d();
+        super.onSurfaceTextureDestroyed(surfaceTexture);
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(android.graphics.SurfaceTexture r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.o5.onSurfaceTextureUpdated(android.graphics.SurfaceTexture):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        j5 j5Var = this.f33562f0;
+        p5 p5Var = this.f33563g0;
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                        p5Var.setPressed(false);
+                        if (this.f33569n0) {
+                            p();
+                        }
+                        this.f33569n0 = true;
+                        return true;
+                    }
                 } else {
-                    i10 = 2;
-                    i12 = 1;
+                    float abs = Math.abs(motionEvent.getX() - this.f33566j0);
+                    float f7 = this.f33564h0;
+                    if (abs > f7 || Math.abs(motionEvent.getY() - this.f33567k0) > f7) {
+                        this.f33569n0 = true;
+                        p5Var.setPressed(false);
+                    }
+                    if (this.f33569n0) {
+                        float D = com.google.android.gms.internal.play_billing.k3.D(motionEvent.getX(), this.f33566j0, 0.03f, this.f33568l0);
+                        float f10 = this.f33568l0;
+                        j5Var.d = p5.b(D, f10 - 32.0f, f10 + 32.0f);
+                        float D2 = com.google.android.gms.internal.play_billing.k3.D(motionEvent.getY(), this.f33567k0, 0.03f, this.m0);
+                        float f11 = this.m0;
+                        j5Var.f45708i = p5.b(D2, f11 - 22.0f, f11 + 22.0f);
+                    }
                 }
+                return true;
+            }
+            getParent().requestDisallowInterceptTouchEvent(false);
+            p5Var.setPressed(false);
+            if (this.f33569n0) {
+                p();
+                return true;
+            }
+            postDelayed(this.f33565i0, Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
+            return true;
+        }
+        ValueAnimator valueAnimator = this.f33570o0;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33570o0.cancel();
+            this.f33570o0 = null;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.f33566j0 = motionEvent.getX();
+        this.f33567k0 = motionEvent.getY();
+        this.f33568l0 = j5Var.d;
+        this.m0 = j5Var.f45708i;
+        this.f33569n0 = false;
+        p5Var.setPressed(true);
+        return true;
+    }
+
+    public final void p() {
+        ValueAnimator valueAnimator = this.f33570o0;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33570o0.cancel();
+            this.f33570o0 = null;
+        }
+        j5 j5Var = this.f33562f0;
+        float f7 = j5Var.d;
+        float f10 = j5Var.f45708i;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f33570o0 = ofFloat;
+        ofFloat.setDuration(600L);
+        org.telegram.ui.Cells.d0.l(1.2f, this.f33570o0);
+        this.f33570o0.addUpdateListener(new xa(this, f7, f10, 7));
+        this.f33570o0.addListener(new fi1(this, 5));
+        this.f33570o0.start();
+    }
+
+    @Override
+    public final boolean performClick() {
+        super.performClick();
+        return true;
+    }
+
+    @Override
+    public final void setPaused(boolean z10) {
+        j5 j5Var = this.f33562f0;
+        synchronized (j5Var) {
+            if (j5Var.f33360e0 != z10) {
+                j5Var.f33360e0 = z10;
+                j5Var.f33362g0 = 0L;
             }
         }
-        float[] fArr3 = this.h;
-        SensorManager.remapCoordinateSystem(fArr2, i12, i10, fArr3);
-        float[] fArr4 = this.f35171n;
-        SensorManager.getOrientation(fArr3, fArr4);
-        if (!this.f35173s) {
-            this.v = fArr4[1];
-            this.f35174w = fArr4[2];
-            this.f35173s = true;
-        }
-        float max = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[2] - this.f35174w, 6.283185307179586d)) / 0.45f));
-        float max2 = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[1] - this.v, 6.283185307179586d)) / 0.45f));
-        float f7 = this.f35176y;
-        this.f35176y = com.google.android.gms.internal.vision.e2.y(max, f7, 0.12f, f7);
-        float f10 = this.E;
-        this.E = com.google.android.gms.internal.vision.e2.y(max2, f10, 0.12f, f10);
-        for (View view : this.f35169e.keySet()) {
-            view.invalidate();
-        }
+        super.setPaused(z10);
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public final void n() {
     }
 }

@@ -1,44 +1,46 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.FactCheckController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
 public final class j2 implements Utilities.Callback {
-    public final int f17916a;
-    public final long f17917b;
-    public final Object f17918c;
+    public final int f17539a;
+    public final Object f17540b;
+    public final Object f17541c;
     public final Object d;
-    public final Object f17919e;
 
-    public j2(Object obj, long j3, Object obj2, Object obj3, int i10) {
-        this.f17916a = i10;
-        this.f17918c = obj;
-        this.f17917b = j3;
-        this.d = obj2;
-        this.f17919e = obj3;
+    public j2(Object obj, Object obj2, Object obj3, int i10) {
+        this.f17539a = i10;
+        this.f17540b = obj;
+        this.f17541c = obj2;
+        this.d = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f17916a) {
+        switch (this.f17539a) {
             case 0:
-                ((FactCheckController) this.f17918c).lambda$loadMissing$3(this.f17917b, (ArrayList) this.d, (HashMap) this.f17919e, (ArrayList) obj);
+                ((FactCheckController) this.f17540b).lambda$getFactCheck$0((FactCheckController.Key) this.f17541c, (MessageObject) this.d, (TLRPC.TL_factCheck) obj);
                 return;
             case 1:
-                ((MessagesController) this.f17918c).lambda$checkSensitive$451(this.f17917b, (boolean[]) this.d, (Runnable) this.f17919e, (Boolean) obj);
+                ChannelBoostsController.lambda$userCanBoostChannel$2((ChannelBoostsController.CanApplyBoost) this.f17540b, (TL_stories.TL_premium_boostsStatus) this.f17541c, (Utilities.Callback) this.d, (TL_stories.TL_premium_myBoosts) obj);
+                return;
+            case 2:
+                ((FileRefController) this.f17540b).lambda$requestReferenceFromServer$1((String) this.f17541c, (String) this.d, (bi.e8) obj);
+                return;
+            case 3:
+                MediaDataController.lambda$fillWithAnimatedEmoji$227((boolean[]) this.f17540b, (ArrayList[]) this.f17541c, (Runnable) this.d, (ArrayList) obj);
+                return;
+            case 4:
+                MediaDataController.lambda$setPlaceholderImage$31((String) this.f17540b, (org.telegram.ui.Components.z9) this.f17541c, (String) this.d, (TLRPC.TL_messages_stickerSet) obj);
                 return;
             default:
-                ((TranslateController) this.f17918c).lambda$checkTranslation$6((MessageObject) this.d, (String) this.f17919e, this.f17917b, (TLRPC.TL_textWithEntities) obj);
+                MessagesController.lambda$openApp$502((boolean[]) this.f17540b, (TL_bots.BotInfo[]) this.f17541c, (Runnable) this.d, (TLRPC.UserFull) obj);
                 return;
         }
-    }
-
-    public j2(TranslateController translateController, MessageObject messageObject, String str, long j3) {
-        this.f17916a = 2;
-        this.f17918c = translateController;
-        this.d = messageObject;
-        this.f17919e = str;
-        this.f17917b = j3;
     }
 }

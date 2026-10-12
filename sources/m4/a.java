@@ -1,35 +1,30 @@
 package m4;
 
-import java.util.List;
-public abstract class a {
-    public static final int f15724a = 0;
+import android.net.Uri;
+public final class a implements Runnable {
+    public final int f15377a;
+    public final b f15378b;
 
-    static {
-        e2.d0.I(0);
-        e2.d0.I(1);
-        e2.d0.I(2);
-        e2.d0.I(3);
-        e2.d0.I(4);
-        e2.d0.I(5);
-        e2.d0.I(6);
-        e2.d0.I(7);
-        e2.d0.I(8);
+    public a(b bVar, int i10) {
+        this.f15377a = i10;
+        this.f15378b = bVar;
     }
 
-    public static e9.a1 a(List list) {
-        if (list.isEmpty()) {
-            e9.g0 g0Var = e9.i0.f8749b;
-            return e9.a1.f8712e;
-        } else if (list.size() <= 0) {
-            e9.f0 u10 = e9.i0.u();
-            if (list.size() <= 0) {
-                return u10.i();
-            }
-            list.get(0).getClass();
-            throw new ClassCastException();
-        } else {
-            list.get(0).getClass();
-            throw new ClassCastException();
+    @Override
+    public final void run() {
+        int i10 = this.f15377a;
+        b bVar = this.f15378b;
+        switch (i10) {
+            case 0:
+                bVar.f15385a.unregisterReceiver(bVar.d);
+                return;
+            case 1:
+                b.a(bVar);
+                return;
+            default:
+                Uri uri = b.f15384g;
+                bVar.b();
+                return;
         }
     }
 }

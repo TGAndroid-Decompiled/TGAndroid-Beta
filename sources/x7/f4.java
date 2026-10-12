@@ -1,15 +1,15 @@
 package x7;
-public final class f4 implements ia.d {
-    public static final f4 f50995a = new Object();
+public final class f4 implements ja.d {
+    public static final f4 f47985a = new Object();
 
     static {
-        sc.v.t(sc.v.n(c0.class, new z(1)));
+        t8.b.s(t8.b.m(c0.class, new z(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ia.e eVar = (ia.e) obj2;
+            ja.e eVar = (ja.e) obj2;
             throw null;
         }
         throw new ClassCastException();

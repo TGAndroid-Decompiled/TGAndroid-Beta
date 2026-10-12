@@ -1,9 +1,9 @@
 package i0;
 
 import android.graphics.Color;
-import com.google.android.gms.internal.vision.e2;
+import com.google.android.gms.internal.play_billing.k3;
 public abstract class a {
-    public static final ThreadLocal f11572a = new ThreadLocal();
+    public static final ThreadLocal f10887a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -75,9 +75,9 @@ public abstract class a {
             if (max == f7) {
                 z10 = ((f10 - f11) / f12) % 6.0f;
             } else if (max == f10) {
-                z10 = e2.z(f11, f7, f12, 2.0f);
+                z10 = k3.z(f11, f7, f12, 2.0f);
             } else {
-                z10 = e2.z(f7, f10, f12, 4.0f);
+                z10 = k3.z(f7, f10, f12, 4.0f);
             }
             abs = f12 / (1.0f - Math.abs((2.0f * f13) - 1.0f));
         }
@@ -149,7 +149,7 @@ public abstract class a {
         double pow;
         double pow2;
         double pow3;
-        ThreadLocal threadLocal = f11572a;
+        ThreadLocal threadLocal = f10887a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -219,7 +219,7 @@ public abstract class a {
         if (i14 == 0) {
             return 0;
         }
-        return hg.c.g(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
+        return k3.v(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
     }
 
     public static int j(int i10) {

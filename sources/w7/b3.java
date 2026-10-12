@@ -1,24 +1,24 @@
 package w7;
-public final class b3 implements ia.d {
-    public static final b3 f50137a = new Object();
-    public static final ia.c f50138b = new ia.c("durationMs", hg.c.o(sc.v.m(d.class, new a(1))));
-    public static final ia.c f50139c = new ia.c("imageSource", hg.c.o(sc.v.m(d.class, new a(2))));
-    public static final ia.c d = new ia.c("imageFormat", hg.c.o(sc.v.m(d.class, new a(3))));
-    public static final ia.c f50140e = new ia.c("imageByteSize", hg.c.o(sc.v.m(d.class, new a(4))));
-    public static final ia.c f50141f = new ia.c("imageWidth", hg.c.o(sc.v.m(d.class, new a(5))));
-    public static final ia.c f50142g = new ia.c("imageHeight", hg.c.o(sc.v.m(d.class, new a(6))));
-    public static final ia.c h = new ia.c("rotationDegrees", hg.c.o(sc.v.m(d.class, new a(7))));
+public final class b3 implements ja.d {
+    public static final b3 f47212a = new Object();
+    public static final ja.c f47213b = new ja.c("durationMs", i2.d.n(t8.b.l(d.class, new a(1))));
+    public static final ja.c f47214c = new ja.c("imageSource", i2.d.n(t8.b.l(d.class, new a(2))));
+    public static final ja.c d = new ja.c("imageFormat", i2.d.n(t8.b.l(d.class, new a(3))));
+    public static final ja.c e = new ja.c("imageByteSize", i2.d.n(t8.b.l(d.class, new a(4))));
+    public static final ja.c f47215f = new ja.c("imageWidth", i2.d.n(t8.b.l(d.class, new a(5))));
+    public static final ja.c f47216g = new ja.c("imageHeight", i2.d.n(t8.b.l(d.class, new a(6))));
+    public static final ja.c h = new ja.c("rotationDegrees", i2.d.n(t8.b.l(d.class, new a(7))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         e7 e7Var = (e7) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f50138b, e7Var.f50171a);
-        eVar.a(f50139c, e7Var.f50172b);
-        eVar.a(d, e7Var.f50173c);
-        eVar.a(f50140e, e7Var.d);
-        eVar.a(f50141f, e7Var.f50174e);
-        eVar.a(f50142g, e7Var.f50175f);
-        eVar.a(h, e7Var.f50176g);
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f47213b, e7Var.f47245a);
+        eVar.d(f47214c, e7Var.f47246b);
+        eVar.d(d, e7Var.f47247c);
+        eVar.d(e, e7Var.d);
+        eVar.d(f47215f, e7Var.e);
+        eVar.d(f47216g, e7Var.f47248f);
+        eVar.d(h, e7Var.f47249g);
     }
 }

@@ -1,64 +1,34 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class gf0 implements Utilities.Callback {
-    public final int f26423a;
-    public final String[] f26424b;
-    public final Activity f26425c;
-    public final Utilities.Callback d;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.core.widget.NestedScrollView;
+public final class gf0 extends NestedScrollView {
+    public View W;
+    public final of0 f25262a0;
 
-    public gf0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
-        this.f26423a = i10;
-        this.f26424b = strArr;
-        this.f26425c = activity;
-        this.d = callback;
+    public gf0(of0 of0Var, Activity activity) {
+        super(activity);
+        this.f25262a0 = of0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        int[] iArr = (int[]) obj;
-        switch (this.f26423a) {
-            case 0:
-                String[] strArr = this.f26424b;
-                int length = strArr.length;
-                boolean z10 = false;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < length) {
-                        if (this.f26425c.checkSelfPermission(strArr[i10]) == 0) {
-                            z10 = true;
-                        } else {
-                            i10++;
-                        }
-                    }
-                }
-                Utilities.Callback callback = this.d;
-                if (callback != null) {
-                    callback.run(Boolean.valueOf(z10));
-                    return;
-                }
-                return;
-            default:
-                String[] strArr2 = this.f26424b;
-                int length2 = strArr2.length;
-                boolean z11 = false;
-                int i11 = 0;
-                while (true) {
-                    if (i11 < length2) {
-                        if (this.f26425c.checkSelfPermission(strArr2[i11]) == 0) {
-                            i11++;
-                        }
-                    } else {
-                        z11 = true;
-                    }
-                }
-                Utilities.Callback callback2 = this.d;
-                if (callback2 != null) {
-                    callback2.run(Boolean.valueOf(z11));
-                    return;
-                }
-                return;
+    public final int f(Rect rect) {
+        if (this.W != null && this.f25262a0.d.getTop() == getPaddingTop()) {
+            int f7 = super.f(rect);
+            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.W.getTop() - getScrollY()) + rect.top) + f7);
+            if (currentActionBarHeight > 0) {
+                return org.telegram.messenger.yh.A(10.0f, currentActionBarHeight, f7);
+            }
+            return f7;
         }
+        return 0;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
+        this.W = view2;
+        super.requestChildFocus(view, view2);
     }
 }

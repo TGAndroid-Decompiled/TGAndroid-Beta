@@ -1,40 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class bt extends gg.e {
-    public final ContactsActivity L;
+import android.graphics.Canvas;
+import android.view.View;
+public final class bt implements bh.k {
+    public final int f34624a;
+    public final org.telegram.ui.Components.mm0 f34625b;
 
-    public bt(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.i iVar, int i11) {
-        super(context, i10, z10, iVar, i11);
-        this.L = contactsActivity;
+    public bt(org.telegram.ui.Components.mm0 mm0Var, int i10) {
+        this.f34624a = i10;
+        this.f34625b = mm0Var;
     }
 
     @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bt.R():int");
-    }
-
-    @Override
-    public final void l() {
-        boolean z10 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.wm0 wm0Var = contactsActivity.f33539f;
-        if (wm0Var != null && wm0Var.getAdapter() == this) {
-            int h = h();
-            if (contactsActivity.H) {
-                org.telegram.ui.Components.wm0 wm0Var2 = contactsActivity.f33539f;
-                if (h != 2) {
-                    z10 = true;
-                }
-                wm0Var2.setFastScrollVisible(z10);
-                return;
-            }
-            org.telegram.ui.Components.wm0 wm0Var3 = contactsActivity.f33539f;
-            if (h != 0) {
-                z10 = true;
-            }
-            wm0Var3.setFastScrollVisible(z10);
+    public final boolean a(Canvas canvas, View view, long j10) {
+        switch (this.f34624a) {
+            case 0:
+            default:
+                return this.f34625b.drawChild(canvas, view, j10);
         }
     }
 }

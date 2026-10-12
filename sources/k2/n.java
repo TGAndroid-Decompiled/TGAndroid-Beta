@@ -1,26 +1,14 @@
 package k2;
-public interface n {
-    void C();
-
-    void G(Exception exc);
-
-    void L();
-
-    void N(k kVar);
-
-    void V();
-
-    void a0(k kVar);
-
-    void b(long j3);
-
-    void i();
-
-    void n();
-
-    void onAudioSessionIdChanged(int i10);
-
-    void onSkipSilenceEnabledChanged(boolean z10);
-
-    void s(int i10, long j3, long j10);
+public final class n {
+    public int f13954a;
+    public int f13955b;
+    public int f13956c;
+    public boolean d;
+    public boolean e;
+    public int f13957f;
+    public b2.f f13958g;
+    public int h;
+    public int f13959i;
+    public boolean f13960j;
+    public boolean f13961k;
 }

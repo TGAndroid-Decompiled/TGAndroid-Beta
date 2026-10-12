@@ -1,80 +1,32 @@
 package b2;
-
-import android.os.Bundle;
-public final class e0 {
-    public static final e0 f3281f = new e0(new d0());
-    public static final String f3282g;
-    public static final String h;
-    public static final String f3283i;
-    public static final String f3284j;
-    public static final String f3285k;
-    public final long f3286a;
-    public final long f3287b;
-    public final long f3288c;
-    public final float d;
-    public final float f3289e;
-
-    static {
-        String str = e2.d0.f8529a;
-        f3282g = Integer.toString(0, 36);
-        h = Integer.toString(1, 36);
-        f3283i = Integer.toString(2, 36);
-        f3284j = Integer.toString(3, 36);
-        f3285k = Integer.toString(4, 36);
-    }
+public class e0 {
+    public static final e0 f2099i = new e0(new d0());
+    public static final String f2100j = Integer.toString(0, 36);
+    public static final String f2101k = Integer.toString(1, 36);
+    public static final String f2102l = Integer.toString(2, 36);
+    public static final String f2103m = Integer.toString(3, 36);
+    public static final String f2104n = Integer.toString(4, 36);
+    public static final String f2105o = Integer.toString(5, 36);
+    public static final String f2106p = Integer.toString(6, 36);
+    public static final String f2107q = Integer.toString(7, 36);
+    public final long f2108a;
+    public final long f2109b;
+    public final long f2110c;
+    public final long d;
+    public final boolean e;
+    public final boolean f2111f;
+    public final boolean f2112g;
+    public final boolean h;
 
     public e0(d0 d0Var) {
-        long j3 = d0Var.f3262a;
-        long j10 = d0Var.f3263b;
-        long j11 = d0Var.f3264c;
-        float f7 = d0Var.d;
-        float f10 = d0Var.f3265e;
-        this.f3286a = j3;
-        this.f3287b = j10;
-        this.f3288c = j11;
-        this.d = f7;
-        this.f3289e = f10;
-    }
-
-    public final d0 a() {
-        ?? obj = new Object();
-        obj.f3262a = this.f3286a;
-        obj.f3263b = this.f3287b;
-        obj.f3264c = this.f3288c;
-        obj.d = this.d;
-        obj.f3265e = this.f3289e;
-        return obj;
-    }
-
-    public final Bundle b() {
-        Bundle bundle = new Bundle();
-        e0 e0Var = f3281f;
-        long j3 = e0Var.f3286a;
-        long j10 = this.f3286a;
-        if (j10 != j3) {
-            bundle.putLong(f3282g, j10);
-        }
-        long j11 = e0Var.f3287b;
-        long j12 = this.f3287b;
-        if (j12 != j11) {
-            bundle.putLong(h, j12);
-        }
-        long j13 = e0Var.f3288c;
-        long j14 = this.f3288c;
-        if (j14 != j13) {
-            bundle.putLong(f3283i, j14);
-        }
-        float f7 = e0Var.d;
-        float f10 = this.d;
-        if (f10 != f7) {
-            bundle.putFloat(f3284j, f10);
-        }
-        float f11 = e0Var.f3289e;
-        float f12 = this.f3289e;
-        if (f12 != f11) {
-            bundle.putFloat(f3285k, f12);
-        }
-        return bundle;
+        this.f2108a = e2.m0.h0(d0Var.f2094a);
+        this.f2110c = e2.m0.h0(d0Var.f2095b);
+        this.f2109b = d0Var.f2094a;
+        this.d = d0Var.f2095b;
+        this.e = d0Var.f2096c;
+        this.f2111f = d0Var.d;
+        this.f2112g = d0Var.e;
+        this.h = d0Var.f2097f;
     }
 
     public final boolean equals(Object obj) {
@@ -85,30 +37,15 @@ public final class e0 {
             return false;
         }
         e0 e0Var = (e0) obj;
-        if (this.f3286a == e0Var.f3286a && this.f3287b == e0Var.f3287b && this.f3288c == e0Var.f3288c && this.d == e0Var.d && this.f3289e == e0Var.f3289e) {
+        if (this.f2109b == e0Var.f2109b && this.d == e0Var.d && this.e == e0Var.e && this.f2111f == e0Var.f2111f && this.f2112g == e0Var.f2112g && this.h == e0Var.h) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int i10;
-        long j3 = this.f3286a;
-        long j10 = this.f3287b;
-        long j11 = this.f3288c;
-        int i11 = ((((((int) (j3 ^ (j3 >>> 32))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) ((j11 >>> 32) ^ j11))) * 31;
-        float f7 = this.d;
-        int i12 = 0;
-        if (f7 != 0.0f) {
-            i10 = Float.floatToIntBits(f7);
-        } else {
-            i10 = 0;
-        }
-        int i13 = (i11 + i10) * 31;
-        float f10 = this.f3289e;
-        if (f10 != 0.0f) {
-            i12 = Float.floatToIntBits(f10);
-        }
-        return i13 + i12;
+        long j10 = this.f2109b;
+        long j11 = this.d;
+        return (((((((((((int) (j10 ^ (j10 >>> 32))) * 31) + ((int) ((j11 >>> 32) ^ j11))) * 31) + (this.e ? 1 : 0)) * 31) + (this.f2111f ? 1 : 0)) * 31) + (this.f2112g ? 1 : 0)) * 31) + (this.h ? 1 : 0);
     }
 }

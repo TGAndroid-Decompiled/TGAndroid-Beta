@@ -1,9 +1,10 @@
 package vf;
 
-import org.telegram.tgnet.TLRPC;
+import bi.d4;
 public final class b {
-    public TLRPC.Document f49786a;
-    public String f49787b;
-    public int f49788c;
-    public boolean d;
+    public final d4 f46950a;
+
+    public b(d4 d4Var) {
+        this.f46950a = d4Var;
+    }
 }

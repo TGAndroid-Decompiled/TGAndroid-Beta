@@ -3,19 +3,19 @@ package e8;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.c0;
+import w7.g0;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new e6.i(6);
-    public final PendingIntent f8702a;
+    public final PendingIntent f8519a;
 
     public g(PendingIntent pendingIntent) {
-        this.f8702a = pendingIntent;
+        this.f8519a = pendingIntent;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = c0.q(parcel, 20293);
-        c0.k(parcel, 1, this.f8702a, i10);
-        c0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.k(parcel, 1, this.f8519a, i10);
+        g0.r(parcel, q6);
     }
 }

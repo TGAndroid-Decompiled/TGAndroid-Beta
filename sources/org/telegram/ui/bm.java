@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.ui.Components.UndoView;
-public final class bm extends org.telegram.ui.Components.h30 {
-    public final eo f36206b;
+public final class bm extends org.telegram.ui.Components.a30 {
+    public final fo f34596b;
 
-    public bm(eo eoVar, Activity activity, org.telegram.ui.ActionBar.m2 m2Var) {
+    public bm(fo foVar, Activity activity, org.telegram.ui.ActionBar.m2 m2Var) {
         super(activity, m2Var);
-        this.f36206b = eoVar;
+        this.f34596b = foVar;
     }
 
     @Override
-    public final void o() {
-        eo eoVar = this.f36206b;
-        eoVar.T7();
-        UndoView undoView = eoVar.y3;
+    public final void n() {
+        fo foVar = this.f34596b;
+        foVar.T7();
+        UndoView undoView = foVar.y3;
         if (undoView == null) {
             return;
         }
         undoView.j(75, 0L, null);
-        eoVar.getMessagesController().removeSuggestion(eoVar.T5, "CONVERT_GIGAGROUP");
+        foVar.getMessagesController().removeSuggestion(foVar.T5, "CONVERT_GIGAGROUP");
     }
 
     @Override
-    public final void p() {
-        eo eoVar = this.f36206b;
-        eoVar.getMessagesController().convertToGigaGroup(eoVar.getParentActivity(), eoVar.f37246e, eoVar, new z0(this, 19));
+    public final void o() {
+        fo foVar = this.f34596b;
+        foVar.getMessagesController().convertToGigaGroup(foVar.getParentActivity(), foVar.e, foVar, new b1(this, 19));
     }
 }

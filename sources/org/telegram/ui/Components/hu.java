@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public final class hu extends s4.m0 {
-    public final gu[] f26894a = new gu[4];
-    public final ArrayList f26895b = new ArrayList();
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class hu implements Utilities.Callback {
+    public final nu f25746a;
+    public final int f25747b;
+    public final int f25748c;
 
-    @Override
-    public final EdgeEffect a(RecyclerView recyclerView, int i10) {
-        gu guVar = new gu(recyclerView, i10, new eu(this, 0));
-        this.f26894a[i10] = guVar;
-        return guVar;
+    public hu(nu nuVar, int i10, int i11) {
+        this.f25746a = nuVar;
+        this.f25747b = i10;
+        this.f25748c = i11;
     }
 
-    public final float b(int i10) {
-        gu guVar = this.f26894a[i10];
-        if (Build.VERSION.SDK_INT >= 31 && guVar != null && !guVar.isFinished()) {
-            return guVar.getDistance();
-        }
-        return 0.0f;
+    @Override
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        nu nuVar = this.f25746a;
+        Editable text = nuVar.getText();
+        int i10 = this.f25747b;
+        text.replace(i10, this.f25748c, charSequence);
+        nuVar.setSelection(i10, charSequence.length() + i10);
     }
 }

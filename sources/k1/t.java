@@ -1,18 +1,19 @@
 package k1;
-public final class t {
-    public final je.a f14374a;
-    public final kotlin.jvm.internal.n f14375b;
-    public final kotlin.jvm.internal.p f14376c;
-    public final a0 d;
+public final class t extends md.c {
+    public z f13806a;
+    public Object f13807b;
+    public final z f13808c;
+    public int d;
 
-    public t(je.a aVar, kotlin.jvm.internal.n nVar, kotlin.jvm.internal.p pVar, a0 a0Var) {
-        this.f14374a = aVar;
-        this.f14375b = nVar;
-        this.f14376c = pVar;
-        this.d = a0Var;
+    public t(z zVar, md.c cVar) {
+        super(cVar);
+        this.f13808c = zVar;
     }
 
-    public final java.lang.Object a(k1.e r10, ld.c r11) {
-        throw new UnsupportedOperationException("Method not decompiled: k1.t.a(k1.e, ld.c):java.lang.Object");
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f13807b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f13808c.e(this);
     }
 }

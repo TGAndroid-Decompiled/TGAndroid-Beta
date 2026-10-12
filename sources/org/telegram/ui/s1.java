@@ -1,30 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
-import org.telegram.tgnet.tl.TL_iv;
-public final class s1 extends WebView {
-    public final t1 f41780a;
+import android.webkit.WebViewClient;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class s1 extends WebViewClient {
+    public final v1 f39918a;
 
-    public s1(t1 t1Var, Context context) {
-        super(context);
-        this.f41780a = t1Var;
-        setFocusable(false);
+    public s1(v1 v1Var) {
+        this.f39918a = v1Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        t1 t1Var = this.f41780a;
-        t1Var.f42049s = true;
-        TL_iv.pageBlockEmbed pageblockembed = t1Var.v;
-        if (pageblockembed != null) {
-            if (pageblockembed.allow_scrolling) {
-                requestDisallowInterceptTouchEvent(true);
-            } else {
-                t1Var.f42051x.f38650f0.requestDisallowInterceptTouchEvent(true);
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        try {
+            LaunchActivity launchActivity = LaunchActivity.G1;
+            if (launchActivity != null && launchActivity.isFinishing()) {
+                return true;
             }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39918a.getContext(), 0, null);
+            alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f19548a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new tu0(this, 8));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
-        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        v1 v1Var = this.f39918a;
+        if (v1Var.f40853s) {
+            pf.d.s(v1Var.f40855x.L, str);
+            return true;
+        }
+        return false;
     }
 }

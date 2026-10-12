@@ -1,28 +1,33 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-public final class c41 extends org.telegram.ui.Cells.j3 {
-    public final d41 f36323x;
+import org.telegram.messenger.AndroidUtilities;
+public final class c41 implements e41 {
+    public final org.telegram.ui.ActionBar.m2 f34731a;
+    public final Context f34732b;
+    public final org.telegram.ui.ActionBar.c6 f34733c;
+    public final org.telegram.ui.Components.f60 d;
 
-    public c41(d41 d41Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, "", true, false, 1024, c6Var);
-        this.f36323x = d41Var;
+    public c41(org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.f60 f60Var) {
+        this.f34731a = m2Var;
+        this.f34732b = context;
+        this.f34733c = c6Var;
+        this.d = f60Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        boolean z10;
-        d41 d41Var = this.f36323x;
-        ci.d dVar = d41Var.f36647s;
-        if (dVar != null) {
-            if (!d41Var.d.optional && TextUtils.isEmpty(d41Var.f36645n.getText())) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            dVar.setEnabled(z10);
-        }
+    public final void a() {
+        AndroidUtilities.runOnUIThread(new w31(this.f34731a, this.f34732b, this.f34733c, this.d, 2), 200L);
+    }
+
+    @Override
+    public final void b() {
+        AndroidUtilities.runOnUIThread(new hz0(15, this.f34731a, this.d), 200L);
+    }
+
+    @Override
+    public final void c() {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f34731a;
+        m2Var.showDialog(new sg.y0(m2Var, 3, true));
     }
 }

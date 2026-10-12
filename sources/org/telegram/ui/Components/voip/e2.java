@@ -1,36 +1,84 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
 import android.content.Context;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e90;
-public final class e2 extends e90 {
-    public final TLRPC.User f31655c;
-    public final TLRPC.Chat d;
-    public final String f31656e;
-    public final TLRPC.InputPeer f31657f;
-    public final boolean h;
-    public final boolean f31658n;
-    public final Activity f31659r;
-    public final org.telegram.ui.ActionBar.m2 f31660s;
-    public final AccountInstance v;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import w7.a6;
+public final class e2 extends FrameLayout {
+    public String f30162a;
+    public final ImageView f30163b;
+    public final TextView f30164c;
+    public boolean d;
+    public final o1 e;
+    public final RectF f30165f;
 
-    public e2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.m2 m2Var, AccountInstance accountInstance) {
-        super(context, chat);
-        this.f31655c = user;
-        this.d = chat2;
-        this.f31656e = str;
-        this.f31657f = inputPeer;
-        this.h = z10;
-        this.f31658n = z11;
-        this.f31659r = activity;
-        this.f31660s = m2Var;
-        this.v = accountInstance;
+    public e2(Context context, o1 o1Var, int i10) {
+        super(context);
+        this.f30165f = new RectF();
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        this.e = o1Var;
+        o1Var.a(this);
+        ImageView imageView = new ImageView(context);
+        this.f30163b = imageView;
+        addView(imageView, a6.a(24.0f, 8.0f, 2.0f, 8.0f, 2.0f, 24, 16));
+        TextView textView = new TextView(context);
+        this.f30164c = textView;
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 14.0f);
+        addView(textView, a6.a(-2.0f, i10 != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f, -2, 16));
     }
 
     @Override
-    public final void o() {
-        g2.b(this.f31655c, this.d, this.f31656e, this.f31657f, true, this.h, this.f31658n, false, this.f31659r, this.f31660s, this.v, false, false, false);
+    public final void dispatchDraw(Canvas canvas) {
+        Paint b10;
+        Paint b11;
+        Paint b12;
+        RectF rectF = this.f30165f;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        float x10 = ((View) getParent()).getX() + getX();
+        float y3 = ((View) getParent()).getY() + getY();
+        o1 o1Var = this.e;
+        o1Var.d(x10, y3);
+        Paint paint = o1Var.f30384l;
+        if (this.d) {
+            b10 = paint;
+        } else {
+            b10 = o1Var.b();
+        }
+        int alpha = b10.getAlpha();
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
+        if (this.d) {
+            b11 = paint;
+        } else {
+            b11 = o1Var.b();
+        }
+        b11.setAlpha(255);
+        float dp = AndroidUtilities.dp(16.0f);
+        float dp2 = AndroidUtilities.dp(16.0f);
+        if (this.d) {
+            b12 = paint;
+        } else {
+            b12 = o1Var.b();
+        }
+        canvas.drawRoundRect(rectF, dp, dp2, b12);
+        if (!this.d) {
+            paint = o1Var.b();
+        }
+        paint.setAlpha(alpha);
+        if (o1Var.e) {
+            int alpha2 = ((Paint) o1Var.d.f6191a).getAlpha();
+            ((Paint) o1Var.d.f6191a).setAlpha(255);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), (Paint) o1Var.d.f6191a);
+            ((Paint) o1Var.d.f6191a).setAlpha(alpha2);
+        }
+        canvas.restore();
+        super.dispatchDraw(canvas);
     }
 }

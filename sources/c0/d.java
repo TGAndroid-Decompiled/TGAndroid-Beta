@@ -3,12 +3,12 @@ package c0;
 import java.util.concurrent.Executor;
 public final class d {
     public static final d d = new d(null, null);
-    public final Runnable f3959a;
-    public final Executor f3960b;
-    public d f3961c;
+    public final Runnable f4085a;
+    public final Executor f4086b;
+    public d f4087c;
 
     public d(Runnable runnable, Executor executor) {
-        this.f3959a = runnable;
-        this.f3960b = executor;
+        this.f4085a = runnable;
+        this.f4086b = executor;
     }
 }

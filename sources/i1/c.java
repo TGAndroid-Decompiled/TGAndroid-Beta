@@ -3,12 +3,12 @@ package i1;
 import android.os.Parcel;
 import android.os.Parcelable;
 public abstract class c implements Parcelable {
-    public final Parcelable f11597a;
-    public static final a f11596b = new c();
+    public final Parcelable f10910a;
+    public static final a f10909b = new c();
     public static final Parcelable.Creator<c> CREATOR = new b(0);
 
     public c() {
-        this.f11597a = null;
+        this.f10910a = null;
     }
 
     @Override
@@ -18,12 +18,12 @@ public abstract class c implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeParcelable(this.f11597a, i10);
+        parcel.writeParcelable(this.f10910a, i10);
     }
 
     public c(Parcelable parcelable) {
         if (parcelable != null) {
-            this.f11597a = parcelable == f11596b ? null : parcelable;
+            this.f10910a = parcelable == f10909b ? null : parcelable;
             return;
         }
         throw new IllegalArgumentException("superState must not be null");
@@ -31,6 +31,6 @@ public abstract class c implements Parcelable {
 
     public c(Parcel parcel, ClassLoader classLoader) {
         Parcelable readParcelable = parcel.readParcelable(classLoader);
-        this.f11597a = readParcelable == null ? f11596b : readParcelable;
+        this.f10910a = readParcelable == null ? f10909b : readParcelable;
     }
 }

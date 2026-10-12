@@ -1,30 +1,22 @@
 package bb;
+public final class d {
+    public static final d f2625a;
+    public static final d f2626b;
+    public static final d[] f2627c;
 
-import android.util.Log;
-import sd.p;
-import v7.a8;
-public final class d extends ld.j implements p {
-    public Object f3812a;
-
-    @Override
-    public final jd.c create(Object obj, jd.c cVar) {
-        ?? jVar = new ld.j(2, cVar);
-        jVar.f3812a = obj;
-        return jVar;
+    static {
+        ?? r02 = new Enum("CRASHLYTICS", 0);
+        f2625a = r02;
+        ?? r12 = new Enum("PERFORMANCE", 1);
+        f2626b = r12;
+        f2627c = new d[]{r02, r12, new Enum("MATT_SAYS_HI", 2)};
     }
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        hd.i iVar = hd.i.f11090a;
-        ((d) create((String) obj, (jd.c) obj2)).invokeSuspend(iVar);
-        return iVar;
+    public static d valueOf(String str) {
+        return (d) Enum.valueOf(d.class, str);
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        kd.a aVar = kd.a.f14781a;
-        a8.b(obj);
-        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f3812a));
-        return hd.i.f11090a;
+    public static d[] values() {
+        return (d[]) f2627c.clone();
     }
 }

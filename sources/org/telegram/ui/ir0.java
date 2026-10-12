@@ -1,319 +1,72 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-public final class ir0 extends org.telegram.ui.ActionBar.m2 {
-    public static final org.telegram.ui.Components.ts0 f38975y = new org.telegram.ui.Components.ts0(4);
-    public final dr0 f38976a;
-    public final dr0 f38977b;
-    public org.telegram.ui.ActionBar.u0 f38978c;
-    public org.telegram.ui.Components.cv d;
-    public boolean f38979e;
-    public final Paint f38980f;
-    public ScrollSlidingTextTabStrip h;
-    public final gr0[] f38981n;
-    public AnimatorSet f38982r;
-    public boolean f38983s;
-    public boolean v;
-    public boolean f38984w;
-    public int f38985x;
+public final class ir0 implements org.telegram.ui.Components.nn0 {
+    public final mr0 f37197a;
 
-    public ir0(HashMap hashMap, ArrayList arrayList, int i10, boolean z10, eo eoVar) {
-        super(null);
-        this.f38979e = true;
-        this.f38980f = new Paint();
-        this.f38981n = new gr0[2];
-        this.f38976a = new dr0(0, null, hashMap, arrayList, i10, z10, eoVar, false);
-        this.f38977b = new dr0(1, null, hashMap, arrayList, i10, z10, eoVar, false);
+    public ir0(mr0 mr0Var) {
+        this.f37197a = mr0Var;
     }
 
-    public static void g0(ir0 ir0Var, float f7) {
-        ir0Var.actionBar.setTranslationY(f7);
-        int i10 = 0;
-        while (true) {
-            gr0[] gr0VarArr = ir0Var.f38981n;
-            if (i10 < gr0VarArr.length) {
-                gr0VarArr[i10].d.setPinnedSectionOffsetY((int) f7);
-                i10++;
+    @Override
+    public final void B0(float f7) {
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        mr0 mr0Var = this.f37197a;
+        if (i10 != 0 || mr0Var.f38322n[1].getVisibility() == 0) {
+            if (mr0Var.v) {
+                kr0 kr0Var = mr0Var.f38322n[0];
+                kr0Var.setTranslationX((-f7) * kr0Var.getMeasuredWidth());
+                kr0[] kr0VarArr = mr0Var.f38322n;
+                kr0VarArr[1].setTranslationX(kr0VarArr[0].getMeasuredWidth() - (f7 * mr0Var.f38322n[0].getMeasuredWidth()));
             } else {
-                ir0Var.fragmentView.invalidate();
-                return;
+                kr0 kr0Var2 = mr0Var.f38322n[0];
+                kr0Var2.setTranslationX(kr0Var2.getMeasuredWidth() * f7);
+                kr0[] kr0VarArr2 = mr0Var.f38322n;
+                kr0VarArr2[1].setTranslationX((f7 * kr0VarArr2[0].getMeasuredWidth()) - mr0Var.f38322n[0].getMeasuredWidth());
+            }
+            if (i10 == 0) {
+                kr0[] kr0VarArr3 = mr0Var.f38322n;
+                kr0 kr0Var3 = kr0VarArr3[0];
+                kr0VarArr3[0] = kr0VarArr3[1];
+                kr0VarArr3[1] = kr0Var3;
+                kr0Var3.setVisibility(8);
             }
         }
     }
 
-    public static void h0(ir0 ir0Var, String str) {
-        ir0Var.f38978c.getSearchField().setText(str);
-        ir0Var.f38978c.getSearchField().setSelection(str.length());
-        ir0Var.actionBar.y();
-    }
-
     @Override
-    public final View createView(Context context) {
-        gr0[] gr0VarArr;
-        View view;
-        this.actionBar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false));
-        org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i10 = org.telegram.ui.ActionBar.h6.f20668j5;
-        kVar.setTitleColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        this.actionBar.E(org.telegram.ui.ActionBar.h6.x0(null, i10, false), false);
-        this.actionBar.D(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.I5, false), false);
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        org.telegram.ui.ActionBar.b5 b5Var = this.parentLayout;
-        if (b5Var != null && ((ActionBarLayout) b5Var).M0) {
-            this.actionBar.setOccupyStatusBar(false);
+    public final void e(int i10, boolean z10) {
+        boolean z11;
+        mr0 mr0Var = this.f37197a;
+        if (mr0Var.f38322n[0].e == i10) {
+            return;
         }
-        float f7 = 44.0f;
-        this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
-        this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setAddToContainer(false);
-        boolean z10 = true;
-        this.actionBar.setClipContent(true);
-        this.actionBar.setActionBarMenuOnItemClick(new o70(this, 17));
-        this.hasOwnBackground = true;
-        org.telegram.ui.ActionBar.u0 a2 = this.actionBar.p().a(0, R.drawable.outline_header_search);
-        a2.F();
-        a2.H = new hg.e2(this, 14);
-        this.f38978c = a2;
-        a2.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
-        EditTextBoldCursor searchField = this.f38978c.getSearchField();
-        searchField.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        searchField.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        searchField.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Vd, false));
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context, null);
-        this.h = scrollSlidingTextTabStrip;
-        scrollSlidingTextTabStrip.setUseSameWidth(true);
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip2 = this.h;
-        int i11 = org.telegram.ui.ActionBar.h6.Y9;
-        int i12 = org.telegram.ui.ActionBar.h6.Z9;
-        scrollSlidingTextTabStrip2.L = i11;
-        scrollSlidingTextTabStrip2.M = i12;
-        scrollSlidingTextTabStrip2.e();
-        this.actionBar.addView(this.h, w7.w5.e(-1, 44, 83));
-        this.h.setDelegate(new er0(this));
-        this.f38985x = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
-        fr0 fr0Var = new fr0(this, context);
-        this.fragmentView = fr0Var;
-        fr0Var.setWillNotDraw(false);
-        dr0 dr0Var = this.f38976a;
-        dr0Var.setParentFragment(this);
-        org.telegram.ui.Components.cv cvVar = dr0Var.f36875d0;
-        this.d = cvVar;
-        cvVar.setSizeNotifierLayout(fr0Var);
-        for (int i13 = 0; i13 < 4; i13++) {
-            if (i13 != 0) {
-                if (i13 != 1) {
-                    if (i13 != 2) {
-                        view = dr0Var.f36874c0;
-                    } else {
-                        view = dr0Var.f36872b0;
-                    }
-                } else {
-                    view = dr0Var.f36870a0;
-                }
-            } else {
-                view = dr0Var.Z;
-            }
-            ((ViewGroup) view.getParent()).removeView(view);
+        if (i10 == mr0Var.h.getFirstTabId()) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        FrameLayout frameLayout = dr0Var.Z;
-        k0 k0Var = dr0Var.f36870a0;
-        s50 s50Var = dr0Var.f36872b0;
-        View view2 = dr0Var.f36874c0;
-        org.telegram.ui.Components.cv cvVar2 = dr0Var.f36875d0;
-        dr0 dr0Var2 = this.f38977b;
-        dr0Var2.Z = frameLayout;
-        dr0Var2.f36870a0 = k0Var;
-        dr0Var2.f36875d0 = cvVar2;
-        dr0Var2.f36872b0 = s50Var;
-        dr0Var2.f36874c0 = view2;
-        dr0Var2.f36890q0 = false;
-        dr0Var2.setParentFragment(this);
-        int i14 = 0;
-        while (true) {
-            gr0VarArr = this.f38981n;
-            if (i14 >= gr0VarArr.length) {
-                break;
-            }
-            gr0 gr0Var = new gr0(this, context);
-            gr0VarArr[i14] = gr0Var;
-            float f10 = f7;
-            fr0Var.addView(gr0Var, w7.w5.d(-1.0f, -1));
-            if (i14 == 0) {
-                gr0 gr0Var2 = gr0VarArr[i14];
-                gr0Var2.f38126a = dr0Var;
-                gr0Var2.d = dr0Var.K;
-            } else if (i14 == 1) {
-                gr0 gr0Var3 = gr0VarArr[i14];
-                gr0Var3.f38126a = dr0Var2;
-                gr0Var3.d = dr0Var2.K;
-                gr0Var3.setVisibility(8);
-            }
-            gr0VarArr[i14].d.setScrollingTouchSlop(1);
-            gr0 gr0Var4 = gr0VarArr[i14];
-            gr0Var4.f38127b = (FrameLayout) gr0Var4.f38126a.getFragmentView();
-            gr0VarArr[i14].d.setClipToPadding(false);
-            gr0 gr0Var5 = gr0VarArr[i14];
-            gr0Var5.f38128c = gr0Var5.f38126a.getActionBar();
-            gr0 gr0Var6 = gr0VarArr[i14];
-            gr0Var6.addView(gr0Var6.f38127b, w7.w5.d(-1.0f, -1));
-            gr0 gr0Var7 = gr0VarArr[i14];
-            gr0Var7.addView(gr0Var7.f38128c, w7.w5.d(-2.0f, -1));
-            gr0VarArr[i14].f38128c.setVisibility(8);
-            gr0VarArr[i14].d.setOnScrollListener(new ii.n3(7, this, gr0VarArr[i14].d.getOnScrollListener()));
-            i14++;
-            f7 = f10;
-        }
-        float f11 = f7;
-        fr0Var.addView(this.actionBar, w7.w5.d(-2.0f, -1));
-        fr0Var.addView(dr0Var.Z, w7.w5.e(-1, 48, 83));
-        fr0Var.addView(dr0Var.f36870a0, w7.w5.a(60.0f, 0.0f, 0.0f, 12.0f, 10.0f, 60, 85));
-        fr0Var.addView(dr0Var.f36872b0, w7.w5.a(24.0f, 0.0f, 0.0f, -2.0f, 9.0f, 42, 85));
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip3 = this.h;
-        if (scrollSlidingTextTabStrip3 != null) {
-            scrollSlidingTextTabStrip3.a(0, LocaleController.getString(R.string.ImagesTab2), null);
-            this.h.a(1, LocaleController.getString(R.string.GifsTab2), null);
-            this.h.setVisibility(0);
-            this.actionBar.setExtraHeight(AndroidUtilities.dp(f11));
-            int currentTabId = this.h.getCurrentTabId();
-            if (currentTabId >= 0) {
-                gr0VarArr[0].f38129e = currentTabId;
-            }
-            this.h.c();
-        }
-        j0(false);
-        if (this.h.getCurrentTabId() != this.h.getFirstTabId()) {
-            z10 = false;
-        }
-        this.f38979e = z10;
-        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false)) >= 0.721f) {
-            View view3 = this.fragmentView;
-            view3.setSystemUiVisibility(view3.getSystemUiVisibility() | 8192);
-        }
-        return this.fragmentView;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        View view = this.fragmentView;
-        int i10 = org.telegram.ui.ActionBar.h6.f20631h5;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(view, 1, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1, null, null, null, null, i10));
-        org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i11 = org.telegram.ui.ActionBar.h6.f20668j5;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(kVar, 64, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 128, null, null, null, null, i11));
-        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
-        int i12 = org.telegram.ui.ActionBar.h6.I5;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(kVar2, 256, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 134217728, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 67108864, null, null, null, null, org.telegram.ui.ActionBar.h6.Vd));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f38978c.getSearchField(), 16777216, null, null, null, null, i11));
-        int i13 = org.telegram.ui.ActionBar.h6.Y9;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h.getTabsContainer(), 262148, new Class[]{TextView.class}, null, null, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h.getTabsContainer(), 262148, new Class[]{TextView.class}, null, null, null, org.telegram.ui.ActionBar.h6.Z9));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h.getTabsContainer(), 65568, new Class[]{TextView.class}, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, new Drawable[]{this.h.getSelectorDrawable()}, null, i13));
-        arrayList.addAll(this.f38976a.getThemeDescriptions());
-        arrayList.addAll(this.f38977b.getThemeDescriptions());
-        return arrayList;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return this.f38979e;
-    }
-
-    public final void j0(boolean z10) {
-        gr0[] gr0VarArr;
-        int i10 = 0;
-        while (true) {
-            gr0VarArr = this.f38981n;
-            if (i10 >= gr0VarArr.length) {
-                break;
-            }
-            gr0VarArr[i10].d.B0();
-            i10++;
-        }
-        gr0VarArr[z10 ? 1 : 0].d.getAdapter();
-        gr0VarArr[z10 ? 1 : 0].d.setPinnedHeaderShadowDrawable(null);
-        if (this.actionBar.getTranslationY() != 0.0f) {
-            ((s4.d0) gr0VarArr[z10 ? 1 : 0].d.getLayoutManager()).h1(0, (int) this.actionBar.getTranslationY());
+        mr0Var.e = z11;
+        kr0 kr0Var = mr0Var.f38322n[1];
+        kr0Var.e = i10;
+        kr0Var.setVisibility(0);
+        mr0Var.j0(true);
+        mr0Var.v = z10;
+        if (i10 == 0) {
+            mr0Var.f38320c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+        } else {
+            mr0Var.f38320c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
         }
     }
 
     @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        dr0 dr0Var = this.f38976a;
-        if (dr0Var != null) {
-            dr0Var.onConfigurationChanged(configuration);
-        }
-        dr0 dr0Var2 = this.f38977b;
-        if (dr0Var2 != null) {
-            dr0Var2.onConfigurationChanged(configuration);
-        }
+    public final boolean n1(int i10, View view) {
+        return false;
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        dr0 dr0Var = this.f38976a;
-        if (dr0Var != null) {
-            dr0Var.onFragmentDestroy();
-        }
-        dr0 dr0Var2 = this.f38977b;
-        if (dr0Var2 != null) {
-            dr0Var2.onFragmentDestroy();
-        }
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final void onPause() {
-        super.onPause();
-        dr0 dr0Var = this.f38976a;
-        if (dr0Var != null) {
-            dr0Var.onPause();
-        }
-        dr0 dr0Var2 = this.f38977b;
-        if (dr0Var2 != null) {
-            dr0Var2.onPause();
-        }
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        org.telegram.ui.ActionBar.u0 u0Var = this.f38978c;
-        if (u0Var != null) {
-            u0Var.z(true);
-            getParentActivity().getWindow().setSoftInputMode(32);
-        }
-        dr0 dr0Var = this.f38976a;
-        if (dr0Var != null) {
-            dr0Var.onResume();
-        }
-        dr0 dr0Var2 = this.f38977b;
-        if (dr0Var2 != null) {
-            dr0Var2.onResume();
-        }
+    public final void C() {
     }
 }

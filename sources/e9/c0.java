@@ -1,33 +1,47 @@
 package e9;
 
-import java.util.Collection;
-public abstract class c0 extends k0 {
-    @Override
-    public final d0 d() {
-        throw new AssertionError("should never be called");
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Comparator;
+public final class c0 extends v1 implements Serializable {
+    public final Comparator[] f8540a;
+
+    public c0(r rVar, r rVar2) {
+        this.f8540a = new Comparator[]{rVar, rVar2};
     }
 
     @Override
-    public final d0 e() {
-        z0 z0Var = ((z0) this).f8823n;
-        m0 m0Var = z0Var.f8759b;
-        if (m0Var == null) {
-            d1 c10 = z0Var.c();
-            z0Var.f8759b = c10;
-            return c10;
+    public final int compare(Object obj, Object obj2) {
+        int i10 = 0;
+        while (true) {
+            Comparator[] comparatorArr = this.f8540a;
+            if (i10 >= comparatorArr.length) {
+                return 0;
+            }
+            int compare = comparatorArr[i10].compare(obj, obj2);
+            if (compare != 0) {
+                return compare;
+            }
+            i10++;
         }
-        return m0Var;
     }
 
     @Override
-    public final Collection values() {
-        z0 z0Var = ((z0) this).f8823n;
-        m0 m0Var = z0Var.f8759b;
-        if (m0Var == null) {
-            d1 c10 = z0Var.c();
-            z0Var.f8759b = c10;
-            return c10;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return m0Var;
+        if (obj instanceof c0) {
+            return Arrays.equals(this.f8540a, ((c0) obj).f8540a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(this.f8540a);
+    }
+
+    public final String toString() {
+        return a1.g.s(new StringBuilder("Ordering.compound("), Arrays.toString(this.f8540a), ")");
     }
 }

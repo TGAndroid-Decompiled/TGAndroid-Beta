@@ -1,23 +1,68 @@
 package org.telegram.ui.Wallet;
 
-import android.util.Base64;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_wallet;
 public final class c2 {
-    public final String f34543a;
-    public final byte[] f34544b;
-    public final byte[] f34545c;
-    public TL_wallet.walletOwnershipProof d;
+    public final long f33003a;
+    public final List f33004b;
+    public final long f33005c;
 
     public c2(JSONObject jSONObject) {
-        byte[] bArr;
-        this.f34543a = jSONObject.getString("clientId");
-        if (jSONObject.has("challengeAnswer")) {
-            bArr = Base64.decode(jSONObject.getString("challengeAnswer"), 2);
-        } else {
-            bArr = null;
+        boolean z10;
+        long optLong = jSONObject.optLong("valid_until", 0L);
+        this.f33003a = optLong;
+        JSONArray jSONArray = jSONObject.getJSONArray("messages");
+        if (jSONArray.length() != 0 && jSONArray.length() <= 255 && optLong >= 0) {
+            ArrayList arrayList = new ArrayList();
+            long j10 = 0;
+            int i10 = 0;
+            while (i10 < jSONArray.length()) {
+                b2 b2Var = new b2(jSONArray.getJSONObject(i10));
+                long j11 = b2Var.e;
+                long j12 = j10 + j11;
+                if ((j11 ^ j10) < 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z10 | ((j10 ^ j12) >= 0)) {
+                    arrayList.add(b2Var);
+                    i10++;
+                    j10 = j12;
+                } else {
+                    throw new ArithmeticException();
+                }
+            }
+            this.f33005c = j10;
+            this.f33004b = DesugarCollections.unmodifiableList(arrayList);
+            return;
         }
-        this.f34544b = bArr;
-        this.f34545c = jSONObject.has("body") ? Base64.decode(jSONObject.getString("body"), 2) : null;
+        throw new JSONException("Invalid transaction");
+    }
+
+    public final String[] a() {
+        String str;
+        List list = this.f33004b;
+        String[] strArr = new String[list.size() * 5];
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            b2 b2Var = (b2) list.get(i10);
+            int i11 = i10 * 5;
+            strArr[i11] = b2Var.f32953a;
+            strArr[i11 + 1] = Long.toString(b2Var.e);
+            strArr[i11 + 2] = b2Var.f32954b;
+            strArr[i11 + 3] = b2Var.f32955c;
+            int i12 = i11 + 4;
+            if (b2Var.f32956f) {
+                str = "1";
+            } else {
+                str = "0";
+            }
+            strArr[i12] = str;
+        }
+        return strArr;
     }
 }

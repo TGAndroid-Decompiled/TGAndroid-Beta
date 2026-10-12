@@ -1,78 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.webkit.JavascriptInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class ug0 {
-    public final org.telegram.ui.lu0 f31160a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ug0 extends AnimatorListenerAdapter {
+    public final int f29684a;
+    public final vg0 f29685b;
 
-    public ug0(org.telegram.ui.lu0 lu0Var) {
-        this.f31160a = lu0Var;
+    public ug0(vg0 vg0Var, int i10) {
+        this.f29684a = i10;
+        this.f29685b = vg0Var;
     }
 
-    @JavascriptInterface
-    public void onPlayerError(String str) {
-        AndroidUtilities.runOnUIThread(new nd(this, Integer.parseInt(str), 6));
-    }
-
-    @JavascriptInterface
-    public void onPlayerLoaded() {
-        AndroidUtilities.runOnUIThread(new sg0(this, 0));
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyBufferedPosition(float f7) {
-        this.f31160a.J = f7;
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyCurrentPosition(int i10) {
-        this.f31160a.I = i10 * 1000;
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyDuration(int i10) {
-        org.telegram.ui.lu0 lu0Var = this.f31160a;
-        lu0Var.H = i10 * 1000;
-        String str = lu0Var.f31511s;
-        if (str != null) {
-            vg0.a(lu0Var, str);
-            lu0Var.f31511s = null;
-        }
-    }
-
-    @JavascriptInterface
-    public void onPlayerStateChange(String str) {
-        boolean z10;
-        int parseInt = Integer.parseInt(str);
-        org.telegram.ui.lu0 lu0Var = this.f31160a;
-        boolean z11 = lu0Var.G;
-        boolean z12 = false;
-        int i10 = 1;
-        if (parseInt != 1 && parseInt != 3) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        lu0Var.G = z10;
-        lu0Var.b(z11);
-        if (parseInt != 0) {
-            if (parseInt != 1) {
-                if (parseInt != 2) {
-                    if (parseInt == 3) {
-                        z12 = true;
-                        i10 = 2;
-                    }
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29684a) {
+            case 0:
+                vg0 vg0Var = this.f29685b;
+                vg0Var.h = false;
+                vg0Var.f29961a = vg0Var.f29963c;
+                vg0Var.invalidate();
+                int i10 = vg0Var.J;
+                if (i10 >= 0) {
+                    vg0Var.b(i10);
+                    vg0Var.J = -1;
+                    return;
                 }
-            } else {
-                z12 = true;
-            }
-            i10 = 3;
-        } else {
-            i10 = 4;
+                return;
+            default:
+                vg0 vg0Var2 = this.f29685b;
+                vg0Var2.f29965n = false;
+                vg0Var2.h = false;
+                vg0Var2.invalidate();
+                int i11 = vg0Var2.J;
+                if (i11 >= 0) {
+                    vg0Var2.b(i11);
+                    vg0Var2.J = -1;
+                }
+                vg0Var2.a();
+                return;
         }
-        if (i10 == 3 && lu0Var.h.getVisibility() != 4) {
-            AndroidUtilities.runOnUIThread(new sg0(this, 1), 300L);
-        }
-        AndroidUtilities.runOnUIThread(new i2.g0(this, z12, i10, 1));
     }
 }

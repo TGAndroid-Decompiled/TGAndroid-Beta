@@ -1,28 +1,41 @@
 package org.telegram.ui;
-public final class pd0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f40924a;
-    public final xg0 f40925b;
 
-    public pd0(xg0 xg0Var, int i10) {
-        this.f40924a = i10;
-        this.f40925b = xg0Var;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class pd0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39196a;
+    public final bh0 f39197b;
+
+    public pd0(bh0 bh0Var, int i10) {
+        this.f39196a = i10;
+        this.f39197b = bh0Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f40924a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39196a) {
             case 0:
-                xg0 xg0Var = this.f40925b;
-                xg0Var.f43939b[xg0Var.f43937a].d();
-                xg0Var.k1(true, true);
+                bh0 bh0Var = this.f39197b;
+                bh0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bh0Var.f34547c.setAlpha(floatValue);
+                bh0Var.f34547c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
+                return;
+            case 1:
+                bh0 bh0Var2 = this.f39197b;
+                bh0Var2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f7 = (0.9f * floatValue2) + 0.1f;
+                bh0Var2.V.setScaleX(f7);
+                bh0Var2.V.setScaleY(f7);
+                bh0Var2.V.setAlpha(floatValue2);
                 return;
             default:
-                xg0 xg0Var2 = this.f40925b;
-                xg0Var2.f43953l0 = true;
-                if (xg0Var2.f43937a != 0) {
-                    xg0Var2.u1(0, true, null, true);
-                    return;
-                }
+                bh0 bh0Var3 = this.f39197b;
+                bh0Var3.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bh0Var3.f34547c.setAlpha(floatValue3);
+                bh0Var3.f34547c.setTranslationY((1.0f - floatValue3) * AndroidUtilities.dp(230.0f));
                 return;
         }
     }

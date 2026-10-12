@@ -1,31 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class l70 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.e3[] f28051a;
-    public final TLRPC.TL_chatInviteImporter f28052b;
-
-    public l70(org.telegram.ui.ActionBar.e3[] e3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f28051a = e3VarArr;
-        this.f28052b = tL_chatInviteImporter;
-    }
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class l70 extends FrameLayout {
+    public TextView f26971a;
 
     @Override
-    public final void onClick(View view) {
-        this.f28051a[0].dismiss();
-        org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(ProfileActivity.m4(this.f28052b.user_id));
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(84.0f), 1073741824));
     }
 }

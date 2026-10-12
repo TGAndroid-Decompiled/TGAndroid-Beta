@@ -1,13 +1,15 @@
 package n2;
 public final class a {
-    public final long f16223a;
-    public final boolean f16224b;
-    public final Object f16225c;
-    public int d;
+    public final long f15916a;
+    public final boolean f15917b;
+    public final long f15918c;
+    public final Object d;
+    public int e;
 
-    public a(long j3, boolean z10, long j10, Object obj) {
-        this.f16223a = j3;
-        this.f16224b = z10;
-        this.f16225c = obj;
+    public a(long j10, boolean z10, long j11, Object obj) {
+        this.f15916a = j10;
+        this.f15917b = z10;
+        this.f15918c = j11;
+        this.d = obj;
     }
 }

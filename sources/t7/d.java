@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
-import w7.o7;
+import w7.q7;
 public abstract class d extends a implements List, RandomAccess, j$.util.List {
-    public static final b f48446b = new b(g.f48451e, 0);
+    public static final b f45517b = new b(g.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -67,6 +67,15 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    @Override
     public final int hashCode() {
         int size = size();
         int i10 = 1;
@@ -74,15 +83,6 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
             i10 = (i10 * 31) + get(i11).hashCode();
         }
         return i10;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
     }
 
     @Override
@@ -124,22 +124,22 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
 
     @Override
     public d subList(int i10, int i11) {
-        o7.c(i10, i11, size());
+        q7.c(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return g.f48451e;
+            return g.e;
         }
         return new c(this, i10, i12);
     }
 
     @Override
     public final b listIterator(int i10) {
-        o7.b(i10, size());
+        q7.b(i10, size());
         if (isEmpty()) {
-            return f48446b;
+            return f45517b;
         }
         return new b(this, i10);
     }

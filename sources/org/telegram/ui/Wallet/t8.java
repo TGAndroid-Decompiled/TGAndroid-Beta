@@ -1,65 +1,60 @@
 package org.telegram.ui.Wallet;
+public final class t8 implements Runnable {
+    public final int f33712a;
+    public final Object f33713b;
+    public final Object f33714c;
 
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.ui.n9;
-import org.telegram.ui.x9;
-public final class t8 implements x9 {
-    public final u8 f35399a;
-
-    public t8(u8 u8Var) {
-        this.f35399a = u8Var;
+    public t8(int i10, Object obj, Object obj2) {
+        this.f33712a = i10;
+        this.f33713b = obj;
+        this.f33714c = obj2;
     }
 
-    @Override
-    public final String A0() {
-        return null;
+    private final void a() {
+        r2.c cVar = (r2.c) this.f33713b;
+        t8 t8Var = (t8) this.f33714c;
+        cVar.f43813c.r0();
+        r2.f fVar = cVar.f43812b;
+        synchronized (fVar.f43823a) {
+            fVar.b();
+            t8Var.run();
+        }
     }
 
-    @Override
-    public final void K(String str) {
-        String trim;
-        u8 u8Var = this.f35399a;
-        if (!u8Var.isFinished && u8Var.M != null) {
-            if (str == null) {
-                trim = "";
-            } else {
-                try {
-                    trim = str.trim();
-                } catch (Throwable unused) {
-                    AndroidUtilities.runOnUIThread(new n(u8Var, 14));
-                    return;
-                }
+    private final void b() {
+        qa.a aVar;
+        r9.p pVar = (r9.p) this.f33713b;
+        qa.b bVar = (qa.b) this.f33714c;
+        if (pVar.f44060b == r9.p.d) {
+            synchronized (pVar) {
+                aVar = pVar.f44059a;
+                pVar.f44059a = null;
+                pVar.f44060b = bVar;
             }
-            Uri parse = Uri.parse(trim);
-            if ("ton".equalsIgnoreCase(parse.getScheme()) && "transfer".equalsIgnoreCase(parse.getAuthority()) && parse.getPathSegments().size() == 1) {
-                String str2 = parse.getPathSegments().get(0);
-                if (!WalletEngine2.isValidRecipientAddress(str2)) {
-                    AndroidUtilities.runOnUIThread(new n(u8Var, 14));
-                    return;
+            aVar.f(bVar);
+            return;
+        }
+        throw new IllegalStateException("provide() can be called only once.");
+    }
+
+    private final void c() {
+        r9.o oVar = (r9.o) this.f33713b;
+        qa.b bVar = (qa.b) this.f33714c;
+        synchronized (oVar) {
+            try {
+                if (oVar.f44057b == null) {
+                    oVar.f44056a.add(bVar);
+                } else {
+                    oVar.f44057b.add(bVar.get());
                 }
-                u8Var.M.setText(str2);
-                ci.g2 g2Var = u8Var.M;
-                g2Var.setSelection(g2Var.length());
-                AndroidUtilities.hideKeyboard(u8Var.M);
-                u8Var.f0(str2, null);
-                return;
+            } catch (Throwable th2) {
+                throw th2;
             }
-            AndroidUtilities.runOnUIThread(new n(u8Var, 14));
         }
     }
 
     @Override
-    public final boolean Z0(String str, n9 n9Var) {
-        return false;
-    }
-
-    @Override
-    public final void onDismiss() {
-    }
-
-    @Override
-    public final void P0(MrzRecognizer.Result result) {
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.t8.run():void");
     }
 }

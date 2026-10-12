@@ -1,102 +1,187 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.WindowInsets;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-public final class fi1 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.voip.u1, r0.n, org.telegram.ui.Components.voip.j3 {
-    public final int f37794a;
-    public final xi1 f37795b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.Iterator;
+public final class fi1 extends AnimatorListenerAdapter {
+    public final int f35843a;
+    public final Object f35844b;
 
-    public fi1(xi1 xi1Var, int i10) {
-        this.f37794a = i10;
-        this.f37795b = xi1Var;
+    public fi1(Object obj, int i10) {
+        this.f35843a = i10;
+        this.f35844b = obj;
     }
 
     @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        WindowInsets g10 = k1Var.g();
-        xi1 xi1Var = this.f37795b;
-        xi1Var.f44018r0 = g10;
-        ((FrameLayout.LayoutParams) xi1Var.f44006j0.getLayoutParams()).bottomMargin = xi1Var.f44018r0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) xi1Var.f43995e0.getLayoutParams()).bottomMargin = xi1Var.f44018r0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) xi1Var.H.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) xi1Var.I.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) xi1Var.K.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop() + AndroidUtilities.dp(56.0f);
-        ((FrameLayout.LayoutParams) xi1Var.X.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop() + AndroidUtilities.dp(135.0f);
-        ((FrameLayout.LayoutParams) xi1Var.N.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop() + AndroidUtilities.dp(17.0f);
-        ((FrameLayout.LayoutParams) xi1Var.f44028y.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop() + AndroidUtilities.dp(93.0f);
-        ((FrameLayout.LayoutParams) xi1Var.O.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) xi1Var.R.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop() + AndroidUtilities.dp(118.0f);
-        ((FrameLayout.LayoutParams) xi1Var.Q.getLayoutParams()).topMargin = xi1Var.f44018r0.getSystemWindowInsetTop() + AndroidUtilities.dp(380.0f);
-        ((FrameLayout.LayoutParams) xi1Var.Z.getLayoutParams()).bottomMargin = xi1Var.f44018r0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) xi1Var.M0.getLayoutParams()).bottomMargin = xi1Var.f44018r0.getSystemWindowInsetBottom();
-        xi1Var.Y.setInsets(xi1Var.f44018r0);
-        xi1Var.Z.setInsets(xi1Var.f44018r0);
-        xi1Var.f44019s.requestLayout();
-        qi1 qi1Var = xi1Var.f44014o0;
-        if (qi1Var != null) {
-            qi1Var.setBottomPadding(xi1Var.f44018r0.getSystemWindowInsetBottom());
-        }
-        return r0.k1.f46999b;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f37794a) {
-            case 0:
-                pi1 pi1Var = this.f37795b.f44022u0;
-                if (pi1Var != null) {
-                    pi1Var.b();
-                    return;
-                }
-                return;
-            default:
-                this.f37795b.f44022u0.b();
-                return;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.Components.voip.k3 k3Var) {
+    public final void onAnimationEnd(Animator animator) {
         int i10;
-        switch (this.f37794a) {
+        boolean z10;
+        int i11 = this.f35843a;
+        int i12 = 4;
+        float f7 = 0.0f;
+        Object obj = this.f35844b;
+        switch (i11) {
+            case 0:
+                gi1 gi1Var = (gi1) obj;
+                gi1Var.d = null;
+                gi1Var.f36412a = null;
+                gi1Var.f36413b = false;
+                gi1Var.f36415f.f32901c.setAllowDrawCursor(true);
+                return;
+            case 1:
+                ((org.telegram.ui.Wallet.x2) obj).K = null;
+                return;
+            case 2:
+                ((org.telegram.ui.Wallet.d3) obj).f();
+                return;
+            case 3:
+                org.telegram.ui.Wallet.x4 x4Var = (org.telegram.ui.Wallet.x4) obj;
+                x4Var.h = false;
+                x4Var.f33852n = null;
+                x4Var.f33849b.setLayerType(0, null);
+                return;
+            case 4:
+                org.telegram.ui.Wallet.c5 c5Var = (org.telegram.ui.Wallet.c5) obj;
+                c5Var.J = 0.0f;
+                c5Var.K = 0.0f;
+                c5Var.R = null;
+                return;
             case 5:
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    xi1 xi1Var = this.f37795b;
-                    AndroidUtilities.cancelRunOnUIThread(xi1Var.S0);
-                    xi1Var.R0 = false;
-                    boolean isMicMute = sharedInstance.isMicMute();
-                    boolean z10 = !isMicMute;
-                    if (xi1Var.f44025w0.isTouchExplorationEnabled()) {
-                        if (!isMicMute) {
-                            i10 = R.string.AccDescrVoipMicOff;
-                        } else {
-                            i10 = R.string.AccDescrVoipMicOn;
-                        }
-                        k3Var.announceForAccessibility(LocaleController.getString(i10));
-                    }
-                    sharedInstance.setMicMute(z10, false, true);
-                    xi1Var.f44016q0 = xi1Var.f44015p0;
-                    xi1Var.G();
+                org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) obj;
+                org.telegram.ui.Wallet.j5 j5Var = o5Var.f33562f0;
+                j5Var.d = 0.0f;
+                j5Var.f45708i = 0.0f;
+                o5Var.f33570o0 = null;
+                return;
+            case 6:
+                org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) obj;
+                b6Var.I = null;
+                b6Var.f32977i0 = 1.0f;
+                b6Var.f32976h0 = 0.0f;
+                b6Var.f32975g0 = 0.0f;
+                b6Var.e();
+                return;
+            case 7:
+                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) obj;
+                h8Var.h = null;
+                org.telegram.ui.Wallet.b6 b6Var2 = h8Var.f33252c;
+                if (h8Var.v) {
+                    i10 = 4;
+                } else {
+                    i10 = 0;
+                }
+                b6Var2.setVisibility(i10);
+                TextView textView = h8Var.e;
+                if (h8Var.f33257w) {
+                    i12 = 0;
+                }
+                textView.setVisibility(i12);
+                return;
+            case 8:
+                org.telegram.ui.Components.mg0 mg0Var = (org.telegram.ui.Components.mg0) obj;
+                ((yj1) mg0Var.f27393b).getClass();
+                ((yj1) mg0Var.f27393b).f42181c.setVisibility(4);
+                return;
+            case 9:
+                ((org.telegram.ui.web.b1) obj).f41305s.setVisibility(8);
+                return;
+            case 10:
+                qg.d0 d0Var = (qg.d0) obj;
+                d0Var.f43407a.getPainting().c(null, d0Var.f43407a.getCurrentColor(), true, null);
+                d0Var.f43421r = null;
+                return;
+            case 11:
+                super.onAnimationEnd(animator);
+                rg.n0 n0Var = (rg.n0) obj;
+                ImageView imageView = n0Var.f44373c;
+                n0Var.f44373c = n0Var.d;
+                n0Var.d = imageView;
+                imageView.bringToFront();
+                n0Var.d.setVisibility(8);
+                n0Var.h = null;
+                return;
+            case 12:
+                rg.t1 t1Var = (rg.t1) obj;
+                if (animator == t1Var.f44556r) {
+                    t1Var.f44554f = t1Var.h;
+                    t1Var.h = -1;
+                    t1Var.f44556r = null;
                     return;
                 }
                 return;
-            default:
-                xi1 xi1Var2 = this.f37795b;
-                AndroidUtilities.cancelRunOnUIThread(xi1Var2.S0);
-                xi1Var2.R0 = false;
-                if (xi1Var2.f43986b.checkSelfPermission("android.permission.CAMERA") != 0) {
-                    xi1Var2.f43986b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
-                    return;
-                } else {
-                    xi1Var2.B();
-                    return;
+            case 13:
+                sg.q0 q0Var = (sg.q0) obj;
+                if (q0Var.h) {
+                    f7 = 1.0f;
                 }
+                q0Var.f45313n = f7;
+                q0Var.e();
+                return;
+            case 14:
+                sg.a2 a2Var = (sg.a2) ((di.c0) obj).f6681b;
+                a2Var.F = true;
+                a2Var.invalidate();
+                return;
+            case 15:
+                int i13 = tg.f.K;
+                ((tg.f) ((tg.e) obj).f45692b).d();
+                return;
+            case 16:
+                tg.f fVar = (tg.f) obj;
+                fVar.d = null;
+                fVar.e();
+                return;
+            case 17:
+                super.onAnimationEnd(animator);
+                tg.n nVar = ((tg.i) obj).f45728b;
+                nVar.f45740b.d = 0.0f;
+                nVar.f45739a0 = null;
+                nVar.k(nVar.L);
+                return;
+            case 18:
+                ug.b bVar = (ug.b) obj;
+                bVar.f46281b = 1.0f;
+                bVar.invalidate();
+                return;
+            case 19:
+                wh.g gVar = (wh.g) obj;
+                Iterator it = gVar.h.iterator();
+                while (it.hasNext()) {
+                    wh.c cVar = (wh.c) it.next();
+                    if (gVar.f47662c.size() < gVar.d) {
+                        gVar.f47662c.push(cVar);
+                    }
+                    it.remove();
+                }
+                Runnable runnable = gVar.f47673q;
+                if (runnable != null) {
+                    runnable.run();
+                    gVar.f47673q = null;
+                }
+                gVar.f47674r = null;
+                gVar.invalidateSelf();
+                return;
+            case 20:
+                ((yh.i0) obj).f48918b.f48933w.setVisibility(8);
+                return;
+            case 21:
+                zh.l2 l2Var = (zh.l2) obj;
+                l2Var.E = 1.0f;
+                l2Var.F = -1;
+                zh.k2 k2Var = l2Var.H;
+                if (k2Var != null && (z10 = k2Var.f50755l) && z10) {
+                    k2Var.f50755l = false;
+                    k2Var.b();
+                }
+                l2Var.G = null;
+                return;
+            default:
+                y00 y00Var = ((zh.d7) obj).f50389c;
+                y00Var.setScaleX(1.0f);
+                y00Var.setScaleY(1.0f);
+                return;
         }
     }
 }

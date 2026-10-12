@@ -1,66 +1,22 @@
 package org.telegram.ui.Components;
+public final class xx extends w7.b6 {
+    public final wz f31404a;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class xx extends n61 {
-    public final d00 f32882b;
-
-    public xx(d00 d00Var) {
-        this.f32882b = d00Var;
+    public xx(wz wzVar) {
+        this.f31404a = wzVar;
     }
 
     @Override
-    public final boolean a() {
-        return this.f32882b.f25126t1.b();
+    public final void a() {
+        wz wzVar = this.f31404a;
+        wzVar.f31023f0 = false;
+        wzVar.P.z1();
     }
 
     @Override
-    public final String[] b() {
-        return this.f32882b.W0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f32882b.f25126t1.c();
-    }
-
-    @Override
-    public final boolean d(g61 g61Var, MotionEvent motionEvent) {
-        org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
-        d00 d00Var = this.f32882b;
-        d00Var.getMeasuredHeight();
-        return q6.r(motionEvent, g61Var, d00Var.f25087g2, d00Var.Z1);
-    }
-
-    @Override
-    public final boolean e(g61 g61Var, j jVar, MotionEvent motionEvent) {
-        org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
-        d00 d00Var = this.f32882b;
-        d00Var.getMeasuredHeight();
-        return q6.s(motionEvent, g61Var, jVar, d00Var.f25087g2, d00Var.Z1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f32882b.f25126t1.m(null, document, null, obj, null, z10, i10);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        d00 d00Var = this.f32882b;
-        d00Var.f25126t1.r(stickerSetCovered);
-        if (z10) {
-            d00Var.X(true);
-        }
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f32882b.f25126t1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f32882b.W0 = strArr;
+    public final void b() {
+        wz wzVar = this.f31404a;
+        wzVar.P.z1();
+        wzVar.f31023f0 = true;
     }
 }

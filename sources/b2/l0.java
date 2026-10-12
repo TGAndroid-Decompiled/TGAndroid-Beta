@@ -1,23 +1,79 @@
 package b2;
 
-import java.util.HashSet;
-public abstract class l0 {
-    public static final HashSet f3409a = new HashSet();
-    public static String f3410b = "media3.common";
+import android.net.Uri;
+import android.os.Bundle;
+import j$.util.Objects;
+public final class l0 {
+    public static final l0 d = new l0(new androidx.biometric.e(3));
+    public static final String e;
+    public static final String f2197f;
+    public static final String f2198g;
+    public final Uri f2199a;
+    public final String f2200b;
+    public final Bundle f2201c;
 
-    public static synchronized void a(String str) {
-        synchronized (l0.class) {
-            if (f3409a.add(str)) {
-                f3410b += ", " + str;
-            }
-        }
+    static {
+        String str = e2.m0.f8372a;
+        e = Integer.toString(0, 36);
+        f2197f = Integer.toString(1, 36);
+        f2198g = Integer.toString(2, 36);
     }
 
-    public static synchronized String b() {
-        String str;
-        synchronized (l0.class) {
-            str = f3410b;
+    public l0(androidx.biometric.e eVar) {
+        this.f2199a = (Uri) eVar.f1196b;
+        this.f2200b = (String) eVar.f1197c;
+        this.f2201c = (Bundle) eVar.d;
+    }
+
+    public final boolean equals(Object obj) {
+        boolean z10;
+        boolean z11;
+        if (this == obj) {
+            return true;
         }
-        return str;
+        if (!(obj instanceof l0)) {
+            return false;
+        }
+        l0 l0Var = (l0) obj;
+        if (Objects.equals(this.f2199a, l0Var.f2199a) && Objects.equals(this.f2200b, l0Var.f2200b)) {
+            if (this.f2201c == null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (l0Var.f2201c == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z10 == z11) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2;
+        int i10 = 0;
+        Uri uri = this.f2199a;
+        if (uri == null) {
+            hashCode = 0;
+        } else {
+            hashCode = uri.hashCode();
+        }
+        int i11 = hashCode * 31;
+        String str = this.f2200b;
+        if (str == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str.hashCode();
+        }
+        int i12 = (i11 + hashCode2) * 31;
+        if (this.f2201c != null) {
+            i10 = 1;
+        }
+        return i12 + i10;
     }
 }

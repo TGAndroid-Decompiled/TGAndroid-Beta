@@ -1,17 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class qf extends org.telegram.ui.ActionBar.m1 {
-    public final ChatActivityEnterView f29806o;
+import android.text.TextUtils;
+import android.view.View;
+public final class qf implements am0 {
+    public final ChatActivityEnterView f28586a;
 
-    public qf(ChatActivityEnterView chatActivityEnterView, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f29806o = chatActivityEnterView;
+    public qf(ChatActivityEnterView chatActivityEnterView) {
+        this.f28586a = chatActivityEnterView;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        this.f29806o.J0.invalidate();
+    public final void a(int i10, View view) {
+        if (view instanceof fi.z) {
+            String command = ((fi.z) view).getCommand();
+            if (!TextUtils.isEmpty(command)) {
+                ChatActivityEnterView chatActivityEnterView = this.f28586a;
+                if (chatActivityEnterView.c()) {
+                    g5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new t2(5, this, command), chatActivityEnterView.W3);
+                    return;
+                }
+                org.telegram.ui.fo foVar = chatActivityEnterView.P2;
+                if (foVar == null || !foVar.h7(view)) {
+                    g5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.ui.vc(15, this, command));
+                }
+            }
+        }
     }
 }

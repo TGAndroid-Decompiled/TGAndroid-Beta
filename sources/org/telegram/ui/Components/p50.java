@@ -1,809 +1,214 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
-import android.util.Pair;
-import android.widget.TextView;
-import androidx.core.content.FileProvider;
-import j$.util.Objects;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public final class p50 implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.oq0 {
-    public String E;
-    public boolean F;
-    public boolean H;
-    public final boolean I;
-    public TLRPC.User L;
-    public TLRPC.InputFile M;
-    public TLRPC.InputFile N;
-    public TLRPC.VideoSize O;
-    public double P;
-    public final boolean Q;
-    public boolean R;
-    public boolean S;
-    public boolean T;
-    public int U;
-    public final int V;
-    public float W;
-    public org.telegram.ui.ActionBar.m2 f29381a;
-    public o50 f29382b;
-    public aj f29383c;
-    public String f29385f;
-    public TLRPC.PhotoSize h;
-    public TLRPC.PhotoSize f29386n;
-    public Bitmap f29387r;
-    public boolean f29388s;
-    public String v;
-    public String f29389w;
-    public String f29390x;
-    public MessageObject f29391y;
-    public final int d = UserConfig.selectedAccount;
-    public boolean G = true;
-    public boolean J = true;
-    public boolean K = true;
-    public final ImageReceiver f29384e = new ImageReceiver(null);
+public final class p50 {
+    public final int f28146a;
+    public final int f28147b;
+    public final FloatBuffer f28150g;
+    public final FloatBuffer h;
+    public final int[] f28153k;
+    public final o50 f28148c = new o50(R.raw.round_blur_stage_0_frag);
+    public final o50 d = new o50(R.raw.round_blur_stage_3_frag);
+    public final m50 e = new m50();
+    public final n50 f28149f = new n50();
+    public int f28151i = 0;
+    public final int[] f28152j = new int[1];
 
-    public p50(int i10, boolean z10, boolean z11) {
-        this.Q = z10;
-        this.I = z11;
-        this.V = i10;
+    public p50(int i10, int i11) {
+        int i12;
+        float f7;
+        char c10;
+        int i13;
+        int i14;
+        RLottieNative rLottieNative;
+        int i15;
+        Bitmap bitmap;
+        int i16;
+        int i17;
+        Object obj;
+        int i18 = 0;
+        int[] iArr = new int[5];
+        this.f28153k = iArr;
+        this.f28146a = i10;
+        this.f28147b = i11;
+        float[] fArr = new float[232];
+        c(fArr, 0, 0.0f, 1.0f, 1.0f, 0.0f);
+        c(fArr, 8, 0.0f, 0.0f, 1.0f, 1.0f);
+        float[] fArr2 = new float[36];
+        float f10 = 1.0f;
+        d(fArr2, 0, -1.0f, 1.0f, 1.0f);
+        GLES20.glGenTextures(5, iArr, 0);
+        int i19 = 0;
+        for (int i20 = 5; i19 < i20; i20 = 5) {
+            GLES20.glBindTexture(3553, this.f28153k[i19]);
+            if (i19 < 2) {
+                i12 = 9729;
+            } else {
+                i12 = 9728;
+            }
+            GLES20.glTexParameteri(3553, 10241, i12);
+            GLES20.glTexParameteri(3553, 10240, i19 < 2 ? 9729 : 9728);
+            GLES20.glTexParameteri(3553, 10242, 33071);
+            GLES20.glTexParameteri(3553, 10243, 33071);
+            int i21 = 4;
+            if (i19 == 4) {
+                int round = Math.round(i10 * 0.2f);
+                int round2 = Math.round((i10 * 28) / 1536.0f);
+                int i22 = (round - round2) - round2;
+                Object obj2 = null;
+                RLottieNative b10 = RLottieNative.b(AndroidUtilities.readRes(R.raw.plane_logo_plain), null, null, null);
+                Bitmap createBitmap = Bitmap.createBitmap(round, round, Bitmap.Config.ARGB_8888);
+                float f11 = f10;
+                Bitmap createBitmap2 = Bitmap.createBitmap(i22 * 8, i22 * 4, Bitmap.Config.ALPHA_8);
+                Canvas canvas = new Canvas(createBitmap2);
+                int i23 = 0;
+                while (i23 < 8) {
+                    int i24 = 0;
+                    while (i24 < i21) {
+                        int i25 = (i24 * 8) + i23;
+                        if (i25 >= 27) {
+                            obj = obj2;
+                            bitmap = createBitmap;
+                            i14 = i22;
+                            i15 = i23;
+                            rLottieNative = b10;
+                            i16 = i24;
+                            i17 = 4;
+                        } else {
+                            int i26 = (i25 * 8) + 16;
+                            i14 = i22;
+                            rLottieNative = b10;
+                            i15 = i23;
+                            bitmap = createBitmap;
+                            i16 = i24;
+                            i17 = 4;
+                            c(fArr, i26, i23 / 8.0f, i24 / 4.0f, (i23 + 1) / 8.0f, (i24 + 1) / 4.0f);
+                            rLottieNative.c(i25 * 2, bitmap, true);
+                            obj = null;
+                            canvas.drawBitmap(bitmap, (i14 * i15) - round2, (i14 * i16) - round2, (Paint) null);
+                        }
+                        i22 = i14;
+                        b10 = rLottieNative;
+                        i24 = i16 + 1;
+                        obj2 = obj;
+                        createBitmap = bitmap;
+                        i23 = i15;
+                        i21 = i17;
+                    }
+                    i23++;
+                    obj2 = obj2;
+                    i21 = i21;
+                }
+                float d = a1.g.d(i22, this.f28146a, 2.0f, -1.0f);
+                d(fArr2, 24, -1.0f, d, d);
+                GLUtils.texImage2D(3553, 0, createBitmap2, 0);
+                createBitmap2.recycle();
+                createBitmap.recycle();
+                b10.d();
+                f7 = f11;
+                c10 = 0;
+            } else {
+                float f12 = f10;
+                if (i19 == 3) {
+                    int round3 = Math.round((i10 * 372.0f) / 1536.0f);
+                    float f13 = (round3 / this.f28146a) * 2.0f;
+                    c10 = 0;
+                    f7 = f12;
+                    d(fArr2, 12, f12 - f13, f13 - 1.0f, f7);
+                    Bitmap bitmapFromRaw = AndroidUtilities.getBitmapFromRaw(R.raw.round_blur_overlay_text);
+                    if (bitmapFromRaw != null) {
+                        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(bitmapFromRaw, round3, round3, true);
+                        Bitmap extractAlpha = createScaledBitmap.extractAlpha();
+                        GLUtils.texImage2D(3553, 0, extractAlpha, 0);
+                        extractAlpha.recycle();
+                        createScaledBitmap.recycle();
+                        bitmapFromRaw.recycle();
+                    }
+                } else {
+                    f7 = f12;
+                    c10 = 0;
+                    if (i19 == 0) {
+                        i13 = this.f28146a;
+                    } else {
+                        i13 = 48;
+                    }
+                    GLES20.glTexImage2D(3553, 0, 6408, i13, i19 == 0 ? this.f28147b : 48, 0, 6408, 5121, null);
+                }
+            }
+            i19++;
+            f10 = f7;
+            i18 = 0;
+        }
+        int i27 = i18;
+        GLES20.glBindTexture(3553, i27);
+        GLES20.glGenFramebuffers(1, this.f28152j, i27);
+        FloatBuffer h = org.telegram.messenger.yh.h(ByteBuffer.allocateDirect(144));
+        this.f28150g = h;
+        h.put(fArr2).position(i27);
+        FloatBuffer h10 = org.telegram.messenger.yh.h(ByteBuffer.allocateDirect(928));
+        this.h = h10;
+        h10.put(fArr).position(i27);
     }
 
-    public static void a(p50 p50Var, boolean z10, ArrayList arrayList) {
-        MessageObject messageObject;
-        Bitmap loadBitmap;
-        ImageReceiver imageReceiver = p50Var.f29384e;
-        int i10 = p50Var.d;
-        if (!arrayList.isEmpty()) {
-            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
-            Bitmap bitmap = null;
-            if ((sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) && !sendingMediaInfo.isLivePhoto) {
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                tL_message.f19824id = 0;
-                tL_message.message = "";
-                tL_message.media = new TLRPC.TL_messageMediaEmpty();
-                tL_message.action = new TLRPC.TL_messageActionEmpty();
-                tL_message.dialog_id = 0L;
-                messageObject = new MessageObject(UserConfig.selectedAccount, tL_message, false, false);
-                messageObject.messageOwner.attachPath = new File(FileLoader.getDirectory(4), SharedConfig.getLastLocalId() + "_avatar.mp4").getAbsolutePath();
-                messageObject.videoEditedInfo = sendingMediaInfo.videoEditedInfo;
-                messageObject.emojiMarkup = sendingMediaInfo.emojiMarkup;
-                bitmap = ImageLoader.loadBitmap(sendingMediaInfo.thumbPath, null, 800.0f, 800.0f, true);
-            } else {
-                String str = sendingMediaInfo.path;
-                if (str != null) {
-                    loadBitmap = ImageLoader.loadBitmap(str, null, 800.0f, 800.0f, true);
-                } else {
-                    MediaController.SearchImage searchImage = sendingMediaInfo.searchImage;
-                    if (searchImage != null) {
-                        TLRPC.Photo photo = searchImage.photo;
-                        if (photo != null) {
-                            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-                            if (closestPhotoSizeWithSize != null) {
-                                File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(closestPhotoSizeWithSize, true);
-                                p50Var.E = pathToAttach.getAbsolutePath();
-                                if (!pathToAttach.exists()) {
-                                    pathToAttach = FileLoader.getInstance(i10).getPathToAttach(closestPhotoSizeWithSize, false);
-                                    if (!pathToAttach.exists()) {
-                                        pathToAttach = null;
-                                    }
-                                }
-                                if (pathToAttach != null) {
-                                    loadBitmap = ImageLoader.loadBitmap(pathToAttach.getAbsolutePath(), null, 800.0f, 800.0f, true);
-                                } else {
-                                    NotificationCenter.getInstance(i10).addObserver(p50Var, NotificationCenter.fileLoaded);
-                                    NotificationCenter.getInstance(i10).addObserver(p50Var, NotificationCenter.fileLoadFailed);
-                                    p50Var.v = FileLoader.getAttachFileName(closestPhotoSizeWithSize.location);
-                                    imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, sendingMediaInfo.searchImage.photo), null, null, "jpg", null, 1);
-                                }
-                            }
-                            loadBitmap = null;
-                        } else if (searchImage.imageUrl != null) {
-                            File file = new File(FileLoader.getDirectory(4), Utilities.MD5(sendingMediaInfo.searchImage.imageUrl) + "." + ImageLoader.getHttpUrlExtension(sendingMediaInfo.searchImage.imageUrl, "jpg"));
-                            p50Var.E = file.getAbsolutePath();
-                            if (file.exists() && file.length() != 0) {
-                                loadBitmap = ImageLoader.loadBitmap(file.getAbsolutePath(), null, 800.0f, 800.0f, true);
-                            } else {
-                                p50Var.v = sendingMediaInfo.searchImage.imageUrl;
-                                NotificationCenter.getInstance(i10).addObserver(p50Var, NotificationCenter.httpFileDidLoad);
-                                NotificationCenter.getInstance(i10).addObserver(p50Var, NotificationCenter.httpFileDidFailedLoad);
-                                imageReceiver.setImage(sendingMediaInfo.searchImage.imageUrl, null, null, "jpg", 1L);
-                            }
-                        }
-                    }
-                    messageObject = null;
-                }
-                messageObject = null;
-                bitmap = loadBitmap;
-            }
-            p50Var.r(z10, bitmap, messageObject);
+    public static int a(int i10, int i11) {
+        int glCreateShader = GLES20.glCreateShader(i10);
+        if (glCreateShader == 0) {
+            return 0;
         }
+        GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(i11));
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] == 0) {
+            String glGetShaderInfoLog = GLES20.glGetShaderInfoLog(glCreateShader);
+            FileLog.e("GlUtils: compile shader error: " + glGetShaderInfoLog);
+            GLES20.glDeleteShader(glCreateShader);
+            return 0;
+        }
+        return glCreateShader;
+    }
+
+    public static void c(float[] fArr, int i10, float f7, float f10, float f11, float f12) {
+        fArr[i10] = f7;
+        fArr[i10 + 1] = f12;
+        fArr[i10 + 2] = f11;
+        fArr[i10 + 3] = f12;
+        fArr[i10 + 4] = f7;
+        fArr[i10 + 5] = f10;
+        fArr[i10 + 6] = f11;
+        fArr[i10 + 7] = f10;
+    }
+
+    public static void d(float[] fArr, int i10, float f7, float f10, float f11) {
+        fArr[i10] = f7;
+        fArr[i10 + 1] = -1.0f;
+        fArr[i10 + 2] = 0.0f;
+        fArr[i10 + 3] = f11;
+        fArr[i10 + 4] = -1.0f;
+        fArr[i10 + 5] = 0.0f;
+        fArr[i10 + 6] = f7;
+        fArr[i10 + 7] = f10;
+        fArr[i10 + 8] = 0.0f;
+        fArr[i10 + 9] = f11;
+        fArr[i10 + 10] = f10;
+        fArr[i10 + 11] = 0.0f;
     }
 
     public final void b() {
-        this.T = true;
-        String str = this.v;
-        int i10 = this.d;
-        if (str != null) {
-            FileLoader.getInstance(i10).cancelFileUpload(this.v, false);
-        }
-        if (this.f29389w != null) {
-            FileLoader.getInstance(i10).cancelFileUpload(this.f29389w, false);
-        }
-        o50 o50Var = this.f29382b;
-        if (o50Var != null) {
-            o50Var.P();
-        }
-    }
-
-    public final void c() {
-        this.v = null;
-        this.f29389w = null;
-        this.f29390x = null;
-        this.f29391y = null;
-        if (this.F) {
-            this.f29384e.setImageBitmap((Drawable) null);
-            this.f29381a = null;
-            this.f29382b = null;
-        }
-    }
-
-    public final void d() {
-        this.T = false;
-        if (this.v == null && this.f29389w == null && this.f29391y == null) {
-            this.f29381a = null;
-            this.f29382b = null;
-        } else {
-            this.F = true;
-        }
-        aj ajVar = this.f29383c;
-        if (ajVar != null) {
-            ajVar.dismissInternal();
-            this.f29383c.y1();
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        o50 o50Var;
-        org.telegram.ui.ActionBar.m2 m2Var;
-        String str;
-        int i12 = NotificationCenter.fileUploaded;
-        int i13 = this.d;
-        if (i10 != i12 && i10 != NotificationCenter.fileUploadFailed) {
-            if (i10 == NotificationCenter.fileUploadProgressChanged) {
-                String str2 = (String) objArr[0];
-                if (this.f29391y != null) {
-                    str = this.f29389w;
-                } else {
-                    str = this.v;
-                }
-                if (this.f29382b != null && str2.equals(str)) {
-                    float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
-                    o50 o50Var2 = this.f29382b;
-                    this.W = min;
-                    o50Var2.D(min);
-                    return;
-                }
-                return;
-            }
-            int i14 = NotificationCenter.fileLoaded;
-            if (i10 != i14 && i10 != NotificationCenter.fileLoadFailed && i10 != NotificationCenter.httpFileDidLoad && i10 != NotificationCenter.httpFileDidFailedLoad) {
-                int i15 = NotificationCenter.filePreparingFailed;
-                if (i10 == i15) {
-                    if (((MessageObject) objArr[0]) == this.f29391y && this.f29381a != null) {
-                        NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.filePreparingStarted);
-                        NotificationCenter.getInstance(i13).removeObserver(this, i15);
-                        NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-                        c();
-                        return;
-                    }
-                    return;
-                } else if (i10 == NotificationCenter.fileNewChunkAvailable) {
-                    if (((MessageObject) objArr[0]) == this.f29391y && this.f29381a != null) {
-                        String str3 = (String) objArr[1];
-                        long longValue = ((Long) objArr[2]).longValue();
-                        long longValue2 = ((Long) objArr[3]).longValue();
-                        this.f29381a.getFileLoader().checkUploadNewDataAvailable(str3, false, longValue, longValue2);
-                        if (longValue2 != 0) {
-                            double longValue3 = ((Long) objArr[5]).longValue() / 1000000.0d;
-                            if (this.P > longValue3) {
-                                this.P = longValue3;
-                            }
-                            Bitmap createVideoThumbnailAtTime = SendMessagesHelper.createVideoThumbnailAtTime(str3, (long) (this.P * 1000.0d), null, true);
-                            if (createVideoThumbnailAtTime != null) {
-                                File pathToAttach = FileLoader.getInstance(i13).getPathToAttach(this.f29386n, true);
-                                if (pathToAttach != null) {
-                                    if (BuildVars.LOGS_ENABLED) {
-                                        FileLog.e("delete file " + pathToAttach);
-                                    }
-                                    pathToAttach.delete();
-                                }
-                                File pathToAttach2 = FileLoader.getInstance(i13).getPathToAttach(this.h, true);
-                                if (pathToAttach2 != null) {
-                                    if (BuildVars.LOGS_ENABLED) {
-                                        FileLog.e("delete file " + pathToAttach2);
-                                    }
-                                    pathToAttach2.delete();
-                                }
-                                this.h = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 800.0f, 800.0f, 80, false, 320, 320);
-                                TLRPC.PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
-                                this.f29386n = scaleAndSaveImage;
-                                if (scaleAndSaveImage != null) {
-                                    try {
-                                        Bitmap decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(i13).getPathToAttach(this.f29386n, true).getAbsolutePath());
-                                        ImageLoader.getInstance().putImageToCache(new BitmapDrawable(decodeFile), this.f29386n.location.volume_id + "_" + this.f29386n.location.local_id + "@50_50", true);
-                                    } catch (Throwable unused) {
-                                    }
-                                }
-                            }
-                            NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.filePreparingStarted);
-                            NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.filePreparingFailed);
-                            NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-                            this.f29390x = str3;
-                            this.f29389w = str3;
-                            this.f29391y = null;
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                } else if (i10 == NotificationCenter.filePreparingStarted && ((MessageObject) objArr[0]) == this.f29391y && (m2Var = this.f29381a) != null) {
-                    this.f29389w = (String) objArr[1];
-                    m2Var.getFileLoader().uploadFile(this.f29389w, false, false, (int) this.f29391y.videoEditedInfo.estimatedSize, 33554432, false);
-                    return;
-                } else {
-                    return;
-                }
-            }
-            this.W = 1.0f;
-            if (((String) objArr[0]).equals(this.v)) {
-                NotificationCenter.getInstance(i13).removeObserver(this, i14);
-                NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileLoadFailed);
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(i13);
-                int i16 = NotificationCenter.httpFileDidLoad;
-                notificationCenter.removeObserver(this, i16);
-                NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.httpFileDidFailedLoad);
-                this.v = null;
-                if (i10 != i14 && i10 != i16) {
-                    this.f29384e.setImageBitmap((Drawable) null);
-                    o50 o50Var3 = this.f29382b;
-                    if (o50Var3 != null) {
-                        o50Var3.P();
-                        return;
-                    }
-                    return;
-                }
-                r(false, ImageLoader.loadBitmap(this.E, null, 800.0f, 800.0f, true), null);
-                return;
-            }
-            return;
-        }
-        String str4 = (String) objArr[0];
-        if (str4.equals(this.v)) {
-            this.v = null;
-            if (i10 == i12) {
-                this.M = (TLRPC.InputFile) objArr[1];
-            }
-        } else if (str4.equals(this.f29389w)) {
-            this.f29389w = null;
-            if (i10 == i12) {
-                this.N = (TLRPC.InputFile) objArr[1];
-            }
-        } else {
-            return;
-        }
-        if (this.v == null && this.f29389w == null && this.f29391y == null) {
-            NotificationCenter.getInstance(i13).removeObserver(this, i12);
-            NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
-            NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileUploadFailed);
-            if (i10 == i12 && (o50Var = this.f29382b) != null) {
-                o50Var.Q(this.M, this.N, this.P, this.f29390x, this.h, this.f29386n, this.f29388s, this.O);
-            }
-            c();
-        }
-    }
-
-    public final void e() {
-        int i10;
-        ju juVar;
-        boolean z10;
-        org.telegram.ui.ActionBar.m2 m2Var = this.f29381a;
-        if (m2Var != null && m2Var.getParentActivity() != null) {
-            if (this.f29383c == null) {
-                aj ajVar = new aj(this.f29381a.getParentActivity(), this.f29381a, this.R, this.S);
-                this.f29383c = ajVar;
-                if (this.Q) {
-                    i10 = 2;
-                } else {
-                    i10 = 1;
-                }
-                o50 o50Var = this.f29382b;
-                if (o50Var != null && o50Var.u()) {
-                    o50 o50Var2 = this.f29382b;
-                    Objects.requireNonNull(o50Var2);
-                    juVar = new ju(o50Var2, 1);
-                } else {
-                    juVar = null;
-                }
-                ajVar.T0 = i10;
-                ajVar.U0 = juVar;
-                ajVar.V0 = false;
-                si siVar = ajVar.B0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24350j0;
-                if (siVar == null || siVar == chatAttachAlertPhotoLayout) {
-                    ajVar.A1.setVisibility(8);
-                }
-                int i11 = ajVar.T0;
-                TextView textView = ajVar.f24358m1;
-                if (i11 == 2) {
-                    textView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-                } else {
-                    textView.setText(LocaleController.getString(R.string.ChoosePhoto));
-                }
-                if (chatAttachAlertPhotoLayout != null) {
-                    aj ajVar2 = chatAttachAlertPhotoLayout.f30570b;
-                    if (ajVar2.T0 != 0 && !ajVar2.F) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    chatAttachAlertPhotoLayout.f23817g1 = z10;
-                }
-                aj ajVar3 = this.f29383c;
-                ajVar3.f24329c2 = new k50(this);
-                ajVar3.U = this;
-            }
-            int i12 = this.U;
-            if (i12 == 1) {
-                this.f29383c.f24358m1.setText(LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name));
-            } else if (i12 == 2) {
-                this.f29383c.f24358m1.setText(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name));
-            }
-        }
-    }
-
-    public final boolean f(Dialog dialog) {
-        aj ajVar = this.f29383c;
-        if (ajVar == null || dialog != ajVar) {
-            return false;
-        }
-        ajVar.f24350j0.a0(false);
-        this.f29383c.dismissInternal();
-        this.f29383c.f24350j0.d0(true);
-        return true;
-    }
-
-    public final boolean g() {
-        if (this.v == null && this.f29389w == null && this.f29391y == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void h(int i10, int i11, Intent intent) {
-        if (i11 == -1) {
-            if (i10 != 0 && i10 != 2) {
-                if (i10 == 13) {
-                    this.f29381a.getParentActivity().overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-                    PhotoViewer.t1().K2(null, this.f29381a, null);
-                    o(this.f29385f, null, AndroidUtilities.getImageOrientation(this.f29385f), false);
-                    AndroidUtilities.addMediaToGallery(this.f29385f);
-                    this.f29385f = null;
-                    return;
-                } else if (i10 == 14) {
-                    if (intent != null && intent.getData() != null) {
-                        AndroidUtilities.runOnUIThread(new jt(16, this, intent.getData()));
-                        return;
-                    }
-                    return;
-                } else if (i10 == 15) {
-                    p(this.f29385f, null, true);
-                    AndroidUtilities.addMediaToGallery(this.f29385f);
-                    this.f29385f = null;
-                    return;
-                } else {
-                    return;
-                }
-            }
-            e();
-            aj ajVar = this.f29383c;
-            if (ajVar != null) {
-                ajVar.f24350j0.g0(i10, intent, this.f29385f);
-            }
-            this.f29385f = null;
-        }
-    }
-
-    public final void i() {
-        aj ajVar = this.f29383c;
-        if (ajVar != null) {
-            ajVar.A1();
-        }
-    }
-
-    public final void j(int i10, String[] strArr, int[] iArr) {
-        aj ajVar = this.f29383c;
-        if (ajVar != null) {
-            if (i10 == 17) {
-                ajVar.f24350j0.U(false);
-                this.f29383c.f24350j0.Y();
-            } else if (i10 == 4) {
-                ajVar.f24350j0.Y();
-            }
-        }
-    }
-
-    public final void k() {
-        aj ajVar = this.f29383c;
-        if (ajVar != null) {
-            ajVar.B1();
-        }
-    }
-
-    public final void l() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f29381a;
-        if (m2Var != null && m2Var.getParentActivity() != null) {
-            try {
-                int i10 = Build.VERSION.SDK_INT;
-                if (this.f29381a.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    this.f29381a.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 20);
-                    return;
-                }
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                File generatePicturePath = AndroidUtilities.generatePicturePath();
-                if (generatePicturePath != null) {
-                    if (i10 >= 24) {
-                        Activity parentActivity = this.f29381a.getParentActivity();
-                        intent.putExtra("output", FileProvider.d(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
-                        intent.addFlags(2);
-                        intent.addFlags(1);
-                    } else {
-                        intent.putExtra("output", Uri.fromFile(generatePicturePath));
-                    }
-                    this.f29385f = generatePicturePath.getAbsolutePath();
-                }
-                this.f29381a.startActivityForResult(intent, 13);
-            } catch (Exception e7) {
-                FileLog.e(e7);
-            }
-        }
-    }
-
-    public final void m() {
-        int i10;
-        org.telegram.ui.ActionBar.m2 m2Var = this.f29381a;
-        if (m2Var == null) {
-            return;
-        }
-        Activity parentActivity = m2Var.getParentActivity();
-        if (Build.VERSION.SDK_INT >= 33 && parentActivity != null) {
-            if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0) {
-                parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 151);
-                return;
-            }
-        } else if (parentActivity != null && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-            parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 151);
-            return;
-        }
-        if (this.Q) {
-            i10 = 3;
-        } else {
-            i10 = 1;
-        }
-        org.telegram.ui.mq0 mq0Var = new org.telegram.ui.mq0(i10, false, false, null);
-        mq0Var.f40119x = this.J;
-        mq0Var.V = new l50(this);
-        this.f29381a.presentFragment(mq0Var);
-    }
-
-    public final void n(boolean z10, final Runnable runnable, DialogInterface.OnDismissListener onDismissListener, int i10) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f29381a;
-        if (m2Var != null && m2Var.getParentActivity() != null) {
-            this.T = false;
-            this.U = i10;
-            if (this.G) {
-                org.telegram.ui.ActionBar.m2 m2Var2 = this.f29381a;
-                if (m2Var2 != null && m2Var2.getParentActivity() != null) {
-                    e();
-                    aj ajVar = this.f29383c;
-                    ajVar.X1 = this.H;
-                    ajVar.N1(1, false);
-                    this.f29383c.f24350j0.f0();
-                    this.f29383c.t1();
-                    this.f29383c.setOnHideListener(onDismissListener);
-                    int i11 = this.U;
-                    if (i11 != 0) {
-                        this.f29383c.Q = new n50(i11, this.L);
-                    }
-                    aj ajVar2 = this.f29383c;
-                    ajVar2.getClass();
-                    this.f29381a.showDialog(ajVar2);
-                    return;
-                }
-                return;
-            }
-            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) this.f29381a.getParentActivity(), (org.telegram.ui.ActionBar.c6) null, false);
-            e3Var.fixNavigationBar();
-            if (i10 == 1) {
-                e3Var.title = LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name);
-                e3Var.bigTitle = true;
-            } else if (i10 == 2) {
-                e3Var.title = LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name);
-                e3Var.bigTitle = true;
-            } else {
-                e3Var.title = LocaleController.getString(R.string.ChoosePhoto);
-                e3Var.bigTitle = true;
-            }
-            ArrayList arrayList = new ArrayList();
-            ArrayList arrayList2 = new ArrayList();
-            final ArrayList arrayList3 = new ArrayList();
-            arrayList.add(LocaleController.getString(R.string.ChooseTakePhoto));
-            org.telegram.ui.Cells.c1.k(R.drawable.msg_camera, 0, arrayList2, arrayList3);
-            if (this.Q) {
-                arrayList.add(LocaleController.getString(R.string.ChooseRecordVideo));
-                org.telegram.ui.Cells.c1.k(R.drawable.msg_video, 4, arrayList2, arrayList3);
-            }
-            arrayList.add(LocaleController.getString(R.string.ChooseFromGallery));
-            org.telegram.ui.Cells.c1.k(R.drawable.msg_photos, 1, arrayList2, arrayList3);
-            if (this.J) {
-                arrayList.add(LocaleController.getString(R.string.ChooseFromSearch));
-                org.telegram.ui.Cells.c1.k(R.drawable.msg_search, 2, arrayList2, arrayList3);
-            }
-            if (z10) {
-                arrayList.add(LocaleController.getString(R.string.DeletePhoto));
-                org.telegram.ui.Cells.c1.k(R.drawable.msg_delete, 3, arrayList2, arrayList3);
-            }
-            int[] iArr = new int[arrayList2.size()];
-            int size = arrayList2.size();
-            for (int i12 = 0; i12 < size; i12++) {
-                iArr[i12] = ((Integer) arrayList2.get(i12)).intValue();
-            }
-            DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i13) {
-                    org.telegram.ui.ActionBar.m2 m2Var3;
-                    p50 p50Var = p50.this;
-                    p50Var.getClass();
-                    int intValue = ((Integer) arrayList3.get(i13)).intValue();
-                    if (intValue != 0) {
-                        if (intValue != 1) {
-                            if (intValue != 2) {
-                                if (intValue != 3) {
-                                    if (intValue == 4 && (m2Var3 = p50Var.f29381a) != null && m2Var3.getParentActivity() != null) {
-                                        try {
-                                            int i14 = Build.VERSION.SDK_INT;
-                                            if (p50Var.f29381a.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                                                p50Var.f29381a.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 19);
-                                                return;
-                                            }
-                                            Intent intent = new Intent("android.media.action.VIDEO_CAPTURE");
-                                            File generateVideoPath = AndroidUtilities.generateVideoPath();
-                                            if (generateVideoPath != null) {
-                                                if (i14 >= 24) {
-                                                    Activity parentActivity = p50Var.f29381a.getParentActivity();
-                                                    intent.putExtra("output", FileProvider.d(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
-                                                    intent.addFlags(2);
-                                                    intent.addFlags(1);
-                                                } else {
-                                                    intent.putExtra("output", Uri.fromFile(generateVideoPath));
-                                                }
-                                                intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                                                intent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
-                                                intent.putExtra("android.intent.extra.USE_FRONT_CAMERA", true);
-                                                intent.putExtra("android.intent.extra.durationLimit", 10);
-                                                p50Var.f29385f = generateVideoPath.getAbsolutePath();
-                                            }
-                                            p50Var.f29381a.startActivityForResult(intent, 15);
-                                            return;
-                                        } catch (Exception e7) {
-                                            FileLog.e(e7);
-                                            return;
-                                        }
-                                    }
-                                    return;
-                                }
-                                runnable.run();
-                                return;
-                            }
-                            p50Var.q();
-                            return;
-                        }
-                        p50Var.m();
-                        return;
-                    }
-                    p50Var.l();
-                }
-            };
-            e3Var.items = (CharSequence[]) arrayList.toArray(new CharSequence[0]);
-            e3Var.itemIcons = iArr;
-            e3Var.onClickListener = onClickListener;
-            e3Var.setOnHideListener(onDismissListener);
-            this.f29381a.showDialog(e3Var);
-            if (z10) {
-                e3Var.setItemColor(arrayList.size() - 1, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20800q7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20781p7, false));
-            }
-        }
-    }
-
-    public final void o(String str, String str2, Pair pair, boolean z10) {
-        ArrayList arrayList = new ArrayList();
-        MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
-        orientation.isVideo = z10;
-        orientation.thumbPath = str2;
-        arrayList.add(orientation);
-        PhotoViewer.t1().K2(null, this.f29381a, null);
-        PhotoViewer.t1().g2(arrayList, 0, 1, false, new m50(this, arrayList), null);
-        PhotoViewer.t1().P = true;
-    }
-
-    public final void p(String str, String str2, boolean z10) {
-        o(str, str2, new Pair(0, 0), z10);
-    }
-
-    public final void q() {
-        if (this.f29381a == null) {
-            return;
-        }
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList = new ArrayList();
-        org.telegram.ui.dr0 dr0Var = new org.telegram.ui.dr0(0, null, hashMap, arrayList, 1, false, null, this.R);
-        dr0Var.f36894s0 = new j50(this, hashMap, arrayList);
-        dr0Var.f0(1, false);
-        dr0Var.f36889p0 = this.f29382b.getInitialSearchString();
-        if (this.S) {
-            this.f29381a.showAsSheet(dr0Var);
-        } else {
-            this.f29381a.presentFragment(dr0Var);
-        }
-    }
-
-    public final void r(boolean z10, Bitmap bitmap, MessageObject messageObject) {
-        TLRPC.VideoSize videoSize;
-        if (bitmap != null) {
-            this.N = null;
-            this.M = null;
-            this.f29391y = null;
-            this.f29390x = null;
-            if (messageObject == null) {
-                videoSize = null;
-            } else {
-                videoSize = messageObject.emojiMarkup;
-            }
-            this.O = videoSize;
-            this.h = ImageLoader.scaleAndSaveImage(bitmap, 800.0f, 800.0f, 80, false, 320, 320);
-            TLRPC.PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, 150.0f, 150.0f, 80, false, 150, 150);
-            this.f29386n = scaleAndSaveImage;
-            int i10 = this.d;
-            if (scaleAndSaveImage != null) {
-                try {
-                    Bitmap decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(i10).getPathToAttach(this.f29386n, true).getAbsolutePath());
-                    this.f29387r = decodeFile;
-                    ImageLoader.getInstance().putImageToCache(new BitmapDrawable(decodeFile), this.f29386n.location.volume_id + "_" + this.f29386n.location.local_id + "@50_50", true);
-                } catch (Throwable unused) {
-                }
-            }
-            bitmap.recycle();
-            if (this.h != null) {
-                UserConfig.getInstance(i10).saveConfig(false);
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(FileLoader.getDirectory(4));
-                sb2.append("/");
-                sb2.append(this.h.location.volume_id);
-                sb2.append("_");
-                this.v = a1.g.o(this.h.location.local_id, ".jpg", sb2);
-                if (this.K) {
-                    if (messageObject != null && messageObject.videoEditedInfo != null) {
-                        if (this.I && !MessagesController.getInstance(i10).uploadMarkupVideo) {
-                            o50 o50Var = this.f29382b;
-                            if (o50Var != null) {
-                                o50Var.L(z10, true);
-                            }
-                            o50 o50Var2 = this.f29382b;
-                            if (o50Var2 != null) {
-                                o50Var2.Q(null, null, 0.0d, null, this.h, this.f29386n, this.f29388s, null);
-                                this.f29382b.Q(null, null, this.P, this.f29390x, this.h, this.f29386n, this.f29388s, this.O);
-                                c();
-                                return;
-                            }
-                            return;
-                        }
-                        this.f29391y = messageObject;
-                        VideoEditedInfo videoEditedInfo = messageObject.videoEditedInfo;
-                        long j3 = videoEditedInfo.startTime;
-                        if (j3 < 0) {
-                            j3 = 0;
-                        }
-                        this.P = (videoEditedInfo.avatarStartTime - j3) / 1000000.0d;
-                        videoEditedInfo.shouldLimitFps = false;
-                        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingStarted);
-                        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingFailed);
-                        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileNewChunkAvailable);
-                        MediaController.getInstance().scheduleVideoConvert(messageObject, true, true, false);
-                        this.v = null;
-                        o50 o50Var3 = this.f29382b;
-                        if (o50Var3 != null) {
-                            o50Var3.L(z10, true);
-                        }
-                        this.f29388s = true;
-                    } else {
-                        o50 o50Var4 = this.f29382b;
-                        if (o50Var4 != null) {
-                            o50Var4.L(z10, false);
-                        }
-                        this.f29388s = false;
-                    }
-                    NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
-                    NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadProgressChanged);
-                    NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadFailed);
-                    if (this.v != null) {
-                        FileLoader.getInstance(i10).uploadFile(this.v, false, true, 16777216);
-                    }
-                }
-                o50 o50Var5 = this.f29382b;
-                if (o50Var5 != null) {
-                    o50Var5.Q(null, null, 0.0d, null, this.h, this.f29386n, this.f29388s, null);
-                }
-            }
-        }
-    }
-
-    public final void s(MediaController.PhotoEntry photoEntry) {
-        Bitmap loadBitmap;
-        String str = photoEntry.imagePath;
-        if (str == null) {
-            str = photoEntry.path;
-        }
-        MessageObject messageObject = null;
-        if ((photoEntry.isVideo || photoEntry.editedInfo != null) && !photoEntry.isLivePhoto()) {
-            TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f19824id = 0;
-            tL_message.message = "";
-            tL_message.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message.action = new TLRPC.TL_messageActionEmpty();
-            tL_message.dialog_id = 0L;
-            MessageObject messageObject2 = new MessageObject(UserConfig.selectedAccount, tL_message, false, false);
-            TLRPC.Message message = messageObject2.messageOwner;
-            File directory = FileLoader.getDirectory(4);
-            message.attachPath = new File(directory, SharedConfig.getLastLocalId() + "_avatar.mp4").getAbsolutePath();
-            messageObject2.videoEditedInfo = photoEntry.editedInfo;
-            messageObject2.emojiMarkup = photoEntry.emojiMarkup;
-            loadBitmap = ImageLoader.loadBitmap(photoEntry.thumbPath, null, 800.0f, 800.0f, true);
-            messageObject = messageObject2;
-        } else {
-            loadBitmap = ImageLoader.loadBitmap(str, null, 800.0f, 800.0f, true);
-        }
-        r(false, loadBitmap, messageObject);
+        this.f28148c.a();
+        this.e.a();
+        this.f28149f.a();
+        this.d.a();
+        GLES20.glDeleteTextures(5, this.f28153k, 0);
+        GLES20.glDeleteFramebuffers(1, this.f28152j, 0);
     }
 }

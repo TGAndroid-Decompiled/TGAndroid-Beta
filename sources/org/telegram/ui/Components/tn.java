@@ -1,257 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class tn implements org.telegram.ui.st {
-    public final int f30900a;
-    public final no f30901b;
+import org.telegram.messenger.Utilities;
+public final class tn implements gk {
+    public final Utilities.Callback f29464a;
+    public final pn f29465b;
+    public final org.telegram.ui.ActionBar.m2 f29466c;
 
-    public tn(no noVar, int i10) {
-        this.f30901b = noVar;
-        this.f30900a = i10;
+    public tn(Utilities.Callback callback, org.telegram.ui.ActionBar.m2 m2Var, pn pnVar) {
+        this.f29464a = callback;
+        this.f29465b = pnVar;
+        this.f29466c = m2Var;
     }
 
     @Override
-    public final MessageObject A() {
-        return null;
+    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
+        if (!arrayList.isEmpty()) {
+            this.f29464a.run(new sh.c((String) arrayList.get(0)));
+        }
+        this.f29465b.dismiss(true);
     }
 
     @Override
-    public final boolean B() {
-        return false;
+    public final void m(long j10, ArrayList arrayList, boolean z10, int i10) {
+        if (!arrayList.isEmpty()) {
+            this.f29464a.run(new sh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+        }
+        this.f29465b.dismiss(true);
     }
 
     @Override
-    public final boolean D() {
-        return false;
+    public final void y() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f29466c.getParentActivity().startActivityForResult(intent, 28);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return null;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final s80 j(ci.m6 m6Var) {
-        s80 F = s80.F(m6Var, null, new View(this.f30901b.getContext()));
-        F.f30468s = 0;
-        F.f30469t = false;
-        int i10 = R.drawable.msg_replace;
-        String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
-        final int i11 = this.f30900a;
-        F.c(i10, string, new Runnable(this) {
-            public final tn f30598b;
-
-            {
-                this.f30598b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r3) {
-                    case 0:
-                        this.f30598b.f30901b.e0(i11);
-                        return;
-                    default:
-                        this.f30598b.f30901b.h0(i11, null);
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-            public final tn f30598b;
-
-            {
-                this.f30598b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r3) {
-                    case 0:
-                        this.f30598b.f30901b.e0(i11);
-                        return;
-                    default:
-                        this.f30598b.f30901b.h0(i11, null);
-                        return;
-                }
-            }
-        }, true);
-        return F;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean m(int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void o(String str) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.jt jtVar) {
-    }
-
-    @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public final void O() {
     }
 }

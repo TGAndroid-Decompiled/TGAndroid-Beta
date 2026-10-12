@@ -1,31 +1,31 @@
 package org.telegram.utils.code.highlight;
 
 import com.google.android.gms.internal.play_billing.s0;
-import ki.s;
+import mi.s;
 public final class PrismaHighlighter implements AutoCloseable {
-    public long f44948a;
-    public final String[] f44949b;
-    public final s f44950c;
+    public long f42739a;
+    public final String[] f42740b;
+    public final s f42741c;
 
     public PrismaHighlighter(byte[] bArr) {
         if (bArr != null) {
             long nativeCreate = nativeCreate(bArr);
-            this.f44948a = nativeCreate;
+            this.f42739a = nativeCreate;
             if (nativeCreate != 0) {
                 try {
                     String[] nativeGetTokenNames = nativeGetTokenNames(nativeCreate);
-                    this.f44949b = nativeGetTokenNames;
+                    this.f42740b = nativeGetTokenNames;
                     if (nativeGetTokenNames != null && nativeGetTokenNames.length != 0 && "".equals(nativeGetTokenNames[0])) {
-                        this.f44950c = new s(nativeGetTokenNames);
+                        this.f42741c = new s(nativeGetTokenNames);
                         return;
                     }
                     throw new IllegalStateException("Invalid native token name table");
-                } catch (Error e7) {
-                    e = e7;
+                } catch (Error e) {
+                    e = e;
                     close();
                     throw e;
-                } catch (RuntimeException e10) {
-                    e = e10;
+                } catch (RuntimeException e7) {
+                    e = e7;
                     close();
                     throw e;
                 }
@@ -72,46 +72,46 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     private static native long nativeCreate(byte[] bArr);
 
-    private static native void nativeDestroy(long j3);
+    private static native void nativeDestroy(long j10);
 
-    private static native String[] nativeGetLanguages(long j3);
+    private static native String[] nativeGetLanguages(long j10);
 
-    private static native String[] nativeGetTokenNames(long j3);
+    private static native String[] nativeGetTokenNames(long j10);
 
-    private static native int[] nativeHighlight(long j3, String str, String str2);
+    private static native int[] nativeHighlight(long j10, String str, String str2);
 
     public final synchronized String[] a() {
-        long j3;
-        j3 = this.f44948a;
-        if (j3 != 0) {
+        long j10;
+        j10 = this.f42739a;
+        if (j10 != 0) {
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return nativeGetLanguages(j3);
+        return nativeGetLanguages(j10);
     }
 
     public final synchronized s0 c(String str, String str2) {
         int[] nativeHighlight;
-        long j3 = this.f44948a;
-        if (j3 != 0) {
+        long j10 = this.f42739a;
+        if (j10 != 0) {
             if (str != null) {
-                nativeHighlight = nativeHighlight(j3, str, str2);
-                d(this.f44949b.length, nativeHighlight, str);
+                nativeHighlight = nativeHighlight(j10, str, str2);
+                d(this.f42740b.length, nativeHighlight, str);
             } else {
                 throw new NullPointerException("text");
             }
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return new s0(nativeHighlight, this.f44950c);
+        return new s0(nativeHighlight, this.f42741c);
     }
 
     @Override
     public final synchronized void close() {
-        long j3 = this.f44948a;
-        if (j3 != 0) {
-            nativeDestroy(j3);
-            this.f44948a = 0L;
+        long j10 = this.f42739a;
+        if (j10 != 0) {
+            nativeDestroy(j10);
+            this.f42739a = 0L;
         }
     }
 }

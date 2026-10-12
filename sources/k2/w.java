@@ -1,15 +1,9 @@
 package k2;
+public final class w extends Exception {
+    public final boolean f14038a;
+    public final b2.x f14039b;
 
-import b2.v0;
-public final class w {
-    public final v0 f14573a;
-    public final long f14574b;
-    public final long f14575c;
-    public long d;
-
-    public w(v0 v0Var, long j3, long j10) {
-        this.f14573a = v0Var;
-        this.f14574b = j3;
-        this.f14575c = j10;
+    public w(int r3, int r4, int r5, int r6, b2.x r7, boolean r8, k2.m r9) {
+        throw new UnsupportedOperationException("Method not decompiled: k2.w.<init>(int, int, int, int, b2.x, boolean, k2.m):void");
     }
 }

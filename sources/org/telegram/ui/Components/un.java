@@ -1,20 +1,16 @@
 package org.telegram.ui.Components;
+public final class un extends s4.k {
+    public final io F;
 
-import android.content.Context;
-public final class un extends aj {
-    public final Runnable S2;
-
-    public un(Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.c6 c6Var, Runnable runnable) {
-        super(context, m2Var, false, false, true, c6Var);
-        this.S2 = runnable;
+    public un(io ioVar) {
+        this.F = ioVar;
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        Runnable runnable = this.S2;
-        if (runnable != null) {
-            runnable.run();
+    public final void P(s4.b1 b1Var) {
+        if (b1Var.b() == 0) {
+            io ioVar = this.F;
+            ioVar.f27671b.b2(ioVar, 0);
         }
     }
 }

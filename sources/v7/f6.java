@@ -1,9 +1,8 @@
 package v7;
-public abstract class f6 {
-    public static boolean a(byte b10) {
-        if (b10 > -65) {
-            return true;
-        }
-        return false;
+public final class f6 {
+    public final Float f46636a;
+
+    public f6(ji.d4 d4Var) {
+        this.f46636a = (Float) d4Var.f13233b;
     }
 }

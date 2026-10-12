@@ -1,87 +1,70 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jr;
-public final class q3 extends jr {
-    public final View f53299c;
-    public final Paint d;
-    public final Path f53300e;
-    public final long f53301f;
-    public float h;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.s5;
+import org.telegram.ui.Components.z61;
+public final class q3 extends k61 {
+    public static final int f49099a = 0;
 
-    public q3(ci.d dVar, int i10) {
-        super(dVar);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        Path path = new Path();
-        this.f53300e = path;
-        this.f53301f = System.currentTimeMillis();
-        this.h = 1.0f;
-        this.f53299c = dVar;
-        ((Paint) this.f27633b).setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setColor(i10);
-        path.rewind();
-        path.moveTo(-AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
-        path.lineTo(0.0f, -AndroidUtilities.dpf2(1.08f));
-        path.lineTo(AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
+    static {
+        k61.setup(new k61());
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Paint paint = (Paint) this.f27633b;
-        paint.setAlpha((int) (this.h * 255.0f));
-        canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f53301f) % 400)) / 400.0f;
-        Paint paint2 = this.d;
-        int alpha = paint2.getAlpha();
-        paint2.setAlpha((int) (alpha * this.h));
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
-        canvas.save();
-        canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(1.166f) * 2.0f) + (AndroidUtilities.dpf2(2.16f) * 3.0f)) / 2.0f));
-        for (int i10 = 0; i10 < 4; i10++) {
-            if (i10 == 0) {
-                f7 = 1.0f - currentTimeMillis;
-            } else if (i10 == 3) {
-                f7 = currentTimeMillis;
-            } else {
-                f7 = 1.0f;
+    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+        r3 r3Var = (r3) view;
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) l61Var.G;
+        int i10 = l61Var.f26967z;
+        String str = (String) l61Var.f26954l;
+        boolean z11 = l61Var.e;
+        c6 c6Var = r3Var.F;
+        bk0 bk0Var = r3Var.f19721c;
+        p3 p3Var = r3Var.N;
+        if (p3Var == null || r3Var.M != stargiftattributepattern.document.f19222id) {
+            r3Var.M = stargiftattributepattern.document.f19222id;
+            if (p3Var != null) {
+                p3Var.o(bk0Var);
             }
-            paint2.setAlpha((int) (f7 * 255.0f * this.h));
-            canvas.save();
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f7);
-            canvas.scale(lerp, lerp);
-            canvas.drawPath(this.f53300e, paint2);
-            canvas.restore();
-            canvas.translate(0.0f, AndroidUtilities.dpf2(3.3260002f) * f7);
+            ?? s5Var = new s5(3, r3Var.L, stargiftattributepattern.document);
+            r3Var.N = s5Var;
+            s5Var.setColorFilter(new PorterDuffColorFilter(g6.w0(g6.E8, c6Var), PorterDuff.Mode.SRC_IN));
         }
-        canvas.restore();
-        paint2.setAlpha(alpha);
-        View view = this.f53299c;
-        if (view != null) {
-            view.invalidate();
+        if (bk0Var.isAttachedToWindow()) {
+            r3Var.N.a(bk0Var);
         }
+        SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
+        if (!TextUtils.isEmpty(str)) {
+            spannableStringBuilder = AndroidUtilities.highlightText(spannableStringBuilder, str, c6Var);
+        }
+        if (i10 > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
+            spannableStringBuilder2.setSpan(new i61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        r3Var.g(spannableStringBuilder, 0, r3Var.N);
+        r3Var.setChecked(z11);
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.h = i10 / 255.0f;
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, c6 c6Var) {
+        return new r3(context, i10, c6Var);
     }
 }

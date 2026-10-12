@@ -1,42 +1,59 @@
 package dc;
+public final class g extends d {
+    public final byte[] f6476c;
+    public final int d;
+    public final int e;
 
-import com.google.android.gms.internal.vision.e2;
-public final class g {
-    public float f8288a;
-    public float f8289b;
-    public float f8290c;
-    public float d;
-    public float f8291e;
-    public float f8292f;
-    public float f8293g;
-    public float h;
-    public float f8294i;
-
-    public g(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
-        this.f8288a = f7;
-        this.f8289b = f12;
-        this.f8290c = f15;
-        this.d = f10;
-        this.f8291e = f13;
-        this.f8292f = f16;
-        this.f8293g = f11;
-        this.h = f14;
-        this.f8294i = f17;
+    public g(int i10, int i11, int[] iArr) {
+        super(i10, i11);
+        int i12 = i10 * i11;
+        if (iArr.length >= i12) {
+            byte[] bArr = new byte[i12];
+            for (int i13 = 0; i13 < i12; i13++) {
+                int i14 = iArr[i13];
+                bArr[i13] = (byte) (((((i14 >> 16) & 255) + ((i14 >> 7) & 510)) + (i14 & 255)) / 4);
+            }
+            this.f6476c = bArr;
+            this.d = i10;
+            this.e = i11;
+            return;
+        }
+        throw new IllegalArgumentException("Pixel array length is less than width * height");
     }
 
-    public static g a(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16) {
-        float f17 = ((f7 - f11) + f13) - f15;
-        float f18 = ((f10 - f12) + f14) - f16;
-        if (f17 == 0.0f && f18 == 0.0f) {
-            return new g(f11 - f7, f13 - f11, f7, f12 - f10, f14 - f12, f10, 0.0f, 0.0f, 1.0f);
+    @Override
+    public final byte[] a() {
+        byte[] bArr = this.f6476c;
+        int i10 = this.f6471a;
+        int i11 = this.f6472b;
+        int i12 = this.d;
+        if (i10 == i12 && i11 == this.e) {
+            return bArr;
         }
-        float f19 = f11 - f13;
-        float f20 = f15 - f13;
-        float f21 = f12 - f14;
-        float f22 = f16 - f14;
-        float f23 = (f19 * f22) - (f20 * f21);
-        float u10 = e2.u(f20, f18, f22 * f17, f23);
-        float u11 = e2.u(f17, f21, f19 * f18, f23);
-        return new g((u10 * f11) + (f11 - f7), (u11 * f15) + (f15 - f7), f7, (u10 * f12) + (f12 - f10), (u11 * f16) + (f16 - f10), f10, u10, u11, 1.0f);
+        int i13 = i10 * i11;
+        byte[] bArr2 = new byte[i13];
+        if (i10 == i12) {
+            System.arraycopy(bArr, 0, bArr2, 0, i13);
+            return bArr2;
+        }
+        int i14 = 0;
+        for (int i15 = 0; i15 < i11; i15++) {
+            System.arraycopy(bArr, i14, bArr2, i15 * i10, i10);
+            i14 += i12;
+        }
+        return bArr2;
+    }
+
+    @Override
+    public final byte[] b(int i10, byte[] bArr) {
+        if (i10 >= 0 && i10 < this.f6472b) {
+            int i11 = this.f6471a;
+            if (bArr == null || bArr.length < i11) {
+                bArr = new byte[i11];
+            }
+            System.arraycopy(this.f6476c, i10 * this.d, bArr, 0, i11);
+            return bArr;
+        }
+        throw new IllegalArgumentException(i2.d.i(i10, "Requested row is outside the image: "));
     }
 }

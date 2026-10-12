@@ -1,202 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesStorage;
-public final class f50 extends HorizontalScrollView {
-    public static final RectF v = new RectF();
-    public final org.telegram.ui.ActionBar.c6 f25890a;
-    public final g6 f25891b;
-    public final g6 f25892c;
-    public final LinearLayout d;
-    public final Paint f25893e;
-    public final TextPaint f25894f;
-    public boolean h;
-    public int f25895n;
-    public final Path f25896r;
-    public final Path f25897s;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class f50 extends org.telegram.ui.av0 {
+    public final ArrayList f24904a;
+    public final i50 f24905b;
 
-    public f50(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f25893e = new Paint(1);
-        TextPaint textPaint = new TextPaint(1);
-        this.f25894f = textPaint;
-        this.f25896r = new Path();
-        this.f25897s = new Path();
-        this.f25890a = c6Var;
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.d = linearLayout;
-        linearLayout.setLayerType(0, null);
-        linearLayout.setOrientation(0);
-        addView(linearLayout, w7.w5.x(-1, -1, 8388611));
-        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        g6 g6Var = new g6(new Runnable(this) {
-            public final f50 f25603b;
-
-            {
-                this.f25603b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        f50 f50Var = this.f25603b;
-                        f50Var.invalidate();
-                        LinearLayout linearLayout2 = f50Var.d;
-                        linearLayout2.invalidate();
-                        for (int i10 = 0; i10 < linearLayout2.getChildCount(); i10++) {
-                            linearLayout2.getChildAt(i10).invalidate();
-                        }
-                        return;
-                    default:
-                        f50 f50Var2 = this.f25603b;
-                        f50Var2.invalidate();
-                        LinearLayout linearLayout3 = f50Var2.d;
-                        linearLayout3.invalidate();
-                        for (int i11 = 0; i11 < linearLayout3.getChildCount(); i11++) {
-                            linearLayout3.getChildAt(i11).invalidate();
-                        }
-                        return;
-                }
-            }
-        });
-        this.f25891b = g6Var;
-        g6Var.f26304g = 180L;
-        g6 g6Var2 = new g6(new Runnable(this) {
-            public final f50 f25603b;
-
-            {
-                this.f25603b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        f50 f50Var = this.f25603b;
-                        f50Var.invalidate();
-                        LinearLayout linearLayout2 = f50Var.d;
-                        linearLayout2.invalidate();
-                        for (int i10 = 0; i10 < linearLayout2.getChildCount(); i10++) {
-                            linearLayout2.getChildAt(i10).invalidate();
-                        }
-                        return;
-                    default:
-                        f50 f50Var2 = this.f25603b;
-                        f50Var2.invalidate();
-                        LinearLayout linearLayout3 = f50Var2.d;
-                        linearLayout3.invalidate();
-                        for (int i11 = 0; i11 < linearLayout3.getChildCount(); i11++) {
-                            linearLayout3.getChildAt(i11).invalidate();
-                        }
-                        return;
-                }
-            }
-        });
-        this.f25892c = g6Var2;
-        g6Var2.f26304g = 180L;
-        setVerticalScrollBarEnabled(false);
-        setHorizontalScrollBarEnabled(false);
-    }
-
-    public final void a(int i10, boolean z10) {
-        this.f25895n = i10;
-        LinearLayout linearLayout = this.d;
-        boolean z11 = !z10;
-        this.f25891b.d(linearLayout.getChildAt(i10).getLeft(), z11);
-        this.f25892c.d(linearLayout.getChildAt(i10).getRight(), z11);
-    }
-
-    public final void b(ArrayList arrayList, MessagesStorage.IntCallback intCallback) {
-        LinearLayout linearLayout = this.d;
-        linearLayout.removeAllViews();
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            CharSequence charSequence = (CharSequence) arrayList.get(i10);
-            ci.bb bbVar = new ci.bb(getContext());
-            bbVar.setDrawingCacheEnabled(false);
-            bbVar.setOnClickListener(new org.telegram.ui.Cells.sa(this, i10, intCallback, 8));
-            bbVar.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
-            LinearLayout.LayoutParams n10 = w7.w5.n(-2, -2);
-            if (i10 < arrayList.size() - 1) {
-                n10.rightMargin = AndroidUtilities.dp(4.0f);
-            }
-            bbVar.f4801b = new r11(charSequence, this.f25894f);
-            linearLayout.addView(bbVar, n10);
-        }
+    public f50(i50 i50Var, ArrayList arrayList) {
+        this.f24905b = i50Var;
+        this.f24904a = arrayList;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int w02;
-        int w03;
-        RectF rectF = v;
-        rectF.set(this.f25891b.c(), 0.0f, this.f25892c.c(), getMeasuredHeight());
-        Path path = this.f25896r;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), direction);
-        path.close();
-        Path path2 = this.f25897s;
-        path2.rewind();
-        LinearLayout linearLayout = this.d;
-        path2.addRect(0.0f, 0.0f, linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
-        path2.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CCW);
-        path2.close();
-        boolean z10 = this.h;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f25890a;
-        if (z10) {
-            w02 = org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, c6Var));
-        } else {
-            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20946y6, c6Var) & 520093695;
+    public final org.telegram.ui.kv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        h50 h50Var = this.f24905b.f25830b;
+        if (h50Var == null) {
+            return null;
         }
-        Paint paint = this.f25893e;
-        paint.setColor(w02);
-        canvas.drawPath(path, paint);
-        int w04 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20946y6, c6Var);
-        TextPaint textPaint = this.f25894f;
-        textPaint.setColor(w04);
-        canvas.save();
-        canvas.clipPath(path2);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (this.h) {
-            w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, c6Var);
-        } else {
-            w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Y8, c6Var);
-        }
-        textPaint.setColor(w03);
-        canvas.save();
-        canvas.clipPath(path);
-        for (int i10 = 0; i10 < linearLayout.getChildCount(); i10++) {
-            View childAt = linearLayout.getChildAt(i10);
-            if (rectF.right >= childAt.getLeft() && rectF.left <= childAt.getRight()) {
-                canvas.save();
-                canvas.translate(childAt.getLeft(), childAt.getTop());
-                childAt.draw(canvas);
-                canvas.restore();
-            }
-        }
-        canvas.restore();
+        return h50Var.getCloseIntoObject();
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        a(this.f25895n, false);
+    public final boolean S() {
+        return false;
     }
 
-    public void setAccent(boolean z10) {
-        this.h = z10;
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f24905b.s((MediaController.PhotoEntry) this.f24904a.get(0));
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

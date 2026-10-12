@@ -1,26 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
 public final class c1 implements Runnable {
-    public final int f17224a;
-    public final ChatObject.Call f17225b;
-    public final TLObject f17226c;
+    public final int f16916a;
+    public final ResultCallback f16917b;
+    public final TLRPC.TL_error f16918c;
 
-    public c1(ChatObject.Call call, TLObject tLObject, int i10) {
-        this.f17224a = i10;
-        this.f17225b = call;
-        this.f17226c = tLObject;
+    public c1(ResultCallback resultCallback, TLRPC.TL_error tL_error, int i10) {
+        this.f16916a = i10;
+        this.f16917b = resultCallback;
+        this.f16918c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f17224a) {
+        switch (this.f16916a) {
             case 0:
-                this.f17225b.lambda$reloadGroupCall$8(this.f17226c);
+                this.f16917b.onError(this.f16918c);
                 return;
             default:
-                this.f17225b.lambda$loadGroupCall$10(this.f17226c);
+                this.f16917b.onError(this.f16918c);
                 return;
         }
     }

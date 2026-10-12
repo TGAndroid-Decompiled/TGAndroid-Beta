@@ -1,58 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-import android.widget.LinearLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class tk0 extends LinearLayout {
-    public boolean f30895a;
+import org.telegram.messenger.MessagesController;
+public final class tk0 extends s4.m0 {
+    public final int f29412a;
+    public final gl0 f29413b;
 
-    public tk0(Context context) {
-        super(context);
+    public tk0(gl0 gl0Var, int i10) {
+        this.f29412a = i10;
+        this.f29413b = gl0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        pk0 pk0Var = null;
-        if (!this.f30895a) {
-            i12 = 0;
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                if (getChildAt(i13) instanceof xk0) {
-                    pk0Var = ((xk0) getChildAt(i13)).f32787e;
-                    if (pk0Var.getAdapter().h() == pk0Var.getChildCount()) {
-                        int childCount = pk0Var.getChildCount();
-                        for (int i14 = 0; i14 < childCount; i14++) {
-                            pk0Var.getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i11);
-                            if (pk0Var.getChildAt(i14).getMeasuredWidth() > i12) {
-                                i12 = pk0Var.getChildAt(i14).getMeasuredWidth();
-                            }
-                        }
-                        i12 += AndroidUtilities.dp(16.0f);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        switch (this.f29412a) {
+            case 0:
+                super.a(rect, view, recyclerView, y0Var);
+                gl0 gl0Var = this.f29413b;
+                if (!gl0Var.q()) {
+                    recyclerView.getClass();
+                    int R = RecyclerView.R(view);
+                    if (R == 0) {
+                        rect.left = AndroidUtilities.dp(6.0f);
                     }
+                    rect.right = AndroidUtilities.dp(4.0f);
+                    if (R == gl0Var.f25318a0.h() - 1) {
+                        if ((!gl0Var.U.isEmpty() && !MessagesController.getInstance(gl0Var.J).premiumFeaturesBlocked()) || gl0Var.q()) {
+                            rect.right = AndroidUtilities.dp(2.0f);
+                            return;
+                        } else {
+                            rect.right = AndroidUtilities.dp(6.0f);
+                            return;
+                        }
+                    }
+                    return;
                 }
-            }
-        } else {
-            i12 = 0;
+                rect.left = 0;
+                rect.right = 0;
+                return;
+            default:
+                recyclerView.getClass();
+                int R2 = RecyclerView.R(view);
+                if (R2 == 0) {
+                    rect.left = AndroidUtilities.dp(8.0f);
+                }
+                if (R2 == this.f29413b.f25318a0.h() - 1) {
+                    rect.right = AndroidUtilities.dp(8.0f);
+                    return;
+                }
+                return;
         }
-        int size = View.MeasureSpec.getSize(i10);
-        if (size < AndroidUtilities.dp(240.0f)) {
-            size = AndroidUtilities.dp(240.0f);
-        }
-        if (size > AndroidUtilities.dp(280.0f)) {
-            size = AndroidUtilities.dp(280.0f);
-        }
-        if (size < 0) {
-            size = 0;
-        }
-        if (i12 == 0 || i12 >= size) {
-            i12 = size;
-        }
-        if (pk0Var != null) {
-            for (int i15 = 0; i15 < pk0Var.getChildCount(); i15++) {
-                pk0Var.getChildAt(i15).measure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
-            }
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
     }
 }

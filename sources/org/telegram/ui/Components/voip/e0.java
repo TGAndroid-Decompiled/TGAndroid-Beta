@@ -1,34 +1,27 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class e0 extends AnimatorListenerAdapter {
-    public final int f31642a;
-    public final n0 f31643b;
+import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.ui.e40;
+public final class e0 extends ImageView {
+    public final e40 f30160a;
 
-    public e0(n0 n0Var, int i10) {
-        this.f31642a = i10;
-        this.f31643b = n0Var;
+    public e0(e40 e40Var, Context context) {
+        super(context);
+        this.f30160a = e40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31642a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                n0 n0Var = this.f31643b;
-                n0Var.J0 = null;
-                n0Var.I0 = 0.0f;
-                n0Var.invalidate();
-                return;
-            default:
-                n0 n0Var2 = this.f31643b;
-                n0Var2.B0 = null;
-                n0Var2.f31831y0 = 1.0f;
-                n0Var2.f31820r0 = 0.0f;
-                n0Var2.f31822s0 = 0.0f;
-                n0Var2.invalidate();
-                return;
-        }
+    public final void invalidate() {
+        super.invalidate();
+        e40 e40Var = this.f30160a;
+        e40Var.f30288f0.invalidate();
+        e40Var.invalidate();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
     }
 }

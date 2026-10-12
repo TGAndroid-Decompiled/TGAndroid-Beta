@@ -1,65 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
 import java.util.ArrayList;
-public final class d81 implements Runnable {
-    public final int f25257a;
-    public final Object f25258b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+public final class d81 {
+    public final boolean f24317a;
+    public final int f24318b;
+    public final int f24319c;
+    public final ArrayList d;
 
-    public d81(Object obj, int i10) {
-        this.f25257a = i10;
-        this.f25258b = obj;
+    public d81(f81 f81Var) {
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        this.f24317a = f81Var.f24961b;
+        this.f24318b = f81Var.f24965i;
+        this.f24319c = f81Var.f24966j;
+        arrayList.add(f81Var);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f25257a) {
-            case 0:
-                o00 o00Var = ((f81) this.f25258b).f25966b;
-                if (o00Var != null) {
-                    o00Var.e(false, true, false);
-                    return;
-                }
-                return;
-            case 1:
-                q81 q81Var = (q81) this.f25258b;
-                i2.f0 f0Var = q81Var.d;
-                if (f0Var != null) {
-                    TextureView textureView = q81Var.f29770n;
-                    f0Var.D1();
-                    if (textureView != null && textureView == f0Var.V) {
-                        f0Var.D1();
-                        f0Var.q1();
-                        f0Var.v1(null);
-                        f0Var.o1(0, 0);
-                    }
-                    q81Var.d.x1(q81Var.f29770n);
-                    ArrayList arrayList = q81Var.N;
-                    if (arrayList != null) {
-                        q81Var.F(arrayList, q81Var.O);
-                    } else if (q81Var.U) {
-                        q81Var.G(q81Var.Q, q81Var.S, q81Var.R, q81Var.T);
-                    } else {
-                        q81Var.D(q81Var.Q, q81Var.S);
-                    }
-                    q81Var.C();
-                    return;
-                }
-                return;
-            case 2:
-                q81 q81Var2 = ((p81) this.f25258b).f29449f;
-                q81Var2.f29757a0.removeCallbacksAndMessages(null);
-                q81Var2.K.onVisualizerUpdate(false, true, null);
-                return;
-            case 3:
-                ((s81) this.f25258b).f30480g = false;
-                return;
-            case 4:
-                ((ma1) ((e60) ((org.telegram.ui.Cells.da) this.f25258b).f21758b).f25613b).v.b();
-                return;
-            default:
-                ((ia1) this.f25258b).d(false, true);
-                return;
+    public final f81 a() {
+        ArrayList arrayList = this.d;
+        f81 f81Var = null;
+        if (arrayList.isEmpty()) {
+            return null;
         }
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            f81 f81Var2 = (f81) obj;
+            if (f81Var2.b()) {
+                return f81Var2;
+            }
+        }
+        long j10 = Long.MAX_VALUE;
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            f81 f81Var3 = (f81) arrayList.get(i11);
+            if (f81Var3.f24967k < j10 && h81.Y(f81Var3.f24969m)) {
+                j10 = f81Var3.f24967k;
+                f81Var = f81Var3;
+            }
+        }
+        if (f81Var != null) {
+            return f81Var;
+        }
+        return (f81) arrayList.get(0);
+    }
+
+    public final int b() {
+        int min = Math.min(this.f24318b, this.f24319c);
+        if (Math.abs(min - 2160) < 55) {
+            return 2160;
+        }
+        if (Math.abs(min - 1440) < 55) {
+            return 1440;
+        }
+        if (Math.abs(min - 1080) < 55) {
+            return 1080;
+        }
+        if (Math.abs(min - 720) < 55) {
+            return 720;
+        }
+        if (Math.abs(min - 480) < 55) {
+            return 480;
+        }
+        if (Math.abs(min - 360) < 55) {
+            return 360;
+        }
+        if (Math.abs(min - 240) < 55) {
+            return 240;
+        }
+        if (Math.abs(min - 144) < 55) {
+            return 144;
+        }
+        return min;
+    }
+
+    public final String toString() {
+        String str;
+        boolean z10 = SharedConfig.debugVideoQualities;
+        boolean z11 = this.f24317a;
+        String str2 = "";
+        if (z10) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f24318b);
+            sb2.append("x");
+            sb2.append(this.f24319c);
+            if (!z11) {
+                str = "";
+            } else {
+                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+            }
+            sb2.append(str);
+            sb2.append("\n");
+            ArrayList arrayList = this.d;
+            sb2.append(AndroidUtilities.formatFileSize((long) ((f81) arrayList.get(0)).f24968l).replace(" ", ""));
+            sb2.append("/s");
+            if (((f81) arrayList.get(0)).f24969m != null) {
+                str2 = ", " + ((f81) arrayList.get(0)).f24969m;
+            }
+            sb2.append(str2);
+            return sb2.toString();
+        }
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(b());
+        sb3.append("p");
+        if (z11) {
+            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+        }
+        sb3.append(str2);
+        return sb3.toString();
     }
 }

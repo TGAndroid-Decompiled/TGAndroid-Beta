@@ -2,39 +2,135 @@ package rg;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import ji.d4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.l4;
-public final class y1 extends l4 {
-    public final Path h;
-    public final a2 f47753n;
+import org.telegram.ui.Components.g6;
+public final class y1 extends View {
+    public qg.c1 E;
+    public float F;
+    public float G;
+    public qg.q1 H;
+    public Runnable I;
+    public boolean J;
+    public x1 K;
+    public final Paint f44617a;
+    public final Paint f44618b;
+    public final Path f44619c;
+    public final d4 d;
+    public final RectF e;
+    public boolean f44620f;
+    public boolean h;
+    public float f44621n;
+    public float f44622r;
+    public long f44623s;
+    public boolean v;
+    public final g6 f44624w;
+    public final g6 f44625x;
+    public final g6 f44626y;
 
-    public y1(a2 a2Var, Context context) {
+    public y1(Context context) {
         super(context);
-        this.f47753n = a2Var;
-        this.h = new Path();
+        Paint paint = new Paint(1);
+        this.f44617a = paint;
+        Paint paint2 = new Paint(1);
+        this.f44618b = paint2;
+        this.f44619c = new Path();
+        this.e = new RectF();
+        this.v = true;
+        this.f44624w = new g6(this);
+        this.f44625x = new g6(this);
+        this.f44626y = new g6(this);
+        this.H = new qg.q1(1.0f, 0.016773745f, -1);
+        this.J = true;
+        this.d = new d4(context, new w1(this));
+        paint2.setColor(-1);
+        paint2.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, AndroidUtilities.dp(2.0f), 1342177280);
+        paint.setColor(1090519039);
+        paint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 637534208);
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.h);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Path path = this.h;
-        path.reset();
-        a2 a2Var = this.f47753n;
-        if (a2Var.d) {
-            AndroidUtilities.rectTmp.set(0.0f, -a2Var.M, getMeasuredWidth(), getMeasuredHeight());
-        } else {
-            AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + a2Var.M));
+    public final void a(float f7, float f10, float f11, Canvas canvas, boolean z10) {
+        if (z10) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
+            canvas.saveLayerAlpha(rectF, (int) (this.f44622r * 255.0f), 31);
         }
-        float dp = a2Var.M - AndroidUtilities.dp(3.0f);
-        path.addRoundRect(AndroidUtilities.rectTmp, dp, dp, Path.Direction.CW);
+        canvas.drawCircle(f7, f10, f11, this.f44618b);
+        if (z10) {
+            canvas.restore();
+        }
+    }
+
+    public final void b(float f7, float f10) {
+        this.F = f7;
+        this.G = f10;
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r21) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.y1.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        int height = (int) (getHeight() * 0.3f);
+        this.e.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean onTouchEvent = ((GestureDetector) this.d.f13233b).onTouchEvent(motionEvent);
+        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
+            return onTouchEvent;
+        }
+        this.f44620f = false;
+        invalidate();
+        return onTouchEvent;
+    }
+
+    public void setBrushWeight(float f7) {
+        this.H.f43545c = f7;
+        invalidate();
+    }
+
+    public void setColorSwatch(qg.q1 q1Var) {
+        this.H = q1Var;
+        invalidate();
+    }
+
+    public void setDrawCenter(boolean z10) {
+        this.J = z10;
+        invalidate();
+    }
+
+    public void setOnUpdate(Runnable runnable) {
+        this.I = runnable;
+    }
+
+    public void setRenderView(qg.c1 c1Var) {
+        this.E = c1Var;
+    }
+
+    public void setShowPreview(boolean z10) {
+        this.v = z10;
+        invalidate();
+    }
+
+    public void setValueOverride(x1 x1Var) {
+        this.K = x1Var;
+        invalidate();
+    }
+
+    public void setViewHidden(boolean z10) {
+        this.h = z10;
+        invalidate();
     }
 }

@@ -3,45 +3,45 @@ package c6;
 import android.os.Parcel;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class a0 implements com.google.android.gms.common.api.internal.s {
-    public final int f4315a = 0;
-    public final e0 f4316b;
-    public final String f4317c;
+    public final int f4438a = 0;
+    public final e0 f4439b;
+    public final String f4440c;
     public final f d;
 
     public a0(e0 e0Var, f fVar, String str) {
-        this.f4316b = e0Var;
+        this.f4439b = e0Var;
         this.d = fVar;
-        this.f4317c = str;
+        this.f4440c = str;
     }
 
     @Override
     public final void accept(Object obj, Object obj2) {
         g6.w wVar = (g6.w) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        switch (this.f4315a) {
+        switch (this.f4438a) {
             case 0:
                 boolean z10 = true;
-                if (this.f4316b.F == 1) {
+                if (this.f4439b.F == 1) {
                     z10 = false;
                 }
-                n6.m.j("Not active connection", z10);
+                n6.l.j("Not active connection", z10);
                 if (this.d != null) {
                     g6.f fVar = (g6.f) wVar.u();
                     Parcel N0 = fVar.N0();
-                    N0.writeString(this.f4317c);
+                    N0.writeString(this.f4440c);
                     fVar.S0(N0, 12);
                 }
                 taskCompletionSource.setResult(null);
                 return;
             default:
                 boolean z11 = true;
-                if (this.f4316b.F == 1) {
+                if (this.f4439b.F == 1) {
                     z11 = false;
                 }
-                n6.m.j("Not active connection", z11);
+                n6.l.j("Not active connection", z11);
                 g6.f fVar2 = (g6.f) wVar.u();
                 Parcel N02 = fVar2.N0();
-                String str = this.f4317c;
+                String str = this.f4440c;
                 N02.writeString(str);
                 fVar2.S0(N02, 12);
                 if (this.d != null) {
@@ -56,8 +56,8 @@ public final class a0 implements com.google.android.gms.common.api.internal.s {
     }
 
     public a0(e0 e0Var, String str, e6.h hVar) {
-        this.f4316b = e0Var;
-        this.f4317c = str;
+        this.f4439b = e0Var;
+        this.f4440c = str;
         this.d = hVar;
     }
 }

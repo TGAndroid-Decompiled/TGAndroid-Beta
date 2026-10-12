@@ -1,146 +1,108 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class v81 implements ImageReceiver.ImageReceiverDelegate {
-    public final View f31460a;
+public final class v81 extends View {
+    public ShapeDrawable f29917a;
+    public Drawable f29918b;
+    public StaticLayout f29919c;
+    public TextPaint d;
+    public long e;
+    public float f29920f;
+    public float h;
+    public boolean f29921n;
 
-    public v81(View view) {
-        this.f31460a = view;
+    public final void a(boolean z10) {
+        this.f29921n = z10;
+        invalidate();
+    }
+
+    public final void b() {
+        this.d.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20128pf, false));
+        int dp = AndroidUtilities.dp(5.0f);
+        int i10 = org.telegram.ui.ActionBar.g6.f20147qf;
+        this.f29917a = org.telegram.ui.ActionBar.g6.c0(dp, org.telegram.ui.ActionBar.g6.x0(null, i10, false));
+        this.f29918b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
     }
 
     @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        boolean z13;
-        x81 x81Var;
-        double d;
-        double d10;
-        int i10;
-        int i11;
-        int ceil;
-        double ceil2;
-        y81 y81Var = (y81) this.f31460a;
-        ImageReceiver imageReceiver2 = y81Var.Q;
-        if (z10) {
-            if (y81Var.N != null || y81Var.f32982d0 != null) {
-                int dp = AndroidUtilities.dp(150.0f);
-                org.telegram.ui.lu0 lu0Var = y81Var.N;
-                if (lu0Var != null) {
-                    ArrayList arrayList = lu0Var.v;
-                    int indexOf = arrayList.indexOf(lu0Var.c((int) y81Var.O));
-                    if (indexOf != -1) {
-                        if (indexOf == arrayList.size() - 1) {
-                            int videoDuration = lu0Var.getVideoDuration() / 1000;
-                            if (videoDuration <= 100) {
-                                z13 = true;
-                                ceil2 = Math.ceil(videoDuration);
-                            } else {
-                                z13 = true;
-                                if (videoDuration <= 250) {
-                                    ceil2 = Math.ceil(videoDuration / 2.0f);
-                                } else if (videoDuration <= 500) {
-                                    ceil2 = Math.ceil(videoDuration / 4.0f);
-                                } else if (videoDuration <= 1000) {
-                                    ceil2 = Math.ceil(videoDuration / 5.0f);
-                                } else {
-                                    ceil2 = Math.ceil(videoDuration / 10.0f);
-                                }
-                            }
-                            i11 = Math.min(25, (((int) ceil2) - ((arrayList.size() - 1) * 25)) + 1);
-                        } else {
-                            z13 = true;
-                            i11 = 25;
-                        }
-                    } else {
-                        z13 = true;
-                        i11 = 0;
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        Drawable drawable = this.f29918b;
+        if (this.f29919c != null) {
+            if (this.f29921n) {
+                float f10 = this.h;
+                if (f10 != 1.0f) {
+                    float f11 = f10 + 0.12f;
+                    this.h = f11;
+                    if (f11 > 1.0f) {
+                        this.h = 1.0f;
                     }
-                    float bitmapWidth = imageReceiver2.getBitmapWidth() / Math.min(i11, 5);
-                    float bitmapHeight = imageReceiver2.getBitmapHeight() / ((int) Math.ceil(i11 / 5.0f));
-                    org.telegram.ui.lu0 lu0Var2 = y81Var.N;
-                    int i12 = (int) y81Var.O;
-                    int videoDuration2 = lu0Var2.getVideoDuration() / 1000;
-                    if (videoDuration2 <= 100) {
-                        ceil = ((int) Math.ceil(i12)) % 25;
-                    } else if (videoDuration2 <= 250) {
-                        ceil = ((int) Math.ceil(i12 / 2.0f)) % 25;
-                    } else if (videoDuration2 <= 500) {
-                        ceil = ((int) Math.ceil(i12 / 4.0f)) % 25;
-                    } else if (videoDuration2 <= 1000) {
-                        ceil = ((int) Math.ceil(i12 / 5.0f)) % 25;
-                    } else {
-                        ceil = ((int) Math.ceil(i12 / 10.0f)) % 25;
-                    }
-                    int min = Math.min(ceil, i11 - 1);
-                    y81Var.R = (int) ((min % 5) * bitmapWidth);
-                    y81Var.S = (int) ((min / 5) * bitmapHeight);
-                    y81Var.T = (int) bitmapWidth;
-                    y81Var.U = (int) bitmapHeight;
-                } else {
-                    z13 = true;
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < y81Var.f32982d0.size()) {
-                            x81Var = (x81) y81Var.f32982d0.get(i13);
-                            if (i13 == 0) {
-                                d = 0.0d;
-                            } else {
-                                d = x81Var.f32677a;
-                            }
-                            if (i13 == y81Var.f32982d0.size() - 1) {
-                                d10 = 9.9999999E7d;
-                            } else {
-                                d10 = ((x81) y81Var.f32982d0.get(i13 + 1)).f32677a;
-                            }
-                            double d11 = y81Var.O;
-                            if (d11 >= d && d11 <= d10) {
-                                break;
-                            }
-                            i13++;
-                        } else {
-                            x81Var = null;
-                            break;
-                        }
-                    }
-                    if (x81Var != null) {
-                        y81Var.R = x81Var.f32678b;
-                        y81Var.S = x81Var.f32679c;
-                        y81Var.T = y81Var.f32979b0;
-                        y81Var.U = y81Var.f32981c0;
-                    } else {
-                        return;
-                    }
+                    invalidate();
                 }
-                y81Var.P = z13;
-                float f7 = y81Var.T / y81Var.U;
-                if (f7 > 1.0f) {
-                    i10 = (int) (dp / f7);
-                } else {
-                    dp = (int) (dp * f7);
-                    i10 = dp;
+            } else {
+                float f12 = this.h;
+                if (f12 != 0.0f) {
+                    float f13 = f12 - 0.12f;
+                    this.h = f13;
+                    if (f13 < 0.0f) {
+                        this.h = 0.0f;
+                    }
+                    invalidate();
                 }
-                ViewGroup.LayoutParams layoutParams = y81Var.getLayoutParams();
-                if (y81Var.getVisibility() != 0 || layoutParams.width != dp || layoutParams.height != i10) {
-                    layoutParams.width = dp;
-                    layoutParams.height = i10;
-                    y81Var.setVisibility(0);
-                    y81Var.requestLayout();
+                if (this.h == 0.0f) {
+                    return;
                 }
             }
+            float f14 = this.h;
+            if (f14 > 0.5f) {
+                f7 = 1.0f;
+            } else {
+                f7 = f14 / 0.5f;
+            }
+            int i10 = (int) (f7 * 255.0f);
+            canvas.save();
+            float f15 = this.h;
+            canvas.scale(f15, f15, this.f29920f, getMeasuredHeight());
+            canvas.translate(this.f29920f - (this.f29919c.getWidth() / 2.0f), 0.0f);
+            this.f29917a.setBounds(-AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f) + this.f29919c.getWidth(), (int) (AndroidUtilities.dpf2(4.0f) + this.f29919c.getHeight()));
+            drawable.setBounds(org.telegram.ui.Cells.d0.u(2, this.f29919c.getWidth() / 2, drawable), (int) (AndroidUtilities.dpf2(4.0f) + this.f29919c.getHeight()), org.telegram.ui.Cells.d0.y(2, this.f29919c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (AndroidUtilities.dpf2(4.0f) + this.f29919c.getHeight())));
+            drawable.setAlpha(i10);
+            this.f29917a.setAlpha(i10);
+            this.d.setAlpha(i10);
+            drawable.draw(canvas);
+            this.f29917a.draw(canvas);
+            canvas.translate(0.0f, AndroidUtilities.dpf2(1.0f));
+            this.f29919c.draw(canvas);
+            canvas.restore();
         }
     }
 
     @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.l5.a(this, i10, str, drawable);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f29918b.getIntrinsicHeight() + AndroidUtilities.dp(4.0f) + this.f29919c.getHeight(), 1073741824));
     }
 
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.l5.b(this, imageReceiver);
+    public void setCx(float f7) {
+        this.f29920f = f7;
+        invalidate();
+    }
+
+    public void setTime(int i10) {
+        long j10 = i10;
+        if (j10 != this.e) {
+            this.e = j10;
+            String formatShortDuration = AndroidUtilities.formatShortDuration(i10);
+            TextPaint textPaint = this.d;
+            this.f29919c = new StaticLayout(formatShortDuration, textPaint, (int) textPaint.measureText(formatShortDuration), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        }
     }
 }

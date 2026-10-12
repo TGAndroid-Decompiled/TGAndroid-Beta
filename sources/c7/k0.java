@@ -10,29 +10,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 public final class k0 extends o6.a {
     public static final Parcelable.Creator<k0> CREATOR = new r0(8);
-    public final List f4493a;
+    public final List f4601a;
 
     public k0(ArrayList arrayList) {
-        this.f4493a = arrayList;
+        this.f4601a = arrayList;
     }
 
     public final JSONArray b() {
         try {
             JSONArray jSONArray = new JSONArray();
-            List list = this.f4493a;
+            List list = this.f4601a;
             if (list != null) {
                 for (int i10 = 0; i10 < list.size(); i10++) {
                     l0 l0Var = (l0) list.get(i10);
                     JSONArray jSONArray2 = new JSONArray();
-                    jSONArray2.put((int) l0Var.f4496c);
-                    jSONArray2.put((int) l0Var.f4495b);
-                    jSONArray2.put((int) l0Var.f4496c);
+                    jSONArray2.put((int) l0Var.f4604c);
+                    jSONArray2.put((int) l0Var.f4603b);
+                    jSONArray2.put((int) l0Var.f4604c);
                     jSONArray.put(i10, jSONArray2);
                 }
             }
             return jSONArray;
-        } catch (JSONException e7) {
-            throw new RuntimeException("Error encoding UvmEntries to JSON object", e7);
+        } catch (JSONException e) {
+            throw new RuntimeException("Error encoding UvmEntries to JSON object", e);
         }
     }
 
@@ -40,8 +40,8 @@ public final class k0 extends o6.a {
         if (!(obj instanceof k0)) {
             return false;
         }
-        List list = ((k0) obj).f4493a;
-        List list2 = this.f4493a;
+        List list = ((k0) obj).f4601a;
+        List list2 = this.f4601a;
         if (list2 == null && list == null) {
             return true;
         }
@@ -53,7 +53,7 @@ public final class k0 extends o6.a {
 
     public final int hashCode() {
         HashSet hashSet;
-        List list = this.f4493a;
+        List list = this.f4601a;
         if (list == null) {
             hashSet = null;
         } else {
@@ -64,8 +64,8 @@ public final class k0 extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.c0.q(parcel, 20293);
-        w7.c0.p(parcel, 1, this.f4493a);
-        w7.c0.r(parcel, q6);
+        int q6 = w7.g0.q(parcel, 20293);
+        w7.g0.p(parcel, 1, this.f4601a);
+        w7.g0.r(parcel, q6);
     }
 }

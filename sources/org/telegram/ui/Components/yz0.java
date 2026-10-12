@@ -1,23 +1,36 @@
 package org.telegram.ui.Components;
+public class yz0 {
+    public int f31706a;
+    public int f31707b;
+    public int f31708c;
 
-import org.telegram.messenger.SharedConfig;
-public final class yz0 implements ud0, wd0 {
-    public final a01 f33237a;
-
-    @Override
-    public String e(int i10) {
-        return this.f33237a.h[i10];
+    public yz0() {
+        c();
     }
 
-    @Override
-    public void q(yd0 yd0Var, int i10) {
-        a01 a01Var = this.f33237a;
-        a01Var.b();
-        SharedConfig.updateChatListSwipeSetting(i10);
-        a01Var.invalidate();
-        try {
-            yd0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public int a(h01 h01Var, a01 a01Var, tz0 tz0Var, int i10, boolean z10) {
+        return this.f31706a - tz0Var.a(a01Var, i10);
+    }
+
+    public void b(int i10, int i11) {
+        this.f31706a = Math.max(this.f31706a, i10);
+        this.f31707b = Math.max(this.f31707b, i11);
+    }
+
+    public void c() {
+        this.f31706a = Integer.MIN_VALUE;
+        this.f31707b = Integer.MIN_VALUE;
+        this.f31708c = 2;
+    }
+
+    public int d(boolean z10) {
+        if (!z10) {
+            int i10 = this.f31708c;
+            tz0 tz0Var = h01.R;
+            if ((i10 & 2) != 0) {
+                return 100000;
+            }
         }
+        return this.f31706a + this.f31707b;
     }
 }

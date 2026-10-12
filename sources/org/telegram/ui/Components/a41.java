@@ -1,29 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class a41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24233a;
-    public final c41 f24234b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+public final class a41 implements Runnable {
+    public final int f23434a;
+    public final MessageObject f23435b;
+    public final long f23436c;
+    public final String d;
 
-    public a41(c41 c41Var, int i10) {
-        this.f24233a = i10;
-        this.f24234b = c41Var;
+    public a41(String str, MessageObject messageObject, long j10, int i10) {
+        this.f23434a = i10;
+        this.f23435b = messageObject;
+        this.f23436c = j10;
+        this.d = str;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24233a) {
+    public final void run() {
+        int i10 = this.f23434a;
+        String str = this.d;
+        long j10 = this.f23436c;
+        MessageObject messageObject = this.f23435b;
+        switch (i10) {
             case 0:
-                ai.o4 o4Var = this.f24234b.f24806f;
-                o4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                o4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                o4Var.invalidate();
+                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
+                int i11 = NotificationCenter.voiceTranscriptionUpdate;
+                Long valueOf = Long.valueOf(j10);
+                Boolean bool = Boolean.TRUE;
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
                 return;
             default:
-                c41 c41Var = this.f24234b;
-                c41Var.getClass();
-                c41Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c41Var.h();
+                f41.g(messageObject, j10, str);
                 return;
         }
     }

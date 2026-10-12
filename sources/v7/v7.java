@@ -1,136 +1,59 @@
 package v7;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import org.telegram.messenger.ApplicationLoader;
 public abstract class v7 {
-    public static List a(int... iArr) {
-        if (iArr.length == 0) {
-            return Collections.EMPTY_LIST;
-        }
-        return new h9.b(0, iArr.length, iArr);
-    }
-
-    public static int b(long j3) {
-        boolean z10;
-        int i10 = (int) j3;
-        if (i10 == j3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        t6.b(j3, "Out of range: %s", z10);
-        return i10;
-    }
-
-    public static int c(byte b10, byte b11, byte b12, byte b13) {
-        return (b10 << 24) | ((b11 & 255) << 16) | ((b12 & 255) << 8) | (b13 & 255);
-    }
-
-    public static int d(int i10, int i11, int i12, int[] iArr) {
-        while (i11 < i12) {
-            if (iArr[i11] == i10) {
-                return i11;
-            }
-            i11++;
-        }
-        return -1;
-    }
-
-    public static int e(long j3) {
-        if (j3 > 2147483647L) {
-            return Integer.MAX_VALUE;
-        }
-        if (j3 < -2147483648L) {
-            return Integer.MIN_VALUE;
-        }
-        return (int) j3;
-    }
-
-    public static int[] f(Collection collection) {
-        if (collection instanceof h9.b) {
-            h9.b bVar = (h9.b) collection;
-            return Arrays.copyOfRange(bVar.f11049a, bVar.f11050b, bVar.f11051c);
-        }
-        Object[] array = collection.toArray();
-        int length = array.length;
-        int[] iArr = new int[length];
-        for (int i10 = 0; i10 < length; i10++) {
-            Object obj = array[i10];
-            obj.getClass();
-            iArr[i10] = ((Number) obj).intValue();
-        }
-        return iArr;
-    }
-
-    public static Integer g(String str) {
-        byte b10;
-        Integer num;
-        Long l4;
-        byte b11;
-        str.getClass();
-        if (!str.isEmpty()) {
-            int i10 = 0;
-            if (str.charAt(0) == '-') {
-                i10 = 1;
-            }
-            if (i10 != str.length()) {
-                int i11 = i10 + 1;
-                char charAt = str.charAt(i10);
-                if (charAt < 128) {
-                    b10 = h9.c.f11052a[charAt];
-                } else {
-                    byte[] bArr = h9.c.f11052a;
-                    b10 = -1;
+    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i10, int i11) {
+        if (bitmap != null) {
+            if (!bitmap.isRecycled()) {
+                if (i10 >= 0 && i10 < bitmap.getWidth() && i11 >= 0 && i11 < bitmap.getHeight()) {
+                    return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, c(i10, i10 + 1, i11, i11 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i10, i11)).array(), rect, null);
                 }
-                if (b10 >= 0 && b10 < 10) {
-                    long j3 = -b10;
-                    long j10 = 10;
-                    long j11 = Long.MIN_VALUE / j10;
-                    while (true) {
-                        if (i11 < str.length()) {
-                            int i12 = i11 + 1;
-                            char charAt2 = str.charAt(i11);
-                            if (charAt2 < 128) {
-                                b11 = h9.c.f11052a[charAt2];
-                            } else {
-                                byte[] bArr2 = h9.c.f11052a;
-                                b11 = -1;
-                            }
-                            if (b11 < 0 || b11 >= 10 || j3 < j11) {
-                                break;
-                            }
-                            long j12 = j3 * j10;
-                            num = null;
-                            long j13 = b11;
-                            if (j12 < j13 - Long.MIN_VALUE) {
-                                break;
-                            }
-                            j3 = j12 - j13;
-                            i11 = i12;
-                        } else {
-                            num = null;
-                            if (i10 != 0) {
-                                l4 = Long.valueOf(j3);
-                            } else if (j3 != Long.MIN_VALUE) {
-                                l4 = Long.valueOf(-j3);
-                            }
-                        }
-                    }
-                }
-                num = null;
-                l4 = num;
-                if (l4 == 0 && l4.longValue() == l4.intValue()) {
-                    return Integer.valueOf(l4.intValue());
-                }
-                return num;
+                StringBuilder l4 = i2.d.l("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
+                l4.append(bitmap.getWidth());
+                l4.append("x");
+                l4.append(bitmap.getHeight());
+                throw new IllegalArgumentException(l4.toString());
             }
+            throw new IllegalArgumentException("bitmap is recycled");
         }
-        l4 = 0;
-        num = null;
-        if (l4 == 0) {
-        }
-        return num;
+        throw new IllegalArgumentException("bitmap == null");
+    }
+
+    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r37, float[] r38, float r39, float r40, int r41, hh.f r42) {
+        throw new UnsupportedOperationException("Method not decompiled: v7.v7.b(android.graphics.Bitmap[], float[], float, float, int, hh.f):android.graphics.drawable.NinePatchDrawable");
+    }
+
+    public static ByteBuffer c(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
+        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
+        order.put((byte) 1);
+        order.put((byte) 2);
+        order.put((byte) 2);
+        order.put((byte) 9);
+        order.putInt(0);
+        order.putInt(0);
+        order.putInt(i14);
+        order.putInt(i16);
+        order.putInt(i15);
+        order.putInt(i17);
+        order.putInt(0);
+        order.putInt(i10);
+        order.putInt(i11);
+        order.putInt(i12);
+        order.putInt(i13);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(i18);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        return order;
     }
 }

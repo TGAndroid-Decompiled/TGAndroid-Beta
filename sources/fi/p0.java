@@ -1,41 +1,39 @@
 package fi;
 
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.eo;
-public final class p0 implements Runnable {
-    public final int f10030a = 0;
-    public final eo f10031b;
-    public final boolean f10032c;
-    public final int d;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class p0 implements org.telegram.ui.ActionBar.z1 {
+    public final int f9460a;
+    public final Activity f9461b;
 
-    public p0(int i10, eo eoVar, boolean z10) {
-        this.d = i10;
-        this.f10031b = eoVar;
-        this.f10032c = z10;
+    public p0(Activity activity, int i10) {
+        this.f9460a = i10;
+        this.f9461b = activity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f10030a) {
+    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f9460a) {
             case 0:
-                int i10 = this.d;
-                eo eoVar = this.f10031b;
-                if (i10 != 2) {
-                    eoVar.Z9();
-                    eoVar.cc();
+                Activity activity = this.f9461b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    activity.startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-                u0.f(zc.a0(eoVar), i10, this.f10032c);
-                return;
             default:
-                boolean z10 = this.f10032c;
-                this.f10031b.Cc(this.d, z10);
+                Activity activity2 = this.f9461b;
+                Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                intent2.setData(Uri.fromParts("package", activity2.getPackageName(), null));
+                activity2.startActivity(intent2);
                 return;
         }
-    }
-
-    public p0(eo eoVar, boolean z10, int i10) {
-        this.f10031b = eoVar;
-        this.f10032c = z10;
-        this.d = i10;
     }
 }

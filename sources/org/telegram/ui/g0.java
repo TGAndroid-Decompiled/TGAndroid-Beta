@@ -3,35 +3,35 @@ package org.telegram.ui;
 import android.net.Uri;
 import org.telegram.messenger.Utilities;
 public final class g0 implements Utilities.Callback0Return {
-    public final i4 f37878a;
-    public final String f37879b;
-    public final boolean[] f37880c;
-    public final of.e d;
+    public final k4 f36264a;
+    public final String f36265b;
+    public final boolean[] f36266c;
+    public final pf.c d;
 
-    public g0(i4 i4Var, String str, boolean[] zArr, of.e eVar) {
-        this.f37878a = i4Var;
-        this.f37879b = str;
-        this.f37880c = zArr;
-        this.d = eVar;
+    public g0(k4 k4Var, String str, boolean[] zArr, pf.c cVar) {
+        this.f36264a = k4Var;
+        this.f36265b = str;
+        this.f36266c = zArr;
+        this.d = cVar;
     }
 
     @Override
     public final Object run() {
-        String str = this.f37879b;
-        if (!of.f.f(Uri.parse(str), false, this.f37880c)) {
+        String str = this.f36265b;
+        if (!pf.d.f(Uri.parse(str), false, this.f36266c)) {
             return Boolean.FALSE;
         }
-        i4 i4Var = this.f37878a;
-        of.e eVar = this.d;
-        if (eVar != null) {
-            eVar.f16871c = new org.telegram.ui.ActionBar.f6(2, i4Var, eVar);
+        k4 k4Var = this.f36264a;
+        pf.c cVar = this.d;
+        if (cVar != null) {
+            cVar.f43198c = new org.telegram.messenger.voip.j(16, k4Var, cVar);
         } else {
-            v3 v3Var = i4Var.K;
-            if (v3Var != null) {
-                v3Var.dismiss(true);
+            x3 x3Var = k4Var.K;
+            if (x3Var != null) {
+                x3Var.dismiss(true);
             }
         }
-        of.f.r(i4Var.L, Uri.parse(str), true, true, false, eVar, null, true, true, false);
+        pf.d.r(k4Var.L, Uri.parse(str), true, true, false, cVar, null, true, true, false);
         return Boolean.TRUE;
     }
 }

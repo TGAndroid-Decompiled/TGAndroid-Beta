@@ -1,27 +1,24 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class ig0 implements View.OnClickListener {
-    public final int f38903a = 0;
-    public final lg0 f38904b;
+import org.telegram.messenger.AndroidUtilities;
+public final class ig0 implements Runnable {
+    public final int f37115a;
+    public final v3 f37116b;
 
-    public ig0(lg0 lg0Var) {
-        this.f38904b = lg0Var;
+    public ig0(v3 v3Var, int i10) {
+        this.f37115a = i10;
+        this.f37116b = v3Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f38903a) {
+    public final void run() {
+        switch (this.f37115a) {
             case 0:
-                this.f38904b.a();
+                this.f37116b.run("CANCELLED");
                 return;
             default:
-                this.f38904b.a();
+                AndroidUtilities.runOnUIThread(new ig0(this.f37116b, 0));
                 return;
         }
-    }
-
-    public ig0(lg0 lg0Var, vg0 vg0Var) {
-        this.f38904b = lg0Var;
     }
 }

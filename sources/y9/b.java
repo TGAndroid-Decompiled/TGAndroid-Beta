@@ -1,28 +1,60 @@
 package y9;
-public final class b implements ia.d {
-    public static final b f52103a = new Object();
-    public static final ia.c f52104b = ia.c.c("pid");
-    public static final ia.c f52105c = ia.c.c("processName");
-    public static final ia.c d = ia.c.c("reasonCode");
-    public static final ia.c f52106e = ia.c.c("importance");
-    public static final ia.c f52107f = ia.c.c("pss");
-    public static final ia.c f52108g = ia.c.c("rss");
-    public static final ia.c h = ia.c.c("timestamp");
-    public static final ia.c f52109i = ia.c.c("traceFile");
-    public static final ia.c f52110j = ia.c.c("buildIdMappingForArch");
+public final class b extends l {
+    public final String f48701b;
+    public final String f48702c;
+    public final String d;
+    public final String e;
+    public final long f48703f;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ia.e eVar = (ia.e) obj2;
-        b0 b0Var = (b0) ((g1) obj);
-        eVar.e(f52104b, b0Var.f52111a);
-        eVar.a(f52105c, b0Var.f52112b);
-        eVar.e(d, b0Var.f52113c);
-        eVar.e(f52106e, b0Var.d);
-        eVar.f(f52107f, b0Var.f52114e);
-        eVar.f(f52108g, b0Var.f52115f);
-        eVar.f(h, b0Var.f52116g);
-        eVar.a(f52109i, b0Var.h);
-        eVar.a(f52110j, b0Var.f52117i);
+    public b(String str, String str2, String str3, String str4, long j10) {
+        if (str != null) {
+            this.f48701b = str;
+            if (str2 != null) {
+                this.f48702c = str2;
+                if (str3 != null) {
+                    this.d = str3;
+                    if (str4 != null) {
+                        this.e = str4;
+                        this.f48703f = j10;
+                        return;
+                    }
+                    throw new NullPointerException("Null variantId");
+                }
+                throw new NullPointerException("Null parameterValue");
+            }
+            throw new NullPointerException("Null parameterKey");
+        }
+        throw new NullPointerException("Null rolloutId");
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof l) {
+            b bVar = (b) ((l) obj);
+            if (this.f48701b.equals(bVar.f48701b) && this.f48702c.equals(bVar.f48702c) && this.d.equals(bVar.d) && this.e.equals(bVar.e) && this.f48703f == bVar.f48703f) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        long j10 = this.f48703f;
+        return ((((((((this.f48701b.hashCode() ^ 1000003) * 1000003) ^ this.f48702c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("RolloutAssignment{rolloutId=");
+        sb2.append(this.f48701b);
+        sb2.append(", parameterKey=");
+        sb2.append(this.f48702c);
+        sb2.append(", parameterValue=");
+        sb2.append(this.d);
+        sb2.append(", variantId=");
+        sb2.append(this.e);
+        sb2.append(", templateVersion=");
+        return a1.g.r(sb2, this.f48703f, "}");
     }
 }

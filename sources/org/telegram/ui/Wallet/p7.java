@@ -1,151 +1,85 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.view.KeyEvent;
+import android.widget.EditText;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hr;
-import org.telegram.ui.Components.y9;
-public final class p7 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.c6 f35237a;
-    public final FrameLayout f35238b;
-    public final org.telegram.ui.Components.j9 f35239c;
-    public final y9 d;
-    public final TextView f35240e;
-    public final o7 f35241f;
-    public final ImageView h;
-    public TLRPC.User f35242n;
-    public String f35243r;
+public final class p7 implements TextView.OnEditorActionListener {
+    public final int f33610a;
+    public final Object f33611b;
 
-    public p7(Context context, Runnable runnable, Runnable runnable2, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f35239c = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.c6) null);
-        this.f35237a = c6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f35238b = frameLayout;
-        frameLayout.setDuplicateParentStateEnabled(true);
-        frameLayout.setPivotX(0.0f);
-        frameLayout.setPivotY(0.0f);
-        addView(frameLayout, w7.w5.d(-1.0f, -1));
-        int i10 = org.telegram.ui.ActionBar.h6.f20504a7;
-        frameLayout.setBackground(org.telegram.ui.ActionBar.h6.a0(org.telegram.ui.ActionBar.h6.w0(i10, c6Var), org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.w0(i10, c6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20651i6, c6Var)), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f)));
-        w7.y5.b(this, 0.02f, 1.2f);
-        y9 y9Var = new y9(context);
-        this.d = y9Var;
-        y9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
-        frameLayout.addView(y9Var, w7.w5.a(34.0f, 15.0f, 0.0f, 0.0f, 0.0f, 34, 19));
-        TextView textView = new TextView(context);
-        this.f35240e = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, c6Var));
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTypeface(AndroidUtilities.bold());
-        frameLayout.addView(textView, w7.w5.a(-2.0f, 60.0f, 7.0f, 52.0f, 0.0f, -1, 51));
-        o7 o7Var = new o7(this, context);
-        this.f35241f = o7Var;
-        frameLayout.addView(o7Var, w7.w5.a(-2.0f, 60.0f, 26.0f, 52.0f, 0.0f, -1, 51));
-        ImageView imageView = new ImageView(context);
-        this.h = imageView;
-        imageView.setImageResource(R.drawable.msg2_help);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.D6, c6Var), PorterDuff.Mode.SRC_IN));
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setScaleX(0.9f);
-        imageView.setScaleY(0.9f);
-        frameLayout.addView(imageView, w7.w5.a(24.0f, 0.0f, 0.0f, 14.0f, 0.0f, 24, 21));
-        setOnClickListener(new g7(this, runnable, c6Var, runnable2));
+    public p7(Object obj, int i10) {
+        this.f33610a = i10;
+        this.f33611b = obj;
     }
 
-    public final void a(String str, TLRPC.User user) {
-        long j3;
+    @Override
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
         boolean z10;
-        TLRPC.User user2 = this.f35242n;
-        long j10 = 0;
-        if (user2 == null) {
-            j3 = 0;
-        } else {
-            j3 = user2.f19950id;
+        switch (this.f33610a) {
+            case 0:
+                i8 i8Var = (i8) this.f33611b;
+                if (i10 == 6) {
+                    di.d dVar = i8Var.f33293a0;
+                    if (dVar.W) {
+                        dVar.performClick();
+                        return true;
+                    }
+                } else {
+                    i8Var.getClass();
+                }
+                return false;
+            default:
+                h9 h9Var = (h9) this.f33611b;
+                EditText editText = h9Var.f33260a;
+                if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (i10 != 5 && !z10) {
+                    return false;
+                }
+                if (keyEvent == null || (keyEvent.getAction() == 1 && !keyEvent.isCanceled())) {
+                    String lowerCase = editText.getText().toString().trim().toLowerCase();
+                    if (!lowerCase.isEmpty() && h9Var.b()) {
+                        h9Var.setError(false);
+                        h9Var.a();
+                        Runnable runnable = h9Var.f33265r;
+                        if (runnable != null) {
+                            editText.post(runnable);
+                        }
+                    } else {
+                        String str = null;
+                        if (!lowerCase.isEmpty()) {
+                            String[] mnemonicWordlist = WalletEngine2.getMnemonicWordlist();
+                            int length = mnemonicWordlist.length;
+                            int i11 = 0;
+                            while (true) {
+                                if (i11 < length) {
+                                    String str2 = mnemonicWordlist[i11];
+                                    if (str2.startsWith(lowerCase)) {
+                                        str = str2;
+                                    } else {
+                                        i11++;
+                                    }
+                                }
+                            }
+                        }
+                        if (str != null) {
+                            editText.setText(str);
+                            editText.setSelection(str.length());
+                            h9Var.setError(false);
+                            h9Var.a();
+                            Runnable runnable2 = h9Var.f33265r;
+                            if (runnable2 != null) {
+                                editText.post(runnable2);
+                            }
+                        } else {
+                            h9Var.setError(true);
+                        }
+                    }
+                }
+                return true;
         }
-        if (user != null) {
-            j10 = user.f19950id;
-        }
-        if (j3 != j10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f35242n = user;
-        this.f35243r = str;
-        setClickable(!TextUtils.isEmpty(str));
-        TLRPC.User user3 = this.f35242n;
-        TextView textView = this.f35240e;
-        y9 y9Var = this.d;
-        ImageView imageView = this.h;
-        o7 o7Var = this.f35241f;
-        if (user3 != null) {
-            setClickable(true);
-            setVisibility(0);
-            TLRPC.User user4 = this.f35242n;
-            org.telegram.ui.Components.j9 j9Var = this.f35239c;
-            j9Var.r(user4);
-            y9Var.e(this.f35242n, j9Var);
-            textView.setText(UserObject.getUserName(this.f35242n));
-            if (!TextUtils.isEmpty(str)) {
-                o7Var.c(str, z10);
-                imageView.setVisibility(0);
-                return;
-            }
-            o7Var.c(null, z10);
-            imageView.setVisibility(8);
-        } else if (!TextUtils.isEmpty(str)) {
-            setClickable(false);
-            setVisibility(0);
-            y9Var.setImageDrawable(new hr(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(34.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f35237a)), getContext().getResources().getDrawable(R.drawable.menu_gram_24).mutate()));
-            textView.setText(LocaleController.getString(R.string.WalletGramWalletAddress));
-            o7Var.c(str, z10);
-            imageView.setVisibility(8);
-        } else {
-            setClickable(false);
-            setVisibility(8);
-            o7Var.c(null, true);
-        }
-    }
-
-    public float getContentBottom() {
-        FrameLayout frameLayout = this.f35238b;
-        return (frameLayout.getScaleY() * (frameLayout.getHeight() - frameLayout.getPivotY())) + frameLayout.getPivotY() + frameLayout.getY();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        FrameLayout frameLayout = this.f35238b;
-        int round = Math.round((getMeasuredHeight() - (frameLayout.getScaleY() * frameLayout.getMeasuredHeight())) / 2.0f);
-        frameLayout.layout(0, round, frameLayout.getMeasuredWidth(), frameLayout.getMeasuredHeight() + round);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        o7 o7Var = this.f35241f;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) o7Var.getLayoutParams();
-        int ceil = ((int) Math.ceil(o7Var.a())) + 1 + layoutParams.leftMargin + layoutParams.rightMargin;
-        setMeasuredDimension(View.resolveSize(Math.max(getMeasuredWidth(), ceil), i10), getMeasuredHeight());
-        int max = Math.max(getMeasuredWidth(), ceil);
-        float measuredWidth = getMeasuredWidth() / max;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(max, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        FrameLayout frameLayout = this.f35238b;
-        frameLayout.measure(makeMeasureSpec, makeMeasureSpec2);
-        frameLayout.setScaleX(measuredWidth);
-        frameLayout.setScaleY(measuredWidth);
     }
 }

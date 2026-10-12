@@ -1,122 +1,37 @@
 package d9;
-
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import v7.t6;
-public final class i implements Iterator {
-    public String f8212b;
-    public final CharSequence f8213c;
-    public final a d;
-    public int f8215f;
-    public final a4.l h;
-    public int f8211a = 2;
-    public int f8214e = 0;
-
-    public i(a4.l lVar, a5.a aVar, CharSequence charSequence) {
-        this.h = lVar;
-        this.d = (a) aVar.f300c;
-        this.f8215f = aVar.f299b;
-        this.f8213c = charSequence;
-    }
-
-    @Override
-    public final boolean hasNext() {
-        String str;
-        a aVar;
-        int i10 = this.f8211a;
-        if (i10 != 4) {
-            int c10 = m1.j.c(i10);
-            if (c10 == 0) {
-                return true;
-            }
-            if (c10 != 2) {
-                this.f8211a = 4;
-                int i11 = this.f8214e;
-                while (true) {
-                    int i12 = this.f8214e;
-                    if (i12 != -1) {
-                        b bVar = (b) this.h.f297b;
-                        CharSequence charSequence = this.f8213c;
-                        int length = charSequence.length();
-                        t6.e(i12, length);
-                        while (true) {
-                            if (i12 < length) {
-                                if (bVar.a(charSequence.charAt(i12))) {
-                                    break;
-                                }
-                                i12++;
-                            } else {
-                                i12 = -1;
-                                break;
-                            }
-                        }
-                        if (i12 == -1) {
-                            i12 = charSequence.length();
-                            this.f8214e = -1;
-                        } else {
-                            this.f8214e = i12 + 1;
-                        }
-                        int i13 = this.f8214e;
-                        if (i13 == i11) {
-                            int i14 = i13 + 1;
-                            this.f8214e = i14;
-                            if (i14 > charSequence.length()) {
-                                this.f8214e = -1;
-                            }
-                        } else {
-                            while (true) {
-                                aVar = this.d;
-                                if (i11 >= i12 || !aVar.a(charSequence.charAt(i11))) {
-                                    break;
-                                }
-                                i11++;
-                            }
-                            while (i12 > i11 && aVar.a(charSequence.charAt(i12 - 1))) {
-                                i12--;
-                            }
-                            int i15 = this.f8215f;
-                            if (i15 == 1) {
-                                i12 = charSequence.length();
-                                this.f8214e = -1;
-                                while (i12 > i11 && aVar.a(charSequence.charAt(i12 - 1))) {
-                                    i12--;
-                                }
-                            } else {
-                                this.f8215f = i15 - 1;
-                            }
-                            str = charSequence.subSequence(i11, i12).toString();
-                        }
-                    } else {
-                        this.f8211a = 3;
-                        str = null;
-                        break;
-                    }
-                }
-                this.f8212b = str;
-                if (this.f8211a != 3) {
-                    this.f8211a = 1;
-                    return true;
-                }
-                return false;
-            }
-            return false;
+public abstract class i implements m {
+    public static String a(char c10) {
+        char[] cArr = new char[6];
+        cArr[0] = '\\';
+        cArr[1] = 'u';
+        cArr[2] = 0;
+        cArr[3] = 0;
+        cArr[4] = 0;
+        cArr[5] = 0;
+        for (int i10 = 0; i10 < 4; i10++) {
+            cArr[5 - i10] = "0123456789ABCDEF".charAt(c10 & 15);
+            c10 = (char) (c10 >> 4);
         }
-        throw new IllegalStateException();
+        return String.copyValueOf(cArr);
     }
 
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            this.f8211a = 2;
-            String str = this.f8212b;
-            this.f8212b = null;
-            return str;
+    public static i b(String str) {
+        int length = str.length();
+        if (length != 0) {
+            if (length != 1) {
+                if (length != 2) {
+                    return new c(str);
+                }
+                return new f(str.charAt(0), str.charAt(1));
+            }
+            return new e(str.charAt(0), 0);
         }
-        throw new NoSuchElementException();
+        return b.f6426f;
     }
 
-    @Override
-    public final void remove() {
-        throw new UnsupportedOperationException();
+    public abstract boolean c(char c10);
+
+    public i d() {
+        return new c(this);
     }
 }

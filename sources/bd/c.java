@@ -1,19 +1,25 @@
 package bd;
 
-import java.util.Map;
-public abstract class c {
-    public final String f3865a;
-    public final int f3866b;
-    public final Map f3867c;
-    public int d = -1;
+import com.google.android.gms.internal.play_billing.k3;
+import df.p;
+import gd.h;
+import java.util.regex.Pattern;
+public final class c extends h {
+    public static final Pattern e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
-    public c(int i10, String str, Map map) {
-        this.f3865a = str;
-        this.f3866b = i10;
-        this.f3867c = map;
+    @Override
+    public final p b() {
+        String a2 = a(e);
+        if (a2 == null) {
+            return null;
+        }
+        ?? pVar = new p();
+        pVar.f2643g = k3.j(2, 2, a2);
+        return pVar;
     }
 
-    public Map a() {
-        return this.f3867c;
+    @Override
+    public final char d() {
+        return '$';
     }
 }

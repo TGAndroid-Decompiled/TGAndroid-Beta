@@ -1,52 +1,212 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class ks implements Runnable {
-    public final int f39570a;
-    public final ts f39571b;
-    public final TLRPC.User f39572c;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public abstract class ks extends EditTextBoldCursor {
+    public static final org.telegram.ui.Components.hw0 I;
+    public static final org.telegram.ui.Components.hw0 J;
+    public static final org.telegram.ui.Components.hw0 K;
+    public static final org.telegram.ui.Components.hw0 L;
+    public Canvas E;
+    public ValueAnimator F;
+    public ValueAnimator G;
+    public boolean H;
+    public float f37716b;
+    public float f37717c;
+    public float d;
+    public float e;
+    public o1.k f37718f;
+    public o1.k h;
+    public o1.k f37719n;
+    public o1.k f37720r;
+    public boolean f37721s;
+    public float v;
+    public float f37722w;
+    public boolean f37723x;
+    public Bitmap f37724y;
 
-    public ks(ts tsVar, TLRPC.User user, int i10) {
-        this.f39570a = i10;
-        this.f39571b = tsVar;
-        this.f39572c = user;
+    static {
+        org.telegram.ui.Components.hw0 hw0Var = new org.telegram.ui.Components.hw0(new m4.w0(26), new m4.w0(27));
+        hw0Var.f25769c = 100.0f;
+        I = hw0Var;
+        org.telegram.ui.Components.hw0 hw0Var2 = new org.telegram.ui.Components.hw0(new m4.w0(28), new m4.w0(29));
+        hw0Var2.f25769c = 100.0f;
+        J = hw0Var2;
+        org.telegram.ui.Components.hw0 hw0Var3 = new org.telegram.ui.Components.hw0(new is(0), new is(1));
+        hw0Var3.f25769c = 100.0f;
+        K = hw0Var3;
+        org.telegram.ui.Components.hw0 hw0Var4 = new org.telegram.ui.Components.hw0(new is(2), new is(3));
+        hw0Var4.f25769c = 100.0f;
+        L = hw0Var4;
+    }
+
+    public static void k(o1.k kVar, float f7) {
+        o1.l lVar = kVar.f16468u;
+        if (lVar != null && f7 == ((float) lVar.f16474i)) {
+            return;
+        }
+        kVar.c();
+        o1.l lVar2 = new o1.l(f7);
+        lVar2.b(400.0f);
+        lVar2.a(1.0f);
+        lVar2.f16474i = f7;
+        kVar.f16468u = lVar2;
+        kVar.h();
+    }
+
+    public float getErrorProgress() {
+        return this.f37717c;
+    }
+
+    public float getFocusedProgress() {
+        return this.f37716b;
+    }
+
+    public float getSuccessProgress() {
+        return this.d;
+    }
+
+    public float getSuccessScaleProgress() {
+        return this.e;
+    }
+
+    public final void i(float f7) {
+        k(this.h, f7 * 100.0f);
+    }
+
+    public final void j(float f7) {
+        k(this.f37718f, f7 * 100.0f);
+    }
+
+    public final void l(float f7) {
+        k(this.f37719n, f7 * 100.0f);
+        o1.k kVar = this.f37720r;
+        kVar.c();
+        if (f7 != 0.0f) {
+            o1.l k10 = org.telegram.ui.Cells.d0.k(1.0f, 500.0f, 0.75f);
+            k10.f16474i = 100.0f;
+            kVar.f16468u = k10;
+            kVar.f16459b = 100.0f;
+            kVar.f16460c = true;
+            kVar.f16458a = 4000.0f;
+            kVar.h();
+            return;
+        }
+        this.e = 1.0f;
+    }
+
+    public final void m() {
+        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
+            Bitmap bitmap = this.f37724y;
+            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f37724y.getWidth() != getMeasuredWidth()) {
+                Bitmap bitmap2 = this.f37724y;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                }
+                this.f37724y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                this.E = new Canvas(this.f37724y);
+            }
+            this.f37724y.eraseColor(0);
+            CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
+            StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
+            this.E.save();
+            this.E.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
+            staticLayout.draw(this.E);
+            this.E.restore();
+            this.f37722w = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new e3(this, 8));
+            this.G.setDuration(220L);
+            this.G.start();
+        }
     }
 
     @Override
-    public final void run() {
-        String str;
-        switch (this.f39570a) {
-            case 0:
-                ts tsVar = this.f39571b;
-                TLRPC.User user = this.f39572c;
-                if (user != null && tsVar.M == null && tsVar.N == null) {
-                    if (user.phone == null && (str = tsVar.L) != null) {
-                        user.phone = hf.b.d(str, false);
-                    }
-                    tsVar.f42276b.setText(user.first_name);
-                    org.telegram.ui.Cells.h3 h3Var = tsVar.f42276b.f22081b;
-                    h3Var.setSelection(h3Var.length());
-                    tsVar.f42277c.setText(user.last_name);
-                }
-                TLRPC.UserFull userFull = tsVar.getMessagesController().getUserFull(tsVar.H);
-                if (userFull != null) {
-                    TLRPC.TL_textWithEntities tL_textWithEntities = userFull.note;
-                    if (tL_textWithEntities != null) {
-                        tsVar.d.setText(tL_textWithEntities);
-                    } else {
-                        tsVar.d.setText("");
-                    }
-                }
-                if (tsVar.J) {
-                    tsVar.d.f22081b.requestFocus();
-                    AndroidUtilities.showKeyboard(tsVar.d.f22081b);
-                    return;
-                }
-                return;
-            default:
-                ts.V(this.f39571b, this.f39572c);
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f37718f.c();
+        this.h.c();
+    }
+
+    @Override
+    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
+        super.onFocusChanged(z10, i10, rect);
+        if (!isFocused()) {
+            hideActionMode();
         }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        hs hsVar;
+        ClipDescription primaryClipDescription;
+        String str;
+        int i10;
+        if (motionEvent.getAction() == 0) {
+            this.H = true;
+            motionEvent.getX();
+            motionEvent.getY();
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (getParent() instanceof hs) {
+                hsVar = (hs) getParent();
+            } else {
+                hsVar = null;
+            }
+            if (motionEvent.getAction() == 1 && this.H) {
+                if (isFocused() && hsVar != null) {
+                    ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(ClipboardManager.class);
+                    if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
+                        return false;
+                    }
+                    primaryClipDescription.hasMimeType("text/plain");
+                    ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
+                    if (itemAt != null && itemAt.getText() != null) {
+                        str = itemAt.getText().toString();
+                    } else {
+                        str = "";
+                    }
+                    try {
+                        i10 = Integer.parseInt(str);
+                    } catch (Exception unused) {
+                        i10 = -1;
+                    }
+                    if (i10 > 0) {
+                        startActionMode(new js(this));
+                    }
+                } else {
+                    requestFocus();
+                }
+                setSelection(0);
+                if (this.f37721s) {
+                    AndroidUtilities.showKeyboard(this);
+                }
+            }
+            this.H = false;
+        }
+        return this.H;
+    }
+
+    @Override
+    public final boolean requestFocus(int i10, Rect rect) {
+        ((ViewGroup) getParent()).invalidate();
+        return super.requestFocus(i10, rect);
+    }
+
+    public void setShowSoftInputOnFocusCompat(boolean z10) {
+        this.f37721s = z10;
+        setShowSoftInputOnFocus(z10);
     }
 }

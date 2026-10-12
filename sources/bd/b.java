@@ -1,6 +1,59 @@
 package bd;
-public final class b extends c {
-    public final String toString() {
-        return "InlineImpl{name='" + this.f3865a + "', start=" + this.f3866b + ", end=" + this.d + ", attributes=" + this.f3867c + '}';
+
+import af.h;
+import df.p;
+import v7.f5;
+public final class b extends ff.a {
+    public final a f2640a = new p();
+    public final StringBuilder f2641b = new StringBuilder();
+    public final int f2642c;
+
+    public b(int i10) {
+        this.f2642c = i10;
+    }
+
+    @Override
+    public final void a(CharSequence charSequence) {
+        StringBuilder sb2 = this.f2641b;
+        sb2.append(charSequence);
+        sb2.append('\n');
+    }
+
+    @Override
+    public final void d() {
+        this.f2640a.f2639g = this.f2641b.toString();
+    }
+
+    @Override
+    public final df.a e() {
+        return this.f2640a;
+    }
+
+    @Override
+    public final af.a h(h hVar) {
+        int i10;
+        int i11 = hVar.e;
+        CharSequence charSequence = hVar.f567a;
+        int length = charSequence.length();
+        if (hVar.f571g < 4) {
+            int i12 = i11;
+            while (true) {
+                if (i12 < length) {
+                    if ('$' != charSequence.charAt(i12)) {
+                        i10 = i12 - i11;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i10 = length - i11;
+                    break;
+                }
+            }
+            int i13 = this.f2642c;
+            if (i10 == i13 && f5.b(' ', charSequence, i11 + i13, length) == length) {
+                return new af.a(-1, -1, true);
+            }
+        }
+        return af.a.a(hVar.f568b);
     }
 }

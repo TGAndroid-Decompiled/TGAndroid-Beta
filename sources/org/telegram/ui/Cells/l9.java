@@ -11,14 +11,14 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.h41;
+import org.telegram.ui.Components.x41;
+import org.telegram.ui.l41;
 public final class l9 implements ActionMode.Callback {
-    public String f22193a = null;
-    public final ba f22194b;
+    public String f21491a = null;
+    public final ba f21492b;
 
     public l9(ba baVar) {
-        this.f22194b = baVar;
+        this.f21492b = baVar;
     }
 
     public final void a(Menu menu) {
@@ -28,7 +28,7 @@ public final class l9 implements ActionMode.Callback {
         if (findItem == null) {
             return;
         }
-        if (this.f22194b.f21634k0 != null && ((this.f22193a != null && !h41.Y().contains(this.f22193a)) || !LanguageDetector.hasSupport())) {
+        if (this.f21492b.f20977k0 != null && ((this.f21491a != null && !l41.Y().contains(this.f21491a)) || !LanguageDetector.hasSupport())) {
             z10 = true;
         } else {
             z10 = false;
@@ -40,7 +40,7 @@ public final class l9 implements ActionMode.Callback {
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
         MessageObject messageObject;
         CharSequence s10;
-        ba baVar = this.f22194b;
+        ba baVar = this.f21492b;
         g gVar = baVar.m0;
         if (baVar.x()) {
             int itemId = menuItem.getItemId();
@@ -54,15 +54,15 @@ public final class l9 implements ActionMode.Callback {
                     }
                     baVar.u();
                     baVar.f(true);
-                    w7.g0 g0Var = baVar.D;
-                    if (g0Var != null) {
-                        g0Var.b();
+                    w7.w5 w5Var = baVar.D;
+                    if (w5Var != null) {
+                        w5Var.b();
                         return true;
                     }
                 }
             } else if (itemId == 16908319) {
                 if (!baVar.J() && (s10 = baVar.s(baVar.W, false)) != null) {
-                    baVar.f21647u = 0;
+                    baVar.f20990u = 0;
                     baVar.v = s10.length();
                     baVar.u();
                     baVar.w();
@@ -71,14 +71,14 @@ public final class l9 implements ActionMode.Callback {
                     return true;
                 }
             } else if (itemId == 3) {
-                if (baVar.f21634k0 != null) {
+                if (baVar.f20977k0 != null) {
                     String language = LocaleController.getInstance().getCurrentLocale().getLanguage();
-                    org.telegram.ui.u uVar = baVar.f21634k0;
+                    org.telegram.ui.t tVar = baVar.f20977k0;
                     CharSequence r11 = baVar.r();
-                    String str = this.f22193a;
+                    String str = this.f21491a;
                     g gVar2 = new g(this, 8);
-                    org.telegram.ui.i4 i4Var = uVar.f42323a;
-                    g51.L(i4Var.L, i4Var.M, str, language, r11, null, gVar2);
+                    org.telegram.ui.k4 k4Var = tVar.f40255a;
+                    x41.L(k4Var.L, k4Var.M, str, language, r11, null, gVar2);
                 }
                 baVar.u();
                 return true;
@@ -91,7 +91,7 @@ public final class l9 implements ActionMode.Callback {
                         messageObject = null;
                     }
                     if (messageObject != null && baVar.r() != null) {
-                        baVar.I(baVar.f21647u, baVar.v, messageObject);
+                        baVar.I(baVar.f20990u, baVar.v, messageObject);
                         baVar.f(true);
                     }
                 }
@@ -132,23 +132,23 @@ public final class l9 implements ActionMode.Callback {
         w9 w9Var;
         MenuItem findItem = menu.findItem(R.id.menu_quote);
         if (findItem != null) {
-            findItem.setVisible(this.f22194b.e());
+            findItem.setVisible(this.f21492b.e());
         }
         MenuItem findItem2 = menu.findItem(16908321);
         if (findItem2 != null) {
-            findItem2.setVisible(this.f22194b.b());
+            findItem2.setVisible(this.f21492b.b());
         }
         MenuItem findItem3 = menu.findItem(16908319);
         boolean z10 = false;
-        if (findItem3 != null && (w9Var = (baVar = this.f22194b).W) != null) {
+        if (findItem3 != null && (w9Var = (baVar = this.f21492b).W) != null) {
             CharSequence s10 = baVar.s(w9Var, false);
-            if (!this.f22194b.b()) {
+            if (!this.f21492b.b()) {
                 findItem3.setVisible(false);
-            } else if (this.f22194b.j()) {
+            } else if (this.f21492b.j()) {
                 findItem3.setVisible(true);
             } else {
-                ba baVar2 = this.f22194b;
-                if (!baVar2.Z && (baVar2.f21647u > 0 || baVar2.v < s10.length() - 1)) {
+                ba baVar2 = this.f21492b;
+                if (!baVar2.Z && (baVar2.f20990u > 0 || baVar2.v < s10.length() - 1)) {
                     findItem3.setVisible(true);
                 } else {
                     findItem3.setVisible(false);
@@ -157,12 +157,12 @@ public final class l9 implements ActionMode.Callback {
         }
         MenuItem findItem4 = menu.findItem(16908320);
         if (findItem4 != null) {
-            findItem4.setVisible(this.f22194b instanceof ii.k3);
+            findItem4.setVisible(this.f21492b instanceof ji.k3);
         }
         MenuItem findItem5 = menu.findItem(16908322);
         if (findItem5 != null) {
-            ba baVar3 = this.f22194b;
-            if (baVar3 instanceof ii.k3) {
+            ba baVar3 = this.f21492b;
+            if (baVar3 instanceof ji.k3) {
                 try {
                     aa aaVar = baVar3.C;
                     if (aaVar != null) {
@@ -180,10 +180,10 @@ public final class l9 implements ActionMode.Callback {
             }
             findItem5.setVisible(z10);
         }
-        if (this.f22194b.f21634k0 != null && LanguageDetector.hasSupport() && this.f22194b.r() != null) {
-            LanguageDetector.detectLanguage(this.f22194b.r().toString(), new k9(this, menu), new k9(this, menu));
+        if (this.f21492b.f20977k0 != null && LanguageDetector.hasSupport() && this.f21492b.r() != null) {
+            LanguageDetector.detectLanguage(this.f21492b.r().toString(), new k9(this, menu), new k9(this, menu));
         } else {
-            this.f22193a = null;
+            this.f21491a = null;
             a(menu);
         }
         return true;

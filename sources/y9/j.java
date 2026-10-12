@@ -1,34 +1,120 @@
 package y9;
-public final class j implements ia.d {
-    public static final j f52201a = new Object();
-    public static final ia.c f52202b = ia.c.c("generator");
-    public static final ia.c f52203c = ia.c.c("identifier");
-    public static final ia.c d = ia.c.c("appQualitySessionId");
-    public static final ia.c f52204e = ia.c.c("startedAt");
-    public static final ia.c f52205f = ia.c.c("endedAt");
-    public static final ia.c f52206g = ia.c.c("crashed");
-    public static final ia.c h = ia.c.c("app");
-    public static final ia.c f52207i = ia.c.c("user");
-    public static final ia.c f52208j = ia.c.c("os");
-    public static final ia.c f52209k = ia.c.c("device");
-    public static final ia.c f52210l = ia.c.c("events");
-    public static final ia.c f52211m = ia.c.c("generatorType");
+
+import b2.u;
+import java.io.Closeable;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public final class j implements Closeable {
+    public static final Logger h = Logger.getLogger(j.class.getName());
+    public final RandomAccessFile f48718a;
+    public final int f48719b;
+    public final int f48720c;
+    public final g d;
+    public final g e;
+    public final byte[] f48721f = new byte[16];
+
+    public j(File file) {
+        if (!file.exists()) {
+            File file2 = new File(file.getPath() + ".tmp");
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file2, "rwd");
+            try {
+                randomAccessFile.setLength(4096L);
+                randomAccessFile.seek(0L);
+                byte[] bArr = new byte[16];
+                int[] iArr = {4096, 0, 0, 0};
+                int i10 = 0;
+                for (int i11 = 0; i11 < 4; i11++) {
+                    int i12 = iArr[i11];
+                    bArr[i10] = (byte) (i12 >> 24);
+                    bArr[i10 + 1] = (byte) (i12 >> 16);
+                    bArr[i10 + 2] = (byte) (i12 >> 8);
+                    bArr[i10 + 3] = (byte) i12;
+                    i10 += 4;
+                }
+                randomAccessFile.write(bArr);
+                randomAccessFile.close();
+                if (!file2.renameTo(file)) {
+                    throw new IOException("Rename failed!");
+                }
+            } catch (Throwable th2) {
+                randomAccessFile.close();
+                throw th2;
+            }
+        }
+        RandomAccessFile randomAccessFile2 = new RandomAccessFile(file, "rwd");
+        this.f48718a = randomAccessFile2;
+        randomAccessFile2.seek(0L);
+        byte[] bArr2 = this.f48721f;
+        randomAccessFile2.readFully(bArr2);
+        int c10 = c(0, bArr2);
+        this.f48719b = c10;
+        if (c10 <= randomAccessFile2.length()) {
+            this.f48720c = c(4, bArr2);
+            int c11 = c(8, bArr2);
+            int c12 = c(12, bArr2);
+            this.d = b(c11);
+            this.e = b(c12);
+            return;
+        }
+        throw new IOException("File is truncated. Expected length: " + this.f48719b + ", Actual length: " + randomAccessFile2.length());
+    }
+
+    public static int c(int i10, byte[] bArr) {
+        return ((bArr[i10] & 255) << 24) + ((bArr[i10 + 1] & 255) << 16) + ((bArr[i10 + 2] & 255) << 8) + (bArr[i10 + 3] & 255);
+    }
+
+    public final synchronized void a(i iVar) {
+        int i10 = this.d.f48713a;
+        for (int i11 = 0; i11 < this.f48720c; i11++) {
+            g b10 = b(i10);
+            iVar.a(new h(this, b10), b10.f48714b);
+            i10 = d(b10.f48713a + 4 + b10.f48714b);
+        }
+    }
+
+    public final g b(int i10) {
+        if (i10 == 0) {
+            return g.f48712c;
+        }
+        RandomAccessFile randomAccessFile = this.f48718a;
+        randomAccessFile.seek(i10);
+        return new g(i10, randomAccessFile.readInt());
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ia.e eVar = (ia.e) obj2;
-        h0 h0Var = (h0) ((d2) obj);
-        eVar.a(f52202b, h0Var.f52178a);
-        eVar.a(f52203c, h0Var.f52179b.getBytes(e2.f52155a));
-        eVar.a(d, h0Var.f52180c);
-        eVar.f(f52204e, h0Var.d);
-        eVar.a(f52205f, h0Var.f52181e);
-        eVar.c(f52206g, h0Var.f52182f);
-        eVar.a(h, h0Var.f52183g);
-        eVar.a(f52207i, h0Var.h);
-        eVar.a(f52208j, h0Var.f52184i);
-        eVar.a(f52209k, h0Var.f52185j);
-        eVar.a(f52210l, h0Var.f52186k);
-        eVar.e(f52211m, h0Var.f52187l);
+    public final synchronized void close() {
+        this.f48718a.close();
+    }
+
+    public final int d(int i10) {
+        int i11 = this.f48719b;
+        if (i10 < i11) {
+            return i10;
+        }
+        return (i10 + 16) - i11;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(j.class.getSimpleName());
+        sb2.append("[fileLength=");
+        sb2.append(this.f48719b);
+        sb2.append(", size=");
+        sb2.append(this.f48720c);
+        sb2.append(", first=");
+        sb2.append(this.d);
+        sb2.append(", last=");
+        sb2.append(this.e);
+        sb2.append(", element lengths=[");
+        try {
+            a(new u(sb2));
+        } catch (IOException e) {
+            h.log(Level.WARNING, "read error", (Throwable) e);
+        }
+        sb2.append("]]");
+        return sb2.toString();
     }
 }

@@ -1,103 +1,170 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-public final class br implements TextWatcher {
-    public final int f24715a = 1;
-    public final int f24716b;
-    public final View f24717c;
+import org.telegram.messenger.ApplicationLoader;
+public class br extends ReplacementSpan {
+    public static final int ALIGN_BASELINE = 1;
+    public static final int ALIGN_CENTER = 2;
+    public static final int ALIGN_DEFAULT = 0;
+    private float alpha;
+    private Runnable checkColorDelegate;
+    int colorKey;
+    public boolean draw;
+    public Drawable drawable;
+    int drawableColor;
+    private Paint.FontMetricsInt fontMetrics;
+    private boolean isRelativeSize;
+    private int overrideColor;
+    public boolean recolorDrawable;
+    public float rotate;
+    private float scaleX;
+    private float scaleY;
+    private int size;
+    private int sizeWidth;
+    public float spaceScaleX;
+    private int topOffset;
+    public float translateX;
+    public float translateY;
+    public boolean useLinkPaintColor;
+    boolean usePaintColor;
+    private final int verticalAlignment;
 
-    public br(er erVar, int i10) {
-        this.f24717c = erVar;
-        this.f24716b = i10;
+    public br(int i10) {
+        this(i10, 0);
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        int i11 = this.f24715a;
-        int i12 = this.f24716b;
-        View view = this.f24717c;
-        boolean z10 = false;
-        switch (i11) {
-            case 0:
-                er erVar = (er) view;
-                EditTextBoldCursor[] editTextBoldCursorArr = erVar.E;
-                if (!erVar.f25775r) {
-                    erVar.f25775r = true;
-                    int i13 = 0;
-                    while (i13 < editable.length()) {
-                        char charAt = editable.charAt(i13);
-                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                            editable.replace(i13, i13 + 1, "");
-                            i13--;
-                        }
-                        i13++;
-                    }
-                    if (editable.length() == 0) {
-                        erVar.f25775r = false;
-                        return;
-                    }
-                    try {
-                        i10 = Integer.parseInt(editTextBoldCursorArr[i12].getText().toString(), 16) | (-16777216);
-                    } catch (Exception unused) {
-                        i10 = -1;
-                    }
-                    erVar.setColorInner(i10);
-                    int color = erVar.getColor();
-                    if (editable.length() == 6) {
-                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
-                        editTextBoldCursorArr[i12].setSelection(editable.length());
-                    }
-                    erVar.v[erVar.S].a(color);
-                    erVar.f25765a.t0(color, erVar.S, true);
-                    erVar.f25775r = false;
-                    return;
-                }
-                return;
-            default:
-                NumberTextView numberTextView = (NumberTextView) view;
-                int codePointCount = i12 - Character.codePointCount(editable, 0, editable.length());
-                if (codePointCount < 30) {
-                    if (numberTextView.getVisibility() == 0) {
-                        z10 = true;
-                    }
-                    numberTextView.a(codePointCount, z10);
-                    AndroidUtilities.updateViewVisibilityAnimated(numberTextView, true);
-                    return;
-                }
-                AndroidUtilities.updateViewVisibilityAnimated(numberTextView, false);
-                return;
+    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.br.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (this.isRelativeSize && this.fontMetrics != null) {
+            if (fontMetricsInt == null) {
+                fontMetricsInt = new Paint.FontMetricsInt();
+            }
+            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            fontMetricsInt.ascent = fontMetricsInt2.ascent;
+            fontMetricsInt.descent = fontMetricsInt2.descent;
+            fontMetricsInt.top = fontMetricsInt2.top;
+            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            return (int) (Math.abs(this.spaceScaleX) * Math.abs(this.scaleX) * this.size);
+        } else if (this.sizeWidth != 0) {
+            return (int) (Math.abs(this.scaleX) * this.sizeWidth);
+        } else {
+            float abs = Math.abs(this.spaceScaleX) * Math.abs(this.scaleX);
+            int i12 = this.size;
+            if (i12 == 0) {
+                i12 = this.drawable.getIntrinsicWidth();
+            }
+            return (int) (abs * i12);
         }
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f24715a;
+    public void rotate(float f7) {
+        this.rotate = f7;
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f24715a;
+    public void setAlpha(float f7) {
+        this.alpha = f7;
     }
 
-    public br(int i10, NumberTextView numberTextView) {
-        this.f24716b = i10;
-        this.f24717c = numberTextView;
+    public void setCheckColorDelegate(Runnable runnable) {
+        this.checkColorDelegate = runnable;
     }
 
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    public br setColorKey(int i10) {
+        boolean z10;
+        this.colorKey = i10;
+        if (i10 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.usePaintColor = z10;
+        return this;
     }
 
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    public br setOverrideColor(int i10) {
+        this.overrideColor = i10;
+        return this;
     }
 
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(this.fontMetrics.ascent) + Math.abs(fontMetricsInt.descent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
+        }
     }
 
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public br setScale(float f7) {
+        this.scaleX = f7;
+        return this;
+    }
+
+    public void setSize(int i10) {
+        this.size = i10;
+        this.drawable.setBounds(0, 0, i10, i10);
+    }
+
+    public void setTopOffset(int i10) {
+        this.topOffset = i10;
+    }
+
+    public void setTranslateX(float f7) {
+        this.translateX = f7;
+    }
+
+    public void setTranslateY(float f7) {
+        this.translateY = f7;
+    }
+
+    public void setWidth(int i10) {
+        this.sizeWidth = i10;
+    }
+
+    public br translate(float f7, float f10) {
+        this.translateX = f7;
+        this.translateY = f10;
+        return this;
+    }
+
+    public br(Drawable drawable) {
+        this(0, drawable);
+    }
+
+    public br setScale(float f7, float f10) {
+        this.scaleX = f7;
+        this.scaleY = f10;
+        return this;
+    }
+
+    public br(int i10, int i11) {
+        this(i11, ApplicationLoader.applicationContext.getDrawable(i10).mutate());
+    }
+
+    public br(int i10, Drawable drawable) {
+        this.draw = true;
+        this.recolorDrawable = true;
+        this.usePaintColor = true;
+        this.useLinkPaintColor = false;
+        this.topOffset = 0;
+        this.alpha = 1.0f;
+        this.spaceScaleX = 1.0f;
+        this.scaleX = 1.0f;
+        this.scaleY = 1.0f;
+        this.drawable = drawable;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        }
+        this.verticalAlignment = i10;
     }
 }

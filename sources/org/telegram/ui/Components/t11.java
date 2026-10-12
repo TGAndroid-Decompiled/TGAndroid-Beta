@@ -1,33 +1,27 @@
 package org.telegram.ui.Components;
+public final class t11 implements Runnable {
+    public final int f29249a;
+    public final w11 f29250b;
+    public final v11 f29251c;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class t11 extends MetricAffectingSpan {
-    public TextPaint f30734a;
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f30734a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public t11(w11 w11Var, v11 v11Var, int i10) {
+        this.f29249a = i10;
+        this.f29250b = w11Var;
+        this.f29251c = v11Var;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f30734a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
+    public final void run() {
+        switch (this.f29249a) {
+            case 0:
+                this.f29250b.b(this.f29251c);
+                return;
+            case 1:
+                this.f29250b.b(this.f29251c);
+                return;
+            default:
+                this.f29250b.b(this.f29251c);
+                return;
         }
     }
 }

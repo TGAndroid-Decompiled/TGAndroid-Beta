@@ -1,28 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.ui.zd1;
-public final class sp extends zd1 {
-    public final int f30608k2;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class sp extends bk0 {
+    public final zp f29172r;
 
-    public sp(Object obj, Bitmap bitmap, boolean z10, int i10) {
-        super(obj, bitmap, z10);
-        this.f30608k2 = i10;
+    public sp(zp zpVar, Context context) {
+        super(context);
+        this.f29172r = zpVar;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f30608k2) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            default:
-                return true;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f29172r.N) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
         }
     }
 }

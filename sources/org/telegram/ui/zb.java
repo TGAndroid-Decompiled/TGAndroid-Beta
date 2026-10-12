@@ -1,105 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.KeyEvent;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class zb implements org.telegram.ui.Components.km0 {
-    public final int f44706a = 1;
-    public final long f44707b;
-    public final Context f44708c;
-    public final KeyEvent.Callback d;
-    public final Object f44709e;
-    public final Object f44710f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class zb extends w7.b6 {
+    public MessageObject f42585a;
+    public int f42586b = 0;
+    public boolean f42587c = true;
+    public int d = 0;
+    public int e;
+    public final ac f42588f;
 
-    public zb(fc fcVar, Context context, long j3, org.telegram.ui.ActionBar.c6 c6Var, db1 db1Var) {
-        this.d = fcVar;
-        this.f44708c = context;
-        this.f44707b = j3;
-        this.f44709e = c6Var;
-        this.f44710f = db1Var;
+    public zb(ac acVar) {
+        this.f42588f = acVar;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        switch (this.f44706a) {
-            case 0:
-                fc fcVar = (fc) this.d;
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f44709e;
-                db1 db1Var = (db1) this.f44710f;
-                boolean z10 = view instanceof yg.b;
-                long j3 = this.f44707b;
-                boolean z11 = false;
-                if (z10) {
-                    yg.b bVar = (yg.b) view;
-                    TL_stories.Boost boost = bVar.getBoost();
-                    boolean z12 = boost.giveaway;
-                    if (z12 && boost.stars > 0) {
-                        yh.p7.f1(this.f44708c, fcVar.f37704b, j3, boost, c6Var);
-                    } else {
-                        boolean z13 = boost.gift;
-                        if (((!z13 && !z12) || boost.user_id < 0) && !boost.unclaimed) {
-                            if (z12 && boost.user_id == -1) {
-                                org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(db1Var.getParentActivity(), db1Var.getResourceProvider());
-                                acVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                                acVar.f24277b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                                acVar.f24277b.setSingleLine(false);
-                                acVar.f24277b.setMaxLines(2);
-                                org.telegram.ui.Components.sc.g(db1Var, acVar, 2750).j();
-                            } else if (!z13 && !z12) {
-                                db1Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
-                            }
-                        } else {
-                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
-                            tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
-                            tL_payments_checkedGiftCode.to_id = boost.user_id;
-                            tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-fcVar.J.f19803id);
-                            int i11 = boost.date;
-                            tL_payments_checkedGiftCode.date = i11;
-                            tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
-                            int i12 = boost.expires - i11;
-                            tL_payments_checkedGiftCode.days = i12 / 86400;
-                            tL_payments_checkedGiftCode.months = (i12 / 30) / 86400;
-                            if (boost.unclaimed) {
-                                tL_payments_checkedGiftCode.to_id = -1L;
-                                tL_payments_checkedGiftCode.flags = -1;
-                            } else {
-                                tL_payments_checkedGiftCode.boost = boost;
-                            }
-                            new tg.c0(db1Var, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
-                        }
-                    }
-                }
-                if (view instanceof org.telegram.ui.Cells.r8) {
-                    tg.m.o(db1Var, c6Var, j3, null);
-                }
-                if (view instanceof yg.c) {
-                    tg.m.o(db1Var, c6Var, j3, ((yg.c) view).getPrepaidGiveaway());
-                }
-                if (((ec) fcVar.f37712x.get(i10)).f16877a == 9) {
-                    if (fcVar.f37713y == 1) {
-                        z11 = true;
-                    }
-                    fcVar.c(Boolean.valueOf(z11));
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Components.g80.N((org.telegram.ui.Components.g80) this.d, this.f44707b, (org.telegram.ui.ActionBar.m2) this.f44709e, (a0.i) this.f44710f, this.f44708c, i10);
-                return;
+    public final void a() {
+        MessageObject messageObject = this.f42585a;
+        ac acVar = this.f42588f;
+        if (messageObject != null) {
+            int indexOf = acVar.f34148o0.indexOf(messageObject) + acVar.E.f41233f;
+            if (indexOf >= 0) {
+                acVar.f34160x.i1(indexOf, this.e, false);
+            }
+        } else {
+            acVar.f34160x.i1(this.f42586b, this.d, this.f42587c);
         }
+        this.f42585a = null;
+        acVar.V = true;
+        acVar.d1();
+        AndroidUtilities.runOnUIThread(new tu0(this, 21));
     }
 
-    public zb(org.telegram.ui.Components.g80 g80Var, long j3, org.telegram.ui.ActionBar.m2 m2Var, a0.i iVar, Context context) {
-        this.d = g80Var;
-        this.f44707b = j3;
-        this.f44709e = m2Var;
-        this.f44710f = iVar;
-        this.f44708c = context;
+    @Override
+    public final void c() {
+        ac acVar = this.f42588f;
+        acVar.K0 = acVar.getNotificationCenter().setAnimationInProgress(acVar.K0, ac.R0);
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            this.f42588f.h.add((org.telegram.ui.Cells.u1) view);
+        }
     }
 }

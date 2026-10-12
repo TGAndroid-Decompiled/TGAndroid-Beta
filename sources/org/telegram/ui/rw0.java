@@ -1,40 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.RelativeLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class rw0 extends RelativeLayout {
-    public final PopupNotificationActivity f41743a;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class rw0 extends org.telegram.ui.Cells.u1 {
+    public final int Ge;
+    public final int He;
+    public final int Ie;
 
-    public rw0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
-        super(popupNotificationActivity2);
-        this.f41743a = popupNotificationActivity;
+    public rw0(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11, int i12, int i13) {
+        super(context, i10, false, null, c6Var);
+        this.Ge = i13;
+        this.He = i11;
+        this.Ie = i12;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        for (int i14 = 0; i14 < getChildCount(); i14++) {
-            View childAt = getChildAt(i14);
-            if (childAt.getTag() instanceof String) {
-                int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f41743a;
-                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f33954b.getTop(), childAt.getRight(), popupNotificationActivity.f33954b.getBottom());
-            }
+    public final void Y1(Canvas canvas) {
+        switch (this.Ge) {
+            case 0:
+                this.f22255i6 = 0;
+                this.f22269j6 = this.Y5.size() - 1;
+                super.Y1(canvas);
+                return;
+            default:
+                this.f22255i6 = 0;
+                this.f22269j6 = this.Y5.size() - 1;
+                super.Y1(canvas);
+                return;
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        PopupNotificationActivity popupNotificationActivity = this.f41743a;
-        int measuredWidth = popupNotificationActivity.f33954b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f33954b.getMeasuredHeight();
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt.getTag() instanceof String) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - AndroidUtilities.dp(3.0f), 1073741824));
-            }
+        switch (this.Ge) {
+            case 0:
+                setMeasuredDimension(this.He, this.Ie);
+                return;
+            default:
+                setMeasuredDimension(this.He, this.Ie);
+                return;
         }
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
+        int i10 = this.Ge;
+    }
+
+    private final void A4(boolean z10) {
+    }
+
+    private final void B4(boolean z10) {
     }
 }

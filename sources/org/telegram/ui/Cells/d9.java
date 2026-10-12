@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.am;
+import org.telegram.messenger.yh;
 public class d9 extends FrameLayout {
-    public final TextView f21753a;
-    public final TextView f21754b;
-    public final ImageView f21755c;
+    public final TextView f21087a;
+    public final TextView f21088b;
+    public final ImageView f21089c;
     public boolean d;
-    public boolean f21756e;
+    public boolean e;
 
     public d9(Context context) {
         super(context);
@@ -26,8 +26,8 @@ public class d9 extends FrameLayout {
         int i12;
         int i13;
         TextView textView = new TextView(context);
-        this.f21753a = textView;
-        am.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
+        this.f21087a = textView;
+        yh.t(textView, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false), 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -42,10 +42,10 @@ public class d9 extends FrameLayout {
         } else {
             i11 = 3;
         }
-        addView(textView, w7.w5.a(-2.0f, 21.0f, 10.0f, 21.0f, 0.0f, -2, i11 | 48));
+        addView(textView, w7.a6.a(-2.0f, 21.0f, 10.0f, 21.0f, 0.0f, -2, i11 | 48));
         TextView textView2 = new TextView(context);
-        this.f21754b = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20964z6, false));
+        this.f21088b = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20305z6, false));
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i12 = 5;
@@ -62,20 +62,20 @@ public class d9 extends FrameLayout {
         } else {
             i13 = 3;
         }
-        addView(textView2, w7.w5.a(-2.0f, 21.0f, 35.0f, 21.0f, 0.0f, -2, i13 | 48));
+        addView(textView2, w7.a6.a(-2.0f, 21.0f, 35.0f, 21.0f, 0.0f, -2, i13 | 48));
         ImageView imageView = new ImageView(context);
-        this.f21755c = imageView;
+        this.f21089c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20725m6, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20064m6, false), PorterDuff.Mode.MULTIPLY));
         imageView.setVisibility(8);
-        addView(imageView, w7.w5.a(52.0f, 8.0f, 6.0f, 8.0f, 0.0f, 52, (LocaleController.isRTL ? 5 : 3) | 48));
+        addView(imageView, w7.a6.a(52.0f, 8.0f, 6.0f, 8.0f, 0.0f, 52, (LocaleController.isRTL ? 5 : 3) | 48));
     }
 
     public final void a(String str, String str2, boolean z10) {
-        this.f21753a.setText(str);
-        this.f21754b.setText(str2);
+        this.f21087a.setText(str);
+        this.f21088b.setText(str2);
         this.d = z10;
-        this.f21755c.setVisibility(8);
+        this.f21089c.setVisibility(8);
         setWillNotDraw(!z10);
     }
 
@@ -85,11 +85,11 @@ public class d9 extends FrameLayout {
         int dp2;
         int i12;
         int i13;
-        TextView textView = this.f21753a;
+        TextView textView = this.f21087a;
         textView.setText(str);
-        TextView textView2 = this.f21754b;
+        TextView textView2 = this.f21088b;
         textView2.setText(str2);
-        ImageView imageView = this.f21755c;
+        ImageView imageView = this.f21089c;
         imageView.setImageResource(i10);
         imageView.setVisibility(0);
         if (LocaleController.isRTL) {
@@ -113,7 +113,7 @@ public class d9 extends FrameLayout {
         } else {
             i12 = 0;
         }
-        if (this.f21756e) {
+        if (this.e) {
             i13 = AndroidUtilities.dp(12.0f);
         } else {
             i13 = 0;
@@ -124,17 +124,17 @@ public class d9 extends FrameLayout {
     }
 
     public TextView getTextView() {
-        return this.f21753a;
+        return this.f21087a;
     }
 
     public TextView getValueTextView() {
-        return this.f21754b;
+        return this.f21088b;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f21753a.invalidate();
+        this.f21087a.invalidate();
     }
 
     @Override
@@ -142,10 +142,10 @@ public class d9 extends FrameLayout {
         float f7;
         float dp;
         int i10;
-        if (this.d && org.telegram.ui.ActionBar.h6.f20682k0 != null) {
+        if (this.d && org.telegram.ui.ActionBar.g6.f20022k0 != null) {
             boolean z10 = LocaleController.isRTL;
             float f10 = 20.0f;
-            ImageView imageView = this.f21755c;
+            ImageView imageView = this.f21089c;
             if (z10) {
                 dp = 0.0f;
             } else {
@@ -167,13 +167,13 @@ public class d9 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f11, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20682k0);
+            canvas.drawLine(f11, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f20022k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (!this.f21756e) {
+        if (!this.e) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
         } else {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
@@ -181,8 +181,8 @@ public class d9 extends FrameLayout {
     }
 
     public void setMultilineDetail(boolean z10) {
-        this.f21756e = z10;
-        TextView textView = this.f21754b;
+        this.e = z10;
+        TextView textView = this.f21088b;
         if (z10) {
             textView.setLines(0);
             textView.setMaxLines(0);
@@ -197,6 +197,6 @@ public class d9 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f21754b.setText(charSequence);
+        this.f21088b.setText(charSequence);
     }
 }

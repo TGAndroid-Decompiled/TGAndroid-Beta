@@ -1,107 +1,126 @@
 package rg;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.h6;
-public final class b1 {
-    public static b1 f47427j;
-    public final a1 f47428a;
-    public final Paint f47429b;
-    public Paint f47430c;
-    public final Drawable d;
-    public final Drawable f47431e;
-    public z0 f47432f;
-    public z0 f47433g;
-    public final z0 h;
-    public int f47434i;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.TextureView;
+import di.a6;
+import di.z6;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.pa;
+public final class b1 extends org.telegram.ui.Cells.u1 {
+    public final pa Ge;
+    public final float[] He;
+    public final Path Ie;
+    public final Paint Je;
+    public final Rect Ke;
+    public final RectF Le;
+    public final c1 Me;
 
-    public b1() {
-        a1 a1Var = new a1(h6.Lj, h6.Mj, h6.Nj, h6.Oj, null);
-        this.f47428a = a1Var;
-        a1 a1Var2 = new a1(h6.fk, h6.gk, -1, -1, null);
-        this.f47429b = a1Var.f47401f;
-        this.f47431e = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
-        this.f47432f = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var);
-        this.h = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var2);
-        this.f47433g = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_normal), a1Var);
-        this.d = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
-        a1Var.a();
-        b();
+    public b1(c1 c1Var, Context context, int i10, com.google.firebase.messaging.m mVar) {
+        super(context, i10, false, null, mVar);
+        this.Me = c1Var;
+        this.Ge = new pa(c1Var.d, this, 10, false);
+        this.He = new float[8];
+        this.Ie = new Path();
+        Paint paint = new Paint();
+        this.Je = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.Ke = new Rect();
+        this.Le = new RectF();
     }
 
-    public static z0 c(Drawable drawable, a1 a1Var) {
-        if (drawable == null) {
-            return null;
-        }
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        int minimumHeight = drawable.getMinimumHeight();
-        Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, minimumHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
-        drawable.draw(canvas);
-        a1Var.f47401f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        a1Var.d(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
-        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, a1Var.f47401f);
-        a1Var.f47401f.setXfermode(null);
-        int[] iArr = a1Var.f47406l;
-        ?? bitmapDrawable = new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), createBitmap);
-        bitmapDrawable.f47755b = drawable;
-        int[] iArr2 = new int[iArr.length];
-        bitmapDrawable.f47754a = iArr2;
-        System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
-        return bitmapDrawable;
-    }
-
-    public static b1 d() {
-        if (f47427j == null) {
-            f47427j = new b1();
-        }
-        return f47427j;
-    }
-
-    public final z0 a(z0 z0Var) {
-        a1 a1Var = this.f47428a;
-        int[] iArr = a1Var.f47406l;
-        int i10 = iArr[0];
-        int[] iArr2 = z0Var.f47754a;
-        if (i10 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
-            return z0Var;
-        }
-        return c(z0Var.f47755b, a1Var);
-    }
-
-    public final void b() {
-        int i10 = h6.f20967z9;
-        if (h6.x0(null, i10, false) != this.f47434i) {
-            this.f47434i = h6.x0(null, i10, false);
-            this.f47431e.setColorFilter(new PorterDuffColorFilter(this.f47434i, PorterDuff.Mode.MULTIPLY));
-        }
-        this.f47432f = a(this.f47432f);
-        this.f47433g = a(this.f47433g);
-    }
-
-    public final Paint e() {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            if (this.f47430c == null) {
-                this.f47430c = new Paint(1);
+    @Override
+    public final Paint M2(String str) {
+        if ("paintChatActionBackground".equals(str)) {
+            this.Me.h.f44263v0 = true;
+            Paint c10 = this.Ge.c(1.0f);
+            if (c10 != null) {
+                return c10;
             }
-            this.f47430c.setColor(h6.x0(null, h6.Oh, false));
-            return this.f47430c;
         }
-        return this.f47429b;
+        return super.M2(str);
     }
 
-    public final void f(float f7, float f10, int i10, int i11) {
-        this.f47428a.d(0, f7, 0, i10, f10, i11);
+    @Override
+    public final boolean a2(Canvas canvas) {
+        z6 z6Var;
+        float[] fArr;
+        ImageReceiver photoImage = getPhotoImage();
+        c1 c1Var = this.Me;
+        a6 a6Var = c1Var.h;
+        if (c1Var.f44214f && photoImage != null && (((z6Var = c1Var.e) != null && z6Var.f8186g && z6Var.d && a6Var.f44265x0) || a6Var.f44262u0 || (a6Var.f44264w0 != null && a6Var.M0.I0))) {
+            int i10 = 0;
+            while (true) {
+                int length = photoImage.getRoundRadius().length;
+                fArr = this.He;
+                if (i10 >= length) {
+                    break;
+                }
+                int i11 = i10 * 2;
+                fArr[i11] = photoImage.getRoundRadius()[i10];
+                fArr[i11 + 1] = photoImage.getRoundRadius()[i10];
+                i10++;
+            }
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
+            Path path = this.Ie;
+            path.rewind();
+            path.addRoundRect(rectF, fArr, Path.Direction.CW);
+            TextureView textureView = a6Var.f44264w0;
+            if (textureView != null && a6Var.M0.I0) {
+                Bitmap bitmap = textureView.getBitmap();
+                if (bitmap != null) {
+                    canvas.save();
+                    canvas.clipPath(path);
+                    canvas.translate(-getX(), -getY());
+                    float max = Math.max(photoImage.getImageWidth() / a6Var.f44266y0, photoImage.getImageHeight() / a6Var.f44267z0);
+                    canvas.translate(photoImage.getCenterX() - ((a6Var.f44266y0 * max) / 2.0f), photoImage.getCenterY() - ((a6Var.f44267z0 * max) / 2.0f));
+                    canvas.scale((a6Var.f44266y0 / a6Var.f44264w0.getWidth()) * max, (a6Var.f44267z0 / a6Var.f44264w0.getHeight()) * max);
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    Rect rect = this.Ke;
+                    rect.set(0, 0, width, height);
+                    RectF rectF2 = this.Le;
+                    rectF2.set(0.0f, 0.0f, a6Var.f44264w0.getWidth(), a6Var.f44264w0.getHeight());
+                    canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
+                    canvas.restore();
+                    return true;
+                }
+                return super.a2(canvas);
+            }
+            canvas.drawPath(path, this.Je);
+            return true;
+        }
+        return super.a2(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        c1 c1Var = this.Me;
+        z6 z6Var = c1Var.e;
+        if ((z6Var != null && z6Var.f8186g && z6Var.d) || c1Var.h.f44262u0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        } else {
+            canvas2 = canvas;
+            canvas2.save();
+        }
+        S1(canvas2);
+        canvas2.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

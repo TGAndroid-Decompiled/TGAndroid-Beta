@@ -1,6 +1,6 @@
 package g6;
 public interface n {
-    void B(String str, long j3, int i10, Object obj, long j10, long j11);
+    void j(String str, long j10, long j11, long j12);
 
-    void r(String str, long j3, long j10, long j11);
+    void v(String str, long j10, int i10, Object obj, long j11, long j12);
 }

@@ -1,24 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class u41 extends s4.j {
-    public final g51 F;
-
-    public u41(g51 g51Var) {
-        this.F = g51Var;
-    }
-
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class u41 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
-    public final void O() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
-        viewGroup.invalidate();
-    }
-
-    @Override
-    public final void P(s4.d1 d1Var) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
-        viewGroup.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i11)), 1073741824));
     }
 }

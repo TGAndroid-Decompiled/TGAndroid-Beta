@@ -1,51 +1,29 @@
 package c5;
 
-import android.content.ContentResolver;
-import android.net.Uri;
-import android.util.Log;
-import com.google.android.gms.internal.clearcut.e2;
-import java.util.HashMap;
-import org.telegram.ui.Cells.c1;
-public final class i implements com.google.android.gms.internal.clearcut.g {
-    public String f4258a;
+import com.google.android.gms.internal.play_billing.k3;
+public final class i {
+    public int f4381a;
+    public int f4382b;
+    public String f4383c;
 
-    public i(String str) {
-        this.f4258a = str;
+    public static c3.a a() {
+        ?? obj = new Object();
+        obj.f4189c = 0;
+        obj.f4187a = "";
+        return obj;
     }
 
-    @Override
-    public Object zzp() {
-        Object obj;
-        boolean z10;
-        String str = this.f4258a;
-        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f7145g.getContentResolver();
-        Uri uri = e2.f7162a;
-        synchronized (e2.class) {
-            e2.c(contentResolver);
-            obj = e2.f7170k;
-        }
-        HashMap hashMap = e2.f7167g;
-        Boolean bool = Boolean.FALSE;
-        Boolean bool2 = (Boolean) e2.a(hashMap, str, bool);
-        if (bool2 != null) {
-            z10 = bool2.booleanValue();
+    public final String toString() {
+        com.google.android.gms.internal.play_billing.j jVar;
+        int i10 = this.f4381a;
+        int i11 = com.google.android.gms.internal.play_billing.u.f5761a;
+        com.google.android.gms.internal.play_billing.a0 a0Var = com.google.android.gms.internal.play_billing.j.f5674c;
+        Integer valueOf = Integer.valueOf(i10);
+        if (!a0Var.containsKey(valueOf)) {
+            jVar = com.google.android.gms.internal.play_billing.j.RESPONSE_CODE_UNSPECIFIED;
         } else {
-            String b10 = e2.b(contentResolver, str);
-            boolean z11 = false;
-            if (b10 != null && !b10.equals("")) {
-                if (e2.f7164c.matcher(b10).matches()) {
-                    bool = Boolean.TRUE;
-                    z11 = true;
-                } else if (!e2.d.matcher(b10).matches()) {
-                    Log.w("Gservices", c1.i("attempt to read gservices key ", str, " (value \"", b10, "\") as boolean"));
-                }
-                e2.e(obj, hashMap, str, bool);
-                z10 = z11;
-            }
-            bool = bool2;
-            e2.e(obj, hashMap, str, bool);
-            z10 = z11;
+            jVar = (com.google.android.gms.internal.play_billing.j) a0Var.get(valueOf);
         }
-        return Boolean.valueOf(z10);
+        return k3.k("Response Code: ", jVar.toString(), ", Debug Message: ", this.f4383c);
     }
 }

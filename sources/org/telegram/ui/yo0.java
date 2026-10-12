@@ -1,89 +1,81 @@
 package org.telegram.ui;
 
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.View;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.Iterator;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class yo0 implements yf.a0, r0.n, org.telegram.ui.ActionBar.z1 {
-    public final int f44521a;
-    public final cq0 f44522b;
+import org.telegram.messenger.LocaleController;
+public final class yo0 extends FrameLayout {
+    public final Paint f42199a;
+    public float f42200b;
+    public o1.k f42201c;
+    public final cp0 d;
 
-    public yo0(cq0 cq0Var, int i10) {
-        this.f44521a = i10;
-        this.f44522b = cq0Var;
+    public yo0(cp0 cp0Var, Context context) {
+        super(context);
+        this.d = cp0Var;
+        this.f42199a = new Paint(1);
+        setWillNotDraw(false);
     }
 
-    @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        cq0 cq0Var = this.f44522b;
-        cq0Var.f36479b0 = defaultWindowInsets;
-        np0 np0Var = cq0Var.h.f43584b;
-        int i10 = defaultWindowInsets.f11574a;
-        int paddingTop = np0Var.getPaddingTop();
-        i0.b bVar = cq0Var.f36479b0;
-        np0Var.setPadding(i10, paddingTop, bVar.f11576c, AndroidUtilities.dp(72.0f) + bVar.d);
-        np0 np0Var2 = cq0Var.f36492n.f43584b;
-        int i11 = cq0Var.f36479b0.f11574a;
-        int paddingTop2 = np0Var2.getPaddingTop();
-        i0.b bVar2 = cq0Var.f36479b0;
-        np0Var2.setPadding(i11, paddingTop2, bVar2.f11576c, AndroidUtilities.dp(72.0f) + bVar2.d);
-        FrameLayout frameLayout = cq0Var.P;
-        i0.b bVar3 = cq0Var.f36479b0;
-        frameLayout.setPadding(bVar3.f11574a, 0, bVar3.f11576c, bVar3.d);
-        return r0.k1.f46999b;
-    }
-
-    @Override
-    public void a(int i10) {
-        int i11;
-        cq0 cq0Var = this.f44522b;
-        fh.d dVar = cq0Var.f36487g0;
-        ArrayList arrayList = cq0Var.f36491k0;
-        ah.h hVar = cq0Var.f36486f0;
-        int i12 = Build.VERSION.SDK_INT;
-        if (i12 >= 31 && hVar != null) {
-            ArrayList arrayList2 = cq0Var.f36490j0;
-            if (i12 >= 29 && dVar != null) {
-                i11 = dVar.d(0, AndroidUtilities.dp(8.0f), arrayList2);
+    public final void a(boolean z10, boolean z11) {
+        float f7;
+        float f10;
+        o1.k kVar = this.f42201c;
+        if (kVar != null) {
+            kVar.c();
+        }
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        if (z11) {
+            float f11 = this.f42200b;
+            if (f11 == f7) {
+                return;
+            }
+            o1.k kVar2 = new o1.k(new o1.j(f11 * 100.0f));
+            o1.l lVar = new o1.l(f7 * 100.0f);
+            if (z10) {
+                f10 = 500.0f;
             } else {
-                i11 = 0;
+                f10 = 650.0f;
             }
-            int a2 = yf.e0.a(arrayList2, i11, arrayList);
-            int measuredWidth = cq0Var.d.getMeasuredWidth();
-            for (int i13 = 0; i13 < a2; i13++) {
-                RectF rectF = (RectF) arrayList.get(i13);
-                float f7 = measuredWidth;
-                rectF.left = w7.n.a(rectF.left, 0.0f, f7);
-                rectF.top = Math.max(0.0f, rectF.top);
-                rectF.right = w7.n.a(rectF.right, 0.0f, f7);
-                rectF.bottom = Math.min(cq0Var.d.getHeight(), rectF.bottom);
-            }
-            hVar.g(a2, arrayList);
-            if (hVar.e(cq0Var.f36489i0, cq0Var.d.getWidth(), cq0Var.d.getHeight())) {
-                if (dVar != null) {
-                    dVar.e();
-                }
-                Iterator it = cq0Var.f36482d0.iterator();
-                while (it.hasNext()) {
-                    ((View) it.next()).invalidate();
-                }
-            }
+            lVar.b(f10);
+            lVar.a(1.0f);
+            kVar2.f16468u = lVar;
+            this.f42201c = kVar2;
+            kVar2.b(new yd0(this, 1));
+            this.f42201c.a(new q9(this, 1));
+            this.f42201c.h();
+            return;
         }
+        this.f42200b = f7;
+        TextView textView = this.d.U;
+        if (textView != null) {
+            textView.setAlpha((f7 * 0.2f) + 0.8f);
+        }
+        invalidate();
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f44521a) {
-            case 2:
-                this.f44522b.finishFragment();
-                return;
-            default:
-                this.f44522b.y0();
-                return;
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        super.onDraw(canvas);
+        int i10 = org.telegram.ui.ActionBar.g6.O6;
+        cp0 cp0Var = this.d;
+        canvas.drawColor(cp0Var.getThemedColor(i10));
+        int themedColor = cp0Var.getThemedColor(org.telegram.ui.ActionBar.g6.f19929ei);
+        Paint paint = this.f42199a;
+        paint.setColor(themedColor);
+        if (LocaleController.isRTL) {
+            dp = getWidth() - AndroidUtilities.dp(28.0f);
+        } else {
+            dp = AndroidUtilities.dp(28.0f);
         }
+        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f42200b, paint);
     }
 }

@@ -1,132 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class r00 extends og.b {
-    public final t00 d;
-
-    public r00(t00 t00Var) {
-        this.d = t00Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class r00 extends ImageSpan {
+    public int f39565a;
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47901f;
-        if (i10 != 8 && i10 != 7) {
-            return false;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        if (paint.getColor() != this.f39565a && getDrawable() != null) {
+            Drawable drawable = getDrawable();
+            int color = paint.getColor();
+            this.f39565a = color;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
-        return true;
-    }
-
-    public final s4.i0 F() {
-        return this.d.d.getAdapter();
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f42038d0.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return ((y00) this.d.f42038d0.get(i10)).f16877a;
-    }
-
-    @Override
-    public final void l() {
-        F().l();
-    }
-
-    @Override
-    public final void m(int i10) {
-        F().m(i10 + 1);
-    }
-
-    @Override
-    public final void p(int i10, int i11) {
-        F().p(i10 + 1, i11);
-    }
-
-    @Override
-    public final void q(int i10, int i11) {
-        F().q(i10 + 1, i11);
-    }
-
-    @Override
-    public final void r(int i10, int i11, Object obj) {
-        F().r(i10 + 1, i11, obj);
-    }
-
-    @Override
-    public final void s(int i10, int i11) {
-        F().s(i10 + 1, i11);
-    }
-
-    @Override
-    public final void t(int i10, int i11) {
-        F().t(i10 + 1, i11);
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        boolean z10;
-        int i11;
-        int i12 = d1Var.f47901f;
-        View view = d1Var.f47897a;
-        ArrayList arrayList = this.d.f42038d0;
-        y00 y00Var = (y00) arrayList.get(i10);
-        int i13 = i10 + 1;
-        if (i13 < arrayList.size() && (i11 = ((y00) arrayList.get(i13)).f16877a) != 3 && i11 != 6) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i12 == 7) {
-            ((a10) view).e(y00Var.f44233m, z10);
-        } else if (i12 != 6 && i12 != 3) {
-            if (i12 != 0 && i12 == 8) {
-                o00 o00Var = (o00) view;
-                o00Var.f40523a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
-                if (o00Var.f40525c != z10) {
-                    o00Var.f40525c = z10;
-                    o00Var.setWillNotDraw(!z10);
-                }
-            }
-        } else {
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-            if (i12 == 6) {
-                e9Var.setFixedSize(0);
-                e9Var.setText(y00Var.d);
-                return;
-            }
-            e9Var.setFixedSize(12);
-            e9Var.setText("");
-        }
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View e9Var;
-        int i11;
-        t00 t00Var = this.d;
-        if (i10 == 8) {
-            e9Var = new o00(t00Var.getContext());
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false));
-        } else if (i10 == 7) {
-            Context context = t00Var.getContext();
-            i11 = ((org.telegram.ui.ActionBar.e3) t00Var).currentAccount;
-            e9Var = new q00(this, context, i11, t00Var.X.f17004id);
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20631h5, false));
-        } else if (i10 != 6 && i10 != 3) {
-            e9Var = new s00(t00Var, t00Var.getContext());
-        } else {
-            e9Var = new org.telegram.ui.Cells.e9(t00Var.getContext());
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false));
-        }
-        return new s4.d1(e9Var);
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
     }
 }

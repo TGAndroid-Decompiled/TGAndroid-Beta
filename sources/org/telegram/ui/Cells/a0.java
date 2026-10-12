@@ -4,26 +4,26 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.vw0;
-public abstract class a0 extends ViewGroup implements vw0 {
-    public boolean f21542a;
-    public androidx.emoji2.text.j f21543b;
-    public int f21544c;
-    public ai.r4 d;
-    public Runnable f21545e;
+import org.telegram.ui.Components.lw0;
+public abstract class a0 extends ViewGroup implements lw0 {
+    public boolean f20890a;
+    public androidx.emoji2.text.j f20891b;
+    public int f20892c;
+    public androidx.activity.i d;
+    public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f21542a = false;
-        this.f21543b = null;
-        this.f21544c = 0;
+        this.f20890a = false;
+        this.f20891b = null;
+        this.f20892c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
         setHapticFeedbackEnabled(true);
     }
 
-    public static float o(Drawable drawable, float f7, float f10, float f11) {
+    public static float n(Drawable drawable, float f7, float f10, float f11) {
         float intrinsicWidth = (drawable.getIntrinsicWidth() * f11) / drawable.getIntrinsicHeight();
         int i10 = (int) f7;
         int i11 = (int) f10;
@@ -31,7 +31,7 @@ public abstract class a0 extends ViewGroup implements vw0 {
         return intrinsicWidth;
     }
 
-    public static void p(int i10, int i11, Drawable drawable) {
+    public static void o(int i10, int i11, Drawable drawable) {
         drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
     }
 
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements vw0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21545e = runnable;
+        this.e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements vw0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21545e;
+        Runnable runnable = this.e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,14 +69,14 @@ public abstract class a0 extends ViewGroup implements vw0 {
     }
 
     public final void k() {
-        this.f21542a = false;
-        androidx.emoji2.text.j jVar = this.f21543b;
+        this.f20890a = false;
+        androidx.emoji2.text.j jVar = this.f20891b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
-        ai.r4 r4Var = this.d;
-        if (r4Var != null) {
-            removeCallbacks(r4Var);
+        androidx.activity.i iVar = this.d;
+        if (iVar != null) {
+            removeCallbacks(iVar);
         }
     }
 
@@ -89,12 +89,12 @@ public abstract class a0 extends ViewGroup implements vw0 {
     }
 
     public final void r() {
-        if (this.f21542a) {
+        if (this.f20890a) {
             return;
         }
-        this.f21542a = true;
+        this.f20890a = true;
         if (this.d == null) {
-            this.d = new ai.r4(this, 27);
+            this.d = new androidx.activity.i(this, 28);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

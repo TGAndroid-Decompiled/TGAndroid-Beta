@@ -1,56 +1,55 @@
 package o3;
 
 import a1.g;
-import b2.m0;
-import b2.o0;
 import b2.r0;
-import b2.s;
-import e2.v;
+import b2.t0;
+import b2.w0;
+import e2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-public final class a implements o0 {
-    public final int f16815a;
-    public final String f16816b;
-    public final String f16817c;
+public final class a implements t0 {
+    public final int f16585a;
+    public final String f16586b;
+    public final String f16587c;
     public final int d;
-    public final int f16818e;
-    public final int f16819f;
-    public final int f16820g;
+    public final int e;
+    public final int f16588f;
+    public final int f16589g;
     public final byte[] h;
 
     public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f16815a = i10;
-        this.f16816b = str;
-        this.f16817c = str2;
+        this.f16585a = i10;
+        this.f16586b = str;
+        this.f16587c = str2;
         this.d = i11;
-        this.f16818e = i12;
-        this.f16819f = i13;
-        this.f16820g = i14;
+        this.e = i12;
+        this.f16588f = i13;
+        this.f16589g = i14;
         this.h = bArr;
     }
 
-    public static a d(v vVar) {
-        int j3 = vVar.j();
-        String n10 = r0.n(vVar.v(vVar.j(), StandardCharsets.US_ASCII));
-        String v = vVar.v(vVar.j(), StandardCharsets.UTF_8);
-        int j10 = vVar.j();
-        int j11 = vVar.j();
-        int j12 = vVar.j();
-        int j13 = vVar.j();
-        int j14 = vVar.j();
-        byte[] bArr = new byte[j14];
-        vVar.h(0, j14, bArr);
-        return new a(j3, n10, v, j10, j11, j12, j13, bArr);
+    public static a d(x xVar) {
+        int m10 = xVar.m();
+        String n10 = w0.n(xVar.y(xVar.m(), StandardCharsets.US_ASCII));
+        String y3 = xVar.y(xVar.m(), StandardCharsets.UTF_8);
+        int m11 = xVar.m();
+        int m12 = xVar.m();
+        int m13 = xVar.m();
+        int m14 = xVar.m();
+        int m15 = xVar.m();
+        byte[] bArr = new byte[m15];
+        xVar.k(0, m15, bArr);
+        return new a(m10, n10, y3, m11, m12, m13, m14, bArr);
     }
 
     @Override
-    public final s a() {
+    public final b2.x a() {
         return null;
     }
 
     @Override
-    public final void b(m0 m0Var) {
-        m0Var.a(this.f16815a, this.h);
+    public final void b(r0 r0Var) {
+        r0Var.a(this.f16585a, this.h);
     }
 
     @Override
@@ -64,7 +63,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f16815a == aVar.f16815a && this.f16816b.equals(aVar.f16816b) && this.f16817c.equals(aVar.f16817c) && this.d == aVar.d && this.f16818e == aVar.f16818e && this.f16819f == aVar.f16819f && this.f16820g == aVar.f16820g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f16585a == aVar.f16585a && this.f16586b.equals(aVar.f16586b) && this.f16587c.equals(aVar.f16587c) && this.d == aVar.d && this.e == aVar.e && this.f16588f == aVar.f16588f && this.f16589g == aVar.f16589g && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -72,10 +71,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((g.h(g.h((527 + this.f16815a) * 31, 31, this.f16816b), 31, this.f16817c) + this.d) * 31) + this.f16818e) * 31) + this.f16819f) * 31) + this.f16820g) * 31);
+        return Arrays.hashCode(this.h) + ((((((((g.g(g.g((527 + this.f16585a) * 31, 31, this.f16586b), 31, this.f16587c) + this.d) * 31) + this.e) * 31) + this.f16588f) * 31) + this.f16589g) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f16816b + ", description=" + this.f16817c;
+        return "Picture: mimeType=" + this.f16586b + ", description=" + this.f16587c;
     }
 }

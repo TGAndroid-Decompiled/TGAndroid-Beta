@@ -1,138 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-public final class bn0 extends Drawable implements Animator.AnimatorListener {
-    public final Context f24687a;
-    public ColorFilter f24688b;
-    public Drawable d;
-    public Drawable f24690e;
-    public ValueAnimator f24691f;
-    public boolean f24693r;
-    public int f24689c = 0;
-    public float h = 1.0f;
-    public final ArrayList f24692n = new ArrayList();
+import android.text.StaticLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class bn0 extends Drawable {
+    public int f23825a = 255;
+    public final x90 f23826b;
+    public final int[] f23827c;
+    public final org.telegram.ui.Cells.u1 d;
+    public final int[] e;
+    public final Bitmap f23828f;
+    public final RectF f23829g;
+    public final Paint h;
+    public final Paint f23830i;
+    public final StaticLayout f23831j;
 
-    public bn0(Context context) {
-        this.f24687a = context;
-    }
-
-    public final void a(int i10, boolean z10) {
-        if (this.f24689c == i10) {
-            return;
-        }
-        b(this.f24687a.getDrawable(i10).mutate(), z10);
-        this.f24689c = i10;
-    }
-
-    public final void b(Drawable drawable, boolean z10) {
-        if (drawable == null) {
-            this.d = null;
-            this.f24690e = null;
-            invalidateSelf();
-            return;
-        }
-        if (getBounds() == null || getBounds().isEmpty()) {
-            z10 = false;
-        }
-        Drawable drawable2 = this.d;
-        if (drawable == drawable2) {
-            drawable2.setColorFilter(this.f24688b);
-            return;
-        }
-        this.f24689c = 0;
-        this.f24690e = drawable2;
-        this.d = drawable;
-        drawable.setColorFilter(this.f24688b);
-        c(this.d, getBounds());
-        c(this.f24690e, getBounds());
-        ValueAnimator valueAnimator = this.f24691f;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f24691f.cancel();
-        }
-        if (!z10) {
-            this.h = 1.0f;
-            this.f24690e = null;
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f24691f = ofFloat;
-        ofFloat.addUpdateListener(new m80(this, 11));
-        this.f24691f.addListener(this);
-        this.f24691f.setDuration(150L);
-        this.f24691f.start();
-    }
-
-    public final void c(Drawable drawable, Rect rect) {
-        int height;
-        int intrinsicHeight;
-        int width;
-        int intrinsicWidth;
-        if (drawable == null) {
-            return;
-        }
-        if (this.f24693r) {
-            drawable.setBounds(rect);
-            return;
-        }
-        if (drawable.getIntrinsicHeight() < 0) {
-            height = rect.top;
-            intrinsicHeight = rect.bottom;
-        } else {
-            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + height;
-        }
-        if (drawable.getIntrinsicWidth() < 0) {
-            width = rect.left;
-            intrinsicWidth = rect.right;
-        } else {
-            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + width;
-        }
-        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+    public bn0(x90 x90Var, int[] iArr, org.telegram.ui.Cells.u1 u1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
+        this.f23826b = x90Var;
+        this.f23827c = iArr;
+        this.d = u1Var;
+        this.e = iArr2;
+        this.f23828f = bitmap;
+        this.f23829g = rectF;
+        this.h = paint;
+        this.f23830i = paint2;
+        this.f23831j = staticLayout;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        if (this.h != 1.0f && this.d != null) {
-            canvas.save();
-            float f7 = this.h;
-            canvas.scale(f7, f7, centerX, centerY);
-            this.d.setAlpha((int) (this.h * 255.0f));
-            this.d.draw(canvas);
-            canvas.restore();
-        } else {
-            Drawable drawable = this.d;
-            if (drawable != null) {
-                drawable.setAlpha(255);
-                this.d.draw(canvas);
-            }
-        }
-        float f10 = this.h;
-        if (f10 != 1.0f && this.f24690e != null) {
-            float f11 = 1.0f - f10;
-            canvas.save();
-            canvas.scale(f11, f11, centerX, centerY);
-            this.f24690e.setAlpha((int) (f11 * 255.0f));
-            this.f24690e.draw(canvas);
-            canvas.restore();
+        if (this.f23825a <= 0) {
             return;
         }
-        Drawable drawable2 = this.f24690e;
-        if (drawable2 != null) {
-            drawable2.setAlpha(255);
-            this.f24690e.draw(canvas);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getBounds());
+        float f7 = rectF.left;
+        CornerPathEffect cornerPathEffect = x90.f31208w;
+        rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
+        canvas.save();
+        canvas.saveLayerAlpha(rectF, this.f23825a, 31);
+        int[] iArr = this.f23827c;
+        canvas.translate(iArr[0], iArr[1]);
+        x90 x90Var = this.f23826b;
+        org.telegram.ui.Cells.u1 u1Var = this.d;
+        if (u1Var != null && u1Var.C1()) {
+            org.telegram.ui.ActionBar.d5 d5Var = u1Var.f22414t8;
+            if (d5Var != null && d5Var.f19693c != null) {
+                canvas.save();
+                u1Var.setBackgroundTopY(true);
+                canvas.translate(0.0f, -u1Var.f22414t8.f19705r);
+                canvas.drawPaint(u1Var.f22414t8.f19693c);
+                canvas.restore();
+            } else {
+                canvas.translate(-iArr[0], -iArr[1]);
+                int[] iArr2 = this.e;
+                canvas.translate(iArr2[0], u1Var.getPaddingTop() + iArr2[1]);
+                u1Var.D1(canvas, true, false);
+                canvas.translate(-iArr2[0], (-iArr2[1]) - u1Var.getPaddingTop());
+                canvas.translate(iArr[0], iArr[1]);
+            }
+            Bitmap bitmap = this.f23828f;
+            if (bitmap != null) {
+                canvas.save();
+                RectF rectF2 = this.f23829g;
+                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
+                canvas.restore();
+            }
+        } else {
+            canvas.drawPath(x90Var, this.f23830i);
         }
+        canvas.clipPath(x90Var);
+        this.f23831j.draw(canvas);
+        canvas.restore();
     }
 
     @Override
@@ -141,56 +86,11 @@ public final class bn0 extends Drawable implements Animator.AnimatorListener {
     }
 
     @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        ArrayList arrayList = this.f24692n;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((View) arrayList.get(i10)).invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f24690e = null;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        c(this.d, rect);
-        c(this.f24690e, rect);
+    public final void setAlpha(int i10) {
+        this.f23825a = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24688b = colorFilter;
-        Drawable drawable = this.d;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
-        Drawable drawable2 = this.f24690e;
-        if (drawable2 != null) {
-            drawable2.setColorFilter(colorFilter);
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
     }
 }

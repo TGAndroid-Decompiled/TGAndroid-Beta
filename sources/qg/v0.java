@@ -1,47 +1,65 @@
 package qg;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.bu0;
-public final class v0 implements pg.c1 {
-    public final w0 f46531a;
+import android.graphics.PointF;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public final class v0 {
+    public float f43595a;
+    public float f43596b;
+    public float f43597c;
+    public float d;
+    public float e;
+    public float f43598f;
+    public double f43599g;
+    public int h;
+    public int f43600i;
+    public ByteBuffer f43601j;
 
-    public v0(w0 w0Var) {
-        this.f46531a = w0Var;
-    }
-
-    @Override
-    public final void a() {
-        w0 w0Var = this.f46531a;
-        w0Var.f46535e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new org.telegram.ui.Components.voip.s0(w0Var, 8)).setInterpolator(js.h);
-    }
-
-    @Override
-    public final boolean d() {
+    public final boolean a(PointF pointF, float f7, float f10, float f11, int i10) {
+        if ((i10 != -1 && i10 >= this.f43600i) || this.f43601j.position() == this.f43601j.limit()) {
+            d();
+            return false;
+        }
+        if (i10 != -1) {
+            this.f43601j.position(i10 * 20);
+        }
+        this.f43601j.putFloat(pointF.x);
+        this.f43601j.putFloat(pointF.y);
+        this.f43601j.putFloat(f7);
+        this.f43601j.putFloat(f10);
+        this.f43601j.putFloat(f11);
         return true;
     }
 
-    @Override
-    public final void e() {
-        w0 w0Var = this.f46531a;
-        w0Var.f46533b.f45700a.e();
-        w0Var.f46540w.setViewHidden(false);
-        PhotoViewer photoViewer = ((bu0) w0Var).K;
-        Drawable[] drawableArr = PhotoViewer.U8;
-        photoViewer.X2(true, true);
+    public final void b(int i10) {
+        int i11 = this.h + i10;
+        if (i11 > this.f43600i || this.f43601j == null) {
+            d();
+        }
+        this.h = i11;
     }
 
-    @Override
-    public final void f() {
-        this.f46531a.f46540w.setViewHidden(true);
-    }
-
-    @Override
-    public final void b() {
-    }
-
-    @Override
     public final void c() {
+        this.h = 0;
+        if (this.f43601j != null) {
+            return;
+        }
+        this.f43600i = 256;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
+        this.f43601j = allocateDirect;
+        allocateDirect.order(ByteOrder.nativeOrder());
+        this.f43601j.position(0);
+    }
+
+    public final void d() {
+        if (this.f43601j != null) {
+            this.f43601j = null;
+        }
+        int max = Math.max(this.f43600i * 2, 256);
+        this.f43600i = max;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
+        this.f43601j = allocateDirect;
+        allocateDirect.order(ByteOrder.nativeOrder());
+        this.f43601j.position(0);
     }
 }

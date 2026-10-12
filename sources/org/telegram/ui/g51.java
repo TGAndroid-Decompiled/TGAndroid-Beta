@@ -1,116 +1,62 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class g51 extends FrameLayout {
-    public final Paint f37938a;
-    public final Paint f37939b;
-    public final RectF f37940c;
-    public final org.telegram.ui.Components.i31 d;
-    public boolean f37941e;
-    public long f37942f;
-    public long h;
-    public final org.telegram.ui.Components.fk0 f37943n;
-    public final TextPaint f37944r;
-    public StaticLayout f37945s;
-    public float v;
-    public float f37946w;
-    public final SecretMediaViewer f37947x;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
+import android.view.View;
+import android.view.ViewGroup;
+public final class g51 extends Fade {
+    public final int f36316a;
+    public final boolean f36317b;
+    public final boolean f36318c;
+    public final SecretMediaViewer d;
 
-    public g51(SecretMediaViewer secretMediaViewer, Activity activity) {
-        super(activity);
-        this.f37947x = secretMediaViewer;
-        this.f37940c = new RectF();
-        this.d = new org.telegram.ui.Components.i31();
-        this.f37944r = new TextPaint(1);
-        setWillNotDraw(false);
-        Paint paint = new Paint(1);
-        this.f37939b = paint;
-        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        paint.setColor(-1644826);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint paint2 = new Paint(1);
-        this.f37938a = paint2;
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setColor(-1644826);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        new Paint(1).setColor(2130706432);
-        org.telegram.ui.Components.fk0 fk0Var = new org.telegram.ui.Components.fk0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        this.f37943n = fk0Var;
-        fk0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        fk0Var.R(this);
-        fk0Var.start();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        SecretMediaViewer secretMediaViewer;
-        float max;
-        MessageObject messageObject = this.f37947x.f34270h0;
-        if (messageObject != null) {
-            TLRPC.Message message = messageObject.messageOwner;
-            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                if (this.f37942f == 0) {
-                    max = 1.0f;
-                } else {
-                    max = ((float) Math.max(0L, this.f37942f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f34251a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
-                }
-                boolean z10 = this.f37941e;
-                Paint paint = this.f37939b;
-                Paint paint2 = this.f37938a;
-                RectF rectF = this.f37940c;
-                if (z10) {
-                    canvas.save();
-                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f37946w / 2.0f));
-                    this.f37945s.draw(canvas);
-                    canvas.restore();
-                    canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
-                    float f7 = 19.285715f;
-                    for (int i10 = 0; i10 < 5; i10++) {
-                        canvas.drawArc(rectF, f7 + 270.0f, 12.857143f, false, paint2);
-                        f7 += 32.14286f;
-                    }
-                    this.d.a(0.0f, 1.0f, canvas, paint, rectF);
-                } else {
-                    float centerX = rectF.centerX();
-                    float centerY = rectF.centerY() - AndroidUtilities.dp(1.0f);
-                    float dp = AndroidUtilities.dp(8.0f);
-                    org.telegram.ui.Components.fk0 fk0Var = this.f37943n;
-                    fk0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
-                    fk0Var.draw(canvas);
-                    float f10 = max * (-360.0f);
-                    canvas.drawArc(rectF, -90.0f, f10, false, paint2);
-                    this.d.a(f10, 1.0f, canvas, paint, rectF);
-                }
-                invalidate();
-            }
+    public g51(SecretMediaViewer secretMediaViewer, boolean z10, boolean z11, int i10) {
+        super(1);
+        this.f36316a = i10;
+        switch (i10) {
+            case 1:
+                this.d = secretMediaViewer;
+                this.f36317b = z10;
+                this.f36318c = z11;
+                super(2);
+                return;
+            default:
+                this.d = secretMediaViewer;
+                this.f36317b = z10;
+                this.f36318c = z11;
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        float dpf2 = AndroidUtilities.dpf2(10.5f);
-        this.f37940c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
-        setPivotX(measuredWidth);
-        setPivotY(measuredHeight);
+    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f36316a) {
+            case 0:
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.f36317b && !this.f36318c && view == this.d.Z) {
+                    onAppear.addListener(new lj0(this, 21));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new f21(this, 4));
+                }
+                return onAppear;
+            default:
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
+    }
+
+    @Override
+    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f36316a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.f36317b && this.f36318c && view == this.d.Z) {
+                    onDisappear.addListener(new lj0(this, 22));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new f21(this, 5));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+        }
     }
 }

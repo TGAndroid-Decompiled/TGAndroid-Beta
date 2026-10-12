@@ -1,89 +1,70 @@
 package ji;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import java.util.ArrayList;
-import s4.d1;
-public final class f extends AnimatorListenerAdapter {
-    public final int f14228a = 1;
-    public final View f14229b;
-    public final d1 f14230c;
-    public final n d;
+import org.telegram.tgnet.tl.TL_iv;
+public final class f implements Runnable {
+    public final int f13257a;
+    public final r f13258b;
+    public final a f13259c;
 
-    public f(n nVar, d1 d1Var, View view) {
-        this.d = nVar;
-        this.f14230c = d1Var;
-        this.f14229b = view;
+    public f(r rVar, a aVar, int i10) {
+        this.f13257a = i10;
+        this.f13258b = rVar;
+        this.f13259c = aVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f14228a) {
+    public final void run() {
+        int i10 = this.f13257a;
+        a aVar = this.f13259c;
+        r rVar = this.f13258b;
+        switch (i10) {
             case 0:
-                this.f14229b.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f14228a) {
-            case 0:
-                animator.removeAllListeners();
-                View view = this.f14229b;
-                view.setAlpha(1.0f);
-                view.setScaleX(1.0f);
-                view.setScaleY(1.0f);
-                view.setTranslationY(0.0f);
-                view.setTranslationY(0.0f);
-                n nVar = this.d;
-                ArrayList arrayList = nVar.f47966y;
-                d1 d1Var = this.f14230c;
-                if (arrayList.remove(d1Var)) {
-                    nVar.u(d1Var);
-                    nVar.G();
+                x3 x3Var = rVar.f13483r;
+                View A1 = x3Var.A1(aVar);
+                if (A1 instanceof r4) {
+                    ((r4) A1).h(aVar, x3Var.getMapDelegate());
+                    return;
+                } else {
+                    x3Var.W2.N(false);
                     return;
                 }
+            case 1:
+                rVar.f13483r.X4(aVar, 0);
+                return;
+            case 2:
+                rVar.f13483r.X4(aVar, 1);
+                return;
+            case 3:
+                rVar.f13483r.X4(aVar, 2);
+                return;
+            case 4:
+                rVar.f13483r.X4(aVar, 3);
+                return;
+            case 5:
+                rVar.f13483r.W4(aVar, new TL_iv.pageBlockParagraph());
+                return;
+            case 6:
+                x3 x3Var2 = rVar.f13483r;
+                ArrayList arrayList = x3.f13619q4;
+                TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
+                pageblockblockquote.caption = new TL_iv.textEmpty();
+                x3Var2.V4(this.f13259c, pageblockblockquote, 0, 0, false, false);
+                return;
+            case 7:
+                x3 x3Var3 = rVar.f13483r;
+                ArrayList arrayList2 = x3.f13619q4;
+                TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
+                pageblockpullquote.caption = new TL_iv.textEmpty();
+                x3Var3.V4(this.f13259c, pageblockpullquote, 0, 0, false, false);
+                return;
+            case 8:
+                rVar.f13483r.W4(aVar, new TL_iv.pageBlockPreformatted());
                 return;
             default:
-                animator.removeAllListeners();
-                View view2 = this.f14229b;
-                view2.setAlpha(1.0f);
-                view2.setScaleX(1.0f);
-                view2.setScaleY(1.0f);
-                view2.setTranslationX(0.0f);
-                view2.setTranslationY(0.0f);
-                n nVar2 = this.d;
-                ArrayList arrayList2 = nVar2.A;
-                d1 d1Var2 = this.f14230c;
-                if (arrayList2.remove(d1Var2)) {
-                    nVar2.d(d1Var2);
-                    nVar2.G();
-                    return;
-                }
+                rVar.f13483r.W4(aVar, new TL_iv.pageBlockFooter());
                 return;
         }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f14228a) {
-            case 0:
-                this.d.getClass();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
-    }
-
-    public f(n nVar, View view, d1 d1Var) {
-        this.d = nVar;
-        this.f14229b = view;
-        this.f14230c = d1Var;
     }
 }

@@ -6,74 +6,74 @@ import android.widget.LinearLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class mi implements z4.e {
-    public final AtomicBoolean f40051a;
-    public final LinearLayout f40052b;
-    public final int f40053c;
+    public final AtomicBoolean f38267a;
+    public final LinearLayout f38268b;
+    public final int f38269c;
     public final HorizontalScrollView d;
-    public final SparseIntArray f40054e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f40055f;
-    public final int[] f40056g;
+    public final SparseIntArray e;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f38270f;
+    public final int[] f38271g;
 
     public mi(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f40051a = atomicBoolean;
-        this.f40052b = linearLayout;
-        this.f40053c = i10;
+        this.f38267a = atomicBoolean;
+        this.f38268b = linearLayout;
+        this.f38269c = i10;
         this.d = horizontalScrollView;
-        this.f40054e = sparseIntArray;
-        this.f40055f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f40056g = iArr;
+        this.e = sparseIntArray;
+        this.f38270f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f38271g = iArr;
     }
 
     @Override
-    public final void a(int i10) {
-        this.f40055f.getSwipeBack().f(this.f40056g[0], this.f40054e.get(i10), true);
-    }
-
-    @Override
-    public final void b(float f7, int i10, int i11) {
+    public final void a(float f7, int i10, int i11) {
         HorizontalScrollView horizontalScrollView;
         SparseIntArray sparseIntArray;
         float f10;
-        if (!this.f40051a.get()) {
+        if (!this.f38267a.get()) {
             float f11 = -1.0f;
             float f12 = -1.0f;
             int i12 = 0;
             while (true) {
-                LinearLayout linearLayout = this.f40052b;
+                LinearLayout linearLayout = this.f38268b;
                 int childCount = linearLayout.getChildCount();
                 horizontalScrollView = this.d;
                 if (i12 >= childCount) {
                     break;
                 }
-                org.telegram.ui.Components.yk0 yk0Var = (org.telegram.ui.Components.yk0) linearLayout.getChildAt(i12);
+                org.telegram.ui.Components.rk0 rk0Var = (org.telegram.ui.Components.rk0) linearLayout.getChildAt(i12);
                 if (i12 == i10) {
                     f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f40053c) {
+                } else if (i12 == (i10 + 1) % this.f38269c) {
                     f10 = f7;
                 } else {
                     f10 = 0.0f;
                 }
-                yk0Var.setOutlineProgress(f10);
+                rk0Var.setOutlineProgress(f10);
                 if (i12 == i10) {
-                    f11 = yk0Var.getX() - ((horizontalScrollView.getWidth() - yk0Var.getWidth()) / 2.0f);
+                    f11 = rk0Var.getX() - ((horizontalScrollView.getWidth() - rk0Var.getWidth()) / 2.0f);
                 }
                 if (i12 == i10 + 1) {
-                    f12 = yk0Var.getX() - ((horizontalScrollView.getWidth() - yk0Var.getWidth()) / 2.0f);
+                    f12 = rk0Var.getX() - ((horizontalScrollView.getWidth() - rk0Var.getWidth()) / 2.0f);
                 }
                 i12++;
             }
             if (f11 != -1.0f && f12 != -1.0f) {
-                horizontalScrollView.setScrollX((int) com.google.android.gms.internal.vision.e2.y(f12, f11, f7, f11));
+                horizontalScrollView.setScrollX((int) com.google.android.gms.internal.play_billing.k3.y(f12, f11, f7, f11));
             }
-            int i13 = this.f40054e.get(i10, 0);
-            this.f40055f.getSwipeBack().f(this.f40056g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
+            int i13 = this.e.get(i10, 0);
+            this.f38270f.getSwipeBack().f(this.f38271g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
         }
+    }
+
+    @Override
+    public final void b(int i10) {
+        this.f38270f.getSwipeBack().f(this.f38271g[0], this.e.get(i10), true);
     }
 
     @Override
     public final void c(int i10) {
         if (i10 == 0) {
-            this.f40051a.set(false);
+            this.f38267a.set(false);
         }
     }
 }

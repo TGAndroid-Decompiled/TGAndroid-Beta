@@ -1,114 +1,45 @@
 package xh;
 
-import android.content.Context;
-import android.util.LongSparseArray;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.vm0;
-import org.telegram.ui.Components.wm0;
-import w7.w5;
-public final class f extends db implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final u61 X;
-    public final LongSparseArray Y;
-    public ArrayList Z;
-    public boolean f51445a0;
-    public h71 f51446b0;
+import org.telegram.ui.ze;
+import zh.r3;
+public final class f implements RequestDelegate {
+    public final int f48455a = 0;
+    public final boolean f48456b;
+    public final boolean f48457c;
+    public final Object d;
+    public final Object e;
+    public final Object f48458f;
 
-    public f(Context context) {
-        super(context, null, false, false, 2, null);
-        int i10 = 0;
-        this.Y = new LongSparseArray();
-        this.Z = new ArrayList();
-        setBackgroundColor(h6.x0(null, h6.f20504a7, false));
-        GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
-        this.L = false;
-        this.K = AndroidUtilities.dp(12.0f);
-        fixNavigationBar();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setClickable(true);
-        this.X = u61.j(-1, linearLayout);
-        this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
-        this.d.setOverScrollMode(2);
-        this.f51446b0.N(false);
-        ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
-        int size = activeAuctions.size();
-        while (i10 < size) {
-            GiftAuctionController.Auction auction = activeAuctions.get(i10);
-            i10++;
-            GiftAuctionController.Auction auction2 = auction;
-            e eVar = new e(context, auction2);
-            eVar.f51431a.setOnClickListener(new xg.e(this, context, auction2, 1));
-            linearLayout.addView(eVar, w5.n(-1, -2));
-            this.Y.put(auction2.giftId, eVar);
-        }
-        onActiveAuctionsUpdate(activeAuctions);
+    public f(l lVar, boolean z10, e eVar, String str, boolean z11) {
+        this.d = lVar;
+        this.f48456b = z10;
+        this.e = eVar;
+        this.f48458f = str;
+        this.f48457c = z11;
     }
 
     @Override
-    public final CharSequence A() {
-        ArrayList arrayList = this.Z;
-        if (arrayList == null) {
-            return null;
-        }
-        return LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(arrayList.size()));
-    }
-
-    @Override
-    public final void dismiss() {
-        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
-        super.dismiss();
-    }
-
-    @Override
-    public final void onActiveAuctionsUpdate(List list) {
-        int i10;
-        this.Z = new ArrayList(list);
-        this.f25287e.setTitle(A());
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            GiftAuctionController.Auction auction = (GiftAuctionController.Auction) it.next();
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
-            if (tL_starGiftAuctionState != null) {
-                i10 = tL_starGiftAuctionState.next_round_at;
-            } else {
-                i10 = 0;
-            }
-            e eVar = (e) this.Y.get(auction.giftId);
-            if (eVar != null) {
-                eVar.b(this.f51445a0);
-                long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                eVar.a(max, this.f51445a0);
-                eVar.f51435f.a(max);
-            }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f48455a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ze((l) this.d, this.f48456b, (Runnable) this.e, (String) this.f48458f, tL_error, tLObject, this.f48457c));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new ze((r3) this.d, tLObject, this.f48456b, (TLRPC.Document) this.e, this.f48457c, tL_error, (TL_stars.saveStarGift) this.f48458f));
+                return;
         }
     }
 
-    @Override
-    public final void onOpenAnimationEnd() {
-        super.onOpenAnimationEnd();
-        this.f51445a0 = true;
-    }
-
-    @Override
-    public final vm0 x(wm0 wm0Var) {
-        h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f51446b0 = h71Var;
-        h71Var.f26679r = false;
-        return h71Var;
+    public f(r3 r3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
+        this.d = r3Var;
+        this.f48456b = z10;
+        this.e = document;
+        this.f48457c = z11;
+        this.f48458f = savestargift;
     }
 }

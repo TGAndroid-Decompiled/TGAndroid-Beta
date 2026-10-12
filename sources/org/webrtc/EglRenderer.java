@@ -15,8 +15,7 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.mh0;
-import org.telegram.ui.dm0;
+import org.telegram.ui.ma0;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
@@ -107,10 +106,10 @@ public class EglRenderer implements VideoSink {
         public void dispatchMessage(Message message) {
             try {
                 super.dispatchMessage(message);
-            } catch (Exception e7) {
-                Logging.e("EglRenderer", "Exception on EglRenderer thread", e7);
+            } catch (Exception e) {
+                Logging.e("EglRenderer", "Exception on EglRenderer thread", e);
                 this.exceptionCallback.run();
-                throw e7;
+                throw e;
             }
         }
     }
@@ -322,15 +321,15 @@ public class EglRenderer implements VideoSink {
                 EglBase eglBase = this.eglBase;
                 if (eglBase != null && eglBase.hasSurface()) {
                     synchronized (this.fpsReductionLock) {
-                        long j3 = this.minRenderPeriodNs;
-                        if (j3 != Long.MAX_VALUE) {
-                            if (j3 > 0) {
+                        long j10 = this.minRenderPeriodNs;
+                        if (j10 != Long.MAX_VALUE) {
+                            if (j10 > 0) {
                                 long nanoTime = System.nanoTime();
-                                long j10 = this.nextFrameTimeNs;
-                                if (nanoTime >= j10) {
-                                    long j11 = j10 + this.minRenderPeriodNs;
-                                    this.nextFrameTimeNs = j11;
-                                    this.nextFrameTimeNs = Math.max(j11, nanoTime);
+                                long j11 = this.nextFrameTimeNs;
+                                if (nanoTime >= j11) {
+                                    long j12 = j11 + this.minRenderPeriodNs;
+                                    this.nextFrameTimeNs = j12;
+                                    this.nextFrameTimeNs = Math.max(j12, nanoTime);
                                 }
                             }
                             z10 = true;
@@ -408,8 +407,8 @@ public class EglRenderer implements VideoSink {
                                     this.firstFrameRendered = true;
                                     onFirstFrameRendered();
                                 }
-                            } catch (GlUtil.GlOutOfMemoryException e7) {
-                                logE("Error while drawing frame", e7);
+                            } catch (GlUtil.GlOutOfMemoryException e) {
+                                logE("Error while drawing frame", e);
                                 ErrorCallback errorCallback = this.errorCallback;
                                 if (errorCallback != null) {
                                     errorCallback.onGlOutOfMemory();
@@ -462,10 +461,10 @@ public class EglRenderer implements VideoSink {
             try {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
-                    handler.post(new s(1, this, textureCallback));
+                    handler.post(new t(1, this, textureCallback));
                 }
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
     }
@@ -493,7 +492,7 @@ public class EglRenderer implements VideoSink {
                         }
                     });
                     this.renderThreadHandler = handlerWithExceptionCallback;
-                    handlerWithExceptionCallback.post(new mh0(this, context, iArr, 25));
+                    handlerWithExceptionCallback.post(new i(this, context, iArr, 0));
                     this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
                 } else {
                     throw new IllegalStateException(this.name + "Already initialized");
@@ -565,8 +564,8 @@ public class EglRenderer implements VideoSink {
                     logD("Already released");
                     return;
                 }
-                handler.postAtFrontOfQueue(new s(2, this, countDownLatch));
-                this.renderThreadHandler.post(new s(3, this, this.renderThreadHandler.getLooper()));
+                handler.postAtFrontOfQueue(new t(2, this, countDownLatch));
+                this.renderThreadHandler.post(new t(3, this, this.renderThreadHandler.getLooper()));
                 this.renderThreadHandler = null;
                 ThreadUtils.awaitUninterruptibly(countDownLatch);
                 synchronized (this.frameLock) {
@@ -592,7 +591,7 @@ public class EglRenderer implements VideoSink {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
                     handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                    this.renderThreadHandler.postAtFrontOfQueue(new dm0(this, z10, runnable, 13));
+                    this.renderThreadHandler.postAtFrontOfQueue(new ma0(this, z10, runnable, 15));
                 } else if (runnable != null) {
                     runnable.run();
                 }
@@ -610,7 +609,7 @@ public class EglRenderer implements VideoSink {
                     return;
                 }
                 if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                    postToRenderThread(new mh0(this, countDownLatch, frameListener, 26));
+                    postToRenderThread(new i(this, countDownLatch, frameListener, 1));
                     ThreadUtils.awaitUninterruptibly(countDownLatch);
                     return;
                 }
@@ -629,13 +628,13 @@ public class EglRenderer implements VideoSink {
         logD("setFpsReduction: " + f7);
         synchronized (this.fpsReductionLock) {
             try {
-                long j3 = this.minRenderPeriodNs;
+                long j10 = this.minRenderPeriodNs;
                 if (f7 <= 0.0f) {
                     this.minRenderPeriodNs = Long.MAX_VALUE;
                 } else {
                     this.minRenderPeriodNs = ((float) TimeUnit.SECONDS.toNanos(1L)) / f7;
                 }
-                if (this.minRenderPeriodNs != j3) {
+                if (this.minRenderPeriodNs != j10) {
                     this.nextFrameTimeNs = System.nanoTime();
                 }
             } catch (Throwable th2) {
@@ -668,7 +667,7 @@ public class EglRenderer implements VideoSink {
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        f0.a(this, videoSink);
     }
 
     public void setRotation(int i10) {

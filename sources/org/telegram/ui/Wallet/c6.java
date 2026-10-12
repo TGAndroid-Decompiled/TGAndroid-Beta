@@ -1,52 +1,31 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.view.MotionEvent;
-public final class c6 extends sg.n {
-    public final e6 f34583f0;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class c6 implements Runnable {
+    public final int f33020a;
+    public final WalletEngine2 f33021b;
+    public final Utilities.Callback2 f33022c;
+    public final TL_wallet.sendTransfer d;
+    public final String e;
 
-    public c6(e6 e6Var, Context context) {
-        super(context, 1, 4);
-        this.f34583f0 = e6Var;
+    public c6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, TL_wallet.sendTransfer sendtransfer, String str, int i10) {
+        this.f33020a = i10;
+        this.f33021b = walletEngine2;
+        this.f33022c = callback2;
+        this.d = sendtransfer;
+        this.e = str;
     }
 
     @Override
-    public final void i() {
-        e6 e6Var = this.f34583f0;
-        if (e6Var.f34666e == this) {
-            e6.c(e6Var);
+    public final void run() {
+        switch (this.f33020a) {
+            case 0:
+                this.f33021b.lambda$prepareTonConnectTransfer$4(this.f33022c, this.d, this.e);
+                return;
+            default:
+                this.f33021b.lambda$prepareSendNFT$25(this.f33022c, this.d, this.e);
+                return;
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int round = Math.round(Math.min(i10, i11) * 3.5f);
-        surfaceTexture.setDefaultBufferSize(round, round);
-        super.onSurfaceTextureAvailable(surfaceTexture, round, round);
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int round = Math.round(Math.min(i10, i11) * 3.5f);
-        surfaceTexture.setDefaultBufferSize(round, round);
-        this.f48330y = round;
-        this.f48329x = round;
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int round = Math.round(Math.min(getWidth(), getHeight()) * 3.5f);
-        if (round > 0) {
-            surfaceTexture.setDefaultBufferSize(round, round);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f34583f0.f34680x && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
     }
 }

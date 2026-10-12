@@ -6,79 +6,60 @@ import c3.o;
 import c3.p;
 import c3.q;
 import c3.s;
-import e2.v;
-import e9.a1;
-import e9.g0;
-import e9.i0;
+import e2.x;
+import e9.l0;
+import e9.n0;
+import e9.x1;
 import java.util.List;
 public final class a implements o {
-    public final int f9621a;
-    public final v f9622b;
-    public final d0 f9623c;
+    public final int f8911a;
+    public final x f8912b;
+    public final d0 f8913c;
 
     public a(int i10) {
-        this.f9621a = i10;
+        this.f8911a = i10;
         switch (i10) {
             case 1:
-                this.f9622b = new v(4);
-                this.f9623c = new d0(-1, -1, "image/heif");
-                return;
-            case 2:
-                this.f9622b = new v(4);
-                this.f9623c = new d0(-1, -1, "image/webp");
+                this.f8912b = new x(4);
+                this.f8913c = new d0(-1, -1, "image/webp");
                 return;
             default:
-                this.f9622b = new v(4);
-                this.f9623c = new d0(-1, -1, "image/avif");
+                this.f8912b = new x(4);
+                this.f8913c = new d0(-1, -1, "image/avif");
                 return;
         }
     }
 
     @Override
-    public final boolean b(p pVar) {
-        switch (this.f9621a) {
+    public final boolean a(p pVar) {
+        switch (this.f8911a) {
             case 0:
                 l lVar = (l) pVar;
-                lVar.s(4, false);
-                v vVar = this.f9622b;
-                vVar.G(4);
-                lVar.f(vVar.f8581a, 0, 4, false);
-                if (vVar.z() != 1718909296) {
+                lVar.v(4, false);
+                x xVar = this.f8912b;
+                xVar.K(4);
+                lVar.j(xVar.f8411a, 0, 4, false);
+                if (xVar.C() != 1718909296) {
                     return false;
                 }
-                vVar.G(4);
-                lVar.f(vVar.f8581a, 0, 4, false);
-                if (vVar.z() != 1635150182) {
-                    return false;
-                }
-                return true;
-            case 1:
-                l lVar2 = (l) pVar;
-                lVar2.s(4, false);
-                v vVar2 = this.f9622b;
-                vVar2.G(4);
-                lVar2.f(vVar2.f8581a, 0, 4, false);
-                if (vVar2.z() != 1718909296) {
-                    return false;
-                }
-                vVar2.G(4);
-                lVar2.f(vVar2.f8581a, 0, 4, false);
-                if (vVar2.z() != 1751476579) {
+                xVar.K(4);
+                lVar.j(xVar.f8411a, 0, 4, false);
+                if (xVar.C() != 1635150182) {
                     return false;
                 }
                 return true;
             default:
-                v vVar3 = this.f9622b;
-                vVar3.G(4);
-                l lVar3 = (l) pVar;
-                lVar3.f(vVar3.f8581a, 0, 4, false);
-                if (vVar3.z() != 1380533830) {
+                x xVar2 = this.f8912b;
+                xVar2.K(4);
+                l lVar2 = (l) pVar;
+                lVar2.j(xVar2.f8411a, 0, 4, false);
+                if (xVar2.C() != 1380533830) {
                     return false;
                 }
-                lVar3.s(4, false);
-                vVar3.G(4);
-                lVar3.f(vVar3.f8581a, 0, 4, false);
-                if (vVar3.z() != 1464156752) {
+                lVar2.v(4, false);
+                xVar2.K(4);
+                lVar2.j(xVar2.f8411a, 0, 4, false);
+                if (xVar2.C() != 1464156752) {
                     return false;
                 }
                 return true;
@@ -86,75 +67,63 @@ public final class a implements o {
     }
 
     @Override
-    public final o c() {
-        int i10 = this.f9621a;
+    public final o b() {
+        int i10 = this.f8911a;
         return this;
     }
 
     @Override
-    public final void g(q qVar) {
-        switch (this.f9621a) {
+    public final void c(q qVar) {
+        switch (this.f8911a) {
             case 0:
-                this.f9623c.g(qVar);
-                return;
-            case 1:
-                this.f9623c.g(qVar);
+                this.f8913c.c(qVar);
                 return;
             default:
-                this.f9623c.g(qVar);
+                this.f8913c.c(qVar);
                 return;
         }
     }
 
     @Override
-    public final void h(long j3, long j10) {
-        switch (this.f9621a) {
+    public final void d(long j10, long j11) {
+        switch (this.f8911a) {
             case 0:
-                this.f9623c.h(j3, j10);
-                return;
-            case 1:
-                this.f9623c.h(j3, j10);
+                this.f8913c.d(j10, j11);
                 return;
             default:
-                this.f9623c.h(j3, j10);
+                this.f8913c.d(j10, j11);
                 return;
         }
     }
 
     @Override
-    public final List i() {
-        switch (this.f9621a) {
+    public final List e() {
+        switch (this.f8911a) {
             case 0:
-            case 1:
             default:
-                g0 g0Var = i0.f8749b;
-                return a1.f8712e;
+                l0 l0Var = n0.f8592b;
+                return x1.e;
         }
     }
 
     @Override
-    public final int m(p pVar, s sVar) {
-        switch (this.f9621a) {
+    public final int f(p pVar, s sVar) {
+        switch (this.f8911a) {
             case 0:
-                return this.f9623c.m(pVar, sVar);
-            case 1:
-                return this.f9623c.m(pVar, sVar);
+                return this.f8913c.f(pVar, sVar);
             default:
-                return this.f9623c.m(pVar, sVar);
+                return this.f8913c.f(pVar, sVar);
         }
     }
 
     @Override
     public final void release() {
-        int i10 = this.f9621a;
+        int i10 = this.f8911a;
     }
 
-    private final void a() {
+    private final void g() {
     }
 
-    private final void d() {
-    }
-
-    private final void e() {
+    private final void h() {
     }
 }

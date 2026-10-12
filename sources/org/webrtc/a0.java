@@ -1,8 +1,8 @@
 package org.webrtc;
 
-import org.webrtc.VideoFrame;
+import org.webrtc.VideoEncoderFactory;
 public abstract class a0 {
-    public static int a(VideoFrame.Buffer buffer) {
-        return 0;
+    public static VideoCodecInfo a(VideoEncoderFactory.VideoEncoderSelector videoEncoderSelector, int i10, int i11) {
+        return null;
     }
 }

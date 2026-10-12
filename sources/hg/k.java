@@ -1,132 +1,168 @@
 package hg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.aj;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.l20;
-public final class k extends FrameLayout {
-    public final int f11289a = 0;
-    public int f11290b;
-    public final Object f11291c;
-    public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate f11292e;
+import j$.util.Objects;
+import java.util.HashMap;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class k extends pg.a {
+    public final TLRPC.Dialog f10644c;
+    public final TLRPC.RecentMeUrl d;
+    public final TLRPC.TL_contact e;
+    public final boolean f10645f;
+    public final boolean f10646g;
+    public final boolean h;
+    public final TL_chatlists.TL_chatlists_chatlistUpdates f10647i;
+    public final int f10648j;
+    public final int f10649k;
+    public final String f10650l;
+    public final TLRPC.Chat f10651m;
+    public final TLRPC.User f10652n;
 
-    public k(n nVar, Context context) {
-        super(context);
-        this.f11292e = nVar;
-        this.f11290b = -1;
-        this.f11291c = new Rect();
-        this.d = new g6(this, 220L, js.h);
+    public k(m mVar, TL_chatlists.TL_chatlists_chatlistUpdates tL_chatlists_chatlistUpdates) {
+        super(17, true);
+        this.f10647i = tL_chatlists_chatlistUpdates;
+        int i10 = mVar.W;
+        mVar.W = i10 + 1;
+        this.f10649k = i10;
     }
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f11289a) {
-            case 1:
-                l20 l20Var = (l20) this.d;
-                Path path = (Path) this.f11291c;
-                aj ajVar = (aj) this.f11292e;
-                ch.d dVar = ajVar.E0;
-                if (dVar != null) {
-                    dVar.setBounds(0, (int) ajVar.Y1, getMeasuredWidth(), getMeasuredHeight());
-                    ajVar.E0.draw(canvas);
-                }
-                float dp = AndroidUtilities.dp(20.0f);
-                int dp2 = AndroidUtilities.dp(7.0f);
-                int dp3 = AndroidUtilities.dp(7.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f7 = dp2;
-                rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), getHeight() - dp3);
-                path.rewind();
-                path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                canvas.saveLayerAlpha(rectF, 255, 31);
-                super.dispatchDraw(canvas);
-                rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                l20Var.b(canvas, rectF, 1, 1.0f);
-                rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                l20Var.b(canvas, rectF, 3, 1.0f);
-                canvas.restore();
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final int hashCode() {
+        return Objects.hash(this.f10644c, this.f10651m, this.d, this.e, this.f10650l);
+    }
+
+    public k(m mVar, String str) {
+        super(22, false);
+        HashMap hashMap = mVar.Y;
+        Integer num = (Integer) hashMap.get(str);
+        if (num != null) {
+            this.f10649k = num.intValue();
+        } else {
+            int i10 = mVar.W;
+            mVar.W = i10 + 1;
+            this.f10649k = i10;
+            hashMap.put(str, Integer.valueOf(i10));
+        }
+        this.f10650l = str;
+    }
+
+    public k(m mVar, TLRPC.User user) {
+        super(23, false);
+        this.f10652n = user;
+        long j10 = user.f19363id;
+        LongSparseIntArray longSparseIntArray = mVar.X;
+        int i10 = longSparseIntArray.get(j10, -1);
+        if (i10 >= 0) {
+            this.f10649k = i10;
+            return;
+        }
+        int i11 = mVar.W;
+        mVar.W = i11 + 1;
+        this.f10649k = i11;
+        longSparseIntArray.put(user.f19363id, i11);
+    }
+
+    public k(m mVar, TLRPC.Chat chat) {
+        super(23, false);
+        this.f10651m = chat;
+        long j10 = chat.f19216id;
+        LongSparseIntArray longSparseIntArray = mVar.X;
+        int i10 = longSparseIntArray.get(-j10, -1);
+        if (i10 >= 0) {
+            this.f10649k = i10;
+            return;
+        }
+        int i11 = mVar.W;
+        mVar.W = i11 + 1;
+        this.f10649k = i11;
+        longSparseIntArray.put(-chat.f19216id, i11);
+    }
+
+    public k(m mVar, int i10, TLRPC.Dialog dialog) {
+        super(i10, true);
+        LongSparseIntArray longSparseIntArray = mVar.X;
+        boolean z10 = true;
+        this.f10644c = dialog;
+        if (dialog != null) {
+            int i11 = longSparseIntArray.get(dialog.f19220id, -1);
+            if (i11 >= 0) {
+                this.f10649k = i11;
+            } else {
+                int i12 = mVar.W;
+                mVar.W = i12 + 1;
+                this.f10649k = i12;
+                longSparseIntArray.put(dialog.f19220id, i12);
+            }
+        } else if (i10 == 19) {
+            this.f10649k = 5;
+        } else {
+            int i13 = mVar.W;
+            mVar.W = i13 + 1;
+            this.f10649k = i13;
+        }
+        if (dialog != null) {
+            int i14 = mVar.h;
+            int i15 = mVar.F;
+            if (i14 != 7 && i14 != 8) {
+                this.f10646g = dialog.pinned;
+            } else {
+                MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(i15).selectedDialogFilter[mVar.h == 8 ? (char) 1 : (char) 0];
+                this.f10646g = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(dialog.f19220id) < 0) ? false : z10;
+            }
+            this.h = dialog.isFolder;
+            this.f10645f = MessagesController.getInstance(i15).isForum(dialog.f19220id);
         }
     }
 
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f11289a) {
-            case 0:
-                float width = getWidth() / 2.0f;
-                n nVar = (n) this.f11292e;
-                float d = ((g6) this.d).d(nVar.f11319n.getWidth(), false);
-                Rect rect = (Rect) this.f11291c;
-                float f7 = d / 2.0f;
-                rect.set((int) (width - (nVar.f11319n.getScaleX() * f7)), (int) (((1.0f - nVar.f11319n.getScaleY()) * nVar.f11319n.getHeight()) + nVar.f11319n.getY()), (int) ((nVar.f11319n.getScaleX() * f7) + width), (int) (nVar.f11319n.getY() + nVar.f11319n.getHeight()));
-                nVar.f11320r.setBounds(rect);
-                nVar.f11320r.draw(canvas);
-                return super.drawChild(canvas, view, j3);
-            default:
-                return super.drawChild(canvas, view, j3);
+    public k(m mVar, TLRPC.RecentMeUrl recentMeUrl) {
+        super(4, true);
+        this.d = recentMeUrl;
+        int i10 = mVar.W;
+        mVar.W = i10 + 1;
+        this.f10649k = i10;
+    }
+
+    public k(m mVar, int i10) {
+        super(i10, true);
+        this.f10648j = i10;
+        if (i10 == 10) {
+            this.f10649k = 1;
+        } else if (i10 == 19) {
+            this.f10649k = 5;
+        } else {
+            int i11 = mVar.W;
+            mVar.W = i11 + 1;
+            this.f10649k = i11;
         }
     }
 
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f11289a) {
-            case 1:
-                int i14 = this.f11290b;
-                aj ajVar = (aj) this.f11292e;
-                int top = i14 - ajVar.f24390w.getTop();
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f11290b = getHeight();
-                if (ajVar.f24390w.getVisibility() == 0 && getHeight() - ajVar.f24390w.getTop() != top) {
-                    ajVar.f24390w.setTranslationY(ajVar.f24390w.getTranslationY() + ((getHeight() - ajVar.f24390w.getTop()) - top));
-                    ajVar.f24390w.animate().translationY(0.0f).setDuration(320L).setInterpolator(js.h).start();
-                    return;
-                }
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
+    public k(m mVar, int i10, int i11) {
+        super(5, true);
+        this.f10648j = i10;
+        int i12 = mVar.W;
+        mVar.W = i12 + 1;
+        this.f10649k = i12;
     }
 
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f11289a) {
-            case 0:
-                n nVar = (n) this.f11292e;
-                nVar.f11319n.measure(i10, i11);
-                invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f11290b, AndroidUtilities.dp(36.0f) + nVar.f11319n.getMeasuredHeight()), 1073741824));
-                if (this.f11290b < 0) {
-                    this.f11290b = getMeasuredHeight();
-                    return;
-                }
+    public k(m mVar, TLRPC.TL_contact tL_contact) {
+        super(6, true);
+        LongSparseIntArray longSparseIntArray = mVar.X;
+        this.e = tL_contact;
+        if (tL_contact != null) {
+            int i10 = longSparseIntArray.get(tL_contact.user_id, -1);
+            if (i10 > 0) {
+                this.f10649k = i10;
                 return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            }
+            int i11 = mVar.W;
+            mVar.W = i11 + 1;
+            this.f10649k = i11;
+            longSparseIntArray.put(tL_contact.user_id, i11);
+            return;
         }
-    }
-
-    public k(aj ajVar, Context context) {
-        super(context);
-        this.f11292e = ajVar;
-        this.f11291c = new Path();
-        this.d = new l20();
+        int i12 = mVar.W;
+        mVar.W = i12 + 1;
+        this.f10649k = i12;
     }
 }

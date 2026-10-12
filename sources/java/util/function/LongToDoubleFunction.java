@@ -1,4 +1,4 @@
 package java.util.function;
 public interface LongToDoubleFunction {
-    double applyAsDouble(long j3);
+    double applyAsDouble(long j10);
 }

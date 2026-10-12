@@ -1,74 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.R;
-import org.telegram.messenger.camera.CameraView;
-public final class pm implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout f29528a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class pm extends TextView {
+    public float f28367a;
+    public boolean f28368b;
+    public final Paint f28369c;
 
-    public pm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f29528a = chatAttachAlertPhotoLayout;
+    public pm(Context context, Paint paint) {
+        super(context);
+        this.f28369c = paint;
+        this.f28367a = 0.0f;
     }
 
     @Override
-    public final void onCameraInit() {
-        int i10;
-        float f7;
-        int i11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f29528a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f23837r0;
-        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.S;
-        String currentFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode();
-        String nextFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getNextFlashMode();
-        if (currentFlashMode != null && nextFlashMode != null) {
-            int i12 = 4;
-            if (currentFlashMode.equals(nextFlashMode)) {
-                for (int i13 = 0; i13 < 2; i13++) {
-                    imageViewArr[i13].setVisibility(4);
-                    imageViewArr[i13].setAlpha(0.0f);
-                    imageViewArr[i13].setTranslationY(0.0f);
-                }
-            } else {
-                ChatAttachAlertPhotoLayout.o0(imageViewArr[0], chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode());
-                for (int i14 = 0; i14 < 2; i14++) {
-                    ImageView imageView2 = imageViewArr[i14];
-                    if (i14 == 0) {
-                        i10 = 0;
-                    } else {
-                        i10 = 4;
-                    }
-                    imageView2.setVisibility(i10);
-                    ImageView imageView3 = imageViewArr[i14];
-                    if (i14 == 0 && chatAttachAlertPhotoLayout.f23806b0) {
-                        f7 = 1.0f;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    imageView3.setAlpha(f7);
-                    imageViewArr[i14].setTranslationY(0.0f);
-                }
+    public final void onDraw(Canvas canvas) {
+        int i10 = (int) ((this.f28367a * 130.0f) + 125.0f);
+        Paint paint = this.f28369c;
+        paint.setAlpha(i10);
+        if (!this.f28368b) {
+            float f7 = this.f28367a - 0.026666667f;
+            this.f28367a = f7;
+            if (f7 <= 0.0f) {
+                this.f28367a = 0.0f;
+                this.f28368b = true;
             }
-            if (chatAttachAlertPhotoLayout.P.isFrontface()) {
-                i11 = R.drawable.camera_revert1;
-            } else {
-                i11 = R.drawable.camera_revert2;
-            }
-            imageView.setImageResource(i11);
-            if (chatAttachAlertPhotoLayout.P.hasFrontFaceCamera()) {
-                i12 = 0;
-            }
-            imageView.setVisibility(i12);
-            if (!chatAttachAlertPhotoLayout.f23806b0) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                chatAttachAlertPhotoLayout.O = animatorSet;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.P, View.ALPHA, 0.0f, 1.0f));
-                chatAttachAlertPhotoLayout.O.setDuration(180L);
-                chatAttachAlertPhotoLayout.O.addListener(new t8(this, 9));
-                chatAttachAlertPhotoLayout.O.start();
+        } else {
+            float f10 = this.f28367a + 0.026666667f;
+            this.f28367a = f10;
+            if (f10 >= 1.0f) {
+                this.f28367a = 1.0f;
+                this.f28368b = false;
             }
         }
+        super.onDraw(canvas);
+        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
+        invalidate();
     }
 }

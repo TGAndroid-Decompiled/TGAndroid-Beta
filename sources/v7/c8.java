@@ -1,55 +1,28 @@
 package v7;
-
-import android.graphics.Path;
 public abstract class c8 {
-    public static boolean a(i0.d[] dVarArr, i0.d[] dVarArr2) {
-        if (dVarArr == null || dVarArr2 == null || dVarArr.length != dVarArr2.length) {
-            return false;
+    public static long[] a(long[]... jArr) {
+        boolean z10;
+        long j10 = 0;
+        for (long[] jArr2 : jArr) {
+            j10 += jArr2.length;
         }
-        for (int i10 = 0; i10 < dVarArr.length; i10++) {
-            i0.d dVar = dVarArr[i10];
-            char c10 = dVar.f11578a;
-            i0.d dVar2 = dVarArr2[i10];
-            if (c10 != dVar2.f11578a || dVar.f11579b.length != dVar2.f11579b.length) {
-                return false;
-            }
+        int i10 = (int) j10;
+        if (j10 == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return true;
+        u6.c(j10, "the total number of elements (%s) in the arrays must fit in an int", z10);
+        long[] jArr3 = new long[i10];
+        int i11 = 0;
+        for (long[] jArr4 : jArr) {
+            System.arraycopy(jArr4, 0, jArr3, i11, jArr4.length);
+            i11 += jArr4.length;
+        }
+        return jArr3;
     }
 
-    public static float[] b(float[] fArr, int i10) {
-        if (i10 >= 0) {
-            int length = fArr.length;
-            if (length >= 0) {
-                int min = Math.min(i10, length);
-                float[] fArr2 = new float[i10];
-                System.arraycopy(fArr, 0, fArr2, 0, min);
-                return fArr2;
-            }
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public static i0.d[] c(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.c8.c(java.lang.String):i0.d[]");
-    }
-
-    public static Path d(String str) {
-        Path path = new Path();
-        try {
-            i0.d.b(c(str), path);
-            return path;
-        } catch (RuntimeException e7) {
-            throw new RuntimeException("Error in parsing ".concat(str), e7);
-        }
-    }
-
-    public static i0.d[] e(i0.d[] dVarArr) {
-        i0.d[] dVarArr2 = new i0.d[dVarArr.length];
-        for (int i10 = 0; i10 < dVarArr.length; i10++) {
-            dVarArr2[i10] = new i0.d(dVarArr[i10]);
-        }
-        return dVarArr2;
+    public static int b(long j10) {
+        return (int) (j10 ^ (j10 >>> 32));
     }
 }

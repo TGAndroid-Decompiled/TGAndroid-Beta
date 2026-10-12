@@ -1,75 +1,72 @@
 package c3;
 
-import android.content.Context;
-import android.os.Looper;
-import java.nio.ByteBuffer;
+import v7.u6;
 public final class j0 {
-    public final int f4129a;
-    public boolean f4130b;
+    public final byte[] f4256a = new byte[10];
+    public boolean f4257b;
+    public int f4258c;
+    public long d;
+    public int e;
+    public int f4259f;
+    public int f4260g;
 
-    public j0() {
-        this.f4129a = 4;
+    public final void a(i0 i0Var, h0 h0Var) {
+        if (this.f4258c > 0) {
+            i0Var.c(this.d, this.e, this.f4259f, this.f4260g, h0Var);
+            this.f4258c = 0;
+        }
     }
 
-    public void a(boolean z10) {
-        switch (this.f4129a) {
-            case 2:
-                if (this.f4130b != z10) {
-                    this.f4130b = z10;
-                    return;
+    public final void b(i0 i0Var, long j10, int i10, int i11, int i12, h0 h0Var) {
+        boolean z10;
+        if (this.f4260g <= i11 + i12) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.o("TrueHD chunk samples must be contiguous in the sample queue.", z10);
+        if (this.f4257b) {
+            int i13 = this.f4258c;
+            int i14 = i13 + 1;
+            this.f4258c = i14;
+            if (i13 == 0) {
+                this.d = j10;
+                this.e = i10;
+                this.f4259f = 0;
+            }
+            this.f4259f += i11;
+            this.f4260g = i12;
+            if (i14 >= 16) {
+                a(i0Var, h0Var);
+            }
+        }
+    }
+
+    public final void c(p pVar) {
+        char c10;
+        if (!this.f4257b) {
+            int i10 = 0;
+            byte[] bArr = this.f4256a;
+            pVar.a(0, 10, bArr);
+            pVar.q();
+            if (bArr[4] == -8 && bArr[5] == 114 && bArr[6] == 111) {
+                byte b10 = bArr[7];
+                if ((b10 & 254) == 186) {
+                    if ((b10 & 255) == 187) {
+                        i10 = 1;
+                    }
+                    if (i10 != 0) {
+                        c10 = '\t';
+                    } else {
+                        c10 = '\b';
+                    }
+                    i10 = 40 << ((bArr[c10] >> 4) & 7);
                 }
+            }
+            if (i10 == 0) {
                 return;
-            default:
-                if (this.f4130b != z10) {
-                    this.f4130b = z10;
-                    return;
-                }
-                return;
+            }
+            this.f4257b = true;
         }
-    }
-
-    public j0(Context context, Looper looper, e2.x xVar, int i10) {
-        this.f4129a = i10;
-        switch (i10) {
-            case 3:
-                new na.d(context.getApplicationContext());
-                xVar.a(looper, null);
-                return;
-            default:
-                new t7.t(context.getApplicationContext());
-                xVar.a(looper, null);
-                return;
-        }
-    }
-
-    public j0(boolean z10) {
-        this.f4129a = 0;
-        this.f4130b = z10;
-    }
-
-    public j0(f2.p pVar, f2.r rVar) {
-        this.f4129a = 1;
-        int i10 = rVar.f9617a;
-        ByteBuffer byteBuffer = rVar.f9618b;
-        e2.d.b(i10 == 6 || i10 == 3);
-        int min = Math.min(4, byteBuffer.remaining());
-        byte[] bArr = new byte[min];
-        byteBuffer.asReadOnlyBuffer().get(bArr);
-        a4.g gVar = new a4.g(bArr, min);
-        pVar.getClass();
-        if (gVar.h()) {
-            this.f4130b = false;
-            return;
-        }
-        int i11 = gVar.i(2);
-        if (!gVar.h()) {
-            this.f4130b = true;
-            return;
-        }
-        if (i11 != 3 && i11 != 0) {
-            gVar.h();
-        }
-        gVar.s();
-        throw new Exception();
     }
 }

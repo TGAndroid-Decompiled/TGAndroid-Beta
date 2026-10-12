@@ -1,16 +1,20 @@
 package y9;
-public final class a implements ia.d {
-    public static final a f52090a = new Object();
-    public static final ia.c f52091b = ia.c.c("arch");
-    public static final ia.c f52092c = ia.c.c("libraryName");
-    public static final ia.c d = ia.c.c("buildId");
+public final class a implements ja.d {
+    public static final a f48697a = new Object();
+    public static final ja.c f48698b = ja.c.c("rolloutId");
+    public static final ja.c f48699c = ja.c.c("parameterKey");
+    public static final ja.c d = ja.c.c("parameterValue");
+    public static final ja.c e = ja.c.c("variantId");
+    public static final ja.c f48700f = ja.c.c("templateVersion");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ia.e eVar = (ia.e) obj2;
-        c0 c0Var = (c0) ((f1) obj);
-        eVar.a(f52091b, c0Var.f52124a);
-        eVar.a(f52092c, c0Var.f52125b);
-        eVar.a(d, c0Var.f52126c);
+        ja.e eVar = (ja.e) obj2;
+        b bVar = (b) ((l) obj);
+        eVar.d(f48698b, bVar.f48701b);
+        eVar.d(f48699c, bVar.f48702c);
+        eVar.d(d, bVar.d);
+        eVar.d(e, bVar.e);
+        eVar.f(f48700f, bVar.f48703f);
     }
 }

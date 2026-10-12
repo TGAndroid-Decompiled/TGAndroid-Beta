@@ -1,27 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public class fh extends ik0 {
-    public dh f26070r;
-    public eh f26071s;
-    public final int v;
-    public final ch f26072w;
+import android.animation.ValueAnimator;
+public final class fh implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25031a;
+    public final vi f25032b;
 
-    public fh(Context context) {
-        this(context, 32);
+    public fh(vi viVar, int i10) {
+        this.f25031a = i10;
+        this.f25032b = viVar;
     }
 
-    public dh getCurrentState() {
-        return this.f26070r;
-    }
-
-    public final void j(org.telegram.ui.Components.dh r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fh.j(org.telegram.ui.Components.dh, boolean):void");
-    }
-
-    public fh(Context context, int i10) {
-        super(context);
-        this.f26072w = new ch(this, 0);
-        this.v = i10;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25031a) {
+            case 0:
+                this.f25032b.f2();
+                return;
+            case 1:
+                this.f25032b.G0.invalidate();
+                return;
+            case 2:
+                vi.n(this.f25032b, valueAnimator);
+                return;
+            case 3:
+                vi viVar = this.f25032b;
+                viVar.getClass();
+                viVar.O1(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                vi viVar2 = this.f25032b;
+                ni niVar = viVar2.B0;
+                dl dlVar = viVar2.f30054w0;
+                if (niVar == dlVar && dlVar != null) {
+                    dlVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                this.f25032b.f2();
+                return;
+        }
     }
 }

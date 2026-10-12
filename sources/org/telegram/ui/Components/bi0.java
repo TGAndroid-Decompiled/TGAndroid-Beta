@@ -1,388 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.SparseIntArray;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class bi0 extends FrameLayout {
-    public float E;
-    public ValueAnimator F;
-    public int G;
-    public AnimationNotificationsLocker H;
-    public org.telegram.ui.ActionBar.c6 I;
-    public int J;
-    public zh0 K;
-    public Rect L;
-    public float M;
-    public float N;
-    public Runnable O;
-    public boolean P;
-    public SparseIntArray f24649a;
-    public float f24650b;
-    public float f24651c;
-    public n4.l d;
-    public boolean f24652e;
-    public boolean f24653f;
-    public boolean h;
-    public Paint f24654n;
-    public Paint f24655r;
-    public int f24656s;
-    public Path v;
-    public RectF f24657w;
-    public ArrayList f24658x;
-    public boolean f24659y;
+import org.telegram.messenger.LocaleController;
+public final class bi0 {
+    public int f23767a;
+    public final ad f23768b;
+    public final g6 e;
+    public Drawable f23772i;
+    public Drawable f23773j;
+    public yj0 f23774k;
+    public h11 f23775l;
+    public ha0 f23781r;
+    public boolean f23782s;
+    public boolean f23783t;
+    public int f23784u;
+    public long f23785w;
+    public int f23786x;
+    public final ei0 f23787y;
+    public final RectF f23769c = new RectF();
+    public final RectF d = new RectF();
+    public final RectF f23770f = new RectF();
+    public final RectF f23771g = new RectF();
+    public final Rect h = new Rect();
+    public float f23776m = 1.0f;
+    public boolean f23777n = false;
+    public boolean f23778o = false;
+    public boolean f23779p = false;
+    public final float f23780q = 1.0f;
+    public int v = 0;
 
-    public final void a(float f7, float f10) {
-        ValueAnimator duration = ValueAnimator.ofFloat(this.f24650b, f7).setDuration(Math.max(0.5f, Math.abs(this.f24650b - f7) - Math.min(0.2f, f10)) * 300.0f);
-        duration.setInterpolator(js.f27634f);
-        this.H.lock();
-        duration.addUpdateListener(new yh0(this, 0));
-        duration.addListener(new org.telegram.ui.ActionBar.y0(this, f7, 5));
-        duration.start();
+    public bi0(ei0 ei0Var) {
+        this.f23787y = ei0Var;
+        this.f23768b = new ad(ei0Var);
+        this.e = new g6(ei0Var, 0L, 250L, es.f24771f);
     }
 
-    @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        super.addView(view, i10, layoutParams);
-        c(true);
-    }
-
-    public final void b(boolean z10) {
-        if (this.f24653f) {
+    public final void a() {
+        float d = this.e.d(1.0f, false);
+        if (d != 1.0f) {
+            RectF rectF = this.f23771g;
+            float f7 = rectF.left;
+            RectF rectF2 = this.f23770f;
+            float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
+            RectF rectF3 = this.d;
+            rectF3.left = lerp;
+            rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
             return;
         }
-        if (!z10) {
-            this.G = -1;
-            this.f24650b = 0.0f;
-            c(true);
-            return;
+        this.f23777n = false;
+        if (this.f23778o) {
+            this.f23779p = true;
         }
-        a(0.0f, 0.0f);
     }
 
-    public final void c(boolean z10) {
-        View view;
-        float f7;
-        float f10;
-        ArrayList arrayList = this.f24658x;
-        if (this.M != this.f24651c || this.N != this.f24650b) {
-            if (!arrayList.isEmpty()) {
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((ai0) arrayList.get(i10)).a(this.f24651c, this.f24650b);
-                }
-            }
-            this.M = this.f24651c;
-            this.N = this.f24650b;
+    public final float b() {
+        boolean z10 = this.f23778o;
+        g6 g6Var = this.e;
+        if (z10) {
+            return 1.0f - g6Var.d(1.0f, false);
         }
-        View childAt = getChildAt(0);
-        int i11 = this.G;
-        if (i11 >= 0 && i11 < getChildCount()) {
-            view = getChildAt(this.G);
+        if (!this.f23777n) {
+            return 1.0f;
+        }
+        return g6Var.d(1.0f, false);
+    }
+
+    public final void c(String str) {
+        h11 h11Var = new h11(str, 11.0f, AndroidUtilities.bold());
+        h11Var.n(3);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        h11Var.a();
+        this.f23775l = h11Var;
+    }
+
+    public final void d(int i10, int i11, int i12) {
+        Drawable drawable;
+        Drawable drawable2 = null;
+        ei0 ei0Var = this.f23787y;
+        if (i10 != 0) {
+            yj0 yj0Var = new yj0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
+            yj0Var.R(ei0Var);
+            yj0Var.start();
+            this.f23774k = yj0Var;
         } else {
-            view = null;
+            this.f23774k = null;
         }
-        childAt.setTranslationX((-this.f24650b) * getWidth() * 0.5f);
-        float f11 = ((1.0f - this.f24650b) * 0.05f) + 0.95f;
-        childAt.setScaleX(f11);
-        childAt.setScaleY(f11);
-        if (view != null) {
-            view.setTranslationX((1.0f - this.f24650b) * getWidth());
-        }
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt2 = getChildAt(i12);
-            if (i12 == 0) {
-                if (this.f24650b == 1.0f && childAt2.getVisibility() != 4) {
-                    childAt2.setVisibility(4);
-                }
-                if (this.f24650b != 1.0f && childAt2.getVisibility() != 0) {
-                    childAt2.setVisibility(0);
-                }
-            } else if (i12 == this.G) {
-                if (this.f24650b == 0.0f && childAt2.getVisibility() != 4) {
-                    childAt2.setVisibility(4);
-                }
-                if (this.f24650b != 0.0f && childAt2.getVisibility() != 0) {
-                    childAt2.setVisibility(0);
-                }
-            } else {
-                childAt2.setVisibility(4);
-            }
-        }
-        float measuredWidth = childAt.getMeasuredWidth();
-        float measuredHeight = childAt.getMeasuredHeight();
-        if (view != null) {
-            f7 = view.getMeasuredWidth();
-            f10 = this.E;
-            if (f10 == 0.0f) {
-                f10 = view.getMeasuredHeight();
-            }
+        if (i11 != 0) {
+            drawable = ei0Var.getResources().getDrawable(i11).mutate();
         } else {
-            f7 = 0.0f;
-            f10 = 0.0f;
+            drawable = null;
         }
-        if (childAt.getMeasuredWidth() != 0 && childAt.getMeasuredHeight() != 0) {
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) getParent();
-            float f12 = this.f24650b;
-            float f13 = ((f7 - measuredWidth) * f12) + measuredWidth;
-            float y3 = com.google.android.gms.internal.vision.e2.y(f10, measuredHeight, f12, measuredHeight) + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingBottom() + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingTop();
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f20131a = false;
-            actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleX((f13 + (actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingRight() + actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingLeft())) / actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth());
-            if (z10) {
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(Math.min(1.0f, y3 / actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight()));
-            }
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f20131a = true;
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                View childAt3 = getChildAt(i13);
-                childAt3.setPivotX(0.0f);
-                childAt3.setPivotY(0.0f);
-            }
-            invalidate();
+        this.f23772i = drawable;
+        if (i12 != 0) {
+            drawable2 = ei0Var.getResources().getDrawable(i12).mutate();
         }
-    }
-
-    public final boolean d(MotionEvent motionEvent, View view) {
-        Rect rect = this.L;
-        view.getHitRect(rect);
-        if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (view.canScrollHorizontally(-1) || (view instanceof org.telegram.ui.ActionBar.b1))) {
-            return true;
+        this.f23773j = drawable2;
+        yj0 yj0Var2 = this.f23774k;
+        Rect rect = this.h;
+        if (yj0Var2 != null) {
+            yj0Var2.setBounds(rect);
         }
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-                if (d(motionEvent, viewGroup.getChildAt(i10))) {
-                    return true;
-                }
-            }
+        Drawable drawable3 = this.f23772i;
+        if (drawable3 != null) {
+            drawable3.setBounds(rect);
         }
-        return false;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Path path = this.v;
-        RectF rectF = this.f24657w;
-        if (getChildCount() != 0) {
-            View childAt = getChildAt(0);
-            float top = childAt.getTop();
-            float measuredWidth = childAt.getMeasuredWidth();
-            float measuredHeight = childAt.getMeasuredHeight();
-            int i10 = this.G;
-            if (i10 != -1 && i10 < getChildCount()) {
-                View childAt2 = getChildAt(this.G);
-                float top2 = childAt2.getTop();
-                float measuredWidth2 = childAt2.getMeasuredWidth();
-                float f7 = this.E;
-                if (f7 == 0.0f) {
-                    f7 = childAt2.getMeasuredHeight();
-                }
-                if (childAt.getMeasuredWidth() != 0 && childAt.getMeasuredHeight() != 0 && childAt2.getMeasuredWidth() != 0 && childAt2.getMeasuredHeight() != 0) {
-                    top = AndroidUtilities.lerp(top, top2, this.f24650b);
-                    measuredWidth = AndroidUtilities.lerp(measuredWidth, measuredWidth2, this.f24650b);
-                    measuredHeight = AndroidUtilities.lerp(measuredHeight, f7, this.f24650b);
-                }
-            }
-            int save = canvas.save();
-            path.rewind();
-            int dp = AndroidUtilities.dp(12.0f);
-            if (this.P) {
-                rectF.set(getWidth() - measuredWidth, top, getWidth(), measuredHeight + top);
-            } else {
-                rectF.set(0.0f, top, measuredWidth, measuredHeight + top);
-            }
-            float f10 = dp;
-            path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restoreToCount(save);
-            if (this.K != null && this.J != rectF.height()) {
-                zh0 zh0Var = this.K;
-                int height = (int) rectF.height();
-                this.J = height;
-                org.telegram.ui.ActionBar.m2[] m2VarArr = (org.telegram.ui.ActionBar.m2[]) ((org.telegram.ui.ju) zh0Var).f39286b;
-                org.telegram.ui.ActionBar.m2 m2Var = m2VarArr[0];
-                if (m2Var != null && m2Var.getFragmentView() != null && m2VarArr[0].isInPreviewMode()) {
-                    ViewGroup.LayoutParams layoutParams = m2VarArr[0].getFragmentView().getLayoutParams();
-                    if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
-                        ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin = AndroidUtilities.dp(48.0f) + height;
-                        m2VarArr[0].getFragmentView().setLayoutParams(layoutParams);
-                    }
-                }
-            }
+        Drawable drawable4 = this.f23773j;
+        if (drawable4 != null) {
+            drawable4.setBounds(rect);
         }
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        float f7;
-        RectF rectF = this.f24657w;
-        int action = motionEvent.getAction() & 255;
-        if (this.f24653f) {
-            z10 = true;
-        } else if (!((GestureDetector) this.d.f16326a).onTouchEvent(motionEvent) && (action == 1 || action == 3)) {
-            if (this.f24652e) {
-                this.f24652e = false;
-                this.h = false;
-                if (this.f24650b >= 0.5f) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                a(f7, 0.0f);
-            } else if (this.h) {
-                this.f24652e = false;
-                this.h = false;
-            }
-            z10 = false;
-        } else {
-            z10 = this.f24652e;
-        }
-        if (!z10) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (rectF != null) {
-                rectF.contains(motionEvent.getX(), motionEvent.getY());
-            }
-            if (actionMasked == 0 && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-                callOnClick();
-                return true;
-            }
-            int i10 = this.G;
-            if (i10 >= 0 && i10 < getChildCount()) {
-                View childAt = getChildAt(0);
-                View childAt2 = getChildAt(this.G);
-                if (this.f24650b > 0.5f) {
-                    childAt = childAt2;
-                }
-                boolean dispatchTouchEvent = childAt.dispatchTouchEvent(motionEvent);
-                if ((dispatchTouchEvent || actionMasked != 0) && !dispatchTouchEvent && !onTouchEvent(motionEvent)) {
-                    return false;
-                }
-            } else {
-                return super.dispatchTouchEvent(motionEvent);
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        Paint paint = this.f24654n;
-        Paint paint2 = this.f24655r;
-        int indexOfChild = indexOfChild(view);
-        int save = canvas.save();
-        if (indexOfChild != 0) {
-            int i10 = this.f24656s;
-            if (i10 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, this.I));
-            } else {
-                paint2.setColor(i10);
-            }
-            canvas.drawRect(view.getX(), 0.0f, view.getX() + view.getMeasuredWidth(), getMeasuredHeight(), paint2);
-        }
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        if (indexOfChild == 0) {
-            paint.setAlpha((int) (this.f24650b * 64.0f));
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
-        }
-        canvas.restoreToCount(save);
-        return drawChild;
-    }
-
-    public final void e(int i10) {
-        if (this.f24653f) {
-            return;
-        }
-        this.G = i10;
-        this.E = this.f24649a.get(i10);
-        a(1.0f, 0.0f);
-    }
-
-    public final void f(int i10, int i11, boolean z10) {
-        this.f24649a.put(i10, i11);
-        int i12 = this.G;
-        if (i10 == i12 && i12 >= 0 && i12 < getChildCount()) {
-            ValueAnimator valueAnimator = this.F;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.F = null;
-            }
-            if (z10) {
-                View childAt = getChildAt(this.G);
-                float f7 = this.E;
-                if (f7 == 0.0f) {
-                    f7 = childAt.getMeasuredHeight();
-                }
-                ValueAnimator duration = ValueAnimator.ofFloat(f7, i11).setDuration(240L);
-                duration.setInterpolator(du.f25466e);
-                duration.addUpdateListener(new yh0(this, 1));
-                this.f24653f = true;
-                duration.addListener(new zd0(this, 5));
-                duration.start();
-                this.F = duration;
-                return;
-            }
-            this.E = i11;
-            c(true);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        for (int i14 = 0; i14 < getChildCount(); i14++) {
-            View childAt = getChildAt(i14);
-            if ((childAt.getLayoutParams() instanceof FrameLayout.LayoutParams) && ((FrameLayout.LayoutParams) childAt.getLayoutParams()).gravity == 80) {
-                if (this.P) {
-                    int i15 = i12 - i10;
-                    int i16 = i13 - i11;
-                    childAt.layout(i15 - childAt.getMeasuredWidth(), i16 - childAt.getMeasuredHeight(), i15, i16);
-                } else {
-                    int i17 = i13 - i11;
-                    childAt.layout(0, i17 - childAt.getMeasuredHeight(), childAt.getMeasuredWidth(), i17);
-                }
-            } else if (this.P) {
-                int i18 = i12 - i10;
-                childAt.layout(i18 - childAt.getMeasuredWidth(), 0, i18, childAt.getMeasuredHeight());
-            } else {
-                childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-            }
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        c(true);
-    }
-
-    public void setForegroundColor(int i10) {
-        this.f24656s = i10;
-    }
-
-    public void setOnForegroundOpenFinished(Runnable runnable) {
-        this.O = runnable;
-    }
-
-    public void setOnHeightUpdateListener(zh0 zh0Var) {
-        this.K = zh0Var;
-    }
-
-    public void setStickToRight(boolean z10) {
-        this.P = z10;
-    }
-
-    public void setSwipeBackDisallowed(boolean z10) {
-        this.f24659y = z10;
+    public bi0(ei0 ei0Var, ci0 ci0Var) {
+        this.f23787y = ei0Var;
+        this.f23768b = new ad(ei0Var);
+        this.e = new g6(ei0Var, 0L, 250L, es.f24771f);
+        d(0, ci0Var.f24085b, ci0Var.f24086c);
+        c(LocaleController.getString(ci0Var.f24084a));
     }
 }

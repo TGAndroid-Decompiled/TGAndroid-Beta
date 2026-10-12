@@ -4,20 +4,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class z extends o6.a {
     public static final Parcelable.Creator<z> CREATOR = new c(21);
-    public final int f52085a;
-    public final m f52086b;
+    public final int f48692a;
+    public final m f48693b;
 
     public z(int i10, m mVar) {
-        this.f52085a = i10;
-        this.f52086b = mVar;
+        this.f48692a = i10;
+        this.f48693b = mVar;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.c0.q(parcel, 20293);
-        w7.c0.s(parcel, 2, 4);
-        parcel.writeInt(this.f52085a);
-        w7.c0.k(parcel, 3, this.f52086b, i10);
-        w7.c0.r(parcel, q6);
+        int q6 = w7.g0.q(parcel, 20293);
+        w7.g0.s(parcel, 2, 4);
+        parcel.writeInt(this.f48692a);
+        w7.g0.k(parcel, 3, this.f48693b, i10);
+        w7.g0.r(parcel, q6);
     }
 }

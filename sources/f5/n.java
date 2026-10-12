@@ -13,7 +13,7 @@ public final class n extends com.googlecode.mp4parser.b {
         ByteBuffer allocate = ByteBuffer.allocate(8);
         e5.b.r(0, allocate);
         e5.b.q(0, allocate);
-        allocate.putInt(this.f8023b.size());
+        allocate.putInt(this.f6255b.size());
         writableByteChannel.write((ByteBuffer) allocate.rewind());
         c(writableByteChannel);
     }
@@ -22,12 +22,12 @@ public final class n extends com.googlecode.mp4parser.b {
     public final long getSize() {
         int i10;
         long b10 = b();
-        long j3 = 8 + b10;
+        long j10 = 8 + b10;
         if (b10 + 16 >= 4294967296L) {
             i10 = 16;
         } else {
             i10 = 8;
         }
-        return j3 + i10;
+        return j10 + i10;
     }
 }

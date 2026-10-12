@@ -1,10 +1,68 @@
 package rg;
 
+import android.content.Context;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class i extends FrameLayout {
-    public TextView f47485a;
-    public TextView f47486b;
-    public ImageView f47487c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.g6;
+import org.telegram.ui.Components.il0;
+public abstract class i extends FrameLayout {
+    public final Paint f44280a;
+    public final Paint f44281b;
+    public final Paint f44282c;
+    public int d;
+    public final g6 e;
+    public boolean f44283f;
+    public final j h;
+
+    public i(j jVar, Context context) {
+        super(context);
+        this.h = jVar;
+        Paint paint = new Paint(1);
+        this.f44280a = paint;
+        Paint paint2 = new Paint(1);
+        this.f44281b = paint2;
+        Paint paint3 = new Paint(1);
+        this.f44282c = paint3;
+        this.e = new g6(this, 0L, 250L, es.h);
+        this.f44283f = true;
+        setWillNotDraw(false);
+        paint.setColor(-1);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f)}, 0.5f));
+        paint.setShadowLayer(AndroidUtilities.dpf2(0.75f), 0.0f, 0.0f, 1342177280);
+        paint2.setColor(-15033089);
+        paint3.setColor(-1);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(AndroidUtilities.dpf2(2.66f));
+        paint3.setShadowLayer(AndroidUtilities.dpf2(0.75f), 0.0f, 0.0f, 1342177280);
+    }
+
+    public abstract int a(float f7, float f10);
+
+    public final void b() {
+        j jVar = this.h;
+        il0 selectionBounds = jVar.getSelectionBounds();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
+        layoutParams.leftMargin = (int) selectionBounds.f25990a;
+        layoutParams.topMargin = (int) selectionBounds.f25991b;
+        layoutParams.width = (int) selectionBounds.f25992c;
+        layoutParams.height = (int) selectionBounds.d;
+        setLayoutParams(layoutParams);
+        setRotation(jVar.getRotation());
+    }
+
+    public float getShowAlpha() {
+        return this.e.e(this.f44283f);
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r14) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.i.onTouchEvent(android.view.MotionEvent):boolean");
+    }
 }

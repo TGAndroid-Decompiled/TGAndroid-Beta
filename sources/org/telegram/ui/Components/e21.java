@@ -1,32 +1,21 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class e21 implements Runnable {
-    public final int f25555a;
-    public final Runnable f25556b;
-    public final Runnable f25557c;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class e21 extends mm0 {
+    public final ThemeEditorView.EditorAlert V2;
 
-    public e21(Runnable runnable, Runnable runnable2, int i10) {
-        this.f25555a = i10;
-        this.f25556b = runnable;
-        this.f25557c = runnable2;
+    public e21(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context, null);
+        this.V2 = editorAlert;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25555a) {
-            case 0:
-                i21.b(this.f25556b);
-                Runnable runnable = this.f25557c;
-                if (runnable != null) {
-                    AndroidUtilities.runOnUIThread(runnable);
-                    return;
-                }
-                return;
-            default:
-                this.f25556b.run();
-                this.f25557c.run();
-                return;
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(48.0f) + this.V2.E + AndroidUtilities.statusBarHeight) {
+            return true;
         }
+        return false;
     }
 }

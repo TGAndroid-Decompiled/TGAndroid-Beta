@@ -1,81 +1,35 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class x91 implements Runnable {
-    public final int f43869a;
-    public final db1 f43870b;
-    public final ArrayList f43871c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class x91 extends ReplacementSpan {
+    public final org.telegram.ui.Components.h11 f41804a = new org.telegram.ui.Components.h11(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
+    public final Paint f41805b = new Paint(1);
+    public final org.telegram.ui.ActionBar.c6 f41806c;
 
-    public x91(db1 db1Var, ArrayList arrayList, int i10) {
-        this.f43869a = i10;
-        this.f43870b = db1Var;
-        this.f43871c = arrayList;
+    public x91(org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f41806c = c6Var;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f43869a) {
-            case 0:
-                db1 db1Var = this.f43870b;
-                ArrayList arrayList = db1Var.f36749s0;
-                ArrayList arrayList2 = db1Var.f36747r0;
-                int i10 = 0;
-                db1Var.f36754w0 = false;
-                ArrayList arrayList3 = this.f43871c;
-                if (!arrayList3.isEmpty()) {
-                    int size = arrayList3.size();
-                    for (int i11 = 0; i11 < size; i11++) {
-                        MessageObject messageObject = (MessageObject) arrayList3.get(i11);
-                        int i12 = db1Var.f36744p0.get(messageObject.getId(), -1);
-                        if (i12 >= 0 && ((ab1) arrayList2.get(i12)).b() == messageObject.getId()) {
-                            ((ab1) arrayList2.get(i12)).f35755b = messageObject;
-                        }
-                    }
-                    arrayList.clear();
-                    int size2 = arrayList2.size();
-                    while (true) {
-                        if (i10 < size2) {
-                            ab1 ab1Var = (ab1) arrayList2.get(i10);
-                            if (ab1Var.f35755b == null) {
-                                db1Var.f36743o0 = ab1Var.b();
-                            } else {
-                                arrayList.add(ab1Var);
-                                i10++;
-                            }
-                        }
-                    }
-                    db1Var.o0();
-                    db1Var.S.setItemAnimator(null);
-                    db1Var.f36758y0.f();
-                    return;
-                }
-                return;
-            default:
-                db1 db1Var2 = this.f43870b;
-                ai.e9 e9Var = db1Var2.f36759z0;
-                e9Var.getClass();
-                ArrayList arrayList4 = this.f43871c;
-                int size3 = arrayList4.size();
-                int i13 = 0;
-                while (true) {
-                    if (i13 < size3) {
-                        Object obj = arrayList4.get(i13);
-                        i13++;
-                        if (!e9Var.f898j.containsKey((Integer) obj)) {
-                            z10 = true;
-                        }
-                    } else {
-                        z10 = false;
-                    }
-                }
-                if (!e9Var.q(0, arrayList4, z10)) {
-                    db1Var2.j0();
-                    db1Var2.o0();
-                    return;
-                }
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
+        int w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Oh, this.f41806c);
+        Paint paint2 = this.f41805b;
+        paint2.setColor(w02);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f7, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f7 + this.f41804a.f25473c, AndroidUtilities.dp(9.0f) + dp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
+        this.f41804a.c(f7 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (AndroidUtilities.dp(16.0f) + this.f41804a.f25473c);
     }
 }

@@ -1,31 +1,84 @@
 package v8;
 
-import android.os.Parcel;
 import android.os.Parcelable;
-import w7.c0;
-public final class s extends o6.a {
-    public static final Parcelable.Creator<s> CREATOR = new r(2);
-    public final String f49734a;
-    public final String f49735b;
-    public final int f49736c;
-    public final int d;
+import com.google.android.gms.wallet.FullWallet;
+import com.google.android.gms.wallet.MaskedWallet;
+import com.google.android.gms.wallet.wobs.CommonWalletObject;
+public final class s implements Parcelable.Creator {
+    public final int f46924a;
 
-    public s(int i10, int i11, String str, String str2) {
-        this.f49734a = str;
-        this.f49735b = str2;
-        this.f49736c = i10;
-        this.d = i11;
+    public s(int i10) {
+        this.f46924a = i10;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = c0.q(parcel, 20293);
-        c0.l(parcel, 2, this.f49734a);
-        c0.l(parcel, 3, this.f49735b);
-        c0.s(parcel, 4, 4);
-        parcel.writeInt(this.f49736c);
-        c0.s(parcel, 5, 4);
-        parcel.writeInt(this.d);
-        c0.r(parcel, q6);
+    public final java.lang.Object createFromParcel(android.os.Parcel r27) {
+        throw new UnsupportedOperationException("Method not decompiled: v8.s.createFromParcel(android.os.Parcel):java.lang.Object");
+    }
+
+    @Override
+    public final Object[] newArray(int i10) {
+        switch (this.f46924a) {
+            case 0:
+                return new r[i10];
+            case 1:
+                return new m[i10];
+            case 2:
+                return new n[i10];
+            case 3:
+                return new t[i10];
+            case 4:
+                return new q[i10];
+            case 5:
+                return new b[i10];
+            case 6:
+                return new c[i10];
+            case 7:
+                return new FullWallet[i10];
+            case 8:
+                return new d[i10];
+            case 9:
+                return new e[i10];
+            case 10:
+                return new f[i10];
+            case 11:
+                return new MaskedWallet[i10];
+            case 12:
+                return new g[i10];
+            case 13:
+                return new h[i10];
+            case 14:
+                return new CommonWalletObject[i10];
+            case 15:
+                return new w8.a[i10];
+            case 16:
+                return new w8.b[i10];
+            case 17:
+                return new w8.d[i10];
+            case 18:
+                return new w8.c[i10];
+            case 19:
+                return new w8.e[i10];
+            case 20:
+                return new w8.f[i10];
+            case 21:
+                return new w8.g[i10];
+            case 22:
+                return new w8.h[i10];
+            case 23:
+                return new x5.e[i10];
+            case 24:
+                return new x5.f[i10];
+            case 25:
+                return new x5.a[i10];
+            case 26:
+                return new x5.b[i10];
+            case 27:
+                return new x5.c[i10];
+            case 28:
+                return new x5.d[i10];
+            default:
+                return new x5.g[i10];
+        }
     }
 }

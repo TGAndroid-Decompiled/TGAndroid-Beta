@@ -11,23 +11,23 @@ import android.os.RemoteException;
 import android.util.Log;
 import com.google.android.gms.common.api.Scope;
 public final class f extends o6.a {
-    public static final Parcelable.Creator<f> CREATOR = new m8.h(21);
+    public static final Parcelable.Creator<f> CREATOR = new m8.h(19);
     public static final Scope[] E = new Scope[0];
     public static final k6.c[] F = new k6.c[0];
-    public final int f16387a;
-    public final int f16388b;
-    public final int f16389c;
+    public final int f16073a;
+    public final int f16074b;
+    public final int f16075c;
     public String d;
-    public IBinder f16390e;
-    public Scope[] f16391f;
+    public IBinder e;
+    public Scope[] f16076f;
     public Bundle h;
-    public Account f16392n;
-    public k6.c[] f16393r;
-    public k6.c[] f16394s;
+    public Account f16077n;
+    public k6.c[] f16078r;
+    public k6.c[] f16079s;
     public final boolean v;
-    public final int f16395w;
-    public boolean f16396x;
-    public final String f16397y;
+    public final int f16080w;
+    public boolean f16081x;
+    public final String f16082y;
 
     public f(int i10, int i11, int i12, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, k6.c[] cVarArr, k6.c[] cVarArr2, boolean z10, int i13, boolean z11, String str2) {
         Scope[] scopeArr2;
@@ -51,9 +51,9 @@ public final class f extends o6.a {
             cVarArr3 = cVarArr;
         }
         cVarArr4 = cVarArr2 != null ? cVarArr2 : cVarArr4;
-        this.f16387a = i10;
-        this.f16388b = i11;
-        this.f16389c = i12;
+        this.f16073a = i10;
+        this.f16074b = i11;
+        this.f16075c = i12;
         if ("com.google.android.gms".equals(str)) {
             this.d = "com.google.android.gms";
         } else {
@@ -62,7 +62,7 @@ public final class f extends o6.a {
         if (i10 < 2) {
             Account account2 = null;
             if (iBinder != null) {
-                int i14 = a.f16371b;
+                int i14 = a.f16058b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                 if (queryLocalInterface instanceof h) {
                     aVar = (h) queryLocalInterface;
@@ -87,19 +87,19 @@ public final class f extends o6.a {
                     throw th2;
                 }
             }
-            this.f16392n = account2;
+            this.f16077n = account2;
         } else {
-            this.f16390e = iBinder;
-            this.f16392n = account;
+            this.e = iBinder;
+            this.f16077n = account;
         }
-        this.f16391f = scopeArr2;
+        this.f16076f = scopeArr2;
         this.h = bundle2;
-        this.f16393r = cVarArr3;
-        this.f16394s = cVarArr4;
+        this.f16078r = cVarArr3;
+        this.f16079s = cVarArr4;
         this.v = z10;
-        this.f16395w = i13;
-        this.f16396x = z11;
-        this.f16397y = str2;
+        this.f16080w = i13;
+        this.f16081x = z11;
+        this.f16082y = str2;
     }
 
     @Override

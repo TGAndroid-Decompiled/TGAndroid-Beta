@@ -7,27 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 public final class e implements Callable {
-    public final int f16646a;
-    public final String f16647b;
-    public final Context f16648c;
+    public final int f16427a;
+    public final String f16428b;
+    public final Context f16429c;
     public final int d;
-    public final Object f16649e;
+    public final Object e;
 
     public e(String str, Context context, Object obj, int i10, int i11) {
-        this.f16646a = i11;
-        this.f16647b = str;
-        this.f16648c = context;
-        this.f16649e = obj;
+        this.f16427a = i11;
+        this.f16428b = str;
+        this.f16429c = context;
+        this.e = obj;
         this.d = i10;
     }
 
     @Override
     public final Object call() {
-        int i10 = this.f16646a;
+        int i10 = this.f16427a;
         int i11 = this.d;
-        Object obj = this.f16649e;
-        Context context = this.f16648c;
-        String str = this.f16647b;
+        Object obj = this.e;
+        Context context = this.f16429c;
+        String str = this.f16428b;
         switch (i10) {
             case 0:
                 Object[] objArr = {(d) obj};

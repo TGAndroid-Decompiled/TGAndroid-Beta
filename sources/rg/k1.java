@@ -1,258 +1,147 @@
 package rg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.a7;
-import org.telegram.ui.Components.ia0;
-import org.telegram.ui.Components.vm0;
-import org.telegram.ui.Components.zb;
-import org.telegram.ui.dx0;
-import org.telegram.ui.fc1;
-import org.telegram.ui.fg0;
-import org.telegram.ui.mx0;
-import org.telegram.ui.ww0;
-import w7.w5;
-public final class k1 extends vm0 {
-    public final l1 f47531c;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.mm0;
+public abstract class k1 extends mm0 {
+    public static final Paint f44325a3;
+    public static final Paint f44326b3;
+    public static final Path f44327c3;
+    public static final Paint f44328d3;
+    public final Paint V2;
+    public final Paint W2;
+    public int X2;
+    public qg.s0 Y2;
+    public q0.a Z2;
 
-    public k1(l1 l1Var) {
-        this.f47531c = l1Var;
+    static {
+        Paint paint = new Paint(1);
+        f44325a3 = paint;
+        Paint paint2 = new Paint(1);
+        f44326b3 = paint2;
+        paint.setColor(-2013265920);
+        paint2.setColor(-1996488705);
+        f44327c3 = new Path();
+        f44328d3 = new Paint(1);
     }
 
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47901f == 1) {
-            return true;
-        }
-        return false;
+    public k1(Context context) {
+        super(context, null);
+        this.V2 = new Paint(1);
+        Paint paint = new Paint(1);
+        this.W2 = paint;
+        this.X2 = -1;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        setLayoutManager(new s4.s(7));
+        setAdapter(new i1(this, context));
+        setOverScrollMode(2);
+        setOnItemClickListener(new bi.d(this, 15));
     }
 
-    @Override
-    public final int h() {
-        return this.f47531c.f47548f0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        l1 l1Var = this.f47531c;
-        if (i10 != l1Var.f47549g0) {
-            if (i10 >= l1Var.f47550h0 && i10 < l1Var.f47551i0) {
-                return l1Var.Y();
+    public static void x1(Canvas canvas, RectF rectF, int i10) {
+        float f7 = rectF.left;
+        while (f7 <= rectF.right) {
+            float f10 = rectF.top;
+            while (f10 <= rectF.bottom) {
+                float f11 = i10;
+                float f12 = f7 + f11;
+                float f13 = f10 + f11;
+                Paint paint = f44325a3;
+                Canvas canvas2 = canvas;
+                canvas2.drawRect(f7, f10, f12, f13, paint);
+                float f14 = i10 * 2;
+                float f15 = f7 + f14;
+                Paint paint2 = f44326b3;
+                float f16 = f10;
+                canvas2.drawRect(f12, f16, f15, f13, paint2);
+                float f17 = f16 + f14;
+                canvas2.drawRect(f12, f13, f15, f17, paint);
+                canvas2.drawRect(f7, f13, f12, f17, paint2);
+                canvas = canvas2;
+                f10 = f17;
             }
-            if (i10 >= l1Var.f47552j0 && i10 < l1Var.f47553k0) {
-                return 1;
-            }
-            if (i10 == l1Var.f47554l0) {
-                return 2;
-            }
-            if (i10 == l1Var.m0) {
-                return 3;
-            }
-            if (i10 == 0) {
-                return 4;
-            }
-            if (i10 == l1Var.f47555n0) {
-                return 5;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        View view = d1Var.f47897a;
-        l1 l1Var = this.f47531c;
-        int i11 = l1Var.f47552j0;
-        if (i10 >= i11 && i10 < l1Var.f47553k0) {
-            ww0 ww0Var = (ww0) view;
-            mx0 mx0Var = (mx0) l1Var.X.get(i10 - i11);
-            boolean z10 = true;
-            if (i10 == l1Var.f47553k0 - 1) {
-                z10 = false;
-            }
-            ww0Var.a(mx0Var, z10);
-        } else if (i10 >= l1Var.f47550h0 && i10 < l1Var.f47551i0) {
-            l1Var.Z(view);
+            f7 += i10 * 2;
+            canvas = canvas;
         }
     }
 
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        c6 c6Var;
-        int intValue;
-        c6 c6Var2;
-        int i11;
-        dx0 dx0Var;
-        c6 c6Var3;
-        c6 c6Var4;
-        Context context = viewGroup.getContext();
-        l1 l1Var = this.f47531c;
-        View a02 = l1Var.a0(context, i10);
-        if (a02 != null) {
-            return e2.k(a02, a02, -1, -2);
+    public static void y1(float f7, float f10, float f11, int i10, Canvas canvas) {
+        Paint paint = f44328d3;
+        paint.setColor(i10);
+        if (paint.getAlpha() != 255) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
+            paint.setAlpha(255);
+            canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
+            Path path = f44327c3;
+            path.rewind();
+            path.moveTo(rectF.centerX(), rectF.centerY());
+            path.lineTo((float) org.telegram.messenger.q.a(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
+            path.moveTo(rectF.centerX(), rectF.centerY());
+            path.lineTo((float) org.telegram.messenger.q.a(4.71238898038469d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(4.71238898038469d) * (rectF.height() / 2.0f)) + rectF.centerY()));
+            path.addArc(rectF, -45.0f, 180.0f);
+            canvas.save();
+            canvas.clipPath(path);
+            x1(canvas, rectF, AndroidUtilities.dp(4.0f));
+            canvas.restore();
+            paint.setColor(i10);
+            canvas.drawArc(rectF, -45.0f, 180.0f, true, paint);
+            return;
         }
-        if (i10 != 0) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            c6Var4 = ((e3) l1Var).resourcesProvider;
-                            dx0Var = new dx0(this, context, c6Var4);
-                        } else {
-                            c6Var3 = ((e3) l1Var).resourcesProvider;
-                            vg.d0 d0Var = new vg.d0(context, c6Var3);
-                            d0Var.setBackground(true);
-                            String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
-                            int i12 = h6.gc;
-                            d0Var.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i12, 0, new Runnable(this) {
-                                public final k1 f47493b;
+        canvas.drawCircle(f7, f10, f11, paint);
+    }
 
-                                {
-                                    this.f47493b = this;
-                                }
+    public int getSelectedColorIndex() {
+        return this.X2;
+    }
 
-                                @Override
-                                public final void run() {
-                                    switch (r2) {
-                                        case 0:
-                                            of.f.s(this.f47493b.f47531c.f47561t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
-                                            return;
-                                        default:
-                                            of.f.s(this.f47493b.f47531c.f47561t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
-                                            return;
-                                    }
-                                }
-                            }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i12, 0, new Runnable(this) {
-                                public final k1 f47493b;
+    public void setColorListener(q0.a aVar) {
+        this.Z2 = aVar;
+    }
 
-                                {
-                                    this.f47493b = this;
-                                }
+    public void setColorPalette(qg.s0 s0Var) {
+        this.Y2 = s0Var;
+        getAdapter().l();
+    }
 
-                                @Override
-                                public final void run() {
-                                    switch (r2) {
-                                        case 0:
-                                            of.f.s(this.f47493b.f47531c.f47561t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
-                                            return;
-                                        default:
-                                            of.f.s(this.f47493b.f47531c.f47561t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
-                                            return;
-                                    }
-                                }
-                            })));
-                            dx0Var = d0Var;
-                        }
-                    } else {
-                        dx0Var = new a(context);
-                    }
-                } else {
-                    dx0Var = new j1(context, 0);
-                }
-            } else {
-                dx0Var = new a7(context, l1Var.getThemedColor(h6.f20504a7), 0);
-            }
+    public void setSelectedColorIndex(int i10) {
+        this.X2 = i10;
+        getAdapter().l();
+    }
+
+    public final void z1(float f7, boolean z10) {
+        float interpolation;
+        float f10;
+        if (z10) {
+            interpolation = es.f24772g.getInterpolation(f7);
         } else {
-            fc1 fc1Var = new fc1(this, context, 17);
-            l1Var.f47560s0 = fc1Var;
-            fc1Var.setOrientation(1);
-            View view = l1Var.B0;
-            if (view == null) {
-                l1Var.f47559r0 = new fg0(context, 1, 0, 2);
-                Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                int i13 = h6.Mj;
-                canvas.drawColor(i0.a.d(0.5f, l1Var.getThemedColor(i13), l1Var.getThemedColor(h6.f20631h5)));
-                l1Var.f47559r0.setBackgroundBitmap(createBitmap);
-                sg.g gVar = l1Var.f47559r0.f48317b;
-                gVar.f48301z = i13;
-                gVar.A = h6.Lj;
-                gVar.b();
-                fc1Var.addView(l1Var.f47559r0, w5.q(160, 160, 1));
-            } else {
-                if (view.getParent() != null) {
-                    ((ViewGroup) l1Var.B0.getParent()).removeView(l1Var.B0);
-                }
-                l1Var.X(fc1Var);
-            }
-            if (l1Var.N0 == null) {
-                FrameLayout frameLayout = new FrameLayout(context);
-                l1Var.N0 = frameLayout;
-                frameLayout.setClipChildren(false);
-                Integer num = l1Var.f47562u0;
-                if (num == null) {
-                    intValue = l1Var.getThemedColor(h6.f20893v6);
+            interpolation = es.f24773i.getInterpolation(f7);
+        }
+        float childCount = 1.0f / (getChildCount() - 1);
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            View childAt = getChildAt(i10);
+            if (i10 == 0) {
+                if (interpolation == 1.0f) {
+                    f10 = 1.0f;
                 } else {
-                    intValue = num.intValue();
+                    f10 = 0.0f;
                 }
-                new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
-                l1Var.O0 = new ia0[2];
-                for (int i14 = 0; i14 < 2; i14++) {
-                    ia0[] ia0VarArr = l1Var.O0;
-                    c6Var2 = ((e3) l1Var).resourcesProvider;
-                    ia0VarArr[i14] = new zb(context, 4, c6Var2);
-                    ia0 ia0Var = l1Var.O0[i14];
-                    if (i14 == 0) {
-                        i11 = 0;
-                    } else {
-                        i11 = 8;
-                    }
-                    ia0Var.setVisibility(i11);
-                    l1Var.O0[i14].setTextSize(1, 16.0f);
-                    l1Var.O0[i14].setTypeface(AndroidUtilities.bold());
-                    l1Var.O0[i14].setGravity(1);
-                    l1Var.O0[i14].setTextColor(l1Var.getThemedColor(h6.G6));
-                    l1Var.O0[i14].setLinkTextColor(l1Var.getThemedColor(h6.J6));
-                    l1Var.N0.addView(l1Var.O0[i14], w5.d(-2.0f, -1));
-                }
-            }
-            if (l1Var.N0.getParent() != null) {
-                ((ViewGroup) l1Var.N0.getParent()).removeView(l1Var.N0);
-            }
-            fc1Var.addView(l1Var.N0, w5.p(-2, -2, 0.0f, 1, 40, 0, 40, 0));
-            if (l1Var.P0 == null) {
-                Context context2 = l1Var.getContext();
-                c6Var = ((e3) l1Var).resourcesProvider;
-                ia0 ia0Var2 = new ia0(context2, c6Var);
-                l1Var.P0 = ia0Var2;
-                ia0Var2.setTextSize(1, 14.0f);
-                l1Var.P0.setGravity(1);
-                l1Var.P0.setTextColor(l1Var.getThemedColor(h6.G6));
-                l1Var.P0.setLinkTextColor(l1Var.getThemedColor(h6.J6));
-            }
-            if (l1Var.P0.getParent() != null) {
-                ((ViewGroup) l1Var.P0.getParent()).removeView(l1Var.P0);
-            }
-            fc1Var.addView(l1Var.P0, w5.p(-1, -2, 0.0f, 0, 24, 9, 24, 20));
-            l1Var.b0(false);
-            l1Var.f47558q0 = new ei.f(context, 5);
-            p0 p0Var = new p0(this, context, 2);
-            p0Var.setClipChildren(false);
-            p0Var.addView(l1Var.f47558q0);
-            p0Var.addView(fc1Var);
-            fg0 fg0Var = l1Var.f47559r0;
-            dx0Var = p0Var;
-            if (fg0Var != null) {
-                fg0Var.setStarParticlesView(l1Var.f47558q0);
-                dx0Var = p0Var;
+                childAt.setAlpha(f10);
+            } else {
+                float f11 = i10 * childCount;
+                float min = Math.min(interpolation, f11) / f11;
+                childAt.setScaleX(min);
+                childAt.setScaleY(min);
             }
         }
-        dx0Var.setLayoutParams(new s4.q0(-1, -2));
-        l1Var.W(i10, dx0Var);
-        return new s4.d1(dx0Var);
+        invalidate();
     }
 }

@@ -1,15 +1,15 @@
 package z7;
-public final class z8 implements ia.d {
-    public static final z8 f54413a = new Object();
+public final class z8 implements ja.d {
+    public static final z8 f49905a = new Object();
 
     static {
-        sc.v.t(sc.v.o(w.class, sc.v.s(2, sc.v.o(w.class, new s(1)))));
+        t8.b.s(t8.b.n(w.class, t8.b.r(2, t8.b.n(w.class, new s(1)))));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ia.e eVar = (ia.e) obj2;
+            ja.e eVar = (ja.e) obj2;
             throw null;
         }
         throw new ClassCastException();

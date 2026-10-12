@@ -1,27 +1,27 @@
 package e3;
 public final class d implements a {
-    public final int f8608a;
-    public final int f8609b;
-    public final int f8610c;
+    public final int f8435a;
+    public final int f8436b;
+    public final int f8437c;
     public final int d;
-    public final int f8611e;
-    public final int f8612f;
+    public final int e;
+    public final int f8438f;
 
     public d(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f8608a = i10;
-        this.f8609b = i11;
-        this.f8610c = i12;
+        this.f8435a = i10;
+        this.f8436b = i11;
+        this.f8437c = i12;
         this.d = i13;
-        this.f8611e = i14;
-        this.f8612f = i15;
+        this.e = i14;
+        this.f8438f = i15;
     }
 
     public final int a() {
-        int i10 = this.f8608a;
+        int i10 = this.f8435a;
         if (i10 != 1935960438) {
             if (i10 != 1935963489) {
                 if (i10 != 1937012852) {
-                    e2.a.n("AviStreamHeaderChunk", "Found unsupported streamType fourCC: " + Integer.toHexString(i10));
+                    e2.a.l("AviStreamHeaderChunk", "Found unsupported streamType fourCC: " + Integer.toHexString(i10));
                     return -1;
                 }
                 return 3;

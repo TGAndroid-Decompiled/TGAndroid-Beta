@@ -1,42 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-public final class m61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28409a;
-    public int f28410b;
-    public final int f28411c;
-    public final Object d;
+import android.text.TextPaint;
+public final class m61 extends p61 {
+    public static boolean h = true;
+    public final int e;
+    public final p11 f27222f;
 
-    public m61(org.telegram.ui.fv fvVar, int i10, int i11) {
-        this.f28409a = 1;
-        this.d = fvVar;
-        this.f28410b = i10;
-        this.f28411c = i11;
+    public m61(String str, int i10, p11 p11Var) {
+        super(str, (p11) null);
+        this.e = i10;
+        this.f27222f = p11Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28409a) {
-            case 0:
-                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f28411c);
-                q61 q61Var = (q61) this.d;
-                q61Var.N = true;
-                q61Var.f29720n.scrollBy(0, floatValue - this.f28410b);
-                q61Var.N = false;
-                this.f28410b = floatValue;
-                return;
-            default:
-                ((org.telegram.ui.fv) this.d).f37852c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f28410b, this.f28411c), PorterDuff.Mode.SRC_IN));
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10;
+        int i11;
+        super.updateDrawState(textPaint);
+        int i12 = this.e;
+        if (i12 == 2) {
+            textPaint.setColor(-1);
+        } else if (i12 == 1) {
+            if (h) {
+                i11 = org.telegram.ui.ActionBar.g6.hc;
+            } else {
+                i11 = org.telegram.ui.ActionBar.g6.fc;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
+        } else {
+            if (h) {
+                i10 = org.telegram.ui.ActionBar.g6.f19960gc;
+            } else {
+                i10 = org.telegram.ui.ActionBar.g6.f19923ec;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
         }
-    }
-
-    public m61(q61 q61Var, int i10) {
-        this.f28409a = 0;
-        this.d = q61Var;
-        this.f28411c = i10;
-        this.f28410b = 0;
+        p11 p11Var = this.f27222f;
+        if (p11Var != null) {
+            p11Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
+        }
     }
 }

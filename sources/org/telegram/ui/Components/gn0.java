@@ -1,105 +1,140 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class gn0 extends ux0 {
-    public float d;
-    public final Paint f26484f;
-    public boolean f26480a = false;
-    public long f26481b = 0;
-    public boolean f26482c = false;
-    public int f26483e = 1;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.transition.Transition;
+import android.transition.TransitionValues;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.Map;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.SecretMediaViewer;
+public final class gn0 extends Transition {
+    public final int f25368a;
+    public final Object f25369b;
 
-    public gn0(boolean z10) {
-        if (z10) {
-            this.f26484f = new Paint(1);
+    public gn0(Object obj, int i10) {
+        this.f25368a = i10;
+        this.f25369b = obj;
+    }
+
+    @Override
+    public final void captureEndValues(TransitionValues transitionValues) {
+        ViewGroup viewGroup;
+        switch (this.f25368a) {
+            case 0:
+                return;
+            case 1:
+                transitionValues.values.put("start", Boolean.FALSE);
+                Map map = transitionValues.values;
+                ty0 ty0Var = (ty0) this.f25369b;
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ty0Var).containerView;
+                map.put("offset", Integer.valueOf(viewGroup.getTop() + ty0Var.f29507e0));
+                return;
+            case 2:
+                View view = transitionValues.view;
+                PhotoViewer photoViewer = (PhotoViewer) this.f25369b;
+                if (view == photoViewer.Q1) {
+                    transitionValues.values.put("translationY", Integer.valueOf(photoViewer.T1.getPendingMarginTopDiff()));
+                    return;
+                }
+                return;
+            default:
+                View view2 = transitionValues.view;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f25369b;
+                if (view2 == secretMediaViewer.Z) {
+                    transitionValues.values.put("translationY", Integer.valueOf(secretMediaViewer.f32728a0.getPendingMarginTopDiff()));
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void b(int i10) {
-        Paint paint = this.f26484f;
-        if (paint != null) {
-            paint.setColor(i10);
+    public final void captureStartValues(TransitionValues transitionValues) {
+        ViewGroup viewGroup;
+        switch (this.f25368a) {
+            case 0:
+                return;
+            case 1:
+                transitionValues.values.put("start", Boolean.TRUE);
+                Map map = transitionValues.values;
+                ty0 ty0Var = (ty0) this.f25369b;
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ty0Var).containerView;
+                map.put("offset", Integer.valueOf(viewGroup.getTop() + ty0Var.f29507e0));
+                return;
+            case 2:
+                View view = transitionValues.view;
+                org.telegram.ui.iu0 iu0Var = ((PhotoViewer) this.f25369b).T1;
+                if (view == iu0Var) {
+                    transitionValues.values.put("scrollY", Integer.valueOf(iu0Var.getScrollY()));
+                    return;
+                }
+                return;
+            default:
+                View view2 = transitionValues.view;
+                org.telegram.ui.iu0 iu0Var2 = ((SecretMediaViewer) this.f25369b).f32728a0;
+                if (view2 == iu0Var2) {
+                    transitionValues.values.put("scrollY", Integer.valueOf(iu0Var2.getScrollY()));
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void c(boolean z10) {
-        this.f26480a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f26481b = System.currentTimeMillis();
-        this.f26482c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f26484f;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f20539c2;
+    public final Animator createAnimator(ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        int intValue;
+        int intValue2;
+        int i10 = this.f25368a;
+        Object obj = this.f25369b;
+        switch (i10) {
+            case 0:
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat.addUpdateListener(new g80(this, 14));
+                return ofFloat;
+            case 1:
+                int i11 = ((ty0) obj).f29507e0;
+                int intValue3 = ((Integer) transitionValues.values.get("offset")).intValue() - ((Integer) transitionValues2.values.get("offset")).intValue();
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat2.setDuration(250L);
+                ofFloat2.addUpdateListener(new di.b5(this, intValue3, i11, 4));
+                return ofFloat2;
+            case 2:
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                if (transitionValues.view == photoViewer.T1) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(((Integer) transitionValues.values.get("scrollY")).intValue(), 0);
+                    ofInt.addListener(new org.telegram.ui.ku0(this, 0));
+                    ofInt.addUpdateListener(new org.telegram.ui.e3(this, 22));
+                    return ofInt;
+                } else if (transitionValues2.view != photoViewer.Q1 || (intValue = ((Integer) transitionValues2.values.get("translationY")).intValue()) == 0) {
+                    return null;
+                } else {
+                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(photoViewer.Q1, View.TRANSLATION_Y, 0.0f, intValue);
+                    ofFloat3.addListener(new org.telegram.ui.ku0(this, 1));
+                    return ofFloat3;
+                }
+            default:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) obj;
+                if (transitionValues.view == secretMediaViewer.f32728a0) {
+                    ValueAnimator ofInt2 = ValueAnimator.ofInt(((Integer) transitionValues.values.get("scrollY")).intValue(), 0);
+                    ofInt2.addListener(new org.telegram.ui.h51(this, 0));
+                    ofInt2.addUpdateListener(new org.telegram.ui.f21(this, 6));
+                    return ofInt2;
+                } else if (transitionValues2.view != secretMediaViewer.Z || (intValue2 = ((Integer) transitionValues2.values.get("translationY")).intValue()) == 0) {
+                    return null;
+                } else {
+                    ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(secretMediaViewer.Z, View.TRANSLATION_Y, 0.0f, intValue2);
+                    ofFloat4.addListener(new org.telegram.ui.h51(this, 1));
+                    return ofFloat4;
+                }
         }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float dp = AndroidUtilities.dp(6.0f);
-        if (this.f26480a) {
-            f7 = 8.0f;
-        } else {
-            f7 = 9.0f;
-        }
-        canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
-        if (this.f26482c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f26481b;
-            this.f26481b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            float f10 = this.d;
-            int i10 = this.f26483e;
-            float f11 = (((float) (i10 * j3)) / 400.0f) + f10;
-            this.d = f11;
-            if (i10 > 0 && f11 >= 1.0f) {
-                this.f26483e = -1;
-                this.d = 1.0f;
-            } else if (i10 < 0 && f11 <= 0.0f) {
-                this.f26483e = 1;
-                this.d = 0.0f;
-            }
-            a();
-        }
     }
 
-    @Override
-    public final void e() {
-        this.f26482c = false;
+    private final void a(TransitionValues transitionValues) {
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(10.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    private final void b(TransitionValues transitionValues) {
     }
 }

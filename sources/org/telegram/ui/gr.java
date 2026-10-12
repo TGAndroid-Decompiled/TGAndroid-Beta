@@ -1,30 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class gr implements nq {
-    public final TLObject f38124a;
-    public final wr f38125b;
+public final class gr extends tq {
+    public final boolean[] f36469d1;
+    public final long f36470e1;
+    public final yr f36471f1;
 
-    public gr(wr wrVar, TLObject tLObject) {
-        this.f38125b = wrVar;
-        this.f38124a = tLObject;
+    public gr(yr yrVar, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j12) {
+        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f36471f1 = yrVar;
+        this.f36469d1 = zArr;
+        this.f36470e1 = j12;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        wr.c0(this.f38125b, user);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f38124a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-            wr.W(this.f38125b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f36469d1[0]) {
+            yr yrVar = this.f36471f1;
+            if (org.telegram.ui.Components.zc.a(yrVar)) {
+                long j10 = this.f36470e1;
+                if (j10 > 0) {
+                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(j10));
+                    if (user != null) {
+                        org.telegram.ui.Components.zc.C(yrVar, user.first_name).j();
+                        return;
+                    }
+                    return;
+                }
+                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j10));
+                if (chat != null) {
+                    org.telegram.ui.Components.zc.C(yrVar, chat.title).j();
+                }
+            }
         }
     }
 }

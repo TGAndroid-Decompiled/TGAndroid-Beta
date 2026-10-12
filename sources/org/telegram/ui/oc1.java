@@ -1,199 +1,88 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class oc1 implements ImageReceiver.ImageReceiverDelegate, org.telegram.ui.Components.lm0, org.telegram.ui.Components.w91, org.telegram.ui.ActionBar.z1 {
-    public final int f40650a;
-    public final zd1 f40651b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.ThemeActivity;
+public final class oc1 extends org.telegram.ui.Components.lm0 {
+    public final Context f38925c;
+    public org.telegram.ui.ActionBar.f6 d;
+    public ArrayList e;
+    public final ThemeActivity f38926f;
 
-    public oc1(zd1 zd1Var, int i10) {
-        this.f40650a = i10;
-        this.f40651b = zd1Var;
+    public oc1(ThemeActivity themeActivity, Context context) {
+        this.f38926f = themeActivity;
+        this.f38925c = context;
+        l();
     }
 
     @Override
-    public boolean Y0(View view) {
+    public final boolean D(s4.b1 b1Var) {
         return false;
     }
 
     @Override
-    public void c(float f7, float f10, int i10, View view) {
-        if (view instanceof org.telegram.ui.Cells.u1) {
-            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
-            boolean i32 = u1Var.i3(f7);
-            zd1 zd1Var = this.f40651b;
-            if (i32) {
-                if (u1Var.getMessageObject().isOutOwner()) {
-                    zd1Var.Y0(3, true);
-                    return;
-                } else {
-                    zd1Var.Y0(1, true);
-                    return;
-                }
+    public final int h() {
+        if (this.e.isEmpty()) {
+            return 0;
+        }
+        return this.e.size() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == h() - 1) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void l() {
+        org.telegram.ui.ActionBar.f6 B0;
+        if (this.f38926f.f32848f == 1) {
+            B0 = org.telegram.ui.ActionBar.g6.J;
+        } else {
+            B0 = org.telegram.ui.ActionBar.g6.B0();
+        }
+        this.d = B0;
+        this.e = new ArrayList(this.d.f19794b0);
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        View view = b1Var.f44838a;
+        int j10 = j(i10);
+        if (j10 != 0) {
+            if (j10 != 1) {
+                return;
             }
-            zd1Var.Y0(2, true);
-        }
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        zd1 zd1Var = this.f40651b;
-        if (!(zd1Var.B1 instanceof jj1)) {
-            Drawable drawable = imageReceiver.getDrawable();
-            if (z10 && drawable != null) {
-                zc1 zc1Var = zd1Var.f44734a;
-                AndroidUtilities.calcDrawableColor(drawable);
-                zc1Var.b(zd1Var.P0(drawable), drawable, Float.valueOf(zd1Var.l1));
-                if (!z11 && zd1Var.F1 && zd1Var.f44795w1 == null) {
-                    zd1Var.f44797x0.getImageReceiver().setCrossfadeWithOldImage(false);
-                    zd1Var.i1();
-                    zd1Var.f44797x0.getImageReceiver().setCrossfadeWithOldImage(true);
-                }
-                zd1Var.V0();
+            ec1 ec1Var = (ec1) view;
+            org.telegram.ui.ActionBar.f6 f6Var = this.d;
+            int i11 = ec1.f35515c;
+            ec1Var.getClass();
+            if (f6Var.W >= 8) {
+                ec1Var.f35517b = new int[]{f6Var.l(6), f6Var.l(4), f6Var.l(7), f6Var.l(2), f6Var.l(0), f6Var.l(5), f6Var.l(3)};
+                return;
+            } else {
+                ec1Var.f35517b = new int[7];
+                return;
             }
         }
+        ThemeActivity.InnerAccentView innerAccentView = (ThemeActivity.InnerAccentView) view;
+        innerAccentView.d = this.d;
+        innerAccentView.e = (org.telegram.ui.ActionBar.e6) this.e.get(i10);
+        innerAccentView.a(false);
     }
 
     @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.l5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public void e(int i10, int i11) {
-        zd1 zd1Var = this.f40651b;
-        if (!zd1Var.E1) {
-            return;
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        Context context = this.f38925c;
+        if (i10 != 0) {
+            return new s4.b1(new ec1(context));
         }
-        zd1Var.f44797x0.getBackground();
-        float f7 = 1.0f;
-        if (zd1Var.B0 != null) {
-            f7 = (zd1Var.f44797x0.getScaleX() - 1.0f) / (zd1Var.f44801y1 - 1.0f);
-        }
-        zd1Var.f44797x0.setTranslationX(i10 * f7);
-        zd1Var.f44797x0.setTranslationY(i11 * f7);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        boolean z10;
-        switch (this.f40650a) {
-            case 3:
-                this.f40651b.f44785s0.getActionBarMenuOnItemClick().b(4);
-                return;
-            case 4:
-                this.f40651b.O0(false);
-                return;
-            case 5:
-                zd1 zd1Var = this.f40651b;
-                org.telegram.ui.ActionBar.e6 e6Var = zd1Var.f44784s;
-                if (e6Var.f20357j == 4294967296L) {
-                    e6Var.f20357j = 0L;
-                    e6Var.f20358k = 0L;
-                    e6Var.f20359l = 0L;
-                    e6Var.f20360m = 0L;
-                    zd1Var.m1(false);
-                    org.telegram.ui.ActionBar.h6.o1(false, false);
-                }
-                zd1Var.v = true;
-                org.telegram.ui.ActionBar.h6.q1(true);
-                zd1Var.Y0(2, false);
-                return;
-            case 6:
-                zd1 zd1Var2 = this.f40651b;
-                org.telegram.ui.ActionBar.e6 e6Var2 = zd1Var2.f44784s;
-                if (org.telegram.ui.ActionBar.h6.a1() && org.telegram.ui.ActionBar.h6.I.f20442i0.d != 0) {
-                    org.telegram.ui.ActionBar.z5 z5Var = e6Var2.f20371y;
-                    e6Var2.f20357j = z5Var.d;
-                    e6Var2.f20358k = z5Var.f21499e;
-                    e6Var2.f20359l = z5Var.f21500f;
-                    e6Var2.f20360m = z5Var.f21501g;
-                    e6Var2.f20361n = z5Var.h;
-                    String str = z5Var.f21498c;
-                    e6Var2.f20362o = str;
-                    float f7 = z5Var.f21504k;
-                    e6Var2.f20363p = f7;
-                    zd1Var2.l1 = f7;
-                    if (str != null && !"c".equals(str)) {
-                        int size = zd1Var2.U0.size();
-                        int i11 = 0;
-                        while (true) {
-                            if (i11 < size) {
-                                TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) zd1Var2.U0.get(i11);
-                                if (tL_wallPaper.pattern && e6Var2.f20362o.equals(tL_wallPaper.slug)) {
-                                    zd1Var2.W0 = tL_wallPaper;
-                                } else {
-                                    i11++;
-                                }
-                            }
-                        }
-                    } else {
-                        zd1Var2.W0 = null;
-                    }
-                    zd1Var2.v = true;
-                    org.telegram.ui.Components.v91 v91Var = zd1Var2.J0[1];
-                    if (zd1Var2.W0 != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    v91Var.a(z10, true);
-                    zd1Var2.m1(false);
-                    org.telegram.ui.ActionBar.h6.o1(false, false);
-                }
-                Drawable background = zd1Var2.f44797x0.getBackground();
-                if (background instanceof org.telegram.ui.Components.gd0) {
-                    org.telegram.ui.Components.gd0 gd0Var = (org.telegram.ui.Components.gd0) background;
-                    gd0Var.t(null, 100);
-                    if (org.telegram.ui.ActionBar.h6.I.q()) {
-                        if (zd1Var2.l1 < 0.0f) {
-                            zd1Var2.f44797x0.getImageReceiver().setGradientBitmap(gd0Var.f26405k);
-                        }
-                        org.telegram.ui.Cells.j0 j0Var = zd1Var2.T0;
-                        if (j0Var != null) {
-                            j0Var.setTwoSided(true);
-                        }
-                    } else {
-                        float f10 = zd1Var2.l1;
-                        if (f10 < 0.0f) {
-                            zd1Var2.l1 = -f10;
-                        }
-                    }
-                }
-                org.telegram.ui.Cells.j0 j0Var2 = zd1Var2.T0;
-                if (j0Var2 != null) {
-                    j0Var2.setProgress(zd1Var2.l1);
-                }
-                org.telegram.ui.ActionBar.h6.q1(true);
-                zd1Var2.Y0(2, false);
-                return;
-            default:
-                zd1 zd1Var3 = this.f40651b;
-                org.telegram.ui.ActionBar.e6 e6Var3 = zd1Var3.f44784s;
-                if (e6Var3.f20357j == 4294967296L) {
-                    e6Var3.f20357j = 0L;
-                    e6Var3.f20358k = 0L;
-                    e6Var3.f20359l = 0L;
-                    e6Var3.f20360m = 0L;
-                    zd1Var3.m1(false);
-                    org.telegram.ui.ActionBar.h6.o1(false, false);
-                }
-                zd1Var3.v = true;
-                org.telegram.ui.ActionBar.h6.q1(true);
-                zd1Var3.Y0(2, false);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.l5.b(this, imageReceiver);
-    }
-
-    @Override
-    public void n0(View view, float f7, float f10) {
+        return new s4.b1(new ThemeActivity.InnerAccentView(context));
     }
 }

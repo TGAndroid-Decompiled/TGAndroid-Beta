@@ -1,34 +1,28 @@
 package qg;
+public final class z implements Runnable {
+    public final int f43623a;
+    public final d0 f43624b;
 
-import android.content.Context;
-import android.graphics.PointF;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fk0;
-import org.telegram.ui.Components.q81;
-import org.telegram.ui.Components.sw0;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.cu0;
-public final class z extends p2 {
-    public final m0 f46588y0;
-
-    public z(m0 m0Var, Context context, PointF pointF, float f7, float f10, sw0 sw0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF, f7, f10, sw0Var, document, obj);
-        this.f46588y0 = m0Var;
+    public z(d0 d0Var, int i10) {
+        this.f43623a = i10;
+        this.f43624b = d0Var;
     }
 
     @Override
-    public final void q(fk0 fk0Var) {
-        PhotoViewer photoViewer = ((cu0) this.f46588y0).f36519o2;
-        q81 q81Var = photoViewer.F2;
-        if (q81Var == null) {
-            return;
+    public final void run() {
+        switch (this.f43623a) {
+            case 0:
+                d0 d0Var = this.f43624b;
+                m mVar = d0Var.A;
+                if (mVar != null) {
+                    d0Var.f43407a.g(mVar);
+                    d0Var.A = null;
+                    return;
+                }
+                return;
+            default:
+                this.f43624b.a(null, true, null);
+                return;
         }
-        long n10 = q81Var.n();
-        long j3 = photoViewer.f33818m8;
-        long j10 = 0;
-        if (j3 > 0) {
-            j10 = j3 / 1000;
-        }
-        fk0Var.U(n10 - j10);
     }
 }

@@ -1,31 +1,55 @@
 package sg;
-public final class b implements Runnable {
-    public final int f48257a;
-    public final f f48258b;
-    public final int f48259c;
 
-    public b(f fVar, int i10, int i11) {
-        this.f48257a = i11;
-        this.f48258b = fVar;
-        this.f48259c = i10;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.mm0;
+import w7.a6;
+public abstract class b extends FrameLayout implements l0 {
+    public final c6 f45138a;
+    public final mm0 f45139b;
+    public final s4.b0 f45140c;
+
+    public b(Context context, c6 c6Var) {
+        super(context);
+        this.f45138a = c6Var;
+        mm0 mm0Var = new mm0(context, c6Var);
+        this.f45139b = mm0Var;
+        mm0Var.setNestedScrollingEnabled(true);
+        mm0Var.setAdapter(a());
+        s4.b0 b0Var = new s4.b0(1, false);
+        this.f45140c = b0Var;
+        mm0Var.setLayoutManager(b0Var);
+        mm0Var.setClipToPadding(false);
+        addView(mm0Var, a6.d(-1.0f, -1));
+    }
+
+    public abstract s4.g0 a();
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        Paint U0 = g6.U0("paintDivider", this.f45138a);
+        if (U0 == null) {
+            U0 = g6.f20022k0;
+        }
+        canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, U0);
     }
 
     @Override
-    public final void run() {
-        switch (this.f48257a) {
-            case 0:
-                f fVar = this.f48258b;
-                fVar.postOnAnimation(new b(fVar, this.f48259c, 1));
-                return;
-            default:
-                f fVar2 = this.f48258b;
-                int i10 = this.f48259c;
-                if (fVar2.f48271e && !fVar2.f48274r && i10 == fVar2.E) {
-                    fVar2.f48277x = true;
-                    fVar2.requestRender();
-                    return;
-                }
-                return;
+    public void setOffset(float f7) {
+        if (Math.abs(f7 / getMeasuredWidth()) == 1.0f) {
+            mm0 mm0Var = this.f45139b;
+            if (mm0Var.K(0) == null || mm0Var.K(0).f44838a.getTop() != mm0Var.getPaddingTop()) {
+                mm0Var.u0(0);
+            }
         }
+    }
+
+    public void setTopOffset(int i10) {
+        this.f45139b.setPadding(0, i10, 0, 0);
     }
 }

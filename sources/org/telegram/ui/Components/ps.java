@@ -1,51 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.PopupWindow;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public abstract class ps {
-    public final org.telegram.ui.ActionBar.m1 f29559a;
-    public boolean f29560b;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ps implements Predicate {
+    public final int f28414a;
+    public final TLObject f28415b;
 
-    public ps(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, c6Var);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new yk(this, 1));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
-        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
-        org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f29559a = m1Var;
-        m1Var.f21145b = false;
-        m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
-        m1Var.setOutsideTouchable(true);
-        m1Var.setClippingEnabled(true);
-        m1Var.setInputMethodMode(2);
-        m1Var.setSoftInputMode(0);
-        m1Var.getContentView().setFocusableInTouchMode(true);
-        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-            m1Var.setFocusable(true);
-        }
-        m1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public final void onDismiss() {
-                ps psVar = ps.this;
-                psVar.c();
-                psVar.f29560b = false;
-            }
-        });
+    public ps(int i10, TLObject tLObject) {
+        this.f28414a = i10;
+        this.f28415b = tLObject;
     }
 
-    public final void a() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f29559a;
-        if (m1Var != null) {
-            m1Var.d(true);
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f28414a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f28414a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
         }
     }
 
-    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f28414a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
 
-    public abstract void c();
+    @Override
+    public final boolean test(Object obj) {
+        switch (this.f28414a) {
+            case 0:
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f28415b, ((MessageObject) obj).messageOwner.from_id);
+            default:
+                MessageObject messageObject = (MessageObject) obj;
+                TLObject tLObject = this.f28415b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f19216id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f19363id) {
+                    return true;
+                }
+                return false;
+        }
+    }
 }

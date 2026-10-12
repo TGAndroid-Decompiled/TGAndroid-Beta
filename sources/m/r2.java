@@ -1,27 +1,43 @@
 package m;
 
+import android.view.View;
+import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
-public final class r2 implements Runnable {
-    public final int f15553a;
-    public final SearchView f15554b;
+public final class r2 implements View.OnFocusChangeListener {
+    public final int f15232a;
+    public final ViewGroup f15233b;
 
-    public r2(SearchView searchView, int i10) {
-        this.f15553a = i10;
-        this.f15554b = searchView;
+    public r2(ViewGroup viewGroup, int i10) {
+        this.f15232a = i10;
+        this.f15233b = viewGroup;
     }
 
     @Override
-    public final void run() {
-        switch (this.f15553a) {
+    public final void onFocusChange(View view, boolean z10) {
+        switch (this.f15232a) {
             case 0:
-                this.f15554b.r();
-                return;
-            default:
-                h1.b bVar = this.f15554b.f2254h0;
-                if (bVar instanceof a3) {
-                    bVar.b(null);
+                SearchView searchView = (SearchView) this.f15233b;
+                View.OnFocusChangeListener onFocusChangeListener = searchView.f1148d0;
+                if (onFocusChangeListener != null) {
+                    onFocusChangeListener.onFocusChange(searchView, z10);
                     return;
                 }
+                return;
+            case 1:
+                org.telegram.ui.Cells.g3 g3Var = (org.telegram.ui.Cells.g3) this.f15233b;
+                g3Var.h = z10;
+                if (g3Var.f21200f) {
+                    g3Var.c();
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f15233b;
+                j3Var.f21371n = z10;
+                if (j3Var.f21370f) {
+                    j3Var.c();
+                }
+                j3Var.a(z10);
                 return;
         }
     }

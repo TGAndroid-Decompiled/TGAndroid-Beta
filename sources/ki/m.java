@@ -1,28 +1,21 @@
 package ki;
-
-import com.google.android.gms.internal.play_billing.s0;
-import n4.y;
-public final class m {
-    public final y f14899a;
-    public final long f14900b;
-
-    public m(o oVar, y yVar) {
-        long length;
-        long j3;
-        this.f14899a = yVar;
-        long length2 = ((oVar.f14902b.length() + oVar.f14901a.length()) * 2) + 128;
-        s0 s0Var = (s0) yVar.f16363b;
-        if (s0Var == null) {
-            j3 = 1024;
-        } else {
-            long length3 = (((int[]) s0Var.f7460c).length * 4) + 64;
-            if (((int[]) s0Var.f7459b) == null) {
-                length = 0;
-            } else {
-                length = ((int[]) s0Var.f7459b).length * 4;
-            }
-            j3 = length + length3;
-        }
-        this.f14900b = length2 + j3;
-    }
+public final class m extends s4.j {
+    public int f14329f;
+    public int f14330g;
+    public int h;
+    public int f14331i;
+    public boolean f14332j;
+    public boolean f14333k;
+    public boolean f14334l;
+    public boolean f14335m;
+    public boolean f14336n;
+    public float f14337o;
+    public float f14338p;
+    public float f14339q;
+    public float f14340r;
+    public int f14341s;
+    public int f14342t;
+    public int f14343u;
+    public int v;
+    public boolean f14344w;
 }

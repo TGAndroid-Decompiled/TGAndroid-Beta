@@ -1,77 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.R;
-public final class jw0 extends vm0 {
-    public final Context f27658c;
-    public final lw0 d;
+public final class jw0 implements Runnable {
+    public final int f26507a;
+    public final androidx.activity.g f26508b;
 
-    public jw0(lw0 lw0Var, Context context) {
-        this.d = lw0Var;
-        this.f27658c = context;
+    public jw0(androidx.activity.g gVar, int i10) {
+        this.f26507a = i10;
+        this.f26508b = gVar;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47901f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return LocationController.getLocationsCount() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        TextView textView;
-        int i11 = d1Var.f47901f;
-        if (i11 != 0) {
-            if (i11 == 1 && (textView = this.d.f28299e) != null) {
-                textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
+    public final void run() {
+        int i10 = this.f26507a;
+        androidx.activity.g gVar = this.f26508b;
+        switch (i10) {
+            case 0:
+                ow0 ow0Var = (ow0) gVar.f1029c;
+                boolean z10 = ow0Var.O;
+                Paint paint = ow0Var.f28083b0;
+                Paint paint2 = ow0Var.W;
+                if (!z10) {
+                    kw0 kw0Var = (kw0) gVar.d;
+                    if (kw0Var != null) {
+                        kw0Var.f26823c.recycle();
+                    }
+                    ow0Var.P = false;
+                    return;
+                }
+                kw0 kw0Var2 = ow0Var.Q;
+                ow0Var.R = kw0Var2;
+                ow0Var.f28081a0.setShader(paint2.getShader());
+                ow0Var.f28085c0.setShader(paint.getShader());
+                Bitmap bitmap = ((kw0) gVar.d).f26823c;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                paint2.setShader(new BitmapShader(bitmap, tileMode, tileMode));
+                ((kw0) gVar.d).getClass();
+                ValueAnimator valueAnimator = ow0Var.f28090g0;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                ow0Var.f28089f0 = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ow0Var.f28090g0 = ofFloat;
+                ofFloat.addUpdateListener(new g80(gVar, 23));
+                ow0Var.f28090g0.addListener(new ql0(2, gVar, kw0Var2));
+                ow0Var.f28090g0.setDuration(50L);
+                ow0Var.f28090g0.start();
+                ow0Var.N();
+                ow0Var.Q = (kw0) gVar.d;
+                AndroidUtilities.runOnUIThread(new jw0(gVar, 1), 16L);
                 return;
-            }
-            return;
+            default:
+                ow0 ow0Var2 = (ow0) gVar.f1029c;
+                ow0Var2.P = false;
+                ow0Var2.W();
+                return;
         }
-        ((org.telegram.ui.Cells.w7) d1Var.f47897a).setDialog(lw0.r(i10 - 1));
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        FrameLayout w7Var;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        Context context = this.f27658c;
-        lw0 lw0Var = this.d;
-        if (i10 == 0) {
-            c6Var = ((org.telegram.ui.ActionBar.e3) lw0Var).resourcesProvider;
-            w7Var = new org.telegram.ui.Cells.w7(54, context, c6Var, false);
-        } else {
-            w7Var = new ai.x5(context, 18);
-            w7Var.setWillNotDraw(false);
-            TextView textView = new TextView(context);
-            lw0Var.f28299e = textView;
-            textView.setTextColor(lw0Var.getThemedColor(org.telegram.ui.ActionBar.h6.J5));
-            lw0Var.f28299e.setTextSize(1, 14.0f);
-            lw0Var.f28299e.setGravity(17);
-            lw0Var.f28299e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-            w7Var.addView(lw0Var.f28299e, w7.w5.d(40.0f, -1));
-        }
-        return new s4.d1(w7Var);
     }
 }

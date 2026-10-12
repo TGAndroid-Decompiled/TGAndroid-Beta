@@ -1,51 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class t41 extends s4.t0 {
-    public final g51 f30765a;
+import org.telegram.messenger.LocaleController;
+public final class t41 extends s6 {
+    public final Paint f29274s;
+    public final aa0 v;
+    public final v41 f29275w;
 
-    public t41(g51 g51Var) {
-        this.f30765a = g51Var;
+    public t41(v41 v41Var, Context context) {
+        super(context, false, false, false);
+        this.f29275w = v41Var;
+        this.f29274s = new Paint(1);
+        this.v = new aa0();
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        g51 g51Var = this.f30765a;
-        s41 s41Var = g51Var.H;
-        if (i10 == 0) {
-            g51Var.G = false;
-        }
-        if ((i10 == 0 || i10 == 2) && g51Var.B(false) > 0.0f && g51Var.B(false) < AndroidUtilities.dp(96.0f) && s41Var.canScrollVertically(1) && g51.w(g51Var)) {
-            g51Var.G = true;
-            s41Var.v0(0, (int) g51Var.B(false), null);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        float f7;
-        g51 g51Var = this.f30765a;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) g51Var).containerView;
-        viewGroup.invalidate();
-        boolean canScrollVertically = g51Var.H.canScrollVertically(1);
-        View view = g51Var.L;
-        Boolean bool = g51Var.Q;
-        if (bool != null && bool.booleanValue() == canScrollVertically) {
-            return;
-        }
-        g51Var.Q = Boolean.valueOf(canScrollVertically);
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (canScrollVertically) {
-            f7 = 1.0f;
+    public final void onDraw(Canvas canvas) {
+        if (LocaleController.isRTL) {
+            AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
         } else {
-            f7 = 0.0f;
+            AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
         }
-        org.telegram.messenger.am.t(animate.alpha(f7), js.h, 320L);
+        x41 x41Var = this.f29275w.f29891n;
+        int i10 = org.telegram.ui.ActionBar.g6.Pi;
+        String[] strArr = x41.R;
+        int m12 = org.telegram.ui.ActionBar.g6.m1(0.1175f, x41Var.getThemedColor(i10));
+        Paint paint = this.f29274s;
+        paint.setColor(m12);
+        canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+        if (this.v.f(canvas)) {
+            invalidate();
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.c6 c6Var;
+        x41 x41Var = this.f29275w.f29891n;
+        int action = motionEvent.getAction();
+        aa0 aa0Var = this.v;
+        if (action == 0) {
+            c6Var = ((org.telegram.ui.ActionBar.e3) x41Var).resourcesProvider;
+            ea0 ea0Var = new ea0(null, c6Var, motionEvent.getX(), motionEvent.getY(), 0);
+            ea0Var.d(org.telegram.ui.ActionBar.g6.m1(0.1175f, x41Var.getThemedColor(org.telegram.ui.ActionBar.g6.Pi)));
+            x90 b10 = ea0Var.b();
+            if (LocaleController.isRTL) {
+                AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+            } else {
+                AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+            }
+            b10.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
+            aa0Var.a(ea0Var, null);
+            invalidate();
+            return true;
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent.getAction() == 1) {
+                performClick();
+            }
+            aa0Var.d(true);
+            invalidate();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

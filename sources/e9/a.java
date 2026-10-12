@@ -1,50 +1,73 @@
 package e9;
 
-import j$.util.Objects;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-public final class a implements Iterator {
-    public final Iterator f8707a;
-    public Object f8708b = null;
-    public Collection f8709c = null;
-    public Iterator d = o0.f8779a;
-    public final v0 f8710e;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import v7.u6;
+public abstract class a extends m2 implements ListIterator {
+    public final int f8524a;
+    public int f8525b;
 
-    public a(v0 v0Var) {
-        this.f8710e = v0Var;
-        this.f8707a = v0Var.d.entrySet().iterator();
+    public a(int i10, int i11) {
+        u6.m(i11, i10);
+        this.f8524a = i10;
+        this.f8525b = i11;
+    }
+
+    public abstract Object a(int i10);
+
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public final boolean hasNext() {
-        if (!this.f8707a.hasNext() && !this.d.hasNext()) {
-            return false;
+        if (this.f8525b < this.f8524a) {
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.f8525b > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final Object next() {
-        if (!this.d.hasNext()) {
-            Map.Entry entry = (Map.Entry) this.f8707a.next();
-            this.f8708b = entry.getKey();
-            Collection collection = (Collection) entry.getValue();
-            this.f8709c = collection;
-            this.d = collection.iterator();
+        if (hasNext()) {
+            int i10 = this.f8525b;
+            this.f8525b = i10 + 1;
+            return a(i10);
         }
-        return this.d.next();
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final void remove() {
-        this.d.remove();
-        Collection collection = this.f8709c;
-        Objects.requireNonNull(collection);
-        if (collection.isEmpty()) {
-            this.f8707a.remove();
+    public final int nextIndex() {
+        return this.f8525b;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f8525b - 1;
+            this.f8525b = i10;
+            return a(i10);
         }
-        v0 v0Var = this.f8710e;
-        v0Var.f8811e--;
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f8525b - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

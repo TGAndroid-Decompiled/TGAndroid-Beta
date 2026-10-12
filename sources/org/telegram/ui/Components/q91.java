@@ -1,14 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class q91 {
-    public int f29784a;
-    public CharSequence f29785b;
-    public int f29786c;
+import android.graphics.Bitmap;
+import java.io.File;
+public interface q91 {
+    void a();
 
-    public final int a(TextPaint textPaint) {
-        int ceil = (int) Math.ceil(ci.d4.g(this.f29785b, textPaint));
-        this.f29786c = ceil;
-        return Math.max(0, ceil);
-    }
+    void b(File file, Bitmap bitmap, boolean z10);
 }

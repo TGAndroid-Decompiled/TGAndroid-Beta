@@ -1,20 +1,30 @@
 package rg;
-public final class h {
-    public final int f47481a;
-    public final int f47482b;
-    public final String f47483c;
-    public final String d;
-    public final int f47484e;
+public interface h {
+    void B(boolean z10);
 
-    public h(int i10) {
-        this.f47481a = i10;
-    }
+    void C();
 
-    public h(int i10, int i11, String str, String str2) {
-        this.f47481a = 1;
-        this.f47482b = i10;
-        this.f47483c = str;
-        this.d = str2;
-        this.f47484e = i11;
-    }
+    void f(boolean z10);
+
+    void g(boolean z10);
+
+    void h(j jVar);
+
+    void j();
+
+    void k();
+
+    void m(boolean z10);
+
+    boolean q();
+
+    boolean r();
+
+    void u(float f7, float f10, float[] fArr);
+
+    boolean v(j jVar);
+
+    int[] w(j jVar);
+
+    void y();
 }

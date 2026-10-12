@@ -1,40 +1,26 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.LinearLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-public final class ti1 extends LinearLayout {
-    public final xi1 f42205a;
+import org.telegram.messenger.AndroidUtilities;
+import org.webrtc.RendererCommon;
+public final class ti1 implements RendererCommon.RendererEvents {
+    public final dj1 f40393a;
 
-    public ti1(xi1 xi1Var, Activity activity) {
-        super(activity);
-        this.f42205a = xi1Var;
+    public ti1(dj1 dj1Var) {
+        this.f40393a = dj1Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f42205a.E.getText();
-        if (sharedState != null && !TextUtils.isEmpty(text)) {
-            StringBuilder sb2 = new StringBuilder(text);
-            sb2.append(", ");
-            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
-                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
-            } else {
-                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
-            }
-            long callDuration = sharedState.getCallDuration();
-            if (callDuration > 0) {
-                sb2.append(", ");
-                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
-            }
-            accessibilityNodeInfo.setText(sb2);
+    public final void onFirstFrameRendered() {
+        dj1 dj1Var = this.f40393a;
+        com.google.android.gms.internal.cast.p pVar = dj1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            dj1Var.l1 = null;
         }
+        AndroidUtilities.runOnUIThread(new uz0(this, 23));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

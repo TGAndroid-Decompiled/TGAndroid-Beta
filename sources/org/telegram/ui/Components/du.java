@@ -1,8 +1,35 @@
 package org.telegram.ui.Components;
-public abstract class du {
-    public static final js f25463a = new js(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final js f25464b = new js(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final js f25465c = new js(0.55d, 0.085d, 0.68d, 0.53d);
-    public static final js d = new js(0.25d, 0.46d, 0.45d, 0.94d);
-    public static final js f25466e = new js(0.455d, 0.03d, 0.515d, 0.955d);
+
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class du implements Utilities.Callback0Return {
+    public final int f24492a;
+    public final Object f24493b;
+
+    public du(Object obj, int i10) {
+        this.f24492a = i10;
+        this.f24493b = obj;
+    }
+
+    @Override
+    public final Object run() {
+        boolean z10;
+        Editable text;
+        sj0[] sj0VarArr;
+        int i10 = this.f24492a;
+        Object obj = this.f24493b;
+        switch (i10) {
+            case 0:
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                int i11 = EditTextBoldCursor.f23152a;
+                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((sj0VarArr = (sj0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), sj0.class)) == null || sj0VarArr.length == 0)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
+            default:
+                return ((h50) obj).getCloseIntoObject();
+        }
+    }
 }

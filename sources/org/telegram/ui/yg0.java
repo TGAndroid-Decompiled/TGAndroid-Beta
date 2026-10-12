@@ -1,29 +1,50 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class yg0 implements org.telegram.ui.Components.lm0, org.telegram.ui.ActionBar.z1 {
-    public final ah0 f44478a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.RadialProgressView;
+public final class yg0 implements Runnable {
+    public final int f42159a;
+    public final zg0 f42160b;
+    public final pg0 f42161c;
 
-    public yg0(ah0 ah0Var) {
-        this.f44478a = ah0Var;
+    public yg0(int i10, pg0 pg0Var, zg0 zg0Var) {
+        this.f42159a = i10;
+        this.f42160b = zg0Var;
+        this.f42161c = pg0Var;
     }
 
     @Override
-    public boolean Y0(View view) {
-        return false;
-    }
-
-    @Override
-    public void c(float f7, float f10, int i10, View view) {
-        ah0.W(this.f44478a, i10);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        ah0.U(this.f44478a);
-    }
-
-    @Override
-    public void n0(View view, float f7, float f10) {
+    public final void run() {
+        int i10 = this.f42159a;
+        pg0 pg0Var = this.f42161c;
+        zg0 zg0Var = this.f42160b;
+        switch (i10) {
+            case 0:
+                int i11 = pg0.E;
+                pg0Var.a();
+                AndroidUtilities.runOnUIThread(new yg0(1, pg0Var, zg0Var), 150L);
+                return;
+            default:
+                ah0 ah0Var = zg0Var.f42617a;
+                ah0Var.h(null);
+                RadialProgressView radialProgressView = ah0Var.V.N.d;
+                RadialProgressView radialProgressView2 = pg0Var.h.d;
+                radialProgressView.getClass();
+                radialProgressView.f23267a = radialProgressView2.f23267a;
+                radialProgressView.f23268b = radialProgressView2.f23268b;
+                radialProgressView.H = radialProgressView2.H;
+                radialProgressView.I = radialProgressView2.I;
+                radialProgressView.J = radialProgressView2.J;
+                radialProgressView.f23269c = radialProgressView2.f23269c;
+                radialProgressView.f23271n = radialProgressView2.f23271n;
+                radialProgressView.e = radialProgressView2.e;
+                radialProgressView.f23276y = radialProgressView2.f23276y;
+                radialProgressView.F = radialProgressView2.F;
+                radialProgressView.G = radialProgressView2.G;
+                radialProgressView.d = radialProgressView2.d;
+                radialProgressView.E = radialProgressView2.E;
+                radialProgressView.b(85L);
+                return;
+        }
     }
 }

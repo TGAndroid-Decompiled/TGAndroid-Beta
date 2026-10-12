@@ -1,38 +1,38 @@
 package w7;
-public final class m5 implements ia.d {
-    public static final m5 f50306a = new Object();
-    public static final ia.c f50307b = new ia.c("appId", hg.c.o(sc.v.m(d.class, new a(1))));
-    public static final ia.c f50308c = new ia.c("appVersion", hg.c.o(sc.v.m(d.class, new a(2))));
-    public static final ia.c d = new ia.c("firebaseProjectId", hg.c.o(sc.v.m(d.class, new a(3))));
-    public static final ia.c f50309e = new ia.c("mlSdkVersion", hg.c.o(sc.v.m(d.class, new a(4))));
-    public static final ia.c f50310f = new ia.c("tfliteSchemaVersion", hg.c.o(sc.v.m(d.class, new a(5))));
-    public static final ia.c f50311g = new ia.c("gcmSenderId", hg.c.o(sc.v.m(d.class, new a(6))));
-    public static final ia.c h = new ia.c("apiKey", hg.c.o(sc.v.m(d.class, new a(7))));
-    public static final ia.c f50312i = new ia.c("languages", hg.c.o(sc.v.m(d.class, new a(8))));
-    public static final ia.c f50313j = new ia.c("mlSdkInstanceId", hg.c.o(sc.v.m(d.class, new a(9))));
-    public static final ia.c f50314k = new ia.c("isClearcutClient", hg.c.o(sc.v.m(d.class, new a(10))));
-    public static final ia.c f50315l = new ia.c("isStandaloneMlkit", hg.c.o(sc.v.m(d.class, new a(11))));
-    public static final ia.c f50316m = new ia.c("isJsonLogging", hg.c.o(sc.v.m(d.class, new a(12))));
-    public static final ia.c f50317n = new ia.c("buildLevel", hg.c.o(sc.v.m(d.class, new a(13))));
-    public static final ia.c f50318o = new ia.c("optionalModuleVersion", hg.c.o(sc.v.m(d.class, new a(14))));
+public final class m5 implements ja.d {
+    public static final m5 f47374a = new Object();
+    public static final ja.c f47375b = new ja.c("appId", i2.d.n(t8.b.l(d.class, new a(1))));
+    public static final ja.c f47376c = new ja.c("appVersion", i2.d.n(t8.b.l(d.class, new a(2))));
+    public static final ja.c d = new ja.c("firebaseProjectId", i2.d.n(t8.b.l(d.class, new a(3))));
+    public static final ja.c e = new ja.c("mlSdkVersion", i2.d.n(t8.b.l(d.class, new a(4))));
+    public static final ja.c f47377f = new ja.c("tfliteSchemaVersion", i2.d.n(t8.b.l(d.class, new a(5))));
+    public static final ja.c f47378g = new ja.c("gcmSenderId", i2.d.n(t8.b.l(d.class, new a(6))));
+    public static final ja.c h = new ja.c("apiKey", i2.d.n(t8.b.l(d.class, new a(7))));
+    public static final ja.c f47379i = new ja.c("languages", i2.d.n(t8.b.l(d.class, new a(8))));
+    public static final ja.c f47380j = new ja.c("mlSdkInstanceId", i2.d.n(t8.b.l(d.class, new a(9))));
+    public static final ja.c f47381k = new ja.c("isClearcutClient", i2.d.n(t8.b.l(d.class, new a(10))));
+    public static final ja.c f47382l = new ja.c("isStandaloneMlkit", i2.d.n(t8.b.l(d.class, new a(11))));
+    public static final ja.c f47383m = new ja.c("isJsonLogging", i2.d.n(t8.b.l(d.class, new a(12))));
+    public static final ja.c f47384n = new ja.c("buildLevel", i2.d.n(t8.b.l(d.class, new a(13))));
+    public static final ja.c f47385o = new ja.c("optionalModuleVersion", i2.d.n(t8.b.l(d.class, new a(14))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         l9 l9Var = (l9) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f50307b, l9Var.f50283a);
-        eVar.a(f50308c, l9Var.f50284b);
-        eVar.a(d, null);
-        eVar.a(f50309e, l9Var.f50285c);
-        eVar.a(f50310f, l9Var.d);
-        eVar.a(f50311g, null);
-        eVar.a(h, null);
-        eVar.a(f50312i, l9Var.f50286e);
-        eVar.a(f50313j, l9Var.f50287f);
-        eVar.a(f50314k, l9Var.f50288g);
-        eVar.a(f50315l, l9Var.h);
-        eVar.a(f50316m, l9Var.f50289i);
-        eVar.a(f50317n, l9Var.f50290j);
-        eVar.a(f50318o, l9Var.f50291k);
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f47375b, l9Var.f47353a);
+        eVar.d(f47376c, l9Var.f47354b);
+        eVar.d(d, null);
+        eVar.d(e, l9Var.f47355c);
+        eVar.d(f47377f, l9Var.d);
+        eVar.d(f47378g, null);
+        eVar.d(h, null);
+        eVar.d(f47379i, l9Var.e);
+        eVar.d(f47380j, l9Var.f47356f);
+        eVar.d(f47381k, l9Var.f47357g);
+        eVar.d(f47382l, l9Var.h);
+        eVar.d(f47383m, l9Var.f47358i);
+        eVar.d(f47384n, l9Var.f47359j);
+        eVar.d(f47385o, l9Var.f47360k);
     }
 }

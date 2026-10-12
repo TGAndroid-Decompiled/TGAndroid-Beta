@@ -1,52 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class jt0 extends s4.o0 {
-    public final dt0 f27650a;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class jt0 extends FragmentContextView {
+    public final xv0 R0;
 
-    public jt0(dt0 dt0Var) {
-        this.f27650a = dt0Var;
+    public jt0(xv0 xv0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, xv0 xv0Var2, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, m2Var, xv0Var2, false, c6Var);
+        this.R0 = xv0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+    public final void setVisibility(int i10) {
         boolean z10;
-        boolean z11;
-        if (view instanceof org.telegram.ui.Cells.t7) {
-            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-            dt0 dt0Var = this.f27650a;
-            dt0Var.f24488r.getClass();
-            int R = RecyclerView.R(t7Var);
-            int i10 = dt0Var.f24489s.J;
-            boolean z12 = true;
-            if (R < i10) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            t7Var.f22835a0 = z10;
-            int i11 = R % i10;
-            if (i11 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            t7Var.V = z11;
-            if (i11 != i10 - 1) {
-                z12 = false;
-            }
-            t7Var.W = z12;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-            return;
+        xv0 xv0Var = this.R0;
+        xs xsVar = xv0Var.P0;
+        FrameLayout frameLayout = xv0Var.Q0;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
+        xsVar.i(frameLayout, z10, true);
     }
 }

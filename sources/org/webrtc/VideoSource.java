@@ -19,8 +19,8 @@ public class VideoSource extends MediaSource {
         }
     }
 
-    public VideoSource(long j3) {
-        super(j3);
+    public VideoSource(long j10) {
+        super(j10);
         this.videoProcessorLock = new Object();
         this.capturerObserver = new CapturerObserver() {
             {
@@ -66,7 +66,7 @@ public class VideoSource extends MediaSource {
                             VideoSource.this.videoProcessor.onFrameCaptured(videoFrame, adaptFrame);
                             return;
                         }
-                        VideoFrame b10 = d0.b(videoFrame, adaptFrame);
+                        VideoFrame b10 = e0.b(videoFrame, adaptFrame);
                         if (b10 != null) {
                             VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(b10);
                             b10.release();
@@ -77,7 +77,7 @@ public class VideoSource extends MediaSource {
                 }
             }
         };
-        this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j3);
+        this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j10);
     }
 
     public void lambda$setVideoProcessor$0(VideoFrame videoFrame) {
@@ -85,7 +85,7 @@ public class VideoSource extends MediaSource {
     }
 
     public void lambda$setVideoProcessor$1(VideoFrame videoFrame) {
-        runWithReference(new s(6, this, videoFrame));
+        runWithReference(new t(6, this, videoFrame));
     }
 
     public void adaptOutputFormat(int i10, int i11, int i12) {

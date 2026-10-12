@@ -30,7 +30,7 @@ public class NV12Buffer implements VideoFrame.Buffer {
 
     @Override
     public final int getBufferType() {
-        return a0.a(this);
+        return b0.a(this);
     }
 
     @Override

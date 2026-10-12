@@ -1,43 +1,38 @@
 package e9;
-public final class d1 extends m0 {
-    public final transient k0 d;
-    public final transient e1 f8726e;
 
-    public d1(k0 k0Var, e1 e1Var) {
-        this.d = k0Var;
-        this.f8726e = e1Var;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import v7.u6;
+public final class d1 implements Iterator {
+    public static final d1 f8546a;
+    public static final d1[] f8547b;
+
+    static {
+        ?? r02 = new Enum("INSTANCE", 0);
+        f8546a = r02;
+        f8547b = new d1[]{r02};
+    }
+
+    public static d1 valueOf(String str) {
+        return (d1) Enum.valueOf(d1.class, str);
+    }
+
+    public static d1[] values() {
+        return (d1[]) f8547b.clone();
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.d.get(obj) != null) {
-            return true;
-        }
+    public final boolean hasNext() {
         return false;
     }
 
     @Override
-    public final i0 i() {
-        return this.f8726e;
+    public final Object next() {
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final int n(int i10, Object[] objArr) {
-        return this.f8726e.n(i10, objArr);
-    }
-
-    @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final o1 s() {
-        return this.f8726e.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.d.size();
+    public final void remove() {
+        u6.o("no calls to next() since the last call to remove()", false);
     }
 }

@@ -1,40 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class j90 implements Utilities.Callback2 {
-    public final int f27413a;
-    public final long f27414b;
-    public final org.telegram.ui.ActionBar.e3 f27415c;
-    public final Object d;
+import org.telegram.messenger.AndroidUtilities;
+public final class j90 implements Runnable {
+    public final int f26269a;
+    public final l90 f26270b;
+    public final boolean f26271c;
+    public final boolean d;
 
-    public j90(db dbVar, Object obj, long j3, int i10) {
-        this.f27413a = i10;
-        this.f27415c = dbVar;
-        this.d = obj;
-        this.f27414b = j3;
+    public j90(l90 l90Var, boolean z10, boolean z11, int i10) {
+        this.f26269a = i10;
+        this.f26270b = l90Var;
+        this.f26271c = z10;
+        this.d = z11;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f27413a) {
+    public final void run() {
+        switch (this.f26269a) {
             case 0:
-                m90.o((m90) this.f27415c, this.f27414b, (TLRPC.TL_messages_importChatInvite) this.d, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                xh.g4.W((xh.g4) this.f27415c, (TL_stars.TL_starGiftUnique) this.d, this.f27414b, (yh.w2) obj, (of.e) obj2);
+                AndroidUtilities.runOnUIThread(new j90(this.f26270b, this.f26271c, this.d, 1));
                 return;
             default:
-                yh.a7.R((yh.a7) this.f27415c, (u61) this.d, this.f27414b, (Boolean) obj, (String) obj2);
+                l90 l90Var = this.f26270b;
+                l90Var.setJoinRequest(this.f26271c);
+                l90Var.setJoinToSend(this.d);
                 return;
         }
-    }
-
-    public j90(m90 m90Var, long j3, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        this.f27413a = 0;
-        this.f27415c = m90Var;
-        this.f27414b = j3;
-        this.d = tL_messages_importChatInvite;
     }
 }

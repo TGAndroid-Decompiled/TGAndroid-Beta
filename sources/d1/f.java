@@ -3,12 +3,12 @@ package d1;
 import c7.r;
 import java.util.LinkedHashMap;
 public abstract class f {
-    public static final LinkedHashMap f8045a;
+    public static final LinkedHashMap f6275a;
 
     static {
-        hd.d[] dVarArr = {new hd.d(r.UNKNOWN_ERR, new x0.a(26)), new hd.d(r.ABORT_ERR, new x0.a(0)), new hd.d(r.ATTESTATION_NOT_PRIVATE_ERR, new x0.a(16)), new hd.d(r.CONSTRAINT_ERR, new x0.a(1)), new hd.d(r.DATA_ERR, new x0.a(3)), new hd.d(r.INVALID_STATE_ERR, new x0.a(10)), new hd.d(r.ENCODING_ERR, new x0.a(4)), new hd.d(r.NETWORK_ERR, new x0.a(12)), new hd.d(r.NOT_ALLOWED_ERR, new x0.a(14)), new hd.d(r.NOT_SUPPORTED_ERR, new x0.a(17)), new hd.d(r.SECURITY_ERR, new x0.a(22)), new hd.d(r.TIMEOUT_ERR, new x0.a(24))};
-        LinkedHashMap linkedHashMap = new LinkedHashMap(id.r.a(12));
-        id.r.c(linkedHashMap, dVarArr);
-        f8045a = linkedHashMap;
+        id.d[] dVarArr = {new id.d(r.UNKNOWN_ERR, new x0.a(26)), new id.d(r.ABORT_ERR, new x0.a(0)), new id.d(r.ATTESTATION_NOT_PRIVATE_ERR, new x0.a(16)), new id.d(r.CONSTRAINT_ERR, new x0.a(1)), new id.d(r.DATA_ERR, new x0.a(3)), new id.d(r.INVALID_STATE_ERR, new x0.a(10)), new id.d(r.ENCODING_ERR, new x0.a(4)), new id.d(r.NETWORK_ERR, new x0.a(12)), new id.d(r.NOT_ALLOWED_ERR, new x0.a(14)), new id.d(r.NOT_SUPPORTED_ERR, new x0.a(17)), new id.d(r.SECURITY_ERR, new x0.a(22)), new id.d(r.TIMEOUT_ERR, new x0.a(24))};
+        LinkedHashMap linkedHashMap = new LinkedHashMap(jd.r.a(12));
+        jd.r.c(linkedHashMap, dVarArr);
+        f6275a = linkedHashMap;
     }
 }

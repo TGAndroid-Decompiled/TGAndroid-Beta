@@ -1,130 +1,55 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class pi extends org.telegram.ui.ActionBar.o1 {
-    public final qi f29506x;
+public final class pi extends qi {
+    public int f28317b;
+    public final vi f28318c;
 
-    public pi(qi qiVar, qi qiVar2) {
-        super(qiVar2);
-        this.f29506x = qiVar;
+    public pi(vi viVar, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.c6 c6Var;
+        this.f28318c = viVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        c6Var = ((org.telegram.ui.ActionBar.e3) viVar).resourcesProvider;
+        ph.b bVar = new ph.b(context);
+        bVar.d = c6Var;
+        bVar.Q = true;
+        TextView textView = bVar.f43216a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.a(false);
+        bVar.f43217b.setLayoutParams(w7.a6.a(24.0f, 0.0f, 4.0f, 0.0f, 0.0f, 24, 49));
+        bVar.f43223w = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.cl, c6Var);
+        bVar.f43222s = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.al, c6Var);
+        bVar.v = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.bl, c6Var);
+        bVar.f();
+        this.f28613a = bVar;
+        addView(bVar, w7.a6.d(-1.0f, -1));
+    }
+
+    public final void a(int i10, String str, ph.a aVar) {
+        this.f28613a.setText(str);
+        this.f28613a.setTabAnimation(aVar);
+        this.f28317b = i10;
     }
 
     @Override
-    public final boolean b() {
-        d00 d00Var;
-        aj ajVar = this.f29506x.B0;
-        if ((!ajVar.isDismissed() || ajVar.f24395x0) && ajVar.f24388v1) {
-            si siVar = ajVar.B0;
-            if (siVar == ajVar.m0 || siVar == ajVar.f24361n0 || ajVar.o1().m()) {
-                si siVar2 = ajVar.B0;
-                no noVar = ajVar.m0;
-                if (siVar2 != noVar || ((d00Var = noVar.E) != null && d00Var.getVisibility() == 0)) {
-                    si siVar3 = ajVar.B0;
-                    no noVar2 = ajVar.f24361n0;
-                    if (siVar3 == noVar2) {
-                        d00 d00Var2 = noVar2.E;
-                        if (d00Var2 != null && d00Var2.getVisibility() == 0) {
-                            return false;
-                        }
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        }
+    public final boolean hasOverlappingRendering() {
         return false;
     }
 
     @Override
-    public final void e(float f7, float f10, boolean z10) {
-        float f11;
-        qi qiVar = this.f29506x;
-        aj ajVar = qiVar.B0;
-        ajVar.f24366o2 = f7;
-        float f12 = ajVar.f24343g2;
-        float f13 = 0.0f;
-        if (f12 > 0.0f) {
-            if (ajVar.B0 == ajVar.f24391w0 && !z10) {
-                f11 = f10;
-            } else {
-                f11 = 1.0f - f10;
-            }
-            ajVar.f24366o2 = com.google.android.gms.internal.vision.e2.y(f12, ajVar.f24346h2, f11, f7);
-        }
-        ajVar.f24321a1.setTranslationY(ajVar.f24366o2);
-        ajVar.f24331d1.setTranslationY(ajVar.f24366o2);
-        org.telegram.ui.ActionBar.u0 u0Var = ajVar.f24345h1;
-        if (u0Var != null) {
-            u0Var.setTranslationY(ajVar.f24366o2);
-        }
-        org.telegram.ui.ActionBar.u0 u0Var2 = ajVar.f24339f1;
-        if (u0Var2 != null) {
-            u0Var2.setTranslationY(ajVar.f24331d1.getTranslationY());
-        }
-        ci.d4 d4Var = ajVar.f24342g1;
-        if (d4Var != null) {
-            d4Var.setTranslationY(ajVar.f24331d1.getTranslationY());
-        }
-        ajVar.f24348i1.setTranslationY(ajVar.f24366o2);
-        ajVar.e2(0);
-        if (ajVar.B0 != ajVar.f24391w0) {
-            f13 = ajVar.f24366o2;
-        }
-        ajVar.setCurrentPanTranslationY(f13);
-        qiVar.invalidate();
-        ajVar.G0.invalidate();
-        ajVar.Y1();
-        si siVar = ajVar.B0;
-        if (siVar != null) {
-            siVar.m(ajVar.f24366o2, f10);
-        }
-    }
-
-    @Override
-    public final void f() {
+    public final void onAttachedToWindow() {
         boolean z10;
-        int i10;
-        aj ajVar = this.f29506x.B0;
-        ajVar.b2(ajVar.B0, 0);
-        ajVar.f24340f2 = ajVar.f24336e2[0];
-        ajVar.B0.y();
-        if ((ajVar.B0 instanceof ei.p4) && !ajVar.G1) {
-            z10 = ((org.telegram.ui.ActionBar.e3) ajVar).keyboardVisible;
-            if (z10) {
-                i10 = AndroidUtilities.dp(84.0f);
-            } else {
-                i10 = 0;
-            }
-            for (int i11 = 0; i11 < ajVar.A0.size(); i11++) {
-                ((ei.p4) ajVar.A0.valueAt(i11)).setMeasureOffsetY(i10);
-            }
-        }
-    }
-
-    @Override
-    public final void g(int i10, boolean z10) {
-        int i11;
-        qi qiVar = this.f29506x;
-        aj ajVar = qiVar.B0;
-        int i12 = ajVar.f24340f2;
-        if (i12 > 0 && i12 != (i11 = ajVar.f24336e2[0]) && (z10 || ajVar.B0 == ajVar.f24391w0)) {
-            ajVar.f24343g2 = i12;
-            ajVar.f24346h2 = i11;
+        super.onAttachedToWindow();
+        if (this.f28317b == this.f28318c.Z0) {
+            z10 = true;
         } else {
-            ajVar.f24343g2 = -1.0f;
+            z10 = false;
         }
-        qiVar.invalidate();
-        ci ciVar = ajVar.A1;
-        if ((ajVar.B0 instanceof ei.p4) && !ajVar.G1) {
-            if (z10) {
-                ciVar.setVisibility(8);
-            } else {
-                ciVar.setVisibility(0);
-            }
-        }
-        ajVar.B0.z(i10, z10);
+        this.f28613a.e(z10, false);
     }
 }

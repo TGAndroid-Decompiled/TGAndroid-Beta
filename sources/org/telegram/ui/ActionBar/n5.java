@@ -1,6 +1,5 @@
 package org.telegram.ui.ActionBar;
 
-import ai.aa;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,41 +16,41 @@ public final class n5 implements SensorEventListener {
         }
         if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
             if (f7 > 500.0f) {
-                h6.h = 1.0f;
+                g6.h = 1.0f;
             } else {
-                h6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+                g6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
-            long j3 = 1800;
-            if (h6.h <= h6.f20793q) {
+            long j10 = 1800;
+            if (g6.h <= g6.f20132q) {
                 if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (h6.f20663j) {
-                        h6.f20663j = false;
-                        AndroidUtilities.cancelRunOnUIThread(h6.f20701l);
+                    if (g6.f20001j) {
+                        g6.f20001j = false;
+                        AndroidUtilities.cancelRunOnUIThread(g6.f20040l);
                     }
-                    if (!h6.f20681k) {
-                        h6.f20681k = true;
-                        aa aaVar = h6.f20719m;
-                        if (Math.abs(h6.f20644i - SystemClock.elapsedRealtime()) < 12000) {
-                            j3 = 12000;
+                    if (!g6.f20021k) {
+                        g6.f20021k = true;
+                        androidx.emoji2.text.n nVar = g6.f20058m;
+                        if (Math.abs(g6.f19983i - SystemClock.elapsedRealtime()) < 12000) {
+                            j10 = 12000;
                         }
-                        AndroidUtilities.runOnUIThread(aaVar, j3);
+                        AndroidUtilities.runOnUIThread(nVar, j10);
                         return;
                     }
                     return;
                 }
                 return;
             }
-            if (h6.f20681k) {
-                h6.f20681k = false;
-                AndroidUtilities.cancelRunOnUIThread(h6.f20719m);
+            if (g6.f20021k) {
+                g6.f20021k = false;
+                AndroidUtilities.cancelRunOnUIThread(g6.f20058m);
             }
-            if (!h6.f20663j) {
-                h6.f20663j = true;
-                aa aaVar2 = h6.f20701l;
-                if (Math.abs(h6.f20644i - SystemClock.elapsedRealtime()) < 12000) {
-                    j3 = 12000;
+            if (!g6.f20001j) {
+                g6.f20001j = true;
+                androidx.emoji2.text.n nVar2 = g6.f20040l;
+                if (Math.abs(g6.f19983i - SystemClock.elapsedRealtime()) < 12000) {
+                    j10 = 12000;
                 }
-                AndroidUtilities.runOnUIThread(aaVar2, j3);
+                AndroidUtilities.runOnUIThread(nVar2, j10);
             }
         }
     }

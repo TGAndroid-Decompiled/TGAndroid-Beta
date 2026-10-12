@@ -1,63 +1,63 @@
 package m4;
+public final class m1 extends b2.p1 {
+    public static final Object f15548j = new Object();
+    public final b2.p0 e;
+    public final boolean f15549f;
+    public final boolean f15550g;
+    public final b2.j0 h;
+    public final long f15551i;
 
-import android.os.Bundle;
-import android.os.SystemClock;
-public final class m1 {
-    public static final String f15920e;
-    public static final String f15921f;
-    public static final String f15922g;
-    public static final String h;
-    public final int f15923a;
-    public final Bundle f15924b;
-    public final long f15925c;
-    public final k1 d;
-
-    static {
-        String str = e2.d0.f8529a;
-        f15920e = Integer.toString(0, 36);
-        f15921f = Integer.toString(1, 36);
-        f15922g = Integer.toString(2, 36);
-        h = Integer.toString(3, 36);
-    }
-
-    public m1(int i10) {
-        this(i10, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
-    }
-
-    public static m1 a(Bundle bundle) {
-        k1 k1Var;
-        int i10 = bundle.getInt(f15920e, -1);
-        Bundle bundle2 = bundle.getBundle(f15921f);
-        long j3 = bundle.getLong(f15922g, SystemClock.elapsedRealtime());
-        Bundle bundle3 = bundle.getBundle(h);
-        if (bundle3 != null) {
-            int i11 = bundle3.getInt(k1.d, 1000);
-            String string = bundle3.getString(k1.f15874e, "");
-            Bundle bundle4 = bundle3.getBundle(k1.f15875f);
-            if (bundle4 == null) {
-                bundle4 = Bundle.EMPTY;
-            }
-            k1Var = new k1(string, i11, bundle4);
-        } else if (i10 != 0) {
-            k1Var = new k1(i10);
+    public m1(n1 n1Var) {
+        b2.j0 j0Var;
+        this.e = n1Var.v();
+        this.f15549f = n1Var.e0();
+        this.f15550g = n1Var.v0();
+        if (n1Var.P0()) {
+            j0Var = b2.j0.f2167f;
         } else {
-            k1Var = null;
+            j0Var = null;
         }
-        k1 k1Var2 = k1Var;
-        if (bundle2 == null) {
-            bundle2 = Bundle.EMPTY;
-        }
-        return new m1(i10, bundle2, j3, k1Var2);
+        this.h = j0Var;
+        this.f15551i = e2.m0.S(n1Var.z());
     }
 
-    public m1(int i10, Bundle bundle, long j3, k1 k1Var) {
-        e2.d.b(k1Var == null || i10 < 0);
-        this.f15923a = i10;
-        this.f15924b = new Bundle(bundle);
-        this.f15925c = j3;
-        if (k1Var == null && i10 < 0) {
-            k1Var = new k1(i10);
+    @Override
+    public final int b(Object obj) {
+        if (f15548j.equals(obj)) {
+            return 0;
         }
-        this.d = k1Var;
+        return -1;
+    }
+
+    @Override
+    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
+        m1Var.getClass();
+        b2.c cVar = b2.c.f2086c;
+        Object obj = f15548j;
+        m1Var.h(obj, obj, 0, this.f15551i, 0L, cVar, false);
+        m1Var.f2214f = false;
+        return m1Var;
+    }
+
+    @Override
+    public final int h() {
+        return 1;
+    }
+
+    @Override
+    public final Object l(int i10) {
+        return f15548j;
+    }
+
+    @Override
+    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
+        o1Var.b(f15548j, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f15549f, this.f15550g, this.h, 0L, this.f15551i, 0, 0, 0L);
+        o1Var.f2265k = false;
+        return o1Var;
+    }
+
+    @Override
+    public final int o() {
+        return 1;
     }
 }

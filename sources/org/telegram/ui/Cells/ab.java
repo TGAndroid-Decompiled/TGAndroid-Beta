@@ -2,32 +2,32 @@ package org.telegram.ui.Cells;
 
 import android.view.View;
 public final class ab implements View.OnLongClickListener {
-    public final int f21582a = 0;
-    public final int f21583b;
-    public final Object f21584c;
+    public final int f20928a = 0;
+    public final int f20929b;
+    public final Object f20930c;
     public final Object d;
 
     public ab(cb cbVar, bb bbVar, int i10) {
-        this.f21584c = cbVar;
+        this.f20930c = cbVar;
         this.d = bbVar;
-        this.f21583b = i10;
+        this.f20929b = i10;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f21582a) {
+        switch (this.f20928a) {
             case 0:
-                return ((cb) this.f21584c).b(((bb) this.d).h, this.f21583b);
+                return ((cb) this.f20930c).b(((bb) this.d).h, this.f20929b);
             default:
-                ((yh.f5) this.f21584c).f(this.f21583b, true);
+                ((zh.f5) this.f20930c).f(this.f20929b, true);
                 ((Runnable) this.d).run();
                 return true;
         }
     }
 
-    public ab(yh.f5 f5Var, int i10, Runnable runnable) {
-        this.f21584c = f5Var;
-        this.f21583b = i10;
+    public ab(zh.f5 f5Var, int i10, Runnable runnable) {
+        this.f20930c = f5Var;
+        this.f20929b = i10;
         this.d = runnable;
     }
 }

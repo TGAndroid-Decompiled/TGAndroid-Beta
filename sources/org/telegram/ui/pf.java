@@ -1,26 +1,25 @@
 package org.telegram.ui;
-public final class pf implements Runnable {
-    public final int f40949a;
-    public final eo f40950b;
-    public final long f40951c;
-    public final long d;
 
-    public pf(eo eoVar, long j3, long j10, int i10) {
-        this.f40949a = i10;
-        this.f40950b = eoVar;
-        this.f40951c = j3;
-        this.d = j10;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.function.ToIntFunction;
+public final class pf implements ToIntFunction {
+    public final int f39209a;
+    public final Object f39210b;
+
+    public pf(Object obj, int i10) {
+        this.f39209a = i10;
+        this.f39210b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40949a) {
+    public final int applyAsInt(Object obj) {
+        switch (this.f39209a) {
             case 0:
-                eo.Y(this.f40950b, this.f40951c, this.d);
-                return;
+                return ((Integer) ((HashMap) this.f39210b).get((View) obj)).intValue();
             default:
-                eo.X(this.f40950b, this.f40951c, this.d);
-                return;
+                return ((Integer) ((ArrayList) this.f39210b).get(((Integer) obj).intValue())).intValue();
         }
     }
 }

@@ -1,33 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class c60 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean[] f24832a;
-    public final y50 f24833b;
-    public final w60 f24834c;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.ImageReceiver;
+public abstract class c60 extends r60 {
+    public ImageReceiver f23957a;
+    public float f23958b;
+    public final p60 f23959c;
 
-    public c60(w60 w60Var, boolean[] zArr, y50 y50Var) {
-        this.f24834c = w60Var;
-        this.f24832a = zArr;
-        this.f24833b = y50Var;
+    public c60(p60 p60Var, Context context) {
+        super(context);
+        this.f23959c = p60Var;
+        p60Var.setWillNotDraw(false);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (floatValue > 0.5f) {
-            boolean[] zArr = this.f24832a;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                this.f24833b.run();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f7 = this.f23958b;
+        if (f7 != 1.0f) {
+            float f10 = f7 + 0.064f;
+            this.f23958b = f10;
+            if (f10 > 1.0f) {
+                this.f23958b = 1.0f;
             }
+            invalidate();
         }
-        if (floatValue >= 0.5f) {
-            floatValue -= 1.0f;
+        if (this.f23957a != null) {
+            canvas.save();
+            float imageWidth = this.f23957a.getImageWidth();
+            int i10 = this.f23959c.X0;
+            if (imageWidth != i10) {
+                float imageWidth2 = i10 / this.f23957a.getImageWidth();
+                canvas.scale(imageWidth2, imageWidth2);
+            }
+            canvas.translate(-this.f23957a.getImageX(), -this.f23957a.getImageY());
+            float alpha = this.f23957a.getAlpha();
+            this.f23957a.setAlpha(this.f23958b);
+            this.f23957a.draw(canvas);
+            this.f23957a.setAlpha(alpha);
+            canvas.restore();
         }
-        float f7 = floatValue * 180.0f;
-        w60 w60Var = this.f24834c;
-        w60Var.h.setRotationY(f7);
-        w60Var.f32303r0.setRotationY(f7);
+    }
+
+    @Override
+    public void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.f23957a == null) {
+            this.f23958b = 0.0f;
+        }
+        this.f23957a = imageReceiver;
+        invalidate();
     }
 }

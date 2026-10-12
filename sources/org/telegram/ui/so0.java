@@ -1,45 +1,36 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class so0 implements TextWatcher {
-    public int f41971a = -1;
-    public boolean f41972b;
-    public int f41973c;
-    public final xo0 d;
+import android.os.AsyncTask;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class so0 extends AsyncTask {
+    public final wc.a f40187a;
+    public final cp0 f40188b;
 
-    public so0(xo0 xo0Var) {
-        this.d = xo0Var;
+    public so0(cp0 cp0Var, wc.a aVar) {
+        this.f40188b = cp0Var;
+        this.f40187a = aVar;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.afterTextChanged(android.text.Editable):void");
+    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.doInBackground(java.lang.Object[]):java.lang.Object");
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10 = false;
-        if (i11 == 0 && i12 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f44104f[1].getText(), '/') != -1) {
-                z10 = true;
-            }
-            this.f41972b = z10;
-            this.f41971a = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == '/' && i10 > 0) {
-                this.f41972b = false;
-                this.f41971a = 3;
-                this.f41973c = i10 - 1;
-                return;
-            }
-            this.f41971a = 2;
-        } else {
-            this.f41971a = -1;
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        cp0 cp0Var = this.f40188b;
+        if (cp0Var.Q0) {
+            return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (str == null) {
+            org.telegram.ui.Components.g5.v0(cp0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        } else {
+            cp0Var.f35030w0 = str;
+            cp0Var.t0();
+        }
+        cp0Var.H0(true, false);
+        cp0Var.D0(false);
     }
 }

@@ -9,7 +9,7 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.o;
+import org.telegram.tgnet.n;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_payments;
 public class TL_bots {
@@ -923,7 +923,7 @@ public class TL_bots {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i10, z10, new o(4));
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new n(4));
         }
 
         @Override
@@ -1099,7 +1099,7 @@ public class TL_bots {
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
-            this.users = Vector.deserialize(inputSerializedData, new o(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
         }
 
         @Override

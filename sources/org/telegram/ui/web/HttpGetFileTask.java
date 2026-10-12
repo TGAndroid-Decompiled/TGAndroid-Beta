@@ -29,8 +29,8 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
         return this;
     }
 
-    public HttpGetFileTask setMaxSize(long j3) {
-        this.max_size = j3;
+    public HttpGetFileTask setMaxSize(long j10) {
+        this.max_size = j10;
         return this;
     }
 

@@ -1,10 +1,10 @@
 package org.telegram.messenger.car;
 
-import androidx.car.app.l;
+import androidx.car.app.m;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
 import org.telegram.messenger.NotificationCenter;
-public class HomeScreen extends l implements e, NotificationCenter.NotificationCenterDelegate {
+public class HomeScreen extends m implements e, NotificationCenter.NotificationCenterDelegate {
     @Override
     public final void a(t tVar) {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.pushMessagesUpdated);

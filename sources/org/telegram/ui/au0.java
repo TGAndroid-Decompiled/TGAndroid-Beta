@@ -2,44 +2,120 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.util.Property;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class au0 extends AnimatorListenerAdapter {
-    public final int f35982a;
-    public final int f35983b;
-    public final PhotoViewer f35984c;
+    public final int f34342a;
+    public final boolean f34343b;
+    public final PhotoViewer f34344c;
 
-    public au0(PhotoViewer photoViewer, int i10, int i11) {
-        this.f35982a = i11;
-        this.f35984c = photoViewer;
-        this.f35983b = i10;
+    public au0(PhotoViewer photoViewer, boolean z10, int i10) {
+        this.f34342a = i10;
+        this.f34344c = photoViewer;
+        this.f34343b = z10;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f34342a) {
+            case 1:
+                PhotoViewer photoViewer = this.f34344c;
+                if (animator.equals(photoViewer.f32385w)) {
+                    photoViewer.f32385w = null;
+                    return;
+                }
+                return;
+            case 2:
+                PhotoViewer photoViewer2 = this.f34344c;
+                if (animator.equals(photoViewer2.L)) {
+                    photoViewer2.L = null;
+                    return;
+                }
+                return;
+            case 3:
+                this.f34344c.U7 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f35982a) {
+        int i10;
+        int i11 = this.f34342a;
+        boolean z10 = this.f34343b;
+        PhotoViewer photoViewer = this.f34344c;
+        switch (i11) {
             case 0:
-                PhotoViewer photoViewer = this.f35984c;
-                bu0 bu0Var = photoViewer.N1;
-                bu0Var.f46535e.setVisibility(0);
-                FrameLayout frameLayout = bu0Var.f46538r;
-                frameLayout.setVisibility(0);
-                frameLayout.setTranslationY(AndroidUtilities.dp(18.0f));
-                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
-                org.telegram.ui.Components.js jsVar = org.telegram.ui.Components.js.h;
-                org.telegram.messenger.am.t(translationY, jsVar, 320L);
-                bu0Var.f46540w.animate().alpha(1.0f).translationX(0.0f).setInterpolator(jsVar).setDuration(320L).start();
-                photoViewer.f33887u4 = this.f35983b;
-                photoViewer.q6 = null;
-                photoViewer.f33835o6 = -1;
+                if (!z10) {
+                    photoViewer.f32264i3.setVisibility(8);
+                    return;
+                }
+                return;
+            case 1:
+                if (animator.equals(photoViewer.f32385w)) {
+                    if (!z10) {
+                        photoViewer.X0.setVisibility(4);
+                    }
+                    photoViewer.f32385w = null;
+                    return;
+                }
+                return;
+            case 2:
+                if (animator.equals(photoViewer.L)) {
+                    if (!z10) {
+                        photoViewer.F.setVisibility(4);
+                        if (photoViewer.f32261i0.getTag() != null) {
+                            photoViewer.f32261i0.setVisibility(4);
+                        }
+                        if (photoViewer.Q1.getTag() != null) {
+                            photoViewer.Q1.setVisibility(4);
+                        }
+                    }
+                    photoViewer.L = null;
+                    return;
+                }
                 return;
             default:
-                int i10 = this.f35983b;
-                PhotoViewer photoViewer2 = this.f35984c;
-                photoViewer2.f33887u4 = i10;
-                photoViewer2.q6 = null;
-                photoViewer2.f33835o6 = -1;
+                if (animator.equals(photoViewer.U7)) {
+                    photoViewer.U7 = new AnimatorSet();
+                    if (z10) {
+                        photoViewer.O7.setVisibility(0);
+                        photoViewer.P7.setVisibility(0);
+                        AnimatorSet animatorSet = photoViewer.U7;
+                        mv0 mv0Var = photoViewer.O7;
+                        Property property = View.TRANSLATION_Y;
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(mv0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.P7, property, 0.0f));
+                    } else {
+                        if (photoViewer.S4) {
+                            photoViewer.f32270j0.setVisibility(8);
+                            photoViewer.f32270j0.setAlpha(0.0f);
+                            View view = photoViewer.f32270j0;
+                            if (photoViewer.f32210c2 == 11) {
+                                i10 = -16777216;
+                            } else {
+                                i10 = 2130706432;
+                            }
+                            view.setBackgroundColor(i10);
+                        }
+                        photoViewer.O7.setVisibility(4);
+                        photoViewer.P7.setVisibility(4);
+                        AnimatorSet animatorSet2 = photoViewer.U7;
+                        x5 x5Var = photoViewer.P0;
+                        Property property2 = View.TRANSLATION_Y;
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(x5Var, property2, 0.0f), ObjectAnimator.ofFloat(photoViewer.P0, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(photoViewer.S0, property2, 0.0f));
+                    }
+                    photoViewer.U7.addListener(new lj0(this, 12));
+                    photoViewer.U7.setDuration(200L);
+                    photoViewer.U7.setInterpolator(AndroidUtilities.decelerateInterpolator);
+                    photoViewer.U7.start();
+                    return;
+                }
                 return;
         }
     }

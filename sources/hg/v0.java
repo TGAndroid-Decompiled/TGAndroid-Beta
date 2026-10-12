@@ -1,70 +1,37 @@
 package hg;
 
-import android.os.Bundle;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.eo;
-public final class v0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
-    public final int f11411a;
-    public final w0 f11412b;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.ui.Components.jb0;
+public final class v0 implements MediaDataController.KeywordResultCallback, org.telegram.ui.Cells.e2 {
+    public final j1 f10769a;
 
-    public v0(w0 w0Var, int i10) {
-        this.f11411a = i10;
-        this.f11412b = w0Var;
+    public v0(j1 j1Var) {
+        this.f10769a = j1Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f11411a) {
-            case 0:
-                this.f11412b.X();
-                return;
-            default:
-                this.f11412b.finishFragment();
-                return;
+    public void run(ArrayList arrayList, String str) {
+        boolean z10;
+        j1 j1Var = this.f10769a;
+        j1Var.N = arrayList;
+        j1Var.I = null;
+        j1Var.A0 = null;
+        j1Var.f10639x = null;
+        j1Var.f10641y = null;
+        j1Var.J = null;
+        j1Var.Q = null;
+        j1Var.M = null;
+        j1Var.K = null;
+        j1Var.P = null;
+        j1Var.l();
+        jb0 jb0Var = j1Var.V;
+        ArrayList arrayList2 = j1Var.N;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        u61 u61Var = (u61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        w0 w0Var = this.f11412b;
-        if (!w0Var.d.h(u61Var)) {
-            int i10 = u61Var.d;
-            if (i10 != 2 && u61Var.f16877a != 17) {
-                if (i10 == 1) {
-                    w0Var.f11426s = !w0Var.f11426s;
-                    w0Var.f11421c.W2.N(true);
-                    w0Var.V(true);
-                    return;
-                } else if (i10 == 3) {
-                    b0 b0Var = w0Var.d;
-                    w0Var.v = true;
-                    b0Var.h = true;
-                    w0Var.f11421c.W2.N(true);
-                    w0Var.V(true);
-                    return;
-                } else if (i10 == 4) {
-                    b0 b0Var2 = w0Var.d;
-                    w0Var.v = false;
-                    b0Var2.h = false;
-                    w0Var.f11421c.W2.N(true);
-                    w0Var.V(true);
-                    return;
-                } else {
-                    return;
-                }
-            }
-            Bundle bundle = new Bundle();
-            bundle.putLong("user_id", w0Var.getUserConfig().getClientUserId());
-            bundle.putInt("chatMode", 5);
-            bundle.putString("quick_reply", "hello");
-            w0Var.presentFragment(new eo(bundle));
-        }
+        jb0Var.a(z10);
     }
 }

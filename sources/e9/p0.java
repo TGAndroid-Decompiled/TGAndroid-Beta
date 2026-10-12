@@ -1,25 +1,25 @@
 package e9;
+public final class p0 {
+    public final Object f8600a;
+    public final Object f8601b;
+    public final Object f8602c;
 
-import java.util.NoSuchElementException;
-public final class p0 extends o1 {
-    public final Object f8783a;
-    public boolean f8784b;
-
-    public p0(Object obj) {
-        this.f8783a = obj;
+    public p0(Object obj, Object obj2, Object obj3) {
+        this.f8600a = obj;
+        this.f8601b = obj2;
+        this.f8602c = obj3;
     }
 
-    @Override
-    public final boolean hasNext() {
-        return !this.f8784b;
-    }
-
-    @Override
-    public final Object next() {
-        if (!this.f8784b) {
-            this.f8784b = true;
-            return this.f8783a;
-        }
-        throw new NoSuchElementException();
+    public final IllegalArgumentException a() {
+        StringBuilder sb2 = new StringBuilder("Multiple entries with same key: ");
+        Object obj = this.f8600a;
+        sb2.append(obj);
+        sb2.append("=");
+        sb2.append(this.f8601b);
+        sb2.append(" and ");
+        sb2.append(obj);
+        sb2.append("=");
+        sb2.append(this.f8602c);
+        return new IllegalArgumentException(sb2.toString());
     }
 }

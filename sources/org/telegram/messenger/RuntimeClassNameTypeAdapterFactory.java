@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-public final class RuntimeClassNameTypeAdapterFactory<T> implements db.v {
+public final class RuntimeClassNameTypeAdapterFactory<T> implements eb.v {
     private final Class<?> baseType;
-    private final db.a exclusionStrategy;
+    private final eb.a exclusionStrategy;
     private final Map<String, Class<?>> labelToSubtype = new LinkedHashMap();
     private final Map<Class<?>, String> subtypeToLabel = new LinkedHashMap();
     private final String typeFieldName;
 
-    private RuntimeClassNameTypeAdapterFactory(Class<?> cls, String str, db.a aVar) {
+    private RuntimeClassNameTypeAdapterFactory(Class<?> cls, String str, eb.a aVar) {
         if (str != null && cls != null) {
             this.baseType = cls;
             this.typeFieldName = str;
@@ -20,66 +20,66 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements db.v {
         throw null;
     }
 
-    public static <T> RuntimeClassNameTypeAdapterFactory<T> of(Class<T> cls, String str, db.a aVar) {
+    public static <T> RuntimeClassNameTypeAdapterFactory<T> of(Class<T> cls, String str, eb.a aVar) {
         return new RuntimeClassNameTypeAdapterFactory<>(cls, str, aVar);
     }
 
     @Override
-    public <R> db.u create(final db.g gVar, final kb.a<R> aVar) {
-        db.a aVar2 = this.exclusionStrategy;
-        Class cls = aVar.f14776a;
-        Class cls2 = aVar.f14776a;
+    public <R> eb.u create(final eb.g gVar, final lb.a<R> aVar) {
+        eb.a aVar2 = this.exclusionStrategy;
+        Class cls = aVar.f14653a;
+        Class cls2 = aVar.f14653a;
         if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }
         final LinkedHashMap linkedHashMap = new LinkedHashMap();
         final LinkedHashMap linkedHashMap2 = new LinkedHashMap();
         if (Object.class.isAssignableFrom(cls2)) {
-            db.u c10 = gVar.c(this, aVar);
+            eb.u c10 = gVar.c(this, aVar);
             linkedHashMap.put(cls2.getSimpleName(), c10);
             linkedHashMap2.put(cls2, c10);
         }
-        return new db.u() {
-            private db.u getDelegate(Class<?> cls3) {
-                db.u uVar = (db.u) linkedHashMap2.get(cls3);
+        return new eb.u() {
+            private eb.u getDelegate(Class<?> cls3) {
+                eb.u uVar = (eb.u) linkedHashMap2.get(cls3);
                 if (uVar != null) {
                     return uVar;
                 }
                 for (Map.Entry entry : linkedHashMap2.entrySet()) {
                     if (((Class) entry.getKey()).isAssignableFrom(cls3)) {
-                        return (db.u) entry.getValue();
+                        return (eb.u) entry.getValue();
                     }
                 }
                 return null;
             }
 
             @Override
-            public R read(lb.a r4) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.RuntimeClassNameTypeAdapterFactory.AnonymousClass1.read(lb.a):java.lang.Object");
+            public R read(mb.a r4) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.RuntimeClassNameTypeAdapterFactory.AnonymousClass1.read(mb.a):java.lang.Object");
             }
 
             @Override
-            public void write(lb.b bVar, R r10) {
+            public void write(mb.b bVar, R r10) {
                 Class<?> cls3 = r10.getClass();
                 String simpleName = cls3.getSimpleName();
-                db.u delegate = getDelegate(cls3);
+                eb.u delegate = getDelegate(cls3);
                 if (delegate != null) {
-                    db.i jsonTree = delegate.toJsonTree(r10);
+                    eb.i jsonTree = delegate.toJsonTree(r10);
                     jsonTree.getClass();
-                    if (!(jsonTree instanceof db.l)) {
-                        fb.d.l(jsonTree, bVar);
+                    if (!(jsonTree instanceof eb.l)) {
+                        gb.d.l(jsonTree, bVar);
                         return;
                     }
-                    fb.n nVar = jsonTree.i().f8261a;
+                    gb.n nVar = jsonTree.h().f8692a;
                     if (!nVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
-                        db.l lVar = new db.l();
-                        lVar.o(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new db.m(simpleName));
-                        Iterator it = ((fb.l) nVar.entrySet()).iterator();
+                        eb.l lVar = new eb.l();
+                        lVar.n(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new eb.m(simpleName));
+                        Iterator it = ((gb.l) nVar.entrySet()).iterator();
                         while (it.hasNext()) {
                             Map.Entry entry = (Map.Entry) it.next();
-                            lVar.o((String) entry.getKey(), (db.i) entry.getValue());
+                            lVar.n((String) entry.getKey(), (eb.i) entry.getValue());
                         }
-                        fb.d.l(lVar, bVar);
+                        gb.d.l(lVar, bVar);
                         return;
                     }
                     throw new RuntimeException("cannot serialize " + cls3.getSimpleName() + " because it already defines a field named " + RuntimeClassNameTypeAdapterFactory.this.typeFieldName);

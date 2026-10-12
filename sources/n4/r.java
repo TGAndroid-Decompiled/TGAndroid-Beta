@@ -1,33 +1,61 @@
 package n4;
 
-import android.os.Binder;
-import android.os.IBinder;
-import java.lang.ref.WeakReference;
-public final class r extends Binder implements h {
-    public static final int f16342b = 0;
-    public final WeakReference f16343a;
+import android.media.session.MediaSession;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class r implements Parcelable {
+    public static final Parcelable.Creator<r> CREATOR = new m8.h(6);
+    public final MediaSession.Token f16028b;
+    public d f16029c;
+    public final Object f16027a = new Object();
+    public y4.d d = null;
 
-    public r(s sVar) {
-        attachInterface(this, "android.support.v4.media.session.IMediaSession");
-        this.f16343a = new WeakReference(sVar);
+    public r(MediaSession.Token token, m mVar) {
+        this.f16028b = token;
+        this.f16029c = mVar;
     }
 
-    public final void F0(f fVar) {
-        s sVar = (s) this.f16343a.get();
-        if (sVar != null && fVar != null) {
-            sVar.f16348f.register(fVar, new a0("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
-            synchronized (sVar.d) {
-            }
+    public final d a() {
+        d dVar;
+        synchronized (this.f16027a) {
+            dVar = this.f16029c;
+        }
+        return dVar;
+    }
+
+    public final void b(d dVar) {
+        synchronized (this.f16027a) {
+            this.f16029c = dVar;
+        }
+    }
+
+    public final void c(y4.d dVar) {
+        synchronized (this.f16027a) {
+            this.d = dVar;
         }
     }
 
     @Override
-    public final boolean onTransact(int r33, android.os.Parcel r34, android.os.Parcel r35, int r36) {
-        throw new UnsupportedOperationException("Method not decompiled: n4.r.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof r)) {
+            return false;
+        }
+        return this.f16028b.equals(((r) obj).f16028b);
+    }
+
+    public final int hashCode() {
+        return this.f16028b.hashCode();
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeParcelable(this.f16028b, i10);
     }
 }

@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.es;
 public final class fa extends u1 {
     public final GestureDetector Ge;
     public final org.telegram.ui.Components.j5 He;
@@ -21,9 +21,9 @@ public final class fa extends u1 {
         this.Ke = gaVar;
         this.Je = i11;
         this.Ge = new GestureDetector(context2, new ea(this));
-        js jsVar = js.f27635g;
-        this.He = new org.telegram.ui.Components.j5(this, 180L, jsVar, 0);
-        this.Ie = new org.telegram.ui.Components.j5(this, 180L, jsVar, 0);
+        es esVar = es.f24772g;
+        this.He = new org.telegram.ui.Components.j5(this, 180L, esVar, 0);
+        this.Ie = new org.telegram.ui.Components.j5(this, 180L, esVar, 0);
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class fa extends u1 {
         MessageObject messageObject = getMessageObject();
         org.telegram.ui.Components.j5 j5Var = this.Ie;
         org.telegram.ui.Components.j5 j5Var2 = this.He;
-        org.telegram.ui.Components.j9 j9Var = this.f23074n9;
+        org.telegram.ui.Components.k9 k9Var = this.f22330n9;
         if (messageObject != null && getMessageObject().overrideLinkColor >= 0) {
             int i10 = getMessageObject().overrideLinkColor;
             if (i10 >= 14) {
@@ -50,22 +50,22 @@ public final class fa extends u1 {
                 }
                 if (peerColor != null) {
                     int color1 = peerColor.getColor1();
-                    w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20782p8[org.telegram.ui.Components.j9.f(color1)], this.Id);
-                    w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20801q8[org.telegram.ui.Components.j9.f(color1)], this.Id);
+                    w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20123p8[org.telegram.ui.Components.k9.f(color1)], this.Id);
+                    w03 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20140q8[org.telegram.ui.Components.k9.f(color1)], this.Id);
                 } else {
-                    long j3 = i10;
-                    w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20782p8[org.telegram.ui.Components.j9.e(j3)], this.Id);
-                    w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20801q8[org.telegram.ui.Components.j9.e(j3)], this.Id);
+                    long j10 = i10;
+                    w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20123p8[org.telegram.ui.Components.k9.e(j10)], this.Id);
+                    w03 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20140q8[org.telegram.ui.Components.k9.e(j10)], this.Id);
                 }
             } else {
-                long j10 = i10;
-                w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20782p8[org.telegram.ui.Components.j9.e(j10)], this.Id);
-                w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20801q8[org.telegram.ui.Components.j9.e(j10)], this.Id);
+                long j11 = i10;
+                w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20123p8[org.telegram.ui.Components.k9.e(j11)], this.Id);
+                w03 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20140q8[org.telegram.ui.Components.k9.e(j11)], this.Id);
             }
-            j9Var.i(j5Var2.a(w02, false), j5Var.a(w03, false));
+            k9Var.i(j5Var2.a(w02, false), j5Var.a(w03, false));
         } else {
-            j5Var2.a(j9Var.b(), false);
-            j5Var.a(j9Var.c(), false);
+            j5Var2.a(k9Var.b(), false);
+            j5Var.a(k9Var.c(), false);
         }
         if (getAvatarImage() != null && getAvatarImage().getImageHeight() != 0.0f) {
             getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());

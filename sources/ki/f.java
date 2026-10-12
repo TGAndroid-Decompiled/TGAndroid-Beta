@@ -1,51 +1,35 @@
 package ki;
 
-import android.text.SpannableStringBuilder;
-public final class f extends e {
-    public SpannableStringBuilder f14882b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.wo;
+public final class f extends AnimatorListenerAdapter {
+    public final u1 f14310a;
+    public final float f14311b;
+    public final float f14312c;
+    public final float d;
+    public final float e;
+    public final n f14313f;
 
-    @Override
-    public final int getSpanEnd(Object obj) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f14881a && (spannableStringBuilder = this.f14882b) != null) {
-            return spannableStringBuilder.getSpanEnd(obj);
-        }
-        return super.getSpanEnd(obj);
+    public f(n nVar, u1 u1Var, float f7, float f10, float f11, float f12) {
+        this.f14313f = nVar;
+        this.f14310a = u1Var;
+        this.f14311b = f7;
+        this.f14312c = f10;
+        this.d = f11;
+        this.e = f12;
     }
 
     @Override
-    public final int getSpanFlags(Object obj) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f14881a && (spannableStringBuilder = this.f14882b) != null) {
-            return spannableStringBuilder.getSpanFlags(obj);
+    public final void onAnimationEnd(Animator animator) {
+        u1 u1Var = this.f14310a;
+        u1Var.getTransitionParams().j();
+        u1Var.getPhotoImage().setImageCoords(this.f14311b, this.f14312c, this.d, this.e);
+        wo woVar = this.f14313f.P;
+        if (woVar != null) {
+            woVar.h.setAlpha(1.0f);
         }
-        return super.getSpanFlags(obj);
-    }
-
-    @Override
-    public final int getSpanStart(Object obj) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f14881a && (spannableStringBuilder = this.f14882b) != null) {
-            return spannableStringBuilder.getSpanStart(obj);
-        }
-        return super.getSpanStart(obj);
-    }
-
-    @Override
-    public final Object[] getSpans(int i10, int i11, Class cls) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f14881a && (spannableStringBuilder = this.f14882b) != null) {
-            return spannableStringBuilder.getSpans(i10, i11, cls);
-        }
-        return super.getSpans(i10, i11, cls);
-    }
-
-    @Override
-    public final int nextSpanTransition(int i10, int i11, Class cls) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f14881a && (spannableStringBuilder = this.f14882b) != null) {
-            return spannableStringBuilder.nextSpanTransition(i10, i11, cls);
-        }
-        return super.nextSpanTransition(i10, i11, cls);
+        u1Var.invalidate();
     }
 }

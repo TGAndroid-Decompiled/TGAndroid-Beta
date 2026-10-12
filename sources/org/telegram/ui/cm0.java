@@ -1,85 +1,93 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class cm0 implements org.telegram.ui.ActionBar.z1, bu, dn0 {
-    public final int f36460a;
-    public final pn0 f36461b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class cm0 extends FrameLayout {
+    public final int f34967a;
+    public final org.telegram.ui.ActionBar.c6 f34968b;
+    public final FrameLayout f34969c;
+    public final org.telegram.ui.Components.z9 d;
+    public final TextView e;
+    public final TextView f34970f;
+    public final ImageView h;
+    public boolean f34971n;
+    public String f34972r;
 
-    public cm0(pn0 pn0Var, int i10) {
-        this.f36460a = i10;
-        this.f36461b = pn0Var;
+    public cm0(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        this.f34967a = i10;
+        this.f34968b = c6Var;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f34969c = frameLayout;
+        addView(frameLayout, w7.a6.a(36.0f, 18.5f, 0.0f, 0.0f, 0.0f, 36, 19));
+        org.telegram.ui.Components.z9 z9Var = new org.telegram.ui.Components.z9(context);
+        this.d = z9Var;
+        z9Var.setImageResource(R.drawable.msg2_permissions);
+        int i11 = org.telegram.ui.ActionBar.g6.G6;
+        int m12 = org.telegram.ui.ActionBar.g6.m1(0.3f, org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        z9Var.setColorFilter(new PorterDuffColorFilter(m12, mode));
+        frameLayout.addView(z9Var, w7.a6.e(36, 36, 17));
+        TextView b10 = w7.e6.b(context, 15.0f, i11, true, null);
+        this.e = b10;
+        b10.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        b10.setEllipsize(truncateAt);
+        addView(b10, w7.a6.a(-2.0f, 72.0f, 8.0f, 46.0f, 0.0f, -1, 55));
+        int i12 = org.telegram.ui.ActionBar.g6.f20288y6;
+        TextView b11 = w7.e6.b(context, 13.0f, i12, false, null);
+        this.f34970f = b11;
+        b11.setSingleLine();
+        b11.setEllipsize(truncateAt);
+        addView(b11, w7.a6.a(-2.0f, 72.0f, 31.0f, 46.0f, 0.0f, -1, 55));
+        ImageView imageView = new ImageView(context);
+        this.h = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_ab_other);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, i12, false), mode));
+        imageView.setBackground(org.telegram.ui.ActionBar.g6.g0(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19990i6, c6Var), 1, -1));
+        addView(imageView, w7.a6.a(32.0f, 0.0f, 0.0f, 13.0f, 0.0f, 32, 21));
     }
 
     @Override
-    public void V0(xt xtVar) {
-        String str;
-        switch (this.f36460a) {
-            case 2:
-                pn0 pn0Var = this.f36461b;
-                pn0Var.Y[5].setText(xtVar.f44161a);
-                pn0Var.f41042s = xtVar.d;
-                return;
-            default:
-                pn0 pn0Var2 = this.f36461b;
-                pn0Var2.Y[0].setText(xtVar.f44161a);
-                if (pn0Var2.U0.indexOf(xtVar.f44161a) != -1) {
-                    pn0Var2.Z0 = true;
-                    String str2 = (String) pn0Var2.V0.get(xtVar.f44161a);
-                    pn0Var2.Y[1].setText(str2);
-                    String str3 = (String) pn0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = pn0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    pn0Var2.Z0 = false;
-                }
-                AndroidUtilities.runOnUIThread(new zl0(pn0Var2, 3), 300L);
-                pn0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = pn0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        super.onDraw(canvas);
+        if (this.f34971n) {
+            Paint U0 = org.telegram.ui.ActionBar.g6.U0("paintDivider", this.f34968b);
+            if (U0 == null) {
+                U0 = org.telegram.ui.ActionBar.g6.f20022k0;
+            }
+            Paint paint = U0;
+            float f10 = 72.0f;
+            if (LocaleController.isRTL) {
+                f7 = 0.0f;
+            } else {
+                f7 = 72.0f;
+            }
+            float dp = AndroidUtilities.dp(f7);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!LocaleController.isRTL) {
+                f10 = 0.0f;
+            }
+            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
         }
     }
 
     @Override
-    public void c(String str, String str2) {
-        this.f36461b.w1();
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f36460a) {
-            case 0:
-                pn0 pn0Var = this.f36461b;
-                pn0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    pn0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            case 1:
-                this.f36461b.finishFragment();
-                return;
-            case 2:
-            case 3:
-            default:
-                pn0.a0(this.f36461b);
-                return;
-            case 4:
-                pn0.d0(this.f36461b);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

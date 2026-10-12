@@ -28,8 +28,8 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacks(runnable);
-        } catch (Exception e7) {
-            FileLog.e((Throwable) e7, false);
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
         }
     }
 
@@ -39,8 +39,8 @@ public class DispatchQueue extends Thread {
             for (Runnable runnable : runnableArr) {
                 this.handler.removeCallbacks(runnable);
             }
-        } catch (Exception e7) {
-            FileLog.e((Throwable) e7, false);
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
         }
     }
 
@@ -48,8 +48,8 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacksAndMessages(null);
-        } catch (Exception e7) {
-            FileLog.e((Throwable) e7, false);
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
         }
     }
 
@@ -76,8 +76,8 @@ public class DispatchQueue extends Thread {
     public boolean postToFrontRunnable(Runnable runnable) {
         try {
             this.syncLatch.await();
-        } catch (Exception e7) {
-            FileLog.e((Throwable) e7, false);
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
         }
         return this.handler.postAtFrontOfQueue(runnable);
     }
@@ -130,16 +130,16 @@ public class DispatchQueue extends Thread {
         }
     }
 
-    public boolean postRunnable(Runnable runnable, long j3) {
+    public boolean postRunnable(Runnable runnable, long j10) {
         try {
             this.syncLatch.await();
-        } catch (Exception e7) {
-            FileLog.e((Throwable) e7, false);
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
         }
-        if (j3 <= 0) {
+        if (j10 <= 0) {
             return this.handler.post(runnable);
         }
-        return this.handler.postDelayed(runnable, j3);
+        return this.handler.postDelayed(runnable, j10);
     }
 
     public DispatchQueue(String str, boolean z10, int i10) {

@@ -1,12 +1,10 @@
 package c5;
-
-import java.util.List;
 public final class s {
-    public final List f4284a;
-    public final List f4285b;
+    public final String f4408a;
+    public final String f4409b;
 
-    public s(List list, List list2) {
-        this.f4284a = list;
-        this.f4285b = list2;
+    public s(a aVar) {
+        this.f4408a = aVar.f4323b;
+        this.f4409b = aVar.f4324c;
     }
 }

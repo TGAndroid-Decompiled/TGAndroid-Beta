@@ -1,117 +1,25 @@
 package xh;
+public final class e implements Runnable {
+    public final int f48453a;
+    public final l f48454b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.r6;
-import w7.w5;
-import yh.p7;
-public final class e extends FrameLayout {
-    public final ci.d f51431a;
-    public final r6 f51432b;
-    public final r6 f51433c;
-    public final GiftAuctionController.Auction d;
-    public final Paint f51434e;
-    public final yf.n f51435f;
-    public final gr h;
-    public final gr[] f51436n;
-
-    public e(Context context, GiftAuctionController.Auction auction) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f51434e = paint;
-        this.f51435f = new yf.n(new r5.d(this, 14));
-        this.h = new gr(R.drawable.filled_gift_sell_24, 0);
-        this.f51436n = new gr[1];
-        this.d = auction;
-        setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
-        paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
-        paint.setColor(h6.x0(null, h6.f20560d6, false));
-        ci.d dVar = new ci.d(context, null, true);
-        this.f51431a = dVar;
-        q6 q6Var = dVar.d;
-        q6Var.D = false;
-        q6Var.E = true;
-        q6Var.F = true;
-        q6Var.G = true;
-        q6Var.H = false;
-        ?? imageView = new ImageView(context);
-        r6 r6Var = new r6(context, false, false, false);
-        this.f51432b = r6Var;
-        r6Var.setTextSize(AndroidUtilities.dp(14.0f));
-        r6Var.setTypeface(AndroidUtilities.bold());
-        r6Var.setTextColor(h6.x0(null, h6.G6, false));
-        r6 r6Var2 = new r6(context, false, false, false);
-        this.f51433c = r6Var2;
-        r6Var2.setTextSize(AndroidUtilities.dp(12.0f));
-        TLRPC.Document document = auction.gift.sticker;
-        if (document != null) {
-            imageView.g(44, 44, document);
-        }
-        addView(r6Var, w5.a(18.0f, 64.0f, 15.0f, 15.0f, 0.0f, -1, 51));
-        addView(r6Var2, w5.a(17.0f, 64.0f, 34.0f, 15.0f, 0.0f, -1, 51));
-        addView((View) imageView, w5.a(44.0f, 14.0f, 11.0f, 0.0f, 0.0f, 44, 51));
-        addView(dVar, w5.a(44.0f, 15.0f, 0.0f, 15.0f, 15.0f, -1, 80));
-        b(false);
-    }
-
-    public final void a(long j3, boolean z10) {
-        String formatDurationNoHours = AndroidUtilities.formatDurationNoHours((int) j3, false);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
-        spannableStringBuilder.setSpan(this.h, 0, spannableStringBuilder.length(), 33);
-        spannableStringBuilder.append((CharSequence) "  ");
-        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
-        spannableStringBuilder.append((CharSequence) "  ");
-        spannableStringBuilder.append((CharSequence) formatDurationNoHours);
-        this.f51431a.g(spannableStringBuilder, z10, true);
-    }
-
-    public final void b(boolean z10) {
-        GiftAuctionController.Auction auction = this.d;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
-        if (tL_starGiftAuctionState != null) {
-            this.f51432b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
-        }
-        String k10 = hg.c.k(auction.auctionUserState.bid_amount, ',', new StringBuilder("⭐️"));
-        boolean isOutbid = auction.getBidStatus().isOutbid();
-        gr[] grVarArr = this.f51436n;
-        r6 r6Var = this.f51433c;
-        if (isOutbid) {
-            r6Var.c(p7.Y0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, k10)), 0.66f, grVarArr), z10, true);
-            r6Var.setTextColor(h6.x0(null, h6.f20800q7, false));
-            return;
-        }
-        r6Var.c(p7.Y0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, k10, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, grVarArr), z10, true);
-        r6Var.setTextColor(h6.x0(null, h6.G6, false));
+    public e(l lVar, int i10) {
+        this.f48453a = i10;
+        this.f48454b = lVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f51434e);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f51435f.b();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(146), 1073741824));
+    public final void run() {
+        switch (this.f48453a) {
+            case 0:
+                this.f48454b.e();
+                return;
+            case 1:
+                l.k(this.f48454b.f48488q, true, true);
+                return;
+            default:
+                this.f48454b.e();
+                return;
+        }
     }
 }

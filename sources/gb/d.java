@@ -1,70 +1,199 @@
 package gb;
 
+import hb.h1;
+import hb.u0;
+import j$.util.Objects;
+import java.lang.reflect.Array;
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-public final class d implements db.v {
-    public final int f10444a;
-    public final n4.y f10445b;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+public abstract class d {
+    public static final Type[] f10043a = new Type[0];
 
-    public d(int i10, n4.y yVar) {
-        this.f10444a = i10;
-        this.f10445b = yVar;
+    public static Type a(Type type) {
+        if (type instanceof Class) {
+            Class cls = (Class) type;
+            if (cls.isArray()) {
+                return new a(a(cls.getComponentType()));
+            }
+            return cls;
+        } else if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            return new b(parameterizedType.getOwnerType(), parameterizedType.getRawType(), parameterizedType.getActualTypeArguments());
+        } else if (type instanceof GenericArrayType) {
+            return new a(((GenericArrayType) type).getGenericComponentType());
+        } else {
+            if (type instanceof WildcardType) {
+                WildcardType wildcardType = (WildcardType) type;
+                return new c(wildcardType.getUpperBounds(), wildcardType.getLowerBounds());
+            }
+            return type;
+        }
     }
 
-    @Override
-    public final db.u create(db.g gVar, kb.a aVar) {
-        Type[] actualTypeArguments;
-        db.u uVar;
-        int i10 = this.f10444a;
-        n4.y yVar = this.f10445b;
-        Type type = Object.class;
-        switch (i10) {
-            case 0:
-                Type type2 = aVar.f14777b;
-                Class cls = aVar.f14776a;
-                if (!Collection.class.isAssignableFrom(cls)) {
-                    return null;
-                }
-                if (type2 instanceof WildcardType) {
-                    type2 = ((WildcardType) type2).getUpperBounds()[0];
-                }
-                fb.d.b(Collection.class.isAssignableFrom(cls));
-                Type j3 = fb.d.j(type2, cls, fb.d.g(type2, cls, Collection.class), new HashMap());
-                if (j3 instanceof ParameterizedType) {
-                    type = ((ParameterizedType) j3).getActualTypeArguments()[0];
-                }
-                return new c(gVar, type, gVar.b(new kb.a(type)), yVar.H(aVar));
-            default:
-                Type type3 = aVar.f14777b;
-                Class cls2 = aVar.f14776a;
-                if (!Map.class.isAssignableFrom(cls2)) {
-                    return null;
-                }
-                if (type3 == Properties.class) {
-                    actualTypeArguments = new Type[]{String.class, String.class};
-                } else {
-                    if (type3 instanceof WildcardType) {
-                        type3 = ((WildcardType) type3).getUpperBounds()[0];
-                    }
-                    fb.d.b(Map.class.isAssignableFrom(cls2));
-                    Type j10 = fb.d.j(type3, cls2, fb.d.g(type3, cls2, Map.class), new HashMap());
-                    actualTypeArguments = j10 instanceof ParameterizedType ? ((ParameterizedType) j10).getActualTypeArguments() : new Type[]{type, type};
-                }
-                Type type4 = actualTypeArguments[0];
-                if (type4 != Boolean.TYPE && type4 != Boolean.class) {
-                    uVar = gVar.b(new kb.a(type4));
-                } else {
-                    uVar = h1.f10453c;
-                }
-                db.u b10 = gVar.b(new kb.a(actualTypeArguments[1]));
-                fb.o H = yVar.H(aVar);
-                Type[] typeArr = actualTypeArguments;
-                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, H);
+    public static void b(boolean z10) {
+        if (z10) {
+            return;
         }
+        throw new IllegalArgumentException();
+    }
+
+    public static void c(Type type) {
+        boolean z10;
+        if ((type instanceof Class) && ((Class) type).isPrimitive()) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        b(z10);
+    }
+
+    public static void d(String str) {
+        if (str.length() <= 10000) {
+            return;
+        }
+        throw new NumberFormatException("Number string too large: " + str.substring(0, 30) + "...");
+    }
+
+    public static boolean e(Type type, Type type2) {
+        if (type == type2) {
+            return true;
+        }
+        if (type instanceof Class) {
+            return type.equals(type2);
+        }
+        if (type instanceof ParameterizedType) {
+            if (!(type2 instanceof ParameterizedType)) {
+                return false;
+            }
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            ParameterizedType parameterizedType2 = (ParameterizedType) type2;
+            if (Objects.equals(parameterizedType.getOwnerType(), parameterizedType2.getOwnerType()) && parameterizedType.getRawType().equals(parameterizedType2.getRawType()) && Arrays.equals(parameterizedType.getActualTypeArguments(), parameterizedType2.getActualTypeArguments())) {
+                return true;
+            }
+            return false;
+        } else if (type instanceof GenericArrayType) {
+            if (!(type2 instanceof GenericArrayType)) {
+                return false;
+            }
+            return e(((GenericArrayType) type).getGenericComponentType(), ((GenericArrayType) type2).getGenericComponentType());
+        } else if (type instanceof WildcardType) {
+            if (!(type2 instanceof WildcardType)) {
+                return false;
+            }
+            WildcardType wildcardType = (WildcardType) type;
+            WildcardType wildcardType2 = (WildcardType) type2;
+            if (Arrays.equals(wildcardType.getUpperBounds(), wildcardType2.getUpperBounds()) && Arrays.equals(wildcardType.getLowerBounds(), wildcardType2.getLowerBounds())) {
+                return true;
+            }
+            return false;
+        } else if (!(type instanceof TypeVariable) || !(type2 instanceof TypeVariable)) {
+            return false;
+        } else {
+            TypeVariable typeVariable = (TypeVariable) type;
+            TypeVariable typeVariable2 = (TypeVariable) type2;
+            if (Objects.equals(typeVariable.getGenericDeclaration(), typeVariable2.getGenericDeclaration()) && typeVariable.getName().equals(typeVariable2.getName())) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public static void f(ArrayList arrayList) {
+        Iterator it = arrayList.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw a1.g.j(it);
+    }
+
+    public static Type g(Type type, Class cls, Class cls2) {
+        if (cls2 == cls) {
+            return type;
+        }
+        if (cls2.isInterface()) {
+            Class<?>[] interfaces = cls.getInterfaces();
+            int length = interfaces.length;
+            for (int i10 = 0; i10 < length; i10++) {
+                Class<?> cls3 = interfaces[i10];
+                if (cls3 == cls2) {
+                    return cls.getGenericInterfaces()[i10];
+                }
+                if (cls2.isAssignableFrom(cls3)) {
+                    return g(cls.getGenericInterfaces()[i10], interfaces[i10], cls2);
+                }
+            }
+        }
+        if (!cls.isInterface()) {
+            while (cls != Object.class) {
+                Class<?> superclass = cls.getSuperclass();
+                if (superclass == cls2) {
+                    return cls.getGenericSuperclass();
+                }
+                if (cls2.isAssignableFrom(superclass)) {
+                    return g(cls.getGenericSuperclass(), superclass, cls2);
+                }
+                cls = superclass;
+            }
+        }
+        return cls2;
+    }
+
+    public static Class h(Type type) {
+        String name;
+        if (type instanceof Class) {
+            return (Class) type;
+        }
+        if (type instanceof ParameterizedType) {
+            Type rawType = ((ParameterizedType) type).getRawType();
+            b(rawType instanceof Class);
+            return (Class) rawType;
+        } else if (type instanceof GenericArrayType) {
+            return Array.newInstance(h(((GenericArrayType) type).getGenericComponentType()), 0).getClass();
+        } else {
+            if (type instanceof TypeVariable) {
+                return Object.class;
+            }
+            if (type instanceof WildcardType) {
+                return h(((WildcardType) type).getUpperBounds()[0]);
+            }
+            if (type == null) {
+                name = "null";
+            } else {
+                name = type.getClass().getName();
+            }
+            throw new IllegalArgumentException("Expected a Class, ParameterizedType, or GenericArrayType, but <" + type + "> is of type " + name);
+        }
+    }
+
+    public static BigDecimal i(String str) {
+        d(str);
+        BigDecimal bigDecimal = new BigDecimal(str);
+        if (Math.abs(bigDecimal.scale()) < 10000) {
+            return bigDecimal;
+        }
+        throw new NumberFormatException("Number has unsupported scale: ".concat(str));
+    }
+
+    public static java.lang.reflect.Type j(java.lang.reflect.Type r9, java.lang.Class r10, java.lang.reflect.Type r11, java.util.HashMap r12) {
+        throw new UnsupportedOperationException("Method not decompiled: gb.d.j(java.lang.reflect.Type, java.lang.Class, java.lang.reflect.Type, java.util.HashMap):java.lang.reflect.Type");
+    }
+
+    public static String k(Type type) {
+        if (type instanceof Class) {
+            return ((Class) type).getName();
+        }
+        return type.toString();
+    }
+
+    public static void l(eb.i iVar, mb.b bVar) {
+        h1.f10435z.getClass();
+        u0.b(iVar, bVar);
     }
 }

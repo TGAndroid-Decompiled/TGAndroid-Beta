@@ -1,12 +1,24 @@
 package org.webrtc;
 
-import org.webrtc.VideoEncoderFactory;
+import org.webrtc.VideoEncoder;
 public abstract class y {
-    public static VideoEncoderFactory.VideoEncoderSelector a(VideoEncoderFactory videoEncoderFactory) {
-        return null;
+    public static long a(VideoEncoder videoEncoder) {
+        return 0L;
     }
 
-    public static VideoCodecInfo[] b(VideoEncoderFactory videoEncoderFactory) {
-        return videoEncoderFactory.getSupportedCodecs();
+    public static VideoEncoder.EncoderInfo b(VideoEncoder videoEncoder) {
+        return new VideoEncoder.EncoderInfo(1, false);
+    }
+
+    public static VideoEncoder.ResolutionBitrateLimits[] c(VideoEncoder videoEncoder) {
+        return new VideoEncoder.ResolutionBitrateLimits[0];
+    }
+
+    public static boolean d(VideoEncoder videoEncoder) {
+        return true;
+    }
+
+    public static VideoCodecStatus e(VideoEncoder videoEncoder, VideoEncoder.RateControlParameters rateControlParameters) {
+        return videoEncoder.setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
     }
 }

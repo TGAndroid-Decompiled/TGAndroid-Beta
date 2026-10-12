@@ -1,4 +1,4 @@
 package java.util.function;
 public interface LongFunction<R> {
-    R apply(long j3);
+    R apply(long j10);
 }

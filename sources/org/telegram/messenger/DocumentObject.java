@@ -9,24 +9,24 @@ public class DocumentObject {
 
     public static class ThemeDocument extends TLRPC.TL_document {
         public org.telegram.ui.ActionBar.e6 accent;
-        public org.telegram.ui.ActionBar.g6 baseTheme;
+        public org.telegram.ui.ActionBar.f6 baseTheme;
         public TLRPC.ThemeSettings themeSettings;
         public TLRPC.Document wallpaper;
 
         public ThemeDocument(TLRPC.ThemeSettings themeSettings) {
             this.themeSettings = themeSettings;
-            org.telegram.ui.ActionBar.g6 O0 = org.telegram.ui.ActionBar.h6.O0(org.telegram.ui.ActionBar.h6.r0(themeSettings));
+            org.telegram.ui.ActionBar.f6 O0 = org.telegram.ui.ActionBar.g6.O0(org.telegram.ui.ActionBar.g6.r0(themeSettings));
             this.baseTheme = O0;
             O0.getClass();
             org.telegram.ui.ActionBar.e6 e6Var = new org.telegram.ui.ActionBar.e6();
-            org.telegram.ui.ActionBar.g6.i(e6Var, themeSettings);
-            e6Var.f20351b = O0;
+            org.telegram.ui.ActionBar.f6.i(e6Var, themeSettings);
+            e6Var.f19746b = O0;
             this.accent = e6Var;
             TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
             if (wallPaper instanceof TLRPC.TL_wallPaper) {
                 TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
                 this.wallpaper = document;
-                this.f19809id = document.f19809id;
+                this.f19222id = document.f19222id;
                 this.access_hash = document.access_hash;
                 this.file_reference = document.file_reference;
                 this.user_id = document.user_id;
@@ -42,7 +42,7 @@ public class DocumentObject {
                 this.attributes = document.attributes;
                 return;
             }
-            this.f19809id = -2147483648L;
+            this.f19222id = -2147483648L;
             this.dc_id = Integer.MIN_VALUE;
         }
     }
@@ -91,8 +91,8 @@ public class DocumentObject {
             svgDrawable.height = 512;
             svgDrawable.setupGradient(i10, f10, false);
             return svgDrawable;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -107,7 +107,7 @@ public class DocumentObject {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
-                i11 = photoSize.f19828w;
+                i11 = photoSize.f19241w;
                 i12 = photoSize.h;
             }
         }
@@ -143,7 +143,7 @@ public class DocumentObject {
                 for (int i14 = 0; i14 < size2; i14++) {
                     TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i14);
                     if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11 = documentAttribute.f19810w;
+                        i11 = documentAttribute.f19223w;
                         i12 = documentAttribute.h;
                         break;
                     }

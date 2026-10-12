@@ -1,11 +1,24 @@
 package w7;
+
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.CancellationException;
 public abstract class o {
-    public static m1.c a(String name) {
-        he.d dVar = ae.o0.f483b;
-        ae.k1 k1Var = new ae.k1();
-        dVar.getClass();
-        fe.e b10 = ae.g0.b(v7.v8.c(dVar, k1Var));
-        kotlin.jvm.internal.i.e(name, "name");
-        return new m1.c(name, m1.a.f15644b, b10);
+    public static final Object a(Task task, md.c cVar) {
+        if (task.isComplete()) {
+            Exception exception = task.getException();
+            if (exception == null) {
+                if (!task.isCanceled()) {
+                    return task.getResult();
+                }
+                throw new CancellationException("Task " + task + " was cancelled normally.");
+            }
+            throw exception;
+        }
+        be.m mVar = new be.m(1, n.b(cVar));
+        mVar.s();
+        task.addOnCompleteListener(le.a.f14666a, new ji.h5(mVar, 4));
+        Object r10 = mVar.r();
+        ld.a aVar = ld.a.f14658a;
+        return r10;
     }
 }

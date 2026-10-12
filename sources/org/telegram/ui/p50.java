@@ -1,80 +1,102 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
-public final class p50 implements org.telegram.ui.Components.o50 {
-    public float f40852a;
-    public TLRPC.FileLocation f40853b;
-    public TLRPC.FileLocation f40854c;
-    public ImageLocation d;
-    public final long f40855e;
-    public final i60 f40856f;
+public final class p50 implements org.telegram.ui.Components.fl0 {
+    public final Path f39122a = new Path();
+    public final Paint f39123b;
+    public final n60 f39124c;
 
-    public p50(i60 i60Var, long j3) {
-        this.f40856f = i60Var;
-        this.f40855e = j3;
+    public p50(n60 n60Var) {
+        this.f39124c = n60Var;
+        Paint paint = new Paint(1);
+        this.f39123b = paint;
+        paint.setColor(-14603467);
     }
 
     @Override
-    public final void D(float f7) {
-        this.f40856f.f38683b.O(this.d, f7);
-        a(f7);
+    public final boolean D() {
+        return true;
     }
 
     @Override
-    public final void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        AndroidUtilities.runOnUIThread(new fi.k(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
+    public final boolean i() {
+        return false;
     }
 
-    public final void a(float f7) {
-        this.f40852a = f7;
-        o50 o50Var = this.f40856f.Q;
-        if (o50Var != null) {
-            for (int i10 = 0; i10 < o50Var.getChildCount(); i10++) {
-                View childAt = o50Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.e4) {
-                    org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
-                    if (e4Var.c()) {
-                        org.telegram.ui.Cells.z3 z3Var = e4Var.f21798x;
-                        z3Var.setProgress(f7);
-                        if (f7 < 1.0f) {
-                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, true, 1.0f, true);
-                        } else {
-                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, false, 1.0f, true);
-                        }
-                    }
+    @Override
+    public final boolean n() {
+        return false;
+    }
+
+    @Override
+    public final void r(View view, ah.i1 i1Var, boolean z10, boolean z11) {
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+        String str = i1Var.f779f;
+        if (str == null) {
+            str = "👍";
+        }
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        tL_textWithEntities.text = str;
+        long j10 = i1Var.f780g;
+        if (j10 != 0) {
+            tL_messageEntityCustomEmoji.document_id = j10;
+            tL_messageEntityCustomEmoji.offset = 0;
+            tL_messageEntityCustomEmoji.length = str.length();
+            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
+        }
+        n60 n60Var = this.f39124c;
+        n60Var.B1(tL_textWithEntities);
+        m40 m40Var = n60Var.H;
+        if (m40Var.m()) {
+            m40Var.j();
+        } else {
+            m40Var.d();
+        }
+        ah.t0 reactionsWindow = n60Var.K.getReactionsWindow();
+        if (reactionsWindow != null && !reactionsWindow.f877q) {
+            n60Var.K.getReactionsWindow().e();
+            n60Var.K.n();
+        }
+    }
+
+    @Override
+    public final void w(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        Paint paint = this.f39123b;
+        if (i11 > 0) {
+            canvas.drawRoundRect(rectF, f7, f7, paint);
+        } else {
+            canvas.drawRect(rectF, paint);
+        }
+        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
+            n60 n60Var = this.f39124c;
+            if (n60Var.Q2 != null) {
+                canvas.save();
+                if (i11 > 0) {
+                    Path path = this.f39122a;
+                    path.rewind();
+                    path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+                    path.close();
+                    canvas.clipPath(path);
+                } else {
+                    canvas.clipRect(rectF);
                 }
+                canvas.translate(-n60Var.K.getX(), -n60Var.K.getY());
+                float f12 = n60Var.R2;
+                canvas.scale(f12, f12);
+                canvas.drawRenderNode(n60Var.Q2);
+                canvas.restore();
             }
         }
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final gv0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public final String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final void P() {
-    }
-
-    @Override
-    public final void L(boolean z10, boolean z11) {
+    public final void y() {
     }
 }

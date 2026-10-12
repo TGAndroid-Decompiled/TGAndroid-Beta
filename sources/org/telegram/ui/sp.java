@@ -1,22 +1,14 @@
 package org.telegram.ui;
-public final class sp implements Runnable {
-    public final int f41974a;
-    public final tp f41975b;
+public final class sp implements o70 {
+    public final aq f40189a;
 
-    public sp(tp tpVar, int i10) {
-        this.f41974a = i10;
-        this.f41975b = tpVar;
+    public sp(aq aqVar) {
+        this.f40189a = aqVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41974a) {
-            case 0:
-                this.f41975b.f42263x.d.P = false;
-                return;
-            default:
-                this.f41975b.f42263x.d.P = false;
-                return;
-        }
+    public final void a(p70 p70Var, long j10) {
+        aq aqVar = this.f40189a;
+        aqVar.Y(aqVar.getMessagesController().getChat(Long.valueOf(j10)), p70Var);
     }
 }

@@ -1,15 +1,20 @@
 package org.telegram.ui.Wallet;
-public final class c3 extends xh.l1 {
-    public final org.telegram.ui.Cells.w0 f34546y;
 
-    public c3(org.telegram.ui.Cells.w0 w0Var, org.telegram.ui.Cells.w0 w0Var2) {
-        super(w0Var);
-        this.f34546y = w0Var2;
+import android.content.Context;
+public final class c3 extends tg.s {
+    public final d3 f33006x;
+
+    public c3(d3 d3Var, Context context, z2 z2Var) {
+        super(context, z2Var);
+        this.f33006x = d3Var;
     }
 
     @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.f34546y.invalidate();
+    public final void a() {
+        d3 d3Var = this.f33006x;
+        d3Var.f33069o = true;
+        setPaused(true);
+        setVisibility(8);
+        d3Var.f33045a.invalidate();
     }
 }

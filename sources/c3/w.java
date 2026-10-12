@@ -1,25 +1,24 @@
 package c3;
 
-import b2.o0;
-import b2.p0;
+import e2.m0;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class w {
-    public static final Pattern f4164c = Pattern.compile("^ [0-9a-fA-F]{8} ([0-9a-fA-F]{8}) ([0-9a-fA-F]{8})");
-    public int f4165a = -1;
-    public int f4166b = -1;
+    public static final Pattern f4293c = Pattern.compile("^ [0-9a-fA-F]{8} ([0-9a-fA-F]{8}) ([0-9a-fA-F]{8})");
+    public int f4294a = -1;
+    public int f4295b = -1;
 
     public final boolean a(String str) {
-        Matcher matcher = f4164c.matcher(str);
+        Matcher matcher = f4293c.matcher(str);
         if (matcher.find()) {
             try {
                 String group = matcher.group(1);
-                String str2 = e2.d0.f8529a;
+                String str2 = m0.f8372a;
                 int parseInt = Integer.parseInt(group, 16);
                 int parseInt2 = Integer.parseInt(matcher.group(2), 16);
                 if (parseInt > 0 || parseInt2 > 0) {
-                    this.f4165a = parseInt;
-                    this.f4166b = parseInt2;
+                    this.f4294a = parseInt;
+                    this.f4295b = parseInt2;
                     return true;
                 }
                 return false;
@@ -30,29 +29,7 @@ public final class w {
         return false;
     }
 
-    public final void b(p0 p0Var) {
-        int i10 = 0;
-        while (true) {
-            o0[] o0VarArr = p0Var.f3505a;
-            if (i10 < o0VarArr.length) {
-                o0 o0Var = o0VarArr[i10];
-                if (o0Var instanceof q3.e) {
-                    q3.e eVar = (q3.e) o0Var;
-                    if ("iTunSMPB".equals(eVar.f45889c) && a(eVar.d)) {
-                        return;
-                    }
-                } else if (o0Var instanceof q3.l) {
-                    q3.l lVar = (q3.l) o0Var;
-                    if ("com.apple.iTunes".equals(lVar.f45900b) && "iTunSMPB".equals(lVar.f45901c) && a(lVar.d)) {
-                        return;
-                    }
-                } else {
-                    continue;
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
+    public final void b(b2.u0 r11) {
+        throw new UnsupportedOperationException("Method not decompiled: c3.w.b(b2.u0):void");
     }
 }

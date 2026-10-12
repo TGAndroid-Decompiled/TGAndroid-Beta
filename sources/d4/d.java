@@ -1,31 +1,32 @@
 package d4;
 
 import android.graphics.Color;
-import com.google.android.gms.internal.vision.e2;
-import v7.v7;
+import com.google.android.gms.internal.play_billing.k3;
+import v7.b8;
+import v7.u6;
 public final class d {
-    public final String f8140a;
-    public final int f8141b;
-    public final Integer f8142c;
+    public final String f6361a;
+    public final int f6362b;
+    public final Integer f6363c;
     public final Integer d;
-    public final float f8143e;
-    public final boolean f8144f;
-    public final boolean f8145g;
+    public final float e;
+    public final boolean f6364f;
+    public final boolean f6365g;
     public final boolean h;
-    public final boolean f8146i;
-    public final int f8147j;
+    public final boolean f6366i;
+    public final int f6367j;
 
     public d(String str, int i10, Integer num, Integer num2, float f7, boolean z10, boolean z11, boolean z12, boolean z13, int i11) {
-        this.f8140a = str;
-        this.f8141b = i10;
-        this.f8142c = num;
+        this.f6361a = str;
+        this.f6362b = i10;
+        this.f6363c = num;
         this.d = num2;
-        this.f8143e = f7;
-        this.f8144f = z10;
-        this.f8145g = z11;
+        this.e = f7;
+        this.f6364f = z10;
+        this.f6365g = z11;
         this.h = z12;
-        this.f8146i = z13;
-        this.f8147j = i11;
+        this.f6366i = z13;
+        this.f6367j = i11;
     }
 
     public static int a(String str) {
@@ -53,7 +54,7 @@ public final class d {
             }
         } catch (NumberFormatException unused) {
         }
-        e2.s("Ignoring unknown alignment: ", str, "SsaStyle");
+        k3.r("Ignoring unknown alignment: ", str, "SsaStyle");
         return -1;
     }
 
@@ -64,8 +65,8 @@ public final class d {
                 return false;
             }
             return true;
-        } catch (NumberFormatException e7) {
-            e2.a.o("SsaStyle", "Failed to parse boolean value: '" + str + "'", e7);
+        } catch (NumberFormatException e) {
+            e2.a.m("SsaStyle", "Failed to parse boolean value: '" + str + "'", e);
             return false;
         }
     }
@@ -84,12 +85,12 @@ public final class d {
             } else {
                 z10 = false;
             }
-            e2.d.b(z10);
-            int b10 = v7.b(((parseLong >> 24) & 255) ^ 255);
-            int b11 = v7.b((parseLong >> 16) & 255);
-            return Integer.valueOf(Color.argb(b10, v7.b(parseLong & 255), v7.b((parseLong >> 8) & 255), b11));
-        } catch (IllegalArgumentException e7) {
-            e2.a.o("SsaStyle", "Failed to parse color expression: '" + str + "'", e7);
+            u6.g(z10);
+            int b10 = b8.b(((parseLong >> 24) & 255) ^ 255);
+            int b11 = b8.b((parseLong >> 16) & 255);
+            return Integer.valueOf(Color.argb(b10, b8.b(parseLong & 255), b8.b((parseLong >> 8) & 255), b11));
+        } catch (IllegalArgumentException e) {
+            e2.a.m("SsaStyle", "Failed to parse color expression: '" + str + "'", e);
             return null;
         }
     }

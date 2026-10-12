@@ -1,78 +1,48 @@
 package e9;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-import v7.t6;
-public final class g0 extends o1 implements ListIterator {
-    public final int f8737a;
-    public int f8738b;
-    public final i0 f8739c;
+import java.util.Arrays;
+import java.util.Collection;
+public abstract class g0 extends h0 {
+    public Object[] f8563a;
+    public int f8564b;
+    public boolean f8565c;
 
-    public g0(i0 i0Var, int i10) {
-        int size = i0Var.size();
-        t6.e(i10, size);
-        this.f8737a = size;
-        this.f8738b = i10;
-        this.f8739c = i0Var;
+    public g0(int i10) {
+        s.f(i10, "initialCapacity");
+        this.f8563a = new Object[i10];
+        this.f8564b = 0;
     }
 
-    public final Object a(int i10) {
-        return this.f8739c.get(i10);
+    public final void c(Object obj) {
+        obj.getClass();
+        e(1);
+        Object[] objArr = this.f8563a;
+        int i10 = this.f8564b;
+        this.f8564b = i10 + 1;
+        objArr[i10] = obj;
     }
 
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.f8738b < this.f8737a) {
-            return true;
+    public final void d(Iterable iterable) {
+        if (iterable instanceof Collection) {
+            Collection collection = (Collection) iterable;
+            e(collection.size());
+            if (collection instanceof i0) {
+                this.f8564b = ((i0) collection).m(this.f8564b, this.f8563a);
+                return;
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f8738b > 0) {
-            return true;
+        for (Object obj : iterable) {
+            a(obj);
         }
-        return false;
     }
 
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f8738b;
-            this.f8738b = i10 + 1;
-            return a(i10);
+    public final void e(int i10) {
+        Object[] objArr = this.f8563a;
+        int b10 = h0.b(objArr.length, this.f8564b + i10);
+        if (b10 <= objArr.length && !this.f8565c) {
+            return;
         }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.f8738b;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f8738b - 1;
-            this.f8738b = i10;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f8738b - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        this.f8563a = Arrays.copyOf(this.f8563a, b10);
+        this.f8565c = false;
     }
 }

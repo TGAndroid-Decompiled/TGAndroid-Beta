@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class k extends Service implements c {
     public static final String BIND_LISTENER_INTENT_ACTION = "com.google.android.gms.wearable.BIND_LISTENER";
     private ComponentName zza;
-    private p zzb;
+    private q zzb;
     private IBinder zzc;
     private Intent zzd;
     private Looper zze;
@@ -49,7 +49,7 @@ public abstract class k extends Service implements c {
         if (Log.isLoggable("WearableLS", 3)) {
             Log.d("WearableLS", "onCreate: ".concat(String.valueOf(this.zza)));
         }
-        this.zzb = new p(this, getLooper());
+        this.zzb = new q(this, getLooper());
         Intent intent = new Intent("com.google.android.gms.wearable.BIND_LISTENER");
         this.zzd = intent;
         intent.setComponent(this.zza);
@@ -63,10 +63,10 @@ public abstract class k extends Service implements c {
         }
         synchronized (this.zzf) {
             this.zzg = true;
-            p pVar = this.zzb;
-            if (pVar != null) {
-                pVar.getLooper().quit();
-                pVar.a("quit");
+            q qVar = this.zzb;
+            if (qVar != null) {
+                qVar.getLooper().quit();
+                qVar.a("quit");
             } else {
                 throw new IllegalStateException("onDestroy: mServiceHandler not set, did you override onCreate() but forget to call super.onCreate()? component=".concat(String.valueOf(this.zza)));
             }

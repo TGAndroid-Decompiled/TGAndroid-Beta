@@ -1,17 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ad0 extends org.telegram.ui.ActionBar.m1 {
-    public final id0 f35764o;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class ad0 extends org.telegram.ui.ActionBar.j {
+    public final nd0 f34185a;
 
-    public ad0(id0 id0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f35764o = id0Var;
+    public ad0(nd0 nd0Var) {
+        this.f34185a = nd0Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        this.f35764o.I0 = null;
+    public final void b(int i10) {
+        nd0 nd0Var = this.f34185a;
+        if (i10 == -1) {
+            nd0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = nd0Var.B0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = nd0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } else if (i10 == 5) {
+            nd0Var.r0(false);
+        } else if (i10 == 6) {
+            nd0Var.q0(null);
+        }
     }
 }

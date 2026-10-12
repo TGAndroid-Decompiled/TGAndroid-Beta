@@ -1,66 +1,68 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import org.telegram.messenger.FileLog;
-public final class vn0 implements OnCompleteListener, org.telegram.ui.ActionBar.z1, bu {
-    public final int f42818a;
-    public final xo0 f42819b;
+import android.app.Activity;
+import android.webkit.WebView;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class vn0 implements Runnable {
+    public final int f41048a;
+    public final cp0 f41049b;
+    public final TLObject f41050c;
 
-    public vn0(xo0 xo0Var, int i10) {
-        this.f42818a = i10;
-        this.f42819b = xo0Var;
+    public vn0(cp0 cp0Var, TLObject tLObject, int i10) {
+        this.f41048a = i10;
+        this.f41049b = cp0Var;
+        this.f41050c = tLObject;
     }
 
     @Override
-    public void V0(xt xtVar) {
-        switch (this.f42818a) {
-            case 2:
-                xo0 xo0Var = this.f42819b;
-                xo0Var.A0 = xtVar;
-                xo0Var.f44104f[4].setText(xtVar.f44161a);
+    public final void run() {
+        switch (this.f41048a) {
+            case 0:
+                cp0.e0(this.f41049b, this.f41050c);
                 return;
-            default:
-                xo0 xo0Var2 = this.f42819b;
-                xo0Var2.A0 = xtVar;
-                xo0Var2.f44104f[4].setText(xtVar.f44161a);
-                xo0Var2.B0 = xtVar.d;
-                return;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f42818a) {
             case 1:
-                xo0 xo0Var = this.f42819b;
-                xo0Var.I0(xo0Var.R0[0]);
+                cp0 cp0Var = this.f41049b;
+                Utilities.Callback callback = cp0Var.f35005d1;
+                TLObject tLObject = this.f41050c;
+                if (callback != null) {
+                    callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
+                }
+                cp0Var.D0(false);
+                cp0Var.f35035z0 = true;
+                cp0Var.H0(true, true);
+                org.telegram.ui.Components.gr grVar = cp0Var.f35022r;
+                if (grVar != null) {
+                    grVar.setVisibility(0);
+                }
+                org.telegram.ui.ActionBar.u0 u0Var = cp0Var.f35017n;
+                if (u0Var != null) {
+                    u0Var.setEnabled(false);
+                    cp0Var.f35017n.getContentView().setVisibility(4);
+                }
+                org.telegram.ui.ActionBar.b5 parentLayout = cp0Var.getParentLayout();
+                Activity parentActivity = cp0Var.getParentActivity();
+                cp0Var.getMessagesController().newMessageCallback = new f7(cp0Var, parentLayout, parentActivity, 17);
+                WebView webView = cp0Var.f35029w;
+                if (webView != null) {
+                    webView.setVisibility(0);
+                    WebView webView2 = cp0Var.f35029w;
+                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
+                    cp0Var.f35031x = str;
+                    webView2.loadUrl(str);
+                }
+                cp0Var.f34997a1 = true;
+                cp0Var.f35010f1 = 3;
+                bp0 bp0Var = cp0Var.Z0;
+                if (bp0Var != null) {
+                    bp0Var.a(3);
+                    return;
+                }
                 return;
-            case 2:
             default:
-                xo0 xo0Var2 = this.f42819b;
-                xo0Var2.D0(true);
-                xo0Var2.z0();
-                return;
-            case 3:
-                this.f42819b.A0(true);
+                cp0.c0(this.f41049b, this.f41050c);
                 return;
         }
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        xo0 xo0Var = this.f42819b;
-        xo0Var.getClass();
-        if (task.isSuccessful()) {
-            FrameLayout frameLayout = xo0Var.O;
-            if (frameLayout != null) {
-                frameLayout.setVisibility(0);
-                return;
-            }
-            return;
-        }
-        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

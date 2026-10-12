@@ -1,12 +1,49 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class ga1 extends org.telegram.ui.Cells.c8 {
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ga1 extends s4.r0 {
+    public final int f36366a;
+    public final hb1 f36367b;
+
+    public ga1(hb1 hb1Var, int i10) {
+        this.f36366a = i10;
+        this.f36367b = hb1Var;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (getTranslationY() != 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false));
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        hb1 hb1Var;
+        bh.f fVar2;
+        hb1 hb1Var2;
+        bh.f fVar3;
+        switch (this.f36366a) {
+            case 0:
+                hb1 hb1Var3 = this.f36367b;
+                if (hb1Var3.f36708r0.size() != hb1Var3.f36710s0.size() && !hb1Var3.f36715w0 && hb1Var3.U.N0() > hb1Var3.X.f38203c0 - 20) {
+                    hb1Var3.h0();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = hb1Var3.C0) != null) {
+                    fVar.f(i10, i11);
+                    hb1.W(hb1Var3);
+                    return;
+                }
+                return;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 31 && (fVar2 = (hb1Var = this.f36367b).C0) != null) {
+                    fVar2.f(i10, i11);
+                    hb1.W(hb1Var);
+                    return;
+                }
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (fVar3 = (hb1Var2 = this.f36367b).C0) != null) {
+                    fVar3.f(i10, i11);
+                    hb1.W(hb1Var2);
+                    return;
+                }
+                return;
         }
-        super.onDraw(canvas);
     }
 }

@@ -1,12 +1,20 @@
 package org.telegram.ui;
-public final class t7 {
-    public final String f42112a;
-    public final int f42113b;
-    public final h7 f42114c;
 
-    public t7(String str, int i10, h7 h7Var) {
-        this.f42112a = str;
-        this.f42113b = i10;
-        this.f42114c = h7Var;
+import android.content.Context;
+public final class t7 extends org.telegram.ui.Cells.j7 {
+    public final o7 f40300l0;
+    public final u7 m0;
+
+    public t7(u7 u7Var, Context context, o7 o7Var) {
+        super(context, 0, null);
+        this.m0 = u7Var;
+        this.f40300l0 = o7Var;
+    }
+
+    @Override
+    public final void a() {
+        w7 w7Var = this.m0.f40555n;
+        o7 o7Var = this.f40300l0;
+        w7.b(w7Var, (ai.b) o7Var.getTag(), o7Var);
     }
 }

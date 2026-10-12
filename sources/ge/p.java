@@ -1,0 +1,10 @@
+package ge;
+
+import be.f0;
+public abstract class p {
+    public abstract Object a(Object obj);
+
+    public final String toString() {
+        return getClass().getSimpleName() + '@' + f0.k(this);
+    }
+}

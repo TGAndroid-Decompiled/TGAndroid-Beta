@@ -1,53 +1,76 @@
 package e9;
+public final class v0 extends y0 {
+    public final int d;
+    public final w0 e;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.SortedMap;
-public final class v0 extends o implements Serializable {
-    public final transient Map d;
-    public transient int f8811e;
-    public transient u0 f8812f;
-
-    public v0(Map map) {
-        if (map.isEmpty()) {
-            this.d = map;
-            return;
-        }
-        throw new IllegalArgumentException();
+    public v0(w0 w0Var, int i10) {
+        this.d = i10;
+        this.e = w0Var;
     }
 
     @Override
-    public final Map a() {
-        Map dVar;
-        Map map = this.f8778c;
-        if (map == null) {
-            Map map2 = this.d;
-            if (map2 instanceof NavigableMap) {
-                dVar = new f(this, (NavigableMap) map2);
-            } else if (map2 instanceof SortedMap) {
-                dVar = new i(this, (SortedMap) map2);
-            } else {
-                dVar = new d(this, map2, 0);
-            }
-            this.f8778c = dVar;
-            return dVar;
+    public final boolean contains(Object obj) {
+        switch (this.d) {
+            case 0:
+                if (!(obj instanceof t1)) {
+                    return false;
+                }
+                t1 t1Var = (t1) obj;
+                if (t1Var.a() <= 0) {
+                    return false;
+                }
+                if (((d2) this.e).e.b(t1Var.f8622a) != t1Var.a()) {
+                    return false;
+                }
+                return true;
+            default:
+                return ((d2) this.e).contains(obj);
         }
-        return map;
     }
 
-    public final void b() {
-        Map map = this.d;
-        for (Collection collection : map.values()) {
-            collection.clear();
+    @Override
+    public int hashCode() {
+        switch (this.d) {
+            case 0:
+                return this.e.hashCode();
+            default:
+                return super.hashCode();
         }
-        map.clear();
-        this.f8811e = 0;
     }
 
-    public final Collection c() {
-        return (List) this.f8812f.get();
+    @Override
+    public final int m(int i10, Object[] objArr) {
+        return h().m(i10, objArr);
+    }
+
+    @Override
+    public final boolean q() {
+        switch (this.d) {
+            case 0:
+                this.e.getClass();
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final m2 r() {
+        return h().listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        switch (this.d) {
+            case 0:
+                return this.e.s().size();
+            default:
+                return ((d2) this.e).e.f8631c;
+        }
+    }
+
+    @Override
+    public final n0 v() {
+        return new z0(this);
     }
 }

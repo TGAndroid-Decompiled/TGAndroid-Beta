@@ -1,265 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class vw0 extends org.telegram.ui.ActionBar.m2 {
-    public final long f42866a;
-    public org.telegram.ui.Cells.z7 f42867b;
-    public org.telegram.ui.Components.ba0 f42868c;
-    public org.telegram.ui.Components.p71 d;
-    public org.telegram.ui.Components.is f42869e;
-    public org.telegram.ui.ActionBar.u0 f42870f;
-    public final boolean h;
-    public final long f42871n;
-    public boolean f42872r;
-    public long f42873s;
-    public po v;
-    public boolean f42874w;
+public final class vw0 extends RelativeLayout {
+    public final PopupNotificationActivity f41094a;
 
-    public vw0(long j3) {
-        super(null);
-        TLRPC.Chat chat = null;
-        boolean z10 = true;
-        this.f42874w = true;
-        this.f42866a = j3;
-        TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(j3));
-        if (chat2 != null && chat2.linked_monoforum_id != 0) {
-            chat = getMessagesController().getChat(Long.valueOf(chat2.linked_monoforum_id));
-        }
-        long j10 = chat != null ? chat.send_paid_messages_stars : 0L;
-        z10 = (chat2 == null || !chat2.broadcast_messages_allowed) ? false : false;
-        this.h = z10;
-        long clamp = Utilities.clamp(z10 ? j10 : getMessagesController().config.starsPaidMessagesChannelAmountDefault.get(), getMessagesController().starsPaidMessageAmountMax, 0L);
-        this.f42871n = clamp;
-        this.f42872r = z10;
-        this.f42873s = clamp;
+    public vw0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
+        super(popupNotificationActivity2);
+        this.f41094a = popupNotificationActivity;
     }
 
-    public static void U(vw0 vw0Var, TLRPC.TL_error tL_error, TLObject tLObject, TL_stars.updatePaidMessagesPrice updatepaidmessagesprice) {
-        long j3;
-        if (tL_error != null) {
-            vw0Var.f42869e.a(0.0f);
-            org.telegram.ui.Components.zc.d0(tL_error);
-            return;
-        }
-        TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-        vw0Var.getMessagesController().putChats(updates.chats, false);
-        vw0Var.getMessagesController().lambda$processUpdates$377(updates, false);
-        if (!vw0Var.isFinished && !vw0Var.finishing) {
-            po poVar = vw0Var.v;
-            if (poVar != null) {
-                if (updatepaidmessagesprice.suggestions_allowed) {
-                    j3 = updatepaidmessagesprice.send_paid_messages_stars;
-                } else {
-                    j3 = -1;
-                }
-                poVar.run(j3);
-            }
-            vw0Var.finishFragment();
-        }
-    }
-
-    public final void V(boolean z10) {
-        boolean X;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        if (this.f42870f == null || this.f42874w == (X = X())) {
-            return;
-        }
-        this.f42874w = X;
-        this.f42870f.setEnabled(X);
-        float f13 = 0.0f;
-        if (z10) {
-            ViewPropertyAnimator animate = this.f42870f.animate();
-            if (X) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f11);
-            if (X) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.0f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f12);
-            if (X) {
-                f13 = 1.0f;
-            }
-            scaleX.scaleY(f13).setDuration(180L).start();
-            return;
-        }
-        org.telegram.ui.ActionBar.u0 u0Var = this.f42870f;
-        if (X) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        u0Var.setAlpha(f7);
-        org.telegram.ui.ActionBar.u0 u0Var2 = this.f42870f;
-        if (X) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        u0Var2.setScaleX(f10);
-        org.telegram.ui.ActionBar.u0 u0Var3 = this.f42870f;
-        if (X) {
-            f13 = 1.0f;
-        }
-        u0Var3.setScaleY(f13);
-    }
-
-    public final String W() {
-        int i10 = getMessagesController().starsPaidMessageCommissionPermille;
-        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, ei.l.H0(i10), String.valueOf(((int) (((((float) this.f42873s) * (i10 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
-    }
-
-    public final boolean X() {
-        if (this.f42873s == this.f42871n && this.f42872r == this.h) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void Y() {
-        long j3;
-        long j10;
-        if (this.f42869e.f27268c <= 0.0f) {
-            if (!X()) {
-                finishFragment();
-                return;
-            }
-            this.f42869e.a(1.0f);
-            TL_stars.updatePaidMessagesPrice updatepaidmessagesprice = new TL_stars.updatePaidMessagesPrice();
-            MessagesController messagesController = getMessagesController();
-            long j11 = this.f42866a;
-            updatepaidmessagesprice.channel = messagesController.getInputChannel(j11);
-            boolean z10 = this.f42872r;
-            if (z10) {
-                j3 = this.f42873s;
-            } else {
-                j3 = 0;
-            }
-            updatepaidmessagesprice.send_paid_messages_stars = j3;
-            updatepaidmessagesprice.suggestions_allowed = z10;
-            getConnectionsManager().sendRequest(updatepaidmessagesprice, new bc0(12, this, updatepaidmessagesprice));
-            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(j11));
-            if (chat != null) {
-                if (this.f42872r) {
-                    chat.flags2 |= 65536;
-                    chat.broadcast_messages_allowed = true;
-                } else {
-                    chat.flags2 &= -65537;
-                    chat.broadcast_messages_allowed = false;
-                }
-                getMessagesController().putChat(chat, true);
-                TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(chat.linked_monoforum_id));
-                if (chat2 != null) {
-                    if (this.f42872r) {
-                        chat2.flags2 |= 16384;
-                        chat2.send_paid_messages_stars = this.f42873s;
-                    } else {
-                        chat2.flags2 &= -16385;
-                        chat2.send_paid_messages_stars = 0L;
-                    }
-                    getMessagesController().putChat(chat2, true);
-                }
-            }
-            po poVar = this.v;
-            if (poVar != null) {
-                if (this.f42872r) {
-                    j10 = this.f42873s;
-                } else {
-                    j10 = -1;
-                }
-                poVar.run(j10);
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getTag() instanceof String) {
+                int left = childAt.getLeft();
+                PopupNotificationActivity popupNotificationActivity = this.f41094a;
+                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f32436b.getTop(), childAt.getRight(), popupNotificationActivity.f32436b.getBottom());
             }
         }
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PostSuggestions));
-        this.actionBar.setActionBarMenuOnItemClick(new o70(this, 19));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = org.telegram.ui.ActionBar.h6.f20895v8;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f42869e = new org.telegram.ui.Components.is(mutate, new org.telegram.ui.Components.lq(org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
-        this.f42870f = this.actionBar.p().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f42869e);
-        V(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false));
-        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
-        org.telegram.ui.Cells.z7 z7Var = new org.telegram.ui.Cells.z7(context, this.resourceProvider);
-        this.f42867b = z7Var;
-        int i11 = org.telegram.ui.ActionBar.h6.f20560d6;
-        z7Var.setBackgroundColor(getThemedColor(i11));
-        org.telegram.ui.Components.ba0 ba0Var = new org.telegram.ui.Components.ba0(context, this, null, true, true);
-        this.f42868c = ba0Var;
-        ba0Var.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), 0);
-        this.f42868c.setBackgroundColor(getThemedColor(i11));
-        this.f42868c.b(true);
-        this.f42868c.d(0, null, false);
-        org.telegram.ui.Components.p71 p71Var = new org.telegram.ui.Components.p71(context, this.currentAccount, this.classGuid, false, new e5(this, 16), new uw0(this, 2), null, this.resourceProvider);
-        this.d = p71Var;
-        p71Var.p1();
-        frameLayout2.addView(this.d, w7.w5.e(-1, -1, 51));
-        this.actionBar.setAdaptiveBackground(this.d);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return !X();
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z10) {
-        if (X()) {
-            if (z10) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.MessageSuggestionsUnsavedChanges);
-                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new uw0(this, 0));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Discard), new uw0(this, 1));
-                showDialog(alertDialog$Builder.f20142a);
-                return false;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        PopupNotificationActivity popupNotificationActivity = this.f41094a;
+        int measuredWidth = popupNotificationActivity.f32436b.getMeasuredWidth();
+        int measuredHeight = popupNotificationActivity.f32436b.getMeasuredHeight();
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt.getTag() instanceof String) {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - AndroidUtilities.dp(3.0f), 1073741824));
             }
-            return false;
         }
-        return super.onBackPressed(z10);
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        org.telegram.ui.Components.h71 h71Var;
-        super.onFragmentCreate();
-        org.telegram.ui.Components.p71 p71Var = this.d;
-        if (p71Var != null && (h71Var = p71Var.W2) != null) {
-            h71Var.N(false);
-            return true;
-        }
-        return true;
     }
 }

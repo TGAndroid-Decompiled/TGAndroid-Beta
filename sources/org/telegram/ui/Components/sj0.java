@@ -1,87 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.text.TextPaint;
-import android.view.View;
+import android.text.style.LineHeightSpan;
+import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class sj0 {
-    public final g6 f30578a;
-    public final q6 f30579b;
-    public final int f30580c;
-    public boolean d;
-    public final xj0 f30581e;
-    public final ad f30582f;
-    public final Paint f30583g = new Paint(1);
-    public boolean h;
+import org.telegram.messenger.SharedConfig;
+public final class sj0 extends MetricAffectingSpan implements LineHeightSpan {
+    public tj0 f29146a;
 
-    public sj0(View view) {
-        this.f30578a = new g6(view, 350L, js.h);
-        this.f30581e = new xj0(view);
-        this.f30582f = new ad(view);
-        q6 q6Var = new q6(false, false, false);
-        this.f30579b = q6Var;
-        q6Var.w(AndroidUtilities.dp(11.0f));
-        q6Var.r(true, true);
-        q6Var.setCallback(view);
-        q6Var.M = (int) (AndroidUtilities.displaySize.x * 0.3f);
-        this.d = false;
-        q6Var.t(LocaleController.getString(R.string.QuoteCollapse), false, true);
-        String string = LocaleController.getString(R.string.QuoteExpand);
-        TextPaint textPaint = q6Var.f29688a;
-        this.f30580c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
-    }
-
-    public final void a(Canvas canvas, RectF rectF, float f7, float f10, int i10, boolean z10, boolean z11) {
-        int i11;
-        boolean z12 = this.d;
-        q6 q6Var = this.f30579b;
-        if (z10 != z12) {
-            this.d = z10;
-            if (z10) {
-                i11 = R.string.QuoteExpand;
+    @Override
+    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
+        int i14;
+        int i15;
+        tj0 tj0Var = this.f29146a;
+        if (tj0Var.f29401b) {
+            int i16 = 2;
+            if (tj0Var.f29403f) {
+                i14 = 7;
             } else {
-                i11 = R.string.QuoteCollapse;
+                i14 = 2;
             }
-            q6Var.t(LocaleController.getString(i11), true, true);
-        }
-        float c10 = q6Var.c();
-        float dp = AndroidUtilities.dp(17.66f);
-        rectF.set(f7 - ((int) (c10 + AndroidUtilities.dp(23.66f))), f10 - dp, f7, f10);
-        float a2 = this.f30582f.a(0.02f) * this.f30578a.e(z11);
-        if (a2 > 0.0f) {
-            int k10 = i0.a.k(i10, 30);
-            Paint paint = this.f30583g;
-            paint.setColor(k10);
-            canvas.save();
-            canvas.scale(a2, a2, f7, f10);
-            float f11 = dp / 2.0f;
-            canvas.drawRoundRect(rectF, f11, f11, paint);
-            q6Var.setBounds((int) (rectF.left + AndroidUtilities.dp(6.0f)), (int) rectF.top, (int) (rectF.right - AndroidUtilities.dp(17.66f)), (int) rectF.bottom);
-            q6Var.u(i10);
-            q6Var.draw(canvas);
-            float dp2 = AndroidUtilities.dp(14.0f);
-            float f12 = dp2 / 2.0f;
-            xj0 xj0Var = this.f30581e;
-            xj0Var.setBounds((int) ((rectF.right - AndroidUtilities.dp(3.33f)) - dp2), (int) ((rectF.centerY() - f12) + AndroidUtilities.dp(0.33f)), (int) (rectF.right - AndroidUtilities.dp(3.33f)), (int) (rectF.centerY() + f12 + AndroidUtilities.dp(0.33f)));
-            Paint paint2 = xj0Var.f32778b;
-            paint2.setColor(i10);
-            paint2.setAlpha(xj0Var.d);
-            boolean z13 = !z10;
-            if (xj0Var.f32780e != z13) {
-                xj0Var.f32780e = z13;
-                xj0Var.f32777a.invalidate();
+            if (i10 <= tj0Var.f29402c) {
+                int i17 = fontMetricsInt.ascent;
+                if (tj0Var.f29404n) {
+                    i15 = 2;
+                } else {
+                    i15 = 0;
+                }
+                fontMetricsInt.ascent = i17 - AndroidUtilities.dp(i15 + i14);
+                int i18 = fontMetricsInt.top;
+                if (!this.f29146a.f29404n) {
+                    i16 = 0;
+                }
+                fontMetricsInt.top = i18 - AndroidUtilities.dp(i16 + i14);
             }
-            xj0Var.draw(canvas);
-            canvas.restore();
+            if (i11 >= this.f29146a.d) {
+                float f7 = i14;
+                fontMetricsInt.descent = AndroidUtilities.dp(f7) + fontMetricsInt.descent;
+                fontMetricsInt.bottom = AndroidUtilities.dp(f7) + fontMetricsInt.bottom;
+            }
         }
     }
 
-    public final void b(boolean z10) {
-        this.h = z10;
-        this.f30582f.c(z10);
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        float f7;
+        if (textPaint == null) {
+            return;
+        }
+        if (this.f29146a.f29400a) {
+            f7 = 16.0f;
+        } else {
+            f7 = SharedConfig.fontSize - 2;
+        }
+        textPaint.setTextSize(AndroidUtilities.dp(f7));
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        float f7;
+        float f10;
+        if (this.f29146a.f29400a) {
+            f7 = 16.0f;
+        } else {
+            f7 = SharedConfig.fontSize - 2;
+        }
+        textPaint.setTextSize(AndroidUtilities.dp(f7));
+        if (this.f29146a.f29400a) {
+            f10 = 1.1f;
+        } else {
+            f10 = 1.0f;
+        }
+        textPaint.setTextScaleX(f10);
     }
 }

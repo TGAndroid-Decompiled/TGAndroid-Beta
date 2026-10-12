@@ -1,169 +1,140 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.view.MotionEvent;
+import android.animation.ValueAnimator;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.ma0;
-import org.telegram.ui.xg0;
-public class o2 extends TextView {
-    public final int f31855a = 0;
-    public final Object f31856b;
-    public final Object f31857c;
-    public final Object d;
+import org.telegram.messenger.yh;
+import org.telegram.ui.Components.es;
+public final class o2 extends FrameLayout {
+    public TextView[] f30386a;
+    public TextView f30387b;
+    public FrameLayout f30388c;
+    public s2 d;
+    public CharSequence e;
+    public boolean f30389f;
+    public ValueAnimator h;
+    public boolean f30390n;
 
-    public o2(q2 q2Var, Activity activity, r1 r1Var) {
-        super(activity);
-        this.d = q2Var;
-        this.f31857c = r1Var;
-        this.f31856b = new RectF();
-        r1Var.a(this);
+    public final void a(View view, View view2, Runnable runnable) {
+        view.setVisibility(0);
+        view2.setVisibility(0);
+        view2.setTranslationY(AndroidUtilities.dp(15.0f));
+        view2.setAlpha(0.0f);
+        this.f30389f = true;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.h = ofFloat;
+        ofFloat.addUpdateListener(new ah.l0(19, view2, view));
+        this.h.addListener(new hg.j0((FrameLayout) this, view, view2, (Object) runnable, 4));
+        this.h.setDuration(250L).setInterpolator(es.f24771f);
+        this.h.start();
     }
 
-    public boolean a() {
-        return false;
+    public final void b(String str, boolean z10, boolean z11) {
+        View view = this.d;
+        View[] viewArr = this.f30386a;
+        if (z10) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+            SpannableString spannableString = new SpannableString(".");
+            spannableString.setSpan(new ig.w1(viewArr), 0, 1, 33);
+            spannableStringBuilder.append((CharSequence) spannableString);
+            str = spannableStringBuilder;
+        }
+        if (TextUtils.isEmpty(viewArr[0].getText())) {
+            z11 = false;
+        }
+        if (!z11) {
+            ValueAnimator valueAnimator = this.h;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f30389f = false;
+            viewArr[0].setText(str);
+            viewArr[0].setVisibility(0);
+            viewArr[1].setVisibility(8);
+            view.setVisibility(8);
+        } else if (this.f30389f) {
+            this.e = str;
+        } else if (this.f30390n) {
+            viewArr[0].setText(str);
+            a(view, viewArr[0], null);
+        } else if (!viewArr[0].getText().equals(str)) {
+            viewArr[1].setText(str);
+            a(viewArr[0], viewArr[1], new ig.t0(this, 29));
+        }
     }
 
-    public boolean b() {
-        return true;
+    public final void c(boolean z10) {
+        FrameLayout frameLayout = this.f30388c;
+        if (z10) {
+            if (frameLayout.getVisibility() != 0) {
+                frameLayout.setVisibility(0);
+                frameLayout.setAlpha(0.0f);
+                frameLayout.setScaleY(0.6f);
+                frameLayout.setScaleX(0.6f);
+                frameLayout.animate().setListener(null).cancel();
+                yh.s(frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), es.f24775k, 300L);
+            }
+        } else if (frameLayout.getVisibility() == 8) {
+        } else {
+            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(es.f24771f).setListener(new n2(this, 1)).setDuration(300L).start();
+        }
     }
 
-    public void c() {
-        CharSequence text;
-        ma0 ma0Var = (ma0) this.f31857c;
-        Layout layout = getLayout();
-        if (layout == null || (text = layout.getText()) == null) {
+    public final void d(boolean z10, boolean z11) {
+        TextView textView = this.f30387b;
+        int i10 = 0;
+        if (!z11) {
+            textView.animate().setListener(null).cancel();
+            if (!z10) {
+                i10 = 8;
+            }
+            textView.setVisibility(i10);
+        } else if (z10) {
+            if (textView.getVisibility() != 0) {
+                textView.setVisibility(0);
+                textView.setAlpha(0.0f);
+            }
+            textView.animate().setListener(null).cancel();
+            textView.animate().alpha(1.0f).setDuration(150L).start();
+        } else {
+            textView.animate().alpha(0.0f).setListener(new n2(this, 0)).setDuration(150L).start();
+        }
+    }
+
+    public final void e(boolean z10) {
+        s2 s2Var = this.d;
+        View[] viewArr = this.f30386a;
+        if (TextUtils.isEmpty(viewArr[0].getText())) {
+            z10 = false;
+        }
+        if (this.f30390n) {
             return;
         }
-        ca0 ca0Var = new ca0(0);
-        ca0Var.f24901q = AndroidUtilities.dp(3.0f);
-        ca0Var.f24902r = AndroidUtilities.dp(6.0f);
-        int length = text.length();
-        ca0Var.d(layout, 0, 0.0f);
-        layout.getSelectionPath(0, length, ca0Var);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(ca0Var.f24903s, ca0Var.f24905u, ca0Var.f24904t, ca0Var.v);
-        ((org.telegram.ui.Cells.z) this.f31856b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        ma0Var.f28482y = ca0Var;
-        ma0Var.k(4.0f);
-        int themedColor = ((xg0) this.d).getThemedColor(h6.Ld);
-        ma0Var.g(h6.m1(0.85f, themedColor), h6.m1(2.0f, themedColor), h6.m1(3.5f, themedColor), h6.m1(6.0f, themedColor));
-        ma0Var.l();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingTop;
-        switch (this.f31855a) {
-            case 0:
-                RectF rectF = (RectF) this.f31856b;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                float x10 = ((View) getParent()).getX() + getX();
-                q2 q2Var = (q2) this.d;
-                float x11 = ((View) q2Var.getParent()).getX() + q2Var.getX() + x10;
-                float y3 = ((View) q2Var.getParent()).getY() + q2Var.getY() + ((View) getParent()).getY() + getY();
-                r1 r1Var = (r1) this.f31857c;
-                r1Var.d(x11, y3);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), r1Var.b());
-                super.onDraw(canvas);
-                return;
-            default:
-                ma0 ma0Var = (ma0) this.f31857c;
-                canvas.save();
-                if ((getGravity() & 16) != 0 && getLayout() != null) {
-                    paddingTop = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
-                } else {
-                    paddingTop = getPaddingTop();
-                }
-                canvas.translate(getPaddingLeft(), paddingTop);
-                ((org.telegram.ui.Cells.z) this.f31856b).draw(canvas);
-                canvas.restore();
-                super.onDraw(canvas);
-                if (a() || ma0Var.d()) {
-                    canvas.save();
-                    canvas.translate(getPaddingLeft(), paddingTop);
-                    ma0Var.draw(canvas);
-                    canvas.restore();
-                    invalidate();
-                    return;
-                }
-                return;
+        s2Var.a();
+        if (!z10) {
+            ValueAnimator valueAnimator = this.h;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f30390n = true;
+            this.f30389f = false;
+            viewArr[0].setVisibility(8);
+            viewArr[1].setVisibility(8);
+            s2Var.setVisibility(0);
+        } else if (this.f30389f) {
+            this.e = "timer";
+        } else {
+            this.f30390n = true;
+            a(viewArr[0], s2Var, null);
         }
     }
 
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f31855a) {
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                c();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f31855a) {
-            case 1:
-                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f31856b;
-                if (b() && motionEvent.getAction() == 0) {
-                    zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
-                    zVar.setState(new int[]{16842910, 16842919});
-                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 1) {
-                    zVar.setState(new int[0]);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f31855a) {
-            case 1:
-                super.setText(charSequence, bufferType);
-                c();
-                return;
-            default:
-                super.setText(charSequence, bufferType);
-                return;
-        }
-    }
-
-    @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f31855a) {
-            case 1:
-                if (drawable != ((org.telegram.ui.Cells.z) this.f31856b) && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
-    }
-
-    public o2(xg0 xg0Var, Context context) {
-        super(context);
-        this.d = xg0Var;
-        org.telegram.ui.Cells.z g02 = h6.g0(h6.m1(0.1f, h6.x0(null, h6.I6, false)), 7, -1);
-        this.f31856b = g02;
-        ma0 ma0Var = new ma0();
-        this.f31857c = ma0Var;
-        g02.setCallback(this);
-        ma0Var.D = true;
-        ma0Var.f28479u = 0.8f;
+    public void setSignalBarCount(int i10) {
+        this.d.setSignalBarCount(i10);
     }
 }

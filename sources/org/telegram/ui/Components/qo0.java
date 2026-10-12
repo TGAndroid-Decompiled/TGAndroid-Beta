@@ -1,18 +1,22 @@
 package org.telegram.ui.Components;
-public final class qo0 {
-    public zg.n0 f29875a;
-    public int f29876b;
-    public String f29877c;
-    public int d;
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof qo0)) {
-            return false;
-        }
-        qo0 qo0Var = (qo0) obj;
-        if (this.f29876b != qo0Var.f29876b || this.f29875a.h != qo0Var.f29875a.h || this.d != qo0Var.d) {
-            return false;
-        }
-        return true;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class qo0 extends r40 {
+    public final org.telegram.ui.iy f28658c0;
+
+    public qo0(org.telegram.ui.iy iyVar, mm0 mm0Var, Context context, int i10) {
+        super(mm0Var, context, i10);
+        this.f28658c0 = iyVar;
+    }
+
+    @Override
+    public final void N(boolean z10) {
+        super.N(z10);
+        mo0 mo0Var = this.f28658c0.f31931s0;
+        mo0Var.e(false, z10);
+        mo0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        mo0Var.e.setVisibility(8);
     }
 }

@@ -1,27 +1,10 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jh0 implements RequestDelegate {
-    public final int f39214a;
-    public final ai0 f39215b;
+import android.view.MotionEvent;
+public interface jh0 {
+    boolean S(MotionEvent motionEvent, boolean z10);
 
-    public jh0(ai0 ai0Var, int i10) {
-        this.f39214a = i10;
-        this.f39215b = ai0Var;
-    }
+    void t();
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39214a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new oh0(this.f39215b, tL_error, tLObject, 0));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new cg0(3, this.f39215b, tL_error));
-                return;
-        }
-    }
+    gh.d z();
 }

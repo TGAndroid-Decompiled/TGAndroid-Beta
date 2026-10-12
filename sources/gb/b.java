@@ -1,52 +1,93 @@
 package gb;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class b extends db.u {
-    public static final a f10438c = new a();
-    public final Class f10439a;
-    public final o f10440b;
+import j$.util.Objects;
+import java.io.Serializable;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+public final class b implements ParameterizedType, Serializable {
+    public final Type f10038a;
+    public final Type f10039b;
+    public final Type[] f10040c;
 
-    public b(db.g gVar, db.u uVar, Class cls) {
-        this.f10440b = new o(gVar, uVar, cls);
-        this.f10439a = cls;
-    }
-
-    @Override
-    public final Object read(lb.a aVar) {
-        if (aVar.x() == 9) {
-            aVar.t();
-            return null;
-        }
-        ArrayList arrayList = new ArrayList();
-        aVar.a();
-        while (aVar.k()) {
-            arrayList.add(((db.u) this.f10440b.f10479c).read(aVar));
-        }
-        aVar.e();
-        int size = arrayList.size();
-        Class cls = this.f10439a;
-        if (cls.isPrimitive()) {
-            Object newInstance = Array.newInstance(cls, size);
-            for (int i10 = 0; i10 < size; i10++) {
-                Array.set(newInstance, i10, arrayList.get(i10));
+    public b(Type type, Type type2, Type... typeArr) {
+        Type a2;
+        Objects.requireNonNull(type2);
+        if (type == null && (type2 instanceof Class)) {
+            Class cls = (Class) type2;
+            if (!Modifier.isStatic(cls.getModifiers()) && cls.getDeclaringClass() != null) {
+                throw new IllegalArgumentException("Must specify owner type for " + type2);
             }
-            return newInstance;
         }
-        return arrayList.toArray((Object[]) Array.newInstance(cls, size));
+        if (type == null) {
+            a2 = null;
+        } else {
+            a2 = d.a(type);
+        }
+        this.f10038a = a2;
+        this.f10039b = d.a(type2);
+        Type[] typeArr2 = (Type[]) typeArr.clone();
+        this.f10040c = typeArr2;
+        int length = typeArr2.length;
+        for (int i10 = 0; i10 < length; i10++) {
+            Objects.requireNonNull(this.f10040c[i10]);
+            d.c(this.f10040c[i10]);
+            Type[] typeArr3 = this.f10040c;
+            typeArr3[i10] = d.a(typeArr3[i10]);
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof ParameterizedType) && d.e(this, (ParameterizedType) obj)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void write(lb.b bVar, Object obj) {
-        if (obj == null) {
-            bVar.i();
-            return;
+    public final Type[] getActualTypeArguments() {
+        return (Type[]) this.f10040c.clone();
+    }
+
+    @Override
+    public final Type getOwnerType() {
+        return this.f10038a;
+    }
+
+    @Override
+    public final Type getRawType() {
+        return this.f10039b;
+    }
+
+    public final int hashCode() {
+        int i10;
+        int hashCode = Arrays.hashCode(this.f10040c) ^ this.f10039b.hashCode();
+        Type type = this.f10038a;
+        if (type != null) {
+            i10 = type.hashCode();
+        } else {
+            i10 = 0;
         }
-        bVar.b();
-        int length = Array.getLength(obj);
-        for (int i10 = 0; i10 < length; i10++) {
-            this.f10440b.write(bVar, Array.get(obj, i10));
+        return hashCode ^ i10;
+    }
+
+    public final String toString() {
+        Type[] typeArr = this.f10040c;
+        int length = typeArr.length;
+        Type type = this.f10039b;
+        if (length == 0) {
+            return d.k(type);
         }
-        bVar.e();
+        StringBuilder sb2 = new StringBuilder((length + 1) * 30);
+        sb2.append(d.k(type));
+        sb2.append("<");
+        sb2.append(d.k(typeArr[0]));
+        for (int i10 = 1; i10 < length; i10++) {
+            sb2.append(", ");
+            sb2.append(d.k(typeArr[i10]));
+        }
+        sb2.append(">");
+        return sb2.toString();
     }
 }

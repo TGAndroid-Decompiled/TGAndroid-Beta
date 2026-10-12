@@ -1,25 +1,24 @@
 package org.telegram.ui.Components;
+public final class z90 implements Runnable {
+    public final int f31823a;
+    public final aa0 f31824b;
+    public final ea0 f31825c;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class z90 extends m9 {
-    public final ai.x7 f33310e;
-
-    public z90(ai.x7 x7Var, Context context) {
-        super(context, false);
-        this.f33310e = x7Var;
+    public z90(aa0 aa0Var, ea0 ea0Var, int i10) {
+        this.f31823a = i10;
+        this.f31824b = aa0Var;
+        this.f31825c = ea0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int g10;
-        int min = Math.min(3, ((ba0) this.f33310e.d).f24588w);
-        if (min == 0) {
-            g10 = 0;
-        } else {
-            g10 = hg.c.g(min, 1, 20, 32);
+    public final void run() {
+        switch (this.f31823a) {
+            case 0:
+                this.f31824b.k(this.f31825c, false);
+                return;
+            default:
+                this.f31824b.k(this.f31825c, false);
+                return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
     }
 }

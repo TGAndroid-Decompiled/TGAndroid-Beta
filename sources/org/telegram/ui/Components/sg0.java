@@ -1,39 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.ui.PhotoViewer;
-public final class sg0 implements Runnable {
-    public final int f30561a;
-    public final ug0 f30562b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class sg0 extends FrameLayout {
+    public final TextView f29128a;
+    public final TextView f29129b;
+    public final TextView f29130c;
+    public final boolean d;
 
-    public sg0(ug0 ug0Var, int i10) {
-        this.f30561a = i10;
-        this.f30562b = ug0Var;
+    public sg0(Context context) {
+        super(context);
+        this.d = true;
+        setBackgroundColor(-15066598);
+        TextView textView = new TextView(context);
+        this.f29128a = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(-1);
+        textView.setGravity(17);
+        textView.setBackground(org.telegram.ui.ActionBar.g6.g0(-12763843, 0, -1));
+        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
+        textView.setTypeface(AndroidUtilities.bold());
+        addView(textView, w7.a6.e(-2, -1, 51));
+        TextView textView2 = new TextView(context);
+        this.f29129b = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(-1);
+        textView2.setGravity(17);
+        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.g6.g0(-12763843, 0, -1));
+        textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        textView2.setText(LocaleController.getString(R.string.Send).toUpperCase());
+        textView2.setTypeface(AndroidUtilities.bold());
+        addView(textView2, w7.a6.e(-2, -1, 53));
+        TextView textView3 = new TextView(context);
+        this.f29130c = textView3;
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 13.0f);
+        textView3.setTextColor(-1);
+        textView3.setGravity(17);
+        textView3.setBackgroundResource(R.drawable.photobadge);
+        textView3.setMinWidth(AndroidUtilities.dp(23.0f));
+        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+        addView(textView3, w7.a6.a(23.0f, 0.0f, 0.0f, 7.0f, 0.0f, -2, 53));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f30561a) {
-            case 0:
-                org.telegram.ui.lu0 lu0Var = this.f30562b.f31160a;
-                RadialProgressView radialProgressView = lu0Var.f31509n;
-                View view = lu0Var.f31510r;
-                radialProgressView.setVisibility(4);
-                if (lu0Var.F) {
-                    lu0Var.F = false;
-                    lu0Var.setPlaybackSpeed(lu0Var.E);
-                }
-                view.setEnabled(true);
-                view.setAlpha(1.0f);
-                PhotoViewer photoViewer = lu0Var.f31505b;
-                if (photoViewer != null) {
-                    photoViewer.z0();
-                    return;
-                }
-                return;
-            default:
-                this.f30562b.f31160a.h.setVisibility(4);
-                return;
+    public final void a() {
+        int i10;
+        this.f29130c.setVisibility(8);
+        if (this.d) {
+            i10 = -1;
+        } else {
+            i10 = -15095832;
         }
+        this.f29129b.setTextColor(i10);
     }
 }

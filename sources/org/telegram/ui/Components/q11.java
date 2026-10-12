@@ -1,39 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class q11 extends FrameLayout {
-    public static final int f29627e = 0;
-    public TextView f29628a;
-    public p11 f29629b;
-    public TLRPC.TL_help_termsOfService f29630c;
-    public int d;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class q11 extends MetricAffectingSpan {
+    public final int f28483a;
+    public final p11 f28484b;
 
-    public final void a() {
-        p11 p11Var = this.f29629b;
-        int i10 = this.d;
-        org.telegram.ui.wa0 wa0Var = (org.telegram.ui.wa0) p11Var;
-        wa0Var.getClass();
-        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
-        UserConfig.getInstance(i10).saveConfig(false);
-        LaunchActivity launchActivity = wa0Var.f43116a;
-        ArrayList arrayList = launchActivity.f33622d0;
-        if (!arrayList.isEmpty()) {
-            ((org.telegram.ui.ActionBar.m2) hg.c.h(1, arrayList)).onResume();
+    public q11(p11 p11Var, int i10) {
+        this.f28484b = p11Var;
+        if (i10 > 0) {
+            this.f28483a = i10;
         }
-        launchActivity.C0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.wz(wa0Var, 16)).start();
-        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
-        tL_help_acceptTermsOfService.f19858id = this.f29630c.f19860id;
-        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new ai.v7(16));
     }
 
-    public void setDelegate(p11 p11Var) {
-        this.f29629b = p11Var;
+    public final void a(TextPaint textPaint) {
+        p11 p11Var = this.f28484b;
+        if (w7.m6.a(p11Var.f28135a, 49152)) {
+            float textSize = textPaint.getTextSize();
+            textPaint.setTextSize(0.75f * textSize);
+            if (w7.m6.a(p11Var.f28135a, 32768)) {
+                textPaint.baselineShift -= (int) (textSize * 0.35f);
+            } else if (w7.m6.a(p11Var.f28135a, 16384)) {
+                textPaint.baselineShift += (int) (textSize * 0.12f);
+            }
+        }
+    }
+
+    public final p11 b() {
+        return this.f28484b;
+    }
+
+    public final boolean c() {
+        if ((this.f28484b.f28135a & 256) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10 = this.f28483a;
+        if (i10 != 0) {
+            textPaint.setTextSize(i10);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f28484b.a(textPaint);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        int i10 = this.f28483a;
+        if (i10 != 0) {
+            textPaint.setTextSize(i10);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f28484b.a(textPaint);
     }
 }

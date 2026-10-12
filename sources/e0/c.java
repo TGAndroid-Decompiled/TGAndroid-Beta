@@ -15,7 +15,7 @@ public abstract class c extends f0.c {
                     hashSet.add(Integer.valueOf(i11));
                 }
             } else {
-                throw new IllegalArgumentException(a1.g.t(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
+                throw new IllegalArgumentException(a1.g.s(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
             }
         }
         int size = hashSet.size();

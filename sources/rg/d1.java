@@ -1,48 +1,51 @@
 package rg;
 
-import ai.e2;
-import android.app.Activity;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m2;
-import w7.w5;
-public final class d1 extends e3 {
-    public d1(m2 m2Var) {
-        super(m2Var.getParentActivity(), false);
-        Activity parentActivity = m2Var.getParentActivity();
-        LinearLayout f7 = org.telegram.messenger.v0.f(parentActivity, 1);
-        TextView textView = new TextView(parentActivity);
-        textView.setGravity(8388611);
-        int i10 = h6.f20668j5;
-        org.telegram.messenger.v0.m(20.0f, h6.x0(null, i10, false), 1, textView);
-        f7.addView(textView, w5.a(-2.0f, 21.0f, 16.0f, 21.0f, 0.0f, -1, 0));
-        TextView textView2 = new TextView(parentActivity);
-        textView2.setGravity(8388611);
-        textView2.setTextSize(1, 16.0f);
-        textView2.setTextColor(h6.x0(null, i10, false));
-        f7.addView(textView2, w5.a(-2.0f, 21.0f, 15.0f, 21.0f, 16.0f, -1, 0));
-        TextView textView3 = new TextView(parentActivity);
-        textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        textView3.setGravity(17);
-        org.telegram.messenger.v0.m(14.0f, h6.x0(null, h6.Sh, false), 1, textView3);
-        textView3.setBackground(org.telegram.ui.ActionBar.w5.f(new float[]{8.0f}, h6.Oh));
-        textView3.setText(LocaleController.getString(R.string.InstallOfficialApp));
-        textView3.setOnClickListener(new e2(23));
-        FrameLayout frameLayout = new FrameLayout(parentActivity);
-        frameLayout.addView(textView3, w5.a(48.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 16));
-        frameLayout.setBackgroundColor(getThemedColor(h6.f20631h5));
-        f7.addView(frameLayout, w5.q(-1, 68, 80));
-        org.telegram.messenger.v0.n(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));
-        ScrollView scrollView = new ScrollView(parentActivity);
-        scrollView.addView(f7);
-        setCustomView(scrollView);
+import android.view.View;
+import di.a6;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+public final class d1 extends s4.t {
+    public final a6 S;
+
+    public d1(a6 a6Var) {
+        super(true);
+        this.S = a6Var;
+    }
+
+    @Override
+    public final boolean B1(int i10) {
+        MessageObject.GroupedMessagePosition position;
+        byte b10;
+        a6 a6Var = this.S;
+        ArrayList arrayList = a6Var.f44260s0;
+        int size = (arrayList.size() - 1) - i10;
+        MessageObject.GroupedMessages groupedMessages = a6Var.f44261t0;
+        if (groupedMessages != null && size >= 0 && size < arrayList.size() && (position = groupedMessages.getPosition((MessageObject) arrayList.get(size))) != null && position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+            int size2 = groupedMessages.posArray.size();
+            for (int i11 = 0; i11 < size2; i11++) {
+                MessageObject.GroupedMessagePosition groupedMessagePosition = groupedMessages.posArray.get(i11);
+                if (groupedMessagePosition != position) {
+                    byte b11 = groupedMessagePosition.minY;
+                    byte b12 = position.minY;
+                    if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

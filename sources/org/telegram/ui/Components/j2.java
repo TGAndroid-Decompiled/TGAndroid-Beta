@@ -1,29 +1,112 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class j2 implements DialogInterface.OnShowListener {
-    public final int f27341a;
-    public final EditTextBoldCursor f27342b;
+import android.view.KeyEvent;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class j2 implements Utilities.Callback {
+    public final int f26154a = 0;
+    public final int f26155b;
+    public final int f26156c;
+    public final int d;
+    public final KeyEvent.Callback e;
+    public final Object f26157f;
+    public final Object f26158g;
 
-    public j2(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f27341a = i10;
-        this.f27342b = editTextBoldCursor;
+    public j2(int i10, int i11, s3 s3Var, u3 u3Var, int i12, t3 t3Var) {
+        this.f26155b = i10;
+        this.f26156c = i11;
+        this.e = s3Var;
+        this.f26157f = u3Var;
+        this.d = i12;
+        this.f26158g = t3Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f27341a) {
+    public final void run(Object obj) {
+        int i10;
+        int i11;
+        switch (this.f26154a) {
             case 0:
-                h4 h4Var = (h4) this.f27342b;
-                h4Var.requestFocus();
-                AndroidUtilities.showKeyboard(h4Var);
+                s3 s3Var = (s3) this.e;
+                u3 u3Var = (u3) this.f26157f;
+                t3 t3Var = (t3) this.f26158g;
+                Boolean bool = (Boolean) obj;
+                int i12 = this.f26155b;
+                int i13 = i12 % 60;
+                int i14 = (i12 - i13) / 60;
+                int i15 = this.f26156c;
+                int i16 = i15 % 60;
+                int i17 = (i15 - i16) / 60;
+                int i18 = 59;
+                if (i16 == 0 && i17 > 0) {
+                    i17--;
+                    i16 = 59;
+                }
+                if (bool.booleanValue()) {
+                    i11 = s3Var.getValue();
+                    i10 = u3Var.getValue();
+                } else {
+                    int i19 = this.d;
+                    i10 = i19 % 60;
+                    i11 = (i19 - i10) / 60;
+                    if (i11 == 24) {
+                        i11--;
+                        i10 = 59;
+                    }
+                }
+                s3Var.setMinValue(i14);
+                s3Var.setMaxValue(i17);
+                if (i11 > i17) {
+                    s3Var.setValue(i17);
+                    i11 = i17;
+                } else if (i11 < i14) {
+                    s3Var.setValue(i14);
+                    i11 = i14;
+                }
+                if (i11 <= i14) {
+                    u3Var.setMinValue(i13);
+                    if (i14 == i17) {
+                        i18 = i16;
+                    }
+                    u3Var.setMaxValue(i18);
+                } else if (i11 >= i17) {
+                    if (i14 != i17) {
+                        i13 = 0;
+                    }
+                    u3Var.setMinValue(i13);
+                    u3Var.setMaxValue(i16);
+                } else if (i14 == i17) {
+                    u3Var.setMinValue(i13);
+                    u3Var.setMaxValue(i16);
+                } else {
+                    u3Var.setMinValue(0);
+                    u3Var.setMaxValue(59);
+                }
+                if (i10 > u3Var.getMaxValue()) {
+                    i10 = u3Var.getMaxValue();
+                    u3Var.setValue(i10);
+                } else if (i10 < u3Var.getMinValue()) {
+                    i10 = u3Var.getMinValue();
+                    u3Var.setValue(i10);
+                }
+                if (!bool.booleanValue()) {
+                    s3Var.setValue(i11);
+                    u3Var.setValue(i10);
+                }
+                t3Var.invalidate();
                 return;
             default:
-                hg.b1 b1Var = (hg.b1) this.f27342b;
-                b1Var.requestFocus();
-                AndroidUtilities.showKeyboard(b1Var);
+                zh.r3.F0((zh.r3) this.e, this.f26155b, this.f26156c, this.d, (TL_stars.TL_starGiftUnique) this.f26157f, (ug.m1[]) this.f26158g, (Long) obj);
                 return;
         }
+    }
+
+    public j2(zh.r3 r3Var, int i10, int i11, int i12, TL_stars.TL_starGiftUnique tL_starGiftUnique, ug.m1[] m1VarArr) {
+        this.e = r3Var;
+        this.f26155b = i10;
+        this.f26156c = i11;
+        this.d = i12;
+        this.f26157f = tL_starGiftUnique;
+        this.f26158g = m1VarArr;
     }
 }

@@ -1,41 +1,111 @@
 package yh;
 
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.ui.Components.fk0;
-public final class v3 implements Runnable {
-    public final int f53545a;
-    public final w3 f53546b;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m80;
+public final class v3 implements Utilities.Callback5 {
+    public final int f49161a;
+    public final e4 f49162b;
+    public final m80 f49163c;
 
-    public v3(w3 w3Var, int i10) {
-        this.f53545a = i10;
-        this.f53546b = w3Var;
+    public v3(e4 e4Var, m80 m80Var, int i10) {
+        this.f49161a = i10;
+        this.f49162b = e4Var;
+        this.f49163c = m80Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f53545a) {
+    public final void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        l61 l61Var = (l61) obj;
+        View view = (View) obj2;
+        Integer num = (Integer) obj3;
+        Float f7 = (Float) obj4;
+        Float f10 = (Float) obj5;
+        switch (this.f49161a) {
             case 0:
-                w3 w3Var = this.f53546b;
-                w3Var.f53573r = false;
-                w3Var.invalidate();
-                w3Var.a();
-                w3Var.c();
+                long j10 = ((TL_stars.starGiftAttributeModel) l61Var.G).document.f19222id;
+                t3 t3Var = this.f49162b.f48851c;
+                HashSet hashSet = t3Var.f49135j;
+                HashSet hashSet2 = t3Var.f49135j;
+                if (!hashSet.contains(Long.valueOf(j10))) {
+                    if (hashSet2.isEmpty()) {
+                        ArrayList arrayList = t3Var.f49132f;
+                        int size = arrayList.size();
+                        int i10 = 0;
+                        while (i10 < size) {
+                            Object obj6 = arrayList.get(i10);
+                            i10++;
+                            long j11 = ((TL_stars.starGiftAttributeModel) obj6).document.f19222id;
+                            if (j11 != j10) {
+                                hashSet2.add(Long.valueOf(j11));
+                            }
+                        }
+                    } else {
+                        hashSet2.add(Long.valueOf(j10));
+                    }
+                } else {
+                    hashSet2.remove(Long.valueOf(j10));
+                }
+                t3Var.h();
+                this.f49163c.u();
                 return;
             case 1:
-                this.f53546b.invalidate();
+                int i11 = ((TL_stars.starGiftAttributeBackdrop) l61Var.G).backdrop_id;
+                t3 t3Var2 = this.f49162b.f48851c;
+                HashSet hashSet3 = t3Var2.f49136k;
+                HashSet hashSet4 = t3Var2.f49136k;
+                if (!hashSet3.contains(Integer.valueOf(i11))) {
+                    if (hashSet4.isEmpty()) {
+                        ArrayList arrayList2 = t3Var2.f49133g;
+                        int size2 = arrayList2.size();
+                        int i12 = 0;
+                        while (i12 < size2) {
+                            Object obj7 = arrayList2.get(i12);
+                            i12++;
+                            int i13 = ((TL_stars.starGiftAttributeBackdrop) obj7).backdrop_id;
+                            if (i13 != i11) {
+                                hashSet4.add(Integer.valueOf(i13));
+                            }
+                        }
+                    } else {
+                        hashSet4.add(Integer.valueOf(i11));
+                    }
+                } else {
+                    hashSet4.remove(Integer.valueOf(i11));
+                }
+                t3Var2.h();
+                this.f49163c.u();
                 return;
             default:
-                w3 w3Var2 = this.f53546b;
-                w3Var2.setMessageCell(null);
-                ArrayList arrayList = w3Var2.J;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((fk0) obj).C(true);
+                long j12 = ((TL_stars.starGiftAttributePattern) l61Var.G).document.f19222id;
+                t3 t3Var3 = this.f49162b.f48851c;
+                HashSet hashSet5 = t3Var3.f49137l;
+                HashSet hashSet6 = t3Var3.f49137l;
+                if (!hashSet5.contains(Long.valueOf(j12))) {
+                    if (hashSet6.isEmpty()) {
+                        ArrayList arrayList3 = t3Var3.h;
+                        int size3 = arrayList3.size();
+                        int i14 = 0;
+                        while (i14 < size3) {
+                            Object obj8 = arrayList3.get(i14);
+                            i14++;
+                            long j13 = ((TL_stars.starGiftAttributePattern) obj8).document.f19222id;
+                            if (j13 != j12) {
+                                hashSet6.add(Long.valueOf(j13));
+                            }
+                        }
+                    } else {
+                        hashSet6.add(Long.valueOf(j12));
+                    }
+                } else {
+                    hashSet6.remove(Long.valueOf(j12));
                 }
-                arrayList.clear();
+                t3Var3.h();
+                this.f49163c.u();
                 return;
         }
     }

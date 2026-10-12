@@ -29,7 +29,7 @@ public abstract class CacheFetcher<Args, R> {
     }
 
     private void callCallbacks(Pair<Integer, Args> pair, R r10, boolean z10) {
-        AndroidUtilities.runOnUIThread(new hk(this, pair, r10, z10, 1));
+        AndroidUtilities.runOnUIThread(new ek(this, pair, r10, z10, 1));
     }
 
     private R getCachedResult(Pair<Integer, Args> pair) {
@@ -212,12 +212,12 @@ public abstract class CacheFetcher<Args, R> {
         this.requestRemotelyTimeout = i10;
     }
 
-    public void setSavedLastTimeRequested(int i10, long j3) {
+    public void setSavedLastTimeRequested(int i10, long j10) {
     }
 
-    public void getRemote(int i10, Args args, long j3, Utilities.Callback4<Boolean, R, Long, Boolean> callback4) {
+    public void getRemote(int i10, Args args, long j10, Utilities.Callback4<Boolean, R, Long, Boolean> callback4) {
     }
 
-    public void setLocal(int i10, Args args, R r10, long j3) {
+    public void setLocal(int i10, Args args, R r10, long j10) {
     }
 }

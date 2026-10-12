@@ -84,7 +84,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            hg.c.w(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            i2.d.u(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -148,7 +148,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (i12 == 0 || i12 == 180) {
             i10 = i11;
         }
-        postOrRun(new gg.n(this, i13, i10, 12));
+        postOrRun(new hg.n(this, i13, i10, 12));
     }
 
     @Override
@@ -194,7 +194,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        f0.a(this, videoSink);
     }
 
     public void setScalingType(RendererCommon.ScalingType scalingType) {

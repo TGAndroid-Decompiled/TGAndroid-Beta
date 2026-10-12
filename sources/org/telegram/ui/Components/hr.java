@@ -1,178 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public class hr extends Drawable implements Drawable.Callback {
-    public Drawable f26875a;
-    public final Drawable f26876b;
-    public final int f26877c;
-    public final int d;
-    public int f26878e;
-    public int f26879f;
-    public int h;
-    public int f26880n;
-    public boolean f26881r;
-    public int f26882s;
-    public int v;
-    public boolean f26883w;
-    public float f26884x;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
+import java.util.ArrayList;
+import java.util.List;
+public class hr extends Path {
+    public static ArrayList f25731g;
+    public int e;
+    public int f25735f;
+    public boolean f25733b = false;
+    public boolean f25734c = true;
+    public float d = 0.0f;
+    public final ArrayList f25732a = new ArrayList(1);
 
-    public hr(Drawable drawable, Drawable drawable2, int i10, int i11) {
-        this.f26875a = drawable;
-        this.f26876b = drawable2;
-        this.f26877c = i10;
-        this.d = i11;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
+    public hr() {
+    }
+
+    public final void a() {
+        if (Build.VERSION.SDK_INT >= 34 && this.f25734c && !this.f25733b) {
+            b(this.f25732a);
+            this.f25733b = true;
         }
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(this.f26884x, 0.0f);
-        if (this.f26881r) {
-            Rect bounds = getBounds();
-            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
-        }
-        Drawable drawable = this.f26875a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.f26875a.draw(canvas);
-        }
-        Drawable drawable2 = this.f26876b;
-        if (drawable2 != null) {
-            boolean z10 = this.f26883w;
-            int i10 = this.d;
-            int i11 = this.f26877c;
-            if (z10) {
-                Rect bounds2 = getBounds();
-                if (i11 != 0) {
-                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
+    public final void addRect(RectF rectF, Path.Direction direction) {
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT >= 34 && this.f25734c) {
+            ArrayList arrayList = this.f25732a;
+            if (arrayList.size() <= 0 || !((RectF) i2.d.g(1, arrayList)).contains(rectF)) {
+                if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) i2.d.g(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) i2.d.g(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i2.d.g(1, arrayList)).union(rectF);
                 } else {
-                    drawable2.setBounds(bounds2);
+                    ArrayList arrayList2 = f25731g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF2 = (RectF) f25731g.remove(0);
+                    } else {
+                        rectF2 = new RectF();
+                    }
+                    rectF2.set(rectF);
+                    arrayList.add(rectF2);
                 }
-            } else if (this.f26878e != 0) {
-                int centerX = (getBounds().centerX() - (this.f26878e / 2)) + i11 + this.f26882s;
-                int centerY = getBounds().centerY();
-                int i12 = this.f26879f;
-                int i13 = (centerY - (i12 / 2)) + i10 + this.v;
-                drawable2.setBounds(centerX, i13, this.f26878e + centerX, i12 + i13);
-            } else {
-                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
-                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
-                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
+                this.f25733b = false;
+                return;
             }
-            drawable2.draw(canvas);
+            return;
         }
-        canvas.restore();
+        float f7 = rectF.left;
+        int i10 = this.e;
+        float f10 = f7 - i10;
+        float f11 = rectF.top;
+        int i11 = this.f25735f;
+        super.addRect(f10, f11 - i11, rectF.right + i10, rectF.bottom + i11, direction);
     }
 
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        return this.f26876b.getConstantState();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        int i10 = this.f26880n;
-        if (i10 != 0) {
-            return i10;
+    public final void b(List list) {
+        if (!list.isEmpty()) {
+            boolean z10 = false;
+            if (list.size() == 1) {
+                super.addRect(((RectF) list.get(0)).left - this.e, ((RectF) list.get(0)).top - this.f25735f, ((RectF) list.get(0)).right + this.e, ((RectF) list.get(0)).bottom + this.f25735f, Path.Direction.CW);
+                return;
+            }
+            RectF rectF = (RectF) list.get(0);
+            int size = list.size() - 1;
+            super.moveTo(rectF.left - this.e, rectF.top - this.f25735f);
+            for (int i10 = 1; i10 < list.size(); i10++) {
+                RectF rectF2 = (RectF) list.get(i10);
+                if (rectF2.width() != 0.0f) {
+                    float f7 = rectF.bottom;
+                    int i11 = this.f25735f;
+                    float f10 = f7 + i11;
+                    float f11 = rectF2.top;
+                    if (f10 >= f11 - i11) {
+                        float f12 = rectF.left;
+                        if (f12 <= rectF2.right) {
+                            float f13 = rectF.right;
+                            float f14 = rectF2.left;
+                            if (f13 >= f14) {
+                                if (f12 != f14) {
+                                    super.lineTo(f12 - this.e, f11);
+                                    super.lineTo(rectF2.left - this.e, rectF2.top);
+                                }
+                                rectF = rectF2;
+                            }
+                        }
+                    }
+                    z10 = true;
+                    size = i10;
+                    break;
+                }
+            }
+            super.lineTo(rectF.left - this.e, rectF.bottom + this.f25735f);
+            super.lineTo(rectF.right + this.e, rectF.bottom + this.f25735f);
+            for (int i12 = size - 1; i12 >= 0; i12--) {
+                RectF rectF3 = (RectF) list.get(i12);
+                if (rectF3.width() != 0.0f) {
+                    float f15 = rectF.right;
+                    if (f15 != rectF3.right) {
+                        super.lineTo(f15 + this.e, rectF.top);
+                        super.lineTo(rectF3.right + this.e, rectF.top);
+                    }
+                    rectF = rectF3;
+                }
+            }
+            super.lineTo(rectF.right + this.e, rectF.top - this.f25735f);
+            super.close();
+            if (z10) {
+                b(list.subList(size, list.size()));
+            }
         }
-        return this.f26875a.getIntrinsicHeight();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT >= 34 && this.f25734c) {
+            ArrayList arrayList = f25731g;
+            ArrayList arrayList2 = this.f25732a;
+            if (arrayList == null) {
+                f25731g = new ArrayList(arrayList2.size());
+            }
+            f25731g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f25733b = false;
         }
-        return this.f26875a.getIntrinsicWidth();
     }
 
     @Override
-    public final int getMinimumHeight() {
-        int i10 = this.f26880n;
-        if (i10 != 0) {
-            return i10;
+    public final void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT >= 34 && this.f25734c) {
+            ArrayList arrayList = f25731g;
+            ArrayList arrayList2 = this.f25732a;
+            if (arrayList == null) {
+                f25731g = new ArrayList(arrayList2.size());
+            }
+            f25731g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f25733b = false;
         }
-        return this.f26875a.getMinimumHeight();
+    }
+
+    public hr(int i10) {
     }
 
     @Override
-    public final int getMinimumWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
+    public void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT >= 34 && this.f25734c) {
+            ArrayList arrayList = this.f25732a;
+            if (arrayList.size() <= 0 || !((RectF) i2.d.g(1, arrayList)).contains(f7, f10, f11, f12)) {
+                if (arrayList.size() > 0 && Math.abs(f10 - ((RectF) i2.d.g(1, arrayList)).top) <= this.d && Math.abs(f12 - ((RectF) i2.d.g(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i2.d.g(1, arrayList)).union(f7, f10, f11, f12);
+                } else {
+                    ArrayList arrayList2 = f25731g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF = (RectF) f25731g.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f7, f10, f11, f12);
+                    arrayList.add(rectF);
+                }
+                this.f25733b = false;
+                return;
+            }
+            return;
         }
-        return this.f26875a.getMinimumWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return this.f26876b.getOpacity();
-    }
-
-    @Override
-    public final int[] getState() {
-        return this.f26876b.getState();
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final boolean isStateful() {
-        return this.f26876b.isStateful();
-    }
-
-    @Override
-    public final void jumpToCurrentState() {
-        this.f26876b.jumpToCurrentState();
-    }
-
-    @Override
-    public final boolean onStateChange(int[] iArr) {
-        return true;
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f26876b.setAlpha(i10);
-        this.f26875a.setAlpha(i10);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.f26876b.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final boolean setState(int[] iArr) {
-        this.f26876b.setState(iArr);
-        return true;
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
-    }
-
-    public hr(Drawable drawable, Drawable drawable2) {
-        this.f26875a = drawable;
-        this.f26876b = drawable2;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
-        }
+        int i10 = this.e;
+        float f13 = f7 - i10;
+        int i11 = this.f25735f;
+        super.addRect(f13, f10 - i11, f11 + i10, f12 + i11, direction);
     }
 }

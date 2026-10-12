@@ -1,19 +1,18 @@
 package c2;
-public final class l extends i {
-    @Override
-    public final void c(java.nio.ByteBuffer r12) {
-        throw new UnsupportedOperationException("Method not decompiled: c2.l.c(java.nio.ByteBuffer):void");
-    }
 
-    @Override
-    public final f f(f fVar) {
-        int i10 = fVar.f4009c;
-        if (i10 != 3 && i10 != 2 && i10 != 268435456 && i10 != 21 && i10 != 1342177280 && i10 != 22 && i10 != 1610612736 && i10 != 4) {
-            throw new g(fVar);
+import v7.u6;
+public final class l {
+    public static final l f4145b = new l(0);
+    public final long f4146a;
+
+    public l(long j10) {
+        boolean z10;
+        if (j10 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        if (i10 != 2) {
-            return new f(fVar.f4007a, fVar.f4008b, 2);
-        }
-        return f.f4006e;
+        u6.g(z10);
+        this.f4146a = j10;
     }
 }

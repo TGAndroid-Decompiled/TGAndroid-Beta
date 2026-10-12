@@ -1,23 +1,23 @@
 package c3;
 
 import java.io.EOFException;
-public final class n implements h0 {
-    public final byte[] f4147a = new byte[4096];
+public final class n implements i0 {
+    public final byte[] f4277a = new byte[4096];
 
     @Override
-    public final int a(b2.k kVar, int i10, boolean z10) {
-        return e(kVar, i10, z10);
+    public final int a(b2.p pVar, int i10, boolean z10) {
+        return f(pVar, i10, z10);
     }
 
     @Override
-    public final void d(int i10, e2.v vVar) {
-        a1.g.a(this, vVar, i10);
+    public final void d(int i10, e2.x xVar) {
+        a1.g.a(this, xVar, i10);
     }
 
     @Override
-    public final int e(b2.k kVar, int i10, boolean z10) {
-        byte[] bArr = this.f4147a;
-        int read = kVar.read(bArr, 0, Math.min(bArr.length, i10));
+    public final int f(b2.p pVar, int i10, boolean z10) {
+        byte[] bArr = this.f4277a;
+        int read = pVar.read(bArr, 0, Math.min(bArr.length, i10));
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -28,15 +28,19 @@ public final class n implements h0 {
     }
 
     @Override
-    public final void f(e2.v vVar, int i10, int i11) {
-        vVar.K(i10);
+    public final void g(e2.x xVar, int i10, int i11) {
+        xVar.O(i10);
     }
 
     @Override
-    public final void b(b2.s sVar) {
+    public final void b(b2.x xVar) {
     }
 
     @Override
-    public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
+    public final void e(long j10) {
+    }
+
+    @Override
+    public final void c(long j10, int i10, int i11, int i12, h0 h0Var) {
     }
 }

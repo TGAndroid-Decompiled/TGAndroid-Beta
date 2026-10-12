@@ -1,37 +1,54 @@
 package b2;
+
+import android.os.Bundle;
+import android.os.IBinder;
+import java.util.Arrays;
 public final class l {
-    public static final l f3405c = new l(new Object());
-    public static final String d;
-    public static final String f3406e;
-    public final int f3407a = 0;
-    public final int f3408b = 0;
+    public static final int f2195b = n.f2216a;
+    public final i f2196a;
 
-    static {
-        String str = e2.d0.f8529a;
-        Integer.toString(0, 36);
-        d = Integer.toString(1, 36);
-        f3406e = Integer.toString(2, 36);
-        Integer.toString(3, 36);
-    }
-
-    public l(t1 t1Var) {
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof l) {
-                l lVar = (l) obj;
-                if (this.f3407a == lVar.f3407a && this.f3408b == lVar.f3408b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public l(byte[] bArr) {
+        e9.k0 t10 = e9.n0.t();
+        int length = bArr.length;
+        int i10 = f2195b;
+        int g10 = e2.m0.g(length, i10);
+        for (int i11 = 0; i11 < g10; i11++) {
+            Bundle bundle = new Bundle();
+            int i12 = i11 * i10;
+            bundle.putByteArray("bytes", Arrays.copyOfRange(bArr, i12, Math.min(i12 + i10, bArr.length)));
+            t10.c(bundle);
         }
-        return true;
+        this.f2196a = new i(t10.f());
     }
 
-    public final int hashCode() {
-        return (((16337 + this.f3407a) * 31) + this.f3408b) * 31;
+    public static byte[] a(Bundle bundle) {
+        IBinder binder = bundle.getBinder(m.f2203g);
+        if (binder != null) {
+            try {
+                e9.n0 a2 = i.a(binder);
+                if (a2.isEmpty()) {
+                    return e2.m0.f8373b;
+                }
+                byte[] byteArray = ((Bundle) e9.s.m(a2)).getByteArray("bytes");
+                if (byteArray != null) {
+                    int size = a2.size() - 1;
+                    int i10 = f2195b;
+                    int i11 = size * i10;
+                    byte[] bArr = new byte[byteArray.length + i11];
+                    System.arraycopy(byteArray, 0, bArr, i11, byteArray.length);
+                    for (int i12 = 0; i12 < size; i12++) {
+                        byte[] byteArray2 = ((Bundle) a2.get(i12)).getByteArray("bytes");
+                        if (byteArray2 != null && byteArray2.length == i10) {
+                            System.arraycopy(byteArray2, 0, bArr, i12 * i10, i10);
+                        }
+                    }
+                    return bArr;
+                }
+            } catch (RuntimeException e) {
+                e2.a.m("BundleableByteArray", "Failed to read byte array from bundle list retriever", e);
+                return null;
+            }
+        }
+        return null;
     }
 }

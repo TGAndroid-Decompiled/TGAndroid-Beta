@@ -1,76 +1,30 @@
 package org.telegram.ui;
 
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-public abstract class oj1 {
-    public static final BigInteger f40736a = new BigInteger("FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3BE39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF6955817183995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF", 16);
-    public static final BigInteger f40737b = BigInteger.valueOf(2);
-    public static org.telegram.ui.ActionBar.e3 f40738c;
-    public static ci.u5 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class oj1 extends View {
+    public int f38988a;
+    public final WallpapersListActivity f38989b;
 
-    public static byte[] a(BigInteger bigInteger) {
-        byte[] byteArray = bigInteger.toByteArray();
-        if (byteArray.length == 256) {
-            return byteArray;
-        }
-        if (byteArray.length == 257 && byteArray[0] == 0) {
-            return Arrays.copyOfRange(byteArray, 1, byteArray.length);
-        }
-        if (byteArray.length < 256) {
-            byte[] bArr = new byte[256];
-            System.arraycopy(byteArray, 0, bArr, 256 - byteArray.length, byteArray.length);
-            return bArr;
-        }
-        throw new IllegalStateException("unexpected DH value size " + byteArray.length);
+    public oj1(WallpapersListActivity wallpapersListActivity, Context context) {
+        super(context);
+        this.f38989b = wallpapersListActivity;
     }
 
-    public static byte[] b(byte[][] bArr) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            for (byte[] bArr2 : bArr) {
-                messageDigest.update(bArr2);
-            }
-            return messageDigest.digest();
-        } catch (Exception e7) {
-            throw new RuntimeException(e7);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        WallpapersListActivity wallpapersListActivity = this.f38989b;
+        wallpapersListActivity.f33992w.setColor(this.f38988a);
+        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f33992w);
+        if (this.f38988a == org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false)) {
+            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f33993x);
         }
     }
 
-    public static byte[] c(ci.u5 u5Var, String str, int i10, boolean z10) {
-        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
-        ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 9);
-        allocate.order(ByteOrder.BIG_ENDIAN);
-        allocate.putInt(bytes.length);
-        allocate.put(bytes);
-        allocate.putInt(i10);
-        allocate.put(z10 ? (byte) 1 : (byte) 0);
-        byte[] array = allocate.array();
-        byte[] bArr = new byte[12];
-        new SecureRandom().nextBytes(bArr);
-        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(1, new SecretKeySpec((byte[]) u5Var.d, "AES"), new GCMParameterSpec(128, bArr));
-        byte[] doFinal = cipher.doFinal(array);
-        byte[] bArr2 = new byte[doFinal.length + 28];
-        System.arraycopy((byte[]) u5Var.f6063a, 0, bArr2, 0, 16);
-        System.arraycopy(bArr, 0, bArr2, 16, 12);
-        System.arraycopy(doFinal, 0, bArr2, 28, doFinal.length);
-        return bArr2;
-    }
-
-    public static String d(byte[] bArr) {
-        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-        int length = bArr.length;
-        for (int i10 = 0; i10 < length; i10++) {
-            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
-        }
-        return sb2.toString();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
     }
 }

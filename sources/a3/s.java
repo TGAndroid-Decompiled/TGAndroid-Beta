@@ -1,45 +1,55 @@
 package a3;
 
+import android.content.res.Resources;
 import android.util.Base64;
+import e9.c2;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-public final class s implements d9.j {
-    public final int f205a;
+public final class s implements d9.u {
+    public final int f190a;
 
     public s(int i10) {
-        this.f205a = i10;
+        this.f190a = i10;
     }
 
     @Override
     public final Object get() {
-        Object yVar;
-        switch (this.f205a) {
+        Object a0Var;
+        switch (this.f190a) {
             case 0:
                 try {
                     return Class.forName("androidx.media3.effect.DefaultVideoFrameProcessor$Factory$Builder");
-                } catch (Exception e7) {
-                    throw new IllegalStateException(e7);
+                } catch (Exception e) {
+                    throw new IllegalStateException(e);
                 }
             case 1:
                 throw new IllegalStateException();
             case 2:
                 ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();
-                if (newSingleThreadExecutor instanceof i9.x) {
-                    return (i9.x) newSingleThreadExecutor;
+                if (newSingleThreadExecutor instanceof j9.z) {
+                    return (j9.z) newSingleThreadExecutor;
                 }
                 if (newSingleThreadExecutor instanceof ScheduledExecutorService) {
-                    yVar = new i9.b0((ScheduledExecutorService) newSingleThreadExecutor);
+                    a0Var = new j9.d0((ScheduledExecutorService) newSingleThreadExecutor);
                 } else {
-                    yVar = new i9.y(newSingleThreadExecutor);
+                    a0Var = new j9.a0(newSingleThreadExecutor);
                 }
-                return yVar;
+                return a0Var;
             case 3:
-                return new i2.k(new y2.d(), 1000, 2000);
-            default:
+                return new i2.i(new y2.d(), 1000, 1000, 1000, 2000, 1000, true, c2.h);
+            case 4:
                 byte[] bArr = new byte[12];
-                j2.h.f13700i.nextBytes(bArr);
+                j2.h.f12536i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
+            default:
+                Resources system = Resources.getSystem();
+                int i10 = system.getDisplayMetrics().widthPixels;
+                try {
+                    i10 = system.getDimensionPixelSize(system.getIdentifier("config_mediaMetadataBitmapMaxSize", "dimen", "android"));
+                } catch (Resources.NotFoundException unused) {
+                }
+                return Integer.valueOf(i10);
         }
     }
 }

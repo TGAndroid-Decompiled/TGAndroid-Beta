@@ -2,82 +2,115 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.StateSet;
 import android.view.MotionEvent;
-import androidx.core.widget.NestedScrollView;
-import org.telegram.messenger.AndroidUtilities;
-public final class qq extends NestedScrollView {
-    public boolean W;
-    public final uq f29902a0;
+public final class qq extends s6 {
+    public final Rect f28662s;
+    public Drawable v;
+    public boolean f28663w;
 
-    public qq(uq uqVar, Context context) {
-        super(context);
-        this.f29902a0 = uqVar;
+    public qq(Context context) {
+        super(context, false, false, false);
+        this.f28662s = new Rect();
+    }
+
+    public Rect getClickBounds() {
+        return this.f28662s;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        uq uqVar = this.f29902a0;
-        int i12 = uqVar.f31240f;
-        i10 = ((org.telegram.ui.ActionBar.e3) uqVar).backgroundPaddingTop;
-        int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
-        Drawable drawable = uqVar.f31237b;
-        int measuredWidth = getMeasuredWidth();
-        i11 = ((org.telegram.ui.ActionBar.e3) uqVar).backgroundPaddingTop;
-        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + uqVar.f31238c.getMeasuredHeight() + scrollY);
-        drawable.draw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            uq uqVar = this.f29902a0;
-            if (uqVar.f31240f != 0 && motionEvent.getY() < uqVar.f31240f) {
-                uqVar.dismiss();
-                return true;
+        if (this.v != null) {
+            Rect bounds = getDrawable().getBounds();
+            Rect rect = this.f28662s;
+            rect.set(bounds);
+            int ceil = (int) Math.ceil(getDrawable().c());
+            if (getDrawable().f28748b == 3) {
+                rect.right = rect.left + ceil;
+            } else if (getDrawable().f28748b == 5) {
+                rect.left = rect.right - ceil;
+            } else if (getDrawable().f28748b == 17) {
+                int i10 = (rect.left + rect.right) / 2;
+                int i11 = ceil / 2;
+                rect.left = i10 - i11;
+                rect.right = i10 + i11;
             }
+            rect.left -= getPaddingLeft();
+            rect.top -= getPaddingTop();
+            rect.right = getPaddingRight() + rect.right;
+            rect.bottom = getPaddingBottom() + rect.bottom;
+            this.v.setBounds(rect);
+            this.v.draw(canvas);
         }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        uq.o(this.f29902a0);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qq.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        uq.o(this.f29902a0);
+        super.onDraw(canvas);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f29902a0.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0 && contains) {
+            this.f28663w = true;
+            Drawable drawable = this.v;
+            if (drawable != null) {
+                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.v.setState(new int[]{16842919, 16842910});
+            }
+            invalidate();
+            return contains;
         }
-        return false;
+        if (motionEvent.getAction() == 1) {
+            if (this.f28663w && contains) {
+                callOnClick();
+            }
+            this.f28663w = false;
+            Drawable drawable2 = this.v;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
+                return contains;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.f28663w = false;
+            Drawable drawable3 = this.v;
+            if (drawable3 != null) {
+                drawable3.setState(StateSet.NOTHING);
+            }
+        }
+        return contains;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.W) {
-            return;
+    public void setBackground(Drawable drawable) {
+        Drawable drawable2 = this.v;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
         }
-        super.requestLayout();
+        this.v = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        uq.o(this.f29902a0);
+    public void setBackgroundDrawable(Drawable drawable) {
+        Drawable drawable2 = this.v;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.v = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.v && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

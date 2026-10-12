@@ -1,15 +1,8 @@
 package be;
+public final class b implements y1 {
+    public static final b f2647a = new Object();
 
-import ae.c0;
-public final class b extends jd.a implements jd.f {
-    private volatile Object _preHandler;
-
-    public b() {
-        super(c0.f434a);
-        this._preHandler = this;
-    }
-
-    public final void c(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: be.b.c(java.lang.Throwable):void");
+    public final String toString() {
+        return "Active";
     }
 }

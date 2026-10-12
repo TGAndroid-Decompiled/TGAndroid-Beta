@@ -1,50 +1,45 @@
 package yh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sc;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.ns0;
+import zh.e5;
 public final class s1 implements Runnable {
-    public final int f53384a;
-    public final s3 f53385b;
-    public final String f53386c;
+    public final int f49113a;
+    public final ns0 f49114b;
 
-    public s1(s3 s3Var, String str, int i10) {
-        this.f53384a = i10;
-        this.f53385b = s3Var;
-        this.f53386c = str;
+    public s1(ns0 ns0Var, int i10) {
+        this.f49113a = i10;
+        this.f49114b = ns0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53384a) {
+        switch (this.f49113a) {
             case 0:
-                s3.j1(this.f53385b, this.f53386c);
+                this.f49114b.a();
                 return;
             case 1:
-                s3.i1(this.f53385b, this.f53386c);
-                return;
-            case 2:
-                s3.v0(this.f53385b, this.f53386c);
-                return;
-            case 3:
-                s3.R0(this.f53385b, this.f53386c);
-                return;
-            case 4:
-                s3.E0(this.f53385b, this.f53386c);
-                return;
-            case 5:
-                s3.R(this.f53385b, this.f53386c);
-                return;
-            case 6:
-                s3.y0(this.f53385b, this.f53386c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f53386c);
-                sc k10 = this.f53385b.getBulletinFactory().k(false);
-                k10.f30546t = true;
-                k10.j();
+                this.f49114b.setReorderingCollections(true);
                 return;
             default:
-                s3.p0(this.f53385b, this.f53386c);
+                e5 e5Var = this.f49114b.e;
+                e5Var.getClass();
+                TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
+                int i10 = e5Var.f50440a;
+                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(e5Var.f50441b);
+                ArrayList arrayList = e5Var.e;
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    reorderstargiftcollections.order.add(Integer.valueOf(((TL_stars.TL_starGiftCollection) obj).collection_id));
+                }
+                ConnectionsManager.getInstance(i10).sendRequest(reorderstargiftcollections, null);
+                e5Var.j();
                 return;
         }
     }

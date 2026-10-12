@@ -1,38 +1,38 @@
 package w1;
 
-import a0.n;
+import a0.m;
 import a6.d;
 import androidx.lifecycle.p0;
-import b2.p;
+import b2.u;
 public class b extends p0 {
-    public static final ob.a f49990f = new ob.a(25);
-    public final n d = new n();
-    public boolean f49991e = false;
+    public static final sb.a f47071f = new sb.a(25);
+    public final m d = new m();
+    public boolean e = false;
 
     @Override
     public final void b() {
-        n nVar = this.d;
-        int i10 = nVar.f36c;
+        m mVar = this.d;
+        int i10 = mVar.f30c;
         for (int i11 = 0; i11 < i10; i11++) {
-            a aVar = (a) nVar.f35b[i11];
-            d dVar = aVar.f49987l;
+            a aVar = (a) mVar.f29b[i11];
+            d dVar = aVar.f47068l;
             dVar.a();
-            dVar.f314c = true;
-            p pVar = aVar.f49989n;
-            if (pVar != null) {
-                aVar.i(pVar);
+            dVar.f294c = true;
+            u uVar = aVar.f47070n;
+            if (uVar != null) {
+                aVar.i(uVar);
             }
-            a aVar2 = dVar.f312a;
+            a aVar2 = dVar.f292a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f312a = null;
-                    if (pVar != null) {
-                        boolean z10 = pVar.f3503b;
+                    dVar.f292a = null;
+                    if (uVar != null) {
+                        boolean z10 = uVar.f2396b;
                     }
                     dVar.d = true;
-                    dVar.f313b = false;
-                    dVar.f314c = false;
-                    dVar.f315e = false;
+                    dVar.f293b = false;
+                    dVar.f294c = false;
+                    dVar.e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");
                 }
@@ -40,11 +40,11 @@ public class b extends p0 {
                 throw new IllegalStateException("No listener register");
             }
         }
-        int i12 = nVar.f36c;
-        Object[] objArr = nVar.f35b;
+        int i12 = mVar.f30c;
+        Object[] objArr = mVar.f29b;
         for (int i13 = 0; i13 < i12; i13++) {
             objArr[i13] = null;
         }
-        nVar.f36c = 0;
+        mVar.f30c = 0;
     }
 }

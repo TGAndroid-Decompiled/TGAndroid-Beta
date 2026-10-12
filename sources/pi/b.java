@@ -1,22 +1,93 @@
 package pi;
 
-import android.os.SystemClock;
-import java.util.concurrent.atomic.AtomicLong;
+import android.content.Context;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import org.telegram.tgnet.SerializedData;
 public final class b {
-    public static final AtomicLong d = new AtomicLong(1);
-    public final long f45771a = d.getAndIncrement();
-    public final long f45772b = SystemClock.elapsedRealtime();
-    public final l f45773c;
+    public static SparseIntArray f43230b;
+    public static final b f43231c = new b();
+    public final SparseArray f43232a;
 
-    public b(l lVar) {
-        this.f45773c = lVar;
+    public b() {
+        this.f43232a = new SparseArray();
     }
 
-    public final void a(String str, Throwable th2) {
-        this.f45773c.error("AudioRecorder[" + this.f45771a + "] t+" + (SystemClock.elapsedRealtime() - this.f45772b) + "ms [" + Thread.currentThread().getName() + "] " + str, th2);
+    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
+        try {
+            SerializedData serializedData = new SerializedData(bufferedInputStream);
+            int readInt32 = serializedData.readInt32(true);
+            int i10 = 0;
+            if (sparseArray == null) {
+                sparseArray = new SparseArray(readInt32);
+                while (i10 < readInt32) {
+                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
+                    i10++;
+                }
+            } else {
+                while (i10 < readInt32) {
+                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
+                    i10++;
+                }
+            }
+            bufferedInputStream.close();
+            return sparseArray;
+        } catch (Throwable th2) {
+            try {
+                bufferedInputStream.close();
+            } catch (Throwable th3) {
+                th2.addSuppressed(th3);
+            }
+            throw th2;
+        }
     }
 
-    public final void b(String str) {
-        this.f45773c.log("AudioRecorder[" + this.f45771a + "] t+" + (SystemClock.elapsedRealtime() - this.f45772b) + "ms [" + Thread.currentThread().getName() + "] " + str);
+    public final String b(String str) {
+        if (str != null) {
+            return (String) this.f43232a.get(str.hashCode());
+        }
+        return null;
+    }
+
+    public final String c(Context context, String str, int i10) {
+        String str2;
+        if (str != null) {
+            str2 = b(str);
+        } else {
+            str2 = null;
+        }
+        if (str2 == null && i10 != 0) {
+            if (context != null && i10 != 0) {
+                if (f43230b == null) {
+                    try {
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
+                        SerializedData serializedData = new SerializedData(bufferedInputStream);
+                        int readInt32 = serializedData.readInt32(true);
+                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
+                        for (int i11 = 0; i11 < readInt32; i11++) {
+                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
+                        }
+                        bufferedInputStream.close();
+                        f43230b = sparseIntArray;
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                int i12 = f43230b.get(i10);
+                if (i12 != 0) {
+                    return (String) this.f43232a.get(i12);
+                }
+            }
+            return null;
+        }
+        return str2;
+    }
+
+    public b(a aVar) {
+        SparseArray sparseArray = aVar.f43229a;
+        this.f43232a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

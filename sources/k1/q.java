@@ -1,21 +1,27 @@
 package k1;
-public final class q extends ld.c {
-    public Object f14356a;
-    public a0 f14357b;
-    public ae.t f14358c;
-    public Object d;
-    public final a0 f14359e;
-    public int f14360f;
 
-    public q(a0 a0Var, ld.c cVar) {
+import java.io.Serializable;
+import java.util.Iterator;
+public final class q extends md.c {
+    public z f13792a;
+    public Object f13793b;
+    public Serializable f13794c;
+    public Object d;
+    public s e;
+    public Iterator f13795f;
+    public Object h;
+    public final z f13796n;
+    public int f13797r;
+
+    public q(z zVar, md.c cVar) {
         super(cVar);
-        this.f14359e = a0Var;
+        this.f13796n = zVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.d = obj;
-        this.f14360f |= Integer.MIN_VALUE;
-        return a0.a(this.f14359e, null, this);
+        this.h = obj;
+        this.f13797r |= Integer.MIN_VALUE;
+        return this.f13796n.d(this);
     }
 }

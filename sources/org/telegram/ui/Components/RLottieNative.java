@@ -5,13 +5,13 @@ import android.os.Trace;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class RLottieNative {
-    public final int[] f24035a;
-    public long f24036b;
-    public final AtomicBoolean f24037c = new AtomicBoolean(false);
+    public final int[] f23242a;
+    public long f23243b;
+    public final AtomicBoolean f23244c = new AtomicBoolean(false);
 
-    public RLottieNative(long j3, int[] iArr) {
-        this.f24036b = j3;
-        this.f24035a = iArr;
+    public RLottieNative(long j10, int[] iArr) {
+        this.f23243b = j10;
+        this.f23242a = iArr;
     }
 
     public static RLottieNative a(String str, String str2, int[] iArr, int[] iArr2, int i10, HashMap hashMap) {
@@ -101,16 +101,16 @@ public final class RLottieNative {
 
     private static native long nCreateWithJson(String str, int[] iArr, int[] iArr2, String[] strArr, int[] iArr3);
 
-    private static native void nDestroy(long j3);
+    private static native void nDestroy(long j10);
 
-    private static native int nGetFrame(long j3, int i10, Bitmap bitmap, boolean z10);
+    private static native int nGetFrame(long j10, int i10, Bitmap bitmap, boolean z10);
 
     public final int c(int i10, Bitmap bitmap, boolean z10) {
-        if (!this.f24037c.get()) {
-            long j3 = this.f24036b;
+        if (!this.f23244c.get()) {
+            long j10 = this.f23243b;
             Trace.beginSection("RLottieNative#getFrame");
             try {
-                return nGetFrame(j3, i10, bitmap, z10);
+                return nGetFrame(j10, i10, bitmap, z10);
             } finally {
                 Trace.endSection();
             }
@@ -119,13 +119,13 @@ public final class RLottieNative {
     }
 
     public final void d() {
-        if (this.f24037c.compareAndSet(false, true)) {
-            long j3 = this.f24036b;
-            this.f24036b = 0L;
-            if (j3 != 0) {
+        if (this.f23244c.compareAndSet(false, true)) {
+            long j10 = this.f23243b;
+            this.f23243b = 0L;
+            if (j10 != 0) {
                 Trace.beginSection("RLottieNative#destroy");
                 try {
-                    nDestroy(j3);
+                    nDestroy(j10);
                 } finally {
                     Trace.endSection();
                 }
@@ -135,7 +135,7 @@ public final class RLottieNative {
 
     public final void finalize() {
         try {
-            if (!this.f24037c.get()) {
+            if (!this.f23244c.get()) {
                 d();
             }
         } finally {

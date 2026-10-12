@@ -4,60 +4,81 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.SparseArray;
-public final class s40 extends hw0 {
-    public final v40 f30387f2;
+import android.text.TextPaint;
+import android.util.TypedValue;
+public class s40 extends EditTextBoldCursor {
+    public final TextPaint f29014b;
+    public String f29015c;
+    public final Rect d;
 
-    public s40(v40 v40Var, Context context, zv0 zv0Var, v40 v40Var2, r40 r40Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, 0L, zv0Var, 0, null, null, null, 8, 0, v40Var2, r40Var, 0, c6Var, null);
-        this.f30387f2 = v40Var;
+    public s40(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f29014b = textPaint;
+        this.d = new Rect();
+        textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.H6, false));
+    }
+
+    public String getHintText() {
+        return this.f29015c;
     }
 
     @Override
-    public final int getInitialTab() {
-        return 8;
+    public void onDraw(Canvas canvas) {
+        float measureText;
+        Rect rect;
+        Canvas canvas2;
+        if (this.f29015c != null && length() < this.f29015c.length()) {
+            int i10 = 0;
+            float f7 = 0.0f;
+            while (i10 < this.f29015c.length()) {
+                int length = length();
+                TextPaint textPaint = this.f29014b;
+                if (i10 < length) {
+                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
+                } else {
+                    measureText = textPaint.measureText(this.f29015c, i10, i10 + 1);
+                }
+                if (i10 < length()) {
+                    f7 += measureText;
+                    canvas2 = canvas;
+                } else {
+                    int color = textPaint.getColor();
+                    canvas.save();
+                    String str = this.f29015c;
+                    textPaint.getTextBounds(str, 0, str.length(), this.d);
+                    i(i10);
+                    canvas2 = canvas;
+                    canvas2.drawText(this.f29015c, i10, i10 + 1, f7, (rect.height() + getHeight()) / 2.0f, (Paint) textPaint);
+                    f7 += measureText;
+                    canvas2.restore();
+                    textPaint.setColor(color);
+                }
+                i10++;
+                canvas = canvas2;
+            }
+        }
+        super.onDraw(canvas);
     }
 
     @Override
-    public final String getStoriesHashtag() {
-        return this.f30387f2.f31384b;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        invalidate();
+    }
+
+    public void setHintText(String str) {
+        this.f29015c = str;
+        invalidate();
+        setText(getText());
     }
 
     @Override
-    public final String getStoriesHashtagUsername() {
-        return this.f30387f2.f31385c;
+    public void setTextSize(int i10, float f7) {
+        super.setTextSize(i10, f7);
+        this.f29014b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
     }
 
-    @Override
-    public final boolean t0() {
-        return true;
-    }
-
-    @Override
-    public final void D0(SparseArray sparseArray) {
-    }
-
-    @Override
-    public final void K0(boolean z10) {
-    }
-
-    @Override
-    public final void M0(float f7) {
-    }
-
-    @Override
-    public final void N0(boolean z10) {
-    }
-
-    @Override
-    public final void b1(boolean z10) {
-    }
-
-    @Override
-    public final void o0() {
-    }
-
-    @Override
-    public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
+    public void i(int i10) {
     }
 }

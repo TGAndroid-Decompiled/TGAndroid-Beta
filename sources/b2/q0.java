@@ -1,37 +1,23 @@
 package b2;
-public class q0 {
-    public int f3531a;
-    public int f3532b;
 
-    public q0(int i10, int i11) {
-        this.f3531a = i10;
-        this.f3532b = i11;
-    }
+import java.util.HashSet;
+public abstract class q0 {
+    public static final HashSet f2287a = new HashSet();
+    public static String f2288b = "media3.common";
 
-    public int a() {
-        int i10 = this.f3532b;
-        if (i10 != 2) {
-            if (i10 != 5) {
-                if (i10 != 29) {
-                    if (i10 != 42) {
-                        if (i10 != 22) {
-                            if (i10 != 23) {
-                                return 0;
-                            }
-                            return 15;
-                        }
-                        return 1073741824;
-                    }
-                    return 16;
-                }
-                return 12;
+    public static synchronized void a(String str) {
+        synchronized (q0.class) {
+            if (f2287a.add(str)) {
+                f2288b += ", " + str;
             }
-            return 11;
         }
-        return 10;
     }
 
-    public int b() {
-        return this.f3531a | this.f3532b;
+    public static synchronized String b() {
+        String str;
+        synchronized (q0.class) {
+            str = f2288b;
+        }
+        return str;
     }
 }

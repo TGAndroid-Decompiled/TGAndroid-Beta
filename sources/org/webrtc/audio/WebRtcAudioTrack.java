@@ -7,7 +7,7 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
-import hg.c;
+import i2.d;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
 import org.webrtc.Logging;
@@ -94,7 +94,7 @@ public class WebRtcAudioTrack {
                     Logging.e("WebRtcAudioTrackExternal", "AudioTrack.write played invalid number of bytes: " + writeBytes);
                     if (writeBytes < 0) {
                         this.keepAlive = false;
-                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError(c.i(writeBytes, "AudioTrack.write failed: "));
+                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError(d.i(writeBytes, "AudioTrack.write failed: "));
                     }
                 }
                 if (WebRtcAudioTrack.this.useLowLatency) {
@@ -109,8 +109,8 @@ public class WebRtcAudioTrack {
                 if (nanoTime > 0) {
                     try {
                         Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
-                    } catch (InterruptedException e7) {
-                        FileLog.e(e7);
+                    } catch (InterruptedException e) {
+                        FileLog.e(e);
                     }
                 } else {
                     this.targetTimeNs = System.nanoTime();
@@ -263,8 +263,8 @@ public class WebRtcAudioTrack {
             reportWebRtcAudioTrackInitError("Initialization of audio track failed.");
             releaseAudioResources();
             return -1;
-        } catch (IllegalArgumentException e7) {
-            reportWebRtcAudioTrackInitError(e7.getMessage());
+        } catch (IllegalArgumentException e) {
+            reportWebRtcAudioTrackInitError(e.getMessage());
             releaseAudioResources();
             return -1;
         }
@@ -303,9 +303,9 @@ public class WebRtcAudioTrack {
         }
     }
 
-    private static native void nativeCacheDirectBufferAddress(long j3, ByteBuffer byteBuffer);
+    private static native void nativeCacheDirectBufferAddress(long j10, ByteBuffer byteBuffer);
 
-    public static native void nativeGetPlayoutData(long j3, int i10);
+    public static native void nativeGetPlayoutData(long j10, int i10);
 
     private void releaseAudioResources() {
         Logging.d("WebRtcAudioTrackExternal", "releaseAudioResources");
@@ -386,8 +386,8 @@ public class WebRtcAudioTrack {
             this.audioThread = audioTrackThread;
             audioTrackThread.start();
             return true;
-        } catch (IllegalStateException e7) {
-            reportWebRtcAudioTrackStartError(JavaAudioDeviceModule.AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e7.getMessage());
+        } catch (IllegalStateException e) {
+            reportWebRtcAudioTrackStartError(JavaAudioDeviceModule.AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e.getMessage());
             releaseAudioResources();
             return false;
         }
@@ -423,16 +423,16 @@ public class WebRtcAudioTrack {
                 this.audioTrack.stop();
                 Logging.d("WebRtcAudioTrackExternal", "AudioTrack.stop is done.");
                 doAudioTrackStateCallback(1);
-            } catch (IllegalStateException e7) {
-                Logging.e("WebRtcAudioTrackExternal", "AudioTrack.stop failed: " + e7.getMessage());
+            } catch (IllegalStateException e) {
+                Logging.e("WebRtcAudioTrackExternal", "AudioTrack.stop failed: " + e.getMessage());
             }
         }
         releaseAudioResources();
         return true;
     }
 
-    public void setNativeAudioTrack(long j3) {
-        this.nativeAudioTrack = j3;
+    public void setNativeAudioTrack(long j10) {
+        this.nativeAudioTrack = j10;
     }
 
     public void setSpeakerMute(boolean z10) {

@@ -7,36 +7,36 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 public final class c implements Runnable {
-    public static final a5.a f309c = new a5.a("RevokeAccessOperation", new String[0]);
-    public final String f310a;
-    public final u f311b;
+    public static final a5.a f289c = new a5.a("RevokeAccessOperation", new String[0]);
+    public final String f290a;
+    public final u f291b;
 
     public c(String str) {
-        n6.m.f(str);
-        this.f310a = str;
-        this.f311b = new u(null, 0);
+        n6.l.f(str);
+        this.f290a = str;
+        this.f291b = new u(null, 0);
     }
 
     @Override
     public final void run() {
-        a5.a aVar = f309c;
+        a5.a aVar = f289c;
         Status status = Status.h;
         try {
-            String str = this.f310a;
+            String str = this.f290a;
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://accounts.google.com/o/oauth2/revoke?token=" + str).openConnection();
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == 200) {
-                status = Status.f6519e;
+                status = Status.e;
             } else {
-                Log.e((String) aVar.f300c, ((String) aVar.d).concat("Unable to revoke access!"));
+                Log.e((String) aVar.f280c, ((String) aVar.d).concat("Unable to revoke access!"));
             }
-            aVar.j("Response Code: " + responseCode, new Object[0]);
-        } catch (IOException e7) {
-            Log.e((String) aVar.f300c, ((String) aVar.d).concat("IOException when revoking access: ".concat(String.valueOf(e7.toString()))));
-        } catch (Exception e10) {
-            Log.e((String) aVar.f300c, ((String) aVar.d).concat("Exception when revoking access: ".concat(String.valueOf(e10.toString()))));
+            aVar.k("Response Code: " + responseCode, new Object[0]);
+        } catch (IOException e) {
+            Log.e((String) aVar.f280c, ((String) aVar.d).concat("IOException when revoking access: ".concat(String.valueOf(e.toString()))));
+        } catch (Exception e7) {
+            Log.e((String) aVar.f280c, ((String) aVar.d).concat("Exception when revoking access: ".concat(String.valueOf(e7.toString()))));
         }
-        this.f311b.a(status);
+        this.f291b.a(status);
     }
 }

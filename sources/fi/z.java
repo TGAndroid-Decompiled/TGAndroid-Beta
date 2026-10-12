@@ -1,17 +1,13 @@
 package fi;
 
-import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.fp0;
-public final class z implements fp0 {
-    @Override
-    public final void finish() {
-    }
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class z extends LinearLayout {
+    public TextView f9681a;
+    public bi.f4 f9682b;
+    public String f9683c;
 
-    @Override
-    public final void e(float f7) {
-    }
-
-    @Override
-    public final void f(s2 s2Var) {
+    public String getCommand() {
+        return this.f9683c;
     }
 }

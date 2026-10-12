@@ -1,38 +1,84 @@
 package p7;
 
-import android.os.Parcel;
 import android.os.Parcelable;
-import w7.c0;
-public final class m extends o6.a {
-    public static final Parcelable.Creator<m> CREATOR = new j(2);
-    public final boolean f45397a;
+import com.google.android.gms.vision.face.internal.client.FaceParcel;
+import com.google.android.gms.vision.face.internal.client.LandmarkParcel;
+import s4.a0;
+public final class m implements Parcelable.Creator {
+    public final int f43172a;
 
-    public m(boolean z10) {
-        this.f45397a = z10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if ((obj instanceof m) && this.f45397a == ((m) obj).f45397a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        if (this.f45397a) {
-            return 1;
-        }
-        return 0;
+    public m(int i10) {
+        this.f43172a = i10;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = c0.q(parcel, 20293);
-        c0.s(parcel, 1, 4);
-        parcel.writeInt(this.f45397a ? 1 : 0);
-        c0.r(parcel, q6);
+    public final java.lang.Object createFromParcel(android.os.Parcel r26) {
+        throw new UnsupportedOperationException("Method not decompiled: p7.m.createFromParcel(android.os.Parcel):java.lang.Object");
+    }
+
+    @Override
+    public final Object[] newArray(int i10) {
+        switch (this.f43172a) {
+            case 0:
+                return new l[i10];
+            case 1:
+                return new n[i10];
+            case 2:
+                return new q9.b[i10];
+            case 3:
+                return new q9.a[i10];
+            case 4:
+                return new r6.a[i10];
+            case 5:
+                return new r6.b[i10];
+            case 6:
+                return new r6.c[i10];
+            case 7:
+                return new r8.a[i10];
+            case 8:
+                return new r8.m[i10];
+            case 9:
+                return new r8.b[i10];
+            case 10:
+                return new r8.d[i10];
+            case 11:
+                return new r8.c[i10];
+            case 12:
+                return new r8.f[i10];
+            case 13:
+                return new r8.e[i10];
+            case 14:
+                return new r8.h[i10];
+            case 15:
+                return new r8.g[i10];
+            case 16:
+                return new r8.j[i10];
+            case 17:
+                return new r8.i[i10];
+            case 18:
+                return new r8.l[i10];
+            case 19:
+                return new r8.k[i10];
+            case 20:
+                return new a0[i10];
+            case 21:
+                return new u0.h[i10];
+            case 22:
+                return new u8.a[i10];
+            case 23:
+                return new FaceParcel[i10];
+            case 24:
+                return new u8.b[i10];
+            case 25:
+                return new LandmarkParcel[i10];
+            case 26:
+                return new v8.i[i10];
+            case 27:
+                return new v8.j[i10];
+            case 28:
+                return new v8.k[i10];
+            default:
+                return new v8.l[i10];
+        }
     }
 }

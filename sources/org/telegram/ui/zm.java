@@ -1,65 +1,177 @@
 package org.telegram.ui;
 
-import android.view.View;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.RichMessageLayout;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class zm extends wu0 {
-    public final ArrayList f44881a;
-    public final int[] f44882b = new int[2];
-    public final eo f44883c;
+public final class zm implements ev0 {
+    public final TL_iv.RichMessage f42647a;
+    public final ArrayList f42648b;
+    public final MessageObject f42649c;
 
-    public zm(eo eoVar, ArrayList arrayList) {
-        this.f44883c = eoVar;
-        this.f44881a = arrayList;
+    public zm(TL_iv.RichMessage richMessage, ArrayList arrayList, MessageObject messageObject) {
+        this.f42647a = richMessage;
+        this.f42648b = arrayList;
+        this.f42649c = messageObject;
     }
 
     @Override
-    public final gv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        ImageReceiver imageReceiver;
-        org.telegram.ui.Cells.u1 u1Var;
-        MessageObject messageObject2;
-        RichMessageLayout richMessageLayout;
-        eo eoVar = this.f44883c;
-        if (eoVar.f37483x0 != null && i10 >= 0) {
-            ArrayList arrayList = this.f44881a;
+    public final boolean a(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f42648b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
-                int childCount = eoVar.f37483x0.getChildCount();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = eoVar.f37483x0.getChildAt(i11);
-                    boolean z12 = childAt instanceof org.telegram.ui.Cells.u1;
-                    int[] iArr = this.f44882b;
-                    if (z12 && (messageObject2 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
-                        int[] iArr2 = new int[2];
-                        imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
-                        if (imageReceiver != null) {
-                            childAt.getLocationInWindow(iArr);
-                            iArr[0] = u1Var.getTextX() + iArr2[0] + iArr[0];
-                            iArr[1] = u1Var.getTextY() + iArr2[1] + iArr[1];
-                        }
-                    } else {
-                        imageReceiver = null;
+                if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                    TLRPC.Document b10 = h4.b(this.f42647a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    if (b10 != null) {
+                        return MessageObject.isVideoDocument(b10);
                     }
-                    if (imageReceiver != null) {
-                        gv0 gv0Var = new gv0();
-                        gv0Var.f38148b = iArr[0];
-                        gv0Var.f38149c = iArr[1];
-                        gv0Var.d = eoVar.f37483x0;
-                        gv0Var.f38147a = imageReceiver;
-                        gv0Var.f38150e = imageReceiver.getBitmapSafe();
-                        gv0Var.h = imageReceiver.getRoundRadius(true);
-                        gv0Var.f38154j = (int) ((eoVar.f37427s9 - eoVar.f37452u9) - AndroidUtilities.dp(4.0f));
-                        gv0Var.f38153i = (int) (eoVar.b9(org.telegram.ui.Components.d41.f25232c) + eoVar.v.d() + AndroidUtilities.dp(9.0f) + eoVar.Ba + eoVar.f37430sc);
-                        return gv0Var;
+                    return false;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final File b(int i10) {
+        TLRPC.Document b10;
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f42648b;
+            if (i10 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
+                boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
+                TL_iv.RichMessage richMessage = this.f42647a;
+                if (z10) {
+                    TLRPC.Photo f7 = h4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                    if (f7 != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(f7.sizes, AndroidUtilities.getPhotoSize())) != null) {
+                        return h4.c(closestPhotoSizeWithSize);
                     }
+                    return null;
+                } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (b10 = h4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+                    return h4.c(b10);
+                } else {
+                    return null;
                 }
             }
+            return null;
         }
         return null;
+    }
+
+    @Override
+    public final String c(int i10) {
+        TLObject d = d(i10);
+        if (d instanceof TLRPC.Photo) {
+            d = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) d).sizes, AndroidUtilities.getPhotoSize());
+        }
+        return FileLoader.getAttachFileName(d);
+    }
+
+    @Override
+    public final TLObject d(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f42648b;
+            if (i10 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
+                boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
+                TL_iv.RichMessage richMessage = this.f42647a;
+                if (z10) {
+                    return h4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                }
+                if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                    return h4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean e(int i10) {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PhotoSize f(TLObject tLObject, int[] iArr) {
+        if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize());
+            if (closestPhotoSizeWithSize != null) {
+                int i10 = closestPhotoSizeWithSize.size;
+                iArr[0] = i10;
+                if (i10 == 0) {
+                    iArr[0] = -1;
+                }
+                return closestPhotoSizeWithSize;
+            }
+            iArr[0] = -1;
+            return null;
+        }
+        if (tLObject instanceof TLRPC.Document) {
+            TLRPC.Document document = (TLRPC.Document) tLObject;
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320, false, null, true);
+            if (closestPhotoSizeWithSize2 == null) {
+                closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+            }
+            if (closestPhotoSizeWithSize2 != null) {
+                int i11 = closestPhotoSizeWithSize2.size;
+                iArr[0] = i11;
+                if (i11 == 0) {
+                    iArr[0] = -1;
+                }
+                return closestPhotoSizeWithSize2;
+            }
+            iArr[0] = -1;
+        }
+        return null;
+    }
+
+    @Override
+    public final Object g() {
+        MessageObject messageObject = this.f42649c;
+        if (messageObject != null) {
+            return messageObject;
+        }
+        return this.f42647a;
+    }
+
+    @Override
+    public final TL_iv.PageBlock get(int i10) {
+        return (TL_iv.PageBlock) this.f42648b.get(i10);
+    }
+
+    @Override
+    public final List getAll() {
+        return this.f42648b;
+    }
+
+    @Override
+    public final void h(TL_iv.PageBlock pageBlock) {
+        RichMessageLayout richMessageLayout;
+        MessageObject messageObject = this.f42649c;
+        if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null) {
+            richMessageLayout.setSlideshowPage(pageBlock);
+        }
+    }
+
+    @Override
+    public final CharSequence i(int i10) {
+        return null;
+    }
+
+    @Override
+    public final int j() {
+        return this.f42648b.size();
     }
 }

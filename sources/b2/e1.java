@@ -1,79 +1,68 @@
 package b2;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class e1 implements Comparable, Parcelable {
-    public static final Parcelable.Creator<e1> CREATOR = new m(2);
-    public static final String d;
-    public static final String f3290e;
-    public static final String f3291f;
-    public final int f3292a;
-    public final int f3293b;
-    public final int f3294c;
+import java.util.List;
+public interface e1 {
+    void onAudioAttributesChanged(f fVar);
 
-    static {
-        String str = e2.d0.f8529a;
-        d = Integer.toString(0, 36);
-        f3290e = Integer.toString(1, 36);
-        f3291f = Integer.toString(2, 36);
-    }
+    void onAudioSessionIdChanged(int i10);
 
-    public e1(int i10, int i11, int i12) {
-        this.f3292a = i10;
-        this.f3293b = i11;
-        this.f3294c = i12;
-    }
+    void onAvailableCommandsChanged(c1 c1Var);
 
-    @Override
-    public final int compareTo(Object obj) {
-        e1 e1Var = (e1) obj;
-        int i10 = this.f3292a - e1Var.f3292a;
-        if (i10 == 0) {
-            int i11 = this.f3293b - e1Var.f3293b;
-            if (i11 == 0) {
-                return this.f3294c - e1Var.f3294c;
-            }
-            return i11;
-        }
-        return i10;
-    }
+    void onCues(d2.c cVar);
 
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
+    void onCues(List list);
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && e1.class == obj.getClass()) {
-            e1 e1Var = (e1) obj;
-            if (this.f3292a == e1Var.f3292a && this.f3293b == e1Var.f3293b && this.f3294c == e1Var.f3294c) {
-                return true;
-            }
-        }
-        return false;
-    }
+    void onEvents(g1 g1Var, d1 d1Var);
 
-    public final int hashCode() {
-        return (((this.f3292a * 31) + this.f3293b) * 31) + this.f3294c;
-    }
+    void onIsLoadingChanged(boolean z10);
 
-    public final String toString() {
-        return this.f3292a + "." + this.f3293b + "." + this.f3294c;
-    }
+    void onIsPlayingChanged(boolean z10);
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f3292a);
-        parcel.writeInt(this.f3293b);
-        parcel.writeInt(this.f3294c);
-    }
+    void onLoadingChanged(boolean z10);
 
-    public e1(Parcel parcel) {
-        this.f3292a = parcel.readInt();
-        this.f3293b = parcel.readInt();
-        this.f3294c = parcel.readInt();
-    }
+    void onMediaItemTransition(p0 p0Var, int i10);
+
+    void onMediaMetadataChanged(s0 s0Var);
+
+    void onMetadata(u0 u0Var);
+
+    void onPlayWhenReadyChanged(boolean z10, int i10);
+
+    void onPlaybackParametersChanged(a1 a1Var);
+
+    void onPlaybackStateChanged(int i10);
+
+    void onPlaybackSuppressionReasonChanged(int i10);
+
+    void onPlayerError(z0 z0Var);
+
+    void onPlayerErrorChanged(z0 z0Var);
+
+    void onPlayerStateChanged(boolean z10, int i10);
+
+    void onPlaylistMetadataChanged(s0 s0Var);
+
+    void onPositionDiscontinuity(int i10);
+
+    void onPositionDiscontinuity(f1 f1Var, f1 f1Var2, int i10);
+
+    void onRenderedFirstFrame();
+
+    void onRepeatModeChanged(int i10);
+
+    void onShuffleModeEnabledChanged(boolean z10);
+
+    void onSkipSilenceEnabledChanged(boolean z10);
+
+    void onSurfaceSizeChanged(int i10, int i11);
+
+    void onTimelineChanged(p1 p1Var, int i10);
+
+    void onTrackSelectionParametersChanged(u1 u1Var);
+
+    void onTracksChanged(w1 w1Var);
+
+    void onVideoSizeChanged(b2 b2Var);
+
+    void onVolumeChanged(float f7);
 }

@@ -1,117 +1,61 @@
 package fi;
 
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.s80;
-import org.telegram.ui.Components.u61;
-import r0.h1;
-import r0.k1;
-public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Return {
-    public final int f10064a;
-    public final k0 f10065b;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.g6;
+import org.telegram.ui.Components.gq;
+import org.telegram.ui.Components.j5;
+import org.telegram.ui.Components.r6;
+public final class u {
+    public final RectF f9558a = new RectF();
+    public final g6 f9559b;
+    public final g6 f9560c;
+    public final g6 d;
+    public final g6 e;
+    public final j5 f9561f;
+    public final j5 f9562g;
+    public final g6 h;
+    public final g6 f9563i;
+    public final ad f9564j;
+    public final Paint f9565k;
+    public final r6 f9566l;
+    public int f9567m;
+    public final org.telegram.ui.Cells.z f9568n;
+    public final gq f9569o;
+    public final org.telegram.ui.Components.voip.h f9570p;
 
-    public u(k0 k0Var, int i10) {
-        this.f10064a = i10;
-        this.f10065b = k0Var;
-    }
-
-    @Override
-    public k1 M0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f47000a;
-        i0.b f7 = h1Var.f(527);
-        k0 k0Var = this.f10065b;
-        k0Var.T = f7;
-        k0Var.U = h1Var.f(519);
-        k0Var.F.j(AndroidUtilities.dp(56.0f) + k0Var.T.f11575b, k0Var.T.d, false);
-        k0Var.H.invalidate();
-        return k1.f46999b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean canRemoveBotFromCommunity;
-        long j3;
-        boolean z10;
-        boolean z11;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = k0.V;
-        Object obj6 = ((u61) obj).G;
-        boolean z12 = obj6 instanceof TLRPC.Chat;
-        k0 k0Var = this.f10065b;
-        boolean z13 = false;
-        if (z12) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj6;
-            boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-            canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, k0Var.f9991f);
-            j3 = -chat.f19803id;
-            z11 = isChannelAndNotMegaGroup;
-            z10 = false;
-        } else {
-            if (obj6 instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) obj6;
-                long j10 = user.f19950id;
-                boolean isBot = UserObject.isBot(user);
-                canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, k0Var.f9991f);
-                j3 = j10;
-                z10 = isBot;
-                z11 = false;
-            }
-            return Boolean.valueOf(z13);
-        }
-        if (canRemoveBotFromCommunity) {
-            s80 F = s80.F(k0Var.container, null, view);
-            F.c(R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), new l(k0Var, z10, z11, j3, 1), true);
-            F.W(k0Var.v.d.V0(view, true));
-            F.Z();
-            z13 = true;
-        }
-        return Boolean.valueOf(z13);
-    }
-
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f10064a;
-        k0 k0Var = this.f10065b;
-        u61 u61Var = (u61) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) obj3;
-        switch (i10) {
-            case 0:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                k0Var.X(u61Var);
-                return;
-            case 1:
-            default:
-                num.intValue();
-                ((Float) obj4).floatValue();
-                ((Float) obj5).floatValue();
-                int i11 = k0.V;
-                k0Var.U(u61Var);
-                return;
-            case 2:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                int i12 = k0.V;
-                k0Var.X(u61Var);
-                return;
-            case 3:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                k0.A(k0Var, u61Var, view);
-                return;
-        }
+    public u(w wVar) {
+        es esVar = es.h;
+        this.f9559b = new g6(wVar, 0L, 320L, esVar);
+        this.f9560c = new g6(wVar, 0L, 320L, esVar);
+        this.d = new g6(wVar, 0L, 320L, esVar);
+        this.e = new g6(wVar, 0L, 320L, esVar);
+        this.f9561f = new j5(wVar, 320L, esVar, 0);
+        this.f9562g = new j5(wVar, 320L, esVar, 0);
+        this.h = new g6(wVar, 0L, 320L, esVar);
+        this.f9563i = new g6(wVar, 0L, 320L, esVar);
+        this.f9564j = new ad(wVar);
+        this.f9565k = new Paint(1);
+        r6 r6Var = new r6(true, false, true);
+        this.f9566l = r6Var;
+        org.telegram.ui.Cells.z Z = org.telegram.ui.ActionBar.g6.Z(0, 9, 9);
+        this.f9568n = Z;
+        gq gqVar = new gq(-1);
+        this.f9569o = gqVar;
+        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
+        this.f9570p = hVar;
+        r6Var.f28748b = 17;
+        r6Var.w(AndroidUtilities.dp(14.0f));
+        r6Var.x(AndroidUtilities.bold());
+        r6Var.M = AndroidUtilities.displaySize.x * 4;
+        r6Var.q(true);
+        r6Var.setCallback(wVar);
+        gqVar.setCallback(wVar);
+        Z.setCallback(wVar);
+        hVar.f30201l = true;
+        hVar.f30202m = 2.0f;
     }
 }

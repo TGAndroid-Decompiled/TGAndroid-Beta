@@ -1,61 +1,73 @@
 package u3;
 
-import c3.p;
+import b2.t;
+import b2.x;
+import b2.x0;
+import c3.h0;
+import c3.i0;
+import c3.j0;
 public final class e {
-    public static final long[] d = {128, 64, 32, 16, 8, 4, 2, 1};
-    public final byte[] f49068a = new byte[8];
-    public int f49069b;
-    public int f49070c;
+    public int A;
+    public int B;
+    public int C;
+    public int D;
+    public int E;
+    public float F;
+    public float G;
+    public float H;
+    public float I;
+    public float J;
+    public float K;
+    public float L;
+    public float M;
+    public float N;
+    public float O;
+    public byte[] P;
+    public int Q;
+    public int R;
+    public int S;
+    public long T;
+    public long U;
+    public j0 V;
+    public boolean W;
+    public boolean X;
+    public boolean Y;
+    public String Z;
+    public boolean f46126a;
+    public i0 f46127a0;
+    public String f46128b;
+    public x f46129b0;
+    public String f46130c;
+    public int f46131c0;
+    public int d;
+    public int e;
+    public int f46132f;
+    public int f46133g;
+    public int h;
+    public boolean f46134i;
+    public byte[] f46135j;
+    public h0 f46136k;
+    public byte[] f46137l;
+    public t f46138m;
+    public int f46139n;
+    public int f46140o;
+    public int f46141p;
+    public int f46142q;
+    public int f46143r;
+    public int f46144s;
+    public int f46145t;
+    public float f46146u;
+    public float v;
+    public float f46147w;
+    public byte[] f46148x;
+    public int f46149y;
+    public boolean f46150z;
 
-    public static long a(int i10, boolean z10, byte[] bArr) {
-        long j3 = bArr[0] & 255;
-        if (z10) {
-            j3 &= ~d[i10 - 1];
+    public final byte[] a(String str) {
+        byte[] bArr = this.f46137l;
+        if (bArr != null) {
+            return bArr;
         }
-        for (int i11 = 1; i11 < i10; i11++) {
-            j3 = (j3 << 8) | (bArr[i11] & 255);
-        }
-        return j3;
-    }
-
-    public final long b(p pVar, boolean z10, boolean z11, int i10) {
-        int i11;
-        int i12 = this.f49069b;
-        byte[] bArr = this.f49068a;
-        if (i12 == 0) {
-            if (!pVar.c(bArr, 0, 1, z10)) {
-                return -1L;
-            }
-            int i13 = bArr[0] & 255;
-            int i14 = 0;
-            while (true) {
-                if (i14 < 8) {
-                    if ((d[i14] & i13) != 0) {
-                        i11 = i14 + 1;
-                        break;
-                    }
-                    i14++;
-                } else {
-                    i11 = -1;
-                    break;
-                }
-            }
-            this.f49070c = i11;
-            if (i11 != -1) {
-                this.f49069b = 1;
-            } else {
-                throw new IllegalStateException("No valid varint length mask found");
-            }
-        }
-        int i15 = this.f49070c;
-        if (i15 > i10) {
-            this.f49069b = 0;
-            return -2L;
-        }
-        if (i15 != 1) {
-            pVar.readFully(bArr, 1, i15 - 1);
-        }
-        this.f49069b = 0;
-        return a(this.f49070c, z11, bArr);
+        throw x0.a(null, "Missing CodecPrivate for codec " + str);
     }
 }

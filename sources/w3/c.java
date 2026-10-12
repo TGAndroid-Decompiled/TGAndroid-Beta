@@ -1,35 +1,39 @@
 package w3;
 
-import org.telegram.ui.Components.hr0;
-import org.telegram.ui.Components.sc;
-import yh.s3;
-public final class c implements hr0 {
-    public final Object f50004a;
+import java.io.IOException;
+import java.util.ConcurrentModificationException;
+public final class c implements y2.g {
+    public final Object f47083a;
 
     public c(Object obj) {
-        this.f50004a = obj;
+        this.f47083a = obj;
     }
 
-    public StringBuilder a() {
-        ef.a aVar = (ef.a) this.f50004a;
-        if (aVar instanceof ze.m) {
-            StringBuilder sb2 = ((ze.m) aVar).f54669b.f54654b;
-            if (sb2.length() != 0) {
-                return sb2;
-            }
-            return null;
+    @Override
+    public k4.d j(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
+        ((l2.d) this.f47083a).f14493a.y(iOException);
+        return y2.l.e;
+    }
+
+    @Override
+    public void l(y2.i iVar, long j10, long j11) {
+        boolean z10;
+        l2.d dVar = (l2.d) this.f47083a;
+        synchronized (z2.b.f49245b) {
+            z10 = z2.b.f49246c;
         }
-        return null;
+        if (!z10) {
+            dVar.f14493a.y(new IOException(new ConcurrentModificationException()));
+            return;
+        }
+        dVar.a();
     }
 
     @Override
-    public void q0() {
-        sc k10 = ((s3) this.f50004a).getBulletinFactory().k(false);
-        k10.f30546t = true;
-        k10.j();
+    public void B(y2.i iVar, long j10, long j11, boolean z10) {
     }
 
     @Override
-    public void U() {
+    public void k(y2.i iVar, long j10, long j11, int i10) {
     }
 }

@@ -1,44 +1,35 @@
 package org.telegram.ui.Components;
+public final class ou implements Runnable {
+    public final int f28057a;
+    public final pu f28058b;
 
-import android.view.KeyEvent;
-import android.view.View;
-public final class ou implements tu, lm0 {
-    public final int f29296a;
-    public final int f29297b;
-    public final KeyEvent.Callback f29298c;
-    public final Object d;
-
-    public ou(uu uuVar, int i10, int i11, Runnable runnable) {
-        this.f29298c = uuVar;
-        this.f29296a = i10;
-        this.f29297b = i11;
-        this.d = runnable;
+    public ou(pu puVar, int i10) {
+        this.f28057a = i10;
+        this.f28058b = puVar;
     }
 
     @Override
-    public boolean Y0(View view) {
-        return false;
-    }
-
-    @Override
-    public void c(float f7, float f10, int i10, View view) {
-        int i11 = this.f29297b;
-        tg.m1.R((tg.m1) this.f29298c, this.f29296a, (org.telegram.ui.ActionBar.c6) this.d, i11, view);
-    }
-
-    @Override
-    public void run(String str) {
-        uu.k((uu) this.f29298c, this.f29296a, this.f29297b, (Runnable) this.d, str);
-    }
-
-    public ou(tg.m1 m1Var, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        this.f29298c = m1Var;
-        this.f29296a = i10;
-        this.d = c6Var;
-        this.f29297b = i11;
-    }
-
-    @Override
-    public void n0(View view, float f7, float f10) {
+    public final void run() {
+        switch (this.f28057a) {
+            case 0:
+                pu puVar = this.f28058b;
+                puVar.post(new ou(puVar, 1));
+                return;
+            case 1:
+                pu puVar2 = this.f28058b;
+                puVar2.invalidateSpoilers();
+                puVar2.b();
+                return;
+            case 2:
+                pu.a(this.f28058b);
+                return;
+            case 3:
+                pu puVar3 = this.f28058b;
+                puVar3.post(new ou(puVar3, 4));
+                return;
+            default:
+                this.f28058b.setSpoilersRevealed(false, true);
+                return;
+        }
     }
 }

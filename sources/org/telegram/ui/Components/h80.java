@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class h80 implements org.telegram.ui.ActionBar.k1 {
-    public final int f26686a;
-    public final s80 f26687b;
+import android.view.View;
+import android.view.ViewGroup;
+public final class h80 extends org.telegram.ui.ActionBar.m1 {
+    public final ViewGroup f25538o;
+    public final m80 f25539p;
 
-    public h80(s80 s80Var, int i10) {
-        this.f26686a = i10;
-        this.f26687b = s80Var;
+    public h80(m80 m80Var, View view, ViewGroup viewGroup) {
+        super(view, -2, -2);
+        this.f25539p = m80Var;
+        this.f25538o = viewGroup;
     }
 
     @Override
-    public final void o(KeyEvent keyEvent) {
-        s80 s80Var;
-        n80 n80Var;
-        s80 s80Var2;
-        n80 n80Var2;
-        switch (this.f26686a) {
-            case 0:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n80Var = (s80Var = this.f26687b).f30458m) != null && n80Var.isShowing()) {
-                    s80Var.u();
-                    return;
-                }
-                return;
-            default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n80Var2 = (s80Var2 = this.f26687b).f30458m) != null && n80Var2.isShowing()) {
-                    s80Var2.u();
-                    return;
-                }
-                return;
+    public final void dismiss() {
+        d(true);
+        ViewGroup viewGroup = this.f25538o;
+        m80 m80Var = this.f25539p;
+        m80.a(m80Var, viewGroup);
+        Runnable runnable = m80Var.f27293p;
+        if (runnable != null) {
+            runnable.run();
+            m80Var.f27293p = null;
         }
     }
 }

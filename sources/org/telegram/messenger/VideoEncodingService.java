@@ -55,8 +55,8 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         if (instance == null) {
             try {
                 ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, VideoEncodingService.class));
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         } else if (z10) {
             MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
@@ -100,9 +100,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.f(LocaleController.getString(R.string.SendingVideo));
         }
         r rVar = this.builder;
-        rVar.f8474n = 100;
-        rVar.f8475o = 0;
-        rVar.f8476p = true;
+        rVar.f8273n = 100;
+        rVar.f8274o = 0;
+        rVar.f8275p = true;
     }
 
     public void updateNotification() {
@@ -131,15 +131,15 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 if (i12 == 0) {
                     z10 = true;
                 }
-                rVar.f8474n = 100;
-                rVar.f8475o = i12;
-                rVar.f8476p = z10;
+                rVar.f8273n = 100;
+                rVar.f8274o = i12;
+                rVar.f8275p = z10;
                 updateNotification();
             }
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
             if (i11 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
-                AndroidUtilities.runOnUIThread(new cm(this, 0));
+                AndroidUtilities.runOnUIThread(new xl(this, 0));
             }
         }
     }
@@ -181,7 +181,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             rVar.E.icon = 17301640;
             rVar.E.when = System.currentTimeMillis();
             r rVar2 = this.builder;
-            rVar2.f8484y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            rVar2.f8283y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             rVar2.g(LocaleController.getString(R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);
@@ -190,7 +190,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } catch (Throwable th2) {
             FileLog.e(th2);
         }
-        AndroidUtilities.runOnUIThread(new cm(this, 1));
+        AndroidUtilities.runOnUIThread(new xl(this, 1));
         return 2;
     }
 }

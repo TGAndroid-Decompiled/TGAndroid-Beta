@@ -1,31 +1,50 @@
 package qg;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class q implements org.telegram.ui.ActionBar.k1, Utilities.Callback3Return {
-    public final m0 f46461a;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.c91;
+public final class q extends c91 {
+    public final bi.v0 f43520a;
 
-    public q(m0 m0Var) {
-        this.f46461a = m0Var;
+    public q(bi.v0 v0Var) {
+        this.f43520a = v0Var;
     }
 
     @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.m1 m1Var;
-        m0 m0Var = this.f46461a;
-        m0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = m0Var.R1) != null && m1Var.isShowing()) {
-            m0Var.R1.d(true);
+    public final View d(int i10) {
+        bi.v0 v0Var = this.f43520a;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return (t) v0Var.f3847b;
+            }
+            return (w) v0Var.d;
         }
+        return (s) v0Var.f3848c;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3) {
-        z i02 = this.f46461a.i0(obj, (TLRPC.Document) obj2, true);
-        if (((Boolean) obj3).booleanValue()) {
-            i02.setScale(1.5f);
+    public final int e() {
+        return 3;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
+            }
+            return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
         }
-        return Boolean.TRUE;
+        return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

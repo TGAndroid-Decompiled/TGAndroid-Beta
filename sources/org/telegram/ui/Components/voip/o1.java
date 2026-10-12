@@ -1,175 +1,160 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ik0;
-import org.telegram.ui.fi1;
-import w7.w5;
-public final class o1 extends FrameLayout {
-    public final ik0 f31850a;
-    public final ik0 f31851b;
-    public final org.telegram.ui.Cells.z f31852c;
-    public org.telegram.ui.Components.y2 d;
-    public n1 f31853e;
-    public int f31854f;
+import android.view.animation.LinearInterpolator;
+import java.util.ArrayList;
+import org.telegram.ui.Components.u61;
+public final class o1 {
+    public final com.google.firebase.messaging.m f30376a;
+    public final com.google.firebase.messaging.m f30377b;
+    public com.google.firebase.messaging.m f30378c;
+    public com.google.firebase.messaging.m d;
+    public boolean e;
+    public int f30379f;
+    public int f30380g;
+    public int h;
+    public boolean f30381i;
+    public final Paint f30382j;
+    public final Paint f30383k;
+    public final Paint f30384l;
+    public final ArrayList f30385m;
 
-    public o1(Context context) {
-        super(context);
-        this.f31854f = 0;
-        setWillNotDraw(false);
-        ?? imageView = new ImageView(context);
-        this.f31850a = imageView;
-        ?? imageView2 = new ImageView(context);
-        this.f31851b = imageView2;
-        imageView.f(R.raw.star_stroke, 37, 37, null);
-        imageView2.f(R.raw.star_fill, 37, 37, null);
-        imageView2.setAlpha(0.0f);
-        addView((View) imageView, w5.d(37.0f, 37));
-        addView((View) imageView2, w5.d(37.0f, 37));
-        org.telegram.ui.Cells.z i02 = h6.i0(AndroidUtilities.dp(37.0f), 0, i0.a.k(-1, 76));
-        this.f31852c = i02;
-        i02.setCallback(this);
-        setClickable(true);
+    public o1() {
+        com.google.firebase.messaging.m mVar = new com.google.firebase.messaging.m(80, 80);
+        this.f30376a = mVar;
+        com.google.firebase.messaging.m mVar2 = new com.google.firebase.messaging.m(80, 80);
+        this.f30377b = mVar2;
+        this.f30379f = 0;
+        this.f30380g = 0;
+        Paint paint = new Paint(1);
+        this.f30382j = paint;
+        Paint paint2 = new Paint(1);
+        this.f30383k = paint2;
+        Paint paint3 = new Paint(1);
+        this.f30384l = paint3;
+        this.f30385m = new ArrayList();
+        mVar2.z(0.0f, 0.0f, 80.0f, 80.0f);
+        mVar.z(0.0f, 0.0f, 80.0f, 80.0f);
+        paint.setColor(-1);
+        paint.setAlpha(35);
+        paint2.setColor(-16777216);
+        paint2.setAlpha(102);
+        paint3.setColor(-16777216);
+        paint3.setAlpha(35);
+        ((Paint) mVar2.f6191a).setAlpha(180);
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        n1 n1Var;
-        int action = motionEvent.getAction();
-        int i11 = 0;
-        if (action != 0) {
-            if (action != 1) {
-                if (action == 3 && (n1Var = this.f31853e) != null) {
-                    o1[] o1VarArr = ((p1) ((m4.x) n1Var).f15997b).f31864c;
-                    int length = o1VarArr.length;
-                    while (i11 < length) {
-                        o1 o1Var = o1VarArr[i11];
-                        ik0 ik0Var = o1Var.f31850a;
-                        ik0 ik0Var2 = o1Var.f31851b;
-                        ik0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                        ik0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                        i11++;
+    public final void a(View view) {
+        this.f30385m.add(view);
+    }
+
+    public final Paint b() {
+        if (this.f30381i) {
+            return this.f30383k;
+        }
+        return (Paint) this.f30377b.f6191a;
+    }
+
+    public final void c() {
+        ArrayList arrayList = this.f30385m;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((View) obj).invalidate();
+        }
+    }
+
+    public final void d(float f7, float f10) {
+        float f11 = this.f30380g * 1.12f;
+        com.google.firebase.messaging.m mVar = this.f30377b;
+        float f12 = -f7;
+        float f13 = -f10;
+        mVar.B(f12 - ((f11 - this.f30379f) / 2.0f), f13 - ((f11 - this.f30380g) / 2.0f), f11 / ((Bitmap) mVar.f6193c).getHeight(), this.h);
+        this.d.z(f12, f13, this.f30379f - f7, this.f30380g - f10);
+    }
+
+    public final void e(boolean z10) {
+        if (this.f30381i && !z10) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final o1 f30336b;
+
+                {
+                    this.f30336b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r2) {
+                        case 0:
+                            o1 o1Var = this.f30336b;
+                            o1Var.getClass();
+                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            int i10 = (int) (35.0f * floatValue);
+                            o1Var.f30384l.setAlpha(i10);
+                            o1Var.f30383k.setAlpha((int) (floatValue * 102.0f));
+                            o1Var.f30382j.setAlpha(i10);
+                            o1Var.c();
+                            return;
+                        default:
+                            o1 o1Var2 = this.f30336b;
+                            o1Var2.getClass();
+                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            ((Paint) o1Var2.f30377b.f6191a).setAlpha((int) (180.0f * floatValue2));
+                            ((Paint) o1Var2.f30376a.f6191a).setAlpha((int) (floatValue2 * 255.0f));
+                            o1Var2.c();
+                            return;
                     }
                 }
-            } else {
-                n1 n1Var2 = this.f31853e;
-                if (n1Var2 != null) {
-                    o1[] o1VarArr2 = ((p1) ((m4.x) n1Var2).f15997b).f31864c;
-                    for (int i12 = 0; i12 <= this.f31854f; i12++) {
-                        o1 o1Var2 = o1VarArr2[i12];
-                        ik0 ik0Var3 = o1Var2.f31850a;
-                        ik0 ik0Var4 = o1Var2.f31851b;
-                        ik0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                        ik0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+            });
+            ofFloat.setInterpolator(new LinearInterpolator());
+            ofFloat.setDuration(80L);
+            ofFloat.addListener(new u61(this, 10));
+            ofFloat.start();
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final o1 f30336b;
+
+                {
+                    this.f30336b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r2) {
+                        case 0:
+                            o1 o1Var = this.f30336b;
+                            o1Var.getClass();
+                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            int i10 = (int) (35.0f * floatValue);
+                            o1Var.f30384l.setAlpha(i10);
+                            o1Var.f30383k.setAlpha((int) (floatValue * 102.0f));
+                            o1Var.f30382j.setAlpha(i10);
+                            o1Var.c();
+                            return;
+                        default:
+                            o1 o1Var2 = this.f30336b;
+                            o1Var2.getClass();
+                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            ((Paint) o1Var2.f30377b.f6191a).setAlpha((int) (180.0f * floatValue2));
+                            ((Paint) o1Var2.f30376a.f6191a).setAlpha((int) (floatValue2 * 255.0f));
+                            o1Var2.c();
+                            return;
                     }
                 }
-                if (this.d != null) {
-                    int[] iArr = new int[2];
-                    getLocationOnScreen(iArr);
-                    int i13 = iArr[0];
-                    int i14 = iArr[1];
-                    org.telegram.ui.Components.y2 y2Var = this.d;
-                    float width = (getWidth() / 2.0f) + i13;
-                    float height = (getHeight() / 2.0f) + i14;
-                    int i15 = this.f31854f + 1;
-                    p1 p1Var = (p1) y2Var.f32921c;
-                    Context context = (Context) y2Var.f32920b;
-                    if (i15 >= 4) {
-                        ?? imageView = new ImageView(context);
-                        int dp = AndroidUtilities.dp(133.0f);
-                        imageView.f(R.raw.rate, 133, 133, null);
-                        int[] iArr2 = new int[2];
-                        p1Var.getLocationOnScreen(iArr2);
-                        int i16 = iArr2[0];
-                        int i17 = iArr2[1];
-                        p1Var.addView((View) imageView, w5.d(133.0f, 133));
-                        float f7 = width - i16;
-                        float f10 = dp / 2.0f;
-                        imageView.setTranslationX(f7 - f10);
-                        imageView.setTranslationY((height - i17) - f10);
-                        imageView.setOnAnimationEndListener(new l1(p1Var, imageView, 0));
-                        imageView.d();
-                    }
-                    fi1 fi1Var = p1Var.d;
-                    if (fi1Var != null) {
-                        fi1Var.f37795b.L = i15;
-                    }
-                }
-            }
+            });
+            ofFloat2.setInterpolator(new LinearInterpolator());
+            ofFloat2.setStartDelay(80L);
+            ofFloat2.setDuration(80L);
+            ofFloat2.start();
         } else {
-            n1 n1Var3 = this.f31853e;
-            if (n1Var3 != null) {
-                o1[] o1VarArr3 = ((p1) ((m4.x) n1Var3).f15997b).f31864c;
-                while (true) {
-                    i10 = this.f31854f;
-                    if (i11 > i10) {
-                        break;
-                    }
-                    o1 o1Var3 = o1VarArr3[i11];
-                    ik0 ik0Var5 = o1Var3.f31850a;
-                    ik0 ik0Var6 = o1Var3.f31851b;
-                    ik0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
-                    ik0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
-                    i11++;
-                }
-                for (int i18 = i10 + 1; i18 < o1VarArr3.length; i18++) {
-                    o1 o1Var4 = o1VarArr3[i18];
-                    ik0 ik0Var7 = o1Var4.f31850a;
-                    ik0 ik0Var8 = o1Var4.f31851b;
-                    ik0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                    ik0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                }
-            }
+            this.f30381i = z10;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        org.telegram.ui.Cells.z zVar = this.f31852c;
-        if (zVar != null) {
-            zVar.setState(getDrawableState());
-        }
-    }
-
-    @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        org.telegram.ui.Cells.z zVar = this.f31852c;
-        if (zVar != null) {
-            zVar.jumpToCurrentState();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        int width = getWidth();
-        int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f31852c;
-        zVar.setBounds(0, 0, width, height);
-        zVar.draw(canvas);
-    }
-
-    public void setAllStarsProvider(n1 n1Var) {
-        this.f31853e = n1Var;
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f31852c != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+        c();
     }
 }

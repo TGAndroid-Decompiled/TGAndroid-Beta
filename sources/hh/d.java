@@ -1,56 +1,69 @@
 package hh;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.RectF;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class d {
-    public final int f11476a;
-    public final long f11477b;
-    public long f11479e;
-    public long f11480f;
-    public long f11481g;
-    public long h;
-    public boolean f11482i;
-    public final RectF f11478c = new RectF();
-    public float f11483j = 0.0f;
-    public float f11484k = 0.0f;
-    public float f11485l = Float.MAX_VALUE;
-    public float f11486m = 0.0f;
-    public final long d = Utilities.random.nextLong();
+import android.view.View;
+import android.view.ViewGroup;
+import ih.j;
+public abstract class d {
+    public static final Matrix f10811a = new Matrix();
+    public static final RectF f10812b = new RectF();
+    public static final RectF f10813c = new RectF();
 
-    public d(int i10, long j3) {
-        this.f11476a = i10;
-        this.f11477b = j3;
+    public static void a(ch.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup) {
+        b(aVar, canvas, rectF, view, viewGroup, 255);
     }
 
-    public final TLRPC.TL_inputMessageReadMetric a() {
-        int round;
-        TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
-        tL_inputMessageReadMetric.msg_id = this.f11476a;
-        tL_inputMessageReadMetric.view_id = this.d;
-        tL_inputMessageReadMetric.time_in_view_ms = (int) this.f11481g;
-        tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.h;
-        float f7 = this.f11484k;
-        if (f7 == 0.0f) {
-            round = 1000;
-        } else {
-            round = Math.round((this.f11483j / f7) * 1000.0f);
-        }
-        tL_inputMessageReadMetric.height_to_viewport_ratio_permille = round;
-        tL_inputMessageReadMetric.seen_range_ratio_permille = b();
-        return tL_inputMessageReadMetric;
-    }
-
-    public final int b() {
-        float f7 = this.f11483j;
-        if (f7 != 0.0f) {
-            float f10 = this.f11485l;
-            float f11 = this.f11486m;
-            if (f10 <= f11) {
-                return Math.round(((f11 - f10) / f7) * 1000.0f);
+    public static void b(ch.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i10) {
+        boolean z10;
+        if (i10 > 0 && aVar != null) {
+            RectF rectF2 = f10813c;
+            if (j.c(view, viewGroup, rectF2)) {
+                float f7 = rectF2.left;
+                float f10 = rectF2.top;
+                RectF rectF3 = f10812b;
+                rectF3.set(rectF);
+                rectF3.offset(-f7, -f10);
+                boolean z11 = true;
+                if (f7 == 0.0f && f10 == 0.0f) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                if (i10 == 255) {
+                    z11 = false;
+                }
+                if (z10) {
+                    canvas.save();
+                    canvas.translate(f7, f10);
+                }
+                if (z11) {
+                    canvas.saveLayerAlpha(rectF3, i10);
+                }
+                aVar.f(canvas, rectF3);
+                if (z11) {
+                    canvas.restore();
+                }
+                if (z10) {
+                    canvas.restore();
+                }
             }
-            return 0;
         }
-        return 0;
+    }
+
+    public static void c(gh.b bVar, View view) {
+        Bitmap bitmap;
+        if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
+            Matrix matrix = f10811a;
+            matrix.reset();
+            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
+            bVar.f10144b.set(matrix);
+        }
+    }
+
+    public static c d(dh.d dVar, int i10, int i11) {
+        return new c(i10, i11, dVar);
     }
 }

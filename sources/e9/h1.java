@@ -1,39 +1,53 @@
 package e9;
 
 import java.io.Serializable;
-public final class h1 extends y0 implements Serializable {
-    public final y0 f8747a;
+import java.util.AbstractList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public final class h1 extends AbstractList implements RandomAccess, Serializable {
+    public final List f8570a;
+    public final d9.k f8571b;
 
-    public h1(y0 y0Var) {
-        this.f8747a = y0Var;
+    public h1(List list, d9.k kVar) {
+        list.getClass();
+        this.f8570a = list;
+        this.f8571b = kVar;
     }
 
     @Override
-    public final y0 a() {
-        return this.f8747a;
+    public final Object get(int i10) {
+        return this.f8571b.apply(this.f8570a.get(i10));
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        return this.f8747a.compare(obj2, obj);
+    public final boolean isEmpty() {
+        return this.f8570a.isEmpty();
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof h1) {
-            return this.f8747a.equals(((h1) obj).f8747a);
-        }
-        return false;
+    public final Iterator iterator() {
+        return listIterator();
     }
 
-    public final int hashCode() {
-        return -this.f8747a.hashCode();
+    @Override
+    public final ListIterator listIterator(int i10) {
+        return new g1(this, this.f8570a.listIterator(i10), 0);
     }
 
-    public final String toString() {
-        return this.f8747a + ".reverse()";
+    @Override
+    public final Object remove(int i10) {
+        return this.f8571b.apply(this.f8570a.remove(i10));
+    }
+
+    @Override
+    public final void removeRange(int i10, int i11) {
+        this.f8570a.subList(i10, i11).clear();
+    }
+
+    @Override
+    public final int size() {
+        return this.f8570a.size();
     }
 }

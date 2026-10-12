@@ -1,39 +1,37 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-public final class c9 {
-    public int f24854a;
-    public boolean f24855b;
-    public int f24856c;
-    public int d;
-    public int f24857e;
-    public int f24858f;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class c9 implements ValueAnimator.AnimatorUpdateListener {
+    public final float f23970a;
+    public final float f23971b;
+    public final boolean f23972c;
+    public final h9 d;
 
-    public final c9 a() {
-        ?? obj = new Object();
-        obj.f24856c = this.f24856c;
-        obj.d = this.d;
-        obj.f24857e = this.f24857e;
-        obj.f24858f = this.f24858f;
-        obj.f24855b = this.f24855b;
-        return obj;
+    public c9(h9 h9Var, float f7, float f10, boolean z10) {
+        this.d = h9Var;
+        this.f23970a = f7;
+        this.f23971b = f10;
+        this.f23972c = z10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        h9 h9Var = this.d;
+        h9Var.N = floatValue;
+        float lerp = AndroidUtilities.lerp(this.f23970a, this.f23971b, floatValue);
+        kVar = ((org.telegram.ui.ActionBar.m2) h9Var).actionBar;
+        kVar.getTitleTextView().setAlpha(h9Var.N);
+        if (h9Var.F && !this.f23972c) {
+            h9Var.i0(1.0f - h9Var.N, false);
         }
-        if (!(obj instanceof c9)) {
-            return false;
-        }
-        c9 c9Var = (c9) obj;
-        if (this.f24856c == c9Var.f24856c && this.d == c9Var.d && this.f24857e == c9Var.f24857e && this.f24858f == c9Var.f24858f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f24854a), Integer.valueOf(this.f24856c), Integer.valueOf(this.d), Integer.valueOf(this.f24857e), Integer.valueOf(this.f24858f));
+        h9Var.f25571r.setTranslationY(lerp);
+        h9Var.f25574x.setTranslationY(lerp);
+        h9Var.fragmentView.invalidate();
+        kVar2 = ((org.telegram.ui.ActionBar.m2) h9Var).actionBar;
+        kVar2.invalidate();
     }
 }

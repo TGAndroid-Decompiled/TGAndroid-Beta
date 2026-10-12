@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class a8 implements Runnable {
-    public final int f17051a;
-    public final MediaDataController f17052b;
-    public final TLRPC.Document f17053c;
+    public final int f16754a;
+    public final MediaDataController f16755b;
+    public final TLRPC.Document f16756c;
 
     public a8(int i10, MediaDataController mediaDataController, TLRPC.Document document) {
-        this.f17051a = i10;
-        this.f17052b = mediaDataController;
-        this.f17053c = document;
+        this.f16754a = i10;
+        this.f16755b = mediaDataController;
+        this.f16756c = document;
     }
 
     @Override
     public final void run() {
-        switch (this.f17051a) {
+        switch (this.f16754a) {
             case 0:
-                this.f17052b.lambda$removeRecentGif$25(this.f17053c);
+                this.f16755b.lambda$removeRecentGif$25(this.f16756c);
                 return;
             default:
-                this.f17052b.lambda$addRecentGif$26(this.f17053c);
+                this.f16755b.lambda$addRecentGif$26(this.f16756c);
                 return;
         }
     }

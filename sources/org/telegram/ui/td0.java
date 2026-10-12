@@ -1,89 +1,84 @@
 package org.telegram.ui;
 
-import android.graphics.PointF;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-public final class td0 implements o1.g {
-    public final int f42168a;
-    public final Object f42169b;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class td0 implements RequestDelegate {
+    public final int f40362a;
+    public final bh0 f40363b;
+    public final TLRPC.auth_SentCode f40364c;
+    public final Bundle d;
+    public final boolean e;
 
-    public td0(Object obj, int i10) {
-        this.f42168a = i10;
-        this.f42169b = obj;
+    public td0(int i10, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, bh0 bh0Var, boolean z10) {
+        this.f40362a = i10;
+        this.f40363b = bh0Var;
+        this.f40364c = auth_sentcode;
+        this.d = bundle;
+        this.e = z10;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        int i10 = this.f42168a;
-        int i11 = 0;
-        Object obj = this.f42169b;
-        switch (i10) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40362a) {
             case 0:
-                lg0 lg0Var = ((xg0) obj).f43940b0;
-                if (lg0Var != null) {
-                    int i12 = lg0.E;
-                    View view = lg0Var.f39739c;
-                    ViewGroup viewGroup = lg0Var.f39738b;
-                    PointF pointF = lg0Var.f39747y;
-                    hh.j.b(view, viewGroup, pointF);
-                    org.telegram.ui.Components.s20 s20Var = lg0Var.h;
-                    s20Var.setTranslationX(pointF.x);
-                    s20Var.setTranslationY(pointF.y);
-                    lg0Var.requestLayout();
+                boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
+                final bh0 bh0Var = this.f40363b;
+                final TLRPC.auth_SentCode auth_sentcode = this.f40364c;
+                final Bundle bundle = this.d;
+                if (z10) {
+                    bh0Var.k1(false, true);
+                    bh0Var.f34561o0 = false;
+                    auth_sentcode.type.verifiedFirebase = true;
+                    final boolean z11 = this.e;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r1) {
+                                case 0:
+                                    bh0Var.g1(bundle, auth_sentcode, z11);
+                                    return;
+                                default:
+                                    bh0Var.g1(bundle, auth_sentcode, z11);
+                                    return;
+                            }
+                        }
+                    });
                     return;
                 }
-                return;
-            case 1:
-                to0 to0Var = (to0) obj;
-                float f11 = f7 / 100.0f;
-                to0Var.f42260b = f11;
-                TextView textView = to0Var.d.U;
-                if (textView != null) {
-                    textView.setAlpha((f11 * 0.2f) + 0.8f);
-                }
-                to0Var.invalidate();
-                return;
-            case 2:
-                ru0 ru0Var = (ru0) obj;
-                ru0Var.f41722c0 = f7;
-                ru0Var.f41724e0 = f10;
-                ru0Var.G();
-                return;
-            case 3:
-                nv0 nv0Var = (nv0) obj;
-                if (nv0Var.f40490e > nv0Var.f40491f) {
-                    i11 = AndroidUtilities.dp(48.0f);
-                }
-                org.telegram.ui.Components.s81 s81Var = nv0Var.f40494s.f33849q3;
-                int measuredWidth = (int) (((nv0Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - i11);
-                int measuredHeight = nv0Var.getMeasuredHeight();
-                s81Var.h = measuredWidth;
-                s81Var.f30481i = measuredHeight;
-                View view2 = s81Var.v;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            case 4:
-                n41 n41Var = (n41) obj;
-                n41Var.f40214y = f7 / 1000.0f;
-                n41Var.invalidate();
+                FileLog.d("{PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+                bh0Var.s1(bundle, auth_sentcode, "PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE");
                 return;
             default:
-                h51 h51Var = (h51) obj;
-                org.telegram.ui.Components.s81 s81Var2 = h51Var.f38254r.Q;
-                int measuredWidth2 = (int) (((h51Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - 0);
-                int measuredHeight2 = h51Var.getMeasuredHeight();
-                s81Var2.h = measuredWidth2;
-                s81Var2.f30481i = measuredHeight2;
-                View view3 = s81Var2.v;
-                if (view3 != null) {
-                    view3.invalidate();
+                boolean z12 = tLObject instanceof TLRPC.TL_boolTrue;
+                final bh0 bh0Var2 = this.f40363b;
+                final TLRPC.auth_SentCode auth_sentcode2 = this.f40364c;
+                final Bundle bundle2 = this.d;
+                if (z12) {
+                    bh0Var2.k1(false, true);
+                    bh0Var2.f34561o0 = false;
+                    auth_sentcode2.type.verifiedFirebase = true;
+                    final boolean z13 = this.e;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r1) {
+                                case 0:
+                                    bh0Var2.g1(bundle2, auth_sentcode2, z13);
+                                    return;
+                                default:
+                                    bh0Var2.g1(bundle2, auth_sentcode2, z13);
+                                    return;
+                            }
+                        }
+                    });
                     return;
                 }
+                FileLog.d("{SAFETYNET_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+                bh0Var2.s1(bundle2, auth_sentcode2, "SAFETYNET_REQUESTFIREBASESMS_FALSE");
                 return;
         }
     }

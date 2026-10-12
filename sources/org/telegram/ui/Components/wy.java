@@ -1,52 +1,61 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class wy extends z4.a implements ge0 {
-    public final d00 f32578c;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public interface wy {
+    boolean A();
 
-    public wy(d00 d00Var) {
-        this.f32578c = d00Var;
-    }
+    long a();
 
-    @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
-    }
+    boolean b();
 
-    @Override
-    public final int b() {
-        return this.f32578c.f25077e.size();
-    }
+    boolean c();
 
-    @Override
-    public final CharSequence d(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return LocaleController.getString(R.string.AccDescrStickers);
-            }
-            return LocaleController.getString(R.string.AccDescrGIFs);
-        }
-        return LocaleController.getString(R.string.Emoji);
-    }
+    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
 
-    @Override
-    public final Object e(z4.g gVar, int i10) {
-        FrameLayout frameLayout = ((zz) this.f32578c.f25077e.get(i10)).f33528b;
-        gVar.addView(frameLayout);
-        return frameLayout;
-    }
+    void e(Object obj, Object obj2);
 
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
-    }
+    int f();
+
+    boolean g();
+
+    void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    void i(int i10);
+
+    boolean j();
+
+    boolean k();
+
+    void l(String str);
+
+    void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10);
+
+    void n();
+
+    void o(h61 h61Var);
+
+    float p();
+
+    void q();
+
+    void r(TLRPC.StickerSetCovered stickerSetCovered);
+
+    void s(int i10);
+
+    void t(ArrayList arrayList);
+
+    void u();
+
+    void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11);
+
+    void w();
+
+    void x(long j10, TLRPC.Document document, String str, boolean z10);
+
+    void y(long j10);
+
+    boolean z();
 }

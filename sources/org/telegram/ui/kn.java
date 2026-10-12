@@ -1,26 +1,99 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-public final class kn implements MessagesController.MessagesLoadedCallback {
-    public final ej f39553a;
-    public final eo f39554b;
-    public final pn f39555c;
+import android.app.Activity;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class kn extends org.telegram.ui.Components.jr0 {
+    public final MessageObject f37694b1;
+    public final qn f37695c1;
 
-    public kn(pn pnVar, ej ejVar, eo eoVar) {
-        this.f39555c = pnVar;
-        this.f39553a = ejVar;
-        this.f39554b = eoVar;
+    public kn(qn qnVar, Activity activity, fo foVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.c6 c6Var, boolean z12, MessageObject messageObject) {
+        super(activity, foVar, arrayList, null, null, z10, null, null, false, false, z11, null, c6Var);
+        this.f37695c1 = qnVar;
+        this.f37694b1 = messageObject;
+        this.f26457a0 = z12;
     }
 
     @Override
-    public final void onError() {
-        this.f39553a.c(false);
-        this.f39555c.f41000a.presentFragment(this.f39554b);
+    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        qn qnVar = this.f37695c1;
+        fo foVar = qnVar.f39497a;
+        int i11 = fo.Hc;
+        foVar.T7();
+        if (qnVar.f39497a.y3 != null && z10) {
+            if (hVar.m() == 1) {
+                if (((TLRPC.Dialog) hVar.n(0)).f19220id != qnVar.f39497a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.zc.a0(qnVar.f39497a).g0(i10, ((TLRPC.Dialog) hVar.n(0)).f19220id)) {
+                    qnVar.f39497a.y3.k(((TLRPC.Dialog) hVar.n(0)).f19220id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                    return;
+                }
+                return;
+            }
+            qnVar.f39497a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+        }
     }
 
     @Override
-    public final void onMessagesLoaded(boolean z10) {
-        this.f39553a.c(false);
-        this.f39555c.f41000a.presentFragment(this.f39554b);
+    public final void T0(final View view) {
+        di.dc dcVar;
+        fo foVar = this.f37695c1.f39497a;
+        MessageObject.GroupedMessages groupedMessages = null;
+        if (view instanceof org.telegram.ui.Cells.g7) {
+            dcVar = di.fc.b((org.telegram.ui.Cells.g7) view);
+        } else {
+            dcVar = null;
+        }
+        ArrayList arrayList = new ArrayList();
+        MessageObject messageObject = this.f37694b1;
+        if (messageObject.getGroupId() != 0) {
+            groupedMessages = (MessageObject.GroupedMessages) foVar.f36166x6.f(messageObject.getGroupId());
+        }
+        if (groupedMessages != null) {
+            arrayList.addAll(groupedMessages.messages);
+        } else {
+            arrayList.add(messageObject);
+        }
+        final di.kc D = di.kc.D(foVar.getParentActivity(), this.currentAccount);
+        D.R = new Utilities.Callback4() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                Long l4 = (Long) obj;
+                Runnable runnable = (Runnable) obj2;
+                Long l10 = (Long) obj4;
+                boolean booleanValue = ((Boolean) obj3).booleanValue();
+                di.kc kcVar = D;
+                di.dc dcVar2 = null;
+                if (booleanValue) {
+                    kn knVar = kn.this;
+                    AndroidUtilities.runOnUIThread(new fc(26, knVar, l10));
+                    knVar.dismiss();
+                    kcVar.X(null);
+                } else {
+                    View view2 = view;
+                    if ((view2 instanceof org.telegram.ui.Cells.g7) && view2.isAttachedToWindow()) {
+                        dcVar2 = di.fc.b((org.telegram.ui.Cells.g7) view2);
+                    }
+                    kcVar.X(dcVar2);
+                }
+                AndroidUtilities.runOnUIThread(runnable);
+            }
+        };
+        D.T(dcVar, di.k8.y(arrayList));
+    }
+
+    @Override
+    public final void dismissInternal() {
+        int i10;
+        fo foVar = this.f37695c1.f39497a;
+        Activity parentActivity = foVar.getParentActivity();
+        i10 = ((org.telegram.ui.ActionBar.m2) foVar).classGuid;
+        AndroidUtilities.requestAdjustResize(parentActivity, i10);
+        super.dismissInternal();
+        if (foVar.Y.getVisibility() == 0) {
+            foVar.fragmentView.requestLayout();
+        }
     }
 }

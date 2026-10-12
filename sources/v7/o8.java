@@ -1,17 +1,41 @@
 package v7;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.RemoteException;
 public abstract class o8 {
-    public static StaticLayout f49517a;
+    public static s7.e f46717a;
 
-    public static ii.c0 a(int i10, int i11, int i12, int i13) {
-        Rect rect = new Rect(i10, i11, i12, i13);
-        if (f49517a == null) {
-            f49517a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+    public static qb.c a(Bitmap bitmap) {
+        n6.l.i(bitmap, "image must not be null");
+        try {
+            s7.e eVar = f46717a;
+            n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
+            s7.c cVar = (s7.c) eVar;
+            Parcel N0 = cVar.N0();
+            s7.b.b(N0, bitmap);
+            Parcel M0 = cVar.M0(N0, 6);
+            x6.a K0 = x6.b.K0(M0.readStrongBinder());
+            M0.recycle();
+            return new qb.c(K0);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        return new ii.c0(f49517a, rect);
+    }
+
+    public static qb.c b(int i10) {
+        try {
+            s7.e eVar = f46717a;
+            n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
+            s7.c cVar = (s7.c) eVar;
+            Parcel N0 = cVar.N0();
+            N0.writeInt(i10);
+            Parcel M0 = cVar.M0(N0, 1);
+            x6.a K0 = x6.b.K0(M0.readStrongBinder());
+            M0.recycle();
+            return new qb.c(K0);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

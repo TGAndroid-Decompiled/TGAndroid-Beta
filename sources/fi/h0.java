@@ -1,71 +1,147 @@
 package fi;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+import di.x8;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.u61;
-import s4.d1;
-import w7.w5;
-public abstract class h0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.k f9971a;
-    public final jh.f f9972b;
-    public final FrameLayout f9973c;
-    public p71 d;
-    public boolean f9974e;
-    public final k0 f9975f;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.g6;
+import org.telegram.ui.Components.gq;
+import org.telegram.ui.Components.yj0;
+public final class h0 extends Drawable {
+    public final ImageView f9295a;
+    public final Paint f9296b;
+    public final RectF f9297c;
+    public final long d;
+    public final Drawable e;
+    public boolean f9298f;
+    public float f9299g;
+    public boolean h;
+    public final g6 f9300i;
+    public final g6 f9301j;
+    public final g6 f9302k;
+    public yj0 f9303l;
 
-    public h0(k0 k0Var, Context context) {
-        super(context);
-        this.f9975f = k0Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f9973c = frameLayout;
-        frameLayout.setPadding(0, 0, 0, 0);
-        frameLayout.setClipToPadding(true);
-        addView(frameLayout, w5.e(-1, -1, 119));
-        ?? view = new View(getContext());
-        this.f9972b = view;
-        view.setupColorKey(h6.f20504a7);
-        view.setFadeZoneBottom(AndroidUtilities.dp(72.0f) + AndroidUtilities.navigationBarHeight);
-        view.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
-        view.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
-        view.f14185a.b(-AndroidUtilities.dp(20.0f), false);
-        frameLayout.addView((View) view, w5.g());
+    public h0(Context context, ImageView imageView) {
+        Paint paint = new Paint(1);
+        this.f9296b = paint;
+        this.f9297c = new RectF();
+        this.h = false;
+        x8 x8Var = new x8(this, 13);
+        es esVar = es.h;
+        this.f9300i = new g6(x8Var, 320L, esVar, 0);
+        this.f9301j = new g6(new x8(this, 13), 320L, esVar, 0);
+        this.f9302k = new g6(new x8(this, 13), 320L, esVar, 0);
+        this.f9295a = imageView;
+        this.d = System.currentTimeMillis();
+        this.e = context.getResources().getDrawable(R.drawable.search_files_filled).mutate();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
-    public final void a() {
-        this.d.j(new ai.r(this, 6));
-        g0 g0Var = new g0(this);
-        g0Var.n(350L);
-        g0Var.o(js.h);
-        g0Var.C = false;
-        g0Var.f47937m = false;
-        this.d.setItemAnimator(g0Var);
-    }
-
-    public float b() {
-        float f7 = AndroidUtilities.displaySize.y;
-        for (int i10 = 0; i10 < this.d.getChildCount(); i10++) {
-            View childAt = this.d.getChildAt(i10);
-            d1 T = this.d.T(childAt);
-            if (T != null) {
-                u61 G = this.d.W2.G(T.b());
-                if (G != null && G.d != 99) {
-                    f7 = Math.min(childAt.getY() + this.f9973c.getPaddingTop(), f7);
-                }
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        float f10;
+        yj0 yj0Var;
+        int i10;
+        Canvas canvas2 = canvas;
+        Rect bounds = getBounds();
+        int centerX = bounds.centerX();
+        int centerY = bounds.centerY();
+        float e = this.f9302k.e(this.h);
+        float f11 = 0.0f;
+        char c10 = 2;
+        if (e < 1.0f) {
+            float f12 = 1.0f - e;
+            float f13 = (0.4f * f12) + 0.6f;
+            canvas2.save();
+            float f14 = centerX;
+            float f15 = centerY;
+            canvas2.scale(f13, f13, f14, f15);
+            Drawable drawable = this.e;
+            drawable.setBounds(org.telegram.ui.Cells.d0.u(2, centerX, drawable), org.telegram.ui.Cells.d0.d(2, centerY, drawable), org.telegram.ui.Cells.d0.y(2, centerX, drawable), org.telegram.ui.Cells.d0.x(2, centerY, drawable));
+            drawable.setAlpha((int) (f12 * 255.0f));
+            drawable.draw(canvas2);
+            float dp = AndroidUtilities.dp(14.0f);
+            int m12 = org.telegram.ui.ActionBar.g6.m1(0.2f * f12, -1);
+            Paint paint = this.f9296b;
+            paint.setColor(m12);
+            canvas2.drawCircle(f14, f15, dp, paint);
+            float f16 = f12 * 1.0f;
+            paint.setColor(org.telegram.ui.ActionBar.g6.m1(f16, -1));
+            float f17 = f14 - dp;
+            f10 = 255.0f;
+            float f18 = f15 - dp;
+            float f19 = f14 + dp;
+            float f20 = f15 + dp;
+            RectF rectF = this.f9297c;
+            rectF.set(f17, f18, f19, f20);
+            float e7 = this.f9300i.e(this.f9298f);
+            paint.setColor(org.telegram.ui.ActionBar.g6.m1((1.0f - e7) * f12 * 0.15f, -1));
+            long currentTimeMillis = System.currentTimeMillis();
+            long j10 = this.d;
+            canvas2.drawArc(rectF, (-(((((float) ((currentTimeMillis - j10) % 600)) / 600.0f) - 1.0f) * 360.0f)) - 90.0f, -90.0f, false, paint);
+            float currentTimeMillis2 = (((float) (System.currentTimeMillis() - j10)) * 0.45f) % 5400.0f;
+            float max = Math.max(0.0f, ((1520.0f * currentTimeMillis2) / 5400.0f) - 20.0f);
+            int i11 = 0;
+            while (i11 < 4) {
+                u1.a aVar = gq.h;
+                float f21 = f11;
+                aVar.getInterpolation((currentTimeMillis2 - (i11 * 1350)) / 667.0f);
+                max += aVar.getInterpolation((currentTimeMillis2 - (i10 + 667)) / 667.0f) * 250.0f;
+                i11++;
+                f11 = f21;
+                c10 = c10;
             }
+            f7 = f11;
+            paint.setColor(org.telegram.ui.ActionBar.g6.m1(f16, -1));
+            canvas2 = canvas;
+            canvas2.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, this.f9301j.d(this.f9299g, false)) * (-360.0f) * e7, false, paint);
+            invalidateSelf();
+            canvas2.restore();
+        } else {
+            f7 = 0.0f;
+            f10 = 255.0f;
         }
-        return f7;
+        if (e > f7 && (yj0Var = this.f9303l) != null) {
+            int i12 = yj0Var.f31603b / 2;
+            int i13 = yj0Var.f31605c / 2;
+            yj0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
+            this.f9303l.setAlpha((int) (e * f10));
+            this.f9303l.draw(canvas2);
+        }
     }
 
-    public void c() {
-        float b10 = b();
-        org.telegram.ui.ActionBar.k kVar = this.f9971a;
-        if (kVar != null) {
-            kVar.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, b10));
-        }
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(40.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(40.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

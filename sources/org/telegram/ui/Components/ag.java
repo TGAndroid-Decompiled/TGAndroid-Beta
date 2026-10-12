@@ -1,19 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ag extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f24300a;
-
-    public ag(ChatActivityEnterView chatActivityEnterView) {
-        this.f24300a = chatActivityEnterView;
+import org.telegram.messenger.MessageObject;
+public final class ag extends MessageObject {
+    @Override
+    public final boolean isOutOwner() {
+        return true;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f24300a;
-        chatActivityEnterView.f23664h1.setAllowDraw(true);
-        chatActivityEnterView.N1.setTransformToSeekbar(1.0f);
-        chatActivityEnterView.z0();
+    public final boolean needDrawShareButton() {
+        return false;
     }
 }

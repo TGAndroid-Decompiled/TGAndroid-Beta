@@ -1,139 +1,33 @@
 package k2;
+public final class t implements Runnable {
+    public final int f14017a;
+    public final qf.b f14018b;
+    public final t0 f14019c;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.Arrays;
-public final class t extends c2.i {
-    public int[] f14560i;
-    public int[] f14561j;
-
-    @Override
-    public final void c(ByteBuffer byteBuffer) {
-        int i10;
-        boolean z10;
-        int i11;
-        int i12;
-        int[] iArr = this.f14561j;
-        iArr.getClass();
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
-        ByteBuffer j3 = j(((limit - position) / this.f4011b.d) * this.f4012c.d);
-        while (position < limit) {
-            for (int i13 : iArr) {
-                int s10 = (e2.d0.s(this.f4011b.f4009c) * i13) + position;
-                int i14 = this.f4011b.f4009c;
-                if (i14 != 2) {
-                    if (i14 != 3) {
-                        if (i14 != 4) {
-                            if (i14 != 21) {
-                                if (i14 != 22) {
-                                    if (i14 != 268435456) {
-                                        if (i14 != 1342177280) {
-                                            if (i14 != 1610612736) {
-                                                throw new IllegalStateException("Unexpected encoding: " + this.f4011b.f4009c);
-                                            }
-                                        }
-                                    }
-                                }
-                                j3.putInt(byteBuffer.getInt(s10));
-                            }
-                            ByteOrder order = byteBuffer.order();
-                            ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
-                            if (order == byteOrder) {
-                                i10 = s10;
-                            } else {
-                                i10 = s10 + 2;
-                            }
-                            byte b10 = byteBuffer.get(i10);
-                            byte b11 = byteBuffer.get(s10 + 1);
-                            if (byteBuffer.order() == byteOrder) {
-                                s10 += 2;
-                            }
-                            int i15 = ((((b10 << 24) & (-16777216)) | ((b11 << 16) & 16711680)) | ((byteBuffer.get(s10) << 8) & 65280)) >> 8;
-                            boolean z11 = true;
-                            if ((i15 & (-16777216)) != 0 && (i15 & (-8388608)) != -8388608) {
-                                z10 = false;
-                            } else {
-                                z10 = true;
-                            }
-                            e2.d.a("Value out of range of 24-bit integer: " + Integer.toHexString(i15), z10);
-                            if (j3.remaining() < 3) {
-                                z11 = false;
-                            }
-                            e2.d.b(z11);
-                            if (j3.order() == byteOrder) {
-                                i11 = (i15 & 16711680) >> 16;
-                            } else {
-                                i11 = i15 & 255;
-                            }
-                            byte b12 = (byte) i11;
-                            byte b13 = (byte) ((i15 & 65280) >> 8);
-                            if (j3.order() == byteOrder) {
-                                i12 = i15 & 255;
-                            } else {
-                                i12 = (i15 & 16711680) >> 16;
-                            }
-                            j3.put(b12).put(b13).put((byte) i12);
-                        } else {
-                            j3.putFloat(byteBuffer.getFloat(s10));
-                        }
-                    } else {
-                        j3.put(byteBuffer.get(s10));
-                    }
-                }
-                j3.putShort(byteBuffer.getShort(s10));
-            }
-            position += this.f4011b.d;
-        }
-        byteBuffer.position(limit);
-        j3.flip();
+    public t(qf.b bVar, t0 t0Var, int i10) {
+        this.f14017a = i10;
+        this.f14018b = bVar;
+        this.f14019c = t0Var;
     }
 
     @Override
-    public final c2.f f(c2.f fVar) {
-        boolean z10;
-        boolean z11;
-        int i10 = fVar.f4009c;
-        int[] iArr = this.f14560i;
-        if (iArr == null) {
-            return c2.f.f4006e;
+    public final void run() {
+        int i10 = this.f14017a;
+        t0 t0Var = this.f14019c;
+        qf.b bVar = this.f14018b;
+        switch (i10) {
+            case 0:
+                String str = e2.m0.f8372a;
+                j2.f fVar = ((i2.b0) ((u) bVar.f43356c)).f10925a.f11012s;
+                j2.a p5 = fVar.p();
+                fVar.q(p5, 1032, new j2.e(p5, t0Var, 16));
+                return;
+            default:
+                String str2 = e2.m0.f8372a;
+                j2.f fVar2 = ((i2.b0) ((u) bVar.f43356c)).f10925a.f11012s;
+                j2.a p9 = fVar2.p();
+                fVar2.q(p9, 1031, new j2.c(p9, t0Var, 29));
+                return;
         }
-        int i11 = fVar.f4008b;
-        if (e2.d0.J(i10)) {
-            if (i11 != iArr.length) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            for (int i12 = 0; i12 < iArr.length; i12++) {
-                int i13 = iArr[i12];
-                if (i13 < i11) {
-                    if (i13 != i12) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    z10 |= z11;
-                } else {
-                    throw new c2.g("Channel map (" + Arrays.toString(iArr) + ") trying to access non-existent input channel.", fVar);
-                }
-            }
-            if (z10) {
-                return new c2.f(fVar.f4007a, iArr.length, i10);
-            }
-            return c2.f.f4006e;
-        }
-        throw new c2.g(fVar);
-    }
-
-    @Override
-    public final void g() {
-        this.f14561j = this.f14560i;
-    }
-
-    @Override
-    public final void i() {
-        this.f14561j = null;
-        this.f14560i = null;
     }
 }

@@ -90,7 +90,7 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract void writeInt32(int i10);
 
     @Override
-    public abstract void writeInt64(long j3);
+    public abstract void writeInt64(long j10);
 
     @Override
     public abstract void writeString(String str);

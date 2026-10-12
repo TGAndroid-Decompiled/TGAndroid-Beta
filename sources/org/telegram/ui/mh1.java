@@ -1,88 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-public final class mh1 extends ViewGroup {
-    public final Paint f40048a;
-    public View f40049b;
-    public boolean f40050c;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class mh1 extends org.telegram.ui.ActionBar.j {
+    public final oh1 f38266a;
 
-    public mh1(Context context) {
-        super(context);
-        this.f40048a = new Paint(1);
-        setClipToPadding(false);
+    public mh1(oh1 oh1Var) {
+        this.f38266a = oh1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int h = i0.a.h(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d6, false)), x02);
-        Paint paint = this.f40048a;
-        paint.setColor(x02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(h);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int i12;
-        View view = this.f40049b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
-        } else {
-            i12 = 0;
-        }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f40050c != z10) {
-            this.f40050c = z10;
-            WeakHashMap weakHashMap = r0.i0.f46989a;
-            r0.y.c(this);
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f40049b = view;
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.b5 b5Var;
+        oh1 oh1Var = this.f38266a;
+        if (i10 == -1) {
+            if (oh1Var.G >= 0) {
+                b5Var = ((org.telegram.ui.ActionBar.m2) oh1Var).parentLayout;
+                if (b5Var.getFragmentStack().size() == 1) {
+                    oh1Var.I0();
+                    return;
+                }
+            }
+            oh1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(oh1Var.getParentActivity());
+            TL_account.Password password = oh1Var.U;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+            a2Var.T = string;
+            a2Var.R = string2;
+            alertDialog$Builder.k(string3, new nq0(this, 23));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f19548a;
+            oh1Var.showDialog(a2Var2);
+            TextView textView = (TextView) a2Var2.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20139q7, false));
+            }
         }
     }
 }

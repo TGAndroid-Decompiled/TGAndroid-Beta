@@ -1,141 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
+import android.content.Context;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class l10 extends View {
-    public int E;
-    public RectF F;
-    public float G;
-    public ValueAnimator H;
-    public boolean f27974a;
-    public boolean f27975b;
-    public boolean f27976c;
-    public String d;
-    public TextPaint f27977e;
-    public Paint f27978f;
-    public Paint h;
-    public Paint f27979n;
-    public int f27980r;
-    public int f27981s;
-    public int v;
-    public int f27982w;
-    public int f27983x;
-    public int f27984y;
+import org.telegram.messenger.LocaleController;
+public final class l10 extends FrameLayout {
+    public final s6 f26907a;
+    public final s6 f26908b;
 
-    public final void a(boolean z10, boolean z11) {
-        this.f27975b = z10;
-        float f7 = 0.0f;
-        if (this.f27974a && z11) {
-            ValueAnimator valueAnimator = this.H;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.H.cancel();
-            }
-            float f10 = this.G;
-            if (z10) {
-                f7 = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.H = ofFloat;
-            ofFloat.addUpdateListener(new m6(this, 25));
-            this.H.setDuration(300L);
-            this.H.start();
-            return;
+    public l10(Context context) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        s6 s6Var = new s6(context, true, true, false);
+        this.f26907a = s6Var;
+        s6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        s6Var.setTypeface(AndroidUtilities.bold());
+        int i13 = org.telegram.ui.ActionBar.g6.L6;
+        s6Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
+        s6Var.setGravity(i10);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(s6Var, w7.a6.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -1, i11 | 80));
+        s6 s6Var2 = new s6(context, true, true, true);
+        this.f26908b = s6Var2;
+        s6Var2.b(0.45f, 250L, es.h);
+        s6Var2.setTextSize(AndroidUtilities.dp(15.0f));
+        s6Var2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
+        if (LocaleController.isRTL) {
+            i12 = 3;
+        } else {
+            i12 = 5;
+        }
+        s6Var2.setGravity(i12);
+        addView(s6Var2, w7.a6.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -2, (LocaleController.isRTL ? 3 : 5) | 80));
+        WeakHashMap weakHashMap = r0.j0.f43732a;
+        new r0.x(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
+    }
+
+    public final void a(String str, Runnable runnable) {
+        s6 s6Var = this.f26908b;
+        s6Var.c(str, !LocaleController.isRTL, true);
+        s6Var.setOnClickListener(new x6(1, runnable));
+    }
+
+    public final void b(String str, boolean z10) {
+        boolean z11;
+        s6 s6Var = this.f26907a;
         if (z10) {
-            f7 = 1.0f;
+            s6Var.a();
         }
-        this.G = f7;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Canvas canvas2;
-        int i10 = this.f27982w;
-        RectF rectF = this.F;
-        Paint paint = this.h;
-        Paint paint2 = this.f27979n;
-        Paint paint3 = this.f27978f;
-        TextPaint textPaint = this.f27977e;
-        super.draw(canvas);
-        float f10 = this.G;
-        if (f10 <= 0.5f) {
-            f7 = f10 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f27980r) + ((int) ((Color.red(this.f27981s) - Color.red(this.f27980r)) * f7)), Color.green(this.f27980r) + ((int) ((Color.green(this.f27981s) - Color.green(this.f27980r)) * f7)), Color.blue(this.f27980r) + ((int) ((Color.blue(this.f27981s) - Color.blue(this.f27980r)) * f7))));
-            textPaint.setColor(Color.rgb(Color.red(this.f27981s) + ((int) ((Color.red(this.v) - Color.red(this.f27981s)) * f7)), Color.green(this.f27981s) + ((int) ((Color.green(this.v) - Color.green(this.f27981s)) * f7)), Color.blue(this.f27981s) + ((int) ((Color.blue(this.v) - Color.blue(this.f27981s)) * f7))));
+        if (z10 && !LocaleController.isRTL) {
+            z11 = true;
         } else {
-            textPaint.setColor(this.v);
-            paint3.setColor(this.f27981s);
-            f7 = 1.0f;
+            z11 = false;
         }
-        int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f27981s);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
-        String str = this.d;
-        if (str != null) {
-            canvas.drawText(str, (f7 * this.f27984y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
-        }
-        float f11 = 2.0f - (this.G / 0.5f);
-        canvas.save();
-        canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
-        canvas.translate(AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(9.0f));
-        if (this.G > 0.5f) {
-            paint2.setColor(this.v);
-            float f12 = 1.0f - f11;
-            canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f12)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f12)), paint2);
-            canvas2.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(8.0f) * f12) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f12)), paint2);
-        } else {
-            canvas2 = canvas;
-        }
-        canvas2.restore();
+        s6Var.c(str, z11, true);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f27974a = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f27974a = false;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(this.f26907a.getText());
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int measureText;
-        Paint paint = this.h;
-        RectF rectF = this.F;
-        int i12 = this.E;
-        String str = this.d;
-        if (str == null) {
-            measureText = 0;
-        } else {
-            measureText = (int) this.f27977e.measureText(str);
-        }
-        setMeasuredDimension((i12 * 2) + measureText + (this.f27983x << 1), AndroidUtilities.dp(4.0f) + this.f27982w);
-        if (getMeasuredWidth() != 0) {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);
-        }
-    }
-
-    public void setChecked(boolean z10) {
-        a(z10, true);
-    }
-
-    public void setText(String str) {
-        this.d = str;
-        requestLayout();
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

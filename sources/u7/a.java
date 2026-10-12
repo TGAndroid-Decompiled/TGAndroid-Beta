@@ -14,7 +14,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 public abstract class a extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f49101a = new Object[0];
+    public static final Object[] f46219a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -36,13 +36,13 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
         Iterable$CC.$default$forEach(this, consumer);
     }
 
-    public abstract int i(Object[] objArr);
+    public abstract int h(Object[] objArr);
+
+    public abstract int m();
 
     public abstract int n();
 
-    public abstract int o();
-
-    public abstract Object[] p();
+    public abstract Object[] o();
 
     @Override
     public Stream parallelStream() {
@@ -103,7 +103,7 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     @Override
     public final Object[] toArray() {
-        return toArray(f49101a);
+        return toArray(f46219a);
     }
 
     @Override
@@ -112,19 +112,19 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
         int size = size();
         int length = objArr.length;
         if (length < size) {
-            Object[] p5 = p();
-            if (p5 == null) {
+            Object[] o10 = o();
+            if (o10 == null) {
                 if (length != 0) {
                     objArr = Arrays.copyOf(objArr, 0);
                 }
                 objArr = Arrays.copyOf(objArr, size);
             } else {
-                return Arrays.copyOfRange(p5, o(), n(), objArr.getClass());
+                return Arrays.copyOfRange(o10, n(), m(), objArr.getClass());
             }
         } else if (length > size) {
             objArr[size] = null;
         }
-        i(objArr);
+        h(objArr);
         return objArr;
     }
 }

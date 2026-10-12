@@ -1,40 +1,49 @@
 package bc;
 
-import android.os.SystemClock;
-import m.r3;
-import pi.n;
-import pi.t;
-import v7.k;
-import z7.fb;
-import z7.gb;
-import z7.ge;
-import z7.wf;
-public final class e implements wf {
-    public final long f3853a;
-    public final Object f3854b;
-    public final Object f3855c;
+import java.util.Arrays;
+import n6.l;
+import z7.ve;
+public final class e {
+    public final boolean f2636a;
+    public final boolean f2637b;
+    public final boolean f2638c;
 
-    public e(f fVar, gb gbVar, long j3) {
-        this.f3854b = fVar;
-        this.f3855c = gbVar;
-        this.f3853a = j3;
+    public e(d dVar) {
+        this.f2636a = dVar.f2633a;
+        this.f2637b = dVar.f2634b;
+        this.f2638c = dVar.f2635c;
     }
 
-    @Override
-    public a5.a zza() {
+    public final ve a() {
         ?? obj = new Object();
-        obj.f15557c = fb.TYPE_THIN;
-        k kVar = new k(18, false);
-        kVar.d = ((f) this.f3854b).f3858e.a();
-        kVar.f49482b = (gb) this.f3855c;
-        kVar.f49483c = Long.valueOf((SystemClock.elapsedRealtime() - this.f3853a) & Long.MAX_VALUE);
-        obj.f15558e = new ge(kVar);
-        return new a5.a((r3) obj, 0);
+        Boolean bool = Boolean.FALSE;
+        obj.f5426b = bool;
+        obj.f5427c = Boolean.valueOf(this.f2636a);
+        obj.f5425a = Boolean.valueOf(this.f2637b);
+        obj.d = bool;
+        obj.e = Boolean.valueOf(this.f2638c);
+        return new ve(obj);
     }
 
-    public e(t tVar, n nVar, long j3) {
-        this.f3855c = tVar;
-        this.f3854b = nVar;
-        this.f3853a = j3;
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof e) {
+                e eVar = (e) obj;
+                if (this.f2636a == eVar.f2636a && this.f2637b == eVar.f2637b && this.f2638c == eVar.f2638c && l.l(null, null)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        Boolean valueOf = Boolean.valueOf(this.f2636a);
+        Boolean valueOf2 = Boolean.valueOf(this.f2637b);
+        Boolean valueOf3 = Boolean.valueOf(this.f2638c);
+        Boolean bool = Boolean.FALSE;
+        return Arrays.hashCode(new Object[]{bool, valueOf, valueOf2, bool, valueOf3, null});
     }
 }

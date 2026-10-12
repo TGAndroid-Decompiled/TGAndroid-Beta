@@ -1,30 +1,30 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class pk extends org.telegram.ui.Components.lp {
-    public final eo f40983f;
+public final class pk extends org.telegram.ui.Components.gp {
+    public final fo f39256f;
 
-    public pk(eo eoVar, Context context) {
+    public pk(fo foVar, Context context) {
         super(context);
-        this.f40983f = eoVar;
+        this.f39256f = foVar;
     }
 
     @Override
     public final void a(boolean z10) {
-        eo eoVar = this.f40983f;
-        eoVar.w7();
-        eoVar.u7();
-        eoVar.x7();
-        eoVar.y7();
-        il ilVar = eoVar.f37218bb;
+        fo foVar = this.f39256f;
+        foVar.w7();
+        foVar.u7();
+        foVar.x7();
+        foVar.y7();
+        il ilVar = foVar.f35895bb;
         if (ilVar != null) {
-            ilVar.setTranslationY(eoVar.f37478w9 + getCurrentHeight());
+            ilVar.setTranslationY(foVar.w9 + getCurrentHeight());
         }
         if (z10) {
-            eoVar.D9 = true;
-            eoVar.nc();
+            foVar.D9 = true;
+            foVar.nc();
             return;
         }
-        eoVar.t9();
+        foVar.t9();
     }
 }

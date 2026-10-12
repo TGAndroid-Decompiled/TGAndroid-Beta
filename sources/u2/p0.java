@@ -1,14 +1,31 @@
 package u2;
-public final class p0 extends c3.v {
-    public final t0 f48903b;
+public final class p0 implements Runnable {
+    public final int f46017a;
+    public final w0 f46018b;
 
-    public p0(t0 t0Var, c3.b0 b0Var) {
-        super(b0Var);
-        this.f48903b = t0Var;
+    public p0(w0 w0Var, int i10) {
+        this.f46017a = i10;
+        this.f46018b = w0Var;
     }
 
     @Override
-    public final long l() {
-        return this.f48903b.S;
+    public final void run() {
+        switch (this.f46017a) {
+            case 0:
+                this.f46018b.f46071b0 = true;
+                return;
+            case 1:
+                this.f46018b.w();
+                return;
+            default:
+                w0 w0Var = this.f46018b;
+                if (!w0Var.f46079h0) {
+                    d0 d0Var = w0Var.I;
+                    d0Var.getClass();
+                    d0Var.G(w0Var);
+                    return;
+                }
+                return;
+        }
     }
 }

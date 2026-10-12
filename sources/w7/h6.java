@@ -1,30 +1,33 @@
 package w7;
 
-import android.os.Build;
-import android.util.Log;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.ui.ob0;
 public abstract class h6 {
-    public static void a(Object obj, String str, String str2) {
-        String c10 = c(str);
-        if (Log.isLoggable(c10, 3)) {
-            Log.d(c10, String.format(str2, obj));
+    public static boolean a(ob0 ob0Var) {
+        Context context = ApplicationLoader.applicationContext;
+        int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(ob0Var.a(context));
+        if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && ob0Var == ob0.h)) {
+            return true;
         }
+        return false;
     }
 
-    public static void b(String str, String str2, Exception exc) {
-        String c10 = c(str);
-        if (Log.isLoggable(c10, 6)) {
-            Log.e(c10, str2, exc);
-        }
-    }
-
-    public static String c(String str) {
-        if (Build.VERSION.SDK_INT < 26) {
-            String concat = "TRuntime.".concat(str);
-            if (concat.length() > 23) {
-                return concat.substring(0, 23);
+    public static void b(ob0 ob0Var) {
+        ob0[] values;
+        int i10;
+        Context context = ApplicationLoader.applicationContext;
+        PackageManager packageManager = context.getPackageManager();
+        for (ob0 ob0Var2 : ob0.values()) {
+            ComponentName a2 = ob0Var2.a(context);
+            if (ob0Var2 == ob0Var) {
+                i10 = 1;
+            } else {
+                i10 = 2;
             }
-            return concat;
+            packageManager.setComponentEnabledSetting(a2, i10, 1);
         }
-        return "TRuntime.".concat(str);
     }
 }

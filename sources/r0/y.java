@@ -1,18 +1,45 @@
 package r0;
 
+import android.os.Build;
 import android.view.View;
-import android.view.WindowInsets;
-public abstract class y {
-    public static WindowInsets a(View view, WindowInsets windowInsets) {
-        int i10 = k0.f46998a;
-        return view.dispatchApplyWindowInsets(windowInsets);
+import android.view.ViewTreeObserver;
+import java.util.Map;
+import java.util.WeakHashMap;
+public final class y implements ViewTreeObserver.OnGlobalLayoutListener, View.OnAttachStateChangeListener {
+    public final WeakHashMap f43769a = new WeakHashMap();
+
+    @Override
+    public final void onGlobalLayout() {
+        boolean z10;
+        int i10;
+        if (Build.VERSION.SDK_INT < 28) {
+            for (Map.Entry entry : this.f43769a.entrySet()) {
+                View view = (View) entry.getKey();
+                boolean booleanValue = ((Boolean) entry.getValue()).booleanValue();
+                if (view.isShown() && view.getWindowVisibility() == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (booleanValue != z10) {
+                    if (z10) {
+                        i10 = 16;
+                    } else {
+                        i10 = 32;
+                    }
+                    j0.f(i10, view);
+                    entry.setValue(Boolean.valueOf(z10));
+                }
+            }
+        }
     }
 
-    public static WindowInsets b(View view, WindowInsets windowInsets) {
-        return view.onApplyWindowInsets(windowInsets);
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
-    public static void c(View view) {
-        view.requestApplyInsets();
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
     }
 }

@@ -3,13 +3,13 @@ package n6;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class d extends o6.a {
-    public static final Parcelable.Creator<d> CREATOR = new m8.h(12);
-    public final int f16377a;
-    public final String f16378b;
+    public static final Parcelable.Creator<d> CREATOR = new m8.h(10);
+    public final int f16064a;
+    public final String f16065b;
 
     public d(int i10, String str) {
-        this.f16377a = i10;
-        this.f16378b = str;
+        this.f16064a = i10;
+        this.f16065b = str;
     }
 
     public final boolean equals(Object obj) {
@@ -20,26 +20,26 @@ public final class d extends o6.a {
             return false;
         }
         d dVar = (d) obj;
-        if (dVar.f16377a == this.f16377a && m.l(dVar.f16378b, this.f16378b)) {
+        if (dVar.f16064a == this.f16064a && l.l(dVar.f16065b, this.f16065b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f16377a;
+        return this.f16064a;
     }
 
     public final String toString() {
-        return this.f16377a + ":" + this.f16378b;
+        return this.f16064a + ":" + this.f16065b;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.c0.q(parcel, 20293);
-        w7.c0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16377a);
-        w7.c0.l(parcel, 2, this.f16378b);
-        w7.c0.r(parcel, q6);
+        int q6 = w7.g0.q(parcel, 20293);
+        w7.g0.s(parcel, 1, 4);
+        parcel.writeInt(this.f16064a);
+        w7.g0.l(parcel, 2, this.f16065b);
+        w7.g0.r(parcel, q6);
     }
 }

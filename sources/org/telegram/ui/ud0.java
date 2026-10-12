@@ -1,43 +1,26 @@
 package org.telegram.ui;
+public final class ud0 implements org.telegram.ui.ActionBar.z1 {
+    public final int f40651a;
+    public final bh0 f40652b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ud0 implements Runnable {
-    public final int f42499a;
-    public final hf0 f42500b;
-
-    public ud0(hf0 hf0Var, int i10) {
-        this.f42499a = i10;
-        this.f42500b = hf0Var;
+    public ud0(bh0 bh0Var, int i10) {
+        this.f40651a = i10;
+        this.f40652b = bh0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42499a) {
+    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f40651a) {
             case 0:
-                this.f42500b.L.m();
-                return;
-            case 1:
-                hf0 hf0Var = this.f42500b;
-                hf0Var.M = null;
-                hf0Var.N = null;
-                hf0Var.p(true);
-                hf0Var.f38356e.h(null, null, hf0Var.f38357f, null);
-                nd ndVar = hf0Var.f38358n;
-                org.telegram.ui.Components.fk0 fk0Var = hf0Var.I;
-                ndVar.setAnimation(fk0Var);
-                fk0Var.M(0);
-                hf0Var.K = true;
-                return;
-            case 2:
-                this.f42500b.K = true;
+                bh0 bh0Var = this.f40652b;
+                bh0Var.f34545b[bh0Var.f34543a].d();
+                bh0Var.k1(true, true);
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f42500b.f38355c;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
+                bh0 bh0Var2 = this.f40652b;
+                bh0Var2.f34558l0 = true;
+                if (bh0Var2.f34543a != 0) {
+                    bh0Var2.u1(0, true, null, true);
                     return;
                 }
                 return;

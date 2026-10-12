@@ -27,22 +27,22 @@ public final class h extends w {
     public static void i(h hVar, Set set) {
         int i10;
         y yVar = hVar.strings_;
-        if (!((androidx.datastore.preferences.protobuf.b) yVar).f2456a) {
+        if (!((androidx.datastore.preferences.protobuf.b) yVar).f1353a) {
             int size = yVar.size();
             if (size == 0) {
                 i10 = 10;
             } else {
                 i10 = size * 2;
             }
-            hVar.strings_ = yVar.d(i10);
+            hVar.strings_ = yVar.b(i10);
         }
         y yVar2 = hVar.strings_;
-        Charset charset = z.f2577a;
+        Charset charset = z.f1466a;
         if (set instanceof e0) {
-            List h = ((e0) set).h();
+            List g10 = ((e0) set).g();
             e0 e0Var = (e0) yVar2;
             int size2 = yVar2.size();
-            for (Object obj : h) {
+            for (Object obj : g10) {
                 if (obj == null) {
                     String str = "Element at index " + (e0Var.size() - size2) + " is null.";
                     for (int size3 = e0Var.size() - 1; size3 >= size2; size3--) {
@@ -50,7 +50,7 @@ public final class h extends w {
                     }
                     throw new NullPointerException(str);
                 } else if (obj instanceof androidx.datastore.preferences.protobuf.g) {
-                    e0Var.g((androidx.datastore.preferences.protobuf.g) obj);
+                    e0Var.e((androidx.datastore.preferences.protobuf.g) obj);
                 } else {
                     e0Var.add((String) obj);
                 }

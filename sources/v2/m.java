@@ -1,60 +1,10 @@
 package v2;
+public interface m {
+    public static final pb.a B = new pb.a(25);
 
-import b2.s;
-import c3.h0;
-import g2.b0;
-import u2.z0;
-import v7.k7;
-public final class m extends a {
-    public final int E;
-    public final s F;
-    public long G;
-    public boolean H;
+    long b();
 
-    public m(g2.h hVar, g2.m mVar, s sVar, int i10, Object obj, long j3, long j10, long j11, int i11, s sVar2) {
-        super(hVar, mVar, sVar, i10, obj, j3, j10, -9223372036854775807L, -9223372036854775807L, j11);
-        this.E = i11;
-        this.F = sVar2;
-    }
+    boolean next();
 
-    @Override
-    public final void a() {
-        z0[] z0VarArr;
-        b0 b0Var = this.f49292r;
-        n7.z0 z0Var = this.f49268x;
-        e2.d.h(z0Var);
-        for (z0 z0Var2 : (z0[]) z0Var.f16574c) {
-            if (z0Var2.F != 0) {
-                z0Var2.F = 0L;
-                z0Var2.f49001z = true;
-            }
-        }
-        h0 w10 = z0Var.w(this.E);
-        w10.b(this.F);
-        try {
-            long open = b0Var.open(this.f49287b.b(this.G));
-            if (open != -1) {
-                open += this.G;
-            }
-            c3.l lVar = new c3.l(this.f49292r, this.G, open);
-            for (int i10 = 0; i10 != -1; i10 = w10.a(lVar, Integer.MAX_VALUE, true)) {
-                this.G += i10;
-            }
-            w10.c(this.h, 1, (int) this.G, 0, null);
-            k7.a(b0Var);
-            this.H = true;
-        } catch (Throwable th2) {
-            k7.a(b0Var);
-            throw th2;
-        }
-    }
-
-    @Override
-    public final boolean c() {
-        return this.H;
-    }
-
-    @Override
-    public final void C() {
-    }
+    long p();
 }

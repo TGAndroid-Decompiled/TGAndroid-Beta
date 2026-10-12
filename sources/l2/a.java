@@ -1,24 +1,24 @@
 package l2;
 
-import e9.i0;
+import e9.n0;
 public final class a {
-    public final int[] f15050a;
-    public final int f15051b;
-    public final int f15052c;
+    public final int[] f14476a;
+    public final int f14477b;
+    public final int f14478c;
     public final int d;
-    public final int f15053e;
-    public final int f15054f;
-    public final int f15055g;
-    public final i0 h;
+    public final int e;
+    public final int f14479f;
+    public final int f14480g;
+    public final n0 h;
 
-    public a(int i10, int i11, int[] iArr, int i12, int i13, int i14, int i15, i0 i0Var) {
-        this.f15051b = i10;
-        this.f15050a = iArr;
-        this.f15052c = i11;
-        this.f15053e = i12;
-        this.f15054f = i13;
-        this.f15055g = i14;
+    public a(int i10, int i11, int[] iArr, int i12, int i13, int i14, int i15, n0 n0Var) {
+        this.f14477b = i10;
+        this.f14476a = iArr;
+        this.f14478c = i11;
+        this.e = i12;
+        this.f14479f = i13;
+        this.f14480g = i14;
         this.d = i15;
-        this.h = i0Var;
+        this.h = n0Var;
     }
 }

@@ -1,15 +1,8 @@
 package w7;
-
-import android.view.View;
 public abstract class x5 {
-    public abstract void a();
-
-    public void b() {
+    public void a() {
     }
 
-    public void c() {
-    }
-
-    public void d(View view) {
+    public void b(int i10, int i11) {
     }
 }

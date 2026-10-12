@@ -1,414 +1,360 @@
 package yh;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.HashSet;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class m2 extends FrameLayout {
-    public float E;
-    public int F;
-    public ValueAnimator G;
-    public l2 H;
-    public final f0 I;
-    public final View[] f53088a;
-    public final Matrix f53089b;
-    public final float[] f53090c;
-    public float d;
-    public float f53091e;
-    public boolean f53092f;
-    public final float[][] h;
-    public final float[] f53093n;
-    public final float[] f53094r;
-    public final Integer[] f53095s;
-    public final HashSet v;
-    public final HashMap f53096w;
-    public final HashMap f53097x;
-    public final float[] f53098y;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.f10;
+import org.telegram.ui.Components.ns0;
+import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.z61;
+import org.telegram.ui.Components.z9;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import w7.a6;
+import zh.f5;
+public final class m2 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final LinearLayout E;
+    public final TextView F;
+    public final TextView G;
+    public final di.d H;
+    public boolean I;
+    public final ns0 f48994a;
+    public final int f48995b;
+    public final c6 f48996c;
+    public boolean d;
+    public f5 e;
+    public final h2 f48997f;
+    public bh.l h;
+    public boolean f48998n;
+    public int f48999r;
+    public final FrameLayout f49000s;
+    public final LinearLayout v;
+    public final TextView f49001w;
+    public final TextView f49002x;
+    public final FrameLayout f49003y;
 
-    public m2(Context context, View[] viewArr) {
-        super(context);
-        this.f53089b = new Matrix();
-        float[] fArr = new float[16];
-        this.f53090c = fArr;
-        this.d = 0.0f;
-        this.f53091e = 0.0f;
-        this.f53092f = true;
-        this.h = new float[][]{new float[]{-1.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.0f, 1.0f, 0.0f, 0.0f}, new float[]{0.0f, -1.0f, 0.0f, 0.0f}, new float[]{0.0f, 0.0f, -1.0f, 0.0f}, new float[]{0.0f, 0.0f, 1.0f, 0.0f}};
-        this.f53093n = new float[4];
-        this.f53094r = new float[6];
-        this.f53095s = new Integer[]{0, 1, 2, 3, 4, 5};
-        this.v = new HashSet();
-        this.f53096w = new HashMap();
-        this.f53097x = new HashMap();
-        this.f53098y = new float[6];
-        this.F = -1;
-        this.I = new f0(this, 3);
-        setClipToOutline(false);
-        setClipToPadding(false);
-        android.opengl.Matrix.setIdentityM(fArr, 0);
-        this.f53088a = viewArr;
-        for (View view : viewArr) {
-            addView(view, w7.w5.e(108, 108, 17));
+    public m2(ns0 ns0Var, int i10, c6 c6Var) {
+        super(ns0Var.getContext());
+        this.f48999r = AndroidUtilities.displaySize.y;
+        Context context = ns0Var.getContext();
+        this.f48994a = ns0Var;
+        this.f48995b = i10;
+        this.f48996c = c6Var;
+        h2 h2Var = new h2(context, i10, new ii.a(this, 17), new g2(this), new g2(this), c6Var, ns0Var);
+        this.f48997f = h2Var;
+        h2Var.W2.f31780r = false;
+        h2Var.setSelectorType(9);
+        h2Var.setSelectorDrawableColor(0);
+        h2Var.setPadding(AndroidUtilities.dp(9.0f), ns0Var.K, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
+        h2Var.setClipToPadding(false);
+        h2Var.setClipChildren(false);
+        addView(h2Var, a6.e(-1, -1, 119));
+        h2Var.j(new ji.n3(9, this, ns0Var));
+        i2 i2Var = new i2(ns0Var);
+        i2Var.f44872m = false;
+        i2Var.C = false;
+        i2Var.o(es.h);
+        i2Var.n(350L);
+        h2Var.setItemAnimator(i2Var);
+        new s4.y(new j2(this, ns0Var)).d(h2Var);
+        View view = this.f49000s;
+        if (view != null) {
+            removeView(view);
         }
-    }
-
-    public static void b(float f7, float f10, float f11, float[] fArr) {
-        double d = f11;
-        float cos = (float) Math.cos(d);
-        float sin = (float) Math.sin(d);
-        float f12 = 1.0f - cos;
-        float f13 = f12 * f7;
-        fArr[0] = (f13 * f7) + cos;
-        float f14 = f13 * f10;
-        float f15 = sin * 0.0f;
-        fArr[4] = f14 - f15;
-        float f16 = f13 * 0.0f;
-        float f17 = sin * f10;
-        fArr[8] = f16 + f17;
-        fArr[12] = 0.0f;
-        fArr[1] = f14 + f15;
-        float f18 = f12 * f10;
-        fArr[5] = (f10 * f18) + cos;
-        float f19 = f18 * 0.0f;
-        float f20 = sin * f7;
-        fArr[9] = f19 - f20;
-        fArr[13] = 0.0f;
-        fArr[2] = f16 - f17;
-        fArr[6] = f19 + f20;
-        fArr[10] = com.google.android.gms.internal.vision.e2.w(f12, 0.0f, 0.0f, cos);
-        fArr[14] = 0.0f;
-        fArr[3] = 0.0f;
-        fArr[7] = 0.0f;
-        fArr[11] = 0.0f;
-        fArr[15] = 1.0f;
-    }
-
-    public static void c(float[] fArr, float[] fArr2, float[] fArr3) {
-        float f7 = fArr[1];
-        float f10 = fArr2[2];
-        float f11 = fArr[2];
-        fArr3[0] = (f7 * f10) - (fArr2[1] * f11);
-        float f12 = fArr2[0];
-        float f13 = fArr[0];
-        fArr3[1] = (f11 * f12) - (f10 * f13);
-        fArr3[2] = (f13 * fArr2[1]) - (fArr[1] * f12);
-    }
-
-    public static void d(float[] fArr, float[] fArr2, float[] fArr3) {
-        float[] fArr4 = new float[16];
-        android.opengl.Matrix.multiplyMM(fArr4, 0, fArr, 0, fArr2, 0);
-        System.arraycopy(fArr4, 0, fArr3, 0, 16);
-    }
-
-    public static void e(float[] fArr) {
-        float f7 = fArr[0];
-        float f10 = fArr[1];
-        float f11 = fArr[2];
-        float f12 = f11 * f11;
-        float sqrt = (float) Math.sqrt(f12 + (f10 * f10) + (f7 * f7));
-        if (sqrt > 0.0f) {
-            fArr[0] = fArr[0] / sqrt;
-            fArr[1] = fArr[1] / sqrt;
-            fArr[2] = fArr[2] / sqrt;
+        View view2 = this.f49003y;
+        if (view2 != null) {
+            removeView(view2);
         }
-    }
+        if (ns0Var.d == this.e) {
+            this.f49003y = null;
+            this.F = null;
+            this.G = null;
+            this.H = null;
+            this.E = null;
+            this.f49000s = new FrameLayout(getContext());
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.v = linearLayout;
+            linearLayout.setOrientation(1);
+            this.f49000s.addView(this.v, a6.e(-2, -2, 17));
+            z9 z9Var = new z9(getContext());
+            z9Var.setImageDrawable(new yj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+            this.v.addView(z9Var, a6.t(120, 120, 1, 0, 0, 0, 0));
+            TextView textView = new TextView(getContext());
+            this.f49001w = textView;
+            textView.setTextSize(1, 17.0f);
+            this.f49001w.setTypeface(AndroidUtilities.bold());
+            this.f49001w.setTextColor(g6.w0(g6.G6, c6Var));
+            this.f49001w.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundTitle));
+            this.v.addView(this.f49001w, a6.t(-2, -2, 1, 0, 12, 0, 0));
+            TextView textView2 = new TextView(getContext());
+            this.f49002x = textView2;
+            textView2.setTextSize(1, 14.0f);
+            TextView textView3 = this.f49002x;
+            int i11 = g6.Oh;
+            textView3.setTextColor(g6.w0(i11, c6Var));
+            this.f49002x.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundButton));
+            this.f49002x.setOnClickListener(new View.OnClickListener(this) {
+                public final m2 f48816b;
 
-    public final void a() {
-        if (Math.abs(this.d) > 1.0E-4f || Math.abs(this.f53091e) > 1.0E-4f) {
-            float[] fArr = new float[16];
-            b(1.0f, 0.0f, this.d, fArr);
-            float[] fArr2 = this.f53090c;
-            d(fArr, fArr2, fArr2);
-            b(0.0f, 1.0f, this.f53091e, fArr);
-            d(fArr, fArr2, fArr2);
-            if (this.f53092f) {
-                this.d *= 0.96f;
-                this.f53091e *= 0.96f;
-            }
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        RectF rectF;
-        boolean z10;
-        boolean z11;
-        float f7;
-        char c10;
-        float f10;
-        int i10;
-        int i11;
-        float f11;
-        float f12;
-        float f13;
-        int indexOfChild = indexOfChild(view);
-        float f14 = 1.0f;
-        if (indexOfChild >= 6) {
-            if (this.F == indexOfChild) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            rectF = (RectF) this.f53097x.get(Integer.valueOf(indexOfChild));
-            Integer num = (Integer) this.f53096w.get(Integer.valueOf(indexOfChild));
-            if (num != null) {
-                indexOfChild = num.intValue();
-            }
-            if (view instanceof r2) {
-                r2 r2Var = (r2) view;
-                if (z10) {
-                    f13 = this.E;
-                } else {
-                    f13 = 1.0f;
+                {
+                    this.f48816b = this;
                 }
-                float f15 = 1.0f - f13;
-                r2Var.d.setAlpha(f15);
-                r2Var.f53358e.setAlpha(f15);
-                if (!z10 || this.E >= 1.0f) {
-                    this.f53088a[indexOfChild].setVisibility(8);
-                }
-            }
-            z11 = true;
-        } else {
-            rectF = null;
-            z10 = false;
-            z11 = false;
-        }
-        float[][] fArr = this.h;
-        android.opengl.Matrix.multiplyMV(this.f53093n, 0, this.f53090c, 0, fArr[indexOfChild], 0);
-        float f16 = this.f53093n[2];
-        if (f16 < 0.001f) {
-            return false;
-        }
-        view.setAlpha(Math.min(1.0f, f16 / 0.3f));
-        float width = view.getWidth() / 2.0f;
-        if (z11 && (view instanceof r2)) {
-            float dp = AndroidUtilities.dp(-6.0f);
-            f7 = 1.0f;
-            if (z10) {
-                f14 = this.E;
-            }
-            c10 = 6;
-            f10 = (f14 * AndroidUtilities.dp(2.0f)) + dp;
-        } else {
-            f7 = 1.0f;
-            c10 = 6;
-            f10 = 0.0f;
-        }
-        float dp2 = AndroidUtilities.dp(108.0f) / 2.0f;
-        float width2 = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float[] fArr2 = new float[4];
-        float[] fArr3 = new float[4];
-        float[] fArr4 = new float[4];
-        System.arraycopy(fArr[indexOfChild], 0, fArr2, 0, 4);
-        if (indexOfChild != 0) {
-            if (indexOfChild != 1) {
-                if (indexOfChild != 2) {
-                    if (indexOfChild != 3) {
-                        if (indexOfChild != 4) {
-                            i10 = 3;
-                            if (indexOfChild == 5) {
-                                fArr3[0] = f7;
-                                fArr3[1] = 0.0f;
-                                fArr3[2] = 0.0f;
-                                fArr4[0] = 0.0f;
-                                fArr4[1] = -1.0f;
-                                fArr4[2] = 0.0f;
+
+                @Override
+                public final void onClick(View view3) {
+                    switch (r2) {
+                        case 0:
+                            f5 f5Var = this.f48816b.e;
+                            if (f5Var != null) {
+                                if (!f5Var.e || f5Var.f50505g != 783) {
+                                    f5Var.f50505g = 783;
+                                    f5Var.e = true;
+                                    f5Var.i(true);
+                                    return;
+                                }
+                                return;
                             }
-                        } else {
-                            i10 = 3;
-                            fArr3[0] = -1.0f;
-                            fArr3[1] = 0.0f;
-                            fArr3[2] = 0.0f;
-                            fArr4[0] = 0.0f;
-                            fArr4[1] = -1.0f;
-                            fArr4[2] = 0.0f;
-                        }
-                    } else {
-                        i10 = 3;
-                        fArr3[0] = f7;
-                        fArr3[1] = 0.0f;
-                        fArr3[2] = 0.0f;
-                        fArr4[0] = 0.0f;
-                        fArr4[1] = 0.0f;
-                        fArr4[2] = -1.0f;
+                            return;
+                        default:
+                            this.f48816b.f48994a.a();
+                            return;
                     }
-                } else {
-                    i10 = 3;
-                    fArr3[0] = f7;
-                    fArr3[1] = 0.0f;
-                    fArr3[2] = 0.0f;
-                    fArr4[0] = 0.0f;
-                    fArr4[1] = 0.0f;
-                    fArr4[2] = f7;
                 }
-            } else {
-                i10 = 3;
-                fArr3[0] = 0.0f;
-                fArr3[1] = 0.0f;
-                fArr3[2] = -1.0f;
-                fArr4[0] = 0.0f;
-                fArr4[1] = -1.0f;
-                fArr4[2] = 0.0f;
+            });
+            this.f49002x.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
+            this.f49002x.setBackground(g6.Z(g6.m1(0.1f, g6.w0(i11, c6Var)), 4, 4));
+            w7.c6.a(this.f49002x);
+            this.v.addView(this.f49002x, a6.t(-2, -2, 1, 0, 8, 0, 0));
+            addView(this.f49000s, a6.e(-1, -1, 119));
+            h2Var.setEmptyView(this.f49000s);
+            return;
+        }
+        this.f49000s = null;
+        this.f49001w = null;
+        this.f49002x = null;
+        this.v = null;
+        this.f49003y = new FrameLayout(getContext());
+        LinearLayout linearLayout2 = new LinearLayout(getContext());
+        this.E = linearLayout2;
+        linearLayout2.setOrientation(1);
+        this.f49003y.addView(this.E, a6.e(-2, -2, 17));
+        TextView textView4 = new TextView(getContext());
+        this.F = textView4;
+        textView4.setTextSize(1, 20.0f);
+        this.F.setTypeface(AndroidUtilities.bold());
+        this.F.setTextColor(g6.w0(g6.G6, c6Var));
+        this.F.setText(LocaleController.getString(R.string.Gift2CollectionEmptyTitle));
+        this.E.addView(this.F, a6.t(-2, -2, 1, 0, 0, 0, 0));
+        TextView textView5 = new TextView(getContext());
+        this.G = textView5;
+        textView5.setTextSize(1, 14.0f);
+        this.G.setTextColor(g6.w0(g6.f20288y6, c6Var));
+        this.G.setText(LocaleController.getString(R.string.Gift2CollectionEmptyText));
+        this.E.addView(this.G, a6.t(-2, -2, 1, 0, 10, 0, 0));
+        di.d dVar = new di.d(getContext(), c6Var, true);
+        this.H = dVar;
+        dVar.g(LocaleController.getString(R.string.Gift2CollectionEmptyButton), false, true);
+        this.E.addView(this.H, a6.t(200, 44, 1, 0, 19, 0, 12));
+        this.H.setOnClickListener(new View.OnClickListener(this) {
+            public final m2 f48816b;
+
+            {
+                this.f48816b = this;
             }
-        } else {
-            i10 = 3;
-            fArr3[0] = 0.0f;
-            fArr3[1] = 0.0f;
-            fArr3[2] = f7;
-            fArr4[0] = 0.0f;
-            fArr4[1] = -1.0f;
-            fArr4[2] = 0.0f;
-        }
-        fArr3[i10] = 0.0f;
-        fArr4[i10] = 0.0f;
-        float f17 = this.f53098y[indexOfChild];
-        if (f17 != 0.0f) {
-            double radians = (float) Math.toRadians(f17);
-            float cos = (float) Math.cos(radians);
-            float sin = (float) Math.sin(radians);
-            float f18 = fArr3[0];
-            float f19 = fArr4[0];
-            float f20 = fArr3[1];
-            float f21 = fArr4[1];
-            float f22 = fArr3[2];
-            float f23 = fArr4[2];
-            fArr3[0] = (f19 * sin) + (f18 * cos);
-            fArr3[1] = (f21 * sin) + (f20 * cos);
-            fArr3[2] = (f23 * sin) + (f22 * cos);
-            fArr4[0] = (f19 * cos) + ((-f18) * sin);
-            fArr4[1] = (f21 * cos) + ((-f20) * sin);
-            fArr4[2] = (f23 * cos) + ((-f22) * sin);
-            i11 = 4;
-        } else {
-            i11 = 4;
-        }
-        float[] fArr5 = new float[i11];
-        float[] fArr6 = new float[i11];
-        float[] fArr7 = new float[i11];
-        android.opengl.Matrix.multiplyMV(fArr5, 0, this.f53090c, 0, fArr2, 0);
-        float[] fArr8 = fArr5;
-        android.opengl.Matrix.multiplyMV(fArr6, 0, this.f53090c, 0, fArr3, 0);
-        float[] fArr9 = fArr6;
-        android.opengl.Matrix.multiplyMV(fArr7, 0, this.f53090c, 0, fArr4, 0);
-        float f24 = 64.0f * dp2;
-        int i12 = 2;
-        int i13 = 1;
-        float[][] fArr10 = (float[][]) Array.newInstance(Float.TYPE, 4, i10);
-        int i14 = 0;
-        for (int i15 = 4; i14 < i15; i15 = 4) {
-            if (i14 != i13 && i14 != i12) {
-                f11 = -1.0f;
-            } else {
-                f11 = f7;
+
+            @Override
+            public final void onClick(View view3) {
+                switch (r2) {
+                    case 0:
+                        f5 f5Var = this.f48816b.e;
+                        if (f5Var != null) {
+                            if (!f5Var.e || f5Var.f50505g != 783) {
+                                f5Var.f50505g = 783;
+                                f5Var.e = true;
+                                f5Var.i(true);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    default:
+                        this.f48816b.f48994a.a();
+                        return;
+                }
             }
-            if (i14 != 0 && i14 != i13) {
-                f12 = -1.0f;
-            } else {
-                f12 = f7;
-            }
-            float[] fArr11 = fArr10[i14];
-            float[] fArr12 = fArr8;
-            float[] fArr13 = fArr9;
-            fArr11[0] = com.google.android.gms.internal.vision.e2.A(fArr7[0], f12, (fArr9[0] * f11) + fArr8[0], dp2);
-            fArr11[1] = com.google.android.gms.internal.vision.e2.A(fArr7[1], f12, (fArr13[1] * f11) + fArr12[1], dp2);
-            fArr11[2] = com.google.android.gms.internal.vision.e2.A(fArr7[2], f12, (fArr13[2] * f11) + fArr12[2], dp2);
-            i14++;
-            fArr9 = fArr13;
-            fArr8 = fArr12;
-            i12 = 2;
-            i13 = 1;
+        });
+        addView(this.f49003y, a6.a(-1.0f, 0.0f, -12.0f, 0.0f, 0.0f, -1, 119));
+        h2Var.setEmptyView(this.f49003y);
+        LinearLayout linearLayout3 = this.E;
+        if (linearLayout3 != null) {
+            linearLayout3.setVisibility(ns0Var.e.h() ? 0 : 8);
         }
-        int i16 = i12;
-        float[] fArr14 = new float[8];
-        int i17 = 0;
-        while (i17 < 4) {
-            float[] fArr15 = fArr10[i17];
-            float f25 = f24 / (f24 - fArr15[i16]);
-            int i18 = i17 * 2;
-            fArr14[i18] = (fArr15[0] * f25) + width2;
-            fArr14[i18 + 1] = (fArr15[1] * f25) + height;
-            i17++;
-            i16 = 2;
-        }
-        float f26 = (width2 - width) - f10;
-        float f27 = (height - width) - f10;
-        float f28 = width2 + width + f10;
-        float f29 = height + width + f10;
-        float[] fArr16 = new float[8];
-        fArr16[0] = f26;
-        fArr16[1] = f27;
-        fArr16[2] = f28;
-        fArr16[i10] = f27;
-        fArr16[4] = f28;
-        fArr16[5] = f29;
-        fArr16[c10] = f26;
-        fArr16[7] = f29;
-        if (z10 && rectF != null) {
-            float f30 = rectF.left;
-            float f31 = rectF.top;
-            float f32 = rectF.right;
-            float f33 = rectF.bottom;
-            float[] fArr17 = new float[8];
-            fArr17[0] = f30;
-            fArr17[1] = f31;
-            fArr17[2] = f32;
-            fArr17[i10] = f31;
-            fArr17[4] = f32;
-            fArr17[5] = f33;
-            fArr17[c10] = f30;
-            fArr17[7] = f33;
-            AndroidUtilities.lerp(fArr17, fArr14, this.E, fArr14);
-        }
-        Matrix matrix = this.f53089b;
-        matrix.reset();
-        matrix.setPolyToPoly(fArr16, 0, fArr14, 0, 4);
-        canvas.save();
-        canvas.concat(matrix);
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
     }
 
-    public final void f(int i10, FrameLayout frameLayout) {
-        if (i10 == -1) {
-            i10 = 5;
+    public static void d(m2 m2Var, boolean z10) {
+        m2Var.setReordering(z10);
+    }
+
+    public void setReordering(boolean z10) {
+        h2 h2Var;
+        if (this.f48998n != z10) {
+            this.f48998n = z10;
+            ns0 ns0Var = this.f48994a;
+            ns0Var.p(ns0Var.g());
+            int i10 = 0;
+            while (true) {
+                h2Var = this.f48997f;
+                if (i10 >= h2Var.getChildCount()) {
+                    break;
+                }
+                View childAt = h2Var.getChildAt(i10);
+                if (childAt instanceof h1) {
+                    ((h1) childAt).d(z10, true);
+                }
+                i10++;
+            }
+            z61 z61Var = h2Var.W2;
+            if (z61Var != null) {
+                z61Var.S();
+            }
+            if (z10) {
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                if (U instanceof ProfileActivity) {
+                    ProfileActivity profileActivity = (ProfileActivity) U;
+                    profileActivity.G4(false);
+                    AndroidUtilities.runOnUIThread(new q1(profileActivity, 1));
+                }
+            }
         }
-        AndroidUtilities.removeFromParent(frameLayout);
-        int childCount = getChildCount();
-        addView(frameLayout, w7.w5.e(64, 64, 17));
-        this.v.add(Integer.valueOf(i10));
-        this.f53096w.put(Integer.valueOf(childCount), Integer.valueOf(i10));
     }
 
     @Override
-    public final int getChildDrawingOrder(int i10, int i11) {
-        if (i11 < 6) {
-            Integer[] numArr = this.f53095s;
-            if (i11 < numArr.length) {
-                return numArr[i11].intValue();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.e) {
+            f(true);
+            if (this.e != null && isAttachedToWindow()) {
+                h2 h2Var = this.f48997f;
+                if (h2Var.canScrollVertically(1)) {
+                    for (int i12 = 0; i12 < h2Var.getChildCount(); i12++) {
+                        if (!(h2Var.getChildAt(i12) instanceof f10)) {
+                        }
+                    }
+                    return;
+                }
+                this.e.a();
             }
         }
-        return i11;
+    }
+
+    public final void e() {
+        if (!this.f48998n) {
+            return;
+        }
+        f5 f5Var = this.e;
+        if (f5Var != null) {
+            f5Var.l();
+        }
+        setReordering(false);
+    }
+
+    public final void f(boolean z10) {
+        z61 z61Var;
+        h2 h2Var = this.f48997f;
+        if (h2Var != null && (z61Var = h2Var.W2) != null) {
+            boolean canScrollVertically = h2Var.canScrollVertically(-1);
+            z61Var.N(z10);
+            if (!canScrollVertically) {
+                h2Var.u0(0);
+            }
+        }
+    }
+
+    public float getTabsHeight() {
+        int i10 = 0;
+        while (true) {
+            h2 h2Var = this.f48997f;
+            if (i10 >= h2Var.getChildCount()) {
+                return 0.0f;
+            }
+            View childAt = h2Var.getChildAt(i10);
+            int R = RecyclerView.R(childAt);
+            if (childAt instanceof h1) {
+                if (R == 0) {
+                    return Math.max(0.0f, childAt.getY());
+                }
+            } else if (R == 0) {
+                return Math.max(0.0f, (childAt.getAlpha() * childAt.getHeight()) + childAt.getY());
+            }
+            i10++;
+        }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.I, 16L);
+        NotificationCenter.getInstance(this.f48995b).addObserver(this, NotificationCenter.starUserGiftsLoaded);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.I);
+        NotificationCenter.getInstance(this.f48995b).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        setVisibleHeight(this.f48999r);
+    }
+
+    public void setHasTabs(boolean z10) {
+        if (this.I == z10) {
+            return;
+        }
+        this.I = z10;
+        h2 h2Var = this.f48997f;
+        boolean canScrollVertically = h2Var.canScrollVertically(-1);
+        h2Var.W2.N(true);
+        if (!canScrollVertically) {
+            h2Var.u0(0);
+        }
+        this.f48994a.o();
+    }
+
+    public void setVisibleHeight(int i10) {
+        this.f48999r = i10;
+        float clamp01 = Utilities.clamp01(AndroidUtilities.ilerp(i10, AndroidUtilities.dp(150.0f), AndroidUtilities.dp(220.0f)));
+        float lerp = AndroidUtilities.lerp(0.6f, 1.0f, clamp01);
+        LinearLayout linearLayout = this.v;
+        if (linearLayout != null) {
+            linearLayout.setAlpha(clamp01);
+            this.v.setScaleX(lerp);
+            this.v.setScaleY(lerp);
+        }
+        FrameLayout frameLayout = this.f49000s;
+        if (frameLayout != null) {
+            frameLayout.setTranslationY((-(getMeasuredHeight() - this.f48999r)) / 2.0f);
+        }
+        LinearLayout linearLayout2 = this.E;
+        if (linearLayout2 != null) {
+            linearLayout2.setAlpha(clamp01);
+            this.E.setScaleX(lerp);
+            this.E.setScaleY(lerp);
+        }
+        FrameLayout frameLayout2 = this.f49003y;
+        if (frameLayout2 != null) {
+            frameLayout2.setTranslationY((-(getMeasuredHeight() - this.f48999r)) / 2.0f);
+        }
     }
 }

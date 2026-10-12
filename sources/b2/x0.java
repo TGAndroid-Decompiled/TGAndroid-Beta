@@ -1,56 +1,42 @@
 package b2;
 
-import android.os.Bundle;
-import android.util.SparseBooleanArray;
-import java.util.ArrayList;
-public final class x0 {
-    public static final x0 f3682b;
-    public static final String f3683c;
-    public final q f3684a;
+import java.io.IOException;
+public class x0 extends IOException {
+    public final boolean f2526a;
+    public final int f2527b;
 
-    static {
-        SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-        e2.d.g(!false);
-        f3682b = new x0(new q(sparseBooleanArray));
-        String str = e2.d0.f8529a;
-        f3683c = Integer.toString(0, 36);
+    public x0(String str, Throwable th2, boolean z10, int i10) {
+        super(str, th2);
+        this.f2526a = z10;
+        this.f2527b = i10;
     }
 
-    public x0(q qVar) {
-        this.f3684a = qVar;
+    public static x0 a(RuntimeException runtimeException, String str) {
+        return new x0(str, runtimeException, true, 1);
     }
 
-    public final boolean a(int i10) {
-        return this.f3684a.f3530a.get(i10);
+    public static x0 b(String str, Exception exc) {
+        return new x0(str, exc, true, 4);
     }
 
-    public final Bundle b() {
-        Bundle bundle = new Bundle();
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        int i10 = 0;
-        while (true) {
-            q qVar = this.f3684a;
-            if (i10 < qVar.f3530a.size()) {
-                arrayList.add(Integer.valueOf(qVar.a(i10)));
-                i10++;
-            } else {
-                bundle.putIntegerArrayList(f3683c, arrayList);
-                return bundle;
-            }
+    public static x0 c(String str) {
+        return new x0(str, null, false, 1);
+    }
+
+    @Override
+    public String getMessage() {
+        String str;
+        String message = super.getMessage();
+        StringBuilder sb2 = new StringBuilder();
+        if (message != null) {
+            str = message.concat(" ");
+        } else {
+            str = "";
         }
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof x0)) {
-            return false;
-        }
-        return this.f3684a.equals(((x0) obj).f3684a);
-    }
-
-    public final int hashCode() {
-        return this.f3684a.hashCode();
+        sb2.append(str);
+        sb2.append("{contentIsMalformed=");
+        sb2.append(this.f2526a);
+        sb2.append(", dataType=");
+        return a1.g.n(this.f2527b, "}", sb2);
     }
 }

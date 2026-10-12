@@ -5,15 +5,15 @@ import com.google.android.gms.cast.CastDevice;
 import java.util.Arrays;
 import java.util.UUID;
 public final class e implements com.google.android.gms.common.api.b {
-    public final CastDevice f4342a;
-    public final d6.d0 f4343b;
-    public final Bundle f4344c;
+    public final CastDevice f4462a;
+    public final d6.d0 f4463b;
+    public final Bundle f4464c;
     public final String d = UUID.randomUUID().toString();
 
-    public e(aa.a aVar) {
-        this.f4342a = (CastDevice) aVar.f386b;
-        this.f4343b = (d6.d0) aVar.f387c;
-        this.f4344c = (Bundle) aVar.d;
+    public e(androidx.biometric.e eVar) {
+        this.f4462a = (CastDevice) eVar.f1196b;
+        this.f4463b = (d6.d0) eVar.f1197c;
+        this.f4464c = (Bundle) eVar.d;
     }
 
     public final boolean equals(java.lang.Object r8) {
@@ -21,6 +21,6 @@ public final class e implements com.google.android.gms.common.api.b {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4342a, this.f4344c, 0, this.d});
+        return Arrays.hashCode(new Object[]{this.f4462a, this.f4464c, 0, this.d});
     }
 }

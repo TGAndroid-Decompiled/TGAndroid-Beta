@@ -171,11 +171,11 @@ public class ArrayUtils {
     }
 
     public static long total(long[] jArr) {
-        long j3 = 0;
-        for (long j10 : jArr) {
-            j3 += j10;
+        long j10 = 0;
+        for (long j11 : jArr) {
+            j10 += j11;
         }
-        return j3;
+        return j10;
     }
 
     public static boolean contains(int[] iArr, int i10) {

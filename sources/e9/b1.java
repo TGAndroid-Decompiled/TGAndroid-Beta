@@ -1,36 +1,16 @@
 package e9;
 
-import j$.util.Objects;
-import java.util.AbstractMap;
-import v7.t6;
-public final class b1 extends i0 {
-    public final c1 f8715c;
+import java.util.Iterator;
+public final class b1 extends l2 {
+    public final d9.k f8536b;
 
-    public b1(c1 c1Var) {
-        this.f8715c = c1Var;
+    public b1(Iterator it, d9.k kVar) {
+        super(it);
+        this.f8536b = kVar;
     }
 
     @Override
-    public final Object get(int i10) {
-        c1 c1Var = this.f8715c;
-        t6.c(i10, c1Var.h);
-        Object[] objArr = c1Var.f8719e;
-        int i11 = i10 * 2;
-        int i12 = c1Var.f8720f;
-        Object obj = objArr[i11 + i12];
-        Objects.requireNonNull(obj);
-        Object obj2 = objArr[i11 + (i12 ^ 1)];
-        Objects.requireNonNull(obj2);
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final int size() {
-        return this.f8715c.h;
+    public final Object a(Object obj) {
+        return this.f8536b.apply(obj);
     }
 }

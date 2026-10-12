@@ -1,117 +1,22 @@
 package org.telegram.ui.Components;
+public final class lf implements o1.g {
+    public boolean f27034a = false;
+    public final float f27035b;
+    public final ew0 f27036c;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
-import java.util.ArrayList;
-public final class lf implements Runnable {
-    public final int f28167a;
-    public int f28168b;
-    public final KeyEvent.Callback f28169c;
-
-    public lf(KeyEvent.Callback callback, int i10, int i11) {
-        this.f28167a = i11;
-        this.f28169c = callback;
-        this.f28168b = i10;
+    public lf(float f7, ew0 ew0Var) {
+        this.f27035b = f7;
+        this.f27036c = ew0Var;
     }
 
     @Override
-    public final void run() {
-        int currentPage;
-        boolean z10;
-        boolean z11;
-        int max;
-        int i10 = this.f28167a;
-        KeyEvent.Callback callback = this.f28169c;
-        switch (i10) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
-                ig igVar = chatActivityEnterView.U0;
-                if (igVar != null && (currentPage = igVar.getCurrentPage()) != this.f28168b) {
-                    this.f28168b = currentPage;
-                    boolean z12 = chatActivityEnterView.Z3;
-                    int i11 = 2;
-                    if (currentPage != 1 && currentPage != 2) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    chatActivityEnterView.Z3 = z10;
-                    boolean z13 = chatActivityEnterView.f23621a4;
-                    if (currentPage == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    chatActivityEnterView.f23621a4 = z11;
-                    if (chatActivityEnterView.f23628b4) {
-                        if (chatActivityEnterView.R1 != 0) {
-                            if (currentPage != 0) {
-                                i11 = 1;
-                            }
-                            chatActivityEnterView.o1(i11, true);
-                            chatActivityEnterView.M();
-                        } else if (!z10) {
-                            chatActivityEnterView.p1(false, true, false, true);
-                        }
-                    }
-                    if (z12 != chatActivityEnterView.Z3 || z13 != chatActivityEnterView.f23621a4) {
-                        chatActivityEnterView.L(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                int i12 = this.f28168b;
-                eq eqVar = (eq) callback;
-                s4.p0 layoutManager = eqVar.f25759w.getLayoutManager();
-                if (layoutManager != null) {
-                    if (i12 > eqVar.Q) {
-                        max = Math.min(i12 + 1, eqVar.h.d.size() - 1);
-                    } else {
-                        max = Math.max(i12 - 1, 0);
-                    }
-                    yp ypVar = eqVar.H;
-                    ypVar.f48066a = max;
-                    layoutManager.w0(ypVar);
-                }
-                eqVar.Q = i12;
-                return;
-            default:
-                int i13 = this.f28168b;
-                ci.j9 j9Var = (ci.j9) callback;
-                if (((lf) j9Var.f5288f) == this) {
-                    ArrayList arrayList = new ArrayList();
-                    TextView textView = (TextView) ((ArrayList) j9Var.f5285b).get(i13);
-                    Property property = View.SCALE_X;
-                    arrayList.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
-                    Property property2 = View.SCALE_Y;
-                    arrayList.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
-                    Property property3 = View.ALPHA;
-                    arrayList.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    TextView textView2 = (TextView) ((ArrayList) j9Var.f5286c).get(i13);
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, property, 1.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, property2, 1.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, property3, 1.0f));
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    j9Var.f5287e = animatorSet;
-                    animatorSet.setDuration(150L);
-                    ((AnimatorSet) j9Var.f5287e).playTogether(arrayList);
-                    ((AnimatorSet) j9Var.f5287e).addListener(new zd0(this, 3));
-                    ((AnimatorSet) j9Var.f5287e).start();
-                    return;
-                }
-                return;
+    public final void a(o1.h hVar, float f7, float f10) {
+        if (!this.f27034a && f7 >= this.f27035b) {
+            this.f27034a = true;
+            try {
+                this.f27036c.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
         }
-    }
-
-    public lf(ChatActivityEnterView chatActivityEnterView) {
-        this.f28167a = 0;
-        this.f28169c = chatActivityEnterView;
-        this.f28168b = -1;
     }
 }

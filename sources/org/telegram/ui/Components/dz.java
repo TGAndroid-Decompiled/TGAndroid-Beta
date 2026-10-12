@@ -1,61 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public interface dz {
-    boolean A();
+public final class dz {
+    public final ArrayList f24508a = new ArrayList();
+    public final wz f24509b;
 
-    long a();
+    public dz(wz wzVar) {
+        this.f24509b = wzVar;
+    }
 
-    boolean b();
-
-    boolean c();
-
-    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
-
-    void e(Object obj, Object obj2);
-
-    int f();
-
-    boolean g();
-
-    void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void i(int i10);
-
-    boolean j();
-
-    boolean k();
-
-    void l(String str);
-
-    void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10);
-
-    void n();
-
-    void o(q61 q61Var);
-
-    float p();
-
-    void q();
-
-    void r(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void s(int i10);
-
-    void t(ArrayList arrayList);
-
-    void u();
-
-    void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11);
-
-    void w();
-
-    void x(long j3, TLRPC.Document document, String str, boolean z10);
-
-    void y(long j3);
-
-    boolean z();
+    public final void a(String str, boolean z10) {
+        wz wzVar = this.f24509b;
+        int i10 = wzVar.f31014c1;
+        String p5 = a1.g.p("gif_search_", str, "_");
+        if (!z10 || !wzVar.f31041l0.containsKey(p5)) {
+            di.s1 s1Var = new di.s1(this, str, z10, p5);
+            ArrayList arrayList = this.f24508a;
+            if (z10) {
+                arrayList.add(p5);
+                MessagesStorage.getInstance(i10).getBotCache(p5, s1Var);
+                return;
+            }
+            MessagesController messagesController = MessagesController.getInstance(i10);
+            TLObject userOrChat = messagesController.getUserOrChat(messagesController.gifSearchBot);
+            if (!(userOrChat instanceof TLRPC.User)) {
+                return;
+            }
+            arrayList.add(p5);
+            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+            if (str == null) {
+                str = "";
+            }
+            tL_messages_getInlineBotResults.query = str;
+            tL_messages_getInlineBotResults.bot = messagesController.getInputUser((TLRPC.User) userOrChat);
+            tL_messages_getInlineBotResults.offset = "";
+            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, s1Var, 2);
+        }
+    }
 }

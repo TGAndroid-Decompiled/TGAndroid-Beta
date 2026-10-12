@@ -1,27 +1,23 @@
 package k1;
+public final class r extends md.c {
+    public Object f13798a;
+    public Object f13799b;
+    public Object f13800c;
+    public kotlin.jvm.internal.p d;
+    public z e;
+    public Object f13801f;
+    public final s h;
+    public int f13802n;
 
-import java.io.Serializable;
-import java.util.Iterator;
-public final class r extends ld.c {
-    public a0 f14361a;
-    public Object f14362b;
-    public Serializable f14363c;
-    public Object d;
-    public t f14364e;
-    public Iterator f14365f;
-    public Object h;
-    public final a0 f14366n;
-    public int f14367r;
-
-    public r(a0 a0Var, ld.c cVar) {
+    public r(s sVar, md.c cVar) {
         super(cVar);
-        this.f14366n = a0Var;
+        this.h = sVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.h = obj;
-        this.f14367r |= Integer.MIN_VALUE;
-        return this.f14366n.d(this);
+        this.f13801f = obj;
+        this.f13802n |= Integer.MIN_VALUE;
+        return this.h.a(null, this);
     }
 }

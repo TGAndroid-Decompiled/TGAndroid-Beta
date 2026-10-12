@@ -1,484 +1,111 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.os.Build;
-import android.os.PowerManager;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.js;
-public class k5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static Typeface V;
-    public static Typeface W;
-    public FrameLayout E;
-    public FrameLayout F;
-    public Bitmap G;
-    public View.OnClickListener H;
-    public final TextView I;
-    public final View J;
-    public final LinearLayout K;
-    public final i5 L;
-    public final org.telegram.ui.Components.r6 M;
-    public final FrameLayout.LayoutParams N;
-    public String O;
-    public int P;
-    public final int Q;
-    public float R;
-    public float S;
-    public int T;
-    public l0 U;
-    public boolean f34966a;
-    public float f34967b;
-    public final Matrix f34968c;
-    public final Matrix d;
-    public final Matrix f34969e;
-    public final RectF f34970f;
-    public boolean h;
-    public boolean f34971n;
-    public final boolean f34972r;
-    public float f34973s;
+import android.view.WindowManager;
+import java.util.WeakHashMap;
+import org.telegram.ui.Components.h60;
+public final class k5 implements SensorEventListener {
+    public static k5 G;
+    public float E;
+    public final SensorManager f33394a;
+    public final Sensor f33395b;
+    public final WindowManager f33396c;
+    public boolean f33399r;
+    public boolean f33400s;
     public float v;
-    public final Matrix f34974w;
-    public final Matrix f34975x;
-    public final Matrix f34976y;
+    public float f33401w;
+    public float f33403y;
+    public final Handler d = new Handler(Looper.getMainLooper());
+    public final WeakHashMap e = new WeakHashMap();
+    public final float[] f33397f = new float[9];
+    public final float[] h = new float[9];
+    public final float[] f33398n = new float[3];
+    public int f33402x = -1;
+    public final h60 F = new h60(this, 1);
 
-    public k5(Context context, boolean z10) {
-        this(R.drawable.wallet_card_qr, 45, context, z10);
-    }
-
-    public static String b(String str) {
-        StringBuilder sb2 = new StringBuilder((str.length() / 4) + str.length());
-        for (int i10 = 0; i10 < str.length(); i10++) {
-            if (i10 > 0 && i10 % 4 == 0) {
-                sb2.append(' ');
-            }
-            sb2.append(str.charAt(i10));
+    public k5(Context context) {
+        Sensor defaultSensor;
+        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
+        this.f33394a = sensorManager;
+        this.f33396c = (WindowManager) context.getSystemService("window");
+        if (sensorManager == null) {
+            defaultSensor = null;
+        } else {
+            defaultSensor = sensorManager.getDefaultSensor(15);
         }
-        return sb2.toString();
-    }
-
-    public static SpannableStringBuilder c(long j3) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.##", new DecimalFormatSymbols(Locale.US));
-        decimalFormat.setRoundingMode(RoundingMode.DOWN);
-        return l0.o(decimalFormat.format(BigDecimal.valueOf(j3, 9)), 0.8f);
-    }
-
-    public static String d(String str) {
-        char c10;
-        String[] split = str.split(" ");
-        if (split.length < 2) {
-            return str;
+        if (defaultSensor == null && sensorManager != null) {
+            defaultSensor = sensorManager.getDefaultSensor(11);
         }
-        int length = split.length / 2;
-        StringBuilder sb2 = new StringBuilder(str.length() + 1);
-        for (int i10 = 0; i10 < split.length; i10++) {
-            if (i10 > 0) {
-                if (i10 == length) {
-                    c10 = '\n';
-                } else {
-                    c10 = ' ';
-                }
-                sb2.append(c10);
-            }
-            sb2.append(split[i10]);
-        }
-        return sb2.toString();
-    }
-
-    public static void f(View view, Matrix matrix) {
-        if (view.getParent() instanceof View) {
-            View view2 = (View) view.getParent();
-            f(view2, matrix);
-            matrix.preTranslate(view.getLeft() - view2.getScrollX(), view.getTop() - view2.getScrollY());
-            matrix.preConcat(view.getMatrix());
-            return;
-        }
-        matrix.reset();
+        this.f33395b = defaultSensor;
     }
 
     public final void a() {
-        boolean z10 = this.f34971n;
-        int i10 = this.Q;
-        if (z10) {
-            f5 f5Var = new f5(this.P, i10, getContext(), false);
-            this.E = f5Var;
-            this.F = f5Var.getFrontFace();
-        } else {
-            s5 s5Var = new s5(getContext(), this.P, i10);
-            this.E = s5Var;
-            this.F = s5Var.getFrontFace();
+        if (this.f33399r) {
+            this.f33394a.unregisterListener(this);
         }
-        setAdditionalTilt(this.f34973s);
-        setUseGyroscope(this.v);
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof s5) {
-            ((s5) frameLayout).setDiamondAlpha(1.0f - this.R);
-        }
-        this.E.setOnClickListener(this.H);
-        addView(this.E, 0, w7.w5.d(-2.0f, -1));
-        Bitmap bitmap = this.G;
-        if (bitmap != null) {
-            setEngravingBitmap(bitmap);
-        }
+        this.f33400s = false;
+        this.f33399r = false;
+        this.d.removeCallbacks(this.F);
+        this.E = 0.0f;
+        this.f33403y = 0.0f;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.walletUpdate) {
-            Object obj = objArr[0];
-            l0 l0Var = this.U;
-            if (obj == l0Var) {
-                g(l0Var);
-            }
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        int i10;
+        float[] fArr = sensorEvent.values;
+        float[] fArr2 = this.f33397f;
+        SensorManager.getRotationMatrixFromVector(fArr2, fArr);
+        int rotation = this.f33396c.getDefaultDisplay().getRotation();
+        if (this.f33402x != rotation) {
+            this.f33400s = false;
+            this.f33402x = rotation;
         }
-    }
-
-    public final void e(float f7, float f10) {
-        if (this.R == f7 && this.S == f10) {
-            return;
-        }
-        this.R = f7;
-        if (f7 == 0.0f) {
-            this.h = false;
-        }
-        this.S = f10;
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof s5) {
-            ((s5) frameLayout).setDiamondAlpha(1.0f - f7);
-        }
-        this.L.invalidate();
-    }
-
-    public final void g(l0 l0Var) {
-        if (l0Var != null) {
-            int i10 = l0Var.f34996a;
-            setCardHolder(UserObject.getUserName(UserConfig.getInstance(i10).getCurrentUser()).toUpperCase());
-            if (l0Var.r() != null) {
-                setCardNumber(b(l0Var.r().toUpperCase()));
-            }
-            if (l0Var.D()) {
-                long t10 = l0Var.t();
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                SpannableString spannableString = new SpannableString("GRAM");
-                boolean z10 = false;
-                spannableString.setSpan(new gr(R.drawable.wallet_gram_large, 0), 0, spannableString.length(), 33);
-                spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
-                spannableStringBuilder.append((CharSequence) c(t10));
-                spannableStringBuilder.append((CharSequence) " ");
-                int length = spannableStringBuilder.length();
-                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GramCurrency));
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(-9577217), length, spannableStringBuilder.length(), 33);
-                this.L.setText(spannableStringBuilder);
-                long round = Math.round(MessagesController.getInstance(i10).config.tonUsdRate.get() * (t10 / 1.0E9d) * 100.0d);
-                BillingController billingController = BillingController.getInstance();
-                if (round % 100 == 0) {
-                    z10 = true;
-                }
-                this.M.setText(billingController.formatCurrency(round, "USD", 2, z10));
-            }
-        }
-    }
-
-    public View getBalanceAnchor() {
-        return this.J;
-    }
-
-    public LinearLayout getBalanceLayout() {
-        return this.K;
-    }
-
-    public org.telegram.ui.Components.r6 getBalanceView() {
-        return this.L;
-    }
-
-    public TextView getCardHolderView() {
-        return this.I;
-    }
-
-    public float getCardRotationX() {
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof f5) {
-            return ((f5) frameLayout).getCardRotationX();
-        }
-        return ((s5) frameLayout).getCardRotationX();
-    }
-
-    public float getCardRotationY() {
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof f5) {
-            return ((f5) frameLayout).getCardRotationY();
-        }
-        return ((s5) frameLayout).getCardRotationY();
-    }
-
-    public FrameLayout getFrontFace() {
-        return this.F;
-    }
-
-    public org.telegram.ui.Components.r6 getUsdBalanceView() {
-        return this.M;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        View view;
-        super.onAttachedToWindow();
-        if (getParent() instanceof View) {
-            view = (View) getParent();
+        int i11 = this.f33402x;
+        int i12 = 129;
+        if (i11 == 1) {
+            i10 = 129;
+            i12 = 2;
         } else {
-            view = null;
-        }
-        if (view != null) {
-            view.setTranslationZ(AndroidUtilities.dp(16.0f));
-            if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                viewGroup.setClipChildren(false);
-                viewGroup.setClipToPadding(false);
-            }
-        }
-        if (this.U != null) {
-            NotificationCenter.getInstance(this.T).addObserver(this, NotificationCenter.walletUpdate);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        View view;
-        if (getParent() instanceof View) {
-            view = (View) getParent();
-        } else {
-            view = null;
-        }
-        if (view != null) {
-            view.setTranslationZ(0.0f);
-        }
-        super.onDetachedFromWindow();
-        if (this.U != null) {
-            NotificationCenter.getInstance(this.T).removeObserver(this, NotificationCenter.walletUpdate);
-        }
-    }
-
-    public void setAdditionalTilt(float f7) {
-        this.f34973s = f7;
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof f5) {
-            ((f5) frameLayout).setAdditionalTilt(f7);
-        } else {
-            ((s5) frameLayout).setAdditionalTilt(f7);
-        }
-    }
-
-    public void setCardHolder(CharSequence charSequence) {
-        this.I.setText(charSequence);
-    }
-
-    public void setCardIcon(int i10) {
-        this.P = i10;
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof f5) {
-            ((f5) frameLayout).setCardIcon(i10);
-        } else {
-            ((s5) frameLayout).setCardIcon(i10);
-        }
-    }
-
-    public void setCardNumber(String str) {
-        if (str != null && !str.equals(this.O)) {
-            this.O = str;
-            Context context = getContext();
-            Bitmap createBitmap = Bitmap.createBitmap(1640, 1000, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            canvas.scale(4.8809524f, 4.8809524f);
-            canvas.translate(313.0f, 102.5f);
-            canvas.rotate(90.0f);
-            canvas.scale(1.18f, 1.0f);
-            Paint paint = new Paint(129);
-            paint.setColor(-1);
-            if (V == null) {
-                if (Build.VERSION.SDK_INT >= 26) {
-                    V = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 700").setWeight(700).build();
+            i10 = 130;
+            if (i11 != 2) {
+                if (i11 == 3) {
+                    i12 = 130;
+                    i10 = 1;
                 } else {
-                    V = Typeface.create(AndroidUtilities.getTypeface("fonts/rmono_var.ttf"), 1);
+                    i10 = 2;
+                    i12 = 1;
                 }
             }
-            paint.setTypeface(V);
-            paint.setTextSize(9.7f);
-            paint.setTextAlign(Paint.Align.CENTER);
-            Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-            float f7 = (-(fontMetrics.ascent + fontMetrics.descent)) * 0.5f;
-            String[] split = d(str).split("\\n");
-            canvas.drawText(split[0], 0.0f, (-5.6f) + f7, paint);
-            if (split.length > 1) {
-                canvas.drawText(split[1], 0.0f, f7 + 5.6f, paint);
-            }
-            setEngravingBitmap(createBitmap);
+        }
+        float[] fArr3 = this.h;
+        SensorManager.remapCoordinateSystem(fArr2, i12, i10, fArr3);
+        float[] fArr4 = this.f33398n;
+        SensorManager.getOrientation(fArr3, fArr4);
+        if (!this.f33400s) {
+            this.v = fArr4[1];
+            this.f33401w = fArr4[2];
+            this.f33400s = true;
+        }
+        float max = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[2] - this.f33401w, 6.283185307179586d)) / 0.45f));
+        float max2 = Math.max(-1.0f, Math.min(1.0f, ((float) Math.IEEEremainder(fArr4[1] - this.v, 6.283185307179586d)) / 0.45f));
+        float f7 = this.f33403y;
+        this.f33403y = com.google.android.gms.internal.play_billing.k3.y(max, f7, 0.12f, f7);
+        float f10 = this.E;
+        this.E = com.google.android.gms.internal.play_billing.k3.y(max2, f10, 0.12f, f10);
+        for (View view : this.e.keySet()) {
+            view.invalidate();
         }
     }
 
-    public void setCardOnClickListener(View.OnClickListener onClickListener) {
-        this.H = onClickListener;
-        this.E.setOnClickListener(onClickListener);
-    }
-
-    public void setDiamondOnCard(boolean z10) {
-        this.f34966a = z10;
-        if (!z10) {
-            FrameLayout frameLayout = this.E;
-            if (frameLayout instanceof s5) {
-                ((s5) frameLayout).c(0.0f, 0.0f, 0.0f, 0.0f);
-            }
-        }
-        this.L.invalidate();
-    }
-
-    public void setEngravingBitmap(Bitmap bitmap) {
-        this.G = bitmap;
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof f5) {
-            ((f5) frameLayout).setEngravingBitmap(bitmap);
-        } else {
-            ((s5) frameLayout).setEngravingBitmap(bitmap);
-        }
-    }
-
-    public void setOnFrontContentPresented(Runnable runnable) {
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof s5) {
-            ((s5) frameLayout).setOnFrontContentPresented(runnable);
-        } else if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public void setUse2D(boolean z10) {
-        boolean z11 = z10 | this.f34972r;
-        if (this.f34971n != z11) {
-            int childCount = this.F.getChildCount();
-            View[] viewArr = new View[childCount];
-            ViewGroup.LayoutParams[] layoutParamsArr = new ViewGroup.LayoutParams[childCount];
-            for (int i10 = 0; i10 < childCount; i10++) {
-                View childAt = this.F.getChildAt(i10);
-                viewArr[i10] = childAt;
-                layoutParamsArr[i10] = childAt.getLayoutParams();
-            }
-            this.F.removeAllViews();
-            removeView(this.E);
-            this.f34971n = z11;
-            a();
-            for (int i11 = 0; i11 < childCount; i11++) {
-                this.F.addView(viewArr[i11], layoutParamsArr[i11]);
-            }
-        }
-    }
-
-    public void setUseGyroscope(float f7) {
-        this.v = f7;
-        FrameLayout frameLayout = this.E;
-        if (frameLayout instanceof f5) {
-            ((f5) frameLayout).setUseGyroscope(f7);
-        } else {
-            ((s5) frameLayout).setUseGyroscope(f7);
-        }
-    }
-
-    public k5(int i10, int i11, Context context, boolean z10) {
-        super(context);
-        this.f34967b = 1.0f;
-        this.f34968c = new Matrix();
-        this.d = new Matrix();
-        this.f34969e = new Matrix();
-        this.f34970f = new RectF();
-        this.v = 1.0f;
-        this.f34974w = new Matrix();
-        this.f34975x = new Matrix();
-        this.f34976y = new Matrix();
-        this.T = UserConfig.selectedAccount;
-        PowerManager powerManager = (PowerManager) context.getSystemService("power");
-        boolean z11 = powerManager != null && powerManager.isPowerSaveMode();
-        this.f34972r = z11;
-        this.f34971n = z10 || z11;
-        this.P = i10;
-        this.Q = i11;
-        setClipChildren(false);
-        setClipToPadding(false);
-        setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        a();
-        TextView textView = new TextView(context);
-        this.I = textView;
-        if (W == null) {
-            if (Build.VERSION.SDK_INT >= 26) {
-                W = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
-            } else {
-                W = AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            }
-        }
-        textView.setTypeface(W);
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 12.6f);
-        textView.setShadowLayer(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), -16611884);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setMaxLines(1);
-        textView.setSingleLine();
-        this.F.addView(textView, w7.w5.a(-2.0f, 24.0f, 16.6f, 64.0f, 16.6f, -1, 83));
-        View view = new View(context);
-        this.J = view;
-        this.F.addView(view, w7.w5.a(1.0f, 24.0f, 0.0f, 0.0f, 0.0f, 1, 19));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.K = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        FrameLayout.LayoutParams a2 = w7.w5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 19);
-        this.N = a2;
-        this.F.addView(linearLayout, a2);
-        i5 i5Var = new i5(this, context, i11);
-        this.L = i5Var;
-        i5Var.getDrawable().M = AndroidUtilities.dp(4096.0f);
-        js jsVar = js.h;
-        i5Var.f30056c.m(0.35f, 320L, 3.5f, jsVar);
-        i5Var.setScaleProperty(0.6f);
-        i5Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
-        i5Var.setTextSize(AndroidUtilities.dp(24.0f));
-        i5Var.setTextColor(-1);
-        i5Var.setIgnoreRTL(true);
-        linearLayout.addView(i5Var, w7.w5.n(-1, 28));
-        org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(context, false, true, true, true, true);
-        this.M = r6Var;
-        r6Var.f30056c.m(0.35f, 320L, 3.5f, jsVar);
-        r6Var.setScaleProperty(0.6f);
-        r6Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
-        r6Var.setTextSize(AndroidUtilities.dp(14.0f));
-        r6Var.setTextColor(-7868417);
-        r6Var.setLayoutDirection(0);
-        r6Var.setTextDirection(3);
-        r6Var.setGravity(19);
-        r6Var.setIgnoreRTL(true);
-        linearLayout.addView(r6Var, w7.w5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 16));
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

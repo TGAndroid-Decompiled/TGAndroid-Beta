@@ -1,102 +1,81 @@
 package zg;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Cells.c1;
-public final class c {
-    public float f54709a;
-    public float f54710b;
-    public float f54711c;
-    public float d;
-    public float f54712e;
-    public float f54713f;
-    public float f54714g;
-    public float h;
-    public long f54715i;
-    public boolean f54716j;
-    public float f54717k;
-    public final d f54718l;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Cells.xa;
+import org.telegram.ui.Components.k9;
+import ug.s;
+public final class c extends xa {
+    public final a f50244a0;
+    public TL_stories.PrepaidGiveaway f50245b0;
 
-    public c(d dVar) {
-        this.f54718l = dVar;
+    public c(Context context) {
+        super(0, 0, context, false);
+        this.f50244a0 = new a(context);
     }
 
-    public final void a() {
-        d dVar;
-        float f7;
-        float f10 = 0.0f;
-        this.h = 0.0f;
-        float b10 = b();
-        float c10 = c();
-        int i10 = 0;
-        while (true) {
-            dVar = this.f54718l;
-            if (i10 >= 20) {
-                break;
-            }
-            float b11 = b();
-            float c11 = c();
-            float f11 = 2.1474836E9f;
-            for (int i11 = 0; i11 < dVar.f54725c.size(); i11++) {
-                float f12 = ((c) dVar.f54725c.get(i11)).f54711c - b11;
-                float f13 = ((c) dVar.f54725c.get(i11)).d - c11;
-                float f14 = (f13 * f13) + (f12 * f12);
-                if (f14 < f11) {
-                    f11 = f14;
-                }
-            }
-            if (f11 > f10) {
-                b10 = b11;
-                c10 = c11;
-                f10 = f11;
-            }
-            i10++;
-        }
-        if (dVar.f54727f) {
-            f7 = 0.8f;
-        } else {
-            f7 = 0.5f;
-        }
-        this.f54711c = b10;
-        if (b10 > dVar.f54724b.width() * f7) {
-            this.f54709a = dVar.f54724b.width() * f7;
-        } else {
-            float width = dVar.f54724b.width() * f7;
-            this.f54709a = width;
-            if (this.f54711c > width) {
-                this.f54711c = width - 0.1f;
-            }
-        }
-        this.f54710b = a1.g.e(c1.d(Utilities.fastRandom, 100), 100.0f, dVar.f54724b.height() * 0.1f, dVar.f54724b.height() * 0.45f);
-        if (dVar.f54727f) {
-            float e7 = a1.g.e(c1.d(Utilities.fastRandom, 100), 100.0f, dVar.f54724b.width() * 0.1f, dVar.f54724b.width() * 0.05f);
-            this.f54713f = e7;
-            this.f54714g = (((c1.d(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * e7;
-            this.d = a1.g.e(c1.d(Utilities.fastRandom, 100), 100.0f, dVar.f54724b.height() * 0.1f, this.f54713f / 2.0f);
-            this.f54712e = dVar.f54724b.height() + this.f54713f;
-            this.f54715i = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
-        } else {
-            float e10 = a1.g.e(c1.d(Utilities.fastRandom, 100), 100.0f, dVar.f54724b.width() * 0.1f, dVar.f54724b.width() * 0.05f);
-            this.f54713f = e10;
-            this.f54714g = (((c1.d(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * e10;
-            this.d = c10;
-            this.f54712e = c10 + dVar.f54724b.height();
-            this.f54715i = 1800L;
-        }
-        this.f54715i = ((float) this.f54715i) / 1.75f;
-        this.f54716j = Utilities.fastRandom.nextBoolean();
-        this.f54717k = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
+    @Override
+    public int[] getColorKeys() {
+        return null;
     }
 
-    public final float b() {
-        d dVar = this.f54718l;
-        if (dVar.f54727f) {
-            float width = dVar.f54724b.width() * 1.5f;
-            return a1.g.e(c1.d(Utilities.fastRandom, 100), 100.0f, width, dVar.f54724b.width() * (-0.25f));
-        }
-        return (c1.d(Utilities.fastRandom, 100) / 100.0f) * dVar.f54724b.width();
+    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
+        return this.f50245b0;
     }
 
-    public final float c() {
-        return (c1.d(Utilities.fastRandom, 100) / 100.0f) * this.f54718l.f54724b.height() * 0.5f;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.S) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(70.0f);
+            }
+            float f7 = dp;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(70.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, g6.f20022k0);
+        }
+    }
+
+    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        this.f50245b0 = prepaidGiveaway;
+        boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
+        k9 k9Var = this.E;
+        if (z10) {
+            k9Var.g(26);
+            String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
+            a aVar = this.f50244a0;
+            aVar.f50237f = valueOf;
+            aVar.e = aVar.f50234a.measureText(valueOf);
+            aVar.invalidateSelf();
+        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
+            k9Var.g(16);
+            int i10 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
+            if (i10 == 12) {
+                k9Var.i(-31392, -2796986);
+            } else if (i10 == 6) {
+                k9Var.i(-10703110, -12481584);
+            } else {
+                k9Var.i(-6631068, -11945404);
+            }
+            String valueOf2 = String.valueOf(s.g() * prepaidGiveaway.quantity);
+            a aVar2 = this.f50244a0;
+            aVar2.f50237f = valueOf2;
+            aVar2.e = aVar2.f50234a.measureText(valueOf2);
+            aVar2.invalidateSelf();
+        }
+        this.f22751b.i(this.f50244a0);
     }
 }

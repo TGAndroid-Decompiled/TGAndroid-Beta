@@ -1,37 +1,39 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.m10;
-public final class n extends m10 {
-    public final Paint U;
-    public final u V;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.px;
+public final class n extends org.telegram.ui.ActionBar.m {
+    public final int d = 1;
+    public final FrameLayout e;
 
-    public n(u uVar, Context context) {
-        super(context, null);
-        this.V = uVar;
-        this.U = new Paint();
+    public n(px pxVar, Context context, c2.b bVar) {
+        super(context, null, bVar);
+        this.e = pxVar;
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.V.d;
+    public final void e(ne.l lVar) {
+        switch (this.d) {
+            case 0:
+                super.e(lVar);
+                ((px) this.e).invalidate();
+                return;
+            default:
+                super.e(lVar);
+                float totalVisibility = getTotalVisibility();
+                i5 i5Var = ((org.telegram.ui.ActionBar.k) this.e).F0;
+                if (i5Var != null) {
+                    i5Var.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        return 27;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = h6.w0(h6.f20560d6, this.V.W.f3941c);
-        Paint paint = this.U;
-        paint.setColor(w02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.onDraw(canvas);
+    public n(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, c2.b bVar) {
+        super(context, c6Var, bVar);
+        this.e = kVar;
     }
 }

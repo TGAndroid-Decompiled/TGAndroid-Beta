@@ -1,39 +1,53 @@
 package org.telegram.ui;
-public final class ff1 implements Runnable {
-    public final int f37769a;
-    public final hg1 f37770b;
 
-    public ff1(hg1 hg1Var, int i10) {
-        this.f37769a = i10;
-        this.f37770b = hg1Var;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+public final class ff1 extends FrameLayout {
+    public ValueAnimator f35823a;
+    public boolean f35824b;
+    public float f35825c;
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7 = ((1.0f - this.f35825c) * 0.2f) + 0.8f;
+        canvas.save();
+        canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        if (isPressed()) {
+            float f10 = this.f35825c;
+            if (f10 != 1.0f) {
+                this.f35825c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
+                invalidate();
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f37769a) {
-            case 0:
-                hg1 hg1Var = this.f37770b;
-                hg1Var.x0();
-                hg1Var.B0();
-                return;
-            case 1:
-                this.f37770b.x0();
-                return;
-            case 2:
-                this.f37770b.O0(true);
-                return;
-            case 3:
-                this.f37770b.finishPreviewFragment();
-                return;
-            case 4:
-                hg1 hg1Var2 = this.f37770b;
-                hg1Var2.A0 = null;
-                hg1Var2.U0(true, false);
-                return;
-            default:
-                hg1 hg1Var3 = this.f37770b;
-                hg1Var3.N.postOnAnimation(new ff1(hg1Var3, 1));
-                return;
+    public final void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        super.setPressed(z10);
+        if (this.f35824b != z10) {
+            this.f35824b = z10;
+            invalidate();
+            if (z10 && (valueAnimator = this.f35823a) != null) {
+                valueAnimator.removeAllListeners();
+                this.f35823a.cancel();
+            }
+            if (!z10) {
+                float f7 = this.f35825c;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.f35823a = ofFloat;
+                    ofFloat.addUpdateListener(new f21(this, 16));
+                    this.f35823a.addListener(new lj0(this, 27));
+                    org.telegram.ui.Cells.d0.l(5.0f, this.f35823a);
+                    this.f35823a.setDuration(350L);
+                    this.f35823a.start();
+                }
+            }
         }
     }
 }

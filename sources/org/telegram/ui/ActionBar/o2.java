@@ -2,19 +2,19 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 public final class o2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f21202a;
-    public final e3 f21203b;
+    public final int f20573a;
+    public final e3 f20574b;
 
     public o2(e3 e3Var, int i10) {
-        this.f21202a = i10;
-        this.f21203b = e3Var;
+        this.f20573a = i10;
+        this.f20574b = e3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f21202a) {
+        switch (this.f20573a) {
             case 0:
-                e3 e3Var = this.f21203b;
+                e3 e3Var = this.f20574b;
                 e3Var.getClass();
                 e3Var.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c3 c3Var = e3Var.container;
@@ -24,7 +24,7 @@ public final class o2 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                e3 e3Var2 = this.f21203b;
+                e3 e3Var2 = this.f20574b;
                 e3Var2.getClass();
                 e3Var2.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c3 c3Var2 = e3Var2.container;
@@ -34,22 +34,22 @@ public final class o2 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 2:
-                this.f21203b.onContainerViewTranslation();
+                this.f20574b.onContainerViewTranslation();
                 return;
             case 3:
-                this.f21203b.onContainerViewTranslation();
+                this.f20574b.onContainerViewTranslation();
                 return;
             case 4:
-                this.f21203b.onContainerViewTranslation();
+                this.f20574b.onContainerViewTranslation();
                 return;
             case 5:
-                e3.k(this.f21203b, valueAnimator);
+                e3.k(this.f20574b, valueAnimator);
                 return;
             case 6:
-                this.f21203b.onContainerViewTranslation();
+                this.f20574b.onContainerViewTranslation();
                 return;
             default:
-                e3.j(this.f21203b, valueAnimator);
+                e3.j(this.f20574b, valueAnimator);
                 return;
         }
     }

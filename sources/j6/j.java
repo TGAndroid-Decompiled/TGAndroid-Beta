@@ -12,22 +12,22 @@ import android.os.Message;
 import android.os.Messenger;
 import android.util.Log;
 import android.util.SparseArray;
-import i9.s;
+import j9.u;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import n4.y;
+import n4.s;
 public final class j implements ServiceConnection {
-    public int f14048a = 0;
-    public final Messenger f14049b;
-    public y f14050c;
+    public int f12865a = 0;
+    public final Messenger f12866b;
+    public s f12867c;
     public final ArrayDeque d;
-    public final SparseArray f14051e;
-    public final l f14052f;
+    public final SparseArray e;
+    public final l f12868f;
 
     public j(l lVar) {
-        this.f14052f = lVar;
+        this.f12868f = lVar;
         Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
@@ -38,19 +38,19 @@ public final class j implements ServiceConnection {
                 j jVar = j.this;
                 synchronized (jVar) {
                     try {
-                        k kVar = (k) jVar.f14051e.get(i10);
+                        k kVar = (k) jVar.e.get(i10);
                         if (kVar == 0) {
                             Log.w("MessengerIpcClient", "Received response for unknown request: " + i10);
                             return true;
                         }
-                        jVar.f14051e.remove(i10);
+                        jVar.e.remove(i10);
                         jVar.c();
                         Bundle data = message.getData();
                         if (data.getBoolean("unsupported", false)) {
                             kVar.b(new Exception("Not supported by GmsCore", null));
                             return true;
                         }
-                        switch (kVar.f14056e) {
+                        switch (kVar.e) {
                             case 0:
                                 if (data.getBoolean("ack", false)) {
                                     kVar.c(null);
@@ -72,9 +72,9 @@ public final class j implements ServiceConnection {
             }
         });
         Looper.getMainLooper();
-        this.f14049b = new Messenger(handler);
+        this.f12866b = new Messenger(handler);
         this.d = new ArrayDeque();
-        this.f14051e = new SparseArray();
+        this.e = new SparseArray();
     }
 
     public final synchronized void a(String str) {
@@ -86,30 +86,30 @@ public final class j implements ServiceConnection {
             if (Log.isLoggable("MessengerIpcClient", 3)) {
                 Log.d("MessengerIpcClient", "Disconnected: ".concat(String.valueOf(str)));
             }
-            int i10 = this.f14048a;
+            int i10 = this.f12865a;
             if (i10 != 0) {
                 if (i10 != 1 && i10 != 2) {
                     if (i10 != 3) {
                         return;
                     }
-                    this.f14048a = 4;
+                    this.f12865a = 4;
                     return;
                 }
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Unbinding service");
                 }
-                this.f14048a = 4;
-                t6.a.a().b((Context) this.f14052f.f14059b, this);
+                this.f12865a = 4;
+                t6.a.a().b((Context) this.f12868f.f12873b, this);
                 ?? exc = new Exception(str, securityException);
                 Iterator it = this.d.iterator();
                 while (it.hasNext()) {
                     ((k) it.next()).b(exc);
                 }
                 this.d.clear();
-                for (int i11 = 0; i11 < this.f14051e.size(); i11++) {
-                    ((k) this.f14051e.valueAt(i11)).b(exc);
+                for (int i11 = 0; i11 < this.e.size(); i11++) {
+                    ((k) this.e.valueAt(i11)).b(exc);
                 }
-                this.f14051e.clear();
+                this.e.clear();
                 return;
             }
             throw new IllegalStateException();
@@ -120,12 +120,12 @@ public final class j implements ServiceConnection {
 
     public final synchronized void c() {
         try {
-            if (this.f14048a == 2 && this.d.isEmpty() && this.f14051e.size() == 0) {
+            if (this.f12865a == 2 && this.d.isEmpty() && this.e.size() == 0) {
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Finished handling requests, unbinding");
                 }
-                this.f14048a = 3;
-                t6.a.a().b((Context) this.f14052f.f14059b, this);
+                this.f12865a = 3;
+                t6.a.a().b((Context) this.f12868f.f12873b, this);
             }
         } catch (Throwable th2) {
             throw th2;
@@ -140,7 +140,7 @@ public final class j implements ServiceConnection {
         Context context;
         try {
             try {
-                i10 = this.f14048a;
+                i10 = this.f12865a;
                 z10 = false;
             } catch (Throwable th3) {
                 th = th3;
@@ -154,37 +154,37 @@ public final class j implements ServiceConnection {
                             return false;
                         }
                         this.d.add(kVar);
-                        ((ScheduledExecutorService) this.f14052f.f14060c).execute(new h(this, 0));
+                        ((ScheduledExecutorService) this.f12868f.f12874c).execute(new h(this, 0));
                         return true;
                     }
                     this.d.add(kVar);
                     return true;
                 }
                 this.d.add(kVar);
-                if (this.f14048a == 0) {
+                if (this.f12865a == 0) {
                     z10 = true;
                 }
-                n6.m.k(z10);
+                n6.l.k(z10);
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Starting bind to GmsCore");
                 }
-                this.f14048a = 1;
+                this.f12865a = 1;
                 Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
                 intent.setPackage("com.google.android.gms");
                 try {
                     a2 = t6.a.a();
-                    context = (Context) this.f14052f.f14059b;
-                } catch (SecurityException e7) {
-                    e = e7;
+                    context = (Context) this.f12868f.f12873b;
+                } catch (SecurityException e) {
+                    e = e;
                 }
                 try {
                     if (!a2.c(context, context.getClass().getName(), intent, this, 1, null)) {
                         a("Unable to bind to service");
                     } else {
-                        ((ScheduledExecutorService) this.f14052f.f14060c).schedule(new h(this, 1), 30L, TimeUnit.SECONDS);
+                        ((ScheduledExecutorService) this.f12868f.f12874c).schedule(new h(this, 1), 30L, TimeUnit.SECONDS);
                     }
-                } catch (SecurityException e10) {
-                    e = e10;
+                } catch (SecurityException e7) {
+                    e = e7;
                     b("Unable to bind to service", e);
                     return true;
                 }
@@ -203,7 +203,7 @@ public final class j implements ServiceConnection {
         if (Log.isLoggable("MessengerIpcClient", 2)) {
             Log.v("MessengerIpcClient", "Service connected");
         }
-        ((ScheduledExecutorService) this.f14052f.f14060c).execute(new s(17, this, iBinder));
+        ((ScheduledExecutorService) this.f12868f.f12874c).execute(new u(17, this, iBinder));
     }
 
     @Override
@@ -211,6 +211,6 @@ public final class j implements ServiceConnection {
         if (Log.isLoggable("MessengerIpcClient", 2)) {
             Log.v("MessengerIpcClient", "Service disconnected");
         }
-        ((ScheduledExecutorService) this.f14052f.f14060c).execute(new h(this, 2));
+        ((ScheduledExecutorService) this.f12868f.f12874c).execute(new h(this, 2));
     }
 }

@@ -1,78 +1,172 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.util.SparseIntArray;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class im0 extends s4.o0 implements bh.a {
-    public final Utilities.CallbackReturn f27223a;
-    public final wm0 f27224b;
-    public final int f27225c;
-    public final boolean d;
+import j$.util.Objects;
+import java.util.ArrayList;
+public abstract class im0 extends ul0 {
+    public SparseIntArray f25995c;
+    public SparseIntArray d;
+    public SparseIntArray e;
+    public int f25996f;
+    public int h;
+    public final ArrayList f25997n = new ArrayList();
 
-    public im0(wm0 wm0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f27224b = wm0Var;
-        this.f27223a = callbackReturn;
-        this.f27225c = i10;
-        this.d = z10;
+    public im0() {
+        L();
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        int b10;
-        boolean z10;
-        int dp;
-        if (((Boolean) this.f27223a.run(view)).booleanValue()) {
-            int i10 = this.f27225c;
-            rect.right = i10;
-            rect.left = i10;
-            s4.d1 T = recyclerView.T(view);
-            s4.i0 adapter = recyclerView.getAdapter();
-            if (T != null && adapter != null && (b10 = T.b()) != -1) {
-                boolean z11 = false;
-                if (b10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (b10 == adapter.h() - 1) {
-                    z11 = true;
-                }
-                if (z10) {
-                    if (this.d) {
-                        dp = i10;
-                    } else {
-                        dp = AndroidUtilities.dp(4.0f);
-                    }
-                    rect.top = dp;
-                }
-                if (z11) {
-                    rect.bottom = i10;
-                }
+    public final boolean D(s4.b1 b1Var) {
+        int b10 = b1Var.b();
+        return V(S(b10), Q(b10), b1Var);
+    }
+
+    public final void L() {
+        SparseIntArray sparseIntArray = this.d;
+        if (sparseIntArray == null) {
+            this.d = new SparseIntArray();
+            this.f25995c = new SparseIntArray();
+            this.e = new SparseIntArray();
+        } else {
+            sparseIntArray.clear();
+            this.f25995c.clear();
+            this.e.clear();
+        }
+        this.h = -1;
+        this.f25996f = -1;
+    }
+
+    public abstract int M(int i10);
+
+    public int N(int i10, int i11) {
+        return Objects.hash(Integer.valueOf((-49612) * i10), O(i10, i11));
+    }
+
+    public abstract Object O(int i10, int i11);
+
+    public abstract int P(int i10, int i11);
+
+    public final int Q(int i10) {
+        int i11 = this.f25995c.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f25996f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f25996f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                int i15 = i10 - i14;
+                this.f25995c.put(i10, i15);
+                return i15;
+            }
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract int R();
+
+    public final int S(int i10) {
+        int i11 = this.d.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f25996f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f25996f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                this.d.put(i10, i13);
+                return i13;
+            }
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract View T(int i10, View view);
+
+    public final int U(int i10) {
+        int i11 = this.e.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int M = M(i10);
+        this.e.put(i10, M);
+        return M;
+    }
+
+    public abstract boolean V(int i10, int i11, s4.b1 b1Var);
+
+    public abstract void W(int i10, int i11, s4.b1 b1Var);
+
+    public final void X(boolean z10) {
+        ArrayList arrayList = this.f25997n;
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        L();
+        arrayList.clear();
+        int i10 = this.f25996f;
+        if (i10 < 0) {
+            i10 = R();
+            this.f25996f = i10;
+        }
+        for (int i11 = 0; i11 < i10; i11++) {
+            int U = U(i11);
+            for (int i12 = 0; i12 < U; i12++) {
+                arrayList.add(Integer.valueOf(N(i11, i12)));
             }
         }
-    }
-
-    @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        aVar.f538a = true;
-    }
-
-    @Override
-    public final void c(Canvas canvas, RecyclerView recyclerView) {
-        if (recyclerView instanceof wm0) {
-            ((wm0) recyclerView).Q0(canvas);
+        if (z10) {
+            s4.o.c(new hg.g(this, arrayList2, 2), true).c(this);
+        } else {
+            super.l();
         }
     }
 
     @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        canvas.save();
-        canvas.clipRect(rectF);
-        this.f27224b.Q0(canvas);
-        canvas.restore();
+    public final int h() {
+        int i10 = this.h;
+        if (i10 >= 0) {
+            return i10;
+        }
+        this.h = 0;
+        int i11 = this.f25996f;
+        if (i11 < 0) {
+            i11 = R();
+            this.f25996f = i11;
+        }
+        for (int i12 = 0; i12 < i11; i12++) {
+            this.h = U(i12) + this.h;
+        }
+        return this.h;
+    }
+
+    @Override
+    public final int j(int i10) {
+        return P(S(i10), Q(i10));
+    }
+
+    @Override
+    public void l() {
+        X(false);
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        W(S(i10), Q(i10), b1Var);
     }
 }

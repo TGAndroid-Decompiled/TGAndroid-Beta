@@ -1,70 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.text.style.ClickableSpan;
-import java.util.ArrayList;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class j51 implements Utilities.Callback2 {
-    public final int f27369a;
-    public final r51 f27370b;
+public final class j51 implements Runnable {
+    public final int f26192a;
+    public final org.telegram.ui.ActionBar.e3[] f26193b;
+    public final Context f26194c;
 
-    public j51(r51 r51Var, int i10) {
-        this.f27369a = i10;
-        this.f27370b = r51Var;
+    public j51(Context context, org.telegram.ui.ActionBar.e3[] e3VarArr) {
+        this.f26192a = 3;
+        this.f26194c = context;
+        this.f26193b = e3VarArr;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String string;
-        String str;
-        switch (this.f27369a) {
+    public final void run() {
+        org.telegram.ui.ActionBar.e3 e3Var;
+        org.telegram.ui.ActionBar.m2 m2Var;
+        switch (this.f26192a) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                h71 h71Var = (h71) obj2;
-                final r51 r51Var = this.f27370b;
-                String[] strArr = r51Var.f30050i0;
-                arrayList.add(u61.B(null));
-                h71Var.E = 1;
-                h71Var.U();
-                String str2 = r51Var.f30046e0;
-                if (str2 != null) {
-                    string = g51.A(g51.F(str2, null, null));
-                } else {
-                    string = LocaleController.getString(R.string.AIEditorOriginalText);
-                }
-                arrayList.add(l51.b(3, "", string, null, null));
-                arrayList.add(p51.a(4, r51Var.f30042a0, r51Var.f30052k0, new xt(18, r51Var, h71Var), new ha0() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        r51.R(r51.this, clickableSpan);
-                    }
-                }, null));
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(g51.F(r51Var.f30047f0, null, null));
-                if (r51Var.f30048g0 == 1 || strArr == null) {
-                    str = "";
-                } else {
-                    str = a1.g.t(new StringBuilder(" ("), strArr[r51Var.f30048g0], ")");
-                }
-                sb2.append(str);
-                arrayList.add(l51.b(5, "", g51.A(sb2.toString()), null, new i51(r51Var, 4)));
-                arrayList.add(p51.a(6, r51Var.f30044c0, false, null, new ha0() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        r51.R(r51.this, clickableSpan);
-                    }
-                }, null));
-                h71Var.T();
-                arrayList.add(u61.B(null));
-                h71Var.U();
-                arrayList.add(u61.c(1, R.drawable.msg_copy, LocaleController.getString(R.string.TranslateCopy)));
-                h71Var.T();
+                this.f26193b[0].dismiss();
+                pf.d.s(this.f26194c, LocaleController.getString(R.string.CocoonFeature1TextLink));
+                return;
+            case 1:
+                this.f26193b[0].dismiss();
+                pf.d.u(this.f26194c, LocaleController.getString(R.string.CocoonFeature3TextLink));
+                return;
+            case 2:
+                this.f26193b[0].dismiss();
+                pf.d.s(this.f26194c, LocaleController.getString(R.string.CocoonFooterLink));
                 return;
             default:
-                r51.S(this.f27370b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
+                dx0 dx0Var = new dx0(this.f26194c);
+                if (!AndroidUtilities.isTablet()) {
+                    org.telegram.ui.ActionBar.e3[] e3VarArr = this.f26193b;
+                    if (!AndroidUtilities.hasDialogOnTop(e3VarArr[0].attachedFragment) && (e3Var = e3VarArr[0]) != null && (m2Var = e3Var.attachedFragment) != null) {
+                        dx0Var.makeAttached(m2Var);
+                    }
+                }
+                dx0Var.show();
                 return;
         }
+    }
+
+    public j51(org.telegram.ui.ActionBar.e3[] e3VarArr, Context context, int i10) {
+        this.f26192a = i10;
+        this.f26193b = e3VarArr;
+        this.f26194c = context;
     }
 }

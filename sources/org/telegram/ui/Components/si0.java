@@ -1,6 +1,12 @@
 package org.telegram.ui.Components;
-public final class si0 {
-    public boolean f30574a;
-    public ti0 f30575b;
-    public qi0 f30576c;
+
+import android.graphics.Canvas;
+public interface si0 {
+    void a(float f7);
+
+    void b(float f7);
+
+    void c(xv xvVar, Canvas canvas);
+
+    void d(int i10, int i11);
 }

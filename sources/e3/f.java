@@ -1,56 +1,54 @@
 package e3;
 
-import b2.r;
-import b2.r0;
-import b2.s;
-import com.google.android.gms.common.api.internal.w;
-import com.google.android.gms.internal.vision.e2;
-import e2.d0;
-import e2.v;
-import e9.a1;
-import e9.g0;
-import e9.i0;
-import e9.q;
+import b2.w;
+import b2.w0;
+import e2.m0;
+import e2.x;
+import e9.h0;
+import e9.l0;
+import e9.n0;
+import e9.s;
+import e9.x1;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final i0 f8625a;
-    public final int f8626b;
+    public final n0 f8450a;
+    public final int f8451b;
 
-    public f(int i10, a1 a1Var) {
-        this.f8626b = i10;
-        this.f8625a = a1Var;
+    public f(int i10, x1 x1Var) {
+        this.f8451b = i10;
+        this.f8450a = x1Var;
     }
 
-    public static f b(int i10, v vVar) {
+    public static f b(int i10, x xVar) {
         String str;
         int i11;
         a gVar;
         String str2;
         int i12 = 4;
-        q.e(4, "initialCapacity");
+        s.f(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = vVar.f8583c;
+        int i13 = xVar.f8413c;
         int i14 = -2;
         int i15 = 0;
-        while (vVar.a() > 8) {
-            int l4 = vVar.l();
-            int l10 = vVar.f8582b + vVar.l();
-            vVar.I(l10);
-            if (l4 == 1414744396) {
-                gVar = b(vVar.l(), vVar);
+        while (xVar.a() > 8) {
+            int o10 = xVar.o();
+            int o11 = xVar.f8412b + xVar.o();
+            xVar.M(o11);
+            if (o10 == 1414744396) {
+                gVar = b(xVar.o(), xVar);
             } else {
                 d dVar = null;
-                switch (l4) {
+                switch (o10) {
                     case 1718776947:
                         if (i14 == 2) {
-                            vVar.K(i12);
-                            int l11 = vVar.l();
-                            int l12 = vVar.l();
-                            vVar.K(i12);
-                            int l13 = vVar.l();
-                            switch (l13) {
+                            xVar.O(i12);
+                            int o12 = xVar.o();
+                            int o13 = xVar.o();
+                            xVar.O(i12);
+                            int o14 = xVar.o();
+                            switch (o14) {
                                 case 808802372:
                                 case 877677894:
                                 case 1145656883:
@@ -80,27 +78,27 @@ public final class f implements a {
                                     break;
                             }
                             if (str2 == null) {
-                                e2.m(l13, "Ignoring track with unsupported compression ", "StreamFormatChunk");
+                                a1.g.x(o14, "Ignoring track with unsupported compression ", "StreamFormatChunk");
                                 gVar = dVar;
                                 break;
                             } else {
-                                r rVar = new r();
-                                rVar.f3589x = l11;
-                                rVar.f3590y = l12;
-                                rVar.f3583q = r0.n(str2);
-                                gVar = new g(new s(rVar));
+                                w wVar = new w();
+                                wVar.f2472y = o12;
+                                wVar.f2473z = o13;
+                                wVar.f2466r = w0.n(str2);
+                                gVar = new g(new b2.x(wVar));
                                 break;
                             }
                         } else {
                             if (i14 == 1) {
-                                int q6 = vVar.q();
-                                if (q6 == 1) {
+                                int t10 = xVar.t();
+                                if (t10 == 1) {
                                     str = "audio/raw";
-                                } else if (q6 != 85) {
-                                    if (q6 == 255) {
+                                } else if (t10 != 85) {
+                                    if (t10 == 255) {
                                         str = "audio/mp4a-latm";
-                                    } else if (q6 != 8192) {
-                                        if (q6 != 8193) {
+                                    } else if (t10 != 8192) {
+                                        if (t10 != 8193) {
                                             str = null;
                                         } else {
                                             str = "audio/vnd.dts";
@@ -112,64 +110,64 @@ public final class f implements a {
                                     str = "audio/mpeg";
                                 }
                                 if (str == null) {
-                                    e2.m(q6, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
+                                    a1.g.x(t10, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
                                 } else {
-                                    int q10 = vVar.q();
-                                    int l14 = vVar.l();
-                                    vVar.K(6);
-                                    int q11 = vVar.q();
-                                    String str3 = d0.f8529a;
-                                    int A = d0.A(q11, ByteOrder.LITTLE_ENDIAN);
-                                    if (vVar.a() > 0) {
-                                        i11 = vVar.q();
+                                    int t11 = xVar.t();
+                                    int o15 = xVar.o();
+                                    xVar.O(6);
+                                    int t12 = xVar.t();
+                                    String str3 = m0.f8372a;
+                                    int D = m0.D(t12, ByteOrder.LITTLE_ENDIAN);
+                                    if (xVar.a() > 0) {
+                                        i11 = xVar.t();
                                     } else {
                                         i11 = 0;
                                     }
-                                    r rVar2 = new r();
-                                    rVar2.f3583q = r0.n(str);
-                                    rVar2.I = q10;
-                                    rVar2.J = l14;
-                                    if (str.equals("audio/raw") && A != 0) {
-                                        rVar2.K = A;
+                                    w wVar2 = new w();
+                                    wVar2.f2466r = w0.n(str);
+                                    wVar2.J = t11;
+                                    wVar2.K = o15;
+                                    if (str.equals("audio/raw") && D != 0) {
+                                        wVar2.L = D;
                                     }
                                     if (str.equals("audio/mp4a-latm") && i11 > 0) {
                                         byte[] bArr = new byte[i11];
-                                        vVar.h(0, i11, bArr);
-                                        rVar2.f3586t = i0.z(bArr);
+                                        xVar.k(0, i11, bArr);
+                                        wVar2.f2469u = n0.y(bArr);
                                     }
-                                    gVar = new g(new s(rVar2));
+                                    gVar = new g(new b2.x(wVar2));
                                     break;
                                 }
                             } else {
-                                e2.a.n("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + d0.F(i14));
+                                e2.a.l("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + m0.I(i14));
                             }
                             gVar = dVar;
                         }
                     case 1751742049:
-                        int l15 = vVar.l();
-                        vVar.K(8);
-                        int l16 = vVar.l();
-                        int l17 = vVar.l();
-                        vVar.K(i12);
-                        vVar.l();
-                        vVar.K(12);
-                        gVar = new c(l15, l16, l17);
+                        int o16 = xVar.o();
+                        xVar.O(8);
+                        int o17 = xVar.o();
+                        int o18 = xVar.o();
+                        xVar.O(i12);
+                        xVar.o();
+                        xVar.O(12);
+                        gVar = new c(o16, o17, o18);
                         break;
                     case 1752331379:
-                        int l18 = vVar.l();
-                        vVar.K(12);
-                        vVar.l();
-                        int l19 = vVar.l();
-                        int l20 = vVar.l();
-                        vVar.K(i12);
-                        int l21 = vVar.l();
-                        int l22 = vVar.l();
-                        vVar.K(i12);
-                        dVar = new d(l18, l19, l20, l21, l22, vVar.l());
+                        int o19 = xVar.o();
+                        xVar.O(12);
+                        xVar.o();
+                        int o20 = xVar.o();
+                        int o21 = xVar.o();
+                        xVar.O(i12);
+                        int o22 = xVar.o();
+                        int o23 = xVar.o();
+                        xVar.O(i12);
+                        dVar = new d(o19, o20, o21, o22, o23, xVar.o());
                         gVar = dVar;
                         break;
                     case 1852994675:
-                        gVar = new h(vVar.v(vVar.a(), StandardCharsets.UTF_8));
+                        gVar = new h(xVar.y(xVar.a(), StandardCharsets.UTF_8));
                         break;
                     default:
                         gVar = dVar;
@@ -181,22 +179,22 @@ public final class f implements a {
                     i14 = ((d) gVar).a();
                 }
                 int i16 = i15 + 1;
-                int h = w.h(objArr.length, i16);
-                if (h > objArr.length) {
-                    objArr = Arrays.copyOf(objArr, h);
+                int b10 = h0.b(objArr.length, i16);
+                if (b10 > objArr.length) {
+                    objArr = Arrays.copyOf(objArr, b10);
                 }
                 objArr[i15] = gVar;
                 i15 = i16;
             }
-            vVar.J(l10);
-            vVar.I(i13);
+            xVar.N(o11);
+            xVar.M(i13);
             i12 = 4;
         }
-        return new f(i10, i0.t(i15, objArr));
+        return new f(i10, n0.s(i15, objArr));
     }
 
     public final a a(Class cls) {
-        g0 listIterator = this.f8625a.listIterator(0);
+        l0 listIterator = this.f8450a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -208,6 +206,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f8626b;
+        return this.f8451b;
     }
 }

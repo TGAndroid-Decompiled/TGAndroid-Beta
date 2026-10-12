@@ -1,63 +1,71 @@
 package c3;
-public final class y implements b0 {
-    public final c5.b0 f4180a;
-    public final c5.b0 f4181b;
-    public long f4182c;
 
-    public y(long j3, long[] jArr, long[] jArr2) {
+import e2.m0;
+import v7.u6;
+public final class y implements b0 {
+    public final c5.c0 f4308a;
+    public final c5.c0 f4309b;
+    public long f4310c;
+
+    public y(long j10, long[] jArr, long[] jArr2) {
         boolean z10;
         if (jArr.length == jArr2.length) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.b(z10);
+        u6.g(z10);
         int length = jArr2.length;
         if (length > 0 && jArr2[0] > 0) {
             int i10 = length + 1;
-            c5.b0 b0Var = new c5.b0(i10, 2);
-            this.f4180a = b0Var;
-            c5.b0 b0Var2 = new c5.b0(i10, 2);
-            this.f4181b = b0Var2;
-            b0Var.d(0L);
-            b0Var2.d(0L);
+            c5.c0 c0Var = new c5.c0(i10, 3);
+            this.f4308a = c0Var;
+            c5.c0 c0Var2 = new c5.c0(i10, 3);
+            this.f4309b = c0Var2;
+            c0Var.c(0L);
+            c0Var2.c(0L);
         } else {
-            this.f4180a = new c5.b0(length, 2);
-            this.f4181b = new c5.b0(length, 2);
+            this.f4308a = new c5.c0(length, 3);
+            this.f4309b = new c5.c0(length, 3);
         }
-        this.f4180a.e(jArr);
-        this.f4181b.e(jArr2);
-        this.f4182c = j3;
+        this.f4308a.f(jArr);
+        this.f4309b.f(jArr2);
+        this.f4310c = j10;
     }
 
     @Override
-    public final boolean f() {
-        if (this.f4181b.f4201b > 0) {
+    public final boolean d() {
+        if (this.f4309b.f4352b > 0) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final a0 j(long j3) {
-        c5.b0 b0Var = this.f4181b;
-        if (b0Var.f4201b == 0) {
-            c0 c0Var = c0.f4082c;
-            return new a0(c0Var, c0Var);
-        }
-        int b10 = e2.d0.b(b0Var, j3);
-        long k10 = b0Var.k(b10);
-        c5.b0 b0Var2 = this.f4180a;
-        c0 c0Var2 = new c0(k10, b0Var2.k(b10));
-        if (k10 != j3 && b10 != b0Var.f4201b - 1) {
-            int i10 = b10 + 1;
-            return new a0(c0Var2, new c0(b0Var.k(i10), b0Var2.k(i10)));
-        }
-        return new a0(c0Var2, c0Var2);
+    public final boolean e() {
+        return false;
     }
 
     @Override
-    public final long l() {
-        return this.f4182c;
+    public final a0 f(long j10) {
+        c5.c0 c0Var = this.f4309b;
+        if (c0Var.f4352b == 0) {
+            c0 c0Var2 = c0.f4218c;
+            return new a0(c0Var2, c0Var2);
+        }
+        int c10 = m0.c(c0Var, j10);
+        long m10 = c0Var.m(c10);
+        c5.c0 c0Var3 = this.f4308a;
+        c0 c0Var4 = new c0(m10, c0Var3.m(c10));
+        if (m10 != j10 && c10 != c0Var.f4352b - 1) {
+            int i10 = c10 + 1;
+            return new a0(c0Var4, new c0(c0Var.m(i10), c0Var3.m(i10)));
+        }
+        return new a0(c0Var4, c0Var4);
+    }
+
+    @Override
+    public final long h() {
+        return this.f4310c;
     }
 }

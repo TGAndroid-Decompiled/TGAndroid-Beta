@@ -1,89 +1,78 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
 public final class gh1 implements Runnable {
-    public final int f38058a;
-    public final kh1 f38059b;
-    public final TLRPC.TL_error f38060c;
+    public final int f36402a;
+    public final oh1 f36403b;
 
-    public gh1(kh1 kh1Var, TLRPC.TL_error tL_error, int i10) {
-        this.f38058a = i10;
-        this.f38059b = kh1Var;
-        this.f38060c = tL_error;
+    public gh1(oh1 oh1Var, int i10) {
+        this.f36402a = i10;
+        this.f36403b = oh1Var;
     }
 
     @Override
     public final void run() {
-        String formatPluralString;
-        String formatPluralString2;
-        int i10 = this.f38058a;
-        TLRPC.TL_error tL_error = this.f38060c;
-        kh1 kh1Var = this.f38059b;
-        switch (i10) {
+        switch (this.f36402a) {
             case 0:
-                kh1Var.w0();
-                if (tL_error == null) {
-                    kh1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kh1Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new bh1(kh1Var, 3));
-                    String string = LocaleController.getString(R.string.PasswordReset);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
-                    a2Var.T = string;
-                    a2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
-                    Dialog showDialog = kh1Var.showDialog(a2Var);
-                    if (showDialog != null) {
-                        showDialog.setCanceledOnTouchOutside(false);
-                        showDialog.setCancelable(false);
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue < 60) {
-                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                    } else {
-                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                    }
-                    kh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                    return;
-                } else {
-                    kh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
+                oh1 oh1Var = this.f36403b;
+                EditTextBoldCursor editTextBoldCursor = oh1Var.f38974n;
+                if (editTextBoldCursor != null && editTextBoldCursor.getVisibility() == 0) {
+                    oh1Var.f38974n.requestFocus();
+                    AndroidUtilities.showKeyboard(oh1Var.f38974n);
                     return;
                 }
+                return;
             case 1:
-                kh1Var.w0();
-                if (tL_error == null) {
-                    if (kh1Var.getParentActivity() != null) {
-                        kh1Var.u0(new ch1(kh1Var, 5));
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("CODE_INVALID")) {
-                    kh1Var.y0();
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue2 < 60) {
-                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                    } else {
-                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                    }
-                    kh1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                    return;
-                } else {
-                    kh1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
+                oh1 oh1Var2 = this.f36403b;
+                ie0 ie0Var = oh1Var2.f38977w;
+                if (ie0Var != null && ie0Var.getVisibility() == 0) {
+                    oh1Var2.f38977w.f36949f[0].requestFocus();
                     return;
                 }
+                return;
             case 2:
-                kh1.e0(kh1Var, tL_error);
+                int i10 = 0;
+                while (true) {
+                    ks[] ksVarArr = this.f36403b.f38977w.f36949f;
+                    if (i10 < ksVarArr.length) {
+                        ksVarArr[i10].i(0.0f);
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
+            case 3:
+                oh1 oh1Var3 = this.f36403b;
+                EditTextBoldCursor editTextBoldCursor2 = oh1Var3.f38974n;
+                if (editTextBoldCursor2 != null) {
+                    if (editTextBoldCursor2.length() != 0) {
+                        oh1Var3.f38969f0[2].P(49);
+                        oh1Var3.f38969f0[2].T(0.0f, false);
+                        oh1Var3.f38960a.d();
+                        return;
+                    }
+                    oh1Var3.F0(true);
+                    return;
+                }
+                return;
+            case 4:
+                oh1 oh1Var4 = this.f36403b;
+                if (oh1Var4.f38970g0 != null) {
+                    oh1Var4.F0(false);
+                    return;
+                }
+                return;
+            case 5:
+                oh1.f0(this.f36403b);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new gh1(this.f36403b, 7), 150L);
                 return;
             default:
-                kh1.Z(kh1Var, tL_error);
+                for (ks ksVar : this.f36403b.f38977w.f36949f) {
+                    ksVar.i(0.0f);
+                }
                 return;
         }
     }

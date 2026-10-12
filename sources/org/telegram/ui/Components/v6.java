@@ -1,27 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.LaunchActivity;
-public final class v6 extends pb {
-    public v6(LaunchActivity launchActivity, org.telegram.ui.kb0 kb0Var) {
-        super(launchActivity, null);
-        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
-        TextView textView = new TextView(getContext());
-        addView(qVar, w7.w5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-        textView.setGravity(8388611);
-        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.Hi));
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, w7.w5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(kb0Var.f39440b));
-        qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
-        qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
-        qVar.setForeground(kb0Var.f39441c);
-        org.telegram.messenger.am.r(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(kb0Var.d)}, textView);
+import android.view.animation.OvershootInterpolator;
+public abstract class v6 {
+    public static final OvershootInterpolator f29899a = new OvershootInterpolator(1.9f);
+    public static final t6 f29900b = new t6("alpha", 0);
+    public static final org.telegram.ui.Cells.t8 f29901c;
+    public static final t6 d;
+    public static final t6 e;
+    public static final org.telegram.ui.Cells.t8 f29902f;
+    public static final org.telegram.ui.Cells.t8 f29903g;
+    public static final org.telegram.ui.Cells.t8 h;
+
+    static {
+        new t6("color", 1);
+        f29901c = new org.telegram.ui.Cells.t8("currentAlpha", 4);
+        d = new t6("alpha", 2);
+        e = new t6("alpha", 3);
+        f29902f = new org.telegram.ui.Cells.t8("animationProgress", 5);
+        f29903g = new org.telegram.ui.Cells.t8("animationValue", 6);
+        h = new org.telegram.ui.Cells.t8("clipProgress", 7);
     }
 }

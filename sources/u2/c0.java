@@ -1,4 +1,20 @@
 package u2;
-public interface c0 extends b1 {
-    void a(d0 d0Var);
+public final class c0 {
+    public final int f45877a;
+    public final int f45878b;
+    public final b2.x f45879c;
+    public final int d;
+    public final Object e;
+    public final long f45880f;
+    public final long f45881g;
+
+    public c0(int i10, int i11, b2.x xVar, int i12, Object obj, long j10, long j11) {
+        this.f45877a = i10;
+        this.f45878b = i11;
+        this.f45879c = xVar;
+        this.d = i12;
+        this.e = obj;
+        this.f45880f = j10;
+        this.f45881g = j11;
+    }
 }

@@ -1,45 +1,45 @@
 package k4;
 
-import b2.s0;
+import a1.g;
+import b2.x0;
 import c3.p;
-import com.google.android.gms.internal.vision.e2;
-import e2.v;
+import e2.x;
 public abstract class e {
-    public static final byte[] f14621a = {0, 0, 0, 0, 16, 0, Byte.MIN_VALUE, 0, 0, -86, 0, 56, -101, 113};
-    public static final byte[] f14622b = {0, 0, 33, 7, -45, 17, -122, 68, -56, -63, -54, 0, 0, 0};
+    public static final byte[] f14094a = {0, 0, 0, 0, 16, 0, Byte.MIN_VALUE, 0, 0, -86, 0, 56, -101, 113};
+    public static final byte[] f14095b = {0, 0, 33, 7, -45, 17, -122, 68, -56, -63, -54, 0, 0, 0};
 
     public static boolean a(p pVar) {
-        v vVar = new v(8);
-        int i10 = d.b(pVar, vVar).f14619a;
+        x xVar = new x(8);
+        int i10 = d.b(pVar, xVar).f14092a;
         if (i10 != 1380533830 && i10 != 1380333108) {
             return false;
         }
-        pVar.b(0, 4, vVar.f8581a);
-        vVar.J(0);
-        int j3 = vVar.j();
-        if (j3 != 1463899717) {
-            e2.a.e("WavHeaderReader", "Unsupported form type: " + j3);
+        pVar.a(0, 4, xVar.f8411a);
+        xVar.N(0);
+        int m10 = xVar.m();
+        if (m10 != 1463899717) {
+            e2.a.c("WavHeaderReader", "Unsupported form type: " + m10);
             return false;
         }
         return true;
     }
 
-    public static d b(int i10, p pVar, v vVar) {
-        d b10 = d.b(pVar, vVar);
+    public static d b(int i10, p pVar, x xVar) {
+        d b10 = d.b(pVar, xVar);
         while (true) {
-            int i11 = b10.f14619a;
+            int i11 = b10.f14092a;
             if (i11 != i10) {
-                e2.m(i11, "Ignoring unknown WAV chunk: ", "WavHeaderReader");
-                long j3 = b10.f14620b;
-                long j10 = 8 + j3;
-                if (j3 % 2 != 0) {
-                    j10 = 9 + j3;
+                g.x(i11, "Ignoring unknown WAV chunk: ", "WavHeaderReader");
+                long j10 = b10.f14093b;
+                long j11 = 8 + j10;
+                if (j10 % 2 != 0) {
+                    j11 = 9 + j10;
                 }
-                if (j10 <= 2147483647L) {
-                    pVar.o((int) j10);
-                    b10 = d.b(pVar, vVar);
+                if (j11 <= 2147483647L) {
+                    pVar.r((int) j11);
+                    b10 = d.b(pVar, xVar);
                 } else {
-                    throw s0.c("Chunk is too large (~2GB+) to skip; id: " + i11);
+                    throw x0.c("Chunk is too large (~2GB+) to skip; id: " + i11);
                 }
             } else {
                 return b10;

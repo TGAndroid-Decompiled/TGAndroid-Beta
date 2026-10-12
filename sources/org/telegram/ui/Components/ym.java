@@ -1,39 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class ym extends ViewOutlineProvider {
-    public final an f33132a;
+import android.animation.ValueAnimator;
+public final class ym implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31646a;
+    public final dn f31647b;
 
-    public ym(an anVar) {
-        this.f33132a = anVar;
+    public ym(dn dnVar, int i10) {
+        this.f31646a = i10;
+        this.f31647b = dnVar;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-        if (t5Var.getTag() == null) {
-            return;
-        }
-        int intValue = ((Integer) t5Var.getTag()).intValue();
-        an anVar = this.f33132a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = anVar.v;
-        if (anVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
-            intValue++;
-        }
-        if (chatAttachAlertPhotoLayout.f23817g1) {
-            intValue++;
-        }
-        if (intValue == 0) {
-            int dp = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
-        } else if (intValue == chatAttachAlertPhotoLayout.M0 - 1) {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
-        } else {
-            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31646a) {
+            case 0:
+                dn dnVar = this.f31647b;
+                dnVar.getClass();
+                dnVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dnVar.invalidate();
+                return;
+            default:
+                dn dnVar2 = this.f31647b;
+                dnVar2.getClass();
+                dnVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dnVar2.invalidate();
+                return;
         }
     }
 }

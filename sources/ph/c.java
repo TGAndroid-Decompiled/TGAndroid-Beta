@@ -1,29 +1,38 @@
 package ph;
 
-import ii.q1;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.web.t0;
-public final class c {
-    public final q1 f45749a;
-    public b f45751c = b.f45745a;
-    public final t0 d = new t0(this, 13);
-    public final long f45750b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
+import w7.a6;
+public abstract class c extends FrameLayout {
+    public final LinearLayout f43226a;
+    public float f43227b;
+    public final Rect f43228c;
+    public final Rect d;
+    public final Paint e;
 
-    public c(q1 q1Var) {
-        this.f45749a = q1Var;
+    public c(Context context) {
+        super(context);
+        this.f43228c = new Rect();
+        this.d = new Rect();
+        this.e = new Paint(1);
+        setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f43226a = linearLayout;
+        linearLayout.setOrientation(0);
+        addView(linearLayout, a6.d(-1.0f, -1));
     }
 
-    public final void a(b bVar, boolean z10) {
-        if (this.f45751c != bVar) {
-            t0 t0Var = this.d;
-            AndroidUtilities.cancelRunOnUIThread(t0Var);
-            this.f45751c = bVar;
-            if (z10) {
-                this.f45749a.run(bVar);
-            }
-            if (bVar == b.f45746b || bVar == b.f45747c) {
-                AndroidUtilities.runOnUIThread(t0Var, this.f45750b);
-            }
-        }
+    public void setLensVisibility(float f7) {
+        this.f43227b = f7;
+        int dp = AndroidUtilities.dp(f7 * 7.0f);
+        Rect rect = this.f43228c;
+        Rect rect2 = this.d;
+        rect2.set(rect);
+        int i10 = -dp;
+        rect2.inset(i10, i10);
     }
 }

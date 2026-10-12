@@ -1,34 +1,15 @@
 package org.telegram.ui.Components;
+public final class b71 extends h71 {
+    public final c71 f23712d3;
 
-import android.text.TextPaint;
-public final class b71 extends y61 {
-    public final int f24567e;
-    public final z11 f24568f;
-
-    public b71(String str, int i10, z11 z11Var) {
-        super(str, (z11) null);
-        this.f24567e = i10;
-        this.f24568f = z11Var;
+    public b71(c71 c71Var, c71 c71Var2, d dVar, a71 a71Var, a71 a71Var2) {
+        super(c71Var2, dVar, a71Var, a71Var2);
+        this.f23712d3 = c71Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        int i10 = this.f24567e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20637hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.gc, false));
-        }
-        z11 z11Var = this.f24568f;
-        if (z11Var != null) {
-            z11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f23712d3.f23965b = -1;
     }
 }

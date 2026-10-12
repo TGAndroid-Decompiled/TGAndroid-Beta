@@ -1,5 +1,5 @@
 package o5;
-public enum c implements la.c {
+public enum c implements ma.c {
     REASON_UNKNOWN(0),
     MESSAGE_TOO_OLD(1),
     CACHE_FULL(2),
@@ -8,14 +8,14 @@ public enum c implements la.c {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f16833a;
+    public final int f16600a;
 
     c(int i10) {
-        this.f16833a = i10;
+        this.f16600a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f16833a;
+        return this.f16600a;
     }
 }

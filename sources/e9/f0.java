@@ -1,13 +1,33 @@
 package e9;
-public final class f0 extends com.google.android.gms.common.api.internal.w {
+
+import java.util.Collection;
+public abstract class f0 extends q0 {
     @Override
-    public final com.google.android.gms.common.api.internal.w c(Object obj) {
-        b(obj);
-        return this;
+    public final i0 d() {
+        throw new AssertionError("should never be called");
     }
 
-    public final a1 i() {
-        this.f6696b = true;
-        return i0.t(this.f6695a, this.f6697c);
+    @Override
+    public final i0 e() {
+        w1 w1Var = ((w1) this).f8644n;
+        y0 y0Var = w1Var.f8605b;
+        if (y0Var == null) {
+            a2 c10 = w1Var.c();
+            w1Var.f8605b = c10;
+            return c10;
+        }
+        return y0Var;
+    }
+
+    @Override
+    public final Collection values() {
+        w1 w1Var = ((w1) this).f8644n;
+        y0 y0Var = w1Var.f8605b;
+        if (y0Var == null) {
+            a2 c10 = w1Var.c();
+            w1Var.f8605b = c10;
+            return c10;
+        }
+        return y0Var;
     }
 }

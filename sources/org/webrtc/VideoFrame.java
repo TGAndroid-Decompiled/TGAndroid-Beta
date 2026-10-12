@@ -72,12 +72,12 @@ public class VideoFrame implements RefCounted {
         int getUnscaledWidth();
     }
 
-    public VideoFrame(Buffer buffer, int i10, long j3) {
+    public VideoFrame(Buffer buffer, int i10, long j10) {
         if (buffer != null) {
             if (i10 % 90 == 0) {
                 this.buffer = buffer;
                 this.rotation = i10;
-                this.timestampNs = j3;
+                this.timestampNs = j10;
                 return;
             }
             throw new IllegalArgumentException("rotation must be a multiple of 90");

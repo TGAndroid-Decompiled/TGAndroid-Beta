@@ -1,28 +1,36 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-public final class xq0 extends g.o {
-    public final dr0 f44154c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class xq0 implements org.telegram.ui.ActionBar.r0 {
+    public final hr0 f41914a;
 
-    public xq0(dr0 dr0Var) {
-        this.f44154c = dr0Var;
+    public xq0(hr0 hr0Var) {
+        this.f41914a = hr0Var;
     }
 
     @Override
-    public final int i(int i10) {
+    public final void e() {
+        int i10;
         int i11;
-        dr0 dr0Var = this.f44154c;
-        if (dr0Var.L.j(i10) != 1 && !dr0Var.Y && (dr0Var.J != null || !TextUtils.isEmpty(dr0Var.v))) {
-            int i12 = dr0Var.R;
-            int i13 = dr0Var.f36880g0;
-            if (i10 % i13 != i13 - 1) {
-                i11 = AndroidUtilities.dp(2.0f);
-            } else {
-                i11 = 0;
-            }
-            return i12 + i11;
+        hr0 hr0Var = this.f41914a;
+        org.telegram.ui.ActionBar.e1 e1Var = hr0Var.Q;
+        if (hr0Var.Y) {
+            i10 = R.string.ShowAsGrid;
+        } else {
+            i10 = R.string.ShowAsList;
         }
-        return dr0Var.M.J;
+        e1Var.setText(LocaleController.getString(i10));
+        org.telegram.ui.ActionBar.e1 e1Var2 = hr0Var.Q;
+        if (hr0Var.Y) {
+            i11 = R.drawable.msg_media;
+        } else {
+            i11 = R.drawable.msg_list;
+        }
+        e1Var2.setIcon(i11);
+    }
+
+    @Override
+    public final void d() {
     }
 }

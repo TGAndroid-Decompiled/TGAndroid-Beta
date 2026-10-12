@@ -1,73 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class bd0 implements View.OnClickListener {
-    public final int f24602a = 1;
-    public final boolean f24603b;
-    public final Object f24604c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.AndroidUtilities;
+public final class bd0 {
+    public SpannableStringBuilder f23741a;
+    public int f23742b;
+    public Drawable f23743c;
+    public float d;
+    public final int e;
+    public final int f23744f;
+    public int f23745g = -1;
+    public int h = -1;
+    public float f23746i = 4.66f;
 
-    public bd0(org.telegram.ui.qt qtVar, ArrayList arrayList, boolean z10) {
-        this.f24604c = qtVar;
-        this.d = arrayList;
-        this.f24603b = z10;
+    public bd0(int i10, int i11) {
+        this.e = i10;
+        this.f23744f = i11;
     }
 
-    @Override
-    public final void onClick(View view) {
-        String str;
-        switch (this.f24602a) {
-            case 0:
-                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.f24604c;
-                Runnable runnable = (Runnable) this.d;
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (R != null) {
-                    if (this.f24603b) {
-                        str = "lastseen";
-                    } else {
-                        str = "readtime";
-                    }
-                    R.presentFragment(new PremiumPreviewFragment(0, str));
-                    e3Var.dismiss();
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) this.d;
-                org.telegram.ui.ut utVar = ((org.telegram.ui.qt) this.f24604c).f41433a;
-                if (utVar.f42590w != null && utVar.f42580l != null) {
-                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
-                    if (intValue == 0) {
-                        utVar.f42580l.C(utVar.W);
-                    } else if (intValue == 1) {
-                        utVar.f42580l.v(utVar.W);
-                    } else if (intValue == 2) {
-                        utVar.f42580l.v(null);
-                    } else if (intValue == 3) {
-                        utVar.f42580l.H(utVar.W);
-                    } else if (intValue == 4) {
-                        utVar.f42580l.r(utVar.W);
-                    } else if (intValue == 5) {
-                        MediaDataController.getInstance(utVar.f42586r).addRecentSticker(2, utVar.f42569b0, utVar.W, (int) (System.currentTimeMillis() / 1000), this.f24603b);
-                    }
-                    utVar.p();
-                    return;
-                }
-                return;
+    public final CharSequence a(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        int dp;
+        int dp2;
+        SpannableStringBuilder spannableStringBuilder = this.f23741a;
+        int i10 = this.f23744f;
+        if (spannableStringBuilder != null && this.f23743c != null && AndroidUtilities.density == this.d) {
+            if (this.f23742b != org.telegram.ui.ActionBar.g6.w0(i10, c6Var)) {
+                Drawable drawable = this.f23743c;
+                int w02 = org.telegram.ui.ActionBar.g6.w0(i10, c6Var);
+                this.f23742b = w02;
+                drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+            }
+            return this.f23741a;
+        } else if (context == null) {
+            return null;
+        } else {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
+            this.d = AndroidUtilities.density;
+            Drawable mutate = context.getResources().getDrawable(this.e).mutate();
+            this.f23743c = mutate;
+            int w03 = org.telegram.ui.ActionBar.g6.w0(i10, c6Var);
+            this.f23742b = w03;
+            mutate.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+            int i11 = this.f23745g;
+            if (i11 <= 0) {
+                dp = this.f23743c.getIntrinsicWidth();
+            } else {
+                dp = AndroidUtilities.dp(i11);
+            }
+            int i12 = this.h;
+            if (i12 <= 0) {
+                dp2 = this.f23743c.getIntrinsicHeight();
+            } else {
+                dp2 = AndroidUtilities.dp(i12);
+            }
+            int dp3 = AndroidUtilities.dp(this.f23746i);
+            this.f23743c.setBounds(0, dp3, dp, dp2 + dp3);
+            spannableStringBuilder2.setSpan(new ImageSpan(this.f23743c, 2), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(2.0f)), 1, 2, 33);
+            this.f23741a = spannableStringBuilder2;
+            return spannableStringBuilder2;
         }
-    }
-
-    public bd0(boolean z10, org.telegram.ui.ActionBar.e3 e3Var, Runnable runnable) {
-        this.f24603b = z10;
-        this.f24604c = e3Var;
-        this.d = runnable;
     }
 }

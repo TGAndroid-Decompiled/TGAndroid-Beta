@@ -1,16 +1,24 @@
 package org.telegram.ui.Wallet;
+public final class v5 implements o1.g {
+    public final int f33779a;
+    public final b6 f33780b;
 
-import android.content.Context;
-public final class v5 extends sg.s {
-    public final x5 f35451x;
-
-    public v5(x5 x5Var, Context context, t5 t5Var) {
-        super(context, t5Var);
-        this.f35451x = x5Var;
+    public v5(b6 b6Var, int i10) {
+        this.f33779a = i10;
+        this.f33780b = b6Var;
     }
 
     @Override
-    public final void a() {
-        this.f35451x.f35526s = true;
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f33779a) {
+            case 0:
+                b6 b6Var = this.f33780b;
+                b6Var.f32969c.setScaleX(f7);
+                b6Var.f32969c.setScaleY(f7);
+                return;
+            default:
+                this.f33780b.P = f10;
+                return;
+        }
     }
 }

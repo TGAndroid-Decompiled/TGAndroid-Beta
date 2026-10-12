@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class p implements Comparator {
-    public final int f18518a;
+    public final int f18053a;
 
     public p(int i10) {
-        this.f18518a = i10;
+        this.f18053a = i10;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class p implements Comparator {
         int lambda$localSearch$260;
         int lambda$quotesFor$0;
         int lambda$updatePinnedOrder$4;
-        switch (this.f18518a) {
+        switch (this.f18053a) {
             case 0:
                 lambda$pruneOverlaps$10 = AndroidUtilities.lambda$pruneOverlaps$10((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
                 return lambda$pruneOverlaps$10;
@@ -128,7 +128,7 @@ public final class p implements Comparator {
                 lambda$processLoadedFilterPeersInternal$70 = MessagesStorage.lambda$processLoadedFilterPeersInternal$70((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
                 return lambda$processLoadedFilterPeersInternal$70;
             case 26:
-                lambda$localSearch$260 = MessagesStorage.lambda$localSearch$260((gg.c0) obj, (gg.c0) obj2);
+                lambda$localSearch$260 = MessagesStorage.lambda$localSearch$260((hg.c0) obj, (hg.c0) obj2);
                 return lambda$localSearch$260;
             case 27:
                 return ProxyRotationController.a((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);

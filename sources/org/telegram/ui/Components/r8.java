@@ -1,39 +1,8 @@
 package org.telegram.ui.Components;
+public interface r8 {
+    void X0(int i10, int i11);
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class r8 implements Runnable {
-    public final int f30091a;
-    public final g9 f30092b;
+    void dismiss();
 
-    public r8(g9 g9Var, int i10) {
-        this.f30091a = i10;
-        this.f30092b = g9Var;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f30091a) {
-            case 0:
-                g9 g9Var = this.f30092b;
-                if (!g9Var.U) {
-                    if (g9Var.N > 0.0f) {
-                        if (g9Var.M != null) {
-                            g9Var.E = 1.0f;
-                            g9Var.F = true;
-                        }
-                        AndroidUtilities.hideKeyboard(g9Var.fragmentView);
-                        return;
-                    }
-                    g9Var.g0(!g9Var.f26348a.v, true, false);
-                    return;
-                }
-                return;
-            default:
-                g9 g9Var2 = this.f30092b;
-                g9Var2.getClass();
-                g9Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
-                return;
-        }
-    }
+    void l1();
 }

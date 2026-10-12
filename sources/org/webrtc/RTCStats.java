@@ -2,15 +2,15 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f44992id;
+    private final String f42777id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
 
-    public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
-        this.timestampUs = j3;
+    public RTCStats(long j10, String str, String str2, Map<String, Object> map) {
+        this.timestampUs = j10;
         this.type = str;
-        this.f44992id = str2;
+        this.f42777id = str2;
         this.members = map;
     }
 
@@ -34,12 +34,12 @@ public class RTCStats {
         }
     }
 
-    public static RTCStats create(long j3, String str, String str2, Map map) {
-        return new RTCStats(j3, str, str2, map);
+    public static RTCStats create(long j10, String str, String str2, Map map) {
+        return new RTCStats(j10, str, str2, map);
     }
 
     public String getId() {
-        return this.f44992id;
+        return this.f42777id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder v = a1.g.v("{ timestampUs: ");
-        v.append(this.timestampUs);
-        v.append(", type: ");
-        v.append(this.type);
-        v.append(", id: ");
-        v.append(this.f44992id);
+        StringBuilder u10 = a1.g.u("{ timestampUs: ");
+        u10.append(this.timestampUs);
+        u10.append(", type: ");
+        u10.append(this.type);
+        u10.append(", id: ");
+        u10.append(this.f42777id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            v.append(", ");
-            v.append(entry.getKey());
-            v.append(": ");
-            appendValue(v, entry.getValue());
+            u10.append(", ");
+            u10.append(entry.getKey());
+            u10.append(": ");
+            appendValue(u10, entry.getValue());
         }
-        v.append(" }");
-        return v.toString();
+        u10.append(" }");
+        return u10.toString();
     }
 }

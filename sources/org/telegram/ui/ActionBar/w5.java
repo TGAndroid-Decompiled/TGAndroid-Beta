@@ -12,8 +12,8 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.StateSet;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class w5 {
-    public static final int f21429a = h6.f20560d6;
-    public static float[] f21430b;
+    public static final int f20788a = g6.f19901d6;
+    public static float[] f20789b;
 
     public static float[] a(float... fArr) {
         if (fArr.length == 0) {
@@ -26,22 +26,22 @@ public abstract class w5 {
         float f7;
         float f10;
         float f11;
-        if (f21430b == null) {
-            f21430b = new float[3];
+        if (f20789b == null) {
+            f20789b = new float[3];
         }
-        Color.colorToHSV(i10, f21430b);
-        float[] fArr = f21430b;
+        Color.colorToHSV(i10, f20789b);
+        float[] fArr = f20789b;
         float f12 = fArr[1];
         if (f12 > 0.01f) {
-            if (h6.I.q()) {
+            if (g6.I.q()) {
                 f10 = 0.25f;
             } else {
                 f10 = -0.25f;
             }
             fArr[1] = Math.min(1.0f, Math.max(0.0f, f12 + f10));
-            float[] fArr2 = f21430b;
+            float[] fArr2 = f20789b;
             float f13 = fArr2[2];
-            if (h6.I.q()) {
+            if (g6.I.q()) {
                 f11 = 0.05f;
             } else {
                 f11 = -0.05f;
@@ -49,26 +49,26 @@ public abstract class w5 {
             fArr2[2] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
         } else {
             float f14 = fArr[2];
-            if (h6.I.q()) {
+            if (g6.I.q()) {
                 f7 = 0.1f;
             } else {
                 f7 = -0.1f;
             }
             fArr[2] = Math.min(1.0f, Math.max(0.0f, f14 + f7));
         }
-        return Color.HSVToColor(127, f21430b);
+        return Color.HSVToColor(127, f20789b);
     }
 
     public static org.telegram.ui.Cells.z c(v5 v5Var, int i10) {
         ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10});
         ?? drawable = new Drawable();
-        drawable.f21418b = -1.0f;
-        if (v5.f21416c == null) {
+        drawable.f20777b = -1.0f;
+        if (v5.f20775c == null) {
             Paint paint = new Paint(1);
-            v5.f21416c = paint;
+            v5.f20775c = paint;
             paint.setColor(-1);
         }
-        drawable.f21417a = v5.f21416c;
+        drawable.f20776a = v5.f20775c;
         return new RippleDrawable(colorStateList, v5Var, drawable);
     }
 
@@ -117,6 +117,6 @@ public abstract class w5 {
     }
 
     public static org.telegram.ui.Cells.z f(float[] fArr, int i10) {
-        return e(fArr, h6.x0(null, i10, false));
+        return e(fArr, g6.x0(null, i10, false));
     }
 }

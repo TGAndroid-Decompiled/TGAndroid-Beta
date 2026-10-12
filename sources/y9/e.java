@@ -1,14 +1,29 @@
 package y9;
-public final class e implements ia.d {
-    public static final e f52149a = new Object();
-    public static final ia.c f52150b = ia.c.c("files");
-    public static final ia.c f52151c = ia.c.c("orgId");
+
+import t7.u;
+public final class e implements i {
+    public static final u f48707c = new u(27);
+    public final Object f48708a;
+    public Object f48709b;
+
+    public e(ca.c cVar) {
+        this.f48708a = cVar;
+        this.f48709b = f48707c;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ia.e eVar = (ia.e) obj2;
-        e0 e0Var = (e0) ((j1) obj);
-        eVar.a(f52150b, e0Var.f52152a);
-        eVar.a(f52151c, e0Var.f52153b);
+    public void a(h hVar, int i10) {
+        int[] iArr = (int[]) this.f48709b;
+        try {
+            hVar.read((byte[]) this.f48708a, iArr[0], i10);
+            iArr[0] = iArr[0] + i10;
+        } finally {
+            hVar.close();
+        }
+    }
+
+    public e(byte[] bArr, int[] iArr) {
+        this.f48708a = bArr;
+        this.f48709b = iArr;
     }
 }

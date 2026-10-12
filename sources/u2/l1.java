@@ -1,34 +1,44 @@
 package u2;
-public final class l1 implements a1 {
-    public final a1 f48866a;
-    public final long f48867b;
 
-    public l1(a1 a1Var, long j3) {
-        this.f48866a = a1Var;
-        this.f48867b = j3;
+import java.util.Arrays;
+import v7.k7;
+public final class l1 implements y2.i {
+    public final g2.m f45967a;
+    public final g2.b0 f45968b;
+    public byte[] f45969c;
+
+    public l1(g2.h hVar, g2.m mVar) {
+        u.f46053g.getAndIncrement();
+        this.f45967a = mVar;
+        this.f45968b = new g2.b0(hVar);
     }
 
     @Override
     public final void a() {
-        this.f48866a.a();
-    }
-
-    @Override
-    public final boolean e() {
-        return this.f48866a.e();
-    }
-
-    @Override
-    public final int f(n4.y yVar, h2.h hVar, int i10) {
-        int f7 = this.f48866a.f(yVar, hVar, i10);
-        if (f7 == -4) {
-            hVar.f10984e += this.f48867b;
+        g2.b0 b0Var = this.f45968b;
+        b0Var.f9855b = 0L;
+        try {
+            b0Var.open(this.f45967a);
+            int i10 = 0;
+            while (i10 != -1) {
+                int i11 = (int) b0Var.f9855b;
+                byte[] bArr = this.f45969c;
+                if (bArr == null) {
+                    this.f45969c = new byte[1024];
+                } else if (i11 == bArr.length) {
+                    this.f45969c = Arrays.copyOf(bArr, bArr.length * 2);
+                }
+                byte[] bArr2 = this.f45969c;
+                i10 = b0Var.read(bArr2, i11, bArr2.length - i11);
+            }
+            k7.a(b0Var);
+        } catch (Throwable th2) {
+            k7.a(b0Var);
+            throw th2;
         }
-        return f7;
     }
 
     @Override
-    public final int j(long j3) {
-        return this.f48866a.j(j3 - this.f48867b);
+    public final void J() {
     }
 }

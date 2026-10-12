@@ -1,47 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-public final class wn0 extends a6 {
-    public final g6 d;
-    public final int f32495e;
-    public final ScrollSlidingTextTabStrip f32496f;
+import android.view.View;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+public final class wn0 implements View.OnClickListener {
+    public final xn0 f30918a;
 
-    public wn0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
-        super(context);
-        this.f32496f = scrollSlidingTextTabStrip;
-        this.f32495e = i10;
-        this.d = new g6(this, 360L, js.h);
+    public wn0(xn0 xn0Var) {
+        this.f30918a = xn0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e7 = this.d.e(this.f32496f.f24100n0);
-        int i10 = (e7 > 0.0f ? 1 : (e7 == 0.0f ? 0 : -1));
-        if (i10 > 0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, e7) * 255.0f));
-        } else {
-            canvas2 = canvas;
+    public final void onClick(View view) {
+        yn0 yn0Var = this.f30918a.f31288c;
+        for (int i10 = 0; i10 < yn0Var.e.size(); i10++) {
+            MessageObject messageObject = (MessageObject) yn0Var.e.get(i10);
+            if (yn0Var.H) {
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
+            } else {
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
+                DownloadController.getInstance(yn0Var.d).updateFilesLoadingPriority();
+            }
         }
-        super.onDraw(canvas2);
-        if (i10 > 0) {
-            canvas2.restore();
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f32496f.f24101r == this.f32495e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setSelected(z10);
+        yn0Var.d(true);
     }
 }

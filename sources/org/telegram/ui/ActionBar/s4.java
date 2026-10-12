@@ -13,34 +13,34 @@ import android.view.animation.PathInterpolator;
 import android.widget.ListView;
 import org.telegram.messenger.AndroidUtilities;
 public final class s4 extends ListView {
-    public final t4 f21259a;
-    public final LinearGradient f21260b;
-    public final Paint f21261c;
+    public final t4 f20629a;
+    public final LinearGradient f20630b;
+    public final Paint f20631c;
     public final Paint d;
-    public final Matrix f21262e;
+    public final Matrix e;
 
     public s4(t4 t4Var) {
-        super(t4Var.f21277a);
+        super(t4Var.f20645a);
         int[] iArr = new int[8];
-        PathInterpolator pathInterpolator = yf.y.f52444i;
-        yf.y.a(pathInterpolator, -16777216, iArr);
+        PathInterpolator pathInterpolator = zf.z.f50228i;
+        zf.z.a(pathInterpolator, -16777216, iArr);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, AndroidUtilities.dp(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);
         int[] iArr2 = new int[8];
-        yf.y.a(pathInterpolator, -16777216, iArr2);
+        zf.z.a(pathInterpolator, -16777216, iArr2);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), iArr2, (float[]) null, tileMode);
-        this.f21260b = linearGradient2;
+        this.f20630b = linearGradient2;
         Paint paint = new Paint(1);
-        this.f21261c = paint;
+        this.f20631c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f21262e = new Matrix();
+        this.e = new Matrix();
         paint.setShader(linearGradient);
         PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f21259a = t4Var;
+        this.f20629a = t4Var;
         setVerticalScrollBarEnabled(false);
     }
 
@@ -51,14 +51,14 @@ public final class s4 extends ListView {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (t4.b(this.f21259a)) {
+        if (t4.b(this.f20629a)) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
         boolean z10;
         boolean z11;
         float y3 = view.getY();
@@ -74,12 +74,12 @@ public final class s4 extends ListView {
             z11 = false;
         }
         if (!z10 && !z11) {
-            return super.drawChild(canvas, view, j3);
+            return super.drawChild(canvas, view, j10);
         }
         canvas.saveLayer(0.0f, y3, getWidth(), height, null);
-        boolean drawChild = super.drawChild(canvas, view, j3);
+        boolean drawChild = super.drawChild(canvas, view, j10);
         if (z10) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(16.0f), this.f21261c);
+            canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(16.0f), this.f20631c);
         }
         if (z11) {
             canvas.drawRect(0.0f, getHeight() - AndroidUtilities.dp(16.0f), getWidth(), getHeight(), this.d);
@@ -90,15 +90,15 @@ public final class s4 extends ListView {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        t4 t4Var = this.f21259a;
+        t4 t4Var = this.f20629a;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(t4Var.I.getHeight() - t4Var.H.getHeight(), 1073741824));
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        Matrix matrix = this.f21262e;
+        Matrix matrix = this.e;
         matrix.reset();
         matrix.postTranslate(0.0f, i11 - AndroidUtilities.dp(16.0f));
-        this.f21260b.setLocalMatrix(matrix);
+        this.f20630b.setLocalMatrix(matrix);
     }
 }

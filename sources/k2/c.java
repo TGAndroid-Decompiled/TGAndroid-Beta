@@ -1,28 +1,25 @@
 package k2;
 
-import android.content.Context;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
-import ci.e7;
 public final class c extends AudioDeviceCallback {
-    public final e7 f14411a;
+    public final e f13854a;
 
-    public c(e7 e7Var) {
-        this.f14411a = e7Var;
+    public c(e eVar) {
+        this.f13854a = eVar;
     }
 
     @Override
     public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
-        e7 e7Var = this.f14411a;
-        e7Var.a(b.c((Context) e7Var.f5029b, (b2.e) e7Var.f5035j, (a4.l) e7Var.f5034i));
+        this.f13854a.c();
     }
 
     @Override
     public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
-        e7 e7Var = this.f14411a;
-        if (e2.d0.k(audioDeviceInfoArr, (a4.l) e7Var.f5034i)) {
-            e7Var.f5034i = null;
+        e eVar = this.f13854a;
+        if (e2.m0.l(audioDeviceInfoArr, eVar.f13874i)) {
+            eVar.f13874i = null;
         }
-        e7Var.a(b.c((Context) e7Var.f5029b, (b2.e) e7Var.f5035j, (a4.l) e7Var.f5034i));
+        eVar.c();
     }
 }

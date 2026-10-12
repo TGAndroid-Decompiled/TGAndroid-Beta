@@ -1,156 +1,74 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.SharedConfig;
-public final class pu extends org.telegram.ui.Components.vm0 {
-    public final Context f41095c;
-    public final DataSettingsActivity d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_stories;
+public final class pu implements Utilities.Callback {
+    public final int f39291a;
+    public final long f39292b;
+    public final Object f39293c;
+    public final Object d;
 
-    public pu(DataSettingsActivity dataSettingsActivity, Context context) {
-        this.d = dataSettingsActivity;
-        this.f41095c = context;
+    public pu(Object obj, Object obj2, long j10, int i10) {
+        this.f39291a = i10;
+        this.f39293c = obj;
+        this.d = obj2;
+        this.f39292b = j10;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
+    public final void run(Object obj) {
+        boolean z10;
         int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int b10 = d1Var.b();
-        DataSettingsActivity dataSettingsActivity = this.d;
-        if (b10 != dataSettingsActivity.f33580e && b10 != dataSettingsActivity.f33581f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f33584s) {
-            i10 = dataSettingsActivity.useLessDataForCallsRow;
-            if (b10 != i10 && b10 != dataSettingsActivity.v) {
-                i11 = dataSettingsActivity.proxyRow;
-                if (b10 != i11) {
-                    i12 = dataSettingsActivity.clearDraftsRow;
-                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f33587y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f33582n) {
-                        i13 = dataSettingsActivity.saveToGalleryGroupsRow;
-                        if (b10 != i13) {
-                            i14 = dataSettingsActivity.saveToGalleryPeerRow;
-                            if (b10 != i14) {
-                                i15 = dataSettingsActivity.saveToGalleryChannelsRow;
-                                if (b10 != i15) {
-                                    i16 = dataSettingsActivity.resetDownloadRow;
-                                    if (b10 != i16) {
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.U;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        DataSettingsActivity dataSettingsActivity = this.d;
-        if (i10 != dataSettingsActivity.f33583r && i10 != dataSettingsActivity.f33585w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
-            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33586x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
-                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f33587y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
-                    if (i10 == dataSettingsActivity.H) {
-                        return 4;
-                    }
-                    if (i10 != dataSettingsActivity.f33580e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33581f) {
-                        i11 = dataSettingsActivity.saveToGalleryGroupsRow;
-                        if (i10 != i11) {
-                            i12 = dataSettingsActivity.saveToGalleryPeerRow;
-                            if (i10 != i12) {
-                                i13 = dataSettingsActivity.saveToGalleryChannelsRow;
-                                if (i10 != i13) {
-                                    if (i10 != dataSettingsActivity.f33584s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f33582n) {
-                                        return 1;
-                                    }
-                                    return 6;
-                                }
-                                return 5;
-                            }
-                            return 5;
-                        }
-                        return 5;
-                    }
-                    return 5;
-                }
-                return 3;
-            }
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 r28, int r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pu.v(s4.d1, int):void");
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View a7Var;
-        Context context = this.f41095c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 4) {
-                            if (i10 != 5) {
-                                a7Var = new org.telegram.ui.Cells.r8(context);
-                            } else {
-                                a7Var = new org.telegram.ui.Cells.j5(context);
-                            }
-                        } else {
-                            a7Var = new org.telegram.ui.Cells.e9(context);
-                        }
-                    } else {
-                        a7Var = new org.telegram.ui.Cells.w8(context);
-                    }
+        switch (this.f39291a) {
+            case 0:
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f39293c;
+                Long l4 = (Long) obj;
+                AndroidUtilities.cancelRunOnUIThread((ou) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f39292b <= 120) {
+                    z10 = false;
                 } else {
-                    a7Var = new org.telegram.ui.Cells.m4(context, 22);
+                    z10 = true;
                 }
-            } else {
-                a7Var = new org.telegram.ui.Cells.ca(context);
-            }
-        } else {
-            a7Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
-        }
-        return com.google.android.gms.internal.vision.e2.k(a7Var, a7Var, -1, -2);
-    }
-
-    @Override
-    public final void y(s4.d1 d1Var) {
-        if (d1Var.f47901f == 3) {
-            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) d1Var.f47897a;
-            int b10 = d1Var.b();
-            DataSettingsActivity dataSettingsActivity = this.d;
-            if (b10 == dataSettingsActivity.E) {
-                w8Var.setChecked(SharedConfig.saveStreamMedia);
-            } else if (b10 == dataSettingsActivity.f33587y) {
-                w8Var.setChecked(SharedConfig.streamMedia);
-            } else if (b10 == dataSettingsActivity.F) {
-                w8Var.setChecked(SharedConfig.streamAllVideo);
-            } else if (b10 == dataSettingsActivity.G) {
-                w8Var.setChecked(SharedConfig.streamMkv);
-            } else if (b10 == dataSettingsActivity.J) {
-                w8Var.setChecked(SharedConfig.isAutoplayGifs());
-            } else if (b10 == dataSettingsActivity.K) {
-                w8Var.setChecked(SharedConfig.isAutoplayVideo());
-            }
+                dataSettingsActivity.W = z10;
+                dataSettingsActivity.Y = l4.longValue();
+                dataSettingsActivity.X = false;
+                if (dataSettingsActivity.f32068a != null && (i10 = dataSettingsActivity.f32074s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
+                }
+                return;
+            case 1:
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.a2) this.d).q(150L);
+                yy yyVar = ((xx) this.f39293c).f41976b;
+                Boolean bool = yyVar.G.bot_participant;
+                if (bool != null && bool.booleanValue()) {
+                    yyVar.getMessagesController().addUserToChat(this.f39292b, yyVar.getMessagesController().getUser(Long.valueOf(yyVar.H)), 0, null, yyVar, false, runnable, new tf(8, runnable));
+                    return;
+                }
+                runnable.run();
+                return;
+            case 2:
+                ProfileActivity.k0((ProfileActivity) this.f39293c, (Context) this.d, this.f39292b, (TL_payments.connectedBotStarRef) obj);
+                return;
+            default:
+                zh.r3 r3Var = (zh.r3) this.f39293c;
+                MessagesController messagesController = (MessagesController) this.d;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
+                    ChannelBoostsController boostsController = messagesController.getBoostsController();
+                    long j10 = this.f39292b;
+                    boostsController.userCanBoostChannel(j10, tL_premium_boostsStatus, new bi.i(r3Var, tL_premium_boostsStatus, j10, messagesController, 7));
+                    return;
+                }
+                r3Var.f51088k0.setLoading(false);
+                r3Var.t2(true);
+                return;
         }
     }
 }

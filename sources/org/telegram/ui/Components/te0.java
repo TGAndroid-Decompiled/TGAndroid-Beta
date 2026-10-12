@@ -1,44 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class te0 extends AnimatorListenerAdapter {
-    public final int f30874a;
-    public final ci.j9 f30875b;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+public final class te0 extends Dialog {
+    public final FrameLayout f29362a;
+    public final se0 f29363b;
 
-    public te0(ci.j9 j9Var, int i10) {
-        this.f30874a = i10;
-        this.f30875b = j9Var;
+    public te0(LaunchActivity launchActivity) {
+        super(launchActivity, R.style.TransparentDialog);
+        AndroidUtilities.enableEdgeToEdge(getWindow());
+        FrameLayout frameLayout = new FrameLayout(launchActivity);
+        this.f29362a = frameLayout;
+        l2 l2Var = new l2(26);
+        WeakHashMap weakHashMap = r0.j0.f43732a;
+        r0.b0.i(frameLayout, l2Var);
+        se0 se0Var = new se0(this, launchActivity);
+        this.f29363b = se0Var;
+        frameLayout.addView(se0Var, w7.a6.e(-1, -1, 119));
+    }
+
+    public static void a(te0 te0Var) {
+        super.dismiss();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30874a) {
-            case 0:
-                ci.j9 j9Var = this.f30875b;
-                AnimatorSet animatorSet = (AnimatorSet) j9Var.f5287e;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    j9Var.f5287e = null;
-                    return;
-                }
-                return;
-            case 1:
-                ci.j9 j9Var2 = this.f30875b;
-                AnimatorSet animatorSet2 = (AnimatorSet) j9Var2.f5287e;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    j9Var2.f5287e = null;
-                    return;
-                }
-                return;
-            default:
-                ci.j9 j9Var3 = this.f30875b;
-                AnimatorSet animatorSet3 = (AnimatorSet) j9Var3.f5287e;
-                if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    j9Var3.f5287e = null;
-                    return;
-                }
-                return;
+    public final void dismiss() {
+        LaunchActivity launchActivity;
+        if (this.f29363b.h() && (launchActivity = LaunchActivity.G1) != null) {
+            launchActivity.moveTaskToBack(true);
         }
+    }
+
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        LaunchActivity launchActivity;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            if (this.f29363b.h() && (launchActivity = LaunchActivity.G1) != null) {
+                launchActivity.moveTaskToBack(true);
+            }
+            return true;
+        }
+        return super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override
+    public final void onBackPressed() {
+        LaunchActivity launchActivity;
+        if (this.f29363b.h() && (launchActivity = LaunchActivity.G1) != null) {
+            launchActivity.moveTaskToBack(true);
+        }
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
+        FrameLayout frameLayout = this.f29362a;
+        setContentView(frameLayout, layoutParams);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.height = -1;
+        attributes.gravity = 119;
+        attributes.dimAmount = 0.0f;
+        int i10 = attributes.flags & (-3);
+        attributes.flags = i10;
+        attributes.softInputMode = 16;
+        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
+            attributes.flags = i10 | 8192;
+            AndroidUtilities.logFlagSecure();
+        }
+        attributes.flags |= -2013198976;
+        window.setAttributes(attributes);
+        frameLayout.setSystemUiVisibility(256);
+        AndroidUtilities.setLightNavigationBar((Dialog) this, false);
     }
 }

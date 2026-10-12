@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 public final class z0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f33238a;
-    public final Runnable f33239b;
+    public final int f31709a;
+    public final Runnable f31710b;
 
     public z0(int i10, Runnable runnable) {
-        this.f33238a = i10;
-        this.f33239b = runnable;
+        this.f31709a = i10;
+        this.f31710b = runnable;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f33238a) {
+    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f31709a) {
             case 0:
-                Runnable runnable = this.f33239b;
+                Runnable runnable = this.f31710b;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 1:
-                this.f33239b.run();
+                this.f31710b.run();
                 return;
             case 2:
-                this.f33239b.run();
+                this.f31710b.run();
                 return;
             case 3:
-                this.f33239b.run();
+                this.f31710b.run();
                 return;
             case 4:
-                this.f33239b.run();
+                this.f31710b.run();
                 a2Var.dismiss();
                 return;
             case 5:
-                Runnable runnable2 = this.f33239b;
+                Runnable runnable2 = this.f31710b;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;
@@ -40,7 +40,7 @@ public final class z0 implements org.telegram.ui.ActionBar.z1 {
                 return;
             default:
                 a2Var.dismiss();
-                Runnable runnable3 = this.f33239b;
+                Runnable runnable3 = this.f31710b;
                 if (runnable3 != null) {
                     runnable3.run();
                     return;

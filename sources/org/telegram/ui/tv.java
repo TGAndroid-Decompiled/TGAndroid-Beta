@@ -1,30 +1,55 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class tv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42298a;
-    public final vy f42299b;
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class tv implements Runnable {
+    public final int f40490a;
+    public final Context f40491b;
 
-    public tv(vy vyVar, int i10) {
-        this.f42298a = i10;
-        this.f42299b = vyVar;
+    public tv(Context context, int i10) {
+        this.f40490a = i10;
+        this.f40491b = context;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42298a) {
+    public final void run() {
+        switch (this.f40490a) {
             case 0:
-                vy vyVar = this.f42299b;
-                vyVar.getClass();
-                vyVar.w4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                org.telegram.ui.ActionBar.g6.J(this.f40491b, false);
                 return;
             case 1:
-                this.f42299b.A4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                Activity findActivity = AndroidUtilities.findActivity(this.f40491b);
+                if (findActivity == null) {
+                    findActivity = LaunchActivity.G1;
+                }
+                if (findActivity != null && !findActivity.isFinishing()) {
+                    findActivity.moveTaskToBack(true);
+                    return;
+                }
+                return;
+            case 2:
+                pf.d.s(this.f40491b, "https://promote.telegram.org/guidelines");
+                return;
+            case 3:
+                pf.d.s(this.f40491b, "https://promote.telegram.org/guidelines");
+                return;
+            case 4:
+                pf.d.s(this.f40491b, "https://promote.telegram.org/guidelines");
+                return;
+            case 5:
+                pf.d.s(this.f40491b, "https://promote.telegram.org/guidelines");
+                return;
+            case 6:
+                pf.d.s(this.f40491b, "https://promote.telegram.org/guidelines");
+                return;
+            case 7:
+                pf.d.s(this.f40491b, "https://promote.telegram.org/guidelines");
                 return;
             default:
-                vy vyVar2 = this.f42299b;
-                vyVar2.getClass();
-                vyVar2.C4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                pf.d.s(this.f40491b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
                 return;
         }
     }

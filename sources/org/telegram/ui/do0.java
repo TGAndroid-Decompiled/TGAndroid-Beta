@@ -1,31 +1,37 @@
 package org.telegram.ui;
+public final class do0 implements Runnable {
+    public final int f35338a;
+    public final long f35339b;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class do0 implements vo0 {
-    public final xo0 f36856a;
-
-    public do0(xo0 xo0Var) {
-        this.f36856a = xo0Var;
+    public do0(long j10, int i10) {
+        this.f35338a = i10;
+        this.f35339b = j10;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        xo0 xo0Var = this.f36856a;
-        xo0Var.I0 = tL_payments_validateRequestedInfo;
-        xo0Var.B0(tL_payments_validateRequestedInfo.info);
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final void run() {
+        switch (this.f35338a) {
+            case 0:
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                if (U != null) {
+                    U.presentFragment(fo.W9(this.f35339b));
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    U2.presentFragment(fo.W9(this.f35339b));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.ActionBar.m2 U3 = LaunchActivity.U();
+                if (U3 != null) {
+                    U3.presentFragment(fo.W9(this.f35339b));
+                    return;
+                }
+                return;
+        }
     }
 }

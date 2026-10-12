@@ -1,78 +1,37 @@
 package mi;
 
-import android.graphics.RectF;
-import hg.c;
-import java.util.ArrayList;
-public final class a {
-    public final ArrayList f16194a = new ArrayList();
-    public int f16195b;
+import android.content.Context;
+import android.content.Intent;
+import org.telegram.tgnet.tl.TL_phone;
+public final class a implements Runnable {
+    public final int f15848a = 1;
+    public final int f15849b;
+    public final long f15850c;
+    public final boolean d;
+    public final Object e;
+    public final Object f15851f;
+    public final Object h;
 
-    public final RectF a(float f7, float f10, float f11, float f12) {
-        RectF rectF;
-        int i10 = this.f16195b;
-        ArrayList arrayList = this.f16194a;
-        if (i10 < arrayList.size()) {
-            rectF = (RectF) arrayList.get(this.f16195b);
-            rectF.set(f7, f10, f11, f12);
-        } else {
-            rectF = new RectF(f7, f10, f11, f12);
-            arrayList.add(rectF);
-        }
-        this.f16195b++;
-        return rectF;
+    public a(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i10, long j10, boolean z10) {
+        this.e = intent;
+        this.f15851f = phoneCall;
+        this.h = context;
+        this.f15849b = i10;
+        this.f15850c = j10;
+        this.d = z10;
     }
 
-    public final RectF b(int i10) {
-        if (i10 >= 0 && i10 < this.f16195b) {
-            return (RectF) this.f16194a.get(i10);
-        }
-        StringBuilder l4 = c.l(i10, "index=", ", size=");
-        l4.append(this.f16195b);
-        throw new IndexOutOfBoundsException(l4.toString());
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: mi.a.run():void");
     }
 
-    public final void c(int i10) {
-        int i11;
-        if (i10 >= 0 && i10 < (i11 = this.f16195b)) {
-            int i12 = i11 - 1;
-            ArrayList arrayList = this.f16194a;
-            RectF rectF = (RectF) arrayList.get(i10);
-            if (i10 != i12) {
-                arrayList.set(i10, (RectF) arrayList.get(i12));
-                arrayList.set(i12, rectF);
-            }
-            this.f16195b = i12;
-            return;
-        }
-        StringBuilder l4 = c.l(i10, "index=", ", size=");
-        l4.append(this.f16195b);
-        throw new IndexOutOfBoundsException(l4.toString());
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        a aVar = (a) obj;
-        if (this.f16195b != aVar.f16195b) {
-            return false;
-        }
-        for (int i10 = 0; i10 < this.f16195b; i10++) {
-            if (!((RectF) this.f16194a.get(i10)).equals(aVar.f16194a.get(i10))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int i10 = 1;
-        for (int i11 = 0; i11 < this.f16195b; i11++) {
-            i10 = (i10 * 31) + ((RectF) this.f16194a.get(i11)).hashCode();
-        }
-        return i10;
+    public a(j jVar, long j10, g gVar, int i10, boolean z10, m4.c cVar) {
+        this.e = jVar;
+        this.f15850c = j10;
+        this.f15851f = gVar;
+        this.f15849b = i10;
+        this.d = z10;
+        this.h = cVar;
     }
 }

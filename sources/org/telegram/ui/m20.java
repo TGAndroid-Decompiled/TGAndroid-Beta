@@ -1,49 +1,6 @@
 package org.telegram.ui;
-
-import android.text.style.URLSpan;
-import android.view.View;
-import android.view.ViewParent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class m20 implements Utilities.CallbackReturn {
-    public final int f39892a;
-    public final Object f39893b;
-
-    public m20(Object obj, int i10) {
-        this.f39892a = i10;
-        this.f39893b = obj;
-    }
-
-    @Override
-    public final Object run(Object obj) {
-        switch (this.f39892a) {
-            case 0:
-                r20 r20Var = (r20) this.f39893b;
-                View view = (View) obj;
-                r20Var.getClass();
-                ViewParent parent = view.getParent();
-                org.telegram.ui.Components.wm0 wm0Var = r20Var.f41485c;
-                if (parent != wm0Var) {
-                    return Boolean.FALSE;
-                }
-                return Boolean.valueOf(!org.telegram.ui.Components.h71.K(wm0Var.T(view).f47901f));
-            case 1:
-                gg0 gg0Var = (gg0) this.f39893b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new bg0(gg0Var, 1));
-                    return Boolean.TRUE;
-                }
-                return Boolean.FALSE;
-            default:
-                ProfileActivity profileActivity = (ProfileActivity) this.f39893b;
-                URLSpan uRLSpan = (URLSpan) obj;
-                if (uRLSpan != null) {
-                    profileActivity.B4(uRLSpan.getURL(), null);
-                    return Boolean.TRUE;
-                }
-                return Boolean.FALSE;
-        }
+public abstract class m20 {
+    public static void a(android.app.Activity r30, int r31, java.lang.String r32, org.telegram.tgnet.TLObject r33, org.telegram.tgnet.tl.TL_fragment.TL_collectibleInfo r34, org.telegram.ui.ActionBar.c6 r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m20.a(android.app.Activity, int, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.tl.TL_fragment$TL_collectibleInfo, org.telegram.ui.ActionBar.c6):void");
     }
 }

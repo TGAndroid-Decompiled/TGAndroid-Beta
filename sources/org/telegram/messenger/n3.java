@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class n3 implements Runnable {
-    public final int f18342a;
-    public final FileRefController f18343b;
-    public final TLRPC.TL_messages_sendMultiMedia f18344c;
+    public final int f17916a;
+    public final FileRefController f17917b;
+    public final TLRPC.TL_messages_sendMultiMedia f17918c;
     public final Object[] d;
 
     public n3(FileRefController fileRefController, TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr, int i10) {
-        this.f18342a = i10;
-        this.f18343b = fileRefController;
-        this.f18344c = tL_messages_sendMultiMedia;
+        this.f17916a = i10;
+        this.f17917b = fileRefController;
+        this.f17918c = tL_messages_sendMultiMedia;
         this.d = objArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18342a) {
+        switch (this.f17916a) {
             case 0:
-                this.f18343b.lambda$onUpdateObjectReference$30(this.f18344c, this.d);
+                this.f17917b.lambda$onUpdateObjectReference$30(this.f17918c, this.d);
                 return;
             default:
-                this.f18343b.lambda$sendErrorToObject$41(this.f18344c, this.d);
+                this.f17917b.lambda$sendErrorToObject$41(this.f17918c, this.d);
                 return;
         }
     }

@@ -1,16 +1,9 @@
 package gb;
+public final class e implements o {
+    public String f10044a;
 
-import java.util.Date;
-public class e implements db.v {
     @Override
-    public final db.u create(db.g gVar, kb.a aVar) {
-        if (aVar.f14776a == Date.class) {
-            return new h(g.f10446a);
-        }
-        return null;
-    }
-
-    public final String toString() {
-        return "DefaultDateTypeAdapter#DEFAULT_STYLE_FACTORY";
+    public Object f2() {
+        throw new RuntimeException(this.f10044a);
     }
 }

@@ -10,7 +10,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class k extends h implements List, RandomAccess, j$.util.List {
-    public static final i f365b = new i(m.d, 0);
+    public static final i f340b = new i(m.d, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -67,6 +67,15 @@ public abstract class k extends h implements List, RandomAccess, j$.util.List {
     }
 
     @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    @Override
     public final int hashCode() {
         int size = size();
         int i10 = 1;
@@ -74,15 +83,6 @@ public abstract class k extends h implements List, RandomAccess, j$.util.List {
             i10 = (i10 * 31) + get(i11).hashCode();
         }
         return i10;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
     }
 
     @Override
@@ -140,7 +140,7 @@ public abstract class k extends h implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f365b;
+                return f340b;
             }
             return new i(this, i10);
         }

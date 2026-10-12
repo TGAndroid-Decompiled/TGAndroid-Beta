@@ -1,26 +1,27 @@
 package yh;
-
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
 public final class t1 implements Runnable {
-    public final int f53450a;
-    public final s3 f53451b;
-    public final TLRPC.TL_payments_paymentResult f53452c;
+    public final int f49123a;
+    public final m2 f49124b;
+    public final int f49125c;
 
-    public t1(s3 s3Var, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, int i10) {
-        this.f53450a = i10;
-        this.f53451b = s3Var;
-        this.f53452c = tL_payments_paymentResult;
+    public t1(m2 m2Var, int i10, int i11) {
+        this.f49123a = i11;
+        this.f49124b = m2Var;
+        this.f49125c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f53450a) {
+        switch (this.f49123a) {
             case 0:
-                MessagesController.getInstance(this.f53451b.currentAccount).lambda$processUpdates$377(this.f53452c.updates, false);
+                this.f49124b.f48997f.scrollBy(0, this.f49125c);
                 return;
             default:
-                MessagesController.getInstance(this.f53451b.currentAccount).lambda$processUpdates$377(this.f53452c.updates, false);
+                h2 h2Var = this.f49124b.f48997f;
+                if (h2Var != null) {
+                    h2Var.setSpanCount(this.f49125c);
+                    return;
+                }
                 return;
         }
     }

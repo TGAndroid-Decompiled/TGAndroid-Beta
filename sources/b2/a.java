@@ -2,72 +2,78 @@ package b2;
 
 import android.net.Uri;
 import java.util.Arrays;
+import v7.u6;
 public final class a {
-    public static final String h;
-    public static final String f3206i;
-    public static final String f3207j;
-    public static final String f3208k;
-    public static final String f3209l;
-    public static final String f3210m;
-    public static final String f3211n;
-    public static final String f3212o;
-    public static final String f3213p;
-    public static final String f3214q;
-    public static final String f3215r;
-    public final int f3216a;
-    public final int f3217b;
-    public final Uri[] f3218c;
-    public final k0[] d;
-    public final int[] f3219e;
-    public final long[] f3220f;
-    public final String[] f3221g;
+    public static final String f2055i;
+    public static final String f2056j;
+    public static final String f2057k;
+    public static final String f2058l;
+    public static final String f2059m;
+    public static final String f2060n;
+    public static final String f2061o;
+    public static final String f2062p;
+    public static final String f2063q;
+    public static final String f2064r;
+    public static final String f2065s;
+    public static final String f2066t;
+    public final int f2067a;
+    public final int f2068b;
+    public final Uri[] f2069c;
+    public final p0[] d;
+    public final int[] e;
+    public final long[] f2070f;
+    public final String[] f2071g;
+    public final b[] h;
 
     static {
-        String str = e2.d0.f8529a;
-        h = Integer.toString(0, 36);
-        f3206i = Integer.toString(1, 36);
-        f3207j = Integer.toString(2, 36);
-        f3208k = Integer.toString(3, 36);
-        f3209l = Integer.toString(4, 36);
-        f3210m = Integer.toString(5, 36);
-        f3211n = Integer.toString(6, 36);
-        f3212o = Integer.toString(7, 36);
-        f3213p = Integer.toString(8, 36);
-        f3214q = Integer.toString(9, 36);
-        f3215r = Integer.toString(10, 36);
+        String str = e2.m0.f8372a;
+        f2055i = Integer.toString(0, 36);
+        f2056j = Integer.toString(1, 36);
+        f2057k = Integer.toString(2, 36);
+        f2058l = Integer.toString(3, 36);
+        f2059m = Integer.toString(4, 36);
+        f2060n = Integer.toString(5, 36);
+        f2061o = Integer.toString(6, 36);
+        f2062p = Integer.toString(7, 36);
+        f2063q = Integer.toString(8, 36);
+        f2064r = Integer.toString(9, 36);
+        f2065s = Integer.toString(10, 36);
+        f2066t = Integer.toString(11, 36);
     }
 
-    public a(int i10, int i11, int[] iArr, k0[] k0VarArr, long[] jArr, String[] strArr) {
+    public a(int i10, int i11, int[] iArr, p0[] p0VarArr, long[] jArr, String[] strArr, b[] bVarArr) {
         boolean z10;
         Uri uri;
         int i12 = 0;
-        if (iArr.length == k0VarArr.length) {
+        if (iArr.length == p0VarArr.length) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.b(z10);
-        this.f3216a = i10;
-        this.f3217b = i11;
-        this.f3219e = iArr;
-        this.d = k0VarArr;
-        this.f3220f = jArr;
-        this.f3218c = new Uri[k0VarArr.length];
+        u6.g(z10);
+        u6.g(iArr.length == bVarArr.length);
+        this.f2067a = i10;
+        this.f2068b = i11;
+        this.e = iArr;
+        this.d = p0VarArr;
+        this.f2070f = jArr;
+        this.f2069c = new Uri[p0VarArr.length];
         while (true) {
-            Uri[] uriArr = this.f3218c;
+            Uri[] uriArr = this.f2069c;
             if (i12 < uriArr.length) {
-                k0 k0Var = k0VarArr[i12];
-                if (k0Var == null) {
+                p0 p0Var = p0VarArr[i12];
+                if (p0Var == null) {
                     uri = null;
                 } else {
-                    f0 f0Var = k0Var.f3398b;
-                    f0Var.getClass();
-                    uri = f0Var.f3303a;
+                    k0 k0Var = p0Var.f2278b;
+                    k0Var.getClass();
+                    uri = k0Var.f2188a;
                 }
                 uriArr[i12] = uri;
                 i12++;
             } else {
-                this.f3221g = strArr;
+                this.f2071g = strArr;
+                this.h = bVarArr;
                 return;
             }
         }
@@ -77,7 +83,7 @@ public final class a {
         int i11;
         int i12 = i10 + 1;
         while (true) {
-            int[] iArr = this.f3219e;
+            int[] iArr = this.e;
             if (i12 >= iArr.length || (i11 = iArr[i12]) == 0 || i11 == 1) {
                 break;
             }
@@ -92,7 +98,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f3216a == aVar.f3216a && this.f3217b == aVar.f3217b && Arrays.equals(this.d, aVar.d) && Arrays.equals(this.f3219e, aVar.f3219e) && Arrays.equals(this.f3220f, aVar.f3220f) && Arrays.equals(this.f3221g, aVar.f3221g)) {
+            if (this.f2067a == aVar.f2067a && this.f2068b == aVar.f2068b && Arrays.equals(this.d, aVar.d) && Arrays.equals(this.e, aVar.e) && Arrays.equals(this.f2070f, aVar.f2070f) && Arrays.equals(this.f2071g, aVar.f2071g) && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
             return false;
@@ -103,7 +109,8 @@ public final class a {
     public final int hashCode() {
         int i10 = (int) 0;
         int hashCode = Arrays.hashCode(this.d);
-        int hashCode2 = Arrays.hashCode(this.f3219e);
-        return (((((Arrays.hashCode(this.f3220f) + ((hashCode2 + ((hashCode + (((((this.f3216a * 31) + this.f3217b) * 31) + i10) * 31)) * 31)) * 31)) * 31) + i10) * 961) + Arrays.hashCode(this.f3221g)) * 31;
+        int hashCode2 = Arrays.hashCode(this.e);
+        int hashCode3 = Arrays.hashCode(this.f2070f);
+        return (Arrays.hashCode(this.h) + ((((((hashCode3 + ((hashCode2 + ((hashCode + (((((this.f2067a * 31) + this.f2068b) * 31) + i10) * 31)) * 31)) * 31)) * 31) + i10) * 961) + Arrays.hashCode(this.f2071g)) * 31)) * 31;
     }
 }

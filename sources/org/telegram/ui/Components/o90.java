@@ -1,26 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class o90 implements Runnable {
-    public final int f29109a;
-    public final q90 f29110b;
-    public final boolean f29111c;
+import android.view.KeyEvent;
+public final class o90 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.ActionBar.k1 {
+    public final int f27914a;
+    public final w90 f27915b;
 
-    public o90(q90 q90Var, boolean z10, int i10) {
-        this.f29109a = i10;
-        this.f29110b = q90Var;
-        this.f29111c = z10;
+    public o90(w90 w90Var, int i10) {
+        this.f27914a = i10;
+        this.f27915b = w90Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29109a) {
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f27914a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new o90(this.f29110b, this.f29111c, 1));
+                v90 v90Var = this.f27915b.f30831r;
+                if (v90Var != null) {
+                    v90Var.i();
+                    return;
+                }
                 return;
             default:
-                this.f29110b.setJoinRequest(this.f29111c);
+                v90 v90Var2 = this.f27915b.f30831r;
+                if (v90Var2 != null) {
+                    v90Var2.d();
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public void n(KeyEvent keyEvent) {
+        w90 w90Var = this.f27915b;
+        w90Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && w90Var.f30832s.isShowing()) {
+            w90Var.f30832s.d(true);
         }
     }
 }

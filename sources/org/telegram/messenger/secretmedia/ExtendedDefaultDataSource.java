@@ -5,8 +5,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
-import e2.d;
-import e2.d0;
+import e2.m0;
 import g2.a0;
 import g2.b;
 import g2.c;
@@ -21,8 +20,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import n4.y;
+import n4.s;
 import org.telegram.messenger.FileStreamLoadOperation;
+import v7.u6;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -115,8 +115,8 @@ public final class ExtendedDefaultDataSource implements h {
                 addListenersToDataSource(hVar);
             } catch (ClassNotFoundException unused) {
                 Log.w("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-            } catch (Exception e7) {
-                throw new RuntimeException("Error instantiating RTMP extension", e7);
+            } catch (Exception e) {
+                throw new RuntimeException("Error instantiating RTMP extension", e);
             }
             if (this.rtmpDataSource == null) {
                 this.rtmpDataSource = this.baseDataSource;
@@ -190,16 +190,16 @@ public final class ExtendedDefaultDataSource implements h {
         } else {
             z10 = false;
         }
-        d.g(z10);
-        Uri uri = mVar.f10265a;
+        u6.p(z10);
+        Uri uri = mVar.f9883a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f10265a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f9883a.toString().substring(8)));
             l a2 = mVar.a();
-            a2.f10261e = uri;
+            a2.e = uri;
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = d0.f8529a;
+        String str = m0.f8372a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
@@ -238,7 +238,7 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new r(str, i10, i11, z10, new y(17)), (LongSparseArray<Uri>) null);
+        this(context, new r(str, i10, i11, z10, new s(17)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {

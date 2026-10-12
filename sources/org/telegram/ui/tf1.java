@@ -1,34 +1,24 @@
 package org.telegram.ui;
-public final class tf1 implements Runnable {
-    public final int f42186a;
-    public final uf1 f42187b;
 
-    public tf1(uf1 uf1Var, int i10) {
-        this.f42186a = i10;
-        this.f42187b = uf1Var;
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class tf1 extends org.telegram.ui.Components.a80 {
+    public final long A0;
+    public final vf1 B0;
+
+    public tf1(vf1 vf1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.m2 m2Var, long j11) {
+        super(context, i10, hVar, j10, m2Var, null);
+        this.B0 = vf1Var;
+        this.A0 = j11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42186a) {
-            case 0:
-                uf1 uf1Var = this.f42187b;
-                uf1Var.F = null;
-                if (uf1Var.G != -1) {
-                    uf1Var.H.getNotificationCenter().onAnimationFinish(uf1Var.G);
-                    uf1Var.G = -1;
-                    return;
-                }
-                return;
-            default:
-                uf1 uf1Var2 = this.f42187b;
-                uf1Var2.F = null;
-                if (uf1Var2.G != -1) {
-                    uf1Var2.H.getNotificationCenter().onAnimationFinish(uf1Var2.G);
-                    uf1Var2.G = -1;
-                    return;
-                }
-                return;
+    public final boolean Y() {
+        TLRPC.Chat chat = this.B0.f40985b.getMessagesController().getChat(Long.valueOf(this.A0));
+        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
+            return true;
         }
+        return false;
     }
 }

@@ -1,13 +1,87 @@
 package org.telegram.ui;
-public final class vc1 extends s4.j {
-    public final zd1 F;
 
-    public vc1(zd1 zd1Var) {
-        this.F = zd1Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class vc1 implements RequestDelegate {
+    public final int f40963a;
+    public final ce1 f40964b;
+
+    public vc1(ce1 ce1Var, int i10) {
+        this.f40963a = i10;
+        this.f40964b = ce1Var;
     }
 
     @Override
-    public final void P(s4.d1 d1Var) {
-        this.F.f44789u0.f1();
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f40963a) {
+            case 0:
+                final ce1 ce1Var = this.f40964b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                ce1.W(ce1Var, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        ce1 ce1Var2 = ce1Var;
+                                        ce1Var2.W0 = tL_wallPaper;
+                                        ce1Var2.b1(false);
+                                        ce1Var2.j1();
+                                        ce1Var2.U0.add(0, ce1Var2.W0);
+                                        ae1 ae1Var = ce1Var2.Q0;
+                                        if (ae1Var != null) {
+                                            ae1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final ce1 ce1Var2 = this.f40964b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                ce1.W(ce1Var2, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        ce1 ce1Var22 = ce1Var2;
+                                        ce1Var22.W0 = tL_wallPaper;
+                                        ce1Var22.b1(false);
+                                        ce1Var22.j1();
+                                        ce1Var22.U0.add(0, ce1Var22.W0);
+                                        ae1 ae1Var = ce1Var22.Q0;
+                                        if (ae1Var != null) {
+                                            ae1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

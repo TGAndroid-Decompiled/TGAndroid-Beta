@@ -1,37 +1,36 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-public final class j41 implements Runnable {
-    public final int f27355a;
-    public final MessageObject f27356b;
-    public final long f27357c;
-    public final String d;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class j41 extends mm0 {
+    public final x41 V2;
 
-    public j41(String str, MessageObject messageObject, long j3, int i10) {
-        this.f27355a = i10;
-        this.f27356b = messageObject;
-        this.f27357c = j3;
-        this.d = str;
+    public j41(x41 x41Var, Context context) {
+        super(context, null);
+        this.V2 = x41Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f27355a;
-        String str = this.d;
-        long j3 = this.f27357c;
-        MessageObject messageObject = this.f27356b;
-        switch (i10) {
-            case 0:
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i11 = NotificationCenter.voiceTranscriptionUpdate;
-                Long valueOf = Long.valueOf(j3);
-                Boolean bool = Boolean.TRUE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
-                return;
-            default:
-                o41.g(messageObject, j3, str);
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            x41 x41Var = this.V2;
+            if (y3 < x41Var.B(true) - getTop()) {
+                x41Var.dismiss();
+                return true;
+            }
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

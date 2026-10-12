@@ -1,84 +1,84 @@
 package l2;
 
-import b2.r0;
-import com.google.firebase.messaging.s;
+import b2.w0;
+import b2.x;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
-import x2.r;
+import t7.u;
 public final class l {
-    public final y2.m f15104a;
-    public final s f15105b;
-    public final int[] f15106c;
+    public final y2.m f14526a;
+    public final qi.e f14527b;
+    public final int[] f14528c;
     public final int d;
-    public final g2.h f15107e;
-    public final long f15108f;
-    public final int f15109g;
+    public final g2.h e;
+    public final long f14529f;
+    public final int f14530g;
     public final o h;
-    public final j[] f15110i;
-    public r f15111j;
-    public m2.c f15112k;
-    public int f15113l;
-    public u2.b f15114m;
-    public boolean f15115n;
+    public final j[] f14531i;
+    public x2.p f14532j;
+    public m2.c f14533k;
+    public int f14534l;
+    public u2.b f14535m;
+    public boolean f14536n;
 
-    public l(b2.p pVar, y2.m mVar, m2.c cVar, s sVar, int i10, int[] iArr, r rVar, int i11, g2.h hVar, long j3, int i12, boolean z10, ArrayList arrayList, o oVar) {
+    public l(c5.f fVar, y2.m mVar, m2.c cVar, qi.e eVar, int i10, int[] iArr, x2.p pVar, int i11, g2.h hVar, long j10, int i12, boolean z10, ArrayList arrayList, o oVar) {
         int i13;
         m2.m mVar2;
         j[] jVarArr;
-        b2.s sVar2;
+        x xVar;
         c3.o iVar;
-        v2.d dVar;
+        v2.e eVar2;
         ?? obj = new Object();
-        obj.f15104a = mVar;
-        obj.f15112k = cVar;
-        obj.f15105b = sVar;
-        obj.f15106c = iArr;
-        obj.f15111j = rVar;
+        obj.f14526a = mVar;
+        obj.f14533k = cVar;
+        obj.f14527b = eVar;
+        obj.f14528c = iArr;
+        obj.f14532j = pVar;
         obj.d = i11;
-        obj.f15107e = hVar;
-        obj.f15113l = i10;
-        obj.f15108f = j3;
-        obj.f15109g = i12;
+        obj.e = hVar;
+        obj.f14534l = i10;
+        obj.f14529f = j10;
+        obj.f14530g = i12;
         o oVar2 = oVar;
         obj.h = oVar2;
         long d = cVar.d(i10);
         ArrayList a2 = obj.a();
-        obj.f15110i = new j[rVar.length()];
+        obj.f14531i = new j[pVar.length()];
         int i14 = 0;
         int i15 = 0;
         l lVar = obj;
-        while (i15 < lVar.f15110i.length) {
-            m2.m mVar3 = (m2.m) a2.get(rVar.h(i15));
-            m2.b j10 = sVar.j(mVar3.f15703b);
-            j[] jVarArr2 = lVar.f15110i;
-            m2.b bVar = j10 == null ? (m2.b) mVar3.f15703b.get(i14) : j10;
-            b2.s sVar3 = mVar3.f15702a;
-            pVar.getClass();
-            String str = sVar3.f3640q;
-            if (r0.l(str)) {
-                if (!pVar.f3503b) {
-                    dVar = null;
+        while (i15 < lVar.f14531i.length) {
+            m2.m mVar3 = (m2.m) a2.get(pVar.h(i15));
+            m2.b E = eVar.E(mVar3.f15359b);
+            j[] jVarArr2 = lVar.f14531i;
+            m2.b bVar = E == null ? (m2.b) mVar3.f15359b.get(i14) : E;
+            x xVar2 = mVar3.f15358a;
+            fVar.getClass();
+            String str = xVar2.f2518r;
+            if (w0.l(str)) {
+                if (!fVar.f4358b) {
+                    eVar2 = null;
                     mVar2 = mVar3;
                     jVarArr = jVarArr2;
-                    v2.d dVar2 = dVar;
+                    v2.e eVar3 = eVar2;
                     int i16 = i15;
                     long j11 = d;
-                    jVarArr[i16] = new j(j11, mVar2, bVar, dVar2, 0L, mVar2.c());
+                    jVarArr[i16] = new j(j11, mVar2, bVar, eVar3, 0L, mVar2.d());
                     i15 = i16 + 1;
                     lVar = this;
                     oVar2 = oVar;
                     d = j11;
                     i14 = 0;
                 } else {
-                    iVar = new z3.h(((qb.b) pVar.f3504c).m(sVar3), sVar3);
+                    iVar = new z3.i(((u) fVar.f4359c).p(xVar2), xVar2);
                 }
             } else {
                 if (str != null && (str.startsWith("video/webm") || str.startsWith("audio/webm") || str.startsWith("application/webm") || str.startsWith("video/x-matroska") || str.startsWith("audio/x-matroska") || str.startsWith("application/x-matroska"))) {
                     mVar2 = mVar3;
-                    sVar2 = sVar3;
+                    xVar = xVar2;
                     jVarArr = jVarArr2;
-                    iVar = new u3.d((qb.b) pVar.f3504c, pVar.f3503b ? 1 : 3);
+                    iVar = new u3.f((u) fVar.f4359c, fVar.f4358b ? 1 : 3);
                 } else if (Objects.equals(str, "image/jpeg")) {
                     iVar = new k3.a(1);
                 } else if (Objects.equals(str, "image/png")) {
@@ -89,17 +89,17 @@ public final class l {
                     } else {
                         i13 = 0;
                     }
+                    int g10 = (fVar.f4358b ? i13 : i13 | 32) | w3.i.g(fVar.f4357a);
                     mVar2 = mVar3;
-                    int i17 = pVar.f3503b ? i13 : i13 | 32;
                     jVarArr = jVarArr2;
-                    sVar2 = sVar3;
-                    iVar = new w3.i((qb.b) pVar.f3504c, i17, null, arrayList, oVar2);
+                    xVar = xVar2;
+                    iVar = new w3.i((u) fVar.f4359c, g10, null, arrayList, oVar2);
                 }
-                dVar = new v2.d(iVar, i11, sVar2);
-                v2.d dVar22 = dVar;
+                eVar2 = new v2.e(iVar, i11, xVar);
+                v2.e eVar32 = eVar2;
                 int i162 = i15;
                 long j112 = d;
-                jVarArr[i162] = new j(j112, mVar2, bVar, dVar22, 0L, mVar2.c());
+                jVarArr[i162] = new j(j112, mVar2, bVar, eVar32, 0L, mVar2.d());
                 i15 = i162 + 1;
                 lVar = this;
                 oVar2 = oVar;
@@ -107,13 +107,13 @@ public final class l {
                 i14 = 0;
             }
             mVar2 = mVar3;
-            sVar2 = sVar3;
+            xVar = xVar2;
             jVarArr = jVarArr2;
-            dVar = new v2.d(iVar, i11, sVar2);
-            v2.d dVar222 = dVar;
+            eVar2 = new v2.e(iVar, i11, xVar);
+            v2.e eVar322 = eVar2;
             int i1622 = i15;
             long j1122 = d;
-            jVarArr[i1622] = new j(j1122, mVar2, bVar, dVar222, 0L, mVar2.c());
+            jVarArr[i1622] = new j(j1122, mVar2, bVar, eVar322, 0L, mVar2.d());
             i15 = i1622 + 1;
             lVar = this;
             oVar2 = oVar;
@@ -123,20 +123,20 @@ public final class l {
     }
 
     public final ArrayList a() {
-        List list = this.f15112k.b(this.f15113l).f15691c;
+        List list = this.f14533k.b(this.f14534l).f15348c;
         ArrayList arrayList = new ArrayList();
-        for (int i10 : this.f15106c) {
-            arrayList.addAll(((m2.a) list.get(i10)).f15655c);
+        for (int i10 : this.f14528c) {
+            arrayList.addAll(((m2.a) list.get(i10)).f15316c);
         }
         return arrayList;
     }
 
     public final j b(int i10) {
-        j[] jVarArr = this.f15110i;
+        j[] jVarArr = this.f14531i;
         j jVar = jVarArr[i10];
-        m2.b j3 = this.f15105b.j(jVar.f15100b.f15703b);
-        if (j3 != null && !j3.equals(jVar.f15101c)) {
-            j jVar2 = new j(jVar.f15102e, jVar.f15100b, j3, jVar.f15099a, jVar.f15103f, jVar.d);
+        m2.b E = this.f14527b.E(jVar.f14523b.f15359b);
+        if (E != null && !E.equals(jVar.f14524c)) {
+            j jVar2 = new j(jVar.e, jVar.f14523b, E, jVar.f14522a, jVar.f14525f, jVar.d);
             jVarArr[i10] = jVar2;
             return jVar2;
         }

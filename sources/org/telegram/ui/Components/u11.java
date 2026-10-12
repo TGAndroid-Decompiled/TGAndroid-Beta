@@ -1,29 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class u11 extends MetricAffectingSpan {
-    public TextPaint f31020a;
+import org.telegram.messenger.AndroidUtilities;
+public final class u11 implements Runnable {
+    public final int f29567a;
+    public final Runnable f29568b;
+    public final Runnable f29569c;
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f31020a;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
-        textPaint.baselineShift = textPaint2.baselineShift;
-        textPaint.bgColor = textPaint2.bgColor;
+    public u11(Runnable runnable, Runnable runnable2, int i10) {
+        this.f29567a = i10;
+        this.f29568b = runnable;
+        this.f29569c = runnable2;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f31020a;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
-        textPaint.baselineShift = textPaint2.baselineShift;
-        textPaint.bgColor = textPaint2.bgColor;
+    public final void run() {
+        switch (this.f29567a) {
+            case 0:
+                y11.b(this.f29568b);
+                Runnable runnable = this.f29569c;
+                if (runnable != null) {
+                    AndroidUtilities.runOnUIThread(runnable);
+                    return;
+                }
+                return;
+            default:
+                this.f29568b.run();
+                this.f29569c.run();
+                return;
+        }
     }
 }

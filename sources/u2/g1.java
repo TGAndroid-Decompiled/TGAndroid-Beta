@@ -1,110 +1,145 @@
 package u2;
 
-import android.net.Uri;
-import java.util.Collections;
-import java.util.List;
-public final class g1 extends b2.k1 {
-    public static final Object f48793q = new Object();
-    public final long f48794e;
-    public final long f48795f;
-    public final long f48796g;
-    public final long h;
-    public final long f48797i;
-    public final long f48798j;
-    public final boolean f48799k;
-    public final boolean f48800l;
-    public final boolean f48801m;
-    public final Object f48802n;
-    public final b2.k0 f48803o;
-    public final b2.e0 f48804p;
+import java.util.Arrays;
+import java.util.Random;
+public final class g1 implements i1 {
+    public final Random f45923a;
+    public final int[] f45924b;
+    public final int[] f45925c;
 
-    static {
-        boolean z10;
-        b2.c0 c0Var;
-        b2.y yVar = new b2.y();
-        b2.b0 b0Var = new b2.b0();
-        List list = Collections.EMPTY_LIST;
-        e9.a1 a1Var = e9.a1.f8712e;
-        b2.d0 d0Var = new b2.d0();
-        b2.g0 g0Var = b2.g0.d;
-        Uri uri = Uri.EMPTY;
-        if (b0Var.f3242b != null && b0Var.f3241a == null) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        e2.d.g(z10);
-        if (uri != null) {
-            if (b0Var.f3241a != null) {
-                c0Var = new b2.c0(b0Var);
-            } else {
-                c0Var = null;
-            }
-            new b2.f0(uri, null, c0Var, null, list, null, a1Var, -9223372036854775807L);
-        }
-        new b2.z(yVar);
-        new b2.e0(d0Var);
-        b2.n0 n0Var = b2.n0.K;
-    }
-
-    public g1(long j3, long j10, long j11, long j12, long j13, long j14, boolean z10, boolean z11, boolean z12, t7.t tVar, b2.k0 k0Var, b2.e0 e0Var) {
-        this.f48794e = j3;
-        this.f48795f = j10;
-        this.f48796g = j11;
-        this.h = j12;
-        this.f48797i = j13;
-        this.f48798j = j14;
-        this.f48799k = z10;
-        this.f48800l = z11;
-        this.f48801m = z12;
-        this.f48802n = tVar;
-        k0Var.getClass();
-        this.f48803o = k0Var;
-        this.f48804p = e0Var;
+    public g1() {
+        this(new Random());
     }
 
     @Override
-    public final int b(Object obj) {
-        if (f48793q.equals(obj)) {
-            return 0;
+    public final i1 a(int i10, int i11) {
+        int i12 = i11 - i10;
+        int[] iArr = this.f45924b;
+        int[] iArr2 = new int[iArr.length - i12];
+        int i13 = 0;
+        for (int i14 = 0; i14 < iArr.length; i14++) {
+            int i15 = iArr[i14];
+            if (i15 >= i10 && i15 < i11) {
+                i13++;
+            } else {
+                int i16 = i14 - i13;
+                if (i15 >= i10) {
+                    i15 -= i12;
+                }
+                iArr2[i16] = i15;
+            }
+        }
+        return new g1(iArr2, new Random(this.f45923a.nextLong()));
+    }
+
+    @Override
+    public final int b() {
+        int[] iArr = this.f45924b;
+        if (iArr.length > 0) {
+            return iArr[0];
         }
         return -1;
     }
 
     @Override
-    public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        Object obj;
-        e2.d.c(i10, 1);
-        if (z10) {
-            obj = f48793q;
-        } else {
-            obj = null;
+    public final i1 c(int i10) {
+        return ((g1) i()).f(0, i10);
+    }
+
+    @Override
+    public final int d(int i10) {
+        int i11 = this.f45925c[i10] - 1;
+        if (i11 < 0) {
+            return -1;
         }
-        Object obj2 = obj;
-        h1Var.getClass();
-        b2.b bVar = b2.b.f3237c;
-        h1Var.h(null, obj2, 0, this.f48796g, -this.f48797i, bVar, false);
-        return h1Var;
+        return this.f45924b[i11];
+    }
+
+    @Override
+    public final int e(int i10) {
+        int i11 = this.f45925c[i10] + 1;
+        int[] iArr = this.f45924b;
+        if (i11 < iArr.length) {
+            return iArr[i11];
+        }
+        return -1;
+    }
+
+    @Override
+    public final i1 f(int i10, int i11) {
+        int[] iArr;
+        Random random;
+        int[] iArr2 = new int[i11];
+        int[] iArr3 = new int[i11];
+        int i12 = 0;
+        while (true) {
+            iArr = this.f45924b;
+            random = this.f45923a;
+            if (i12 >= i11) {
+                break;
+            }
+            iArr2[i12] = random.nextInt(iArr.length + 1);
+            int i13 = i12 + 1;
+            int nextInt = random.nextInt(i13);
+            iArr3[i12] = iArr3[nextInt];
+            iArr3[nextInt] = i12 + i10;
+            i12 = i13;
+        }
+        Arrays.sort(iArr2);
+        int[] iArr4 = new int[iArr.length + i11];
+        int i14 = 0;
+        int i15 = 0;
+        for (int i16 = 0; i16 < iArr.length + i11; i16++) {
+            if (i14 < i11 && i15 == iArr2[i14]) {
+                iArr4[i16] = iArr3[i14];
+                i14++;
+            } else {
+                int i17 = i15 + 1;
+                int i18 = iArr[i15];
+                iArr4[i16] = i18;
+                if (i18 >= i10) {
+                    iArr4[i16] = i18 + i11;
+                }
+                i15 = i17;
+            }
+        }
+        return new g1(iArr4, new Random(random.nextLong()));
+    }
+
+    @Override
+    public final int getLength() {
+        return this.f45924b.length;
     }
 
     @Override
     public final int h() {
-        return 1;
+        int[] iArr = this.f45924b;
+        if (iArr.length > 0) {
+            return iArr[iArr.length - 1];
+        }
+        return -1;
     }
 
     @Override
-    public final Object l(int i10) {
-        e2.d.c(i10, 1);
-        return f48793q;
+    public final i1 i() {
+        return new g1(new Random(this.f45923a.nextLong()));
+    }
+
+    public g1(int[] iArr, Random random) {
+        this.f45924b = iArr;
+        this.f45923a = random;
+        this.f45925c = new int[iArr.length];
+        for (int i10 = 0; i10 < iArr.length; i10++) {
+            this.f45925c[iArr[i10]] = i10;
+        }
+    }
+
+    public g1(Random random) {
+        this(new int[0], random);
     }
 
     @Override
-    public final b2.j1 m(int r25, b2.j1 r26, long r27) {
-        throw new UnsupportedOperationException("Method not decompiled: u2.g1.m(int, b2.j1, long):b2.j1");
-    }
-
-    @Override
-    public final int o() {
-        return 1;
+    public final i1 g() {
+        return this;
     }
 }

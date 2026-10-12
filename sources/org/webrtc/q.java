@@ -1,27 +1,21 @@
 package org.webrtc;
 public final class q implements Runnable {
-    public final int f45024a;
-    public final SurfaceTextureHelper f45025b;
+    public final int f42807a;
+    public final ScreenCapturerAndroid f42808b;
 
-    public q(SurfaceTextureHelper surfaceTextureHelper, int i10) {
-        this.f45024a = i10;
-        this.f45025b = surfaceTextureHelper;
+    public q(ScreenCapturerAndroid screenCapturerAndroid, int i10) {
+        this.f42807a = i10;
+        this.f42808b = screenCapturerAndroid;
     }
 
     @Override
     public final void run() {
-        switch (this.f45024a) {
+        switch (this.f42807a) {
             case 0:
-                this.f45025b.lambda$stopListening$1();
-                return;
-            case 1:
-                this.f45025b.lambda$dispose$6();
-                return;
-            case 2:
-                this.f45025b.lambda$returnTextureFrame$5();
+                ScreenCapturerAndroid.a(this.f42808b);
                 return;
             default:
-                this.f45025b.lambda$forceFrame$3();
+                ScreenCapturerAndroid.b(this.f42808b);
                 return;
         }
     }

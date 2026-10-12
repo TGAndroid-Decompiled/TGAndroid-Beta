@@ -1,44 +1,44 @@
 package yh;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class x implements TextWatcher {
-    public final y f53592a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class x extends FrameLayout {
+    public final RectF f49191a;
+    public final RectF f49192b;
+    public final d0 f49193c;
 
-    public x(y yVar) {
-        this.f53592a = yVar;
+    public x(d0 d0Var, Context context) {
+        super(context);
+        this.f49193c = d0Var;
+        this.f49191a = new RectF();
+        this.f49192b = new RectF();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        zf.a i10;
-        String obj;
-        int indexOf;
-        if (editable != null && !editable.toString().isEmpty() && !".".equals(editable.toString())) {
-            z10 = false;
-        } else {
-            z10 = true;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        d0 d0Var = this.f49193c;
+        y yVar = d0Var.f48810a0;
+        FrameLayout frameLayout = yVar.f50908b;
+        RectF rectF = this.f49191a;
+        if (ih.j.c(frameLayout, this, rectF)) {
+            TextView textView = d0Var.f48811b0;
+            RectF rectF2 = this.f49192b;
+            if (ih.j.c(textView, this, rectF2)) {
+                float dp = rectF2.right - AndroidUtilities.dp(32.0f);
+                float centerY = rectF2.centerY() - AndroidUtilities.dp(16.0f);
+                if (!rectF.isEmpty()) {
+                    canvas.save();
+                    canvas.translate(dp, centerY);
+                    canvas.scale(AndroidUtilities.dp(32.0f) / rectF.width(), AndroidUtilities.dp(32.0f) / rectF.height());
+                    yVar.f50908b.draw(canvas);
+                    canvas.restore();
+                }
+            }
         }
-        if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-            editable.delete(indexOf + 3, obj.length());
-        }
-        y yVar = this.f53592a;
-        if (!z10) {
-            i10 = zf.a.h(editable.toString(), yVar.m0.f54673a);
-        } else {
-            i10 = zf.a.i(0L, yVar.m0.f54673a);
-        }
-        yVar.V(i10, false, false, true);
-        yVar.f53618c0.c(yVar.f53619d0.isFocused(), true ^ TextUtils.isEmpty(yVar.f53619d0.getText()));
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

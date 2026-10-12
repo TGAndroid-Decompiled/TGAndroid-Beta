@@ -23,11 +23,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.telegram.ui.Cells.c1;
-import sc.v;
+import org.telegram.ui.Cells.d0;
 public abstract class g {
-    public static final ArrayMap f49983a;
-    public static final ArrayMap f49984b;
+    public static final ArrayMap f47064a;
+    public static final ArrayMap f47065b;
 
     static {
         ArrayMap arrayMap = new ArrayMap();
@@ -43,7 +42,7 @@ public abstract class g {
         arrayMap.put(Map.class, "map");
         arrayMap.put(List.class, "list");
         arrayMap.put(IconCompat.class, "image");
-        f49983a = arrayMap;
+        f47064a = arrayMap;
         ArrayMap arrayMap2 = new ArrayMap();
         arrayMap2.put(0, "primitive");
         arrayMap2.put(1, "iInterface");
@@ -53,7 +52,7 @@ public abstract class g {
         arrayMap2.put(4, "list");
         arrayMap2.put(5, "object");
         arrayMap2.put(6, "image");
-        f49984b = arrayMap2;
+        f47065b = arrayMap2;
     }
 
     public static void a(Bundle bundle, AbstractCollection abstractCollection, e eVar) {
@@ -78,17 +77,17 @@ public abstract class g {
             if (string2 != null) {
                 try {
                     return g(Class.forName(string2), "valueOf", eVar).invoke(null, string);
-                } catch (ClassNotFoundException e7) {
-                    throw new f(a1.g.q("Enum class [", string2, "] not found"), eVar, e7);
-                } catch (IllegalArgumentException e10) {
-                    throw new f(c1.i("Enum value [", string, "] does not exist in enum class [", string2, "]"), eVar, e10);
-                } catch (ReflectiveOperationException e11) {
-                    throw new f(a1.g.q("Enum of class [", string2, "] missing valueOf method"), eVar, e11);
+                } catch (ClassNotFoundException e) {
+                    throw new f(a1.g.p("Enum class [", string2, "] not found"), eVar, e);
+                } catch (IllegalArgumentException e7) {
+                    throw new f(d0.j("Enum value [", string, "] does not exist in enum class [", string2, "]"), eVar, e7);
+                } catch (ReflectiveOperationException e10) {
+                    throw new f(a1.g.p("Enum of class [", string2, "] missing valueOf method"), eVar, e10);
                 }
             }
-            throw new f(a1.g.q("Missing enum className [", string2, "]"), eVar);
+            throw new f(a1.g.p("Missing enum className [", string2, "]"), eVar);
         }
-        throw new f(a1.g.q("Missing enum name [", string, "]"), eVar);
+        throw new f(a1.g.p("Missing enum name [", string, "]"), eVar);
     }
 
     public static Object c(Bundle bundle, e eVar) {
@@ -102,10 +101,10 @@ public abstract class g {
                         return invoke;
                     }
                     throw new f("Failed to get interface from binder", eVar);
-                } catch (ClassNotFoundException e7) {
-                    throw new f("Binder for unknown IInterface: ".concat(string), eVar, e7);
-                } catch (ReflectiveOperationException e10) {
-                    throw new f("Method to create IInterface from a Binder is not accessible for interface: ".concat(string), eVar, e10);
+                } catch (ClassNotFoundException e) {
+                    throw new f("Binder for unknown IInterface: ".concat(string), eVar, e);
+                } catch (ReflectiveOperationException e7) {
+                    throw new f("Method to create IInterface from a Binder is not accessible for interface: ".concat(string), eVar, e7);
                 }
             }
             throw new f("Bundle is missing IInterface class name", eVar);
@@ -171,14 +170,14 @@ public abstract class g {
                     }
                 }
                 return newInstance;
-            } catch (ClassNotFoundException e7) {
-                throw new f("Object for unknown class: ".concat(string), eVar, e7);
-            } catch (IllegalArgumentException e10) {
-                throw new f("Failed to deserialize class: ".concat(string), eVar, e10);
-            } catch (NoSuchMethodException e11) {
-                throw new f("Object missing no args constructor: ".concat(string), eVar, e11);
-            } catch (ReflectiveOperationException e12) {
-                throw new f("Constructor or field is not accessible: ".concat(string), eVar, e12);
+            } catch (ClassNotFoundException e) {
+                throw new f("Object for unknown class: ".concat(string), eVar, e);
+            } catch (IllegalArgumentException e7) {
+                throw new f("Failed to deserialize class: ".concat(string), eVar, e7);
+            } catch (NoSuchMethodException e10) {
+                throw new f("Object missing no args constructor: ".concat(string), eVar, e10);
+            } catch (ReflectiveOperationException e11) {
+                throw new f("Constructor or field is not accessible: ".concat(string), eVar, e11);
             }
         }
         throw new f("Bundle is missing the class name", eVar);
@@ -190,11 +189,11 @@ public abstract class g {
         Objects.requireNonNull(classLoader);
         bundle.setClassLoader(classLoader);
         int i10 = bundle.getInt("tag_class_type");
-        String str2 = (String) f49984b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
+        String str2 = (String) f47065b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
         if (str2 == null) {
             str2 = "unknown";
         }
-        e eVar2 = new e(bundle, str2, eVar.f49982b);
+        e eVar2 = new e(bundle, str2, eVar.f47063b);
         try {
             switch (i10) {
                 case 0:
@@ -223,9 +222,9 @@ public abstract class g {
                     eVar2.close();
                     return arrayList;
                 case 5:
-                    Object e7 = e(bundle, eVar2);
+                    Object e = e(bundle, eVar2);
                     eVar2.close();
-                    return e7;
+                    return e;
                 case 6:
                     Bundle bundle2 = bundle.getBundle("tag_value");
                     if (bundle2 != null) {
@@ -248,8 +247,8 @@ public abstract class g {
                             Class<?> cls = Class.forName(string);
                             eVar2.close();
                             return cls;
-                        } catch (ClassNotFoundException e10) {
-                            throw new f("Class name is unknown: ".concat(str), eVar2, e10);
+                        } catch (ClassNotFoundException e7) {
+                            throw new f("Class name is unknown: ".concat(str), eVar2, e7);
                         }
                     }
                     throw new f("Class is missing the class name", eVar2);
@@ -306,7 +305,7 @@ public abstract class g {
     }
 
     public static String i(Class cls) {
-        String str = (String) f49983a.get(cls);
+        String str = (String) f47064a.get(cls);
         if (str == null) {
             if (List.class.isAssignableFrom(cls)) {
                 return "<List>";
@@ -343,8 +342,8 @@ public abstract class g {
             bundle.putString("tag_value", (String) g(obj.getClass(), "name", eVar).invoke(obj, null));
             bundle.putString("tag_class_name", obj.getClass().getName());
             return bundle;
-        } catch (ReflectiveOperationException e7) {
-            throw new f("Enum missing name method", eVar, e7);
+        } catch (ReflectiveOperationException e) {
+            throw new f("Enum missing name method", eVar, e);
         }
     }
 
@@ -383,19 +382,19 @@ public abstract class g {
                 i10++;
                 Field field = (Field) obj2;
                 field.setAccessible(true);
-                String v = v.v(field.getDeclaringClass().getName(), field.getName());
+                String u10 = t8.b.u(field.getDeclaringClass().getName(), field.getName());
                 try {
                     Object obj3 = field.get(obj);
                     if (obj3 != null) {
-                        bundle.putParcelable(v, o(obj3, field.getName(), eVar));
+                        bundle.putParcelable(u10, o(obj3, field.getName(), eVar));
                     }
-                } catch (IllegalAccessException e7) {
-                    throw new f(v.i("Field is not accessible: ", v), eVar, e7);
+                } catch (IllegalAccessException e) {
+                    throw new f(t8.b.h("Field is not accessible: ", u10), eVar, e);
                 }
             }
             return bundle;
-        } catch (NoSuchMethodException e10) {
-            throw new f("Class to deserialize is missing a no args constructor: ".concat(name), eVar, e10);
+        } catch (NoSuchMethodException e7) {
+            throw new f("Class to deserialize is missing a no args constructor: ".concat(name), eVar, e7);
         }
     }
 
@@ -438,11 +437,11 @@ public abstract class g {
     }
 
     public static Bundle o(Object obj, String str, e eVar) {
-        ArrayDeque arrayDeque = eVar.f49982b;
+        ArrayDeque arrayDeque = eVar.f47063b;
         if (obj != null) {
             Iterator it = arrayDeque.iterator();
             while (it.hasNext()) {
-                if (((d) it.next()).f49979a == obj) {
+                if (((d) it.next()).f47060a == obj) {
                     throw new f("Found cycle while bundling type ".concat(obj.getClass().getSimpleName()), eVar);
                 }
             }
@@ -478,15 +477,15 @@ public abstract class g {
                         eVar2.close();
                         return l4;
                     } else if (obj instanceof List) {
-                        Bundle j3 = j((List) obj, eVar2);
-                        j3.putInt("tag_class_type", 4);
-                        eVar2.close();
-                        return j3;
-                    } else if (obj instanceof Set) {
-                        Bundle j10 = j((Set) obj, eVar2);
-                        j10.putInt("tag_class_type", 3);
+                        Bundle j10 = j((List) obj, eVar2);
+                        j10.putInt("tag_class_type", 4);
                         eVar2.close();
                         return j10;
+                    } else if (obj instanceof Set) {
+                        Bundle j11 = j((Set) obj, eVar2);
+                        j11.putInt("tag_class_type", 3);
+                        eVar2.close();
+                        return j11;
                     } else if (obj.getClass().isEnum()) {
                         Bundle k10 = k(obj, eVar2);
                         eVar2.close();

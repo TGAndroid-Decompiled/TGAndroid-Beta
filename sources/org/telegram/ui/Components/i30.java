@@ -1,134 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public class i30 {
-    public boolean f27016a;
-    public boolean f27017b;
-    public int d;
-    public int f27019e;
-    public int f27020f;
-    public int f27021g;
-    public Shader f27022i;
-    public boolean f27026m;
-    public final Paint f27018c = new Paint(1);
-    public final RectF h = new RectF();
-    public final Matrix f27023j = new Matrix();
-    public Bitmap f27024k = null;
-    public final int[] f27025l = new int[4];
+import android.animation.ValueAnimator;
+public final class i30 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25806a;
+    public final m30 f25807b;
 
-    public final int a() {
-        int i10 = this.d;
-        int i11 = this.f27019e;
-        if (i11 != 0) {
-            i10 = i0.a.d(0.5f, i10, i11);
-        }
-        int i12 = this.f27020f;
-        if (i12 != 0) {
-            i10 = i0.a.d(0.5f, i10, i12);
-        }
-        int i13 = this.f27021g;
-        if (i13 != 0) {
-            return i0.a.d(0.5f, i10, i13);
-        }
-        return i10;
+    public i30(m30 m30Var, int i10) {
+        this.f25806a = i10;
+        this.f25807b = m30Var;
     }
 
-    public final void b(float f7, float f10, float f11, float f12) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, f10, f11, f12);
-        c(rectF);
-    }
-
-    public final void c(RectF rectF) {
-        RectF rectF2 = this.h;
-        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
-            return;
-        }
-        rectF2.set(rectF);
-        e();
-    }
-
-    public final void d(int i10, int i11, int i12, int i13) {
-        float f7;
-        float f10;
-        if (this.f27022i != null && this.d == i10 && this.f27019e == i11 && this.f27020f == i12 && this.f27021g == i13) {
-            return;
-        }
-        this.d = i10;
-        int[] iArr = this.f27025l;
-        iArr[0] = i10;
-        this.f27019e = i11;
-        iArr[1] = i11;
-        this.f27020f = i12;
-        iArr[2] = i12;
-        this.f27021g = i13;
-        iArr[3] = i13;
-        Paint paint = this.f27018c;
-        if (i11 == 0) {
-            this.f27022i = null;
-            paint.setShader(null);
-            paint.setColor(i10);
-        } else if (i12 == 0) {
-            if (this.f27016a && this.f27017b) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f27022i = linearGradient;
-                paint.setShader(linearGradient);
-            } else {
-                if (this.f27016a) {
-                    f10 = 80.0f;
-                } else {
-                    f10 = 0.0f;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25806a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m30 m30Var = this.f25807b;
+                m30Var.f27185r.x = (int) floatValue;
+                m30Var.h();
+                k30 k30Var = m30Var.f27177a;
+                if (k30Var.getParent() != null) {
+                    m30Var.f27184n.updateViewLayout(k30Var, m30Var.f27185r);
+                    return;
                 }
-                LinearGradient linearGradient2 = new LinearGradient(f10, 0.0f, 0.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f27022i = linearGradient2;
-                paint.setShader(linearGradient2);
-            }
-        } else if (this.f27026m) {
-            if (this.f27016a && this.f27017b) {
-                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f27022i = linearGradient3;
-                paint.setShader(linearGradient3);
-            } else {
-                if (this.f27016a) {
-                    f7 = 80.0f;
-                } else {
-                    f7 = 0.0f;
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m30 m30Var2 = this.f25807b;
+                m30Var2.f27185r.y = (int) floatValue2;
+                k30 k30Var2 = m30Var2.f27177a;
+                if (k30Var2.getParent() != null) {
+                    m30Var2.f27184n.updateViewLayout(k30Var2, m30Var2.f27185r);
+                    return;
                 }
-                LinearGradient linearGradient4 = new LinearGradient(f7, 0.0f, 0.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f27022i = linearGradient4;
-                paint.setShader(linearGradient4);
-            }
-        } else {
-            if (this.f27024k == null) {
-                this.f27024k = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
-            }
-            Utilities.generateGradient(this.f27024k, 0, 0.0f, iArr);
-            Bitmap bitmap = this.f27024k;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-            this.f27022i = bitmapShader;
-            paint.setShader(bitmapShader);
+                return;
         }
-        e();
-    }
-
-    public void e() {
-        if (this.f27022i == null) {
-            return;
-        }
-        RectF rectF = this.h;
-        Matrix matrix = this.f27023j;
-        matrix.reset();
-        matrix.postTranslate(rectF.left, rectF.top);
-        matrix.preScale(rectF.width() / 60.0f, rectF.height() / 80.0f);
-        this.f27022i.setLocalMatrix(matrix);
     }
 }

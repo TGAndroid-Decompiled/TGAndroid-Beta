@@ -1,64 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-public final class r91 extends View {
-    public q91 f30109a;
-    public int f30110b;
-    public final RectF f30111c;
-    public CharSequence d;
-    public r11 f30112e;
-    public boolean f30113f;
-    public jq0 h;
-    public final g6 f30114n;
-    public final t91 f30115r;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import java.io.File;
+import org.telegram.ui.WallpapersListActivity;
+public final class r91 {
+    public String f28778a;
+    public final Activity f28779b;
+    public final org.telegram.ui.ActionBar.m2 f28780c;
+    public final q91 d;
+    public File e;
 
-    public r91(t91 t91Var, Context context) {
-        super(context);
-        this.f30115r = t91Var;
-        this.f30111c = new RectF();
-        this.f30114n = new g6(this, 360L, js.h);
+    public r91(Activity activity, WallpapersListActivity wallpapersListActivity, q91 q91Var) {
+        this.f28779b = activity;
+        this.f28780c = wallpapersListActivity;
+        this.d = q91Var;
     }
 
-    @Override
-    public int getId() {
-        return this.f30109a.f29784a;
+    public final void a(int r9, int r10, android.content.Intent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r91.a(int, int, android.content.Intent):void");
     }
 
-    @Override
-    public final void onDraw(android.graphics.Canvas r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r91.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        int i10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        q91 q91Var = this.f30109a;
-        if (q91Var != null && (i10 = this.f30115r.G) != -1 && q91Var.f29784a == i10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setSelected(z10);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        q91 q91Var = this.f30109a;
-        t91 t91Var = this.f30115r;
-        setMeasuredDimension(AndroidUtilities.dp(t91Var.f30825r * 2) + q91Var.a(t91Var.f30807c) + t91Var.I, View.MeasureSpec.getSize(i11));
-    }
-
-    public void setReordering(boolean z10) {
-        if (this.f30113f == z10) {
+    public final void b() {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28780c;
+        if (m2Var != null) {
+            Activity parentActivity = m2Var.getParentActivity();
+            if (parentActivity != null) {
+                if (Build.VERSION.SDK_INT >= 33) {
+                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
+                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
+                        return;
+                    }
+                } else if (parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    return;
+                }
+            }
+            org.telegram.ui.qq0 qq0Var = new org.telegram.ui.qq0(2, false, false, null);
+            qq0Var.f39524x = false;
+            qq0Var.V = new p91(this);
+            m2Var.presentFragment(qq0Var);
             return;
         }
-        this.f30113f = z10;
-        invalidate();
+        Intent intent = new Intent("android.intent.action.PICK");
+        intent.setType("image/*");
+        this.f28779b.startActivityForResult(intent, 11);
     }
 }

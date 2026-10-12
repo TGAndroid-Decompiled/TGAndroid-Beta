@@ -1,35 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class e11 extends ReplacementSpan {
-    public float f25545a;
-    public final String f25546b;
-    public final int f25547c;
-    public final Paint d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class e11 implements org.telegram.ui.ActionBar.z1 {
+    public final int f24561a;
+    public final g11 f24562b;
 
-    public e11(int i10, Paint paint, String str) {
-        this.f25546b = str;
-        this.f25547c = i10;
-        this.d = paint;
+    public e11(g11 g11Var, int i10) {
+        this.f24561a = i10;
+        this.f24562b = g11Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float f10 = (i12 + i14) / 2.0f;
-        paint.setColor(this.f25547c);
-        float dp = AndroidUtilities.dp(19.0f) / 2.0f;
-        canvas.drawRoundRect(f7, f10 - dp, f7 + this.f25545a + AndroidUtilities.dp(11.33f), f10 + dp, dp, dp, this.d);
-        canvas.drawText(this.f25546b, AndroidUtilities.dpf2(5.66f) + f7, i14 - AndroidUtilities.dp(6.0f), paint);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        float dpf2 = AndroidUtilities.dpf2(11.33f);
-        float measureText = paint.measureText(this.f25546b);
-        this.f25545a = measureText;
-        return (int) (dpf2 + measureText);
+    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f24561a) {
+            case 0:
+                this.f24562b.a();
+                return;
+            case 1:
+                g11 g11Var = this.f24562b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(g11Var.getContext());
+                alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
+                alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new e11(g11Var, 2));
+                org.telegram.messenger.q.q(R.string.Cancel, alertDialog$Builder, null);
+                return;
+            default:
+                g11 g11Var2 = this.f24562b;
+                org.telegram.ui.ActionBar.a2 a2Var2 = new org.telegram.ui.ActionBar.a2(g11Var2.getContext(), 3, null);
+                a2Var2.f19569g0 = false;
+                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
+                deleteaccount.reason = "Decline ToS update";
+                ConnectionsManager.getInstance(g11Var2.d).sendRequest(deleteaccount, new org.telegram.ui.to(16, g11Var2, a2Var2));
+                a2Var2.show();
+                return;
+        }
     }
 }

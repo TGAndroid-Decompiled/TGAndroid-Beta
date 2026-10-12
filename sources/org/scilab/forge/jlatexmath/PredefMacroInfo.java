@@ -1,10 +1,10 @@
 package org.scilab.forge.jlatexmath;
 class PredefMacroInfo extends MacroInfo {
-    private int f16979id;
+    private int f16684id;
 
     public PredefMacroInfo(int i10, int i11, int i12) {
         super(i11, i12);
-        this.f16979id = i10;
+        this.f16684id = i10;
     }
 
     private static final Object invokeID(int i10, TeXParser teXParser, String[] strArr) {
@@ -526,18 +526,18 @@ class PredefMacroInfo extends MacroInfo {
                 default:
                     return null;
             }
-        } catch (Exception e7) {
-            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + e7.getMessage());
+        } catch (Exception e) {
+            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + e.getMessage());
         }
     }
 
     @Override
     public Object invoke(TeXParser teXParser, String[] strArr) {
-        return invokeID(this.f16979id, teXParser, strArr);
+        return invokeID(this.f16684id, teXParser, strArr);
     }
 
     public PredefMacroInfo(int i10, int i11) {
         super(i11);
-        this.f16979id = i10;
+        this.f16684id = i10;
     }
 }

@@ -145,8 +145,8 @@ public class NotificationBadge {
         public static void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, bundle);
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
 
@@ -156,7 +156,7 @@ public class NotificationBadge {
             bundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
             bundle.putString("class", NotificationBadge.componentName.getClassName());
             bundle.putInt("badgenumber", i10);
-            AndroidUtilities.runOnUIThread(new i1(bundle, 29));
+            AndroidUtilities.runOnUIThread(new h1(bundle, 29));
         }
 
         @Override
@@ -189,7 +189,7 @@ public class NotificationBadge {
             if (!NotificationBadge.canResolveBroadcast(intent) && !NotificationBadge.canResolveBroadcast(intent2)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new xg(0, intent, intent2));
+            AndroidUtilities.runOnUIThread(new pc(29, intent, intent2));
         }
 
         @Override
@@ -460,14 +460,14 @@ public class NotificationBadge {
         public void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(this.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new xg(1, this, org.telegram.ui.Cells.c1.f(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new xg(0, this, org.telegram.ui.Cells.d0.g(i10, "app_badge_count")));
         }
 
         @Override

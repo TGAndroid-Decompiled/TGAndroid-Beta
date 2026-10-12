@@ -4,22 +4,16 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
-import b2.p1;
-import b2.q1;
-import e2.d0;
+import b2.t1;
+import b2.u1;
+import e2.m0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Map;
-import u2.n1;
-import v7.v7;
-import w9.w;
-public final class i extends q1 {
-    public static final String A0;
-    public static final String B0;
-    public static final String C0;
-    public static final String D0;
-    public static final String E0;
-    public static final String F0;
+import u2.r1;
+import v7.b8;
+public final class i extends u1 {
+    public static final i F0 = new i(new h());
     public static final String G0;
     public static final String H0;
     public static final String I0;
@@ -31,99 +25,104 @@ public final class i extends q1 {
     public static final String O0;
     public static final String P0;
     public static final String Q0;
-    public static final i f50730x0 = new i(new h());
-    public static final String f50731y0;
-    public static final String f50732z0;
-    public final boolean f50733o0;
-    public final boolean f50734p0;
-    public final boolean f50735q0;
-    public final boolean f50736r0;
-    public final boolean f50737s0;
-    public final boolean f50738t0;
-    public final boolean f50739u0;
-    public final SparseArray f50740v0;
-    public final SparseBooleanArray f50741w0;
+    public static final String R0;
+    public static final String S0;
+    public static final String T0;
+    public static final String U0;
+    public static final String V0;
+    public static final String W0;
+    public static final String X0;
+    public static final String Y0;
+    public final boolean A0;
+    public final boolean B0;
+    public final boolean C0;
+    public final SparseArray D0;
+    public final SparseBooleanArray E0;
+    public final boolean f47756w0;
+    public final boolean f47757x0;
+    public final boolean f47758y0;
+    public final boolean f47759z0;
 
     static {
-        String str = d0.f8529a;
-        f50731y0 = Integer.toString(1000, 36);
-        f50732z0 = Integer.toString(1001, 36);
-        A0 = Integer.toString(1002, 36);
-        B0 = Integer.toString(1003, 36);
-        C0 = Integer.toString(1004, 36);
-        D0 = Integer.toString(1005, 36);
-        E0 = Integer.toString(1006, 36);
-        F0 = Integer.toString(1007, 36);
-        G0 = Integer.toString(1008, 36);
-        H0 = Integer.toString(1009, 36);
-        I0 = Integer.toString(1010, 36);
-        J0 = Integer.toString(1011, 36);
-        K0 = Integer.toString(1012, 36);
-        L0 = Integer.toString(1013, 36);
-        M0 = Integer.toString(1014, 36);
-        N0 = Integer.toString(1015, 36);
-        O0 = Integer.toString(1016, 36);
-        P0 = Integer.toString(1017, 36);
-        Q0 = Integer.toString(1018, 36);
+        String str = m0.f8372a;
+        G0 = Integer.toString(1000, 36);
+        H0 = Integer.toString(1001, 36);
+        I0 = Integer.toString(1002, 36);
+        J0 = Integer.toString(1003, 36);
+        K0 = Integer.toString(1004, 36);
+        L0 = Integer.toString(1005, 36);
+        M0 = Integer.toString(1006, 36);
+        N0 = Integer.toString(1007, 36);
+        O0 = Integer.toString(1008, 36);
+        P0 = Integer.toString(1009, 36);
+        Q0 = Integer.toString(1010, 36);
+        R0 = Integer.toString(1011, 36);
+        S0 = Integer.toString(1012, 36);
+        T0 = Integer.toString(1013, 36);
+        U0 = Integer.toString(1014, 36);
+        V0 = Integer.toString(1015, 36);
+        W0 = Integer.toString(1016, 36);
+        X0 = Integer.toString(1017, 36);
+        Y0 = Integer.toString(1018, 36);
     }
 
     public i(h hVar) {
         super(hVar);
-        this.f50733o0 = hVar.F;
-        this.f50734p0 = hVar.G;
-        this.f50735q0 = hVar.H;
-        this.f50736r0 = hVar.I;
-        this.f50737s0 = hVar.J;
-        this.f50738t0 = hVar.K;
-        this.f50739u0 = hVar.L;
-        this.f50740v0 = hVar.M;
-        this.f50741w0 = hVar.N;
+        this.f47756w0 = hVar.J;
+        this.f47757x0 = hVar.K;
+        this.f47758y0 = hVar.L;
+        this.f47759z0 = hVar.M;
+        this.A0 = hVar.N;
+        this.B0 = hVar.O;
+        this.C0 = hVar.P;
+        this.D0 = hVar.Q;
+        this.E0 = hVar.R;
     }
 
     @Override
-    public final p1 a() {
+    public final t1 a() {
         return new h(this);
     }
 
     @Override
     public final Bundle c() {
         Bundle c10 = super.c();
-        c10.putBoolean(f50731y0, this.f50733o0);
-        c10.putBoolean(f50732z0, false);
-        c10.putBoolean(A0, this.f50734p0);
+        c10.putBoolean(G0, this.f47756w0);
+        c10.putBoolean(H0, false);
+        c10.putBoolean(I0, this.f47757x0);
+        c10.putBoolean(U0, false);
+        c10.putBoolean(J0, this.f47758y0);
+        c10.putBoolean(K0, false);
+        c10.putBoolean(L0, false);
         c10.putBoolean(M0, false);
-        c10.putBoolean(B0, this.f50735q0);
-        c10.putBoolean(C0, false);
-        c10.putBoolean(D0, false);
-        c10.putBoolean(E0, false);
-        c10.putBoolean(N0, false);
-        c10.putBoolean(Q0, this.f50736r0);
-        c10.putBoolean(O0, this.f50737s0);
-        c10.putBoolean(F0, this.f50738t0);
-        c10.putBoolean(G0, false);
-        c10.putBoolean(H0, this.f50739u0);
-        c10.putBoolean(P0, false);
+        c10.putBoolean(V0, false);
+        c10.putBoolean(Y0, this.f47759z0);
+        c10.putBoolean(W0, this.A0);
+        c10.putBoolean(N0, this.B0);
+        c10.putBoolean(O0, false);
+        c10.putBoolean(P0, this.C0);
+        c10.putBoolean(X0, false);
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         SparseArray sparseArray = new SparseArray();
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray2 = this.f50740v0;
+            SparseArray sparseArray2 = this.D0;
             if (i10 < sparseArray2.size()) {
                 int keyAt = sparseArray2.keyAt(i10);
                 for (Map.Entry entry : ((Map) sparseArray2.valueAt(i10)).entrySet()) {
                     if (entry.getValue() == null) {
-                        arrayList2.add((n1) entry.getKey());
+                        arrayList2.add((r1) entry.getKey());
                         arrayList.add(Integer.valueOf(keyAt));
                     } else {
                         throw new ClassCastException();
                     }
                 }
-                c10.putIntArray(I0, v7.f(arrayList));
-                c10.putParcelableArrayList(J0, e2.d.p(arrayList2, new w(1)));
+                c10.putIntArray(Q0, b8.f(arrayList));
+                c10.putParcelableArrayList(R0, e2.e.h(arrayList2, new t0.a(22)));
                 SparseArray<? extends Parcelable> sparseArray3 = new SparseArray<>(sparseArray.size());
                 if (sparseArray.size() <= 0) {
-                    c10.putSparseParcelableArray(K0, sparseArray3);
+                    c10.putSparseParcelableArray(S0, sparseArray3);
                     i10++;
                 } else {
                     sparseArray.keyAt(0);
@@ -131,12 +130,12 @@ public final class i extends q1 {
                     throw null;
                 }
             } else {
-                SparseBooleanArray sparseBooleanArray = this.f50741w0;
+                SparseBooleanArray sparseBooleanArray = this.E0;
                 int[] iArr = new int[sparseBooleanArray.size()];
                 for (int i11 = 0; i11 < sparseBooleanArray.size(); i11++) {
                     iArr[i11] = sparseBooleanArray.keyAt(i11);
                 }
-                c10.putIntArray(L0, iArr);
+                c10.putIntArray(T0, iArr);
                 return c10;
             }
         }
@@ -147,9 +146,9 @@ public final class i extends q1 {
         if (this != obj) {
             if (obj != null && i.class == obj.getClass()) {
                 i iVar = (i) obj;
-                if (super.equals(iVar) && this.f50733o0 == iVar.f50733o0 && this.f50734p0 == iVar.f50734p0 && this.f50735q0 == iVar.f50735q0 && this.f50736r0 == iVar.f50736r0 && this.f50737s0 == iVar.f50737s0 && this.f50738t0 == iVar.f50738t0 && this.f50739u0 == iVar.f50739u0) {
-                    SparseBooleanArray sparseBooleanArray = iVar.f50741w0;
-                    SparseBooleanArray sparseBooleanArray2 = this.f50741w0;
+                if (super.equals(iVar) && this.f47756w0 == iVar.f47756w0 && this.f47757x0 == iVar.f47757x0 && this.f47758y0 == iVar.f47758y0 && this.f47759z0 == iVar.f47759z0 && this.A0 == iVar.A0 && this.B0 == iVar.B0 && this.C0 == iVar.C0) {
+                    SparseBooleanArray sparseBooleanArray = iVar.E0;
+                    SparseBooleanArray sparseBooleanArray2 = this.E0;
                     int size = sparseBooleanArray2.size();
                     if (sparseBooleanArray.size() == size) {
                         int i10 = 0;
@@ -160,8 +159,8 @@ public final class i extends q1 {
                                 }
                                 i10++;
                             } else {
-                                SparseArray sparseArray = iVar.f50740v0;
-                                SparseArray sparseArray2 = this.f50740v0;
+                                SparseArray sparseArray = iVar.D0;
+                                SparseArray sparseArray2 = this.D0;
                                 int size2 = sparseArray2.size();
                                 if (sparseArray.size() == size2) {
                                     for (int i11 = 0; i11 < size2; i11++) {
@@ -171,9 +170,9 @@ public final class i extends q1 {
                                             Map map2 = (Map) sparseArray.valueAt(indexOfKey);
                                             if (map2.size() == map.size()) {
                                                 for (Map.Entry entry : map.entrySet()) {
-                                                    n1 n1Var = (n1) entry.getKey();
-                                                    if (map2.containsKey(n1Var)) {
-                                                        if (!Objects.equals(entry.getValue(), map2.get(n1Var))) {
+                                                    r1 r1Var = (r1) entry.getKey();
+                                                    if (map2.containsKey(r1Var)) {
+                                                        if (!Objects.equals(entry.getValue(), map2.get(r1Var))) {
                                                         }
                                                     }
                                                 }
@@ -194,6 +193,6 @@ public final class i extends q1 {
 
     @Override
     public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f50733o0 ? 1 : 0)) * 961) + (this.f50734p0 ? 1 : 0)) * 961) + (this.f50735q0 ? 1 : 0)) * 28629151) + (this.f50736r0 ? 1 : 0)) * 31) + (this.f50737s0 ? 1 : 0)) * 31) + (this.f50738t0 ? 1 : 0)) * 961) + (this.f50739u0 ? 1 : 0)) * 31;
+        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f47756w0 ? 1 : 0)) * 961) + (this.f47757x0 ? 1 : 0)) * 961) + (this.f47758y0 ? 1 : 0)) * 28629151) + (this.f47759z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
     }
 }

@@ -1,24 +1,24 @@
 package v7;
 public final class c extends h9 {
-    public final transient Object[] f49375c;
+    public final transient Object[] f46592c;
     public final transient int d;
-    public final transient int f49376e = 1;
+    public final transient int e = 1;
 
     public c(int i10, Object[] objArr) {
-        this.f49375c = objArr;
+        this.f46592c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
-        w7.x7.a(i10, this.f49376e);
-        Object obj = this.f49375c[i10 + i10 + this.d];
+        w7.b8.a(i10, this.e);
+        Object obj = this.f46592c[i10 + i10 + this.d];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int size() {
-        return this.f49376e;
+        return this.e;
     }
 }

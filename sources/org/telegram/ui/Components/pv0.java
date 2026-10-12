@@ -1,81 +1,211 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SavedMessagesController;
-public final class pv0 extends s4.w {
-    public final rv0 d;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class pv0 implements NotificationCenter.NotificationCenterDelegate {
+    public final NotificationCenter.ObserversGroup E;
+    public boolean f28427f;
+    public boolean h;
+    public final mv0[] f28428n;
+    public final long f28429r;
+    public final long f28430s;
+    public long v;
+    public final org.telegram.ui.ActionBar.m2 f28431w;
+    public boolean f28433y;
+    public int[] f28424a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public int[] f28425b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] f28426c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] d = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] e = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final ArrayList f28432x = new ArrayList();
 
-    public pv0(rv0 rv0Var) {
-        this.d = rv0Var;
-    }
+    public pv0(org.telegram.ui.ActionBar.m2 m2Var) {
+        int i10;
+        TLRPC.ChatFull chatFull;
+        this.f28431w = m2Var;
+        if (m2Var instanceof ch) {
+            ch chVar = (ch) m2Var;
+            long a2 = chVar.a();
+            this.f28429r = a2;
+            this.v = chVar.I();
+            this.f28430s = chVar.d();
+            if (a2 != m2Var.getUserConfig().getClientUserId()) {
+                m2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a2, new Utilities.Callback(this) {
+                    public final pv0 f28065b;
 
-    @Override
-    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
-        super.a(recyclerView, d1Var);
-        d1Var.f47897a.setPressed(false);
-    }
+                    {
+                        this.f28065b = this;
+                    }
 
-    @Override
-    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
-        SavedMessagesController.SavedDialog r10;
-        int l4 = s4.w.l(0, 0);
-        hw0 hw0Var = this.d.f30254x;
-        if (hw0Var.C1 && recyclerView.getAdapter() != hw0Var.S && (r10 = r(d1Var)) != null && r10.pinned) {
-            return s4.w.l(3, 0);
-        }
-        return l4;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
-        rv0 rv0Var = this.d;
-        ArrayList arrayList = rv0Var.f30249f;
-        hw0 hw0Var = rv0Var.f30254x;
-        if (hw0Var.C1 && recyclerView.getAdapter() != hw0Var.S) {
-            SavedMessagesController.SavedDialog r10 = r(d1Var);
-            SavedMessagesController.SavedDialog r11 = r(d1Var2);
-            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
-                int b10 = d1Var.b();
-                int b11 = d1Var2.b();
-                arrayList.remove(b10);
-                arrayList.add(b11, r10);
-                rv0Var.p(b10, b11);
-                rv0Var.h = true;
-                return true;
+                    @Override
+                    public final void run(Object obj) {
+                        Boolean bool = (Boolean) obj;
+                        switch (r2) {
+                            case 0:
+                                pv0 pv0Var = this.f28065b;
+                                ArrayList arrayList = pv0Var.f28432x;
+                                boolean booleanValue = bool.booleanValue();
+                                pv0Var.f28427f = booleanValue;
+                                pv0Var.h = true;
+                                if (booleanValue) {
+                                    int size = arrayList.size();
+                                    for (int i11 = 0; i11 < size; i11++) {
+                                        ((qv0) arrayList.get(i11)).M();
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                pv0 pv0Var2 = this.f28065b;
+                                ArrayList arrayList2 = pv0Var2.f28432x;
+                                boolean booleanValue2 = bool.booleanValue();
+                                pv0Var2.f28427f = booleanValue2;
+                                pv0Var2.h = true;
+                                if (booleanValue2) {
+                                    int size2 = arrayList2.size();
+                                    for (int i12 = 0; i12 < size2; i12++) {
+                                        ((qv0) arrayList2.get(i12)).M();
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
             }
-            return false;
-        }
-        return false;
-    }
+        } else if (m2Var instanceof ProfileActivity) {
+            ProfileActivity profileActivity = (ProfileActivity) m2Var;
+            if (profileActivity.f32581h1) {
+                this.f28429r = profileActivity.getUserConfig().getClientUserId();
+                this.f28430s = profileActivity.a();
+            } else {
+                long a10 = profileActivity.a();
+                this.f28429r = a10;
+                this.f28430s = profileActivity.f32574g1;
+                TLRPC.ChatFull chatFull2 = profileActivity.f32671u2;
+                if (chatFull2 != null) {
+                    c(chatFull2);
+                }
+                if (a10 != m2Var.getUserConfig().getClientUserId()) {
+                    m2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a10, new Utilities.Callback(this) {
+                        public final pv0 f28065b;
 
-    @Override
-    public final void p(s4.d1 d1Var, int i10) {
-        zu0 zu0Var;
-        rv0 rv0Var = this.d;
-        ur0 ur0Var = rv0Var.f30250n;
-        if (d1Var != null && (zu0Var = rv0Var.f30252s) != null) {
-            zu0Var.d1(false);
-        }
-        if (i10 == 0) {
-            AndroidUtilities.cancelRunOnUIThread(ur0Var);
-            AndroidUtilities.runOnUIThread(ur0Var, 300L);
-        }
-    }
+                        {
+                            this.f28065b = this;
+                        }
 
-    public final SavedMessagesController.SavedDialog r(s4.d1 d1Var) {
-        int b10;
-        if (d1Var != null && (b10 = d1Var.b()) >= 0) {
-            rv0 rv0Var = this.d;
-            if (b10 < rv0Var.f30249f.size()) {
-                return (SavedMessagesController.SavedDialog) rv0Var.f30249f.get(b10);
+                        @Override
+                        public final void run(Object obj) {
+                            Boolean bool = (Boolean) obj;
+                            switch (r2) {
+                                case 0:
+                                    pv0 pv0Var = this.f28065b;
+                                    ArrayList arrayList = pv0Var.f28432x;
+                                    boolean booleanValue = bool.booleanValue();
+                                    pv0Var.f28427f = booleanValue;
+                                    pv0Var.h = true;
+                                    if (booleanValue) {
+                                        int size = arrayList.size();
+                                        for (int i11 = 0; i11 < size; i11++) {
+                                            ((qv0) arrayList.get(i11)).M();
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    pv0 pv0Var2 = this.f28065b;
+                                    ArrayList arrayList2 = pv0Var2.f28432x;
+                                    boolean booleanValue2 = bool.booleanValue();
+                                    pv0Var2.f28427f = booleanValue2;
+                                    pv0Var2.h = true;
+                                    if (booleanValue2) {
+                                        int size2 = arrayList2.size();
+                                        for (int i12 = 0; i12 < size2; i12++) {
+                                            ((qv0) arrayList2.get(i12)).M();
+                                        }
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                }
+            }
+        } else if (m2Var instanceof cb0) {
+            this.f28429r = ((cb0) m2Var).e;
+        } else if (m2Var instanceof org.telegram.ui.yy) {
+            this.f28429r = m2Var.getUserConfig().getClientUserId();
+        }
+        if (this.v == 0 && DialogObject.isChatDialog(this.f28429r) && (chatFull = m2Var.getMessagesController().getChatFull(-this.f28429r)) != null) {
+            long j10 = chatFull.migrated_from_chat_id;
+            if (j10 != 0) {
+                this.v = -j10;
             }
         }
-        return null;
+        this.f28428n = new mv0[9];
+        int i11 = 0;
+        while (true) {
+            mv0[] mv0VarArr = this.f28428n;
+            if (i11 >= mv0VarArr.length) {
+                break;
+            }
+            mv0VarArr[i11] = new mv0();
+            mv0 mv0Var = this.f28428n[i11];
+            if (DialogObject.isEncryptedDialog(this.f28429r)) {
+                i10 = Integer.MIN_VALUE;
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            mv0Var.f27514j[0] = i10;
+            this.f28428n[i11].f27514j[1] = Integer.MAX_VALUE;
+            i11++;
+        }
+        a();
+        org.telegram.ui.ActionBar.m2 m2Var2 = this.f28431w;
+        if (m2Var2 == null) {
+            this.E = null;
+        } else {
+            this.E = m2Var2.getNotificationCenter().createObserversGroup(this).add(NotificationCenter.mediaCountsDidLoad).add(NotificationCenter.mediaCountDidLoad).add(NotificationCenter.didReceiveNewMessages).add(NotificationCenter.messageReceivedByServer).add(NotificationCenter.mediaDidLoad).add(NotificationCenter.messagesDeleted).add(NotificationCenter.replaceMessagesObjects).add(NotificationCenter.chatInfoDidLoad).add(NotificationCenter.fileLoaded).add(NotificationCenter.storiesListUpdated).add(NotificationCenter.savedMessagesDialogsUpdate);
+        }
+    }
+
+    public final void a() {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28431w;
+        if (m2Var != null) {
+            m2Var.getMediaDataController().getMediaCounts(this.f28429r, this.f28430s, m2Var.getClassGuid());
+            if (this.v != 0) {
+                m2Var.getMediaDataController().getMediaCounts(this.v, this.f28430s, m2Var.getClassGuid());
+            }
+        }
+    }
+
+    public final void b(org.telegram.ui.ActionBar.m2 m2Var) {
+        if (m2Var == this.f28431w) {
+            this.f28432x.clear();
+            NotificationCenter.ObserversGroup observersGroup = this.E;
+            if (observersGroup != null) {
+                observersGroup.removeAllObservers();
+            }
+        }
+    }
+
+    public final void c(TLRPC.ChatFull chatFull) {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28431w;
+        if (m2Var != null && chatFull != null) {
+            long j10 = chatFull.migrated_from_chat_id;
+            if (j10 != 0 && this.v == 0) {
+                this.v = -j10;
+                m2Var.getMediaDataController().getMediaCounts(this.v, this.f28430s, m2Var.getClassGuid());
+            }
+        }
     }
 
     @Override
-    public final void q(s4.d1 d1Var) {
+    public final void didReceivedNotification(int r24, int r25, java.lang.Object... r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pv0.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

@@ -1,14 +1,29 @@
 package sg;
-public final class q {
-    public final float f48377a;
-    public final float f48378b;
-    public final boolean f48379c;
-    public final boolean d;
 
-    public q(float f7, float f10, boolean z10, boolean z11) {
-        this.f48377a = f7;
-        this.f48378b = f10;
-        this.f48379c = z10;
-        this.d = z11;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q extends AnimatorListenerAdapter {
+    public final int f45306a;
+    public final r f45307b;
+    public final s f45308c;
+
+    public q(s sVar, r rVar, int i10) {
+        this.f45306a = i10;
+        this.f45308c = sVar;
+        this.f45307b = rVar;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f45306a) {
+            case 0:
+                this.f45307b.f45334f = null;
+                s.a(this.f45308c);
+                return;
+            default:
+                this.f45307b.f45334f = null;
+                s.a(this.f45308c);
+                return;
+        }
     }
 }

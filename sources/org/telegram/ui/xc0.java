@@ -1,67 +1,66 @@
 package org.telegram.ui;
 
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public final class xc0 implements org.telegram.ui.Components.tu0 {
-    public final id0 f43895a;
+import org.telegram.messenger.IMapsProvider;
+public final class xc0 implements Runnable {
+    public final int f41832a;
+    public final nd0 f41833b;
 
-    public xc0(id0 id0Var) {
-        this.f43895a = id0Var;
+    public xc0(nd0 nd0Var, int i10) {
+        this.f41832a = i10;
+        this.f41833b = nd0Var;
     }
 
     @Override
-    public final void R() {
-        int c02;
-        boolean z10;
-        id0 id0Var = this.f43895a;
-        yc0 yc0Var = id0Var.K0;
-        if (yc0Var == null) {
-            c02 = 0;
-        } else {
-            c02 = yc0Var.c0(8);
+    public final void run() {
+        switch (this.f41832a) {
+            case 0:
+                nd0 nd0Var = this.f41833b;
+                IMapsProvider.ICameraUpdate iCameraUpdate = nd0Var.J;
+                if (iCameraUpdate != null) {
+                    nd0Var.I.moveCamera(iCameraUpdate);
+                    nd0Var.J = null;
+                    return;
+                }
+                return;
+            case 1:
+                nd0 nd0Var2 = this.f41833b;
+                nd0Var2.getLocationController().setProximityLocation(nd0Var2.f38654e0, 0, true);
+                nd0Var2.G = false;
+                return;
+            case 2:
+                nd0 nd0Var3 = this.f41833b;
+                IMapsProvider.IMap iMap = nd0Var3.I;
+                if (iMap != null) {
+                    iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
+                }
+                if (!nd0Var3.R.getRadiusSet()) {
+                    double d = nd0Var3.P;
+                    if (d > 0.0d) {
+                        nd0Var3.O.setRadius(d);
+                    } else {
+                        IMapsProvider.ICircle iCircle = nd0Var3.O;
+                        if (iCircle != null) {
+                            iCircle.remove();
+                            nd0Var3.O = null;
+                        }
+                    }
+                }
+                nd0Var3.R = null;
+                return;
+            case 3:
+                kd0 kd0Var = this.f41833b.f38677x;
+                if (kd0Var != null) {
+                    kd0Var.a();
+                    return;
+                }
+                return;
+            case 4:
+                nd0.V(this.f41833b);
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new xc0(this.f41833b, 0));
+                return;
         }
-        id0Var.L0.setText(LocaleController.formatPluralString("LocationStories", c02, new Object[0]));
-        wc0 wc0Var = id0Var.T;
-        if (c02 > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (wc0Var.f10802i0 != z10) {
-            wc0Var.f10802i0 = z10;
-            wc0Var.l();
-            id0Var.U.v0(0, AndroidUtilities.dp(200.0f), null);
-        }
-    }
-
-    @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.wm0 f() {
-        return this.f43895a.U;
-    }
-
-    @Override
-    public final TLRPC.Chat g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return true;
-    }
-
-    @Override
-    public final void E() {
     }
 }

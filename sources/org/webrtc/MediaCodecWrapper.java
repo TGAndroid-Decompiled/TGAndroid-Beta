@@ -12,9 +12,9 @@ interface MediaCodecWrapper {
 
     Surface createInputSurface();
 
-    int dequeueInputBuffer(long j3);
+    int dequeueInputBuffer(long j10);
 
-    int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j3);
+    int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j10);
 
     void flush();
 
@@ -30,7 +30,7 @@ interface MediaCodecWrapper {
 
     MediaFormat getOutputFormat(int i10);
 
-    void queueInputBuffer(int i10, int i11, int i12, long j3, int i13);
+    void queueInputBuffer(int i10, int i11, int i12, long j10, int i13);
 
     void release();
 

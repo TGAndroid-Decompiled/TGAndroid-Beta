@@ -1,124 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class oi extends t6 {
-    public final int f29220b;
-    public final aj f29221c;
+import org.telegram.tgnet.TLRPC;
+public final class oi extends qi {
+    public TLRPC.User f27962b;
+    public TLRPC.TL_attachMenuBot f27963c;
+    public final vi d;
 
-    public oi(aj ajVar, int i10) {
-        super("translation", 0);
-        this.f29220b = i10;
-        switch (i10) {
-            case 1:
-                this.f29221c = ajVar;
-                super("openProgress", 0);
-                return;
-            default:
-                this.f29221c = ajVar;
-                return;
+    public oi(vi viVar, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.c6 c6Var;
+        this.d = viVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        c6Var = ((org.telegram.ui.ActionBar.e3) viVar).resourcesProvider;
+        ph.b bVar = new ph.b(context);
+        bVar.d = c6Var;
+        bVar.Q = true;
+        TextView textView = bVar.f43216a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.f43217b.setVisibility(8);
+        bVar.a(false);
+        z9 z9Var = new z9(context);
+        bVar.f43218c = z9Var;
+        bVar.addView(z9Var, w7.a6.a(24.0f, 0.0f, 4.0f, 0.0f, 0.0f, 24, 49));
+        bVar.f43223w = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.cl, c6Var);
+        bVar.f43222s = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.al, c6Var);
+        bVar.v = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.bl, c6Var);
+        bVar.f();
+        this.f28613a = bVar;
+        bVar.getBackupImageView().f31813a.setDelegate(new l2(12));
+        addView(this.f28613a, w7.a6.d(-1.0f, -1));
+    }
+
+    public final void a(boolean z10) {
+        boolean z11;
+        if (this.f27963c != null && (-this.f27962b.f19363id) == this.d.Z0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f28613a.e(z11, z10);
+        yj0 lottieAnimation = this.f28613a.getBackupImageView().getImageReceiver().getLottieAnimation();
+        if (z10) {
+            if (z11 && lottieAnimation != null) {
+                lottieAnimation.K(0);
+                lottieAnimation.P(-1);
+                lottieAnimation.T(0.0f, false);
+                lottieAnimation.start();
+            }
+        } else if (lottieAnimation != null) {
+            lottieAnimation.stop();
+            lottieAnimation.T(0.0f, false);
         }
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        ViewGroup viewGroup;
-        int i10;
-        float f10;
-        switch (this.f29220b) {
-            case 0:
-                si siVar = (si) obj;
-                aj ajVar = this.f29221c;
-                ajVar.f24330d0 = f7;
-                si siVar2 = ajVar.C0;
-                if (siVar2 != null) {
-                    if (!(siVar2 instanceof jn) && !(ajVar.B0 instanceof jn)) {
-                        siVar2.setAlpha(f7);
-                        ajVar.C0.v(f7);
-                        si siVar3 = ajVar.C0;
-                        no noVar = ajVar.m0;
-                        int i11 = 0;
-                        if (siVar3 == noVar || ajVar.B0 == noVar) {
-                            if (siVar3 == noVar) {
-                                i10 = 1;
-                            } else {
-                                i10 = 0;
-                            }
-                            ajVar.e2(i10);
-                        }
-                        si siVar4 = ajVar.C0;
-                        no noVar2 = ajVar.f24361n0;
-                        if (siVar4 == noVar2 || ajVar.B0 == noVar2) {
-                            if (siVar4 == noVar2) {
-                                i11 = 1;
-                            }
-                            ajVar.e2(i11);
-                        }
-                        ajVar.C0.setTranslationY(AndroidUtilities.dp(78.0f) * f7);
-                        ajVar.B0.v(1.0f - Math.min(1.0f, f7 / 0.7f));
-                        ajVar.B0.l(ajVar.f24366o2);
-                    } else {
-                        int max = Math.max(siVar2.getWidth(), ajVar.B0.getWidth());
-                        if (ajVar.C0 instanceof jn) {
-                            ajVar.B0.setTranslationX((-max) * f7);
-                            ajVar.C0.setTranslationX((1.0f - f7) * max);
-                        } else {
-                            ajVar.B0.setTranslationX(max * f7);
-                            ajVar.C0.setTranslationX((1.0f - f7) * (-max));
-                        }
-                    }
-                    if (ajVar.f24392w1 != null) {
-                        ajVar.e2(1);
-                    }
-                    ajVar.b1();
-                    viewGroup = ((org.telegram.ui.ActionBar.e3) ajVar).containerView;
-                    viewGroup.invalidate();
-                    return;
-                }
-                return;
-            default:
-                aj ajVar2 = (aj) obj;
-                di diVar = this.f29221c.B1;
-                int childCount = diVar.getChildCount();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    float f11 = (3 - i12) * 32.0f;
-                    View childAt = diVar.getChildAt(i12);
-                    if (f7 > f11) {
-                        float f12 = f7 - f11;
-                        if (f12 <= 200.0f) {
-                            float f13 = f12 / 200.0f;
-                            f10 = js.f27635g.getInterpolation(f13) * 1.1f;
-                            childAt.setAlpha(js.f27637j.getInterpolation(f13));
-                        } else {
-                            childAt.setAlpha(1.0f);
-                            float f14 = f12 - 200.0f;
-                            if (f14 <= 100.0f) {
-                                f10 = 1.1f - (js.f27636i.getInterpolation(f14 / 100.0f) * 0.1f);
-                            } else {
-                                f10 = 1.0f;
-                            }
-                        }
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    if (childAt instanceof vi) {
-                        ((vi) childAt).f31525a.setAttachScale(f10);
-                    }
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f29220b) {
-            case 0:
-                si siVar = (si) obj;
-                return Float.valueOf(this.f29221c.f24330d0);
-            default:
-                aj ajVar = (aj) obj;
-                return Float.valueOf(0.0f);
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a(false);
     }
 }

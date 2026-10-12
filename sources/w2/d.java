@@ -1,6 +1,4 @@
 package w2;
-
-import m.y0;
 public interface d {
-    public static final y0 C = new y0(23);
+    public static final u9.d C = new u9.d(2);
 }

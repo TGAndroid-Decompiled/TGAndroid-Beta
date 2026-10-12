@@ -1,21 +1,22 @@
 package f2;
 
-import b2.m0;
-import b2.o0;
-import v7.w7;
-public final class g implements o0 {
-    public final long f9565a;
-    public final long f9566b;
-    public final long f9567c;
+import b2.r0;
+import b2.t0;
+import b2.x;
+import v7.c8;
+public final class g implements t0 {
+    public final long f8844a;
+    public final long f8845b;
+    public final long f8846c;
 
-    public g(long j3, long j10, long j11) {
-        this.f9565a = j3;
-        this.f9566b = j10;
-        this.f9567c = j11;
+    public g(long j10, long j11, long j12) {
+        this.f8844a = j10;
+        this.f8845b = j11;
+        this.f8846c = j12;
     }
 
     @Override
-    public final b2.s a() {
+    public final x a() {
         return null;
     }
 
@@ -32,22 +33,22 @@ public final class g implements o0 {
             return false;
         }
         g gVar = (g) obj;
-        if (this.f9565a == gVar.f9565a && this.f9566b == gVar.f9566b && this.f9567c == gVar.f9567c) {
+        if (this.f8844a == gVar.f8844a && this.f8845b == gVar.f8845b && this.f8846c == gVar.f8846c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int b10 = w7.b(this.f9566b);
-        return w7.b(this.f9567c) + ((b10 + ((w7.b(this.f9565a) + 527) * 31)) * 31);
+        int b10 = c8.b(this.f8845b);
+        return c8.b(this.f8846c) + ((b10 + ((c8.b(this.f8844a) + 527) * 31)) * 31);
     }
 
     public final String toString() {
-        return "Mp4Timestamp: creation time=" + this.f9565a + ", modification time=" + this.f9566b + ", timescale=" + this.f9567c;
+        return "Mp4Timestamp: creation time=" + this.f8844a + ", modification time=" + this.f8845b + ", timescale=" + this.f8846c;
     }
 
     @Override
-    public final void b(m0 m0Var) {
+    public final void b(r0 r0Var) {
     }
 }

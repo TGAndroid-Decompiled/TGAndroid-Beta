@@ -1,26 +1,23 @@
 package org.telegram.ui;
-public final class e51 extends org.telegram.ui.Components.q81 {
-    public final SecretMediaViewer m0;
 
-    public e51(SecretMediaViewer secretMediaViewer) {
-        this.m0 = secretMediaViewer;
+import android.view.View;
+import android.view.WindowInsets;
+public final class e51 implements View.OnApplyWindowInsetsListener {
+    public final int f35466a;
+    public final Object f35467b;
+
+    public e51(Object obj, int i10) {
+        this.f35466a = i10;
+        this.f35467b = obj;
     }
 
     @Override
-    public final void B() {
-        super.B();
-        this.m0.W.a(false, true);
-    }
-
-    @Override
-    public final void C() {
-        super.C();
-        this.m0.W.a(true, true);
-    }
-
-    @Override
-    public final void P(boolean z10) {
-        super.P(z10);
-        this.m0.W.a(z10, true);
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.f35466a) {
+            case 0:
+                return SecretMediaViewer.a((SecretMediaViewer) this.f35467b, windowInsets);
+            default:
+                return n71.b((g61) this.f35467b, view, windowInsets);
+        }
     }
 }

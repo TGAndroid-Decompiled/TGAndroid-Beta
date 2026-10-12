@@ -6,19 +6,20 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.RemoteException;
-import ci.u5;
 import com.google.android.gms.internal.cast.v;
+import com.google.android.gms.internal.cast.z5;
+import d6.j;
 public final class b extends AsyncTask {
-    public static final g6.b f9748c = new g6.b("FetchBitmapTask", null);
-    public final e f9749a;
-    public final u5 f9750b;
+    public static final g6.b f9019c = new g6.b("FetchBitmapTask", null);
+    public final e f9020a;
+    public final z5 f9021b;
 
-    public b(Context context, int i10, int i11, u5 u5Var) {
+    public b(Context context, int i10, int i11, z5 z5Var) {
         e eVar;
-        this.f9750b = u5Var;
+        this.f9021b = z5Var;
         Context applicationContext = context.getApplicationContext();
-        d6.j jVar = new d6.j(this);
-        g6.b bVar = com.google.android.gms.internal.cast.e.f6860a;
+        j jVar = new j(this);
+        g6.b bVar = com.google.android.gms.internal.cast.e.f5203a;
         try {
             com.google.android.gms.internal.cast.g b10 = com.google.android.gms.internal.cast.e.b(applicationContext.getApplicationContext());
             x6.b bVar2 = new x6.b(applicationContext.getApplicationContext());
@@ -30,18 +31,18 @@ public final class b extends AsyncTask {
             } else {
                 eVar = b10.Y0(new x6.b(this), jVar, i10, i11);
             }
-        } catch (RemoteException e7) {
+        } catch (RemoteException e) {
+            e = e;
+            com.google.android.gms.internal.cast.e.f5203a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
+            eVar = null;
+            this.f9020a = eVar;
+        } catch (d6.d e7) {
             e = e7;
-            com.google.android.gms.internal.cast.e.f6860a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
+            com.google.android.gms.internal.cast.e.f5203a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
             eVar = null;
-            this.f9749a = eVar;
-        } catch (d6.d e10) {
-            e = e10;
-            com.google.android.gms.internal.cast.e.f6860a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
-            eVar = null;
-            this.f9749a = eVar;
+            this.f9020a = eVar;
         }
-        this.f9749a = eVar;
+        this.f9020a = eVar;
     }
 
     @Override
@@ -49,7 +50,7 @@ public final class b extends AsyncTask {
         Uri uri;
         e eVar;
         Uri[] uriArr = (Uri[]) objArr;
-        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (eVar = this.f9749a) != null) {
+        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (eVar = this.f9020a) != null) {
             try {
                 c cVar = (c) eVar;
                 Parcel N0 = cVar.N0();
@@ -58,8 +59,8 @@ public final class b extends AsyncTask {
                 Bitmap bitmap = (Bitmap) v.a(P0, Bitmap.CREATOR);
                 P0.recycle();
                 return bitmap;
-            } catch (RemoteException e7) {
-                f9748c.a(e7, "Unable to call %s on %s.", "doFetch", e.class.getSimpleName());
+            } catch (RemoteException e) {
+                f9019c.a(e, "Unable to call %s on %s.", "doFetch", e.class.getSimpleName());
             }
         }
         return null;
@@ -68,13 +69,13 @@ public final class b extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
-        u5 u5Var = this.f9750b;
-        if (u5Var != null) {
-            a aVar = (a) u5Var.f6066e;
+        z5 z5Var = this.f9021b;
+        if (z5Var != null) {
+            a aVar = (a) z5Var.e;
             if (aVar != null) {
-                aVar.m(bitmap);
+                aVar.t(bitmap);
             }
-            u5Var.d = null;
+            z5Var.d = null;
         }
     }
 }

@@ -1,18 +1,21 @@
 package k1;
-public final class p implements de.c {
-    public final int f14354a = 0;
-    public final de.c f14355b;
+public final class p extends md.c {
+    public Object f13788a;
+    public z f13789b;
+    public be.t f13790c;
+    public Object d;
+    public final z e;
+    public int f13791f;
 
-    public p(de.c cVar, za.z zVar) {
-        this.f14355b = cVar;
+    public p(z zVar, md.c cVar) {
+        super(cVar);
+        this.e = zVar;
     }
 
     @Override
-    public final java.lang.Object b(java.lang.Object r9, ld.c r10) {
-        throw new UnsupportedOperationException("Method not decompiled: k1.p.b(java.lang.Object, ld.c):java.lang.Object");
-    }
-
-    public p(de.c cVar) {
-        this.f14355b = cVar;
+    public final Object invokeSuspend(Object obj) {
+        this.d = obj;
+        this.f13791f |= Integer.MIN_VALUE;
+        return z.b(this.e, null, this);
     }
 }

@@ -1,49 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class z51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33291a;
-    public final View f33292b;
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class z51 extends g.o {
+    public final h61 f31770c;
 
-    public z51(int i10, View view) {
-        this.f33291a = i10;
-        this.f33292b = view;
+    public z51(h61 h61Var) {
+        this.f31770c = h61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33291a) {
-            case 0:
-                b61 b61Var = (b61) this.f33292b;
-                b61Var.getClass();
-                b61Var.B0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b61Var.invalidate();
-                return;
-            case 1:
-                q71 q71Var = (q71) this.f33292b;
-                q71Var.getClass();
-                q71Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q71Var.invalidate();
-                return;
-            case 2:
-                w71 w71Var = (w71) this.f33292b;
-                w71Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w71Var.f32340b = floatValue;
-                w71Var.setTranslationY(floatValue);
-                return;
-            default:
-                t91 t91Var = (t91) this.f33292b;
-                t91Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t91Var.setAnimationIdicatorProgress(floatValue2);
-                s91 s91Var = t91Var.f30830y;
-                if (s91Var != null) {
-                    ((n4.l) s91Var).k(floatValue2);
-                    return;
-                }
-                return;
+    public final int i(int i10) {
+        h61 h61Var = this.f31770c;
+        s4.g0 adapter = h61Var.f25522n.getAdapter();
+        g61 g61Var = h61Var.f25524s;
+        if (adapter == g61Var) {
+            if ((g61Var.d.get(i10) instanceof Integer) || i10 >= g61Var.f25203w) {
+                return g61Var.v;
+            }
+            return 1;
         }
+        hg.e2 e2Var = h61Var.v;
+        SparseArray sparseArray = e2Var.f10545s;
+        if (i10 != e2Var.f10548y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return e2Var.e.a();
     }
 }

@@ -1,48 +1,52 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class ue implements DialogInterface.OnDismissListener {
-    public final int f42501a;
-    public final eo f42502b;
+import android.animation.ValueAnimator;
+public final class ue implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40654a;
+    public final fo f40655b;
 
-    public ue(eo eoVar, int i10) {
-        this.f42501a = i10;
-        this.f42502b = eoVar;
+    public ue(fo foVar, int i10) {
+        this.f40654a = i10;
+        this.f40655b = foVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f42501a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40654a) {
             case 0:
-                mk mkVar = this.f42502b.X1;
-                if (mkVar != null) {
-                    mkVar.c(false);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fo foVar = this.f40655b;
+                foVar.K8 = floatValue;
+                xm xmVar = foVar.X0;
+                if (xmVar != null) {
+                    xmVar.invalidate();
+                    foVar.f36160x0.invalidate();
                     return;
                 }
                 return;
             case 1:
-                eo.a1(this.f42502b);
+                fo foVar2 = this.f40655b;
+                foVar2.getClass();
+                foVar2.f35974i3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                foVar2.pc();
                 return;
             case 2:
-                this.f42502b.j8(false, true, 0.0f);
+                fo foVar3 = this.f40655b;
+                foVar3.getClass();
+                foVar3.f35974i3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                foVar3.pc();
                 return;
             case 3:
-                this.f42502b.j8(false, true, 0.0f);
-                return;
-            case 4:
-                this.f42502b.j8(false, true, 0.0f);
-                return;
-            case 5:
-                this.f42502b.j8(false, true, 0.0f);
-                return;
-            case 6:
-                this.f42502b.j8(false, true, 0.0f);
-                return;
-            case 7:
-                this.f42502b.j8(false, true, 0.0f);
+                fo foVar4 = this.f40655b;
+                foVar4.getClass();
+                foVar4.Ea = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                foVar4.t9();
                 return;
             default:
-                this.f42502b.Gb = null;
+                fo foVar5 = this.f40655b;
+                foVar5.getClass();
+                foVar5.Ea = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                foVar5.t9();
                 return;
         }
     }

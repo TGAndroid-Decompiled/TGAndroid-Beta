@@ -1,24 +1,59 @@
 package org.telegram.ui.Components;
-public final class b40 implements z4.e {
-    public final org.telegram.ui.h50 f24553a;
 
-    public b40(org.telegram.ui.h50 h50Var) {
-        this.f24553a = h50Var;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.Utilities;
+public final class b40 implements Runnable {
+    public final int f23696a;
+    public final d40 f23697b;
+    public final String f23698c;
+    public final int d;
+
+    public b40(d40 d40Var, String str, int i10, int i11) {
+        this.f23696a = i11;
+        this.f23697b = d40Var;
+        this.f23698c = str;
+        this.d = i10;
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        org.telegram.ui.h50 h50Var = this.f24553a;
-        h50Var.h = i10;
-        h50Var.f25888f = f7;
-        f40.o(h50Var);
-    }
-
-    @Override
-    public final void a(int i10) {
-    }
-
-    @Override
-    public final void c(int i10) {
+    public final void run() {
+        long j10;
+        switch (this.f23696a) {
+            case 0:
+                d40 d40Var = this.f23697b;
+                String str = this.f23698c;
+                int i10 = this.d;
+                if (d40Var.e != null) {
+                    d40Var.e = null;
+                    AndroidUtilities.runOnUIThread(new b40(d40Var, str, i10, 1));
+                    return;
+                }
+                return;
+            default:
+                d40 d40Var2 = this.f23697b;
+                String str2 = this.f23698c;
+                int i11 = this.d;
+                ArrayList arrayList = null;
+                d40Var2.e = null;
+                if (!ChatObject.isChannel(d40Var2.f24291w.V) && d40Var2.f24291w.W != null) {
+                    arrayList = new ArrayList(d40Var2.f24291w.W.participants.participants);
+                }
+                if (arrayList != null) {
+                    Utilities.searchQueue.postRunnable(new bi.n8(d40Var2, str2, i11, arrayList));
+                } else {
+                    d40Var2.h = false;
+                }
+                hg.a2 a2Var = d40Var2.d;
+                boolean canAddUsers = ChatObject.canAddUsers(d40Var2.f24291w.V);
+                if (ChatObject.isChannel(d40Var2.f24291w.V)) {
+                    j10 = d40Var2.f24291w.V.f19216id;
+                } else {
+                    j10 = 0;
+                }
+                a2Var.g(str2, canAddUsers, false, true, false, j10, false, 2, i11);
+                return;
+        }
     }
 }

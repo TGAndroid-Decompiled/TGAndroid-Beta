@@ -1,16 +1,16 @@
 package z7;
-public final class d8 implements ia.d {
-    public static final d8 f53869a = new Object();
-    public static final ia.c f53870b = new ia.c("errorCode", hg.c.o(sc.v.o(w.class, new s(1))));
-    public static final ia.c f53871c = new ia.c("durationMs", hg.c.o(sc.v.o(w.class, new s(2))));
-    public static final ia.c d = new ia.c("subjectSegmenterOptions", hg.c.o(sc.v.o(w.class, new s(3))));
+public final class d8 implements ja.d {
+    public static final d8 f49387a = new Object();
+    public static final ja.c f49388b = new ja.c("errorCode", i2.d.n(t8.b.n(w.class, new s(1))));
+    public static final ja.c f49389c = new ja.c("durationMs", i2.d.n(t8.b.n(w.class, new s(2))));
+    public static final ja.c d = new ja.c("subjectSegmenterOptions", i2.d.n(t8.b.n(w.class, new s(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ge geVar = (ge) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f53870b, geVar.f53990a);
-        eVar.a(f53871c, geVar.f53991b);
-        eVar.a(d, geVar.f53992c);
+        fe feVar = (fe) obj;
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f49388b, feVar.f49418a);
+        eVar.d(f49389c, feVar.f49419b);
+        eVar.d(d, feVar.f49420c);
     }
 }

@@ -1,24 +1,28 @@
 package yh;
+public final class b2 implements Runnable {
+    public final int f48799a;
+    public final m2 f48800b;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class b2 extends ClickableSpan {
-    public final long f52507a;
-    public final s3 f52508b;
-
-    public b2(s3 s3Var, long j3) {
-        this.f52508b = s3Var;
-        this.f52507a = j3;
+    public b2(m2 m2Var, int i10) {
+        this.f48799a = i10;
+        this.f48800b = m2Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f52508b.Y1(this.f52507a);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
+    public final void run() {
+        switch (this.f48799a) {
+            case 0:
+                this.f48800b.setReordering(true);
+                return;
+            case 1:
+                this.f48800b.setReordering(true);
+                return;
+            case 2:
+                this.f48800b.f(false);
+                return;
+            default:
+                this.f48800b.setReordering(true);
+                return;
+        }
     }
 }

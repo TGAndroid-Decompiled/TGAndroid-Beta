@@ -1,141 +1,33 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.view.Surface;
+import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class a3 implements Runnable {
-    public final int f35683a;
-    public final i4 f35684b;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
+public final class a3 {
+    public long f34026a;
+    public Bitmap f34027b;
 
-    public a3(i4 i4Var, int i10) {
-        this.f35683a = i10;
-        this.f35684b = i4Var;
-    }
-
-    @Override
-    public final void run() {
-        ArticleViewer$WindowView articleViewer$WindowView;
-        org.telegram.ui.Cells.o9 o9Var;
-        switch (this.f35683a) {
-            case 0:
-                i4 i4Var = this.f35684b;
-                if (i4Var.J0 && (articleViewer$WindowView = i4Var.f38650f0) != null) {
-                    i4Var.J0 = false;
-                    if (i4Var.f43069b != null) {
-                        try {
-                            articleViewer$WindowView.performHapticFeedback(0, 2);
-                        } catch (Exception unused) {
-                        }
-                        i4Var.Z(((org.telegram.ui.Components.v11) i4Var.f43069b.f27429i).f31350b);
-                        i4Var.f43069b = null;
-                        i4Var.d = null;
-                        View view = i4Var.f43072f;
-                        if (view != null) {
-                            view.invalidate();
-                            return;
-                        }
-                        return;
-                    }
-                    View view2 = i4Var.f43072f;
-                    if (view2 != null && i4Var.O0.f0(view2)) {
-                        if (i4Var.f43072f.getTag() != null && i4Var.f43072f.getTag() == "bottomSheet" && (o9Var = i4Var.P0) != null) {
-                            o9Var.l0();
-                        } else {
-                            i4Var.O0.l0();
-                        }
-                        if (i4Var.O0.x()) {
-                            try {
-                                i4Var.f38650f0.performHapticFeedback(0, 2);
-                                return;
-                            } catch (Exception unused2) {
-                                return;
-                            }
-                        }
-                        return;
-                    } else if (i4Var.d != null && i4Var.f43072f != null) {
-                        try {
-                            i4Var.f38650f0.performHapticFeedback(0, 2);
-                        } catch (Exception unused3) {
-                        }
-                        int[] iArr = new int[2];
-                        i4Var.f43072f.getLocationInWindow(iArr);
-                        int dp = (iArr[1] + i4Var.f43071e) - AndroidUtilities.dp(54.0f);
-                        if (dp < 0) {
-                            dp = 0;
-                        }
-                        i4Var.f43072f.invalidate();
-                        i4Var.h = true;
-                        View view3 = i4Var.f43072f;
-                        org.telegram.ui.ActionBar.m1 m1Var = i4Var.H;
-                        if (m1Var != null && m1Var.isShowing()) {
-                            i4Var.H.d(true);
-                        } else {
-                            if (i4Var.A0 == null) {
-                                i4Var.C0 = new Rect();
-                                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(i4Var.L, null);
-                                i4Var.A0 = actionBarPopupWindow$ActionBarPopupWindowLayout;
-                                actionBarPopupWindow$ActionBarPopupWindowLayout.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                                i4Var.A0.setBackgroundDrawable(i4Var.L.getResources().getDrawable(R.drawable.menu_copy));
-                                i4Var.A0.setAnimationEnabled(false);
-                                i4Var.A0.setOnTouchListener(new e0(i4Var, 0));
-                                i4Var.A0.setDispatchKeyEventListener(new u(i4Var));
-                                i4Var.A0.setShownFromBottom(false);
-                                TextView textView = new TextView(i4Var.L);
-                                i4Var.B0 = textView;
-                                textView.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20651i6, false), 2, -1));
-                                i4Var.B0.setGravity(16);
-                                i4Var.B0.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-                                i4Var.B0.setTextSize(1, 15.0f);
-                                i4Var.B0.setTypeface(AndroidUtilities.bold());
-                                i4Var.B0.setText(LocaleController.getString(R.string.Copy).toUpperCase());
-                                i4Var.B0.setOnClickListener(new t(i4Var, 5));
-                                i4Var.A0.addView(i4Var.B0, w7.w5.d(48.0f, -2));
-                                org.telegram.ui.ActionBar.m1 m1Var2 = new org.telegram.ui.ActionBar.m1(i4Var.A0, -2, -2);
-                                i4Var.H = m1Var2;
-                                m1Var2.f21145b = false;
-                                m1Var2.setAnimationStyle(R.style.PopupContextAnimation);
-                                i4Var.H.setOutsideTouchable(true);
-                                i4Var.H.setClippingEnabled(true);
-                                i4Var.H.setInputMethodMode(2);
-                                i4Var.H.setSoftInputMode(0);
-                                i4Var.H.getContentView().setFocusableInTouchMode(true);
-                                i4Var.H.setOnDismissListener(new f0(i4Var, 0));
-                            }
-                            i4Var.B0.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E8, false));
-                            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = i4Var.A0;
-                            if (actionBarPopupWindow$ActionBarPopupWindowLayout2 != null) {
-                                actionBarPopupWindow$ActionBarPopupWindowLayout2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G8, false));
-                            }
-                            i4Var.A0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-                            i4Var.H.setFocusable(true);
-                            i4Var.H.showAtLocation(view3, 48, 0, dp);
-                            i4Var.H.h();
-                        }
-                        i4Var.f38664u0[0].f39895b.setLayoutFrozen(true);
-                        i4Var.f38664u0[0].f39895b.setLayoutFrozen(false);
-                        return;
-                    } else {
-                        return;
-                    }
+    public static a3 a(VideoPlayerHolderBase videoPlayerHolderBase, z2 z2Var) {
+        ?? obj = new Object();
+        obj.f34026a = videoPlayerHolderBase.getCurrentPosition();
+        if (videoPlayerHolderBase.firstFrameRendered) {
+            TextureView textureView = z2Var.f42462n;
+            TextureView textureView2 = z2Var.f42462n;
+            if (textureView != null && textureView.getSurfaceTexture() != null) {
+                if (Build.VERSION.SDK_INT >= 24) {
+                    Surface surface = new Surface(textureView2.getSurfaceTexture());
+                    Bitmap createBitmap = Bitmap.createBitmap(textureView2.getMeasuredWidth(), textureView2.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                    AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
+                    surface.release();
+                    obj.f34027b = createBitmap;
+                    return obj;
                 }
-                return;
-            default:
-                i4 i4Var2 = this.f35684b;
-                if (i4Var2.K0 == null) {
-                    i4Var2.K0 = new a3(i4Var2, 0);
-                }
-                i4Var2.K0.getClass();
-                ArticleViewer$WindowView articleViewer$WindowView2 = i4Var2.f38650f0;
-                if (articleViewer$WindowView2 != null) {
-                    articleViewer$WindowView2.postDelayed(i4Var2.K0, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
-                    return;
-                }
-                return;
+                obj.f34027b = textureView2.getBitmap();
+            }
         }
+        return obj;
     }
 }

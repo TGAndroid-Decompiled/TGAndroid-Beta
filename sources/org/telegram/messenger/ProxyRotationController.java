@@ -28,21 +28,21 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.proxySettingsChanged);
     }
 
-    public static void lambda$new$0(SharedConfig.ProxyInfo proxyInfo, long j3) {
+    public static void lambda$new$0(SharedConfig.ProxyInfo proxyInfo, long j10) {
         proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
         proxyInfo.checking = false;
-        if (j3 == -1) {
+        if (j10 == -1) {
             proxyInfo.available = false;
             proxyInfo.ping = 0L;
         } else {
-            proxyInfo.ping = j3;
+            proxyInfo.ping = j10;
             proxyInfo.available = true;
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
     }
 
-    public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j3) {
-        AndroidUtilities.runOnUIThread(new th(proxyInfo, j3, 0));
+    public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j10) {
+        AndroidUtilities.runOnUIThread(new th(proxyInfo, j10, 0));
     }
 
     public void lambda$new$2() {

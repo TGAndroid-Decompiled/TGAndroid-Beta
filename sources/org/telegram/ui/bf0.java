@@ -1,51 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bf0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f36154a;
-    public final hf0 f36155b;
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+public final class bf0 extends TimerTask {
+    public final cf0 f34529a;
 
-    public bf0(hf0 hf0Var, int i10) {
-        this.f36154a = i10;
-        this.f36155b = hf0Var;
+    public bf0(cf0 cf0Var) {
+        this.f34529a = cf0Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f36154a) {
-            case 0:
-                hf0 hf0Var = this.f36155b;
-                hf0Var.c(true);
-                hf0Var.O.u1(0, true, null, true);
-                hf0Var.o();
-                return;
-            case 1:
-                hf0 hf0Var2 = this.f36155b;
-                hf0Var2.O.f43957p0.popup = false;
-                hf0Var2.h(null);
-                return;
-            case 2:
-                hf0 hf0Var3 = this.f36155b;
-                xg0 xg0Var = hf0Var3.O;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xg0Var.getParentActivity());
-                alertDialog$Builder.f20142a.R = LocaleController.getString("TermsOfService", R.string.TermsOfService);
-                alertDialog$Builder.f20142a.T = LocaleController.getString("TosDecline", R.string.TosDecline);
-                alertDialog$Builder.k(LocaleController.getString("SignUp", R.string.SignUp), new bf0(hf0Var3, 3));
-                alertDialog$Builder.h(LocaleController.getString("Decline", R.string.Decline), new bf0(hf0Var3, 4));
-                xg0Var.showDialog(alertDialog$Builder.f20142a);
-                return;
-            case 3:
-                hf0 hf0Var4 = this.f36155b;
-                hf0Var4.O.f43957p0.popup = false;
-                hf0Var4.h(null);
-                return;
-            default:
-                hf0 hf0Var5 = this.f36155b;
-                hf0Var5.c(true);
-                hf0Var5.O.u1(0, true, null, true);
-                return;
+    public final void run() {
+        if (this.f34529a.N == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new zz(this, 23));
     }
 }

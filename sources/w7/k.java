@@ -1,19 +1,26 @@
 package w7;
-
-import java.nio.ByteBuffer;
 public abstract class k {
-    public b2.p0 a(l3.a aVar) {
-        boolean z10;
-        ByteBuffer byteBuffer = aVar.f10983c;
-        byteBuffer.getClass();
-        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static kd.f a(kd.f fVar, kd.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return fVar;
         }
-        e2.d.b(z10);
-        return b(aVar, byteBuffer);
+        return null;
     }
 
-    public abstract b2.p0 b(l3.a aVar, ByteBuffer byteBuffer);
+    public static kd.h b(kd.f fVar, kd.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return kd.i.f14226a;
+        }
+        return fVar;
+    }
+
+    public static kd.h c(kd.f fVar, kd.h context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        if (context == kd.i.f14226a) {
+            return fVar;
+        }
+        return (kd.h) context.fold(fVar, new b1.e(5));
+    }
 }

@@ -1,26 +1,25 @@
 package e2;
 
-import android.net.Uri;
-import android.opengl.EGL14;
-import android.opengl.EGLDisplay;
-import android.opengl.GLES20;
-import android.opengl.GLU;
+import android.media.MediaFormat;
 import android.text.TextUtils;
 import android.util.Log;
 import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.xmlpull.v1.XmlPullParser;
 public abstract class a {
-    public static ExecutorService f8511a;
-    public static final Object f8512b = new Object();
+    public static ExecutorService f8306a;
+    public static final Object f8307b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f8512b) {
+            synchronized (f8307b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -40,73 +39,41 @@ public abstract class a {
             }
         }
         if (!TextUtils.isEmpty(replace)) {
-            StringBuilder j3 = sc.v.j(str, "\n  ");
-            j3.append(replace.replace("\n", "\n  "));
-            j3.append('\n');
-            return j3.toString();
+            StringBuilder i10 = t8.b.i(str, "\n  ");
+            i10.append(replace.replace("\n", "\n  "));
+            i10.append('\n');
+            return i10.toString();
         }
         return str;
     }
 
-    public static void b() {
-        StringBuilder sb2 = new StringBuilder();
-        boolean z10 = false;
-        while (true) {
-            int glGetError = GLES20.glGetError();
-            if (glGetError == 0) {
-                break;
-            }
-            if (z10) {
-                sb2.append('\n');
-            }
-            String gluErrorString = GLU.gluErrorString(glGetError);
-            if (gluErrorString == null) {
-                gluErrorString = "error code: 0x" + Integer.toHexString(glGetError);
-            }
-            sb2.append("glError: ");
-            sb2.append(gluErrorString);
-            z10 = true;
-        }
-        if (!z10) {
-            return;
-        }
-        throw new Exception(sb2.toString());
-    }
-
-    public static void c(String str, boolean z10) {
-        if (z10) {
-            return;
-        }
-        throw new Exception(str);
-    }
-
-    public static void d(String str, String str2) {
-        synchronized (f8512b) {
+    public static void b(String str, String str2) {
+        synchronized (f8307b) {
             Log.d(str, a(str2, null));
         }
     }
 
-    public static void e(String str, String str2) {
-        synchronized (f8512b) {
+    public static void c(String str, String str2) {
+        synchronized (f8307b) {
             Log.e(str, a(str2, null));
         }
     }
 
-    public static void f(String str, String str2, Throwable th2) {
-        synchronized (f8512b) {
+    public static void d(String str, String str2, Throwable th2) {
+        synchronized (f8307b) {
             Log.e(str, a(str2, th2));
         }
     }
 
-    public static synchronized Executor g() {
+    public static synchronized Executor e() {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f8511a == null) {
-                    String str = d0.f8529a;
-                    f8511a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f8306a == null) {
+                    String str = m0.f8372a;
+                    f8306a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f8511a;
+                executorService = f8306a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -114,179 +81,56 @@ public abstract class a {
         return executorService;
     }
 
-    public static int[] h(String str) {
-        int i10;
-        int[] iArr = new int[4];
-        if (TextUtils.isEmpty(str)) {
-            iArr[0] = -1;
-            return iArr;
-        }
-        int length = str.length();
-        int indexOf = str.indexOf(35);
-        if (indexOf != -1) {
-            length = indexOf;
-        }
-        int indexOf2 = str.indexOf(63);
-        if (indexOf2 == -1 || indexOf2 > length) {
-            indexOf2 = length;
-        }
-        int indexOf3 = str.indexOf(47);
-        if (indexOf3 == -1 || indexOf3 > indexOf2) {
-            indexOf3 = indexOf2;
-        }
-        int indexOf4 = str.indexOf(58);
-        if (indexOf4 > indexOf3) {
-            indexOf4 = -1;
-        }
-        int i11 = indexOf4 + 2;
-        if (i11 < indexOf2 && str.charAt(indexOf4 + 1) == '/' && str.charAt(i11) == '/') {
-            i10 = str.indexOf(47, indexOf4 + 3);
-            if (i10 == -1 || i10 > indexOf2) {
-                i10 = indexOf2;
+    public static String f(XmlPullParser xmlPullParser, String str) {
+        int attributeCount = xmlPullParser.getAttributeCount();
+        for (int i10 = 0; i10 < attributeCount; i10++) {
+            if (xmlPullParser.getAttributeName(i10).equals(str)) {
+                return xmlPullParser.getAttributeValue(i10);
             }
-        } else {
-            i10 = indexOf4 + 1;
         }
-        iArr[0] = indexOf4;
-        iArr[1] = i10;
-        iArr[2] = indexOf2;
-        iArr[3] = length;
-        return iArr;
+        return null;
     }
 
-    public static void i(String str, String str2) {
-        synchronized (f8512b) {
+    public static void g(String str, String str2) {
+        synchronized (f8307b) {
             Log.i(str, a(str2, null));
         }
     }
 
-    public static boolean j(String str) {
-        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        c("No EGL display.", !eglGetDisplay.equals(EGL14.EGL_NO_DISPLAY));
-        c("Error in eglInitialize.", EGL14.eglInitialize(eglGetDisplay, new int[1], 0, new int[1], 0));
-        b();
-        String eglQueryString = EGL14.eglQueryString(eglGetDisplay, 12373);
-        if (eglQueryString == null || !eglQueryString.contains(str)) {
-            return false;
+    public static boolean h(XmlPullParser xmlPullParser, String str) {
+        if (xmlPullParser.getEventType() == 3 && xmlPullParser.getName().equals(str)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
-    public static String k(StringBuilder sb2, int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        if (i10 >= i11) {
-            return sb2.toString();
+    public static boolean i(XmlPullParser xmlPullParser, String str) {
+        if (xmlPullParser.getEventType() == 2 && xmlPullParser.getName().equals(str)) {
+            return true;
         }
-        if (sb2.charAt(i10) == '/') {
-            i10++;
-        }
-        int i15 = i10;
-        int i16 = i15;
-        while (i15 <= i11) {
-            if (i15 == i11) {
-                i12 = i15;
-            } else if (sb2.charAt(i15) == '/') {
-                i12 = i15 + 1;
-            } else {
-                i15++;
-            }
-            int i17 = i16 + 1;
-            if (i15 == i17 && sb2.charAt(i16) == '.') {
-                sb2.delete(i16, i12);
-                i11 -= i12 - i16;
-            } else {
-                if (i15 == i16 + 2 && sb2.charAt(i16) == '.' && sb2.charAt(i17) == '.') {
-                    i13 = sb2.lastIndexOf("/", i16 - 2) + 1;
-                    if (i13 > i10) {
-                        i14 = i13;
-                    } else {
-                        i14 = i10;
-                    }
-                    sb2.delete(i14, i12);
-                    i11 -= i12 - i14;
-                } else {
-                    i13 = i15 + 1;
-                }
-                i16 = i13;
-            }
-            i15 = i16;
-        }
-        return sb2.toString();
+        return false;
     }
 
-    public static String l(String str, String str2) {
-        int i10;
-        StringBuilder sb2 = new StringBuilder();
-        if (str == null) {
-            str = "";
-        }
-        if (str2 == null) {
-            str2 = "";
-        }
-        int[] h = h(str2);
-        if (h[0] != -1) {
-            sb2.append(str2);
-            k(sb2, h[1], h[2]);
-            return sb2.toString();
-        }
-        int[] h10 = h(str);
-        if (h[3] == 0) {
-            sb2.append((CharSequence) str, 0, h10[3]);
-            sb2.append(str2);
-            return sb2.toString();
-        } else if (h[2] == 0) {
-            sb2.append((CharSequence) str, 0, h10[2]);
-            sb2.append(str2);
-            return sb2.toString();
-        } else {
-            int i11 = h[1];
-            if (i11 != 0) {
-                int i12 = h10[0] + 1;
-                sb2.append((CharSequence) str, 0, i12);
-                sb2.append(str2);
-                return k(sb2, h[1] + i12, i12 + h[2]);
-            } else if (str2.charAt(i11) == '/') {
-                sb2.append((CharSequence) str, 0, h10[1]);
-                sb2.append(str2);
-                int i13 = h10[1];
-                return k(sb2, i13, h[2] + i13);
-            } else {
-                int i14 = h10[0] + 2;
-                int i15 = h10[1];
-                if (i14 < i15 && i15 == h10[2]) {
-                    sb2.append((CharSequence) str, 0, i15);
-                    sb2.append('/');
-                    sb2.append(str2);
-                    int i16 = h10[1];
-                    return k(sb2, i16, h[2] + i16 + 1);
-                }
-                int lastIndexOf = str.lastIndexOf(47, h10[2] - 1);
-                if (lastIndexOf == -1) {
-                    i10 = h10[1];
-                } else {
-                    i10 = lastIndexOf + 1;
-                }
-                sb2.append((CharSequence) str, 0, i10);
-                sb2.append(str2);
-                return k(sb2, h10[1], i10 + h[2]);
-            }
+    public static void j(MediaFormat mediaFormat, String str, int i10) {
+        if (i10 != -1) {
+            mediaFormat.setInteger(str, i10);
         }
     }
 
-    public static Uri m(String str, String str2) {
-        return Uri.parse(l(str, str2));
+    public static void k(MediaFormat mediaFormat, List list) {
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            mediaFormat.setByteBuffer(i2.d.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+        }
     }
 
-    public static void n(String str, String str2) {
-        synchronized (f8512b) {
+    public static void l(String str, String str2) {
+        synchronized (f8307b) {
             Log.w(str, a(str2, null));
         }
     }
 
-    public static void o(String str, String str2, Throwable th2) {
-        synchronized (f8512b) {
+    public static void m(String str, String str2, Throwable th2) {
+        synchronized (f8307b) {
             Log.w(str, a(str2, th2));
         }
     }

@@ -1,12 +1,12 @@
 package w3;
 public final class g {
-    public final long f50010a;
-    public final boolean f50011b;
-    public final int f50012c;
+    public final long f47089a;
+    public final boolean f47090b;
+    public final int f47091c;
 
-    public g(int i10, long j3, boolean z10) {
-        this.f50010a = j3;
-        this.f50011b = z10;
-        this.f50012c = i10;
+    public g(int i10, long j10, boolean z10) {
+        this.f47089a = j10;
+        this.f47090b = z10;
+        this.f47091c = i10;
     }
 }

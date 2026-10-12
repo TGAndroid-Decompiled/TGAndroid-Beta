@@ -3,74 +3,66 @@ package org.telegram.ui.Components;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class y51 extends s4.t0 {
-    public final int f32951a;
-    public int f32952b;
-    public final Object f32953c;
+import org.telegram.messenger.LocaleController;
+public final class y51 extends a00 {
+    public final h61 Y;
 
-    public y51(c61 c61Var) {
-        this.f32951a = 0;
-        this.f32953c = c61Var;
+    public y51(h61 h61Var, int i10, x51 x51Var) {
+        super(5, i10, x51Var);
+        this.Y = h61Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f32951a) {
-            case 0:
-                if (i10 == 0) {
-                    this.f32952b = 0;
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final boolean D1() {
+        h61 h61Var = this.Y;
+        if (h61Var.f25522n.getAdapter() == h61Var.v) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f32951a) {
-            case 0:
-                c61 c61Var = (c61) this.f32953c;
-                this.f32952b += i11;
-                if (recyclerView.getScrollState() == 1 && Math.abs(this.f32952b) > AndroidUtilities.dp(96.0f)) {
-                    View findFocus = c61Var.f24837e.findFocus();
-                    if (findFocus == null) {
-                        findFocus = c61Var.f24837e;
-                    }
-                    AndroidUtilities.hideKeyboard(findFocus);
-                }
-                if (i11 != 0) {
-                    c61.o(c61Var);
-                    return;
-                }
-                return;
-            case 1:
-                int i12 = this.f32952b + i11;
-                this.f32952b = i12;
-                ((org.telegram.ui.f31) this.f32953c).H.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
-                return;
-            default:
-                org.telegram.ui.Wallet.c5 c5Var = ((org.telegram.ui.Wallet.y3) this.f32953c).f35543a;
-                if (this.f32952b == 0) {
-                    c5Var.q0();
-                    return;
-                } else {
-                    recyclerView.post(new org.telegram.ui.Wallet.h3(c5Var, 13));
-                    return;
-                }
+    public final boolean Y0() {
+        return LocaleController.isRTL;
+    }
+
+    @Override
+    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
+        int i11;
+        View m10;
+        h61 h61Var = this.Y;
+        if (h61Var.N) {
+            return super.o0(i10, eVar, y0Var);
         }
+        int i12 = 0;
+        if (h61Var.L != null) {
+            return 0;
+        }
+        if (h61Var.M) {
+            while (true) {
+                i11 = 1;
+                if (i12 >= r()) {
+                    break;
+                }
+                x51 x51Var = h61Var.f25522n;
+                View q6 = q(i12);
+                x51Var.getClass();
+                int R = RecyclerView.R(q6);
+                if (R < 1) {
+                    i11 = R;
+                    break;
+                }
+                i12++;
+            }
+            if (i11 == 0 && (m10 = h61Var.f25523r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
+            }
+        }
+        return super.o0(i10, eVar, y0Var);
     }
 
-    public y51(org.telegram.ui.f31 f31Var) {
-        this.f32951a = 1;
-        this.f32953c = f31Var;
-        this.f32952b = 0;
-    }
-
-    public y51(org.telegram.ui.Wallet.y3 y3Var, int i10) {
-        this.f32951a = 2;
-        this.f32953c = y3Var;
-        this.f32952b = i10;
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

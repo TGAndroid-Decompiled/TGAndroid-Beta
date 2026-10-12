@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
-import w7.c7;
-import w7.f7;
+import w7.a7;
+import w7.z6;
 public abstract class t extends q implements List, RandomAccess {
-    public static final r f47256b = new r(u.f47257e, 0);
+    public static final r f43972b = new r(u.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -37,7 +37,7 @@ public abstract class t extends q implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i10 = 0; i10 < size; i10++) {
-                            if (c7.a(get(i10), list.get(i10))) {
+                            if (z6.a(get(i10), list.get(i10))) {
                             }
                         }
                         return true;
@@ -47,7 +47,7 @@ public abstract class t extends q implements List, RandomAccess {
                     while (true) {
                         if (listIterator.hasNext()) {
                             if (it.hasNext()) {
-                                if (!c7.a(listIterator.next(), it.next())) {
+                                if (!z6.a(listIterator.next(), it.next())) {
                                     break;
                                 }
                             } else {
@@ -65,6 +65,15 @@ public abstract class t extends q implements List, RandomAccess {
     }
 
     @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    @Override
     public final int hashCode() {
         int size = size();
         int i10 = 1;
@@ -72,15 +81,6 @@ public abstract class t extends q implements List, RandomAccess {
             i10 = (i10 * 31) + get(i11).hashCode();
         }
         return i10;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
     }
 
     @Override
@@ -122,20 +122,15 @@ public abstract class t extends q implements List, RandomAccess {
 
     @Override
     public t subList(int i10, int i11) {
-        f7.b(i10, i11, size());
+        a7.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return u.f47257e;
+            return u.e;
         }
         return new s(this, i10, i12);
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -143,11 +138,16 @@ public abstract class t extends q implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f47256b;
+                return f43972b;
             }
             return new r(this, i10);
         }
-        throw new IndexOutOfBoundsException(f7.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(a7.c(i10, size, "index"));
+    }
+
+    @Override
+    public final Object remove(int i10) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

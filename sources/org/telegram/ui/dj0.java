@@ -1,54 +1,65 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class dj0 extends org.telegram.ui.Cells.u1 {
-    public int Ge;
-    public int He;
-    public int Ie;
-    public final ej0 Je;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+public final class dj0 extends s4.t {
+    public final hj0 S;
 
-    public dj0(ej0 ej0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, i10, true, null, c6Var);
-        this.Je = ej0Var;
-        this.Ge = Integer.MAX_VALUE;
-        this.He = Integer.MAX_VALUE;
-        this.Ie = -1;
+    public dj0(hj0 hj0Var) {
+        super(true);
+        this.S = hj0Var;
     }
 
     @Override
-    public final boolean isPressed() {
+    public final boolean B1(int i10) {
+        byte b10;
+        hj0 hj0Var = this.S;
+        MessageObject messageObject = (MessageObject) hj0Var.N.get((B() - 1) - i10);
+        MessageObject.GroupedMessages l4 = hj0Var.l(messageObject);
+        if (l4 != null) {
+            MessageObject.GroupedMessagePosition position = l4.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = l4.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = l4.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int id2;
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.Zc.f22783w0 && i11 != 0 && this.Ge != Integer.MAX_VALUE && i13 != 0 && this.He != Integer.MAX_VALUE) {
-            int i14 = this.Ie;
-            int i15 = 0;
-            if (getMessageObject() == null) {
-                id2 = 0;
-            } else {
-                id2 = getMessageObject().getId();
-            }
-            if (i14 == id2) {
-                if (!this.Je.f37160w0) {
-                    setTranslationY(-(i11 - this.Ge));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.js.h).start();
-                }
-                this.Ge = getTop();
-                this.He = getBottom();
-                if (getMessageObject() != null) {
-                    i15 = getMessageObject().getId();
-                }
-                this.Ie = i15;
-            }
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
         }
+        return false;
     }
 
     @Override
-    public final vh.f w3() {
-        return vh.f.d(1, this, this.Je.F);
+    public final int j(s4.y0 y0Var) {
+        return B0(y0Var);
+    }
+
+    @Override
+    public final int k(s4.y0 y0Var) {
+        return C0(y0Var);
+    }
+
+    @Override
+    public final int l(s4.y0 y0Var) {
+        return D0(y0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return true;
     }
 }

@@ -1,27 +1,11 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ct;
-public final class k4 extends ct {
-    public final ii.d2 G;
-
-    public k4(c5 c5Var, Context context) {
-        super(context);
-        this.G = new ii.d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), c5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20560d6)), AndroidUtilities.dpf2(2.67f), AndroidUtilities.dpf2(0.67f));
-    }
-
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.ShapeDrawable;
+public final class k4 extends ShapeDrawable.ShaderFactory {
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f16109g.f16116a);
-        if (ceil > 0) {
-            int width = getWidth();
-            ii.d2 d2Var = this.G;
-            d2Var.setBounds(0, 0, width, ceil);
-            d2Var.setAlpha((int) (getMetadata().f16106c.f16116a * 255.0f));
-            d2Var.draw(canvas);
-        }
-        super.dispatchDraw(canvas);
+    public final Shader resize(int i10, int i11) {
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i11, -765355, -2148011, Shader.TileMode.CLAMP);
     }
 }

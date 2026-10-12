@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.view.View;
-import ci.a9;
+import di.z8;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.sc;
 public final class r2 extends c3 {
@@ -22,11 +22,11 @@ public final class r2 extends c3 {
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
         try {
-            return super.drawChild(canvas, view, j3);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            return super.drawChild(canvas, view, j10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return true;
         }
     }
@@ -34,7 +34,7 @@ public final class r2 extends c3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        sc.a(this, new a9(5));
+        sc.a(this, new z8(5));
     }
 
     @Override

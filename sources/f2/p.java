@@ -1,23 +1,34 @@
 package f2;
 
-import b2.r0;
+import b2.x;
 import j$.util.Objects;
+import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import v7.u6;
 public abstract class p {
-    public static final byte[] f9614a = {0, 0, 0, 1};
-    public static final float[] f9615b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f9616c = new Object();
+    public static final byte[] f8889a = {0, 0, 0, 1};
+    public static final float[] f8890b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f8891c = new Object();
     public static int[] d = new int[10];
 
-    public static void a(boolean[] zArr) {
+    public static ArrayList a(byte[] bArr) {
+        ArrayList arrayList = new ArrayList(3);
+        arrayList.add(bArr);
+        arrayList.add(ByteBuffer.allocate(8).order(ByteOrder.nativeOrder()).putLong(((((bArr[11] & 255) << 8) | (bArr[10] & 255)) * 1000000000) / 48000).array());
+        arrayList.add(ByteBuffer.allocate(8).order(ByteOrder.nativeOrder()).putLong(80000000L).array());
+        return arrayList;
+    }
+
+    public static void b(boolean[] zArr) {
         zArr[0] = false;
         zArr[1] = false;
         zArr[2] = false;
     }
 
-    public static int b(byte[] bArr, int i10, int i11, boolean[] zArr) {
+    public static int c(byte[] bArr, int i10, int i11, boolean[] zArr) {
         boolean z10;
         boolean z11;
         boolean z12;
@@ -28,18 +39,18 @@ public abstract class p {
         } else {
             z10 = false;
         }
-        e2.d.g(z10);
+        u6.p(z10);
         if (i12 == 0) {
             return i11;
         }
         if (zArr[0]) {
-            a(zArr);
+            b(zArr);
             return i10 - 3;
         } else if (i12 > 1 && zArr[1] && bArr[i10] == 1) {
-            a(zArr);
+            b(zArr);
             return i10 - 2;
         } else if (i12 > 2 && zArr[2] && bArr[i10] == 0 && bArr[i10 + 1] == 1) {
-            a(zArr);
+            b(zArr);
             return i10 - 1;
         } else {
             int i13 = i11 - 1;
@@ -49,7 +60,7 @@ public abstract class p {
                 if ((b10 & 254) == 0) {
                     int i15 = i14 - 2;
                     if (bArr[i15] == 0 && bArr[i14 - 1] == 0 && b10 == 1) {
-                        a(zArr);
+                        b(zArr);
                         return i15;
                     }
                     i14 -= 2;
@@ -76,18 +87,60 @@ public abstract class p {
         }
     }
 
-    public static boolean c(byte[] bArr, int i10, b2.s sVar) {
+    public static String d(x xVar) {
+        String str = xVar.f2519s;
+        String str2 = xVar.f2511k;
+        if (Objects.equals(str, "video/dolby-vision") && str2 != null) {
+            if (!str2.startsWith("dva1") && !str2.startsWith("dvav")) {
+                if (str2.startsWith("dvh1") || str2.startsWith("dvhe")) {
+                    return "video/hevc";
+                }
+            } else {
+                return "video/avc";
+            }
+        }
+        return xVar.f2519s;
+    }
+
+    public static long e(byte b10, byte b11) {
+        int i10;
         int i11;
-        if (Objects.equals(sVar.f3641r, "video/avc")) {
+        int i12 = b10 & 255;
+        int i13 = b10 & 3;
+        if (i13 != 0) {
+            i10 = 2;
+            if (i13 != 1 && i13 != 2) {
+                i10 = b11 & 63;
+            }
+        } else {
+            i10 = 1;
+        }
+        int i14 = i12 >> 3;
+        int i15 = i14 & 3;
+        if (i14 >= 16) {
+            i11 = 2500 << i15;
+        } else if (i14 >= 12) {
+            i11 = 10000 << (i14 & 1);
+        } else if (i15 == 3) {
+            i11 = 60000;
+        } else {
+            i11 = 10000 << i15;
+        }
+        return i10 * i11;
+    }
+
+    public static boolean f(byte[] bArr, int i10, x xVar) {
+        int i11;
+        if (Objects.equals(xVar.f2519s, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i11 = b10 & 31) == 1 || i11 == 9 || i11 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(sVar.f3641r, "video/hevc")) {
-            a3.l e7 = e(new a4.g(bArr, 4, i10 + 4));
-            int i12 = e7.f155a;
+        } else if (Objects.equals(xVar.f2519s, "video/hevc")) {
+            a3.l h = h(new t(bArr, 4, i10 + 4));
+            int i12 = h.f139a;
             if (i12 != 35) {
-                if (i12 <= 14 && i12 % 2 == 0 && e7.f157c == sVar.I - 1) {
+                if (i12 <= 14 && i12 % 2 == 0 && h.f141c == xVar.J - 1) {
                     return false;
                 }
             } else {
@@ -97,26 +150,27 @@ public abstract class p {
         return true;
     }
 
-    public static int d(b2.s sVar) {
-        if (Objects.equals(sVar.f3641r, "video/avc")) {
+    public static int g(x xVar) {
+        String d10 = d(xVar);
+        if (Objects.equals(d10, "video/avc")) {
             return 1;
         }
-        if (!Objects.equals(sVar.f3641r, "video/hevc") && r0.b(sVar.f3634k, "video/hevc") == null) {
+        if (!Objects.equals(d10, "video/hevc") && !Objects.equals(d10, "video/vvc")) {
             return 0;
         }
         return 2;
     }
 
-    public static a3.l e(a4.g gVar) {
-        gVar.s();
-        return new a3.l(gVar.i(6), gVar.i(6), gVar.i(3) - 1);
+    public static a3.l h(t tVar) {
+        tVar.i();
+        return new a3.l(tVar.e(6), tVar.e(6), tVar.e(3) - 1);
     }
 
-    public static f2.i f(a4.g r19, boolean r20, int r21, f2.i r22) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.p.f(a4.g, boolean, int, f2.i):f2.i");
+    public static f2.i i(f2.t r19, boolean r20, int r21, f2.i r22) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.p.i(f2.t, boolean, int, f2.i):f2.i");
     }
 
-    public static com.google.android.gms.internal.cast.a g(int i10, int i11, byte[] bArr) {
+    public static com.google.android.gms.internal.cast.a j(int i10, int i11, byte[] bArr) {
         byte b10;
         int i12;
         int max;
@@ -130,67 +184,67 @@ public abstract class p {
             }
         }
         if (b10 != 0 && i11 > i13) {
-            a4.g gVar = new a4.g(bArr, i13, i11 + 1);
-            while (gVar.d(16)) {
-                int i14 = gVar.i(8);
-                int i15 = 0;
-                while (i14 == 255) {
-                    i15 += 255;
-                    i14 = gVar.i(8);
+            t tVar = new t(bArr, i13, i11 + 1);
+            while (tVar.b(16)) {
+                int e = tVar.e(8);
+                int i14 = 0;
+                while (e == 255) {
+                    i14 += 255;
+                    e = tVar.e(8);
                 }
-                int i16 = i15 + i14;
-                int i17 = gVar.i(8);
-                int i18 = 0;
-                while (i17 == 255) {
-                    i18 += 255;
-                    i17 = gVar.i(8);
+                int i15 = i14 + e;
+                int e7 = tVar.e(8);
+                int i16 = 0;
+                while (e7 == 255) {
+                    i16 += 255;
+                    e7 = tVar.e(8);
                 }
-                int i19 = i18 + i17;
-                if (i19 != 0 && gVar.d(i19)) {
-                    if (i16 == 176) {
-                        int m10 = gVar.m();
-                        boolean h = gVar.h();
-                        if (h) {
-                            i12 = gVar.m();
+                int i17 = i16 + e7;
+                if (i17 != 0 && tVar.b(i17)) {
+                    if (i15 == 176) {
+                        int f7 = tVar.f();
+                        boolean d10 = tVar.d();
+                        if (d10) {
+                            i12 = tVar.f();
                         } else {
                             i12 = 0;
                         }
-                        int m11 = gVar.m();
-                        int i20 = -1;
-                        for (int i21 = 0; i21 <= m11; i21++) {
-                            i20 = gVar.m();
-                            gVar.m();
-                            int i22 = gVar.i(6);
-                            if (i22 != 63) {
-                                if (i22 == 0) {
-                                    max = Math.max(0, m10 - 30);
+                        int f10 = tVar.f();
+                        int i18 = -1;
+                        for (int i19 = 0; i19 <= f10; i19++) {
+                            i18 = tVar.f();
+                            tVar.f();
+                            int e10 = tVar.e(6);
+                            if (e10 != 63) {
+                                if (e10 == 0) {
+                                    max = Math.max(0, f7 - 30);
                                 } else {
-                                    max = Math.max(0, (i22 + m10) - 31);
+                                    max = Math.max(0, (e10 + f7) - 31);
                                 }
-                                gVar.i(max);
-                                if (h) {
-                                    int i23 = gVar.i(6);
-                                    if (i23 != 63) {
-                                        if (i23 == 0) {
+                                tVar.e(max);
+                                if (d10) {
+                                    int e11 = tVar.e(6);
+                                    if (e11 != 63) {
+                                        if (e11 == 0) {
                                             max2 = Math.max(0, i12 - 30);
                                         } else {
-                                            max2 = Math.max(0, (i23 + i12) - 31);
+                                            max2 = Math.max(0, (e11 + i12) - 31);
                                         }
-                                        gVar.i(max2);
+                                        tVar.e(max2);
                                     } else {
                                         return null;
                                     }
                                 }
-                                if (gVar.h()) {
-                                    gVar.t(10);
+                                if (tVar.d()) {
+                                    tVar.j(10);
                                 }
                             } else {
                                 return null;
                             }
                         }
-                        return new com.google.android.gms.internal.cast.a(i20);
+                        return new com.google.android.gms.internal.cast.a(i18);
                     }
-                    gVar.t(i19 * 8);
+                    tVar.j(i17 * 8);
                 } else {
                     return null;
                 }
@@ -200,62 +254,68 @@ public abstract class p {
         return null;
     }
 
-    public static f2.l h(byte[] r32, int r33, int r34, oi.f r35) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.p.h(byte[], int, int, oi.f):f2.l");
+    public static f2.l k(byte[] r32, int r33, int r34, qi.e r35) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.p.k(byte[], int, int, qi.e):f2.l");
     }
 
-    public static oi.f i(int r40, int r41, byte[] r42) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.p.i(int, int, byte[]):oi.f");
+    public static qi.e l(int r40, int r41, byte[] r42) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.p.l(int, int, byte[]):qi.e");
     }
 
-    public static f2.o j(int r30, int r31, byte[] r32) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.p.j(int, int, byte[]):f2.o");
+    public static f2.o m(int r30, int r31, byte[] r32) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.p.m(int, int, byte[]):f2.o");
     }
 
-    public static void k(a4.g gVar) {
-        int m10 = gVar.m() + 1;
-        gVar.t(8);
-        for (int i10 = 0; i10 < m10; i10++) {
-            gVar.m();
-            gVar.m();
-            gVar.s();
+    public static void n(t tVar) {
+        int f7 = tVar.f() + 1;
+        tVar.j(8);
+        for (int i10 = 0; i10 < f7; i10++) {
+            tVar.f();
+            tVar.f();
+            tVar.i();
         }
-        gVar.t(20);
+        tVar.j(20);
     }
 
-    public static ArrayList l(ByteBuffer byteBuffer) {
+    public static ArrayList o(ByteBuffer byteBuffer) {
         int remaining;
         ByteBuffer asReadOnlyBuffer = byteBuffer.asReadOnlyBuffer();
         ArrayList arrayList = new ArrayList();
         while (asReadOnlyBuffer.hasRemaining()) {
-            byte b10 = asReadOnlyBuffer.get();
-            int i10 = (b10 >> 3) & 15;
-            if (((b10 >> 2) & 1) != 0) {
-                asReadOnlyBuffer.get();
-            }
-            if (((b10 >> 1) & 1) != 0) {
-                remaining = 0;
-                for (int i11 = 0; i11 < 8; i11++) {
-                    byte b11 = asReadOnlyBuffer.get();
-                    remaining |= (b11 & Byte.MAX_VALUE) << (i11 * 7);
-                    if ((b11 & 128) == 0) {
-                        break;
-                    }
+            try {
+                byte b10 = asReadOnlyBuffer.get();
+                int i10 = (b10 >> 3) & 15;
+                if (((b10 >> 2) & 1) != 0) {
+                    asReadOnlyBuffer.get();
                 }
-            } else {
-                remaining = asReadOnlyBuffer.remaining();
+                if (((b10 >> 1) & 1) != 0) {
+                    remaining = 0;
+                    for (int i11 = 0; i11 < 8; i11++) {
+                        byte b11 = asReadOnlyBuffer.get();
+                        remaining |= (b11 & Byte.MAX_VALUE) << (i11 * 7);
+                        if ((b11 & 128) == 0) {
+                            break;
+                        }
+                    }
+                } else {
+                    remaining = asReadOnlyBuffer.remaining();
+                }
+                if (asReadOnlyBuffer.position() + remaining > asReadOnlyBuffer.limit()) {
+                    break;
+                }
+                ByteBuffer duplicate = asReadOnlyBuffer.duplicate();
+                duplicate.limit(asReadOnlyBuffer.position() + remaining);
+                arrayList.add(new r(i10, duplicate));
+                asReadOnlyBuffer.position(asReadOnlyBuffer.position() + remaining);
+            } catch (BufferUnderflowException unused) {
             }
-            ByteBuffer duplicate = asReadOnlyBuffer.duplicate();
-            duplicate.limit(asReadOnlyBuffer.position() + remaining);
-            arrayList.add(new r(i10, duplicate));
-            asReadOnlyBuffer.position(asReadOnlyBuffer.position() + remaining);
         }
         return arrayList;
     }
 
-    public static int m(int i10, byte[] bArr) {
+    public static int p(int i10, byte[] bArr) {
         int i11;
-        synchronized (f9616c) {
+        synchronized (f8891c) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {

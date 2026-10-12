@@ -1,22 +1,32 @@
 package pi;
-public final class a implements Runnable {
-    public final int f45769a;
-    public final org.telegram.utils.recorder.audio.b f45770b;
 
-    public a(org.telegram.utils.recorder.audio.b bVar, int i10) {
-        this.f45769a = i10;
-        this.f45770b = bVar;
-    }
+import android.util.SparseArray;
+import bi.s6;
+import j$.util.Comparator$CC;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+public final class a {
+    public SparseArray f43229a;
 
-    @Override
-    public final void run() {
-        switch (this.f45769a) {
-            case 0:
-                this.f45770b.e();
-                return;
-            default:
-                org.telegram.utils.recorder.audio.b.a(this.f45770b);
-                return;
+    public final void a(HashMap hashMap) {
+        if (this.f43229a == null) {
+            this.f43229a = new SparseArray(hashMap.size());
+            ArrayList arrayList = new ArrayList(hashMap.entrySet());
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new s6(13)));
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                Map.Entry entry = (Map.Entry) obj;
+                this.f43229a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
+            }
+            return;
+        }
+        for (Map.Entry entry2 : hashMap.entrySet()) {
+            this.f43229a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
         }
     }
 }

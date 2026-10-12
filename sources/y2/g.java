@@ -2,11 +2,11 @@ package y2;
 
 import java.io.IOException;
 public interface g {
-    void C(i iVar, long j3, long j10);
+    void B(i iVar, long j10, long j11, boolean z10);
 
-    void H(i iVar, long j3, long j10, boolean z10);
+    k4.d j(i iVar, long j10, long j11, IOException iOException, int i10);
 
-    k4.d x(i iVar, long j3, long j10, IOException iOException, int i10);
+    void k(i iVar, long j10, long j11, int i10);
 
-    void y(i iVar, long j3, long j10, int i10);
+    void l(i iVar, long j10, long j11);
 }

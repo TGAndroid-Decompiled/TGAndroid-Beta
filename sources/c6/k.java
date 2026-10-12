@@ -5,36 +5,37 @@ import android.os.Parcelable;
 import com.google.android.gms.cast.MediaInfo;
 import java.util.Arrays;
 import org.json.JSONObject;
+import w7.g0;
 public final class k extends o6.a {
-    public final MediaInfo f4371a;
-    public final n f4372b;
-    public final Boolean f4373c;
+    public final MediaInfo f4490a;
+    public final n f4491b;
+    public final Boolean f4492c;
     public final long d;
-    public final double f4374e;
-    public final long[] f4375f;
+    public final double e;
+    public final long[] f4493f;
     public String h;
-    public final JSONObject f4376n;
-    public final String f4377r;
-    public final String f4378s;
+    public final JSONObject f4494n;
+    public final String f4495r;
+    public final String f4496s;
     public final String v;
-    public final String f4379w;
-    public final long f4380x;
-    public static final g6.b f4370y = new g6.b("MediaLoadRequestData", null);
+    public final String f4497w;
+    public final long f4498x;
+    public static final g6.b f4489y = new g6.b("MediaLoadRequestData", null);
     public static final Parcelable.Creator<k> CREATOR = new v(10);
 
-    public k(MediaInfo mediaInfo, n nVar, Boolean bool, long j3, double d, long[] jArr, JSONObject jSONObject, String str, String str2, String str3, String str4, long j10) {
-        this.f4371a = mediaInfo;
-        this.f4372b = nVar;
-        this.f4373c = bool;
-        this.d = j3;
-        this.f4374e = d;
-        this.f4375f = jArr;
-        this.f4376n = jSONObject;
-        this.f4377r = str;
-        this.f4378s = str2;
+    public k(MediaInfo mediaInfo, n nVar, Boolean bool, long j10, double d, long[] jArr, JSONObject jSONObject, String str, String str2, String str3, String str4, long j11) {
+        this.f4490a = mediaInfo;
+        this.f4491b = nVar;
+        this.f4492c = bool;
+        this.d = j10;
+        this.e = d;
+        this.f4493f = jArr;
+        this.f4494n = jSONObject;
+        this.f4495r = str;
+        this.f4496s = str2;
         this.v = str3;
-        this.f4379w = str4;
-        this.f4380x = j10;
+        this.f4497w = str4;
+        this.f4498x = j11;
     }
 
     public final boolean equals(Object obj) {
@@ -45,42 +46,42 @@ public final class k extends o6.a {
             return false;
         }
         k kVar = (k) obj;
-        if (u6.c.a(this.f4376n, kVar.f4376n) && n6.m.l(this.f4371a, kVar.f4371a) && n6.m.l(this.f4372b, kVar.f4372b) && n6.m.l(this.f4373c, kVar.f4373c) && this.d == kVar.d && this.f4374e == kVar.f4374e && Arrays.equals(this.f4375f, kVar.f4375f) && n6.m.l(this.f4377r, kVar.f4377r) && n6.m.l(this.f4378s, kVar.f4378s) && n6.m.l(this.v, kVar.v) && n6.m.l(this.f4379w, kVar.f4379w) && this.f4380x == kVar.f4380x) {
+        if (u6.c.a(this.f4494n, kVar.f4494n) && n6.l.l(this.f4490a, kVar.f4490a) && n6.l.l(this.f4491b, kVar.f4491b) && n6.l.l(this.f4492c, kVar.f4492c) && this.d == kVar.d && this.e == kVar.e && Arrays.equals(this.f4493f, kVar.f4493f) && n6.l.l(this.f4495r, kVar.f4495r) && n6.l.l(this.f4496s, kVar.f4496s) && n6.l.l(this.v, kVar.v) && n6.l.l(this.f4497w, kVar.f4497w) && this.f4498x == kVar.f4498x) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4371a, this.f4372b, this.f4373c, Long.valueOf(this.d), Double.valueOf(this.f4374e), this.f4375f, String.valueOf(this.f4376n), this.f4377r, this.f4378s, this.v, this.f4379w, Long.valueOf(this.f4380x)});
+        return Arrays.hashCode(new Object[]{this.f4490a, this.f4491b, this.f4492c, Long.valueOf(this.d), Double.valueOf(this.e), this.f4493f, String.valueOf(this.f4494n), this.f4495r, this.f4496s, this.v, this.f4497w, Long.valueOf(this.f4498x)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f4376n;
+        JSONObject jSONObject2 = this.f4494n;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
             jSONObject = jSONObject2.toString();
         }
         this.h = jSONObject;
-        int q6 = w7.c0.q(parcel, 20293);
-        w7.c0.k(parcel, 2, this.f4371a, i10);
-        w7.c0.k(parcel, 3, this.f4372b, i10);
-        w7.c0.a(parcel, 4, this.f4373c);
-        w7.c0.s(parcel, 5, 8);
+        int q6 = g0.q(parcel, 20293);
+        g0.k(parcel, 2, this.f4490a, i10);
+        g0.k(parcel, 3, this.f4491b, i10);
+        g0.a(parcel, 4, this.f4492c);
+        g0.s(parcel, 5, 8);
         parcel.writeLong(this.d);
-        w7.c0.s(parcel, 6, 8);
-        parcel.writeDouble(this.f4374e);
-        w7.c0.j(parcel, 7, this.f4375f);
-        w7.c0.l(parcel, 8, this.h);
-        w7.c0.l(parcel, 9, this.f4377r);
-        w7.c0.l(parcel, 10, this.f4378s);
-        w7.c0.l(parcel, 11, this.v);
-        w7.c0.l(parcel, 12, this.f4379w);
-        w7.c0.s(parcel, 13, 8);
-        parcel.writeLong(this.f4380x);
-        w7.c0.r(parcel, q6);
+        g0.s(parcel, 6, 8);
+        parcel.writeDouble(this.e);
+        g0.j(parcel, 7, this.f4493f);
+        g0.l(parcel, 8, this.h);
+        g0.l(parcel, 9, this.f4495r);
+        g0.l(parcel, 10, this.f4496s);
+        g0.l(parcel, 11, this.v);
+        g0.l(parcel, 12, this.f4497w);
+        g0.s(parcel, 13, 8);
+        parcel.writeLong(this.f4498x);
+        g0.r(parcel, q6);
     }
 }

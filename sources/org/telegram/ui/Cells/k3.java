@@ -9,16 +9,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class k3 extends FrameLayout {
-    public final EditTextBoldCursor f22138a;
-    public boolean f22139b;
+    public final EditTextBoldCursor f21429a;
+    public boolean f21430b;
 
     public k3(Context context) {
         super(context);
         int i10;
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f22138a = editTextBoldCursor;
-        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
+        this.f21429a = editTextBoldCursor;
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.H6, false));
         editTextBoldCursor.setTextSize(1, 16.0f);
         editTextBoldCursor.setLines(1);
         editTextBoldCursor.setMaxLines(1);
@@ -33,22 +33,22 @@ public final class k3 extends FrameLayout {
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
         editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 16384);
-        addView(editTextBoldCursor, w7.w5.a(-1.0f, 21.0f, 0.0f, 21.0f, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
+        addView(editTextBoldCursor, w7.a6.a(-1.0f, 21.0f, 0.0f, 21.0f, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
     }
 
     public String getText() {
-        return this.f22138a.getText().toString();
+        return this.f21429a.getText().toString();
     }
 
     public EditTextBoldCursor getTextView() {
-        return this.f22138a;
+        return this.f21429a;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        if (this.f22139b) {
+        if (this.f21430b) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -62,17 +62,17 @@ public final class k3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20682k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f20022k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f22139b ? 1 : 0));
-        this.f22138a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f21430b ? 1 : 0));
+        this.f21429a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f22138a.setTextColor(i10);
+        this.f21429a.setTextColor(i10);
     }
 }

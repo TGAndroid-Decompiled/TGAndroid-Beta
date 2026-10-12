@@ -1,54 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-public final class ks implements Runnable {
-    public final int f27919a;
-    public final ns f27920b;
+import android.content.Context;
+import android.widget.PopupWindow;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public abstract class ks {
+    public final org.telegram.ui.ActionBar.m1 f26796a;
+    public boolean f26797b;
 
-    public ks(ns nsVar, int i10) {
-        this.f27919a = i10;
-        this.f27920b = nsVar;
+    public ks(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, c6Var);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new uk(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
+        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
+        org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f26796a = m1Var;
+        m1Var.f20520b = false;
+        m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
+        m1Var.setOutsideTouchable(true);
+        m1Var.setClippingEnabled(true);
+        m1Var.setInputMethodMode(2);
+        m1Var.setSoftInputMode(0);
+        m1Var.getContentView().setFocusableInTouchMode(true);
+        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
+            m1Var.setFocusable(true);
+        }
+        m1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public final void onDismiss() {
+                ks ksVar = ks.this;
+                ksVar.c();
+                ksVar.f26797b = false;
+            }
+        });
     }
 
-    @Override
-    public final void run() {
-        View view;
-        switch (this.f27919a) {
-            case 0:
-                ns nsVar = this.f27920b;
-                if (nsVar.f28955b == null && (view = nsVar.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        nsVar.f28955b = (EditText) findFocus;
-                    }
-                }
-                EditText editText = nsVar.f28955b;
-                if (editText != null) {
-                    if (editText.length() != 0 || nsVar.f28957e) {
-                        try {
-                            nsVar.performHapticFeedback(3, 2);
-                            nsVar.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        nsVar.f28955b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        nsVar.f28955b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (nsVar.f28958f) {
-                            nsVar.postDelayed(nsVar.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ns nsVar2 = this.f27920b;
-                nsVar2.f28959n = false;
-                nsVar2.f28958f = true;
-                nsVar2.h.run();
-                return;
+    public final void a() {
+        org.telegram.ui.ActionBar.m1 m1Var = this.f26796a;
+        if (m1Var != null) {
+            m1Var.d(true);
         }
     }
+
+    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+
+    public abstract void c();
 }

@@ -1,14 +1,14 @@
 package l5;
-public final class c implements ia.d {
-    public static final c f15142a = new Object();
-    public static final ia.c f15143b = new ia.c("eventsDroppedCount", hg.c.o(hg.c.n(la.e.class, new la.a(1))));
-    public static final ia.c f15144c = new ia.c("reason", hg.c.o(hg.c.n(la.e.class, new la.a(3))));
+public final class c implements ja.d {
+    public static final c f14563a = new Object();
+    public static final ja.c f14564b = new ja.c("eventsDroppedCount", i2.d.n(i2.d.m(ma.e.class, new ma.a(1))));
+    public static final ja.c f14565c = new ja.c("reason", i2.d.n(i2.d.m(ma.e.class, new ma.a(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         o5.d dVar = (o5.d) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.f(f15143b, dVar.f16834a);
-        eVar.a(f15144c, dVar.f16835b);
+        ja.e eVar = (ja.e) obj2;
+        eVar.f(f14564b, dVar.f16601a);
+        eVar.d(f14565c, dVar.f16602b);
     }
 }

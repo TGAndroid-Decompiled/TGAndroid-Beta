@@ -1,72 +1,121 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AccountInstance;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class v80 implements RequestDelegate {
-    public final int f31456a;
-    public final long f31457b;
-    public final Object f31458c;
-    public final Object d;
-    public final Object f31459e;
+public final class v80 extends lm0 {
+    public final Context f29916c;
+    public final w80 d;
 
-    public v80(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f31456a = i10;
-        this.f31458c = obj;
-        this.d = obj2;
-        this.f31459e = obj3;
-        this.f31457b = j3;
+    public v80(w80 w80Var, Context context) {
+        this.d = w80Var;
+        this.f29916c = context;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f31456a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((org.telegram.ui.ActionBar.a2) this.f31458c, tLObject, this.f31457b, (AccountInstance) this.d, (MessagesStorage.BooleanCallback) this.f31459e, 5));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new ai.ha((org.telegram.ui.ActionBar.m2) this.f31458c, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f31459e, this.f31457b, 3));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.o) this.d, (org.telegram.ui.ActionBar.a2) this.f31458c, tLObject, this.f31457b, (Utilities.Callback) this.f31459e));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new ai.ha((yh.s3) this.f31458c, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f31459e, tL_error, this.f31457b, 4));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((yh.n5) this.f31458c, tLObject, (MessageObject) this.d, this.f31457b, (Runnable) this.f31459e, 10));
-                return;
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.h.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        TLObject chat;
+        String str;
+        int i12;
+        View view = b1Var.f44838a;
+        w80 w80Var = this.d;
+        long peerId = MessageObject.getPeerId((TLRPC.Peer) w80Var.h.get(i10));
+        if (peerId > 0) {
+            i12 = ((org.telegram.ui.ActionBar.e3) w80Var).currentAccount;
+            chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
+            str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
+        } else {
+            i11 = ((org.telegram.ui.ActionBar.e3) w80Var).currentAccount;
+            chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
+            str = null;
         }
+        boolean z10 = false;
+        if (w80Var.f30821s == 0) {
+            org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
+            if (peerId == MessageObject.getPeerId(w80Var.v)) {
+                z10 = true;
+            }
+            g7Var.c(peerId, z10, null);
+            return;
+        }
+        org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
+        if (i10 != h() - 1) {
+            z10 = true;
+        }
+        g4Var.e(chat, null, str, z10);
     }
 
-    public v80(org.telegram.ui.ActionBar.a2 a2Var, long j3, AccountInstance accountInstance, MessagesStorage.BooleanCallback booleanCallback) {
-        this.f31456a = 0;
-        this.f31458c = a2Var;
-        this.f31457b = j3;
-        this.d = accountInstance;
-        this.f31459e = booleanCallback;
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        boolean z10;
+        View g4Var;
+        w80 w80Var = this.d;
+        if (w80Var.f30821s == 0) {
+            g4Var = new org.telegram.ui.Cells.g7(this.f29916c, 2, null);
+            g4Var.setLayoutParams(new s4.o0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
+        } else {
+            if (w80Var.f30821s == 2) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f29916c, null, false, z10);
+        }
+        return new s4.b1(g4Var);
     }
 
-    public v80(yh.o oVar, org.telegram.ui.ActionBar.a2 a2Var, long j3, Utilities.Callback callback) {
-        this.f31456a = 2;
-        this.d = oVar;
-        this.f31458c = a2Var;
-        this.f31457b = j3;
-        this.f31459e = callback;
-    }
-
-    public v80(yh.n5 n5Var, MessageObject messageObject, long j3, Runnable runnable) {
-        this.f31456a = 4;
-        this.f31458c = n5Var;
-        this.d = messageObject;
-        this.f31457b = j3;
-        this.f31459e = runnable;
+    @Override
+    public final void y(s4.b1 b1Var) {
+        long j10;
+        b1Var.b();
+        long peerId = MessageObject.getPeerId(this.d.v);
+        View view = b1Var.f44838a;
+        boolean z10 = true;
+        if (view instanceof org.telegram.ui.Cells.g4) {
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
+            Object object = g4Var.getObject();
+            if (object != null) {
+                if (object instanceof TLRPC.Chat) {
+                    j10 = -((TLRPC.Chat) object).f19216id;
+                } else {
+                    j10 = ((TLRPC.User) object).f19363id;
+                }
+            } else {
+                j10 = 0;
+            }
+            if (peerId != j10) {
+                z10 = false;
+            }
+            g4Var.c(z10, false);
+            return;
+        }
+        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
+        if (peerId != g7Var.getCurrentDialog()) {
+            z10 = false;
+        }
+        g7Var.b(z10, false);
     }
 }

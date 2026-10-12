@@ -1,18 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class l11 {
-    public final long f27985a;
-    public final TLRPC.InputFile f27986b;
-    public final TLRPC.InputEncryptedFile f27987c;
-    public final byte[] d;
-    public final byte[] f27988e;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public class l11 extends MetricAffectingSpan {
+    public final TextPaint f26909a;
+    public final String f26910b;
 
-    public l11(long j3, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
-        this.f27985a = j3;
-        this.f27986b = inputFile;
-        this.f27987c = inputEncryptedFile;
-        this.d = bArr;
-        this.f27988e = bArr2;
+    public l11(TextPaint textPaint, String str) {
+        this.f26909a = textPaint;
+        this.f26910b = str;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f26909a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f26909a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
     }
 }

@@ -1,19 +1,29 @@
 package og;
 
-import gg.g;
-import java.util.ArrayList;
-import org.telegram.ui.Components.vm0;
-import s4.o;
-public abstract class b extends vm0 {
-    public final g f16879c = new g();
+import org.telegram.ui.fo;
+import org.telegram.ui.lg1;
+public final class b implements Runnable {
+    public final int f16647a;
+    public final fo f16648b;
 
-    public final void E(ArrayList arrayList, ArrayList arrayList2) {
-        if (arrayList2 == null) {
-            arrayList2 = new ArrayList();
+    public b(fo foVar, int i10) {
+        this.f16647a = i10;
+        this.f16648b = foVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f16647a) {
+            case 0:
+                fo foVar = this.f16648b;
+                if (foVar.getParentLayout() != null) {
+                    lg1.I0(foVar);
+                    return;
+                }
+                return;
+            default:
+                this.f16648b.cc();
+                return;
         }
-        g gVar = this.f16879c;
-        gVar.f10606c = arrayList;
-        gVar.d = arrayList2;
-        o.c(gVar, true).b(this);
     }
 }

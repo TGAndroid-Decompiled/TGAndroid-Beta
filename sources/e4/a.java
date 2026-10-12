@@ -3,39 +3,40 @@ package e4;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
-import e2.h;
-import e2.v;
-import e9.i0;
+import e2.j;
+import e2.x;
+import e9.n0;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import z3.d;
-import z3.l;
+import z3.b;
+import z3.e;
 import z3.m;
-public final class a implements m {
+import z3.n;
+public final class a implements n {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
-    public static final Pattern f8629e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f8630a = new StringBuilder();
-    public final ArrayList f8631b = new ArrayList();
-    public final v f8632c = new v();
+    public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
+    public final StringBuilder f8454a = new StringBuilder();
+    public final ArrayList f8455b = new ArrayList();
+    public final x f8456c = new x();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
     }
 
     public static long b(Matcher matcher, int i10) {
-        long j3;
+        long j10;
         String group = matcher.group(i10 + 1);
         if (group != null) {
-            j3 = Long.parseLong(group) * 3600000;
+            j10 = Long.parseLong(group) * 3600000;
         } else {
-            j3 = 0;
+            j10 = 0;
         }
         String group2 = matcher.group(i10 + 2);
         group2.getClass();
-        long parseLong = (Long.parseLong(group2) * 60000) + j3;
+        long parseLong = (Long.parseLong(group2) * 60000) + j10;
         String group3 = matcher.group(i10 + 3);
         group3.getClass();
         long parseLong2 = (Long.parseLong(group3) * 1000) + parseLong;
@@ -47,61 +48,61 @@ public final class a implements m {
     }
 
     @Override
-    public final int a0() {
+    public final int h0() {
         return 1;
     }
 
     @Override
-    public final void f0(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+    public final void u0(byte[] bArr, int i10, int i11, m mVar, j jVar) {
         ArrayList arrayList;
-        String k10;
+        String n10;
         String str;
         a aVar = this;
-        long j3 = lVar.f53741a;
-        v vVar = aVar.f8632c;
-        vVar.H(i10 + i11, bArr);
-        vVar.J(i10);
-        Charset F = vVar.F();
-        if (F == null) {
-            F = StandardCharsets.UTF_8;
+        long j10 = mVar.f49272a;
+        x xVar = aVar.f8456c;
+        xVar.L(i10 + i11, bArr);
+        xVar.N(i10);
+        Charset J = xVar.J();
+        if (J == null) {
+            J = StandardCharsets.UTF_8;
         }
-        long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f53742b) {
+        long j11 = -9223372036854775807L;
+        if (j10 != -9223372036854775807L && mVar.f49273b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
         }
         while (true) {
-            String k11 = vVar.k(F);
-            if (k11 == null) {
+            String n11 = xVar.n(J);
+            if (n11 == null) {
                 break;
-            } else if (!k11.isEmpty()) {
+            } else if (!n11.isEmpty()) {
                 try {
-                    Integer.parseInt(k11);
-                    k10 = vVar.k(F);
+                    Integer.parseInt(n11);
+                    n10 = xVar.n(J);
                 } catch (NumberFormatException unused) {
-                    e2.a.n("SubripParser", "Skipping invalid index: ".concat(k11));
+                    e2.a.l("SubripParser", "Skipping invalid index: ".concat(n11));
                 }
-                if (k10 == null) {
-                    e2.a.n("SubripParser", "Unexpected end");
+                if (n10 == null) {
+                    e2.a.l("SubripParser", "Unexpected end");
                     break;
                 }
-                Matcher matcher = d.matcher(k10);
+                Matcher matcher = d.matcher(n10);
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f8630a;
+                    StringBuilder sb2 = aVar.f8454a;
                     sb2.setLength(0);
-                    long j11 = j10;
-                    ArrayList arrayList2 = aVar.f8631b;
+                    long j12 = j11;
+                    ArrayList arrayList2 = aVar.f8455b;
                     arrayList2.clear();
-                    for (String k12 = vVar.k(F); !TextUtils.isEmpty(k12); k12 = vVar.k(F)) {
+                    for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {
                             sb2.append("<br>");
                         }
-                        String trim = k12.trim();
+                        String trim = n12.trim();
                         StringBuilder sb3 = new StringBuilder(trim);
-                        Matcher matcher2 = f8629e.matcher(trim);
+                        Matcher matcher2 = e.matcher(trim);
                         int i12 = 0;
                         while (matcher2.find()) {
                             String group = matcher2.group();
@@ -110,11 +111,11 @@ public final class a implements m {
                             int length = group.length();
                             sb3.replace(start, start + length, "");
                             i12 += length;
-                            j3 = j3;
+                            j10 = j10;
                         }
                         sb2.append(sb3.toString());
                     }
-                    long j12 = j3;
+                    long j13 = j10;
                     Spanned fromHtml = Html.fromHtml(sb2.toString());
                     int i13 = 0;
                     while (true) {
@@ -129,18 +130,18 @@ public final class a implements m {
                             break;
                         }
                     }
-                    if (j12 != j11 && b11 < j12) {
+                    if (j13 != j12 && b11 < j13) {
                         if (arrayList != null) {
-                            arrayList.add(new z3.a(b10, b11 - b10, i0.z(a(fromHtml, str))));
+                            arrayList.add(new b(b10, b11 - b10, n0.y(a(fromHtml, str))));
                         }
                     } else {
-                        hVar.accept(new z3.a(b10, b11 - b10, i0.z(a(fromHtml, str))));
+                        jVar.accept(new b(b10, b11 - b10, n0.y(a(fromHtml, str))));
                     }
                     aVar = this;
-                    j10 = j11;
-                    j3 = j12;
+                    j11 = j12;
+                    j10 = j13;
                 } else {
-                    e2.a.n("SubripParser", "Skipping invalid timing: ".concat(k10));
+                    e2.a.l("SubripParser", "Skipping invalid timing: ".concat(n10));
                     aVar = this;
                 }
             }
@@ -151,14 +152,14 @@ public final class a implements m {
             while (i14 < size) {
                 Object obj = arrayList.get(i14);
                 i14++;
-                hVar.accept((z3.a) obj);
+                jVar.accept((b) obj);
             }
         }
     }
 
     @Override
-    public final d x(int i10, int i11, byte[] bArr) {
-        return sc.v.a(this, bArr, i11);
+    public final e w(int i10, int i11, byte[] bArr) {
+        return t8.b.a(this, bArr, i11);
     }
 
     @Override

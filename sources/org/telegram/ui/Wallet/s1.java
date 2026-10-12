@@ -1,111 +1,114 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mh;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class s1 implements Utilities.Callback2 {
-    public final int f35340a;
-    public final f2 f35341b;
-    public final long f35342c;
-    public final int d;
-    public final Object f35343e;
+import org.telegram.ui.mt;
+public final class s1 implements Utilities.Callback {
+    public final d2 f33675a;
+    public final z1 f33676b;
+    public final mt f33677c;
+    public final boolean d;
+    public final g0 e;
 
-    public s1(f2 f2Var, Object obj, long j3, int i10, int i11) {
-        this.f35340a = i11;
-        this.f35341b = f2Var;
-        this.f35343e = obj;
-        this.f35342c = j3;
-        this.d = i10;
+    public s1(d2 d2Var, z1 z1Var, mt mtVar, boolean z10, g0 g0Var) {
+        this.f33675a = d2Var;
+        this.f33676b = z1Var;
+        this.f33677c = mtVar;
+        this.d = z10;
+        this.e = g0Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        final long j3;
-        final int i10;
-        final TL_wallet.tonConnectRequest tonconnectrequest;
-        TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f35340a) {
-            case 0:
-                final mh mhVar = (mh) this.f35343e;
-                final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                final f2 f2Var = this.f35341b;
-                l0 l0Var = f2Var.f34702b;
-                byte[] bArr = null;
-                if (tL_error == null && tonconnectpending != null) {
-                    ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
-                    int size = arrayList.size();
-                    int i11 = 0;
-                    while (true) {
-                        j3 = this.f35342c;
-                        i10 = this.d;
-                        if (i11 < size) {
-                            TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i11);
-                            i11++;
-                            TL_wallet.tonConnectRequest tonconnectrequest3 = tonconnectrequest2;
-                            if (tonconnectrequest3.session_id == j3 && tonconnectrequest3.msg_id == i10) {
-                                tonconnectrequest = tonconnectrequest3;
-                            }
-                        } else {
-                            tonconnectrequest = null;
-                        }
+    public final void run(Object obj) {
+        final byte[] bArr = (byte[]) obj;
+        final d2 d2Var = this.f33675a;
+        final z1 z1Var = this.f33676b;
+        boolean i10 = d2Var.i(z1Var);
+        final mt mtVar = this.f33677c;
+        if (!i10 && d2Var.y(z1Var)) {
+            TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
+            tonconnectclaimrequest.session_id = z1Var.f33900a.f19475id;
+            tonconnectclaimrequest.msg_id = z1Var.f33901b;
+            tonconnectclaimrequest.app_request_id = z1Var.d;
+            final boolean z10 = this.d;
+            tonconnectclaimrequest.declined = z10;
+            tonconnectclaimrequest.challenge_answer = bArr;
+            ConnectionsManager connectionsManager = d2Var.f33043f;
+            ?? obj2 = new Object();
+            final g0 g0Var = this.e;
+            connectionsManager.sendRequestTyped(tonconnectclaimrequest, obj2, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj3, Object obj4) {
+                    int i11;
+                    String str;
+                    d2 d2Var2 = d2.this;
+                    byte[] bArr2 = bArr;
+                    z1 z1Var2 = z1Var;
+                    mt mtVar2 = mtVar;
+                    boolean z11 = z10;
+                    g0 g0Var2 = g0Var;
+                    TLRPC.Bool bool = (TLRPC.Bool) obj3;
+                    TLRPC.TL_error tL_error = (TLRPC.TL_error) obj4;
+                    if (bArr2 != null) {
+                        Arrays.fill(bArr2, (byte) 0);
                     }
-                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20066id == j3 && tonconnectrequest.expires > f2Var.f34705f.getCurrentTime()) {
-                        final String r10 = l0Var.r();
-                        if (l0Var.w() != null) {
-                            bArr = (byte[]) l0Var.w().clone();
-                        }
-                        final byte[] bArr2 = bArr;
-                        l0Var.x(new Utilities.Callback2() {
-                            @Override
-                            public final void run(Object obj3, Object obj4) {
-                                f2 f2Var2 = f2.this;
-                                mh mhVar2 = mhVar;
-                                TL_wallet.tonConnectPending tonconnectpending2 = tonconnectpending;
-                                TL_wallet.tonConnectRequest tonconnectrequest4 = tonconnectrequest;
-                                String str = r10;
-                                byte[] bArr3 = bArr2;
-                                long j10 = j3;
-                                int i12 = i10;
-                                i0 i0Var = (i0) obj3;
-                                String str2 = (String) obj4;
-                                f2Var2.getClass();
-                                if (i0Var != null && str2 == null) {
-                                    i0 b10 = i0Var.b();
-                                    Utilities.globalQueue.postRunnable(new ei.g1(f2Var2, tonconnectpending2, tonconnectrequest4, b10, str, bArr3, new ai.m0(27, b10, mhVar2), j10, i12));
+                    if (tL_error == null && (bool instanceof TLRPC.TL_boolTrue)) {
+                        z1Var2.f33911o = true;
+                        if (!z11 && z1Var2.f33908l < 0) {
+                            if ("disconnect".equals(z1Var2.e)) {
+                                d2Var2.w(z1Var2, g0Var2, new JSONObject(), -1, null, mtVar2);
+                                return;
+                            } else if ("signData".equals(z1Var2.e)) {
+                                if (d2Var2.y(z1Var2) && !d2Var2.i(z1Var2)) {
+                                    Utilities.globalQueue.postRunnable(new l6(d2Var2, g0Var2, z1Var2, mtVar2, 8));
+                                    return;
+                                } else {
+                                    d2Var2.w(z1Var2, g0Var2, null, 0, "Request expired or wallet changed", mtVar2);
                                     return;
                                 }
-                                f2Var2.h = false;
-                                if (str2 == null) {
-                                    str2 = "Recovery phrase is unavailable";
+                            } else if ("signMessage".equals(z1Var2.e)) {
+                                WalletEngine2 walletEngine2 = d2Var2.f33041b.f33320b;
+                                if (walletEngine2 != null && d2Var2.y(z1Var2) && !d2Var2.i(z1Var2)) {
+                                    c2 c2Var = z1Var2.f33903f;
+                                    walletEngine2.signMessage(g0Var2, c2Var, "ton-connect:" + z1Var2.f33900a.f19475id + ":" + z1Var2.f33901b, new n(d2Var2, z1Var2, g0Var2, mtVar2, 8));
+                                    return;
                                 }
-                                mhVar2.run(null, str2);
+                                d2Var2.w(z1Var2, g0Var2, null, 0, "Wallet unavailable or request expired", mtVar2);
+                                return;
+                            } else {
+                                d2Var2.z(z1Var2, g0Var2, mtVar2);
+                                return;
                             }
-                        }, true, false);
+                        }
+                        if (z11) {
+                            i11 = 300;
+                        } else {
+                            i11 = z1Var2.f33908l;
+                        }
+                        int i12 = i11;
+                        if (z11) {
+                            str = "User declined the request";
+                        } else {
+                            str = z1Var2.f33906j;
+                        }
+                        d2Var2.w(z1Var2, g0Var2, null, i12, str, mtVar2);
                         return;
                     }
-                    f2Var.h = false;
-                    mhVar.run(null, "This request has expired or has already been answered");
-                    return;
+                    if (tL_error != null && ("TONCONNECT_REQUEST_ALREADY_CLAIMED".equals(tL_error.text) || "TONCONNECT_REQUEST_EXPIRED".equals(tL_error.text) || "TONCONNECT_REQUEST_NOT_FOUND".equals(tL_error.text))) {
+                        z1Var2.f33910n = true;
+                    }
+                    mtVar2.run(d2.x(tL_error, "claimRequest"));
                 }
-                f2Var.h = false;
-                mhVar.run(null, f2.x(tL_error, "getPending"));
-                return;
-            default:
-                Utilities.Callback callback = (Utilities.Callback) this.f35343e;
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                f2 f2Var2 = this.f35341b;
-                f2Var2.getClass();
-                if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                    f2Var2.d(this.f35342c, this.d, callback);
-                    return;
-                } else {
-                    callback.run(f2.x(tL_error2, "closeSession"));
-                    return;
-                }
+            });
+            return;
         }
+        if (bArr != null) {
+            Arrays.fill(bArr, (byte) 0);
+        }
+        mtVar.run("Request expired or wallet changed");
     }
 }

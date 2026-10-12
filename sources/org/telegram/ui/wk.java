@@ -1,12 +1,12 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class wk extends jh.e {
-    public final eo L;
+public final class wk extends kh.e {
+    public final fo L;
 
-    public wk(eo eoVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, oj ojVar, ah.c cVar) {
-        super(cVar, context, ojVar, c6Var);
-        this.L = eoVar;
+    public wk(fo foVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, oj ojVar, bh.b bVar) {
+        super(context, bVar, ojVar, c6Var);
+        this.L = foVar;
     }
 
     @Override

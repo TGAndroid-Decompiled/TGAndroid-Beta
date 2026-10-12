@@ -1,57 +1,104 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ab0 extends org.telegram.ui.ActionBar.j {
-    public final hb0 f24275a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class ab0 extends AnimatorListenerAdapter {
+    public final int f23509a;
+    public final int f23510b;
+    public final boolean f23511c;
+    public final NotificationCenter.NotificationCenterDelegate d;
 
-    public ab0(hb0 hb0Var) {
-        this.f24275a = hb0Var;
+    public ab0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, boolean z10, int i11) {
+        this.f23509a = i11;
+        this.d = notificationCenterDelegate;
+        this.f23510b = i10;
+        this.f23511c = z10;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        hb0 hb0Var = this.f24275a;
-        if (i10 == -1) {
-            if (!hb0Var.V.L(true)) {
-                hb0Var.finishFragment();
-            }
-        } else if (i10 == 2) {
-            if (hb0Var.I != null) {
-                ArrayList arrayList = new ArrayList();
-                for (int i12 = 0; i12 < hb0Var.I.size(); i12++) {
-                    TL_stories.StoryItem storyItem = ((MessageObject) hb0Var.I.valueAt(i12)).storyItem;
-                    if (storyItem != null) {
-                        arrayList.add(storyItem);
-                    }
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f23509a) {
+            case 1:
+                AnimatorSet[] animatorSetArr = ((ty0) this.d).I;
+                int i10 = this.f23510b;
+                AnimatorSet animatorSet = animatorSetArr[i10];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    animatorSetArr[i10] = null;
+                    return;
                 }
-                if (!arrayList.isEmpty()) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hb0Var.getParentActivity(), 0, hb0Var.getResourceProvider());
-                    if (arrayList.size() > 1) {
-                        i11 = R.string.DeleteStoriesTitle;
-                    } else {
-                        i11 = R.string.DeleteStoryTitle;
-                    }
-                    alertDialog$Builder.f20142a.R = LocaleController.getString(i11);
-                    alertDialog$Builder.f20142a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new y2(14, this, arrayList));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new f2(22));
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
-                    a2Var.show();
-                    a2Var.h();
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        float f10;
+        float dp;
+        switch (this.f23509a) {
+            case 0:
+                cb0 cb0Var = (cb0) this.d;
+                s6[] s6VarArr = cb0Var.f24026x;
+                org.telegram.ui.ActionBar.h5[] h5VarArr = cb0Var.f24025w;
+                float[] fArr = cb0Var.Z;
+                float f11 = 0.0f;
+                boolean z10 = this.f23511c;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
                 }
-            }
-        } else if (i10 == 10) {
-            eb0 eb0Var = hb0Var.V;
-            eb0Var.c1(eb0Var.getClosestTab(), false);
-        } else if (i10 == 11) {
-            hb0Var.V.L(true);
-            hb0Var.V.getSearchItem().z(false);
+                int i10 = this.f23510b;
+                fArr[i10] = f7;
+                org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[i10];
+                float f12 = 1.111f;
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 1.111f;
+                }
+                h5Var.setScaleX(f10);
+                org.telegram.ui.ActionBar.h5 h5Var2 = h5VarArr[i10];
+                if (z10) {
+                    f12 = 1.0f;
+                }
+                h5Var2.setScaleY(f12);
+                org.telegram.ui.ActionBar.h5 h5Var3 = h5VarArr[i10];
+                if (z10) {
+                    dp = 0.0f;
+                } else {
+                    dp = AndroidUtilities.dp(8.0f);
+                }
+                h5Var3.setTranslationY(dp);
+                s6 s6Var = s6VarArr[i10];
+                if (z10) {
+                    f11 = 1.0f;
+                }
+                s6Var.setAlpha(f11);
+                if (!z10) {
+                    s6VarArr[i10].setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                ty0 ty0Var = (ty0) this.d;
+                AnimatorSet[] animatorSetArr = ty0Var.I;
+                int i11 = this.f23510b;
+                AnimatorSet animatorSet = animatorSetArr[i11];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f23511c) {
+                        ty0Var.J[i11].setVisibility(4);
+                    }
+                    animatorSetArr[i11] = null;
+                    return;
+                }
+                return;
         }
     }
 }

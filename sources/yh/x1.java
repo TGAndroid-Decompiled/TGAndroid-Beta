@@ -1,30 +1,64 @@
 package yh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class x1 implements Utilities.Callback2 {
-    public final int f53599a;
-    public final s3 f53600b;
-    public final TL_stars.TL_starGiftUnique f53601c;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.jr0;
+import org.telegram.ui.Components.ns0;
+import org.telegram.ui.Components.sc;
+import org.telegram.ui.Components.zc;
+public final class x1 extends jr0 {
+    public final org.telegram.ui.ActionBar.m2 f49195b1;
+    public final ns0 f49196c1;
 
-    public x1(s3 s3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i10) {
-        this.f53599a = i10;
-        this.f53600b = s3Var;
-        this.f53601c = tL_starGiftUnique;
+    public x1(ns0 ns0Var, Context context, String str, String str2, c6 c6Var, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(context, null, str, false, str2, false, c6Var);
+        this.f49196c1 = ns0Var;
+        this.f49195b1 = m2Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f53599a) {
-            case 0:
-                s3.j0(this.f53600b, this.f53601c, (zf.a) obj, (Runnable) obj2);
-                return;
-            case 1:
-                s3.h0(this.f53600b, this.f53601c, (Utilities.Callback) obj, (Boolean) obj2);
-                return;
-            default:
-                s3.P0(this.f53600b, this.f53601c, (zf.a) obj, (Runnable) obj2);
-                return;
+    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        zc a02;
+        String str;
+        if (z10 && (a02 = zc.a0(this.f49195b1)) != null) {
+            if (hVar.m() == 1) {
+                long j10 = hVar.j(0);
+                if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                    sc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
+                    G.f29110r = false;
+                    G.j();
+                } else if (j10 < 0) {
+                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
+                    int i11 = R.raw.forward;
+                    int i12 = R.string.GiftCollectionSharedTo;
+                    if (tL_forumTopic != null) {
+                        str = tL_forumTopic.title;
+                    } else {
+                        str = chat.title;
+                    }
+                    sc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f29110r = false;
+                    G2.j();
+                } else {
+                    sc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
+                    G3.f29110r = false;
+                    G3.j();
+                }
+            } else {
+                sc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
+                Q.f29110r = false;
+                Q.j();
+            }
+            try {
+                this.f49196c1.performHapticFeedback(3);
+            } catch (Exception unused) {
+            }
         }
     }
 }

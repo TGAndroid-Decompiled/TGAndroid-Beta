@@ -1,48 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class cs implements View.OnClickListener {
-    public final int f24991a;
-    public final long f24992b;
-    public final Object f24993c;
-    public final Object d;
-    public final Object f24994e;
+import android.graphics.drawable.Drawable;
+public final class cs implements Drawable.Callback {
+    public final int f24203a;
+    public final ds f24204b;
 
-    public cs(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f24991a = i10;
-        this.f24993c = obj;
-        this.d = obj2;
-        this.f24994e = obj3;
-        this.f24992b = j3;
+    public cs(ds dsVar, int i10) {
+        this.f24203a = i10;
+        this.f24204b = dsVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f24991a) {
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f24203a) {
             case 0:
-                fs.T((fs) this.f24993c, (Context) this.d, (ci.d) this.f24994e, this.f24992b);
-                return;
-            case 1:
-                org.telegram.ui.vy vyVar = (org.telegram.ui.vy) this.f24993c;
-                vyVar.finishPreviewFragment();
-                AndroidUtilities.runOnUIThread(new ai.r8(vyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.f24994e, this.f24992b, 11), 100L);
+                ds dsVar = this.f24204b;
+                if (dsVar.f24480c < 1.0f) {
+                    dsVar.invalidateSelf();
+                    return;
+                }
                 return;
             default:
-                tg.a0.Q((tg.a0) this.f24993c, (TL_stories.PrepaidGiveaway) this.d, this.f24992b, (org.telegram.ui.ActionBar.m2) this.f24994e);
+                ds dsVar2 = this.f24204b;
+                if (dsVar2.f24480c > 0.0f) {
+                    dsVar2.invalidateSelf();
+                    return;
+                }
                 return;
         }
     }
 
-    public cs(tg.a0 a0Var, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f24991a = 2;
-        this.f24993c = a0Var;
-        this.d = prepaidGiveaway;
-        this.f24992b = j3;
-        this.f24994e = m2Var;
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f24203a) {
+            case 0:
+                ds dsVar = this.f24204b;
+                if (dsVar.f24480c < 1.0f) {
+                    dsVar.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+            default:
+                ds dsVar2 = this.f24204b;
+                if (dsVar2.f24480c > 0.0f) {
+                    dsVar2.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f24203a) {
+            case 0:
+                ds dsVar = this.f24204b;
+                if (dsVar.f24480c < 1.0f) {
+                    dsVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                ds dsVar2 = this.f24204b;
+                if (dsVar2.f24480c > 0.0f) {
+                    dsVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,56 +1,36 @@
 package m4;
+public final class j0 implements Runnable {
+    public final int f15471a;
+    public final q0 f15472b;
+    public final n1 f15473c;
 
-import j$.util.Objects;
-public final class j0 implements q {
-    public final n4.a0 f15866a;
-
-    public j0(n4.a0 a0Var) {
-        this.f15866a = a0Var;
+    public j0(q0 q0Var, n1 n1Var, int i10) {
+        this.f15471a = i10;
+        this.f15472b = q0Var;
+        this.f15473c = n1Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        b2.p1 p1Var;
+        switch (this.f15471a) {
+            case 0:
+                q0 q0Var = this.f15472b;
+                n4.s sVar = q0Var.f15578m;
+                n1 n1Var = this.f15473c;
+                sVar.A(q0Var.G(n1Var));
+                o0 o0Var = q0Var.f15574i;
+                if (n1Var.s().a(17)) {
+                    p1Var = n1Var.y0();
+                } else {
+                    p1Var = b2.p1.f2281a;
+                }
+                o0Var.s(p1Var);
+                return;
+            default:
+                q0 q0Var2 = this.f15472b;
+                q0Var2.f15578m.A(q0Var2.G(this.f15473c));
+                return;
         }
-        if (obj != null && obj.getClass() == j0.class) {
-            return Objects.equals(this.f15866a, ((j0) obj).f15866a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.f15866a);
-    }
-
-    @Override
-    public final void f() {
-    }
-
-    @Override
-    public final void b(int i10) {
-    }
-
-    @Override
-    public final void a(int i10, l lVar) {
-    }
-
-    @Override
-    public final void c(int i10, b2.x0 x0Var) {
-    }
-
-    @Override
-    public final void d(int i10, i1 i1Var) {
-    }
-
-    @Override
-    public final void i(int i10, m1 m1Var) {
-    }
-
-    @Override
-    public final void e(int i10, l1 l1Var, boolean z10, boolean z11, int i11) {
-    }
-
-    @Override
-    public final void g(int i10, e1 e1Var, b2.x0 x0Var, boolean z10, boolean z11) {
     }
 }

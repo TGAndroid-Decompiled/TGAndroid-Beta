@@ -1,15 +1,6 @@
 package rg;
-public final class x1 implements Runnable {
-    public final int f47738a;
-    public final Object f47739b;
+public interface x1 {
+    void B0(float f7);
 
-    public x1(Object obj, int i10) {
-        this.f47738a = i10;
-        this.f47739b = obj;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: rg.x1.run():void");
-    }
+    float get();
 }

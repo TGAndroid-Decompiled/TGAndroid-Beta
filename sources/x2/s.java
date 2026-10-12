@@ -1,23 +1,13 @@
 package x2;
 
-import java.util.List;
-public final class s extends c {
-    @Override
-    public final int c() {
-        return 0;
-    }
+import b2.u1;
+import i2.r0;
+public abstract class s {
+    public r0 f47789a;
+    public y2.c f47790b;
+    public r f47791c;
 
-    @Override
-    public final int n() {
-        return 0;
-    }
+    public abstract void a();
 
-    @Override
-    public final Object q() {
-        return null;
-    }
-
-    @Override
-    public final void k(long j3, long j10, long j11, List list, v2.l[] lVarArr) {
-    }
+    public abstract void b(u1 u1Var);
 }

@@ -1,55 +1,37 @@
 package b2;
-
-import android.os.Build;
-import android.util.SparseBooleanArray;
 public final class q {
-    public final SparseBooleanArray f3530a;
+    public static final q f2284c = new q(new Object());
+    public static final String d;
+    public static final String e;
+    public final int f2285a = 0;
+    public final int f2286b = 0;
 
-    public q(SparseBooleanArray sparseBooleanArray) {
-        this.f3530a = sparseBooleanArray;
+    static {
+        String str = e2.m0.f8372a;
+        Integer.toString(0, 36);
+        d = Integer.toString(1, 36);
+        e = Integer.toString(2, 36);
+        Integer.toString(3, 36);
     }
 
-    public final int a(int i10) {
-        SparseBooleanArray sparseBooleanArray = this.f3530a;
-        e2.d.c(i10, sparseBooleanArray.size());
-        return sparseBooleanArray.keyAt(i10);
+    public q(x1 x1Var) {
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof q)) {
-            return false;
-        }
-        q qVar = (q) obj;
-        SparseBooleanArray sparseBooleanArray = qVar.f3530a;
-        int i10 = Build.VERSION.SDK_INT;
-        SparseBooleanArray sparseBooleanArray2 = this.f3530a;
-        if (i10 < 24) {
-            if (sparseBooleanArray2.size() != sparseBooleanArray.size()) {
+        if (this != obj) {
+            if (obj instanceof q) {
+                q qVar = (q) obj;
+                if (this.f2285a == qVar.f2285a && this.f2286b == qVar.f2286b) {
+                    return true;
+                }
                 return false;
             }
-            for (int i11 = 0; i11 < sparseBooleanArray2.size(); i11++) {
-                if (a(i11) != qVar.a(i11)) {
-                    return false;
-                }
-            }
-            return true;
+            return false;
         }
-        return sparseBooleanArray2.equals(sparseBooleanArray);
+        return true;
     }
 
     public final int hashCode() {
-        int i10 = Build.VERSION.SDK_INT;
-        SparseBooleanArray sparseBooleanArray = this.f3530a;
-        if (i10 < 24) {
-            int size = sparseBooleanArray.size();
-            for (int i11 = 0; i11 < sparseBooleanArray.size(); i11++) {
-                size = (size * 31) + a(i11);
-            }
-            return size;
-        }
-        return sparseBooleanArray.hashCode();
+        return (((16337 + this.f2285a) * 31) + this.f2286b) * 31;
     }
 }

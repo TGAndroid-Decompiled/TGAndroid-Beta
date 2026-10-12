@@ -3,14 +3,14 @@ package n1;
 import java.util.Map;
 import kotlin.jvm.internal.i;
 import kotlin.jvm.internal.j;
-import sd.l;
+import td.l;
 public final class a extends j implements l {
-    public static final a f16214b = new j(1);
+    public static final a f15907b = new j(1);
 
     @Override
     public final Object invoke(Object obj) {
         Map.Entry entry = (Map.Entry) obj;
         i.e(entry, "entry");
-        return "  " + ((d) entry.getKey()).f16220a + " = " + entry.getValue();
+        return "  " + ((d) entry.getKey()).f15913a + " = " + entry.getValue();
     }
 }

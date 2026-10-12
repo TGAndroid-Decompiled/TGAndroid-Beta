@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class c {
-    public final int f47046a;
-    public final int f47047b;
-    public final long f47048c;
+    public final int f43777a;
+    public final int f43778b;
+    public final long f43779c;
     public final byte[] d;
 
     public c(int i10, int i11, byte[] bArr) {
         this(-1L, bArr, i10, i11);
     }
 
-    public static c a(long j3, ByteOrder byteOrder) {
-        long[] jArr = {j3};
+    public static c a(long j10, ByteOrder byteOrder) {
+        long[] jArr = {j10};
         ByteBuffer wrap = ByteBuffer.wrap(new byte[g.F[4]]);
         wrap.order(byteOrder);
         wrap.putInt((int) jArr[0]);
@@ -26,8 +26,8 @@ public final class c {
         ByteBuffer wrap = ByteBuffer.wrap(new byte[g.F[5]]);
         wrap.order(byteOrder);
         e eVar2 = eVarArr[0];
-        wrap.putInt((int) eVar2.f47052a);
-        wrap.putInt((int) eVar2.f47053b);
+        wrap.putInt((int) eVar2.f43783a);
+        wrap.putInt((int) eVar2.f43784b);
         return new c(5, 1, wrap.array());
     }
 
@@ -66,7 +66,7 @@ public final class c {
                 e[] eVarArr = (e[]) g10;
                 if (eVarArr.length == 1) {
                     e eVar = eVarArr[0];
-                    return eVar.f47052a / eVar.f47053b;
+                    return eVar.f43783a / eVar.f43784b;
                 }
                 throw new NumberFormatException("There are more than one component");
             } else {
@@ -142,9 +142,9 @@ public final class c {
             } else if (g10 instanceof e[]) {
                 e[] eVarArr = (e[]) g10;
                 while (i10 < eVarArr.length) {
-                    sb2.append(eVarArr[i10].f47052a);
+                    sb2.append(eVarArr[i10].f43783a);
                     sb2.append('/');
-                    sb2.append(eVarArr[i10].f47053b);
+                    sb2.append(eVarArr[i10].f43784b);
                     i10++;
                     if (i10 != eVarArr.length) {
                         sb2.append(",");
@@ -164,15 +164,15 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("(");
-        sb2.append(g.E[this.f47046a]);
+        sb2.append(g.E[this.f43777a]);
         sb2.append(", data length:");
-        return a1.g.o(this.d.length, ")", sb2);
+        return a1.g.n(this.d.length, ")", sb2);
     }
 
-    public c(long j3, byte[] bArr, int i10, int i11) {
-        this.f47046a = i10;
-        this.f47047b = i11;
-        this.f47048c = j3;
+    public c(long j10, byte[] bArr, int i10, int i11) {
+        this.f43777a = i10;
+        this.f43778b = i11;
+        this.f43779c = j10;
         this.d = bArr;
     }
 }

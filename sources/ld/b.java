@@ -1,18 +1,37 @@
 package ld;
-public final class b implements jd.c {
-    public static final b f15241a = new Object();
 
-    @Override
-    public final jd.h getContext() {
-        throw new IllegalStateException("This continuation is already complete");
+import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.s;
+import md.g;
+import td.p;
+import v7.i8;
+public final class b extends g {
+    public int f14660a;
+    public final p f14661b;
+    public final kd.c f14662c;
+
+    public b(kd.c cVar, kd.c cVar2, p pVar) {
+        super(cVar);
+        this.f14661b = pVar;
+        this.f14662c = cVar2;
     }
 
     @Override
-    public final void resumeWith(Object obj) {
-        throw new IllegalStateException("This continuation is already complete");
-    }
-
-    public final String toString() {
-        return "This continuation is already complete";
+    public final Object invokeSuspend(Object obj) {
+        int i10 = this.f14660a;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                this.f14660a = 2;
+                i8.b(obj);
+                return obj;
+            }
+            throw new IllegalStateException("This coroutine had already completed");
+        }
+        this.f14660a = 1;
+        i8.b(obj);
+        p pVar = this.f14661b;
+        i.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
+        s.a(2, pVar);
+        return pVar.invoke(this.f14662c, this);
     }
 }

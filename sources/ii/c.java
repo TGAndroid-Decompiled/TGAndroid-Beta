@@ -1,142 +1,91 @@
 package ii;
 
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import ah.g0;
+import android.content.Context;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.TextView;
+import bi.u1;
+import bi.v0;
+import di.d;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.zc;
-public final class c implements Utilities.Callback2 {
-    public final int f12299a = 0;
-    public final boolean[] f12300b;
-    public final ci.d f12301c;
-    public final boolean d;
-    public final org.telegram.ui.ActionBar.c6 f12302e;
-    public final Object f12303f;
-    public final Object f12304g;
-    public final Object h;
-    public final Object f12305i;
-    public final KeyEvent.Callback f12306j;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.br;
+import org.telegram.ui.Components.db;
+import org.telegram.ui.Components.k9;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.z61;
+import org.telegram.ui.Components.z9;
+import w7.a6;
+public final class c extends db {
+    public final v0 X;
+    public z61 Y;
 
-    public c(String str, String[] strArr, ImageView imageView, org.telegram.ui.ActionBar.c6 c6Var, boolean z10, int[] iArr, ci.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
-        this.f12303f = str;
-        this.f12304g = strArr;
-        this.h = imageView;
-        this.f12302e = c6Var;
-        this.d = z10;
-        this.f12305i = iArr;
-        this.f12301c = dVar;
-        this.f12306j = horizontalScrollView;
-        this.f12300b = zArr;
+    public c(Context context, TLRPC.Chat chat, Runnable runnable) {
+        super(context, (c6) null, false);
+        int i10;
+        int i11;
+        this.K = AndroidUtilities.dp(30.0f);
+        mm0 mm0Var = this.d;
+        int i12 = this.backgroundPaddingLeft;
+        mm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        this.d.setClipToPadding(false);
+        d dVar = new d(context, this.resourcesProvider, true);
+        dVar.setText(LocaleController.getString(R.string.Cancel));
+        dVar.d();
+        dVar.e();
+        dVar.setOnClickListener(new g0(this, 27));
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+        d dVar2 = new d(context, this.resourcesProvider, true);
+        if (isChannelAndNotMegaGroup) {
+            i10 = R.string.CommunityInviteOnlyChannelMessageOwner;
+        } else {
+            i10 = R.string.CommunityInviteOnlyGroupMessageOwner;
+        }
+        dVar2.setText(LocaleController.getString(i10));
+        dVar2.e();
+        dVar2.setOnClickListener(new u1(12, this, runnable));
+        v0 v0Var = new v0(context, 2);
+        TextView textView = (TextView) v0Var.d;
+        TextView textView2 = (TextView) v0Var.f3848c;
+        this.X = v0Var;
+        v0Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
+        ((z9) v0Var.f3847b).e(chat, new k9(chat));
+        textView2.setText(DialogObject.getName(chat));
+        int i13 = g6.G6;
+        textView2.setTextColor(getThemedColor(i13));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "* ");
+        spannableStringBuilder.setSpan(new br(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
+        if (isChannelAndNotMegaGroup) {
+            i11 = R.string.CommunityInviteOnlyChannelInfo;
+        } else {
+            i11 = R.string.CommunityInviteOnlyGroupInfo;
+        }
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
+        textView.setTextColor(getThemedColor(i13));
+        textView.setText(spannableStringBuilder);
+        this.containerView.addView(dVar2, a6.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar, a6.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.Y.N(false);
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10;
-        String string;
-        CharSequence formatSpannable;
-        int i11 = this.f12299a;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f12302e;
-        KeyEvent.Callback callback = this.f12306j;
-        Object obj3 = this.f12305i;
-        Object obj4 = this.h;
-        boolean z10 = this.d;
-        ci.d dVar = this.f12301c;
-        Object obj5 = this.f12304g;
-        Object obj6 = this.f12303f;
-        boolean[] zArr = this.f12300b;
-        switch (i11) {
-            case 0:
-                ImageView imageView = (ImageView) obj4;
-                int[] iArr = (int[]) obj3;
-                HorizontalScrollView horizontalScrollView = (HorizontalScrollView) callback;
-                Bitmap bitmap = (Bitmap) obj;
-                Boolean bool = (Boolean) obj2;
-                if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
-                    if (bool.booleanValue()) {
-                        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20800q7, c6Var), PorterDuff.Mode.SRC_IN));
-                        if (!z10) {
-                            int i12 = -iArr[0];
-                            iArr[0] = i12;
-                            AndroidUtilities.shakeViewSpring(imageView, i12);
-                        }
-                    } else {
-                        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, c6Var), PorterDuff.Mode.SRC_IN));
-                    }
-                    if (bitmap != null) {
-                        imageView.setImageBitmap(bitmap);
-                    }
-                    dVar.setEnabled(!bool.booleanValue());
-                    if (bitmap != null) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    horizontalScrollView.setVisibility(i10);
-                    zArr[0] = bool.booleanValue();
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) obj6;
-                boolean[] zArr2 = (boolean[]) obj5;
-                org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) obj4;
-                TextView textView = (TextView) obj3;
-                org.telegram.ui.Wallet.j2 j2Var = (org.telegram.ui.Wallet.j2) callback;
-                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
-                String str = (String) obj2;
-                if (!zArr[0] && !b2Var.f34497m && !b2Var.f34498n) {
-                    boolean z11 = b2Var.f34500p;
-                    zArr2[0] = z11;
-                    dVar.setEnabled(z11);
-                    boolean z12 = zArr2[0];
-                    if (z12 && !z10) {
-                        SpannableStringBuilder m10 = org.telegram.ui.Wallet.l0.m(wallettransaction.fee, true);
-                        CharSequence l4 = l0Var.l(wallettransaction.fee, true);
-                        if (TextUtils.isEmpty(l4)) {
-                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmount, m10);
-                        } else {
-                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmountWithCurrency, m10, l4);
-                        }
-                        textView.setText(formatSpannable);
-                        return;
-                    } else if (!z12) {
-                        if (str != null) {
-                            string = str;
-                        } else {
-                            string = LocaleController.getString(R.string.WalletTransactionSimulationFailed);
-                        }
-                        if (str == null) {
-                            org.telegram.ui.Wallet.f2.k("preview", string);
-                        }
-                        zc.c0(string, j2Var.topBulletinContainer, c6Var);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-        }
+    public final CharSequence A() {
+        return null;
     }
 
-    public c(boolean[] zArr, org.telegram.ui.Wallet.b2 b2Var, boolean[] zArr2, ci.d dVar, boolean z10, org.telegram.ui.Wallet.l0 l0Var, TextView textView, org.telegram.ui.Wallet.j2 j2Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f12300b = zArr;
-        this.f12303f = b2Var;
-        this.f12304g = zArr2;
-        this.f12301c = dVar;
-        this.d = z10;
-        this.h = l0Var;
-        this.f12305i = textView;
-        this.f12306j = j2Var;
-        this.f12302e = c6Var;
+    @Override
+    public final lm0 x(mm0 mm0Var) {
+        z61 z61Var = new z61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = z61Var;
+        z61Var.f31780r = false;
+        return z61Var;
     }
 }

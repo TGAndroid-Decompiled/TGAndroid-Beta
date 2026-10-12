@@ -5,8 +5,8 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import ci.k8;
-import ci.t;
+import di.j8;
+import di.t;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        k8 hdrInfo;
+        j8 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -83,10 +83,10 @@ public class MediaCodecVideoConvertor {
         private ConvertVideoParams() {
         }
 
-        public static ConvertVideoParams of(String str, File file, long j3, int i10, boolean z10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, long j10, long j11, long j12, boolean z11, long j13, MediaController.VideoConvertorListener videoConvertorListener, VideoEditedInfo videoEditedInfo) {
+        public static ConvertVideoParams of(String str, File file, long j10, int i10, boolean z10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, long j11, long j12, long j13, boolean z11, long j14, MediaController.VideoConvertorListener videoConvertorListener, VideoEditedInfo videoEditedInfo) {
             ConvertVideoParams convertVideoParams = new ConvertVideoParams();
             convertVideoParams.videoPath = str;
-            convertVideoParams.videoOffset = j3;
+            convertVideoParams.videoOffset = j10;
             convertVideoParams.cacheFile = file;
             convertVideoParams.rotationValue = i10;
             convertVideoParams.isSecret = z10;
@@ -97,11 +97,11 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.framerate = i15;
             convertVideoParams.bitrate = i16;
             convertVideoParams.originalBitrate = i17;
-            convertVideoParams.startTime = j10;
-            convertVideoParams.endTime = j11;
-            convertVideoParams.avatarStartTime = j12;
+            convertVideoParams.startTime = j11;
+            convertVideoParams.endTime = j12;
+            convertVideoParams.avatarStartTime = j13;
             convertVideoParams.needCompress = z11;
-            convertVideoParams.duration = j13;
+            convertVideoParams.duration = j14;
             convertVideoParams.savedFilterState = videoEditedInfo.filterState;
             convertVideoParams.paintPath = videoEditedInfo.paintPath;
             convertVideoParams.blurPath = videoEditedInfo.blurPath;
@@ -141,35 +141,35 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<ag.a> arrayList2) {
+    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<bg.a> arrayList2) {
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
-                    ag.c cVar = new ag.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f531b;
-                    cVar.f528a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
-                    long j3 = mixedSoundInfo.startTime;
-                    int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+                    bg.c cVar = new bg.c(mixedSoundInfo.audioFile);
+                    AudioDecoder audioDecoder = cVar.f2734b;
+                    cVar.f2731a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    long j10 = mixedSoundInfo.startTime;
+                    int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
                         if (i11 < 0) {
-                            j3 = 0;
+                            j10 = 0;
                         }
-                        cVar.d = j3;
+                        cVar.d = j10;
                     }
-                    long j10 = mixedSoundInfo.audioOffset;
-                    if (j10 > 0) {
-                        audioDecoder.setStartTimeUs(j10);
-                    } else {
-                        j10 = 0;
-                    }
-                    long j11 = mixedSoundInfo.duration;
+                    long j11 = mixedSoundInfo.audioOffset;
                     if (j11 > 0) {
-                        audioDecoder.setEndTimeUs(j10 + j11);
+                        audioDecoder.setStartTimeUs(j11);
+                    } else {
+                        j11 = 0;
+                    }
+                    long j12 = mixedSoundInfo.duration;
+                    if (j12 > 0) {
+                        audioDecoder.setEndTimeUs(j11 + j12);
                     }
                     arrayList2.add(cVar);
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
         }
@@ -246,22 +246,22 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = hg.c.m("source size ", i10, "x", i11, "    dest size ");
-        hg.c.w(m10, i12, "x", i13, "   rotated ");
-        m10.append(z11);
-        m10.append("   ratio ");
-        m10.append(f10);
-        m10.append("x");
-        m10.append(f12);
-        m10.append("   samples ");
-        m10.append(min);
-        m10.append("x");
-        m10.append(min2);
-        m10.append("   kernel scale ");
-        m10.append(f13);
-        m10.append("x");
-        m10.append(f14);
-        FileLog.d(m10.toString());
+        StringBuilder l4 = i2.d.l("source size ", i10, "x", i11, "    dest size ");
+        i2.d.u(l4, i12, "x", i13, "   rotated ");
+        l4.append(z11);
+        l4.append("   ratio ");
+        l4.append(f10);
+        l4.append("x");
+        l4.append(f12);
+        l4.append("   samples ");
+        l4.append(min);
+        l4.append("x");
+        l4.append(min2);
+        l4.append("   kernel scale ");
+        l4.append(f13);
+        l4.append("x");
+        l4.append(f14);
+        FileLog.d(l4.toString());
         String glslFloat = glslFloat(f15);
         String glslFloat2 = glslFloat(f16);
         String glslFloat3 = glslFloat(f13);
@@ -331,9 +331,9 @@ public class MediaCodecVideoConvertor {
                     String str = (String) arrayList.remove(0);
                     mediaFormat.setString("mime", str);
                     return MediaCodec.createDecoderByType(str);
-                } catch (Exception e7) {
+                } catch (Exception e) {
                     if (exc == null) {
-                        exc = e7;
+                        exc = e;
                     }
                 }
             }
@@ -353,15 +353,15 @@ public class MediaCodecVideoConvertor {
             f7 = -f7;
         }
         long round = Math.round(f7 * 1000000.0f);
-        long j3 = round / 1000000;
-        long j10 = round % 1000000;
+        long j10 = round / 1000000;
+        long j11 = round % 1000000;
         StringBuilder sb2 = new StringBuilder();
         if (z10) {
             sb2.append('-');
         }
-        sb2.append(j3);
+        sb2.append(j10);
         sb2.append('.');
-        String valueOf = String.valueOf(j10);
+        String valueOf = String.valueOf(j11);
         for (int length = valueOf.length(); length < 6; length++) {
             sb2.append('0');
         }
@@ -369,7 +369,7 @@ public class MediaCodecVideoConvertor {
         return sb2.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, k8 k8Var, int i14, boolean z11) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, j8 j8Var, int i14, boolean z11) {
         int i15;
         int i16;
         String readRes;
@@ -408,22 +408,22 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = hg.c.m("HDR source size ", i10, "x", i11, "    dest size ");
-        hg.c.w(m10, i12, "x", i13, "   rotated ");
-        m10.append(z11);
-        m10.append("   ratio ");
-        m10.append(f10);
-        m10.append("x");
-        m10.append(f12);
-        m10.append("   samples ");
-        m10.append(min);
-        m10.append("x");
-        m10.append(min2);
-        m10.append("   kernel scale ");
-        m10.append(f13);
-        m10.append("x");
-        m10.append(f14);
-        FileLog.d(m10.toString());
+        StringBuilder l4 = i2.d.l("HDR source size ", i10, "x", i11, "    dest size ");
+        i2.d.u(l4, i12, "x", i13, "   rotated ");
+        l4.append(z11);
+        l4.append("   ratio ");
+        l4.append(f10);
+        l4.append("x");
+        l4.append(f12);
+        l4.append("   samples ");
+        l4.append(min);
+        l4.append("x");
+        l4.append(min2);
+        l4.append("   kernel scale ");
+        l4.append(f13);
+        l4.append("x");
+        l4.append(f14);
+        FileLog.d(l4.toString());
         String glslFloat = glslFloat(f15);
         String glslFloat2 = glslFloat(f16);
         String glslFloat3 = glslFloat(f13);
@@ -431,7 +431,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f7);
         String glslFloat7 = glslFloat(1.0f / f11);
-        if (k8Var.a() == 1) {
+        if (j8Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);

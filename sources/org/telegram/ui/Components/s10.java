@@ -1,84 +1,156 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class s10 extends FrameLayout {
-    public final r6 f30356a;
-    public final r6 f30357b;
+import android.app.Activity;
+import android.app.Application;
+import android.os.Bundle;
+import android.os.SystemClock;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public abstract class s10 implements Application.ActivityLifecycleCallbacks {
+    private static s10 Instance;
+    private int refs;
+    private boolean wasInBackground = true;
+    private long enterBackgroundTime = 0;
+    private CopyOnWriteArrayList<r10> listeners = new CopyOnWriteArrayList<>();
+    private final ArrayList<WeakReference<Activity>> resumedActivities = new ArrayList<>();
 
-    public s10(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        r6 r6Var = new r6(context, true, true, false);
-        this.f30356a = r6Var;
-        r6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        r6Var.setTypeface(AndroidUtilities.bold());
-        int i13 = org.telegram.ui.ActionBar.h6.L6;
-        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        r6Var.setGravity(i10);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(r6Var, w7.w5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -1, i11 | 80));
-        r6 r6Var2 = new r6(context, true, true, true);
-        this.f30357b = r6Var2;
-        r6Var2.b(0.45f, 250L, js.h);
-        r6Var2.setTextSize(AndroidUtilities.dp(15.0f));
-        r6Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        r6Var2.setGravity(i12);
-        addView(r6Var2, w7.w5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -2, (LocaleController.isRTL ? 3 : 5) | 80));
-        WeakHashMap weakHashMap = r0.i0.f46989a;
-        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
+    public s10(Application application) {
+        Instance = this;
+        application.registerActivityLifecycleCallbacks(this);
     }
 
-    public final void a(String str, Runnable runnable) {
-        r6 r6Var = this.f30357b;
-        r6Var.c(str, !LocaleController.isRTL, true);
-        r6Var.setOnClickListener(new w6(1, runnable));
+    public static s10 getInstance() {
+        return Instance;
     }
 
-    public final void b(String str, boolean z10) {
-        boolean z11;
-        r6 r6Var = this.f30356a;
-        if (z10) {
-            r6Var.a();
+    public final void a(Activity activity) {
+        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
+            Activity activity2 = this.resumedActivities.get(size).get();
+            if (activity2 == null || activity2 == activity) {
+                this.resumedActivities.remove(size);
+            }
         }
-        if (z10 && !LocaleController.isRTL) {
-            z11 = true;
-        } else {
-            z11 = false;
+    }
+
+    public void addListener(r10 r10Var) {
+        this.listeners.add(r10Var);
+    }
+
+    public Activity getForegroundActivity() {
+        Activity activity = null;
+        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
+            Activity activity2 = this.resumedActivities.get(size).get();
+            if (activity2 != null && !activity2.isFinishing() && !activity2.isDestroyed()) {
+                if (activity2.hasWindowFocus()) {
+                    return activity2;
+                }
+                if (activity == null) {
+                    activity = activity2;
+                }
+            } else {
+                this.resumedActivities.remove(size);
+            }
         }
-        r6Var.c(str, z11, true);
+        return activity;
+    }
+
+    public boolean isBackground() {
+        if (this.refs == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isForeground() {
+        if (this.refs > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isWasInBackground(boolean z10) {
+        if (z10 && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+            this.wasInBackground = false;
+        }
+        return this.wasInBackground;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f30356a.getText());
+    public void onActivityDestroyed(Activity activity) {
+        a(activity);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public void onActivityPaused(Activity activity) {
+        a(activity);
+    }
+
+    @Override
+    public void onActivityResumed(Activity activity) {
+        a(activity);
+        this.resumedActivities.add(new WeakReference<>(activity));
+    }
+
+    @Override
+    public void onActivityStarted(Activity activity) {
+        int i10 = this.refs + 1;
+        this.refs = i10;
+        if (i10 == 1) {
+            if (SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+                this.wasInBackground = false;
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("switch to foreground");
+            }
+            Iterator<r10> it = this.listeners.iterator();
+            while (it.hasNext()) {
+                try {
+                    it.next().onBecameForeground();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onActivityStopped(Activity activity) {
+        int i10 = this.refs - 1;
+        this.refs = i10;
+        if (i10 == 0) {
+            this.enterBackgroundTime = SystemClock.elapsedRealtime();
+            this.wasInBackground = true;
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("switch to background");
+            }
+            Iterator<r10> it = this.listeners.iterator();
+            while (it.hasNext()) {
+                try {
+                    it.next().onBecameBackground();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        }
+    }
+
+    public void removeListener(r10 r10Var) {
+        this.listeners.remove(r10Var);
+    }
+
+    public void resetBackgroundVar() {
+        this.wasInBackground = false;
+    }
+
+    @Override
+    public void onActivityCreated(Activity activity, Bundle bundle) {
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
     }
 }

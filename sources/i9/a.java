@@ -1,22 +1,83 @@
 package i9;
-public final class a {
-    public static final a f12040c;
-    public static final a d;
-    public final boolean f12041a;
-    public final Throwable f12042b;
 
-    static {
-        if (o.d) {
-            d = null;
-            f12040c = null;
-            return;
-        }
-        d = new a(null, false);
-        f12040c = new a(null, true);
+import java.io.Serializable;
+import v7.u6;
+public final class a implements Serializable {
+    public static final a f11345c = new a(new int[0]);
+    public final int[] f11346a;
+    public final int f11347b;
+
+    public a(int[] iArr) {
+        int length = iArr.length;
+        this.f11346a = iArr;
+        this.f11347b = length;
     }
 
-    public a(Throwable th2, boolean z10) {
-        this.f12041a = z10;
-        this.f12042b = th2;
+    public final boolean a(int i10) {
+        int i11 = 0;
+        while (true) {
+            if (i11 < this.f11347b) {
+                if (this.f11346a[i11] == i10) {
+                    break;
+                }
+                i11++;
+            } else {
+                i11 = -1;
+                break;
+            }
+        }
+        if (i11 < 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int b(int i10) {
+        u6.j(i10, this.f11347b);
+        return this.f11346a[i10];
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof a) {
+                a aVar = (a) obj;
+                int i10 = aVar.f11347b;
+                int i11 = this.f11347b;
+                if (i11 == i10) {
+                    for (int i12 = 0; i12 < i11; i12++) {
+                        if (b(i12) == aVar.b(i12)) {
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i10 = 1;
+        for (int i11 = 0; i11 < this.f11347b; i11++) {
+            i10 = (i10 * 31) + this.f11346a[i11];
+        }
+        return i10;
+    }
+
+    public final String toString() {
+        int i10 = this.f11347b;
+        if (i10 == 0) {
+            return "[]";
+        }
+        StringBuilder sb2 = new StringBuilder(i10 * 5);
+        sb2.append('[');
+        int[] iArr = this.f11346a;
+        sb2.append(iArr[0]);
+        for (int i11 = 1; i11 < i10; i11++) {
+            sb2.append(", ");
+            sb2.append(iArr[i11]);
+        }
+        sb2.append(']');
+        return sb2.toString();
     }
 }

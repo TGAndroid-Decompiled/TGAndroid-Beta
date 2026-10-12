@@ -1,28 +1,19 @@
 package w7;
 
-import android.os.Build;
-import android.text.TextUtils;
-import android.view.View;
+import java.nio.ByteBuffer;
 public abstract class m {
-    public static void a(View view, CharSequence charSequence) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            m.o3.a(view, charSequence);
-            return;
+    public b2.u0 a(l3.a aVar) {
+        boolean z10;
+        ByteBuffer byteBuffer = aVar.f10326c;
+        byteBuffer.getClass();
+        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        m.q3 q3Var = m.q3.v;
-        if (q3Var != null && q3Var.f15543a == view) {
-            m.q3.b(null);
-        }
-        if (TextUtils.isEmpty(charSequence)) {
-            m.q3 q3Var2 = m.q3.f15542w;
-            if (q3Var2 != null && q3Var2.f15543a == view) {
-                q3Var2.a();
-            }
-            view.setOnLongClickListener(null);
-            view.setLongClickable(false);
-            view.setOnHoverListener(null);
-            return;
-        }
-        new m.q3(view, charSequence);
+        v7.u6.g(z10);
+        return b(aVar, byteBuffer);
     }
+
+    public abstract b2.u0 b(l3.a aVar, ByteBuffer byteBuffer);
 }

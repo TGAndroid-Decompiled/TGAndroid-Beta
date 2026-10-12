@@ -2,7 +2,7 @@ package l;
 
 import android.view.MenuItem;
 public interface i {
-    boolean H(k kVar, MenuItem menuItem);
+    void n(k kVar);
 
-    void u(k kVar);
+    boolean p(k kVar, MenuItem menuItem);
 }

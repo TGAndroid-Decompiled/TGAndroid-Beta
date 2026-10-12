@@ -1,101 +1,44 @@
 package yh;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class i implements RequestDelegate {
-    public final int f52895a;
-    public final o f52896b;
+import org.telegram.ui.ActionBar.c6;
+import zh.e8;
+public final class i extends e8 {
+    public final n m0;
 
-    public i(o oVar, int i10) {
-        this.f52895a = i10;
-        this.f52896b = oVar;
+    public i(n nVar, Context context, c6 c6Var) {
+        super(context, c6Var);
+        this.m0 = nVar;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f52895a) {
-            case 0:
-                final o oVar = this.f52896b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                o oVar2 = oVar;
-                                oVar2.getClass();
-                                oVar2.f53186j = new ArrayList();
-                                oVar2.f53185i = false;
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof Vector) {
-                                    Vector vector = (Vector) tLObject2;
-                                    for (int i10 = 0; i10 < vector.objects.size(); i10++) {
-                                        oVar2.f53186j.add((TLRPC.User) vector.objects.get(i10));
-                                    }
-                                    MessagesController.getInstance(oVar2.f53179a).putUsers(oVar2.f53186j, false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                o oVar3 = oVar;
-                                int i11 = oVar3.f53179a;
-                                oVar3.f53188l = new ArrayList();
-                                oVar3.f53187k = false;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TLRPC.messages_Chats) {
-                                    TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject3;
-                                    MessagesController.getInstance(i11).putChats(messages_chats.chats, false);
-                                    oVar3.f53188l.addAll(messages_chats.chats);
-                                }
-                                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.adminedChannelsLoaded, new Object[0]);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final o oVar2 = this.f52896b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                o oVar22 = oVar2;
-                                oVar22.getClass();
-                                oVar22.f53186j = new ArrayList();
-                                oVar22.f53185i = false;
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof Vector) {
-                                    Vector vector = (Vector) tLObject2;
-                                    for (int i10 = 0; i10 < vector.objects.size(); i10++) {
-                                        oVar22.f53186j.add((TLRPC.User) vector.objects.get(i10));
-                                    }
-                                    MessagesController.getInstance(oVar22.f53179a).putUsers(oVar22.f53186j, false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                o oVar3 = oVar2;
-                                int i11 = oVar3.f53179a;
-                                oVar3.f53188l = new ArrayList();
-                                oVar3.f53187k = false;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TLRPC.messages_Chats) {
-                                    TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject3;
-                                    MessagesController.getInstance(i11).putChats(messages_chats.chats, false);
-                                    oVar3.f53188l.addAll(messages_chats.chats);
-                                }
-                                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.adminedChannelsLoaded, new Object[0]);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final boolean d(float f7) {
+        if (getProgress() <= 0.99d && f7 <= getMeasuredWidth() * 0.9f) {
+            return false;
         }
+        n.V(this.m0);
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - AndroidUtilities.dp(48.0f)) {
+            return false;
+        }
+        super.dispatchTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void e(int i10) {
+        n.U(this.m0, i10);
+    }
+
+    @Override
+    public final void setValue(int i10) {
+        super.setValue(i10);
+        n.U(this.m0, i10);
     }
 }

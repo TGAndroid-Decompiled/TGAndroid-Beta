@@ -14,7 +14,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 public abstract class a extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f48441a = new Object[0];
+    public static final Object[] f45513a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -36,17 +36,17 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
         Iterable$CC.$default$forEach(this, consumer);
     }
 
-    public abstract int i(Object[] objArr);
+    public abstract int h(Object[] objArr);
+
+    public int m() {
+        throw new UnsupportedOperationException();
+    }
 
     public int n() {
         throw new UnsupportedOperationException();
     }
 
-    public int o() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Object[] p() {
+    public Object[] o() {
         return null;
     }
 
@@ -109,7 +109,7 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     @Override
     public final Object[] toArray() {
-        return toArray(f48441a);
+        return toArray(f45513a);
     }
 
     @Override
@@ -118,19 +118,19 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
         int size = size();
         int length = objArr.length;
         if (length < size) {
-            Object[] p5 = p();
-            if (p5 == null) {
+            Object[] o10 = o();
+            if (o10 == null) {
                 if (length != 0) {
                     objArr = Arrays.copyOf(objArr, 0);
                 }
                 objArr = Arrays.copyOf(objArr, size);
             } else {
-                return Arrays.copyOfRange(p5, o(), n(), objArr.getClass());
+                return Arrays.copyOfRange(o10, n(), m(), objArr.getClass());
             }
         } else if (length > size) {
             objArr[size] = null;
         }
-        i(objArr);
+        h(objArr);
         return objArr;
     }
 }

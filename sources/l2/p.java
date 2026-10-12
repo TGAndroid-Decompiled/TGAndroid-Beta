@@ -2,42 +2,42 @@ package l2;
 
 import android.os.Handler;
 import android.os.Message;
-import e2.d0;
+import e2.m0;
 import java.util.TreeMap;
 public final class p implements Handler.Callback {
-    public final y2.d f15128a;
-    public final a6.m f15129b;
-    public m2.c f15132f;
+    public final androidx.biometric.e f14547a;
+    public final f f14548b;
+    public m2.c f14550f;
     public boolean h;
-    public boolean f15133n;
-    public boolean f15134r;
-    public final TreeMap f15131e = new TreeMap();
-    public final Handler d = d0.o(this);
-    public final m3.b f15130c = new m3.b(1);
+    public boolean f14551n;
+    public boolean f14552r;
+    public final TreeMap e = new TreeMap();
+    public final Handler d = m0.q(this);
+    public final m3.b f14549c = new m3.b(1);
 
-    public p(m2.c cVar, a6.m mVar, y2.d dVar) {
-        this.f15132f = cVar;
-        this.f15129b = mVar;
-        this.f15128a = dVar;
+    public p(m2.c cVar, f fVar, androidx.biometric.e eVar) {
+        this.f14550f = cVar;
+        this.f14548b = fVar;
+        this.f14547a = eVar;
     }
 
     @Override
     public final boolean handleMessage(Message message) {
-        if (!this.f15134r) {
+        if (!this.f14552r) {
             if (message.what != 1) {
                 return false;
             }
             n nVar = (n) message.obj;
-            long j3 = nVar.f15122a;
-            long j10 = nVar.f15123b;
-            Long valueOf = Long.valueOf(j10);
-            TreeMap treeMap = this.f15131e;
+            long j10 = nVar.f14542a;
+            long j11 = nVar.f14543b;
+            Long valueOf = Long.valueOf(j11);
+            TreeMap treeMap = this.e;
             Long l4 = (Long) treeMap.get(valueOf);
             if (l4 == null) {
-                treeMap.put(Long.valueOf(j10), Long.valueOf(j3));
+                treeMap.put(Long.valueOf(j11), Long.valueOf(j10));
                 return true;
-            } else if (l4.longValue() > j3) {
-                treeMap.put(Long.valueOf(j10), Long.valueOf(j3));
+            } else if (l4.longValue() > j10) {
+                treeMap.put(Long.valueOf(j11), Long.valueOf(j10));
             }
         }
         return true;

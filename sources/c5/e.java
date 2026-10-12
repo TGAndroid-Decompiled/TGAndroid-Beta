@@ -1,10 +1,10 @@
 package c5;
 public final class e {
-    public final o f4227a;
-    public final String f4228b;
+    public final p f4355a;
+    public final String f4356b;
 
-    public e(pf.b bVar) {
-        this.f4227a = (o) bVar.f45448b;
-        this.f4228b = (String) bVar.f45449c;
+    public e(qf.b bVar) {
+        this.f4355a = (p) bVar.f43355b;
+        this.f4356b = (String) bVar.f43356c;
     }
 }

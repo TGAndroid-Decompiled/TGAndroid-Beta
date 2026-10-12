@@ -1,37 +1,46 @@
 package org.telegram.ui.Components;
-public abstract class c70 extends np0 {
-    @Override
-    public final boolean a() {
-        if (j() > 0) {
-            return true;
-        }
-        return false;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class c70 extends mm0 {
+    public int V2;
+    public final p70 W2;
+
+    public c70(p70 p70Var, Context context) {
+        super(context, null);
+        this.W2 = p70Var;
     }
 
     @Override
-    public final boolean b() {
-        if (j() < i()) {
-            return true;
+    public final void onMeasure(int i10, int i11) {
+        p70 p70Var = this.W2;
+        c70 c70Var = p70Var.V;
+        if (this.V2 != View.MeasureSpec.getSize(i11)) {
+            this.V2 = View.MeasureSpec.getSize(i11);
+            p70Var.f28205a0 = true;
+            c70Var.setPadding(0, 0, 0, 0);
+            p70Var.f28205a0 = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.V2;
+            int i13 = (int) ((i12 / 5.0f) * 2.0f);
+            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
+                i13 = this.V2 - measuredHeight;
+            }
+            p70Var.f28205a0 = true;
+            c70Var.setPadding(0, i13, 0, 0);
+            p70Var.f28205a0 = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
-        return false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void c(boolean z10) {
-        int h = h();
-        if (z10) {
-            h *= -1;
+    public final void requestLayout() {
+        if (this.W2.f28205a0) {
+            return;
         }
-        k(Math.min(i(), Math.max(0, j() + h)));
+        super.requestLayout();
     }
-
-    public int h() {
-        return 1;
-    }
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract void k(int i10);
 }

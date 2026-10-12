@@ -3,21 +3,21 @@ package g8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import w7.c0;
+import w7.g0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(3);
-    public final long f10406a;
-    public final int f10407b;
-    public final boolean f10408c;
+    public final long f10013a;
+    public final int f10014b;
+    public final boolean f10015c;
     public final String d;
-    public final r7.j f10409e;
+    public final r7.j e;
 
-    public b(long j3, int i10, boolean z10, String str, r7.j jVar) {
-        this.f10406a = j3;
-        this.f10407b = i10;
-        this.f10408c = z10;
+    public b(long j10, int i10, boolean z10, String str, r7.j jVar) {
+        this.f10013a = j10;
+        this.f10014b = i10;
+        this.f10015c = z10;
         this.d = str;
-        this.f10409e = jVar;
+        this.e = jVar;
     }
 
     public final boolean equals(Object obj) {
@@ -25,27 +25,27 @@ public final class b extends o6.a {
             return false;
         }
         b bVar = (b) obj;
-        if (this.f10406a != bVar.f10406a || this.f10407b != bVar.f10407b || this.f10408c != bVar.f10408c || !n6.m.l(this.d, bVar.d) || !n6.m.l(this.f10409e, bVar.f10409e)) {
+        if (this.f10013a != bVar.f10013a || this.f10014b != bVar.f10014b || this.f10015c != bVar.f10015c || !n6.l.l(this.d, bVar.d) || !n6.l.l(this.e, bVar.e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10406a), Integer.valueOf(this.f10407b), Boolean.valueOf(this.f10408c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10013a), Integer.valueOf(this.f10014b), Boolean.valueOf(this.f10015c)});
     }
 
     public final String toString() {
         String str;
-        StringBuilder v = a1.g.v("LastLocationRequest[");
-        long j3 = this.f10406a;
-        if (j3 != Long.MAX_VALUE) {
-            v.append("maxAge=");
-            r7.p.a(v, j3);
+        StringBuilder u10 = a1.g.u("LastLocationRequest[");
+        long j10 = this.f10013a;
+        if (j10 != Long.MAX_VALUE) {
+            u10.append("maxAge=");
+            r7.p.a(u10, j10);
         }
-        int i10 = this.f10407b;
+        int i10 = this.f10014b;
         if (i10 != 0) {
-            v.append(", ");
+            u10.append(", ");
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 == 2) {
@@ -59,36 +59,36 @@ public final class b extends o6.a {
             } else {
                 str = "GRANULARITY_PERMISSION_LEVEL";
             }
-            v.append(str);
+            u10.append(str);
         }
-        if (this.f10408c) {
-            v.append(", bypass");
+        if (this.f10015c) {
+            u10.append(", bypass");
         }
         String str2 = this.d;
         if (str2 != null) {
-            v.append(", moduleId=");
-            v.append(str2);
+            u10.append(", moduleId=");
+            u10.append(str2);
         }
-        r7.j jVar = this.f10409e;
+        r7.j jVar = this.e;
         if (jVar != null) {
-            v.append(", impersonation=");
-            v.append(jVar);
+            u10.append(", impersonation=");
+            u10.append(jVar);
         }
-        v.append(']');
-        return v.toString();
+        u10.append(']');
+        return u10.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = c0.q(parcel, 20293);
-        c0.s(parcel, 1, 8);
-        parcel.writeLong(this.f10406a);
-        c0.s(parcel, 2, 4);
-        parcel.writeInt(this.f10407b);
-        c0.s(parcel, 3, 4);
-        parcel.writeInt(this.f10408c ? 1 : 0);
-        c0.l(parcel, 4, this.d);
-        c0.k(parcel, 5, this.f10409e, i10);
-        c0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.s(parcel, 1, 8);
+        parcel.writeLong(this.f10013a);
+        g0.s(parcel, 2, 4);
+        parcel.writeInt(this.f10014b);
+        g0.s(parcel, 3, 4);
+        parcel.writeInt(this.f10015c ? 1 : 0);
+        g0.l(parcel, 4, this.d);
+        g0.k(parcel, 5, this.e, i10);
+        g0.r(parcel, q6);
     }
 }

@@ -4,11 +4,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lk implements st {
-    public final eo f39777a;
+public final class lk implements vt {
+    public final fo f38035a;
 
-    public lk(eo eoVar) {
-        this.f39777a = eoVar;
+    public lk(fo foVar) {
+        this.f38035a = foVar;
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class lk implements st {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            eo eoVar = this.f39777a;
-            if (eoVar.getParentActivity() != null) {
+            fo foVar = this.f38035a;
+            if (foVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f19823id = inputStickerSet.f19823id;
-                org.telegram.ui.Components.dz0 dz0Var = new org.telegram.ui.Components.dz0(eoVar.getParentActivity(), eoVar, tL_inputStickerSetID, null, eoVar.Y, eoVar.f37256ea);
-                dz0Var.setCalcMandatoryInsets(eoVar.C9());
-                dz0Var.f25494i0 = z10;
-                eoVar.showDialog(dz0Var);
+                tL_inputStickerSetID.f19236id = inputStickerSet.f19236id;
+                org.telegram.ui.Components.ty0 ty0Var = new org.telegram.ui.Components.ty0(foVar.getParentActivity(), foVar, tL_inputStickerSetID, null, foVar.Y, foVar.f35932ea);
+                ty0Var.setCalcMandatoryInsets(foVar.C9());
+                ty0Var.f29512i0 = z10;
+                foVar.showDialog(ty0Var);
             }
         }
     }
@@ -79,17 +79,17 @@ public final class lk implements st {
 
     @Override
     public final long a() {
-        return this.f39777a.T5;
+        return this.f38035a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f39777a.G6();
+        return this.f38035a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f39777a.R3 == 1) {
+        if (this.f38035a.R3 == 1) {
             return true;
         }
         return false;
@@ -121,28 +121,28 @@ public final class lk implements st {
     }
 
     @Override
-    public final org.telegram.ui.Components.s80 j(ci.m6 m6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean l() {
+    public final boolean k() {
         return false;
     }
 
     @Override
-    public final boolean m(int i10) {
+    public final boolean l(int i10) {
         return true;
     }
 
     @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f39777a.Y.d(document, str, obj, null, true, z10, i10, i11);
+    public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+        this.f38035a.Y.a(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override
-    public final boolean q() {
+    public final boolean p() {
         return false;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.m80 u(ah.v vVar) {
+        return null;
     }
 
     @Override
@@ -175,27 +175,27 @@ public final class lk implements st {
     }
 
     @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
+    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
     }
 
     @Override
-    public final void o(String str) {
+    public final void n(String str) {
     }
 
     @Override
-    public final void p(TLRPC.Document document) {
+    public final void o(TLRPC.Document document) {
     }
 
     @Override
-    public final void r(TLRPC.Document document) {
+    public final void q(TLRPC.Document document) {
     }
 
     @Override
-    public final void s() {
+    public final void r() {
     }
 
     @Override
-    public final void u() {
+    public final void t() {
     }
 
     @Override
@@ -215,10 +215,10 @@ public final class lk implements st {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, jt jtVar) {
+    public final void f(CharSequence charSequence, String str, mt mtVar) {
     }
 
     @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
     }
 }

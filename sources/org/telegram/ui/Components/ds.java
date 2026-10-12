@@ -1,40 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ds extends t61 {
-    public static final int f25458a = 0;
+public final class ds extends Drawable {
+    public final Drawable f24478a;
+    public final Drawable f24479b;
+    public float f24480c;
+    public float d = 255.0f;
+    public ValueAnimator e;
 
-    static {
-        t61.setup(new t61());
+    public ds(Drawable drawable, Drawable drawable2) {
+        this.f24478a = drawable;
+        this.f24479b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new cs(this, 0));
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(new cs(this, 1));
+        }
+    }
+
+    public final void a(float f7) {
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f24480c, f7);
+        this.e = ofFloat;
+        ofFloat.addUpdateListener(new n6(this, 16));
+        this.e.setDuration(Math.abs(this.f24480c - f7) * 200.0f);
+        this.e.setInterpolator(es.f24771f);
+        this.e.start();
+    }
+
+    public final void b(float f7) {
+        this.f24480c = f7;
+        invalidateSelf();
     }
 
     @Override
-    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
-        org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
-        c9Var.c(u61Var.f31071l, u61Var.f31073n, !u61Var.f31069j);
-        vh.n nVar = c9Var.f21694a;
-        if (u61Var.f31071l instanceof SpannableStringBuilder) {
-            nVar.setTextSize(1, 13.0f);
-            nVar.setTranslationY(AndroidUtilities.dp(2.0f));
-            nVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
+    public final void draw(Canvas canvas) {
+        int i10 = (int) ((1.0f - this.f24480c) * this.d);
+        Drawable drawable = this.f24478a;
+        drawable.setAlpha(i10);
+        int i11 = (int) (this.d * this.f24480c);
+        Drawable drawable2 = this.f24479b;
+        drawable2.setAlpha(i11);
+        if (i10 > 0) {
+            drawable.draw(canvas);
+        }
+        if (i11 > 0) {
+            drawable2.draw(canvas);
         }
     }
 
     @Override
-    public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        org.telegram.ui.Cells.c9 c9Var = new org.telegram.ui.Cells.c9(context, c6Var, true);
-        c9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20560d6, c6Var));
-        Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, c6Var), PorterDuff.Mode.MULTIPLY));
-        c9Var.setImage(mutate);
-        c9Var.setImageClickListener(new ai.d0(this, context, c9Var, 19));
-        return c9Var;
+    public final int getIntrinsicHeight() {
+        return this.f24478a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f24478a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f24478a.setBounds(rect);
+        this.f24479b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f24478a.setColorFilter(colorFilter);
     }
 }

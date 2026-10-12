@@ -1,24 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
+import android.view.TextureView;
 import android.view.ViewGroup;
-public final class x40 extends Paint {
-    public final i60 f43756a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class x40 implements sv0 {
+    public final n60 f41743a;
 
-    public x40(i60 i60Var) {
-        this.f43756a = i60Var;
+    public x40(n60 n60Var) {
+        this.f41743a = n60Var;
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void D0(MessageObject messageObject) {
         ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        super.setAlpha(i10);
-        i60 i60Var = this.f43756a;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) i60Var).containerView;
-        if (viewGroup != null) {
-            viewGroup2 = ((org.telegram.ui.ActionBar.e3) i60Var).containerView;
-            viewGroup2.invalidate();
-        }
+        n60 n60Var = this.f41743a;
+        n60Var.Q.I0(true);
+        n60Var.f38452c2.f41667f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
+        viewGroup = ((org.telegram.ui.ActionBar.e3) n60Var).containerView;
+        viewGroup.invalidate();
+    }
+
+    @Override
+    public final void H(MessageObject messageObject) {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f41743a).containerView;
+        viewGroup.invalidate();
+    }
+
+    @Override
+    public final TextureView g0() {
+        return null;
     }
 }

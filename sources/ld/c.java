@@ -1,66 +1,37 @@
 package ld;
 
-import ae.b0;
-import ae.m;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public abstract class c extends a {
-    private final jd.h _context;
-    private transient jd.c intercepted;
+import kd.h;
+import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.s;
+import td.p;
+import v7.i8;
+public final class c extends md.c {
+    public int f14663a;
+    public final p f14664b;
+    public final kd.c f14665c;
 
-    public c(jd.c cVar, jd.h hVar) {
-        super(cVar);
-        this._context = hVar;
+    public c(kd.c cVar, h hVar, p pVar, kd.c cVar2) {
+        super(cVar, hVar);
+        this.f14664b = pVar;
+        this.f14665c = cVar2;
     }
 
     @Override
-    public jd.h getContext() {
-        jd.h hVar = this._context;
-        kotlin.jvm.internal.i.b(hVar);
-        return hVar;
-    }
-
-    public final jd.c intercepted() {
-        jd.c cVar;
-        jd.c cVar2 = this.intercepted;
-        if (cVar2 == null) {
-            jd.e eVar = (jd.e) getContext().get(jd.d.f14125a);
-            if (eVar != null) {
-                cVar = new fe.h((b0) eVar, this);
-            } else {
-                cVar = this;
+    public final Object invokeSuspend(Object obj) {
+        int i10 = this.f14663a;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                this.f14663a = 2;
+                i8.b(obj);
+                return obj;
             }
-            this.intercepted = cVar;
-            return cVar;
+            throw new IllegalStateException("This coroutine had already completed");
         }
-        return cVar2;
-    }
-
-    @Override
-    public void releaseIntercepted() {
-        m mVar;
-        jd.c cVar = this.intercepted;
-        if (cVar != null && cVar != this) {
-            jd.f fVar = getContext().get(jd.d.f14125a);
-            kotlin.jvm.internal.i.b(fVar);
-            jd.e eVar = (jd.e) fVar;
-            fe.h hVar = (fe.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.h.f9893n;
-            do {
-            } while (atomicReferenceFieldUpdater.get(hVar) == fe.a.d);
-            Object obj = atomicReferenceFieldUpdater.get(hVar);
-            if (obj instanceof m) {
-                mVar = (m) obj;
-            } else {
-                mVar = null;
-            }
-            if (mVar != null) {
-                mVar.o();
-            }
-        }
-        this.intercepted = b.f15241a;
-    }
-
-    public c(jd.c cVar) {
-        this(cVar, cVar != null ? cVar.getContext() : null);
+        this.f14663a = 1;
+        i8.b(obj);
+        p pVar = this.f14664b;
+        i.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
+        s.a(2, pVar);
+        return pVar.invoke(this.f14665c, this);
     }
 }

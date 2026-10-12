@@ -1,64 +1,71 @@
 package s4;
+public final class g1 {
+    public int f44885a;
+    public int f44886b;
+    public int f44887c;
+    public int d;
+    public int e;
 
-import java.util.ArrayList;
-public abstract class g1 extends n0 {
-    public boolean f47937m;
-    public boolean f47938n;
-
-    public g1() {
-        this.f47987a = null;
-        this.f47988b = new ArrayList();
-        this.f47989c = 120L;
-        this.d = 120L;
-        this.f47990e = 250L;
-        this.f47991f = 250L;
-        this.f47992g = 250L;
-        this.f47996l = 0L;
-        this.f47937m = true;
-    }
-
-    @Override
-    public boolean a(d1 d1Var, b2.q0 q0Var, b2.q0 q0Var2) {
+    public final boolean a() {
         int i10;
         int i11;
-        if (q0Var != null && ((i10 = q0Var.f3531a) != (i11 = q0Var2.f3531a) || q0Var.f3532b != q0Var2.f3532b || this.f47938n)) {
-            return r(d1Var, q0Var, i10, q0Var.f3532b, i11, q0Var2.f3532b);
+        int i12;
+        int i13 = this.f44885a;
+        int i14 = 2;
+        if ((i13 & 7) != 0) {
+            int i15 = this.d;
+            int i16 = this.f44886b;
+            if (i15 > i16) {
+                i12 = 1;
+            } else if (i15 == i16) {
+                i12 = 2;
+            } else {
+                i12 = 4;
+            }
+            if ((i12 & i13) == 0) {
+                return false;
+            }
         }
-        p(d1Var);
-        return true;
-    }
-
-    public abstract void p(d1 d1Var);
-
-    public abstract boolean q(d1 d1Var, d1 d1Var2, b2.q0 q0Var, int i10, int i11, int i12, int i13);
-
-    public abstract boolean r(d1 d1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13);
-
-    public abstract void s(d1 d1Var, b2.q0 q0Var);
-
-    public boolean t(d1 d1Var) {
-        if (this.f47937m && !d1Var.h()) {
-            return false;
+        if ((i13 & 112) != 0) {
+            int i17 = this.d;
+            int i18 = this.f44887c;
+            if (i17 > i18) {
+                i11 = 1;
+            } else if (i17 == i18) {
+                i11 = 2;
+            } else {
+                i11 = 4;
+            }
+            if (((i11 << 4) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 1792) != 0) {
+            int i19 = this.e;
+            int i20 = this.f44886b;
+            if (i19 > i20) {
+                i10 = 1;
+            } else if (i19 == i20) {
+                i10 = 2;
+            } else {
+                i10 = 4;
+            }
+            if (((i10 << 8) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 28672) != 0) {
+            int i21 = this.e;
+            int i22 = this.f44887c;
+            if (i21 > i22) {
+                i14 = 1;
+            } else if (i21 != i22) {
+                i14 = 4;
+            }
+            if ((i13 & (i14 << 12)) == 0) {
+                return false;
+            }
         }
         return true;
-    }
-
-    public final void u(d1 d1Var) {
-        w(d1Var);
-        d(d1Var);
-    }
-
-    public final void v(d1 d1Var) {
-        x(d1Var);
-        d(d1Var);
-    }
-
-    public void y() {
-    }
-
-    public void w(d1 d1Var) {
-    }
-
-    public void x(d1 d1Var) {
     }
 }

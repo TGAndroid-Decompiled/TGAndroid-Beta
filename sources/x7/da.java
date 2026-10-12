@@ -5,41 +5,41 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import z7.hb;
-import z7.mg;
-import z7.xf;
+import z7.lg;
+import z7.wf;
 public final class da implements Runnable {
-    public final int f50969a = 0;
-    public final long f50970b;
-    public final Object f50971c;
+    public final int f47961a = 0;
+    public final long f47962b;
+    public final Object f47963c;
     public final Object d;
 
-    public da(fa faVar, r0 r0Var, long j3) {
-        this.f50971c = faVar;
+    public da(fa faVar, r0 r0Var, long j10) {
+        this.f47963c = faVar;
         this.d = r0Var;
-        this.f50970b = j3;
+        this.f47962b = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f50969a) {
+        switch (this.f47961a) {
             case 0:
-                fa faVar = (fa) this.f50971c;
+                fa faVar = (fa) this.f47963c;
                 r0 r0Var = (r0) this.d;
-                HashMap hashMap = faVar.f51009j;
+                HashMap hashMap = faVar.f47998j;
                 o7 o7Var = o7.AGGREGATED_ON_DEVICE_IMAGE_LABEL_DETECTION;
                 if (!hashMap.containsKey(o7Var)) {
                     j jVar = new j();
                     ?? obj = new Object();
                     if (jVar.isEmpty()) {
-                        obj.f50987c = jVar;
+                        obj.f47978c = jVar;
                         hashMap.put(o7Var, obj);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
                 f fVar = (f) hashMap.get(o7Var);
-                Long valueOf = Long.valueOf(this.f50970b);
-                j jVar2 = fVar.f50987c;
+                Long valueOf = Long.valueOf(this.f47962b);
+                j jVar2 = fVar.f47978c;
                 Collection collection = (Collection) jVar2.get(r0Var);
                 if (collection == null) {
                     ArrayList arrayList = new ArrayList(3);
@@ -54,28 +54,28 @@ public final class da implements Runnable {
                 }
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (faVar.c(o7Var, elapsedRealtime)) {
-                    faVar.f51008i.put(o7Var, Long.valueOf(elapsedRealtime));
-                    qb.m.f46036a.execute(new p4.t0(faVar, 11));
+                    faVar.f47997i.put(o7Var, Long.valueOf(elapsedRealtime));
+                    rb.m.f44110a.execute(new org.telegram.ui.Wallet.m5(faVar, 10));
                     return;
                 }
                 return;
             default:
-                xf xfVar = (xf) this.f50971c;
+                wf wfVar = (wf) this.f47963c;
                 hb hbVar = hb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
                 z7.i1 i1Var = (z7.i1) this.d;
-                HashMap hashMap2 = xfVar.f54371j;
+                HashMap hashMap2 = wfVar.f49851j;
                 if (!hashMap2.containsKey(hbVar)) {
                     z7.d dVar = new z7.d();
                     ?? obj2 = new Object();
                     if (dVar.isEmpty()) {
-                        obj2.f54215c = dVar;
+                        obj2.f49708c = dVar;
                         hashMap2.put(hbVar, obj2);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
-                Long valueOf2 = Long.valueOf(this.f50970b);
-                z7.d dVar2 = ((mg) hashMap2.get(hbVar)).f54215c;
+                Long valueOf2 = Long.valueOf(this.f47962b);
+                z7.d dVar2 = ((lg) hashMap2.get(hbVar)).f49708c;
                 Collection collection2 = (Collection) dVar2.get(i1Var);
                 if (collection2 == null) {
                     ArrayList arrayList2 = new ArrayList(3);
@@ -88,19 +88,19 @@ public final class da implements Runnable {
                     collection2.add(valueOf2);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                if (xfVar.d(hbVar, elapsedRealtime2)) {
-                    xfVar.f54370i.put(hbVar, Long.valueOf(elapsedRealtime2));
-                    qb.m.f46036a.execute(new p4.t0(xfVar));
+                if (wfVar.d(hbVar, elapsedRealtime2)) {
+                    wfVar.f49850i.put(hbVar, Long.valueOf(elapsedRealtime2));
+                    rb.m.f44110a.execute(new org.telegram.ui.Wallet.m5(wfVar));
                     return;
                 }
                 return;
         }
     }
 
-    public da(xf xfVar, z7.i1 i1Var, long j3) {
+    public da(wf wfVar, z7.i1 i1Var, long j10) {
         hb hbVar = hb.UNKNOWN_EVENT;
-        this.f50971c = xfVar;
+        this.f47963c = wfVar;
         this.d = i1Var;
-        this.f50970b = j3;
+        this.f47962b = j10;
     }
 }

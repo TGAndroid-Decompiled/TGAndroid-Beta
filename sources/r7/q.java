@@ -6,7 +6,7 @@ import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.Collection;
 public abstract class q extends AbstractCollection implements Serializable {
-    public static final Object[] f47251a = new Object[0];
+    public static final Object[] f43968a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -23,15 +23,15 @@ public abstract class q extends AbstractCollection implements Serializable {
         throw new UnsupportedOperationException();
     }
 
-    public abstract int i(Object[] objArr);
+    public abstract int h(Object[] objArr);
+
+    public abstract int m();
 
     public abstract int n();
 
-    public abstract int o();
+    public abstract boolean o();
 
-    public abstract boolean p();
-
-    public abstract Object[] q();
+    public abstract Object[] p();
 
     @Override
     public final boolean remove(Object obj) {
@@ -50,7 +50,7 @@ public abstract class q extends AbstractCollection implements Serializable {
 
     @Override
     public final Object[] toArray() {
-        return toArray(f47251a);
+        return toArray(f43968a);
     }
 
     @Override
@@ -59,16 +59,16 @@ public abstract class q extends AbstractCollection implements Serializable {
         int size = size();
         int length = objArr.length;
         if (length < size) {
-            Object[] q6 = q();
-            if (q6 == null) {
+            Object[] p5 = p();
+            if (p5 == null) {
                 objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
             } else {
-                return Arrays.copyOfRange(q6, o(), n(), objArr.getClass());
+                return Arrays.copyOfRange(p5, n(), m(), objArr.getClass());
             }
         } else if (length > size) {
             objArr[size] = null;
         }
-        i(objArr);
+        h(objArr);
         return objArr;
     }
 }

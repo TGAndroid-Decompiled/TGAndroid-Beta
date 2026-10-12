@@ -1,194 +1,315 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.RectF;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class en extends org.telegram.ui.wu0 {
-    public ArrayList f25730a = new ArrayList();
-    public final in f25731b;
+import org.telegram.messenger.R;
+public final class en extends ni {
+    public static final HashMap U = new HashMap();
+    public float E;
+    public float F;
+    public float G;
+    public float H;
+    public float I;
+    public bn J;
+    public boolean K;
+    public ValueAnimator L;
+    public float M;
+    public Drawable N;
+    public ViewPropertyAnimator O;
+    public ChatAttachAlertPhotoLayout P;
+    public boolean Q;
+    public int R;
+    public boolean S;
+    public boolean T;
+    public org.telegram.ui.ActionBar.c6 f24745n;
+    public bi.o0 f24746r;
+    public s4.b0 f24747s;
+    public dn v;
+    public UndoView f24748w;
+    public TextView f24749x;
+    public float f24750y;
 
-    public en(in inVar) {
-        this.f25731b = inVar;
+    @Override
+    public final void B(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.en.B(int, int):void");
     }
 
     @Override
-    public final void D() {
-        in inVar = this.f25731b;
-        inVar.c();
-        inVar.i(inVar.P.P, false);
+    public final void E(int i10) {
+        vi viVar = this.f27671b;
+        if (i10 > 1) {
+            viVar.f29995d1.K(0);
+        } else {
+            viVar.f29995d1.r(0);
+        }
     }
 
     @Override
-    public final org.telegram.ui.gv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        MediaController.PhotoEntry photoEntry;
+    public final void G(ni niVar) {
+        dn dnVar = this.v;
+        this.Q = true;
+        if (niVar instanceof ChatAttachAlertPhotoLayout) {
+            this.P = (ChatAttachAlertPhotoLayout) niVar;
+            dnVar.f24451c.clear();
+            ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
+            dnVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            dnVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            dnVar.c();
+            dnVar.requestLayout();
+            this.f24747s.h1(0, 0);
+            this.f24746r.post(new sk(5, this, niVar));
+            postDelayed(new qg(this, 25), 250L);
+            dnVar.i(this.P, false);
+        } else {
+            J();
+        }
+        ViewPropertyAnimator viewPropertyAnimator = this.O;
+        if (viewPropertyAnimator != null) {
+            viewPropertyAnimator.cancel();
+        }
+        ViewPropertyAnimator interpolator = this.f24749x.animate().alpha(1.0f).setDuration(150L).setInterpolator(es.f24771f);
+        this.O = interpolator;
+        interpolator.start();
+    }
+
+    @Override
+    public final void J() {
+        this.f24746r.x0(0);
+    }
+
+    public final void N() {
+        ArrayList arrayList = this.v.f24450b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ArrayList arrayList2 = ((cn) obj).h;
+            int size2 = arrayList2.size();
+            int i11 = 0;
+            while (i11 < size2) {
+                Object obj2 = arrayList2.get(i11);
+                i11++;
+                bn bnVar = (bn) obj2;
+                RectF d = bnVar.d();
+                Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, Math.round(d.width())), Math.max(1, Math.round(d.height())), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.save();
+                canvas.translate(-d.left, -d.top);
+                bnVar.c(canvas, false);
+                canvas.restore();
+                Bitmap bitmap = bnVar.v;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    bnVar.v.recycle();
+                }
+                bnVar.v = createBitmap;
+                bnVar.f23821w = 0.0f;
+                bnVar.O.f24139z.invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final void a(CharSequence charSequence) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
+        if (chatAttachAlertPhotoLayout != null) {
+            chatAttachAlertPhotoLayout.a(charSequence);
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable d;
+        int i10;
+        org.telegram.ui.co coVar = this.f27671b.f30036r;
+        boolean z10 = false;
+        if (coVar != null && (d = coVar.d()) != null) {
+            int currentItemTop = getCurrentItemTop();
+            if (AndroidUtilities.isTablet()) {
+                i10 = 16;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i10 = 6;
+                } else {
+                    i10 = 12;
+                }
+            }
+            if (currentItemTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) {
+                currentItemTop -= AndroidUtilities.dp((1.0f - (currentItemTop / org.telegram.ui.ActionBar.k.getCurrentActionBarHeight())) * i10);
+            }
+            int max = Math.max(0, currentItemTop);
+            canvas.save();
+            canvas.clipRect(0, max, getWidth(), getHeight());
+            d.setBounds(0, max, getWidth(), AndroidUtilities.displaySize.y + max);
+            d.draw(canvas);
+            z10 = true;
+        }
+        super.dispatchDraw(canvas);
+        if (z10) {
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        bi.o0 o0Var = this.f24746r;
+        if (o0Var.getChildCount() <= 0) {
+            o0Var.setTopGlowOffset(o0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
+        }
+        View childAt = o0Var.getChildAt(0);
+        wl0 wl0Var = (wl0) o0Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(8.0f);
+        if (top < AndroidUtilities.dp(8.0f) || wl0Var == null || wl0Var.b() != 0) {
+            top = dp;
+        }
+        o0Var.setTopGlowOffset(top);
+        return top;
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.f24746r.getPaddingTop();
+    }
+
+    public float getPreviewScale() {
+        Point point = AndroidUtilities.displaySize;
+        if (point.y > point.x) {
+            return 0.8f;
+        }
+        return 0.45f;
+    }
+
+    @Override
+    public int getSelectedItemsCount() {
+        xm xmVar;
         ArrayList arrayList;
-        in inVar = this.f25731b;
-        ArrayList arrayList2 = inVar.f27227b;
-        jn jnVar = inVar.P;
-        if (i10 >= 0 && i10 < this.f25730a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f25730a.get(i10)) != null) {
-            int size = arrayList2.size();
-            hn hnVar = null;
-            gn gnVar = null;
-            for (int i11 = 0; i11 < size; i11++) {
-                hnVar = (hn) arrayList2.get(i11);
-                if (hnVar != null && (arrayList = hnVar.h) != null) {
-                    int size2 = arrayList.size();
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 >= size2) {
-                            break;
-                        }
-                        gn gnVar2 = (gn) arrayList.get(i12);
-                        if (gnVar2 != null && gnVar2.f26458b == photoEntry && gnVar2.f26465k > 0.5d) {
-                            gnVar = (gn) arrayList.get(i12);
-                            break;
-                        }
-                        i12++;
-                    }
-                    if (gnVar != null) {
-                        break;
-                    }
-                }
-            }
-            if (hnVar != null && gnVar != null) {
-                org.telegram.ui.gv0 gv0Var = new org.telegram.ui.gv0();
-                int[] iArr = new int[2];
-                inVar.getLocationInWindow(iArr);
-                if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - jnVar.f30570b.getLeftInset();
-                }
-                gv0Var.f38148b = iArr[0];
-                gv0Var.f38149c = iArr[1] + ((int) hnVar.f26801a);
-                gv0Var.f38155k = 1.0f;
-                gv0Var.d = inVar;
-                ImageReceiver imageReceiver = gnVar.f26459c;
-                gv0Var.f38147a = imageReceiver;
-                gv0Var.f38150e = imageReceiver.getBitmapSafe();
-                gv0Var.h = r5;
-                RectF rectF = gnVar.f26471q;
-                int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                gv0Var.f38154j = (int) (-inVar.getY());
-                gv0Var.f38153i = inVar.getHeight() - ((int) (((-inVar.getY()) + jnVar.f27566r.getHeight()) - jnVar.f30570b.n1()));
-                return gv0Var;
+        ArrayList arrayList2 = this.v.f24450b;
+        int size = arrayList2.size();
+        int i10 = 0;
+        for (int i11 = 0; i11 < size; i11++) {
+            cn cnVar = (cn) arrayList2.get(i11);
+            if (cnVar != null && (xmVar = cnVar.f24125k) != null && (arrayList = xmVar.f31275g) != null) {
+                i10 = arrayList.size() + i10;
             }
         }
-        return null;
+        return i10;
     }
 
     @Override
-    public final int H() {
-        return this.f25731b.h.size();
+    public final int i() {
+        return 1;
     }
 
     @Override
-    public final int Q(Object obj) {
-        int indexOf;
-        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
-        in inVar = this.f25731b;
-        if (inVar.h.size() <= 1 || (indexOf = inVar.h.indexOf(valueOf)) < 0) {
-            return -1;
+    public final boolean j() {
+        this.f27671b.d2(false);
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        boolean z11;
+        dn dnVar = this.v;
+        super.onLayout(z10, i10, i11, i12, i13);
+        Point point = AndroidUtilities.displaySize;
+        if (point.y > point.x) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        inVar.h.remove(indexOf);
-        inVar.c();
-        return indexOf;
+        if (this.T != z11) {
+            this.T = z11;
+            int size = dnVar.f24450b.size();
+            for (int i14 = 0; i14 < size; i14++) {
+                cn cnVar = (cn) dnVar.f24450b.get(i14);
+                if (cnVar.f24125k.f31275g.size() == 1) {
+                    cn.a(cnVar, cnVar.f24125k, true);
+                }
+            }
+        }
     }
 
     @Override
-    public final int R(int i10) {
+    public final void requestLayout() {
+        if (this.S) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void t() {
         MediaController.PhotoEntry photoEntry;
-        if (i10 < 0 || i10 >= this.f25730a.size() || (photoEntry = (MediaController.PhotoEntry) this.f25730a.get(i10)) == null) {
-            return -1;
+        this.J = null;
+        UndoView undoView = this.f24748w;
+        if (undoView != null) {
+            undoView.e(0, false);
         }
-        return this.f25731b.h.indexOf(Integer.valueOf(photoEntry.imageId));
-    }
-
-    @Override
-    public final void W(int i10) {
-        MediaController.PhotoEntry photoEntry;
-        ArrayList arrayList;
-        boolean z10;
-        if (i10 >= 0 && i10 < this.f25730a.size() && (photoEntry = (MediaController.PhotoEntry) this.f25730a.get(i10)) != null) {
-            int i11 = photoEntry.imageId;
-            in inVar = this.f25731b;
-            inVar.invalidate();
-            for (int i12 = 0; i12 < inVar.f27227b.size(); i12++) {
-                hn hnVar = (hn) inVar.f27227b.get(i12);
-                if (hnVar != null && (arrayList = hnVar.h) != null) {
-                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                        gn gnVar = (gn) arrayList.get(i13);
-                        if (gnVar != null && gnVar.f26458b.imageId == i11) {
-                            gn.a(gnVar, photoEntry);
-                        }
-                    }
-                    cn cnVar = hnVar.f26809k;
-                    if (cnVar != null && cnVar.f24963g != null) {
-                        z10 = false;
-                        for (int i14 = 0; i14 < hnVar.f26809k.f24963g.size(); i14++) {
-                            if (((MediaController.PhotoEntry) hnVar.f26809k.f24963g.get(i14)).imageId == i11) {
-                                hnVar.f26809k.f24963g.set(i14, photoEntry);
-                                z10 = true;
-                            }
-                        }
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        hn.a(hnVar, hnVar.f26809k, true);
-                    }
+        ArrayList arrayList = this.v.f24450b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ArrayList arrayList2 = ((cn) obj).h;
+            int size2 = arrayList2.size();
+            int i11 = 0;
+            while (i11 < size2) {
+                Object obj2 = arrayList2.get(i11);
+                i11++;
+                bn bnVar = (bn) obj2;
+                if (bnVar.e && (photoEntry = bnVar.f23804b) != null) {
+                    photoEntry.isChatPreviewSpoilerRevealed = false;
                 }
             }
-            inVar.g();
-            inVar.invalidate();
         }
     }
 
     @Override
-    public final ArrayList c() {
-        return this.f25731b.h;
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        if (i10 < 0 || i10 >= this.f25730a.size()) {
-            return -1;
+    public final void u() {
+        vi viVar;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
+        this.Q = false;
+        ViewPropertyAnimator viewPropertyAnimator = this.O;
+        if (viewPropertyAnimator != null) {
+            viewPropertyAnimator.cancel();
         }
-        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f25730a.get(i10)).imageId);
-        in inVar = this.f25731b;
-        int indexOf = inVar.h.indexOf(valueOf);
-        if (indexOf >= 0) {
-            if (inVar.h.size() <= 1) {
-                return -1;
-            }
-            inVar.h.remove(indexOf);
-            inVar.c();
-            return indexOf;
+        ViewPropertyAnimator interpolator = this.f24749x.animate().alpha(0.0f).setDuration(150L).setInterpolator(es.f24774j);
+        this.O = interpolator;
+        interpolator.start();
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (viVar = this.f27671b).f30013j0) != null) {
+            chatAttachAlertPhotoLayout.f23028c1.setIcon(R.drawable.msg_view_file);
+            viVar.f30013j0.f23028c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            viVar.f30013j0.f23028c1.setRightIcon(R.drawable.msg_arrowright);
         }
-        inVar.h.add(valueOf);
-        inVar.c();
-        return inVar.h.size() - 1;
+        this.v.i(this.P, true);
     }
 
     @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final HashMap v() {
-        return this.f25731b.d;
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        if (i10 >= 0 && i10 < this.f25730a.size()) {
-            return this.f25731b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f25730a.get(i10)).imageId));
+    public final void w(int i10) {
+        try {
+            this.f27671b.f30013j0.w(i10);
+        } catch (Exception unused) {
         }
-        return false;
     }
 }

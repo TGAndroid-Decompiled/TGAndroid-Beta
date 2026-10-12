@@ -1,26 +1,26 @@
 package h0;
 
-import com.google.android.gms.internal.vision.e2;
+import com.google.android.gms.internal.play_billing.k3;
 public final class k {
-    public static final k f10954k;
-    public final float f10955a;
-    public final float f10956b;
-    public final float f10957c;
+    public static final k f10300k;
+    public final float f10301a;
+    public final float f10302b;
+    public final float f10303c;
     public final float d;
-    public final float f10958e;
-    public final float f10959f;
-    public final float[] f10960g;
+    public final float e;
+    public final float f10304f;
+    public final float[] f10305g;
     public final float h;
-    public final float f10961i;
-    public final float f10962j;
+    public final float f10306i;
+    public final float f10307j;
 
     static {
         float f7;
         float[] fArr;
-        float j3 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f10934c;
+        float j10 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
+        float[] fArr2 = b.f10282c;
         float f10 = fArr2[0];
-        float[][] fArr3 = b.f10932a;
+        float[][] fArr3 = b.f10280a;
         float[] fArr4 = fArr3[0];
         float f11 = fArr2[1];
         float f12 = fArr4[1] * f11;
@@ -36,19 +36,19 @@ public final class k {
             f7 = 0.655f;
         }
         float f17 = f7;
-        float B = e2.B((float) Math.exp(((-j3) - 42.0f) / 92.0f), 0.2777778f, 1.0f, 1.0f);
+        float B = k3.B((float) Math.exp(((-j10) - 42.0f) / 92.0f), 0.2777778f, 1.0f, 1.0f);
         double d = B;
         if (d > 1.0d) {
             B = 1.0f;
         } else if (d < 0.0d) {
             B = 0.0f;
         }
-        float f18 = 1.0f / ((5.0f * j3) + 1.0f);
-        float C = e2.C(f18, f18, f18, f18);
+        float f18 = 1.0f / ((5.0f * j10) + 1.0f);
+        float C = k3.C(f18, f18, f18, f18);
         float f19 = 1.0f - C;
-        float cbrt = (0.1f * f19 * f19 * ((float) Math.cbrt(j3 * 5.0d))) + (C * j3);
-        float j10 = b.j() / fArr2[1];
-        double d10 = j10;
+        float cbrt = (0.1f * f19 * f19 * ((float) Math.cbrt(j10 * 5.0d))) + (C * j10);
+        float j11 = b.j() / fArr2[1];
+        double d10 = j11;
         float sqrt = ((float) Math.sqrt(d10)) + 1.48f;
         float pow = 0.725f / ((float) Math.pow(d10, 0.2d));
         float[] fArr7 = {(float) Math.pow(((fArr[0] * cbrt) * f14) / 100.0d, 0.42d), (float) Math.pow(((fArr[1] * cbrt) * f15) / 100.0d, 0.42d), (float) Math.pow(((fArr[2] * cbrt) * f16) / 100.0d, 0.42d)};
@@ -58,19 +58,19 @@ public final class k {
         float f23 = (f22 * 400.0f) / (f22 + 27.13f);
         float f24 = fArr7[2];
         float[] fArr8 = {f21, f23, (400.0f * f24) / (f24 + 27.13f)};
-        f10954k = new k(j10, e2.A(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * B) + 1.0f) - B, (((100.0f / f15) * B) + 1.0f) - B, (((100.0f / f16) * B) + 1.0f) - B}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f10300k = new k(j11, k3.A(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * B) + 1.0f) - B, (((100.0f / f15) * B) + 1.0f) - B, (((100.0f / f16) * B) + 1.0f) - B}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f7, float f10, float f11, float f12, float f13, float f14, float[] fArr, float f15, float f16, float f17) {
-        this.f10959f = f7;
-        this.f10955a = f10;
-        this.f10956b = f11;
-        this.f10957c = f12;
+        this.f10304f = f7;
+        this.f10301a = f10;
+        this.f10302b = f11;
+        this.f10303c = f12;
         this.d = f13;
-        this.f10958e = f14;
-        this.f10960g = fArr;
+        this.e = f14;
+        this.f10305g = fArr;
         this.h = f15;
-        this.f10961i = f16;
-        this.f10962j = f17;
+        this.f10306i = f16;
+        this.f10307j = f17;
     }
 }

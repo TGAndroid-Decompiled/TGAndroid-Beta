@@ -1,17 +1,14 @@
 package rg;
+public final class n1 {
+    public final int f44377a;
+    public final int f44378b;
+    public final int f44379c;
+    public final int d;
 
-import android.content.Context;
-import android.view.View;
-public final class n1 extends View {
-    public final o1 f47585a;
-
-    public n1(o1 o1Var, Context context) {
-        super(context);
-        this.f47585a = o1Var;
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.n1.draw(android.graphics.Canvas):void");
+    public n1(int i10, int i11, int i12, int i13) {
+        this.f44377a = i10;
+        this.f44378b = i11;
+        this.f44379c = i12;
+        this.d = i13;
     }
 }

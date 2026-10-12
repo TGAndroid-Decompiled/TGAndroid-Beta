@@ -1,16 +1,29 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class q40 extends AnimatorListenerAdapter {
-    public final i60 f41190a;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class q40 implements org.telegram.ui.ActionBar.y2 {
+    public final n60 f39338a;
 
-    public q40(i60 i60Var) {
-        this.f41190a = i60Var;
+    public q40(n60 n60Var) {
+        this.f39338a = n60Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f41190a.X0 = null;
+    public final boolean h() {
+        return true;
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
+        }
+        n60 n60Var = this.f39338a;
+        if (n60Var.F1 == 6) {
+            n60.C0(n60Var);
+        }
     }
 }

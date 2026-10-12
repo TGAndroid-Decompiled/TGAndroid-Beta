@@ -33,7 +33,7 @@ public final class RenderSynchronizer {
         this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f7);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
-        handler.post(new n(this, 1));
+        handler.post(new o(this, 1));
         Logging.d("RenderSynchronizer", "Created");
     }
 
@@ -50,10 +50,10 @@ public final class RenderSynchronizer {
     }
 
     public void lambda$registerListener$1() {
-        this.choreographer.postFrameCallback(new o(this));
+        this.choreographer.postFrameCallback(new p(this));
     }
 
-    public void onDisplayRefreshCycleBegin(long j3) {
+    public void onDisplayRefreshCycleBegin(long j10) {
         synchronized (this.lock) {
             try {
                 if (this.listeners.isEmpty()) {
@@ -61,11 +61,11 @@ public final class RenderSynchronizer {
                     this.isListening = false;
                     return;
                 }
-                this.choreographer.postFrameCallback(new o(this));
-                long j10 = j3 - this.lastOpenedTimeNanos;
-                this.lastRefreshTimeNanos = j3;
-                if (Math.abs(j10 - this.targetFrameIntervalNanos) < Math.abs((j10 - this.targetFrameIntervalNanos) + (j3 - this.lastRefreshTimeNanos))) {
-                    this.lastOpenedTimeNanos = j3;
+                this.choreographer.postFrameCallback(new p(this));
+                long j11 = j10 - this.lastOpenedTimeNanos;
+                this.lastRefreshTimeNanos = j10;
+                if (Math.abs(j11 - this.targetFrameIntervalNanos) < Math.abs((j11 - this.targetFrameIntervalNanos) + (j10 - this.lastRefreshTimeNanos))) {
+                    this.lastOpenedTimeNanos = j10;
                     openRenderWindow();
                 } else if (this.renderWindowOpen) {
                     closeRenderWindow();
@@ -85,14 +85,14 @@ public final class RenderSynchronizer {
     }
 
     private void traceRenderWindowChange() {
-        long j3;
+        long j10;
         if (Build.VERSION.SDK_INT >= 29) {
             if (this.renderWindowOpen) {
-                j3 = 1;
+                j10 = 1;
             } else {
-                j3 = 0;
+                j10 = 0;
             }
-            Trace.setCounter("RenderWindow", j3);
+            Trace.setCounter("RenderWindow", j10);
         }
     }
 
@@ -103,7 +103,7 @@ public final class RenderSynchronizer {
                 if (!this.isListening) {
                     Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
                     this.isListening = true;
-                    this.mainThreadHandler.post(new n(this, 0));
+                    this.mainThreadHandler.post(new o(this, 0));
                 }
             } catch (Throwable th2) {
                 throw th2;

@@ -1,31 +1,31 @@
 package v7;
 
 import android.content.Context;
-public final class b9 implements y8 {
-    public final q9.n f49373a;
-    public final w8 f49374b;
+public final class b9 implements x8 {
+    public final r9.n f46590a;
+    public final v8 f46591b;
 
-    public b9(Context context, w8 w8Var) {
-        this.f49374b = w8Var;
-        j5.a aVar = j5.a.f14019e;
-        l5.t.b(context);
-        l5.r c10 = l5.t.a().c(aVar);
+    public b9(Context context, v8 v8Var) {
+        this.f46591b = v8Var;
+        j5.a aVar = j5.a.e;
+        l5.s.b(context);
+        l5.q c10 = l5.s.a().c(aVar);
         if (j5.a.d.contains(new i5.c("json"))) {
-            new q9.n(new a9(c10, 0));
+            new r9.n(new a9(c10, 0));
         }
-        this.f49373a = new q9.n(new a9(c10, 1));
+        this.f46590a = new r9.n(new a9(c10, 1));
     }
 
     @Override
     public final void a(a5.a aVar) {
         i5.a aVar2;
-        this.f49374b.getClass();
-        l5.s sVar = (l5.s) this.f49373a.get();
-        if (aVar.f299b != 0) {
-            aVar2 = new i5.a(null, aVar.D(), i5.d.f12012a, null);
+        this.f46591b.getClass();
+        l5.r rVar = (l5.r) this.f46590a.get();
+        if (aVar.f279b != 0) {
+            aVar2 = new i5.a(null, aVar.F(), i5.d.f11319a, null);
         } else {
-            aVar2 = new i5.a(null, aVar.D(), i5.d.f12013b, null);
+            aVar2 = new i5.a(null, aVar.F(), i5.d.f11320b, null);
         }
-        sVar.a(aVar2, new j2.e(16));
+        rVar.a(aVar2, new k2.y0(2));
     }
 }

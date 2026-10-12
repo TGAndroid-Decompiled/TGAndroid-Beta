@@ -1,68 +1,119 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class s00 extends FrameLayout {
-    public final t00 f41777a;
+    public final TextView f39908a;
+    public final ImageView f39909b;
+    public boolean f39910c;
 
-    public s00(t00 t00Var, Context context) {
+    public s00(Context context) {
         super(context);
         int i10;
-        String string;
-        this.f41777a = t00Var;
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.msg_limit_links);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false)));
-        addView(imageView, w7.w5.a(44.0f, 0.0f, 22.0f, 0.0f, 0.0f, 54, 49));
-        vh.n nVar = new vh.n(context);
-        nVar.setTypeface(AndroidUtilities.bold());
-        nVar.setTextSize(1, 20.0f);
-        int i11 = org.telegram.ui.ActionBar.h6.f20668j5;
-        nVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-        nVar.setGravity(1);
-        nVar.setText(t00Var.S(nVar));
-        MessagesController.DialogFilter dialogFilter = t00Var.X;
-        if (dialogFilter != null && dialogFilter.title_noanimate) {
-            i10 = 26;
-        } else {
-            i10 = 0;
-        }
-        nVar.f49973s = i10;
-        addView(nVar, w7.w5.a(-2.0f, 20.0f, 84.0f, 20.0f, 0.0f, -2, 49));
+        int i11;
+        int i12;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
         TextView textView = new TextView(context);
-        if (t00Var.Y.isEmpty()) {
-            string = LocaleController.getString(R.string.FolderLinkShareSubtitleEmpty);
+        this.f39908a = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.q6, false));
+        textView.setTextSize(1, 16.0f);
+        textView.setText(LocaleController.getString(R.string.CreateNewLink));
+        if (LocaleController.isRTL) {
+            i10 = 5;
         } else {
-            string = LocaleController.getString(R.string.FolderLinkShareSubtitle);
+            i10 = 3;
         }
-        textView.setText(string);
-        textView.setLines(2);
-        textView.setGravity(1);
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-        addView(textView, w7.w5.a(-2.0f, 30.0f, 117.0f, 30.0f, 0.0f, -2, 49));
-        ImageView imageView2 = new ImageView(context);
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.C6, false), PorterDuff.Mode.MULTIPLY));
-        imageView2.setOnClickListener(new a(this, 22));
-        addView(imageView2, w7.w5.a(48.0f, 0.0f, -4.0f, 2.0f, 0.0f, 48, 53));
+        textView.setGravity(i10);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i11 = 16;
+        } else {
+            i11 = 0;
+        }
+        if (z10) {
+            i12 = 0;
+        } else {
+            i12 = 16;
+        }
+        textView.setPadding(i11, 0, i12, 0);
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            f7 = 0.0f;
+        } else {
+            f7 = 64.0f;
+        }
+        if (z11) {
+            f10 = 64.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        addView(textView, w7.a6.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, 23));
+        ImageView imageView = new ImageView(context);
+        this.f39909b = imageView;
+        Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
+        Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
+        int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(x02, mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20029k7, false), mode));
+        imageView.setImageDrawable(new org.telegram.ui.Components.cr(drawable, drawable2));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        boolean z12 = LocaleController.isRTL;
+        int i13 = (z12 ? 5 : 3) | 16;
+        if (z12) {
+            f11 = 0.0f;
+        } else {
+            f11 = 16.0f;
+        }
+        if (z12) {
+            f12 = 16.0f;
+        } else {
+            f12 = 0.0f;
+        }
+        addView(imageView, w7.a6.a(32.0f, f11, 0.0f, f12, 0.0f, 32, i13));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f39910c) {
+            TextView textView = this.f39908a;
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f20022k0);
+        }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(171.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
+    }
+
+    @Override
+    public final void setEnabled(boolean z10) {
+        float f7;
+        super.setEnabled(z10);
+        float f10 = 0.5f;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.5f;
+        }
+        this.f39908a.setAlpha(f7);
+        if (z10) {
+            f10 = 1.0f;
+        }
+        this.f39909b.setAlpha(f10);
     }
 }

@@ -1,68 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class pf implements View.OnTouchListener {
-    public final int f29491a = 0;
-    public final Rect f29492b = new Rect();
-    public final NotificationCenter.NotificationCenterDelegate f29493c;
+import android.content.Context;
+import android.graphics.Paint;
+public final class pf extends fi.x {
+    public boolean f28305s;
+    public final ChatActivityEnterView v;
 
-    public pf(org.telegram.ui.mq0 mq0Var) {
-        this.f29493c = mq0Var;
+    public pf(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.v = chatActivityEnterView;
+        this.f9650a = null;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f9653f = true;
+        this.f9651b = new Object();
+        bi.o0 o0Var = new bi.o0(this, context, 2);
+        this.f9652c = o0Var;
+        o0Var.setOverScrollMode(2);
+        o0Var.setClipToPadding(false);
+        o0Var.setClipToOutline(true);
+        o0Var.j(new ah.d0(this, 4));
+        addView(o0Var);
+        paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Ii, false));
+        dh.d dVar = this.f9655r;
+        if (dVar != null) {
+            dVar.v();
+        }
+        invalidate();
+        setClipChildren(false);
+        this.f28305s = false;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        qf qfVar;
-        org.telegram.ui.ActionBar.m1 m1Var;
-        org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f29491a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f29493c;
-                if (motionEvent.getActionMasked() == 0 && (qfVar = chatActivityEnterView.N0) != null && qfVar.isShowing()) {
-                    Rect rect = this.f29492b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        chatActivityEnterView.N0.dismiss();
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 1:
-                org.telegram.ui.mq0 mq0Var = (org.telegram.ui.mq0) this.f29493c;
-                if (motionEvent.getActionMasked() == 0 && (m1Var = mq0Var.I) != null && m1Var.isShowing()) {
-                    Rect rect2 = this.f29492b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        mq0Var.I.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                org.telegram.ui.dr0 dr0Var = (org.telegram.ui.dr0) this.f29493c;
-                if (motionEvent.getActionMasked() == 0 && (m1Var2 = dr0Var.m0) != null && m1Var2.isShowing()) {
-                    Rect rect3 = this.f29492b;
-                    view.getHitRect(rect3);
-                    if (!rect3.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        dr0Var.m0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (!this.f28305s) {
+            this.f28305s = true;
+            this.v.A1();
         }
-    }
-
-    public pf(org.telegram.ui.dr0 dr0Var) {
-        this.f29493c = dr0Var;
-    }
-
-    public pf(ChatActivityEnterView chatActivityEnterView) {
-        this.f29493c = chatActivityEnterView;
     }
 }

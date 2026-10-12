@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import org.telegram.messenger.NotificationCenter;
 public final class jl implements NotificationCenter.PostponeNotificationCallback {
-    public final eo f39240a;
+    public final fo f37404a;
 
-    public jl(eo eoVar) {
-        this.f39240a = eoVar;
+    public jl(fo foVar) {
+        this.f37404a = foVar;
     }
 
     @Override
     public final boolean needPostpone(int i10, int i11, Object[] objArr) {
         if (i10 == NotificationCenter.didReceiveNewMessages) {
             long longValue = ((Long) objArr[0]).longValue();
-            eo eoVar = this.f39240a;
-            if (eoVar.H6 && longValue == eoVar.T5) {
+            fo foVar = this.f37404a;
+            if (foVar.H6 && longValue == foVar.T5) {
                 return true;
             }
         }

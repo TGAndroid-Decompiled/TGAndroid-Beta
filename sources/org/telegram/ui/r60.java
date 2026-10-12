@@ -1,22 +1,41 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class r60 extends rg.j0 {
-    public final s60 W0;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+public final class r60 extends s4.o {
+    public final ArrayList f39614b;
+    public final s60 f39615c;
 
-    public r60(s60 s60Var, s60 s60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(i10, i11, activity, s60Var2, c6Var);
-        this.W0 = s60Var;
+    public r60(s60 s60Var, ArrayList arrayList) {
+        this.f39615c = s60Var;
+        this.f39614b = arrayList;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.W0.B0 = false;
+    public final boolean a(int i10, int i11) {
+        return true;
     }
 
     @Override
-    public final void onOpenAnimationEnd() {
-        this.W0.B0 = false;
+    public final boolean b(int i10, int i11) {
+        ArrayList arrayList = this.f39614b;
+        if (i10 < arrayList.size()) {
+            s60 s60Var = this.f39615c;
+            if (i11 < s60Var.e.size()) {
+                return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(s60Var.e.get(i11));
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f39615c.e.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f39614b.size();
     }
 }

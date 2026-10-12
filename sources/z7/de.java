@@ -1,10 +1,5 @@
 package z7;
-public final class de {
-    public final gb f53873a;
-    public final we f53874b;
 
-    public de(ce ceVar) {
-        this.f53873a = (gb) ceVar.f53852a;
-        this.f53874b = (we) ceVar.f53853b;
-    }
+import java.util.RandomAccess;
+public final class de extends e9.m implements RandomAccess {
 }

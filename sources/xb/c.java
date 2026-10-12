@@ -1,30 +1,26 @@
 package xb;
 
-import java.util.Arrays;
-import n6.m;
-import o1.j;
-public abstract class c {
-    public final float f51347a;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import n6.l;
+public final class c {
+    public final HashMap f48378a = new HashMap();
 
-    public c(j jVar) {
-        this.f51347a = jVar.f16690a;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public c(Set set) {
+        HashMap hashMap = new HashMap();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            b bVar = (b) it.next();
+            bVar.getClass();
+            if (this.f48378a.containsKey(zb.a.class)) {
+                Integer num = (Integer) hashMap.get(zb.a.class);
+                l.h(num);
+                if (num.intValue() <= 0) {
+                }
+            }
+            this.f48378a.put(zb.a.class, bVar.f48377a);
+            hashMap.put(zb.a.class, 0);
         }
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        c cVar = (c) obj;
-        if (getClass().equals(cVar.getClass()) && Float.compare(this.f51347a, cVar.f51347a) == 0 && m.l(null, null)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f51347a), null});
     }
 }

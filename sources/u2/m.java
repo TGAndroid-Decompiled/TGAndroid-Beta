@@ -1,37 +1,95 @@
 package u2;
 
-import java.util.List;
-public final class m implements c1 {
-    public final c1 f48868a;
-    public final e9.i0 f48869b;
+import android.os.Handler;
+import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import v7.u6;
+public abstract class m extends a {
+    public final HashMap h = new HashMap();
+    public Handler f45970i;
+    public g2.c0 f45971j;
 
-    public m(c1 c1Var, List list) {
-        this.f48868a = c1Var;
-        this.f48869b = e9.i0.v(list);
+    @Override
+    public final void e() {
+        for (l lVar : this.h.values()) {
+            lVar.f45962a.d(lVar.f45963b);
+        }
     }
 
     @Override
-    public final boolean c() {
-        return this.f48868a.c();
+    public final void g() {
+        for (l lVar : this.h.values()) {
+            lVar.f45962a.f(lVar.f45963b);
+        }
     }
 
     @Override
-    public final long d() {
-        return this.f48868a.d();
+    public void k() {
+        for (l lVar : this.h.values()) {
+            lVar.f45962a.k();
+        }
     }
 
     @Override
-    public final boolean m(i2.s0 s0Var) {
-        return this.f48868a.m(s0Var);
+    public void q() {
+        HashMap hashMap = this.h;
+        for (l lVar : hashMap.values()) {
+            a aVar = lVar.f45962a;
+            k kVar = lVar.f45964c;
+            aVar.p(lVar.f45963b);
+            aVar.s(kVar);
+            aVar.r(kVar);
+        }
+        hashMap.clear();
     }
 
-    @Override
-    public final long p() {
-        return this.f48868a.p();
+    public abstract g0 u(Object obj, g0 g0Var);
+
+    public abstract void x(Object obj, a aVar, b2.p1 p1Var);
+
+    public final void y(final Integer num, a aVar) {
+        HashMap hashMap = this.h;
+        u6.g(!hashMap.containsKey(num));
+        ?? r12 = new h0() {
+            @Override
+            public final void a(a aVar2, b2.p1 p1Var) {
+                m.this.x(num, aVar2, p1Var);
+            }
+        };
+        k kVar = new k(this, num);
+        hashMap.put(num, new l(aVar, r12, kVar));
+        Handler handler = this.f45970i;
+        handler.getClass();
+        aVar.getClass();
+        a5.a aVar2 = aVar.f45861c;
+        aVar2.getClass();
+        ?? obj = new Object();
+        obj.f45943a = handler;
+        obj.f45944b = kVar;
+        ((CopyOnWriteArrayList) aVar2.d).add(obj);
+        Handler handler2 = this.f45970i;
+        handler2.getClass();
+        n2.k kVar2 = aVar.d;
+        kVar2.getClass();
+        CopyOnWriteArrayList copyOnWriteArrayList = kVar2.f15965c;
+        ?? obj2 = new Object();
+        obj2.f15961a = handler2;
+        obj2.f15962b = kVar;
+        copyOnWriteArrayList.add(obj2);
+        g2.c0 c0Var = this.f45971j;
+        j2.k kVar3 = this.f45863g;
+        kVar3.getClass();
+        aVar.l(r12, c0Var, kVar3);
+        if (this.f45860b.isEmpty()) {
+            aVar.d(r12);
+        }
     }
 
-    @Override
-    public final void r(long j3) {
-        this.f48868a.r(j3);
+    public long v(Object obj, long j10) {
+        return j10;
+    }
+
+    public int w(int i10, Object obj) {
+        return i10;
     }
 }

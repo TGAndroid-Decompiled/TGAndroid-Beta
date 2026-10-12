@@ -1,73 +1,74 @@
 package w2;
 
-import h2.f;
 import h2.h;
 import h2.l;
 import java.nio.ByteBuffer;
-import z3.i;
+import z3.f;
+import z3.g;
 import z3.j;
-import z3.m;
-public final class b extends l implements z3.e {
-    public final String f49992o;
-    public final m f49993p;
+import z3.k;
+import z3.n;
+public final class b extends l implements f {
+    public final String f47072o;
+    public final n f47073p;
 
-    public b(String str, m mVar) {
-        super(new i[2], new j[2]);
-        this.f49992o = str;
+    public b(String str, n nVar) {
+        super(new j[2], new k[2]);
+        this.f47072o = str;
         o(1024);
-        this.f49993p = mVar;
+        this.f47073p = nVar;
     }
 
     @Override
     public final h f() {
-        return new i();
+        return new j();
     }
 
     @Override
     public final h2.j g() {
-        return new z3.c(this);
+        return new z3.d(this);
     }
 
     @Override
     public final String getName() {
-        return this.f49992o;
+        return this.f47072o;
     }
 
     @Override
-    public final f h(Throwable th2) {
+    public final h2.f h(Throwable th2) {
         return new Exception("Unexpected decode error", th2);
     }
 
     @Override
-    public final f i(h hVar, h2.j jVar, boolean z10) {
-        i iVar = (i) hVar;
-        j jVar2 = (j) jVar;
+    public final h2.f i(h hVar, h2.j jVar, boolean z10) {
+        j jVar2 = (j) hVar;
+        k kVar = (k) jVar;
         try {
-            ByteBuffer byteBuffer = iVar.f10983c;
+            ByteBuffer byteBuffer = jVar2.f10326c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            m mVar = this.f49993p;
+            n nVar = this.f47073p;
             if (z10) {
-                mVar.reset();
+                nVar.reset();
             }
-            z3.d x10 = mVar.x(0, limit, array);
-            long j3 = iVar.f10984e;
-            long j10 = iVar.f53737r;
-            jVar2.timeUs = j3;
-            jVar2.f53738a = x10;
-            if (j10 != Long.MAX_VALUE) {
-                j3 = j10;
+            z3.e w9 = nVar.w(0, limit, array);
+            long j10 = jVar2.e;
+            long j11 = jVar2.f49268r;
+            kVar.timeUs = j10;
+            kVar.f49269a = w9;
+            if (j11 != Long.MAX_VALUE) {
+                j10 = j11;
             }
-            jVar2.f53739b = j3;
-            jVar2.shouldBeSkipped = false;
+            kVar.f49270b = j10;
+            kVar.shouldBeSkipped = false;
             return null;
-        } catch (z3.f e7) {
-            return e7;
+        } catch (g e) {
+            return e;
         }
     }
 
     @Override
-    public final void b(long j3) {
+    public final void b(long j10) {
     }
 }

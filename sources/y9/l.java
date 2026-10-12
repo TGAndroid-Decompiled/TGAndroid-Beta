@@ -1,25 +1,28 @@
 package y9;
-public final class l implements ia.d {
-    public static final l f52225a = new Object();
-    public static final ia.c f52226b = ia.c.c("baseAddress");
-    public static final ia.c f52227c = ia.c.c("size");
-    public static final ia.c d = ia.c.c("name");
-    public static final ia.c f52228e = ia.c.c("uuid");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        byte[] bArr;
-        ia.e eVar = (ia.e) obj2;
-        o0 o0Var = (o0) ((n1) obj);
-        eVar.f(f52226b, o0Var.f52257a);
-        eVar.f(f52227c, o0Var.f52258b);
-        eVar.a(d, o0Var.f52259c);
-        String str = o0Var.d;
-        if (str != null) {
-            bArr = str.getBytes(e2.f52155a);
-        } else {
-            bArr = null;
+import ji.w4;
+import org.json.JSONObject;
+public abstract class l {
+    public static final w4 f48725a;
+
+    static {
+        la.d dVar = new la.d();
+        a aVar = a.f48697a;
+        dVar.a(l.class, aVar);
+        dVar.a(b.class, aVar);
+        f48725a = new w4(dVar, 4);
+    }
+
+    public static b a(String str) {
+        JSONObject jSONObject = new JSONObject(str);
+        String string = jSONObject.getString("rolloutId");
+        String string2 = jSONObject.getString("parameterKey");
+        String string3 = jSONObject.getString("parameterValue");
+        String string4 = jSONObject.getString("variantId");
+        long j10 = jSONObject.getLong("templateVersion");
+        if (string3.length() > 256) {
+            string3 = string3.substring(0, 256);
         }
-        eVar.a(f52228e, bArr);
+        return new b(string, string2, string3, string4, j10);
     }
 }

@@ -1,55 +1,73 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
+import android.widget.ImageView;
 import org.telegram.messenger.R;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSessionWrapper;
-public final class km implements mw0 {
-    public File f27879a;
-    public boolean f27880b;
-    public final org.telegram.ui.ActionBar.c6 f27881c;
-    public final org.telegram.ui.ActionBar.c3 d;
-    public final ChatAttachAlertPhotoLayout f27882e;
+import org.telegram.messenger.camera.CameraView;
+public final class km implements CameraView.CameraViewDelegate {
+    public final ChatAttachAlertPhotoLayout f26730a;
 
-    public km(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.ActionBar.c3 c3Var) {
-        this.f27882e = chatAttachAlertPhotoLayout;
-        this.f27881c = c6Var;
-        this.d = c3Var;
+    public km(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+        this.f26730a = chatAttachAlertPhotoLayout;
     }
 
-    public final void a() {
-        wm wmVar;
-        boolean z10;
-        boolean z11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f27882e;
-        aj ajVar = chatAttachAlertPhotoLayout.f30570b;
-        ShutterButton shutterButton = chatAttachAlertPhotoLayout.f23824k0;
-        if (!chatAttachAlertPhotoLayout.f23839s0 && (wmVar = chatAttachAlertPhotoLayout.P) != null && wmVar.getCameraSession() != null) {
-            if (shutterButton.getState() == nw0.f28982b) {
-                chatAttachAlertPhotoLayout.l0();
-                CameraController.getInstance().stopVideoRecording(chatAttachAlertPhotoLayout.P.getCameraSession(), false);
-                shutterButton.a(nw0.f28981a);
-            } else if (!chatAttachAlertPhotoLayout.f23846x0) {
-                org.telegram.messenger.am.q(R.string.GlobalAttachPhotoRestricted, new zc(chatAttachAlertPhotoLayout.P, this.f27881c), null);
+    @Override
+    public final void onCameraInit() {
+        int i10;
+        float f7;
+        int i11;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26730a;
+        ImageView imageView = chatAttachAlertPhotoLayout.f23056r0;
+        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.S;
+        String currentFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode();
+        String nextFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getNextFlashMode();
+        if (currentFlashMode != null && nextFlashMode != null) {
+            int i12 = 4;
+            if (currentFlashMode.equals(nextFlashMode)) {
+                for (int i13 = 0; i13 < 2; i13++) {
+                    imageViewArr[i13].setVisibility(4);
+                    imageViewArr[i13].setAlpha(0.0f);
+                    imageViewArr[i13].setTranslationY(0.0f);
+                }
             } else {
-                org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
-                if ((m2Var instanceof org.telegram.ui.eo) && ((org.telegram.ui.eo) m2Var).v()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                ChatAttachAlertPhotoLayout.o0(imageViewArr[0], chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode());
+                for (int i14 = 0; i14 < 2; i14++) {
+                    ImageView imageView2 = imageViewArr[i14];
+                    if (i14 == 0) {
+                        i10 = 0;
+                    } else {
+                        i10 = 4;
+                    }
+                    imageView2.setVisibility(i10);
+                    ImageView imageView3 = imageViewArr[i14];
+                    if (i14 == 0 && chatAttachAlertPhotoLayout.f23025b0) {
+                        f7 = 1.0f;
+                    } else {
+                        f7 = 0.0f;
+                    }
+                    imageView3.setAlpha(f7);
+                    imageViewArr[i14].setTranslationY(0.0f);
                 }
-                File generatePicturePath = AndroidUtilities.generatePicturePath(z10, null);
-                boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.P.getCameraSession().isSameTakePictureOrientation();
-                CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.P.getCameraSession();
-                if (!(ajVar.f24338f0 instanceof org.telegram.ui.eo) && ajVar.T0 != 2) {
-                    z11 = false;
-                } else {
-                    z11 = true;
-                }
-                cameraSession.setFlipFront(z11);
-                chatAttachAlertPhotoLayout.f23839s0 = CameraController.getInstance().takePicture(generatePicturePath, false, chatAttachAlertPhotoLayout.P.getCameraSessionObject(), new ci.ed(this, generatePicturePath, isSameTakePictureOrientation));
-                chatAttachAlertPhotoLayout.P.startTakePictureAnimation(true);
+            }
+            if (chatAttachAlertPhotoLayout.P.isFrontface()) {
+                i11 = R.drawable.camera_revert1;
+            } else {
+                i11 = R.drawable.camera_revert2;
+            }
+            imageView.setImageResource(i11);
+            if (chatAttachAlertPhotoLayout.P.hasFrontFaceCamera()) {
+                i12 = 0;
+            }
+            imageView.setVisibility(i12);
+            if (!chatAttachAlertPhotoLayout.f23025b0) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                chatAttachAlertPhotoLayout.O = animatorSet;
+                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.P, View.ALPHA, 0.0f, 1.0f));
+                chatAttachAlertPhotoLayout.O.setDuration(180L);
+                chatAttachAlertPhotoLayout.O.addListener(new l6(this, 12));
+                chatAttachAlertPhotoLayout.O.start();
             }
         }
     }

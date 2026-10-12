@@ -1,9 +1,22 @@
 package yh;
+public final class p implements Runnable {
+    public final int f49052a;
+    public final w f49053b;
 
-import org.telegram.ui.Components.h71;
-public final class p extends h71 {
+    public p(w wVar, int i10) {
+        this.f49052a = i10;
+        this.f49053b = wVar;
+    }
+
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return false;
+    public final void run() {
+        switch (this.f49052a) {
+            case 0:
+                this.f49053b.onBackPressed();
+                return;
+            default:
+                this.f49053b.U();
+                return;
+        }
     }
 }

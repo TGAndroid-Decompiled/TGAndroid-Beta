@@ -1,62 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class sj implements TextWatcher {
-    public final ek f30577a;
+import org.telegram.tgnet.TLRPC;
+public final class sj implements xj {
+    public final int f29144a;
+    public final TLRPC.User f29145b;
 
-    public sj(ek ekVar) {
-        this.f30577a = ekVar;
+    public sj(int i10, TLRPC.User user) {
+        this.f29144a = i10;
+        this.f29145b = user;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int currentTop;
-        String obj = editable.toString();
-        if (!obj.isEmpty()) {
-            f00 f00Var = this.f30577a.G;
-            if (f00Var != null) {
-                f00Var.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            s4.i0 adapter = this.f30577a.f25718s.getAdapter();
-            ek ekVar = this.f30577a;
-            if (adapter != ekVar.E) {
-                currentTop = ekVar.getCurrentTop();
-                this.f30577a.G.setText(LocaleController.getString(R.string.NoContacts));
-                this.f30577a.G.c();
-                ek ekVar2 = this.f30577a;
-                ekVar2.f25718s.setAdapter(ekVar2.E);
-                this.f30577a.E.l();
-                if (currentTop > 0) {
-                    this.f30577a.v.h1(0, -currentTop);
-                }
-            }
+    public final String run() {
+        jf.b c10;
+        StringBuilder sb2;
+        String str;
+        switch (this.f29144a) {
+            case 0:
+                c10 = jf.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f29145b.phone;
+                break;
+            default:
+                c10 = jf.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f29145b.phone;
+                break;
         }
-        ak akVar = this.f30577a.F;
-        if (akVar != null) {
-            if (akVar.f24413f != null) {
-                Utilities.searchQueue.cancelRunnable(akVar.f24413f);
-                akVar.f24413f = null;
-            }
-            int i10 = akVar.h + 1;
-            akVar.h = i10;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
-            zj zjVar = new zj(akVar, obj, i10, 0);
-            akVar.f24413f = zjVar;
-            dispatchQueue.postRunnable(zjVar, 300L);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        return org.telegram.messenger.yh.g(sb2, str, c10);
     }
 }

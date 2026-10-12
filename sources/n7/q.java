@@ -28,12 +28,12 @@ public final class q extends o {
 
     @Override
     public final Iterator iterator() {
-        return t().listIterator(0);
+        return s().listIterator(0);
     }
 
     @Override
-    public final d0 p() {
-        return t().listIterator(0);
+    public final d0 o() {
+        return s().listIterator(0);
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class q extends o {
     }
 
     @Override
-    public final m u() {
+    public final m t() {
         return new p(this);
     }
 }

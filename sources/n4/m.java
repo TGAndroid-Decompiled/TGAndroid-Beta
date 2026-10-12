@@ -1,64 +1,192 @@
 package n4;
 
-import android.graphics.Bitmap;
-import android.media.MediaDescription;
-import android.net.Uri;
+import android.os.Binder;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.Parcel;
-import android.os.Parcelable;
-public final class m implements Parcelable {
-    public static final Parcelable.Creator<m> CREATOR = new m8.h(3);
-    public final String f16327a;
-    public final CharSequence f16328b;
-    public final CharSequence f16329c;
-    public final CharSequence d;
-    public final Bitmap f16330e;
-    public final Uri f16331f;
-    public final Bundle h;
-    public final Uri f16332n;
-    public MediaDescription f16333r;
+import android.os.SystemClock;
+import java.lang.ref.WeakReference;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+public final class m extends Binder implements d {
+    public static final int f16012b = 0;
+    public final WeakReference f16013a;
 
-    public m(String str, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Bitmap bitmap, Uri uri, Bundle bundle, Uri uri2) {
-        this.f16327a = str;
-        this.f16328b = charSequence;
-        this.f16329c = charSequence2;
-        this.d = charSequence3;
-        this.f16330e = bitmap;
-        this.f16331f = uri;
-        this.h = bundle;
-        this.f16332n = uri2;
+    public m(n nVar) {
+        attachInterface(this, "android.support.v4.media.session.IMediaSession");
+        this.f16013a = new WeakReference(nVar);
     }
 
-    public final MediaDescription a() {
-        MediaDescription mediaDescription = this.f16333r;
-        if (mediaDescription != null) {
-            return mediaDescription;
+    public final void F0(b bVar) {
+        n nVar = (n) this.f16013a.get();
+        if (nVar != null && bVar != null) {
+            nVar.f16017f.register(bVar, new t("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
+            synchronized (nVar.d) {
+            }
         }
-        MediaDescription.Builder builder = new MediaDescription.Builder();
-        builder.setMediaId(this.f16327a);
-        builder.setTitle(this.f16328b);
-        builder.setSubtitle(this.f16329c);
-        builder.setDescription(this.d);
-        builder.setIconBitmap(this.f16330e);
-        builder.setIconUri(this.f16331f);
-        builder.setExtras(this.h);
-        builder.setMediaUri(this.f16332n);
-        MediaDescription build = builder.build();
-        this.f16333r = build;
-        return build;
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final String toString() {
-        return ((Object) this.f16328b) + ", " + ((Object) this.f16329c) + ", " + ((Object) this.d);
+    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
+        long j10;
+        Bundle bundle;
+        b bVar = null;
+        r5 = null;
+        Bundle bundle2 = null;
+        y yVar = null;
+        b bVar2 = null;
+        if (i10 != 3) {
+            if (i10 != 4) {
+                if (i10 != 28) {
+                    int i12 = -1;
+                    if (i10 != 37) {
+                        if (i10 != 45) {
+                            if (i10 != 47) {
+                                if (i10 != 50) {
+                                    if (i10 != 1598968902) {
+                                        return super.onTransact(i10, parcel, parcel2, i11);
+                                    }
+                                    parcel2.getClass();
+                                    parcel2.writeString("android.support.v4.media.session.IMediaSession");
+                                    return true;
+                                }
+                                parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                                n nVar = (n) this.f16013a.get();
+                                if (nVar != null && (bundle = nVar.e) != null) {
+                                    bundle2 = new Bundle(bundle);
+                                }
+                                parcel2.getClass();
+                                parcel2.writeNoException();
+                                if (bundle2 != null) {
+                                    parcel2.writeInt(1);
+                                    bundle2.writeToParcel(parcel2, 1);
+                                    return true;
+                                }
+                                parcel2.writeInt(0);
+                                return true;
+                            }
+                            parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                            n nVar2 = (n) this.f16013a.get();
+                            if (nVar2 != null) {
+                                i12 = nVar2.f16021k;
+                            }
+                            parcel2.getClass();
+                            parcel2.writeNoException();
+                            parcel2.writeInt(i12);
+                            return true;
+                        }
+                        parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                        n nVar3 = (n) this.f16013a.get();
+                        parcel2.getClass();
+                        parcel2.writeNoException();
+                        parcel2.writeInt(0);
+                        return true;
+                    }
+                    parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                    n nVar4 = (n) this.f16013a.get();
+                    if (nVar4 != null) {
+                        i12 = nVar4.f16020j;
+                    }
+                    parcel2.getClass();
+                    parcel2.writeNoException();
+                    parcel2.writeInt(i12);
+                    return true;
+                }
+                parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+                n nVar5 = (n) this.f16013a.get();
+                if (nVar5 != null) {
+                    yVar = nVar5.f16018g;
+                    i iVar = nVar5.f16019i;
+                    if (yVar != null) {
+                        float f7 = yVar.d;
+                        long j11 = yVar.f16047n;
+                        int i13 = yVar.f16043a;
+                        long j12 = yVar.f16044b;
+                        long j13 = -1;
+                        if (j12 != -1 && ((i13 == 3 || i13 == 4 || i13 == 5) && j11 > 0)) {
+                            long elapsedRealtime = SystemClock.elapsedRealtime();
+                            long j14 = (f7 * ((float) (elapsedRealtime - j11))) + j12;
+                            if (iVar != null) {
+                                Bundle bundle3 = iVar.f16006a;
+                                if (bundle3.containsKey("android.media.metadata.DURATION")) {
+                                    j13 = bundle3.getLong("android.media.metadata.DURATION", 0L);
+                                }
+                            }
+                            if (j13 >= 0 && j14 > j13) {
+                                j10 = j13;
+                            } else if (j14 < 0) {
+                                j10 = 0;
+                            } else {
+                                j10 = j14;
+                            }
+                            ArrayList arrayList = new ArrayList();
+                            long j15 = yVar.f16045c;
+                            long j16 = yVar.e;
+                            int i14 = yVar.f16046f;
+                            CharSequence charSequence = yVar.h;
+                            AbstractCollection abstractCollection = yVar.f16048r;
+                            if (abstractCollection != null) {
+                                arrayList.addAll(abstractCollection);
+                            }
+                            yVar = new y(yVar.f16043a, j10, j15, yVar.d, j16, i14, charSequence, elapsedRealtime, arrayList, yVar.f16049s, yVar.v);
+                        }
+                    }
+                }
+                parcel2.getClass();
+                parcel2.writeNoException();
+                if (yVar != null) {
+                    parcel2.writeInt(1);
+                    yVar.writeToParcel(parcel2, 1);
+                    return true;
+                }
+                parcel2.writeInt(0);
+                return true;
+            }
+            parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+            IBinder readStrongBinder = parcel.readStrongBinder();
+            if (readStrongBinder != null) {
+                IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("android.support.v4.media.session.IMediaControllerCallback");
+                if (queryLocalInterface != null && (queryLocalInterface instanceof b)) {
+                    bVar2 = (b) queryLocalInterface;
+                } else {
+                    ?? obj = new Object();
+                    obj.f15991a = readStrongBinder;
+                    bVar2 = obj;
+                }
+            }
+            n nVar6 = (n) this.f16013a.get();
+            if (nVar6 != null && bVar2 != null) {
+                nVar6.f16017f.unregister(bVar2);
+                Binder.getCallingPid();
+                Binder.getCallingUid();
+                synchronized (nVar6.d) {
+                }
+            }
+            parcel2.getClass();
+            parcel2.writeNoException();
+            return true;
+        }
+        parcel.enforceInterface("android.support.v4.media.session.IMediaSession");
+        IBinder readStrongBinder2 = parcel.readStrongBinder();
+        if (readStrongBinder2 != null) {
+            IInterface queryLocalInterface2 = readStrongBinder2.queryLocalInterface("android.support.v4.media.session.IMediaControllerCallback");
+            if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof b)) {
+                bVar = (b) queryLocalInterface2;
+            } else {
+                ?? obj2 = new Object();
+                obj2.f15991a = readStrongBinder2;
+                bVar = obj2;
+            }
+        }
+        F0(bVar);
+        parcel2.getClass();
+        parcel2.writeNoException();
+        return true;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        a().writeToParcel(parcel, i10);
+    public final IBinder asBinder() {
+        return this;
     }
 }

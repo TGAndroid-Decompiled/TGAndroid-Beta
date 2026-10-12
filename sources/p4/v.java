@@ -1,30 +1,31 @@
 package p4;
 
 import android.content.ComponentName;
-import com.google.android.gms.internal.vision.h3;
+import com.google.android.gms.internal.vision.g3;
 import java.util.ArrayList;
+import ji.d4;
 public final class v {
-    public final h3 f45335a;
-    public final ArrayList f45336b = new ArrayList();
-    public final boolean f45337c;
-    public final k2.g0 d;
-    public b2.p f45338e;
+    public final g3 f43117a;
+    public final ArrayList f43118b = new ArrayList();
+    public final boolean f43119c;
+    public final d4 d;
+    public b2.u e;
 
-    public v(h3 h3Var, boolean z10) {
-        this.f45335a = h3Var;
-        this.d = (k2.g0) h3Var.d;
-        this.f45337c = z10;
+    public v(g3 g3Var, boolean z10) {
+        this.f43117a = g3Var;
+        this.d = (d4) g3Var.d;
+        this.f43119c = z10;
     }
 
     public final w a(String str) {
-        ArrayList arrayList = this.f45336b;
+        ArrayList arrayList = this.f43118b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             w wVar = (w) obj;
-            if (wVar.f45342b.equals(str)) {
+            if (wVar.f43121b.equals(str)) {
                 return wVar;
             }
         }
@@ -32,6 +33,6 @@ public final class v {
     }
 
     public final String toString() {
-        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f14467b).getPackageName() + " }";
+        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f13233b).getPackageName() + " }";
     }
 }

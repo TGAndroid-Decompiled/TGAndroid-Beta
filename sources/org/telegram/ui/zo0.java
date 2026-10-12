@@ -1,37 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class zo0 implements Utilities.Callback {
-    public final int f44895a;
-    public final cq0 f44896b;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class zo0 extends ClickableSpan {
+    public final cp0 f42689a;
 
-    public zo0(cq0 cq0Var, int i10) {
-        this.f44895a = i10;
-        this.f44896b = cq0Var;
+    public zo0(cp0 cp0Var) {
+        this.f42689a = cp0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f44895a) {
-            case 0:
-                cq0 cq0Var = this.f44896b;
-                cq0Var.f36493r = false;
-                cq0Var.Q.setLoading(false);
-                if (((Boolean) obj).booleanValue()) {
-                    cq0Var.x0();
-                    cq0Var.finishFragment();
-                    cq0Var.E0();
-                    return;
-                }
-                return;
-            default:
-                Integer num = (Integer) obj;
-                ci.h1 h1Var = this.f44896b.I;
-                if (h1Var != null) {
-                    h1Var.D(num.intValue());
-                    return;
-                }
-                return;
-        }
+    public final void onClick(View view) {
+        cp0 cp0Var = this.f42689a;
+        cp0Var.presentFragment(new oh1(6, cp0Var.f34996a0));
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(false);
     }
 }

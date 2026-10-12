@@ -1,12 +1,8 @@
 package xb;
+public final class b {
+    public final qa.b f48377a;
 
-import androidx.lifecycle.b0;
-import androidx.lifecycle.m;
-import androidx.lifecycle.s;
-import com.google.android.gms.common.api.n;
-import java.io.Closeable;
-public interface b extends Closeable, s, n {
-    @Override
-    @b0(m.ON_DESTROY)
-    void close();
+    public b(qa.b bVar) {
+        this.f48377a = bVar;
+    }
 }

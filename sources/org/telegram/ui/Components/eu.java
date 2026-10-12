@@ -1,31 +1,29 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class eu implements fu {
-    public final int f25786a;
-    public final Object f25787b;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class eu implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24794a;
+    public final View f24795b;
 
-    public eu(Object obj, int i10) {
-        this.f25786a = i10;
-        this.f25787b = obj;
+    public eu(int i10, View view) {
+        this.f24794a = i10;
+        this.f24795b = view;
     }
 
     @Override
-    public final void a(int i10, boolean z10) {
-        switch (this.f25786a) {
+    public final boolean onPreDraw() {
+        switch (this.f24794a) {
             case 0:
-                ArrayList arrayList = ((hu) this.f25787b).f26895b;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    ((fu) obj).a(i10, z10);
+                org.telegram.ui.ActionBar.g4 g4Var = ((EditTextBoldCursor) this.f24795b).floatingActionMode;
+                if (g4Var != null) {
+                    g4Var.c();
+                    return true;
                 }
-                return;
+                return true;
             default:
-                ((Runnable) this.f25787b).run();
-                return;
+                ((k80) this.f24795b).invalidate();
+                return true;
         }
     }
 }

@@ -1,34 +1,35 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
 import android.view.View;
-import android.view.Window;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
-import org.telegram.ui.Components.q81;
-public final class bi implements ValueAnimator.AnimatorUpdateListener {
-    public final int f17195a;
-    public final Object f17196b;
-    public final Object f17197c;
+public final class bi implements Runnable {
+    public final int f16888a = 0;
+    public final RichMessageLayout.Text f16889b;
+    public final RichMessageLayout f16890c;
+    public final View d;
 
-    public bi(int i10, Object obj, Object obj2) {
-        this.f17195a = i10;
-        this.f17196b = obj;
-        this.f17197c = obj2;
+    public bi(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
+        this.f16889b = text;
+        this.d = view;
+        this.f16890c = richMessageLayout;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f17195a) {
+    public final void run() {
+        switch (this.f16888a) {
             case 0:
-                ((RichMessageLayout.SpoilerReveal) this.f17196b).lambda$start$0((View) this.f17197c, valueAnimator);
-                return;
-            case 1:
-                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f17196b, (Window) this.f17197c, valueAnimator);
+                RichMessageLayout.Text.c(this.f16889b, this.d, this.f16890c);
                 return;
             default:
-                ((MediaController) this.f17196b).lambda$cleanupPlayer$10((q81) this.f17197c, valueAnimator);
+                RichMessageLayout richMessageLayout = this.f16890c;
+                RichMessageLayout.Text.a(this.f16889b, this.d, richMessageLayout);
                 return;
         }
+    }
+
+    public bi(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
+        this.f16889b = text;
+        this.f16890c = richMessageLayout;
+        this.d = view;
     }
 }

@@ -1,70 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class ii extends cv {
-    public final aj V;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SendMessagesHelper;
+public final class ii implements gk {
+    public final vi f25981a;
 
-    public ii(aj ajVar, Context context, qi qiVar, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, qiVar, null, 1, true, c6Var);
-        this.V = ajVar;
+    public ii(vi viVar) {
+        this.f25981a = viVar;
     }
 
     @Override
-    public final void f() {
-        super.f();
-        d00 emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f25135w0 = false;
-            emojiView.f25137w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
+    public final void O() {
+        this.f25981a.E1(true);
+    }
+
+    @Override
+    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
+        vi viVar = this.f25981a;
+        gk gkVar = viVar.X;
+        if (gkVar != null) {
+            gkVar.l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
+            return;
         }
-    }
-
-    @Override
-    public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.V.f24338f0;
-        if (m2Var instanceof org.telegram.ui.eo) {
-            org.telegram.ui.eo.n8(menu, ((org.telegram.ui.eo) m2Var).h, true, true, true, true);
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        aj ajVar = this.V;
-        ii iiVar = ajVar.S0;
-        if (!ajVar.f24396x1) {
-            if (motionEvent.getX() > iiVar.getEditText().getLeft() && motionEvent.getX() < iiVar.getEditText().getRight() && motionEvent.getY() > iiVar.getEditText().getTop() && motionEvent.getY() < iiVar.getEditText().getBottom()) {
-                ajVar.w1(iiVar.getEditText(), true);
-            } else {
-                ajVar.w1(iiVar.getEditText(), false);
+        org.telegram.ui.ActionBar.m2 m2Var = viVar.f30001f0;
+        if (m2Var instanceof gk) {
+            ((gk) m2Var).l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
+        } else if (m2Var instanceof org.telegram.ui.un0) {
+            org.telegram.ui.un0 un0Var = (org.telegram.ui.un0) m2Var;
+            ArrayList arrayList4 = new ArrayList();
+            int size = arrayList.size();
+            for (int i11 = 0; i11 < size; i11++) {
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                sendingMediaInfo.path = (String) arrayList.get(i11);
+                arrayList4.add(sendingMediaInfo);
             }
+            un0Var.F1(arrayList4);
         }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.V.f2();
+    public final void m(long j10, ArrayList arrayList, boolean z10, int i10) {
+        vi viVar = this.f25981a;
+        gk gkVar = viVar.X;
+        if (gkVar != null) {
+            gkVar.m(j10, arrayList, z10, i10);
+            return;
+        }
+        org.telegram.ui.ActionBar.m2 m2Var = viVar.f30001f0;
+        if (m2Var instanceof org.telegram.ui.fo) {
+            ((org.telegram.ui.fo) m2Var).m(j10, arrayList, z10, i10);
+        } else if (m2Var instanceof org.telegram.ui.un0) {
+            ((org.telegram.ui.un0) m2Var).F1(arrayList);
+        }
     }
 
     @Override
-    public final void q(int i10, int i11) {
-        boolean z10;
-        aj ajVar = this.V;
-        ajVar.f2();
-        if (ajVar.f24327c0) {
-            if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final void y() {
+        vi viVar = this.f25981a;
+        gk gkVar = viVar.X;
+        if (gkVar != null) {
+            gkVar.y();
+            return;
+        }
+        org.telegram.ui.ActionBar.m2 m2Var = viVar.f30001f0;
+        if (m2Var instanceof gk) {
+            ((gk) m2Var).y();
+        } else if (m2Var instanceof org.telegram.ui.un0) {
+            org.telegram.ui.un0 un0Var = (org.telegram.ui.un0) m2Var;
+            un0Var.getClass();
+            try {
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+                intent.setType("*/*");
+                un0Var.startActivityForResult(intent, 21);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
-            ajVar.Q1(z10);
         }
     }
 }

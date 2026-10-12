@@ -1,28 +1,30 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.Utilities;
-public final class w implements Utilities.CallbackReturn {
-    public final int f20074a;
-    public final InputSerializedData f20075b;
+public final class w implements Utilities.Callback {
+    public final int f19484a;
+    public final OutputSerializedData f19485b;
 
-    public w(int i10, InputSerializedData inputSerializedData) {
-        this.f20074a = i10;
-        this.f20075b = inputSerializedData;
+    public w(OutputSerializedData outputSerializedData, int i10) {
+        this.f19484a = i10;
+        this.f19485b = outputSerializedData;
     }
 
     @Override
-    public final Object run(Object obj) {
-        int i10 = this.f20074a;
-        boolean booleanValue = ((Boolean) obj).booleanValue();
-        switch (i10) {
+    public final void run(Object obj) {
+        switch (this.f19484a) {
             case 0:
-                return Long.valueOf(this.f20075b.readInt64(booleanValue));
+                this.f19485b.writeInt64(((Long) obj).longValue());
+                return;
             case 1:
-                return Integer.valueOf(this.f20075b.readInt32(booleanValue));
+                this.f19485b.writeInt32(((Integer) obj).intValue());
+                return;
             case 2:
-                return this.f20075b.readString(booleanValue);
+                this.f19485b.writeByteArray((byte[]) obj);
+                return;
             default:
-                return this.f20075b.readByteArray(booleanValue);
+                this.f19485b.writeString((String) obj);
+                return;
         }
     }
 }

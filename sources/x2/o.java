@@ -1,63 +1,15 @@
 package x2;
 
-import e9.x0;
-import e9.z;
-import j$.util.Objects;
-public final class o extends n {
-    public final int E;
-    public final boolean F;
-    public final int G;
-    public final boolean H;
-    public final int I;
-    public final boolean J;
-    public final boolean K;
-    public final int L;
-    public final boolean f50756e;
-    public final i f50757f;
-    public final boolean h;
-    public final boolean f50758n;
-    public final boolean f50759r;
-    public final int f50760s;
-    public final int v;
-    public final int f50761w;
-    public final int f50762x;
-    public final int f50763y;
+import b2.q1;
+public final class o {
+    public final q1 f47783a;
+    public final int[] f47784b;
 
-    public o(int r7, b2.l1 r8, int r9, x2.i r10, int r11, java.lang.String r12, int r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: x2.o.<init>(int, b2.l1, int, x2.i, int, java.lang.String, int, boolean):void");
-    }
-
-    public static int c(o oVar, o oVar2) {
-        z c10 = z.f8817a.c(oVar.f50758n, oVar2.f50758n);
-        Integer valueOf = Integer.valueOf(oVar.f50762x);
-        Integer valueOf2 = Integer.valueOf(oVar2.f50762x);
-        x0 x0Var = x0.f8815c;
-        z b10 = c10.b(valueOf, valueOf2, x0Var).a(oVar.f50763y, oVar2.f50763y).a(oVar.E, oVar2.E).c(oVar.F, oVar2.F).a(oVar.G, oVar2.G).c(oVar.f50759r, oVar2.f50759r).c(oVar.f50756e, oVar2.f50756e).c(oVar.h, oVar2.h).b(Integer.valueOf(oVar.f50761w), Integer.valueOf(oVar2.f50761w), x0Var);
-        boolean z10 = oVar.J;
-        z c11 = b10.c(z10, oVar2.J);
-        boolean z11 = oVar.K;
-        z c12 = c11.c(z11, oVar2.K);
-        if (z10 && z11) {
-            c12 = c12.a(oVar.L, oVar2.L);
+    public o(q1 q1Var, int... iArr) {
+        if (iArr.length == 0) {
+            e2.a.d("ETSDefinition", "Empty tracks are not allowed", new IllegalArgumentException());
         }
-        return c12.e();
-    }
-
-    @Override
-    public final int a() {
-        return this.I;
-    }
-
-    @Override
-    public final boolean b(n nVar) {
-        o oVar = (o) nVar;
-        if (this.H || Objects.equals(this.d.f3641r, oVar.d.f3641r)) {
-            this.f50757f.getClass();
-            if (this.J == oVar.J && this.K == oVar.K) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+        this.f47783a = q1Var;
+        this.f47784b = iArr;
     }
 }

@@ -1,185 +1,137 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class qi0 extends y9 implements vw0 {
-    public final int G;
-    public RadialProgress2 H;
-    public ValueAnimator I;
-    public float J;
-    public long K;
-    public boolean L;
-    public final int M;
-    public final Paint N;
-    public Runnable O;
-    public final wi0 P;
+import org.telegram.messenger.NotchInfoUtils;
+import org.telegram.messenger.Utilities;
+public final class qi0 implements si0 {
+    public Bitmap f28614a;
+    public Canvas f28615b;
+    public final Paint f28616c;
+    public final Paint d;
+    public int e;
+    public int f28617f;
+    public int f28618g;
+    public int h;
+    public final ti0 f28619i;
 
-    public qi0(wi0 wi0Var, Context context, int i10, Paint paint) {
-        super(context);
-        this.P = wi0Var;
-        this.G = AndroidUtilities.dp(64.0f);
-        this.K = -1L;
-        this.M = i10;
-        this.N = paint;
-        setLayerNum(wi0Var.l1);
+    public qi0(ti0 ti0Var) {
+        this.f28619i = ti0Var;
+        Paint paint = new Paint();
+        this.f28616c = paint;
+        Paint paint2 = new Paint();
+        this.d = paint2;
+        paint.setFlags(7);
+        paint.setFilterBitmap(true);
+        paint2.setFlags(7);
+        paint2.setFilterBitmap(true);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+        paint.setColorFilter(new ColorMatrixColorFilter(new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 60.0f, -7500.0f}));
     }
 
     @Override
-    public final void g(Runnable runnable) {
-        this.O = runnable;
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        super.invalidate(i10, i11, i12, i13);
-        Runnable runnable = this.O;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public final void c(xv xvVar, Canvas canvas) {
         Canvas canvas2;
-        ya0 ya0Var;
-        long j3;
-        wi0 wi0Var = this.P;
-        float[] fArr = wi0Var.O0;
-        Path path = wi0Var.M0;
-        ArrayList arrayList = wi0Var.f32404b1;
-        RectF rectF = wi0Var.N0;
-        org.telegram.ui.sv0 sv0Var = wi0Var.f32410h1;
-        if (sv0Var == null || !sv0Var.f42007n) {
-            if (this.H != null) {
-                int k10 = wi0Var.D0.k(this.M);
-                if (wi0Var.f32411i1) {
-                    k10--;
-                }
-                Drawable drawable = getImageReceiver().getDrawable();
-                long j10 = 0;
-                if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(drawable == null || (this.L && (!(drawable instanceof f6) || ((f6) drawable).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
-                    if (this.I == null) {
-                        RadialProgress2 radialProgress2 = this.H;
-                        if (radialProgress2.f24040c) {
-                            ya0Var = radialProgress2.f24045j;
-                        } else {
-                            ya0Var = radialProgress2.f24044i;
-                        }
-                        if (ya0Var.f33029w < 1.0f) {
-                            radialProgress2.o(1.0f, true);
-                            j10 = 100;
-                        }
-                        this.J = this.H.E;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        this.I = ofFloat;
-                        ofFloat.setStartDelay(j10);
-                        this.I.setDuration(this.J * 250.0f);
-                        this.I.setInterpolator(js.f27634f);
-                        this.I.addUpdateListener(new m80(this, 5));
-                        this.I.addListener(new ei.v2(this, k10, 9));
-                        this.I.start();
+        int i10;
+        int i11;
+        ti0 ti0Var = (ti0) xvVar.f31335b;
+        ti0 ti0Var2 = this.f28619i;
+        Paint paint = ti0Var2.f29393a;
+        Bitmap bitmap = this.f28614a;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            int a2 = (int) ((1.0f - ((w7.s.a(ti0Var2.f29396f, 0.2f, 0.3f) - 0.2f) / 0.10000001f)) * 255.0f);
+            float width = (ti0Var2.getWidth() - this.f28617f) / 2.0f;
+            canvas.save();
+            canvas.translate(0.0f, -AndroidUtilities.dp(32.0f));
+            if (a2 != 255) {
+                this.f28614a.eraseColor(0);
+                this.f28615b.save();
+                this.f28615b.scale(this.f28614a.getWidth() / this.f28618g, this.f28614a.getHeight() / this.h);
+                float f7 = -width;
+                this.f28615b.translate(f7, 0.0f);
+                ti0.a(ti0Var, this.f28615b);
+                this.f28615b.restore();
+                this.f28615b.save();
+                this.f28615b.scale(this.f28614a.getWidth() / this.f28618g, this.f28614a.getHeight() / this.h);
+                if (ti0Var2.f29397n != null) {
+                    this.f28615b.save();
+                    this.f28615b.translate(f7, AndroidUtilities.dp(32.0f));
+                    NotchInfoUtils.NotchInfo notchInfo = ti0Var2.f29397n;
+                    if (notchInfo.isLikelyCircle) {
+                        Canvas canvas3 = this.f28615b;
+                        float centerX = ti0Var2.f29397n.bounds.centerX();
+                        RectF rectF = ti0Var2.f29397n.bounds;
+                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(notchInfo.bounds.width(), ti0Var2.f29397n.bounds.height()) / 2.0f, paint);
+                    } else if (notchInfo.isAccurate) {
+                        this.f28615b.drawPath(notchInfo.path, paint);
+                    } else {
+                        float max = Math.max(notchInfo.bounds.width(), ti0Var2.f29397n.bounds.height()) / 2.0f;
+                        this.f28615b.drawRoundRect(ti0Var2.f29397n.bounds, max, max, paint);
                     }
+                    this.f28615b.restore();
                 } else {
-                    if (this.K < 0) {
-                        this.K = System.currentTimeMillis();
-                    } else {
-                        long currentTimeMillis = System.currentTimeMillis() - this.K;
-                        if (this.L) {
-                            j3 = 250;
-                        } else {
-                            j3 = 750;
-                        }
-                        if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
-                            this.H.E = js.f27634f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
-                        }
-                    }
-                    if (wi0Var.f32409g1) {
-                        invalidate();
-                    } else {
-                        postInvalidateOnAnimation();
-                    }
-                    invalidate();
+                    this.f28615b.drawRect(0.0f, 0.0f, this.f28617f, AndroidUtilities.dp(32.0f), paint);
                 }
-                int i10 = wi0Var.f32414m1;
-                if (i10 == 0 && wi0Var.f32415n1 == 0) {
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
-                    canvas2 = canvas;
-                } else {
-                    canvas2 = canvas;
-                    int i11 = wi0Var.f32415n1;
-                    Paint paint = this.N;
-                    if (i10 == i11) {
-                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        float f7 = wi0Var.f32414m1;
-                        canvas2.drawRoundRect(rectF, f7, f7, paint);
-                    } else {
-                        path.reset();
-                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        for (int i12 = 0; i12 < 4; i12++) {
-                            fArr[i12] = wi0Var.f32414m1;
-                            fArr[i12 + 4] = wi0Var.f32415n1;
-                        }
-                        path.addRoundRect(rectF, fArr, Path.Direction.CW);
-                        canvas2.drawPath(path, paint);
-                    }
-                }
+                this.f28615b.restore();
+                Utilities.stackBlurBitmap(this.f28614a, (int) ((ti0Var2.d * 2.0f) / 6.0f));
+                canvas.save();
+                canvas.translate(width, 0.0f);
+                i10 = 255;
+                canvas2 = canvas;
+                canvas2.saveLayer(0.0f, 0.0f, this.f28618g, this.h, null);
+                canvas2.scale(this.f28618g / this.f28614a.getWidth(), this.h / this.f28614a.getHeight());
+                canvas2.drawBitmap(this.f28614a, 0.0f, 0.0f, this.f28616c);
+                canvas2.drawBitmap(this.f28614a, 0.0f, 0.0f, this.d);
+                canvas2.restore();
+                canvas2.restore();
             } else {
                 canvas2 = canvas;
+                i10 = 255;
             }
-            super.onDraw(canvas);
-            RadialProgress2 radialProgress22 = this.H;
-            if (radialProgress22 != null && radialProgress22.E > 0.0f) {
-                radialProgress22.draw(canvas2);
+            if (a2 != 0) {
+                if (a2 != i10) {
+                    i11 = a2;
+                    canvas2.saveLayerAlpha(width, 0.0f, width + this.f28617f, this.e, i11);
+                } else {
+                    i11 = a2;
+                }
+                ti0.a(ti0Var, canvas2);
+                if (i11 != i10) {
+                    canvas2.restore();
+                }
             }
+            canvas2.restore();
         }
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int i14;
-        super.onSizeChanged(i10, i11, i12, i13);
-        if (this.H != null) {
-            if (this.P.f32422z0.getOccupyStatusBar()) {
-                i14 = AndroidUtilities.statusBarHeight;
-            } else {
-                i14 = 0;
-            }
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i14;
-            int dp2 = AndroidUtilities.dp2(80.0f);
-            RadialProgress2 radialProgress2 = this.H;
-            int i15 = this.G;
-            int i16 = (i11 - currentActionBarHeight) - dp2;
-            radialProgress2.q((i10 - i15) / 2, hg.c.C(i16, i15, 2, currentActionBarHeight), (i10 + i15) / 2, ((i16 + i15) / 2) + currentActionBarHeight);
+    public final void d(int i10, int i11) {
+        Bitmap bitmap = this.f28614a;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.f28614a = null;
         }
+        this.f28617f = Math.min(AndroidUtilities.dp(120.0f), i10);
+        int min = Math.min(AndroidUtilities.dp(220.0f), i11);
+        this.e = min;
+        this.f28618g = this.f28617f;
+        int dp = AndroidUtilities.dp(32.0f) + min;
+        this.h = dp;
+        this.f28614a = Bitmap.createBitmap((int) (this.f28618g / 6.0f), (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
+        this.f28615b = new Canvas(this.f28614a);
     }
 
     @Override
-    public final void invalidate(Rect rect) {
-        super.invalidate(rect);
-        Runnable runnable = this.O;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public final void a(float f7) {
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        wi0 wi0Var = this.P;
-        if (wi0Var.f32409g1) {
-            wi0Var.invalidate();
-        }
-        Runnable runnable = this.O;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public final void b(float f7) {
     }
 }

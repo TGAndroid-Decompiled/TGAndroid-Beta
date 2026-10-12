@@ -1,16 +1,16 @@
 package x7;
 public final class g7 {
-    public final Long f51016a;
-    public final n7 f51017b;
-    public final Boolean f51018c;
+    public final Long f48005a;
+    public final n7 f48006b;
+    public final Boolean f48007c;
     public final Boolean d;
-    public final Boolean f51019e;
+    public final Boolean e;
 
-    public g7(ci.u5 u5Var) {
-        this.f51016a = (Long) u5Var.f6063a;
-        this.f51017b = (n7) u5Var.f6064b;
-        this.f51018c = (Boolean) u5Var.f6065c;
-        this.d = (Boolean) u5Var.d;
-        this.f51019e = (Boolean) u5Var.f6066e;
+    public g7(com.google.android.gms.internal.cast.z5 z5Var) {
+        this.f48005a = (Long) z5Var.f5426b;
+        this.f48006b = (n7) z5Var.f5427c;
+        this.f48007c = (Boolean) z5Var.f5425a;
+        this.d = (Boolean) z5Var.d;
+        this.e = (Boolean) z5Var.e;
     }
 }

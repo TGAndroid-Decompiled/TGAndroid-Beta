@@ -1,78 +1,34 @@
 package u2;
-public abstract class o1 extends l {
-    public final a f48895k;
+public final class o1 implements d1 {
+    public final d1 f46012a;
+    public final long f46013b;
 
-    public o1(a aVar) {
-        this.f48895k = aVar;
-    }
-
-    public abstract void A(b2.k1 k1Var);
-
-    public final void B() {
-        y(null, this.f48895k);
-    }
-
-    public void C() {
-        B();
+    public o1(d1 d1Var, long j10) {
+        this.f46012a = d1Var;
+        this.f46013b = j10;
     }
 
     @Override
-    public boolean a(b2.k0 k0Var) {
-        return this.f48895k.a(k0Var);
+    public final void d() {
+        this.f46012a.d();
     }
 
     @Override
-    public b2.k1 h() {
-        return this.f48895k.h();
+    public final boolean e() {
+        return this.f46012a.e();
     }
 
     @Override
-    public final b2.k0 i() {
-        return this.f48895k.i();
+    public final int f(qf.b bVar, h2.h hVar, int i10) {
+        int f7 = this.f46012a.f(bVar, hVar, i10);
+        if (f7 == -4) {
+            hVar.e += this.f46013b;
+        }
+        return f7;
     }
 
     @Override
-    public boolean j() {
-        return this.f48895k.j();
-    }
-
-    @Override
-    public final void m(g2.c0 c0Var) {
-        this.f48857j = c0Var;
-        this.f48856i = e2.d0.o(null);
-        C();
-    }
-
-    @Override
-    public void t(b2.k0 k0Var) {
-        this.f48895k.t(k0Var);
-    }
-
-    @Override
-    public final f0 u(Object obj, f0 f0Var) {
-        Void r12 = (Void) obj;
-        return z(f0Var);
-    }
-
-    @Override
-    public final long v(Object obj, long j3) {
-        Void r12 = (Void) obj;
-        return j3;
-    }
-
-    @Override
-    public final int w(int i10, Object obj) {
-        Void r22 = (Void) obj;
-        return i10;
-    }
-
-    @Override
-    public final void x(Object obj, a aVar, b2.k1 k1Var) {
-        Void r12 = (Void) obj;
-        A(k1Var);
-    }
-
-    public f0 z(f0 f0Var) {
-        return f0Var;
+    public final int m(long j10) {
+        return this.f46012a.m(j10 - this.f46013b);
     }
 }

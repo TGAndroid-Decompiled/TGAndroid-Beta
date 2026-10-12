@@ -1,50 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import java.io.File;
-import org.telegram.ui.WallpapersListActivity;
-public final class ba1 {
-    public String f24591a;
-    public final Activity f24592b;
-    public final org.telegram.ui.ActionBar.m2 f24593c;
-    public final aa1 d;
-    public File f24594e;
+import android.os.AsyncTask;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.BuildVars;
+public final class ba1 extends AsyncTask {
+    public final String f23731a;
+    public final CountDownLatch f23732b = new CountDownLatch(1);
+    public final String[] f23733c = new String[2];
+    public String d;
+    public final ca1 e;
 
-    public ba1(Activity activity, WallpapersListActivity wallpapersListActivity, aa1 aa1Var) {
-        this.f24592b = activity;
-        this.f24593c = wallpapersListActivity;
-        this.d = aa1Var;
+    public ba1(ca1 ca1Var, String str) {
+        this.e = ca1Var;
+        this.f23731a = str;
     }
 
-    public final void a(int r9, int r10, android.content.Intent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ba1.a(int, int, android.content.Intent):void");
+    @Override
+    public final java.lang.Object doInBackground(java.lang.Object[] r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ba1.doInBackground(java.lang.Object[]):java.lang.Object");
     }
 
-    public final void b() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f24593c;
-        if (m2Var != null) {
-            Activity parentActivity = m2Var.getParentActivity();
-            if (parentActivity != null) {
-                if (Build.VERSION.SDK_INT >= 33) {
-                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
-                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
-                        return;
-                    }
-                } else if (parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    return;
-                }
+    @Override
+    public final void onPostExecute(Object obj) {
+        String[] strArr = (String[]) obj;
+        String str = strArr[0];
+        ca1 ca1Var = this.e;
+        if (str != null) {
+            if (BuildVars.LOGS_ENABLED) {
+                StringBuilder sb2 = new StringBuilder("start play youtube video ");
+                sb2.append(strArr[1]);
+                sb2.append(" ");
+                i2.d.t(strArr[0], sb2);
             }
-            org.telegram.ui.mq0 mq0Var = new org.telegram.ui.mq0(2, false, false, null);
-            mq0Var.f40119x = false;
-            mq0Var.V = new z91(this);
-            m2Var.presentFragment(mq0Var);
-            return;
+            ca1Var.f24008w = true;
+            ca1Var.f24009x = strArr[0];
+            String str2 = strArr[1];
+            ca1Var.f24010y = str2;
+            if (str2.equals("hls")) {
+                ca1Var.H = true;
+            }
+            if (ca1Var.f24007s) {
+                ca1Var.i();
+            }
+            ca1Var.j(false, true);
+            ca1Var.f23999f0.d(true, true);
+        } else if (!isCancelled()) {
+            ca1Var.h();
         }
-        Intent intent = new Intent("android.intent.action.PICK");
-        intent.setType("image/*");
-        this.f24592b.startActivityForResult(intent, 11);
     }
 }

@@ -1,41 +1,41 @@
 package x3;
 
-import c3.h0;
+import c3.i0;
 import c3.q;
-import e2.v;
-import n6.k;
+import e2.x;
+import n6.o;
 public abstract class i {
-    public h0 f50814b;
-    public q f50815c;
+    public i0 f47821b;
+    public q f47822c;
     public g d;
-    public long f50816e;
-    public long f50817f;
-    public long f50818g;
+    public long e;
+    public long f47823f;
+    public long f47824g;
     public int h;
-    public int f50819i;
-    public long f50821k;
-    public boolean f50822l;
-    public boolean f50823m;
-    public final e f50813a = new e();
-    public k f50820j = new k(27);
+    public int f47825i;
+    public long f47827k;
+    public boolean f47828l;
+    public boolean f47829m;
+    public final e f47820a = new e();
+    public o f47826j = new o(22, false);
 
-    public void a(long j3) {
-        this.f50818g = j3;
+    public void a(long j10) {
+        this.f47824g = j10;
     }
 
-    public abstract long b(v vVar);
+    public abstract long b(x xVar);
 
-    public abstract boolean c(v vVar, long j3, k kVar);
+    public abstract boolean c(x xVar, long j10, o oVar);
 
     public void d(boolean z10) {
         if (z10) {
-            this.f50820j = new k(27);
-            this.f50817f = 0L;
+            this.f47826j = new o(22, false);
+            this.f47823f = 0L;
             this.h = 0;
         } else {
             this.h = 1;
         }
-        this.f50816e = -1L;
-        this.f50818g = 0L;
+        this.e = -1L;
+        this.f47824g = 0L;
     }
 }

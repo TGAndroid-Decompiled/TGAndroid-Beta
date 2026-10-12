@@ -2,45 +2,74 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.ChatObject;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class k9 extends org.telegram.ui.Components.t61 {
-    public static final int f39380a = 0;
+public final class k9 extends FrameLayout {
+    public static final int e = 0;
+    public final TextView f37608a;
+    public final TextView f37609b;
+    public final View f37610c;
+    public final org.telegram.ui.Components.bk0 d;
 
-    static {
-        org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
-    }
-
-    @Override
-    public final void bindView(View view, org.telegram.ui.Components.u61 u61Var, boolean z10, org.telegram.ui.Components.h71 h71Var, org.telegram.ui.Components.p71 p71Var) {
-        String lowerCase;
-        l9 l9Var = (l9) view;
-        TLRPC.Chat chat = (TLRPC.Chat) u61Var.G;
-        View.OnClickListener onClickListener = u61Var.D;
-        l9Var.f39667c = chat;
-        org.telegram.ui.Components.fj0 fj0Var = l9Var.f39666b;
-        fj0Var.setTag(Long.valueOf(chat.f19803id));
-        if (ChatObject.isChannel(chat) && !chat.megagroup) {
-            if (!ChatObject.isPublic(chat)) {
-                lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
-            } else {
-                lowerCase = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
-            }
-        } else if (chat.has_geo) {
-            lowerCase = LocaleController.getString(R.string.MegaLocation);
-        } else if (!ChatObject.isPublic(chat)) {
-            lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
-        } else {
-            lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
+    public k9(n9 n9Var, Context context, org.telegram.ui.Components.f10 f10Var) {
+        super(context);
+        addView(f10Var, w7.a6.d(-1.0f, -1));
+        this.f37610c = f10Var;
+        ?? imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.f(R.raw.utyan_call, 110, 110, null);
+        imageView.setAutoRepeat(false);
+        addView((View) imageView, w7.a6.a(110.0f, 52.0f, 17.0f, 52.0f, 60.0f, 110, 17));
+        imageView.setOnClickListener(new a(this, 10));
+        TextView textView = new TextView(context);
+        this.f37608a = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
+        textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        addView(textView, w7.a6.a(-2.0f, 17.0f, 40.0f, 17.0f, 0.0f, -1, 17));
+        TextView textView2 = new TextView(context);
+        this.f37609b = textView2;
+        String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(n9Var.getMessagesController().conferenceCallSizeLimit));
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
+            formatString = formatString.replace('\n', ' ');
         }
-        l9Var.f39665a.u(chat, null, null, lowerCase, false, false);
-        fj0Var.setOnClickListener(onClickListener);
+        textView2.setText(formatString);
+        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19883c7, false));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(textView2, w7.a6.a(-2.0f, 17.0f, 80.0f, 17.0f, 0.0f, -1, 17));
+        f10Var.setAlpha(0.0f);
+        imageView.setAlpha(0.0f);
+        textView.setAlpha(0.0f);
+        textView2.setAlpha(0.0f);
+        setOnTouchListener(new ci.d(4));
+    }
+
+    public final void a() {
+        this.d.animate().alpha(0.0f).setDuration(150L).start();
+        this.f37608a.animate().alpha(0.0f).setDuration(150L).start();
+        this.f37609b.animate().alpha(0.0f).setDuration(150L).start();
+        this.f37610c.animate().alpha(1.0f).setDuration(150L).start();
+    }
+
+    public final void b() {
+        org.telegram.ui.Components.bk0 bk0Var = this.d;
+        bk0Var.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37608a.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37609b.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37610c.animate().alpha(0.0f).setDuration(150L).start();
+        bk0Var.d();
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new l9(context);
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 }

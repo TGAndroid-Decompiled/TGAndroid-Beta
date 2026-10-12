@@ -4,27 +4,27 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
-import m.r3;
+import m.q3;
 import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
 public final class g implements Callable {
-    public final int f3762a;
-    public final Object f3763b;
+    public final int f2587a;
+    public final Object f2588b;
 
     public g(Object obj, int i10) {
-        this.f3762a = i10;
-        this.f3763b = obj;
+        this.f2587a = i10;
+        this.f2588b = obj;
     }
 
     private final Object a() {
         boolean z10;
         String str;
-        r3 r3Var = (r3) this.f3763b;
-        synchronized (((AtomicMarkableReference) r3Var.h)) {
+        q3 q3Var = (q3) this.f2588b;
+        synchronized (((AtomicMarkableReference) q3Var.h)) {
             try {
                 z10 = false;
-                if (((AtomicMarkableReference) r3Var.h).isMarked()) {
-                    str = (String) ((AtomicMarkableReference) r3Var.h).getReference();
-                    ((AtomicMarkableReference) r3Var.h).set(str, false);
+                if (((AtomicMarkableReference) q3Var.h).isMarked()) {
+                    str = (String) ((AtomicMarkableReference) q3Var.h).getReference();
+                    ((AtomicMarkableReference) q3Var.h).set(str, false);
                     z10 = true;
                 } else {
                     str = null;
@@ -34,7 +34,7 @@ public final class g implements Callable {
             }
         }
         if (z10) {
-            ((x9.f) r3Var.f15555a).i((String) r3Var.f15557c, str);
+            ((y9.f) q3Var.f15219a).i((String) q3Var.f15221c, str);
         }
         return null;
     }
@@ -42,20 +42,20 @@ public final class g implements Callable {
     @Override
     public final Object call() {
         Map map;
-        switch (this.f3762a) {
+        switch (this.f2587a) {
             case 0:
-                return new h((JsReplyProxyBoundaryInterface) this.f3763b);
+                return new h((JsReplyProxyBoundaryInterface) this.f2588b);
             case 1:
                 return a();
             default:
-                com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) this.f3763b;
-                ((AtomicReference) mVar.f7949c).set(null);
-                synchronized (mVar) {
+                c2.b bVar = (c2.b) this.f2588b;
+                ((AtomicReference) bVar.f4120c).set(null);
+                synchronized (bVar) {
                     try {
-                        if (((AtomicMarkableReference) mVar.f7948b).isMarked()) {
-                            map = ((x9.d) ((AtomicMarkableReference) mVar.f7948b).getReference()).a();
-                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) mVar.f7948b;
-                            atomicMarkableReference.set((x9.d) atomicMarkableReference.getReference(), false);
+                        if (((AtomicMarkableReference) bVar.f4119b).isMarked()) {
+                            map = ((y9.d) ((AtomicMarkableReference) bVar.f4119b).getReference()).a();
+                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) bVar.f4119b;
+                            atomicMarkableReference.set((y9.d) atomicMarkableReference.getReference(), false);
                         } else {
                             map = null;
                         }
@@ -64,8 +64,8 @@ public final class g implements Callable {
                     }
                 }
                 if (map != null) {
-                    r3 r3Var = (r3) mVar.d;
-                    ((x9.f) r3Var.f15555a).g((String) r3Var.f15557c, map, mVar.f7947a);
+                    q3 q3Var = (q3) bVar.d;
+                    ((y9.f) q3Var.f15219a).g((String) q3Var.f15221c, map, bVar.f4118a);
                 }
                 return null;
         }

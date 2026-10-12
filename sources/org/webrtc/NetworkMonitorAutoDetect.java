@@ -155,8 +155,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     NetworkChangeDetector.NetworkInformation networkInformation = new NetworkChangeDetector.NetworkInformation(wifiP2pGroup.getInterface(), NetworkChangeDetector.ConnectionType.CONNECTION_WIFI, NetworkChangeDetector.ConnectionType.CONNECTION_NONE, 0L, iPAddressArr);
                     this.wifiP2pNetworkInfo = networkInformation;
                     this.observer.onNetworkConnect(networkInformation);
-                } catch (SocketException e7) {
-                    Logging.e("NetworkMonitorAutoDetect", "Unable to get WifiP2p network interface", e7);
+                } catch (SocketException e) {
+                    Logging.e("NetworkMonitorAutoDetect", "Unable to get WifiP2p network interface", e);
                 }
             }
         }
@@ -481,17 +481,17 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             if (!supportNetworkCallback() || (activeNetworkInfo = this.connectivityManager.getActiveNetworkInfo()) == null) {
                 return -1L;
             }
-            long j3 = -1;
+            long j10 = -1;
             for (Network network : getAllNetworks()) {
                 if (hasInternetCapability(network) && (networkInfo = this.connectivityManager.getNetworkInfo(network)) != null && networkInfo.getType() == activeNetworkInfo.getType()) {
-                    if (j3 == -1) {
-                        j3 = NetworkMonitorAutoDetect.networkToNetId(network);
+                    if (j10 == -1) {
+                        j10 = NetworkMonitorAutoDetect.networkToNetId(network);
                     } else {
                         throw new RuntimeException("Multiple connected networks of same type are not supported.");
                     }
                 }
             }
-            return j3;
+            return j10;
         }
 
         public NetworkChangeDetector.IPAddress[] getIPAddresses(LinkProperties linkProperties) {

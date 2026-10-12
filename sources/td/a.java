@@ -1,6 +1,4 @@
 package td;
-
-import java.util.Random;
-public abstract class a extends d {
-    public abstract Random a();
+public interface a extends id.a {
+    Object invoke();
 }

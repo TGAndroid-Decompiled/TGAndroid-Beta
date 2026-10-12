@@ -10,31 +10,31 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class nb extends Dialog {
-    public final mb f28760a;
-    public final WindowManager.LayoutParams f28761b;
+    public final mb f27650a;
+    public final WindowManager.LayoutParams f27651b;
 
-    public nb(Context context, ci.a9 a9Var) {
+    public nb(Context context, di.z8 z8Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         mb mbVar = new mb(this, context);
-        this.f28760a = mbVar;
+        this.f27650a = mbVar;
         setContentView(mbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f46989a;
-        r0.a0.i(mbVar, sVar);
+        WeakHashMap weakHashMap = r0.j0.f43732a;
+        r0.b0.i(mbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
             mbVar.setSystemUiVisibility(1792);
         } else {
             mbVar.setSystemUiVisibility(1280);
         }
-        sc.a(mbVar, new ai.x4(a9Var, 6));
+        sc.a(mbVar, new ah.m0(z8Var, 7));
         try {
             Window window = getWindow();
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f28761b = attributes;
+            this.f27651b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class nb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20504a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19843a7, false)) <= 0.721f) {
                 z10 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z10);
@@ -55,7 +55,7 @@ public final class nb extends Dialog {
     }
 
     public static mb a(Context context) {
-        return new nb(context, null).f28760a;
+        return new nb(context, null).f27650a;
     }
 
     @Override

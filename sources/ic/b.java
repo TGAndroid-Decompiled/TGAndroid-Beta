@@ -1,117 +1,147 @@
 package ic;
 
-import java.util.ArrayList;
-public final class b {
-    public final dc.b f12092a;
-    public final int f12094c;
-    public final int d;
-    public final int f12095e;
-    public final int f12096f;
-    public final float f12097g;
-    public final ArrayList f12093b = new ArrayList(5);
-    public final int[] h = new int[3];
+import ec.g;
+public abstract class b {
+    public static final char[] f11355a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
-    public b(dc.b bVar, int i10, int i11, int i12, int i13, float f7) {
-        this.f12092a = bVar;
-        this.f12094c = i10;
-        this.d = i11;
-        this.f12095e = i12;
-        this.f12096f = i13;
-        this.f12097g = f7;
-    }
-
-    public final boolean a(int[] iArr) {
-        float f7 = this.f12097g;
-        float f10 = f7 / 2.0f;
-        for (int i10 = 0; i10 < 3; i10++) {
-            if (Math.abs(f7 - iArr[i10]) >= f10) {
-                return false;
+    public static void a(b4.d dVar, StringBuilder sb2, int i10, boolean z10) {
+        while (i10 > 1) {
+            if (dVar.d() >= 11) {
+                int e = dVar.e(11);
+                sb2.append(f(e / 45));
+                sb2.append(f(e % 45));
+                i10 -= 2;
+            } else {
+                throw dc.c.a();
             }
         }
-        return true;
-    }
-
-    public final a b(int i10, int i11, int[] iArr) {
-        int i12;
-        int i13 = 0;
-        int i14 = iArr[0];
-        int i15 = iArr[1];
-        int i16 = i14 + i15 + iArr[2];
-        float f7 = (i11 - i12) - (i15 / 2.0f);
-        int i17 = (int) f7;
-        int i18 = i15 * 2;
-        dc.b bVar = this.f12092a;
-        int i19 = bVar.f8270b;
-        int[] iArr2 = this.h;
-        iArr2[0] = 0;
-        iArr2[1] = 0;
-        iArr2[2] = 0;
-        int i20 = i10;
-        while (i20 >= 0 && bVar.b(i17, i20)) {
-            int i21 = iArr2[1];
-            if (i21 > i18) {
-                break;
+        if (i10 == 1) {
+            if (dVar.d() >= 6) {
+                sb2.append(f(dVar.e(6)));
+            } else {
+                throw dc.c.a();
             }
-            iArr2[1] = i21 + 1;
-            i20--;
         }
-        float f10 = Float.NaN;
-        if (i20 >= 0 && iArr2[1] <= i18) {
-            while (i20 >= 0 && !bVar.b(i17, i20)) {
-                int i22 = iArr2[0];
-                if (i22 > i18) {
-                    break;
-                }
-                iArr2[0] = i22 + 1;
-                i20--;
-            }
-            if (iArr2[0] <= i18) {
-                int i23 = i10 + 1;
-                while (i23 < i19 && bVar.b(i17, i23)) {
-                    int i24 = iArr2[1];
-                    if (i24 > i18) {
-                        break;
-                    }
-                    iArr2[1] = i24 + 1;
-                    i23++;
-                }
-                if (i23 != i19 && iArr2[1] <= i18) {
-                    while (i23 < i19 && !bVar.b(i17, i23)) {
-                        int i25 = iArr2[2];
-                        if (i25 > i18) {
-                            break;
+        if (z10) {
+            for (int length = sb2.length(); length < sb2.length(); length++) {
+                if (sb2.charAt(length) == '%') {
+                    if (length < sb2.length() - 1) {
+                        int i11 = length + 1;
+                        if (sb2.charAt(i11) == '%') {
+                            sb2.deleteCharAt(i11);
                         }
-                        iArr2[2] = i25 + 1;
-                        i23++;
                     }
-                    int i26 = iArr2[2];
-                    if (i26 <= i18 && Math.abs(((iArr2[0] + iArr2[1]) + i26) - i16) * 5 < i16 * 2 && a(iArr2)) {
-                        f10 = (i23 - iArr2[2]) - (iArr2[1] / 2.0f);
-                    }
+                    sb2.setCharAt(length, (char) 29);
                 }
             }
         }
-        if (!Float.isNaN(f10)) {
-            float f11 = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
-            ArrayList arrayList = this.f12093b;
-            int size = arrayList.size();
-            while (i13 < size) {
-                Object obj = arrayList.get(i13);
-                i13++;
-                a aVar = (a) obj;
-                float f12 = aVar.f12091c;
-                float f13 = aVar.f4602a;
-                float f14 = aVar.f4603b;
-                if (Math.abs(f10 - f14) <= f11 && Math.abs(f7 - f13) <= f11) {
-                    float abs = Math.abs(f11 - f12);
-                    if (abs <= 1.0f || abs <= f12) {
-                        return new a((f13 + f7) / 2.0f, (f14 + f10) / 2.0f, (aVar.f12091c + f11) / 2.0f);
+    }
+
+    public static void b(b4.d r24, java.lang.StringBuilder r25, int r26, ec.c r27, java.util.ArrayList r28) {
+        throw new UnsupportedOperationException("Method not decompiled: ic.b.b(b4.d, java.lang.StringBuilder, int, ec.c, java.util.ArrayList):void");
+    }
+
+    public static void c(b4.d dVar, StringBuilder sb2, int i10) {
+        int i11;
+        if (g.f8720c != null) {
+            if (i10 * 13 <= dVar.d()) {
+                byte[] bArr = new byte[i10 * 2];
+                int i12 = 0;
+                while (i10 > 0) {
+                    int e = dVar.e(13);
+                    int i13 = (e % 96) | ((e / 96) << 8);
+                    if (i13 < 2560) {
+                        i11 = 41377;
+                    } else {
+                        i11 = 42657;
                     }
+                    int i14 = i13 + i11;
+                    bArr[i12] = (byte) ((i14 >> 8) & 255);
+                    bArr[i12 + 1] = (byte) (i14 & 255);
+                    i12 += 2;
+                    i10--;
                 }
+                sb2.append(new String(bArr, g.f8720c));
+                return;
             }
-            arrayList.add(new a(f7, f10, f11));
-            return null;
+            throw dc.c.a();
         }
-        return null;
+        throw dc.c.a();
+    }
+
+    public static void d(b4.d dVar, StringBuilder sb2, int i10) {
+        int i11;
+        if (g.f8719b != null) {
+            if (i10 * 13 <= dVar.d()) {
+                byte[] bArr = new byte[i10 * 2];
+                int i12 = 0;
+                while (i10 > 0) {
+                    int e = dVar.e(13);
+                    int i13 = (e % 192) | ((e / 192) << 8);
+                    if (i13 < 7936) {
+                        i11 = 33088;
+                    } else {
+                        i11 = 49472;
+                    }
+                    int i14 = i13 + i11;
+                    bArr[i12] = (byte) (i14 >> 8);
+                    bArr[i12 + 1] = (byte) i14;
+                    i12 += 2;
+                    i10--;
+                }
+                sb2.append(new String(bArr, g.f8719b));
+                return;
+            }
+            throw dc.c.a();
+        }
+        throw dc.c.a();
+    }
+
+    public static void e(b4.d dVar, StringBuilder sb2, int i10) {
+        while (i10 >= 3) {
+            if (dVar.d() >= 10) {
+                int e = dVar.e(10);
+                if (e < 1000) {
+                    sb2.append(f(e / 100));
+                    sb2.append(f((e / 10) % 10));
+                    sb2.append(f(e % 10));
+                    i10 -= 3;
+                } else {
+                    throw dc.c.a();
+                }
+            } else {
+                throw dc.c.a();
+            }
+        }
+        if (i10 == 2) {
+            if (dVar.d() >= 7) {
+                int e7 = dVar.e(7);
+                if (e7 < 100) {
+                    sb2.append(f(e7 / 10));
+                    sb2.append(f(e7 % 10));
+                    return;
+                }
+                throw dc.c.a();
+            }
+            throw dc.c.a();
+        } else if (i10 == 1) {
+            if (dVar.d() >= 4) {
+                int e10 = dVar.e(4);
+                if (e10 < 10) {
+                    sb2.append(f(e10));
+                    return;
+                }
+                throw dc.c.a();
+            }
+            throw dc.c.a();
+        }
+    }
+
+    public static char f(int i10) {
+        char[] cArr = f11355a;
+        if (i10 < cArr.length) {
+            return cArr[i10];
+        }
+        throw dc.c.a();
     }
 }

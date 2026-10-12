@@ -1,265 +1,157 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.SharedPreferences;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.PhotoViewer;
-public final class hh0 extends f30 {
-    public float f26778a;
-    public float f26779b;
-    public final int f26780c;
-    public final jh0 d;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class hh0 extends kx0 {
+    public boolean f25664a = false;
+    public final Paint f25665b = new Paint(1);
+    public final int f25666c = UserConfig.selectedAccount;
+    public long d = 0;
+    public boolean e = false;
+    public final RectF f25667f = new RectF();
+    public float f25668g;
+    public final boolean h;
+    public final org.telegram.ui.ActionBar.c6 f25669i;
 
-    public hh0(jh0 jh0Var, int i10) {
-        this.d = jh0Var;
-        this.f26780c = i10;
+    public hh0(org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        this.h = z10;
+        this.f25669i = c6Var;
     }
 
     @Override
-    public final boolean a() {
-        jh0 jh0Var = this.d;
-        PhotoViewer photoViewer = jh0Var.V;
-        if (photoViewer != null) {
-            if ((photoViewer.F2 != null || jh0Var.f27516r != null) && !jh0Var.f27503c0 && !jh0Var.Y && !jh0Var.f27518w && !jh0Var.f27517s.isInProgress() && jh0Var.f27508f0) {
-                long l4 = jh0Var.l();
-                long m10 = jh0Var.m();
-                if (l4 != -9223372036854775807L && m10 >= 15000) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public final void c(boolean z10) {
+        this.f25664a = z10;
+    }
+
+    @Override
+    public final void d() {
+        this.d = System.currentTimeMillis();
+        this.e = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10;
+        float f7;
+        int i11;
+        int dp = AndroidUtilities.dp(10.0f);
+        int dp2 = ((AndroidUtilities.dp(18.0f) - dp) / 2) + getBounds().top;
+        if (!this.f25664a) {
+            dp2 += AndroidUtilities.dp(1.0f);
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        boolean z10;
-        long j3;
-        boolean z11;
-        jh0 jh0Var = this.d;
-        PhotoViewer photoViewer = jh0Var.V;
-        h81 h81Var = jh0Var.Q;
-        if (photoViewer != null && ((photoViewer.F2 != null || jh0Var.f27516r != null) && !jh0Var.f27503c0 && !jh0Var.Y && !jh0Var.f27518w && !jh0Var.f27517s.isInProgress() && jh0Var.f27508f0)) {
-            jh0Var.V.getClass();
-            if (motionEvent.getX() >= jh0Var.t() * jh0Var.J * 0.5f) {
-                z10 = true;
+        int i12 = dp2;
+        boolean z10 = this.h;
+        if (z10) {
+            i10 = org.telegram.ui.ActionBar.g6.p9;
+        } else {
+            i10 = org.telegram.ui.ActionBar.g6.f20124pa;
+        }
+        int w02 = org.telegram.ui.ActionBar.g6.w0(i10, this.f25669i);
+        Paint paint = this.f25665b;
+        paint.setColor(w02);
+        RectF rectF = this.f25667f;
+        rectF.set(0.0f, i12, dp, i12 + dp);
+        float f10 = this.f25668g;
+        float f11 = 0.5f;
+        if (f10 < 0.5f) {
+            f7 = org.telegram.messenger.yh.x(f10, 0.5f, 1.0f, 35.0f);
+        } else {
+            f7 = ((f10 - 0.5f) * 35.0f) / 0.5f;
+        }
+        int i13 = (int) f7;
+        int i14 = 0;
+        while (i14 < 3) {
+            int dp3 = AndroidUtilities.dp(9.2f);
+            float f12 = f11;
+            float f13 = this.f25668g;
+            float dp4 = (dp3 + (AndroidUtilities.dp(5.0f) * i14)) - (AndroidUtilities.dp(5.0f) * f13);
+            if (i14 == 2) {
+                paint.setAlpha(Math.min(255, (int) ((f13 * 255.0f) / f12)));
+            } else if (i14 == 0) {
+                if (f13 > f12) {
+                    paint.setAlpha((int) ((1.0f - ((f13 - f12) / f12)) * 255.0f));
+                } else {
+                    paint.setAlpha(255);
+                }
             } else {
-                z10 = false;
+                paint.setAlpha(255);
             }
-            long l4 = jh0Var.l();
-            long m10 = jh0Var.m();
-            if (l4 != -9223372036854775807L && m10 >= 15000) {
-                if (z10) {
-                    j3 = l4 + 10000;
-                } else {
-                    j3 = l4 - 10000;
-                }
-                if (l4 != j3) {
-                    if (j3 > m10) {
-                        z11 = true;
-                        j3 = m10;
-                    } else if (j3 < 0) {
-                        if (j3 < -9000) {
-                            z11 = false;
-                        } else {
-                            z11 = true;
-                        }
-                        j3 = 0;
-                    } else {
-                        z11 = true;
-                    }
-                    if (z11) {
-                        h81Var.e(true);
-                        h81Var.d(!z10);
-                        long j10 = h81Var.f26701o + 10000;
-                        h81Var.f26701o = j10;
-                        h81Var.f26702p = LocaleController.formatPluralString("Seconds", (int) (j10 / 1000), new Object[0]);
-                        vg0 vg0Var = jh0Var.f27516r;
-                        if (vg0Var != null) {
-                            vg0Var.i(j3);
-                        } else {
-                            q81 q81Var = jh0Var.V.F2;
-                            if (q81Var != null) {
-                                q81Var.K(j3);
-                            }
-                        }
-                        h81Var.g(0L);
-                        jh0Var.Z = ((float) j3) / ((float) m10);
-                        ai.o4 o4Var = jh0Var.f27501b0;
-                        if (o4Var != null) {
-                            o4Var.invalidate();
-                        }
-                        ih0 ih0Var = jh0Var.h;
-                        if (ih0Var != null) {
-                            ih0Var.invalidate();
-                        }
-                        if (!jh0Var.E) {
-                            jh0Var.E = true;
-                            jh0Var.y(true);
-                            if (!jh0Var.f27511i0) {
-                                jh0Var.f27511i0 = true;
-                                AndroidUtilities.runOnUIThread(jh0Var.f27512j0, 2500L);
-                            }
-                        }
-                    }
-                    return true;
-                }
-            }
+            canvas.drawCircle(dp4, (dp / 2) + i12, AndroidUtilities.dp(1.2f), paint);
+            i14++;
+            f11 = f12;
         }
-        return false;
+        paint.setAlpha(255);
+        canvas.drawArc(rectF, i13, 360 - (i13 * 2), true, paint);
+        if (z10) {
+            i11 = org.telegram.ui.ActionBar.g6.f19901d6;
+        } else {
+            i11 = org.telegram.ui.ActionBar.g6.f20180s8;
+        }
+        paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
+        canvas.drawCircle(AndroidUtilities.dp(4.0f), ((dp / 2) + i12) - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), paint);
+        f();
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        jh0 jh0Var = this.d;
-        if (jh0Var.E) {
-            for (int i10 = 1; i10 < jh0Var.f27505e.getChildCount(); i10++) {
-                View childAt = jh0Var.f27505e.getChildAt(i10);
-                if (childAt.dispatchTouchEvent(motionEvent)) {
-                    jh0Var.f27520y = childAt;
-                    return true;
+    public final void e() {
+        this.f25668g = 0.0f;
+        this.e = false;
+    }
+
+    public final void f() {
+        if (this.e) {
+            if (!NotificationCenter.getInstance(this.f25666c).isAnimationInProgress()) {
+                long currentTimeMillis = System.currentTimeMillis();
+                long j10 = currentTimeMillis - this.d;
+                this.d = currentTimeMillis;
+                if (j10 > 50) {
+                    j10 = 50;
                 }
+                if (this.f25668g >= 1.0f) {
+                    this.f25668g = 0.0f;
+                }
+                float f7 = (((float) j10) / 300.0f) + this.f25668g;
+                this.f25668g = f7;
+                if (f7 > 1.0f) {
+                    this.f25668g = 1.0f;
+                }
+                a();
+                return;
             }
+            AndroidUtilities.runOnUIThread(new yc0(this, 14), 100L);
         }
-        this.f26778a = jh0Var.K;
-        this.f26779b = jh0Var.L;
-        return true;
     }
 
     @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        float dp;
-        float f11;
-        jh0 jh0Var = this.d;
-        if (jh0Var.f27518w && !jh0Var.f27519x) {
-            o1.k kVar = jh0Var.M;
-            kVar.f16680a = f7;
-            float f12 = jh0Var.K;
-            kVar.f16681b = f12;
-            kVar.f16682c = true;
-            o1.l lVar = kVar.f16691u;
-            int i10 = jh0Var.H;
-            float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
-            int i11 = AndroidUtilities.displaySize.x;
-            if (f13 >= i11 / 2.0f) {
-                dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
-            } else {
-                dp = AndroidUtilities.dp(16.0f);
-            }
-            lVar.f16698i = dp;
-            jh0Var.M.h();
-            o1.k kVar2 = jh0Var.N;
-            kVar2.f16680a = f7;
-            kVar2.f16681b = jh0Var.L;
-            kVar2.f16682c = true;
-            kVar2.f16691u.f16698i = w7.n.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - jh0Var.I) - AndroidUtilities.dp(16.0f));
-            jh0Var.N.h();
-            return true;
-        }
-        return false;
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
     }
 
     @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        float dp;
-        jh0 jh0Var = this.d;
-        if (!jh0Var.f27518w && jh0Var.F == null && !jh0Var.f27519x) {
-            float abs = Math.abs(f7);
-            float f11 = this.f26780c;
-            if (abs >= f11 || Math.abs(f10) >= f11) {
-                jh0Var.f27518w = true;
-                jh0Var.M.c();
-                jh0Var.N.c();
-                jh0Var.f27508f0 = false;
-                jh0Var.i();
-                AndroidUtilities.cancelRunOnUIThread(jh0Var.f27510h0);
-            }
-        }
-        if (jh0Var.f27518w) {
-            float f12 = jh0Var.K;
-            float rawX = (motionEvent2.getRawX() + this.f26778a) - motionEvent.getRawX();
-            jh0Var.L = (motionEvent2.getRawY() + this.f26779b) - motionEvent.getRawY();
-            int i10 = jh0Var.H;
-            if (rawX > (-i10) * 0.25f && rawX < AndroidUtilities.displaySize.x - (i10 * 0.75f)) {
-                boolean z10 = jh0Var.f27504d0;
-                if (z10) {
-                    if (z10) {
-                        jh0Var.M.a(new ci.sa(this, rawX, 2));
-                        o1.k kVar = jh0Var.M;
-                        kVar.f16681b = f12;
-                        kVar.f16682c = true;
-                        kVar.f16691u.f16698i = rawX;
-                        kVar.h();
-                    }
-                    jh0Var.f27504d0 = false;
-                    return true;
-                }
-                o1.k kVar2 = jh0Var.M;
-                if (kVar2.f16684f) {
-                    kVar2.f16691u.f16698i = rawX;
-                } else {
-                    WindowManager.LayoutParams layoutParams = jh0Var.f27502c;
-                    jh0Var.K = rawX;
-                    layoutParams.x = (int) rawX;
-                    ((SharedPreferences) jh0Var.n().f16326a).edit().putFloat("x", rawX).apply();
-                }
-                jh0Var.f27502c.y = (int) jh0Var.L;
-                ((SharedPreferences) jh0Var.n().f16326a).edit().putFloat("y", jh0Var.L).apply();
-                AndroidUtilities.updateViewLayout(jh0Var.f27500b, jh0Var.d, jh0Var.f27502c);
-                return true;
-            }
-            if (!jh0Var.f27504d0) {
-                o1.k kVar3 = jh0Var.M;
-                kVar3.f16681b = f12;
-                kVar3.f16682c = true;
-                o1.l lVar = kVar3.f16691u;
-                int i11 = AndroidUtilities.displaySize.x;
-                if ((i10 / 2.0f) + rawX >= i11 / 2.0f) {
-                    dp = i11 - AndroidUtilities.dp(16.0f);
-                } else {
-                    dp = AndroidUtilities.dp(16.0f) - jh0Var.H;
-                }
-                lVar.f16698i = dp;
-                jh0Var.M.h();
-            }
-            jh0Var.f27504d0 = true;
-        }
-        return true;
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(20.0f);
     }
 
     @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        jh0 jh0Var = this.d;
-        ValueAnimator valueAnimator = jh0Var.F;
-        eh0 eh0Var = jh0Var.f27512j0;
-        if (valueAnimator == null) {
-            if (jh0Var.f27511i0) {
-                AndroidUtilities.cancelRunOnUIThread(eh0Var);
-                jh0Var.f27511i0 = false;
-            }
-            boolean z10 = !jh0Var.E;
-            jh0Var.E = z10;
-            jh0Var.y(z10);
-            if (jh0Var.E && !jh0Var.f27511i0) {
-                AndroidUtilities.runOnUIThread(eh0Var, 2500L);
-                jh0Var.f27511i0 = true;
-            }
-        }
-        return true;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        if (!a()) {
-            onSingleTapConfirmed(motionEvent);
-            return true;
-        }
-        return super.onSingleTapUp(motionEvent);
+    public final void b(int i10) {
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

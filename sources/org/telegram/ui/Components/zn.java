@@ -1,16 +1,39 @@
 package org.telegram.ui.Components;
-public final class zn extends s4.j {
-    public final no F;
 
-    public zn(no noVar) {
-        this.F = noVar;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+public final class zn implements View.OnKeyListener {
+    public final int f31904a;
+    public final Object f31905b;
+
+    public zn(Object obj, int i10) {
+        this.f31904a = i10;
+        this.f31905b = obj;
     }
 
     @Override
-    public final void P(s4.d1 d1Var) {
-        if (d1Var.b() == 0) {
-            no noVar = this.F;
-            noVar.f30570b.b2(noVar, 0);
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        switch (this.f31904a) {
+            case 0:
+                fo foVar = (fo) this.f31905b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
+                    ImageView imageView = foVar.f21072f;
+                    if (imageView != null) {
+                        imageView.callOnClick();
+                    }
+                    return true;
+                }
+                return false;
+            default:
+                jv jvVar = (jv) this.f31905b;
+                jvVar.getClass();
+                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && jvVar.isShowing()) {
+                    jvVar.dismiss();
+                    return true;
+                }
+                return false;
         }
     }
 }

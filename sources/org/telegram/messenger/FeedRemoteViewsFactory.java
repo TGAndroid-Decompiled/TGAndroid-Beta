@@ -132,12 +132,12 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     public void onDataSetChanged() {
         AccountInstance accountInstance = this.accountInstance;
         if (accountInstance != null && accountInstance.getUserConfig().isClientActivated()) {
-            AndroidUtilities.runOnUIThread(new i1(this, 1));
+            AndroidUtilities.runOnUIThread(new h1(this, 1));
             try {
                 this.countDownLatch.await();
                 return;
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
                 return;
             }
         }

@@ -1,82 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class d01 extends AnimatorListenerAdapter {
-    public final int f36592a;
-    public final ProfileActivity f36593b;
+import org.telegram.tgnet.TLRPC;
+public final class d01 extends tq {
+    public final boolean[] f35103d1;
+    public final TLRPC.User f35104e1;
+    public final ProfileActivity f35105f1;
 
-    public d01(ProfileActivity profileActivity, int i10) {
-        this.f36592a = i10;
-        this.f36593b = profileActivity;
+    public d01(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
+        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f35105f1 = profileActivity;
+        this.f35103d1 = zArr;
+        this.f35104e1 = user;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f36592a) {
-            case 2:
-                ProfileActivity profileActivity = this.f36593b;
-                profileActivity.O1 = false;
-                profileActivity.f34050a.O0 = true;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36592a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f36593b.k4(true);
-                return;
-            case 1:
-                ProfileActivity profileActivity = this.f36593b;
-                AnimatorSet animatorSet = profileActivity.f34205w;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    profileActivity.f34205w = null;
-                    return;
-                }
-                return;
-            case 2:
-                ProfileActivity profileActivity2 = this.f36593b;
-                profileActivity2.O1 = false;
-                profileActivity2.f34050a.O0 = true;
-                profileActivity2.f34119j2.removeListener(this);
-                profileActivity2.f34074d1.setBackgroundColor(-16777216);
-                profileActivity2.Y.setVisibility(8);
-                profileActivity2.f34142n0.setVisibility(0);
-                profileActivity2.f34142n0.setAlpha(1.0f);
-                return;
-            case 3:
-                ProfileActivity profileActivity3 = this.f36593b;
-                profileActivity3.f34119j2.removeListener(this);
-                profileActivity3.f34142n0.setVisibility(8);
-                profileActivity3.f34142n0.setAlpha(1.0f);
-                return;
-            default:
-                ProfileActivity profileActivity4 = this.f36593b;
-                profileActivity4.f34206w0 = null;
-                profileActivity4.fragmentView.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f36592a) {
-            case 2:
-                ProfileActivity profileActivity = this.f36593b;
-                ProfileActivity.s3(profileActivity, false);
-                profileActivity.f34142n0.setAnimatedFileMaybe(profileActivity.f34081e0.getImageReceiver().getAnimation());
-                profileActivity.f34142n0.L();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f35103d1[0]) {
+            ProfileActivity profileActivity = this.f35105f1;
+            if (org.telegram.ui.Components.zc.a(profileActivity)) {
+                org.telegram.ui.Components.zc.C(profileActivity, this.f35104e1.first_name).j();
+            }
         }
     }
 }

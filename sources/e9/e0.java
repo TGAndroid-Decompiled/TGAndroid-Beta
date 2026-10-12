@@ -1,27 +1,23 @@
 package e9;
-
-import java.io.Serializable;
-public final class e0 extends m implements Serializable {
-    public final Object f8729a;
-    public final Object f8730b;
-
-    public e0(Object obj, Object obj2) {
-        this.f8729a = obj;
-        this.f8730b = obj2;
+public final class e0 extends a5.a {
+    public final void I(b2.q1 q1Var, String str) {
+        super.x(q1Var, str);
     }
 
     @Override
-    public final Object getKey() {
-        return this.f8729a;
+    public final q0 g() {
+        throw new UnsupportedOperationException("Not supported for bimaps");
     }
 
     @Override
-    public final Object getValue() {
-        return this.f8730b;
+    public final a5.a x(Object obj, Object obj2) {
+        super.x(obj, obj2);
+        return this;
     }
 
     @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public final a5.a y(Iterable iterable) {
+        super.y(iterable);
+        return this;
     }
 }

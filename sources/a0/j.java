@@ -1,40 +1,76 @@
 package a0;
 
-import java.util.ConcurrentModificationException;
-public abstract class j {
-    public static final Object f22a = new Object();
-    public static final Object f23b = new Object();
+import java.util.LinkedHashMap;
+public class j {
+    public final int f19a;
+    public final ya.c f20b;
+    public final rb.b f21c;
+    public int d;
+    public int e;
+    public int f22f;
 
-    public static final void a(g gVar, int i10) {
-        gVar.f13a = new int[i10];
-        gVar.f14b = new Object[i10];
+    public j(int i10) {
+        this.f19a = i10;
+        if (i10 > 0) {
+            this.f20b = new ya.c(6);
+            this.f21c = new rb.b(3);
+            return;
+        }
+        throw new IllegalArgumentException("maxSize <= 0");
     }
 
-    public static final int b(g gVar, Object obj, int i10) {
-        int i11 = gVar.f15c;
-        if (i11 == 0) {
-            return -1;
+    public final Object a(Object key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        synchronized (this.f21c) {
+            ya.c cVar = this.f20b;
+            cVar.getClass();
+            Object obj = ((LinkedHashMap) cVar.f48732b).get(key);
+            if (obj != null) {
+                this.e++;
+                return obj;
+            }
+            this.f22f++;
+            return null;
         }
-        try {
-            int a2 = b0.a.a(i11, i10, gVar.f13a);
-            if (a2 < 0 || kotlin.jvm.internal.i.a(obj, gVar.f14b[a2])) {
-                return a2;
+    }
+
+    public final Object b(Object key, Object obj) {
+        Object put;
+        kotlin.jvm.internal.i.e(key, "key");
+        synchronized (this.f21c) {
+            this.d++;
+            ya.c cVar = this.f20b;
+            cVar.getClass();
+            put = ((LinkedHashMap) cVar.f48732b).put(key, obj);
+            if (put != null) {
+                this.d--;
             }
-            int i12 = a2 + 1;
-            while (i12 < i11 && gVar.f13a[i12] == i10) {
-                if (kotlin.jvm.internal.i.a(obj, gVar.f14b[i12])) {
-                    return i12;
-                }
-                i12++;
-            }
-            for (int i13 = a2 - 1; i13 >= 0 && gVar.f13a[i13] == i10; i13--) {
-                if (kotlin.jvm.internal.i.a(obj, gVar.f14b[i13])) {
-                    return i13;
-                }
-            }
-            return ~i12;
-        } catch (IndexOutOfBoundsException unused) {
-            throw new ConcurrentModificationException();
         }
+        c(this.f19a);
+        return put;
+    }
+
+    public final void c(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: a0.j.c(int):void");
+    }
+
+    public final String toString() {
+        int i10;
+        String str;
+        synchronized (this.f21c) {
+            try {
+                int i11 = this.e;
+                int i12 = this.f22f + i11;
+                if (i12 != 0) {
+                    i10 = (i11 * 100) / i12;
+                } else {
+                    i10 = 0;
+                }
+                str = "LruCache[maxSize=" + this.f19a + ",hits=" + this.e + ",misses=" + this.f22f + ",hitRate=" + i10 + "%]";
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return str;
     }
 }

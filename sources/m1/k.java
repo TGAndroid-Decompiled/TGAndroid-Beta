@@ -24,9 +24,9 @@ public final class k extends w {
         w.h(k.class, kVar);
     }
 
-    public static void i(k kVar, long j3) {
+    public static void i(k kVar, long j10) {
         kVar.valueCase_ = 4;
-        kVar.value_ = Long.valueOf(j3);
+        kVar.value_ = Long.valueOf(j10);
     }
 
     public static void j(k kVar, String str) {

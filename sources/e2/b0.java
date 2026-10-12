@@ -1,140 +1,65 @@
 package e2;
 
-import java.math.RoundingMode;
+import android.os.SystemClock;
+import b2.p1;
+import j$.util.Objects;
 public final class b0 {
-    public long f8520a;
-    public long f8521b;
-    public long f8522c;
-    public final ThreadLocal d = new ThreadLocal();
+    public final int f8317a;
+    public Object f8318b;
+    public int f8319c;
+    public int d;
+    public long e;
+    public boolean f8320f;
+    public long f8321g;
+    public final e0 h;
 
-    public b0(long j3) {
-        g(j3);
+    public b0(e0 e0Var, int i10) {
+        this.h = e0Var;
+        this.f8317a = i10;
     }
 
-    public final synchronized long a(long j3) {
-        if (j3 == -9223372036854775807L) {
-            return -9223372036854775807L;
-        }
-        try {
-            if (!f()) {
-                long j10 = this.f8520a;
-                if (j10 == 9223372036854775806L) {
-                    Long l4 = (Long) this.d.get();
-                    l4.getClass();
-                    j10 = l4.longValue();
-                }
-                this.f8521b = j10 - j3;
-                notifyAll();
+    public final void a() {
+        Object l4;
+        e0 e0Var = this.h;
+        i0 i0Var = e0Var.f8337f;
+        i2.h0 h0Var = e0Var.f8334a;
+        if (!h0Var.j0()) {
+            if (this.f8320f) {
+                i0Var.e(2);
             }
-            this.f8522c = j3;
-            return j3 + this.f8521b;
-        } catch (Throwable th2) {
-            throw th2;
+            this.f8320f = false;
+            return;
         }
-    }
-
-    public final synchronized long b(long j3) {
-        if (j3 == -9223372036854775807L) {
-            return -9223372036854775807L;
-        }
-        try {
-            long j10 = this.f8522c;
-            if (j10 != -9223372036854775807L) {
-                String str = d0.f8529a;
-                long X = d0.X(j10, 90000L, 1000000L, RoundingMode.DOWN);
-                long j11 = (4294967296L + X) / 8589934592L;
-                long j12 = ((j11 - 1) * 8589934592L) + j3;
-                long j13 = (j11 * 8589934592L) + j3;
-                if (Math.abs(j12 - X) < Math.abs(j13 - X)) {
-                    j3 = j12;
-                } else {
-                    j3 = j13;
-                }
-            }
-            long j14 = j3;
-            String str2 = d0.f8529a;
-            return a(d0.X(j14, 1000000L, 90000L, RoundingMode.DOWN));
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    public final synchronized long c(long j3) {
-        if (j3 == -9223372036854775807L) {
-            return -9223372036854775807L;
-        }
-        long j10 = this.f8522c;
-        if (j10 != -9223372036854775807L) {
-            String str = d0.f8529a;
-            long X = d0.X(j10, 90000L, 1000000L, RoundingMode.DOWN);
-            long j11 = X / 8589934592L;
-            Long.signum(j11);
-            long j12 = (j11 * 8589934592L) + j3;
-            long j13 = ((j11 + 1) * 8589934592L) + j3;
-            if (j12 >= X) {
-                j3 = j12;
-            } else {
-                j3 = j13;
-            }
-        }
-        long j14 = j3;
-        String str2 = d0.f8529a;
-        return a(d0.X(j14, 1000000L, 90000L, RoundingMode.DOWN));
-    }
-
-    public final synchronized long d() {
-        long j3;
-        j3 = this.f8520a;
-        return (j3 == Long.MAX_VALUE || j3 == 9223372036854775806L) ? -9223372036854775807L : -9223372036854775807L;
-    }
-
-    public final synchronized long e() {
-        return this.f8521b;
-    }
-
-    public final synchronized boolean f() {
-        boolean z10;
-        if (this.f8521b != -9223372036854775807L) {
-            z10 = true;
+        p1 y02 = h0Var.y0();
+        if (y02.p()) {
+            l4 = null;
         } else {
-            z10 = false;
+            l4 = y02.l(h0Var.A());
         }
-        return z10;
-    }
-
-    public final synchronized void g(long j3) {
-        long j10;
-        this.f8520a = j3;
-        if (j3 == Long.MAX_VALUE) {
-            j10 = 0;
-        } else {
-            j10 = -9223372036854775807L;
+        int m0 = h0Var.m0();
+        int N = h0Var.N();
+        long M0 = h0Var.M0();
+        if (l4 != null && m0 == -1) {
+            M0 -= m0.h0(y02.g(l4, e0Var.e).e);
         }
-        this.f8521b = j10;
-        this.f8522c = -9223372036854775807L;
-    }
-
-    public final synchronized void h(long j3, boolean z10) {
-        boolean z11;
-        try {
-            if (this.f8520a == 9223372036854775806L) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            d.g(z11);
-            if (f()) {
+        e0Var.d.getClass();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        boolean z10 = this.f8320f;
+        int i10 = this.f8317a;
+        if (z10 && Objects.equals(l4, this.f8318b) && m0 == this.f8319c && N == this.d && M0 == this.e) {
+            if (elapsedRealtime - this.f8321g >= i10) {
+                e0Var.f8336c.f10925a.A1(new i2.m(2, new f0(2, i10), 1003));
                 return;
             }
-            if (z10) {
-                this.d.set(Long.valueOf(j3));
-            } else {
-                while (!f()) {
-                    wait();
-                }
-            }
-        } catch (Throwable th2) {
-            throw th2;
+            return;
         }
+        this.f8320f = true;
+        this.f8321g = elapsedRealtime;
+        this.f8318b = l4;
+        this.f8319c = m0;
+        this.d = N;
+        this.e = M0;
+        i0Var.e(2);
+        i0Var.f8357a.sendEmptyMessageDelayed(2, i10);
     }
 }

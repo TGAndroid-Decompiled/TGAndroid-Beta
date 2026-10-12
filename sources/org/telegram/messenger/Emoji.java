@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.br;
 public class Emoji {
     private static final String[] DEFAULT_RECENT;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -78,7 +78,7 @@ public class Emoji {
         emojiUseHistory = new HashMap<>();
         recentEmoji = new ArrayList<>();
         emojiColor = new HashMap<>();
-        invalidateUiRunnable = new z1(9);
+        invalidateUiRunnable = new y1(9);
         emojiDrawingUseAlpha = true;
         DEFAULT_RECENT = new String[]{"😂", "😘", "❤", "😍", "😊", "😁", "👍", "☺", "😔", "😄", "😭", "💋", "😒", "😳", "😜", "🙈", "😉", "😃", "😢", "😝", "😱", "😡", "😏", "😞", "😅", "😚", "🙊", "😌", "😀", "😋", "😆", "👌", "😐", "😕"};
         drawImgSize = AndroidUtilities.dp(20.0f);
@@ -122,7 +122,7 @@ public class Emoji {
         }
         if (num.intValue() == 0 && hashMap.size() >= 48) {
             ArrayList<String> arrayList = recentEmoji;
-            hashMap.remove((String) hg.c.h(1, arrayList));
+            hashMap.remove((String) i2.d.g(1, arrayList));
             arrayList.set(arrayList.size() - 1, str);
         }
         hashMap.put(str, Integer.valueOf(num.intValue() + 1));
@@ -277,8 +277,8 @@ public class Emoji {
         Bitmap bitmap;
         try {
             bitmap = EmojiPack.getInstance().getEmoji(b10, s10);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             bitmap = null;
         }
         if (bitmap != null) {
@@ -402,8 +402,8 @@ public class Emoji {
                         z10 = z11;
                         globalEmojiSettings.edit().remove("emojis").commit();
                         saveRecentEmoji();
-                    } catch (Exception e7) {
-                        e = e7;
+                    } catch (Exception e) {
+                        e = e;
                         FileLog.e(e);
                         string = globalEmojiSettings.getString("color", "");
                         if (string == null) {
@@ -434,8 +434,8 @@ public class Emoji {
                     saveRecentEmoji();
                 }
                 sortEmoji();
-            } catch (Exception e10) {
-                e = e10;
+            } catch (Exception e7) {
+                e = e7;
             }
             try {
                 string = globalEmojiSettings.getString("color", "");
@@ -445,8 +445,8 @@ public class Emoji {
                         emojiColor.put(split4[0], split4[1]);
                     }
                 }
-            } catch (Exception e11) {
-                FileLog.e(e11);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
         }
     }
@@ -757,7 +757,7 @@ public class Emoji {
         int i12 = UserConfig.selectedAccount;
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i12).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new e1(runnable, 1));
+        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i12).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new d1(runnable, 1));
         if (charSequence instanceof Spannable) {
             newSpannable = (Spannable) charSequence;
         } else {
@@ -797,14 +797,14 @@ public class Emoji {
                     b6Var = new org.telegram.ui.Components.b6(0L, fontMetricsInt);
                 }
                 b6Var.emoji = emojiSpanRange.code.toString();
-            } catch (Exception e7) {
-                e = e7;
+            } catch (Exception e) {
+                e = e;
             }
             try {
                 b6Var.cacheType = i10;
                 newSpannable.setSpan(b6Var, emojiSpanRange.start, emojiSpanRange.end, 33);
-            } catch (Exception e10) {
-                e = e10;
+            } catch (Exception e7) {
+                e = e7;
                 FileLog.e(e);
                 if (Build.VERSION.SDK_INT >= 29) {
                     break;
@@ -840,7 +840,7 @@ public class Emoji {
             return charSequence;
         }
         org.telegram.ui.Components.b6[] b6VarArr = (org.telegram.ui.Components.b6[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.b6.class);
-        gr[] grVarArr = (gr[]) newSpannable.getSpans(0, newSpannable.length(), gr.class);
+        br[] brVarArr = (br[]) newSpannable.getSpans(0, newSpannable.length(), br.class);
         int i14 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i11;
         for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
             try {
@@ -850,9 +850,9 @@ public class Emoji {
                         i13 = (b6Var != null && newSpannable.getSpanStart(b6Var) == emojiSpanRange.start && newSpannable.getSpanEnd(b6Var) == emojiSpanRange.end) ? 0 : i13 + 1;
                     }
                 }
-                if (grVarArr != null && grVarArr.length > 0) {
-                    for (gr grVar : grVarArr) {
-                        i12 = (grVar != null && newSpannable.getSpanStart(grVar) == emojiSpanRange.start && newSpannable.getSpanEnd(grVar) == emojiSpanRange.end) ? 0 : i12 + 1;
+                if (brVarArr != null && brVarArr.length > 0) {
+                    for (br brVar : brVarArr) {
+                        i12 = (brVar != null && newSpannable.getSpanStart(brVar) == emojiSpanRange.start && newSpannable.getSpanEnd(brVar) == emojiSpanRange.end) ? 0 : i12 + 1;
                     }
                 }
                 EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);
@@ -863,8 +863,8 @@ public class Emoji {
                     emojiSpan.scale = f7;
                     newSpannable.setSpan(emojiSpan, emojiSpanRange.start, emojiSpanRange.end, 33);
                 }
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
             if (Build.VERSION.SDK_INT >= 29 && i15 + 1 >= i14) {
                 break;

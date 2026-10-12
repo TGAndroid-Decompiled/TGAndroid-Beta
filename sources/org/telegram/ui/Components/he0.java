@@ -1,46 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.animation.ValueAnimator;
 import android.widget.TextView;
-public final class he0 extends TextView {
-    public final ie0 f26768a;
+import org.telegram.messenger.AndroidUtilities;
+public final class he0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25656a;
+    public final re0 f25657b;
 
-    public he0(ie0 ie0Var, Context context, int i10) {
-        super(context);
-        this.f26768a = ie0Var;
+    public he0(re0 re0Var, int i10) {
+        this.f25656a = i10;
+        this.f25657b = re0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        ie0 ie0Var = this.f26768a;
-        if (ie0Var.f27136e.getAdapter() instanceof ge0) {
-            ((ge0) ie0Var.f27136e.getAdapter()).getClass();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25656a) {
+            case 0:
+                re0 re0Var = this.f25657b;
+                re0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                re0Var.T = floatValue;
+                re0Var.g(floatValue);
+                re0Var.setAlpha(re0Var.T);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                re0 re0Var2 = this.f25657b;
+                bi.i5 i5Var = re0Var2.e;
+                i5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
+                i5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
+                i5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                TextView textView = re0Var2.f28822w;
+                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
+                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
+                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
+                re0Var2.f28821s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                return;
         }
-    }
-
-    @Override
-    public final void setSelected(boolean z10) {
-        float f7;
-        float f10;
-        super.setSelected(z10);
-        Drawable background = getBackground();
-        ie0 ie0Var = this.f26768a;
-        if (background != null) {
-            if (z10) {
-                f10 = 0.1f;
-            } else {
-                f10 = 0.05f;
-            }
-            org.telegram.ui.ActionBar.h6.C1(background, ie0Var.c(f10), true);
-        }
-        if (z10) {
-            f7 = 0.8f;
-        } else {
-            f7 = 0.6f;
-        }
-        setTextColor(ie0Var.c(f7));
     }
 }

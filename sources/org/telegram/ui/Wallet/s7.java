@@ -1,85 +1,67 @@
 package org.telegram.ui.Wallet;
 
-import android.view.KeyEvent;
-import android.widget.EditText;
-import android.widget.TextView;
-public final class s7 implements TextView.OnEditorActionListener {
-    public final int f35363a;
-    public final Object f35364b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.zc;
+import org.telegram.ui.fo;
+public final class s7 implements Runnable {
+    public final int f33686a;
+    public final i8 f33687b;
 
-    public s7(Object obj, int i10) {
-        this.f35363a = i10;
-        this.f35364b = obj;
+    public s7(i8 i8Var, int i10) {
+        this.f33686a = i10;
+        this.f33687b = i8Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        boolean z10;
-        switch (this.f35363a) {
+    public final void run() {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f33686a) {
             case 0:
-                l8 l8Var = (l8) this.f35364b;
-                if (i10 == 6) {
-                    ci.d dVar = l8Var.f35041a0;
-                    if (dVar.W) {
-                        dVar.performClick();
-                        return true;
+                i8 i8Var = this.f33687b;
+                if (i8Var.F && (editTextBoldCursor = i8Var.E) != null && editTextBoldCursor.isAttachedToWindow() && i8Var.E.hasWindowFocus()) {
+                    i8Var.E.requestFocus();
+                    if (AndroidUtilities.showKeyboard(i8Var.E)) {
+                        i8Var.F = false;
+                        return;
                     }
-                } else {
-                    l8Var.getClass();
+                    return;
                 }
-                return false;
+                return;
+            case 1:
+                this.f33687b.f33293a0.setLoading(false);
+                return;
+            case 2:
+                this.f33687b.f33293a0.setLoading(false);
+                return;
+            case 3:
+                this.f33687b.q0();
+                return;
+            case 4:
+                i8 i8Var2 = this.f33687b;
+                float f7 = i8Var2.Y;
+                if (f7 < 1.0f && i8Var2.X == null) {
+                    o1.k kVar = new o1.k(new o1.j(f7));
+                    i8Var2.X = kVar;
+                    o1.l lVar = new o1.l(1.0f);
+                    lVar.a(0.55f);
+                    lVar.b(65.0f);
+                    kVar.f16468u = lVar;
+                    i8Var2.X.e(0.001f);
+                    i8Var2.X.b(new r2(i8Var2, 1));
+                    i8Var2.X.a(new w5(i8Var2, 1));
+                    i8Var2.X.h();
+                    return;
+                }
+                return;
+            case 5:
+                i8 i8Var3 = this.f33687b;
+                i8Var3.presentFragment(fo.W9(i8Var3.e.f19363id));
+                return;
             default:
-                j9 j9Var = (j9) this.f35364b;
-                EditText editText = j9Var.f34937a;
-                if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 != 5 && !z10) {
-                    return false;
-                }
-                if (keyEvent == null || (keyEvent.getAction() == 1 && !keyEvent.isCanceled())) {
-                    String lowerCase = editText.getText().toString().trim().toLowerCase();
-                    if (!lowerCase.isEmpty() && j9Var.b()) {
-                        j9Var.setError(false);
-                        j9Var.a();
-                        Runnable runnable = j9Var.f34943r;
-                        if (runnable != null) {
-                            editText.post(runnable);
-                        }
-                    } else {
-                        String str = null;
-                        if (!lowerCase.isEmpty()) {
-                            String[] mnemonicWordlist = WalletEngine2.getMnemonicWordlist();
-                            int length = mnemonicWordlist.length;
-                            int i11 = 0;
-                            while (true) {
-                                if (i11 < length) {
-                                    String str2 = mnemonicWordlist[i11];
-                                    if (str2.startsWith(lowerCase)) {
-                                        str = str2;
-                                    } else {
-                                        i11++;
-                                    }
-                                }
-                            }
-                        }
-                        if (str != null) {
-                            editText.setText(str);
-                            editText.setSelection(str.length());
-                            j9Var.setError(false);
-                            j9Var.a();
-                            Runnable runnable2 = j9Var.f34943r;
-                            if (runnable2 != null) {
-                                editText.post(runnable2);
-                            }
-                        } else {
-                            j9Var.setError(true);
-                        }
-                    }
-                }
-                return true;
+                org.telegram.messenger.q.r(R.string.WalletAddressCopiedBulletin, zc.a0(this.f33687b), R.raw.copy, 36);
+                return;
         }
     }
 }

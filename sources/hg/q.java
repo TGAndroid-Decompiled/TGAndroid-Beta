@@ -1,86 +1,122 @@
 package hg;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
+import android.util.Pair;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoadOperation;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class q implements TextView.OnEditorActionListener {
-    public final int f11348a;
-    public final int f11349b;
-    public final org.telegram.ui.ActionBar.a2[] f11350c;
-    public final View d;
-    public final EditTextBoldCursor f11351e;
-    public final Object f11352f;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class q implements RequestDelegate {
+    public final int f10706a;
+    public final Object f10707b;
+    public final Object f10708c;
+    public final int d;
+    public final int e;
+    public final TLObject f10709f;
 
-    public q(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.a2[] a2VarArr, View view, int i11) {
-        this.f11348a = i11;
-        this.f11351e = editTextBoldCursor;
-        this.f11349b = i10;
-        this.f11352f = obj;
-        this.f11350c = a2VarArr;
-        this.d = view;
+    public q(Object obj, Object obj2, int i10, int i11, TLObject tLObject, int i12) {
+        this.f10706a = i12;
+        this.f10707b = obj;
+        this.f10708c = obj2;
+        this.d = i10;
+        this.e = i11;
+        this.f10709f = tLObject;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f11348a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        ConcurrentHashMap<Long, Integer> concurrentHashMap;
+        switch (this.f10706a) {
             case 0:
-                t tVar = (t) this.f11351e;
-                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f11352f;
-                if (i10 != 6) {
-                    return false;
+                h0 h0Var = (h0) this.f10707b;
+                String str = (String) this.f10708c;
+                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f10709f;
+                ArrayList arrayList = new ArrayList();
+                if (tL_error == null) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    int i10 = 0;
+                    for (int i11 = 0; i11 < messages_messages.chats.size(); i11++) {
+                        TLRPC.Chat chat = messages_messages.chats.get(i11);
+                        hVar.k(chat, chat.f19216id);
+                    }
+                    for (int i12 = 0; i12 < messages_messages.users.size(); i12++) {
+                        TLRPC.User user = messages_messages.users.get(i12);
+                        hVar2.k(user, user.f19363id);
+                    }
+                    while (i10 < messages_messages.messages.size()) {
+                        a0.h hVar3 = hVar;
+                        MessageObject messageObject = new MessageObject(h0Var.f10586s0, messages_messages.messages.get(i10), hVar2, hVar3, false, true);
+                        arrayList.add(messageObject);
+                        messageObject.setQuery(str);
+                        i10++;
+                        hVar = hVar3;
+                    }
                 }
-                String obj = tVar.getText().toString();
-                if (obj.length() > 32) {
-                    AndroidUtilities.shakeView(tVar);
+                AndroidUtilities.runOnUIThread(new s(h0Var, this.d, this.e, tL_error, str, tLObject, tL_messages_search, arrayList, 0));
+                return;
+            case 1:
+                h0 h0Var2 = (h0) this.f10707b;
+                String str2 = (String) this.f10708c;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f10709f;
+                int i13 = h0Var2.f10586s0;
+                ArrayList arrayList2 = new ArrayList();
+                if (tL_error == null) {
+                    TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
+                    a0.h hVar4 = new a0.h();
+                    a0.h hVar5 = new a0.h();
+                    for (int i14 = 0; i14 < messages_messages2.chats.size(); i14++) {
+                        TLRPC.Chat chat2 = messages_messages2.chats.get(i14);
+                        hVar4.k(chat2, chat2.f19216id);
+                    }
+                    for (int i15 = 0; i15 < messages_messages2.users.size(); i15++) {
+                        TLRPC.User user2 = messages_messages2.users.get(i15);
+                        hVar5.k(user2, user2.f19363id);
+                    }
+                    int i16 = 0;
+                    while (i16 < messages_messages2.messages.size()) {
+                        a0.h hVar6 = hVar4;
+                        MessageObject messageObject2 = new MessageObject(h0Var2.f10586s0, messages_messages2.messages.get(i16), hVar5, hVar6, false, true);
+                        arrayList2.add(messageObject2);
+                        messageObject2.setQuery(str2);
+                        i16++;
+                        hVar4 = hVar6;
+                    }
+                }
+                HashSet hashSet = new HashSet();
+                if (tL_error == null) {
+                    TLRPC.messages_Messages messages_messages3 = (TLRPC.messages_Messages) tLObject;
+                    for (int i17 = 0; i17 < messages_messages3.messages.size(); i17++) {
+                        TLRPC.Message message = messages_messages3.messages.get(i17);
+                        long dialogId = MessageObject.getDialogId(message);
+                        if (message.out) {
+                            concurrentHashMap = MessagesController.getInstance(i13).dialogs_read_outbox_max;
+                        } else {
+                            concurrentHashMap = MessagesController.getInstance(i13).dialogs_read_inbox_max;
+                        }
+                        if (concurrentHashMap.get(Long.valueOf(dialogId)) == null) {
+                            hashSet.add(new Pair(Boolean.valueOf(message.out), Long.valueOf(dialogId)));
+                        }
+                    }
+                }
+                s sVar = new s(h0Var2, this.d, this.e, tL_error, str2, tLObject, tL_messages_searchGlobal, arrayList2, 1);
+                if (hashSet.isEmpty()) {
+                    AndroidUtilities.runOnUIThread(sVar);
+                    return;
                 } else {
-                    z d = z.d(this.f11349b);
-                    TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
-                    if (c10 != null) {
-                        TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
-                        tL_inputBusinessChatLink.message = c10.message;
-                        tL_inputBusinessChatLink.entities = c10.entities;
-                        tL_inputBusinessChatLink.title = obj;
-                        d.b(c10, tL_inputBusinessChatLink, null);
-                    }
-                    org.telegram.ui.ActionBar.a2[] a2VarArr = this.f11350c;
-                    org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
-                    if (a2Var != null) {
-                        a2Var.dismiss();
-                    }
-                    if (a2VarArr[0] == w.d) {
-                        w.d = null;
-                    }
-                    View view = this.d;
-                    if (view != null) {
-                        view.requestFocus();
-                    }
+                    MessagesStorage.getInstance(i13).getStorageQueue().postRunnable(new t(h0Var2, hashSet, sVar, 0));
+                    return;
                 }
-                return true;
             default:
-                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f11352f;
-                if (i10 != 6) {
-                    return false;
-                }
-                EditTextBoldCursor editTextBoldCursor = this.f11351e;
-                String obj2 = editTextBoldCursor.getText().toString();
-                if (obj2.length() > this.f11349b) {
-                    AndroidUtilities.shakeView(editTextBoldCursor);
-                } else {
-                    stringCallback.run(obj2);
-                    org.telegram.ui.ActionBar.a2 a2Var2 = this.f11350c[0];
-                    if (a2Var2 != null) {
-                        a2Var2.dismiss();
-                    }
-                    View view2 = this.d;
-                    if (view2 != null) {
-                        view2.requestFocus();
-                    }
-                }
-                return true;
+                ((FileLoadOperation) this.f10707b).lambda$startDownloadRequest$30((FileLoadOperation.RequestInfo) this.f10708c, this.d, this.e, this.f10709f, tLObject, tL_error);
+                return;
         }
     }
 }

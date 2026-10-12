@@ -28,8 +28,8 @@ public class CacheByChatsController {
         public final long dialogId;
         public int keepMedia;
 
-        public KeepMediaException(long j3, int i10) {
-            this.dialogId = j3;
+        public KeepMediaException(long j10, int i10) {
+            this.dialogId = j10;
             this.keepMedia = i10;
         }
     }
@@ -107,7 +107,7 @@ public class CacheByChatsController {
         if (!this.gotKeepMediaByTypes) {
             this.gotKeepMediaByTypes = true;
             for (int i11 = 0; i11 < 4; i11++) {
-                this.keepMediaByTypes[i11] = SharedConfig.getPreferences().getInt(hg.c.i(i11, "keep_media_type_"), getDefault(i11));
+                this.keepMediaByTypes[i11] = SharedConfig.getPreferences().getInt(i2.d.i(i11, "keep_media_type_"), getDefault(i11));
             }
         }
         int i12 = this.keepMediaByTypes[i10];
@@ -161,10 +161,10 @@ public class CacheByChatsController {
             if (keyAt >= 0) {
                 i10 = 0;
             } else {
-                long j3 = -keyAt;
-                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j3));
+                long j10 = -keyAt;
+                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j10));
                 if (chat == null) {
-                    chat = MessagesStorage.getInstance(this.currentAccount).getChatSync(j3);
+                    chat = MessagesStorage.getInstance(this.currentAccount).getChatSync(j10);
                 }
                 if (chat == null) {
                     i10 = -1;
@@ -188,7 +188,7 @@ public class CacheByChatsController {
     }
 
     public void saveKeepMediaExceptions(int i10, ArrayList<KeepMediaException> arrayList) {
-        String i11 = hg.c.i(i10, "keep_media_exceptions_");
+        String i11 = i2.d.i(i10, "keep_media_exceptions_");
         if (arrayList.isEmpty()) {
             UserConfig.getInstance(this.currentAccount).getPreferences().edit().remove(i11).apply();
             return;
@@ -208,7 +208,7 @@ public class CacheByChatsController {
         if (!this.gotKeepMediaByTypes) {
             this.gotKeepMediaByTypes = true;
             for (int i12 = 0; i12 < 4; i12++) {
-                this.keepMediaByTypes[i12] = SharedConfig.getPreferences().getInt(hg.c.i(i12, "keep_media_type_"), getDefault(i12));
+                this.keepMediaByTypes[i12] = SharedConfig.getPreferences().getInt(i2.d.i(i12, "keep_media_type_"), getDefault(i12));
             }
         }
         this.keepMediaByTypes[i10] = i11;

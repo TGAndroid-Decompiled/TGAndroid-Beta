@@ -5,8 +5,8 @@ import org.webrtc.VideoProcessor;
 class NativeCapturerObserver implements CapturerObserver {
     private final NativeAndroidVideoTrackSource nativeAndroidVideoTrackSource;
 
-    public NativeCapturerObserver(long j3) {
-        this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j3);
+    public NativeCapturerObserver(long j10) {
+        this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j10);
     }
 
     @Override

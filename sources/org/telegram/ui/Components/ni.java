@@ -1,83 +1,187 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-public final class ni implements lk {
-    public final aj f28790a;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class ni extends FrameLayout {
+    public final org.telegram.ui.ActionBar.c6 f27670a;
+    public final vi f27671b;
+    public mm0 f27672c;
+    public mm0 d;
+    public int e;
+    public boolean f27673f;
+    public boolean h;
 
-    public ni(aj ajVar) {
-        this.f28790a = ajVar;
+    public ni(Context context, org.telegram.ui.ActionBar.c6 c6Var, vi viVar) {
+        super(context);
+        this.f27670a = c6Var;
+        this.f27671b = viVar;
     }
 
-    @Override
-    public final void O() {
-        this.f28790a.E1(true);
+    public abstract void B(int i10, int i11);
+
+    public boolean F(int i10) {
+        return false;
     }
 
-    @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        aj ajVar = this.f28790a;
-        lk lkVar = ajVar.X;
-        if (lkVar != null) {
-            lkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-            return;
-        }
-        org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
-        if (m2Var instanceof lk) {
-            ((lk) m2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-        } else if (m2Var instanceof org.telegram.ui.pn0) {
-            org.telegram.ui.pn0 pn0Var = (org.telegram.ui.pn0) m2Var;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                sendingMediaInfo.path = (String) arrayList.get(i11);
-                arrayList4.add(sendingMediaInfo);
-            }
-            pn0Var.F1(arrayList4);
-        }
+    public boolean K(int i10, boolean z10, int i11, boolean z11, long j10) {
+        return false;
     }
 
-    @Override
-    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        aj ajVar = this.f28790a;
-        lk lkVar = ajVar.X;
-        if (lkVar != null) {
-            lkVar.l(j3, arrayList, z10, i10);
-            return;
-        }
-        org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
-        if (m2Var instanceof org.telegram.ui.eo) {
-            ((org.telegram.ui.eo) m2Var).l(j3, arrayList, z10, i10);
-        } else if (m2Var instanceof org.telegram.ui.pn0) {
-            ((org.telegram.ui.pn0) m2Var).F1(arrayList);
-        }
+    public boolean L() {
+        return !(this instanceof fi.q4);
     }
 
-    @Override
-    public final void x() {
-        aj ajVar = this.f28790a;
-        lk lkVar = ajVar.X;
-        if (lkVar != null) {
-            lkVar.x();
-            return;
+    public boolean M() {
+        return true;
+    }
+
+    public boolean b() {
+        return true;
+    }
+
+    public boolean c() {
+        return true;
+    }
+
+    public boolean e() {
+        return this instanceof dl;
+    }
+
+    public boolean f() {
+        return false;
+    }
+
+    public boolean g() {
+        return this instanceof dl;
+    }
+
+    public int getButtonsHideOffset() {
+        float f7;
+        if (i() != 0) {
+            f7 = 12.0f;
+        } else {
+            f7 = 17.0f;
         }
-        org.telegram.ui.ActionBar.m2 m2Var = ajVar.f24338f0;
-        if (m2Var instanceof lk) {
-            ((lk) m2Var).x();
-        } else if (m2Var instanceof org.telegram.ui.pn0) {
-            org.telegram.ui.pn0 pn0Var = (org.telegram.ui.pn0) m2Var;
-            pn0Var.getClass();
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                pn0Var.startActivityForResult(intent, 21);
-            } catch (Exception e7) {
-                FileLog.e(e7);
-            }
-        }
+        return AndroidUtilities.dp(f7);
+    }
+
+    public int getCurrentItemTop() {
+        return 0;
+    }
+
+    public int getCustomActionBarBackground() {
+        return 0;
+    }
+
+    public int getCustomBackground() {
+        return 0;
+    }
+
+    public int getFirstOffset() {
+        return 0;
+    }
+
+    public ch.a getIBlur3Capture() {
+        return null;
+    }
+
+    public int getListTopPadding() {
+        return 0;
+    }
+
+    public int getSelectedItemsCount() {
+        return 0;
+    }
+
+    public ArrayList<org.telegram.ui.ActionBar.i6> getThemeDescriptions() {
+        return null;
+    }
+
+    public boolean h() {
+        return false;
+    }
+
+    public int i() {
+        return 0;
+    }
+
+    public boolean j() {
+        return false;
+    }
+
+    public void m(float f7, float f10) {
+        l(f7);
+    }
+
+    public boolean n(MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean q() {
+        return false;
+    }
+
+    public boolean s() {
+        return true;
+    }
+
+    public void A() {
+    }
+
+    public void D() {
+    }
+
+    public void E(int i10) {
+    }
+
+    public void G(ni niVar) {
+    }
+
+    public void I() {
+    }
+
+    public void J() {
+    }
+
+    public void a(CharSequence charSequence) {
+    }
+
+    public void d() {
+    }
+
+    public void k() {
+    }
+
+    public void l(float f7) {
+    }
+
+    public void o() {
+    }
+
+    public void r(int i10) {
+    }
+
+    public void t() {
+    }
+
+    public void u() {
+    }
+
+    public void v(float f7) {
+    }
+
+    public void w(int i10) {
+    }
+
+    public void x() {
+    }
+
+    public void y() {
+    }
+
+    public void z(int i10, boolean z10) {
     }
 }

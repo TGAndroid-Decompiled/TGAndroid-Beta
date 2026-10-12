@@ -1,16 +1,21 @@
 package me;
 
-import android.view.View;
-import org.telegram.ui.Components.ba;
-public final class a implements d, ba {
-    public final View f16084a;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
+public abstract class a {
+    public static final DecelerateInterpolator f15760a;
 
-    @Override
-    public void n(int i10, float f7, float f10, e eVar) {
-        this.f16084a.invalidate();
-    }
-
-    @Override
-    public void C(float f7, int i10) {
+    static {
+        new AnticipateOvershootInterpolator();
+        f15760a = new DecelerateInterpolator();
+        new AccelerateInterpolator();
+        new DecelerateInterpolator(1.78f);
+        new LinearInterpolator();
+        new OvershootInterpolator(3.2f);
+        new AccelerateDecelerateInterpolator();
     }
 }

@@ -1,12 +1,11 @@
 package yh;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class e3 extends a3 {
-    public final TL_stars.starGiftAttributePattern f52660c;
-
-    public e3(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.f52474a = stargiftattributepattern.name;
-        this.f52475b = stargiftattributepattern.getRarityPermille();
-        this.f52660c = stargiftattributepattern;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.h71;
+public final class e3 extends h71 {
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
     }
 }

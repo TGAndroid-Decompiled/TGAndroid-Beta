@@ -5,38 +5,38 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class di implements Runnable {
-    public final int f36832a = 1;
-    public final eo f36833b;
-    public final int f36834c;
+    public final int f35264a = 1;
+    public final fo f35265b;
+    public final int f35266c;
     public final MessageObject d;
 
-    public di(eo eoVar, int i10, MessageObject messageObject) {
-        this.f36833b = eoVar;
-        this.f36834c = i10;
+    public di(fo foVar, int i10, MessageObject messageObject) {
+        this.f35265b = foVar;
+        this.f35266c = i10;
         this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36832a) {
+        switch (this.f35264a) {
             case 0:
-                this.f36833b.f37360n4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f36834c;
+                this.f35265b.f36037n4 = null;
+                this.d.messageOwner.replies.read_max_id = this.f35266c;
                 return;
             default:
-                eo eoVar = this.f36833b;
-                org.telegram.ui.Components.zc.a0(eoVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f36834c).disableAds(false);
+                fo foVar = this.f35265b;
+                org.telegram.ui.Components.zc.a0(foVar).c(LocaleController.getString(R.string.AdHidden)).j();
+                MessagesController.getInstance(this.f35266c).disableAds(false);
                 MessageObject messageObject = this.d;
-                eoVar.Ja(messageObject);
-                eoVar.La(messageObject);
+                foVar.Ja(messageObject);
+                foVar.La(messageObject);
                 return;
         }
     }
 
-    public di(eo eoVar, MessageObject messageObject, int i10) {
-        this.f36833b = eoVar;
+    public di(fo foVar, MessageObject messageObject, int i10) {
+        this.f35265b = foVar;
         this.d = messageObject;
-        this.f36834c = i10;
+        this.f35266c = i10;
     }
 }

@@ -1,139 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.animation.ObjectAnimator;
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class qu0 extends vm0 {
-    public final Context f29935c;
-    public final ArrayList d = new ArrayList();
-    public int f29936e;
-    public final hw0 f29937f;
-
-    public qu0(hw0 hw0Var, Context context) {
-        this.f29937f = hw0Var;
-        this.f29935c = context;
-        E(false);
-    }
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class qu0 extends FrameLayout {
+    public pl0 E;
+    public int F;
+    public qr0 G;
+    public f60 H;
+    public boolean I;
+    public int J;
+    public boolean K;
+    public float L;
+    public long f28675a;
+    public boolean f28676b;
+    public ObjectAnimator f28677c;
+    public s4.k d;
+    public s4.t0 e;
+    public s4.t0 f28678f;
+    public ws0 h;
+    public bh.l f28679n;
+    public pu0 f28680r;
+    public ys0 f28681s;
+    public ft0 v;
+    public ht0 f28682w;
+    public us0 f28683x;
+    public et0 f28684y;
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
-    }
-
-    public final void E(boolean z10) {
-        hw0 hw0Var = this.f29937f;
-        long j3 = hw0Var.f26932j1;
-        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
-        if (m2Var != null) {
-            if (DialogObject.isChatDialog(j3)) {
-                TLRPC.Chat chat = MessagesController.getInstance(m2Var.getCurrentAccount()).getChat(Long.valueOf(-j3));
-                if (chat == null || !ChatObject.isChannelAndNotMegaGroup(chat)) {
-                    return;
+    public final void dispatchDraw(Canvas canvas) {
+        qr0 qr0Var;
+        super.dispatchDraw(canvas);
+        qr0 qr0Var2 = this.G;
+        if (qr0Var2 != null && qr0Var2.getVisibility() == 0) {
+            tl0 fastScroll = this.h.getFastScroll();
+            if (fastScroll != null) {
+                float dp = AndroidUtilities.dp(36.0f) + fastScroll.getScrollBarY();
+                if (this.F == 9) {
+                    dp += AndroidUtilities.dp(64.0f);
                 }
-            } else if (MessagesController.getInstance(m2Var.getCurrentAccount()).getUser(Long.valueOf(j3)) == null) {
-                return;
-            }
-            MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(m2Var.getCurrentAccount()).getChannelRecommendations(j3);
-            ArrayList arrayList = this.d;
-            arrayList.clear();
-            int i10 = 0;
-            if (channelRecommendations != null) {
-                for (int i11 = 0; i11 < channelRecommendations.chats.size(); i11++) {
-                    TLObject tLObject = channelRecommendations.chats.get(i11);
-                    if ((tLObject instanceof TLRPC.Chat) && ChatObject.isNotInChat((TLRPC.Chat) tLObject)) {
-                        arrayList.add(tLObject);
-                    } else {
-                        arrayList.add(tLObject);
-                    }
+                int i10 = this.F;
+                if (i10 == 8 || xv0.w0(i10)) {
+                    dp += AndroidUtilities.dp(42.0f);
                 }
+                this.G.setPivotX(qr0Var.getMeasuredWidth());
+                this.G.setPivotY(0.0f);
+                this.G.setTranslationX((getMeasuredWidth() - this.G.getMeasuredWidth()) - AndroidUtilities.dp(16.0f));
+                this.G.setTranslationY(dp);
             }
-            if (!arrayList.isEmpty() && !UserConfig.getInstance(m2Var.getCurrentAccount()).isPremium()) {
-                i10 = channelRecommendations.more;
-            }
-            this.f29936e = i10;
-            if (z10) {
-                l();
+            if (fastScroll.getProgress() > 0.85f) {
+                xv0.q(this, null, false);
             }
         }
     }
 
     @Override
-    public final int h() {
-        return this.d.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (this.f29936e > 0 && i10 == this.d.size() - 1) {
-            return 18;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view == this.f28680r) {
+            return true;
         }
-        return 17;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        org.telegram.ui.Cells.i6 i6Var;
-        int i11 = d1Var.f47901f;
-        View view = d1Var.f47897a;
-        if (i11 == 17) {
-            if (view instanceof org.telegram.ui.Cells.i6) {
-                i6Var = (org.telegram.ui.Cells.i6) view;
-            } else {
-                return;
-            }
-        } else if (i11 == 18) {
-            if (view instanceof ev0) {
-                i6Var = ((ev0) view).f25791a;
-            } else {
-                return;
-            }
-        } else {
-            i6Var = null;
-        }
-        org.telegram.ui.Cells.i6 i6Var2 = i6Var;
-        if (i6Var2 != null) {
-            ArrayList arrayList = this.d;
-            i6Var2.u(arrayList.get(i10), null, null, null, false, false);
-            boolean z10 = true;
-            if (i10 == arrayList.size() - 1) {
-                z10 = false;
-            }
-            i6Var2.M = z10;
-        }
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View i6Var;
-        int currentAccount;
-        boolean z10;
-        hw0 hw0Var = this.f29937f;
-        if (i10 == 18) {
-            org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
-            if (m2Var == null) {
-                currentAccount = UserConfig.selectedAccount;
-            } else {
-                currentAccount = m2Var.getCurrentAccount();
-            }
-            int i11 = currentAccount;
-            if (hw0Var.f26932j1 > 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            boolean z11 = z10;
-            i6Var = new ev0(i11, this.f29935c, z11, hw0Var.F1, new ur0(this, 4));
-        } else {
-            i6Var = new org.telegram.ui.Cells.i6(this.f29935c, hw0Var.F1);
-        }
-        i6Var.setLayoutParams(new s4.q0(-1, -2));
-        return new s4.d1(i6Var);
+        return super.drawChild(canvas, view, j10);
     }
 }

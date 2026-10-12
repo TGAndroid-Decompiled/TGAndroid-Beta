@@ -1,35 +1,23 @@
 package m4;
-public final class h0 implements Runnable {
-    public final int f15853a;
-    public final m0 f15854b;
-    public final g1 f15855c;
+public final class h0 implements p0 {
+    public final int f15450a;
+    public final q0 f15451b;
+    public final long f15452c;
 
-    public h0(m0 m0Var, g1 g1Var, int i10) {
-        this.f15853a = i10;
-        this.f15854b = m0Var;
-        this.f15855c = g1Var;
+    public h0(q0 q0Var, long j10, int i10) {
+        this.f15450a = i10;
+        this.f15451b = q0Var;
+        this.f15452c = j10;
     }
 
     @Override
-    public final void run() {
-        b2.k1 k1Var;
-        switch (this.f15853a) {
+    public final void f(w wVar) {
+        switch (this.f15450a) {
             case 0:
-                m0 m0Var = this.f15854b;
-                n4.y yVar = m0Var.f15909k;
-                g1 g1Var = this.f15855c;
-                yVar.W(m0Var.G(g1Var));
-                k0 k0Var = m0Var.f15907i;
-                if (g1Var.t().a(17)) {
-                    k1Var = g1Var.w0();
-                } else {
-                    k1Var = b2.k1.f3402a;
-                }
-                k0Var.s(k1Var);
+                this.f15451b.f15573g.f15440t.Y((int) this.f15452c);
                 return;
             default:
-                m0 m0Var2 = this.f15854b;
-                m0Var2.f15909k.W(m0Var2.G(this.f15855c));
+                this.f15451b.f15573g.f15440t.g(this.f15452c);
                 return;
         }
     }

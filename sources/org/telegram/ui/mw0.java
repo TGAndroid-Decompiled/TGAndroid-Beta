@@ -1,80 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class mw0 extends org.telegram.ui.Cells.u1 {
-    public final Path Ge;
-    public final Paint He;
-    public final byte[] Ie;
-    public final int Je;
-    public final int Ke;
-    public final ow0 Le;
+import org.telegram.messenger.MessageObject;
+public final class mw0 implements org.telegram.ui.Components.fl0 {
+    public final fo f38366a;
+    public final MessageObject f38367b;
+    public final org.telegram.ui.Components.gl0 f38368c;
+    public final sw0 d;
 
-    public mw0(ow0 ow0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, byte[] bArr, int i11, int i12) {
-        super(context, i10, false, null, c6Var);
-        this.Le = ow0Var;
-        this.Ie = bArr;
-        this.Je = i11;
-        this.Ke = i12;
-        this.Ge = new Path();
-        this.He = new Paint(1);
+    public mw0(sw0 sw0Var, fo foVar, MessageObject messageObject, org.telegram.ui.Components.gl0 gl0Var) {
+        this.d = sw0Var;
+        this.f38366a = foVar;
+        this.f38367b = messageObject;
+        this.f38368c = gl0Var;
     }
 
     @Override
-    public final void Y1(Canvas canvas) {
-        this.f22999i6 = 0;
-        this.f23013j6 = this.Y5.size() - 1;
-        this.f23028k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f40805y;
-        super.Y1(canvas);
+    public final boolean D() {
+        return false;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        canvas.save();
-        int I2 = I2(this.Ie);
-        float H2 = H2(I2);
-        float G2 = G2(I2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
-        float f10 = rectF.top;
-        float dp = AndroidUtilities.dp(3.0f);
-        ow0 ow0Var = this.Le;
-        if (ow0Var.V) {
-            f7 = -AndroidUtilities.dp(3.0f);
-        } else {
-            f7 = 0.0f;
-        }
-        rectF.top = AndroidUtilities.lerp(dp, f7, ow0Var.f40805y) + f10;
-        float f11 = rectF.bottom;
-        boolean z10 = ow0Var.V;
-        float dp2 = AndroidUtilities.dp(3.0f);
-        if (!z10) {
-            dp2 = AndroidUtilities.lerp(dp2, 0.0f, ow0Var.f40805y);
-        }
-        rectF.bottom = f11 + dp2;
-        Path path = this.Ge;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
-        Paint paint = this.He;
-        paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.m1(ow0Var.f40805y * 0.2f, -16777216));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        canvas.clipPath(path);
-        S1(canvas);
-        canvas.restore();
+    public final boolean i() {
+        return true;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Je, this.Ke);
+    public final boolean n() {
+        return false;
     }
 
     @Override
-    public final void setPressed(boolean z10) {
+    public final void r(android.view.View r13, ah.i1 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mw0.r(android.view.View, ah.i1, boolean, boolean):void");
+    }
+
+    @Override
+    public final void y() {
+    }
+
+    @Override
+    public final void w(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

@@ -1,87 +1,90 @@
 package c3;
 
-import b2.r0;
-import e9.a1;
+import b2.w0;
+import e9.l0;
+import e9.n0;
+import e9.x1;
 import java.util.List;
+import v7.u6;
 public final class d0 implements o {
-    public final int f4095a;
-    public final int f4096b;
-    public final String f4097c;
+    public final int f4230a;
+    public final int f4231b;
+    public final String f4232c;
     public int d;
-    public int f4098e;
-    public q f4099f;
-    public h0 f4100g;
+    public int e;
+    public q f4233f;
+    public i0 f4234g;
 
     public d0(int i10, int i11, String str) {
-        this.f4095a = i10;
-        this.f4096b = i11;
-        this.f4097c = str;
+        this.f4230a = i10;
+        this.f4231b = i11;
+        this.f4232c = str;
     }
 
     @Override
-    public final boolean b(p pVar) {
+    public final boolean a(p pVar) {
         boolean z10;
-        int i10 = this.f4096b;
-        int i11 = this.f4095a;
+        int i10 = this.f4231b;
+        int i11 = this.f4230a;
         if (i11 != -1 && i10 != -1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.g(z10);
-        e2.v vVar = new e2.v(i10);
-        ((l) pVar).f(vVar.f8581a, 0, i10, false);
-        if (vVar.D() == i11) {
+        u6.p(z10);
+        e2.x xVar = new e2.x(i10);
+        ((l) pVar).j(xVar.f8411a, 0, i10, false);
+        if (xVar.H() == i11) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void g(q qVar) {
-        this.f4099f = qVar;
-        h0 f22 = qVar.f2(1024, 4);
-        this.f4100g = f22;
-        b2.r rVar = new b2.r();
-        String str = this.f4097c;
-        rVar.f3582p = r0.n(str);
-        rVar.f3583q = r0.n(str);
-        hg.c.u(rVar, f22);
-        this.f4099f.k1();
-        this.f4099f.d2(new Object());
-        this.f4098e = 1;
+    public final void c(q qVar) {
+        this.f4233f = qVar;
+        i0 a02 = qVar.a0(1024, 4);
+        this.f4234g = a02;
+        b2.w wVar = new b2.w();
+        String str = this.f4232c;
+        wVar.f2465q = w0.n(str);
+        wVar.f2466r = w0.n(str);
+        i2.d.s(wVar, a02);
+        this.f4233f.D();
+        this.f4233f.K(new Object());
+        this.e = 1;
     }
 
     @Override
-    public final void h(long j3, long j10) {
-        if (j3 != 0 && this.f4098e != 1) {
+    public final void d(long j10, long j11) {
+        if (j10 != 0 && this.e != 1) {
             return;
         }
-        this.f4098e = 1;
+        this.e = 1;
         this.d = 0;
     }
 
     @Override
-    public final List i() {
-        e9.g0 g0Var = e9.i0.f8749b;
-        return a1.f8712e;
+    public final List e() {
+        l0 l0Var = n0.f8592b;
+        return x1.e;
     }
 
     @Override
-    public final int m(p pVar, s sVar) {
-        int i10 = this.f4098e;
+    public final int f(p pVar, s sVar) {
+        int i10 = this.e;
         if (i10 != 1) {
             if (i10 == 2) {
                 return -1;
             }
             throw new IllegalStateException();
         }
-        h0 h0Var = this.f4100g;
-        h0Var.getClass();
-        int a2 = h0Var.a(pVar, 1024, true);
+        i0 i0Var = this.f4234g;
+        i0Var.getClass();
+        int a2 = i0Var.a(pVar, 1024, true);
         if (a2 == -1) {
-            this.f4098e = 2;
-            this.f4100g.c(0L, 1, this.d, 0, null);
+            this.e = 2;
+            this.f4234g.c(0L, 1, this.d, 0, null);
             this.d = 0;
             return 0;
         }
@@ -90,7 +93,7 @@ public final class d0 implements o {
     }
 
     @Override
-    public final o c() {
+    public final o b() {
         return this;
     }
 

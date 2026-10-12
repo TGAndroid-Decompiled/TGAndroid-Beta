@@ -1,68 +1,120 @@
 package e9;
 
+import j$.util.Objects;
+import java.util.AbstractSet;
+import java.util.Iterator;
 import java.util.Map;
-import v7.s6;
-public final class u extends m {
-    public final Object f8799a;
-    public int f8800b;
-    public final v f8801c;
+import v7.t6;
+public final class u extends AbstractSet {
+    public final int f8625a;
+    public final x f8626b;
 
-    public u(v vVar, int i10) {
-        this.f8801c = vVar;
-        Object obj = v.f8803s;
-        this.f8799a = vVar.i()[i10];
-        this.f8800b = i10;
+    public u(x xVar, int i10) {
+        this.f8625a = i10;
+        this.f8626b = xVar;
     }
 
-    public final void a() {
-        int i10 = this.f8800b;
-        Object obj = this.f8799a;
-        v vVar = this.f8801c;
-        if (i10 != -1 && i10 < vVar.size()) {
-            if (s6.a(obj, vVar.i()[this.f8800b])) {
+    @Override
+    public final void clear() {
+        switch (this.f8625a) {
+            case 0:
+                this.f8626b.clear();
                 return;
-            }
+            default:
+                this.f8626b.clear();
+                return;
         }
-        Object obj2 = v.f8803s;
-        this.f8800b = vVar.d(obj);
     }
 
     @Override
-    public final Object getKey() {
-        return this.f8799a;
+    public final boolean contains(Object obj) {
+        switch (this.f8625a) {
+            case 0:
+                x xVar = this.f8626b;
+                Map c10 = xVar.c();
+                if (c10 != null) {
+                    return c10.entrySet().contains(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    int e = xVar.e(entry.getKey());
+                    if (e != -1 && t6.a(xVar.k()[e], entry.getValue())) {
+                        return true;
+                    }
+                }
+                return false;
+            default:
+                return this.f8626b.containsKey(obj);
+        }
     }
 
     @Override
-    public final Object getValue() {
-        v vVar = this.f8801c;
-        Map b10 = vVar.b();
-        if (b10 != null) {
-            return b10.get(this.f8799a);
+    public final Iterator iterator() {
+        switch (this.f8625a) {
+            case 0:
+                x xVar = this.f8626b;
+                Map c10 = xVar.c();
+                if (c10 != null) {
+                    return c10.entrySet().iterator();
+                }
+                return new t(xVar, 1);
+            default:
+                x xVar2 = this.f8626b;
+                Map c11 = xVar2.c();
+                if (c11 != null) {
+                    return c11.keySet().iterator();
+                }
+                return new t(xVar2, 0);
         }
-        a();
-        int i10 = this.f8800b;
-        if (i10 == -1) {
-            return null;
-        }
-        return vVar.j()[i10];
     }
 
     @Override
-    public final Object setValue(Object obj) {
-        v vVar = this.f8801c;
-        Map b10 = vVar.b();
-        Object obj2 = this.f8799a;
-        if (b10 != null) {
-            return b10.put(obj2, obj);
+    public final boolean remove(Object obj) {
+        switch (this.f8625a) {
+            case 0:
+                x xVar = this.f8626b;
+                Map c10 = xVar.c();
+                if (c10 != null) {
+                    return c10.entrySet().remove(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    if (!xVar.g()) {
+                        int d = xVar.d();
+                        Object key = entry.getKey();
+                        Object value = entry.getValue();
+                        Object obj2 = xVar.f8646a;
+                        Objects.requireNonNull(obj2);
+                        int r10 = s.r(key, value, d, obj2, xVar.i(), xVar.j(), xVar.k());
+                        if (r10 != -1) {
+                            xVar.f(r10, d);
+                            xVar.f8649f--;
+                            xVar.e += 32;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                x xVar2 = this.f8626b;
+                Map c11 = xVar2.c();
+                if (c11 != null) {
+                    return c11.keySet().remove(obj);
+                }
+                if (xVar2.h(obj) != x.f8645s) {
+                    return true;
+                }
+                return false;
         }
-        a();
-        int i10 = this.f8800b;
-        if (i10 == -1) {
-            vVar.put(obj2, obj);
-            return null;
+    }
+
+    @Override
+    public final int size() {
+        switch (this.f8625a) {
+            case 0:
+                return this.f8626b.size();
+            default:
+                return this.f8626b.size();
         }
-        Object obj3 = vVar.j()[i10];
-        vVar.j()[this.f8800b] = obj;
-        return obj3;
     }
 }

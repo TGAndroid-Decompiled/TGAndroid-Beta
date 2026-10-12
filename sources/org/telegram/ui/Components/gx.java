@@ -1,39 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class gx extends s4.o0 {
-    public final d00 f26547a;
+import org.telegram.tgnet.TLRPC;
+public final class gx extends g.o {
+    public final wz f25433c;
 
-    public gx(d00 d00Var) {
-        this.f26547a = d00Var;
+    public gx(wz wzVar) {
+        this.f25433c = wzVar;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        recyclerView.getClass();
-        int R = RecyclerView.R(view);
-        d00 d00Var = this.f26547a;
-        s4.i0 adapter = d00Var.f25088h0.getAdapter();
-        hz hzVar = d00Var.f25105n0;
-        int i10 = 0;
-        if (adapter == hzVar && R == hzVar.I) {
-            rect.set(0, 0, 0, 0);
-            return;
+    public final int i(int i10) {
+        wz wzVar = this.f25433c;
+        rz rzVar = wzVar.f31087z0;
+        s4.g0 adapter = wzVar.D0.getAdapter();
+        mz mzVar = wzVar.f31084y0;
+        if (adapter == mzVar) {
+            if (i10 == 0) {
+                return mzVar.d;
+            }
+            if (i10 == mzVar.f27540s || (mzVar.h.get(i10) != null && !(mzVar.h.get(i10) instanceof TLRPC.Document))) {
+                return mzVar.d;
+            }
+            return 1;
+        } else if (i10 != rzVar.f28970x && (rzVar.f28967r.get(i10) == null || (rzVar.f28967r.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        } else {
+            return mzVar.d;
         }
-        if (R == 0) {
-            hzVar.getClass();
-        }
-        rect.left = 0;
-        rect.bottom = 0;
-        rect.top = AndroidUtilities.dp(2.0f);
-        iz izVar = d00Var.f25091i0;
-        hzVar.getClass();
-        if (!izVar.E1(R)) {
-            i10 = AndroidUtilities.dp(2.0f);
-        }
-        rect.right = i10;
     }
 }

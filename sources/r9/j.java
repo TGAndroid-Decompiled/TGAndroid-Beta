@@ -1,30 +1,75 @@
 package r9;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.util.concurrent.Executor;
-public final class j implements Executor {
-    public static final j f47346a;
-    public static final Handler f47347b;
-    public static final j[] f47348c;
+import w7.f7;
+public final class j {
+    public final r f44047a;
+    public final int f44048b;
+    public final int f44049c;
 
-    static {
-        ?? r02 = new Enum("INSTANCE", 0);
-        f47346a = r02;
-        f47348c = new j[]{r02};
-        f47347b = new Handler(Looper.getMainLooper());
+    public j(int i10, int i11, Class cls) {
+        this(r.a(cls), i10, i11);
     }
 
-    public static j valueOf(String str) {
-        return (j) Enum.valueOf(j.class, str);
+    public static j a(Class cls) {
+        return new j(1, 0, cls);
     }
 
-    public static j[] values() {
-        return (j[]) f47348c.clone();
+    public static j b(r rVar) {
+        return new j(rVar, 1, 0);
     }
 
-    @Override
-    public final void execute(Runnable runnable) {
-        f47347b.post(runnable);
+    public final boolean equals(Object obj) {
+        if (obj instanceof j) {
+            j jVar = (j) obj;
+            if (this.f44047a.equals(jVar.f44047a) && this.f44048b == jVar.f44048b && this.f44049c == jVar.f44049c) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((((this.f44047a.hashCode() ^ 1000003) * 1000003) ^ this.f44048b) * 1000003) ^ this.f44049c;
+    }
+
+    public final String toString() {
+        String str;
+        String str2;
+        StringBuilder sb2 = new StringBuilder("Dependency{anInterface=");
+        sb2.append(this.f44047a);
+        sb2.append(", type=");
+        int i10 = this.f44048b;
+        if (i10 == 1) {
+            str = "required";
+        } else if (i10 == 0) {
+            str = "optional";
+        } else {
+            str = "set";
+        }
+        sb2.append(str);
+        sb2.append(", injection=");
+        int i11 = this.f44049c;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    str2 = "deferred";
+                } else {
+                    throw new AssertionError(i2.d.i(i11, "Unsupported injection: "));
+                }
+            } else {
+                str2 = "provider";
+            }
+        } else {
+            str2 = "direct";
+        }
+        return a1.g.s(sb2, str2, "}");
+    }
+
+    public j(r rVar, int i10, int i11) {
+        f7.a(rVar, "Null dependency anInterface.");
+        this.f44047a = rVar;
+        this.f44048b = i10;
+        this.f44049c = i11;
     }
 }

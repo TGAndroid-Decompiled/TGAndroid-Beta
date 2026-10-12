@@ -1,53 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.List;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class f71 implements Runnable {
-    public final int f37661a;
-    public final j71 f37662b;
-    public final Integer f37663c;
+import android.content.Context;
+import org.telegram.messenger.LiteMode;
+public final class f71 extends org.telegram.ui.Components.ux0 {
+    public final g71 f35748x3;
 
-    public f71(j71 j71Var, Integer num, int i10) {
-        this.f37661a = i10;
-        this.f37662b = j71Var;
-        this.f37663c = num;
+    public f71(g71 g71Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, i10, c6Var);
+        this.f35748x3 = g71Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f37661a;
-        j71 j71Var = this.f37662b;
-        switch (i10) {
-            case 0:
-                j71.a(j71Var, this.f37663c);
-                return;
-            default:
-                j71Var.getClass();
-                Integer num = this.f37663c;
-                if (num != null) {
-                    try {
-                        j71Var.P.performHapticFeedback(0, 1);
-                    } catch (Exception unused) {
-                    }
-                    c61 c61Var = (c61) j71Var;
-                    d61 d61Var = c61Var.S;
-                    n71 n71Var = d61Var.f36667e;
-                    List list = n71.Z1;
-                    n71Var.l();
-                    TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-                    View view = c61Var.Q;
-                    long j3 = ((w61) view).f43057e.documentId;
-                    tL_emojiStatus.document_id = j3;
-                    d61Var.f36667e.p(view, Long.valueOf(j3), ((w61) c61Var.Q).f43057e.document, c61Var.R, num);
-                    if (c61Var.R == null) {
-                        MediaDataController.getInstance(d61Var.f36667e.V).pushRecentEmojiStatus(tL_emojiStatus);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final boolean B1() {
+        if (!LiteMode.isEnabled(16388) && this.f35748x3.f36336y.W != 4) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final void F1(int i10) {
+        super.F1(i10);
+        this.f35748x3.e(false);
     }
 }

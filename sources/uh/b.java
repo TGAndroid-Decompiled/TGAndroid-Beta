@@ -1,114 +1,46 @@
 package uh;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.Utilities;
-import w7.n;
-public final class b extends Drawable {
-    public final a f49186b;
-    public Bitmap f49187c;
-    public Canvas d;
-    public int f49188e;
-    public float f49189f;
-    public int f49190g;
-    public int h;
-    public final Paint f49185a = new Paint(2);
-    public int f49191i = 255;
+import android.view.View;
+import android.view.WindowInsets;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.p20;
+import r0.l1;
+import r0.o;
+import rh.j;
+public final class b implements p20, o {
+    public final f f46437a;
 
-    public b(a aVar) {
-        this.f49186b = aVar;
+    public b(f fVar) {
+        this.f46437a = fVar;
     }
 
-    public final void a(int i10, int i11, float f7, int i12) {
-        int i13 = i12 * 2;
-        int i14 = (int) ((i10 + i13) / f7);
-        int i15 = (int) ((i11 + i13) / f7);
-        Bitmap bitmap = this.f49187c;
-        if (bitmap != null && bitmap.getWidth() == i14 && this.f49187c.getHeight() == i15) {
-            this.f49187c.eraseColor(0);
+    @Override
+    public l1 Q0(View view, l1 l1Var) {
+        boolean z10;
+        WindowInsets g10 = l1Var.g();
+        f fVar = this.f46437a;
+        fVar.processLegacyContainerInsets(g10);
+        ne.b bVar = fVar.Y;
+        if (l1Var.f43741a.f(8).d > 0) {
+            z10 = true;
         } else {
-            Bitmap bitmap2 = this.f49187c;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-            }
-            this.f49187c = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
-            this.d = new Canvas(this.f49187c);
+            z10 = false;
         }
-        this.f49189f = f7;
-        this.f49188e = i12;
-        this.d.save();
-        float f10 = i12 / f7;
-        this.d.translate(f10, f10);
-        float f11 = 1.0f / f7;
-        this.d.scale(f11, f11);
-        this.f49186b.p(this.d, 255);
-        Utilities.stackBlurBitmap(this.f49187c, (int) f10);
-        this.d.restore();
+        bVar.a(z10, true);
+        return l1.f43740b;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = this.f49191i;
-        a aVar = this.f49186b;
-        if (i10 == 255) {
-            canvas.save();
-            canvas.translate(this.f49190g, this.h);
-            aVar.p(canvas, 255);
-            canvas.restore();
-        } else if (i10 != 0) {
-            double d = i10 / 255.0d;
-            double d10 = d / ((1.0d - d) * 6.0d);
-            double d11 = 1.0d + d10;
-            double sqrt = ((-d11) + Math.sqrt((d11 * d11) - (((-d10) * 4.0d) * (-d)))) / ((-2.0d) * d10);
-            int b10 = n.b((int) (d10 * sqrt * 255.0d), 0, 255);
-            int b11 = n.b((int) (sqrt * 255.0d), 0, 255);
-            if (b11 > 0 && this.f49187c != null) {
-                Paint paint = this.f49185a;
-                paint.setAlpha(b11);
-                canvas.save();
-                int i11 = this.f49190g;
-                int i12 = this.f49188e;
-                canvas.translate(i11 - i12, this.h - i12);
-                float f7 = this.f49189f;
-                canvas.scale(f7, f7);
-                canvas.drawBitmap(this.f49187c, 0.0f, 0.0f, paint);
-                canvas.restore();
-            }
-            if (b10 > 0) {
-                canvas.save();
-                canvas.translate(this.f49190g, this.h);
-                aVar.p(canvas, b10);
-                canvas.restore();
-            }
+    public void a(int i10) {
+        int min = Math.min(i10, AndroidUtilities.dp(144.0f));
+        if (i10 > 0) {
+            min -= AndroidUtilities.dp(8.0f);
         }
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f49191i;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f49191i = i10;
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        this.f49190g = i10;
-        this.h = i11;
-        super.setBounds(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        f fVar = this.f46437a;
+        if (fVar.f46457l0 != min) {
+            fVar.f46457l0 = min;
+            fVar.X.a(min);
+            fVar.f46453h0.postOnAnimation(new j(fVar, 19));
+        }
     }
 }

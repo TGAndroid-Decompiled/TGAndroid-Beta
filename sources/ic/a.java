@@ -1,11 +1,15 @@
 package ic;
+public final class a {
+    public final byte[] f11353a;
+    public final int f11354b;
 
-import cc.j;
-public final class a extends j {
-    public final float f12091c;
+    public a(int i10, byte[] bArr) {
+        this.f11354b = i10;
+        this.f11353a = bArr;
+    }
 
-    public a(float f7, float f10, float f11) {
-        super(f7, f10);
-        this.f12091c = f11;
+    public a(byte[] bArr, int i10) {
+        this.f11353a = bArr;
+        this.f11354b = i10;
     }
 }

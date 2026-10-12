@@ -1,41 +1,40 @@
 package y2;
 
 import android.net.Uri;
-import e2.d0;
+import e2.m0;
 import g2.b0;
 import java.io.IOException;
-import u2.t;
+import u2.u;
 public final class o implements i {
-    public final long f51931a = t.f48923b.getAndIncrement();
-    public final g2.m f51932b;
-    public final int f51933c;
+    public final long f48546a = u.f46053g.getAndIncrement();
+    public final g2.m f48547b;
+    public final int f48548c;
     public final b0 d;
-    public final n f51934e;
-    public volatile Object f51935f;
+    public final n e;
+    public volatile Object f48549f;
 
     public o(g2.h hVar, g2.m mVar, int i10, n nVar) {
         this.d = new b0(hVar);
-        this.f51932b = mVar;
-        this.f51933c = i10;
-        this.f51934e = nVar;
+        this.f48547b = mVar;
+        this.f48548c = i10;
+        this.e = nVar;
     }
 
     @Override
     public final void a() {
-        this.d.f10232b = 0L;
-        g2.k kVar = new g2.k(this.d, this.f51932b);
+        this.d.f9855b = 0L;
+        g2.k kVar = new g2.k(this.d, this.f48547b);
         try {
-            kVar.f10254a.open(kVar.f10255b);
-            kVar.d = true;
-            Uri uri = this.d.f10231a.getUri();
+            kVar.a();
+            Uri uri = this.d.f9854a.getUri();
             uri.getClass();
-            this.f51935f = this.f51934e.t2(uri, kVar);
+            this.f48549f = this.e.d2(uri, kVar);
             try {
                 kVar.close();
             } catch (IOException unused) {
             }
         } finally {
-            String str = d0.f8529a;
+            String str = m0.f8372a;
             try {
                 kVar.close();
             } catch (IOException unused2) {
@@ -44,6 +43,6 @@ public final class o implements i {
     }
 
     @Override
-    public final void C() {
+    public final void J() {
     }
 }

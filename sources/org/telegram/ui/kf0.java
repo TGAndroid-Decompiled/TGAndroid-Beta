@@ -1,30 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class kf0 implements NotificationCenter.NotificationCenterDelegate {
-    public final lf0 f39477a;
+import org.telegram.messenger.AndroidUtilities;
+public final class kf0 implements Runnable {
+    public final int f37641a;
+    public final lf0 f37642b;
 
-    public kf0(lf0 lf0Var) {
-        this.f39477a = lf0Var;
+    public kf0(lf0 lf0Var, int i10) {
+        this.f37641a = i10;
+        this.f37642b = lf0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        lf0 lf0Var = this.f39477a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                lf0Var.f39732y = (GoogleSignInAccount) w7.d9.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                lf0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e7) {
-                FileLog.e(e7);
-            }
+    public final void run() {
+        switch (this.f37641a) {
+            case 0:
+                lf0 lf0Var = this.f37642b;
+                mf0 mf0Var = lf0Var.d;
+                if (lf0Var.f37946b) {
+                    boolean z10 = mf0Var.K;
+                    org.telegram.ui.Components.yj0 yj0Var = mf0Var.J;
+                    pd pdVar = mf0Var.f38246n;
+                    if (z10 && System.currentTimeMillis() - lf0Var.f37945a >= 10000) {
+                        pdVar.setAnimation(yj0Var);
+                        yj0Var.N(0, false, false);
+                        yj0Var.f31626t0 = new kf0(lf0Var, 1);
+                        pdVar.d();
+                        lf0Var.f37945a = System.currentTimeMillis();
+                    }
+                    pdVar.postDelayed(lf0Var.f37947c, 1000L);
+                    return;
+                }
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new kf0(this.f37642b, 2));
+                return;
+            default:
+                mf0 mf0Var2 = this.f37642b.d;
+                org.telegram.ui.Components.yj0 yj0Var2 = mf0Var2.I;
+                yj0Var2.N(0, false, false);
+                mf0Var2.f38246n.setAnimation(yj0Var2);
+                return;
         }
     }
 }

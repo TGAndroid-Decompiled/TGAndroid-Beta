@@ -1,30 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
-import org.telegram.tgnet.TLRPC;
-public final class i61 extends g.o {
-    public final q61 f27062c;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class i61 extends MetricAffectingSpan {
+    public Typeface f25892a;
+    public int f25893b;
+    public int f25894c;
 
-    public i61(q61 q61Var) {
-        this.f27062c = q61Var;
+    public i61(Typeface typeface) {
+        this.f25894c = -1;
+        this.f25892a = typeface;
     }
 
     @Override
-    public final int i(int i10) {
-        q61 q61Var = this.f27062c;
-        s4.i0 adapter = q61Var.f29720n.getAdapter();
-        p61 p61Var = q61Var.f29722s;
-        if (adapter == p61Var) {
-            if ((p61Var.d.get(i10) instanceof Integer) || i10 >= p61Var.f29436w) {
-                return p61Var.v;
-            }
-            return 1;
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10 = this.f25894c;
+        if (i10 >= 0) {
+            this.f25893b = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
         }
-        gg.f2 f2Var = q61Var.v;
-        SparseArray sparseArray = f2Var.f10601s;
-        if (i10 != f2Var.f10604y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
-            return 1;
+        Typeface typeface = this.f25892a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
         }
-        return f2Var.f10597e.a();
+        int i11 = this.f25893b;
+        if (i11 != 0) {
+            textPaint.setColor(i11);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f25892a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    public i61() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f25894c = -1;
+        this.f25892a = typeface;
+    }
+
+    public i61(Typeface typeface, int i10) {
+        this.f25894c = -1;
+        this.f25892a = typeface;
+        this.f25893b = i10;
     }
 }

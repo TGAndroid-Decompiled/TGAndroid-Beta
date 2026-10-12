@@ -1,0 +1,10 @@
+package org.telegram.ui.Components;
+
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class vn0 extends org.telegram.ui.Cells.j7 {
+    @Override
+    public final boolean d(MessageObject messageObject) {
+        return MediaController.getInstance().playMessage(messageObject);
+    }
+}

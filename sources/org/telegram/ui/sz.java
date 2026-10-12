@@ -1,63 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sz implements RequestDelegate {
-    public final int f42030a;
-    public final e00 f42031b;
+import android.content.DialogInterface;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.ConnectionsManager;
+public final class sz implements DialogInterface.OnCancelListener {
+    public final int f40250a;
+    public final int f40251b;
+    public final int[] f40252c;
 
-    public sz(e00 e00Var, int i10) {
-        this.f42030a = i10;
-        this.f42031b = e00Var;
+    public sz(int i10, int i11, int[] iArr) {
+        this.f40250a = i11;
+        this.f40251b = i10;
+        this.f40252c = iArr;
     }
 
     @Override
-    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f42030a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        int i10 = this.f40250a;
+        int[] iArr = this.f40252c;
+        int i11 = this.f40251b;
+        switch (i10) {
             case 0:
-                final e00 e00Var = this.f42031b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                e00 e00Var2 = e00Var;
-                                e00Var2.F = 0;
-                                if (tL_error == null) {
-                                    org.telegram.messenger.v0.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.zc.a0(e00Var2), R.raw.contact_check, 36);
-                                    return;
-                                }
-                                return;
-                            default:
-                                e00.U(e00Var, tL_error);
-                                return;
-                        }
-                    }
-                });
+                ArrayList arrayList = ExternalActionActivity.f32078x;
+                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
                 return;
             default:
-                final e00 e00Var2 = this.f42031b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                e00 e00Var22 = e00Var2;
-                                e00Var22.F = 0;
-                                if (tL_error == null) {
-                                    org.telegram.messenger.v0.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.zc.a0(e00Var22), R.raw.contact_check, 36);
-                                    return;
-                                }
-                                return;
-                            default:
-                                e00.U(e00Var2, tL_error);
-                                return;
-                        }
-                    }
-                });
+                Pattern pattern = LaunchActivity.B1;
+                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
                 return;
         }
     }

@@ -2,60 +2,186 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class xc1 extends FrameLayout {
-    public final int f43896a;
-    public final RectF f43897b;
-    public final zd1 f43898c;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class xc1 extends org.telegram.ui.Components.mm0 {
+    public boolean V2;
+    public float W2;
+    public final ce1 X2;
 
-    public xc1(zd1 zd1Var, Context context, int i10) {
-        super(context);
-        this.f43896a = i10;
-        switch (i10) {
-            case 1:
-                this.f43898c = zd1Var;
-                super(context);
-                this.f43897b = new RectF();
-                return;
-            default:
-                this.f43898c = zd1Var;
-                this.f43897b = new RectF();
-                return;
-        }
+    public xc1(Context context, ce1 ce1Var) {
+        super(context, null);
+        this.X2 = ce1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f43896a) {
-            case 0:
-                RectF rectF = this.f43897b;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                zd1 zd1Var = this.f43898c;
-                xc1 xc1Var = zd1Var.D0;
-                od1 od1Var = zd1Var.f44797x0;
-                zc1 zc1Var = zd1Var.f44734a;
-                org.telegram.ui.ActionBar.h6.s(xc1Var, od1Var, zc1Var);
-                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, zc1Var.G("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.h6.b1()) {
-                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, zc1Var.G("paintChatActionBackgroundDarken"));
-                    return;
+    public final boolean F0(View view) {
+        s4.b1 T;
+        xc1 xc1Var = this.X2.f34907u0;
+        View F = xc1Var.F(view);
+        if (F == null) {
+            T = null;
+        } else {
+            T = xc1Var.T(F);
+        }
+        if (T != null && T.f44841f == 2) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        s4.b1 T;
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+            u1Var.getMessageObject();
+            ImageReceiver avatarImage = u1Var.getAvatarImage();
+            if (avatarImage != null) {
+                int top = view.getTop();
+                boolean m32 = u1Var.m3();
+                ce1 ce1Var = this.X2;
+                if (m32 && (T = ce1Var.f34907u0.T(view)) != null) {
+                    if (ce1Var.f34907u0.K(T.b() - 1) != null) {
+                        avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
+                        avatarImage.draw(canvas);
+                        return drawChild;
+                    }
                 }
-                return;
-            default:
-                RectF rectF2 = this.f43897b;
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                zd1 zd1Var2 = this.f43898c;
-                xc1 xc1Var2 = zd1Var2.E0;
-                od1 od1Var2 = zd1Var2.f44797x0;
-                zc1 zc1Var2 = zd1Var2.f44734a;
-                org.telegram.ui.ActionBar.h6.s(xc1Var2, od1Var2, zc1Var2);
-                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, zc1Var2.G("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.h6.b1()) {
-                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, zc1Var2.G("paintChatActionBackgroundDarken"));
-                    return;
+                float translationX = u1Var.getTranslationX();
+                int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
+                int measuredHeight = ce1Var.f34907u0.getMeasuredHeight() - ce1Var.f34907u0.getPaddingBottom();
+                if (layoutHeight > measuredHeight) {
+                    layoutHeight = measuredHeight;
                 }
-                return;
+                if (u1Var.n3() && (r11 = ce1Var.f34907u0.T(view)) != null) {
+                    int i10 = 0;
+                    while (i10 < 20) {
+                        i10++;
+                        s4.b1 T2 = ce1Var.f34907u0.K(T2.b() + 1);
+                        if (T2 == null) {
+                            break;
+                        }
+                        View view2 = T2.f44838a;
+                        int top2 = view2.getTop();
+                        if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
+                            translationX = Math.min(view2.getTranslationX(), translationX);
+                        }
+                        if ((view2 instanceof org.telegram.ui.Cells.u1) && ((org.telegram.ui.Cells.u1) view2).n3()) {
+                            top = top2;
+                        } else {
+                            top = top2;
+                            break;
+                        }
+                    }
+                }
+                if (layoutHeight - AndroidUtilities.dp(48.0f) < top) {
+                    layoutHeight = AndroidUtilities.dp(48.0f) + top;
+                }
+                int i11 = (translationX > 0.0f ? 1 : (translationX == 0.0f ? 0 : -1));
+                if (i11 != 0) {
+                    canvas.save();
+                    canvas.translate(translationX, 0.0f);
+                }
+                avatarImage.setImageY(layoutHeight - AndroidUtilities.dp(44.0f));
+                avatarImage.draw(canvas);
+                if (i11 != 0) {
+                    canvas.restore();
+                }
+            }
+        }
+        return drawChild;
+    }
+
+    @Override
+    public final void h1(View view, float f7, float f10, boolean z10) {
+        if (z10 && (view instanceof org.telegram.ui.Cells.u1) && !((org.telegram.ui.Cells.u1) view).i3(f7)) {
+            return;
+        }
+        super.h1(view, f7, f10, z10);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.X2.V0();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int action = motionEvent.getAction();
+        ce1 ce1Var = this.X2;
+        if (action == 1) {
+            if (!ce1Var.f34900r0 && (ce1Var.B1 instanceof pj1) && ce1Var.L0[0].getVisibility() == 0) {
+                ce1Var.f1(0, false, true);
+            }
+            ce1Var.f34900r0 = false;
+        }
+        if (ce1Var.a2) {
+            if (motionEvent.getAction() == 0) {
+                this.W2 = motionEvent.getX();
+                motionEvent.getY();
+                if (getParent() != null) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                this.V2 = true;
+            } else if (motionEvent.getAction() == 2) {
+                if (!this.V2 && Math.abs(this.W2 - motionEvent.getX()) > AndroidUtilities.touchSlop) {
+                    if (getParent() != null) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+                    this.V2 = true;
+                }
+            } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+                this.V2 = false;
+                if (getParent() != null) {
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                }
+            }
+            ce1Var.S1.a(motionEvent);
+        }
+        if (!this.V2 && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        ce1 ce1Var = this.X2;
+        int i10 = 0;
+        if (ce1Var.J0 != null) {
+            int i11 = 0;
+            while (true) {
+                org.telegram.ui.Components.l91[] l91VarArr = ce1Var.J0;
+                if (i11 >= l91VarArr.length) {
+                    break;
+                }
+                l91VarArr[i11].invalidate();
+                i11++;
+            }
+        }
+        if (ce1Var.K0 != null) {
+            while (true) {
+                org.telegram.ui.Components.l91[] l91VarArr2 = ce1Var.K0;
+                if (i10 >= l91VarArr2.length) {
+                    break;
+                }
+                l91VarArr2[i10].invalidate();
+                i10++;
+            }
+        }
+        ad1 ad1Var = ce1Var.D0;
+        if (ad1Var != null) {
+            ad1Var.invalidate();
+        }
+        ad1 ad1Var2 = ce1Var.E0;
+        if (ad1Var2 != null) {
+            ad1Var2.invalidate();
         }
     }
 }

@@ -1,0 +1,145 @@
+package ji;
+
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.tl.TL_iv;
+public final class f3 implements f6 {
+    public final x3 f13268a;
+
+    public f3(x3 x3Var) {
+        this.f13268a = x3Var;
+    }
+
+    public final int a(a aVar) {
+        float f7;
+        int i10;
+        x3 x3Var = this.f13268a;
+        int indexOf = x3Var.f13635j3.indexOf(aVar);
+        if (indexOf >= 0 && (i10 = indexOf + 1) < x3Var.f13635j3.size() && ((a) x3Var.f13635j3.get(i10)).f13104c > 0) {
+            f7 = 5.0f;
+        } else {
+            f7 = 11.0f;
+        }
+        return AndroidUtilities.dp(f7);
+    }
+
+    public final int b(a aVar) {
+        float f7;
+        x3 x3Var = this.f13268a;
+        int indexOf = x3Var.f13635j3.indexOf(aVar);
+        if (indexOf > 0 && ((a) x3Var.f13635j3.get(indexOf - 1)).f13104c > 0) {
+            f7 = 2.0f;
+        } else {
+            f7 = 8.0f;
+        }
+        return AndroidUtilities.dp(f7);
+    }
+
+    public final void c(a aVar, int i10) {
+        x3 x3Var = this.f13268a;
+        v3 v3Var = x3Var.f13627f3;
+        if (i10 == 7) {
+            x3Var.S4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
+            return;
+        }
+        x3Var.Z3 = null;
+        x3Var.f13620a4 = aVar;
+        h2 h2Var = x3Var.H3;
+        if (h2Var != null) {
+            h2Var.d();
+        }
+        if (aVar != null) {
+            i6.f(aVar.f13103b, "");
+            View A1 = x3Var.A1(aVar);
+            if (A1 instanceof i6) {
+                ((i6) A1).getEditText().setTextSilently("");
+            }
+        }
+        h2 h2Var2 = x3Var.H3;
+        if (h2Var2 != null) {
+            h2Var2.h();
+        }
+        switch (i10) {
+            case 1:
+                v3Var.m(3);
+                return;
+            case 2:
+                v3Var.m(6);
+                return;
+            case 3:
+                r.X(x3Var.getContext(), "", new p1(x3Var, 1), x3Var.f13625e3);
+                return;
+            case 4:
+            case 5:
+                v3Var.m(1);
+                return;
+            case 6:
+                x3Var.u3();
+                return;
+            default:
+                return;
+        }
+    }
+
+    public final void d(a aVar, TL_iv.PageBlock pageBlock, int i10, int i11, boolean z10, boolean z11) {
+        boolean z12;
+        boolean z13 = pageBlock instanceof TL_iv.pageBlockBlockquote;
+        x3 x3Var = this.f13268a;
+        if (z13) {
+            if (aVar == null) {
+                aVar = x3Var.Y4();
+            }
+            if (aVar != null) {
+                ArrayList arrayList = aVar.f13109k;
+                if (x3Var.f13635j3.indexOf(aVar) >= 0 && !x3.y3(aVar) && !aVar.f13107i) {
+                    h2 h2Var = x3Var.H3;
+                    if (h2Var != null) {
+                        h2Var.d();
+                    }
+                    if (arrayList.isEmpty() && !i6.p(aVar.f13103b)) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    if (z12) {
+                        TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
+                        pageblockblockquote.caption = new TL_iv.textEmpty();
+                        aVar.f13103b = pageblockblockquote;
+                    } else {
+                        if (i6.p(aVar.f13103b)) {
+                            long a2 = p0.a();
+                            TL_iv.RichText k10 = i6.k(aVar.f13103b);
+                            if (k10 != null && !(k10 instanceof TL_iv.textEmpty)) {
+                                x3Var.f13637k3.put(Long.valueOf(a2), k10);
+                            }
+                            arrayList.add(Long.valueOf(a2));
+                        }
+                        aVar.f13103b = new TL_iv.pageBlockParagraph();
+                        arrayList.add(Long.valueOf(p0.a()));
+                    }
+                    x3Var.t4();
+                    if (z12 && (x3Var.findFocus() instanceof h1)) {
+                        x3Var.Y1();
+                        h2 h2Var2 = x3Var.H3;
+                        if (h2Var2 != null) {
+                            h2Var2.h();
+                        }
+                        x3Var.e3(aVar);
+                        return;
+                    }
+                    x3Var.W2.N(false);
+                    h2 h2Var3 = x3Var.H3;
+                    if (h2Var3 != null) {
+                        h2Var3.h();
+                    }
+                    x3Var.post(new a3(x3Var, aVar, 5));
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        x3Var.S4(aVar, pageBlock, i10, i11, z10, z11);
+    }
+}

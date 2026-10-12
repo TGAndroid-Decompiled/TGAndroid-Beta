@@ -1,53 +1,53 @@
 package w3;
 
-import e2.v;
+import e2.x;
 public final class a {
-    public final int f49997a;
-    public int f49998b;
-    public int f49999c;
+    public final int f47077a;
+    public int f47078b;
+    public int f47079c;
     public long d;
-    public final boolean f50000e;
-    public final v f50001f;
-    public final v f50002g;
+    public final boolean e;
+    public final x f47080f;
+    public final x f47081g;
     public int h;
-    public int f50003i;
+    public int f47082i;
 
-    public a(v vVar, v vVar2, boolean z10) {
-        this.f50002g = vVar;
-        this.f50001f = vVar2;
-        this.f50000e = z10;
-        vVar2.J(12);
-        this.f49997a = vVar2.B();
-        vVar.J(12);
-        this.f50003i = vVar.B();
-        c3.b.c("first_chunk must be 1", vVar.j() == 1);
-        this.f49998b = -1;
+    public a(x xVar, x xVar2, boolean z10) {
+        this.f47081g = xVar;
+        this.f47080f = xVar2;
+        this.e = z10;
+        xVar2.N(12);
+        this.f47077a = xVar2.E();
+        xVar.N(12);
+        this.f47082i = xVar.E();
+        c3.b.b("first_chunk must be 1", xVar.m() == 1);
+        this.f47078b = -1;
     }
 
     public final boolean a() {
-        long z10;
+        long C;
         int i10;
-        int i11 = this.f49998b + 1;
-        this.f49998b = i11;
-        if (i11 == this.f49997a) {
+        int i11 = this.f47078b + 1;
+        this.f47078b = i11;
+        if (i11 == this.f47077a) {
             return false;
         }
-        boolean z11 = this.f50000e;
-        v vVar = this.f50001f;
-        if (z11) {
-            z10 = vVar.C();
+        boolean z10 = this.e;
+        x xVar = this.f47080f;
+        if (z10) {
+            C = xVar.G();
         } else {
-            z10 = vVar.z();
+            C = xVar.C();
         }
-        this.d = z10;
-        if (this.f49998b == this.h) {
-            v vVar2 = this.f50002g;
-            this.f49999c = vVar2.B();
-            vVar2.K(4);
-            int i12 = this.f50003i - 1;
-            this.f50003i = i12;
+        this.d = C;
+        if (this.f47078b == this.h) {
+            x xVar2 = this.f47081g;
+            this.f47079c = xVar2.E();
+            xVar2.O(4);
+            int i12 = this.f47082i - 1;
+            this.f47082i = i12;
             if (i12 > 0) {
-                i10 = vVar2.B() - 1;
+                i10 = xVar2.E() - 1;
             } else {
                 i10 = -1;
             }

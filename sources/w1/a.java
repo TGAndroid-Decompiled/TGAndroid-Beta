@@ -4,16 +4,16 @@ import a6.d;
 import androidx.lifecycle.a0;
 import androidx.lifecycle.t;
 import androidx.lifecycle.z;
-import b2.p;
+import b2.u;
 public final class a extends z {
-    public final d f49987l;
-    public t f49988m;
-    public p f49989n;
+    public final d f47068l;
+    public t f47069m;
+    public u f47070n;
 
     public a(d dVar) {
-        this.f49987l = dVar;
-        if (dVar.f312a == null) {
-            dVar.f312a = this;
+        this.f47068l = dVar;
+        if (dVar.f292a == null) {
+            dVar.f292a = this;
             return;
         }
         throw new IllegalStateException("There is already a listener registered");
@@ -21,32 +21,32 @@ public final class a extends z {
 
     @Override
     public final void f() {
-        d dVar = this.f49987l;
-        dVar.f313b = true;
+        d dVar = this.f47068l;
+        dVar.f293b = true;
         dVar.d = false;
-        dVar.f314c = false;
-        dVar.f318i.drainPermits();
+        dVar.f294c = false;
+        dVar.f297i.drainPermits();
         dVar.c();
     }
 
     @Override
     public final void g() {
-        this.f49987l.f313b = false;
+        this.f47068l.f293b = false;
     }
 
     @Override
     public final void i(a0 a0Var) {
         super.i(a0Var);
-        this.f49988m = null;
-        this.f49989n = null;
+        this.f47069m = null;
+        this.f47070n = null;
     }
 
     public final void k() {
-        t tVar = this.f49988m;
-        p pVar = this.f49989n;
-        if (tVar != null && pVar != null) {
-            super.i(pVar);
-            d(tVar, pVar);
+        t tVar = this.f47069m;
+        u uVar = this.f47070n;
+        if (tVar != null && uVar != null) {
+            super.i(uVar);
+            d(tVar, uVar);
         }
     }
 
@@ -55,7 +55,7 @@ public final class a extends z {
         sb2.append("LoaderInfo{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" #0 : ");
-        Class<?> cls = this.f49987l.getClass();
+        Class<?> cls = this.f47068l.getClass();
         sb2.append(cls.getSimpleName());
         sb2.append("{");
         sb2.append(Integer.toHexString(System.identityHashCode(cls)));

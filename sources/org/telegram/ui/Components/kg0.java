@@ -1,57 +1,69 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class kg0 {
-    public final lg0 f27855a = new lg0();
-    public final lg0 f27856b = new lg0();
-    public final lg0 f27857c = new lg0();
-    public final lg0 d = new lg0();
-    public final ByteBuffer f27858e;
-    public int f27859f;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class kg0 extends LinearLayout {
+    public final LinearLayout f26703a;
+    public final LinearLayout f26704b;
 
-    public kg0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.f27858e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    public kg0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f26704b = a2;
+        addView(a2, w7.a6.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f26703a = a10;
+        addView(a10, w7.a6.n(-2, -1));
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.f27858e;
-        byteBuffer.position(0);
-        lg0 lg0Var = this.f27855a;
-        if (lg0Var.f28178f == null) {
-            lg0Var.a();
-        }
-        float[] fArr = lg0Var.f28178f;
-        lg0 lg0Var2 = this.f27856b;
-        if (lg0Var2.f28178f == null) {
-            lg0Var2.a();
-        }
-        float[] fArr2 = lg0Var2.f28178f;
-        lg0 lg0Var3 = this.f27857c;
-        if (lg0Var3.f28178f == null) {
-            lg0Var3.a();
-        }
-        float[] fArr3 = lg0Var3.f28178f;
-        lg0 lg0Var4 = this.d;
-        if (lg0Var4.f28178f == null) {
-            lg0Var4.a();
-        }
-        float[] fArr4 = lg0Var4.f28178f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.a6.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.a6.n(-2, -2));
+        w7.c6.a(linearLayout);
+        return linearLayout;
     }
 
-    public final boolean b() {
-        if (this.f27855a.b() && this.f27856b.b() && this.f27857c.b() && this.d.b()) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f26703a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f26704b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

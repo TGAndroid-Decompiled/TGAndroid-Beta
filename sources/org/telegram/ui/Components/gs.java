@@ -1,93 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class gs extends Drawable {
-    public final Drawable f26502a;
-    public final RectF f26503b = new RectF();
-    public final Paint f26504c;
-    public final Paint d;
-    public int f26505e;
-    public final int f26506f;
-    public float f26507g;
-    public boolean h;
-    public float f26508i;
-    public float f26509j;
-    public float f26510k;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+public final class gs extends ImageView {
+    public final int f25412a = 1;
+    public Object f25413b;
+    public final ViewGroup f25414c;
 
-    public gs(Context context, int i10, int i11) {
-        Paint paint = new Paint(1);
-        this.f26504c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f26502a = context.getDrawable(i10);
-        this.f26506f = i11;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    public gs(is isVar, Context context, ji.d4 d4Var) {
+        super(context);
+        this.f25414c = isVar;
+        this.f25413b = d4Var;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (this.h != z10) {
-            this.h = z10;
-            float f7 = 0.0f;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f25412a) {
+            case 0:
+                is isVar = (is) this.f25414c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (isVar.f26086n || isVar.f26085f)) {
+                    isVar.f26086n = false;
+                    isVar.f26085f = false;
+                    removeCallbacks(isVar.f26087r);
+                    removeCallbacks(isVar.h);
                 }
-                this.f26507g = f7;
-            } else {
-                if (!z10) {
-                    f7 = 1.0f;
-                }
-                this.f26507g = f7;
-            }
-            invalidateSelf();
+                super.onTouchEvent(motionEvent);
+                return ((GestureDetector) ((ji.d4) this.f25413b).f13233b).onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 
-    @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gs.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f26502a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f26502a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f26502a.setBounds(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public gs(gl0 gl0Var, Context context) {
+        super(context);
+        this.f25414c = gl0Var;
     }
 }

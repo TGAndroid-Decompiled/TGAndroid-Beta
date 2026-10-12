@@ -1,45 +1,36 @@
 package k2;
+public final class r implements Runnable {
+    public final int f13983a;
+    public final qf.b f13984b;
+    public final i2.e f13985c;
 
-import android.media.AudioTrack;
-public final class r {
-    public final q f14530a;
-    public final int f14531b;
-    public final xa.c f14532c;
-    public int d;
-    public long f14533e;
-    public long f14534f;
-    public long f14535g;
-    public long h;
-    public long f14536i;
-
-    public r(AudioTrack audioTrack, xa.c cVar) {
-        this.f14530a = new q(audioTrack);
-        this.f14531b = audioTrack.getSampleRate();
-        this.f14532c = cVar;
-        a(0);
+    public r(qf.b bVar, i2.e eVar, int i10) {
+        this.f13983a = i10;
+        this.f13984b = bVar;
+        this.f13985c = eVar;
     }
 
-    public final void a(int i10) {
-        this.d = i10;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2 && i10 != 3) {
-                    if (i10 == 4) {
-                        this.f14534f = 500000L;
-                        return;
-                    }
-                    throw new IllegalStateException();
+    @Override
+    public final void run() {
+        switch (this.f13983a) {
+            case 0:
+                qf.b bVar = this.f13984b;
+                i2.e eVar = this.f13985c;
+                synchronized (eVar) {
                 }
-                this.f14534f = 10000000L;
+                String str = e2.m0.f8372a;
+                j2.f fVar = ((i2.b0) ((u) bVar.f43356c)).f10925a.f11012s;
+                j2.a n10 = fVar.n((u2.g0) fVar.d.e);
+                fVar.q(n10, 1013, new j2.c(n10, eVar, 24));
                 return;
-            }
-            this.f14534f = 10000L;
-            return;
+            default:
+                qf.b bVar2 = this.f13984b;
+                i2.e eVar2 = this.f13985c;
+                String str2 = e2.m0.f8372a;
+                j2.f fVar2 = ((i2.b0) ((u) bVar2.f43356c)).f10925a.f11012s;
+                j2.a p5 = fVar2.p();
+                fVar2.q(p5, 1007, new j2.c(p5, eVar2, 19));
+                return;
         }
-        this.f14535g = 0L;
-        this.h = -1L;
-        this.f14536i = -9223372036854775807L;
-        this.f14533e = System.nanoTime() / 1000;
-        this.f14534f = 10000L;
     }
 }

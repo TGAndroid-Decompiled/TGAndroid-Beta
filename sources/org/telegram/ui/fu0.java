@@ -1,62 +1,46 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
-import android.view.View;
-import android.view.ViewGroup;
-public final class fu0 extends Fade {
-    public final int f37847a;
-    public final boolean f37848b;
-    public final boolean f37849c;
-    public final PhotoViewer d;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class fu0 extends AnimatorListenerAdapter {
+    public final int f36234a;
+    public final int f36235b;
+    public final PhotoViewer f36236c;
 
-    public fu0(PhotoViewer photoViewer, boolean z10, boolean z11, int i10) {
-        super(1);
-        this.f37847a = i10;
-        switch (i10) {
-            case 1:
-                this.d = photoViewer;
-                this.f37848b = z10;
-                this.f37849c = z11;
-                super(2);
-                return;
-            default:
-                this.d = photoViewer;
-                this.f37848b = z10;
-                this.f37849c = z11;
-                return;
-        }
+    public fu0(PhotoViewer photoViewer, int i10, int i11) {
+        this.f36234a = i11;
+        this.f36236c = photoViewer;
+        this.f36235b = i10;
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f37847a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36234a) {
             case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f37848b && !this.f37849c && view == this.d.Q1) {
-                    onAppear.addListener(new gp0(this, 6));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new c3(this, 20));
-                }
-                return onAppear;
+                PhotoViewer photoViewer = this.f36236c;
+                gu0 gu0Var = photoViewer.N1;
+                gu0Var.e.setVisibility(0);
+                FrameLayout frameLayout = gu0Var.f44612r;
+                frameLayout.setVisibility(0);
+                frameLayout.setTranslationY(AndroidUtilities.dp(18.0f));
+                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
+                org.telegram.ui.Components.es esVar = org.telegram.ui.Components.es.h;
+                org.telegram.messenger.yh.s(translationY, esVar, 320L);
+                gu0Var.f44614w.animate().alpha(1.0f).translationX(0.0f).setInterpolator(esVar).setDuration(320L).start();
+                photoViewer.f32371u4 = this.f36235b;
+                photoViewer.q6 = null;
+                photoViewer.f32319o6 = -1;
+                return;
             default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-        }
-    }
-
-    @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f37847a) {
-            case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f37848b && this.f37849c && view == this.d.Q1) {
-                    onDisappear.addListener(new gp0(this, 7));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new c3(this, 21));
-                }
-                return onDisappear;
-            default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                int i10 = this.f36235b;
+                PhotoViewer photoViewer2 = this.f36236c;
+                photoViewer2.f32371u4 = i10;
+                photoViewer2.q6 = null;
+                photoViewer2.f32319o6 = -1;
+                return;
         }
     }
 }

@@ -1,47 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class hk0 extends Drawable {
-    public final int f26790a;
-    public final int f26791b;
-    public final ik0 f26792c;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLObject;
+public final class hk0 implements Runnable {
+    public final int f25694a;
+    public final qk0 f25695b;
+    public final TLObject f25696c;
 
-    public hk0(ik0 ik0Var, int i10, int i11) {
-        this.f26792c = ik0Var;
-        this.f26790a = i10;
-        this.f26791b = i11;
+    public hk0(qk0 qk0Var, TLObject tLObject, int i10) {
+        this.f25694a = i10;
+        this.f25695b = qk0Var;
+        this.f25696c = tLObject;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect rect = AndroidUtilities.rectTmp2;
-        int centerX = getBounds().centerX();
-        float f7 = this.f26790a;
-        int dp = centerX - (AndroidUtilities.dp(f7) / 2);
-        int centerY = getBounds().centerY();
-        float f10 = this.f26791b;
-        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
-        ik0 ik0Var = this.f26792c;
-        ik0Var.f27182c.setImageCoords(rect);
-        ik0Var.f27182c.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f26792c.f27182c.setAlpha(i10 / 255.0f);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f26792c.f27182c.setColorFilter(colorFilter);
+    public final void run() {
+        switch (this.f25694a) {
+            case 0:
+                qk0 qk0Var = this.f25695b;
+                NotificationCenter.getInstance(qk0Var.f28629b).doOnIdle(new hk0(qk0Var, this.f25696c, 1));
+                return;
+            default:
+                qk0.a(this.f25695b, this.f25696c);
+                return;
+        }
     }
 }

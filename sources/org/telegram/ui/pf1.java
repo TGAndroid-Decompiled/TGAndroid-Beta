@@ -1,22 +1,15 @@
 package org.telegram.ui;
+public final class pf1 extends s4.y {
+    public final lg1 S;
 
-import android.content.Context;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class pf1 extends org.telegram.ui.Components.g80 {
-    public final long A0;
-    public final rf1 B0;
-
-    public pf1(rf1 rf1Var, Context context, int i10, a0.i iVar, long j3, org.telegram.ui.ActionBar.m2 m2Var, long j10) {
-        super(context, i10, iVar, j3, m2Var, null);
-        this.B0 = rf1Var;
-        this.A0 = j10;
+    public pf1(lg1 lg1Var, kg1 kg1Var) {
+        super(kg1Var);
+        this.S = lg1Var;
     }
 
     @Override
-    public final boolean Y() {
-        TLRPC.Chat chat = this.B0.f41630b.getMessagesController().getChat(Long.valueOf(this.A0));
-        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
+    public final boolean q() {
+        if (this.S.f37999x > 0) {
             return true;
         }
         return false;

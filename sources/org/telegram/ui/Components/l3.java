@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Region;
 import org.telegram.messenger.AndroidUtilities;
-public final class l3 extends y9 {
+public final class l3 extends z9 {
     public final Path G;
 
     public l3(Context context) {

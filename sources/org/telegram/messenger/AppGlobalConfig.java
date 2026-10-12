@@ -225,9 +225,9 @@ public class AppGlobalConfig {
                 if (jSONValue instanceof TLRPC.TL_jsonNumber) {
                     double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
                     if (d != this.value) {
-                        long j3 = (long) d;
-                        this.value = j3;
-                        editor.putLong(this.name, j3);
+                        long j10 = (long) d;
+                        this.value = j10;
+                        editor.putLong(this.name, j10);
                         return true;
                     }
                     return false;
@@ -240,9 +240,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getLong(this.name, this.defaultValue);
             }
 
-            private Internal(String str, long j3) {
+            private Internal(String str, long j10) {
                 this.name = str;
-                this.defaultValue = j3;
+                this.defaultValue = j10;
             }
         }
 
@@ -250,8 +250,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigLong(String str, long j3) {
-            this.handler = new Internal(str, j3);
+        private ConfigLong(String str, long j10) {
+            this.handler = new Internal(str, j10);
         }
     }
 
@@ -366,8 +366,8 @@ public class AppGlobalConfig {
             return timeUnit.convert(this.handler.value, this.timeUnit);
         }
 
-        private ConfigTime(String str, TimeUnit timeUnit, long j3) {
-            this.handler = new ConfigLong.Internal(str, j3);
+        private ConfigTime(String str, TimeUnit timeUnit, long j10) {
+            this.handler = new ConfigLong.Internal(str, j10);
             this.timeUnit = timeUnit;
         }
     }
@@ -462,8 +462,8 @@ public class AppGlobalConfig {
         return configInt;
     }
 
-    private ConfigLong ofLong(String str, long j3) {
-        ConfigLong configLong = new ConfigLong(str, j3);
+    private ConfigLong ofLong(String str, long j10) {
+        ConfigLong configLong = new ConfigLong(str, j10);
         this.map.put(str, configLong.handler);
         return configLong;
     }
@@ -480,8 +480,8 @@ public class AppGlobalConfig {
         return configStringSet;
     }
 
-    private ConfigTime ofTime(String str, long j3, TimeUnit timeUnit) {
-        ConfigTime configTime = new ConfigTime(str, timeUnit, j3);
+    private ConfigTime ofTime(String str, long j10, TimeUnit timeUnit) {
+        ConfigTime configTime = new ConfigTime(str, timeUnit, j10);
         this.map.put(str, configTime.handler);
         return configTime;
     }
@@ -503,8 +503,8 @@ public class AppGlobalConfig {
         for (ConfigInternal configInternal : this.map.values()) {
             try {
                 configInternal.load(sharedPreferences);
-            } catch (ClassCastException e7) {
-                FileLog.e(e7);
+            } catch (ClassCastException e) {
+                FileLog.e(e);
             }
         }
     }

@@ -1,84 +1,83 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class er0 extends rr0 {
-    public final sr0 f25780r;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class er0 extends hg.b0 {
+    public final fr0 f24770n;
 
-    public er0(sr0 sr0Var, Context context) {
-        super(context);
-        this.f25780r = sr0Var;
-        this.h = new Paint(1);
-        this.f30229n = new RectF();
-        View view = new View(context);
-        this.f30224a = view;
-        int dp = AndroidUtilities.dp(18.0f);
-        int i10 = org.telegram.ui.ActionBar.h6.O5;
-        int i11 = sr0.f30631a1;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.c0(dp, sr0Var.getThemedColor(i10)));
-        addView(view, w7.w5.a(36.0f, 14.0f, 0.0f, 14.0f, 0.0f, -1, 51));
-        ci.bb bbVar = new ci.bb(this, context, 23);
-        this.d = bbVar;
-        addView(bbVar, w7.w5.a(36.0f, 14.0f, 0.0f, 14.0f, 0.0f, -1, 51));
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-        this.f30226c = h5Var;
-        int i12 = org.telegram.ui.ActionBar.h6.f20753ng;
-        h5Var.setTextColor(sr0Var.getThemedColor(i12));
-        h5Var.setTextSize(13);
-        h5Var.setLeftDrawable(R.drawable.msg_tabs_mic1);
-        h5Var.l(LocaleController.getString(R.string.VoipGroupInviteCanSpeak), false);
-        h5Var.setGravity(17);
-        addView(h5Var, w7.w5.a(-1.0f, 14.0f, 0.0f, 0.0f, 0.0f, -1, 51));
-        h5Var.setOnClickListener(new View.OnClickListener(this) {
-            public final er0 f29923b;
+    public er0(fr0 fr0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(i10, context, c6Var, true, true);
+        this.f24770n = fr0Var;
+    }
 
-            {
-                this.f29923b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f29923b.a(0);
-                        return;
-                    default:
-                        this.f29923b.a(1);
-                        return;
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        TLRPC.Chat chat;
+        int i12;
+        int i13;
+        boolean z10;
+        String str;
+        int i14;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) b1Var.f44838a;
+        jr0 jr0Var = this.f24770n.K;
+        boolean z11 = false;
+        TLRPC.User user = null;
+        if (jr0Var.f26467h0 || jr0Var.f26468i0) {
+            int i15 = org.telegram.ui.ActionBar.g6.f20094ng;
+            int i16 = org.telegram.ui.ActionBar.g6.fg;
+            n4Var.f21555b.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i15, false));
+            n4Var.H = i16;
+            n4Var.v.b(org.telegram.ui.ActionBar.g6.B5, i16, org.telegram.ui.ActionBar.g6.C5);
+        }
+        i11 = ((org.telegram.ui.ActionBar.e3) jr0Var).currentAccount;
+        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
+        TLRPC.Peer peer = tL_topPeer.peer;
+        long j10 = peer.user_id;
+        if (j10 != 0) {
+            i14 = ((org.telegram.ui.ActionBar.e3) jr0Var).currentAccount;
+            user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
+            chat = null;
+        } else {
+            long j11 = peer.channel_id;
+            if (j11 != 0) {
+                j10 = -j11;
+                i13 = ((org.telegram.ui.ActionBar.e3) jr0Var).currentAccount;
+                chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
+            } else {
+                long j12 = peer.chat_id;
+                if (j12 != 0) {
+                    j10 = -j12;
+                    i12 = ((org.telegram.ui.ActionBar.e3) jr0Var).currentAccount;
+                    chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
+                } else {
+                    chat = null;
+                    j10 = 0;
                 }
             }
-        });
-        org.telegram.ui.ActionBar.h5 h5Var2 = new org.telegram.ui.ActionBar.h5(context);
-        this.f30225b = h5Var2;
-        h5Var2.setTextColor(sr0Var.getThemedColor(i12));
-        h5Var2.setTextSize(13);
-        h5Var2.setLeftDrawable(R.drawable.msg_tabs_mic2);
-        h5Var2.l(LocaleController.getString(R.string.VoipGroupInviteListenOnly), false);
-        h5Var2.setGravity(17);
-        addView(h5Var2, w7.w5.a(-1.0f, 0.0f, 0.0f, 14.0f, 0.0f, -1, 51));
-        h5Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final er0 f29923b;
-
-            {
-                this.f29923b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f29923b.a(0);
-                        return;
-                    default:
-                        this.f29923b.a(1);
-                        return;
-                }
-            }
-        });
+        }
+        if (j10 == n4Var.getDialogId()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        n4Var.setTag(Long.valueOf(j10));
+        if (user != null) {
+            str = UserObject.getFirstName(user);
+        } else if (chat != null) {
+            str = chat.title;
+        } else {
+            str = "";
+        }
+        n4Var.a(j10, str);
+        if (jr0Var.U.h(j10) >= 0) {
+            z11 = true;
+        }
+        if (n4Var.f21561w) {
+            n4Var.v.a(z11, z10);
+        }
     }
 }

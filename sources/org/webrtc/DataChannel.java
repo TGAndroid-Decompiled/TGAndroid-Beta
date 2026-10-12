@@ -21,10 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f44991id = -1;
+        public int f42776id = -1;
 
         public int getId() {
-            return this.f44991id;
+            return this.f42776id;
         }
 
         public int getMaxRetransmitTimeMs() {
@@ -49,7 +49,7 @@ public class DataChannel {
     }
 
     public interface Observer {
-        void onBufferedAmountChange(long j3);
+        void onBufferedAmountChange(long j10);
 
         void onMessage(Buffer buffer);
 
@@ -67,8 +67,8 @@ public class DataChannel {
         }
     }
 
-    public DataChannel(long j3) {
-        this.nativeDataChannel = j3;
+    public DataChannel(long j10) {
+        this.nativeDataChannel = j10;
     }
 
     private void checkDataChannelExists() {
@@ -92,7 +92,7 @@ public class DataChannel {
 
     private native State nativeState();
 
-    private native void nativeUnregisterObserver(long j3);
+    private native void nativeUnregisterObserver(long j10);
 
     public long bufferedAmount() {
         checkDataChannelExists();
@@ -126,9 +126,9 @@ public class DataChannel {
 
     public void registerObserver(Observer observer) {
         checkDataChannelExists();
-        long j3 = this.nativeObserver;
-        if (j3 != 0) {
-            nativeUnregisterObserver(j3);
+        long j10 = this.nativeObserver;
+        if (j10 != 0) {
+            nativeUnregisterObserver(j10);
         }
         this.nativeObserver = nativeRegisterObserver(observer);
     }

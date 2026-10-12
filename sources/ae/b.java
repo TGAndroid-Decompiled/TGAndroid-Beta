@@ -1,8 +1,11 @@
 package ae;
-public final class b implements z1 {
-    public static final b f428a = new Object();
+public abstract class b {
+    public static final int f539a = 0;
 
-    public final String toString() {
-        return "Active";
+    static {
+        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
+        for (int i10 = 0; i10 < 4; i10++) {
+            threadLocalArr[i10] = new ThreadLocal();
+        }
     }
 }

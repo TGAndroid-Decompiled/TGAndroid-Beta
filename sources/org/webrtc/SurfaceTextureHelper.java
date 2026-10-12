@@ -47,8 +47,8 @@ public class SurfaceTextureHelper {
             public SurfaceTextureHelper call() {
                 try {
                     return new SurfaceTextureHelper(context, handler, z10, yuvConverter, frameRefMonitor);
-                } catch (RuntimeException e7) {
-                    Logging.e("SurfaceTextureHelper", str + " create failure", e7);
+                } catch (RuntimeException e) {
+                    Logging.e("SurfaceTextureHelper", str + " create failure", e);
                     return null;
                 }
             }
@@ -120,7 +120,7 @@ public class SurfaceTextureHelper {
     }
 
     public void returnTextureFrame() {
-        this.handler.post(new q(this, 2));
+        this.handler.post(new r(this, 2));
     }
 
     private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener, Handler handler) {
@@ -170,11 +170,11 @@ public class SurfaceTextureHelper {
 
     public void dispose() {
         Logging.d("SurfaceTextureHelper", "dispose()");
-        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new q(this, 1));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new r(this, 1));
     }
 
     public void forceFrame() {
-        this.handler.post(new q(this, 3));
+        this.handler.post(new r(this, 3));
     }
 
     public Handler getHandler() {
@@ -190,19 +190,19 @@ public class SurfaceTextureHelper {
     }
 
     public void setFrameRotation(int i10) {
-        this.handler.post(new i(this, i10, 1));
+        this.handler.post(new j(this, i10, 1));
     }
 
     public void setTextureSize(int i10, int i11) {
         if (i10 > 0) {
             if (i11 > 0) {
                 this.surfaceTexture.setDefaultBufferSize(i10, i11);
-                this.handler.post(new gg.n(this, i10, i11, 11));
+                this.handler.post(new hg.n(this, i10, i11, 11));
                 return;
             }
-            throw new IllegalArgumentException(hg.c.i(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(i2.d.i(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(hg.c.i(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(i2.d.i(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {
@@ -217,7 +217,7 @@ public class SurfaceTextureHelper {
     public void stopListening() {
         Logging.d("SurfaceTextureHelper", "stopListening()");
         this.handler.removeCallbacks(this.setListenerRunnable);
-        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new q(this, 0));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new r(this, 0));
     }
 
     @Deprecated
@@ -291,10 +291,10 @@ public class SurfaceTextureHelper {
                     }
                 }, handler);
                 return;
-            } catch (RuntimeException e7) {
+            } catch (RuntimeException e) {
                 this.eglBase.release();
                 handler.getLooper().quit();
-                throw e7;
+                throw e;
             }
         }
         throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");

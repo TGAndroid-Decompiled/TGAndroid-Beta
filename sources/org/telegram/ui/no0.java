@@ -1,36 +1,58 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class no0 extends AsyncTask {
-    public final vc.a f40449a;
-    public final xo0 f40450b;
+import org.telegram.messenger.AndroidUtilities;
+public final class no0 extends org.telegram.ui.ActionBar.j {
+    public final cp0 f38751a;
 
-    public no0(xo0 xo0Var, vc.a aVar) {
-        this.f40450b = xo0Var;
-        this.f40449a = aVar;
+    public no0(cp0 cp0Var) {
+        this.f38751a = cp0Var;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.no0.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        xo0 xo0Var = this.f40450b;
-        if (xo0Var.Q0) {
-            return;
+    public final void b(int i10) {
+        cp0 cp0Var = this.f38751a;
+        if (i10 == -1) {
+            if (!cp0Var.P0) {
+                cp0Var.finishFragment();
+            }
+        } else if (i10 == 1 && !cp0Var.P0) {
+            if (cp0Var.f35027u0 != 3) {
+                AndroidUtilities.hideKeyboard(cp0Var.getParentActivity().getCurrentFocus());
+            }
+            int i11 = cp0Var.f35027u0;
+            if (i11 != 0) {
+                int i12 = 0;
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            if (i11 == 6) {
+                                cp0Var.A0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        cp0.k0(cp0Var);
+                        return;
+                    }
+                    cp0.j0(cp0Var);
+                    return;
+                }
+                while (true) {
+                    org.telegram.ui.Cells.k6[] k6VarArr = cp0Var.h;
+                    if (i12 >= k6VarArr.length) {
+                        break;
+                    } else if (k6VarArr[i12].f21454b.f23282f) {
+                        cp0Var.G0 = cp0Var.E0.shipping_options.get(i12);
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                cp0Var.t0();
+                return;
+            }
+            cp0Var.D0(true);
+            cp0.m0(cp0Var);
         }
-        if (str == null) {
-            org.telegram.ui.Components.g5.v0(xo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
-        } else {
-            xo0Var.f44126w0 = str;
-            xo0Var.t0();
-        }
-        xo0Var.H0(true, false);
-        xo0Var.D0(false);
     }
 }

@@ -1,164 +1,162 @@
 package a3;
 
-import ai.o1;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FileUploadOperation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationsSettingsFacade;
-import org.telegram.messenger.SecretChatHelper;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.hp;
-import org.telegram.ui.Components.m11;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.eo;
-import org.telegram.ui.hg1;
-import org.telegram.ui.vy;
-import qi.p0;
-import yh.s3;
-public final class g0 implements Runnable {
-    public final int f126a;
-    public final long f127b;
-    public final long f128c;
-    public final Object d;
-    public final Object f129e;
+import android.os.SystemClock;
+import android.os.Trace;
+import b2.b2;
+import b2.w0;
+import java.util.NoSuchElementException;
+public final class g0 {
+    public final qf.b f107a;
+    public final a0 f108b;
+    public final z f109c = new z();
+    public final e2.j0 d = new e2.j0(0, (byte) 0);
+    public final e2.j0 e = new e2.j0(0, (byte) 0);
+    public final e2.s f110f;
+    public final b0 f111g;
+    public long h;
+    public long f112i;
+    public long f113j;
+    public b2 f114k;
+    public long f115l;
 
-    public g0(Object obj, long j3, long j10, Object obj2, int i10) {
-        this.f126a = i10;
-        this.d = obj;
-        this.f127b = j3;
-        this.f128c = j10;
-        this.f129e = obj2;
+    public g0(qf.b bVar, a0 a0Var, b0 b0Var) {
+        this.f107a = bVar;
+        this.f108b = a0Var;
+        this.f111g = b0Var;
+        ?? obj = new Object();
+        int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
+        obj.f8398a = 0;
+        obj.f8399b = -1;
+        obj.f8400c = 0;
+        obj.e = new long[highestOneBit];
+        obj.d = highestOneBit - 1;
+        this.f110f = obj;
+        this.h = -9223372036854775807L;
+        this.f114k = b2.d;
+        this.f112i = -9223372036854775807L;
+        this.f113j = -9223372036854775807L;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f126a) {
-            case 0:
-                String str = (String) this.f129e;
-                long j3 = this.f127b;
-                long j10 = this.f128c;
-                String str2 = e2.d0.f8529a;
-                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45449c)).f11618a.f11681s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
+    public final void a(long j10, long j11) {
+        boolean z10;
+        long j12;
+        b2.x xVar;
+        final qf.b bVar = this.f107a;
+        f fVar = (f) bVar.f43356c;
+        while (true) {
+            e2.s sVar = this.f110f;
+            int i10 = sVar.f8400c;
+            if (i10 == 0) {
                 return;
-            case 1:
-                ((o1) this.d).n(this.f127b, (TLRPC.TL_textWithEntities) this.f129e, this.f128c);
-                return;
-            case 2:
-                String str3 = (String) this.f129e;
-                long j11 = this.f127b;
-                long j12 = this.f128c;
-                String str4 = e2.d0.f8529a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.d).f16364c)).f11618a.f11681s;
-                j2.a p10 = fVar2.p();
-                fVar2.q(p10, 1008, new hg.o1(p10, str3, j12, j11));
-                return;
-            case 3:
-                ((FileUploadOperation) this.d).lambda$checkNewDataAvailable$4((Float) this.f129e, this.f127b, this.f128c);
-                return;
-            case 4:
-                ((MediaDataController) this.d).lambda$loadPinnedMessages$163(this.f127b, this.f128c, (ArrayList) this.f129e);
-                return;
-            case 5:
-                ((MediaDataController) this.d).lambda$saveDraftReplyMessage$193(this.f127b, this.f128c, (TLRPC.Message) this.f129e);
-                return;
-            case 6:
-                ((MessagesStorage) this.d).lambda$loadPendingTasks$29(this.f127b, this.f128c, (TLRPC.TL_messages_deleteScheduledMessages) this.f129e);
-                return;
-            case 7:
-                ((MessagesStorage) this.d).lambda$loadPendingTasks$21(this.f127b, (TLRPC.InputPeer) this.f129e, this.f128c);
-                return;
-            case 8:
-                ((MessagesStorage) this.d).lambda$getUnreadMention$156(this.f127b, this.f128c, (MessagesStorage.IntCallback) this.f129e);
-                return;
-            case 9:
-                NotificationsSettingsFacade.a((NotificationsSettingsFacade) this.d, this.f127b, this.f128c, (TLRPC.PeerNotifySettings) this.f129e);
-                return;
-            case 10:
-                ((SecretChatHelper) this.d).lambda$resendMessages$15(this.f127b, (TLRPC.EncryptedChat) this.f129e, this.f128c);
-                return;
-            case 11:
-                ((GroupCallMessagesController) this.d).lambda$processUpdate$3(this.f127b, this.f128c, (byte[]) this.f129e);
-                return;
-            case 12:
-                ((hp) this.d).d(this.f127b, this.f128c, (HashSet) this.f129e);
-                return;
-            case 13:
-                vy vyVar = (vy) this.d;
-                long j13 = this.f127b;
-                long j14 = this.f128c;
-                hg1 hg1Var = (hg1) this.f129e;
-                if (vyVar.C2 != null) {
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(MessagesStorage.TopicKey.of(j13, j14));
-                    vyVar.C2.w(vyVar, arrayList, null, false, vyVar.J2, vyVar.K2, vyVar.L2, hg1Var);
-                    if (vyVar.f42928i2) {
-                        vyVar.C2 = null;
-                        return;
+            }
+            if (i10 != 0) {
+                long j13 = ((long[]) sVar.e)[sVar.f8398a];
+                Long l4 = (Long) this.e.i(j13);
+                a0 a0Var = this.f108b;
+                if (l4 != null && l4.longValue() != this.f115l) {
+                    this.f115l = l4.longValue();
+                    a0Var.e(2);
+                }
+                long j14 = this.f115l;
+                a0 a0Var2 = this.f108b;
+                z zVar = this.f109c;
+                int a2 = a0Var2.a(j13, j10, j11, j14, false, false, zVar);
+                if (a2 != 5 && a2 != 4) {
+                    this.f111g.a(j13, zVar.f206a);
+                }
+                boolean z11 = false;
+                if (a2 != 0 && a2 != 1) {
+                    if (a2 != 2 && a2 != 3) {
+                        if (a2 != 4) {
+                            if (a2 == 5) {
+                                return;
+                            }
+                            throw new IllegalStateException(String.valueOf(a2));
+                        }
+                        this.f112i = j13;
+                    } else {
+                        this.f112i = j13;
+                        sVar.d();
+                        fVar.f84i.execute(new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        ((f) bVar.f43356c).h.onFirstFrameRendered();
+                                        return;
+                                    default:
+                                        ((f) bVar.f43356c).h.b();
+                                        return;
+                                }
+                            }
+                        });
+                        j jVar = (j) fVar.d.remove();
+                        n nVar = jVar.f127c;
+                        r2.l lVar = jVar.f125a;
+                        int i11 = jVar.f126b;
+                        Trace.beginSection("dropVideoBuffer");
+                        lVar.f(i11);
+                        Trace.endSection();
+                        nVar.R0(0, 1);
                     }
-                    return;
-                }
-                vyVar.finishFragment();
-                return;
-            case 14:
-                LaunchActivity launchActivity = (LaunchActivity) this.d;
-                long j15 = this.f127b;
-                long j16 = this.f128c;
-                eo eoVar = (eo) this.f129e;
-                Pattern pattern = LaunchActivity.B1;
-                TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(launchActivity.O).getTopicsController().findTopic(j15, j16);
-                StringBuilder u10 = a1.g.u(j15, "LaunchActivity openForum after load ", " ");
-                u10.append(j16);
-                u10.append(" TL_forumTopic ");
-                u10.append(findTopic);
-                FileLog.d(u10.toString());
-                if (launchActivity.f33646q0 != null) {
-                    ng.d.a(eoVar, MessagesStorage.TopicKey.of(-j15, j16));
-                    ((ActionBarLayout) launchActivity.O()).P(eoVar);
-                    return;
-                }
-                return;
-            case 15:
-                p0 p0Var = (p0) this.d;
-                qi.l0 l0Var = (qi.l0) this.f129e;
-                long j17 = this.f127b;
-                long j18 = this.f128c;
-                synchronized (p0Var.f46865g) {
-                    if (!l0Var.d && !l0Var.f46810e) {
-                        ((m11) p0Var.f46863e).a(l0Var.f46807a, l0Var.f46808b, j17, j18);
-                        return;
+                } else {
+                    this.f112i = j13;
+                    if (a2 == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
                     }
-                    return;
+                    long d = sVar.d();
+                    b2 b2Var = (b2) this.d.i(d);
+                    if (b2Var != null && !b2Var.equals(b2.d) && !b2Var.equals(this.f114k)) {
+                        this.f114k = b2Var;
+                        b2.w wVar = new b2.w();
+                        wVar.f2472y = b2Var.f2083a;
+                        wVar.f2473z = b2Var.f2084b;
+                        wVar.f2466r = w0.n("video/raw");
+                        bVar.f43355b = new b2.x(wVar);
+                        fVar.f84i.execute(new a1.f(2, bVar, b2Var));
+                    }
+                    if (z10) {
+                        j12 = System.nanoTime();
+                    } else {
+                        j12 = zVar.f207b;
+                    }
+                    long j15 = j12;
+                    if (a0Var.e != 3) {
+                        z11 = true;
+                    }
+                    a0Var.e = 3;
+                    a0Var.f64l.getClass();
+                    a0Var.f60g = e2.m0.S(SystemClock.elapsedRealtime());
+                    if (z11 && fVar.e != null) {
+                        fVar.f84i.execute(new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        ((f) bVar.f43356c).h.onFirstFrameRendered();
+                                        return;
+                                    default:
+                                        ((f) bVar.f43356c).h.b();
+                                        return;
+                                }
+                            }
+                        });
+                    }
+                    b2.x xVar2 = (b2.x) bVar.f43355b;
+                    if (xVar2 == null) {
+                        xVar = new b2.x(new b2.w());
+                    } else {
+                        xVar = xVar2;
+                    }
+                    fVar.f85j.a(d, j15, xVar, null);
+                    j jVar2 = (j) fVar.d.remove();
+                    jVar2.f127c.M0(jVar2.f125a, jVar2.f126b, j15);
                 }
-            default:
-                s3.f0((s3) this.d, this.f127b, this.f128c, (Utilities.Callback) this.f129e);
-                return;
+            } else {
+                throw new NoSuchElementException();
+            }
         }
-    }
-
-    public g0(Object obj, long j3, TLObject tLObject, long j10, int i10) {
-        this.f126a = i10;
-        this.d = obj;
-        this.f127b = j3;
-        this.f129e = tLObject;
-        this.f128c = j10;
-    }
-
-    public g0(Object obj, Object obj2, long j3, long j10, int i10) {
-        this.f126a = i10;
-        this.d = obj;
-        this.f129e = obj2;
-        this.f127b = j3;
-        this.f128c = j10;
     }
 }

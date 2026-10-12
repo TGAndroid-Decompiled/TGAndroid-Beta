@@ -12,7 +12,7 @@ public final class b2 extends FrameLayout {
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
         return false;
     }
 

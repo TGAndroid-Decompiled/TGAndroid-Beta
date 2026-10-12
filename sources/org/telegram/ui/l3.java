@@ -1,141 +1,34 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class l3 implements org.telegram.ui.web.g0 {
-    public final m3 f39626a;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class l3 extends fi.p4 {
+    public boolean f37823c0;
+    public final o3 f37824d0;
 
-    public l3(m3 m3Var) {
-        this.f39626a = m3Var;
+    public l3(o3 o3Var, Context context) {
+        super(context);
+        this.f37824d0 = o3Var;
     }
 
     @Override
-    public final void b() {
-        v3 v3Var = this.f39626a.K.K;
-        if (v3Var != null) {
-            v3Var.dismiss(true);
+    public final void onMeasure(int i10, int i11) {
+        this.f37823c0 = true;
+        setOffsetY(View.MeasureSpec.getSize(i11) * 0.4f);
+        this.f37823c0 = false;
+        int size = View.MeasureSpec.getSize(i11);
+        x3 x3Var = this.f37824d0.K.K;
+        if (x3Var != null) {
+            x3Var.getClass();
         }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(56.0f)) - AndroidUtilities.statusBarHeight, 1073741824));
     }
 
     @Override
-    public final String g(boolean z10, boolean z11) {
-        return "UNSUPPORTED";
-    }
-
-    @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void j() {
-        m3 m3Var = this.f39626a;
-        i4 i4Var = m3Var.K;
-        v3 v3Var = i4Var.K;
-        if (v3Var != null) {
-            if (!v3Var.h) {
-                v3Var.h = true;
-                v3Var.release();
-                v3Var.K.s();
-            }
-        } else if (i4Var.f38664u0[0] == m3Var) {
-            i4Var.G();
+    public final void requestLayout() {
+        if (!this.f37823c0) {
+            super.requestLayout();
         }
-    }
-
-    @Override
-    public final void o(int i10, boolean z10) {
-        m3.a(this.f39626a, z10, i10);
-    }
-
-    @Override
-    public final void y() {
-        m3 m3Var = this.f39626a;
-        i4 i4Var = m3Var.K;
-        if (i4Var.f38664u0[0] == m3Var) {
-            i4Var.G();
-        }
-    }
-
-    @Override
-    public final ei.a1 z() {
-        return null;
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void d(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void e(String str) {
-    }
-
-    @Override
-    public final void f(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void i(boolean z10) {
-    }
-
-    @Override
-    public final void k(boolean z10) {
-    }
-
-    @Override
-    public final void m(int i10) {
-    }
-
-    @Override
-    public final void p(boolean z10) {
-    }
-
-    @Override
-    public final void r(int i10) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void t(boolean z10) {
-    }
-
-    @Override
-    public final void w(boolean z10) {
-    }
-
-    @Override
-    public final void x(boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject) {
-    }
-
-    @Override
-    public final void u(int i10, int i11, boolean z10) {
-    }
-
-    @Override
-    public final void v(TLRPC.User user, String str, ArrayList arrayList) {
-    }
-
-    @Override
-    public final void q(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13) {
-    }
-
-    @Override
-    public final void l(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13, String str2) {
     }
 }

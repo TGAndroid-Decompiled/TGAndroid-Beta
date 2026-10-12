@@ -1,42 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class b21 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
-                getNextView().setText(charSequence);
-                showNext();
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class b21 extends AnimatorListenerAdapter {
+    public final int f23677a;
+    public final ThemeEditorView f23678b;
+
+    public b21(ThemeEditorView themeEditorView, int i10) {
+        this.f23677a = i10;
+        this.f23678b = themeEditorView;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f23677a) {
+            case 0:
+                ThemeEditorView themeEditorView = this.f23678b;
+                z11 z11Var = themeEditorView.f23328a;
+                if (z11Var != null) {
+                    z11Var.setBackground(null);
+                    themeEditorView.h.removeView(themeEditorView.f23328a);
+                    return;
+                }
                 return;
-            }
-            getCurrentView().setText(charSequence);
+            default:
+                ThemeEditorView themeEditorView2 = this.f23678b;
+                org.telegram.ui.ActionBar.g6.s1(themeEditorView2.f23337m, true, false, false);
+                themeEditorView2.a();
+                return;
         }
-    }
-
-    @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i10, layoutParams);
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
-    }
-
-    @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
-    }
-
-    @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
     }
 }

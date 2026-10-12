@@ -1,28 +1,26 @@
 package org.telegram.ui;
+public final class j51 extends org.telegram.ui.Components.h81 {
+    public final SecretMediaViewer m0;
 
-import android.view.View;
-public final class j51 implements View.OnClickListener {
-    public final int f39105a;
-    public final n51 f39106b;
-
-    public j51(n51 n51Var, int i10) {
-        this.f39105a = i10;
-        this.f39106b = n51Var;
+    public j51(SecretMediaViewer secretMediaViewer) {
+        this.m0 = secretMediaViewer;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39105a) {
-            case 0:
-                n51 n51Var = this.f39106b;
-                if (n51Var.Y == null) {
-                    n51Var.dismiss();
-                    return;
-                }
-                return;
-            default:
-                this.f39106b.dismiss();
-                return;
-        }
+    public final void B() {
+        super.B();
+        this.m0.W.a(false, true);
+    }
+
+    @Override
+    public final void C() {
+        super.C();
+        this.m0.W.a(true, true);
+    }
+
+    @Override
+    public final void P(boolean z10) {
+        super.P(z10);
+        this.m0.W.a(z10, true);
     }
 }

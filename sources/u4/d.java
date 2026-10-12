@@ -1,6 +1,6 @@
 package u4;
 
-import a0.m;
+import a0.l;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +20,8 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 public abstract class d {
-    public static volatile ArrayList f49077a;
-    public static final Object f49078b = new Object();
+    public static volatile ArrayList f46197a;
+    public static final Object f46198b = new Object();
 
     public static String a(XmlResourceParser xmlResourceParser, String str) {
         String attributeValue = xmlResourceParser.getAttributeValue("http://schemas.android.com/apk/res/android", str);
@@ -41,7 +41,7 @@ public abstract class d {
 
     public static a0.f c(File file, Context context) {
         g f7;
-        ?? mVar = new m(0);
+        ?? lVar = new l(0);
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             if (file.exists()) {
@@ -52,16 +52,16 @@ public abstract class d {
                     if (next == 1) {
                         break;
                     } else if (next == 2 && newPullParser.getName().equals("target") && (f7 = f(newPullParser, context)) != null) {
-                        mVar.put(f7.f49087c.f10209b, f7);
+                        lVar.put(f7.f46207c.f9835b, f7);
                     }
                 }
             }
             fileInputStream.close();
-            return mVar;
-        } catch (Exception e7) {
+            return lVar;
+        } catch (Exception e) {
             file.delete();
-            Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e7);
-            return mVar;
+            Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e);
+            return lVar;
         }
     }
 
@@ -124,8 +124,8 @@ public abstract class d {
                                 } else if (next == 2 && loadXmlMetaData.getName().equals("share-target") && (d = d(loadXmlMetaData)) != null) {
                                     arrayList2.add(d);
                                 }
-                            } catch (Exception e7) {
-                                Log.e("ShareTargetXmlParser", "Failed to parse the Xml resource: ", e7);
+                            } catch (Exception e) {
+                                Log.e("ShareTargetXmlParser", "Failed to parse the Xml resource: ", e);
                             }
                         }
                         loadXmlMetaData.close();
@@ -200,29 +200,29 @@ public abstract class d {
             }
         }
         ?? obj = new Object();
-        obj.f10208a = context;
-        obj.f10209b = b10;
-        obj.f10211e = b11;
-        obj.f10218m = parseInt;
+        obj.f9834a = context;
+        obj.f9835b = b10;
+        obj.e = b11;
+        obj.f9843m = parseInt;
         if (!TextUtils.isEmpty(b12)) {
-            obj.f10212f = b12;
+            obj.f9837f = b12;
         }
         if (!TextUtils.isEmpty(b13)) {
-            obj.f10213g = b13;
+            obj.f9838g = b13;
         }
         if (unflattenFromString != null) {
             obj.d = unflattenFromString;
         }
         if (!arrayList.isEmpty()) {
-            obj.f10210c = (Intent[]) arrayList.toArray(new Intent[0]);
+            obj.f9836c = (Intent[]) arrayList.toArray(new Intent[0]);
         }
         if (!hashSet.isEmpty()) {
             a0.g gVar = new a0.g(0);
             gVar.addAll(hashSet);
-            obj.f10215j = gVar;
+            obj.f9840j = gVar;
         }
-        if (!TextUtils.isEmpty(obj.f10211e)) {
-            Intent[] intentArr = obj.f10210c;
+        if (!TextUtils.isEmpty(obj.e)) {
+            Intent[] intentArr = obj.f9836c;
             if (intentArr != null && intentArr.length != 0) {
                 return new g(obj, b15, b16);
             }
@@ -241,17 +241,17 @@ public abstract class d {
     public static void h(XmlSerializer xmlSerializer, g gVar) {
         Intent[] intentArr;
         xmlSerializer.startTag(null, "target");
-        g0.c cVar = gVar.f49087c;
-        String str = gVar.f49086b;
-        String str2 = gVar.f49085a;
-        g(xmlSerializer, "id", cVar.f10209b);
-        g(xmlSerializer, "short_label", cVar.f10211e.toString());
-        g(xmlSerializer, "rank", Integer.toString(cVar.f10218m));
-        if (!TextUtils.isEmpty(cVar.f10212f)) {
-            g(xmlSerializer, "long_label", cVar.f10212f.toString());
+        g0.c cVar = gVar.f46207c;
+        String str = gVar.f46206b;
+        String str2 = gVar.f46205a;
+        g(xmlSerializer, "id", cVar.f9835b);
+        g(xmlSerializer, "short_label", cVar.e.toString());
+        g(xmlSerializer, "rank", Integer.toString(cVar.f9843m));
+        if (!TextUtils.isEmpty(cVar.f9837f)) {
+            g(xmlSerializer, "long_label", cVar.f9837f.toString());
         }
-        if (!TextUtils.isEmpty(cVar.f10213g)) {
-            g(xmlSerializer, "disabled_message", cVar.f10213g.toString());
+        if (!TextUtils.isEmpty(cVar.f9838g)) {
+            g(xmlSerializer, "disabled_message", cVar.f9838g.toString());
         }
         ComponentName componentName = cVar.d;
         if (componentName != null) {
@@ -263,7 +263,7 @@ public abstract class d {
         if (!TextUtils.isEmpty(str)) {
             g(xmlSerializer, "icon_bitmap_path", str);
         }
-        Intent[] intentArr2 = cVar.f10210c;
+        Intent[] intentArr2 = cVar.f9836c;
         for (Intent intent : (Intent[]) Arrays.copyOf(intentArr2, intentArr2.length)) {
             xmlSerializer.startTag(null, "intent");
             g(xmlSerializer, "action", intent.getAction());
@@ -273,7 +273,7 @@ public abstract class d {
             }
             xmlSerializer.endTag(null, "intent");
         }
-        for (String str3 : cVar.f10215j) {
+        for (String str3 : cVar.f9840j) {
             if (!TextUtils.isEmpty(str3)) {
                 xmlSerializer.startTag(null, "categories");
                 g(xmlSerializer, "name", str3);

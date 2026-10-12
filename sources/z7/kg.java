@@ -1,36 +1,48 @@
 package z7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class kg extends o6.a {
-    public static final Parcelable.Creator<kg> CREATOR = new dg(3);
-    public final boolean f54187a;
-    public final boolean f54188b;
-    public final boolean f54189c;
-    public final boolean d;
-    public final boolean f54190e;
+import java.util.Map;
+import java.util.Set;
+public abstract class kg implements k {
+    public transient ed f49698a;
+    public transient e9.e f49699b;
 
-    public kg(boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        this.f54187a = z10;
-        this.f54188b = z11;
-        this.f54189c = z12;
-        this.d = z13;
-        this.f54190e = z14;
+    public final Map a() {
+        e9.e eVar = this.f49699b;
+        if (eVar == null) {
+            lg lgVar = (lg) this;
+            e9.e eVar2 = new e9.e(lgVar, lgVar.f49708c, 2);
+            this.f49699b = eVar2;
+            return eVar2;
+        }
+        return eVar;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.c0.q(parcel, 20293);
-        w7.c0.s(parcel, 1, 4);
-        parcel.writeInt(this.f54187a ? 1 : 0);
-        w7.c0.s(parcel, 2, 4);
-        parcel.writeInt(this.f54188b ? 1 : 0);
-        w7.c0.s(parcel, 3, 4);
-        parcel.writeInt(this.f54189c ? 1 : 0);
-        w7.c0.s(parcel, 4, 4);
-        parcel.writeInt(this.d ? 1 : 0);
-        w7.c0.s(parcel, 5, 4);
-        parcel.writeInt(this.f54190e ? 1 : 0);
-        w7.c0.r(parcel, q6);
+    public final Set b() {
+        ed edVar = this.f49698a;
+        if (edVar == null) {
+            lg lgVar = (lg) this;
+            ed edVar2 = new ed(lgVar, lgVar.f49708c);
+            this.f49698a = edVar2;
+            return edVar2;
+        }
+        return edVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof k)) {
+            return false;
+        }
+        return a().equals(((kg) ((k) obj)).a());
+    }
+
+    public final int hashCode() {
+        return ((e9.e) a()).f8551b.hashCode();
+    }
+
+    public final String toString() {
+        return ((e9.e) a()).f8551b.toString();
     }
 }

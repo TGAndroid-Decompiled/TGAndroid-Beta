@@ -6,7 +6,7 @@ public interface o2 {
 
     void c();
 
-    void d(s2 s2Var);
+    void e(s2 s2Var);
 
     void f(s2 s2Var);
 

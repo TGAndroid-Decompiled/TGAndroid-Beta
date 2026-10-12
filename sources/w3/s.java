@@ -1,53 +1,14 @@
 package w3;
 
-import e2.d0;
+import c3.h0;
 public final class s {
-    public final p f50113a;
-    public final int f50114b;
-    public final long[] f50115c;
-    public final int[] d;
-    public final int f50116e;
-    public final long[] f50117f;
-    public final int[] f50118g;
-    public final long h;
+    public final boolean f47172a;
+    public final String f47173b;
+    public final h0 f47174c;
+    public final int d;
+    public final byte[] e;
 
-    public s(p pVar, long[] jArr, int[] iArr, int i10, long[] jArr2, int[] iArr2, long j3) {
-        boolean z10;
-        boolean z11;
-        if (iArr.length == jArr2.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        e2.d.b(z10);
-        if (jArr.length == jArr2.length) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        e2.d.b(z11);
-        e2.d.b(iArr2.length == jArr2.length);
-        this.f50113a = pVar;
-        this.f50115c = jArr;
-        this.d = iArr;
-        this.f50116e = i10;
-        this.f50117f = jArr2;
-        this.f50118g = iArr2;
-        this.h = j3;
-        this.f50114b = jArr.length;
-        if (iArr2.length > 0) {
-            int length = iArr2.length - 1;
-            iArr2[length] = iArr2[length] | 536870912;
-        }
-    }
-
-    public final int a(long j3) {
-        long[] jArr = this.f50117f;
-        for (int a2 = d0.a(jArr, j3, true); a2 < jArr.length; a2++) {
-            if ((this.f50118g[a2] & 1) != 0) {
-                return a2;
-            }
-        }
-        return -1;
+    public s(boolean r5, java.lang.String r6, int r7, byte[] r8, int r9, int r10, byte[] r11) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.s.<init>(boolean, java.lang.String, int, byte[], int, int, byte[]):void");
     }
 }

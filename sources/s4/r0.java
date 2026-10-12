@@ -1,4 +1,10 @@
 package s4;
+
+import androidx.recyclerview.widget.RecyclerView;
 public abstract class r0 {
-    public abstract boolean a(int i10, int i11);
+    public void a(RecyclerView recyclerView, int i10) {
+    }
+
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+    }
 }

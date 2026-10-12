@@ -1,20 +1,20 @@
 package z7;
-public final class c8 implements ia.d {
-    public static final c8 f53846a = new Object();
-    public static final ia.c f53847b = new ia.c("inferenceCommonLogEvent", hg.c.o(sc.v.o(w.class, new s(1))));
-    public static final ia.c f53848c = new ia.c("imageInfo", hg.c.o(sc.v.o(w.class, new s(2))));
-    public static final ia.c d = new ia.c("subjectSegmenterOptions", hg.c.o(sc.v.o(w.class, new s(3))));
-    public static final ia.c f53849e = new ia.c("subjectInfos", hg.c.o(sc.v.o(w.class, new s(4))));
-    public static final ia.c f53850f = new ia.c("qualityScores", hg.c.o(sc.v.o(w.class, new s(5))));
+public final class c8 implements ja.d {
+    public static final c8 f49366a = new Object();
+    public static final ja.c f49367b = new ja.c("inferenceCommonLogEvent", i2.d.n(t8.b.n(w.class, new s(1))));
+    public static final ja.c f49368c = new ja.c("imageInfo", i2.d.n(t8.b.n(w.class, new s(2))));
+    public static final ja.c d = new ja.c("subjectSegmenterOptions", i2.d.n(t8.b.n(w.class, new s(3))));
+    public static final ja.c e = new ja.c("subjectInfos", i2.d.n(t8.b.n(w.class, new s(4))));
+    public static final ja.c f49369f = new ja.c("qualityScores", i2.d.n(t8.b.n(w.class, new s(5))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        fe feVar = (fe) obj;
-        ia.e eVar = (ia.e) obj2;
-        eVar.a(f53847b, feVar.f53900a);
-        eVar.a(f53848c, feVar.f53901b);
-        eVar.a(d, feVar.f53902c);
-        eVar.a(f53849e, feVar.d);
-        eVar.a(f53850f, feVar.f53903e);
+        ee eeVar = (ee) obj;
+        ja.e eVar = (ja.e) obj2;
+        eVar.d(f49367b, eeVar.f49402a);
+        eVar.d(f49368c, eeVar.f49403b);
+        eVar.d(d, eeVar.f49404c);
+        eVar.d(e, eeVar.d);
+        eVar.d(f49369f, eeVar.e);
     }
 }

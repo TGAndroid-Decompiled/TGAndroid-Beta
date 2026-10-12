@@ -1,6 +1,9 @@
 package df;
 
-import n7.z0;
-public interface b {
-    a K(z0 z0Var);
+import v7.x6;
+public final class b extends a {
+    @Override
+    public final void a(x6 x6Var) {
+        x6Var.a(this);
+    }
 }

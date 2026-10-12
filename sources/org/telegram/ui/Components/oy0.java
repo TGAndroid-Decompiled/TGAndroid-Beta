@@ -1,33 +1,18 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-public final class oy0 implements Runnable {
-    public final int f29325a;
-    public final dz0 f29326b;
+import android.content.Context;
+import android.view.View;
+public final class oy0 extends org.telegram.ui.Cells.f8 {
+    public final py0 O;
 
-    public oy0(dz0 dz0Var, int i10) {
-        this.f29325a = i10;
-        this.f29326b = dz0Var;
+    public oy0(py0 py0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var, false);
+        this.O = py0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29325a) {
-            case 0:
-                this.f29326b.d.l();
-                return;
-            case 1:
-                this.f29326b.d.l();
-                return;
-            case 2:
-                dz0.v(this.f29326b);
-                return;
-            case 3:
-                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f29326b.L, 1);
-                return;
-            default:
-                dz0.u(this.f29326b);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        py0 py0Var = this.O;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(py0Var.f28450r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(py0Var.f28450r.O, 1073741824));
     }
 }

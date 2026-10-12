@@ -1,45 +1,99 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.content.DialogInterface;
 public final class zg implements Runnable {
-    public final int f44844a;
-    public final org.telegram.ui.ActionBar.a2[] f44845b;
+    public final int f42614a;
+    public final fo f42615b;
+    public final org.telegram.ui.ActionBar.a2[] f42616c;
+    public final int d;
 
-    public zg(org.telegram.ui.ActionBar.a2[] a2VarArr, int i10) {
-        this.f44844a = i10;
-        this.f44845b = a2VarArr;
+    public zg(fo foVar, org.telegram.ui.ActionBar.a2[] a2VarArr, int i10, int i11) {
+        this.f42614a = i11;
+        this.f42615b = foVar;
+        this.f42616c = a2VarArr;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f44844a) {
+        switch (this.f42614a) {
             case 0:
-                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f44845b;
-                try {
-                    a2VarArr[0].dismiss();
-                } catch (Throwable unused) {
+                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f42616c;
+                org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
+                if (a2Var != null) {
+                    final fo foVar = this.f42615b;
+                    final int i10 = this.d;
+                    a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    foVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                                case 1:
+                                    foVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                                default:
+                                    foVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                            }
+                        }
+                    });
+                    foVar.showDialog(a2VarArr[0]);
+                    return;
                 }
-                a2VarArr[0] = null;
                 return;
             case 1:
-                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f44845b;
-                try {
-                    a2VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
+                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f42616c;
+                org.telegram.ui.ActionBar.a2 a2Var2 = a2VarArr2[0];
+                if (a2Var2 != null) {
+                    final fo foVar2 = this.f42615b;
+                    final int i11 = this.d;
+                    a2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    foVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                                case 1:
+                                    foVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                                default:
+                                    foVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                            }
+                        }
+                    });
+                    foVar2.showDialog(a2VarArr2[0]);
+                    return;
                 }
-                a2VarArr2[0] = null;
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new zg(this.f44845b, 4));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new zg(this.f44845b, 5));
-                return;
-            case 4:
-                this.f44845b[0].dismiss();
                 return;
             default:
-                this.f44845b[0].dismiss();
+                org.telegram.ui.ActionBar.a2[] a2VarArr3 = this.f42616c;
+                org.telegram.ui.ActionBar.a2 a2Var3 = a2VarArr3[0];
+                if (a2Var3 != null) {
+                    final fo foVar3 = this.f42615b;
+                    final int i12 = this.d;
+                    a2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    foVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                                case 1:
+                                    foVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                                default:
+                                    foVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                            }
+                        }
+                    });
+                    foVar3.showDialog(a2VarArr3[0]);
+                    return;
+                }
                 return;
         }
     }

@@ -1,58 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class w40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final x40 f32246a;
+public final class w40 {
+    public static final w40 d;
+    public static final w40 e;
+    public static final w40 f30788f;
+    public static final w40 h;
+    public static final w40 f30789n;
+    public static final w40 f30790r;
+    public static final w40 f30791s;
+    public static final w40 v;
+    public static final w40 f30792w;
+    public static final w40[] f30793x;
+    public final String f30794a;
+    public final int f30795b;
+    public final float f30796c;
 
-    public w40(x40 x40Var) {
-        this.f32246a = x40Var;
+    static {
+        w40 w40Var = new w40("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
+        d = w40Var;
+        w40 w40Var2 = new w40("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
+        e = w40Var2;
+        w40 w40Var3 = new w40("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
+        f30788f = w40Var3;
+        w40 w40Var4 = new w40("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
+        h = w40Var4;
+        w40 w40Var5 = new w40("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
+        f30789n = w40Var5;
+        w40 w40Var6 = new w40("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
+        f30790r = w40Var6;
+        w40 w40Var7 = new w40("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
+        f30791s = w40Var7;
+        w40 w40Var8 = new w40("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
+        v = w40Var8;
+        w40 w40Var9 = new w40();
+        f30792w = w40Var9;
+        f30793x = new w40[]{w40Var, w40Var2, w40Var3, w40Var4, w40Var5, w40Var6, w40Var7, w40Var8, w40Var9};
     }
 
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((u61) obj).d;
-        x40 x40Var = this.f32246a;
-        if (i10 == 0) {
-            HashtagSearchController.getInstance(x40Var.f32644a).clearHistory();
-            x40Var.f32648f.N(true);
-            return;
-        }
-        Utilities.Callback callback = x40Var.h;
-        if (callback != null) {
-            callback.run((String) x40Var.f32646c.get(i10 - 1));
-        }
+    public w40() {
+        this.f30794a = "hints_controller_" + this;
+        this.f30795b = 3;
+        this.f30796c = 1.0f;
     }
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((u61) obj).d;
-        boolean z10 = false;
-        if (i10 != 0) {
-            x40 x40Var = this.f32246a;
-            String str = (String) x40Var.f32646c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(x40Var.getContext(), 0, x40Var.f32645b);
-            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
-            a2Var.R = string;
-            a2Var.T = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new y2(13, x40Var, str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            a2Var.show();
-            z10 = true;
+    public static w40 valueOf(String str) {
+        return (w40) Enum.valueOf(w40.class, str);
+    }
+
+    public static w40[] values() {
+        return (w40[]) f30793x.clone();
+    }
+
+    public final void a() {
+        MessagesController.getGlobalMainSettings().edit().putInt(this.f30794a, this.f30795b).apply();
+    }
+
+    public final void b() {
+        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+        String str = this.f30794a;
+        MessagesController.getGlobalMainSettings().edit().putInt(str, globalMainSettings.getInt(str, 0) + 1).apply();
+    }
+
+    public final boolean c() {
+        if (MessagesController.getGlobalMainSettings().getInt(this.f30794a, 0) < this.f30795b) {
+            float f7 = this.f30796c;
+            if (f7 < 1.0f) {
+                if (f7 > 0.0f && Utilities.fastRandom.nextFloat() < f7) {
+                    return true;
+                }
+            } else {
+                return true;
+            }
         }
-        return Boolean.valueOf(z10);
+        return false;
+    }
+
+    public w40(String str, int i10, String str2, int i11, float f7) {
+        this.f30794a = str2;
+        this.f30795b = i11;
+        this.f30796c = f7;
     }
 }

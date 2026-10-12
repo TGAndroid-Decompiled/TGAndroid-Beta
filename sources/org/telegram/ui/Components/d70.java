@@ -1,34 +1,23 @@
 package org.telegram.ui.Components;
-public final class d70 {
-    public final int f25250a;
-    public final int f25251b;
 
-    public d70(int i10, int i11) {
-        this.f25250a = i10;
-        this.f25251b = i11;
+import androidx.recyclerview.widget.RecyclerView;
+public final class d70 extends s4.r0 {
+    public final s4.b0 f24312a;
+    public final p70 f24313b;
+
+    public d70(p70 p70Var, s4.b0 b0Var) {
+        this.f24313b = p70Var;
+        this.f24312a = b0Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && d70.class == obj.getClass()) {
-            d70 d70Var = (d70) obj;
-            if (this.f25250a == d70Var.f25250a && this.f25251b == d70Var.f25251b) {
-                return true;
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        p70 p70Var = this.f24313b;
+        p70.P(p70Var);
+        if (p70Var.R && !p70Var.Q) {
+            if (p70Var.S - this.f24312a.N0() < 10) {
+                p70Var.Y();
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (this.f25250a * 31) + this.f25251b;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f25250a);
-        sb2.append(", ");
-        return a1.g.o(this.f25251b, ")", sb2);
     }
 }

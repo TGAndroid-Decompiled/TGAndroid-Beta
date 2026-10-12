@@ -1,49 +1,38 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-public final class hq0 implements cr0 {
-    public final mq0 f38497a;
+import android.view.KeyEvent;
+public final class hq0 implements org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.k1 {
+    public final int f36907a;
+    public final qq0 f36908b;
 
-    public hq0(mq0 mq0Var) {
-        this.f38497a = mq0Var;
+    public hq0(qq0 qq0Var, int i10) {
+        this.f36907a = i10;
+        this.f36908b = qq0Var;
     }
 
     @Override
-    public final void a() {
-        mq0 mq0Var = this.f38497a;
-        if (mq0Var.f40111b.size() == 0) {
-            mq0Var.Q.setPivotX(0.0f);
-            mq0Var.Q.setPivotY(0.0f);
-            mq0Var.W(false);
-            return;
-        }
-        mq0Var.Q.invalidate();
-        mq0Var.W(true);
-    }
-
-    @Override
-    public final void b(Editable editable) {
-        mq0 mq0Var = this.f38497a;
-        org.telegram.ui.Components.cv cvVar = mq0Var.M;
-        mq0Var.f40110a = editable;
-        cvVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void i(int i10, boolean z10, boolean z11) {
-        mq0 mq0Var = this.f38497a;
-        mq0Var.removeSelfFromStack();
-        if (!z10) {
-            mq0Var.V(mq0Var.f40111b, mq0Var.f40112c, z11, i10);
+    public void J(int i10, int i11, boolean z10) {
+        switch (this.f36907a) {
+            case 0:
+                qq0 qq0Var = this.f36908b;
+                qq0Var.V(qq0Var.f39517b, qq0Var.f39518c, z10, i10);
+                qq0Var.finishFragment();
+                return;
+            default:
+                qq0 qq0Var2 = this.f36908b;
+                qq0Var2.V(qq0Var2.f39517b, qq0Var2.f39518c, z10, i10);
+                qq0Var2.finishFragment();
+                return;
         }
     }
 
     @Override
-    public final void g() {
+    public void n(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.m1 m1Var;
+        qq0 qq0Var = this.f36908b;
+        qq0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = qq0Var.I) != null && m1Var.isShowing()) {
+            qq0Var.I.d(true);
+        }
     }
 }

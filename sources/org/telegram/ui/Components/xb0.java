@@ -1,41 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import android.view.KeyEvent;
-public final class xb0 extends ReplacementSpan {
-    public final int f32704a;
-    public final KeyEvent.Callback f32705b;
+import android.content.Context;
+import android.view.View;
+public final class xb0 extends c91 {
+    public final Context f31225a;
+    public final vc0 f31226b;
 
-    public xb0(KeyEvent.Callback callback, int i10) {
-        this.f32704a = i10;
-        this.f32705b = callback;
+    public xb0(vc0 vc0Var, Context context) {
+        this.f31226b = vc0Var;
+        this.f31225a = context;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f32704a;
+    public final void b(View view, int i10, int i11) {
+        pc0 pc0Var = (pc0) view;
+        pc0Var.h();
+        pc0Var.k(false);
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f32704a) {
-            case 0:
-                return ((zb0) this.f32705b).f33325x;
-            case 1:
-                return (int) ((org.telegram.ui.tj0) this.f32705b).f42228n0;
-            default:
-                return (int) ((tg.m1) this.f32705b).f48612t0;
-        }
+    public final View d(int i10) {
+        return new pc0(this.f31226b, this.f31225a, i10);
     }
 
-    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final int e() {
+        return this.f31226b.e.f29348a.size();
     }
 
-    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final int h(int i10) {
+        return ((sc0) this.f31226b.e.f29348a.get(i10)).f29114a;
     }
 }

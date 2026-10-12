@@ -5,47 +5,47 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.o91;
-import org.telegram.ui.Components.pp0;
-import org.telegram.ui.iu;
-public final class c5 implements pp0 {
-    public final iu f21681a;
+import org.telegram.ui.Components.fp0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.lu;
+public final class c5 implements fp0 {
+    public final lu f21022a;
 
-    public c5(iu iuVar) {
-        this.f21681a = iuVar;
+    public c5(lu luVar) {
+        this.f21022a = luVar;
     }
 
     @Override
     public final void X(float f7, boolean z10) {
-        float e7;
+        float d;
         int i10;
         if (f7 <= 0.25f) {
-            e7 = a1.g.e(f7, 0.25f, 536576.0f, 512000);
+            d = a1.g.d(f7, 0.25f, 536576.0f, 512000);
         } else {
             float f10 = f7 - 0.25f;
             if (f10 < 0.25f) {
-                e7 = a1.g.e(f10, 0.25f, 9437184.0f, 1048576);
+                d = a1.g.d(f10, 0.25f, 9437184.0f, 1048576);
             } else {
                 float f11 = f10 - 0.25f;
                 if (f11 <= 0.25f) {
-                    e7 = a1.g.e(f11, 0.25f, 9.437184E7f, 10485760);
+                    d = a1.g.d(f11, 0.25f, 9.437184E7f, 10485760);
                 } else {
-                    e7 = a1.g.e(f11 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
+                    d = a1.g.d(f11 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
                 }
             }
         }
-        int i11 = (int) e7;
-        iu iuVar = this.f21681a;
-        long j3 = i11;
+        int i11 = (int) d;
+        lu luVar = this.f21022a;
+        long j10 = i11;
         boolean z11 = true;
-        iuVar.f21732b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
-        iuVar.d = j3;
-        w8[] w8VarArr = iuVar.h;
-        AnimatorSet[] animatorSetArr = iuVar.f39000n;
-        int i12 = iuVar.f38998e;
-        i10 = iuVar.f39001r.videosRow;
+        luVar.f21067b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        luVar.d = j10;
+        w8[] w8VarArr = luVar.h;
+        AnimatorSet[] animatorSetArr = luVar.f38090n;
+        int i12 = luVar.e;
+        i10 = luVar.f38091r.videosRow;
         if (i12 == i10) {
-            iuVar.f38999f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            luVar.f38089f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class c5 implements pp0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new o91(iuVar, 15));
+                animatorSetArr[0].addListener(new u61(luVar, 18));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -70,15 +70,15 @@ public final class c5 implements pp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        iu iuVar = this.f21681a;
-        sb2.append((Object) iuVar.f21731a.getText());
+        lu luVar = this.f21022a;
+        sb2.append((Object) luVar.f21066a.getText());
         sb2.append(" ");
-        sb2.append((Object) iuVar.f21732b.getText());
+        sb2.append((Object) luVar.f21067b.getText());
         return sb2.toString();
     }
 
     @Override
-    public final int m0() {
+    public final int k0() {
         return 0;
     }
 

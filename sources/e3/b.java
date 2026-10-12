@@ -4,105 +4,106 @@ import a3.l;
 import c3.o;
 import c3.p;
 import c3.q;
-import com.google.firebase.messaging.m;
-import e2.d0;
-import e2.v;
-import e9.a1;
-import e9.g0;
-import e9.i0;
+import e2.m0;
+import e2.x;
+import e9.l0;
+import e9.n0;
+import e9.x1;
 import java.util.List;
+import t7.u;
 public final class b implements o {
-    public final v f8591a;
-    public final l f8592b;
-    public final boolean f8593c;
-    public final qb.b d;
-    public int f8594e;
-    public q f8595f;
-    public c f8596g;
+    public final x f8419a;
+    public final l f8420b;
+    public final boolean f8421c;
+    public final u d;
+    public int e;
+    public q f8422f;
+    public c f8423g;
     public long h;
-    public e[] f8597i;
-    public long f8598j;
-    public e f8599k;
-    public int f8600l;
-    public long f8601m;
-    public long f8602n;
-    public int f8603o;
-    public boolean f8604p;
+    public e[] f8424i;
+    public long f8425j;
+    public e f8426k;
+    public int f8427l;
+    public long f8428m;
+    public long f8429n;
+    public int f8430o;
+    public boolean f8431p;
 
-    public b(int i10, qb.b bVar) {
-        this.d = bVar;
-        this.f8593c = (i10 & 1) == 0;
-        this.f8591a = new v(12);
-        this.f8592b = new Object();
-        this.f8595f = new ob.a(5);
-        this.f8597i = new e[0];
-        this.f8601m = -1L;
-        this.f8602n = -1L;
-        this.f8600l = -1;
+    public b(int i10, u uVar) {
+        this.d = uVar;
+        this.f8421c = (i10 & 1) == 0;
+        this.f8419a = new x(12);
+        this.f8420b = new Object();
+        this.f8422f = new pb.a(4);
+        this.f8424i = new e[0];
+        this.f8428m = -1L;
+        this.f8429n = -1L;
+        this.f8427l = -1;
         this.h = -9223372036854775807L;
     }
 
     @Override
-    public final boolean b(p pVar) {
-        v vVar = this.f8591a;
-        pVar.b(0, 12, vVar.f8581a);
-        vVar.J(0);
-        if (vVar.l() == 1179011410) {
-            vVar.K(4);
-            if (vVar.l() == 541677121) {
-                return true;
-            }
+    public final boolean a(p pVar) {
+        x xVar = this.f8419a;
+        pVar.a(0, 12, xVar.f8411a);
+        xVar.N(0);
+        if (xVar.o() != 1179011410) {
+            return false;
         }
-        return false;
+        xVar.O(4);
+        if (xVar.o() != 541677121) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void g(q qVar) {
-        this.f8594e = 0;
-        if (this.f8593c) {
-            qVar = new m(qVar, this.d);
+    public final void c(q qVar) {
+        this.e = 0;
+        if (this.f8421c) {
+            qVar = new c2.b(qVar, this.d);
         }
-        this.f8595f = qVar;
-        this.f8598j = -1L;
+        this.f8422f = qVar;
+        this.f8425j = -1L;
     }
 
     @Override
-    public final void h(long j3, long j10) {
+    public final void d(long j10, long j11) {
         e[] eVarArr;
-        this.f8598j = -1L;
-        this.f8599k = null;
-        for (e eVar : this.f8597i) {
-            if (eVar.f8621k == 0) {
-                eVar.f8619i = 0;
+        this.f8425j = -1L;
+        this.f8426k = null;
+        for (e eVar : this.f8424i) {
+            if (eVar.f8446k == 0) {
+                eVar.f8444i = 0;
             } else {
-                eVar.f8619i = eVar.f8624n[d0.e(eVar.f8623m, j3, true)];
+                eVar.f8444i = eVar.f8449n[m0.f(eVar.f8448m, j10, true)];
             }
         }
-        if (j3 == 0) {
-            if (this.f8597i.length == 0) {
-                this.f8594e = 0;
+        if (j10 == 0) {
+            if (this.f8424i.length == 0) {
+                this.e = 0;
                 return;
             } else {
-                this.f8594e = 3;
+                this.e = 3;
                 return;
             }
         }
-        this.f8594e = 6;
+        this.e = 6;
     }
 
     @Override
-    public final List i() {
-        g0 g0Var = i0.f8749b;
-        return a1.f8712e;
+    public final List e() {
+        l0 l0Var = n0.f8592b;
+        return x1.e;
     }
 
     @Override
-    public final int m(c3.p r24, c3.s r25) {
-        throw new UnsupportedOperationException("Method not decompiled: e3.b.m(c3.p, c3.s):int");
+    public final int f(c3.p r24, c3.s r25) {
+        throw new UnsupportedOperationException("Method not decompiled: e3.b.f(c3.p, c3.s):int");
     }
 
     @Override
-    public final o c() {
+    public final o b() {
         return this;
     }
 

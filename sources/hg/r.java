@@ -1,35 +1,29 @@
 package hg;
+public final class r implements Runnable {
+    public final int f10711a;
+    public final h0 f10712b;
+    public final String f10713c;
+    public final int d;
+    public final String e;
 
-import android.content.DialogInterface;
-import android.view.View;
-public final class r implements DialogInterface.OnDismissListener {
-    public final int f11356a;
-    public final View f11357b;
-
-    public r(int i10, View view) {
-        this.f11356a = i10;
-        this.f11357b = view;
+    public r(h0 h0Var, int i10, String str, String str2) {
+        this.f10711a = 0;
+        this.f10712b = h0Var;
+        this.d = i10;
+        this.f10713c = str;
+        this.e = str2;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f11356a) {
-            case 0:
-                w.d = null;
-                View view = this.f11357b;
-                if (view != null) {
-                    view.requestFocus();
-                    return;
-                }
-                return;
-            default:
-                z1.h = null;
-                View view2 = this.f11357b;
-                if (view2 != null) {
-                    view2.requestFocus();
-                    return;
-                }
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: hg.r.run():void");
+    }
+
+    public r(h0 h0Var, String str, int i10, String str2, int i11) {
+        this.f10711a = i11;
+        this.f10712b = h0Var;
+        this.f10713c = str;
+        this.d = i10;
+        this.e = str2;
     }
 }

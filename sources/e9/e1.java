@@ -1,33 +1,25 @@
 package e9;
 
-import j$.util.Objects;
-import v7.t6;
-public final class e1 extends i0 {
-    public final transient Object[] f8731c;
-    public final transient int d;
-    public final transient int f8732e;
+import java.util.NoSuchElementException;
+public final class e1 extends m2 {
+    public final Object f8553a;
+    public boolean f8554b;
 
-    public e1(int i10, int i11, Object[] objArr) {
-        this.f8731c = objArr;
-        this.d = i10;
-        this.f8732e = i11;
+    public e1(Object obj) {
+        this.f8553a = obj;
     }
 
     @Override
-    public final Object get(int i10) {
-        t6.c(i10, this.f8732e);
-        Object obj = this.f8731c[(i10 * 2) + this.d];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final boolean hasNext() {
+        return !this.f8554b;
     }
 
     @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final int size() {
-        return this.f8732e;
+    public final Object next() {
+        if (!this.f8554b) {
+            this.f8554b = true;
+            return this.f8553a;
+        }
+        throw new NoSuchElementException();
     }
 }

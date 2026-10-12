@@ -1,3 +1,4 @@
 package k1;
-public abstract class b0 {
+public final class b0 extends a0 {
+    public static final b0 f13764a = new Object();
 }

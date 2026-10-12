@@ -1,37 +1,35 @@
 package org.telegram.ui.Components;
-public final class ex0 implements Runnable {
-    public final int f25802a;
-    public final gx0 f25803b;
 
-    public ex0(gx0 gx0Var, int i10) {
-        this.f25802a = i10;
-        this.f25803b = gx0Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ProfileActivity;
+public final class ex0 implements Runnable {
+    public final int f24815a;
+    public final hx0 f24816b;
+
+    public ex0(hx0 hx0Var, int i10) {
+        this.f24815a = i10;
+        this.f24816b = hx0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f25802a) {
+        switch (this.f24815a) {
             case 0:
-                gx0 gx0Var = this.f25803b;
-                gx0Var.V0 = false;
-                if (!gx0Var.Y0 && gx0Var.W0) {
-                    gx0Var.C(true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f25803b.V0 = false;
-                return;
-            case 2:
-                gx0 gx0Var2 = this.f25803b;
-                gx0Var2.Y0 = false;
-                if (!gx0Var2.V0 && gx0Var2.W0) {
-                    gx0Var2.C(true);
-                    return;
-                }
+                hx0 hx0Var = this.f24816b;
+                hx0Var.invalidate();
+                AndroidUtilities.runOnUIThread(new ex0(hx0Var, 1));
                 return;
             default:
-                this.f25803b.Y0 = false;
+                hx0 hx0Var2 = this.f24816b;
+                gx0 gx0Var = hx0Var2.e;
+                if (gx0Var != null) {
+                    hx0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.py0) gx0Var).f39307b;
+                    org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f32646r;
+                    h5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.Z5));
+                    h5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f32534a6));
+                    return;
+                }
                 return;
         }
     }

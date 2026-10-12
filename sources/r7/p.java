@@ -3,17 +3,17 @@ package r7;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 public abstract class p {
-    public static final StringBuilder f47250a;
+    public static final StringBuilder f43967a;
 
     static {
         Locale locale = Locale.ROOT;
         new SimpleDateFormat("MM-dd HH:mm:ss.SSS", locale);
         new SimpleDateFormat("MM-dd HH:mm:ss", locale);
-        f47250a = new StringBuilder(33);
+        f43967a = new StringBuilder(33);
     }
 
-    public static void a(StringBuilder sb2, long j3) {
-        int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+    public static void a(StringBuilder sb2, long j10) {
+        int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         if (i10 == 0) {
             sb2.append("0s");
             return;
@@ -22,38 +22,38 @@ public abstract class p {
         boolean z10 = false;
         if (i10 < 0) {
             sb2.append("-");
-            if (j3 != Long.MIN_VALUE) {
-                j3 = -j3;
+            if (j10 != Long.MIN_VALUE) {
+                j10 = -j10;
             } else {
-                j3 = Long.MAX_VALUE;
+                j10 = Long.MAX_VALUE;
                 z10 = true;
             }
         }
-        if (j3 >= 86400000) {
-            sb2.append(j3 / 86400000);
+        if (j10 >= 86400000) {
+            sb2.append(j10 / 86400000);
             sb2.append("d");
-            j3 %= 86400000;
+            j10 %= 86400000;
         }
         if (true == z10) {
-            j3 = 25975808;
+            j10 = 25975808;
         }
-        if (j3 >= 3600000) {
-            sb2.append(j3 / 3600000);
+        if (j10 >= 3600000) {
+            sb2.append(j10 / 3600000);
             sb2.append("h");
-            j3 %= 3600000;
+            j10 %= 3600000;
         }
-        if (j3 >= 60000) {
-            sb2.append(j3 / 60000);
+        if (j10 >= 60000) {
+            sb2.append(j10 / 60000);
             sb2.append("m");
-            j3 %= 60000;
+            j10 %= 60000;
         }
-        if (j3 >= 1000) {
-            sb2.append(j3 / 1000);
+        if (j10 >= 1000) {
+            sb2.append(j10 / 1000);
             sb2.append("s");
-            j3 %= 1000;
+            j10 %= 1000;
         }
-        if (j3 > 0) {
-            sb2.append(j3);
+        if (j10 > 0) {
+            sb2.append(j10);
             sb2.append("ms");
         }
     }

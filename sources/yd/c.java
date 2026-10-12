@@ -1,19 +1,96 @@
 package yd;
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
-public final class c implements Serializable {
-    public final Pattern f52339a;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import kd.i;
+import md.h;
+import v7.i8;
+public final class c implements Iterator, kd.c {
+    public int f48738a;
+    public Object f48739b;
+    public kd.c f48740c;
 
-    public c() {
-        Pattern compile = Pattern.compile("^[a-zA-Z0-9/_]{1,100}$");
-        kotlin.jvm.internal.i.d(compile, "compile(...)");
-        this.f52339a = compile;
+    public final RuntimeException a() {
+        int i10 = this.f48738a;
+        if (i10 != 4) {
+            if (i10 != 5) {
+                return new IllegalStateException("Unexpected state of the iterator: " + this.f48738a);
+            }
+            return new IllegalStateException("Iterator has failed.");
+        }
+        return new NoSuchElementException();
     }
 
-    public final String toString() {
-        String pattern = this.f52339a.toString();
-        kotlin.jvm.internal.i.d(pattern, "toString(...)");
-        return pattern;
+    public final void b(Object obj, h hVar) {
+        this.f48739b = obj;
+        this.f48738a = 3;
+        this.f48740c = hVar;
+        ld.a aVar = ld.a.f14658a;
+    }
+
+    @Override
+    public final kd.h getContext() {
+        return i.f14226a;
+    }
+
+    @Override
+    public final boolean hasNext() {
+        int i10;
+        while (true) {
+            i10 = this.f48738a;
+            if (i10 != 0) {
+                break;
+            }
+            this.f48738a = 5;
+            kd.c cVar = this.f48740c;
+            kotlin.jvm.internal.i.b(cVar);
+            this.f48740c = null;
+            cVar.resumeWith(id.i.f11386a);
+        }
+        if (i10 != 1) {
+            if (i10 == 2 || i10 == 3) {
+                return true;
+            }
+            if (i10 == 4) {
+                return false;
+            }
+            throw a();
+        }
+        kotlin.jvm.internal.i.b(null);
+        throw null;
+    }
+
+    @Override
+    public final Object next() {
+        int i10 = this.f48738a;
+        if (i10 != 0 && i10 != 1) {
+            if (i10 != 2) {
+                if (i10 == 3) {
+                    this.f48738a = 0;
+                    Object obj = this.f48739b;
+                    this.f48739b = null;
+                    return obj;
+                }
+                throw a();
+            }
+            this.f48738a = 1;
+            kotlin.jvm.internal.i.b(null);
+            throw null;
+        } else if (hasNext()) {
+            return next();
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void resumeWith(Object obj) {
+        i8.b(obj);
+        this.f48738a = 4;
     }
 }

@@ -1,47 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.text.style.URLSpan;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class p3 extends FrameLayout {
-    public final TextView f40834a;
-    public final TextView f40835b;
-    public boolean f40836c;
-    public final boolean d;
-    public final i4 f40837e;
+import java.util.HashSet;
+public final class p3 extends URLSpan {
+    public final int f39111a;
+    public final q3 f39112b;
 
-    public p3(i4 i4Var, Context context, boolean z10) {
-        super(context);
-        int i10;
-        this.f40837e = i4Var;
-        this.d = z10;
-        setTag(90);
-        TextView textView = new TextView(context);
-        this.f40834a = textView;
-        if (z10) {
-            i10 = R.string.PreviewFeedbackAuto;
-        } else {
-            i10 = R.string.PreviewFeedback2;
-        }
-        textView.setText(LocaleController.getString(i10));
-        textView.setTextSize(1, 12.0f);
-        textView.setGravity(17);
-        textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        addView(textView, w7.w5.a(34.0f, 0.0f, 10.0f, 0.0f, 0.0f, -1, 51));
-        TextView textView2 = new TextView(context);
-        this.f40835b = textView2;
-        textView2.setTextSize(1, 12.0f);
-        textView2.setGravity(19);
-        textView2.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        addView(textView2, w7.w5.a(34.0f, 0.0f, 10.0f, 0.0f, 0.0f, -1, 51));
+    public p3(q3 q3Var, String str, int i10) {
+        super(str);
+        this.f39111a = i10;
+        this.f39112b = q3Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+    public final void onClick(View view) {
+        k0 k0Var;
+        int i10 = this.f39111a;
+        q3 q3Var = this.f39112b;
+        switch (i10) {
+            case 0:
+                k4 k4Var = q3Var.f39334c;
+                String url = getURL();
+                org.telegram.ui.Components.ea0 ea0Var = k4Var.f42501b;
+                d3 d3Var = k4Var.d;
+                HashSet hashSet = k4.f37513b1;
+                if (ea0Var == null) {
+                    k0Var = null;
+                } else {
+                    k0Var = new k0(k4Var, d3Var, ea0Var);
+                }
+                k4Var.Q(url, null, k0Var);
+                return;
+            default:
+                q3Var.f39334c.Q(getURL(), null, null);
+                return;
+        }
     }
 }

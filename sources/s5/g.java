@@ -5,33 +5,33 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.os.SystemClock;
 import android.util.Base64;
-import ci.q9;
+import di.p9;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import org.telegram.ui.Components.uz;
+import org.telegram.ui.Components.nz;
 public final class g implements d, t5.c, c {
-    public static final i5.c f48082f = new i5.c("proto");
-    public final i f48083a;
-    public final u5.a f48084b;
-    public final u5.a f48085c;
+    public static final i5.c f45023f = new i5.c("proto");
+    public final i f45024a;
+    public final u5.a f45025b;
+    public final u5.a f45026c;
     public final a d;
-    public final gd.a f48086e;
+    public final hd.a e;
 
-    public g(u5.a aVar, u5.a aVar2, a aVar3, i iVar, gd.a aVar4) {
-        this.f48083a = iVar;
-        this.f48084b = aVar;
-        this.f48085c = aVar2;
+    public g(u5.a aVar, u5.a aVar2, a aVar3, i iVar, hd.a aVar4) {
+        this.f45024a = iVar;
+        this.f45025b = aVar;
+        this.f45026c = aVar2;
         this.d = aVar3;
-        this.f48086e = aVar4;
+        this.e = aVar4;
     }
 
     public static Long b(SQLiteDatabase sQLiteDatabase, l5.i iVar) {
         Long valueOf;
         StringBuilder sb2 = new StringBuilder("backend_name = ? and priority = ?");
-        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f15160a, String.valueOf(v5.a.a(iVar.f15162c))));
-        byte[] bArr = iVar.f15161b;
+        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f14580a, String.valueOf(v5.a.a(iVar.f14582c))));
+        byte[] bArr = iVar.f14581b;
         if (bArr != null) {
             sb2.append(" and extras = ?");
             arrayList.add(Base64.encodeToString(bArr, 0));
@@ -55,7 +55,7 @@ public final class g implements d, t5.c, c {
         StringBuilder sb2 = new StringBuilder("(");
         Iterator it = iterable.iterator();
         while (it.hasNext()) {
-            sb2.append(((b) it.next()).f48077a);
+            sb2.append(((b) it.next()).f45018a);
             if (it.hasNext()) {
                 sb2.append(',');
             }
@@ -73,18 +73,18 @@ public final class g implements d, t5.c, c {
     }
 
     public final SQLiteDatabase a() {
-        i iVar = this.f48083a;
+        i iVar = this.f45024a;
         Objects.requireNonNull(iVar);
-        u5.a aVar = this.f48085c;
-        long W = aVar.W();
+        u5.a aVar = this.f45026c;
+        long d = aVar.d();
         while (true) {
             try {
                 return iVar.getWritableDatabase();
-            } catch (SQLiteDatabaseLockedException e7) {
-                if (aVar.W() < this.d.f48075c + W) {
+            } catch (SQLiteDatabaseLockedException e) {
+                if (aVar.d() < this.d.f45017c + d) {
                     SystemClock.sleep(50L);
                 } else {
-                    throw new RuntimeException("Timed out while trying to open db.", e7);
+                    throw new RuntimeException("Timed out while trying to open db.", e);
                 }
             }
         }
@@ -104,7 +104,7 @@ public final class g implements d, t5.c, c {
 
     @Override
     public final void close() {
-        this.f48083a.close();
+        this.f45024a.close();
     }
 
     public final ArrayList d(SQLiteDatabase sQLiteDatabase, l5.i iVar, int i10) {
@@ -113,33 +113,33 @@ public final class g implements d, t5.c, c {
         if (b10 == null) {
             return arrayList;
         }
-        h(sQLiteDatabase.query("events", new String[]{"_id", "transport_name", "timestamp_ms", "uptime_ms", "payload_encoding", "payload", "code", "inline"}, "context_id = ?", new String[]{b10.toString()}, null, null, null, String.valueOf(i10)), new uz(this, arrayList, iVar, 9));
+        h(sQLiteDatabase.query("events", new String[]{"_id", "transport_name", "timestamp_ms", "uptime_ms", "payload_encoding", "payload", "code", "inline"}, "context_id = ?", new String[]{b10.toString()}, null, null, null, String.valueOf(i10)), new nz(this, arrayList, iVar, 8));
         return arrayList;
     }
 
-    public final void e(long j3, o5.c cVar, String str) {
-        c(new q9(str, cVar, j3, 8));
+    public final void e(long j10, o5.c cVar, String str) {
+        c(new p9(str, cVar, j10, 8));
     }
 
     public final Object f(t5.b bVar) {
         SQLiteDatabase a2 = a();
-        u5.a aVar = this.f48085c;
-        long W = aVar.W();
+        u5.a aVar = this.f45026c;
+        long d = aVar.d();
         while (true) {
             try {
                 a2.beginTransaction();
                 try {
-                    Object i10 = bVar.i();
+                    Object h = bVar.h();
                     a2.setTransactionSuccessful();
-                    return i10;
+                    return h;
                 } finally {
                     a2.endTransaction();
                 }
-            } catch (SQLiteDatabaseLockedException e7) {
-                if (aVar.W() < this.d.f48075c + W) {
+            } catch (SQLiteDatabaseLockedException e) {
+                if (aVar.d() < this.d.f45017c + d) {
                     SystemClock.sleep(50L);
                 } else {
-                    throw new RuntimeException("Timed out while trying to acquire the lock.", e7);
+                    throw new RuntimeException("Timed out while trying to acquire the lock.", e);
                 }
             }
         }

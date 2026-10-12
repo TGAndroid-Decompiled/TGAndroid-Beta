@@ -1,93 +1,43 @@
 package org.telegram.ui.Components.voip;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.View;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.gd0;
-import w7.w5;
-public final class x0 extends z4.a {
-    public final y0 f32084c;
+public final class x0 extends AnimatorListenerAdapter {
+    public final int f30582a;
+    public final b1 f30583b;
 
-    public x0(y0 y0Var) {
-        this.f32084c = y0Var;
+    public x0(b1 b1Var, int i10) {
+        this.f30582a = i10;
+        this.f30583b = b1Var;
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f32084c.f32107f.length;
-    }
-
-    @Override
-    public final Object e(z4.g gVar, int i10) {
-        Bitmap bitmap;
-        ImageView imageView;
-        y0 y0Var = this.f32084c;
-        boolean z10 = y0Var.f32113y;
-        int i11 = 1;
-        if (z10 && i10 == 0) {
-            ?? frameLayout = new FrameLayout(y0Var.getContext());
-            frameLayout.setBackground(new gd0(true, -14602694, -13935795, -14395293, -14203560));
-            ImageView imageView2 = new ImageView(y0Var.getContext());
-            imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            imageView2.setImageResource(R.drawable.screencast_big);
-            frameLayout.addView(imageView2, w5.a(82.0f, 0.0f, 0.0f, 0.0f, 60.0f, 82, 17));
-            TextView textView = new TextView(y0Var.getContext());
-            textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
-            textView.setGravity(17);
-            textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            org.telegram.messenger.v0.m(15.0f, -1, 1, textView);
-            frameLayout.addView(textView, w5.a(-2.0f, 21.0f, 28.0f, 21.0f, 0.0f, -1, 17));
-            imageView = frameLayout;
-        } else {
-            ImageView imageView3 = new ImageView(y0Var.getContext());
-            imageView3.setTag(Integer.valueOf(i10));
-            try {
-                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                StringBuilder sb2 = new StringBuilder("cthumb");
-                if (i10 != 0 && (i10 != 1 || !z10)) {
-                    i11 = 2;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30582a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                b1 b1Var = this.f30583b;
+                if (b1Var.getParent() != null) {
+                    ((ViewGroup) b1Var.getParent()).removeView(b1Var);
+                    return;
                 }
-                sb2.append(i11);
-                sb2.append(".jpg");
-                bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, sb2.toString()).getAbsolutePath());
-            } catch (Throwable unused) {
-                bitmap = null;
-            }
-            if (bitmap != null) {
-                imageView3.setImageBitmap(bitmap);
-            } else {
-                imageView3.setImageResource(R.drawable.icplaceholder);
-            }
-            imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageView = imageView3;
+                return;
+            case 1:
+                b1 b1Var2 = this.f30583b;
+                if (b1Var2.getParent() != null) {
+                    ((ViewGroup) b1Var2.getParent()).removeView(b1Var2);
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                b1 b1Var3 = this.f30583b;
+                if (b1Var3.getParent() != null) {
+                    ((ViewGroup) b1Var3.getParent()).removeView(b1Var3);
+                    return;
+                }
+                return;
         }
-        if (imageView.getParent() != null) {
-            ((ViewGroup) imageView.getParent()).removeView(imageView);
-        }
-        gVar.addView(imageView, 0);
-        return imageView;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        return view.equals(obj);
-    }
-
-    @Override
-    public final void h(int i10) {
     }
 }

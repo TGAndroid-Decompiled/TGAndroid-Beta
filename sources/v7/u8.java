@@ -1,41 +1,54 @@
 package v7;
 
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.RemoteException;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.tm0;
 public abstract class u8 {
-    public static s7.e f49562a;
-
-    public static xa.c a(Bitmap bitmap) {
-        n6.m.i(bitmap, "image must not be null");
-        try {
-            s7.e eVar = f49562a;
-            n6.m.i(eVar, "IBitmapDescriptorFactory is not initialized");
-            s7.c cVar = (s7.c) eVar;
-            Parcel N0 = cVar.N0();
-            s7.b.b(N0, bitmap);
-            Parcel M0 = cVar.M0(N0, 6);
-            x6.a K0 = x6.b.K0(M0.readStrongBinder());
-            M0.recycle();
-            return new xa.c(K0);
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+    public static void a(tm0 tm0Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        boolean q6;
+        if (c6Var != null) {
+            q6 = c6Var.a();
+        } else {
+            q6 = org.telegram.ui.ActionBar.g6.I.q();
         }
+        tm0Var.q(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Oh, c6Var), q6);
     }
 
-    public static xa.c b(int i10) {
-        try {
-            s7.e eVar = f49562a;
-            n6.m.i(eVar, "IBitmapDescriptorFactory is not initialized");
-            s7.c cVar = (s7.c) eVar;
-            Parcel N0 = cVar.N0();
-            N0.writeInt(i10);
-            Parcel M0 = cVar.M0(N0, 1);
-            x6.a K0 = x6.b.K0(M0.readStrongBinder());
-            M0.recycle();
-            return new xa.c(K0);
-        } catch (RemoteException e7) {
-            throw new RuntimeException(e7);
+    public static int b(ji.a aVar) {
+        int i10 = 0;
+        if (aVar == null) {
+            return 0;
         }
+        int c10 = c(aVar);
+        int max = Math.max(0, aVar.f13104c);
+        if (max > 0) {
+            i10 = AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(max, 1, 24, 28));
+        }
+        return c10 + i10;
+    }
+
+    public static int c(ji.a aVar) {
+        int size;
+        if (aVar == null) {
+            size = 0;
+        } else {
+            size = aVar.f13109k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(size, 1, 16, 12));
+    }
+
+    public static int d(ji.a aVar) {
+        int size;
+        if (aVar == null) {
+            size = 0;
+        } else {
+            size = aVar.f13109k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(size, 1, 16, 8));
     }
 }

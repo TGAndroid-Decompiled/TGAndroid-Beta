@@ -2,29 +2,35 @@ package a9;
 
 import java.util.Iterator;
 public final class n extends l {
-    public static final Object[] f373f;
+    public static final Object[] f348f;
     public static final n h;
     public final transient Object[] d;
-    public final transient Object[] f374e;
+    public final transient Object[] e;
 
     static {
         Object[] objArr = new Object[0];
-        f373f = objArr;
+        f348f = objArr;
         h = new n(objArr, objArr);
     }
 
     public n(Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f374e = objArr2;
+        this.e = objArr2;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            int length = this.f374e.length;
+            int length = this.e.length;
             return false;
         }
         return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        System.arraycopy(this.d, 0, objArr, 0, 0);
+        return 0;
     }
 
     @Override
@@ -33,20 +39,19 @@ public final class n extends l {
     }
 
     @Override
-    public final int i(Object[] objArr) {
-        System.arraycopy(this.d, 0, objArr, 0, 0);
-        return 0;
+    public final Iterator iterator() {
+        m mVar = this.f343b;
+        if (mVar == null) {
+            i iVar = k.f340b;
+            mVar = m.d;
+            this.f343b = mVar;
+        }
+        return mVar.listIterator(0);
     }
 
     @Override
-    public final Iterator iterator() {
-        m mVar = this.f368b;
-        if (mVar == null) {
-            i iVar = k.f365b;
-            mVar = m.d;
-            this.f368b = mVar;
-        }
-        return mVar.listIterator(0);
+    public final int m() {
+        return 0;
     }
 
     @Override
@@ -55,12 +60,7 @@ public final class n extends l {
     }
 
     @Override
-    public final int o() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] p() {
+    public final Object[] o() {
         return this.d;
     }
 

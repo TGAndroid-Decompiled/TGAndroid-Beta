@@ -1,33 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.os.Build;
-import android.view.Surface;
-import android.view.TextureView;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-public final class y2 {
-    public long f44277a;
-    public Bitmap f44278b;
+import org.telegram.tgnet.tl.TL_iv;
+public final class y2 extends VideoPlayerHolderBase {
+    public final z2 f42009a;
 
-    public static y2 a(VideoPlayerHolderBase videoPlayerHolderBase, x2 x2Var) {
-        ?? obj = new Object();
-        obj.f44277a = videoPlayerHolderBase.getCurrentPosition();
-        if (videoPlayerHolderBase.firstFrameRendered) {
-            TextureView textureView = x2Var.f43736n;
-            TextureView textureView2 = x2Var.f43736n;
-            if (textureView != null && textureView.getSurfaceTexture() != null) {
-                if (Build.VERSION.SDK_INT >= 24) {
-                    Surface surface = new Surface(textureView2.getSurfaceTexture());
-                    Bitmap createBitmap = Bitmap.createBitmap(textureView2.getMeasuredWidth(), textureView2.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                    AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
-                    surface.release();
-                    obj.f44278b = createBitmap;
-                    return obj;
-                }
-                obj.f44278b = textureView2.getBitmap();
+    public y2(z2 z2Var) {
+        this.f42009a = z2Var;
+    }
+
+    @Override
+    public final boolean needRepeat() {
+        return true;
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+        super.onRenderedFirstFrame();
+        if (!this.firstFrameRendered) {
+            this.firstFrameRendered = true;
+            z2 z2Var = this.f42009a;
+            z2Var.f42462n.setAlpha(1.0f);
+            TL_iv.pageBlockVideo pageblockvideo = z2Var.L;
+            if (pageblockvideo != null) {
+                z70 z70Var = z2Var.f42458a;
+                a0.h hVar = z70Var.f42509y;
+                long j10 = pageblockvideo.video_id;
+                a3 a2 = a3.a(z70Var.f42507w, z2Var);
+                z2Var.c(a2);
+                hVar.k(a2, j10);
             }
         }
-        return obj;
     }
 }

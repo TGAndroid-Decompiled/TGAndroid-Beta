@@ -1,29 +1,24 @@
 package ca;
 
-import ai.w1;
-public final class a {
-    public static final z9.a f4562b = new Object();
-    public static final String f4563c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
-    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
-    public static final w1 f4564e = new w1(20);
-    public final c f4565a;
+import java.io.File;
+import java.io.FilenameFilter;
+public final class a implements FilenameFilter {
+    public final int f4667a;
 
-    public a(c cVar) {
-        this.f4565a = cVar;
-    }
-
-    public static String a(String str, String str2) {
-        int length = str.length() - str2.length();
-        if (length >= 0 && length <= 1) {
-            StringBuilder sb2 = new StringBuilder(str2.length() + str.length());
-            for (int i10 = 0; i10 < str.length(); i10++) {
-                sb2.append(str.charAt(i10));
-                if (str2.length() > i10) {
-                    sb2.append(str2.charAt(i10));
+    @Override
+    public final boolean accept(File file, String str) {
+        switch (this.f4667a) {
+            case 0:
+                return str.startsWith("event");
+            case 1:
+                if (str.startsWith("event") && !str.endsWith("_")) {
+                    return true;
                 }
-            }
-            return sb2.toString();
+                return false;
+            case 2:
+                return str.startsWith("aqs.");
+            default:
+                return str.startsWith(".ae");
         }
-        throw new IllegalArgumentException("Invalid input received");
     }
 }

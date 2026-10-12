@@ -1,27 +1,27 @@
 package org.telegram.messenger.voip;
 
-import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
 public final class x implements Runnable {
-    public final int f19409a;
-    public final VoIPService f19410b;
-    public final HashSet f19411c;
-    public final String d;
+    public final int f18873a;
+    public final VoIPService f18874b;
+    public final TLRPC.Updates f18875c;
+    public final long d;
 
-    public x(VoIPService voIPService, HashSet hashSet, String str, int i10) {
-        this.f19409a = i10;
-        this.f19410b = voIPService;
-        this.f19411c = hashSet;
-        this.d = str;
+    public x(VoIPService voIPService, TLRPC.Updates updates, long j10, int i10) {
+        this.f18873a = i10;
+        this.f18874b = voIPService;
+        this.f18875c = updates;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19409a) {
+        switch (this.f18873a) {
             case 0:
-                this.f19410b.lambda$startConferenceGroupCall$42(this.f19411c, this.d);
+                this.f18874b.lambda$startConferenceGroupCall$38(this.f18875c, this.d);
                 return;
             default:
-                this.f19410b.lambda$startConferenceGroupCall$50(this.f19411c, this.d);
+                this.f18874b.lambda$startConferenceGroupCall$46(this.f18875c, this.d);
                 return;
         }
     }

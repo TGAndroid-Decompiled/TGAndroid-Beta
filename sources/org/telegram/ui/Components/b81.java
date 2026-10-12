@@ -1,47 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class b81 implements View.OnLayoutChangeListener {
-    public Boolean f24573a;
-    public boolean f24574b;
-    public final m.f3 f24575c;
+import android.content.Context;
+public final class b81 extends i2.k {
+    public final h81 d;
 
-    public b81(m.f3 f3Var, View view) {
-        this.f24575c = f3Var;
-        o1.k kVar = new o1.k(view, o1.h.f16673n, 0.0f);
-        f3Var.f15425c = kVar;
-        kVar.f16691u.a(1.0f);
-        ((o1.k) f3Var.f15425c).f16691u.b(350.0f);
+    public b81(Context context, h81 h81Var) {
+        super(context);
+        this.d = h81Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = this.f24573a;
-        if (bool == null || bool.booleanValue() != z10) {
-            this.f24573a = Boolean.valueOf(z10);
-            this.f24574b = true;
-        }
-        if (i15 != 0 && i15 != i11 && !this.f24574b) {
-            m.f3 f3Var = this.f24575c;
-            ((o1.k) f3Var.f15425c).c();
-            if (view.getVisibility() != 0) {
-                view.setTranslationY(0.0f);
-                return;
-            }
-            ((o1.k) f3Var.f15425c).f16691u.f16698i = 0.0f;
-            view.setTranslationY((i15 - i11) + 0.0f);
-            ((o1.k) f3Var.f15425c).h();
-            return;
-        }
-        this.f24574b = false;
+    public final k2.s0 a(Context context) {
+        bi.p5 p5Var = new bi.p5(context);
+        p5Var.d = new androidx.biometric.e(new c2.n[]{new k2.a1(new g81(this.d))});
+        return p5Var.a();
     }
 }

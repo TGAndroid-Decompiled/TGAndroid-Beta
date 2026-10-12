@@ -1,59 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
-public final class c51 extends AnimatorListenerAdapter {
-    public final int f36332a;
-    public final org.telegram.ui.Components.qn0 f36333b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class c51 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
+    public final Path f34738a;
+    public dh.d f34739b;
 
-    public c51(org.telegram.ui.Components.qn0 qn0Var, int i10) {
-        this.f36332a = i10;
-        this.f36333b = qn0Var;
+    public c51(Activity activity) {
+        super(activity);
+        this.f34738a = new Path();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36332a) {
-            case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36333b.f29871b;
-                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                eu0 eu0Var = secretMediaViewer.f34252a0;
-                eu0Var.f41731l0 = false;
-                if (eu0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) eu0Var.f41733o0.getLayoutParams()).topMargin = eu0Var.m0;
-                    eu0Var.m0 = -1;
-                    eu0Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                ((SecretMediaViewer) this.f36333b.f29871b).Z.setTranslationY(0.0f);
-                return;
+    public final void d() {
+        dh.d dVar = this.f34739b;
+        if (dVar != null) {
+            dVar.v();
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f36332a) {
-            case 0:
-                eu0 eu0Var = ((SecretMediaViewer) this.f36333b.f29871b).f34252a0;
-                Method method = eu0Var.f41725f0;
-                if (method != null) {
-                    try {
-                        method.invoke(eu0Var, null);
-                        return;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f34738a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f34738a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(dh.d dVar) {
+        this.f34739b = dVar;
+        setBackground(dVar);
     }
 }

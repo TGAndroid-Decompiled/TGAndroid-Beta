@@ -1,106 +1,17 @@
 package org.telegram.ui;
-
-import android.os.Bundle;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ky0 implements View.OnClickListener {
-    public final int f39594a;
-    public final ProfileActivity f39595b;
-
-    public ky0(ProfileActivity profileActivity, int i10) {
-        this.f39594a = i10;
-        this.f39595b = profileActivity;
-    }
+public final class ky0 implements Runnable {
+    public final int f37778a = 1;
+    public final my0 f37779b;
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f39594a;
-        ProfileActivity profileActivity = this.f39595b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f37778a) {
             case 0:
-                ProfileActivity.i0(profileActivity);
-                return;
-            case 1:
-                if (profileActivity.v.getTag() == null) {
-                    profileActivity.u4();
-                    return;
-                }
-                return;
-            case 2:
-                profileActivity.finishPreviewFragment();
-                return;
-            case 3:
-                profileActivity.R4();
-                return;
-            case 4:
-                ProfileActivity.g0(profileActivity);
-                return;
-            case 5:
-                ProfileActivity.a0(profileActivity);
-                return;
-            case 6:
-                profileActivity.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f34090f1);
-                bundle.putLong("user_id", profileActivity.f34082e1);
-                profileActivity.presentFragment(new g31(bundle));
-                return;
-            case 7:
-                ProfileActivity.h0(profileActivity);
-                return;
-            case 8:
-                profileActivity.Q4();
-                return;
-            case 9:
-                profileActivity.Q4();
-                return;
-            case 10:
-                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
-                    int i11 = 0;
-                    while (i11 < profileActivity.getParentLayout().getFragmentStack().size()) {
-                        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) profileActivity.getParentLayout().getFragmentStack().get(i11);
-                        if (m2Var instanceof vy) {
-                            vy vyVar = (vy) m2Var;
-                            px pxVar = vyVar.F3;
-                            if (pxVar != null) {
-                                org.telegram.ui.ActionBar.m2 fragment = pxVar.getFragment();
-                                if ((fragment instanceof hg1) && (-((hg1) fragment).f38376a) == profileActivity.a()) {
-                                    vyVar.F3.a();
-                                }
-                            }
-                        } else if (m2Var instanceof eo) {
-                            if (((eo) m2Var).a() == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
-                                i11--;
-                            }
-                        } else if (m2Var instanceof hg1) {
-                            if ((-((hg1) m2Var).f38376a) == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
-                                i11--;
-                            }
-                        } else if ((m2Var instanceof ProfileActivity) && m2Var != profileActivity) {
-                            ProfileActivity profileActivity2 = (ProfileActivity) m2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f34163q1) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
-                                i11--;
-                            }
-                        }
-                        i11++;
-                    }
-                }
-                profileActivity.J1 = 0;
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f34090f1);
-                HashSet hashSet = hg1.f38375n1;
-                profileActivity.presentFragment(hg1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
-                return;
-            case 11:
-                profileActivity.t4(view);
-                return;
+                this.f37779b.getClass();
+                throw null;
             default:
-                profileActivity.t4(view);
-                return;
+                this.f37779b.getClass();
+                throw null;
         }
     }
 }

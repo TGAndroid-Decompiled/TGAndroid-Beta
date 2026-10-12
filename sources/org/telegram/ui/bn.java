@@ -1,53 +1,65 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.Components.UndoView;
 public final class bn implements Runnable {
-    public final int f36209a;
-    public final pn f36210b;
-    public final MessageObject f36211c;
+    public final int f34598a;
+    public final qn f34599b;
 
-    public bn(pn pnVar, MessageObject messageObject, int i10) {
-        this.f36209a = i10;
-        this.f36210b = pnVar;
-        this.f36211c = messageObject;
+    public bn(qn qnVar, int i10) {
+        this.f34598a = i10;
+        this.f34599b = qnVar;
     }
 
     @Override
     public final void run() {
-        int i10;
-        switch (this.f36209a) {
+        switch (this.f34598a) {
             case 0:
-                pn pnVar = this.f36210b;
-                eo eoVar = pnVar.f41000a;
-                eoVar.T7();
-                UndoView undoView = eoVar.y3;
-                if (undoView != null) {
-                    if (eoVar.Y.getVisibility() == 0 && eoVar.R.getVisibility() != 0) {
-                        i10 = 16;
-                    } else {
-                        i10 = 17;
-                    }
-                    int i11 = i10;
-                    MessageObject messageObject = this.f36211c;
-                    undoView.k(0L, i11, messageObject.getDiceEmoji(), null, null, new bn(pnVar, messageObject, 2));
-                    return;
-                }
+                fo foVar = this.f34599b.f39497a;
+                foVar.f35916d5 = null;
+                foVar.f35928e5 = null;
                 return;
             case 1:
-                eo eoVar2 = this.f36210b.f41000a;
-                eoVar2.f37480wb = this.f36211c.getId();
-                eoVar2.f37494xb = 0;
+                qn qnVar = this.f34599b;
+                qnVar.getClass();
+                fo foVar2 = qnVar.f39497a;
+                new sg.y0((org.telegram.ui.ActionBar.m2) foVar2, 8, true).show();
+                foVar2.getMessagesController().pressTranscribeButton();
+                return;
+            case 2:
+                qn qnVar2 = this.f34599b;
+                qnVar2.getClass();
+                fo foVar3 = qnVar2.f39497a;
+                new sg.y0((org.telegram.ui.ActionBar.m2) foVar3, 8, true).show();
+                foVar3.getMessagesController().pressTranscribeButton();
+                return;
+            case 3:
+                qn qnVar3 = this.f34599b;
+                qnVar3.getClass();
+                fo foVar4 = qnVar3.f39497a;
+                new sg.y0((org.telegram.ui.ActionBar.m2) foVar4, 8, true).show();
+                foVar4.getMessagesController().pressTranscribeButton();
+                return;
+            case 4:
+                this.f34599b.f39497a.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
+                return;
+            case 5:
+                fo foVar5 = this.f34599b.f39497a;
+                foVar5.f35916d5 = null;
+                foVar5.f35928e5 = null;
+                return;
+            case 6:
+                this.f34599b.f39497a.Y.F0();
+                return;
+            case 7:
+                this.f34599b.f39497a.Y.F0();
+                return;
+            case 8:
+                fo foVar6 = this.f34599b.f39497a;
+                ThemeActivity themeActivity = new ThemeActivity(0);
+                themeActivity.T0 = true;
+                foVar6.presentFragment(themeActivity);
                 return;
             default:
-                eo eoVar3 = this.f36210b.f41000a;
-                if (eoVar3.i7()) {
-                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f36211c.getDiceEmoji(), eoVar3.T5, eoVar3.f37361n5, eoVar3.X3, null, false, null, null, null, true, 0, 0, null, false);
-                    of2.sendMessageChatArguments = eoVar3.H8();
-                    eoVar3.getSendMessagesHelper().sendMessage(of2);
-                    return;
-                }
+                fo foVar7 = this.f34599b.f39497a;
+                foVar7.showDialog(new sg.y0((org.telegram.ui.ActionBar.m2) foVar7, 39, false));
                 return;
         }
     }

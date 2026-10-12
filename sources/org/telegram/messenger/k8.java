@@ -5,45 +5,45 @@ import java.util.HashSet;
 import org.telegram.messenger.Timer;
 import org.telegram.tgnet.TLRPC;
 public final class k8 implements Runnable {
-    public final int f18048a = 0;
-    public final long f18049b;
-    public final ArrayList f18050c;
-    public final a0.i d;
-    public final Runnable f18051e;
-    public final BaseController f18052f;
+    public final int f17669a = 0;
+    public final long f17670b;
+    public final ArrayList f17671c;
+    public final a0.h d;
+    public final Runnable e;
+    public final BaseController f17672f;
     public final Object h;
-    public final Object f18053n;
+    public final Object f17673n;
 
-    public k8(MediaDataController mediaDataController, Timer.Task task, Timer timer, ArrayList arrayList, long j3, a0.i iVar, Runnable runnable) {
-        this.f18052f = mediaDataController;
+    public k8(MediaDataController mediaDataController, Timer.Task task, Timer timer, ArrayList arrayList, long j10, a0.h hVar, Runnable runnable) {
+        this.f17672f = mediaDataController;
         this.h = task;
-        this.f18053n = timer;
-        this.f18050c = arrayList;
-        this.f18049b = j3;
-        this.d = iVar;
-        this.f18051e = runnable;
+        this.f17673n = timer;
+        this.f17671c = arrayList;
+        this.f17670b = j10;
+        this.d = hVar;
+        this.e = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f18048a) {
+        switch (this.f17669a) {
             case 0:
-                ((MediaDataController) this.f18052f).lambda$loadReplyMessagesForMessages$171((Timer.Task) this.h, (Timer) this.f18053n, this.f18050c, this.f18049b, this.d, this.f18051e);
+                ((MediaDataController) this.f17672f).lambda$loadReplyMessagesForMessages$171((Timer.Task) this.h, (Timer) this.f17673n, this.f17671c, this.f17670b, this.d, this.e);
                 return;
             default:
-                Runnable runnable = this.f18051e;
-                ((TopicsController) this.f18052f).lambda$reloadTopics$13((TLRPC.TL_messages_savedDialogs) this.h, this.f18049b, this.f18050c, this.d, (HashSet) this.f18053n, runnable);
+                Runnable runnable = this.e;
+                ((TopicsController) this.f17672f).lambda$reloadTopics$13((TLRPC.TL_messages_savedDialogs) this.h, this.f17670b, this.f17671c, this.d, (HashSet) this.f17673n, runnable);
                 return;
         }
     }
 
-    public k8(TopicsController topicsController, TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j3, ArrayList arrayList, a0.i iVar, HashSet hashSet, Runnable runnable) {
-        this.f18052f = topicsController;
+    public k8(TopicsController topicsController, TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j10, ArrayList arrayList, a0.h hVar, HashSet hashSet, Runnable runnable) {
+        this.f17672f = topicsController;
         this.h = tL_messages_savedDialogs;
-        this.f18049b = j3;
-        this.f18050c = arrayList;
-        this.d = iVar;
-        this.f18053n = hashSet;
-        this.f18051e = runnable;
+        this.f17670b = j10;
+        this.f17671c = arrayList;
+        this.d = hVar;
+        this.f17673n = hashSet;
+        this.e = runnable;
     }
 }

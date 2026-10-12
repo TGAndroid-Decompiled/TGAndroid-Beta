@@ -6,24 +6,24 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.jvm.internal.i;
 public final class b {
-    public final LinkedHashMap f16215a;
-    public final AtomicBoolean f16216b;
+    public final LinkedHashMap f15908a;
+    public final AtomicBoolean f15909b;
 
     public b(LinkedHashMap linkedHashMap, boolean z10) {
-        this.f16215a = linkedHashMap;
-        this.f16216b = new AtomicBoolean(z10);
+        this.f15908a = linkedHashMap;
+        this.f15909b = new AtomicBoolean(z10);
     }
 
     public final Object a(d key) {
         i.e(key, "key");
-        return this.f16215a.get(key);
+        return this.f15908a.get(key);
     }
 
     public final void b(d key, Object obj) {
         i.e(key, "key");
-        AtomicBoolean atomicBoolean = this.f16216b;
+        AtomicBoolean atomicBoolean = this.f15909b;
         if (!atomicBoolean.get()) {
-            LinkedHashMap linkedHashMap = this.f16215a;
+            LinkedHashMap linkedHashMap = this.f15908a;
             if (obj == null) {
                 if (!atomicBoolean.get()) {
                     linkedHashMap.remove(key);
@@ -31,7 +31,7 @@ public final class b {
                 }
                 throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             } else if (obj instanceof Set) {
-                Set unmodifiableSet = DesugarCollections.unmodifiableSet(id.g.p((Iterable) obj));
+                Set unmodifiableSet = DesugarCollections.unmodifiableSet(jd.g.p((Iterable) obj));
                 i.d(unmodifiableSet, "unmodifiableSet(value.toSet())");
                 linkedHashMap.put(key, unmodifiableSet);
                 return;
@@ -45,17 +45,17 @@ public final class b {
 
     public final boolean equals(Object obj) {
         if (obj instanceof b) {
-            return i.a(this.f16215a, ((b) obj).f16215a);
+            return i.a(this.f15908a, ((b) obj).f15908a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f16215a.hashCode();
+        return this.f15908a.hashCode();
     }
 
     public final String toString() {
-        return id.g.h(this.f16215a.entrySet(), ",\n", "{\n", "\n}", a.f16214b, 24);
+        return jd.g.h(this.f15908a.entrySet(), ",\n", "{\n", "\n}", a.f15907b, 24);
     }
 
     public b(boolean z10) {

@@ -258,9 +258,9 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder m10 = hg.c.m("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            m10.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(m10.toString());
+            StringBuilder l4 = i2.d.l("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            l4.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(l4.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }
@@ -414,7 +414,7 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(long j3, boolean z10) {
+    public void swapBuffers(long j10, boolean z10) {
         swapBuffers(z10);
     }
 }

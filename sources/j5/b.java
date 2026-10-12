@@ -1,73 +1,52 @@
 package j5;
 
-import a4.l;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import java.net.MalformedURLException;
+import ah.l0;
+import android.animation.ValueAnimator;
 import java.net.URL;
-import k5.c;
-import k5.f;
-import k5.g;
-import k5.h;
-import k5.i;
-import k5.j;
-import k5.k;
-import k5.n;
-import k5.o;
-import k5.q;
-import k5.r;
-import k5.s;
-import k5.v;
-import ka.d;
-import m5.e;
-public final class b implements e {
-    public final l f14023a;
-    public final ConnectivityManager f14024b;
-    public final Context f14025c;
-    public final URL d;
-    public final u5.a f14026e;
-    public final u5.a f14027f;
-    public final int f14028g;
+import org.telegram.ui.Components.es;
+import v7.u8;
+public final class b {
+    public long f12840a;
+    public int f12841b;
+    public Object f12842c;
 
-    public b(Context context, u5.a aVar, u5.a aVar2) {
-        d dVar = new d();
-        c cVar = c.f14638a;
-        dVar.a(o.class, cVar);
-        dVar.a(i.class, cVar);
-        f fVar = f.f14649a;
-        dVar.a(s.class, fVar);
-        dVar.a(k5.l.class, fVar);
-        k5.d dVar2 = k5.d.f14640a;
-        dVar.a(q.class, dVar2);
-        dVar.a(j.class, dVar2);
-        k5.b bVar = k5.b.f14627a;
-        dVar.a(k5.a.class, bVar);
-        dVar.a(h.class, bVar);
-        k5.e eVar = k5.e.f14643a;
-        dVar.a(r.class, eVar);
-        dVar.a(k.class, eVar);
-        g gVar = g.f14655a;
-        dVar.a(v.class, gVar);
-        dVar.a(n.class, gVar);
-        dVar.d = true;
-        this.f14023a = new l(dVar, 26);
-        this.f14025c = context;
-        this.f14024b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f14018c);
-        this.f14026e = aVar2;
-        this.f14027f = aVar;
-        this.f14028g = 130000;
+    public b(int i10, URL url, long j10) {
+        this.f12841b = i10;
+        this.f12842c = url;
+        this.f12840a = j10;
     }
 
-    public static URL b(String str) {
-        try {
-            return new URL(str);
-        } catch (MalformedURLException e7) {
-            throw new IllegalArgumentException(sc.v.i("Invalid url: ", str), e7);
+    public void a(ji.a aVar, f1.a aVar2) {
+        long j10;
+        boolean z10;
+        int i10;
+        int b10 = u8.b(aVar);
+        if (aVar != null) {
+            j10 = aVar.f13102a;
+        } else {
+            j10 = Long.MIN_VALUE;
         }
-    }
-
-    public final l5.h a(l5.h r7) {
-        throw new UnsupportedOperationException("Method not decompiled: j5.b.a(l5.h):l5.h");
+        if (j10 == this.f12840a && this.f12841b >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f12840a = j10;
+        ValueAnimator valueAnimator = (ValueAnimator) this.f12842c;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f12842c = null;
+        }
+        if (z10 && (i10 = this.f12841b) != b10) {
+            ValueAnimator ofInt = ValueAnimator.ofInt(i10, b10);
+            ofInt.addUpdateListener(new l0(7, this, aVar2));
+            ofInt.setInterpolator(es.f24771f);
+            ofInt.setDuration(200L);
+            this.f12842c = ofInt;
+            ofInt.start();
+            return;
+        }
+        this.f12841b = b10;
+        aVar2.c(b10);
     }
 }

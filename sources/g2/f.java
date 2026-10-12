@@ -2,29 +2,31 @@ package g2;
 
 import android.net.Uri;
 import android.util.Base64;
-import b2.s0;
+import b2.x0;
+import e2.m0;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import v7.u6;
 public final class f extends c {
-    public m f10246a;
-    public byte[] f10247b;
-    public int f10248c;
+    public m f9867a;
+    public byte[] f9868b;
+    public int f9869c;
     public int d;
 
     @Override
     public final void close() {
-        if (this.f10247b != null) {
-            this.f10247b = null;
+        if (this.f9868b != null) {
+            this.f9868b = null;
             transferEnded();
         }
-        this.f10246a = null;
+        this.f9867a = null;
     }
 
     @Override
     public final Uri getUri() {
-        m mVar = this.f10246a;
+        m mVar = this.f9867a;
         if (mVar != null) {
-            return mVar.f10265a;
+            return mVar.f9883a;
         }
         return null;
     }
@@ -32,48 +34,47 @@ public final class f extends c {
     @Override
     public final long open(m mVar) {
         transferInitializing(mVar);
-        this.f10246a = mVar;
-        Uri uri = mVar.f10265a;
-        long j3 = mVar.f10269f;
+        this.f9867a = mVar;
+        Uri uri = mVar.f9883a;
+        long j10 = mVar.f9886f;
         Uri normalizeScheme = uri.normalizeScheme();
         String scheme = normalizeScheme.getScheme();
-        boolean equals = "data".equals(scheme);
-        e2.d.a("Unsupported scheme: " + scheme, equals);
+        u6.h("data".equals(scheme), "Unsupported scheme: %s", scheme);
         String schemeSpecificPart = normalizeScheme.getSchemeSpecificPart();
-        String str = e2.d0.f8529a;
+        String str = m0.f8372a;
         String[] split = schemeSpecificPart.split(",", -1);
         if (split.length == 2) {
             String str2 = split[1];
             if (split[0].contains(";base64")) {
                 try {
-                    this.f10247b = Base64.decode(str2, 0);
-                } catch (IllegalArgumentException e7) {
-                    throw new s0(sc.v.i("Error while parsing Base64 encoded string: ", str2), e7, true, 0);
+                    this.f9868b = Base64.decode(str2, 0);
+                } catch (IllegalArgumentException e) {
+                    throw new x0(t8.b.h("Error while parsing Base64 encoded string: ", str2), e, true, 0);
                 }
             } else {
-                this.f10247b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
+                this.f9868b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
             }
-            long j10 = mVar.f10268e;
-            byte[] bArr = this.f10247b;
-            if (j10 <= bArr.length) {
-                int i10 = (int) j10;
-                this.f10248c = i10;
+            long j11 = mVar.e;
+            byte[] bArr = this.f9868b;
+            if (j11 <= bArr.length) {
+                int i10 = (int) j11;
+                this.f9869c = i10;
                 int length = bArr.length - i10;
                 this.d = length;
-                int i11 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
+                int i11 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
                 if (i11 != 0) {
-                    this.d = (int) Math.min(length, j3);
+                    this.d = (int) Math.min(length, j10);
                 }
                 transferStarted(mVar);
                 if (i11 != 0) {
-                    return j3;
+                    return j10;
                 }
                 return this.d;
             }
-            this.f10247b = null;
+            this.f9868b = null;
             throw new j(2008);
         }
-        throw new s0("Unexpected URI format: " + normalizeScheme, null, true, 0);
+        throw new x0("Unexpected URI format: " + normalizeScheme, null, true, 0);
     }
 
     @Override
@@ -86,10 +87,10 @@ public final class f extends c {
             return -1;
         }
         int min = Math.min(i11, i12);
-        byte[] bArr2 = this.f10247b;
-        String str = e2.d0.f8529a;
-        System.arraycopy(bArr2, this.f10248c, bArr, i10, min);
-        this.f10248c += min;
+        byte[] bArr2 = this.f9868b;
+        String str = m0.f8372a;
+        System.arraycopy(bArr2, this.f9869c, bArr, i10, min);
+        this.f9869c += min;
         this.d -= min;
         bytesTransferred(min);
         return min;

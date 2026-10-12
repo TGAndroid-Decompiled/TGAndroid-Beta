@@ -1,27 +1,43 @@
 package org.telegram.ui.Components.voip;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.a40;
-public final class g0 extends ImageView {
-    public final a40 f31677a;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.n9;
+import org.telegram.ui.e40;
+public final class g0 extends FrameLayout {
+    public final ShapeDrawable f30186a;
+    public final e40 f30187b;
 
-    public g0(a40 a40Var, Context context) {
+    public g0(e40 e40Var, Context context, ShapeDrawable shapeDrawable) {
         super(context);
-        this.f31677a = a40Var;
+        this.f30187b = e40Var;
+        this.f30186a = shapeDrawable;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        a40 a40Var = this.f31677a;
-        a40Var.f31807f0.invalidate();
-        a40Var.invalidate();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+    public final void dispatchDraw(Canvas canvas) {
+        e40 e40Var = this.f30187b;
+        n9 n9Var = e40Var.J;
+        TextView textView = e40Var.K;
+        float f7 = e40Var.O;
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        ShapeDrawable shapeDrawable = this.f30186a;
+        if (i10 == 0) {
+            shapeDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            n9Var.setTranslationX(0.0f);
+            textView.setTranslationX(0.0f);
+        } else {
+            float interpolation = 1.0f - es.f24771f.getInterpolation(f7);
+            float left = (e40Var.P - getLeft()) * interpolation;
+            shapeDrawable.setBounds((int) left, 0, getMeasuredWidth() + ((int) ((e40Var.R - getRight()) * interpolation)), getMeasuredHeight());
+            n9Var.setTranslationX(left);
+            textView.setTranslationX(-((e40Var.Q - textView.getLeft()) * interpolation));
+        }
+        shapeDrawable.draw(canvas);
+        super.dispatchDraw(canvas);
     }
 }

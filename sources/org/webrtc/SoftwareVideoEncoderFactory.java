@@ -6,11 +6,11 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     private static final String TAG = "SoftwareVideoEncoderFactory";
     private final long nativeFactory = nativeCreateFactory();
 
-    private static native long nativeCreateEncoder(long j3, VideoCodecInfo videoCodecInfo);
+    private static native long nativeCreateEncoder(long j10, VideoCodecInfo videoCodecInfo);
 
     private static native long nativeCreateFactory();
 
-    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j3);
+    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j10);
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
@@ -34,12 +34,12 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public final VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return y.a(this);
+        return z.a(this);
     }
 
     @Override
     public final VideoCodecInfo[] getImplementations() {
-        return y.b(this);
+        return z.b(this);
     }
 
     @Override

@@ -1,94 +1,54 @@
 package e9;
-public final class g1 extends m0 {
-    public static final Object[] f8740r;
-    public static final g1 f8741s;
-    public final transient Object[] d;
-    public final transient int f8742e;
-    public final transient Object[] f8743f;
-    public final transient int h;
-    public final transient int f8744n;
 
-    static {
-        Object[] objArr = new Object[0];
-        f8740r = objArr;
-        f8741s = new g1(0, 0, 0, objArr, objArr);
-    }
+import java.util.AbstractList;
+import java.util.ListIterator;
+public final class g1 extends l2 implements ListIterator {
+    public final int f8566b;
+    public final AbstractList f8567c;
 
-    public g1(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
-        this.d = objArr;
-        this.f8742e = i10;
-        this.f8743f = objArr2;
-        this.h = i11;
-        this.f8744n = i12;
+    public g1(AbstractList abstractList, ListIterator listIterator, int i10) {
+        super(listIterator);
+        this.f8566b = i10;
+        this.f8567c = abstractList;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj != null) {
-            Object[] objArr = this.f8743f;
-            if (objArr.length != 0) {
-                int t10 = q.t(obj);
-                while (true) {
-                    int i10 = t10 & this.h;
-                    Object obj2 = objArr[i10];
-                    if (obj2 == null) {
-                        return false;
-                    }
-                    if (obj2.equals(obj)) {
-                        return true;
-                    }
-                    t10 = i10 + 1;
-                }
-            }
+    public final Object a(Object obj) {
+        switch (this.f8566b) {
+            case 0:
+                return ((h1) this.f8567c).f8571b.apply(obj);
+            default:
+                return ((i1) this.f8567c).f8576b.apply(obj);
         }
-        return false;
     }
 
     @Override
-    public final int hashCode() {
-        return this.f8742e;
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int n(int i10, Object[] objArr) {
-        Object[] objArr2 = this.d;
-        int i11 = this.f8744n;
-        System.arraycopy(objArr2, 0, objArr, i10, i11);
-        return i10 + i11;
+    public final boolean hasPrevious() {
+        return ((ListIterator) this.f8584a).hasPrevious();
     }
 
     @Override
-    public final Object[] o() {
-        return this.d;
+    public final int nextIndex() {
+        return ((ListIterator) this.f8584a).nextIndex();
     }
 
     @Override
-    public final int p() {
-        return this.f8744n;
+    public final Object previous() {
+        return a(((ListIterator) this.f8584a).previous());
     }
 
     @Override
-    public final int q() {
-        return 0;
+    public final int previousIndex() {
+        return ((ListIterator) this.f8584a).previousIndex();
     }
 
     @Override
-    public final boolean r() {
-        return false;
-    }
-
-    @Override
-    public final o1 s() {
-        return i().listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.f8744n;
-    }
-
-    @Override
-    public final i0 w() {
-        return i0.t(this.f8744n, this.d);
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,35 +1,43 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-import android.view.ViewGroup;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class t40 implements ov0 {
-    public final i60 f42083a;
+public final class t40 extends TextView {
+    public final RectF f40288a;
+    public final Paint f40289b;
 
-    public t40(i60 i60Var) {
-        this.f42083a = i60Var;
+    public t40(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f40288a = new RectF();
+        Paint paint = new Paint(1);
+        this.f40289b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
     }
 
     @Override
-    public final void H(MessageObject messageObject) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f42083a).containerView;
-        viewGroup.invalidate();
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f40288a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f40289b);
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final TextureView g0() {
-        return null;
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f40289b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f40288a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void w0(MessageObject messageObject) {
-        ViewGroup viewGroup;
-        i60 i60Var = this.f42083a;
-        i60Var.Q.I0(true);
-        i60Var.f38691c2.f42000f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
-        viewGroup = ((org.telegram.ui.ActionBar.e3) i60Var).containerView;
-        viewGroup.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
     }
 }

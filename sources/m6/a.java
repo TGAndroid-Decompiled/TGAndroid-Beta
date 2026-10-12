@@ -4,22 +4,22 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import g8.j;
-import hg.c;
+import i2.d;
 import java.util.Arrays;
 import java.util.Locale;
-import n6.m;
-import w7.c0;
+import n6.l;
+import w7.g0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(26);
-    public final int f16016a;
-    public final Uri f16017b;
-    public final int f16018c;
+    public final int f15700a;
+    public final Uri f15701b;
+    public final int f15702c;
     public final int d;
 
     public a(int i10, Uri uri, int i11, int i12) {
-        this.f16016a = i10;
-        this.f16017b = uri;
-        this.f16018c = i11;
+        this.f15700a = i10;
+        this.f15701b = uri;
+        this.f15702c = i11;
         this.d = i12;
     }
 
@@ -29,7 +29,7 @@ public final class a extends o6.a {
         }
         if (obj != null && (obj instanceof a)) {
             a aVar = (a) obj;
-            if (m.l(this.f16017b, aVar.f16017b) && this.f16018c == aVar.f16018c && this.d == aVar.d) {
+            if (l.l(this.f15701b, aVar.f15701b) && this.f15702c == aVar.f15702c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -37,28 +37,28 @@ public final class a extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f16017b, Integer.valueOf(this.f16018c), Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f15701b, Integer.valueOf(this.f15702c), Integer.valueOf(this.d)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        String uri = this.f16017b.toString();
-        StringBuilder m10 = c.m("Image ", this.f16018c, "x", this.d, " ");
-        m10.append(uri);
-        return m10.toString();
+        String uri = this.f15701b.toString();
+        StringBuilder l4 = d.l("Image ", this.f15702c, "x", this.d, " ");
+        l4.append(uri);
+        return l4.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = c0.q(parcel, 20293);
-        c0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16016a);
-        c0.k(parcel, 2, this.f16017b, i10);
-        c0.s(parcel, 3, 4);
-        parcel.writeInt(this.f16018c);
-        c0.s(parcel, 4, 4);
+        int q6 = g0.q(parcel, 20293);
+        g0.s(parcel, 1, 4);
+        parcel.writeInt(this.f15700a);
+        g0.k(parcel, 2, this.f15701b, i10);
+        g0.s(parcel, 3, 4);
+        parcel.writeInt(this.f15702c);
+        g0.s(parcel, 4, 4);
         parcel.writeInt(this.d);
-        c0.r(parcel, q6);
+        g0.r(parcel, q6);
     }
 
     public a(Uri uri, int i10, int i11) {

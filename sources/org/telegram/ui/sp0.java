@@ -1,68 +1,82 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-public final class sp0 extends n71 {
-    public final vp0 f41976d2;
-    public final e71[] f41977e2;
-    public final wp0 f41978f2;
+public final class sp0 implements Utilities.Callback {
+    public final int f40190a;
+    public final tp0 f40191b;
 
-    public sp0(wp0 wp0Var, org.telegram.ui.ActionBar.m2 m2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11, int i12, vp0 vp0Var, e71[] e71VarArr) {
-        super(m2Var, context, true, num, i10, true, c6Var, i11, i12);
-        this.f41978f2 = wp0Var;
-        this.f41976d2 = vp0Var;
-        this.f41977e2 = e71VarArr;
+    public sp0(tp0 tp0Var, int i10) {
+        this.f40190a = i10;
+        this.f40191b = tp0Var;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        wp0 wp0Var = this.f41978f2;
-        if (tL_starGiftUnique != null) {
-            if (wp0Var.m0 == 0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    wp0Var.f43604s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    wp0Var.f43603r = null;
+    public final void run(Object obj) {
+        TL_stars.StarGift starGift;
+        int i10;
+        aq0 aq0Var;
+        eq0 eq0Var;
+        aq0 aq0Var2;
+        switch (this.f40190a) {
+            case 0:
+                Integer num = (Integer) obj;
+                tp0 tp0Var = this.f40191b;
+                aq0 aq0Var3 = tp0Var.e;
+                if (num.intValue() == 0) {
+                    starGift = null;
                 } else {
+                    starGift = (TL_stars.StarGift) aq0Var3.M.get(num);
+                }
+                aq0Var3.K = starGift;
+                gq0 gq0Var = aq0Var3.f34322p0;
+                if (starGift == null) {
+                    yh.t3 t3Var = aq0Var3.J;
+                    if (t3Var != null) {
+                        t3Var.f();
+                        aq0Var3.J = null;
+                    }
+                } else {
+                    yh.t3 t3Var2 = aq0Var3.J;
+                    if (t3Var2 == null || t3Var2.f49130b != starGift.f19441id) {
+                        i10 = ((org.telegram.ui.ActionBar.m2) gq0Var).currentAccount;
+                        yh.t3 t3Var3 = new yh.t3(aq0Var3.K.f19441id, i10, new sp0(tp0Var, 2));
+                        aq0Var3.J = t3Var3;
+                        t3Var3.g(false);
+                    }
+                }
+                aq0.a(aq0Var3);
+                if (gq0Var.I.getCurrentPosition() == 1) {
+                    aq0Var = gq0Var.f36463n;
+                } else {
+                    aq0Var = gq0Var.h;
+                }
+                aq0Var.e();
+                return;
+            case 1:
+                aq0 aq0Var4 = this.f40191b.e;
+                aq0Var4.h = ((Integer) obj).intValue();
+                aq0Var4.f34323r = null;
+                aq0Var4.f34324s = null;
+                aq0Var4.I = null;
+                aq0Var4.j(true);
+                aq0Var4.i();
+                aq0Var4.f(true);
+                zp0 zp0Var = aq0Var4.f34327y;
+                if (zp0Var != null) {
+                    zp0Var.invalidate();
+                }
+                gq0 gq0Var2 = aq0Var4.f34322p0;
+                aq0 aq0Var5 = gq0Var2.f36463n;
+                if (aq0Var5 != null && (eq0Var = aq0Var5.f34303a) != null && (aq0Var2 = gq0Var2.h) != null) {
+                    eq0Var.a(aq0Var2.h);
                     return;
                 }
-            } else {
-                wp0Var.f43604s = null;
-                wp0Var.f43603r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
-            }
-            wp0Var.I = null;
-            wp0Var.h = -1;
-        } else {
-            if (l4 == null) {
-                longValue = 0;
-            } else {
-                longValue = l4.longValue();
-            }
-            wp0Var.f43599n = longValue;
-            wp0Var.f43603r = null;
-            wp0Var.f43604s = null;
-            wp0Var.I = null;
-        }
-        vp0 vp0Var = this.f41976d2;
-        if (vp0Var != null) {
-            vp0Var.b(true);
-        }
-        wp0Var.j(true);
-        wp0Var.i();
-        wp0Var.f(true);
-        e71 e71Var = this.f41977e2[0];
-        if (e71Var != null) {
-            wp0Var.f43601o0 = null;
-            e71Var.dismiss();
+                return;
+            default:
+                Boolean bool = (Boolean) obj;
+                this.f40191b.e.e();
+                return;
         }
     }
 }

@@ -1,63 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class r7 extends FrameLayout {
-    public final int f30066a;
-    public final l8 f30067b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class r7 implements fp0 {
+    public final m8 f28772a;
 
-    public r7(l8 l8Var, Context context, int i10) {
-        super(context);
-        this.f30066a = i10;
-        this.f30067b = l8Var;
+    public r7(m8 m8Var) {
+        this.f28772a = m8Var;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView;
-        switch (this.f30066a) {
-            case 0:
-                int A = org.telegram.messenger.am.A(248.0f, i12 - i10, 4);
-                for (int i14 = 0; i14 < 5; i14++) {
-                    int dp = (A * i14) + AndroidUtilities.dp((i14 * 48) + 4);
-                    int dp2 = AndroidUtilities.dp(9.0f);
-                    l8 l8Var = this.f30067b;
-                    View view = l8Var.f28070n0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, l8Var.f28070n0[i14].getMeasuredHeight() + dp2);
-                }
-                return;
-            case 1:
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            case 2:
-                super.onLayout(z10, i10, i11, i12, i13);
-                l8 l8Var2 = this.f30067b;
-                if (l8Var2.V != null && (textView = l8Var2.f28053a0) != null) {
-                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - l8Var2.V.getMeasuredWidth();
-                    org.telegram.ui.ActionBar.u0 u0Var = l8Var2.V;
-                    u0Var.layout(left, u0Var.getTop(), l8Var2.V.getMeasuredWidth() + left, l8Var2.V.getBottom());
-                    return;
-                }
-                return;
+    public final void X(float f7, boolean z10) {
+        if (z10) {
+            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
+        }
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject != null && playingMessageObject.isMusic()) {
+            this.f28772a.G0(playingMessageObject, false);
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30066a) {
-            case 1:
-                l8 l8Var = this.f30067b;
-                if (l8Var.f28065i0.getTag() != null) {
-                    l8Var.B0(false, true);
-                }
-                return true;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+    public final CharSequence getContentDescription() {
+        StringBuilder sb2 = new StringBuilder();
+        m8 m8Var = this.f28772a;
+        sb2.append(LocaleController.formatPluralString("Minutes", m8Var.D0 / 60, new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", m8Var.D0 % 60, new Object[0]));
+        String sb3 = sb2.toString();
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", m8Var.E0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", m8Var.E0 % 60, new Object[0]));
+    }
+
+    @Override
+    public final int k0() {
+        return 0;
+    }
+
+    @Override
+    public final void z() {
     }
 }

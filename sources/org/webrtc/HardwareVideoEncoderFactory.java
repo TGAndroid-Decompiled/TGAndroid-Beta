@@ -73,8 +73,8 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             }
             try {
                 mediaCodecInfo = MediaCodecList.getCodecInfoAt(i10);
-            } catch (IllegalArgumentException e7) {
-                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e7);
+            } catch (IllegalArgumentException e) {
+                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e);
             }
             if (mediaCodecInfo != null && mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;
@@ -188,12 +188,12 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public final VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return y.a(this);
+        return z.a(this);
     }
 
     @Override
     public final VideoCodecInfo[] getImplementations() {
-        return y.b(this);
+        return z.b(this);
     }
 
     @Override

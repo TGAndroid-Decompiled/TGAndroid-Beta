@@ -11,26 +11,26 @@ import android.util.Log;
 import com.google.android.gms.tasks.Task;
 import java.util.concurrent.TimeUnit;
 public abstract class a {
-    public static final long f49666a = TimeUnit.MINUTES.toMillis(10);
-    public static final long f49667b = SystemClock.elapsedRealtime();
-    public static final int f49668c = 0;
+    public static final long f46860a = TimeUnit.MINUTES.toMillis(10);
+    public static final long f46861b = SystemClock.elapsedRealtime();
+    public static final int f46862c = 0;
 
     public static void a(Task task, Activity activity) {
         ?? obj = new Object();
-        int incrementAndGet = u.f49740f.incrementAndGet();
-        obj.f49741a = incrementAndGet;
-        u.f49739e.put(incrementAndGet, obj);
-        u.d.postDelayed(obj, f49666a);
+        int incrementAndGet = u.f46927f.incrementAndGet();
+        obj.f46928a = incrementAndGet;
+        u.e.put(incrementAndGet, obj);
+        u.d.postDelayed(obj, f46860a);
         task.addOnCompleteListener(obj);
         FragmentTransaction beginTransaction = activity.getFragmentManager().beginTransaction();
-        int i10 = obj.f49741a;
+        int i10 = obj.f46928a;
         Bundle bundle = new Bundle();
         bundle.putInt("resolveCallId", i10);
         bundle.putInt("requestCode", 991);
-        bundle.putLong("initializationElapsedRealtime", f49667b);
+        bundle.putLong("initializationElapsedRealtime", f46861b);
         Fragment fragment = new Fragment();
         fragment.setArguments(bundle);
-        int i11 = obj.f49741a;
+        int i11 = obj.f46928a;
         StringBuilder sb2 = new StringBuilder(58);
         sb2.append("com.google.android.gms.wallet.AutoResolveHelper");
         sb2.append(i11);
@@ -48,9 +48,9 @@ public abstract class a {
         }
         try {
             createPendingResult.send(i11);
-        } catch (PendingIntent.CanceledException e7) {
+        } catch (PendingIntent.CanceledException e) {
             if (Log.isLoggable("AutoResolveHelper", 6)) {
-                Log.e("AutoResolveHelper", "Exception sending pending result", e7);
+                Log.e("AutoResolveHelper", "Exception sending pending result", e);
             }
         }
     }

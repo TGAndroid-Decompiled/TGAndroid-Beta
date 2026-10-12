@@ -14,28 +14,28 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.y9;
+import org.telegram.ui.Components.z9;
 public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.c6 f34528a;
-    public final y9 f34529b;
-    public final TextView f34530c;
+    public final org.telegram.ui.ActionBar.c6 f32995a;
+    public final z9 f32996b;
+    public final TextView f32997c;
     public final TextView d;
-    public boolean f34531e;
+    public boolean e;
 
     public c(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f34528a = c6Var;
+        this.f32995a = c6Var;
         setWillNotDraw(false);
-        y9 y9Var = new y9(context);
-        this.f34529b = y9Var;
-        y9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
-        addView(y9Var, w7.w5.a(46.0f, 15.0f, 0.0f, 0.0f, 0.0f, 46, 19));
+        z9 z9Var = new z9(context);
+        this.f32996b = z9Var;
+        z9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
+        addView(z9Var, w7.a6.a(46.0f, 15.0f, 0.0f, 0.0f, 0.0f, 46, 19));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
-        addView(linearLayout, w7.w5.a(-1.0f, 71.0f, 0.0f, 20.0f, 0.0f, -1, 119));
+        addView(linearLayout, w7.a6.a(-1.0f, 71.0f, 0.0f, 20.0f, 0.0f, -1, 119));
         TextView textView = new TextView(context);
-        this.f34530c = textView;
+        this.f32997c = textView;
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -43,7 +43,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
         textView.setGravity(16);
         textView.setTextSize(1, 16.0f);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        linearLayout.addView(textView, w7.w5.n(-1, 20));
+        linearLayout.addView(textView, w7.a6.n(-1, 20));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setSingleLine(true);
@@ -51,8 +51,8 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
         textView2.setIncludeFontPadding(false);
         textView2.setGravity(16);
         textView2.setTextSize(1, 14.0f);
-        linearLayout.addView(textView2, w7.w5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, 18));
-        e();
+        linearLayout.addView(textView2, w7.a6.k(0.0f, 2.0f, 0.0f, 0.0f, -1, 18));
+        d();
     }
 
     public static String a(TL_wallet.nftItem nftitem, String str) {
@@ -82,12 +82,12 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
     }
 
     @Override
-    public final void e() {
+    public final void d() {
         setBackgroundColor(0);
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f34528a;
-        this.f34530c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20964z6, c6Var));
+        int i10 = org.telegram.ui.ActionBar.g6.G6;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f32995a;
+        this.f32997c.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20305z6, c6Var));
     }
 
     public int[] getColorKeys() {
@@ -99,7 +99,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f34531e) {
+        if (this.e) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -113,7 +113,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, height, width - i10, getHeight(), org.telegram.ui.ActionBar.h6.f20682k0);
+            canvas.drawRect(f7, height, width - i10, getHeight(), org.telegram.ui.ActionBar.g6.f20022k0);
         }
     }
 

@@ -1,76 +1,22 @@
 package yh;
 
-import android.view.View;
-public final class d1 implements View.OnClickListener {
-    public final int f52614a;
-    public final s3 f52615b;
-    public final int f52616c;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.q5;
+public final class d1 extends q5 {
+    public final e1 M;
 
-    public d1(s3 s3Var, int i10, int i11) {
-        this.f52614a = i11;
-        this.f52615b = s3Var;
-        this.f52616c = i10;
+    public d1(e1 e1Var, ViewGroup viewGroup, int i10) {
+        super(i10, viewGroup);
+        this.M = e1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        switch (this.f52614a) {
-            case 0:
-                s3 s3Var = this.f52615b;
-                int i14 = this.f52616c;
-                s3Var.S0 = i14;
-                d2 d2Var = s3Var.Z;
-                int currentPosition = d2Var.getCurrentPosition();
-                if (i14 > s3Var.H1()) {
-                    i10 = 1;
-                } else {
-                    i10 = -1;
-                }
-                d2Var.D(currentPosition + i10);
-                return;
-            case 1:
-                s3 s3Var2 = this.f52615b;
-                int i15 = this.f52616c;
-                s3Var2.S0 = i15;
-                d2 d2Var2 = s3Var2.Z;
-                int currentPosition2 = d2Var2.getCurrentPosition();
-                if (i15 > s3Var2.H1()) {
-                    i11 = 1;
-                } else {
-                    i11 = -1;
-                }
-                d2Var2.D(currentPosition2 + i11);
-                return;
-            case 2:
-                s3 s3Var3 = this.f52615b;
-                int i16 = this.f52616c;
-                s3Var3.S0 = i16;
-                d2 d2Var3 = s3Var3.Z;
-                int currentPosition3 = d2Var3.getCurrentPosition();
-                if (i16 > s3Var3.H1()) {
-                    i12 = 1;
-                } else {
-                    i12 = -1;
-                }
-                d2Var3.D(currentPosition3 + i12);
-                return;
-            default:
-                s3 s3Var4 = this.f52615b;
-                int i17 = this.f52616c;
-                s3Var4.S0 = i17;
-                d2 d2Var4 = s3Var4.Z;
-                int currentPosition4 = d2Var4.getCurrentPosition();
-                if (i17 > s3Var4.H1()) {
-                    i13 = 1;
-                } else {
-                    i13 = -1;
-                }
-                d2Var4.D(currentPosition4 + i13);
-                return;
+    public final void invalidate() {
+        super.invalidate();
+        Drawable drawable = this.M;
+        if (drawable.getCallback() != null) {
+            drawable.getCallback().invalidateDrawable(drawable);
         }
     }
 }

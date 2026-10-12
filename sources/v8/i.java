@@ -4,29 +4,29 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.identity.intents.model.UserAddress;
-import w7.c0;
+import w7.g0;
 public final class i extends o6.a {
-    public static final Parcelable.Creator<i> CREATOR = new p7.j(28);
-    public String f49699a;
-    public b f49700b;
-    public UserAddress f49701c;
+    public static final Parcelable.Creator<i> CREATOR = new p7.m(26);
+    public String f46890a;
+    public b f46891b;
+    public UserAddress f46892c;
     public k d;
-    public String f49702e;
-    public Bundle f49703f;
+    public String e;
+    public Bundle f46893f;
     public String h;
-    public Bundle f49704n;
+    public Bundle f46894n;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = c0.q(parcel, 20293);
-        c0.l(parcel, 1, this.f49699a);
-        c0.k(parcel, 2, this.f49700b, i10);
-        c0.k(parcel, 3, this.f49701c, i10);
-        c0.k(parcel, 4, this.d, i10);
-        c0.l(parcel, 5, this.f49702e);
-        c0.b(parcel, 6, this.f49703f);
-        c0.l(parcel, 7, this.h);
-        c0.b(parcel, 8, this.f49704n);
-        c0.r(parcel, q6);
+        int q6 = g0.q(parcel, 20293);
+        g0.l(parcel, 1, this.f46890a);
+        g0.k(parcel, 2, this.f46891b, i10);
+        g0.k(parcel, 3, this.f46892c, i10);
+        g0.k(parcel, 4, this.d, i10);
+        g0.l(parcel, 5, this.e);
+        g0.b(parcel, 6, this.f46893f);
+        g0.l(parcel, 7, this.h);
+        g0.b(parcel, 8, this.f46894n);
+        g0.r(parcel, q6);
     }
 }

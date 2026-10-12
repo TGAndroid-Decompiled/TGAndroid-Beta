@@ -1,218 +1,90 @@
 package rg;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.s5;
-public class c1 extends ImageView {
-    public static final int L = 0;
-    public ImageReceiver E;
-    public s5 F;
-    public float G;
-    public boolean H;
-    public boolean I;
-    public org.telegram.ui.Components.voip.h J;
-    public Integer K;
-    public final int f47436a;
-    public final float[] f47437b;
-    public final v1 f47438c;
-    public final c6 d;
-    public boolean f47439e;
-    public final float f47440f;
-    public boolean h;
-    public int f47441n;
-    public int f47442r;
-    public int f47443s;
-    public LinearGradient v;
-    public final Path f47444w;
-    public Paint f47445x;
-    public Paint f47446y;
+import android.view.View;
+import android.view.ViewGroup;
+import di.a6;
+import di.z6;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.la;
+import org.telegram.ui.Components.lm0;
+public final class c1 extends lm0 {
+    public final Context f44213c;
+    public final la d;
+    public final z6 e;
+    public final boolean f44214f;
+    public final a6 h;
 
-    public c1(Context context, int i10, c6 c6Var) {
-        super(context);
-        int i11;
-        this.f47437b = new float[3];
-        this.f47440f = 1.0f;
-        this.h = false;
-        this.f47441n = -1;
-        this.v = null;
-        this.f47444w = new Path();
-        this.f47445x = new Paint(1);
-        this.G = 1.0f;
-        this.f47436a = i10;
-        this.d = c6Var;
-        if (i10 == 0) {
-            i11 = R.drawable.msg_premium_lock2;
-        } else {
-            i11 = R.drawable.msg_mini_premiumlock;
-        }
-        setImageResource(i11);
-        if (i10 == 0) {
-            v1 v1Var = new v1(5);
-            this.f47438c = v1Var;
-            v1Var.g();
-            v1Var.M = false;
-            v1Var.f47714s = 4;
-            v1Var.f47715t = 4;
-            v1Var.f47713r = 2;
-            v1Var.f47710o = 0.1f;
-            v1Var.c();
-        } else if (i10 == 2) {
-            this.f47440f = 0.8f;
-            this.f47445x.setColor(h6.x0(null, h6.f20504a7, false));
-        } else if (i10 == 3) {
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(R.drawable.msg_archive_hide);
-        } else if (i10 == 4) {
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(R.drawable.msg_limit_pin);
-        }
+    public c1(a6 a6Var, Context context, la laVar, z6 z6Var, boolean z10) {
+        this.h = a6Var;
+        this.f44213c = context;
+        this.d = laVar;
+        this.e = z6Var;
+        this.f44214f = z10;
     }
 
-    public final void a() {
-        if (this.f47439e && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i10 = this.f47441n;
-            float[] fArr = this.f47437b;
-            Color.colorToHSV(i10, fArr);
-            fArr[1] = fArr[1] * 1.0f;
-            if (fArr[2] > 0.7f) {
-                fArr[2] = 0.7f;
-            }
-            int HSVToColor = Color.HSVToColor(fArr);
-            int i11 = h6.f20560d6;
-            c6 c6Var = this.d;
-            int d = i0.a.d(0.5f, HSVToColor, h6.w0(i11, c6Var));
-            int d10 = i0.a.d(0.4f, HSVToColor, h6.w0(i11, c6Var));
-            if (this.v == null || this.f47442r != d10 || this.f47443s != d) {
-                if (this.I) {
-                    Paint paint = this.f47445x;
-                    this.f47446y = paint;
-                    paint.setAlpha(255);
-                    this.G = 0.0f;
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.h.f44260s0.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        ArrayList arrayList = this.h.f44260s0;
+        return ((MessageObject) arrayList.get((arrayList.size() - 1) - i10)).contentType;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        MessageObject.GroupedMessagePosition position;
+        boolean z12;
+        a6 a6Var = this.h;
+        ArrayList arrayList = a6Var.f44260s0;
+        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
+        View view = b1Var.f44838a;
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+            MessageObject.GroupedMessages groupedMessages = a6Var.f44261t0;
+            if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
+                if (position.minY != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
                 }
-                this.f47445x = new Paint(1);
-                this.f47442r = d10;
-                this.f47443s = d;
-                LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{d10, d}, (float[]) null, Shader.TileMode.CLAMP);
-                this.v = linearGradient;
-                this.f47445x.setShader(linearGradient);
-                invalidate();
-            }
-        }
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.E;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f47439e = true;
-        if (this.f47436a != 0) {
-            a();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f47439e = false;
-        Paint paint = this.f47445x;
-        if (paint != null && this.f47436a != 2) {
-            paint.setShader(null);
-            this.f47445x = null;
-        }
-        this.v = null;
-        this.I = false;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.c1.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (this.f47436a == 0) {
-            Path path = this.f47444w;
-            path.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            Path.Direction direction = Path.Direction.CW;
-            path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, direction);
-            rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), AndroidUtilities.dpf2(5.7f) + (getMeasuredHeight() / 2.0f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-            path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
-            path.close();
-            v1 v1Var = this.f47438c;
-            v1Var.f47698a.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            v1Var.f47698a.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-            return;
-        }
-        a();
-    }
-
-    public void setAnimatedEmojiDrawable(s5 s5Var) {
-        this.F = s5Var;
-        if (s5Var != null) {
-            this.H = true;
-            invalidate();
-        }
-    }
-
-    public void setBlendWithColor(Integer num) {
-        this.K = num;
-    }
-
-    public void setColor(int i10) {
-        this.h = true;
-        Integer num = this.K;
-        if (num != null) {
-            i10 = h6.v(i10, num.intValue());
-        }
-        if (this.f47441n != i10) {
-            this.f47441n = i10;
-            int i11 = this.f47436a;
-            if (i11 != 0 && i11 != 2) {
-                a();
+                z10 = z12;
             } else {
-                Paint paint = this.f47445x;
-                if (paint != null) {
-                    paint.setColor(i10);
-                }
+                z10 = false;
             }
-            invalidate();
-        }
-    }
-
-    public void setImageReceiver(ImageReceiver imageReceiver) {
-        this.E = imageReceiver;
-        if (imageReceiver != null) {
-            this.H = true;
-            invalidate();
-        }
-    }
-
-    public void setLocked(boolean z10) {
-        int i10;
-        if (this.f47436a != 0) {
-            if (z10) {
-                i10 = R.drawable.msg_mini_premiumlock;
+            MessageObject.GroupedMessages groupedMessages2 = a6Var.f44261t0;
+            if (groupedMessages2 != null) {
+                z11 = true;
             } else {
-                i10 = R.drawable.msg_mini_stickerstar;
+                z11 = false;
             }
-            setImageResource(i10);
+            u1Var.X3(messageObject, groupedMessages2, z11, z10, false, false);
+        } else if (view instanceof org.telegram.ui.Cells.x0) {
+            ((org.telegram.ui.Cells.x0) view).setMessageObject(messageObject);
         }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        com.google.firebase.messaging.m mVar = this.h.D0;
+        Context context = this.f44213c;
+        if (i10 == 1) {
+            return new s4.b1(new a1(this, context, mVar));
+        }
+        b1 b1Var = new b1(this, context, UserConfig.selectedAccount, mVar);
+        b1Var.N7 = true;
+        return new s4.b1(b1Var);
     }
 }

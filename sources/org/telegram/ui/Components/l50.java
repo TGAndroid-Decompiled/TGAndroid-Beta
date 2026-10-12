@@ -1,28 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-public final class l50 implements org.telegram.ui.lq0 {
-    public final p50 f28037a;
+import android.graphics.Paint;
+import android.graphics.RectF;
+public final class l50 {
+    public long f26935a;
+    public float f26936b;
+    public float f26937c;
+    public boolean d;
+    public float e;
+    public final RectF f26938f = new RectF();
+    public int f26939g;
+    public final Paint h;
+    public final int f26940i;
 
-    public l50(p50 p50Var) {
-        this.f28037a = p50Var;
-    }
-
-    @Override
-    public final void a(ArrayList arrayList) {
-        p50.a(this.f28037a, false, arrayList);
-    }
-
-    @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("image/*");
-            this.f28037a.f29381a.startActivityForResult(intent, 14);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    public l50(int i10) {
+        this.f26940i = i10;
+        Paint paint = new Paint(1);
+        this.h = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 }

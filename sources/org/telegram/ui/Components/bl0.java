@@ -1,21 +1,33 @@
 package org.telegram.ui.Components;
+public final class bl0 implements Runnable {
+    public final int f23798a;
+    public final el0 f23799b;
 
-import android.animation.ValueAnimator;
-public final class bl0 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f24675a;
-    public final nl0 f24676b;
-
-    public bl0(nl0 nl0Var, float f7) {
-        this.f24676b = nl0Var;
-        this.f24675a = f7;
+    public bl0(el0 el0Var, int i10) {
+        this.f23798a = i10;
+        this.f23799b = el0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        nl0 nl0Var = this.f24676b;
-        nl0Var.f28853o0 = floatValue;
-        nl0Var.f28852n0 = (1.0f - nl0Var.f28853o0) * this.f24675a;
-        nl0Var.invalidate();
+    public final void run() {
+        switch (this.f23798a) {
+            case 0:
+                if (this.f23799b.f24730a.getImageReceiver().getLottieAnimation() != null && !this.f23799b.f24730a.getImageReceiver().getLottieAnimation().f31615k0 && !this.f23799b.f24730a.getImageReceiver().getLottieAnimation().y()) {
+                    this.f23799b.f24730a.getImageReceiver().getLottieAnimation().start();
+                }
+                this.f23799b.E = false;
+                return;
+            default:
+                el0 el0Var = this.f23799b;
+                gl0 gl0Var = el0Var.P;
+                try {
+                    el0Var.performHapticFeedback(0);
+                } catch (Exception unused) {
+                }
+                gl0Var.m0 = gl0Var.T.indexOf(el0Var.e);
+                gl0Var.f25342l0 = el0Var.e;
+                gl0Var.invalidate();
+                return;
+        }
     }
 }

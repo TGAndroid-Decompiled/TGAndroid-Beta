@@ -1,39 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class i5 extends org.telegram.ui.Components.r6 {
-    public final int f34893s;
-    public final k5 v;
+import android.graphics.LinearGradient;
+import android.graphics.Path;
+import android.graphics.Shader;
+public final class i5 {
+    public final Path f33287a;
+    public final LinearGradient f33288b;
 
-    public i5(k5 k5Var, Context context, int i10) {
-        super(context, false, true, true, true, true);
-        this.v = k5Var;
-        this.f34893s = i10;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        float c10 = getDrawable().c();
-        k5 k5Var = this.v;
-        float max = Math.max(0.0f, (((((336.0f - this.f34893s) - 50.0f) * k5Var.F.getWidth()) / 336.0f) - k5Var.N.leftMargin) - AndroidUtilities.dp(8.0f));
-        int i10 = (c10 > 0.0f ? 1 : (c10 == 0.0f ? 0 : -1));
-        float f10 = 1.0f;
-        if (i10 > 0) {
-            f7 = Math.min(1.0f, max / c10);
-        } else {
-            f7 = 1.0f;
-        }
-        if (i10 > 0) {
-            f10 = Math.min(1.0f, k5Var.S / c10);
-        }
-        float f11 = ((f10 - f7) * k5Var.R) + f7;
-        k5Var.f34967b = f11;
-        int save = canvas.save();
-        canvas.scale(f11, f11, 0.0f, getHeight() / 2.0f);
-        super.onDraw(canvas);
-        canvas.restoreToCount(save);
+    public i5(float f7, float f10, float f11, float f12, float f13, int i10, int i11) {
+        Path path = new Path();
+        this.f33287a = path;
+        float f14 = 0.14999998f * f11;
+        path.rewind();
+        path.moveTo(f7 - f11, f10);
+        float f15 = f7 - f14;
+        float f16 = f10 - f14;
+        path.lineTo(f15, f16);
+        path.lineTo(f7, f10 - f11);
+        float f17 = f7 + f14;
+        path.lineTo(f17, f16);
+        path.lineTo(f7 + f11, f10);
+        float f18 = f14 + f10;
+        path.lineTo(f17, f18);
+        path.lineTo(f7, f10 + f11);
+        path.lineTo(f15, f18);
+        path.close();
+        this.f33288b = new LinearGradient(f7 - f12, f10 - f13, f7 + f12, f10 + f13, i10, i11, Shader.TileMode.CLAMP);
     }
 }

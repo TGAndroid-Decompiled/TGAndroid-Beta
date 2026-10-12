@@ -1,266 +1,151 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-public final class xy extends View implements NotificationCenter.NotificationCenterDelegate {
-    public final Paint f44194a;
-    public final Paint f44195b;
-    public final int f44196c;
-    public final ArrayList d;
-    public float f44197e;
-    public float f44198f;
-    public float h;
-    public final ImageReceiver f44199n;
-    public final ImageReceiver f44200r;
-    public final org.telegram.ui.Components.fk0 f44201s;
-    public final org.telegram.ui.Components.fk0 v;
-    public boolean f44202w;
-    public int f44203x;
-    public boolean f44204y;
+public final class xy extends FrameLayout {
+    public static final int L = 0;
+    public boolean E;
+    public qx F;
+    public hg.m G;
+    public boolean H;
+    public final ax I;
+    public final ax J;
+    public final yy K;
+    public uy f41980a;
+    public a5.a f41981b;
+    public bx f41982c;
+    public fx d;
+    public s4.y e;
+    public wy f41983f;
+    public int h;
+    public ex f41984n;
+    public org.telegram.ui.Components.pl0 f41985r;
+    public int f41986s;
+    public int v;
+    public org.telegram.ui.Components.f10 f41987w;
+    public zw f41988x;
+    public org.telegram.ui.Components.rl0 f41989y;
 
-    public xy(Context context, int i10) {
+    public xy(Context context, yy yyVar) {
         super(context);
-        this.f44194a = new Paint(1);
-        this.f44195b = new Paint(1);
-        this.d = new ArrayList();
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f44199n = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f44200r = imageReceiver2;
-        this.f44196c = i10;
-        imageReceiver.ignoreNotifications = true;
-        imageReceiver2.ignoreNotifications = true;
-        org.telegram.ui.Components.fk0 fk0Var = new org.telegram.ui.Components.fk0(R.raw.download_progress, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.f44201s = fk0Var;
-        org.telegram.ui.Components.fk0 fk0Var2 = new org.telegram.ui.Components.fk0(R.raw.download_finish, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.v = fk0Var2;
-        imageReceiver.setImageBitmap(fk0Var);
-        imageReceiver2.setImageBitmap(fk0Var2);
-        imageReceiver.setAutoRepeat(1);
-        fk0Var.K(1);
-        fk0Var.start();
+        this.K = yyVar;
+        this.I = new ax(this, 1);
+        this.J = new ax(this, 2);
     }
 
-    public final void a() {
-        int i10 = org.telegram.ui.ActionBar.h6.f20895v8;
-        this.f44201s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i10, false), PorterDuff.Mode.SRC_IN));
-        this.v.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i10, false), PorterDuff.Mode.SRC));
-        invalidate();
+    public static void a(xy xyVar, bx bxVar) {
+        xyVar.f41982c = bxVar;
     }
 
-    public final void b() {
-        ArrayList arrayList;
-        int i10 = this.f44196c;
-        DownloadController downloadController = DownloadController.getInstance(i10);
-        HashMap hashMap = new HashMap();
-        int i11 = 0;
-        while (true) {
-            arrayList = this.d;
-            if (i11 >= arrayList.size()) {
-                break;
-            }
-            hashMap.put(((wy) arrayList.get(i11)).f43698c, (wy) arrayList.get(i11));
-            DownloadController.getInstance(i10).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) arrayList.get(i11));
-            i11++;
-        }
-        arrayList.clear();
-        for (int i12 = 0; i12 < downloadController.downloadingFiles.size(); i12++) {
-            String fileName = downloadController.downloadingFiles.get(i12).getFileName();
-            if (FileLoader.getInstance(i10).isLoadingFile(fileName)) {
-                wy wyVar = (wy) hashMap.get(fileName);
-                if (wyVar == null) {
-                    wyVar = new wy(this, fileName);
-                }
-                DownloadController.getInstance(i10).addLoadingFileObserver(fileName, wyVar);
-                arrayList.add(wyVar);
-            }
-        }
-        if (arrayList.size() == 0 && !this.f44204y) {
-            if (DownloadController.getInstance(i10).hasUnviewedDownloads()) {
-                this.f44197e = 1.0f;
-                this.f44198f = 1.0f;
-                this.f44202w = true;
-                return;
-            }
-            this.f44197e = 0.0f;
-            this.f44198f = 0.0f;
-            this.f44202w = false;
-        }
+    public static s4.y b(xy xyVar) {
+        return xyVar.e;
     }
 
-    public final void c() {
-        MessagesStorage.getInstance(this.f44196c);
-        int i10 = 0;
-        long j3 = 0;
-        long j10 = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            if (i10 >= arrayList.size()) {
-                break;
-            }
-            j3 += ((wy) arrayList.get(i10)).f43696a;
-            j10 += ((wy) arrayList.get(i10)).f43697b;
-            i10++;
-        }
-        if (j3 == 0) {
-            this.f44197e = 1.0f;
-        } else {
-            this.f44197e = ((float) j10) / ((float) j3);
-        }
-        float f7 = this.f44197e;
-        if (f7 > 1.0f) {
-            this.f44197e = 1.0f;
-        } else if (f7 < 0.0f) {
-            this.f44197e = 0.0f;
-        }
-        this.h = ((this.f44197e - this.f44198f) * 16.0f) / 150.0f;
-        invalidate();
+    public static void c(xy xyVar, s4.y yVar) {
+        xyVar.e = yVar;
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.onDownloadingFilesChanged) {
-            b();
-            c();
-        }
+    public static int d(xy xyVar) {
+        return xyVar.v;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        b();
-        NotificationCenter.getInstance(this.f44196c).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
-        this.f44199n.onAttachedToWindow();
-        this.f44200r.onAttachedToWindow();
+    public static void e(xy xyVar, int i10) {
+        xyVar.v = i10;
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            int size = arrayList.size();
-            int i11 = this.f44196c;
-            if (i10 < size) {
-                DownloadController.getInstance(i11).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) arrayList.get(i10));
-                i10++;
-            } else {
-                arrayList.clear();
-                NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.onDownloadingFilesChanged);
-                this.f44199n.onDetachedFromWindow();
-                this.f44200r.onDetachedFromWindow();
-                return;
-            }
-        }
+    public static void f(xy xyVar, org.telegram.ui.Components.f10 f10Var) {
+        xyVar.f41987w = f10Var;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (getAlpha() != 0.0f) {
-            int i10 = this.f44203x;
-            int i11 = org.telegram.ui.ActionBar.h6.f20895v8;
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-            ImageReceiver imageReceiver = this.f44200r;
-            ImageReceiver imageReceiver2 = this.f44199n;
-            Paint paint = this.f44194a;
-            Paint paint2 = this.f44195b;
-            if (i10 != x02) {
-                this.f44203x = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-                paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-                paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-                int x03 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                imageReceiver2.setColorFilter(new PorterDuffColorFilter(x03, mode));
-                imageReceiver.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i11, false), mode));
-                paint2.setAlpha(100);
-            }
-            float f7 = this.f44198f;
-            float f10 = this.f44197e;
-            if (f7 != f10) {
-                float f11 = this.h;
-                float f12 = f7 + f11;
-                this.f44198f = f12;
-                if (f11 > 0.0f && f12 > f10) {
-                    this.f44198f = f10;
-                } else if (f11 < 0.0f && f12 < f10) {
-                    this.f44198f = f10;
-                } else {
-                    invalidate();
-                }
-            }
-            int dp = AndroidUtilities.dp(8.0f);
-            float dp2 = AndroidUtilities.dp(1.0f);
-            float dp3 = AndroidUtilities.dp(16.0f);
-            RectF rectF = AndroidUtilities.rectTmp;
-            float measuredHeight = dp + (getMeasuredHeight() / 2);
-            float f13 = measuredHeight - dp2;
-            float f14 = measuredHeight + dp2;
-            rectF.set(dp3, f13, getMeasuredWidth() - dp3, f14);
-            canvas.drawRoundRect(rectF, dp2, dp2, paint2);
-            rectF.set(dp3, f13, ((getMeasuredWidth() - (2.0f * dp3)) * this.f44198f) + dp3, f14);
-            canvas.drawRoundRect(rectF, dp2, dp2, paint);
-            canvas.save();
-            canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f13);
-            if (this.f44197e != 1.0f) {
-                this.f44202w = false;
-            }
-            if (this.f44202w) {
-                imageReceiver.draw(canvas);
-            } else {
-                imageReceiver2.draw(canvas);
-            }
-            if (this.f44197e == 1.0f && !this.f44202w && this.f44201s.f26103a0 == 0) {
-                org.telegram.ui.Components.fk0 fk0Var = this.v;
-                fk0Var.N(0, false, false);
-                fk0Var.start();
-                this.f44202w = true;
-            }
-            canvas.restore();
-            if (getAlpha() != 0.0f) {
-                this.f44204y = true;
-            }
-        }
+    public static wy g(xy xyVar) {
+        return xyVar.f41983f;
+    }
+
+    public static void h(xy xyVar, wy wyVar) {
+        xyVar.f41983f = wyVar;
+    }
+
+    public static void i(xy xyVar, zw zwVar) {
+        xyVar.f41988x = zwVar;
+    }
+
+    public static void j(xy xyVar, org.telegram.ui.Components.rl0 rl0Var) {
+        xyVar.f41989y = rl0Var;
+    }
+
+    public static void k(xy xyVar, org.telegram.ui.Components.pl0 pl0Var) {
+        xyVar.f41985r = pl0Var;
+    }
+
+    public static void l(xy xyVar, int i10) {
+        xyVar.f41986s = i10;
+    }
+
+    public static hg.m m(xy xyVar) {
+        return xyVar.d;
+    }
+
+    public static void n(xy xyVar, fx fxVar) {
+        xyVar.d = fxVar;
+    }
+
+    public static void o(xy xyVar, ex exVar) {
+        xyVar.f41984n = exVar;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-        int dp = AndroidUtilities.dp(15.0f);
-        float f7 = dp;
-        this.f44199n.setImageCoords(f7, f7, getMeasuredWidth() - i12, getMeasuredHeight() - i12);
-        this.f44200r.setImageCoords(f7, f7, getMeasuredWidth() - i12, getMeasuredHeight() - (dp * 2));
+        ((FrameLayout.LayoutParams) this.f41980a.getLayoutParams()).bottomMargin = 0;
+        super.onMeasure(i10, i11);
+    }
+
+    public final boolean p() {
+        int i10 = this.f41986s;
+        if (i10 != 0 && i10 != 7 && i10 != 8) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void q(boolean z10) {
+        boolean z11;
+        z11 = ((org.telegram.ui.ActionBar.m2) this.K).isPaused;
+        if (!z11) {
+            ax axVar = this.J;
+            if (z10) {
+                AndroidUtilities.cancelRunOnUIThread(axVar);
+                this.f41980a.setItemAnimator(this.f41988x);
+                axVar.run();
+            } else if (this.H) {
+            } else {
+                this.H = true;
+                if (!this.f41988x.k()) {
+                    this.f41980a.setItemAnimator(null);
+                }
+                AndroidUtilities.runOnUIThread(axVar, 36L);
+            }
+        }
     }
 
     @Override
-    public void setAlpha(float f7) {
-        if (f7 == 0.0f) {
-            this.f44204y = false;
+    public void setTranslationX(float f7) {
+        xy xyVar;
+        if (getTranslationX() != f7) {
+            super.setTranslationX(f7);
+            yy yyVar = this.K;
+            if (yyVar.f42339g3 && (xyVar = yyVar.f42325e0[0]) == this) {
+                yyVar.f42430z0.g(Math.abs(xyVar.getTranslationX()) / yyVar.f42325e0[0].getMeasuredWidth(), yyVar.f42325e0[1].h);
+            }
+            yyVar.j3();
         }
-        super.setAlpha(f7);
     }
 
     @Override
-    public void setVisibility(int i10) {
-        if (i10 != 0) {
-            this.f44204y = false;
+    public void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            this.K.j3();
         }
-        super.setVisibility(i10);
+        super.setTranslationY(f7);
     }
 }

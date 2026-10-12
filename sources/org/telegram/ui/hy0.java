@@ -1,187 +1,113 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.ChatObject;
+import android.app.Dialog;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class hy0 extends org.telegram.ui.Components.vm0 {
-    public final Context f38563c;
-    public final iy0 d;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class hy0 implements org.telegram.ui.ActionBar.z1 {
+    public final int f36982a;
+    public final PrivacySettingsActivity f36983b;
 
-    public hy0(iy0 iy0Var, Context context) {
-        this.d = iy0Var;
-        this.f38563c = context;
+    public hy0(PrivacySettingsActivity privacySettingsActivity, int i10) {
+        this.f36982a = i10;
+        this.f36983b = privacySettingsActivity;
+    }
+
+    public void a() {
+        int i10;
+        switch (this.f36982a) {
+            case 2:
+                PrivacySettingsActivity privacySettingsActivity = this.f36983b;
+                iy0 iy0Var = privacySettingsActivity.f32515a;
+                if (iy0Var != null && (i10 = privacySettingsActivity.f32524s) >= 0) {
+                    iy0Var.m(i10);
+                    return;
+                }
+                return;
+            default:
+                PrivacySettingsActivity.U(this.f36983b);
+                return;
+        }
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47901f;
-        if (i10 != 0 && i10 != 2 && i10 != 4) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f39038e;
-    }
-
-    @Override
-    public final int j(int i10) {
-        iy0 iy0Var = this.d;
-        if (i10 == iy0Var.f39043w) {
-            return 4;
-        }
-        if (i10 == iy0Var.f39040n) {
-            return 3;
-        }
-        if (i10 == iy0Var.f39039f) {
-            return 2;
-        }
-        if (i10 != iy0Var.h && i10 != iy0Var.v) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         String string;
-        String string2;
-        iy0 iy0Var = this.d;
-        int i11 = iy0Var.f39045y;
-        int i12 = d1Var.f47901f;
-        View view = d1Var.f47897a;
-        boolean z10 = false;
-        if (i12 != 0) {
-            if (i12 != 1) {
-                if (i12 != 2) {
-                    if (i12 == 3) {
-                        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-                        if (i10 == iy0Var.f39040n) {
-                            if (i11 == 1) {
-                                m4Var.setText(LocaleController.formatPluralString("BlockedUsersCount", iy0Var.getMessagesController().totalBlockedCount, new Object[0]));
-                                return;
-                            } else {
-                                m4Var.setText(LocaleController.getString(R.string.PrivacyExceptions));
-                                return;
-                            }
-                        }
-                        return;
+        switch (this.f36982a) {
+            case 0:
+                PrivacySettingsActivity privacySettingsActivity = this.f36983b;
+                try {
+                    Dialog dialog = privacySettingsActivity.visibleDialog;
+                    if (dialog != null) {
+                        dialog.dismiss();
                     }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(privacySettingsActivity.getParentActivity());
+                alertDialog$Builder.f19548a.R = LocaleController.getString("PrivacyPaymentsClearAlertTitle", R.string.PrivacyPaymentsClearAlertTitle);
+                alertDialog$Builder.f19548a.T = LocaleController.getString("PrivacyPaymentsClearAlert", R.string.PrivacyPaymentsClearAlert);
+                alertDialog$Builder.k(LocaleController.getString("ClearButton", R.string.ClearButton), new hy0(privacySettingsActivity, 1));
+                alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
+                privacySettingsActivity.showDialog(alertDialog$Builder.f19548a);
+                org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f19548a;
+                privacySettingsActivity.showDialog(a2Var2);
+                TextView textView = (TextView) a2Var2.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20139q7, false));
                     return;
                 }
-                org.telegram.ui.Cells.y4 y4Var = (org.telegram.ui.Cells.y4) view;
-                y4Var.a(org.telegram.ui.ActionBar.h6.f20893v6, org.telegram.ui.ActionBar.h6.f20875u6);
-                if (i11 == 1) {
-                    y4Var.b(LocaleController.getString(R.string.BlockUser), R.drawable.msg_contact_add, 5, false);
-                    return;
+                return;
+            case 1:
+                TLRPC.TL_payments_clearSavedInfo tL_payments_clearSavedInfo = new TLRPC.TL_payments_clearSavedInfo();
+                PrivacySettingsActivity privacySettingsActivity2 = this.f36983b;
+                boolean[] zArr = privacySettingsActivity2.Z;
+                tL_payments_clearSavedInfo.credentials = zArr[1];
+                tL_payments_clearSavedInfo.info = zArr[0];
+                privacySettingsActivity2.getUserConfig().tmpPassword = null;
+                privacySettingsActivity2.getUserConfig().saveConfig(false);
+                privacySettingsActivity2.getConnectionsManager().sendRequest(tL_payments_clearSavedInfo, new bi.g7(8));
+                boolean z10 = zArr[0];
+                if (z10 && zArr[1]) {
+                    string = LocaleController.getString("PrivacyPaymentsPaymentShippingCleared", R.string.PrivacyPaymentsPaymentShippingCleared);
+                } else if (z10) {
+                    string = LocaleController.getString("PrivacyPaymentsShippingInfoCleared", R.string.PrivacyPaymentsShippingInfoCleared);
+                } else if (zArr[1]) {
+                    string = LocaleController.getString("PrivacyPaymentsPaymentInfoCleared", R.string.PrivacyPaymentsPaymentInfoCleared);
                 } else {
-                    LocaleController.getString(R.string.PrivacyAddAnException);
-                    throw null;
-                }
-            }
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-            if (i10 == iy0Var.h) {
-                if (i11 == 1) {
-                    e9Var.setFixedSize(0);
-                    e9Var.setText(LocaleController.getString(R.string.BlockedUsersInfo));
                     return;
                 }
-                e9Var.setFixedSize(8);
-                e9Var.setText(null);
+                org.telegram.ui.Components.zc.a0(privacySettingsActivity2).Q(R.raw.chats_infotip, 36, string).j();
                 return;
-            } else if (i10 == iy0Var.v) {
-                e9Var.setFixedSize(12);
-                e9Var.setText("");
+            case 2:
+            case 3:
+            default:
+                PrivacySettingsActivity privacySettingsActivity3 = this.f36983b;
+                org.telegram.ui.ActionBar.a2 o10 = new AlertDialog$Builder(privacySettingsActivity3.getParentActivity(), 3, null).o();
+                privacySettingsActivity3.f32519c = o10;
+                o10.f19569g0 = false;
+                if (privacySettingsActivity3.S != privacySettingsActivity3.T) {
+                    UserConfig userConfig = privacySettingsActivity3.getUserConfig();
+                    boolean z11 = privacySettingsActivity3.T;
+                    userConfig.syncContacts = z11;
+                    privacySettingsActivity3.S = z11;
+                    privacySettingsActivity3.getUserConfig().saveConfig(false);
+                }
+                privacySettingsActivity3.getContactsController().deleteAllContacts(new gy0(privacySettingsActivity3, 1));
                 return;
-            } else {
+            case 4:
+                bh0 bh0Var = new bh0();
+                PrivacySettingsActivity privacySettingsActivity4 = this.f36983b;
+                gy0 gy0Var = new gy0(privacySettingsActivity4, 2);
+                bh0Var.F = 3;
+                bh0Var.f34543a = 12;
+                bh0Var.f34549d0 = gy0Var;
+                privacySettingsActivity4.presentFragment(bh0Var);
                 return;
-            }
         }
-        org.telegram.ui.Cells.b5 b5Var = (org.telegram.ui.Cells.b5) view;
-        if (i11 == 1) {
-            long keyAt = iy0Var.getMessagesController().blockePeers.keyAt(i10 - iy0Var.f39041r);
-            b5Var.setTag(Long.valueOf(keyAt));
-            if (keyAt > 0) {
-                TLRPC.User user = iy0Var.getMessagesController().getUser(Long.valueOf(keyAt));
-                if (user != null) {
-                    if (user.bot) {
-                        string2 = LocaleController.getString(R.string.Bot).substring(0, 1).toUpperCase() + LocaleController.getString(R.string.Bot).substring(1);
-                    } else {
-                        String str = user.phone;
-                        if (str != null && str.length() != 0) {
-                            string2 = org.telegram.messenger.am.g(new StringBuilder("+"), user.phone, hf.b.c());
-                        } else {
-                            string2 = LocaleController.getString(R.string.NumberUnknown);
-                        }
-                    }
-                    if (i10 != iy0Var.f39042s - 1) {
-                        z10 = true;
-                    }
-                    b5Var.b(user, null, string2, z10);
-                    return;
-                }
-                return;
-            }
-            TLRPC.Chat chat = iy0Var.getMessagesController().getChat(Long.valueOf(-keyAt));
-            if (chat != null) {
-                int i13 = chat.participants_count;
-                if (i13 != 0) {
-                    string = LocaleController.formatPluralString("Members", i13, new Object[0]);
-                } else if (chat.has_geo) {
-                    string = LocaleController.getString(R.string.MegaLocation);
-                } else if (!ChatObject.isPublic(chat)) {
-                    string = LocaleController.getString(R.string.MegaPrivate);
-                } else {
-                    string = LocaleController.getString(R.string.MegaPublic);
-                }
-                if (i10 != iy0Var.f39042s - 1) {
-                    z10 = true;
-                }
-                b5Var.b(chat, null, string, z10);
-                return;
-            }
-            return;
-        }
-        throw null;
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.m4 m4Var;
-        FrameLayout e9Var;
-        if (i10 != 0) {
-            Context context = this.f38563c;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 4) {
-                        org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(this.f38563c, org.telegram.ui.ActionBar.h6.L6, 21, 11, false, null);
-                        m4Var2.setHeight(43);
-                        m4Var = m4Var2;
-                    } else {
-                        org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(viewGroup.getContext());
-                        r8Var.i(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                        r8Var.e(-1, org.telegram.ui.ActionBar.h6.f20781p7);
-                        m4Var = r8Var;
-                    }
-                } else {
-                    e9Var = new org.telegram.ui.Cells.y4(context);
-                }
-            } else {
-                e9Var = new org.telegram.ui.Cells.e9(context);
-            }
-            m4Var = e9Var;
-        } else {
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(7, 6, this.f38563c, null, true);
-            b5Var.setDelegate(new jq0(this, 9));
-            m4Var = b5Var;
-        }
-        return new s4.d1(m4Var);
     }
 }

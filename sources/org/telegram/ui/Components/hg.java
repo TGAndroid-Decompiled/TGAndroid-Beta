@@ -1,30 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class hg extends org.telegram.ui.eo {
-    public boolean Qc;
-    public final TLRPC.User Rc;
-    public final TLRPC.User Sc;
-    public final long Tc;
+import android.content.Context;
+public final class hg extends t51 {
+    public final ig h;
 
-    public hg(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j3) {
-        super(bundle);
-        this.Rc = user;
-        this.Sc = user2;
-        this.Tc = j3;
+    public hg(ig igVar, Context context, org.telegram.ui.ActionBar.m2 m2Var, h61 h61Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, m2Var, h61Var, c6Var);
+        this.h = igVar;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Qc) {
-            this.Qc = true;
-            zc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc)), new ai.j(this, this.Tc, 21)), R.raw.contact_check).j();
+    public final void dismiss() {
+        super.dismiss();
+        ChatActivityEnterView chatActivityEnterView = this.h.f25942a;
+        if (chatActivityEnterView.f22853a3 == this) {
+            chatActivityEnterView.f22853a3 = null;
+        }
+        pg pgVar = chatActivityEnterView.Z2;
+        if (pgVar != null) {
+            pgVar.C(false);
         }
     }
 }

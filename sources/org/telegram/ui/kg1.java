@@ -1,54 +1,116 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class kg1 implements org.telegram.ui.Components.km0 {
-    public final ng1 f39485a;
+public final class kg1 extends s4.v {
+    public boolean d;
+    public final lg1 e;
 
-    public kg1(ng1 ng1Var) {
-        this.f39485a = ng1Var;
+    public kg1(lg1 lg1Var) {
+        this.e = lg1Var;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        ng1 ng1Var = this.f39485a;
-        ArrayList arrayList = ng1Var.d;
-        if (((mg1) arrayList.get(i10)).f16877a == 1) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -ng1Var.f40414c);
-            bundle.putBoolean("for_select", true);
-            hg1 hg1Var = new hg1(bundle);
-            hg1Var.A0 = ng1Var.f40415e;
-            hg1Var.v = new ig1(this);
-            ng1Var.presentFragment(hg1Var);
+    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
+        super.a(recyclerView, b1Var);
+        b1Var.f44838a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
+        int l4 = s4.v.l(0, 0);
+        int b10 = b1Var.b();
+        if (b10 >= 0) {
+            lg1 lg1Var = this.e;
+            if (b10 < lg1Var.f37960b.size() && ((cg1) lg1Var.f37960b.get(b10)).f34947c != null && ChatObject.canManageTopics(lg1Var.g())) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((cg1) lg1Var.f37960b.get(b10)).f34947c;
+                if (lg1Var.f37958a0.isEmpty()) {
+                    View view = b1Var.f44838a;
+                    if ((view instanceof ig1) && tL_forumTopic.f19268id == 1) {
+                        this.d = true;
+                        ((ig1) view).setSliding(true);
+                        return s4.v.l(0, 4);
+                    }
+                }
+                if (!tL_forumTopic.pinned) {
+                    return l4;
+                }
+                return s4.v.l(3, 0);
+            }
         }
-        if (((mg1) arrayList.get(i10)).f16877a == 2) {
-            TLRPC.TL_forumTopic tL_forumTopic = ((mg1) arrayList.get(i10)).f40042c;
-            Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", ng1Var.f40414c);
-            bundle2.putLong("topic_id", tL_forumTopic.f19855id);
-            bundle2.putBoolean("exception", false);
-            x11 x11Var = new x11(bundle2, null);
-            x11Var.f43726r = new jg1(this, tL_forumTopic);
-            ng1Var.presentFragment(x11Var);
+        return l4;
+    }
+
+    @Override
+    public final boolean k() {
+        return !this.e.f37958a0.isEmpty();
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+        int b10;
+        lg1 lg1Var = this.e;
+        ArrayList arrayList = lg1Var.f37960b;
+        if (b1Var.f44841f == b1Var2.f44841f && (b10 = b1Var2.b()) >= 0 && b10 < arrayList.size() && ((cg1) arrayList.get(b10)).f34947c != null && ((cg1) arrayList.get(b10)).f34947c.pinned) {
+            ag1 ag1Var = lg1Var.f37990r;
+            int b11 = b1Var.b();
+            int b12 = b1Var2.b();
+            lg1 lg1Var2 = ag1Var.d;
+            ArrayList arrayList2 = lg1Var2.f37960b;
+            arrayList2.add(b12, (cg1) arrayList2.remove(b11));
+            s4.l0 itemAnimator = lg1Var2.N.getItemAnimator();
+            yf1 yf1Var = lg1Var2.I0;
+            if (itemAnimator != yf1Var) {
+                lg1Var2.N.setItemAnimator(yf1Var);
+            }
+            ag1Var.p(b11, b12);
+            return true;
         }
-        if (((mg1) arrayList.get(i10)).f16877a == 4) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ng1Var.getParentActivity());
-            alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle);
-            alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ig1(this));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
-            ng1Var.showDialog(a2Var);
-            TextView textView = (TextView) a2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20800q7, false));
+        return false;
+    }
+
+    @Override
+    public final void p(s4.b1 b1Var, int i10) {
+        lg1 lg1Var = this.e;
+        if (i10 == 0) {
+            ArrayList arrayList = lg1Var.f37960b;
+            ArrayList<Integer> arrayList2 = new ArrayList<>();
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((cg1) arrayList.get(i11)).f34947c;
+                if (tL_forumTopic != null && tL_forumTopic.pinned) {
+                    arrayList2.add(Integer.valueOf(tL_forumTopic.f19268id));
+                }
+            }
+            lg1Var.getMessagesController().getTopicsController().reorderPinnedTopics(lg1Var.f37957a, arrayList2);
+            return;
+        }
+        lg1Var.N.I0(false);
+        b1Var.f44838a.setPressed(true);
+    }
+
+    @Override
+    public final void q(s4.b1 b1Var) {
+        if (b1Var != null) {
+            ig1 ig1Var = (ig1) b1Var.f44838a;
+            TLRPC.TL_forumTopic tL_forumTopic = ig1Var.N;
+            lg1 lg1Var = this.e;
+            if (tL_forumTopic != null) {
+                TopicsController topicsController = lg1Var.getMessagesController().getTopicsController();
+                long j10 = lg1Var.f37957a;
+                TLRPC.TL_forumTopic tL_forumTopic2 = ig1Var.N;
+                topicsController.toggleShowTopic(j10, tL_forumTopic2.f19268id, tL_forumTopic2.hidden);
+            }
+            lg1Var.f37962b1 = ig1Var;
+            int i10 = jg1.f37375f3;
+            lg1Var.N.A1(!ig1Var.N.hidden, ig1Var);
+            lg1Var.U0(true, true);
+            TLRPC.TL_forumTopic tL_forumTopic3 = ig1Var.f37119c5;
+            if (tL_forumTopic3 != null) {
+                ig1Var.setTopicIcon(tL_forumTopic3);
             }
         }
     }

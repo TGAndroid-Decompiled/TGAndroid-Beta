@@ -1,15 +1,14 @@
 package s2;
 
-import b2.s;
-import q3.i;
+import b2.x;
+import q3.h;
 import s3.c;
-import sc.v;
-import w7.k;
+import w7.m;
 public final class a {
-    public static final a f47830a = new Object();
+    public static final a f44799a = new Object();
 
-    public final k a(s sVar) {
-        String str = sVar.f3641r;
+    public final m a(x xVar) {
+        String str = xVar.f2519s;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -50,18 +49,18 @@ public final class a {
                 case 1:
                     return new p3.a();
                 case 2:
-                    return new i(null);
+                    return new h(null);
                 case 3:
                     return new m3.b(1);
                 case 4:
                     return new c();
             }
         }
-        throw new IllegalArgumentException(v.i("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(t8.b.h("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
-    public final boolean b(s sVar) {
-        String str = sVar.f3641r;
+    public final boolean b(x xVar) {
+        String str = xVar.f2519s;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

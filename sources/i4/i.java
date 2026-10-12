@@ -1,17 +1,17 @@
 package i4;
 
-import b2.s0;
-import e2.d0;
-import e2.v;
+import b2.x0;
+import e2.m0;
+import e2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 public abstract class i {
-    public static final Pattern f12006a = Pattern.compile("^NOTE([ \t].*)?$");
+    public static final Pattern f11313a = Pattern.compile("^NOTE([ \t].*)?$");
 
-    public static boolean a(v vVar) {
-        vVar.getClass();
-        String k10 = vVar.k(StandardCharsets.UTF_8);
-        if (k10 != null && k10.startsWith("WEBVTT")) {
+    public static boolean a(x xVar) {
+        xVar.getClass();
+        String n10 = xVar.n(StandardCharsets.UTF_8);
+        if (n10 != null && n10.startsWith("WEBVTT")) {
             return true;
         }
         return false;
@@ -25,30 +25,30 @@ public abstract class i {
     }
 
     public static long c(String str) {
-        String str2 = d0.f8529a;
+        String str2 = m0.f8372a;
         String[] split = str.split("\\.", 2);
-        long j3 = 0;
+        long j10 = 0;
         for (String str3 : split[0].split(":", -1)) {
-            j3 = (j3 * 60) + Long.parseLong(str3);
+            j10 = (j10 * 60) + Long.parseLong(str3);
         }
-        long j10 = j3 * 1000;
+        long j11 = j10 * 1000;
         if (split.length == 2) {
             String trim = split[1].trim();
             if (trim.length() == 3) {
-                j10 += Long.parseLong(trim);
+                j11 += Long.parseLong(trim);
             } else {
                 throw new IllegalArgumentException("Expected 3 decimal places, got: ".concat(trim));
             }
         }
-        return j10 * 1000;
+        return j11 * 1000;
     }
 
-    public static void d(v vVar) {
-        int i10 = vVar.f8582b;
-        if (a(vVar)) {
+    public static void d(x xVar) {
+        int i10 = xVar.f8412b;
+        if (a(xVar)) {
             return;
         }
-        vVar.J(i10);
-        throw s0.a(null, "Expected WEBVTT. Got " + vVar.k(StandardCharsets.UTF_8));
+        xVar.N(i10);
+        throw x0.a(null, "Expected WEBVTT. Got " + xVar.n(StandardCharsets.UTF_8));
     }
 }

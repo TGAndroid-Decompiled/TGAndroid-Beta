@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import java.util.function.ToLongFunction;
 import org.telegram.messenger.NotificationsController;
 public final class le implements ToLongFunction {
-    public final int f18190a;
+    public final int f17789a;
 
     public le(int i10) {
-        this.f18190a = i10;
+        this.f17789a = i10;
     }
 
     @Override
     public final long applyAsLong(Object obj) {
-        long j3;
         long j10;
-        switch (this.f18190a) {
+        long j11;
+        switch (this.f17789a) {
             case 0:
                 return Long.parseLong((String) obj);
             case 1:
-                j3 = ((NotificationsController.StoryNotification) obj).date;
-                return j3;
-            default:
                 j10 = ((NotificationsController.StoryNotification) obj).date;
                 return j10;
+            default:
+                j11 = ((NotificationsController.StoryNotification) obj).date;
+                return j11;
         }
     }
 }

@@ -1,71 +1,36 @@
 package yh;
 
-import android.content.Context;
-import android.view.View;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.sr0;
-import org.telegram.ui.Components.zc;
-public final class a2 extends sr0 {
-    public final s3 f52473b1;
+public final class a2 implements TextWatcher {
+    public boolean f48791a;
+    public final y1 f48792b;
 
-    public a2(s3 s3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, null, null, str, null, false, str2, null, false, false, true, null, c6Var);
-        this.f52473b1 = s3Var;
-        this.f30632a0 = true;
+    public a2(y1 y1Var) {
+        this.f48792b = y1Var;
     }
 
     @Override
-    public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        zc bulletinFactory;
-        String str;
-        if (z10 && (bulletinFactory = getBulletinFactory()) != null) {
-            if (iVar.m() == 1) {
-                long j3 = iVar.j(0);
-                if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    sc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f30544r = false;
-                    G.f30546t = true;
-                    G.j();
-                } else if (j3 < 0) {
-                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-                    int i11 = R.raw.forward;
-                    int i12 = R.string.LinkSharedTo;
-                    if (tL_forumTopic != null) {
-                        str = tL_forumTopic.title;
-                    } else {
-                        str = chat.title;
-                    }
-                    sc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f30544r = false;
-                    G2.f30546t = true;
-                    G2.j();
-                } else {
-                    sc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f30544r = false;
-                    G3.f30546t = true;
-                    G3.j();
-                }
-            } else {
-                sc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f30544r = false;
-                Q.f30546t = true;
-                Q.j();
-            }
+    public final void afterTextChanged(Editable editable) {
+        if (!this.f48791a && editable.length() > 12) {
+            this.f48791a = true;
+            editable.delete(12, editable.length());
+            y1 y1Var = this.f48792b;
+            AndroidUtilities.shakeView(y1Var);
             try {
-                this.container.performHapticFeedback(3);
+                y1Var.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
+            this.f48791a = false;
         }
     }
 
     @Override
-    public final void T0(View view) {
-        s3.l1(this.f52473b1, view);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

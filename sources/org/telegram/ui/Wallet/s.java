@@ -1,327 +1,79 @@
 package org.telegram.ui.Wallet;
 
-import ai.ea;
-import android.app.Activity;
-import android.text.SpannableString;
-import android.util.LongSparseArray;
-import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.na0;
-import org.telegram.ui.Components.sr0;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.gj1;
-import org.telegram.ui.mj1;
-import org.telegram.ui.ns0;
-import org.telegram.ui.rj1;
-import org.telegram.ui.sj1;
-import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
-public final class s implements Runnable {
-    public final int f35335a;
-    public final Object f35336b;
-    public final Object f35337c;
+import org.telegram.ui.kf;
+public final class s implements Utilities.Callback3 {
+    public final j0 f33668a;
+    public final l6 f33669b;
+    public final SendMessagesHelper f33670c;
+    public final MessageObject d;
+    public final TL_wallet.walletTransaction e;
+    public final String f33671f;
+    public final i0 f33672g;
+    public final long h;
+    public final TLRPC.User f33673i;
 
-    public s(int i10, Object obj, Object obj2) {
-        this.f35335a = i10;
-        this.f35336b = obj;
-        this.f35337c = obj2;
+    public s(j0 j0Var, l6 l6Var, SendMessagesHelper sendMessagesHelper, MessageObject messageObject, TL_wallet.walletTransaction wallettransaction, String str, i0 i0Var, long j10, TLRPC.User user) {
+        this.f33668a = j0Var;
+        this.f33669b = l6Var;
+        this.f33670c = sendMessagesHelper;
+        this.d = messageObject;
+        this.e = wallettransaction;
+        this.f33671f = str;
+        this.f33672g = i0Var;
+        this.h = j10;
+        this.f33673i = user;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.web.b1 b1Var;
-        org.telegram.ui.web.g0 g0Var;
-        float f7;
-        org.telegram.ui.web.t0 t0Var;
-        int i10 = this.f35335a;
-        boolean z10 = true;
-        int i11 = 0;
-        Object obj = this.f35337c;
-        Object obj2 = this.f35336b;
-        switch (i10) {
-            case 0:
-                l0 l0Var = (l0) obj2;
-                l0.E("enable backup: ready! getting secret phrase...");
-                l0Var.x(new ai.m0(20, l0Var, (d7) obj), false, true);
-                return;
-            case 1:
-                boolean[] zArr = (boolean[]) obj2;
-                q qVar = (q) obj;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    qVar.run();
-                    return;
-                }
-                return;
-            case 2:
-                l0 l0Var2 = (l0) obj2;
-                j jVar = (j) obj;
-                l0.E("emulate disable backup: ready");
-                if (l0Var2.t() <= 0) {
-                    jVar.run(500000L, null);
-                    return;
-                }
-                WalletEngine2 walletEngine2 = l0Var2.f34997b;
-                if (walletEngine2 == null) {
-                    l0.i("emulate disable backup: no engine!");
-                    jVar.run(null, "NULL_ENGINE");
-                    return;
-                }
-                walletEngine2.emulateRotateKey(new d(l0Var2, jVar));
-                return;
-            case 3:
-                MessagesController.getInstance(((f2) obj2).f34701a).lambda$processUpdates$377((TLRPC.Updates) obj, false);
-                return;
-            case 4:
-                TextView[] textViewArr = (TextView[]) obj2;
-                SpannableString[] spannableStringArr = (SpannableString[]) obj;
-                if (textViewArr[0] != null) {
-                    if (spannableStringArr[0] == null) {
-                        SpannableString spannableString = new SpannableString(LocaleController.getString(R.string.Loading));
-                        spannableStringArr[0] = spannableString;
-                        spannableString.setSpan(new na0(AndroidUtilities.dp(150.0f), textViewArr[0]), 0, spannableStringArr[0].length(), 33);
-                    }
-                    textViewArr[0].setText(spannableStringArr[0]);
-                    return;
-                }
-                return;
-            case 5:
-                ((p3) obj2).run(((TL_wallet.walletTransaction[]) obj)[0]);
-                return;
-            case 6:
-                ((c5) obj2).D0.remove((o6) obj);
-                return;
-            case 7:
-                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
-                ((Utilities.Callback2) obj2).run(wallettransaction.comment, Boolean.valueOf(wallettransaction.comment_encrypted));
-                return;
-            case 8:
-                k2[] k2VarArr = (k2[]) obj2;
-                k2VarArr[0].setOnDismissListener(new w3((TLRPC.User) obj, 0));
-                k2VarArr[0].dismiss();
-                return;
-            case 9:
-                new zc(((k2[]) obj2)[0].topBulletinContainer, (org.telegram.ui.ActionBar.c6) obj).Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopiedBulletin)).k(false);
-                return;
-            case 10:
-                k2[] k2VarArr2 = (k2[]) obj2;
-                k2VarArr2[0].setOnDismissListener(new w3((TL_wallet.WalletTransactionPeer) obj, 1));
-                k2VarArr2[0].dismiss();
-                return;
-            case 11:
-                ((ViewGroup) obj).removeView(((x5) obj2).h);
-                return;
-            case 12:
-                ((Utilities.Callback) obj2).run((TL_wallet.walletTransaction) obj);
-                return;
-            case 13:
-                c7 c7Var = (c7) obj2;
-                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj;
-                if ((m2Var instanceof c5) && zc.a(m2Var)) {
-                    zc.a0(m2Var).M(LocaleController.getString(R.string.WalletImported), LocaleController.getString(R.string.WalletImportedInfo), R.raw.contact_check).j();
-                }
-                c7Var.finishFragment();
-                return;
-            case 14:
-                ((q0) obj).B();
-                ((n7) obj2).f27776a.W2.N(true);
-                return;
-            case 15:
-                n7 n7Var = (n7) obj;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(n7Var.getParentActivity(), 0, n7Var.getResourceProvider());
-                String string = LocaleController.getString(R.string.WalletDisableBackupTitle);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20142a;
-                a2Var.R = string;
-                a2Var.T = LocaleController.getString(R.string.WalletDisableBackupExistingPhraseInfo);
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                alertDialog$Builder.k(LocaleController.getString(R.string.WalletDisable), new ns0(24, n7Var, (l0) obj2));
-                alertDialog$Builder.d(-1);
-                alertDialog$Builder.o();
-                return;
-            case 16:
-                ((org.telegram.ui.ActionBar.a2[]) obj2)[0].dismiss();
-                ((Runnable) obj).run();
-                return;
-            case 17:
-                ((ViewGroup) obj).removeView(((y8) obj2).h);
-                return;
-            case 18:
-                gj1 gj1Var = (gj1) obj2;
-                int[] iArr = (int[]) obj;
-                gj1Var.getClass();
-                int i12 = iArr[0] - 1;
-                iArr[0] = i12;
-                if (i12 == 0) {
-                    WallpapersListActivity wallpapersListActivity = gj1Var.f38079a;
-                    int[][] iArr2 = WallpapersListActivity.f35610k0;
-                    wallpapersListActivity.B0(true);
-                    return;
-                }
-                return;
-            case 19:
-                mj1 mj1Var = (mj1) obj2;
-                String str = (String) obj;
-                mj1Var.d.clear();
-                mj1Var.f40078e.clear();
-                mj1Var.f40079f = true;
-                mj1Var.F(str, "", true);
-                mj1Var.h = str;
-                mj1Var.l();
-                mj1Var.f40085y = null;
-                return;
-            case 20:
-                mj1 mj1Var2 = (mj1) obj2;
-                TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) ((TLObject) obj);
-                WallpapersListActivity wallpapersListActivity2 = mj1Var2.E;
-                MessagesController.getInstance(WallpapersListActivity.p0(wallpapersListActivity2)).putUsers(tL_contacts_resolvedPeer.users, false);
-                MessagesController.getInstance(WallpapersListActivity.q0(wallpapersListActivity2)).putChats(tL_contacts_resolvedPeer.chats, false);
-                wallpapersListActivity2.getMessagesStorage().putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                String str2 = mj1Var2.f40084x;
-                mj1Var2.f40084x = null;
-                mj1Var2.F(str2, "", false);
-                return;
-            case 21:
-                String str3 = (String) obj;
-                sj1 sj1Var = ((rj1) obj2).f41669a;
-                Activity parentActivity = sj1Var.getParentActivity();
-                MessageObject messageObject = sj1Var.f41947n;
-                if (parentActivity != null) {
-                    if (BuildVars.LOGS_ENABLED) {
-                        FileLog.d(str3);
-                    }
-                    str3.getClass();
-                    if (!str3.equals("share_game")) {
-                        if (str3.equals("share_score")) {
-                            messageObject.messageOwner.with_my_score = true;
-                        }
-                    } else {
-                        messageObject.messageOwner.with_my_score = false;
-                    }
-                    sj1Var.showDialog(sr0.O0(sj1Var.getParentActivity(), messageObject, null, false, sj1Var.h));
-                    return;
-                }
-                return;
-            case 22:
-                org.telegram.ui.web.b1 b1Var2 = (org.telegram.ui.web.b1) obj2;
-                ei.r rVar = b1Var2.f43195j0;
-                rVar.f9317f = true;
-                rVar.k();
-                b1Var2.v((ea) obj);
-                return;
-            case 23:
-                BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) obj2;
-                ArrayList arrayList = (ArrayList) obj;
-                if (botWebViewContainer$BotWebViewProxy != null && (b1Var = botWebViewContainer$BotWebViewProxy.f43158a) != null && (g0Var = b1Var.f43185c) != null) {
-                    g0Var.f(arrayList);
-                    return;
-                }
-                return;
-            case 24:
-                ArrayList arrayList2 = (ArrayList) obj2;
-                LongSparseArray longSparseArray = (LongSparseArray) obj;
-                org.telegram.ui.web.d1.f43232c.addAll(0, arrayList2);
-                for (int i13 = 0; i13 < longSparseArray.size(); i13++) {
-                    org.telegram.ui.web.d1.d.put(longSparseArray.keyAt(i13), (org.telegram.ui.web.c1) longSparseArray.valueAt(i13));
-                }
-                org.telegram.ui.web.d1.f43231b = true;
-                org.telegram.ui.web.d1.f43230a = false;
-                ArrayList arrayList3 = org.telegram.ui.web.d1.f43233e;
-                if (arrayList3 != null) {
-                    int size = arrayList3.size();
-                    while (i11 < size) {
-                        Object obj3 = arrayList3.get(i11);
-                        i11++;
-                        ((Utilities.Callback) obj3).run(arrayList2);
-                    }
-                    org.telegram.ui.web.d1.f43233e = null;
-                    return;
-                }
-                return;
-            case 25:
-                org.telegram.ui.web.g1 g1Var = ((org.telegram.ui.web.f1) obj2).h;
-                ArrayList arrayList4 = g1Var.f43250f;
-                arrayList4.clear();
-                arrayList4.addAll((ArrayList) obj);
-                g1Var.h = false;
-                j71 j71Var = g1Var.f27776a;
-                if (j71Var != null) {
-                    j71Var.W2.N(true);
-                    return;
-                }
-                return;
-            case 26:
-                org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) obj2;
-                if (((org.telegram.ui.web.g2) obj).b() == null) {
-                    z10 = false;
-                }
-                e1Var.setEnabled(z10);
-                ViewPropertyAnimator animate = e1Var.animate();
-                if (e1Var.isEnabled()) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.5f;
-                }
-                animate.alpha(f7);
-                return;
-            case 27:
-                ((org.telegram.ui.l0) obj2).f43429f0.run((Integer) obj);
-                return;
-            case 28:
-                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) obj2;
-                y1Var.getMessagesController().removeWebBrowserException((String) obj);
-                y1Var.f27776a.W2.N(true);
-                return;
-            default:
-                org.telegram.ui.web.g2 g2Var = (org.telegram.ui.web.g2) obj2;
-                TLObject tLObject = (TLObject) obj;
-                int i14 = g2Var.f43255a;
-                g2Var.f43260g = true;
-                if (tLObject instanceof TLRPC.TL_messages_webPage) {
-                    TLRPC.TL_messages_webPage tL_messages_webPage = (TLRPC.TL_messages_webPage) tLObject;
-                    MessagesController.getInstance(i14).putUsers(tL_messages_webPage.users, false);
-                    MessagesController.getInstance(i14).putChats(tL_messages_webPage.chats, false);
-                    g2Var.h = tL_messages_webPage.webpage;
-                } else {
-                    if (tLObject instanceof TLRPC.TL_webPage) {
-                        TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) tLObject;
-                        if (tL_webPage.cached_page instanceof TL_iv.TL_page) {
-                            g2Var.h = tL_webPage;
-                        }
-                    }
-                    g2Var.h = null;
-                }
-                TLRPC.WebPage webPage = g2Var.h;
-                if (webPage != null && webPage.cached_page == null) {
-                    g2Var.h = null;
-                }
-                if (!SharedConfig.onlyLocalInstantView && g2Var.h != null && (t0Var = g2Var.f43264l) != null) {
-                    t0Var.run();
-                }
-                g2Var.c();
-                return;
+    public final void run(Object obj, Object obj2, Object obj3) {
+        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
+        String str = (String) obj2;
+        String str2 = (String) obj3;
+        j0 j0Var = this.f33668a;
+        int i10 = j0Var.f33319a;
+        l6 l6Var = this.f33669b;
+        SendMessagesHelper sendMessagesHelper = this.f33670c;
+        MessageObject messageObject = this.d;
+        boolean z10 = false;
+        if (sendtransfer == null) {
+            l6Var.run();
+            sendMessagesHelper.completeSendingGramTransfer(messageObject, null, false);
+            if (str2 == null) {
+                str2 = "NULL_ERROR";
+            }
+            j0.i("failed sending: ".concat(str2));
+            return;
         }
-    }
-
-    public s(n7 n7Var, l0 l0Var) {
-        this.f35335a = 15;
-        this.f35337c = n7Var;
-        this.f35336b = l0Var;
+        TL_wallet.walletTransaction wallettransaction = this.e;
+        if (str != null) {
+            wallettransaction.comment = str;
+            wallettransaction.comment_encrypted = true;
+        }
+        if (j0.b(j0Var.r(), this.f33671f)) {
+            sendtransfer.data_gasless = null;
+        }
+        wallettransaction.comment_encrypted_preparing = false;
+        sendMessagesHelper.updateSendingGramTransferComment(messageObject, wallettransaction.comment, wallettransaction.comment_encrypted);
+        if (sendtransfer.data_gasless != null) {
+            z10 = true;
+        }
+        wallettransaction.gasless = z10;
+        wallettransaction.gaslessMessageBodyHash = sendtransfer.gaslessMessageBodyHash;
+        wallettransaction.normalMessageBodyHash = sendtransfer.normalMessageBodyHash;
+        i0 i0Var = this.f33672g;
+        i0Var.h();
+        i0Var.f();
+        sendtransfer.random_id = this.h;
+        sendtransfer.user_id = MessagesController.getInstance(i10).getInputUser(this.f33673i);
+        j0Var.P();
+        j0.E("prepared sendTransfer, sending");
+        ConnectionsManager.getInstance(i10).sendRequestTyped(sendtransfer, new Object(), new kf(j0Var, wallettransaction, sendMessagesHelper, messageObject, l6Var, 4));
     }
 }

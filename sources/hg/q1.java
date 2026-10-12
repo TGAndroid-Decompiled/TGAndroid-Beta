@@ -1,53 +1,39 @@
 package hg;
 
-import android.app.Activity;
-import ci.k4;
-import ei.c5;
 import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.m2;
-public final class q1 extends org.telegram.ui.ActionBar.j {
-    public final z1 f11355a;
+import org.telegram.ui.dt;
+public final class q1 implements z1 {
+    public final dt f10710a;
 
-    public q1(z1 z1Var) {
-        this.f11355a = z1Var;
+    public q1(dt dtVar) {
+        this.f10710a = dtVar;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        c6 c6Var;
-        z1 z1Var = this.f11355a;
-        ArrayList arrayList = z1Var.f11465b;
-        if (i10 == -1) {
-            if (arrayList.isEmpty()) {
-                z1Var.finishFragment();
-            } else {
-                z1.X(z1Var);
-            }
-        } else if (i10 == 1) {
-            if (arrayList.size() == 1) {
-                int intValue = ((Integer) arrayList.get(0)).intValue();
-                i11 = ((m2) z1Var).currentAccount;
-                b2 c10 = c2.f(i11).c(intValue);
-                if (c10 != null) {
-                    Activity parentActivity = z1Var.getParentActivity();
-                    i12 = ((m2) z1Var).currentAccount;
-                    c6Var = ((m2) z1Var).resourceProvider;
-                    z1.d0(parentActivity, i12, null, c10, c6Var, new k4(this, intValue, 2));
-                }
-            }
-        } else if (i10 == 2) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(z1Var.getParentActivity(), 0, z1Var.getResourceProvider());
-            alertDialog$Builder.f20142a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
-            alertDialog$Builder.f20142a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new c5(this, 5));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            z1Var.showDialog(alertDialog$Builder.f20142a);
+    public final a0.h K() {
+        return null;
+    }
+
+    @Override
+    public final a0.h j0() {
+        return null;
+    }
+
+    @Override
+    public final void k(int i10) {
+        dt dtVar = this.f10710a;
+        dtVar.l();
+        if (i10 != 0) {
+            dtVar.F();
         }
+    }
+
+    @Override
+    public final boolean t0(int i10) {
+        return true;
+    }
+
+    @Override
+    public final void I0(ArrayList arrayList) {
     }
 }

@@ -1,40 +1,28 @@
 package w7;
 
-import android.util.SparseBooleanArray;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
 public abstract class r {
-    public static b2.x0 a(b2.x0 x0Var, b2.x0 x0Var2) {
-        if (x0Var != null) {
-            b2.q qVar = x0Var.f3684a;
-            if (x0Var2 != null) {
-                SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-                for (int i10 = 0; i10 < qVar.f3530a.size(); i10++) {
-                    if (x0Var2.a(qVar.a(i10))) {
-                        int a2 = qVar.a(i10);
-                        e2.d.g(!false);
-                        sparseBooleanArray.append(a2, true);
-                    }
-                }
-                e2.d.g(!false);
-                return new b2.x0(new b2.q(sparseBooleanArray));
-            }
+    public static void a(View view, CharSequence charSequence) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            m.n3.a(view, charSequence);
+            return;
         }
-        return b2.x0.f3682b;
-    }
-
-    public static void b(b2.b1 b1Var, m4.s sVar) {
-        int i10 = sVar.f15972b;
-        long j3 = sVar.f15973c;
-        e9.i0 i0Var = sVar.f15971a;
-        if (i10 == -1) {
-            if (b1Var.n0(20)) {
-                b1Var.I0(i0Var);
-            } else if (!i0Var.isEmpty()) {
-                b1Var.k0((b2.k0) i0Var.get(0));
-            }
-        } else if (b1Var.n0(20)) {
-            b1Var.T(j3, sVar.f15972b, i0Var);
-        } else if (!i0Var.isEmpty()) {
-            b1Var.k((b2.k0) i0Var.get(0), j3);
+        m.p3 p3Var = m.p3.v;
+        if (p3Var != null && p3Var.f15206a == view) {
+            m.p3.b(null);
         }
+        if (TextUtils.isEmpty(charSequence)) {
+            m.p3 p3Var2 = m.p3.f15205w;
+            if (p3Var2 != null && p3Var2.f15206a == view) {
+                p3Var2.a();
+            }
+            view.setOnLongClickListener(null);
+            view.setLongClickable(false);
+            view.setOnHoverListener(null);
+            return;
+        }
+        new m.p3(view, charSequence);
     }
 }

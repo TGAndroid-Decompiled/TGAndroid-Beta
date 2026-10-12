@@ -8,29 +8,29 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class z3 implements Utilities.Callback {
-    public final Utilities.Callback f21486a;
-    public final TLRPC.WallPaper f21487b;
-    public final int f21488c;
+    public final Utilities.Callback f20839a;
+    public final TLRPC.WallPaper f20840b;
+    public final int f20841c;
     public final int d;
-    public final long f21489e;
+    public final long e;
 
-    public z3(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j3) {
-        this.f21486a = callback;
-        this.f21487b = wallPaper;
-        this.f21488c = i10;
+    public z3(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j10) {
+        this.f20839a = callback;
+        this.f20840b = wallPaper;
+        this.f20841c = i10;
         this.d = i11;
-        this.f21489e = j3;
+        this.e = j10;
     }
 
     @Override
     public final void run(Object obj) {
-        dg.a aVar = (dg.a) obj;
-        Utilities.Callback callback = this.f21486a;
+        eg.a aVar = (eg.a) obj;
+        Utilities.Callback callback = this.f20839a;
         if (aVar != null) {
             callback.run(aVar);
             return;
         }
-        TLRPC.WallPaper wallPaper = this.f21487b;
+        TLRPC.WallPaper wallPaper = this.f20840b;
         ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
         ImageReceiver imageReceiver = new ImageReceiver();
         imageReceiver.setAllowLoadingOnAttachedOnly(false);
@@ -39,7 +39,7 @@ public final class z3 implements Utilities.Callback {
         Point point2 = AndroidUtilities.displaySize;
         int max = Math.max(point2.x, point2.y);
         imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f21488c, this.d, this.f21489e, callback));
+        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f20841c, this.d, this.e, callback));
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 }

@@ -1,21 +1,21 @@
 package fd;
+public final class f extends f2.e {
+    public final StringBuilder f9113c;
+    public final StringBuilder d;
+    public final StringBuilder e;
 
-import cf.p;
-import java.util.regex.Pattern;
-public final class f extends h {
-    public static final Pattern f9860e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
-
-    @Override
-    public final p b() {
-        String a2 = a(f9860e);
-        if (a2 != null) {
-            return f(bf.b.a(a2));
-        }
-        return null;
+    public f() {
+        super(1, 1);
+        this.f9113c = new StringBuilder();
+        this.d = new StringBuilder();
+        this.e = new StringBuilder();
     }
 
     @Override
-    public final char d() {
-        return '&';
+    public final f2.e b() {
+        f2.e.c(this.f9113c);
+        f2.e.c(this.d);
+        f2.e.c(this.e);
+        return this;
     }
 }

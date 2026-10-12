@@ -1,105 +1,47 @@
 package org.telegram.ui.Components;
+public final class tz0 {
+    public final int f29529a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class tz0 extends View {
-    public String f30998a;
-    public Drawable f30999b;
-    public boolean f31000c;
-    public int d;
-    public final g6 f31001e;
-    public final uz0 f31002f;
-
-    public tz0(uz0 uz0Var, Context context) {
-        super(context);
-        this.f31002f = uz0Var;
-        this.d = 0;
-        this.f31001e = new g6(this, 350L, new OvershootInterpolator(5.0f));
+    public tz0(int i10) {
+        this.f29529a = i10;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (isPressed()) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = ((1.0f - this.f31001e.d(f7, false)) * 0.2f) + 0.8f;
-        if (this.f30999b != null) {
-            int height = getHeight() - getPaddingBottom();
-            this.f30999b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f30999b;
-            if (drawable instanceof s5) {
-                ((s5) drawable).q(System.currentTimeMillis());
-            }
-            this.f30999b.draw(canvas);
+    public final int a(a01 a01Var, int i10) {
+        switch (this.f29529a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.f30999b;
-        if (drawable instanceof s5) {
-            ((s5) drawable).a(this);
-        }
-        this.f31000c = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        Drawable drawable = this.f30999b;
-        if (drawable instanceof s5) {
-            ((s5) drawable).o(this);
-        }
-        this.f31000c = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int dp = AndroidUtilities.dp(3.0f);
-        float f10 = 6.66f;
-        if (this.d == 0) {
-            f7 = 0.0f;
-        } else {
-            f7 = 6.66f;
-        }
-        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
-        int dp3 = AndroidUtilities.dp(3.0f);
-        if (this.d != 0) {
-            f10 = 0.0f;
-        }
-        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
-    }
-
-    public void setDirection(int i10) {
-        this.d = i10;
-        invalidate();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f30999b;
-        if (drawable2 instanceof s5) {
-            ((s5) drawable2).o(this);
-        }
-        this.f30999b = drawable;
-        if ((drawable instanceof s5) && this.f31000c) {
-            ((s5) drawable).a(this);
+    public final int b(a01 a01Var, int i10) {
+        switch (this.f29529a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
         }
     }
 
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        invalidate();
+    public int c(int i10, int i11) {
+        switch (this.f29529a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

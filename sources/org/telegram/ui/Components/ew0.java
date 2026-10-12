@@ -1,317 +1,114 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.SparseArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public class ew0 extends bw0 {
-    public boolean E;
-    public final hw0 F;
-    public final boolean h;
-    public final int f25795n;
-    public final ArrayList f25796r;
-    public ai.e9 f25797s;
-    public final int v;
-    public final cw0 f25798w;
-    public boolean f25799x;
-    public final ArrayList f25800y;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+public final class ew0 extends View {
+    public final ImageReceiver f24811a;
+    public final k9 f24812b;
+    public final Paint f24813c;
+    public float d;
+    public boolean e;
+    public ValueAnimator f24814f;
 
-    public ew0(hw0 hw0Var, Context context, boolean z10) {
-        this(hw0Var, context, 0, z10);
+    public ew0(Context context) {
+        super(context);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f24811a = imageReceiver;
+        this.f24812b = new k9((org.telegram.ui.ActionBar.c6) null);
+        Paint paint = new Paint(1);
+        this.f24813c = paint;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(28.0f));
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        return false;
-    }
-
-    @Override
-    public final String F(int i10) {
-        MessageObject messageObject;
-        TL_stories.StoryItem storyItem;
-        ai.e9 e9Var = this.f25797s;
-        if (e9Var == null || i10 < 0 || i10 >= e9Var.f897i.size() || (messageObject = (MessageObject) this.f25797s.f897i.get(i10)) == null || (storyItem = messageObject.storyItem) == null) {
-            return null;
+    public final void a(boolean z10, boolean z11) {
+        ValueAnimator valueAnimator = this.f24814f;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        return LocaleController.formatYearMont(storyItem.date, true);
-    }
-
-    @Override
-    public final void I() {
-        int i10;
-        if (this.h) {
-            i10 = 9;
-        } else {
-            i10 = 8;
-        }
-        this.F.c1(i10, true);
-    }
-
-    public final boolean M(int i10) {
-        ai.e9 e9Var;
-        if (!this.h && (e9Var = this.f25797s) != null) {
-            if (e9Var instanceof ai.v8) {
-                hw0 hw0Var = this.F;
-                TLRPC.User user = MessagesController.getInstance(hw0Var.f26957v1.getCurrentAccount()).getUser(Long.valueOf(hw0Var.f26932j1));
-                if (user != null && user.bot && user.bot_has_main_app && user.bot_can_edit) {
-                    return true;
-                }
-                return false;
-            } else if (i10 >= 0 && i10 < e9Var.f897i.size()) {
-                MessageObject messageObject = (MessageObject) this.f25797s.f897i.get(i10);
-                ai.e9 e9Var2 = this.f25797s;
-                if (e9Var2.f895f > 0) {
-                    return true;
-                }
-                return e9Var2.m(messageObject.getId());
-            } else {
-                return false;
+        float f7 = 0.0f;
+        if (z11) {
+            if (z10) {
+                f7 = 1.0f;
             }
-        }
-        return false;
-    }
-
-    public final void N() {
-        av0 av0Var;
-        av0 av0Var2;
-        av0 av0Var3;
-        av0 av0Var4;
-        ai.e9 e9Var = this.f25797s;
-        if (e9Var != null && !this.h) {
-            hw0 hw0Var = this.F;
-            boolean z10 = hw0Var.l1;
-            av0[] av0VarArr = hw0Var.f26933k0;
-            int[] iArr = hw0Var.f26936m1;
-            if ((!z10 || (hw0Var.f26934k1 && e9Var.g() > 1)) && this.f25797s.g() > 0 && !hw0Var.v0()) {
-                boolean z11 = false;
-                if (this.f25797s.g() < 5) {
-                    iArr[1] = this.f25797s.g();
-                    if (av0VarArr != null && (av0Var3 = av0VarArr[0]) != null && (av0Var4 = av0VarArr[1]) != null && av0Var3.h != null && av0Var4.h != null) {
-                        hw0Var.m1(false);
-                    }
-                    if (iArr[1] == 1) {
-                        z11 = true;
-                    }
-                    hw0Var.f26934k1 = z11;
-                } else if (hw0Var.f26934k1) {
-                    hw0Var.f26934k1 = false;
-                    iArr[1] = Math.max(2, SharedConfig.storiesColumnsCount);
-                    if (av0VarArr != null && (av0Var = av0VarArr[0]) != null && (av0Var2 = av0VarArr[1]) != null && av0Var.h != null && av0Var2.h != null) {
-                        hw0Var.m1(false);
-                    }
-                }
-                hw0Var.l1 = true;
-            }
-        }
-    }
-
-    public final int O() {
-        hw0 hw0Var = this.F;
-        mu0 mu0Var = hw0Var.H;
-        int[] iArr = hw0Var.f26936m1;
-        if (this == mu0Var) {
-            return iArr[0];
-        }
-        if (hw0.u(hw0Var, this) != -1) {
-            return iArr[1];
-        }
-        return hw0Var.f26945q1;
-    }
-
-    public final void P() {
-        if (this.f25797s == null) {
+            ValueAnimator duration = ValueAnimator.ofFloat(this.d, f7).setDuration(200L);
+            duration.setInterpolator(es.f24771f);
+            duration.addUpdateListener(new g80(this, 22));
+            duration.addListener(new k90(this, 19));
+            duration.start();
+            this.f24814f = duration;
             return;
         }
-        int O = O();
-        this.f25797s.p(Math.min(100, Math.max(1, O / 2) * O * O), false);
+        if (z10) {
+            f7 = 1.0f;
+        }
+        this.d = f7;
+        invalidate();
     }
 
     @Override
-    public final int h() {
-        int i10 = 0;
-        if (this.f25797s == null) {
-            return 0;
+    public final boolean isSelected() {
+        if (this.d == 1.0f) {
+            return true;
         }
-        int size = this.f25796r.size();
-        if (!this.f25797s.l() || !this.F.i0()) {
-            i10 = this.f25797s.g();
-        }
-        return size + i10;
+        return false;
     }
 
     @Override
-    public final int j(int i10) {
-        return 19;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f24811a.onAttachedToWindow();
     }
 
     @Override
-    public final int k() {
-        return h();
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f24811a.onDetachedFromWindow();
     }
 
     @Override
-    public void l() {
-        if (this.f25797s != null) {
-            hw0 hw0Var = this.F;
-            if (hw0Var.r0()) {
-                ArrayList arrayList = this.f25796r;
-                arrayList.clear();
-                ArrayList E = MessagesController.getInstance(this.f25797s.f893c).getStoriesController().E(hw0Var.f26932j1);
-                if (E != null) {
-                    arrayList.addAll(E);
-                }
-            }
-        }
-        super.l();
-        N();
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        char c10;
-        boolean z12;
-        if (this.f25797s != null && d1Var.f47901f == 19) {
-            View view = d1Var.f47897a;
-            if (view instanceof org.telegram.ui.Cells.t7) {
-                org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-                t7Var.f22840d0 = true;
-                ArrayList arrayList = this.f25796r;
-                if (i10 >= 0 && i10 < arrayList.size()) {
-                    ai.l9 l9Var = (ai.l9) arrayList.get(i10);
-                    t7Var.f22844f0 = false;
-                    if (l9Var.K == null) {
-                        TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                        long j3 = l9Var.f1347a;
-                        int i11 = (int) (j3 ^ (j3 >>> 32));
-                        tL_storyItem.messageId = i11;
-                        tL_storyItem.f20042id = i11;
-                        tL_storyItem.attachPath = l9Var.f1351f;
-                        MessageObject messageObject = new MessageObject(this.f25797s.f893c, tL_storyItem);
-                        l9Var.K = messageObject;
-                        messageObject.uploadingStory = l9Var;
-                    }
-                    t7Var.k(l9Var.K, O(), false);
-                    t7Var.f22840d0 = true;
-                    t7Var.setReorder(false);
-                    t7Var.i(false, false);
-                    return;
-                }
-                int size = i10 - arrayList.size();
-                if (size >= 0 && size < this.f25797s.f897i.size()) {
-                    MessageObject messageObject2 = (MessageObject) this.f25797s.f897i.get(size);
-                    if (messageObject2 != null && this.f25797s.m(messageObject2.getId())) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    t7Var.f22844f0 = z10;
-                    hw0 hw0Var = this.F;
-                    if (!hw0Var.r0() && !t7Var.f22844f0) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    t7Var.setReorder(z11);
-                    t7Var.h = hw0Var.t0();
-                    t7Var.k(messageObject2, O(), false);
-                    if (hw0Var.C1 && messageObject2 != null) {
-                        SparseArray[] sparseArrayArr = hw0Var.Z0;
-                        if (messageObject2.getDialogId() == hw0Var.f26932j1) {
-                            c10 = 0;
-                        } else {
-                            c10 = 1;
-                        }
-                        if (sparseArrayArr[c10].indexOfKey(messageObject2.getId()) >= 0) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        t7Var.i(z12, true);
-                    } else {
-                        t7Var.i(false, false);
-                    }
-                    t7Var.l(this.f25799x, false);
-                    return;
-                }
-                t7Var.f22844f0 = false;
-                t7Var.k(null, O(), false);
-                t7Var.f22840d0 = true;
-            }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        float f7 = (this.d * 0.1f) + 0.9f;
+        canvas.scale(f7, f7);
+        int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20063m5, false);
+        Paint paint = this.f24813c;
+        paint.setColor(x02);
+        paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
+        float strokeWidth = paint.getStrokeWidth();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
+        canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
+        canvas.restore();
+        if (!this.e) {
+            float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
+            float f10 = 2.0f * strokeWidth2;
+            float width = getWidth() - f10;
+            float height = getHeight() - f10;
+            ImageReceiver imageReceiver = this.f24811a;
+            imageReceiver.setImageCoords(strokeWidth2, strokeWidth2, width, height);
+            imageReceiver.draw(canvas);
         }
     }
 
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        s4.d1 x10 = super.x(viewGroup, i10);
-        View view = x10.f47897a;
-        if (view instanceof org.telegram.ui.Cells.t7) {
-            ((org.telegram.ui.Cells.t7) view).f22840d0 = true;
-        }
-        return x10;
+    public void setAvatar(TLObject tLObject) {
+        k9 k9Var = this.f24812b;
+        k9Var.p(tLObject);
+        this.f24811a.setForUserOrChat(tLObject, k9Var);
     }
 
-    public ew0(hw0 hw0Var, Context context, int i10, boolean z10) {
-        super(hw0Var, context);
-        int i11;
-        TLRPC.User user;
-        this.F = hw0Var;
-        this.f25796r = new ArrayList();
-        this.f25800y = new ArrayList();
-        this.h = z10;
-        this.f25795n = i10;
-        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26957v1;
-        long j3 = hw0Var.f26932j1;
-        int currentAccount = m2Var.getCurrentAccount();
-        if (!TextUtils.isEmpty(hw0Var.getStoriesHashtag())) {
-            if (hw0Var.T1 == null) {
-                hw0Var.T1 = new ai.w8(currentAccount, TextUtils.isEmpty(hw0Var.getStoriesHashtagUsername()) ? null : hw0Var.getStoriesHashtagUsername(), hw0Var.getStoriesHashtag());
-            }
-            this.f25797s = hw0Var.T1;
-        } else if (hw0Var.getStoriesArea() != null) {
-            if (hw0Var.T1 == null) {
-                hw0Var.T1 = new ai.w8(currentAccount, hw0Var.getStoriesArea());
-            }
-            this.f25797s = hw0Var.T1;
-        } else if ((z10 && !hw0Var.v0()) || (!z10 && hw0Var.q0())) {
-            this.f25797s = null;
-        } else {
-            int i12 = 1;
-            boolean z11 = j3 > 0 && (user = MessagesController.getInstance(currentAccount).getUser(Long.valueOf(j3))) != null && user.bot;
-            if (i10 > 0) {
-                this.f25797s = m2Var.getMessagesController().getStoriesController().A(hw0Var.f26932j1, 0, i10, true);
-            } else {
-                ai.m9 storiesController = m2Var.getMessagesController().getStoriesController();
-                long j10 = hw0Var.f26932j1;
-                if (z11) {
-                    i12 = 4;
-                } else if (!z10) {
-                    i11 = 0;
-                    this.f25797s = storiesController.A(j10, i11, -1, true);
-                }
-                i11 = i12;
-                this.f25797s = storiesController.A(j10, i11, -1, true);
-            }
-        }
-        ai.e9 e9Var = this.f25797s;
-        if (e9Var != null) {
-            this.v = e9Var.o();
-            this.f25798w = new cw0(this, m2Var.getMessagesController().getStoriesController(), hw0Var.f26932j1, this.f25797s.f893c);
-        }
-        N();
-    }
-
-    @Override
-    public final int L(int i10) {
-        return i10;
+    public void setHideAvatar(boolean z10) {
+        this.e = z10;
+        invalidate();
     }
 }

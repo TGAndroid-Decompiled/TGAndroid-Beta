@@ -1,120 +1,116 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.n71;
-public final class pk implements Utilities.Callback {
-    public final int f18610a = 0;
-    public final boolean f18611b;
-    public final NotificationCenter.NotificationCenterDelegate f18612c;
+import android.app.Activity;
+import java.io.IOException;
+import java.util.Locale;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.ud0;
+import org.telegram.ui.ThemeActivity;
+import org.telegram.ui.fo;
+import org.telegram.ui.qn;
+import org.telegram.ui.un0;
+public final class pk implements org.telegram.ui.ActionBar.z1, e2.j {
+    public final int f18141a = 3;
+    public final boolean f18142b;
+    public final Object f18143c;
     public final Object d;
-    public final Object f18613e;
-    public final Object f18614f;
-    public final Object f18615g;
+    public final Object e;
+    public final Object f18144f;
 
-    public pk(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10) {
-        this.f18612c = sendMessagesHelper;
-        this.d = arrayList;
-        this.f18613e = arrayList2;
-        this.f18614f = arrayList3;
-        this.f18615g = delayedMessage;
-        this.f18611b = z10;
+    public pk(a5.a aVar, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
+        this.f18143c = aVar;
+        this.d = uVar;
+        this.e = c0Var;
+        this.f18144f = iOException;
+        this.f18142b = z10;
     }
 
     @Override
-    public final void run(Object obj) {
-        ArrayList<TLRPC.Document> arrayList;
-        ArrayList<TLRPC.Document> arrayList2;
-        switch (this.f18610a) {
+    public void accept(Object obj) {
+        a5.a aVar = (a5.a) this.f18143c;
+        ((u2.k0) obj).g(aVar.f279b, (u2.g0) aVar.f280c, (u2.u) this.d, (u2.c0) this.e, (IOException) this.f18144f, this.f18142b);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        int i11;
+        int i12 = this.f18141a;
+        boolean z10 = this.f18142b;
+        Object obj = this.f18144f;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        Object obj4 = this.f18143c;
+        switch (i12) {
             case 0:
-                ((SendMessagesHelper) this.f18612c).lambda$performSendMessageRequestMulti$67((ArrayList) this.d, (ArrayList) this.f18613e, (ArrayList) this.f18614f, (SendMessagesHelper.DelayedMessage) this.f18615g, this.f18611b, (TLObject) obj);
+                ((SendMessagesHelper) obj4).lambda$sendCallback$44(this.f18142b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (fo) obj, a2Var, i10);
                 return;
             case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.f18612c;
-                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) this.d;
-                TLRPC.User user = (TLRPC.User) this.f18613e;
-                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18614f;
-                String str = (String) this.f18615g;
-                Integer num = (Integer) obj;
-                profileActivity.getClass();
-                boolean z10 = this.f18611b;
-                if (channelParticipant != null) {
-                    profileActivity.A4(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z10);
-                    return;
-                } else {
-                    profileActivity.A4(num.intValue(), user, chatParticipant, null, null, str, z10);
+                qn qnVar = (qn) obj4;
+                TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
+                fo foVar = qnVar.f39497a;
+                org.telegram.ui.vc vcVar = new org.telegram.ui.vc(11, qnVar, (org.telegram.ui.Cells.u1) obj3);
+                if (((boolean[]) obj2)[0]) {
+                    if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
+                        vcVar.run(Boolean.TRUE);
+                        return;
+                    }
+                    Activity parentActivity = foVar.getParentActivity();
+                    i11 = ((org.telegram.ui.ActionBar.m2) foVar).currentAccount;
+                    ThemeActivity.C0(i11, parentActivity, new org.telegram.ui.vc(12, qnVar, vcVar), foVar.getResourceProvider());
                     return;
                 }
+                vcVar.run(Boolean.FALSE);
+                return;
             default:
-                n71 n71Var = (n71) this.f18612c;
-                LinkedHashSet linkedHashSet = (LinkedHashSet) this.f18613e;
-                String str2 = (String) this.f18614f;
-                HashMap hashMap = (HashMap) this.f18615g;
-                ArrayList arrayList3 = (ArrayList) this.d;
-                Runnable runnable = (Runnable) obj;
-                int i10 = n71Var.V;
-                boolean z11 = false;
-                if (this.f18611b) {
-                    ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i10).getStickerSets(5);
-                    for (int i11 = 0; i11 < stickerSets.size(); i11++) {
-                        if (stickerSets.get(i11).documents != null && (arrayList2 = stickerSets.get(i11).documents) != null) {
-                            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                                String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(arrayList2.get(i12), null);
-                                long j3 = arrayList2.get(i12).f19809id;
-                                if (findAnimatedEmojiEmoticon != null && !linkedHashSet.contains(Long.valueOf(j3)) && str2.contains(findAnimatedEmojiEmoticon.toLowerCase())) {
-                                    linkedHashSet.add(Long.valueOf(j3));
-                                }
-                            }
-                        }
-                    }
-                    ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = MediaDataController.getInstance(i10).getFeaturedEmojiSets();
-                    for (int i13 = 0; i13 < featuredEmojiSets.size(); i13++) {
-                        if ((featuredEmojiSets.get(i13) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).documents) != null) {
-                            for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                                String findAnimatedEmojiEmoticon2 = MessageObject.findAnimatedEmojiEmoticon(arrayList.get(i14), null);
-                                long j10 = arrayList.get(i14).f19809id;
-                                if (findAnimatedEmojiEmoticon2 != null && !linkedHashSet.contains(Long.valueOf(j10)) && str2.contains(findAnimatedEmojiEmoticon2)) {
-                                    linkedHashSet.add(Long.valueOf(j10));
-                                }
-                            }
-                        }
-                    }
-                    runnable.run();
-                    return;
+                ud0 ud0Var = (ud0) obj4;
+                ud0 ud0Var2 = (ud0) obj3;
+                ud0 ud0Var3 = (ud0) obj2;
+                hg.b2 b2Var = (hg.b2) obj;
+                if (z10) {
+                    org.telegram.ui.Components.g5.c(ud0Var, ud0Var2, ud0Var3);
                 }
-                MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-                String[] strArr = n71.a2;
-                ai.h6 h6Var = new ai.h6(n71Var, linkedHashSet, hashMap, arrayList3, runnable);
-                if (n71Var.W == 3) {
-                    z11 = true;
+                int value = ud0Var3.getValue();
+                int value2 = ud0Var2.getValue();
+                int value3 = ud0Var.getValue();
+                un0 un0Var = (un0) b2Var.f10506c;
+                int i13 = b2Var.f10505b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) b2Var.d;
+                if (i13 == 8) {
+                    int[] iArr = un0Var.f40771x;
+                    iArr[0] = value;
+                    iArr[1] = value2 + 1;
+                    iArr[2] = value3;
+                } else {
+                    un0Var.getClass();
                 }
-                mediaDataController.getEmojiSuggestions(strArr, str2, false, h6Var, null, true, z11, false, 30);
+                editTextBoldCursor.setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(value3), Integer.valueOf(value2 + 1), Integer.valueOf(value)));
                 return;
         }
     }
 
-    public pk(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z10, String str) {
-        this.f18612c = profileActivity;
-        this.d = channelParticipant;
-        this.f18613e = user;
-        this.f18614f = chatParticipant;
-        this.f18611b = z10;
-        this.f18615g = str;
+    public pk(SendMessagesHelper sendMessagesHelper, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, fo foVar) {
+        this.f18143c = sendMessagesHelper;
+        this.f18142b = z10;
+        this.d = messageObject;
+        this.e = keyboardButtonProto;
+        this.f18144f = foVar;
     }
 
-    public pk(n71 n71Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
-        this.f18612c = n71Var;
-        this.f18611b = z10;
-        this.f18613e = linkedHashSet;
-        this.f18614f = str;
-        this.f18615g = hashMap;
-        this.d = arrayList;
+    public pk(qn qnVar, org.telegram.ui.Cells.u1 u1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
+        this.f18143c = qnVar;
+        this.d = u1Var;
+        this.e = zArr;
+        this.f18142b = z10;
+        this.f18144f = contentsettings;
+    }
+
+    public pk(boolean z10, ud0 ud0Var, ud0 ud0Var2, ud0 ud0Var3, hg.b2 b2Var) {
+        this.f18142b = z10;
+        this.f18143c = ud0Var;
+        this.d = ud0Var2;
+        this.e = ud0Var3;
+        this.f18144f = b2Var;
     }
 }

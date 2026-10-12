@@ -30,8 +30,8 @@ public class BetaUpdaterController {
     private String getCurrentVersion() {
         try {
             return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionName;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "";
         }
     }
@@ -39,8 +39,8 @@ public class BetaUpdaterController {
     private int getCurrentVersionCode() {
         try {
             return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return 0;
         }
     }
@@ -73,8 +73,8 @@ public class BetaUpdaterController {
             if (!TextUtils.isEmpty(this.path)) {
                 try {
                     new File(this.path).delete();
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
             this.path = file.getAbsolutePath();
@@ -89,7 +89,7 @@ public class BetaUpdaterController {
     }
 
     public void lambda$downloadUpdate$5(File file) {
-        AndroidUtilities.runOnUIThread(new q(12, this, file));
+        AndroidUtilities.runOnUIThread(new g3(11, this, file));
     }
 
     public void lambda$downloadUpdate$6(Float f7) {
@@ -142,11 +142,11 @@ public class BetaUpdaterController {
         } else {
             edit.putString("path", this.path);
         }
-        long j3 = this.lastCheck;
-        if (j3 == 0) {
+        long j10 = this.lastCheck;
+        if (j10 == 0) {
             edit.remove("lastCheck");
         } else {
-            edit.putLong("lastCheck", j3);
+            edit.putLong("lastCheck", j10);
         }
         edit.apply();
     }
@@ -164,7 +164,7 @@ public class BetaUpdaterController {
     }
 
     public void checkForUpdate(boolean z10, Runnable runnable) {
-        long j3;
+        long j10;
         if (!this.checkingForUpdate) {
             if (this.firstCheck) {
                 z10 = true;
@@ -172,13 +172,13 @@ public class BetaUpdaterController {
             if (!z10) {
                 long currentTimeMillis = System.currentTimeMillis() - this.lastCheck;
                 if (ApplicationLoader.mainInterfacePaused) {
-                    j3 = 86400000;
+                    j10 = 86400000;
                 } else if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                    j3 = 240000;
+                    j10 = 240000;
                 } else {
-                    j3 = 1200000;
+                    j10 = 1200000;
                 }
-                if (currentTimeMillis < j3) {
+                if (currentTimeMillis < j10) {
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f19424b;
+                public final BetaUpdaterController f18884b;
 
                 {
-                    this.f19424b = this;
+                    this.f18884b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19424b.lambda$downloadUpdate$5((File) obj);
+                            this.f18884b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19424b.lambda$downloadUpdate$6((Float) obj);
+                            this.f18884b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f19424b;
+                public final BetaUpdaterController f18884b;
 
                 {
-                    this.f19424b = this;
+                    this.f18884b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19424b.lambda$downloadUpdate$5((File) obj);
+                            this.f18884b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19424b.lambda$downloadUpdate$6((Float) obj);
+                            this.f18884b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }

@@ -1,28 +1,214 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotGuardHelper;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class g90 implements Runnable {
-    public final int f26361a;
-    public final m90 f26362b;
-    public final TLRPC.TL_chatInviteJoinResultWebView f26363c;
-    public final long d;
+public final class g90 extends org.telegram.ui.ActionBar.e3 {
+    public static final int f25233r = 0;
+    public final String f25234b;
+    public final org.telegram.ui.ActionBar.m2 f25235c;
+    public final TLRPC.ChatInvite d;
+    public final TLRPC.Chat e;
+    public final TextView f25236f;
+    public final RadialProgressView h;
+    public zc f25237n;
 
-    public g90(m90 m90Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3, int i10) {
-        this.f26361a = i10;
-        this.f26362b = m90Var;
-        this.f26363c = tL_chatInviteJoinResultWebView;
-        this.d = j3;
+    public g90(android.content.Context r27, org.telegram.tgnet.TLObject r28, java.lang.String r29, org.telegram.ui.ActionBar.m2 r30, org.telegram.ui.ActionBar.c6 r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g90.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.m2, org.telegram.ui.ActionBar.c6):void");
     }
 
-    @Override
-    public final void run() {
-        switch (this.f26361a) {
-            case 0:
-                m90.r(this.f26362b, this.f26363c, this.d);
-                return;
-            default:
-                m90.q(this.f26362b, this.f26363c, this.d);
-                return;
+    public static void n(g90 g90Var, long j10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLRPC.ChatInviteJoinResult chatInviteJoinResult, TLRPC.TL_error tL_error) {
+        TLRPC.Updates updates;
+        g90 g90Var2;
+        if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+            TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+            MessagesController.getInstance(g90Var.currentAccount).lambda$processUpdates$377(updates2, false);
+            updates = updates2;
+        } else {
+            updates = null;
+            if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                a90 a90Var = new a90(g90Var, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, j10, 1);
+                g90Var2 = g90Var;
+                AndroidUtilities.runOnUIThread(a90Var);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.p6(g90Var2, tL_error, updates, tL_messages_importChatInvite, 24));
+            }
         }
+        g90Var2 = g90Var;
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.p6(g90Var2, tL_error, updates, tL_messages_importChatInvite, 24));
+    }
+
+    public static void o(g90 g90Var, TLRPC.TL_error tL_error, TLRPC.Updates updates, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        org.telegram.ui.ActionBar.m2 m2Var = g90Var.f25235c;
+        if (m2Var != null && m2Var.getParentActivity() != null) {
+            if (tL_error == null) {
+                if (updates != null && !updates.chats.isEmpty()) {
+                    TLRPC.Chat chat = updates.chats.get(0);
+                    chat.left = false;
+                    chat.kicked = false;
+                    MessagesController.getInstance(g90Var.currentAccount).putUsers(updates.users, false);
+                    MessagesController.getInstance(g90Var.currentAccount).putChats(updates.chats, false);
+                    long j10 = chat.f19216id;
+                    boolean z10 = !ChatObject.isChannelAndNotMegaGroup(chat);
+                    g90Var.getClass();
+                    Bundle e = t8.b.e(j10, "chat_id");
+                    MessagesController messagesController = MessagesController.getInstance(g90Var.currentAccount);
+                    org.telegram.ui.ActionBar.m2 m2Var2 = g90Var.f25235c;
+                    if (messagesController.checkCanOpenChat(e, m2Var2)) {
+                        m2Var2.presentFragment(new f90(g90Var, e, z10, j10), m2Var2 instanceof org.telegram.ui.fo);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            "USER_ALREADY_PARTICIPANT".equals(tL_error.text);
+            g5.e0(g90Var.currentAccount, tL_error, m2Var, tL_messages_importChatInvite, new Object[0]);
+        }
+    }
+
+    public static void q(g90 g90Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j10) {
+        MessagesController.getInstance(g90Var.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
+        BotGuardHelper.getInstance(g90Var.currentAccount).openGuardBotWebApp(j10, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+    }
+
+    public static void r(g90 g90Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j10) {
+        MessagesController.getInstance(g90Var.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
+        BotGuardHelper.getInstance(g90Var.currentAccount).openGuardBotWebApp(j10, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+    }
+
+    public static void s(g90 g90Var, long j10) {
+        g90Var.dismiss();
+        TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
+        tL_messages_importChatInvite.hash = g90Var.f25234b;
+        ConnectionsManager.getInstance(g90Var.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new d90(g90Var, j10, tL_messages_importChatInvite), 2);
+    }
+
+    public static void t(g90 g90Var, boolean z10, long j10) {
+        TLRPC.Chat chat = g90Var.e;
+        AndroidUtilities.runOnUIThread(new Runnable(g90Var) {
+            public final g90 f24632b;
+
+            {
+                this.f24632b = g90Var;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        g90 g90Var2 = this.f24632b;
+                        if (!g90Var2.isDismissed()) {
+                            g90Var2.f25236f.setVisibility(4);
+                            g90Var2.h.setVisibility(0);
+                            return;
+                        }
+                        return;
+                    default:
+                        this.f24632b.dismiss();
+                        return;
+                }
+            }
+        }, 400L);
+        if (g90Var.d == null && chat != null) {
+            MessagesController.getInstance(g90Var.currentAccount).addUserToChat(chat.f19216id, UserConfig.getInstance(g90Var.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable(g90Var) {
+                public final g90 f24632b;
+
+                {
+                    this.f24632b = g90Var;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            g90 g90Var2 = this.f24632b;
+                            if (!g90Var2.isDismissed()) {
+                                g90Var2.f25236f.setVisibility(4);
+                                g90Var2.h.setVisibility(0);
+                                return;
+                            }
+                            return;
+                        default:
+                            this.f24632b.dismiss();
+                            return;
+                    }
+                }
+            }, new bi.h(9, g90Var, z10));
+            return;
+        }
+        TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
+        tL_messages_importChatInvite.hash = g90Var.f25234b;
+        ConnectionsManager.getInstance(g90Var.currentAccount).sendRequest(tL_messages_importChatInvite, new org.telegram.messenger.ba(g90Var, j10, z10, tL_messages_importChatInvite), 2);
+    }
+
+    public static void u(g90 g90Var, long j10, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, TLRPC.TL_error tL_error) {
+        g90 g90Var2;
+        if (tLObject instanceof TLRPC.TL_chatInviteJoinResultOk) {
+            MessagesController.getInstance(g90Var.currentAccount).lambda$processUpdates$377(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
+        } else if (tLObject instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+            a90 a90Var = new a90(g90Var, (TLRPC.TL_chatInviteJoinResultWebView) tLObject, j10, 0);
+            g90Var2 = g90Var;
+            AndroidUtilities.runOnUIThread(a90Var);
+            AndroidUtilities.runOnUIThread(new bi.h4(g90Var2, tL_error, z10, tL_messages_importChatInvite, 18));
+        }
+        g90Var2 = g90Var;
+        AndroidUtilities.runOnUIThread(new bi.h4(g90Var2, tL_error, z10, tL_messages_importChatInvite, 18));
+    }
+
+    public static void v(g90 g90Var, TLRPC.TL_error tL_error, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        org.telegram.ui.ActionBar.m2 m2Var = g90Var.f25235c;
+        if (m2Var != null && m2Var.getParentActivity() != null) {
+            if (tL_error != null) {
+                if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
+                    g90Var.setOnDismissListener(new b90(1, g90Var, z10));
+                } else {
+                    g5.e0(g90Var.currentAccount, tL_error, m2Var, tL_messages_importChatInvite, new Object[0]);
+                }
+            }
+            g90Var.dismiss();
+        }
+    }
+
+    public static CharSequence x(TextView textView, TLRPC.ChatInvite chatInvite, int i10) {
+        String str = chatInvite.participants.get(i10).first_name;
+        if (str == null) {
+            str = "";
+        }
+        return TextUtils.ellipsize(str.trim(), textView.getPaint(), AndroidUtilities.dp(120.0f), TextUtils.TruncateAt.END);
+    }
+
+    public static void y(Context context, org.telegram.ui.ActionBar.m2 m2Var, zc zcVar, boolean z10) {
+        String string;
+        if (context == null) {
+            if (m2Var != null) {
+                m2Var.getContext();
+                return;
+            }
+            return;
+        }
+        if (zcVar == null) {
+            zcVar = zc.a0(m2Var);
+        }
+        pc pcVar = new pc(context, m2Var.getResourceProvider());
+        pcVar.f28278a.f(R.raw.timer_3, 28, 28, null);
+        pcVar.f28279b.setText(LocaleController.getString(R.string.RequestToJoinSent));
+        if (z10) {
+            string = LocaleController.getString(R.string.RequestToJoinChannelSentDescription);
+        } else {
+            string = LocaleController.getString(R.string.RequestToJoinGroupSentDescription);
+        }
+        pcVar.f28280c.setText(string);
+        zcVar.b(pcVar, 2750).j();
     }
 }

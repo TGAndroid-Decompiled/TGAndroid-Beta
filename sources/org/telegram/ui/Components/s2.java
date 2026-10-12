@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class s2 implements org.telegram.ui.ActionBar.z1 {
-    public final int f30363a;
-    public final org.telegram.ui.ActionBar.m2 f30364b;
+    public final int f28996a;
+    public final org.telegram.ui.ActionBar.m2 f28997b;
 
     public s2(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f30363a = i10;
-        this.f30364b = m2Var;
+        this.f28996a = i10;
+        this.f28997b = m2Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.a2 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s2.f(org.telegram.ui.ActionBar.a2, int):void");
+    public final void g(org.telegram.ui.ActionBar.a2 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s2.g(org.telegram.ui.ActionBar.a2, int):void");
     }
 }

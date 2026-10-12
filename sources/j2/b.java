@@ -1,25 +1,25 @@
 package j2;
 
-import b2.b1;
-import b2.u0;
-import b2.x1;
-import u2.b0;
+import b2.b2;
+import b2.g1;
+import b2.z0;
+import u2.c0;
 public interface b {
-    void a(i2.g gVar);
+    void a(i2.e eVar);
 
-    void b(b1 b1Var, pf.b bVar);
+    void b(c0 c0Var);
 
-    void c(b0 b0Var);
+    void c(b2 b2Var);
 
-    void d(x1 x1Var);
+    void d(g1 g1Var, qf.b bVar);
 
-    void e(a aVar, b0 b0Var);
+    void e(a aVar, c0 c0Var);
 
-    void f(a aVar, int i10, long j3);
+    void f(a aVar, int i10, long j10);
 
     void g(a aVar, int i10);
 
-    void h(u0 u0Var);
+    void h(z0 z0Var);
 
     void onRenderedFirstFrame(a aVar);
 

@@ -1,37 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class e91 extends org.telegram.ui.Components.t61 {
-    public static final int f37042a = 0;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class e91 implements RequestDelegate {
+    public final int f35492a;
+    public final o91 f35493b;
 
-    static {
-        org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
+    public e91(o91 o91Var, int i10) {
+        this.f35492a = i10;
+        this.f35493b = o91Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.u61 u61Var, boolean z10, org.telegram.ui.Components.h71 h71Var, org.telegram.ui.Components.p71 p71Var) {
-        ((f91) view).set(u61Var.f31084z);
-    }
-
-    @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.u61 u61Var2) {
-        if (u61Var.f31084z == u61Var2.f31084z) {
-            return true;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35492a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                o91 o91Var = this.f35493b;
+                o91Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new e91(o91Var, 1));
+                return;
+            default:
+                this.f35493b.getMessagesController().loadAppConfig();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new f91(context, c6Var);
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.u61 u61Var2) {
-        if (u61Var.d == u61Var2.d) {
-            return true;
-        }
-        return false;
     }
 }

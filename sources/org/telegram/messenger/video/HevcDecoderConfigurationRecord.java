@@ -97,17 +97,17 @@ public class HevcDecoderConfigurationRecord {
 
     private static g5.c createSampleEntry(ArrayList<ByteBuffer> arrayList, ArrayList<ByteBuffer> arrayList2, ArrayList<ByteBuffer> arrayList3, SequenceParameterSetRbsp sequenceParameterSetRbsp) {
         g5.c cVar = new g5.c("hvc1");
-        cVar.f10310f = 1;
-        cVar.f10317x = 24;
+        cVar.f9923f = 1;
+        cVar.f9930x = 24;
         cVar.v = 1;
-        cVar.f10314r = 72.0d;
-        cVar.f10315s = 72.0d;
-        cVar.f10316w = "HEVC Coding";
+        cVar.f9927r = 72.0d;
+        cVar.f9928s = 72.0d;
+        cVar.f9929w = "HEVC Coding";
         HevcConfigurationBox hevcConfigurationBox = new HevcConfigurationBox();
         hevcConfigurationBox.getHevcDecoderConfigurationRecord().setConfigurationVersion(1);
         if (sequenceParameterSetRbsp != null) {
             cVar.h = sequenceParameterSetRbsp.pic_width_in_luma_samples;
-            cVar.f10313n = sequenceParameterSetRbsp.pic_height_in_luma_samples;
+            cVar.f9926n = sequenceParameterSetRbsp.pic_height_in_luma_samples;
             HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord = hevcConfigurationBox.getHevcDecoderConfigurationRecord();
             hevcDecoderConfigurationRecord.setChromaFormat(sequenceParameterSetRbsp.chroma_format_idc);
             hevcDecoderConfigurationRecord.setGeneral_profile_idc(sequenceParameterSetRbsp.general_profile_idc);
@@ -195,8 +195,8 @@ public class HevcDecoderConfigurationRecord {
                     byteBuffer.position(2);
                     ByteBuffer slice = byteBuffer.slice();
                     ?? obj = new Object();
-                    obj.f46054a = slice;
-                    sequenceParameterSetRbsp = new SequenceParameterSetRbsp(new kc.a(Channels.newInputStream((ReadableByteChannel) obj)));
+                    obj.f44127a = slice;
+                    sequenceParameterSetRbsp = new SequenceParameterSetRbsp(new lc.a(Channels.newInputStream((ReadableByteChannel) obj)));
                     break;
                 case 34:
                     arrayList2.add(byteBuffer.duplicate());
@@ -302,9 +302,9 @@ public class HevcDecoderConfigurationRecord {
 
     public int hashCode() {
         int i10;
-        long j3 = this.general_profile_compatibility_flags;
-        long j10 = this.general_constraint_indicator_flags;
-        int i11 = ((((((((((((((((((((((((((((((((((((((((((this.configurationVersion * 31) + this.general_profile_space) * 31) + (this.general_tier_flag ? 1 : 0)) * 31) + this.general_profile_idc) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + this.general_level_idc) * 31) + this.reserved1) * 31) + this.min_spatial_segmentation_idc) * 31) + this.reserved2) * 31) + this.parallelismType) * 31) + this.reserved3) * 31) + this.chromaFormat) * 31) + this.reserved4) * 31) + this.bitDepthLumaMinus8) * 31) + this.reserved5) * 31) + this.bitDepthChromaMinus8) * 31) + this.avgFrameRate) * 31) + this.constantFrameRate) * 31) + this.numTemporalLayers) * 31) + (this.temporalIdNested ? 1 : 0)) * 31) + this.lengthSizeMinusOne) * 31;
+        long j10 = this.general_profile_compatibility_flags;
+        long j11 = this.general_constraint_indicator_flags;
+        int i11 = ((((((((((((((((((((((((((((((((((((((((((this.configurationVersion * 31) + this.general_profile_space) * 31) + (this.general_tier_flag ? 1 : 0)) * 31) + this.general_profile_idc) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + this.general_level_idc) * 31) + this.reserved1) * 31) + this.min_spatial_segmentation_idc) * 31) + this.reserved2) * 31) + this.parallelismType) * 31) + this.reserved3) * 31) + this.chromaFormat) * 31) + this.reserved4) * 31) + this.bitDepthLumaMinus8) * 31) + this.reserved5) * 31) + this.bitDepthChromaMinus8) * 31) + this.avgFrameRate) * 31) + this.constantFrameRate) * 31) + this.numTemporalLayers) * 31) + (this.temporalIdNested ? 1 : 0)) * 31) + this.lengthSizeMinusOne) * 31;
         List<Array> list = this.arrays;
         if (list != null) {
             i10 = list.hashCode();
@@ -478,16 +478,16 @@ public class HevcDecoderConfigurationRecord {
         this.frame_only_constraint_flag = z10;
     }
 
-    public void setGeneral_constraint_indicator_flags(long j3) {
-        this.general_constraint_indicator_flags = j3;
+    public void setGeneral_constraint_indicator_flags(long j10) {
+        this.general_constraint_indicator_flags = j10;
     }
 
     public void setGeneral_level_idc(int i10) {
         this.general_level_idc = i10;
     }
 
-    public void setGeneral_profile_compatibility_flags(long j3) {
-        this.general_profile_compatibility_flags = j3;
+    public void setGeneral_profile_compatibility_flags(long j10) {
+        this.general_profile_compatibility_flags = j10;
     }
 
     public void setGeneral_profile_idc(int i10) {
@@ -622,21 +622,21 @@ public class HevcDecoderConfigurationRecord {
         }
         byteBuffer.put((byte) ((i14 + i10 + this.general_profile_idc) & 255));
         byteBuffer.putInt((int) this.general_profile_compatibility_flags);
-        long j3 = this.general_constraint_indicator_flags;
+        long j10 = this.general_constraint_indicator_flags;
         if (this.frame_only_constraint_flag) {
-            j3 |= 140737488355328L;
+            j10 |= 140737488355328L;
         }
         if (this.non_packed_constraint_flag) {
-            j3 |= 70368744177664L;
+            j10 |= 70368744177664L;
         }
         if (this.interlaced_source_flag) {
-            j3 |= 35184372088832L;
+            j10 |= 35184372088832L;
         }
         if (this.progressive_source_flag) {
-            j3 |= 17592186044416L;
+            j10 |= 17592186044416L;
         }
-        e5.b.p((int) ((281474976710655L & j3) >> 32), byteBuffer);
-        byteBuffer.putInt((int) (j3 & 4294967295L));
+        e5.b.p((int) ((281474976710655L & j10) >> 32), byteBuffer);
+        byteBuffer.putInt((int) (j10 & 4294967295L));
         byteBuffer.put((byte) (this.general_level_idc & 255));
         e5.b.p((this.reserved1 << 12) + this.min_spatial_segmentation_idc, byteBuffer);
         byteBuffer.put((byte) (((this.reserved2 << 2) + this.parallelismType) & 255));

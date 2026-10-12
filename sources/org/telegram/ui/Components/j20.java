@@ -1,168 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.RectF;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class j20 extends FrameLayout {
-    public final RectF f27343a;
-    public final FragmentContextView f27344b;
+import org.telegram.messenger.LiteMode;
+public final class j20 {
+    public float f26161c;
+    public float d;
+    public float e;
+    public float f26162f;
+    public RadialGradient f26163g;
+    public final int f26164i;
+    public int f26165j;
+    public int f26166k;
+    public int f26167l;
+    public float f26159a = -1.0f;
+    public float f26160b = -1.0f;
+    public final Matrix h = new Matrix();
+    public final int f26168m = org.telegram.ui.ActionBar.g6.Xg;
+    public final int f26169n = org.telegram.ui.ActionBar.g6.Yg;
+    public final int f26170o = org.telegram.ui.ActionBar.g6.Zg;
+    public final int f26171p = org.telegram.ui.ActionBar.g6.f19853ah;
+    public final int f26172q = org.telegram.ui.ActionBar.g6.f19999ih;
+    public final int f26173r = org.telegram.ui.ActionBar.g6.f20019jh;
+    public final int f26174s = org.telegram.ui.ActionBar.g6.f20038kh;
 
-    public j20(FragmentContextView fragmentContextView, Context context) {
-        super(context);
-        this.f27344b = fragmentContextView;
-        this.f27343a = new RectF();
+    public j20(int i10) {
+        this.f26164i = i10;
+        a();
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        super.dispatchDraw(canvas);
-        FragmentContextView fragmentContextView = this.f27344b;
-        org.telegram.ui.ActionBar.m2 m2Var = fragmentContextView.h;
-        q6 q6Var = fragmentContextView.f23954j0;
-        if (fragmentContextView.U == 4 && fragmentContextView.f23952h0) {
-            int dp = AndroidUtilities.dp(24.0f) + ((int) Math.ceil(q6Var.c()));
-            if (dp != fragmentContextView.f23950f0) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{-10121218, -6983683}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                fragmentContextView.f23946d0 = linearGradient;
-                fragmentContextView.f23945c0.setShader(linearGradient);
-                fragmentContextView.f23950f0 = dp;
-            }
-            ChatObject.Call groupCall = fragmentContextView.f23957n.getGroupCall();
-            if (m2Var != null && groupCall != null && groupCall.isScheduled()) {
-                long currentTimeMillis = (groupCall.call.schedule_date * 1000) - m2Var.getConnectionsManager().getCurrentTimeMillis();
-                f7 = 1.0f;
-                if (currentTimeMillis >= 0) {
-                    if (currentTimeMillis < 5000) {
-                        f7 = 1.0f - (((float) currentTimeMillis) / 5000.0f);
-                    } else {
-                        f7 = 0.0f;
-                    }
-                }
-                if (currentTimeMillis < 6000) {
-                    invalidate();
-                }
-            } else {
-                f7 = 0.0f;
-            }
-            fragmentContextView.f23948e0.reset();
-            fragmentContextView.f23948e0.postTranslate((-fragmentContextView.f23950f0) * 0.7f * f7, 0.0f);
-            fragmentContextView.f23946d0.setLocalMatrix(fragmentContextView.f23948e0);
-            int measuredWidth = (getMeasuredWidth() - dp) - AndroidUtilities.dp(10.0f);
-            int dp2 = AndroidUtilities.dp(10.0f);
-            float f10 = measuredWidth;
-            float f11 = dp2;
-            float dp3 = AndroidUtilities.dp(28.0f) + dp2;
-            RectF rectF = this.f27343a;
-            rectF.set(f10, f11, measuredWidth + dp, dp3);
-            canvas.save();
-            float a2 = fragmentContextView.f23955k0.a(0.1f);
-            canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-            canvas.translate(f10, f11);
-            RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(0.0f, 0.0f, dp, AndroidUtilities.dp(28.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), fragmentContextView.f23945c0);
-            canvas.translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            q6Var.setBounds(0, 0, AndroidUtilities.displaySize.x, AndroidUtilities.dp(16.0f));
-            q6Var.draw(canvas);
-            canvas.restore();
+    public final void a() {
+        int i10 = this.f26164i;
+        if (i10 == 0) {
+            int x02 = org.telegram.ui.ActionBar.g6.x0(null, this.f26168m, false);
+            this.f26165j = x02;
+            int x03 = org.telegram.ui.ActionBar.g6.x0(null, this.f26169n, false);
+            this.f26166k = x03;
+            this.f26163g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x02, x03}, (float[]) null, Shader.TileMode.CLAMP);
+        } else if (i10 == 1) {
+            int x04 = org.telegram.ui.ActionBar.g6.x0(null, this.f26170o, false);
+            this.f26165j = x04;
+            int x05 = org.telegram.ui.ActionBar.g6.x0(null, this.f26171p, false);
+            this.f26166k = x05;
+            this.f26163g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x04, x05}, (float[]) null, Shader.TileMode.CLAMP);
+        } else if (i10 == 3) {
+            int x06 = org.telegram.ui.ActionBar.g6.x0(null, this.f26172q, false);
+            this.f26165j = x06;
+            int x07 = org.telegram.ui.ActionBar.g6.x0(null, this.f26174s, false);
+            this.f26167l = x07;
+            int x08 = org.telegram.ui.ActionBar.g6.x0(null, this.f26173r, false);
+            this.f26166k = x08;
+            this.f26163g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x06, x07, x08}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
         }
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        gh ghVar;
-        ChatObject.Call groupCall;
-        int i10;
-        int i11;
-        FragmentContextView fragmentContextView = this.f27344b;
-        if (fragmentContextView.U == 4 && fragmentContextView.f23952h0 && fragmentContextView.f23955k0 != null) {
-            boolean contains = this.f27343a.contains(motionEvent.getX(), motionEvent.getY());
-            if (motionEvent.getAction() == 0) {
-                fragmentContextView.f23955k0.c(contains);
-            } else if (motionEvent.getAction() == 2) {
-                if (!contains) {
-                    fragmentContextView.f23955k0.c(false);
-                }
-            } else if (motionEvent.getAction() == 1) {
-                if (contains) {
-                    i20 i20Var = fragmentContextView.m0;
-                    org.telegram.ui.ActionBar.m2 m2Var = fragmentContextView.h;
-                    if (m2Var != null && (ghVar = fragmentContextView.f23957n) != null && (groupCall = ghVar.getGroupCall()) != null && groupCall.call != null) {
-                        if (fragmentContextView.M0 != 0) {
-                            m2Var.getConnectionsManager().cancelRequest(fragmentContextView.M0, true);
-                            fragmentContextView.M0 = 0;
-                        }
-                        TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
-                        togglegroupcallstartsubscription.call = groupCall.getInputGroupCall();
-                        TLRPC.GroupCall groupCall2 = groupCall.call;
-                        boolean z10 = !fragmentContextView.f23953i0;
-                        fragmentContextView.f23953i0 = z10;
-                        groupCall2.schedule_start_subscribed = z10;
-                        togglegroupcallstartsubscription.subscribed = z10;
-                        fragmentContextView.M0 = m2Var.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, null);
-                        if (fragmentContextView.f23956l0) {
-                            AndroidUtilities.cancelRunOnUIThread(i20Var);
-                            fragmentContextView.f23956l0 = false;
-                        }
-                        i20Var.run();
-                        zc a02 = zc.a0(m2Var);
-                        boolean z11 = fragmentContextView.f23953i0;
-                        if (z11) {
-                            i10 = R.raw.silent_unmute;
-                        } else {
-                            i10 = R.raw.silent_mute;
-                        }
-                        if (z11) {
-                            i11 = R.string.LiveStreamWillNotify;
-                        } else {
-                            i11 = R.string.LiveStreamWillNotNotify;
-                        }
-                        org.telegram.messenger.v0.q(i11, a02, i10, 36);
-                    }
-                }
-                fragmentContextView.f23955k0.c(false);
-            } else if (motionEvent.getAction() == 3) {
-                fragmentContextView.f23955k0.c(false);
+    public final void b(Paint paint) {
+        int i10 = this.f26164i;
+        if (i10 != 0 && i10 != 1 && i10 != 3) {
+            paint.setShader(null);
+            paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19873bh, false));
+        } else if (!LiteMode.isEnabled(512)) {
+            paint.setShader(null);
+            if (i10 == 3) {
+                paint.setColor(i0.a.d(0.5f, i0.a.d(0.5f, this.f26165j, this.f26166k), this.f26167l));
+            } else {
+                paint.setColor(i0.a.d(0.5f, this.f26165j, this.f26166k));
             }
         } else {
-            ad adVar = fragmentContextView.f23955k0;
-            if (adVar != null) {
-                adVar.c(false);
-            }
+            paint.setShader(this.f26163g);
         }
-        ad adVar2 = fragmentContextView.f23955k0;
-        if ((adVar2 != null && adVar2.f24287i) || super.dispatchTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        FragmentContextView fragmentContextView = this.f27344b;
-        m9 m9Var = fragmentContextView.f23943b0;
-        if (m9Var != null && m9Var.getVisibility() == 0) {
-            fragmentContextView.f23943b0.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f27344b.f23954j0 && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

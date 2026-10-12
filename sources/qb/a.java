@@ -1,10 +1,21 @@
 package qb;
 
-import j$.util.DesugarCollections;
-import java.lang.ref.ReferenceQueue;
-import java.util.HashSet;
-import java.util.Set;
-public final class a {
-    public final ReferenceQueue f46012a = new ReferenceQueue();
-    public final Set f46013b = DesugarCollections.synchronizedSet(new HashSet());
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class a {
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
+        }
+        return null;
+    }
+
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
+        }
+        parcel.writeInt(0);
+    }
 }

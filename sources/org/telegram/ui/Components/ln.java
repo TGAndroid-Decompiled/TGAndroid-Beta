@@ -1,26 +1,30 @@
 package org.telegram.ui.Components;
-public final class ln implements Runnable {
-    public final int f28230a;
-    public final no f28231b;
-    public final int f28232c;
 
-    public ln(no noVar, int i10, int i11) {
-        this.f28230a = i11;
-        this.f28231b = noVar;
-        this.f28232c = i10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ln extends AnimatorListenerAdapter {
+    public final int f27070a;
+    public final io f27071b;
+
+    public ln(io ioVar, int i10) {
+        this.f27070a = i10;
+        this.f27071b = ioVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28230a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27070a) {
             case 0:
-                this.f28231b.h0(this.f28232c, null);
+                this.f27071b.E.setTranslationY(0.0f);
                 return;
             case 1:
-                this.f28231b.e0(this.f28232c);
+                this.f27071b.E.setTranslationY(0.0f);
                 return;
             default:
-                this.f28231b.h0(this.f28232c, null);
+                io ioVar = this.f27071b;
+                ioVar.f26012f1 = false;
+                ioVar.E.setTranslationY(0.0f);
+                ioVar.d0();
                 return;
         }
     }

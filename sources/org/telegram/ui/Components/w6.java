@@ -1,31 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class w6 implements View.OnClickListener {
-    public final int f32270a;
-    public final Runnable f32271b;
-
-    public w6(int i10, Runnable runnable) {
-        this.f32270a = i10;
-        this.f32271b = runnable;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f32270a) {
-            case 0:
-                this.f32271b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f32271b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                this.f32271b.run();
-                return;
-        }
+import android.graphics.Typeface;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+public final class w6 extends pb {
+    public w6(LaunchActivity launchActivity, org.telegram.ui.ob0 ob0Var) {
+        super(launchActivity, null);
+        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
+        TextView textView = new TextView(getContext());
+        addView(qVar, w7.a6.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Hi));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, w7.a6.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        qVar.setImageDrawable(launchActivity.getDrawable(ob0Var.f38917b));
+        qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
+        qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
+        qVar.setForeground(ob0Var.f38918c);
+        org.telegram.messenger.yh.q(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(ob0Var.d)}, textView);
     }
 }

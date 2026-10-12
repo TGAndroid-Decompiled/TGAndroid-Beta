@@ -8,20 +8,20 @@ public enum f0 implements Parcelable {
     NOT_SUPPORTED("not-supported");
     
     public static final Parcelable.Creator<f0> CREATOR = new r0(3);
-    public final String f4472a;
+    public final String f4582a;
 
     f0(String str) {
-        this.f4472a = str;
+        this.f4582a = str;
     }
 
     public static f0 a(String str) {
         f0[] values;
         for (f0 f0Var : values()) {
-            if (str.equals(f0Var.f4472a)) {
+            if (str.equals(f0Var.f4582a)) {
                 return f0Var;
             }
         }
-        throw new Exception(a1.g.q("TokenBindingStatus ", str, " not supported"));
+        throw new Exception(a1.g.p("TokenBindingStatus ", str, " not supported"));
     }
 
     @Override
@@ -31,11 +31,11 @@ public enum f0 implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f4472a;
+        return this.f4582a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f4472a);
+        parcel.writeString(this.f4582a);
     }
 }

@@ -1,399 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class dg0 extends FrameLayout {
-    public static final float N = AndroidUtilities.dp(20.0f);
-    public static final float O = AndroidUtilities.dp(30.0f);
-    public static final float P = AndroidUtilities.dp(30.0f);
-    public boolean E;
-    public boolean F;
-    public boolean G;
-    public int H;
-    public Paint I;
-    public Paint J;
-    public boolean K;
-    public cg0 L;
-    public int M;
-    public PointF f25342a;
-    public float f25343b;
-    public float f25344c;
-    public sw0 d;
-    public PointF f25345e;
-    public float f25346f;
-    public float h;
-    public float f25347n;
-    public RectF f25348r;
-    public float f25349s;
-    public float v;
-    public float f25350w;
-    public float f25351x;
-    public boolean f25352y;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class dg0 implements TextureView.SurfaceTextureListener {
+    public final boolean f24395a;
+    public final la f24396b;
+    public final ig0 f24397c;
 
-    public static float a(float f7) {
-        return (f7 * 3.1415927f) / 180.0f;
+    public dg0(ig0 ig0Var, boolean z10, la laVar) {
+        this.f24397c = ig0Var;
+        this.f24395a = z10;
+        this.f24396b = laVar;
     }
 
-    public static float b(MotionEvent motionEvent) {
-        if (motionEvent.getPointerCount() != 2) {
-            return 0.0f;
-        }
-        float x10 = motionEvent.getX(0);
-        float y3 = motionEvent.getY(0);
-        float x11 = x10 - motionEvent.getX(1);
-        float y10 = y3 - motionEvent.getY(1);
-        return (float) Math.sqrt((y10 * y10) + (x11 * x11));
-    }
-
-    private PointF getActualCenterPoint() {
-        int i10;
-        sw0 sw0Var = this.d;
-        float f7 = sw0Var.f30699a;
-        float width = (this.f25345e.x * f7) + ((getWidth() - f7) / 2.0f);
-        if (!this.K) {
-            i10 = AndroidUtilities.statusBarHeight;
-        } else {
-            i10 = 0;
-        }
-        float height = getHeight();
-        float f10 = sw0Var.f30700b;
-        float z10 = com.google.android.gms.internal.vision.e2.z(height, f10, 2.0f, i10);
-        float f11 = sw0Var.f30699a;
-        return new PointF(width, (this.f25345e.y * f11) + org.telegram.messenger.v0.y(f11, f10, 2.0f, z10));
-    }
-
-    private float getActualInnerRadius() {
-        sw0 sw0Var = this.d;
-        return Math.min(sw0Var.f30699a, sw0Var.f30700b) * this.f25346f;
-    }
-
-    private float getActualOuterRadius() {
-        sw0 sw0Var = this.d;
-        return Math.min(sw0Var.f30699a, sw0Var.f30700b) * this.h;
-    }
-
-    public final void c(int i10, MotionEvent motionEvent) {
-        float f7;
-        int i11;
-        int i12;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        int i13;
-        boolean z13 = this.K;
-        float x10 = motionEvent.getX();
-        float y3 = motionEvent.getY();
-        PointF actualCenterPoint = getActualCenterPoint();
-        float f10 = x10 - actualCenterPoint.x;
-        float f11 = y3 - actualCenterPoint.y;
-        float sqrt = (float) Math.sqrt((f11 * f11) + (f10 * f10));
-        sw0 sw0Var = this.d;
-        float min = Math.min(sw0Var.f30699a, sw0Var.f30700b);
-        float f12 = this.f25346f * min;
-        float f13 = this.h * min;
-        float abs = (float) Math.abs((Math.sin(a(this.f25347n) + 1.5707963267948966d) * f11) + (Math.cos(a(this.f25347n) + 1.5707963267948966d) * f10));
-        float f14 = 0.0f;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 == 3 || i10 == 4 || i10 == 5) {
-                    this.M = 1;
-                    return;
-                }
-                return;
-            }
-            int i14 = this.H;
-            if (i14 == 0) {
-                int c10 = m1.j.c(this.M);
-                if (c10 != 1) {
-                    if (c10 != 2) {
-                        if (c10 != 3) {
-                            if (c10 == 5) {
-                                float f15 = x10 - this.f25349s;
-                                float f16 = y3 - this.v;
-                                if (x10 > actualCenterPoint.x) {
-                                    z10 = true;
-                                } else {
-                                    z10 = false;
-                                }
-                                if (y3 > actualCenterPoint.y) {
-                                    z11 = true;
-                                } else {
-                                    z11 = false;
-                                }
-                                if (Math.abs(f16) > Math.abs(f15)) {
-                                    z12 = true;
-                                } else {
-                                    z12 = false;
-                                }
-                                if (z10 || z11 ? !(!z10 || z11 ? !z10 || !z11 ? !z12 ? f15 >= 0.0f : f16 >= 0.0f : !z12 ? f15 >= 0.0f : f16 <= 0.0f : !z12 ? f15 <= 0.0f : f16 <= 0.0f) : !(!z12 ? f15 <= 0.0f : f16 >= 0.0f)) {
-                                    i13 = 1;
-                                } else {
-                                    i13 = 0;
-                                }
-                                this.f25347n = (((((float) Math.sqrt((f16 * f16) + (f15 * f15))) * ((i13 * 2) - 1)) / 3.1415927f) / 1.15f) + this.f25347n;
-                                this.f25349s = x10;
-                                this.v = y3;
-                            }
-                        } else {
-                            this.h = Math.max(this.f25346f + 0.02f, (this.f25344c + (abs - this.f25343b)) / min);
-                        }
-                    } else {
-                        this.f25346f = Math.min(Math.max(0.1f, (this.f25344c + (abs - this.f25343b)) / min), this.h - 0.02f);
-                    }
-                } else {
-                    float f17 = x10 - this.f25349s;
-                    float f18 = y3 - this.v;
-                    float width = (getWidth() - sw0Var.f30699a) / 2.0f;
-                    if (!z13) {
-                        i12 = AndroidUtilities.statusBarHeight;
-                    } else {
-                        i12 = 0;
-                    }
-                    float height = getHeight();
-                    float f19 = sw0Var.f30700b;
-                    float z14 = com.google.android.gms.internal.vision.e2.z(height, f19, 2.0f, i12);
-                    PointF pointF = new PointF(Math.max(width, Math.min(sw0Var.f30699a + width, this.f25342a.x + f17)), Math.max(z14, Math.min(f19 + z14, this.f25342a.y + f18)));
-                    float f20 = pointF.x - width;
-                    float f21 = sw0Var.f30699a;
-                    this.f25345e = new PointF(f20 / f21, (((f21 - sw0Var.f30700b) / 2.0f) + (pointF.y - z14)) / f21);
-                }
-            } else if (i14 == 1) {
-                int c11 = m1.j.c(this.M);
-                if (c11 != 1) {
-                    if (c11 != 2) {
-                        if (c11 == 3) {
-                            this.h = Math.max(this.f25346f + 0.02f, (this.f25344c + (sqrt - this.f25343b)) / min);
-                        }
-                    } else {
-                        this.f25346f = Math.min(Math.max(0.1f, (this.f25344c + (sqrt - this.f25343b)) / min), this.h - 0.02f);
-                    }
-                } else {
-                    float f22 = x10 - this.f25349s;
-                    float f23 = y3 - this.v;
-                    float width2 = (getWidth() - sw0Var.f30699a) / 2.0f;
-                    if (!z13) {
-                        i11 = AndroidUtilities.statusBarHeight;
-                    } else {
-                        i11 = 0;
-                    }
-                    float height2 = getHeight();
-                    float f24 = sw0Var.f30700b;
-                    float z15 = com.google.android.gms.internal.vision.e2.z(height2, f24, 2.0f, i11);
-                    PointF pointF2 = new PointF(Math.max(width2, Math.min(sw0Var.f30699a + width2, this.f25342a.x + f22)), Math.max(z15, Math.min(f24 + z15, this.f25342a.y + f23)));
-                    float f25 = pointF2.x - width2;
-                    float f26 = sw0Var.f30699a;
-                    this.f25345e = new PointF(f25 / f26, (((f26 - sw0Var.f30700b) / 2.0f) + (pointF2.y - z15)) / f26);
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        ig0 ig0Var = this.f24397c;
+        TextureView textureView = ig0Var.f25955i0;
+        if (ig0Var.f25958l0 == null && surfaceTexture != null) {
+            h00 h00Var = new h00(surfaceTexture, ig0Var.C0, ig0Var.H0, ig0Var.f25972w0, this.f24395a, this.f24396b, i10, i11);
+            ig0Var.f25958l0 = h00Var;
+            if (!this.f24395a) {
+                h00Var.i(ig0Var.J0, ig0Var.K0);
+                h00 h00Var2 = ig0Var.f25958l0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                ra raVar = h00Var2.I;
+                if (raVar != null) {
+                    Matrix matrix = raVar.v;
+                    transform.invert(matrix);
+                    float f7 = width;
+                    float f10 = height;
+                    matrix.preScale(f7, f10);
+                    matrix.postScale(1.0f / f7, 1.0f / f10);
+                    raVar.c(matrix);
+                    h00Var2.d(false, false, false);
                 }
             }
-            invalidate();
-            cg0 cg0Var = this.L;
-            if (cg0Var != null) {
-                PointF pointF3 = this.f25345e;
-                float f27 = this.f25346f;
-                float f28 = this.h;
-                og0 og0Var = ((gg0) cg0Var).f26431a;
-                og0Var.f29180a0 = f28;
-                og0Var.f29182b0 = pointF3;
-                og0Var.f29184c0 = f27;
-                og0Var.f29185d0 = a(this.f25347n) + 1.5707964f;
-                o00 o00Var = og0Var.f29195l0;
-                if (o00Var != null) {
-                    o00Var.e(false, false, false);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        boolean z16 = false;
-        this.f25349s = motionEvent.getX();
-        this.v = motionEvent.getY();
-        if (Math.abs(f13 - f12) < N) {
-            z16 = true;
-        }
-        float f29 = P;
-        if (z16) {
-            f7 = 0.0f;
-        } else {
-            f7 = f29;
-        }
-        if (!z16) {
-            f14 = f29;
-        }
-        int i15 = this.H;
-        float f30 = O;
-        if (i15 == 0) {
-            if (sqrt < f30) {
-                this.M = 2;
-                this.f25342a = actualCenterPoint;
-                return;
-            }
-            float f31 = f12 - f29;
-            if (abs > f31 && abs < f7 + f12) {
-                this.M = 3;
-                this.f25343b = abs;
-                this.f25344c = f12;
-            } else if (abs > f13 - f14 && abs < f13 + f29) {
-                this.M = 4;
-                this.f25343b = abs;
-                this.f25344c = f13;
-            } else if (abs <= f31 || abs >= f13 + f29) {
-                this.M = 6;
-            }
-        } else if (i15 == 1) {
-            if (sqrt < f30) {
-                this.M = 2;
-                this.f25342a = actualCenterPoint;
-            } else if (sqrt > f12 - f29 && sqrt < f7 + f12) {
-                this.M = 3;
-                this.f25343b = sqrt;
-                this.f25344c = f12;
-            } else if (sqrt > f13 - f14 && sqrt < f29 + f13) {
-                this.M = 4;
-                this.f25343b = sqrt;
-                this.f25344c = f13;
-            }
-        }
-    }
-
-    public final void d(int i10, MotionEvent motionEvent) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 == 3 || i10 == 4 || i10 == 5) {
-                    this.M = 1;
-                    return;
-                }
-                return;
-            }
-        } else {
-            this.f25350w = b(motionEvent);
-            this.f25351x = 1.0f;
-            this.M = 5;
-        }
-        float b10 = b(motionEvent);
-        float e7 = a1.g.e(b10 - this.f25350w, AndroidUtilities.density, 0.01f, this.f25351x);
-        this.f25351x = e7;
-        float max = Math.max(0.1f, this.f25346f * e7);
-        this.f25346f = max;
-        this.h = Math.max(max + 0.02f, this.h * this.f25351x);
-        this.f25351x = 1.0f;
-        this.f25350w = b10;
-        invalidate();
-        cg0 cg0Var = this.L;
-        if (cg0Var != null) {
-            PointF pointF = this.f25345e;
-            float f7 = this.f25346f;
-            float f10 = this.h;
-            og0 og0Var = ((gg0) cg0Var).f26431a;
-            og0Var.f29180a0 = f10;
-            og0Var.f29182b0 = pointF;
-            og0Var.f29184c0 = f7;
-            og0Var.f29185d0 = a(this.f25347n) + 1.5707964f;
-            o00 o00Var = og0Var.f29195l0;
-            if (o00Var != null) {
-                o00Var.e(false, false, false);
-            }
+            ig0Var.f25958l0.f(ig0Var);
+            h00 h00Var3 = ig0Var.f25958l0;
+            h00Var3.getClass();
+            h00Var3.postRunnable(new d00(h00Var3, i10, i11, 1));
+            ig0Var.f25958l0.d(true, true, false);
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint;
-        Canvas canvas2 = canvas;
-        Paint paint2 = this.J;
-        RectF rectF = this.f25348r;
-        Paint paint3 = paint2;
-        Paint paint4 = this.I;
-        super.onDraw(canvas);
-        PointF actualCenterPoint = getActualCenterPoint();
-        float actualInnerRadius = getActualInnerRadius();
-        float actualOuterRadius = getActualOuterRadius();
-        canvas2.translate(actualCenterPoint.x, actualCenterPoint.y);
-        int i10 = this.H;
-        int i11 = 0;
-        if (i10 == 0) {
-            canvas2.rotate(this.f25347n);
-            float dp = AndroidUtilities.dp(6.0f);
-            float dp2 = AndroidUtilities.dp(12.0f);
-            float dp3 = AndroidUtilities.dp(1.5f);
-            int i12 = 0;
-            while (i12 < 30) {
-                float f7 = dp2 + dp;
-                float f10 = i12 * f7;
-                float f11 = -actualInnerRadius;
-                float f12 = f10 + dp2;
-                float f13 = dp3 - actualInnerRadius;
-                canvas2.drawRect(f10, f11, f12, f13, paint4);
-                float f14 = ((-i12) * f7) - dp;
-                float f15 = f14 - dp2;
-                canvas.drawRect(f15, f11, f14, f13, paint4);
-                float f16 = dp3 + actualInnerRadius;
-                float f17 = actualInnerRadius;
-                canvas.drawRect(f10, f17, f12, f16, paint4);
-                canvas.drawRect(f15, f17, f14, f16, paint4);
-                i12++;
-                actualInnerRadius = f17;
-                canvas2 = canvas;
-            }
-            float dp4 = AndroidUtilities.dp(6.0f);
-            while (i11 < 64) {
-                float f18 = dp4 + dp;
-                float f19 = i11 * f18;
-                float f20 = -actualOuterRadius;
-                float f21 = dp4 + f19;
-                float f22 = dp3 - actualOuterRadius;
-                canvas.drawRect(f19, f20, f21, f22, paint4);
-                float f23 = ((-i11) * f18) - dp;
-                float f24 = f23 - dp4;
-                canvas.drawRect(f24, f20, f23, f22, paint4);
-                float f25 = dp3 + actualOuterRadius;
-                float f26 = actualOuterRadius;
-                canvas.drawRect(f19, f26, f21, f25, paint4);
-                canvas.drawRect(f24, f26, f23, f25, paint4);
-                i11++;
-                actualOuterRadius = f26;
-            }
-            paint = paint4;
-        } else {
-            paint = paint4;
-            if (i10 == 1) {
-                float f27 = -actualInnerRadius;
-                rectF.set(f27, f27, actualInnerRadius, actualInnerRadius);
-                int i13 = 0;
-                while (i13 < 22) {
-                    Paint paint5 = paint3;
-                    canvas.drawArc(rectF, i13 * 16.35f, 10.2f, false, paint5);
-                    i13++;
-                    paint3 = paint5;
-                }
-                Paint paint6 = paint3;
-                float f28 = -actualOuterRadius;
-                rectF.set(f28, f28, actualOuterRadius, actualOuterRadius);
-                while (i11 < 64) {
-                    canvas.drawArc(rectF, 5.62f * i11, 3.6f, false, paint6);
-                    i11++;
-                }
-            }
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        ig0 ig0Var = this.f24397c;
+        h00 h00Var = ig0Var.f25958l0;
+        if (h00Var != null) {
+            h00Var.postRunnable(new e00(h00Var, 0));
+            ig0Var.f25958l0 = null;
+            return true;
         }
-        canvas.drawCircle(0.0f, 0.0f, AndroidUtilities.dp(8.0f), paint);
+        return true;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dg0.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        ig0 ig0Var = this.f24397c;
+        h00 h00Var = ig0Var.f25958l0;
+        if (h00Var != null) {
+            h00Var.postRunnable(new d00(h00Var, i10, i11, 1));
+            ig0Var.f25958l0.d(false, true, false);
+            ig0Var.f25958l0.postRunnable(new yc0(this, 7));
+        }
     }
 
-    public void setDelegate(cg0 cg0Var) {
-        this.L = cg0Var;
-    }
-
-    public void setType(int i10) {
-        this.H = i10;
-        invalidate();
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

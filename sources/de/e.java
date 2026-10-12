@@ -1,13 +1,31 @@
 package de;
-public final class e extends ld.c {
-    public kotlin.jvm.internal.p f8315a;
-    public Object f8316b;
-    public int f8317c;
+public final class e extends f {
+    public final Throwable f6509a;
+
+    public e(Throwable th2) {
+        this.f6509a = th2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof e) {
+            if (kotlin.jvm.internal.i.a(this.f6509a, ((e) obj).f6509a)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        Throwable th2 = this.f6509a;
+        if (th2 != null) {
+            return th2.hashCode();
+        }
+        return 0;
+    }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f8316b = obj;
-        this.f8317c |= Integer.MIN_VALUE;
-        return p.a(null, null, this);
+    public final String toString() {
+        return "Closed(" + this.f6509a + ')';
     }
 }

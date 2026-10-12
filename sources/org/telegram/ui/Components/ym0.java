@@ -1,136 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class ym0 implements s4.s0 {
-    public RecyclerView f33133a;
-    public boolean f33135c;
-    public int d;
-    public int f33136e;
-    public int f33137f;
-    public boolean f33138g;
-    public boolean h;
-    public int f33139i;
-    public final xm0 f33141k;
-    public int f33134b = -1;
-    public final int f33140j = AndroidUtilities.dp(80.0f);
-    public final org.telegram.ui.Cells.l7 f33142l = new org.telegram.ui.Cells.l7(this, 20);
+public final class ym0 extends FrameLayout {
+    public final Paint f31648a;
+    public final t50 f31649b;
+    public final RectF f31650c;
+    public final float d;
+    public float e;
 
-    public ym0(xm0 xm0Var) {
-        this.f33141k = xm0Var;
+    public ym0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f31648a = paint;
+        t50 t50Var = new t50(this, 1);
+        this.f31649b = t50Var;
+        this.f31650c = new RectF();
+        this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
+        a(paint, 0.2f);
+        a(t50Var, 1.0f);
+        setWillNotDraw(false);
+    }
+
+    public static void a(Paint paint, float f7) {
+        paint.setColor(-1);
+        paint.setAlpha(Math.round(f7 * 255.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        int i10;
-        int i11;
-        View E = recyclerView.E(motionEvent.getX(), motionEvent.getY());
-        if (E != null) {
-            i10 = RecyclerView.R(E);
-        } else {
-            i10 = -1;
-        }
-        float y3 = motionEvent.getY();
-        int action = motionEvent.getAction();
-        xm0 xm0Var = this.f33141k;
-        org.telegram.ui.Cells.l7 l7Var = this.f33142l;
-        if (action != 1) {
-            if (action == 2) {
-                if (this.f33140j > -1) {
-                    float f7 = 0;
-                    if (y3 >= f7 && y3 <= this.d) {
-                        this.h = false;
-                        if (!this.f33138g) {
-                            this.f33138g = true;
-                            AndroidUtilities.cancelRunOnUIThread(l7Var);
-                            AndroidUtilities.runOnUIThread(l7Var);
-                        }
-                        this.f33139i = ((int) (this.d - (y3 - f7))) / 2;
-                    } else if (y3 >= this.f33136e && y3 <= this.f33137f) {
-                        this.f33138g = false;
-                        if (!this.h) {
-                            this.h = true;
-                            AndroidUtilities.cancelRunOnUIThread(l7Var);
-                            AndroidUtilities.runOnUIThread(l7Var);
-                        }
-                        this.f33139i = ((int) ((y3 + this.f33137f) - (this.f33136e + i11))) / 2;
-                    } else if (this.f33138g || this.h) {
-                        AndroidUtilities.cancelRunOnUIThread(l7Var);
-                        this.f33138g = false;
-                        this.h = false;
-                    }
-                }
-                if (i10 != -1 && this.f33134b != i10) {
-                    this.f33134b = i10;
-                    xm0Var.c(E, !xm0Var.d(i10));
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        this.f33135c = false;
-        this.f33138g = false;
-        this.h = false;
-        AndroidUtilities.cancelRunOnUIThread(l7Var);
-        xm0Var.a(false);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f7 = this.d;
+        RectF rectF = this.f31650c;
+        rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
+        canvas.drawOval(rectF, this.f31648a);
+        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f31649b);
     }
 
-    @Override
-    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
-        boolean z10;
-        boolean z11;
-        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().h() != 0) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (this.f33135c && !z10) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z11) {
-            this.f33133a = recyclerView;
-            int i10 = this.f33140j;
-            if (i10 > -1) {
-                this.d = i10;
-                this.f33136e = recyclerView.getMeasuredHeight() - i10;
-                this.f33137f = recyclerView.getMeasuredHeight();
-            }
-        }
-        if (z11 && motionEvent.getAction() == 1) {
-            this.f33135c = false;
-            this.f33138g = false;
-            this.h = false;
-            AndroidUtilities.cancelRunOnUIThread(this.f33142l);
-            this.f33141k.a(false);
-        }
-        return z11;
+    public Paint getPaint() {
+        return this.f31649b;
     }
 
-    public final void d(View view, int i10, boolean z10) {
-        if (this.f33135c) {
+    public void setProgress(float f7) {
+        float max = Math.max(0.0f, Math.min(1.0f, f7));
+        if (this.e == max) {
             return;
         }
-        this.f33134b = -1;
-        AndroidUtilities.cancelRunOnUIThread(this.f33142l);
-        this.f33138g = false;
-        this.h = false;
-        xm0 xm0Var = this.f33141k;
-        if (!xm0Var.b(i10)) {
-            this.f33135c = false;
-            return;
-        }
-        xm0Var.a(true);
-        xm0Var.c(view, z10);
-        this.f33135c = true;
-        this.f33134b = i10;
-    }
-
-    @Override
-    public final void c(boolean z10) {
+        this.e = max;
+        invalidate();
     }
 }

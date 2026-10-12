@@ -1,39 +1,18 @@
 package org.telegram.ui.Components;
-public final class mq implements z4.e {
-    public int f28630a;
-    public final wi0 f28631b;
 
-    public mq(wi0 wi0Var) {
-        this.f28631b = wi0Var;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class mq extends LinearLayout {
+    public final pq f27473a;
+
+    public mq(pq pqVar, Context context) {
+        super(context);
+        this.f27473a = pqVar;
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        if (i10 == this.f28631b.getCurrentItem() && f7 == 0.0f && this.f28630a == 1) {
-            d();
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-        if (i10 == 0) {
-            d();
-        }
-        this.f28630a = i10;
-    }
-
-    public final void d() {
-        wi0 wi0Var = this.f28631b;
-        if (wi0Var.f29272w0 != null) {
-            int currentItem = wi0Var.getCurrentItem();
-            int k10 = wi0Var.f29272w0.k(currentItem) + wi0Var.f29272w0.j();
-            if (currentItem != k10) {
-                wi0Var.x(k10, false);
-            }
-        }
-    }
-
-    @Override
-    public final void a(int i10) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        pq.n(this.f27473a);
     }
 }

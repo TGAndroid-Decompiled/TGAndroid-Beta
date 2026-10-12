@@ -1,34 +1,90 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.fi1;
-import w7.w5;
+import org.telegram.messenger.AndroidUtilities;
 public final class p1 extends FrameLayout {
-    public final m1 f31862a;
-    public final FrameLayout f31863b;
-    public final o1[] f31864c;
-    public fi1 d;
+    public int f30394a;
+    public int f30395b;
+    public int f30396c;
+    public int d;
+    public boolean e;
 
-    public p1(Activity activity, r1 r1Var) {
-        super(activity);
-        this.f31864c = new o1[5];
-        setWillNotDraw(false);
-        m1 m1Var = new m1(activity, r1Var);
-        this.f31862a = m1Var;
-        FrameLayout frameLayout = new FrameLayout(activity);
-        this.f31863b = frameLayout;
-        m1Var.setVisibility(8);
-        frameLayout.setVisibility(8);
-        for (int i10 = 0; i10 < 5; i10++) {
-            this.f31864c[i10] = new o1(activity);
-            this.f31864c[i10].setAllStarsProvider(new m4.x(this, 13));
-            o1 o1Var = this.f31864c[i10];
-            o1Var.d = new org.telegram.ui.Components.y2(20, this, activity);
-            o1Var.f31854f = i10;
-            this.f31863b.addView(o1Var, w5.a(-2.0f, i10 * 41, 0.0f, 0.0f, 0.0f, -2, 51));
+    public p1(Context context) {
+        super(context);
+        this.d = 68;
+        this.e = true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return false;
         }
-        addView(this.f31862a, w5.a(152.0f, 0.0f, 0.0f, 0.0f, 0.0f, 300, 49));
-        addView(this.f31863b, w5.a(100.0f, 0.0f, 90.0f, 0.0f, 0.0f, 201, 49));
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        if (this.e) {
+            int childCount = (int) (((getChildCount() - this.f30394a) / 2.0f) * ((this.f30396c * 2) + this.f30395b));
+            for (int i15 = 0; i15 < getChildCount(); i15++) {
+                View childAt = getChildAt(i15);
+                if (childAt.getVisibility() != 8) {
+                    int i16 = this.f30396c;
+                    childAt.layout(childCount + i16, 0, childAt.getMeasuredWidth() + i16 + childCount, childAt.getMeasuredHeight());
+                    childCount = childAt.getMeasuredWidth() + (this.f30396c * 2) + childCount;
+                }
+            }
+            return;
+        }
+        if (this.f30394a > 0) {
+            i14 = (getMeasuredWidth() - this.f30395b) / (this.f30394a - 1);
+        } else {
+            i14 = 0;
+        }
+        int i17 = 0;
+        for (int i18 = 0; i18 < getChildCount(); i18++) {
+            View childAt2 = getChildAt(i18);
+            if (childAt2.getVisibility() != 8) {
+                int i19 = i17 * i14;
+                childAt2.layout(i19, 0, childAt2.getMeasuredWidth() + i19, childAt2.getMeasuredHeight());
+                i17++;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        this.f30394a = 0;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            if (getChildAt(i12).getVisibility() != 8) {
+                this.f30394a++;
+            }
+        }
+        this.f30395b = AndroidUtilities.dp(this.d);
+        this.f30396c = ((size / getChildCount()) - this.f30395b) / 2;
+        int i13 = 0;
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            if (getChildAt(i14).getVisibility() != 8) {
+                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f30395b, 1073741824), i11);
+                if (getChildAt(i14).getMeasuredHeight() > i13) {
+                    i13 = getChildAt(i14).getMeasuredHeight();
+                }
+            }
+        }
+        setMeasuredDimension(size, Math.max(i13, AndroidUtilities.dp(80.0f)));
+    }
+
+    public void setChildSize(int i10) {
+        this.d = i10;
+    }
+
+    public void setUseStartPadding(boolean z10) {
+        this.e = z10;
     }
 }

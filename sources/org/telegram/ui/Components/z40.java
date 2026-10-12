@@ -1,84 +1,22 @@
 package org.telegram.ui.Components;
+public enum z40 {
+    f31755c("BLUE", -15431455),
+    EF3("BLUE_ALT", -15497247),
+    d("BLUE_DEEP", -13276952),
+    e("BLUE_LIGHT", -15431455),
+    f31756f("ORANGE", -1996271),
+    h("ORANGE_DEEP", -1940716),
+    f31757n("GREEN", -14175180),
+    f31758r("RED", -2148011),
+    f31759s("CYAN", -14836538),
+    v("PURPLE", -6335009),
+    f31760w("GRAY", -9534569);
+    
+    public final int f31762a;
+    public final int f31763b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.util.TypedValue;
-public class z40 extends EditTextBoldCursor {
-    public final TextPaint f33285b;
-    public String f33286c;
-    public final Rect d;
-
-    public z40(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f33285b = textPaint;
-        this.d = new Rect();
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
-    }
-
-    public String getHintText() {
-        return this.f33286c;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        float measureText;
-        Rect rect;
-        Canvas canvas2;
-        if (this.f33286c != null && length() < this.f33286c.length()) {
-            int i10 = 0;
-            float f7 = 0.0f;
-            while (i10 < this.f33286c.length()) {
-                int length = length();
-                TextPaint textPaint = this.f33285b;
-                if (i10 < length) {
-                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
-                } else {
-                    measureText = textPaint.measureText(this.f33286c, i10, i10 + 1);
-                }
-                if (i10 < length()) {
-                    f7 += measureText;
-                    canvas2 = canvas;
-                } else {
-                    int color = textPaint.getColor();
-                    canvas.save();
-                    String str = this.f33286c;
-                    textPaint.getTextBounds(str, 0, str.length(), this.d);
-                    i(i10);
-                    canvas2 = canvas;
-                    canvas2.drawText(this.f33286c, i10, i10 + 1, f7, (rect.height() + getHeight()) / 2.0f, (Paint) textPaint);
-                    f7 += measureText;
-                    canvas2.restore();
-                    textPaint.setColor(color);
-                }
-                i10++;
-                canvas = canvas2;
-            }
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        invalidate();
-    }
-
-    public void setHintText(String str) {
-        this.f33286c = str;
-        invalidate();
-        setText(getText());
-    }
-
-    @Override
-    public void setTextSize(int i10, float f7) {
-        super.setTextSize(i10, f7);
-        this.f33285b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
-    }
-
-    public void i(int i10) {
+    z40(String str, int i10) {
+        this.f31762a = r2;
+        this.f31763b = i10;
     }
 }

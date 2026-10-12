@@ -1,29 +1,37 @@
 package g2;
 
 import java.io.InputStream;
+import v7.u6;
 public final class k extends InputStream {
-    public final h f10254a;
-    public final m f10255b;
+    public final h f9874a;
+    public final m f9875b;
     public boolean d = false;
-    public boolean f10257e = false;
-    public final byte[] f10256c = new byte[1];
+    public boolean e = false;
+    public final byte[] f9876c = new byte[1];
 
     public k(h hVar, m mVar) {
-        this.f10254a = hVar;
-        this.f10255b = mVar;
+        this.f9874a = hVar;
+        this.f9875b = mVar;
+    }
+
+    public final void a() {
+        if (!this.d) {
+            this.f9874a.open(this.f9875b);
+            this.d = true;
+        }
     }
 
     @Override
     public final void close() {
-        if (!this.f10257e) {
-            this.f10254a.close();
-            this.f10257e = true;
+        if (!this.e) {
+            this.f9874a.close();
+            this.e = true;
         }
     }
 
     @Override
     public final int read() {
-        byte[] bArr = this.f10256c;
+        byte[] bArr = this.f9876c;
         if (read(bArr, 0, bArr.length) == -1) {
             return -1;
         }
@@ -37,14 +45,9 @@ public final class k extends InputStream {
 
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
-        e2.d.g(!this.f10257e);
-        boolean z10 = this.d;
-        h hVar = this.f10254a;
-        if (!z10) {
-            hVar.open(this.f10255b);
-            this.d = true;
-        }
-        int read = hVar.read(bArr, i10, i11);
+        u6.p(!this.e);
+        a();
+        int read = this.f9874a.read(bArr, i10, i11);
         if (read == -1) {
             return -1;
         }

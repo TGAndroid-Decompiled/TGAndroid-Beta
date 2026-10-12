@@ -1,23 +1,40 @@
 package dc;
+public abstract class d {
+    public final int f6471a;
+    public final int f6472b;
 
-import java.util.ArrayList;
-import java.util.List;
-public final class d {
-    public final String f8276a;
-    public final List f8277b;
-    public final String f8278c;
-    public Integer d;
-    public na.d f8279e;
-    public final int f8280f;
-    public final int f8281g;
-    public final int h;
+    public d(int i10, int i11) {
+        this.f6471a = i10;
+        this.f6472b = i11;
+    }
 
-    public d(byte[] bArr, String str, ArrayList arrayList, String str2, int i10, int i11, int i12) {
-        this.f8276a = str;
-        this.f8277b = arrayList;
-        this.f8278c = str2;
-        this.f8280f = i11;
-        this.f8281g = i10;
-        this.h = i12;
+    public abstract byte[] a();
+
+    public abstract byte[] b(int i10, byte[] bArr);
+
+    public final String toString() {
+        char c10;
+        int i10 = this.f6471a;
+        byte[] bArr = new byte[i10];
+        int i11 = this.f6472b;
+        StringBuilder sb2 = new StringBuilder((i10 + 1) * i11);
+        for (int i12 = 0; i12 < i11; i12++) {
+            bArr = b(i12, bArr);
+            for (int i13 = 0; i13 < i10; i13++) {
+                int i14 = bArr[i13] & 255;
+                if (i14 < 64) {
+                    c10 = '#';
+                } else if (i14 < 128) {
+                    c10 = '+';
+                } else if (i14 < 192) {
+                    c10 = '.';
+                } else {
+                    c10 = ' ';
+                }
+                sb2.append(c10);
+            }
+            sb2.append('\n');
+        }
+        return sb2.toString();
     }
 }

@@ -1,15 +1,15 @@
 package q3;
 
 import j$.util.Objects;
-public final class e extends j {
-    public final String f45888b;
-    public final String f45889c;
+public final class e extends i {
+    public final String f43277b;
+    public final String f43278c;
     public final String d;
 
     public e(String str, String str2, String str3) {
         super("COMM");
-        this.f45888b = str;
-        this.f45889c = str2;
+        this.f43277b = str;
+        this.f43278c = str2;
         this.d = str3;
     }
 
@@ -19,7 +19,7 @@ public final class e extends j {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (Objects.equals(this.f45889c, eVar.f45889c) && Objects.equals(this.f45888b, eVar.f45888b) && Objects.equals(this.d, eVar.d)) {
+            if (Objects.equals(this.f43278c, eVar.f43278c) && Objects.equals(this.f43277b, eVar.f43277b) && Objects.equals(this.d, eVar.d)) {
                 return true;
             }
         }
@@ -30,14 +30,14 @@ public final class e extends j {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f45888b;
+        String str = this.f43277b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f45889c;
+        String str2 = this.f43278c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -53,6 +53,6 @@ public final class e extends j {
 
     @Override
     public final String toString() {
-        return this.f45898a + ": language=" + this.f45888b + ", description=" + this.f45889c + ", text=" + this.d;
+        return this.f43283a + ": language=" + this.f43277b + ", description=" + this.f43278c + ", text=" + this.d;
     }
 }

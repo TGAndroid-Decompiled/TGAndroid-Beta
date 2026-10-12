@@ -1,29 +1,14 @@
 package e9;
+public final class l0 extends a {
+    public final n0 f8583c;
 
-import j$.util.Objects;
-public final class l0 extends com.google.android.gms.common.api.internal.w {
-    @Override
-    public final com.google.android.gms.common.api.internal.w c(Object obj) {
-        obj.getClass();
-        b(obj);
-        return this;
+    public l0(n0 n0Var, int i10) {
+        super(n0Var.size(), i10);
+        this.f8583c = n0Var;
     }
 
-    public final m0 i() {
-        int i10 = this.f6695a;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                m0 u10 = m0.u(i10, this.f6697c);
-                this.f6695a = u10.size();
-                this.f6696b = true;
-                return u10;
-            }
-            Object obj = this.f6697c[0];
-            Objects.requireNonNull(obj);
-            int i11 = m0.f8767c;
-            return new m1(obj);
-        }
-        int i12 = m0.f8767c;
-        return g1.f8741s;
+    @Override
+    public final Object a(int i10) {
+        return this.f8583c.get(i10);
     }
 }

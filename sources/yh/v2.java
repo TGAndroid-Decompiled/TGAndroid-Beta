@@ -1,101 +1,49 @@
 package yh;
+public final class v2 implements Runnable {
+    public final int f49159a;
+    public final g4 f49160b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j9;
-public final class v2 extends View {
-    public final h3 f53542a;
-    public final ImageReceiver f53543b;
-    public final Path f53544c;
-    public final Paint d;
-
-    public v2(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
-        super(context);
-        Path path = new Path();
-        this.f53544c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        h3 h3Var = new h3(this, starGift, 60, 0.27f);
-        this.f53542a = h3Var;
-        h3Var.K = 3;
-        j9 j9Var = new j9((org.telegram.ui.ActionBar.c6) null);
-        j9Var.p(tLObject);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f53543b = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver.setForUserOrChat(tLObject, j9Var);
-        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        path.rewind();
-        path.moveTo(0.0f, -AndroidUtilities.dp(8.0f));
-        path.lineTo(AndroidUtilities.dp(6.166f), 0.0f);
-        path.lineTo(0.0f, AndroidUtilities.dp(8.0f));
+    public v2(g4 g4Var, int i10) {
+        this.f49159a = i10;
+        this.f49160b = g4Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f53543b.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f53543b.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
-        int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
-        h3 h3Var = this.f53542a;
-        h3Var.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
-        h3Var.draw(canvas);
-        canvas.save();
-        canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f53544c, this.d);
-        canvas.restore();
-        ImageReceiver imageReceiver = this.f53543b;
-        imageReceiver.setImageCoords(AndroidUtilities.dp(96.0f) + width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-        imageReceiver.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
-    }
-
-    public v2(Context context, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(context);
-        Path path = new Path();
-        this.f53544c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        h3 h3Var = new h3(this, tL_starGiftUnique, 60, 0.27f);
-        this.f53542a = h3Var;
-        h3Var.K = 3;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f53543b = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver.setImageBitmap(org.telegram.ui.Cells.u6.a(60, "fragment"));
-        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.33f));
-        path.rewind();
-        path.moveTo(0.0f, -AndroidUtilities.dp(8.0f));
-        path.lineTo(AndroidUtilities.dp(6.166f), 0.0f);
-        path.lineTo(0.0f, AndroidUtilities.dp(8.0f));
+    public final void run() {
+        switch (this.f49159a) {
+            case 0:
+                t3 t3Var = this.f49160b.d;
+                if (!t3Var.f49137l.isEmpty()) {
+                    t3Var.f49137l.clear();
+                    t3Var.h();
+                    return;
+                }
+                return;
+            case 1:
+                t3 t3Var2 = this.f49160b.d;
+                if (!t3Var2.f49136k.isEmpty()) {
+                    t3Var2.f49136k.clear();
+                    t3Var2.h();
+                    return;
+                }
+                return;
+            case 2:
+                t3 t3Var3 = this.f49160b.d;
+                if (!t3Var3.f49135j.isEmpty()) {
+                    t3Var3.f49135j.clear();
+                    t3Var3.h();
+                    return;
+                }
+                return;
+            case 3:
+                this.f49160b.d.i(s3.BY_PRICE);
+                return;
+            case 4:
+                this.f49160b.d.i(s3.BY_DATE);
+                return;
+            default:
+                this.f49160b.d.i(s3.BY_NUMBER);
+                return;
+        }
     }
 }

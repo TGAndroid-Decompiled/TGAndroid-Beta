@@ -1,29 +1,50 @@
 package k3;
 
-import c3.a0;
-import c3.b0;
-import c3.c0;
-import c3.v;
-import e6.n;
-public final class d extends v {
-    public final b0 f14596b;
-    public final n f14597c;
+import e9.k0;
+import e9.n0;
+import e9.x1;
+import org.xmlpull.v1.XmlPullParser;
+public abstract class d {
+    public static final String[] f14073a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f14074b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f14075c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
-    public d(n nVar, b0 b0Var, b0 b0Var2) {
-        super(b0Var);
-        this.f14597c = nVar;
-        this.f14596b = b0Var2;
+    public static ad.d a(java.lang.String r21) {
+        throw new UnsupportedOperationException("Method not decompiled: k3.d.a(java.lang.String):ad.d");
     }
 
-    @Override
-    public final a0 j(long j3) {
-        a0 j10 = this.f14596b.j(j3);
-        c0 c0Var = j10.f4052a;
-        long j11 = c0Var.f4083a;
-        long j12 = c0Var.f4084b;
-        long j13 = this.f14597c.f8686b;
-        c0 c0Var2 = new c0(j11, j12 + j13);
-        c0 c0Var3 = j10.f4053b;
-        return new a0(c0Var2, new c0(c0Var3.f4083a, c0Var3.f4084b + j13));
+    public static x1 b(XmlPullParser xmlPullParser, String str, String str2) {
+        long j10;
+        k0 t10 = n0.t();
+        String concat = str.concat(":Item");
+        String concat2 = str.concat(":Directory");
+        do {
+            xmlPullParser.next();
+            if (e2.a.i(xmlPullParser, concat)) {
+                String concat3 = str2.concat(":Mime");
+                String concat4 = str2.concat(":Semantic");
+                String concat5 = str2.concat(":Length");
+                String concat6 = str2.concat(":Padding");
+                String f7 = e2.a.f(xmlPullParser, concat3);
+                String f10 = e2.a.f(xmlPullParser, concat4);
+                String f11 = e2.a.f(xmlPullParser, concat5);
+                String f12 = e2.a.f(xmlPullParser, concat6);
+                if (f7 != null && f10 != null) {
+                    long j11 = 0;
+                    if (f11 != null) {
+                        j10 = Long.parseLong(f11);
+                    } else {
+                        j10 = 0;
+                    }
+                    if (f12 != null) {
+                        j11 = Long.parseLong(f12);
+                    }
+                    t10.c(new c(f7, j10, j11, f10));
+                } else {
+                    return x1.e;
+                }
+            }
+        } while (!e2.a.h(xmlPullParser, concat2));
+        return t10.f();
     }
 }

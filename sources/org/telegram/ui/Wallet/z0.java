@@ -1,55 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.w21;
-import org.telegram.ui.ci0;
-public final class z0 {
-    public final int f35577a;
-    public final long f35578b;
-    public final a1 f35579c;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class z0 implements Predicate {
+    public final int f33898a;
+    public final TL_wallet.tonConnectSession f33899b;
 
-    public z0(a1 a1Var, int i10, long j3) {
-        this.f35579c = a1Var;
-        this.f35577a = i10;
-        this.f35578b = j3;
+    public z0(TL_wallet.tonConnectSession tonconnectsession, int i10) {
+        this.f33898a = i10;
+        this.f33899b = tonconnectsession;
     }
 
-    public final void a(sc.u uVar, sc.y yVar, sc.y yVar2, boolean z10) {
-        Integer valueOf;
-        StringBuilder sb2 = new StringBuilder("websocket disconnected; closedByServer=");
-        sb2.append(z10);
-        sb2.append(", serverCloseCode=");
-        Object obj = "none";
-        if (yVar == null) {
-            valueOf = "none";
-        } else {
-            valueOf = Integer.valueOf(yVar.b());
-        }
-        sb2.append(valueOf);
-        sb2.append(", clientCloseCode=");
-        if (yVar2 != null) {
-            obj = Integer.valueOf(yVar2.b());
-        }
-        sb2.append(obj);
-        AndroidUtilities.runOnUIThread(new w21(this.f35579c, uVar, this.f35577a, sb2.toString(), 14));
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f33898a;
+        return Predicate$CC.$default$and(this, predicate);
     }
 
-    public final void b(sc.u uVar, String str) {
-        StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f35579c.f34445a);
-        sb2.append(" generation=");
-        int i10 = this.f35577a;
-        sb2.append(i10);
-        sb2.append(" receive <- ");
-        sb2.append(str);
-        FileLog.d(sb2.toString());
-        try {
-            AndroidUtilities.runOnUIThread(new w21(this, uVar, i10, new JSONObject(str), 15));
-        } catch (JSONException unused) {
-            AndroidUtilities.runOnUIThread(new ci0(this, uVar, i10, 11));
+    public Predicate negate() {
+        switch (this.f33898a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f33898a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
+
+    @Override
+    public final boolean test(Object obj) {
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
+        switch (this.f33898a) {
+            case 0:
+                if (tonconnectsession.f19475id == this.f33899b.f19475id) {
+                    return true;
+                }
+                return false;
+            default:
+                if (tonconnectsession.f19475id == this.f33899b.f19475id) {
+                    return true;
+                }
+                return false;
         }
     }
 }

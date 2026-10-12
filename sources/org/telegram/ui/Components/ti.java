@@ -1,67 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class ti extends vi {
-    public TLRPC.User f30885b;
-    public TLRPC.TL_attachMenuBot f30886c;
-    public final aj d;
+public interface ti {
+    void H();
 
-    public ti(aj ajVar, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.c6 c6Var;
-        this.d = ajVar;
-        setWillNotDraw(false);
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        c6Var = ((org.telegram.ui.ActionBar.e3) ajVar).resourcesProvider;
-        oh.b bVar = new oh.b(context);
-        bVar.d = c6Var;
-        bVar.Q = true;
-        TextView textView = bVar.f16891a;
-        textView.setTextSize(1, 11.0f);
-        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        bVar.f16892b.setVisibility(8);
-        bVar.a(false);
-        y9 y9Var = new y9(context);
-        bVar.f16893c = y9Var;
-        bVar.addView(y9Var, w7.w5.a(24.0f, 0.0f, 4.0f, 0.0f, 0.0f, 24, 49));
-        bVar.f16899w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, c6Var);
-        bVar.f16898s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, c6Var);
-        bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, c6Var);
-        bVar.f();
-        this.f31525a = bVar;
-        bVar.getBackupImageView().f32994a.setDelegate(new f2(17));
-        addView(this.f31525a, w7.w5.d(-1.0f, -1));
-    }
+    void U(Object obj);
 
-    public final void a(boolean z10) {
-        boolean z11;
-        if (this.f30886c != null && (-this.f30885b.f19950id) == this.d.Z0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f31525a.e(z11, z10);
-        fk0 lottieAnimation = this.f31525a.getBackupImageView().getImageReceiver().getLottieAnimation();
-        if (z10) {
-            if (z11 && lottieAnimation != null) {
-                lottieAnimation.K(0);
-                lottieAnimation.P(-1);
-                lottieAnimation.T(0.0f, false);
-                lottieAnimation.start();
-            }
-        } else if (lottieAnimation != null) {
-            lottieAnimation.stop();
-            lottieAnimation.T(0.0f, false);
-        }
-    }
+    void W(TLRPC.User user);
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a(false);
-    }
+    void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11);
+
+    boolean p0();
+
+    void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11);
+
+    void v(hh hhVar);
+
+    boolean x();
+
+    void z();
 }

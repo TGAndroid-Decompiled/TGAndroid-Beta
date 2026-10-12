@@ -1,8 +1,14 @@
 package v7;
+
+import android.text.SpannableStringBuilder;
 public abstract class q6 {
-    public static long a(long j3) {
-        long j10 = (j3 ^ (j3 >>> 33)) * (-49064778989728563L);
-        long j11 = (j10 ^ (j10 >>> 33)) * (-4265267296055464877L);
-        return j11 ^ (j11 >>> 33);
+    public static void a(Object obj, SpannableStringBuilder spannableStringBuilder, int i10, int i11) {
+        Object[] spans;
+        for (Object obj2 : spannableStringBuilder.getSpans(i10, i11, obj.getClass())) {
+            if (spannableStringBuilder.getSpanStart(obj2) == i10 && spannableStringBuilder.getSpanEnd(obj2) == i11 && spannableStringBuilder.getSpanFlags(obj2) == 33) {
+                spannableStringBuilder.removeSpan(obj2);
+            }
+        }
+        spannableStringBuilder.setSpan(obj, i10, i11, 33);
     }
 }

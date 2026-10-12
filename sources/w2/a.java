@@ -1,16 +1,16 @@
 package w2;
 
-import e9.i0;
+import e9.n0;
 public interface a {
-    long a(long j3);
+    long a(long j10);
 
-    i0 b(long j3);
+    n0 b(long j10);
 
-    boolean c(z3.a aVar, long j3);
+    boolean c(z3.b bVar, long j10);
 
     void clear();
 
-    long d(long j3);
+    long d(long j10);
 
-    void e(long j3);
+    void e(long j10);
 }

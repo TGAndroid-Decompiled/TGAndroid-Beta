@@ -88,8 +88,8 @@ public class InputSurface {
         this.mSurface = null;
     }
 
-    public void setPresentationTime(long j3) {
-        EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j3);
+    public void setPresentationTime(long j10) {
+        EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j10);
     }
 
     public boolean swapBuffers() {

@@ -1,78 +1,60 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.SystemClock;
 import android.view.View;
-public abstract class vb extends org.telegram.ui.Components.yw0 {
-    public final yb f42748w0;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class vb implements ViewTreeObserver.OnPreDrawListener {
+    public final View f40951a;
+    public final s4.b1 f40952b;
+    public final wb f40953c;
 
-    public vb(yb ybVar, Context context) {
-        super(context, null);
-        this.f42748w0 = ybVar;
-    }
-
-    public final void Z(Canvas canvas, RectF rectF) {
-        boolean z10;
-        long uptimeMillis = SystemClock.uptimeMillis();
-        yb ybVar = this.f42748w0;
-        if (ybVar.v.Z0()) {
-            canvas.save();
-            canvas.clipRect(rectF);
-            drawChild(canvas, ybVar.v, uptimeMillis);
-            canvas.restore();
-            return;
-        }
-        canvas.save();
-        canvas.clipRect(rectF);
-        canvas.translate(0.0f, ybVar.v.getY());
-        ybVar.v.getClass();
-        for (int i10 = 0; i10 < ybVar.v.getChildCount(); i10++) {
-            View childAt = ybVar.v.getChildAt(i10);
-            RectF rectF2 = ybVar.P0;
-            if (rectF != null && ybVar.v != null && childAt != null) {
-                rectF2.set(childAt.getX(), ybVar.v.getY() + childAt.getY(), childAt.getX() + childAt.getWidth(), ybVar.v.getY() + childAt.getY() + childAt.getHeight());
-                z10 = !rectF2.intersect(rectF);
-            } else {
-                z10 = false;
-            }
-            if (!z10) {
-                if (childAt instanceof org.telegram.ui.Cells.u1) {
-                    canvas.save();
-                    canvas.translate(childAt.getX(), childAt.getY());
-                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
-                    if (u1Var.C1()) {
-                        canvas.save();
-                        canvas.translate(0.0f, u1Var.V);
-                        u1Var.D1(canvas, true, false);
-                        canvas.restore();
-                    }
-                    canvas.restore();
-                    ybVar.v.drawChild(canvas, childAt, uptimeMillis);
-                    if (u1Var.U2()) {
-                        canvas.save();
-                        canvas.translate(u1Var.getX(), u1Var.getY());
-                        u1Var.X1(canvas);
-                        canvas.restore();
-                    }
-                } else if (childAt instanceof org.telegram.ui.Cells.w0) {
-                    ybVar.v.drawChild(canvas, childAt, uptimeMillis);
-                    canvas.save();
-                    canvas.translate(childAt.getX(), childAt.getY());
-                    ((org.telegram.ui.Cells.w0) childAt).B(canvas);
-                    canvas.restore();
-                } else {
-                    ybVar.v.drawChild(canvas, childAt, uptimeMillis);
-                }
-            }
-        }
-        ybVar.v.getClass();
-        canvas.restore();
+    public vb(wb wbVar, View view, s4.b1 b1Var) {
+        this.f40953c = wbVar;
+        this.f40951a = view;
+        this.f40952b = b1Var;
     }
 
     @Override
-    public int[] getColorKeys() {
-        return null;
+    public final boolean onPreDraw() {
+        int i10;
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        org.telegram.ui.ActionBar.k kVar3;
+        View view = this.f40951a;
+        view.getViewTreeObserver().removeOnPreDrawListener(this);
+        ac acVar = this.f40953c.f41234n;
+        int measuredHeight = acVar.v.getMeasuredHeight();
+        int top = view.getTop();
+        view.getBottom();
+        if (top >= 0) {
+            i10 = 0;
+        } else {
+            i10 = -top;
+        }
+        int i11 = i10;
+        int measuredHeight2 = view.getMeasuredHeight();
+        if (measuredHeight2 > measuredHeight) {
+            measuredHeight2 = i11 + measuredHeight;
+        }
+        View view2 = this.f40952b.f44838a;
+        if (view2 instanceof org.telegram.ui.Cells.u1) {
+            int heightWithKeyboard = (acVar.X.getHeightWithKeyboard() - AndroidUtilities.dp(48.0f)) - acVar.v.getTop();
+            float y3 = view.getY();
+            kVar3 = ((org.telegram.ui.ActionBar.m2) acVar).actionBar;
+            ((org.telegram.ui.Cells.u1) view).b4(i11, measuredHeight2 - i11, heightWithKeyboard, 0.0f, (y3 + kVar3.getMeasuredHeight()) - acVar.X.getBackgroundTranslationY(), acVar.X.getMeasuredWidth(), acVar.X.getBackgroundSizeY(), 0, 0, 0);
+            return true;
+        } else if (view2 instanceof org.telegram.ui.Cells.x0) {
+            kVar = ((org.telegram.ui.ActionBar.m2) acVar).actionBar;
+            if (kVar != null && acVar.X != null) {
+                org.telegram.ui.Cells.x0 x0Var = (org.telegram.ui.Cells.x0) view;
+                float y10 = view.getY();
+                kVar2 = ((org.telegram.ui.ActionBar.m2) acVar).actionBar;
+                x0Var.a0((y10 + kVar2.getMeasuredHeight()) - acVar.X.getBackgroundTranslationY(), acVar.X.getBackgroundSizeY());
+                return true;
+            }
+            return true;
+        } else {
+            return true;
+        }
     }
 }

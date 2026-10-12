@@ -1,96 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Intro;
-public final class m2 implements z4.e {
-    public final int f39890a;
-    public final Object f39891b;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class m2 extends View {
+    public final z70 f38153a;
+    public final org.telegram.ui.Components.cr f38154b;
 
-    public m2(Object obj, int i10) {
-        this.f39890a = i10;
-        this.f39891b = obj;
+    public m2(Context context, z70 z70Var) {
+        super(context);
+        this.f38153a = z70Var;
+        org.telegram.ui.Components.cr crVar = new org.telegram.ui.Components.cr(new ColorDrawable(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Qk, false)), org.telegram.ui.ActionBar.g6.V0(context, R.drawable.greydivider_bottom, -16777216));
+        this.f38154b = crVar;
+        crVar.f24198w = true;
+        setBackgroundDrawable(crVar);
+        setImportantForAccessibility(2);
     }
 
     @Override
-    public final void a(int i10) {
-        switch (this.f39890a) {
-            case 0:
-                q2 q2Var = (q2) this.f39891b;
-                q2Var.v = i10;
-                q2Var.f41144c.invalidate();
-                return;
-            case 1:
-                ((f80) this.f39891b).H = i10;
-                return;
-            default:
-                ((zd1) this.f39891b).f44735a0.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void b(float f7, int i10, int i11) {
-        switch (this.f39890a) {
-            case 0:
-                q2 q2Var = (q2) this.f39891b;
-                float measuredWidth = q2Var.f41142a.getMeasuredWidth();
-                if (measuredWidth != 0.0f) {
-                    q2Var.f41149s = com.google.android.gms.internal.vision.e2.u(q2Var.v, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
-                    q2Var.f41144c.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                f80 f80Var = (f80) this.f39891b;
-                org.telegram.ui.Components.ua uaVar = f80Var.f37672e;
-                uaVar.f31118b = f7;
-                uaVar.f31119c = i10;
-                uaVar.invalidate();
-                float measuredWidth2 = f80Var.d.getMeasuredWidth();
-                if (measuredWidth2 != 0.0f) {
-                    Intro.setScrollOffset((((i10 * measuredWidth2) + i11) - (f80Var.H * measuredWidth2)) / measuredWidth2);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-        switch (this.f39890a) {
-            case 0:
-                return;
-            case 1:
-                f80 f80Var = (f80) this.f39891b;
-                if (i10 == 1) {
-                    f80Var.K = true;
-                    f80Var.d.getCurrentItem();
-                    f80Var.d.getMeasuredWidth();
-                    return;
-                } else if (i10 == 0 || i10 == 2) {
-                    if (f80Var.K) {
-                        f80Var.K = false;
-                    }
-                    if (f80Var.f37677w != f80Var.d.getCurrentItem()) {
-                        f80Var.f37677w = f80Var.d.getCurrentItem();
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                return;
-        }
-    }
-
-    private final void d(int i10) {
-    }
-
-    private final void e(int i10) {
-    }
-
-    private final void f(float f7, int i10, int i11) {
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
+        int i12 = org.telegram.ui.ActionBar.g6.Qk;
+        ((k4) this.f38153a).getClass();
+        org.telegram.ui.ActionBar.g6.w1(this.f38154b, org.telegram.ui.ActionBar.g6.x0(null, i12, false), false);
     }
 }

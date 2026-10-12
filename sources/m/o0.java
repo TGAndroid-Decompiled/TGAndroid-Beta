@@ -9,9 +9,9 @@ public interface o0 {
 
     void c(int i10);
 
-    CharSequence d();
-
     void dismiss();
+
+    CharSequence e();
 
     Drawable h();
 
@@ -25,7 +25,7 @@ public interface o0 {
 
     void m(int i10, int i11);
 
-    int o();
+    int n();
 
-    void p(ListAdapter listAdapter);
+    void o(ListAdapter listAdapter);
 }

@@ -9,27 +9,27 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class m extends h implements List, RandomAccess, j$.util.List {
-    public static final i f16529b = new i(x.f16563e, 0);
+    public static final i f16200b = new i(x.e, 0);
 
-    public static x t(int i10, Object[] objArr) {
+    public static x s(int i10, Object[] objArr) {
         if (i10 == 0) {
-            return x.f16563e;
+            return x.e;
         }
         return new x(i10, objArr);
     }
 
-    public static x u(Object[] objArr) {
+    public static x t(Object[] objArr) {
         if (objArr.length == 0) {
-            return x.f16563e;
+            return x.e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         int length = objArr2.length;
         for (int i10 = 0; i10 < length; i10++) {
             if (objArr2[i10] == null) {
-                throw new NullPointerException(hg.c.i(i10, "at index "));
+                throw new NullPointerException(i2.d.i(i10, "at index "));
             }
         }
-        return t(length, objArr2);
+        return s(length, objArr2);
     }
 
     @Override
@@ -87,6 +87,15 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
     }
 
     @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    @Override
     public final int hashCode() {
         int size = size();
         int i10 = 1;
@@ -94,15 +103,6 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
             i10 = (i10 * 31) + get(i11).hashCode();
         }
         return i10;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
     }
 
     public int indexOf(Object obj) {
@@ -141,25 +141,15 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
     }
 
     @Override
-    public final d0 p() {
+    public final d0 o() {
         return listIterator(0);
     }
 
-    public m r() {
+    public m q() {
         if (size() <= 1) {
             return this;
         }
         return new k(this);
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator unaryOperator) {
-        List.CC.$default$replaceAll(this, unaryOperator);
     }
 
     @Override
@@ -170,9 +160,19 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
             return this;
         }
         if (i12 == 0) {
-            return x.f16563e;
+            return x.e;
         }
         return new l(this, i10, i12);
+    }
+
+    @Override
+    public final Object remove(int i10) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator unaryOperator) {
+        List.CC.$default$replaceAll(this, unaryOperator);
     }
 
     @Override
@@ -190,7 +190,7 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f16529b;
+                return f16200b;
             }
             return new i(this, i10);
         }

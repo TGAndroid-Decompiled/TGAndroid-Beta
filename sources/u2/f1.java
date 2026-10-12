@@ -1,20 +1,12 @@
 package u2;
 public interface f1 {
-    f1 a(int i10, int i11);
+    long b();
 
-    int b();
+    boolean c();
 
-    int c(int i10);
+    boolean p(i2.v0 v0Var);
 
-    int d(int i10);
+    long s();
 
-    f1 e(int i10, int i11);
-
-    f1 f();
-
-    int g();
-
-    int getLength();
-
-    f1 h();
+    void u(long j10);
 }

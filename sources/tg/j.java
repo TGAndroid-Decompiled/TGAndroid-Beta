@@ -1,21 +1,32 @@
 package tg;
-public final class j implements Runnable {
-    public final int f48576a;
-    public final m f48577b;
 
-    public j(m mVar, int i10) {
-        this.f48576a = i10;
-        this.f48577b = mVar;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+public final class j implements Runnable {
+    public final int f45729a;
+    public final n f45730b;
+
+    public j(n nVar, int i10) {
+        this.f45729a = i10;
+        this.f45730b = nVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f48576a) {
+        ValueAnimator valueAnimator;
+        switch (this.f45729a) {
             case 0:
-                this.f48577b.dismiss();
-                return;
+                n nVar = this.f45730b;
+                AnimatorSet animatorSet = nVar.f45739a0;
+                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = nVar.W) != null && valueAnimator.isRunning())) {
+                    nVar.k(nVar.L);
+                    return;
+                } else {
+                    nVar.n();
+                    return;
+                }
             default:
-                this.f48577b.onBackPressed();
+                this.f45730b.l();
                 return;
         }
     }

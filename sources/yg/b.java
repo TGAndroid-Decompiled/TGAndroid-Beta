@@ -1,196 +1,155 @@
 package yg;
 
-import ai.z5;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.Date;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.xa;
-import org.telegram.ui.Components.j9;
-import w7.w5;
-public final class b extends xa {
-    public final TextView f52458a0;
-    public final FrameLayout f52459b0;
-    public Drawable f52460c0;
-    public Drawable f52461d0;
-    public TL_stories.Boost f52462e0;
-    public final a f52463f0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.aq;
+import w7.a6;
+public final class b extends wg.c {
+    public final aq f48748s;
+    public TLRPC.TL_help_country v;
+    public final TextPaint f48749w;
+    public final rh.j f48750x;
 
-    public b(Context context) {
-        super(0, 0, context, false);
+    public b(Context context, c6 c6Var) {
+        super(context, c6Var);
         int i10;
-        int i11;
-        this.f52463f0 = new a(getContext());
-        this.f52459b0 = new FrameLayout(getContext());
-        TextView textView = new TextView(getContext());
-        this.f52458a0 = textView;
-        textView.setTextColor(h6.w0(h6.G6, this.f23512y));
-        this.f52458a0.setTypeface(AndroidUtilities.bold());
-        this.f52458a0.setTextSize(12.0f);
-        this.f52458a0.setGravity(17);
-        this.f52459b0.addView(this.f52458a0, w5.d(22.0f, -2));
-        this.f52459b0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        FrameLayout frameLayout = this.f52459b0;
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i10 = 3;
-        } else {
+        TextPaint textPaint = new TextPaint();
+        this.f48749w = textPaint;
+        this.f48750x = new rh.j(this, 22);
+        textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+        this.f47568f.setVisibility(8);
+        this.f47567c.setVisibility(8);
+        aq aqVar = new aq(context, 21, c6Var);
+        this.f48748s = aqVar;
+        aqVar.b(g6.B5, g6.f20009j7, g6.C5);
+        aqVar.setDrawUnchecked(true);
+        aqVar.setDrawBackgroundAsArc(10);
+        addView(aqVar);
+        aqVar.a(false, false);
+        if (LocaleController.isRTL) {
             i10 = 5;
+        } else {
+            i10 = 3;
         }
-        int i12 = i10 | 48;
+        aqVar.setLayoutParams(a6.a(24.0f, 13.0f, 0.0f, 14.0f, 0.0f, 24, i10 | 16));
+    }
+
+    @Override
+    public final int a() {
+        return 22;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z10, boolean z11) {
+        aq aqVar = this.f48748s;
+        if (aqVar.getVisibility() == 0) {
+            aqVar.a(z10, z11);
+        }
+    }
+
+    @Override
+    public final void d() {
+        int i10;
+        float f7;
+        float f10;
+        int i11;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        boolean z10 = LocaleController.isRTL;
+        int i12 = 3;
         if (z10) {
-            i11 = 9;
+            i10 = 5;
         } else {
-            i11 = 0;
+            i10 = 3;
         }
-        addView(frameLayout, w5.a(-2.0f, i11, 9.0f, z10 ? 0 : 9, 0.0f, -2, i12));
+        int i13 = i10 | 16;
+        if (z10) {
+            f7 = 20.0f;
+        } else {
+            f7 = 52.0f;
+        }
+        if (z10) {
+            f10 = 52.0f;
+        } else {
+            f10 = 20.0f;
+        }
+        this.d.setLayoutParams(a6.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        int i14 = i11 | 16;
+        if (z11) {
+            f11 = 20.0f;
+        } else {
+            f11 = 52.0f;
+        }
+        if (z11) {
+            f12 = 52.0f;
+        } else {
+            f12 = 20.0f;
+        }
+        this.e.setLayoutParams(a6.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
+        boolean z12 = LocaleController.isRTL;
+        if (z12) {
+            i12 = 5;
+        }
+        int i15 = i12 | 16;
+        if (z12) {
+            f13 = 15.0f;
+        } else {
+            f13 = 20.0f;
+        }
+        if (z12) {
+            f14 = 20.0f;
+        } else {
+            f14 = 15.0f;
+        }
+        this.f47568f.setLayoutParams(a6.a(22.0f, f13, 0.0f, f14, 0.0f, 22, i15));
     }
 
-    private void setAvatarColorByMonths(int i10) {
-        j9 j9Var = this.E;
-        if (i10 == 12) {
-            j9Var.i(-31392, -2796986);
-        } else if (i10 == 6) {
-            j9Var.i(-10703110, -12481584);
+    public final void f() {
+        TLRPC.TL_help_country tL_help_country = this.v;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.f48749w.getFontMetricsInt(), 0, this.f48750x);
+        if (replaceWithRestrictedEmoji != null) {
+            spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new a(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
         } else {
-            j9Var.i(-6631068, -11945404);
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new a(34), 0, 1, 0);
         }
+        String countryName = LocaleController.getCountryName(tL_help_country.iso2);
+        if (TextUtils.isEmpty(countryName)) {
+            countryName = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) countryName);
+        this.d.k(spannableStringBuilder);
     }
 
-    public TL_stories.Boost getBoost() {
-        return this.f52462e0;
+    public TLRPC.TL_help_country getCountry() {
+        return this.v;
     }
 
     @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.S) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(70.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(70.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f20682k0);
-        }
-    }
-
-    public void setStatus(TL_stories.Boost boost) {
-        int i10;
-        this.f52462e0 = boost;
-        boolean z10 = boost.gift;
-        FrameLayout frameLayout = this.f52459b0;
-        TextView textView = this.f52458a0;
-        int i11 = 0;
-        h5 h5Var = this.f23503b;
-        if (!z10 && !boost.giveaway) {
-            frameLayout.setVisibility(8);
-        } else {
-            frameLayout.setVisibility(0);
-            int i12 = ((boost.expires - boost.date) / 30) / 86400;
-            long j3 = boost.stars;
-            int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-            z5 z5Var = this.f23502a;
-            j9 j9Var = this.E;
-            if (i13 > 0) {
-                h5Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j3, new Object[0]), false);
-                j9Var.g(26);
-                z5Var.e(null, j9Var);
-                h5Var.i(null);
-            } else if (boost.unclaimed) {
-                h5Var.l(LocaleController.getString(R.string.BoostingUnclaimed), false);
-                j9Var.g(18);
-                setAvatarColorByMonths(i12);
-                z5Var.e(null, j9Var);
-                h5Var.i(null);
-            } else if (boost.user_id == -1) {
-                h5Var.l(LocaleController.getString(R.string.BoostingToBeDistributed), false);
-                j9Var.g(19);
-                setAvatarColorByMonths(i12);
-                z5Var.e(null, j9Var);
-                h5Var.i(null);
-            }
-            String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
-            int i14 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            h5 h5Var2 = this.f23504c;
-            if (i14 > 0) {
-                h5Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
-            } else {
-                h5Var2.l(LocaleController.formatString(R.string.BoostingExpires, format), false);
-            }
-            if (boost.gift) {
-                if (this.f52461d0 == null) {
-                    Drawable drawable = getResources().getDrawable(R.drawable.mini_gift);
-                    this.f52461d0 = drawable;
-                    drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
-                }
-                textView.setTextColor(-3240417);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f52461d0, (Drawable) null, (Drawable) null, (Drawable) null);
-                textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-                textView.setText(LocaleController.getString(R.string.BoostingGift));
-                frameLayout.setBackground(h6.d0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), h6.m1(0.2f, -3240417)));
-            }
-            if (boost.giveaway) {
-                if (this.f52460c0 == null) {
-                    Drawable drawable2 = getResources().getDrawable(R.drawable.mini_giveaway);
-                    this.f52460c0 = drawable2;
-                    drawable2.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.MULTIPLY));
-                }
-                textView.setTextColor(-13397548);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f52460c0, (Drawable) null, (Drawable) null, (Drawable) null);
-                textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-                textView.setText(LocaleController.getString(R.string.BoostingGiveaway));
-                frameLayout.setBackground(h6.d0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), h6.m1(0.2f, -13397548)));
-            }
-        }
-        int i15 = boost.multiplier;
-        if (i15 > 0) {
-            String valueOf = String.valueOf(i15);
-            a aVar = this.f52463f0;
-            aVar.f52457f = valueOf;
-            aVar.f52456e = aVar.f52453a.measureText(valueOf);
-            aVar.invalidateSelf();
-            h5Var.i(aVar);
-        } else {
-            h5Var.i(null);
-        }
-        if (frameLayout.getVisibility() == 0) {
-            int dp = AndroidUtilities.dp(22.0f) + ((int) textView.getPaint().measureText(textView.getText().toString()));
-            if (LocaleController.isRTL) {
-                i10 = dp;
-            } else {
-                i10 = 0;
-            }
-            int paddingTop = h5Var.getPaddingTop();
-            if (!LocaleController.isRTL) {
-                i11 = dp;
-            }
-            h5Var.setPadding(i10, paddingTop, i11, h5Var.getPaddingBottom());
-            return;
-        }
-        h5Var.setPadding(0, h5Var.getPaddingTop(), 0, h5Var.getPaddingBottom());
+    public int getFullHeight() {
+        return 44;
     }
 }

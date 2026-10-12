@@ -1,47 +1,33 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ph1 implements Utilities.Callback {
-    public final int f40967a;
-    public final UserInfoActivity f40968b;
+public final class ph1 extends FrameLayout {
+    public final sg.q0 f39231a;
 
-    public ph1(UserInfoActivity userInfoActivity, int i10) {
-        this.f40967a = i10;
-        this.f40968b = userInfoActivity;
-    }
-
-    @Override
-    public final void run(Object obj) {
-        switch (this.f40967a) {
-            case 0:
-                UserInfoActivity userInfoActivity = this.f40968b;
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.j71 j71Var = userInfoActivity.f34429x;
-                if (j71Var != null) {
-                    j71Var.W2.N(true);
-                }
-                userInfoActivity.b0(true);
-                return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f40968b;
-                if (userInfoActivity2.K != chat) {
-                    userInfoActivity2.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.v0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.zc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.j71 j71Var2 = userInfoActivity2.f34429x;
-                    if (j71Var2 != null) {
-                        j71Var2.W2.N(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public ph1(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        LinearLayout linearLayout = new LinearLayout(context);
+        addView(linearLayout, w7.a6.e(-1, -2, 80));
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        textView.setTextColor(i0.a.k(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var), 100));
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(17);
+        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
+        linearLayout.addView(textView, w7.a6.t(-1, -2, 0, 16, 17, 17, 16));
+        sg.q0 q0Var = new sg.q0(context, c6Var, false);
+        this.f39231a = q0Var;
+        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.br(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) string);
+        q0Var.d.setText(spannableStringBuilder);
+        linearLayout.addView(q0Var, w7.a6.t(-1, 48, 0, 16, 0, 16, 16));
     }
 }

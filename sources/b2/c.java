@@ -1,200 +1,114 @@
 package b2;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.RemoteInput;
-import android.content.Context;
-import android.content.LocusId;
-import android.content.SharedPreferences;
-import android.graphics.Insets;
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
-import android.media.MediaCodecInfo;
-import android.os.Binder;
-import android.os.Build;
-import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.List;
-import w7.b7;
-public abstract class c {
-    public static void a(Context context, boolean z10, TaskCompletionSource taskCompletionSource) {
-        try {
-            if (Binder.getCallingUid() == context.getApplicationInfo().uid) {
-                Context applicationContext = context.getApplicationContext();
-                if (applicationContext == null) {
-                    applicationContext = context;
-                }
-                SharedPreferences.Editor edit = applicationContext.getSharedPreferences("com.google.firebase.messaging", 0).edit();
-                edit.putBoolean("proxy_notification_initialized", true);
-                edit.apply();
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(NotificationManager.class);
-                if (z10) {
-                    notificationManager.setNotificationDelegate("com.google.android.gms");
-                } else if ("com.google.android.gms".equals(notificationManager.getNotificationDelegate())) {
-                    notificationManager.setNotificationDelegate(null);
-                }
-                taskCompletionSource.trySetResult(null);
-                return;
-            }
-            Log.e("FirebaseMessaging", "error configuring notification delegate for package " + context.getPackageName());
-            taskCompletionSource.trySetResult(null);
-        } catch (Throwable th2) {
-            taskCompletionSource.trySetResult(null);
-            throw th2;
-        }
+import java.util.Arrays;
+public final class c {
+    public static final c f2086c = new c(new a[0]);
+    public static final a d;
+    public static final String e;
+    public final int f2087a;
+    public final a[] f2088b;
+
+    static {
+        a aVar = new a(-1, -1, new int[0], new p0[0], new long[0], new String[0], new b[0]);
+        int[] iArr = aVar.e;
+        int length = iArr.length;
+        int max = Math.max(0, length);
+        int[] copyOf = Arrays.copyOf(iArr, max);
+        Arrays.fill(copyOf, length, max, 0);
+        long[] jArr = aVar.f2070f;
+        int length2 = jArr.length;
+        int max2 = Math.max(0, length2);
+        long[] copyOf2 = Arrays.copyOf(jArr, max2);
+        Arrays.fill(copyOf2, length2, max2, -9223372036854775807L);
+        p0[] p0VarArr = (p0[]) Arrays.copyOf(aVar.d, 0);
+        String[] strArr = (String[]) Arrays.copyOf(aVar.f2071g, 0);
+        b[] bVarArr = aVar.h;
+        d = new a(0, aVar.f2068b, copyOf, p0VarArr, copyOf2, strArr, (b[]) Arrays.copyOf(bVarArr, Math.max(0, bVarArr.length)));
+        String str = e2.m0.f8372a;
+        e = Integer.toString(1, 36);
+        Integer.toString(2, 36);
+        Integer.toString(3, 36);
+        Integer.toString(4, 36);
     }
 
-    public static int b(MediaCodecInfo.VideoCapabilities videoCapabilities, int i10, int i11, double d) {
-        boolean z10;
-        int i12;
-        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints();
-        if (supportedPerformancePoints != null && !supportedPerformancePoints.isEmpty()) {
-            MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(i10, i11, (int) d);
-            int i13 = 0;
-            while (true) {
-                z10 = true;
-                if (i13 < supportedPerformancePoints.size()) {
-                    if (r2.i.c(supportedPerformancePoints.get(i13)).covers(performancePoint)) {
-                        i12 = 2;
-                        break;
-                    }
-                    i13++;
-                } else {
-                    i12 = 1;
-                    break;
-                }
-            }
-            if (i12 == 1 && b7.f50145a == null) {
-                if (Build.VERSION.SDK_INT < 35) {
-                    int c10 = c(false);
-                    int c11 = c(true);
-                    if (c10 != 0) {
-                        if (c11 == 0) {
-                        }
-                    }
-                    b7.f50145a = Boolean.valueOf(z10);
-                    if (!z10) {
-                    }
-                }
-                z10 = false;
-                b7.f50145a = Boolean.valueOf(z10);
-                if (!z10) {
-                }
-            }
-            return i12;
-        }
-        return 0;
+    public c(a[] aVarArr) {
+        this.f2087a = aVarArr.length;
+        this.f2088b = aVarArr;
     }
 
-    public static int c(boolean z10) {
-        Iterable d;
-        MediaCodecInfo.VideoCapabilities videoCapabilities;
-        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
-        try {
-            r rVar = new r();
-            rVar.f3583q = r0.n("video/avc");
-            s sVar = new s(rVar);
-            String str = sVar.f3641r;
-            if (str != null) {
-                List d10 = r2.w.d(str, z10, false);
-                String b10 = r2.w.b(sVar);
-                if (b10 == null) {
-                    d = e9.a1.f8712e;
-                } else {
-                    d = r2.w.d(b10, z10, false);
+    public final a a(int i10) {
+        if (i10 < 0) {
+            return d;
+        }
+        return this.f2088b[i10];
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && c.class == obj.getClass()) {
+                c cVar = (c) obj;
+                if (this.f2087a == cVar.f2087a && Arrays.equals(this.f2088b, cVar.f2088b)) {
+                    return true;
                 }
-                e9.f0 u10 = e9.i0.u();
-                u10.d(d10);
-                u10.d(d);
-                e9.a1 i10 = u10.i();
-                for (int i11 = 0; i11 < i10.d; i11++) {
-                    if (((r2.o) i10.get(i11)).d != null && (videoCapabilities = ((r2.o) i10.get(i11)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
-                        MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
-                        for (int i12 = 0; i12 < supportedPerformancePoints.size(); i12++) {
-                            if (r2.i.c(supportedPerformancePoints.get(i12)).covers(performancePoint)) {
-                                return 2;
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(this.f2088b) + (((((this.f2087a * 961) + ((int) 0)) * 31) + ((int) (-9223372036854775807L))) * 961);
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("AdPlaybackState(adsId=null, adResumePositionUs=0, adGroups=[");
+        int i10 = 0;
+        while (true) {
+            a[] aVarArr = this.f2088b;
+            if (i10 < aVarArr.length) {
+                sb2.append("adGroup(timeUs=0, ads=[");
+                aVarArr[i10].getClass();
+                for (int i11 = 0; i11 < aVarArr[i10].e.length; i11++) {
+                    sb2.append("ad(state=");
+                    int i12 = aVarArr[i10].e[i11];
+                    if (i12 != 0) {
+                        if (i12 != 1) {
+                            if (i12 != 2) {
+                                if (i12 != 3) {
+                                    if (i12 != 4) {
+                                        sb2.append('?');
+                                    } else {
+                                        sb2.append('!');
+                                    }
+                                } else {
+                                    sb2.append('P');
+                                }
+                            } else {
+                                sb2.append('S');
                             }
+                        } else {
+                            sb2.append('R');
                         }
-                        return 1;
+                    } else {
+                        sb2.append('_');
+                    }
+                    sb2.append(", durationUs=");
+                    sb2.append(aVarArr[i10].f2070f[i11]);
+                    sb2.append(')');
+                    if (i11 < aVarArr[i10].e.length - 1) {
+                        sb2.append(", ");
                     }
                 }
-            }
-        } catch (r2.t unused) {
-        }
-        return 0;
-    }
-
-    public static e9.a1 d(e eVar) {
-        e9.f0 u10 = e9.i0.u();
-        e9.k0 k0Var = k2.b.f14407e;
-        e9.m0 m0Var = k0Var.f8759b;
-        if (m0Var == null) {
-            m0Var = k0Var.c();
-            k0Var.f8759b = m0Var;
-        }
-        e9.o1 it = m0Var.iterator();
-        while (it.hasNext()) {
-            Integer num = (Integer) it.next();
-            int intValue = num.intValue();
-            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3679a)) {
-                u10.b(num);
+                sb2.append("])");
+                if (i10 < aVarArr.length - 1) {
+                    sb2.append(", ");
+                }
+                i10++;
+            } else {
+                sb2.append("])");
+                return sb2.toString();
             }
         }
-        u10.b(2);
-        return u10.i();
-    }
-
-    public static int e(int i10, int i11, e eVar) {
-        for (int i12 = 10; i12 > 0; i12--) {
-            int r10 = e2.d0.r(i12);
-            if (r10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(r10).build(), (AudioAttributes) eVar.b().f3679a)) {
-                return i12;
-            }
-        }
-        return 0;
-    }
-
-    public static k2.e f(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
-        if (!AudioManager.isOffloadedPlaybackSupported(audioFormat, audioAttributes)) {
-            return k2.e.d;
-        }
-        ?? obj = new Object();
-        obj.f411a = true;
-        obj.f413c = z10;
-        return obj.a();
-    }
-
-    public static String g(Context context) {
-        return context.getOpPackageName();
-    }
-
-    public static Insets h(int i10, int i11, int i12, int i13) {
-        return Insets.of(i10, i11, i12, i13);
-    }
-
-    public static void i(Notification.Builder builder, boolean z10) {
-        builder.setAllowSystemGeneratedContextualActions(z10);
-    }
-
-    public static void j(AudioAttributes.Builder builder, int i10) {
-        builder.setAllowedCapturePolicy(i10);
-    }
-
-    public static void k(Notification.Builder builder, Notification.BubbleMetadata bubbleMetadata) {
-        builder.setBubbleMetadata(bubbleMetadata);
-    }
-
-    public static void l(Notification.Action.Builder builder) {
-        builder.setContextual(false);
-    }
-
-    public static void m(RemoteInput.Builder builder) {
-        builder.setEditChoicesBeforeSending(0);
-    }
-
-    public static void n(Notification.Builder builder, Object obj) {
-        builder.setLocusId((LocusId) obj);
     }
 }

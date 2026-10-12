@@ -1,55 +1,90 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.TextView;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class ui extends vi {
-    public int f31167b;
-    public final aj f31168c;
+import org.telegram.messenger.NotificationCenter;
+public final class ui extends View {
+    public final int f29689a = 0;
+    public final int f29690b;
+    public final Object f29691c;
+    public final Object d;
+    public final Object e;
 
-    public ui(aj ajVar, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.c6 c6Var;
-        this.f31168c = ajVar;
-        setWillNotDraw(false);
-        setFocusable(true);
-        c6Var = ((org.telegram.ui.ActionBar.e3) ajVar).resourcesProvider;
-        oh.b bVar = new oh.b(context);
-        bVar.d = c6Var;
-        bVar.Q = true;
-        TextView textView = bVar.f16891a;
-        textView.setTextSize(1, 11.0f);
-        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        bVar.a(false);
-        bVar.f16892b.setLayoutParams(w7.w5.a(24.0f, 0.0f, 4.0f, 0.0f, 0.0f, 24, 49));
-        bVar.f16899w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, c6Var);
-        bVar.f16898s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, c6Var);
-        bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, c6Var);
-        bVar.f();
-        this.f31525a = bVar;
-        addView(bVar, w7.w5.d(-1.0f, -1));
+    public ui(ViewGroup viewGroup, int i10) {
+        super(viewGroup.getContext());
+        this.f29691c = new ArrayList();
+        this.e = new org.telegram.ui.zz(this, 28);
+        this.d = viewGroup;
+        this.f29690b = i10;
     }
 
-    public final void a(int i10, String str, oh.a aVar) {
-        this.f31525a.setText(str);
-        this.f31525a.setTabAnimation(aVar);
-        this.f31167b = i10;
-    }
-
-    @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        boolean z10;
-        super.onAttachedToWindow();
-        if (this.f31167b == this.f31168c.Z0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public void a() {
+        org.telegram.ui.zz zzVar = (org.telegram.ui.zz) this.e;
+        ArrayList arrayList = (ArrayList) this.f29691c;
+        boolean isEmpty = arrayList.isEmpty();
+        int i10 = this.f29690b;
+        if (isEmpty && getVisibility() != 8) {
+            NotificationCenter.getInstance(i10).removeDelayed(zzVar);
+            NotificationCenter.getInstance(i10).doOnIdle(zzVar);
+        } else if (!arrayList.isEmpty() && getVisibility() != 0) {
+            NotificationCenter.getInstance(i10).removeDelayed(zzVar);
+            setVisibility(0);
         }
-        this.f31525a.e(z10, false);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.f29689a) {
+            case 0:
+                zf.z zVar = (zf.z) this.d;
+                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f29691c;
+                int i10 = this.f29690b;
+                zVar.b(org.telegram.ui.ActionBar.g6.m1(0.5f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var)));
+                zVar.draw(canvas);
+                zf.z zVar2 = (zf.z) this.e;
+                zVar2.b(org.telegram.ui.ActionBar.g6.m1(0.95f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var)));
+                zVar2.draw(canvas);
+                return;
+            default:
+                ArrayList arrayList = (ArrayList) this.f29691c;
+                if (!arrayList.isEmpty()) {
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        ((org.telegram.ui.hi0) arrayList.get(i11)).a(canvas);
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f29689a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                int i14 = AndroidUtilities.statusBarHeight;
+                zf.z zVar = (zf.z) this.d;
+                zVar.c(AndroidUtilities.dp(12.0f) + i14, 0);
+                zVar.setBounds(0, 0, i10, AndroidUtilities.dp(52.0f) + i14);
+                zf.z zVar2 = (zf.z) this.e;
+                zVar2.c(i14 / 3, 0);
+                zVar2.setBounds(0, 0, i10, i14);
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    public ui(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        this.d = new zf.z(2);
+        this.e = new zf.z(2);
+        this.f29691c = c6Var;
+        this.f29690b = i10;
     }
 }

@@ -2,38 +2,38 @@ package x7;
 
 import java.util.Map;
 public final class i extends d {
-    public final Object f51034b;
-    public int f51035c;
+    public final Object f48021b;
+    public int f48022c;
     public final j d;
 
     public i(j jVar, int i10) {
         super(0, false);
         this.d = jVar;
-        Object[] objArr = jVar.f51054c;
+        Object[] objArr = jVar.f48042c;
         objArr.getClass();
-        this.f51034b = objArr[i10];
-        this.f51035c = i10;
+        this.f48021b = objArr[i10];
+        this.f48022c = i10;
     }
 
     public final void a() {
-        int i10 = this.f51035c;
-        Object obj = this.f51034b;
+        int i10 = this.f48022c;
+        Object obj = this.f48021b;
         j jVar = this.d;
         if (i10 != -1 && i10 < jVar.size()) {
-            int i11 = this.f51035c;
-            Object[] objArr = jVar.f51054c;
+            int i11 = this.f48022c;
+            Object[] objArr = jVar.f48042c;
             objArr.getClass();
-            if (w7.l8.a(obj, objArr[i11])) {
+            if (w7.m8.a(obj, objArr[i11])) {
                 return;
             }
         }
-        Object obj2 = j.f51051s;
-        this.f51035c = jVar.e(obj);
+        Object obj2 = j.f48039s;
+        this.f48022c = jVar.e(obj);
     }
 
     @Override
     public final Object getKey() {
-        return this.f51034b;
+        return this.f48021b;
     }
 
     @Override
@@ -41,10 +41,10 @@ public final class i extends d {
         j jVar = this.d;
         Map a2 = jVar.a();
         if (a2 != null) {
-            return a2.get(this.f51034b);
+            return a2.get(this.f48021b);
         }
         a();
-        int i10 = this.f51035c;
+        int i10 = this.f48022c;
         if (i10 == -1) {
             return null;
         }
@@ -57,12 +57,12 @@ public final class i extends d {
     public final Object setValue(Object obj) {
         j jVar = this.d;
         Map a2 = jVar.a();
-        Object obj2 = this.f51034b;
+        Object obj2 = this.f48021b;
         if (a2 != null) {
             return a2.put(obj2, obj);
         }
         a();
-        int i10 = this.f51035c;
+        int i10 = this.f48022c;
         if (i10 == -1) {
             jVar.put(obj2, obj);
             return null;
@@ -70,7 +70,7 @@ public final class i extends d {
         Object[] objArr = jVar.d;
         objArr.getClass();
         Object obj3 = objArr[i10];
-        int i11 = this.f51035c;
+        int i11 = this.f48022c;
         Object[] objArr2 = jVar.d;
         objArr2.getClass();
         objArr2[i11] = obj;

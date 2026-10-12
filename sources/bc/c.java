@@ -1,21 +1,12 @@
 package bc;
 
-import b2.g;
-import x7.ga;
-import z7.xf;
-import z7.zf;
-public final class c extends g {
-    public final qb.g f3847b;
-
-    public c(qb.g gVar) {
-        super(4);
-        this.f3847b = gVar;
-    }
-
+import androidx.lifecycle.b0;
+import androidx.lifecycle.m;
+import androidx.lifecycle.s;
+import com.google.android.gms.common.api.n;
+import java.io.Closeable;
+public interface c extends Closeable, s, n {
     @Override
-    public final Object N0(Object obj) {
-        xf b10 = zf.b();
-        qb.g gVar = this.f3847b;
-        return new f(gVar, (ac.e) obj, b10, new ga(gVar.b(), 1));
-    }
+    @b0(m.ON_DESTROY)
+    void close();
 }

@@ -7,8 +7,8 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
+import c5.w;
 import com.google.android.gms.common.data.DataHolder;
-import s4.v;
 import y8.b1;
 import y8.e0;
 import y8.k0;
@@ -16,27 +16,27 @@ import y8.l0;
 import y8.v0;
 import y8.z0;
 public final class m extends b8.b {
-    public volatile int f51297b;
-    public final k f51298c;
+    public volatile int f48264b;
+    public final k f48265c;
 
     public m(k kVar) {
         super("com.google.android.gms.wearable.internal.IWearableListener", 4);
-        this.f51298c = kVar;
-        this.f51297b = -1;
+        this.f48265c = kVar;
+        this.f48264b = -1;
     }
 
     public static final void L0(e0 e0Var, boolean z10, byte[] bArr) {
         try {
             e0Var.getClass();
             Parcel obtain = Parcel.obtain();
-            obtain.writeInterfaceToken(e0Var.f339c);
-            int i10 = f8.a.f9798a;
+            obtain.writeInterfaceToken(e0Var.f316c);
+            int i10 = f8.a.f9061a;
             obtain.writeInt(z10 ? 1 : 0);
             obtain.writeByteArray(bArr);
-            e0Var.f338b.transact(1, obtain, null, 1);
+            e0Var.f315b.transact(1, obtain, null, 1);
             obtain.recycle();
-        } catch (RemoteException e7) {
-            Log.e("WearableLS", "Failed to send a response back", e7);
+        } catch (RemoteException e) {
+            Log.e("WearableLS", "Failed to send a response back", e);
         }
     }
 
@@ -49,63 +49,63 @@ public final class m extends b8.b {
                     case 1:
                         DataHolder dataHolder = (DataHolder) f8.a.a(parcel, DataHolder.CREATOR);
                         f8.a.b(parcel);
-                        Runnable vVar = new v(8, this, dataHolder);
+                        Runnable jVar = new s9.j(7, this, dataHolder);
                         try {
                             String valueOf = String.valueOf(dataHolder);
-                            int i11 = dataHolder.f6740n;
+                            int i11 = dataHolder.f5088n;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(valueOf);
                             sb2.append(", rows=");
                             sb2.append(i11);
-                            return !K0(vVar, "onDataItemChanged", sb2.toString()) ? true : true;
+                            return !K0(jVar, "onDataItemChanged", sb2.toString()) ? true : true;
                         } finally {
                             dataHolder.close();
                         }
                     case 2:
                         Object obj = (k0) f8.a.a(parcel, k0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new v(9, this, obj), "onMessageReceived", obj);
+                        K0(new s9.j(8, this, obj), "onMessageReceived", obj);
                         return true;
                     case 3:
                         l0 l0Var = (l0) f8.a.a(parcel, l0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new q(this, l0Var, 0), "onPeerConnected", l0Var);
+                        K0(new r(this, l0Var, 0), "onPeerConnected", l0Var);
                         return true;
                     case 4:
                         l0 l0Var2 = (l0) f8.a.a(parcel, l0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new q(this, l0Var2, 1), "onPeerDisconnected", l0Var2);
+                        K0(new r(this, l0Var2, 1), "onPeerDisconnected", l0Var2);
                         return true;
                     case 5:
                         Object createTypedArrayList = parcel.createTypedArrayList(l0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new v(10, this, createTypedArrayList), "onConnectedNodes", createTypedArrayList);
+                        K0(new s9.j(9, this, createTypedArrayList), "onConnectedNodes", createTypedArrayList);
                         return true;
                     case 6:
                         Object obj2 = (b1) f8.a.a(parcel, b1.CREATOR);
                         f8.a.b(parcel);
-                        K0(new v(12, this, obj2), "onNotificationReceived", obj2);
+                        K0(new s9.j(11, this, obj2), "onNotificationReceived", obj2);
                         return true;
                     case 7:
                         Object obj3 = (y8.e) f8.a.a(parcel, y8.e.CREATOR);
                         f8.a.b(parcel);
-                        K0(new v(14, this, obj3), "onChannelEvent", obj3);
+                        K0(new s9.j(13, this, obj3), "onChannelEvent", obj3);
                         return true;
                     case 8:
                         Object obj4 = (y8.b) f8.a.a(parcel, y8.b.CREATOR);
                         f8.a.b(parcel);
-                        K0(new v(11, this, obj4), "onConnectedCapabilityChanged", obj4);
+                        K0(new s9.j(10, this, obj4), "onConnectedCapabilityChanged", obj4);
                         return true;
                     case 9:
                         Object obj5 = (v0) f8.a.a(parcel, v0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new v(13, this, obj5), "onEntityUpdate", obj5);
+                        K0(new s9.j(12, this, obj5), "onEntityUpdate", obj5);
                         return true;
                     default:
                         return false;
                 }
             }
-            y8.j jVar = (y8.j) f8.a.a(parcel, y8.j.CREATOR);
+            y8.j jVar2 = (y8.j) f8.a.a(parcel, y8.j.CREATOR);
             f8.a.b(parcel);
             return true;
         }
@@ -122,38 +122,38 @@ public final class m extends b8.b {
             }
         }
         f8.a.b(parcel);
-        K0(new c5.v(this, obj6, aVar, 12), "onRequestReceived", obj6);
+        K0(new w(this, obj6, aVar, 12), "onRequestReceived", obj6);
         return true;
     }
 
     public final boolean K0(Runnable runnable, String str, Object obj) {
         Object obj2;
         boolean z10;
-        p pVar;
+        q qVar;
         ComponentName componentName;
         if (Log.isLoggable("WearableLS", 3)) {
-            componentName = this.f51298c.zza;
+            componentName = this.f48265c.zza;
             Log.d("WearableLS", String.format("%s: %s %s", str, componentName.toString(), obj));
         }
         int callingUid = Binder.getCallingUid();
-        if (callingUid != this.f51297b) {
-            if (z0.a(this.f51298c).b() && u6.b.g(this.f51298c, "com.google.android.wearable.app.cn", callingUid)) {
-                this.f51297b = callingUid;
-            } else if (u6.b.e(this.f51298c, callingUid)) {
-                this.f51297b = callingUid;
+        if (callingUid != this.f48264b) {
+            if (z0.a(this.f48265c).b() && u6.b.g(this.f48265c, "com.google.android.wearable.app.cn", callingUid)) {
+                this.f48264b = callingUid;
+            } else if (u6.b.e(this.f48265c, callingUid)) {
+                this.f48264b = callingUid;
             } else {
                 Log.e("WearableLS", "Caller is not GooglePlayServices; caller UID: " + callingUid);
                 return false;
             }
         }
-        obj2 = this.f51298c.zzf;
+        obj2 = this.f48265c.zzf;
         synchronized (obj2) {
             try {
-                k kVar = this.f51298c;
+                k kVar = this.f48265c;
                 z10 = kVar.zzg;
                 if (!z10) {
-                    pVar = kVar.zzb;
-                    pVar.post(runnable);
+                    qVar = kVar.zzb;
+                    qVar.post(runnable);
                     return true;
                 }
                 return false;

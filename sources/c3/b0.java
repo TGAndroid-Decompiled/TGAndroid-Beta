@@ -1,8 +1,10 @@
 package c3;
 public interface b0 {
-    boolean f();
+    boolean d();
 
-    a0 j(long j3);
+    boolean e();
 
-    long l();
+    a0 f(long j10);
+
+    long h();
 }

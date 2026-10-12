@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class k81 extends org.telegram.ui.ActionBar.e3 {
-    public static final int f39377e = 0;
-    public TLRPC.TL_authorization f39378b;
-    public SessionsActivity f39379c;
-    public org.telegram.ui.Components.ik0 d;
+import org.telegram.ui.Components.Switch;
+public final class k81 implements View.OnClickListener {
+    public final n81 f37605a;
+    public final TLRPC.TL_authorization f37606b;
+    public final o81 f37607c;
 
-    public static void o(k81 k81Var, String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k81Var.getContext());
-        alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new lg.j(12, k81Var, str));
-        alertDialog$Builder.o();
-    }
-
-    public static void p(k81 k81Var) {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = k81Var.f39378b;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(k81Var.currentAccount).sendRequest(changeauthorizationsettings, new ai.v7(21));
+    public k81(o81 o81Var, n81 n81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f37607c = o81Var;
+        this.f37605a = n81Var;
+        this.f37606b = tL_authorization;
     }
 
     @Override
-    public final void show() {
-        super.show();
-        this.d.d();
+    public final void onClick(View view) {
+        n81 n81Var = this.f37605a;
+        Switch r02 = n81Var.d;
+        r02.c(!r02.h, true);
+        this.f37606b.encrypted_requests_disabled = !n81Var.d.h;
+        o81.o(this.f37607c);
     }
 }

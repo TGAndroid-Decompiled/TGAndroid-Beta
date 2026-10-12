@@ -1,113 +1,29 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class q00 extends a10 {
-    public final r00 E;
-
-    public q00(r00 r00Var, Context context, int i10, int i11) {
-        super(context, null, i10, i11);
-        this.E = r00Var;
-    }
+public final class q00 extends FrameLayout {
+    public ImageView f39319a;
+    public TextView f39320b;
+    public int f39321c;
+    public boolean d;
+    public Boolean e;
 
     @Override
-    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
-        r00 r00Var = this.E;
-        r00Var.d.Y.remove(tL_exportedChatlistInvite);
-        r00Var.d.U();
-        r00Var.d.V(true);
-    }
-
-    @Override
-    public final void c() {
-        org.telegram.ui.Components.s80 F = org.telegram.ui.Components.s80.F(this.E.d.container, null, this);
-        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final q00 f40826b;
-
-            {
-                this.f40826b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        q00 q00Var = this.f40826b;
-                        String str = q00Var.f35663x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.zc(q00Var.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f40826b.d();
-                        return;
-                    default:
-                        this.f40826b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final q00 f40826b;
-
-            {
-                this.f40826b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        q00 q00Var = this.f40826b;
-                        String str = q00Var.f35663x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.zc(q00Var.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f40826b.d();
-                        return;
-                    default:
-                        this.f40826b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final q00 f40826b;
-
-            {
-                this.f40826b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        q00 q00Var = this.f40826b;
-                        String str = q00Var.f35663x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.zc(q00Var.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f40826b.d();
-                        return;
-                    default:
-                        this.f40826b.a();
-                        return;
-                }
-            }
-        }, true);
-        if (LocaleController.isRTL) {
-            F.f30450i = 3;
+    public final void onDraw(Canvas canvas) {
+        TextView textView = this.f39320b;
+        super.onDraw(canvas);
+        if (this.d) {
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f20022k0);
         }
-        F.Z();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

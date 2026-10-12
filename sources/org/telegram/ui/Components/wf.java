@@ -1,145 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class wf implements TextWatcher {
-    public boolean f32364a;
-    public boolean f32365b;
-    public String f32366c;
-    public boolean d;
-    public boolean f32367e;
-    public final ChatActivityEnterView f32368f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.SharedConfig;
+public final class wf extends AnimatorListenerAdapter {
+    public final boolean f30863a;
+    public final ChatActivityEnterView f30864b;
 
-    public wf(ChatActivityEnterView chatActivityEnterView) {
-        this.f32368f = chatActivityEnterView;
+    public wf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
+        this.f30864b = chatActivityEnterView;
+        this.f30863a = z10;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wf.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        ChatActivityEnterView chatActivityEnterView = this.f32368f;
-        if (!chatActivityEnterView.f23692m3 && !this.d && chatActivityEnterView.F2) {
-            this.f32366c = charSequence.toString();
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f30864b;
+        if (animator.equals(chatActivityEnterView.f22963t2)) {
+            chatActivityEnterView.f22963t2 = null;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int currentPage;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        boolean z15;
-        boolean z16;
-        ChatActivityEnterView chatActivityEnterView = this.f32368f;
-        boolean z17 = false;
-        if (chatActivityEnterView.f23692m3) {
-            if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
-                if (!chatActivityEnterView.S && chatActivityEnterView.E0.getMeasuredWidth() > 0) {
-                    chatActivityEnterView.E0(chatActivityEnterView.T, chatActivityEnterView.E0.getLineCount());
-                }
-                chatActivityEnterView.T = chatActivityEnterView.E0.getLineCount();
+        chatActivityEnterView.v0();
+        chatActivityEnterView.f22914k1.setAlpha(1.0f);
+        chatActivityEnterView.f22914k1.setTranslationX(0.0f);
+        tg tgVar = chatActivityEnterView.O1;
+        if (tgVar != null && SharedConfig.lockRecordAudioVideoHint < 3) {
+            ChatActivityEnterView chatActivityEnterView2 = tgVar.V;
+            chatActivityEnterView2.f22880e4 = true;
+            chatActivityEnterView2.f22887f4 = System.currentTimeMillis();
+        }
+        rf rfVar = chatActivityEnterView.E0;
+        if (rfVar != null) {
+            rfVar.setAlpha(0.0f);
+        }
+        if (this.f30863a) {
+            hl0 hl0Var = chatActivityEnterView.f22896h1;
+            if (hl0Var != null) {
+                hl0Var.setVisibility(8);
             }
-            if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                z17 = true;
+            le leVar = chatActivityEnterView.f22877e1;
+            if (leVar != null) {
+                leVar.setVisibility(8);
             }
-            this.f32364a = z17;
-            chatActivityEnterView.U1();
-            chatActivityEnterView.J0.invalidate();
-            chatActivityEnterView.requestLayout();
-        } else if (!this.d) {
-            ig igVar = chatActivityEnterView.U0;
-            if (igVar == null) {
-                currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
-            } else {
-                currentPage = igVar.getCurrentPage();
-            }
-            if (currentPage != 0 && (chatActivityEnterView.J2 || chatActivityEnterView.K2)) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (((i11 == 0 && !TextUtils.isEmpty(charSequence)) || (i11 != 0 && TextUtils.isEmpty(charSequence))) && z10) {
-                chatActivityEnterView.f1(false, true);
-            }
-            if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
-                if (chatActivityEnterView.E0.getLineCount() >= 4) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                if (chatActivityEnterView.T >= 4) {
-                    z13 = true;
-                } else {
-                    z13 = false;
-                }
-                if (z12 != z13) {
-                    z14 = true;
-                } else {
-                    z14 = false;
-                }
-                this.f32367e = z14;
-                if (!chatActivityEnterView.S && chatActivityEnterView.E0.getMeasuredWidth() > 0) {
-                    chatActivityEnterView.E0(chatActivityEnterView.T, chatActivityEnterView.E0.getLineCount());
-                }
-                int lineCount = chatActivityEnterView.E0.getLineCount();
-                chatActivityEnterView.T = lineCount;
-                if (lineCount > 2 && charSequence != null && !TextUtils.isEmpty(charSequence.toString().trim())) {
-                    z15 = true;
-                } else {
-                    z15 = false;
-                }
-                chatActivityEnterView.r1(z15);
-                if (chatActivityEnterView.T > 2 && charSequence != null && !TextUtils.isEmpty(charSequence.toString().trim())) {
-                    z16 = true;
-                } else {
-                    z16 = false;
-                }
-                chatActivityEnterView.x1(z16);
-            } else {
-                this.f32367e = false;
-            }
-            if (chatActivityEnterView.S2 == 1) {
-                return;
-            }
-            if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f32365b = true;
-            }
-            chatActivityEnterView.X1 = false;
-            chatActivityEnterView.L(true);
-            CharSequence trimmedString = AndroidUtilities.getTrimmedString(charSequence.toString());
-            if (chatActivityEnterView.Z2 != null && !chatActivityEnterView.R2) {
-                int i13 = i12 + 1;
-                if (i11 > i13 || i12 - i11 > 2 || TextUtils.isEmpty(charSequence)) {
-                    chatActivityEnterView.Y2 = true;
-                }
-                sg sgVar = chatActivityEnterView.Z2;
-                if (i11 <= i13 && i12 - i11 <= 2) {
-                    z11 = false;
-                } else {
-                    z11 = true;
-                }
-                sgVar.r1(charSequence, z11, false);
-            }
-            if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                this.f32364a = true;
-            }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23665h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
-                chatActivityEnterView.C2 = System.currentTimeMillis();
-                sg sgVar2 = chatActivityEnterView.Z2;
-                if (sgVar2 != null) {
-                    sgVar2.L1();
-                }
-            }
-            chatActivityEnterView.U1();
+            chatActivityEnterView.v0();
         }
     }
 }

@@ -1,12 +1,12 @@
 package i4;
 public final class c {
-    public final d2.b f11983a;
-    public final long f11984b;
-    public final long f11985c;
+    public final d2.b f11291a;
+    public final long f11292b;
+    public final long f11293c;
 
-    public c(d2.b bVar, long j3, long j10) {
-        this.f11983a = bVar;
-        this.f11984b = j3;
-        this.f11985c = j10;
+    public c(d2.b bVar, long j10, long j11) {
+        this.f11291a = bVar;
+        this.f11292b = j10;
+        this.f11293c = j11;
     }
 }

@@ -1,6 +1,5 @@
 package m1;
 
-import ae.x;
 import androidx.datastore.preferences.protobuf.a1;
 import androidx.datastore.preferences.protobuf.b0;
 import androidx.datastore.preferences.protobuf.b1;
@@ -20,7 +19,7 @@ public final class f extends w {
     private static final f DEFAULT_INSTANCE;
     private static volatile w0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private n0 preferences_ = n0.f2523b;
+    private n0 preferences_ = n0.f1415b;
 
     static {
         f fVar = new f();
@@ -30,7 +29,7 @@ public final class f extends w {
 
     public static n0 i(f fVar) {
         n0 n0Var = fVar.preferences_;
-        if (!n0Var.f2524a) {
+        if (!n0Var.f1416a) {
             fVar.preferences_ = n0Var.b();
         }
         return fVar.preferences_;
@@ -41,42 +40,42 @@ public final class f extends w {
     }
 
     public static f l(FileInputStream fileInputStream) {
-        a0.h hVar;
-        f fVar = DEFAULT_INSTANCE;
-        androidx.datastore.preferences.protobuf.h hVar2 = new androidx.datastore.preferences.protobuf.h(fileInputStream);
+        e2.f fVar;
+        f fVar2 = DEFAULT_INSTANCE;
+        androidx.datastore.preferences.protobuf.h hVar = new androidx.datastore.preferences.protobuf.h(fileInputStream);
         m a2 = m.a();
-        w wVar = (w) fVar.d(4);
+        w wVar = (w) fVar2.d(4);
         try {
-            y0 y0Var = y0.f2574c;
+            y0 y0Var = y0.f1463c;
             y0Var.getClass();
             b1 a10 = y0Var.a(wVar.getClass());
-            a0.h hVar3 = hVar2.f2488b;
-            if (hVar3 != null) {
-                hVar = hVar3;
+            e2.f fVar3 = hVar.f1383b;
+            if (fVar3 != null) {
+                fVar = fVar3;
             } else {
                 ?? obj = new Object();
                 obj.d = 0;
-                Charset charset = z.f2577a;
-                obj.f18c = hVar2;
-                hVar2.f2488b = obj;
-                hVar = obj;
+                Charset charset = z.f1466a;
+                obj.f8343c = hVar;
+                hVar.f1383b = obj;
+                fVar = obj;
             }
-            a10.c(wVar, hVar, a2);
-            a10.d(wVar);
+            a10.f(wVar, fVar, a2);
+            a10.c(wVar);
             if (wVar.g()) {
                 return (f) wVar;
             }
-            throw new IOException(new x().getMessage());
-        } catch (IOException e7) {
+            throw new IOException(new androidx.car.app.j().getMessage());
+        } catch (IOException e) {
+            if (e.getCause() instanceof b0) {
+                throw ((b0) e.getCause());
+            }
+            throw new IOException(e.getMessage());
+        } catch (RuntimeException e7) {
             if (e7.getCause() instanceof b0) {
                 throw ((b0) e7.getCause());
             }
-            throw new IOException(e7.getMessage());
-        } catch (RuntimeException e10) {
-            if (e10.getCause() instanceof b0) {
-                throw ((b0) e10.getCause());
-            }
-            throw e10;
+            throw e7;
         }
     }
 
@@ -89,7 +88,7 @@ public final class f extends w {
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f15651a});
+                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f15312a});
             case 3:
                 return new f();
             case 4:

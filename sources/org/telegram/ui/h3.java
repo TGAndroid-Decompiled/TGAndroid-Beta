@@ -1,126 +1,132 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.view.Surface;
+import android.view.TextureView;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Collections;
+import android.view.ViewGroup;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
-public final class h3 implements q0.a {
-    public final int f38232a;
-    public final Object f38233b;
+import org.telegram.tgnet.tl.TL_iv;
+public final class h3 extends av0 {
+    public final int[] f36591a = new int[2];
+    public final List f36592b;
+    public final k4 f36593c;
 
-    public h3(Object obj, int i10) {
-        this.f38232a = i10;
-        this.f38233b = obj;
+    public h3(k4 k4Var, List list) {
+        this.f36593c = k4Var;
+        this.f36592b = list;
     }
 
     @Override
-    public final void accept(Object obj) {
-        ArrayList arrayList;
-        String responseCodeString;
-        boolean z10;
-        switch (this.f38232a) {
-            case 0:
-                m3 m3Var = (m3) this.f38233b;
-                Float f7 = (Float) obj;
-                i4 i4Var = m3Var.K;
-                if (m3Var == i4Var.f38664u0[0]) {
-                    if (i4Var.f38652h0.f43425d0.getCurrentProgress() > f7.floatValue()) {
-                        i4Var.f38652h0.f43425d0.a(0.0f, false);
-                    }
-                    i4Var.f38652h0.f43425d0.a(f7.floatValue(), true);
-                    return;
+    public final void D() {
+        this.f36593c.n();
+    }
+
+    @Override
+    public final kv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        if (i10 >= 0) {
+            List list = this.f36592b;
+            if (i10 < list.size()) {
+                k4 k4Var = this.f36593c;
+                int[] iArr = this.f36591a;
+                ImageReceiver c02 = c0(k4Var.f37557u0[0].f38847b, (TL_iv.PageBlock) list.get(i10), iArr);
+                if (c02 != null) {
+                    kv0 kv0Var = new kv0();
+                    kv0Var.f37752b = iArr[0];
+                    kv0Var.f37753c = iArr[1];
+                    kv0Var.d = k4Var.f37557u0[0].f38847b;
+                    kv0Var.f37751a = c02;
+                    kv0Var.e = c02.getBitmapSafe();
+                    kv0Var.h = c02.getRoundRadius(true);
+                    kv0Var.f37757j = k4Var.I0;
+                    return kv0Var;
                 }
-                return;
-            case 1:
-                ((org.telegram.ui.Components.xk0) this.f38233b).h((List) obj);
-                return;
-            case 2:
-                TLRPC.User user = (TLRPC.User) obj;
-                wr wrVar = ((mr) this.f38233b).f40122b;
-                pr w02 = wrVar.w0();
-                ArrayList arrayList2 = wrVar.F;
-                a0.i iVar = wrVar.M;
-                if (iVar != null && iVar.m() != 0) {
-                    arrayList = wrVar.H;
-                } else {
-                    arrayList = arrayList2;
-                }
-                if (iVar == null || iVar.m() == 0) {
-                    iVar = wrVar.K;
-                }
-                if (iVar.f(user.f19950id) == null) {
-                    if (ChatObject.isChannel(wrVar.f43651r)) {
-                        TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
-                        tL_channelParticipant.inviter_id = wrVar.getUserConfig().getClientUserId();
-                        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                        tL_channelParticipant.peer = tL_peerUser;
-                        tL_peerUser.user_id = user.f19950id;
-                        tL_channelParticipant.date = wrVar.getConnectionsManager().getCurrentTime();
-                        arrayList.add(0, tL_channelParticipant);
-                        iVar.k(tL_channelParticipant, user.f19950id);
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final void X(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h3.X(int):void");
+    }
+
+    public final ImageReceiver c0(ViewGroup viewGroup, TL_iv.PageBlock pageBlock, int[] iArr) {
+        int childCount = viewGroup.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            ImageReceiver d02 = d0(viewGroup.getChildAt(i10), pageBlock, iArr);
+            if (d02 != null) {
+                return d02;
+            }
+        }
+        return null;
+    }
+
+    public final ImageReceiver d0(View view, TL_iv.PageBlock pageBlock, int[] iArr) {
+        org.telegram.ui.Components.wl0 wl0Var;
+        ImageReceiver d02;
+        ImageReceiver d03;
+        VideoPlayerHolderBase videoPlayerHolderBase;
+        if (view instanceof f2) {
+            f2 f2Var = (f2) view;
+            if (f2Var.N == pageBlock) {
+                view.getLocationInWindow(iArr);
+                return f2Var.e;
+            }
+            return null;
+        } else if (view instanceof z2) {
+            z2 z2Var = (z2) view;
+            ImageReceiver imageReceiver = z2Var.e;
+            TextureView textureView = z2Var.f42462n;
+            if (z2Var.L == pageBlock) {
+                view.getLocationInWindow(iArr);
+                k4 k4Var = this.f36593c;
+                if (z2Var == k4Var.f42508x && (videoPlayerHolderBase = k4Var.f42507w) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        Surface surface = new Surface(textureView.getSurfaceTexture());
+                        Bitmap createBitmap = Bitmap.createBitmap(textureView.getMeasuredWidth(), textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
+                        surface.release();
+                        imageReceiver.setImageBitmap(createBitmap);
                     } else {
-                        TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                        tL_chatParticipant.user_id = user.f19950id;
-                        tL_chatParticipant.inviter_id = wrVar.getUserConfig().getClientUserId();
-                        arrayList.add(0, tL_chatParticipant);
-                        iVar.k(tL_chatParticipant, user.f19950id);
+                        imageReceiver.setImageBitmap(textureView.getBitmap());
                     }
+                    int i10 = z2.V;
+                    textureView.setAlpha(0.0f);
                 }
-                if (arrayList == arrayList2) {
-                    Collections.sort(arrayList2, new lf(4));
-                }
-                wrVar.A0(w02);
-                return;
-            case 3:
-                t3 t3Var = (t3) this.f38233b;
-                int i10 = ((c5.h) obj).f4252a;
-                if (i10 == 0) {
-                    responseCodeString = null;
-                } else {
-                    responseCodeString = BillingController.getResponseCodeString(i10);
-                }
-                AndroidUtilities.runOnUIThread(new cg0(0, t3Var, responseCodeString));
-                return;
-            case 4:
-                ti0 ti0Var = (ti0) this.f38233b;
-                if (((c5.h) obj).f4252a == 0) {
-                    AndroidUtilities.runOnUIThread(ti0Var);
-                    return;
-                }
-                return;
-            case 5:
-                ((ArrayList) this.f38233b).add((TLRPC.User) obj);
-                return;
-            case 6:
-                ProfileActivity profileActivity = (ProfileActivity) this.f38233b;
-                TLRPC.User user2 = (TLRPC.User) obj;
-                for (int i11 = 0; i11 < profileActivity.f34193u2.participants.participants.size(); i11++) {
-                    if (profileActivity.f34193u2.participants.participants.get(i11).user_id == user2.f19950id) {
-                        profileActivity.f34193u2.participants.participants.remove(i11);
-                        profileActivity.e5(true, false);
-                        return;
-                    }
-                }
-                return;
-            default:
-                View view = ((ProxyListActivity) this.f38233b).f34232b.T((View) obj).f47897a;
-                if (view instanceof i21) {
-                    i21 i21Var = (i21) view;
-                    if (i21Var.d == SharedConfig.currentProxy) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    i21Var.setChecked(z10);
-                    i21Var.b();
-                    return;
-                }
-                return;
+                return imageReceiver;
+            }
+            return null;
+        } else if (view instanceof m1) {
+            ImageReceiver c02 = c0(((m1) view).f38134a, pageBlock, iArr);
+            if (c02 != null) {
+                return c02;
+            }
+            return null;
+        } else if (view instanceof s2) {
+            ImageReceiver c03 = c0(((s2) view).f39931a, pageBlock, iArr);
+            if (c03 != null) {
+                return c03;
+            }
+            return null;
+        } else if (view instanceof a2) {
+            org.telegram.ui.Components.wl0 wl0Var2 = ((a2) view).d;
+            if (wl0Var2 != null && (d03 = d0(wl0Var2.f44838a, pageBlock, iArr)) != null) {
+                return d03;
+            }
+            return null;
+        } else if ((view instanceof d2) && (wl0Var = ((d2) view).d) != null && (d02 = d0(wl0Var.f44838a, pageBlock, iArr)) != null) {
+            return d02;
+        } else {
+            return null;
         }
     }
 }

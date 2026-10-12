@@ -1,21 +1,13 @@
 package v7;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 public abstract class q7 {
-    public static final Object a(fe.s sVar, fe.s sVar2, sd.p pVar) {
-        Object vVar;
-        Object B;
-        try {
-            kotlin.jvm.internal.s.a(2, pVar);
-            vVar = pVar.invoke(sVar2, sVar);
-        } catch (Throwable th2) {
-            vVar = new ae.v(th2, false);
-        }
-        kd.a aVar = kd.a.f14781a;
-        if (vVar != aVar && (B = sVar.B(vVar)) != ae.g0.f455e) {
-            if (!(B instanceof ae.v)) {
-                return ae.g0.u(B);
-            }
-            throw ((ae.v) B).f511a;
-        }
-        return aVar;
+    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: v7.q7.a(android.content.Context, int):android.content.res.ColorStateList");
+    }
+
+    public static Drawable b(Context context, int i10) {
+        return m.m2.d().g(context, i10);
     }
 }

@@ -107,8 +107,8 @@ public class WebRtcAudioTrack {
                     if (nanoTime > 0) {
                         try {
                             Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
-                        } catch (InterruptedException e7) {
-                            FileLog.e(e7);
+                        } catch (InterruptedException e) {
+                            FileLog.e(e);
                         }
                     } else {
                         this.targetTimeNs = System.nanoTime();
@@ -122,8 +122,8 @@ public class WebRtcAudioTrack {
                 try {
                     WebRtcAudioTrack.this.audioTrack.stop();
                     Logging.d("WebRtcAudioTrack", "AudioTrack.stop is done.");
-                } catch (Exception e10) {
-                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e10.getMessage());
+                } catch (Exception e7) {
+                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e7.getMessage());
                 }
             }
         }
@@ -158,12 +158,12 @@ public class WebRtcAudioTrack {
         streamType = 0;
     }
 
-    public WebRtcAudioTrack(long j3) {
+    public WebRtcAudioTrack(long j10) {
         ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
         this.threadChecker = threadChecker;
         threadChecker.checkIsOnValidThread();
         Logging.d("WebRtcAudioTrack", "ctor" + WebRtcAudioUtils.getThreadInfo());
-        this.nativeAudioTrack = j3;
+        this.nativeAudioTrack = j10;
         this.audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
     }
 
@@ -262,8 +262,8 @@ public class WebRtcAudioTrack {
                 reportWebRtcAudioTrackInitError("Initialization of audio track failed.");
                 releaseAudioResources();
                 return -1;
-            } catch (IllegalArgumentException e7) {
-                reportWebRtcAudioTrackInitError(e7.getMessage());
+            } catch (IllegalArgumentException e) {
+                reportWebRtcAudioTrackInitError(e.getMessage());
                 releaseAudioResources();
                 return -1;
             }
@@ -303,9 +303,9 @@ public class WebRtcAudioTrack {
         }
     }
 
-    private native void nativeCacheDirectBufferAddress(ByteBuffer byteBuffer, long j3);
+    private native void nativeCacheDirectBufferAddress(ByteBuffer byteBuffer, long j10);
 
-    public native void nativeGetPlayoutData(int i10, long j3);
+    public native void nativeGetPlayoutData(int i10, long j10);
 
     private void releaseAudioResources() {
         Logging.e("WebRtcAudioTrack", "releaseAudioResources", new Exception());
@@ -429,8 +429,8 @@ public class WebRtcAudioTrack {
             this.audioThread = audioTrackThread;
             audioTrackThread.start();
             return true;
-        } catch (IllegalStateException e7) {
-            reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e7.getMessage());
+        } catch (IllegalStateException e) {
+            reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e.getMessage());
             releaseAudioResources();
             return false;
         }

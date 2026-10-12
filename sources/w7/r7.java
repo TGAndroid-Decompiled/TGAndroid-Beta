@@ -1,20 +1,57 @@
 package w7;
 
-import android.os.Build;
-import android.widget.EdgeEffect;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public abstract class r7 {
-    public static float a(EdgeEffect edgeEffect) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return u0.c.b(edgeEffect);
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String j10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                j10 = "null";
+            } else {
+                try {
+                    j10 = obj.toString();
+                } catch (Exception e) {
+                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
+                    j10 = org.telegram.ui.Cells.d0.j("<", D, " threw ", e.getClass().getName(), ">");
+                }
+            }
+            objArr[i11] = j10;
+            i11++;
         }
-        return 0.0f;
-    }
-
-    public static float b(EdgeEffect edgeEffect, float f7, float f10) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return u0.c.c(edgeEffect, f7, f10);
+        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) str, i12, indexOf);
+            sb2.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
         }
-        u0.b.a(edgeEffect, f7, f10);
-        return f7;
+        sb2.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb2.append(", ");
+                sb2.append(objArr[i13]);
+            }
+            sb2.append(']');
+        }
+        return sb2.toString();
     }
 }

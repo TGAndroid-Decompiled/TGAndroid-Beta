@@ -1,15 +1,30 @@
 package ff;
 
-import cf.s;
-import ze.b;
-public interface a {
-    int a(b bVar, b bVar2);
+import af.c;
+import af.h;
+public abstract class a {
+    public boolean b(df.a aVar) {
+        return this instanceof c;
+    }
 
-    void b(s sVar, s sVar2, int i10);
+    public boolean c() {
+        return this instanceof ze.a;
+    }
 
-    char c();
+    public abstract df.a e();
 
-    int d();
+    public boolean f() {
+        return this instanceof c;
+    }
 
-    char e();
+    public abstract af.a h(h hVar);
+
+    public void d() {
+    }
+
+    public void a(CharSequence charSequence) {
+    }
+
+    public void g(ef.a aVar) {
+    }
 }

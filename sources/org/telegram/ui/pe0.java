@@ -1,147 +1,31 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class pe0 extends org.telegram.ui.Components.dx0 {
-    public final EditTextBoldCursor f40936a;
-    public final TextView f40937b;
-    public final TextView f40938c;
-    public final TextView d;
-    public final org.telegram.ui.Components.ik0 f40939e;
-    public Bundle f40940f;
-    public boolean h;
-    public TL_account.Password f40941n;
-    public String f40942r;
-    public String f40943s;
-    public String v;
-    public String f40944w;
-    public final org.telegram.ui.Components.de0 f40945x;
-    public final xg0 f40946y;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pe0 implements RequestDelegate {
+    public final int f39204a;
+    public final re0 f39205b;
+    public final String f39206c;
+    public final String d;
 
-    public pe0(org.telegram.ui.xg0 r20, android.content.Context r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pe0.<init>(org.telegram.ui.xg0, android.content.Context):void");
+    public pe0(re0 re0Var, String str, String str2, int i10) {
+        this.f39204a = i10;
+        this.f39205b = re0Var;
+        this.f39206c = str;
+        this.d = str2;
     }
 
     @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean c(boolean z10) {
-        this.h = false;
-        this.f40946y.k1(true, true);
-        this.f40940f = null;
-        return true;
-    }
-
-    @Override
-    public final void d() {
-        this.h = false;
-    }
-
-    @Override
-    public String getHeaderName() {
-        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
-    }
-
-    @Override
-    public final void h(String str) {
-        if (!this.h && this.f40941n != null) {
-            String obj = this.f40936a.getText().toString();
-            if (obj.length() == 0) {
-                xg0 xg0Var = this.f40946y;
-                if (xg0Var.getParentActivity() == null) {
-                    return;
-                }
-                xg0.U0(xg0Var, this.f40945x, true);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f39204a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new me0(this.f39205b, tL_error, this.f39206c, this.d, tLObject));
                 return;
-            }
-            this.h = true;
-            this.f40946y.n1(0, true);
-            Utilities.globalQueue.postRunnable(new q70(22, this, obj));
+            default:
+                AndroidUtilities.runOnUIThread(new me0(this.f39205b, tL_error, tLObject, this.f39206c, this.d));
+                return;
         }
-    }
-
-    @Override
-    public final void j() {
-        AndroidUtilities.runOnUIThread(new wz(this, 20), xg0.f43936t0);
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("passview_params");
-        this.f40940f = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-        String string = bundle.getString("passview_code");
-        if (string != null) {
-            this.f40936a.setText(string);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        String obj = this.f40936a.getText().toString();
-        if (obj.length() != 0) {
-            bundle.putString("passview_code", obj);
-        }
-        Bundle bundle2 = this.f40940f;
-        if (bundle2 != null) {
-            bundle.putBundle("passview_params", bundle2);
-        }
-    }
-
-    @Override
-    public final void m(Bundle bundle, boolean z10) {
-        if (bundle == null) {
-            return;
-        }
-        boolean isEmpty = bundle.isEmpty();
-        EditTextBoldCursor editTextBoldCursor = this.f40936a;
-        if (isEmpty) {
-            AndroidUtilities.hideKeyboard(editTextBoldCursor);
-            return;
-        }
-        editTextBoldCursor.setText("");
-        this.f40940f = bundle;
-        String string = bundle.getString("password");
-        this.f40942r = string;
-        if (string != null) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-            this.f40941n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-        }
-        this.f40943s = bundle.getString("phoneFormated");
-        this.v = bundle.getString("phoneHash");
-        this.f40944w = bundle.getString("code");
-        TL_account.Password password = this.f40941n;
-        if (password != null && !TextUtils.isEmpty(password.hint)) {
-            editTextBoldCursor.setHint(this.f40941n.hint);
-        } else {
-            editTextBoldCursor.setHint((CharSequence) null);
-        }
-    }
-
-    @Override
-    public final void n() {
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        this.f40937b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D6, false));
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        EditTextBoldCursor editTextBoldCursor = this.f40936a;
-        editTextBoldCursor.setTextColor(x02);
-        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
-        this.f40938c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false));
-        this.f40945x.f();
     }
 }

@@ -1,7 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
 import a1.g;
-import hg.c;
+import i2.d;
 import java.lang.Character;
 import java.util.HashSet;
 import java.util.Set;
@@ -238,7 +238,7 @@ public class TeXParser {
                 if (this.isPartial) {
                     return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash ".concat(command)).root), (Color) null, Color.RED);
                 }
-                throw new ParseException(g.q("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                throw new ParseException(g.p("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
             }
         } catch (FormulaNotFoundException unused2) {
             return SymbolAtom.get(command);
@@ -350,7 +350,7 @@ public class TeXParser {
                 }
                 return new JavaFontRenderingAtom(this.parseString.substring(i13, i14 + 1), fontInfos);
             } else if (this.isPartial) {
-                return new ColorAtom(new RomanAtom(new TeXFormula(c.j(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula(d.j(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
             } else {
                 throw new ParseException("Unknown character : '" + Character.toString(convertToRomanNumber) + "' (or " + ((int) convertToRomanNumber) + ")");
             }
@@ -363,8 +363,8 @@ public class TeXParser {
             }
             try {
                 return SymbolAtom.get(str2);
-            } catch (SymbolNotFoundException e7) {
-                throw new ParseException("The character '" + Character.toString(convertToRomanNumber) + "' was mapped to an unknown symbol with the name '" + str2 + "'!", e7);
+            } catch (SymbolNotFoundException e) {
+                throw new ParseException("The character '" + Character.toString(convertToRomanNumber) + "' was mapped to an unknown symbol with the name '" + str2 + "'!", e);
             }
         }
     }

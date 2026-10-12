@@ -1,38 +1,25 @@
 package org.telegram.ui;
+public final class qf implements Runnable {
+    public final int f39424a;
+    public final fo f39425b;
+    public final long f39426c;
+    public final long d;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class qf implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41317a;
-    public final eo f41318b;
-    public final View f41319c;
-
-    public qf(eo eoVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
-        this.f41317a = i10;
-        this.f41318b = eoVar;
-        this.f41319c = w0Var;
+    public qf(fo foVar, long j10, long j11, int i10) {
+        this.f39424a = i10;
+        this.f39425b = foVar;
+        this.f39426c = j10;
+        this.d = j11;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41317a) {
+    public final void run() {
+        switch (this.f39424a) {
             case 0:
-                eo eoVar = this.f41318b;
-                eoVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eoVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
-                eoVar.t9();
-                this.f41319c.setAlpha(floatValue);
+                fo.Y(this.f39425b, this.f39426c, this.d);
                 return;
             default:
-                eo eoVar2 = this.f41318b;
-                eoVar2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eoVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
-                eoVar2.t9();
-                eoVar2.w9();
-                this.f41319c.setAlpha(floatValue2);
+                fo.X(this.f39425b, this.f39426c, this.d);
                 return;
         }
     }

@@ -1,36 +1,64 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class pa1 {
-    public boolean f40892a;
-    public String f40893b;
-    public long f40894c;
-    public jg.b d;
-    public jg.b f40895e;
-    public String f40896f;
-    public String f40897g;
-    public boolean h;
-    public final int f40898i;
-    public final String f40899j;
-    public boolean f40900k;
-    public boolean f40901l;
-    public boolean f40902m;
-    public boolean f40903n;
-    public boolean f40904o;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class pa1 extends AnimatorListenerAdapter {
+    public final int f39174a;
+    public final ra1 f39175b;
 
-    public pa1(String str, int i10) {
-        this.f40899j = str;
-        this.f40898i = i10;
+    public pa1(ra1 ra1Var, int i10) {
+        this.f39174a = i10;
+        this.f39175b = ra1Var;
     }
 
-    public final void a(int i10, int i11, int i12, Utilities.Callback0Return callback0Return) {
-        if (!this.f40900k) {
-            this.f40900k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f40896f;
-            ConnectionsManager.getInstance(i10).bindRequestToGuid(ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new bc0(24, this, callback0Return), null, null, 0, i12, 1, true), i11);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39174a) {
+            case 0:
+                ra1 ra1Var = this.f39175b;
+                ra1Var.f39719b.setVisibility(4);
+                jg.g gVar = ra1Var.f39719b;
+                gVar.J = false;
+                jg.g gVar2 = ra1Var.f39720c;
+                gVar2.J = true;
+                gVar.f13072y0 = 0;
+                gVar2.f13072y0 = 0;
+                Window window = ra1Var.f39718a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
+                }
+                return;
+            case 1:
+                ra1 ra1Var2 = this.f39175b;
+                jg.g gVar3 = ra1Var2.f39720c;
+                gVar3.setVisibility(4);
+                jg.g gVar4 = ra1Var2.f39719b;
+                gVar4.f13072y0 = 0;
+                gVar3.f13072y0 = 0;
+                gVar4.J = true;
+                gVar3.J = false;
+                if (!(gVar4 instanceof jg.q)) {
+                    gVar4.f13065u0 = true;
+                    gVar4.x((gVar4.G0 * gVar4.f13045g0.f13086k) - jg.g.f13014k1);
+                    gVar4.c(true);
+                    gVar4.invalidate();
+                } else {
+                    gVar4.f13065u0 = false;
+                    gVar4.d();
+                }
+                Window window2 = ra1Var2.f39718a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                ra1 ra1Var3 = this.f39175b;
+                ra1Var3.f39719b.f13072y0 = 0;
+                ra1Var3.e.setVisibility(8);
+                return;
         }
     }
 }

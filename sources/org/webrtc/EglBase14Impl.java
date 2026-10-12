@@ -176,9 +176,9 @@ public class EglBase14Impl implements EglBase14 {
             if (eglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
                 return;
             }
-            StringBuilder m10 = hg.c.m("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            m10.append(Integer.toHexString(EGL14.eglGetError()));
-            throw new RuntimeException(m10.toString());
+            StringBuilder l4 = i2.d.l("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            l4.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(l4.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }
@@ -331,12 +331,12 @@ public class EglBase14Impl implements EglBase14 {
     }
 
     @Override
-    public void swapBuffers(long j3, boolean z10) {
+    public void swapBuffers(long j10, boolean z10) {
         checkIsNotReleased();
         EGLSurface eGLSurface = z10 ? this.eglSurfaceBackground : this.eglSurface;
         if (eGLSurface != EGL14.EGL_NO_SURFACE) {
             synchronized (EglBase.lock) {
-                EGLExt.eglPresentationTimeANDROID(this.eglDisplay, eGLSurface, j3);
+                EGLExt.eglPresentationTimeANDROID(this.eglDisplay, eGLSurface, j10);
                 EGL14.eglSwapBuffers(this.eglDisplay, eGLSurface);
             }
             return;

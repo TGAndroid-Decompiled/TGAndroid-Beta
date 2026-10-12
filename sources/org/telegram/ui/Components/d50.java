@@ -1,86 +1,135 @@
 package org.telegram.ui.Components;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-public final class d50 {
-    public static final d50 d;
-    public static final d50 f25233e;
-    public static final d50 f25234f;
-    public static final d50 h;
-    public static final d50 f25235n;
-    public static final d50 f25236r;
-    public static final d50 f25237s;
-    public static final d50 v;
-    public static final d50 f25238w;
-    public static final d50[] f25239x;
-    public final String f25240a;
-    public final int f25241b;
-    public final float f25242c;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class d50 implements ti {
+    public final i50 f24294a;
 
-    static {
-        d50 d50Var = new d50("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
-        d = d50Var;
-        d50 d50Var2 = new d50("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
-        f25233e = d50Var2;
-        d50 d50Var3 = new d50("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
-        f25234f = d50Var3;
-        d50 d50Var4 = new d50("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
-        h = d50Var4;
-        d50 d50Var5 = new d50("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
-        f25235n = d50Var5;
-        d50 d50Var6 = new d50("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
-        f25236r = d50Var6;
-        d50 d50Var7 = new d50("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
-        f25237s = d50Var7;
-        d50 d50Var8 = new d50("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
-        v = d50Var8;
-        d50 d50Var9 = new d50();
-        f25238w = d50Var9;
-        f25239x = new d50[]{d50Var, d50Var2, d50Var3, d50Var4, d50Var5, d50Var6, d50Var7, d50Var8, d50Var9};
+    public d50(i50 i50Var) {
+        this.f24294a = i50Var;
     }
 
-    public d50() {
-        this.f25240a = "hints_controller_" + this;
-        this.f25241b = 3;
-        this.f25242c = 1.0f;
+    @Override
+    public final void H() {
+        AndroidUtilities.hideKeyboard(this.f24294a.f25829a.getFragmentView().findFocus());
     }
 
-    public static d50 valueOf(String str) {
-        return (d50) Enum.valueOf(d50.class, str);
-    }
-
-    public static d50[] values() {
-        return (d50[]) f25239x.clone();
-    }
-
-    public final void a() {
-        MessagesController.getGlobalMainSettings().edit().putInt(this.f25240a, this.f25241b).apply();
-    }
-
-    public final void b() {
-        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        String str = this.f25240a;
-        MessagesController.getGlobalMainSettings().edit().putInt(str, globalMainSettings.getInt(str, 0) + 1).apply();
-    }
-
-    public final boolean c() {
-        if (MessagesController.getGlobalMainSettings().getInt(this.f25240a, 0) < this.f25241b) {
-            float f7 = this.f25242c;
-            if (f7 < 1.0f) {
-                if (f7 > 0.0f && Utilities.fastRandom.nextFloat() < f7) {
-                    return true;
+    @Override
+    public final void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        vi viVar;
+        i50 i50Var = this.f24294a;
+        org.telegram.ui.ActionBar.m2 m2Var = i50Var.f25829a;
+        if (m2Var != null && m2Var.getParentActivity() != null && (viVar = i50Var.f25831c) != null) {
+            if (i10 != 8 && i10 != 7) {
+                viVar.dismissWithButtonClick(i10);
+                if (i10 == 0) {
+                    i50Var.l();
+                    return;
                 }
-            } else {
-                return true;
+                return;
+            }
+            HashMap<Object, Object> selectedPhotos = viVar.f30013j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = i50Var.f25831c.f30013j0.getSelectedPhotosOrder();
+            ArrayList arrayList = new ArrayList();
+            boolean z14 = false;
+            for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                arrayList.add(sendingMediaInfo);
+                String str = null;
+                if (obj instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                    String str2 = photoEntry.imagePath;
+                    if (str2 != null) {
+                        sendingMediaInfo.path = str2;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                    sendingMediaInfo.coverPath = photoEntry.coverPath;
+                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+                    sendingMediaInfo.isVideo = photoEntry.isVideo;
+                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                    sendingMediaInfo.discardLivePhoto = true;
+                    CharSequence charSequence = photoEntry.caption;
+                    if (charSequence != null) {
+                        str = charSequence.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = photoEntry.entities;
+                    sendingMediaInfo.masks = photoEntry.stickers;
+                    sendingMediaInfo.ttl = photoEntry.ttl;
+                    TLRPC.VideoSize videoSize = photoEntry.emojiMarkup;
+                    sendingMediaInfo.emojiMarkup = videoSize;
+                    z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
+                } else if (obj instanceof MediaController.SearchImage) {
+                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                    String str3 = searchImage.imagePath;
+                    if (str3 != null) {
+                        sendingMediaInfo.path = str3;
+                    } else {
+                        sendingMediaInfo.searchImage = searchImage;
+                    }
+                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                    sendingMediaInfo.coverPath = searchImage.coverPath;
+                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                    CharSequence charSequence2 = searchImage.caption;
+                    if (charSequence2 != null) {
+                        str = charSequence2.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = searchImage.entities;
+                    sendingMediaInfo.masks = searchImage.stickers;
+                    sendingMediaInfo.ttl = searchImage.ttl;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
+                        sendingMediaInfo.params = searchImage.params;
+                    }
+                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                }
+            }
+            i50.a(i50Var, z14, arrayList);
+            if (i10 != 8) {
+                i50Var.f25831c.dismiss(true);
             }
         }
+    }
+
+    @Override
+    public final boolean p0() {
         return false;
     }
 
-    public d50(String str, int i10, String str2, int i11, float f7) {
-        this.f25240a = str2;
-        this.f25241b = i11;
-        this.f25242c = f7;
+    @Override
+    public final void v(hh hhVar) {
+        hhVar.run();
+    }
+
+    @Override
+    public final boolean x() {
+        return false;
+    }
+
+    @Override
+    public final void z() {
+        this.f24294a.q();
+    }
+
+    @Override
+    public final void U(Object obj) {
+    }
+
+    @Override
+    public final void W(TLRPC.User user) {
+    }
+
+    @Override
+    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

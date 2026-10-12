@@ -21,11 +21,11 @@ public abstract class b0 {
                 dVar = new j2.j(clipData, 3);
             } else {
                 r0.e eVar = new r0.e();
-                eVar.f46967b = clipData;
-                eVar.f46968c = 3;
+                eVar.f43711b = clipData;
+                eVar.f43712c = 3;
                 dVar = eVar;
             }
-            r0.i0.h(textView, dVar.build());
+            r0.j0.h(textView, dVar.build());
             textView.endBatchEdit();
             return true;
         } catch (Throwable th2) {
@@ -42,11 +42,11 @@ public abstract class b0 {
             dVar = new j2.j(clipData, 3);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f46967b = clipData;
-            eVar.f46968c = 3;
+            eVar.f43711b = clipData;
+            eVar.f43712c = 3;
             dVar = eVar;
         }
-        r0.i0.h(view, dVar.build());
+        r0.j0.h(view, dVar.build());
         return true;
     }
 }

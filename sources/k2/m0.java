@@ -1,103 +1,157 @@
 package k2;
 
-import java.nio.ByteBuffer;
-public final class m0 extends c2.i {
-    public int f14514i;
-    public int f14515j;
-    public boolean f14516k;
-    public int f14517l;
-    public byte[] f14518m;
-    public int f14519n;
-    public long f14520o;
+import android.app.PictureInPictureParams;
+import android.content.Context;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.os.Build;
+import android.util.Rational;
+public final class m0 {
+    public final Object f13952a;
+    public Object f13953b;
 
-    @Override
-    public final ByteBuffer a() {
-        int i10;
-        if (super.b() && (i10 = this.f14519n) > 0) {
-            j(i10).put(this.f14518m, 0, this.f14519n).flip();
-            this.f14519n = 0;
-        }
-        return super.a();
+    public m0() {
+        this.f13952a = new Rect();
+        this.f13953b = new Point();
     }
 
-    @Override
-    public final boolean b() {
-        if (super.b() && this.f14519n == 0) {
-            return true;
+    public PictureInPictureParams.Builder a() {
+        int i10;
+        Rational rational;
+        Rect rect = (Rect) this.f13952a;
+        PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
+        Point point = (Point) this.f13953b;
+        int i11 = point.x;
+        if (i11 > 0 && (i10 = point.y) > 0) {
+            double d = i11 / i10;
+            if (d < 0.45d) {
+                rational = new Rational(45, 100);
+            } else if (d > 2.35d) {
+                rational = new Rational(235, 100);
+            } else {
+                rational = new Rational(point.x, point.y);
+            }
+            builder.setAspectRatio(rational);
+            if (Build.VERSION.SDK_INT >= 33) {
+                builder.setExpandedAspectRatio(rational);
+            }
+        } else {
+            builder.setAspectRatio(null);
+            if (Build.VERSION.SDK_INT >= 33) {
+                builder.setExpandedAspectRatio(null);
+            }
+        }
+        if (!rect.isEmpty()) {
+            builder.setSourceRectHint(rect);
+            return builder;
+        }
+        builder.setSourceRectHint(null);
+        return builder;
+    }
+
+    public g b(b2.f fVar, b2.x xVar) {
+        boolean booleanValue;
+        boolean z10;
+        xVar.getClass();
+        int i10 = xVar.L;
+        fVar.getClass();
+        int i11 = Build.VERSION.SDK_INT;
+        if (i11 >= 29 && i10 != -1) {
+            Context context = (Context) this.f13952a;
+            Boolean bool = (Boolean) this.f13953b;
+            boolean z11 = false;
+            if (bool != null) {
+                booleanValue = bool.booleanValue();
+            } else {
+                if (context != null) {
+                    String parameters = c2.i.e(context).getParameters("offloadVariableRateSupported");
+                    if (parameters != null && parameters.equals("offloadVariableRateSupported=1")) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    this.f13953b = Boolean.valueOf(z10);
+                } else {
+                    this.f13953b = Boolean.FALSE;
+                }
+                booleanValue = ((Boolean) this.f13953b).booleanValue();
+            }
+            String str = xVar.f2519s;
+            str.getClass();
+            int c10 = b2.w0.c(str, xVar.f2511k);
+            if (c10 != 0 && i11 >= e2.m0.s(c10)) {
+                int t10 = e2.m0.t(xVar.K);
+                if (t10 == 0) {
+                    return g.d;
+                }
+                try {
+                    AudioFormat build = new AudioFormat.Builder().setSampleRate(i10).setChannelMask(t10).setEncoding(c10).build();
+                    if (i11 >= 33) {
+                        int directPlaybackSupport = AudioManager.getDirectPlaybackSupport(build, fVar.b());
+                        if ((directPlaybackSupport & 1) == 0) {
+                            return g.d;
+                        }
+                        if ((directPlaybackSupport & 3) == 3) {
+                            z11 = true;
+                        }
+                        ?? obj = new Object();
+                        obj.f2633a = true;
+                        obj.f2634b = z11;
+                        obj.f2635c = booleanValue;
+                        return obj.a();
+                    } else if (i11 >= 31) {
+                        int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(build, fVar.b());
+                        if (playbackOffloadSupport == 0) {
+                            return g.d;
+                        }
+                        ?? obj2 = new Object();
+                        if (i11 > 32 && playbackOffloadSupport == 2) {
+                            z11 = true;
+                        }
+                        obj2.f2633a = true;
+                        obj2.f2634b = z11;
+                        obj2.f2635c = booleanValue;
+                        return obj2.a();
+                    } else if (!AudioManager.isOffloadedPlaybackSupported(build, fVar.b())) {
+                        return g.d;
+                    } else {
+                        ?? obj3 = new Object();
+                        obj3.f2633a = true;
+                        obj3.f2635c = booleanValue;
+                        return obj3.a();
+                    }
+                } catch (IllegalArgumentException unused) {
+                    return g.d;
+                }
+            }
+            return g.d;
+        }
+        return g.d;
+    }
+
+    public boolean c() {
+        if (!((Rect) this.f13952a).isEmpty()) {
+            Point point = (Point) this.f13953b;
+            if (point.x > 0 && point.y > 0) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
 
-    @Override
-    public final void c(ByteBuffer byteBuffer) {
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
-        int i10 = limit - position;
-        if (i10 != 0) {
-            int min = Math.min(i10, this.f14517l);
-            this.f14520o += min / this.f4011b.d;
-            this.f14517l -= min;
-            byteBuffer.position(position + min);
-            if (this.f14517l > 0) {
-                return;
-            }
-            int i11 = i10 - min;
-            int length = (this.f14519n + i11) - this.f14518m.length;
-            ByteBuffer j3 = j(length);
-            int h = e2.d0.h(length, 0, this.f14519n);
-            j3.put(this.f14518m, 0, h);
-            int h10 = e2.d0.h(length - h, 0, i11);
-            byteBuffer.limit(byteBuffer.position() + h10);
-            j3.put(byteBuffer);
-            byteBuffer.limit(limit);
-            int i12 = i11 - h10;
-            int i13 = this.f14519n - h;
-            this.f14519n = i13;
-            byte[] bArr = this.f14518m;
-            System.arraycopy(bArr, h, bArr, 0, i13);
-            byteBuffer.get(this.f14518m, this.f14519n, i12);
-            this.f14519n += i12;
-            j3.flip();
+    public boolean d(int i10, int i11) {
+        Point point = (Point) this.f13953b;
+        if (point.x == i10 && point.y == i11) {
+            return false;
         }
+        point.set(i10, i11);
+        return true;
     }
 
-    @Override
-    public final c2.f f(c2.f fVar) {
-        if (e2.d0.J(fVar.f4009c)) {
-            this.f14516k = true;
-            if (this.f14514i == 0 && this.f14515j == 0) {
-                return c2.f.f4006e;
-            }
-            return fVar;
-        }
-        throw new c2.g(fVar);
-    }
-
-    @Override
-    public final void g() {
-        if (this.f14516k) {
-            this.f14516k = false;
-            int i10 = this.f14515j;
-            int i11 = this.f4011b.d;
-            this.f14518m = new byte[i10 * i11];
-            this.f14517l = this.f14514i * i11;
-        }
-        this.f14519n = 0;
-    }
-
-    @Override
-    public final void h() {
-        int i10;
-        if (this.f14516k) {
-            if (this.f14519n > 0) {
-                this.f14520o += i10 / this.f4011b.d;
-            }
-            this.f14519n = 0;
-        }
-    }
-
-    @Override
-    public final void i() {
-        this.f14518m = e2.d0.f8530b;
+    public m0(Context context) {
+        this.f13952a = context == null ? null : context.getApplicationContext();
     }
 }

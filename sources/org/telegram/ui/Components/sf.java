@@ -1,42 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-public final class sf extends ei.y {
-    public boolean f30556s;
-    public final ChatActivityEnterView v;
+import android.view.View;
+public final class sf implements View.OnKeyListener {
+    public final ChatActivityEnterView f29126a;
 
-    public sf(ChatActivityEnterView chatActivityEnterView, Context context) {
-        super(context);
-        this.v = chatActivityEnterView;
-        this.f9490a = null;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f9494f = true;
-        this.f9491b = new Object();
-        ai.w0 w0Var = new ai.w0(this, context, 2);
-        this.f9492c = w0Var;
-        w0Var.setOverScrollMode(2);
-        w0Var.setClipToPadding(false);
-        w0Var.setClipToOutline(true);
-        w0Var.j(new ai.r(this, 3));
-        addView(w0Var);
-        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ii, false));
-        ch.d dVar = this.f9496r;
-        if (dVar != null) {
-            dVar.v();
-        }
-        invalidate();
-        setClipChildren(false);
-        this.f30556s = false;
+    public sf(ChatActivityEnterView chatActivityEnterView) {
+        this.f29126a = chatActivityEnterView;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (!this.f30556s) {
-            this.f30556s = true;
-            this.v.F1();
-        }
+    public final boolean onKey(android.view.View r6, int r7, android.view.KeyEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sf.onKey(android.view.View, int, android.view.KeyEvent):boolean");
     }
 }

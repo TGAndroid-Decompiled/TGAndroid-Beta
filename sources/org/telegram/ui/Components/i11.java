@@ -1,69 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.text.style.ReplacementSpan;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 public final class i11 extends ReplacementSpan {
-    public final int f26998a;
-    public int f26999b;
-    public final Object f27000c;
+    public static final int f25794f = 0;
+    public ImageReceiver f25795a;
+    public int f25796b;
+    public int f25797c;
+    public final boolean d;
+    public final int e;
 
-    public i11(int i10) {
-        this.f26998a = 0;
-        Paint paint = new Paint(1);
-        this.f27000c = paint;
-        this.f26999b = i10;
-        paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.3f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20750nd, false)));
-    }
-
-    public void a(int i10) {
-        org.telegram.ui.xp0 xp0Var = (org.telegram.ui.xp0) this.f27000c;
-        if (xp0Var != null) {
-            xp0Var.f44144a = i10 / 2.0f;
-            xp0Var.d();
-            this.f26999b = i10;
-        }
+    public i11(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
+        this.f25796b = i10;
+        this.f25797c = i11;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f25795a = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        imageReceiver.setImageBitmap(bitmap);
+        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
+        this.e = i13;
+        this.d = true;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f26998a) {
-            case 0:
-                float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float dp2 = AndroidUtilities.dp(6.66f) / 2.0f;
-                rectF.set(f7, dp - dp2, this.f26999b + f7, dp + dp2);
-                canvas.drawRoundRect(rectF, dp2, dp2, (Paint) this.f27000c);
-                return;
-            default:
-                org.telegram.ui.xp0 xp0Var = (org.telegram.ui.xp0) this.f27000c;
-                if (xp0Var != null) {
-                    int i15 = (i12 + i14) / 2;
-                    float dp3 = f7 + AndroidUtilities.dp(5.0f);
-                    int i16 = this.f26999b;
-                    xp0Var.setBounds((int) (AndroidUtilities.dp(3.0f) + f7), i15 - this.f26999b, (int) (dp3 + i16), i15 + i16);
-                    xp0Var.draw(canvas);
-                    return;
-                }
-                return;
+        int i15 = this.f25796b;
+        int i16 = this.f25797c;
+        ImageReceiver imageReceiver = this.f25795a;
+        canvas.save();
+        if (this.d) {
+            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.e), i15, i16);
+        } else {
+            imageReceiver.setImageCoords((int) f7, i2.d.z(org.telegram.messenger.q.D(4.0f, i14, i12), i16, 2, i12), i15, i16);
         }
+        imageReceiver.draw(canvas);
+        canvas.restore();
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f26998a) {
-            case 0:
-                return this.f26999b;
-            default:
-                return AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(3.0f) + this.f26999b;
+        int i12 = this.f25797c;
+        if (fontMetricsInt != null) {
+            if (this.d) {
+                int i13 = this.e;
+                int i14 = -(i12 - i13);
+                fontMetricsInt.ascent = i14;
+                fontMetricsInt.top = i14;
+                fontMetricsInt.descent = i13;
+                fontMetricsInt.bottom = i13;
+            } else {
+                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.ascent = dp;
+                fontMetricsInt.top = dp;
+                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.descent = dp2;
+                fontMetricsInt.bottom = dp2;
+            }
         }
-    }
-
-    public i11(boolean z10, int i10, int i11) {
-        this.f26998a = 1;
-        this.f26999b = AndroidUtilities.dp(21.0f);
-        this.f27000c = z10 ? org.telegram.ui.xp0.c(i10, i11) : org.telegram.ui.xp0.a(i10, i11);
+        return this.f25796b;
     }
 }

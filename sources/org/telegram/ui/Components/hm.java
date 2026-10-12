@@ -1,48 +1,70 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLRPC;
-public final class hm implements Comparator {
-    public final int f26799a;
-    public final Object f26800b;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.PhotoViewer;
+public final class hm extends mm0 {
+    public final int V2;
+    public final ChatAttachAlertPhotoLayout W2;
 
-    public hm(Object obj, int i10) {
-        this.f26799a = i10;
-        this.f26800b = obj;
+    public hm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, c6Var);
+        this.V2 = i10;
+        this.W2 = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int indexOf;
-        int indexOf2;
-        int i10 = this.f26799a;
-        Object obj3 = this.f26800b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj3;
-                MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
-                MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
-                boolean z10 = ChatAttachAlertPhotoLayout.f23799q1;
-                int i11 = albumEntry.bucketId;
-                if (i11 != 0 || albumEntry2.bucketId == 0) {
-                    if ((i11 != 0 && albumEntry2.bucketId == 0) || (indexOf = arrayList.indexOf(albumEntry)) > (indexOf2 = arrayList.indexOf(albumEntry2))) {
-                        return 1;
-                    }
-                    if (indexOf >= indexOf2) {
-                        return 0;
-                    }
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.V2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f27671b.f29999e2[0] - AndroidUtilities.dp(80.0f)) {
+                    return false;
                 }
-                return -1;
+                return super.onInterceptTouchEvent(motionEvent);
             default:
-                d00 d00Var = ((px) obj3).G0;
-                int indexOf3 = d00Var.f25075d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = d00Var.f25075d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
-                if (indexOf3 < 0 || indexOf4 < 0) {
-                    return 0;
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.V2) {
+            case 1:
+                super.onLayout(z10, i10, i11, i12, i13);
+                PhotoViewer.t1().y0();
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.V2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f27671b.f29999e2[0] - AndroidUtilities.dp(80.0f)) {
+                    return false;
                 }
-                return indexOf3 - indexOf4;
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void requestLayout() {
+        switch (this.V2) {
+            case 0:
+                if (!this.W2.J0) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
         }
     }
 }

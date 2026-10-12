@@ -1,55 +1,73 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class uq0 extends org.telegram.ui.ActionBar.e5 {
-    public final uk0 f42553f = new uk0(this, 12);
-    public final dr0 h;
+import android.view.KeyEvent;
+import android.view.View;
+public final class uq0 implements org.telegram.ui.Components.f5, org.telegram.ui.Components.cm0, org.telegram.ui.ActionBar.k1, org.telegram.ui.ActionBar.z1 {
+    public final int f40787a;
+    public final hr0 f40788b;
 
-    public uq0(dr0 dr0Var) {
-        this.h = dr0Var;
+    public uq0(hr0 hr0Var, int i10) {
+        this.f40787a = i10;
+        this.f40788b = hr0Var;
     }
 
     @Override
-    public final boolean b() {
-        this.h.finishFragment();
-        return false;
-    }
-
-    @Override
-    public final void p(ci.g2 g2Var) {
-        this.h.b0(g2Var);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        if (editText.getText().length() == 0) {
-            dr0 dr0Var = this.h;
-            dr0Var.f36878f.clear();
-            dr0Var.h.clear();
-            dr0Var.v = null;
-            dr0Var.f36893s = true;
-            dr0Var.f36891r = false;
-            if (dr0Var.f36900x != 0) {
-                i10 = ((org.telegram.ui.ActionBar.m2) dr0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(dr0Var.f36900x, true);
-                dr0Var.f36900x = 0;
-            }
-            dr0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
-            dr0Var.N.e(false, true);
-            dr0Var.j0();
-            return;
+    public void J(int i10, int i11, boolean z10) {
+        switch (this.f40787a) {
+            case 0:
+                this.f40788b.e0(i10, z10);
+                return;
+            default:
+                this.f40788b.e0(i10, z10);
+                return;
         }
-        uk0 uk0Var = this.f42553f;
-        AndroidUtilities.cancelRunOnUIThread(uk0Var);
-        AndroidUtilities.runOnUIThread(uk0Var, 1200L);
     }
 
     @Override
-    public final void n() {
+    public boolean a(int i10, View view) {
+        hr0 hr0Var = this.f40788b;
+        if (hr0Var.Y) {
+            hr0Var.a0(view, hr0Var.J.photos.get(i10));
+            return true;
+        } else if (view instanceof org.telegram.ui.Cells.t5) {
+            org.telegram.ui.Components.om0 om0Var = hr0Var.V;
+            boolean z10 = !((org.telegram.ui.Cells.t5) view).a();
+            hr0Var.X = z10;
+            om0Var.d(view, i10, z10);
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        hr0 hr0Var = this.f40788b;
+        lr0 lr0Var = hr0Var.f36938t0;
+        if (lr0Var != null) {
+            switch (lr0Var.f38075a) {
+                case 0:
+                    mr0 mr0Var = lr0Var.f38076b;
+                    mr0Var.f38318a.Z();
+                    mr0Var.f38319b.Z();
+                    return;
+                default:
+                    mr0 mr0Var2 = lr0Var.f38076b;
+                    mr0Var2.f38318a.Z();
+                    mr0Var2.f38319b.Z();
+                    return;
+            }
+        }
+        hr0Var.Z();
+    }
+
+    @Override
+    public void n(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.m1 m1Var;
+        hr0 hr0Var = this.f40788b;
+        hr0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = hr0Var.m0) != null && m1Var.isShowing()) {
+            hr0Var.m0.d(true);
+        }
     }
 }

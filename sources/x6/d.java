@@ -4,17 +4,17 @@ import android.os.RemoteException;
 import h8.j;
 import i8.g;
 public final class d implements e {
-    public final int f50927a;
-    public final j f50928b;
+    public final int f47922a;
+    public final j f47923b;
 
     public d(j jVar, int i10) {
-        this.f50927a = i10;
-        this.f50928b = jVar;
+        this.f47922a = i10;
+        this.f47923b = jVar;
     }
 
     @Override
     public final int a() {
-        switch (this.f50927a) {
+        switch (this.f47922a) {
             case 0:
                 return 4;
             default:
@@ -24,26 +24,26 @@ public final class d implements e {
 
     @Override
     public final void b() {
-        switch (this.f50927a) {
+        switch (this.f47922a) {
             case 0:
-                aa.a aVar = this.f50928b.f11040a;
-                aVar.getClass();
+                androidx.biometric.e eVar = this.f47923b.f10384a;
+                eVar.getClass();
                 try {
-                    g gVar = (g) aVar.f387c;
+                    g gVar = (g) eVar.f1197c;
                     gVar.R0(gVar.N0(), 12);
+                    return;
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            default:
+                androidx.biometric.e eVar2 = this.f47923b.f10384a;
+                eVar2.getClass();
+                try {
+                    g gVar2 = (g) eVar2.f1197c;
+                    gVar2.R0(gVar2.N0(), 3);
                     return;
                 } catch (RemoteException e7) {
                     throw new RuntimeException(e7);
-                }
-            default:
-                aa.a aVar2 = this.f50928b.f11040a;
-                aVar2.getClass();
-                try {
-                    g gVar2 = (g) aVar2.f387c;
-                    gVar2.R0(gVar2.N0(), 3);
-                    return;
-                } catch (RemoteException e10) {
-                    throw new RuntimeException(e10);
                 }
         }
     }

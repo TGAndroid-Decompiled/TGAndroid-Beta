@@ -1,46 +1,46 @@
 package u7;
 
 import j$.util.Objects;
-import w7.t7;
+import w7.x7;
 public final class e extends d {
-    public static final e f49107e = new e(0, new Object[0]);
-    public final transient Object[] f49108c;
+    public static final e e = new e(0, new Object[0]);
+    public final transient Object[] f46224c;
     public final transient int d;
 
     public e(int i10, Object[] objArr) {
-        this.f49108c = objArr;
+        this.f46224c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
-        t7.a(i10, this.d);
-        Object obj = this.f49108c[i10];
+        x7.a(i10, this.d);
+        Object obj = this.f46224c[i10];
         Objects.requireNonNull(obj);
         return obj;
     }
 
     @Override
-    public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f49108c;
+    public final int h(Object[] objArr) {
+        Object[] objArr2 = this.f46224c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
 
     @Override
-    public final int n() {
+    public final int m() {
         return this.d;
     }
 
     @Override
-    public final int o() {
+    public final int n() {
         return 0;
     }
 
     @Override
-    public final Object[] p() {
-        return this.f49108c;
+    public final Object[] o() {
+        return this.f46224c;
     }
 
     @Override

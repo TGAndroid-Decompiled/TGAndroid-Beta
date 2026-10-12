@@ -1,26 +1,26 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.ui.wn;
-import org.telegram.ui.yn;
+import org.telegram.ui.xn;
+import org.telegram.ui.zn;
 public final class a5 {
-    public final g6 f20204a;
-    public final int f20205b;
-    public final boolean f20206c;
+    public final f6 f19608a;
+    public final int f19609b;
+    public final boolean f19610c;
     public final boolean d;
-    public boolean f20207e;
+    public boolean e;
     public Runnable h;
-    public wn f20210i;
-    public wn f20211j;
-    public yn f20212k;
-    public c6 f20214m;
-    public boolean f20208f = true;
-    public boolean f20209g = true;
-    public long f20213l = 200;
+    public xn f19613i;
+    public xn f19614j;
+    public zn f19615k;
+    public c6 f19617m;
+    public boolean f19611f = true;
+    public boolean f19612g = true;
+    public long f19616l = 200;
 
-    public a5(g6 g6Var, int i10, boolean z10, boolean z11) {
-        this.f20204a = g6Var;
-        this.f20205b = i10;
-        this.f20206c = z10;
+    public a5(f6 f6Var, int i10, boolean z10, boolean z11) {
+        this.f19608a = f6Var;
+        this.f19609b = i10;
+        this.f19610c = z10;
         this.d = z11;
     }
 }

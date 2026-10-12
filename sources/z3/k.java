@@ -1,12 +1,41 @@
 package z3;
 
-import b2.s;
-public interface k {
-    public static final rb.a D = new rb.a(28, false);
+import java.util.List;
+public abstract class k extends h2.j implements e {
+    public e f49269a;
+    public long f49270b;
 
-    boolean H(s sVar);
+    @Override
+    public final int c(long j10) {
+        e eVar = this.f49269a;
+        eVar.getClass();
+        return eVar.c(j10 - this.f49270b);
+    }
 
-    m m(s sVar);
+    @Override
+    public final void clear() {
+        super.clear();
+        this.f49269a = null;
+    }
 
-    int y(s sVar);
+    @Override
+    public final long d(int i10) {
+        e eVar = this.f49269a;
+        eVar.getClass();
+        return eVar.d(i10) + this.f49270b;
+    }
+
+    @Override
+    public final List f(long j10) {
+        e eVar = this.f49269a;
+        eVar.getClass();
+        return eVar.f(j10 - this.f49270b);
+    }
+
+    @Override
+    public final int j() {
+        e eVar = this.f49269a;
+        eVar.getClass();
+        return eVar.j();
+    }
 }

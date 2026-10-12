@@ -1,54 +1,17 @@
 package v7;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dn0;
 public abstract class n8 {
-    public static void a(dn0 dn0Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        boolean q6;
-        if (c6Var != null) {
-            q6 = c6Var.a();
-        } else {
-            q6 = org.telegram.ui.ActionBar.h6.I.q();
+    public static String a(String str, String str2) {
+        int length = str.length() - str2.length();
+        if (length >= 0 && length <= 1) {
+            StringBuilder sb2 = new StringBuilder(str2.length() + str.length());
+            for (int i10 = 0; i10 < str.length(); i10++) {
+                sb2.append(str.charAt(i10));
+                if (str2.length() > i10) {
+                    sb2.append(str2.charAt(i10));
+                }
+            }
+            return sb2.toString();
         }
-        dn0Var.q(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, c6Var), q6);
-    }
-
-    public static int b(ii.a aVar) {
-        int i10 = 0;
-        if (aVar == null) {
-            return 0;
-        }
-        int c10 = c(aVar);
-        int max = Math.max(0, aVar.f12233c);
-        if (max > 0) {
-            i10 = AndroidUtilities.dp(hg.c.g(max, 1, 24, 28));
-        }
-        return c10 + i10;
-    }
-
-    public static int c(ii.a aVar) {
-        int size;
-        if (aVar == null) {
-            size = 0;
-        } else {
-            size = aVar.f12239k.size();
-        }
-        if (size <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(hg.c.g(size, 1, 16, 12));
-    }
-
-    public static int d(ii.a aVar) {
-        int size;
-        if (aVar == null) {
-            size = 0;
-        } else {
-            size = aVar.f12239k.size();
-        }
-        if (size <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(hg.c.g(size, 1, 16, 8));
+        throw new IllegalArgumentException("Invalid input received");
     }
 }

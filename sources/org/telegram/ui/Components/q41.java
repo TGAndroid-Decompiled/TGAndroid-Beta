@@ -1,25 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.Utilities;
-public final class q41 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final String f29662a;
-    public final String f29663b;
-    public final Utilities.Callback2 f29664c;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class q41 extends x41 {
+    public final org.telegram.ui.wf T;
 
-    public q41(String str, String str2, Utilities.Callback2 callback2) {
-        this.f29662a = str;
-        this.f29663b = str2;
-        this.f29664c = callback2;
+    public q41(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i10, TL_iv.RichMessage richMessage, org.telegram.ui.wf wfVar) {
+        super(activity, str, str2, null, inputPeer, i10, false, richMessage);
+        this.T = wfVar;
     }
 
     @Override
-    public void run(String str) {
-        g51.z(this.f29662a, str, this.f29663b, this.f29664c);
-    }
-
-    @Override
-    public void run(Exception exc) {
-        g51.z(this.f29662a, "en", this.f29663b, this.f29664c);
+    public final void dismiss() {
+        super.dismiss();
+        this.T.run();
     }
 }

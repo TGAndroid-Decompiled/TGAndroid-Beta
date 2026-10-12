@@ -1,78 +1,66 @@
 package ah;
 
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
-import java.lang.ref.WeakReference;
-import java.util.Iterator;
-public final class c {
-    public final fh.a f543a;
-    public int f544b;
-    public int f545c;
-    public qe.b d;
-    public qe.b f546e;
-    public hh.j f547f;
-    public ViewGroup f548g;
-    public li.e h;
-    public boolean f549i;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+public final class c extends ReplacementSpan {
+    public final TextPaint f658a;
+    public final RectF f659b;
+    public StaticLayout f660c;
+    public float d;
+    public float e;
+    public int f661f;
 
-    public c(fh.a aVar) {
-        this.f543a = aVar;
+    public c(c6 c6Var) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f658a = textPaint;
+        this.f659b = new RectF();
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(g6.w0(g6.C6, c6Var));
     }
 
-    public final ch.d a(View view) {
-        return c(view, null, false);
-    }
-
-    public final ch.d b(View view, dh.a aVar) {
-        return c(view, aVar, false);
-    }
-
-    public final ch.d c(View view, dh.a aVar, boolean z10) {
-        ch.d l4 = this.f543a.l();
-        if (this.f549i && Build.VERSION.SDK_INT >= 33 && (l4 instanceof ch.e)) {
-            ch.e eVar = (ch.e) l4;
-            eVar.P = new i(eVar.K);
-        }
-        l4.o(aVar);
-        int i10 = this.f544b;
-        int i11 = this.f545c;
-        l4.h = i10;
-        l4.f4682i = i11;
-        qe.b bVar = this.f546e;
-        if (bVar != null && view != null) {
-            bVar.add(view);
-        }
-        li.e eVar2 = this.h;
-        if (eVar2 != null && view != null) {
-            eVar2.d.add(new li.d(view, l4));
-        }
-        if (this.f547f != null && this.f548g != null && view != null) {
-            this.f547f.d(view, this.f548g, new b(0, l4, new WeakReference(view)), z10);
-        }
-        qe.b bVar2 = this.d;
-        if (bVar2 != null) {
-            bVar2.add(l4);
-        }
-        return l4;
-    }
-
-    public final void d() {
-        qe.b bVar = this.f546e;
-        if (bVar != null) {
-            Iterator it = bVar.iterator();
-            while (it.hasNext()) {
-                ((View) it.next()).invalidate();
+    public final void a() {
+        Layout.Alignment alignment;
+        if (this.f660c == null) {
+            String string = LocaleController.getString(R.string.ReactionAddReactionsHint);
+            int i10 = AndroidUtilities.displaySize.x;
+            if (LocaleController.isRTL) {
+                alignment = Layout.Alignment.ALIGN_OPPOSITE;
+            } else {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
             }
+            StaticLayout staticLayout = new StaticLayout(string, this.f658a, i10, alignment, 1.0f, 0.0f, false);
+            this.f660c = staticLayout;
+            this.d = staticLayout.getLineWidth(0);
+            this.e = this.f660c.getHeight();
         }
     }
 
-    public final void e(qe.b bVar) {
-        this.f546e = bVar;
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        a();
+        Rect clipBounds = canvas.getClipBounds();
+        RectF rectF = this.f659b;
+        rectF.set(clipBounds);
+        canvas.saveLayerAlpha(rectF, this.f661f, 31);
+        canvas.translate(f7 + AndroidUtilities.dp(4.0f), (((i14 - i12) / 2.0f) + i12) - (this.e / 2.0f));
+        this.f660c.draw(canvas);
+        canvas.restore();
     }
 
-    public final void f(hh.j jVar, ViewGroup viewGroup) {
-        this.f547f = jVar;
-        this.f548g = viewGroup;
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        a();
+        return (int) (AndroidUtilities.dp(8.0f) + this.d);
     }
 }

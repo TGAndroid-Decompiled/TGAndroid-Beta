@@ -1,34 +1,46 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import org.telegram.messenger.AndroidUtilities;
-public final class ce0 extends de0 {
-    public final ci.g2 L;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+public final class ce0 extends TextView {
+    public final de0 f24066a;
 
-    public ce0(Context context) {
-        super(context, null);
-        ci.g2 g2Var = new ci.g2(this, context, 5);
-        this.L = g2Var;
-        g2Var.setTextSize(1, 18.0f);
-        g2Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        g2Var.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
-        g2Var.setBackground(null);
-        g2Var.setSingleLine(true);
-        g2Var.setInputType(1);
-        g2Var.setTypeface(Typeface.DEFAULT);
-        g2Var.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20706l6, false));
-        g2Var.setCursorWidth(1.5f);
-        g2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
-        e(g2Var);
-        addView(g2Var, w7.w5.e(-1, -2, 16));
+    public ce0(de0 de0Var, Context context, int i10) {
+        super(context);
+        this.f24066a = de0Var;
     }
 
-    public EditTextBoldCursor getEditText() {
-        return this.L;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        de0 de0Var = this.f24066a;
+        if (de0Var.e.getAdapter() instanceof be0) {
+            ((be0) de0Var.e.getAdapter()).getClass();
+        }
     }
 
-    public void setHint(String str) {
-        setText(str);
+    @Override
+    public final void setSelected(boolean z10) {
+        float f7;
+        float f10;
+        super.setSelected(z10);
+        Drawable background = getBackground();
+        de0 de0Var = this.f24066a;
+        if (background != null) {
+            if (z10) {
+                f10 = 0.1f;
+            } else {
+                f10 = 0.05f;
+            }
+            org.telegram.ui.ActionBar.g6.C1(background, de0Var.c(f10), true);
+        }
+        if (z10) {
+            f7 = 0.8f;
+        } else {
+            f7 = 0.6f;
+        }
+        setTextColor(de0Var.c(f7));
     }
 }

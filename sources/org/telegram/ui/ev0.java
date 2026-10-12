@@ -1,117 +1,32 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
+import java.io.File;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 public interface ev0 {
-    boolean A();
+    boolean a(int i10);
 
-    void B(int i10);
+    File b(int i10);
 
-    CharSequence C(int i10);
+    String c(int i10);
 
-    void D();
+    TLObject d(int i10);
 
-    gv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11);
+    boolean e(int i10);
 
-    void F(boolean z10);
+    TLRPC.PhotoSize f(TLObject tLObject, int[] iArr);
 
-    void G();
+    Object g();
 
-    int H();
+    TL_iv.PageBlock get(int i10);
 
-    void I();
+    List getAll();
 
-    boolean J();
+    void h(TL_iv.PageBlock pageBlock);
 
-    boolean K();
+    CharSequence i(int i10);
 
-    void L(VideoEditedInfo videoEditedInfo);
-
-    boolean M();
-
-    boolean N();
-
-    boolean O();
-
-    boolean P();
-
-    int Q(Object obj);
-
-    int R(int i10);
-
-    boolean S();
-
-    boolean T();
-
-    MessageObject U();
-
-    void V();
-
-    void W(int i10);
-
-    void X(int i10);
-
-    boolean Y();
-
-    void Z(int i10);
-
-    long a();
-
-    String a0();
-
-    boolean b();
-
-    CharSequence b0(int i10);
-
-    ArrayList c();
-
-    void d();
-
-    void e(CharSequence charSequence);
-
-    void f(String str, String str2, boolean z10);
-
-    boolean g();
-
-    boolean h();
-
-    void i();
-
-    ImageReceiver.BitmapHolder j(int i10);
-
-    int k(int i10, VideoEditedInfo videoEditedInfo);
-
-    boolean l();
-
-    void m();
-
-    void n();
-
-    void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11);
-
-    boolean p();
-
-    boolean q();
-
-    boolean r();
-
-    void s();
-
-    boolean t();
-
-    boolean u();
-
-    HashMap v();
-
-    boolean w();
-
-    boolean x(int i10);
-
-    int y();
-
-    boolean z();
+    int j();
 }

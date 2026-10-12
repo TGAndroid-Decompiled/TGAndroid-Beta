@@ -1,17 +1,49 @@
 package c5;
 
-import java.util.concurrent.Callable;
-public final class x implements Callable {
-    public final int f4298a;
-    public final Object f4299b;
+import java.io.Serializable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+public final class x implements ThreadFactory {
+    public final int f4421a;
+    public final Object f4422b;
+    public final Serializable f4423c;
 
-    public x(Object obj, int i10) {
-        this.f4298a = i10;
-        this.f4299b = obj;
+    public x(c cVar) {
+        this.f4421a = 0;
+        this.f4422b = Executors.defaultThreadFactory();
+        this.f4423c = new AtomicInteger(1);
     }
 
     @Override
-    public final java.lang.Object call() {
-        throw new UnsupportedOperationException("Method not decompiled: c5.x.call():java.lang.Object");
+    public final Thread newThread(Runnable runnable) {
+        switch (this.f4421a) {
+            case 0:
+                Thread newThread = ((ThreadFactory) this.f4422b).newThread(runnable);
+                int andIncrement = ((AtomicInteger) this.f4423c).getAndIncrement();
+                newThread.setName("PlayBillingLibrary-" + andIncrement);
+                return newThread;
+            case 1:
+                Thread newThread2 = ((ThreadFactory) this.f4422b).newThread(new l5.o(2, runnable));
+                newThread2.setName((String) this.f4423c);
+                return newThread2;
+            default:
+                Thread newThread3 = Executors.defaultThreadFactory().newThread(new x9.t(runnable));
+                newThread3.setName(((String) this.f4422b) + ((AtomicLong) this.f4423c).getAndIncrement());
+                return newThread3;
+        }
+    }
+
+    public x(String str) {
+        this.f4421a = 1;
+        this.f4422b = Executors.defaultThreadFactory();
+        this.f4423c = str;
+    }
+
+    public x(String str, AtomicLong atomicLong) {
+        this.f4421a = 2;
+        this.f4422b = str;
+        this.f4423c = atomicLong;
     }
 }

@@ -1,0 +1,30 @@
+package org.telegram.ui;
+
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class ic0 extends fo {
+    public boolean Qc;
+    public final TLRPC.User Rc;
+    public final TLRPC.User[] Sc;
+    public final long Tc;
+
+    public ic0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j10) {
+        super(bundle);
+        this.Rc = user;
+        this.Sc = userArr;
+        this.Tc = j10;
+    }
+
+    @Override
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Qc) {
+            this.Qc = true;
+            org.telegram.ui.Components.zc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc[0])), new bi.g(this, this.Tc, 27)), R.raw.contact_check).j();
+        }
+    }
+}

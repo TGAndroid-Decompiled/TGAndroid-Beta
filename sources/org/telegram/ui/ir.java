@@ -1,38 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AnimationNotificationsLocker;
-public final class ir extends s4.j {
-    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
-    public final wr G;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ir implements qq {
+    public final TLObject f37194a;
+    public final long f37195b;
+    public final boolean f37196c;
+    public final yr d;
 
-    public ir(wr wrVar) {
-        this.G = wrVar;
+    public ir(yr yrVar, TLObject tLObject, long j10, boolean z10) {
+        this.d = yrVar;
+        this.f37194a = tLObject;
+        this.f37195b = j10;
+        this.f37196c = z10;
     }
 
     @Override
-    public final void N() {
-        this.F.unlock();
+    public final void a(TLRPC.User user) {
+        yr.c0(this.d, user);
     }
 
     @Override
-    public final void O() {
-        this.G.f43619c.invalidate();
-    }
-
-    @Override
-    public final void P(s4.d1 d1Var) {
-        this.G.f43619c.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f47958p.isEmpty();
-        boolean isEmpty2 = this.f47960r.isEmpty();
-        boolean isEmpty3 = this.f47961s.isEmpty();
-        boolean isEmpty4 = this.f47959q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            this.F.lock();
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f37194a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
         }
-        super.m();
+        yr yrVar = this.d;
+        rr rrVar = yrVar.f42239m1;
+        long j10 = this.f37195b;
+        if (rrVar != null && i10 == 1) {
+            rrVar.b(j10);
+        } else if (rrVar != null) {
+            rrVar.c(j10, tLObject);
+        }
+        if (this.f37196c) {
+            yrVar.removeSelfFromStack();
+        }
     }
 }

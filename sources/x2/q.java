@@ -1,15 +1,23 @@
 package x2;
 
-import b2.l1;
-public final class q {
-    public final l1 f50771a;
-    public final int[] f50772b;
+import java.util.List;
+public final class q extends c {
+    @Override
+    public final int c() {
+        return 0;
+    }
 
-    public q(l1 l1Var, int... iArr) {
-        if (iArr.length == 0) {
-            e2.a.f("ETSDefinition", "Empty tracks are not allowed", new IllegalArgumentException());
-        }
-        this.f50771a = l1Var;
-        this.f50772b = iArr;
+    @Override
+    public final int n() {
+        return 0;
+    }
+
+    @Override
+    public final Object q() {
+        return null;
+    }
+
+    @Override
+    public final void k(long j10, long j11, long j12, List list, v2.m[] mVarArr) {
     }
 }

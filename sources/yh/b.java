@@ -1,86 +1,66 @@
 package yh;
 
+import android.content.Context;
 import android.text.SpannableStringBuilder;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.am;
-import org.telegram.ui.Components.ac;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.wb;
-public final class b implements Runnable {
-    public final int f52501a;
-    public final g f52502b;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.b6;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.n01;
+import org.telegram.ui.Components.z61;
+import w7.a6;
+import zh.p7;
+public final class b extends k61 {
+    public static final int f48796a = 0;
 
-    public b(g gVar, int i10) {
-        this.f52501a = i10;
-        this.f52502b = gVar;
+    static {
+        k61.setup(new k61());
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        String formatPluralStringSpaced;
-        int i10 = this.f52501a;
-        g gVar = this.f52502b;
-        switch (i10) {
-            case 0:
-                b bVar = gVar.f52807n0;
-                int currentTime = gVar.getConnectionsManager().getCurrentTime();
-                bi.q qVar = gVar.R;
-                if (gVar.P <= 0 && gVar.G <= currentTime) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                qVar.setEnabled(z10);
-                if (currentTime < gVar.G) {
-                    gVar.R.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
-                    if (gVar.m0 == null) {
-                        gVar.m0 = new SpannableStringBuilder("l");
-                        gr grVar = new gr(R.drawable.mini_switch_lock, 0);
-                        grVar.setTopOffset(1);
-                        gVar.m0.setSpan(grVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) gVar.m0).append((CharSequence) g.j0(gVar.G - currentTime));
-                    gVar.R.f(spannableStringBuilder, true);
-                    sc scVar = gVar.f52790a0;
-                    if (scVar != null) {
-                        wb wbVar = scVar.f30532e;
-                        if ((wbVar instanceof ac) && wbVar.isAttachedToWindow()) {
-                            am.r(R.string.BotStarsWithdrawalToast, new Object[]{g.j0(gVar.G - currentTime)}, ((ac) gVar.f52790a0.f30532e).f24277b);
-                        }
-                    }
-                    AndroidUtilities.cancelRunOnUIThread(bVar);
-                    AndroidUtilities.runOnUIThread(bVar, 1000L);
-                    return;
-                }
-                gVar.R.f(null, true);
-                bi.q qVar2 = gVar.R;
-                if (gVar.O) {
-                    formatPluralStringSpaced = LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll);
-                } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) gVar.P);
-                }
-                qVar2.g(p7.W0(false, formatPluralStringSpaced, gVar.T), true, true);
-                return;
-            case 1:
-                g.U(gVar);
-                return;
-            case 2:
-                g.V(gVar);
-                return;
-            case 3:
-                of.f.s(gVar.getParentActivity(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
-                return;
-            case 4:
-                of.f.s(gVar.getParentActivity(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
-                return;
-            default:
-                gVar.S.setLoading(false);
-                return;
-        }
+    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+        c cVar = (c) view;
+        GiftAuctionController.Auction auction = (GiftAuctionController.Auction) l61Var.H;
+        TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) l61Var.G;
+        View.OnClickListener onClickListener = l61Var.D;
+        int i10 = c.f48801c;
+        cVar.removeAllViews();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
+        spannableStringBuilder.setSpan(new b6(auction.giftDocumentId, g6.f20174s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append(' ');
+        spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound2, auction.gift.title, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.gift_num), Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
+        spannableStringBuilder.setSpan(new i61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+        spannableStringBuilder2.append((CharSequence) p7.Y0(false, org.telegram.messenger.q.i(tL_StarGiftAuctionAcquiredGift.bid_amount, ',', new StringBuilder("⭐️")), 0.75f, null));
+        String formatString = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
+        n01 n01Var = new n01(cVar.getContext(), cVar.f48802a);
+        n01Var.a(spannableStringBuilder).setFilled(true);
+        n01Var.m(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), cVar.f48803b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new s9.b(24, cVar, onClickListener));
+        n01Var.f(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
+        n01Var.e(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null, null);
+        cVar.addView(n01Var, a6.d(-2.0f, -1));
+    }
+
+    @Override
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, c6 c6Var) {
+        c cVar = new c(context, i10, c6Var);
+        cVar.setLayoutParams(a6.d(-2.0f, -1));
+        return cVar;
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return false;
     }
 }

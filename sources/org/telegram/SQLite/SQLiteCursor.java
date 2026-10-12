@@ -39,23 +39,23 @@ public class SQLiteCursor {
         throw new SQLiteException("You must call next before");
     }
 
-    public native byte[] columnByteArrayValue(long j3, int i10);
+    public native byte[] columnByteArrayValue(long j10, int i10);
 
-    public native long columnByteBufferValue(long j3, int i10);
+    public native long columnByteBufferValue(long j10, int i10);
 
-    public native int columnCount(long j3);
+    public native int columnCount(long j10);
 
-    public native double columnDoubleValue(long j3, int i10);
+    public native double columnDoubleValue(long j10, int i10);
 
-    public native int columnIntValue(long j3, int i10);
+    public native int columnIntValue(long j10, int i10);
 
-    public native int columnIsNull(long j3, int i10);
+    public native int columnIsNull(long j10, int i10);
 
-    public native long columnLongValue(long j3, int i10);
+    public native long columnLongValue(long j10, int i10);
 
-    public native String columnStringValue(long j3, int i10);
+    public native String columnStringValue(long j10, int i10);
 
-    public native int columnType(long j3, int i10);
+    public native int columnType(long j10, int i10);
 
     public void dispose() {
         this.preparedStatement.dispose();
@@ -118,8 +118,8 @@ public class SQLiteCursor {
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
                 if (step == 0) {
                     break;

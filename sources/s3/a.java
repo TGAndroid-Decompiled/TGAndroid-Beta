@@ -1,47 +1,47 @@
 package s3;
 
 import a1.g;
-import e2.v;
+import e2.x;
 public final class a extends b {
-    public final int f47831a;
-    public final long f47832b;
-    public final long f47833c;
+    public final int f44800a;
+    public final long f44801b;
+    public final long f44802c;
 
-    public a(long j3, long j10, int i10) {
-        this.f47831a = i10;
+    public a(long j10, long j11, int i10) {
+        this.f44800a = i10;
         switch (i10) {
             case 1:
-                this.f47832b = j3;
-                this.f47833c = j10;
+                this.f44801b = j10;
+                this.f44802c = j11;
                 return;
             default:
-                this.f47832b = j10;
-                this.f47833c = j3;
+                this.f44801b = j11;
+                this.f44802c = j10;
                 return;
         }
     }
 
-    public static long d(long j3, v vVar) {
-        long x10 = vVar.x();
-        if ((128 & x10) != 0) {
-            return 8589934591L & ((((x10 & 1) << 32) | vVar.z()) + j3);
+    public static long d(long j10, x xVar) {
+        long A = xVar.A();
+        if ((128 & A) != 0) {
+            return 8589934591L & ((((A & 1) << 32) | xVar.C()) + j10);
         }
         return -9223372036854775807L;
     }
 
     @Override
     public final String toString() {
-        switch (this.f47831a) {
+        switch (this.f44800a) {
             case 0:
                 StringBuilder sb2 = new StringBuilder("SCTE-35 PrivateCommand { ptsAdjustment=");
-                sb2.append(this.f47832b);
+                sb2.append(this.f44801b);
                 sb2.append(", identifier= ");
-                return g.s(sb2, this.f47833c, " }");
+                return g.r(sb2, this.f44802c, " }");
             default:
                 StringBuilder sb3 = new StringBuilder("SCTE-35 TimeSignalCommand { ptsTime=");
-                sb3.append(this.f47832b);
+                sb3.append(this.f44801b);
                 sb3.append(", playbackPositionUs= ");
-                return g.s(sb3, this.f47833c, " }");
+                return g.r(sb3, this.f44802c, " }");
         }
     }
 }

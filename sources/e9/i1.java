@@ -1,83 +1,36 @@
 package e9;
 
-import java.util.AbstractSet;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Set;
-public final class i1 extends AbstractSet {
-    public final Set f8750a;
-    public final Set f8751b;
+import java.io.Serializable;
+import java.util.AbstractSequentialList;
+import java.util.List;
+import java.util.ListIterator;
+public final class i1 extends AbstractSequentialList implements Serializable {
+    public final List f8575a;
+    public final d9.k f8576b;
 
-    public i1(Set set, Set set2) {
-        this.f8750a = set;
-        this.f8751b = set2;
-    }
-
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.f8750a.contains(obj) && this.f8751b.contains(obj)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        if (this.f8750a.containsAll(collection) && this.f8751b.containsAll(collection)) {
-            return true;
-        }
-        return false;
+    public i1(List list, d9.k kVar) {
+        list.getClass();
+        this.f8575a = list;
+        this.f8576b = kVar;
     }
 
     @Override
     public final boolean isEmpty() {
-        return Collections.disjoint(this.f8751b, this.f8750a);
+        return this.f8575a.isEmpty();
     }
 
     @Override
-    public final Iterator iterator() {
-        return new n0(this);
+    public final ListIterator listIterator(int i10) {
+        return new g1(this, this.f8575a.listIterator(i10), 1);
     }
 
     @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
+    public final void removeRange(int i10, int i11) {
+        this.f8575a.subList(i10, i11).clear();
     }
 
     @Override
     public final int size() {
-        int i10 = 0;
-        for (Object obj : this.f8750a) {
-            if (this.f8751b.contains(obj)) {
-                i10++;
-            }
-        }
-        return i10;
+        return this.f8575a.size();
     }
 }

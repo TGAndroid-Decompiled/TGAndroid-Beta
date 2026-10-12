@@ -23,33 +23,33 @@ import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ju;
+import org.telegram.ui.Components.du;
 public final class v4 {
-    public static final h4 f21400p = new Object();
-    public static final List f21401q = Arrays.asList(Integer.valueOf(R.id.menu_regular), Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_quote), Integer.valueOf(R.id.menu_date));
-    public static final List f21402r = Arrays.asList(Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_quote));
-    public final View f21403a;
-    public final t4 f21404b;
-    public Menu f21406e;
-    public final int f21409i;
-    public Runnable f21410j;
-    public ju f21411k;
-    public final c6 f21414n;
-    public final ah.c f21415o;
-    public final Rect f21405c = new Rect();
+    public static final h4 f20760p = new Object();
+    public static final List f20761q = Arrays.asList(Integer.valueOf(R.id.menu_regular), Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_quote), Integer.valueOf(R.id.menu_date));
+    public static final List f20762r = Arrays.asList(Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_quote));
+    public final View f20763a;
+    public final t4 f20764b;
+    public Menu e;
+    public final int f20768i;
+    public Runnable f20769j;
+    public du f20770k;
+    public final c6 f20773n;
+    public final bh.b f20774o;
+    public final Rect f20765c = new Rect();
     public final Rect d = new Rect();
-    public ArrayList f21407f = new ArrayList();
-    public MenuItem.OnMenuItemClickListener f21408g = f21400p;
+    public ArrayList f20766f = new ArrayList();
+    public MenuItem.OnMenuItemClickListener f20767g = f20760p;
     public boolean h = true;
-    public final i4 f21412l = new i4(this);
-    public final a4.d f21413m = new a4.d(23);
+    public final i4 f20771l = new i4(this);
+    public final a4.d f20772m = new a4.d(27);
 
-    public v4(Context context, View view, int i10, c6 c6Var, ah.c cVar) {
-        this.f21403a = view;
-        this.f21409i = i10;
-        this.f21415o = cVar;
-        this.f21414n = c6Var;
-        this.f21404b = new t4(this, context, view);
+    public v4(Context context, View view, int i10, c6 c6Var, bh.b bVar) {
+        this.f20763a = view;
+        this.f20768i = i10;
+        this.f20774o = bVar;
+        this.f20773n = c6Var;
+        this.f20764b = new t4(this, context, view);
     }
 
     public static AnimatorSet a(RelativeLayout relativeLayout, int i10, AnimatorListenerAdapter animatorListenerAdapter) {
@@ -67,7 +67,7 @@ public final class v4 {
         int i11;
         int i12;
         float f10;
-        c6 c6Var = v4Var.f21414n;
+        c6 c6Var = v4Var.f20773n;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
         boolean z13 = false;
@@ -89,23 +89,23 @@ public final class v4 {
         textView.setFocusable(false);
         textView.setImportantForAccessibility(2);
         textView.setFocusableInTouchMode(false);
-        int w03 = h6.w0(h6.f20651i6, c6Var);
-        int i13 = v4Var.f21409i;
+        int w03 = g6.w0(g6.f19990i6, c6Var);
+        int i13 = v4Var.f20768i;
         if (i13 == 0) {
-            w02 = h6.w0(h6.f20668j5, c6Var);
+            w02 = g6.w0(g6.f20007j5, c6Var);
             textView.setTextColor(w02);
         } else if (i13 == 2) {
             w02 = -328966;
             textView.setTextColor(-328966);
             w03 = 553648127;
         } else if (i13 == 1) {
-            w02 = h6.w0(h6.G6, c6Var);
+            w02 = g6.w0(g6.G6, c6Var);
             textView.setTextColor(w02);
         } else {
-            w02 = h6.w0(h6.G6, c6Var);
+            w02 = g6.w0(g6.G6, c6Var);
         }
         if (!z11 && !z12) {
-            linearLayout.setBackground(h6.g0(w03, 2, -1));
+            linearLayout.setBackground(g6.g0(w03, 2, -1));
         } else {
             int i14 = 12;
             if (z11) {
@@ -126,7 +126,7 @@ public final class v4 {
             if (!z11) {
                 i14 = 0;
             }
-            linearLayout.setBackground(h6.b0(w03, i10, i11, i12, i14));
+            linearLayout.setBackground(g6.b0(w03, i10, i11, i12, i14));
         }
         textView.setPaddingRelative(AndroidUtilities.dp(11.0f), 0, 0, 0);
         if (z10) {
@@ -139,11 +139,11 @@ public final class v4 {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.msg_mini_lock3);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.m1(0.4f, w02), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(g6.m1(0.4f, w02), PorterDuff.Mode.SRC_IN));
         imageView.setVisibility(8);
-        linearLayout.addView(imageView, w7.w5.p(-2, -1, 0.0f, 0, 12, 0, 0, 0));
+        linearLayout.addView(imageView, w7.a6.p(-2, -1, 0.0f, 0, 12, 0, 0, 0));
         if (menuItem != null) {
-            if (v4Var.f21410j != null) {
+            if (v4Var.f20769j != null) {
                 z13 = true;
             }
             e(linearLayout, menuItem, z13);
@@ -160,7 +160,7 @@ public final class v4 {
     }
 
     public final ArrayList d(Menu menu) {
-        ju juVar;
+        du duVar;
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; menu != null && i10 < menu.size(); i10++) {
             MenuItem item = menu.getItem(i10);
@@ -168,7 +168,7 @@ public final class v4 {
                 SubMenu subMenu = item.getSubMenu();
                 if (subMenu != null) {
                     arrayList.addAll(d(subMenu));
-                } else if ((item.getItemId() != R.id.menu_quote || (juVar = this.f21411k) == null || ((Boolean) juVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.f21410j == null)) {
+                } else if ((item.getItemId() != R.id.menu_quote || (duVar = this.f20770k) == null || ((Boolean) duVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.f20769j == null)) {
                     arrayList.add(item);
                 }
             }

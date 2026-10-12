@@ -1,50 +1,46 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class l9 extends FrameLayout {
-    public final org.telegram.ui.Cells.i6 f39665a;
-    public final org.telegram.ui.Components.fj0 f39666b;
-    public TLRPC.Chat f39667c;
+public final class l9 extends org.telegram.ui.Components.k61 {
+    public static final int f37894a = 0;
 
-    public l9(Context context) {
-        super(context);
-        int i10;
-        int dp;
-        String string = LocaleController.getString(R.string.VoipChatJoin);
-        org.telegram.ui.Components.fj0 fj0Var = new org.telegram.ui.Components.fj0(context);
-        this.f39666b = fj0Var;
-        int ceil = (int) Math.ceil(fj0Var.getPaint().measureText(string));
-        org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
-        this.f39665a = i6Var;
-        i6Var.M0 = true;
-        i6Var.E0 = true;
-        if (LocaleController.isRTL) {
-            i10 = AndroidUtilities.dp(44.0f) + ceil;
+    static {
+        org.telegram.ui.Components.k61.setup(new org.telegram.ui.Components.k61());
+    }
+
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.l61 l61Var, boolean z10, org.telegram.ui.Components.z61 z61Var, org.telegram.ui.Components.h71 h71Var) {
+        String lowerCase;
+        m9 m9Var = (m9) view;
+        TLRPC.Chat chat = (TLRPC.Chat) l61Var.G;
+        View.OnClickListener onClickListener = l61Var.D;
+        m9Var.f38193c = chat;
+        org.telegram.ui.Components.yi0 yi0Var = m9Var.f38192b;
+        yi0Var.setTag(Long.valueOf(chat.f19216id));
+        if (ChatObject.isChannel(chat) && !chat.megagroup) {
+            if (!ChatObject.isPublic(chat)) {
+                lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
+            } else {
+                lowerCase = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
+            }
+        } else if (chat.has_geo) {
+            lowerCase = LocaleController.getString(R.string.MegaLocation);
+        } else if (!ChatObject.isPublic(chat)) {
+            lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
         } else {
-            i10 = 0;
+            lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
-        if (LocaleController.isRTL) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(44.0f) + ceil;
-        }
-        i6Var.setPadding(i10, 0, dp, 0);
-        i6Var.f22007b0 = 0;
-        i6Var.f22008c0 = -AndroidUtilities.dp(4.0f);
-        addView(i6Var, w7.w5.d(-1.0f, -1));
-        fj0Var.setText(string);
-        fj0Var.setTextSize(1, 14.0f);
-        fj0Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-        fj0Var.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Nh, false));
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hl, false);
-        org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-        fj0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{16.0f}, x02));
-        fj0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        addView(fj0Var, w7.w5.i(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
+        m9Var.f38191a.u(chat, null, null, lowerCase, false, false);
+        yi0Var.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new m9(context);
     }
 }

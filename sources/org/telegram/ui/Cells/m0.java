@@ -1,129 +1,36 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-public final class m0 extends Drawable {
-    public final int f22203a;
-    public Object f22204b;
-    public int f22205c;
+import android.view.View;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.q11;
+public final class m0 extends ad {
+    public final int f21500k;
+    public final Object f21501l;
 
-    public m0(int i10) {
-        this.f22203a = i10;
-        switch (i10) {
-            case 2:
-                this.f22205c = 255;
-                return;
-            default:
-                return;
-        }
+    public m0(u1 u1Var, u1 u1Var2, int i10) {
+        super(u1Var);
+        this.f21500k = i10;
+        this.f21501l = u1Var2;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f22203a) {
+    public final void b() {
+        switch (this.f21500k) {
             case 0:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, (Paint) this.f22204b);
+                ((u1) this.f21501l).a3();
                 return;
             case 1:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f22204b);
+                ((u1) this.f21501l).a3();
                 return;
             default:
-                return;
-        }
-    }
-
-    @Override
-    public int getAlpha() {
-        switch (this.f22203a) {
-            case 2:
-                return this.f22205c;
-            default:
-                return super.getAlpha();
-        }
-    }
-
-    @Override
-    public ColorFilter getColorFilter() {
-        switch (this.f22203a) {
-            case 2:
-                return (ColorFilter) this.f22204b;
-            default:
-                return super.getColorFilter();
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f22203a) {
-            case 1:
-                return this.f22205c;
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f22203a) {
-            case 1:
-                return this.f22205c;
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f22203a) {
-            case 0:
-                return -2;
-            case 1:
-                return -2;
-            default:
-                return -1;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f22203a) {
-            case 0:
-                ((Paint) this.f22204b).setAlpha(org.telegram.ui.ActionBar.h6.m1(i10 / 255.0f, this.f22205c));
-                return;
-            case 1:
-                ((Paint) this.f22204b).setAlpha(i10);
-                return;
-            default:
-                this.f22205c = i10;
+                ((q11) this.f21501l).invalidateSelf();
                 return;
         }
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f22203a) {
-            case 0:
-                ((Paint) this.f22204b).setColorFilter(colorFilter);
-                return;
-            case 1:
-                return;
-            default:
-                this.f22204b = colorFilter;
-                return;
-        }
-    }
-
-    public m0(Paint paint, int i10) {
-        this.f22203a = 0;
-        this.f22204b = paint;
-        this.f22205c = i10;
-    }
-
-    private final void a(Canvas canvas) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
+    public m0(q11 q11Var) {
+        super((View) null);
+        this.f21500k = 2;
+        this.f21501l = q11Var;
     }
 }

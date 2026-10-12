@@ -99,40 +99,40 @@ public class UserConfig extends BaseController {
     private void checkPremiumSelf(TLRPC.User user, final TLRPC.User user2) {
         if (user != null && user2 != null && user.premium != user2.premium) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f19797b;
+                public final UserConfig f18959b;
 
                 {
-                    this.f19797b = this;
+                    this.f18959b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f19797b.lambda$checkPremiumSelf$1(user2);
+                            this.f18959b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f19797b.lambda$checkPremiumSelf$2(user2);
+                            this.f18959b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
             });
         } else if (user == null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f19797b;
+                public final UserConfig f18959b;
 
                 {
-                    this.f19797b = this;
+                    this.f18959b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f19797b.lambda$checkPremiumSelf$1(user2);
+                            this.f18959b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f19797b.lambda$checkPremiumSelf$2(user2);
+                            this.f18959b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
@@ -216,7 +216,7 @@ public class UserConfig extends BaseController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
         getMediaDataController().loadPremiumPromo(false);
         getMediaDataController().loadReactions(false, null);
-        ai.m9 storiesController = getMessagesController().getStoriesController();
+        bi.x8 storiesController = getMessagesController().getStoriesController();
         storiesController.R = false;
         storiesController.S = null;
     }
@@ -237,7 +237,7 @@ public class UserConfig extends BaseController {
     }
 
     public void lambda$loadGlobalTTl$4(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new xg(16, this, tLObject));
+        AndroidUtilities.runOnUIThread(new xg(15, this, tLObject));
     }
 
     public void lambda$saveConfig$0(boolean z10) {
@@ -318,8 +318,8 @@ public class UserConfig extends BaseController {
                             edit.remove("user");
                         }
                         edit.apply();
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -416,20 +416,20 @@ public class UserConfig extends BaseController {
     }
 
     public long getClientUserId() {
-        long j3;
+        long j10;
         synchronized (this.sync) {
             try {
                 TLRPC.User user = this.currentUser;
                 if (user != null) {
-                    j3 = user.f19950id;
+                    j10 = user.f19363id;
                 } else {
-                    j3 = 0;
+                    j10 = 0;
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return j3;
+        return j10;
     }
 
     public TLRPC.User getCurrentUser() {
@@ -445,12 +445,12 @@ public class UserConfig extends BaseController {
         int i11;
         Integer valueOf2;
         Integer valueOf3;
-        long j3;
-        Integer valueOf4;
         long j10;
-        Integer valueOf5;
+        Integer valueOf4;
         long j11;
+        Integer valueOf5;
         long j12;
+        long j13;
         SharedPreferences preferences = getPreferences();
         StringBuilder sb2 = new StringBuilder("2dialogsLoadOffsetId");
         Object obj = "";
@@ -489,11 +489,11 @@ public class UserConfig extends BaseController {
         sb6.append(valueOf3);
         String sb7 = sb6.toString();
         if (this.hasValidDialogLoadIds) {
-            j3 = 0;
+            j10 = 0;
         } else {
-            j3 = -1;
+            j10 = -1;
         }
-        long prefIntOrLong = AndroidUtilities.getPrefIntOrLong(preferences, sb7, j3);
+        long prefIntOrLong = AndroidUtilities.getPrefIntOrLong(preferences, sb7, j10);
         StringBuilder sb8 = new StringBuilder("2dialogsLoadOffsetChatId");
         if (i10 == 0) {
             valueOf4 = "";
@@ -503,11 +503,11 @@ public class UserConfig extends BaseController {
         sb8.append(valueOf4);
         String sb9 = sb8.toString();
         if (this.hasValidDialogLoadIds) {
-            j10 = 0;
+            j11 = 0;
         } else {
-            j10 = -1;
+            j11 = -1;
         }
-        long prefIntOrLong2 = AndroidUtilities.getPrefIntOrLong(preferences, sb9, j10);
+        long prefIntOrLong2 = AndroidUtilities.getPrefIntOrLong(preferences, sb9, j11);
         StringBuilder sb10 = new StringBuilder("2dialogsLoadOffsetChannelId");
         if (i10 == 0) {
             valueOf5 = "";
@@ -517,11 +517,11 @@ public class UserConfig extends BaseController {
         sb10.append(valueOf5);
         String sb11 = sb10.toString();
         if (this.hasValidDialogLoadIds) {
-            j11 = 0;
+            j12 = 0;
         } else {
-            j11 = -1;
+            j12 = -1;
         }
-        long prefIntOrLong3 = AndroidUtilities.getPrefIntOrLong(preferences, sb11, j11);
+        long prefIntOrLong3 = AndroidUtilities.getPrefIntOrLong(preferences, sb11, j12);
         StringBuilder sb12 = new StringBuilder("2dialogsLoadOffsetAccess");
         if (i10 != 0) {
             obj = Integer.valueOf(i10);
@@ -529,11 +529,11 @@ public class UserConfig extends BaseController {
         sb12.append(obj);
         String sb13 = sb12.toString();
         if (this.hasValidDialogLoadIds) {
-            j12 = 0;
+            j13 = 0;
         } else {
-            j12 = -1;
+            j13 = -1;
         }
-        return new long[]{i13, i14, prefIntOrLong, prefIntOrLong2, prefIntOrLong3, preferences.getLong(sb13, j12)};
+        return new long[]{i13, i14, prefIntOrLong, prefIntOrLong2, prefIntOrLong3, preferences.getLong(sb13, j13)};
     }
 
     public Long getEmojiStatus() {
@@ -634,7 +634,7 @@ public class UserConfig extends BaseController {
     public void loadGlobalTTl() {
         if (!this.ttlIsLoading && System.currentTimeMillis() - this.lastLoadingTime >= 60000) {
             this.ttlIsLoading = true;
-            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDefaultHistoryTTL(), new i0(this, 9));
+            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDefaultHistoryTTL(), new i0(this, 8));
         }
     }
 
@@ -651,7 +651,7 @@ public class UserConfig extends BaseController {
     }
 
     public void saveConfig(boolean z10) {
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new bi.f(14, this, z10));
+        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new ah.t(15, this, z10));
     }
 
     public void savePassword(byte[] bArr, byte[] bArr2) {
@@ -664,12 +664,12 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC.User user2 = this.currentUser;
             this.currentUser = user;
-            this.clientUserId = user.f19950id;
+            this.clientUserId = user.f19363id;
             checkPremiumSelf(user2, user);
         }
     }
 
-    public void setDialogsLoadOffset(int i10, int i11, int i12, long j3, long j10, long j11, long j12) {
+    public void setDialogsLoadOffset(int i10, int i11, int i12, long j10, long j11, long j12, long j13) {
         Integer valueOf;
         Integer valueOf2;
         Integer valueOf3;
@@ -700,7 +700,7 @@ public class UserConfig extends BaseController {
             valueOf3 = Integer.valueOf(i10);
         }
         sb4.append(valueOf3);
-        edit.putLong(sb4.toString(), j3);
+        edit.putLong(sb4.toString(), j10);
         StringBuilder sb5 = new StringBuilder("2dialogsLoadOffsetChatId");
         if (i10 == 0) {
             valueOf4 = "";
@@ -708,7 +708,7 @@ public class UserConfig extends BaseController {
             valueOf4 = Integer.valueOf(i10);
         }
         sb5.append(valueOf4);
-        edit.putLong(sb5.toString(), j10);
+        edit.putLong(sb5.toString(), j11);
         StringBuilder sb6 = new StringBuilder("2dialogsLoadOffsetChannelId");
         if (i10 == 0) {
             valueOf5 = "";
@@ -716,13 +716,13 @@ public class UserConfig extends BaseController {
             valueOf5 = Integer.valueOf(i10);
         }
         sb6.append(valueOf5);
-        edit.putLong(sb6.toString(), j11);
+        edit.putLong(sb6.toString(), j12);
         StringBuilder sb7 = new StringBuilder("2dialogsLoadOffsetAccess");
         if (i10 != 0) {
             obj = Integer.valueOf(i10);
         }
         sb7.append(obj);
-        edit.putLong(sb7.toString(), j12);
+        edit.putLong(sb7.toString(), j13);
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();
     }

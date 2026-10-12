@@ -1,97 +1,235 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.Button;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class fj0 extends Button {
-    public final RectF f26095a;
-    public final Paint f26096b;
-    public boolean f26097c;
-    public float d;
-    public long f26098e;
-    public int f26099f;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class fj0 extends FrameLayout {
+    public static final int R = 0;
+    public boolean E;
+    public es F;
+    public ud0 G;
+    public ud0 H;
+    public org.telegram.ui.uc0 I;
+    public dj0 J;
+    public TextView K;
+    public boolean L;
+    public TLRPC.User M;
+    public int N;
+    public boolean O;
+    public cj0 P;
+    public org.telegram.ui.xc0 Q;
+    public VelocityTracker f25062a;
+    public int f25063b;
+    public int f25064c;
+    public int d;
+    public boolean e;
+    public boolean f25065f;
+    public AnimatorSet h;
+    public Rect f25066n;
+    public boolean f25067r;
+    public AnimatorSet f25068s;
+    public bj0 v;
+    public boolean f25069w;
+    public int f25070x;
+    public int f25071y;
 
-    public fj0(Context context) {
-        super(context);
-        setAllCaps(false);
-        setTextSize(1, 14.0f);
-        setTypeface(AndroidUtilities.bold());
-        setOutlineProvider(null);
-        w7.c6.a(this, 8.0f, 0.0f, 8.0f, 0.0f);
-        int dp = AndroidUtilities.dp(60.0f);
-        setMinWidth(dp);
-        setMinimumWidth(dp);
-        this.f26095a = new RectF();
-        Paint paint = new Paint(1);
-        this.f26096b = paint;
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public final void a() {
+        bj0 bj0Var = this.v;
+        if (this.f25067r) {
+            return;
+        }
+        this.f25067r = true;
+        AnimatorSet animatorSet = this.f25068s;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.f25068s = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f25068s = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(bj0Var, View.TRANSLATION_Y, AndroidUtilities.dp(10.0f) + bj0Var.getMeasuredHeight()));
+        if (this.E) {
+            float measuredHeight = bj0Var.getMeasuredHeight();
+            this.f25068s.setDuration(Math.max(60, (int) (((measuredHeight - bj0Var.getTranslationY()) * 250.0f) / measuredHeight)));
+            this.E = false;
+        } else {
+            this.f25068s.setDuration(250L);
+        }
+        this.f25068s.setInterpolator(es.f24771f);
+        this.f25068s.addListener(new ej0(this, 2));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        this.f25068s.start();
     }
 
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        if (this.f26097c != z10) {
-            this.f26097c = z10;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
+    public final boolean b(MotionEvent motionEvent, boolean z10) {
+        float translationY;
+        bj0 bj0Var = this.v;
+        if (!this.f25067r) {
+            if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f25065f && !this.e && motionEvent.getPointerCount() == 1)) {
+                this.f25063b = (int) motionEvent.getX();
+                int y3 = (int) motionEvent.getY();
+                this.f25064c = y3;
+                if (y3 >= bj0Var.getTop() && this.f25063b >= bj0Var.getLeft() && this.f25063b <= bj0Var.getRight()) {
+                    this.d = motionEvent.getPointerId(0);
+                    this.e = true;
+                    AnimatorSet animatorSet = this.h;
+                    if (animatorSet != null) {
+                        animatorSet.cancel();
+                        this.h = null;
+                    }
+                    VelocityTracker velocityTracker = this.f25062a;
+                    if (velocityTracker != null) {
+                        velocityTracker.clear();
+                    }
                 } else {
-                    f7 = 0.0f;
+                    requestDisallowInterceptTouchEvent(true);
+                    a();
+                    return true;
                 }
-                this.d = f7;
+            } else {
+                float f7 = 0.0f;
+                if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
+                    if (this.f25062a == null) {
+                        this.f25062a = VelocityTracker.obtain();
+                    }
+                    float abs = Math.abs((int) (motionEvent.getX() - this.f25063b));
+                    float y10 = ((int) motionEvent.getY()) - this.f25064c;
+                    this.f25062a.addMovement(motionEvent);
+                    if (this.e && !this.f25065f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs) && Math.abs(y10) >= this.f25071y) {
+                        this.f25064c = (int) motionEvent.getY();
+                        this.e = false;
+                        this.f25065f = true;
+                        requestDisallowInterceptTouchEvent(true);
+                    } else if (this.f25065f) {
+                        float translationY2 = bj0Var.getTranslationY() + y10;
+                        if (translationY2 >= 0.0f) {
+                            f7 = translationY2;
+                        }
+                        bj0Var.setTranslationY(f7);
+                        this.f25064c = (int) motionEvent.getY();
+                    }
+                } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+                    if (this.f25062a == null) {
+                        this.f25062a = VelocityTracker.obtain();
+                    }
+                    this.f25062a.computeCurrentVelocity(1000);
+                    float translationY3 = bj0Var.getTranslationY();
+                    if (!this.f25065f && translationY3 == 0.0f) {
+                        this.e = false;
+                        this.f25065f = false;
+                    } else {
+                        float xVelocity = this.f25062a.getXVelocity();
+                        float yVelocity = this.f25062a.getYVelocity();
+                        if ((bj0Var.getTranslationY() < AndroidUtilities.getPixelsInCM(0.8f, false) && (yVelocity < 3500.0f || Math.abs(yVelocity) < Math.abs(xVelocity))) || (yVelocity < 0.0f && Math.abs(yVelocity) >= 3500.0f)) {
+                            AnimatorSet animatorSet2 = new AnimatorSet();
+                            this.h = animatorSet2;
+                            animatorSet2.playTogether(ObjectAnimator.ofFloat(bj0Var, View.TRANSLATION_Y, 0.0f));
+                            this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
+                            this.h.setInterpolator(es.f24772g);
+                            this.h.addListener(new ej0(this, 0));
+                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                            this.h.start();
+                        } else {
+                            this.E = true;
+                            a();
+                        }
+                        this.f25065f = false;
+                    }
+                    VelocityTracker velocityTracker2 = this.f25062a;
+                    if (velocityTracker2 != null) {
+                        velocityTracker2.recycle();
+                        this.f25062a = null;
+                    }
+                    this.d = -1;
+                }
             }
-            this.f26098e = System.currentTimeMillis();
-            invalidate();
+            if ((!z10 && this.e) || this.f25065f) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void c(boolean r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fj0.c(boolean):void");
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f25067r) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public View getCustomView() {
+        return this.P;
+    }
+
+    public boolean getRadiusSet() {
+        return this.L;
+    }
+
+    public float getValue() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fj0.getValue():float");
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f25067r || b(motionEvent, true)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fj0.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        getRootView();
+        getWindowVisibleDisplayFrame(this.f25066n);
+        setMeasuredDimension(size, size2);
+        bj0 bj0Var = this.v;
+        bj0Var.measure(View.MeasureSpec.makeMeasureSpec((this.f25070x * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+        int childCount = getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt.getVisibility() != 8 && childAt != bj0Var) {
+                measureChildWithMargins(childAt, View.MeasureSpec.makeMeasureSpec(size, 1073741824), 0, View.MeasureSpec.makeMeasureSpec(size2, 1073741824), 0);
+            }
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (!this.f26097c && this.d == 0.0f) {
-            return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f25067r && !b(motionEvent, false)) {
+            return false;
         }
-        int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(11.0f);
-        RectF rectF = this.f26095a;
-        rectF.set(measuredWidth, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(8.0f) + measuredWidth, AndroidUtilities.dp(11.0f));
-        int min = Math.min(255, (int) (this.d * 255.0f));
-        Paint paint = this.f26096b;
-        paint.setAlpha(min);
-        canvas.drawArc(rectF, this.f26099f, 220.0f, false, paint);
-        long currentTimeMillis = System.currentTimeMillis();
-        if (Math.abs(this.f26098e - System.currentTimeMillis()) < 1000) {
-            long j3 = currentTimeMillis - this.f26098e;
-            int i10 = (int) (this.f26099f + (((float) (360 * j3)) / 2000.0f));
-            this.f26099f = i10 - ((i10 / 360) * 360);
-            if (this.f26097c) {
-                float f7 = this.d;
-                if (f7 < 1.0f) {
-                    float f10 = (((float) j3) / 200.0f) + f7;
-                    this.d = f10;
-                    if (f10 > 1.0f) {
-                        this.d = 1.0f;
-                    }
-                }
-            } else {
-                float f11 = this.d;
-                if (f11 > 0.0f) {
-                    float f12 = f11 - (((float) j3) / 200.0f);
-                    this.d = f12;
-                    if (f12 < 0.0f) {
-                        this.d = 0.0f;
-                    }
-                }
-            }
-        }
-        this.f26098e = currentTimeMillis;
-        postInvalidateOnAnimation();
+        return true;
     }
 
-    public void setProgressColor(int i10) {
-        this.f26096b.setColor(i10);
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z10) {
+        if (this.e && !this.f25065f) {
+            onTouchEvent(null);
+        }
+        super.requestDisallowInterceptTouchEvent(z10);
     }
 }

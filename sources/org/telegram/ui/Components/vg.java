@@ -1,106 +1,123 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class vg extends j1.b {
-    public final wg f31503o;
+public final class vg extends View {
+    public float f29954a;
+    public long f29955b;
+    public boolean f29956c;
+    public boolean d;
+    public boolean e;
+    public final yj0 f29957f;
+    public boolean h;
+    public boolean f29958n;
+    public long f29959r;
+    public final ChatActivityEnterView f29960s;
 
-    public vg(wg wgVar, wg wgVar2) {
-        super(wgVar2);
-        this.f31503o = wgVar;
+    public vg(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f29960s = chatActivityEnterView;
+        this.f29959r = -1L;
+        yj0 yj0Var = new yj0(R.raw.chat_audio_record_delete_2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+        this.f29957f = yj0Var;
+        yj0Var.f31619o0 = true;
+        a();
+    }
+
+    public final void a() {
+        int i10 = org.telegram.ui.ActionBar.g6.f20017jf;
+        int i11 = ChatActivityEnterView.f22849n5;
+        ChatActivityEnterView chatActivityEnterView = this.f29960s;
+        int g02 = chatActivityEnterView.g0(i10);
+        int g03 = chatActivityEnterView.g0(org.telegram.ui.ActionBar.g6.Sd);
+        int g04 = chatActivityEnterView.g0(org.telegram.ui.ActionBar.g6.f19908df);
+        chatActivityEnterView.f22980w3.setColor(g02);
+        yj0 yj0Var = this.f29957f;
+        yj0Var.Z = true;
+        yj0Var.Q(g02, "Cup Red");
+        yj0Var.Q(g02, "Box Red");
+        yj0Var.Q(g04, "Cup Grey");
+        yj0Var.Q(g04, "Box Grey");
+        yj0Var.Q(g04, "Box_Grey 2");
+        yj0Var.Q(g04, "Line 1");
+        yj0Var.Q(g04, "Line 2");
+        yj0Var.Q(g04, "Line 3");
+        yj0Var.Q(g03, "Line 1 Dup");
+        yj0Var.Q(g03, "Line 2 Dup");
+        yj0Var.Q(g03, "Line 3 Dup");
+        yj0Var.o();
     }
 
     @Override
-    public final int g(float f7, float f10) {
-        wg wgVar = this.f31503o;
-        ChatActivityEnterView chatActivityEnterView = wgVar.f32382g0;
-        if (chatActivityEnterView.V4 && chatActivityEnterView.N1 != null && chatActivityEnterView.f23743u4.contains(f7, f10)) {
-            return 2;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d = true;
+        boolean z10 = this.e;
+        yj0 yj0Var = this.f29957f;
+        if (z10) {
+            yj0Var.start();
         }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.Q4 > 0.1f && wgVar.P.contains(f7, f10)) {
-            return 4;
-        }
-        if (!chatActivityEnterView.f23749v4.isEmpty() && chatActivityEnterView.f23749v4.contains(f7, f10)) {
-            return 5;
-        }
-        return -1;
+        yj0Var.R(this);
     }
 
     @Override
-    public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f31503o.f32382g0;
-        if (chatActivityEnterView.V4) {
-            arrayList.add(2);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.d = false;
+        yj0 yj0Var = this.f29957f;
+        yj0Var.stop();
+        yj0Var.R(null);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f29960s.f22980w3;
+        boolean z10 = this.e;
+        yj0 yj0Var = this.f29957f;
+        if (z10) {
+            yj0Var.setAlpha((int) (this.f29954a * 255.0f));
         }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.Q4 > 0.1f) {
-            arrayList.add(4);
+        paint.setAlpha((int) (this.f29954a * 255.0f));
+        if (!this.f29958n) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j10 = currentTimeMillis - this.f29955b;
+            if (this.h) {
+                this.f29954a = 1.0f;
+            } else if (!this.f29956c && !this.e) {
+                float f7 = this.f29954a - (((float) j10) / 600.0f);
+                this.f29954a = f7;
+                if (f7 <= 0.0f) {
+                    this.f29954a = 0.0f;
+                    this.f29956c = true;
+                }
+            } else {
+                float f10 = (((float) j10) / 600.0f) + this.f29954a;
+                this.f29954a = f10;
+                if (f10 >= 1.0f) {
+                    this.f29954a = 1.0f;
+                    this.f29956c = false;
+                }
+            }
+            this.f29955b = currentTimeMillis;
         }
-        if (!chatActivityEnterView.f23749v4.isEmpty()) {
-            arrayList.add(5);
+        if (this.e) {
+            yj0Var.draw(canvas);
+        }
+        if (!this.e || !yj0Var.u()) {
+            canvas.drawCircle(getMeasuredWidth() >> 1, getMeasuredHeight() >> 1, AndroidUtilities.dp(5.0f), paint);
+        }
+        if (!this.f29958n) {
+            invalidate();
         }
     }
 
     @Override
-    public final boolean k(int i10, int i11) {
-        if (i10 == 5 && i11 == 16) {
-            ChatActivityEnterView chatActivityEnterView = this.f31503o.f32382g0;
-            int i12 = ChatActivityEnterView.S5;
-            chatActivityEnterView.A1();
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void l(int i10, s0.d dVar) {
-        boolean z10;
-        String string;
-        int i11;
-        int i12;
-        wg wgVar = this.f31503o;
-        ChatActivityEnterView chatActivityEnterView = wgVar.f32382g0;
-        if (i10 == 2) {
-            Rect rect = chatActivityEnterView.f23763x4;
-            RectF rectF = chatActivityEnterView.f23743u4;
-            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            dVar.h(chatActivityEnterView.f23763x4);
-            if (chatActivityEnterView.S4 > 0.5f) {
-                i12 = R.string.AccActionResume;
-            } else {
-                i12 = R.string.AccActionPause;
-            }
-            dVar.p(LocaleController.getString(i12));
-        } else if (i10 == 4) {
-            Rect rect2 = chatActivityEnterView.f23763x4;
-            RectF rectF2 = wgVar.P;
-            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
-            dVar.h(chatActivityEnterView.f23763x4);
-            if (chatActivityEnterView.O) {
-                i11 = R.string.AccActionOnceDeactivate;
-            } else {
-                i11 = R.string.AccActionOnceActivate;
-            }
-            dVar.p(LocaleController.getString(i11));
-        } else if (i10 == 5) {
-            Rect rect3 = chatActivityEnterView.f23763x4;
-            RectF rectF3 = chatActivityEnterView.f23749v4;
-            rect3.set((int) rectF3.left, (int) rectF3.top, (int) rectF3.right, (int) rectF3.bottom);
-            dVar.h(chatActivityEnterView.f23763x4);
-            if (!chatActivityEnterView.f23660g3 && !chatActivityEnterView.f23672i3) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            if (z10) {
-                string = wgVar.K;
-            } else {
-                string = LocaleController.getString(R.string.AccActionOpenTranscription);
-            }
-            dVar.p(string);
-            dVar.k(!z10);
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.f29957f.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 }

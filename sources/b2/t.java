@@ -1,190 +1,96 @@
 package b2;
 
-import java.util.List;
-public final class t implements z0 {
-    public final m4.g1 f3654a;
-    public final z0 f3655b;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.UUID;
+public final class t implements Comparator, Parcelable {
+    public static final Parcelable.Creator<t> CREATOR = new r(0);
+    public final s[] f2370a;
+    public int f2371b;
+    public final String f2372c;
+    public final int d;
 
-    public t(m4.g1 g1Var, z0 z0Var) {
-        this.f3654a = g1Var;
-        this.f3655b = z0Var;
+    public t(String str, ArrayList arrayList) {
+        this(str, false, (s[]) arrayList.toArray(new s[0]));
     }
 
+    public final t a(String str) {
+        if (Objects.equals(this.f2372c, str)) {
+            return this;
+        }
+        return new t(str, false, this.f2370a);
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        s sVar = (s) obj;
+        s sVar2 = (s) obj2;
+        UUID uuid = n.f2217b;
+        if (uuid.equals(sVar.f2321b)) {
+            if (uuid.equals(sVar2.f2321b)) {
+                return 0;
+            }
+            return 1;
+        }
+        return sVar.f2321b.compareTo(sVar2.f2321b);
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    @Override
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof t)) {
-            return false;
+        if (obj != null && t.class == obj.getClass()) {
+            t tVar = (t) obj;
+            if (Objects.equals(this.f2372c, tVar.f2372c) && Arrays.equals(this.f2370a, tVar.f2370a)) {
+                return true;
+            }
         }
-        t tVar = (t) obj;
-        if (!this.f3654a.equals(tVar.f3654a)) {
-            return false;
-        }
-        return this.f3655b.equals(tVar.f3655b);
+        return false;
     }
 
     public final int hashCode() {
-        return this.f3655b.hashCode() + (this.f3654a.hashCode() * 31);
+        int hashCode;
+        if (this.f2371b == 0) {
+            String str = this.f2372c;
+            if (str == null) {
+                hashCode = 0;
+            } else {
+                hashCode = str.hashCode();
+            }
+            this.f2371b = (hashCode * 31) + Arrays.hashCode(this.f2370a);
+        }
+        return this.f2371b;
     }
 
     @Override
-    public final void onAudioAttributesChanged(e eVar) {
-        this.f3655b.onAudioAttributesChanged(eVar);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeString(this.f2372c);
+        parcel.writeTypedArray(this.f2370a, 0);
     }
 
-    @Override
-    public final void onAudioSessionIdChanged(int i10) {
-        this.f3655b.onAudioSessionIdChanged(i10);
+    public t(String str, boolean z10, s... sVarArr) {
+        this.f2372c = str;
+        sVarArr = z10 ? (s[]) sVarArr.clone() : sVarArr;
+        this.f2370a = sVarArr;
+        this.d = sVarArr.length;
+        Arrays.sort(sVarArr, this);
     }
 
-    @Override
-    public final void onAvailableCommandsChanged(x0 x0Var) {
-        this.f3655b.onAvailableCommandsChanged(x0Var);
-    }
-
-    @Override
-    public final void onCues(List list) {
-        this.f3655b.onCues(list);
-    }
-
-    @Override
-    public final void onEvents(b1 b1Var, y0 y0Var) {
-        this.f3655b.onEvents(this.f3654a, y0Var);
-    }
-
-    @Override
-    public final void onIsLoadingChanged(boolean z10) {
-        this.f3655b.onIsLoadingChanged(z10);
-    }
-
-    @Override
-    public final void onIsPlayingChanged(boolean z10) {
-        this.f3655b.onIsPlayingChanged(z10);
-    }
-
-    @Override
-    public final void onLoadingChanged(boolean z10) {
-        this.f3655b.onIsLoadingChanged(z10);
-    }
-
-    @Override
-    public final void onMediaItemTransition(k0 k0Var, int i10) {
-        this.f3655b.onMediaItemTransition(k0Var, i10);
-    }
-
-    @Override
-    public final void onMediaMetadataChanged(n0 n0Var) {
-        this.f3655b.onMediaMetadataChanged(n0Var);
-    }
-
-    @Override
-    public final void onMetadata(p0 p0Var) {
-        this.f3655b.onMetadata(p0Var);
-    }
-
-    @Override
-    public final void onPlayWhenReadyChanged(boolean z10, int i10) {
-        this.f3655b.onPlayWhenReadyChanged(z10, i10);
-    }
-
-    @Override
-    public final void onPlaybackParametersChanged(v0 v0Var) {
-        this.f3655b.onPlaybackParametersChanged(v0Var);
-    }
-
-    @Override
-    public final void onPlaybackStateChanged(int i10) {
-        this.f3655b.onPlaybackStateChanged(i10);
-    }
-
-    @Override
-    public final void onPlaybackSuppressionReasonChanged(int i10) {
-        this.f3655b.onPlaybackSuppressionReasonChanged(i10);
-    }
-
-    @Override
-    public final void onPlayerError(u0 u0Var) {
-        this.f3655b.onPlayerError(u0Var);
-    }
-
-    @Override
-    public final void onPlayerErrorChanged(u0 u0Var) {
-        this.f3655b.onPlayerErrorChanged(u0Var);
-    }
-
-    @Override
-    public final void onPlayerStateChanged(boolean z10, int i10) {
-        this.f3655b.onPlayerStateChanged(z10, i10);
-    }
-
-    @Override
-    public final void onPlaylistMetadataChanged(n0 n0Var) {
-        this.f3655b.onPlaylistMetadataChanged(n0Var);
-    }
-
-    @Override
-    public final void onPositionDiscontinuity(int i10) {
-        this.f3655b.onPositionDiscontinuity(i10);
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        this.f3655b.onRenderedFirstFrame();
-    }
-
-    @Override
-    public final void onRepeatModeChanged(int i10) {
-        this.f3655b.onRepeatModeChanged(i10);
-    }
-
-    @Override
-    public final void onShuffleModeEnabledChanged(boolean z10) {
-        this.f3655b.onShuffleModeEnabledChanged(z10);
-    }
-
-    @Override
-    public final void onSkipSilenceEnabledChanged(boolean z10) {
-        this.f3655b.onSkipSilenceEnabledChanged(z10);
-    }
-
-    @Override
-    public final void onSurfaceSizeChanged(int i10, int i11) {
-        this.f3655b.onSurfaceSizeChanged(i10, i11);
-    }
-
-    @Override
-    public final void onTimelineChanged(k1 k1Var, int i10) {
-        this.f3655b.onTimelineChanged(k1Var, i10);
-    }
-
-    @Override
-    public final void onTrackSelectionParametersChanged(q1 q1Var) {
-        this.f3655b.onTrackSelectionParametersChanged(q1Var);
-    }
-
-    @Override
-    public final void onTracksChanged(s1 s1Var) {
-        this.f3655b.onTracksChanged(s1Var);
-    }
-
-    @Override
-    public final void onVideoSizeChanged(x1 x1Var) {
-        this.f3655b.onVideoSizeChanged(x1Var);
-    }
-
-    @Override
-    public final void onVolumeChanged(float f7) {
-        this.f3655b.onVolumeChanged(f7);
-    }
-
-    @Override
-    public final void onCues(d2.d dVar) {
-        this.f3655b.onCues(dVar);
-    }
-
-    @Override
-    public final void onPositionDiscontinuity(a1 a1Var, a1 a1Var2, int i10) {
-        this.f3655b.onPositionDiscontinuity(a1Var, a1Var2, i10);
+    public t(Parcel parcel) {
+        this.f2372c = parcel.readString();
+        s[] sVarArr = (s[]) parcel.createTypedArray(s.CREATOR);
+        String str = e2.m0.f8372a;
+        this.f2370a = sVarArr;
+        this.d = sVarArr.length;
     }
 }

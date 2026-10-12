@@ -1,37 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupWindow;
-public final class o80 implements PopupWindow.OnDismissListener {
-    public final ViewGroup f29089a;
-    public final s80 f29090b;
+import android.content.DialogInterface;
+import org.telegram.messenger.AccountInstance;
+public final class o80 implements DialogInterface.OnCancelListener {
+    public final int f27905a;
+    public final AccountInstance f27906b;
+    public final int f27907c;
 
-    public o80(s80 s80Var, ViewGroup viewGroup) {
-        this.f29090b = s80Var;
-        this.f29089a = viewGroup;
+    public o80(AccountInstance accountInstance, int i10, int i11) {
+        this.f27905a = i11;
+        this.f27906b = accountInstance;
+        this.f27907c = i10;
     }
 
     @Override
-    public final void onDismiss() {
-        View view;
-        s80 s80Var = this.f29090b;
-        s80Var.f30458m = null;
-        s80.a(s80Var, this.f29089a);
-        View view2 = s80Var.f30464p0;
-        if (view2 != null) {
-            view2.setPressed(false);
-            s80Var.f30464p0 = null;
-        }
-        if (s80Var.f30462o0 != null && (view = s80Var.f30445f) != null) {
-            view.setOnTouchListener(null);
-        }
-        s80Var.f30462o0 = null;
-        s80Var.N();
-        Runnable runnable = s80Var.f30463p;
-        if (runnable != null) {
-            runnable.run();
-            s80Var.f30463p = null;
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f27905a) {
+            case 0:
+                this.f27906b.getConnectionsManager().cancelRequest(this.f27907c, true);
+                return;
+            default:
+                this.f27906b.getConnectionsManager().cancelRequest(this.f27907c, true);
+                return;
         }
     }
 }

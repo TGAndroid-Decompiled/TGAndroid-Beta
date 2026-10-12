@@ -1,192 +1,61 @@
 package hg;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import java.nio.charset.StandardCharsets;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.il;
-import org.telegram.ui.Components.j5;
-import org.telegram.ui.Components.js;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Wallet.l8;
-public final class b1 extends EditTextBoldCursor {
-    public final int f11168b = 0;
-    public int f11169c;
-    public final j5 d;
-    public final q6 f11170e;
-    public final NotificationCenter.NotificationCenterDelegate f11171f;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class b1 implements Comparator {
+    public final ArrayList f10502a;
+    public final ArrayList f10503b;
 
-    public b1(e1 e1Var, Activity activity) {
-        super(activity);
-        this.f11171f = e1Var;
-        this.d = new j5(this);
-        q6 q6Var = new q6(false, true, true);
-        this.f11170e = q6Var;
-        q6Var.n(0.2f, 160L, js.h);
-        q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.setCallback(this);
-        q6Var.f29690b = 5;
+    public b1(ArrayList arrayList, ArrayList arrayList2) {
+        this.f10502a = arrayList;
+        this.f10503b = arrayList2;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        int i12;
-        switch (this.f11168b) {
-            case 0:
-                super.dispatchDraw(canvas);
-                if (this.f11169c < 0) {
-                    i10 = h6.f20781p7;
-                } else {
-                    i10 = h6.P5;
-                }
-                int a2 = this.d.a(h6.w0(i10, ((e1) this.f11171f).getResourceProvider()), false);
-                q6 q6Var = this.f11170e;
-                q6Var.u(a2);
-                q6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-                q6Var.draw(canvas);
-                return;
-            case 1:
-                super.dispatchDraw(canvas);
-                if (this.f11169c <= 0) {
-                    i11 = h6.f20781p7;
-                } else {
-                    i11 = h6.P5;
-                }
-                int a10 = this.d.a(h6.w0(i11, ((il) this.f11171f).f30569a), false);
-                q6 q6Var2 = this.f11170e;
-                q6Var2.u(a10);
-                int scrollX = getScrollX();
-                int dp = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX) - getPaddingRight());
-                int height = getHeight() + getScrollY();
-                q6Var2.setBounds(dp - AndroidUtilities.dp(48.0f), height - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp, height);
-                q6Var2.draw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                if (this.f11169c <= 0) {
-                    i12 = h6.f20781p7;
-                } else {
-                    i12 = h6.P5;
-                }
-                int a11 = this.d.a(h6.w0(i12, ((l8) this.f11171f).getResourceProvider()), false);
-                q6 q6Var3 = this.f11170e;
-                q6Var3.u(a11);
-                int scrollX2 = getScrollX();
-                int dp2 = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX2) - getPaddingRight());
-                int height2 = getHeight() + getScrollY();
-                q6Var3.setBounds(dp2 - AndroidUtilities.dp(48.0f), height2 - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp2, height2);
-                q6Var3.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String str;
-        String str2;
-        switch (this.f11168b) {
-            case 0:
-                super.onTextChanged(charSequence, i10, i11, i12);
-                q6 q6Var = this.f11170e;
-                if (q6Var != null) {
-                    this.f11169c = 96 - charSequence.length();
-                    q6Var.a();
-                    String str3 = "";
-                    if (this.f11169c <= 12) {
-                        str3 = "" + this.f11169c;
-                    }
-                    q6Var.t(str3, true, true);
-                    return;
-                }
-                return;
-            case 1:
-                super.onTextChanged(charSequence, i10, i11, i12);
-                q6 q6Var2 = this.f11170e;
-                if (q6Var2 != null) {
-                    this.f11169c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
-                    q6Var2.a();
-                    int i13 = this.f11169c;
-                    if (i13 <= 100) {
-                        str = Integer.toString(i13);
+    public final int a(i1 i1Var) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            ArrayList arrayList = this.f10502a;
+            if (i11 >= arrayList.size()) {
+                while (true) {
+                    ArrayList arrayList2 = this.f10503b;
+                    if (i10 < Math.min(20, arrayList2.size())) {
+                        if (((TLRPC.Document) arrayList2.get(i10)).f19222id == i1Var.f10603a.f19222id) {
+                            return (arrayList2.size() - i10) + 1000000;
+                        }
+                        i10++;
                     } else {
-                        str = "";
+                        return -1;
                     }
-                    q6Var2.t(str, isAttachedToWindow(), true);
-                    invalidate();
-                    return;
                 }
-                return;
-            default:
-                super.onTextChanged(charSequence, i10, i11, i12);
-                q6 q6Var3 = this.f11170e;
-                if (q6Var3 != null) {
-                    this.f11169c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
-                    q6Var3.a();
-                    int i14 = this.f11169c;
-                    if (i14 <= 100) {
-                        str2 = Integer.toString(i14);
-                    } else {
-                        str2 = "";
-                    }
-                    q6Var3.t(str2, isAttachedToWindow(), true);
-                    invalidate();
-                    return;
-                }
-                return;
+            } else if (((TLRPC.Document) arrayList.get(i11)).f19222id == i1Var.f10603a.f19222id) {
+                return i11 + 2000000;
+            } else {
+                i11++;
+            }
         }
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        switch (this.f11168b) {
-            case 0:
-                if (drawable != this.f11170e && !super.verifyDrawable(drawable)) {
-                    return false;
+    public final int compare(Object obj, Object obj2) {
+        i1 i1Var = (i1) obj;
+        i1 i1Var2 = (i1) obj2;
+        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(i1Var.f10603a, true);
+        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(i1Var2.f10603a, true)) {
+            int a2 = a(i1Var);
+            int a10 = a(i1Var2);
+            if (a2 <= a10) {
+                if (a2 >= a10) {
+                    return 0;
                 }
-                return true;
-            case 1:
-                if (drawable != this.f11170e && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                if (drawable != this.f11170e && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
+            } else {
+                return -1;
+            }
+        } else if (isAnimatedStickerDocument) {
+            return -1;
         }
-    }
-
-    public b1(il ilVar, Context context) {
-        super(context);
-        this.f11171f = ilVar;
-        this.f11169c = 960;
-        this.d = new j5(this);
-        q6 q6Var = new q6(false, true, true);
-        this.f11170e = q6Var;
-        q6Var.n(0.2f, 160L, js.h);
-        q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.f29690b = 5;
-        q6Var.setCallback(this);
-    }
-
-    public b1(l8 l8Var, Activity activity) {
-        super(activity);
-        this.f11171f = l8Var;
-        this.f11169c = 960;
-        this.d = new j5(this);
-        q6 q6Var = new q6(false, true, true);
-        this.f11170e = q6Var;
-        q6Var.n(0.2f, 160L, js.h);
-        q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.f29690b = 5;
-        q6Var.setCallback(this);
+        return 1;
     }
 }

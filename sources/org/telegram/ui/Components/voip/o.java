@@ -1,241 +1,167 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.media.projection.MediaProjectionManager;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.TextureView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ia0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ci0;
-import org.telegram.ui.o20;
-import org.telegram.ui.qi1;
-import org.telegram.ui.wg;
-import yh.d7;
-import yh.f7;
-import yh.p7;
-import yh.q5;
-import yh.r3;
-public final class o implements View.OnClickListener {
-    public final int f31846a;
-    public final Object f31847b;
+import org.telegram.messenger.ChatObject;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.n60;
+public final class o extends r2 {
+    public float f30354g0;
+    public final ChatObject.Call f30355h0;
+    public final l0 f30356i0;
+    public final TextPaint f30357j0;
+    public final StaticLayout f30358k0;
+    public final TextPaint f30359l0;
+    public final String m0;
+    public final float f30360n0;
+    public final StaticLayout f30361o0;
+    public final n60 f30362p0;
+    public final String f30363q0;
+    public final float f30364r0;
+    public final t f30365s0;
 
-    public o(Object obj, int i10) {
-        this.f31846a = i10;
-        this.f31847b = obj;
+    public o(t tVar, Context context, ChatObject.Call call, l0 l0Var, TextPaint textPaint, StaticLayout staticLayout, TextPaint textPaint2, String str, float f7, StaticLayout staticLayout2, n60 n60Var, String str2, float f10) {
+        super(context, false, false, true, true);
+        this.f30365s0 = tVar;
+        this.f30355h0 = call;
+        this.f30356i0 = l0Var;
+        this.f30357j0 = textPaint;
+        this.f30358k0 = staticLayout;
+        this.f30359l0 = textPaint2;
+        this.m0 = str;
+        this.f30360n0 = f7;
+        this.f30361o0 = staticLayout2;
+        this.f30362p0 = n60Var;
+        this.f30363q0 = str2;
+        this.f30364r0 = f10;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.ActionBar.m2 R;
-        org.telegram.ui.ActionBar.m2 R2;
-        switch (this.f31846a) {
-            case 0:
-                v vVar = (v) this.f31847b;
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().stopScreenCapture();
-                }
-                vVar.N.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
-                return;
-            case 1:
-                y0 y0Var = (y0) this.f31847b;
-                if (!y0Var.f32103a) {
-                    if (y0Var.f32112x == 0 && y0Var.f32113y) {
-                        ((Activity) y0Var.getContext()).startActivityForResult(((MediaProjectionManager) y0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
-                        return;
-                    } else {
-                        y0Var.b(false, true);
-                        return;
-                    }
-                }
-                return;
-            case 2:
-                qi1 qi1Var = (qi1) this.f31847b;
-                if (!qi1Var.f31644a) {
-                    if (qi1Var.f31652w == 0) {
-                        ((Activity) qi1Var.getContext()).startActivityForResult(((MediaProjectionManager) qi1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
-                        return;
-                    } else {
-                        qi1Var.a(false, true);
-                        return;
-                    }
-                }
-                return;
-            case 3:
-                Context context = (Context) this.f31847b;
-                if (VoIPService.getSharedInstance() != null) {
-                    Intent action = new Intent(context, LaunchActivity.class).setAction("voip_chat");
-                    action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
-                    if (!(context instanceof Activity)) {
-                        action.addFlags(268435456);
-                    }
-                    context.startActivity(action);
-                    k1.j();
-                    return;
-                }
-                return;
-            case 4:
-                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f31847b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getContext());
-                alertDialog$Builder.f20142a.R = LocaleController.getString(R.string.WebRecentClearTitle);
-                alertDialog$Builder.f20142a.T = LocaleController.getString(R.string.WebRecentClearText);
-                alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(kVar));
-                hg.c.r(R.string.Cancel, alertDialog$Builder, null);
-                return;
-            case 5:
-                ((pg.x) this.f31847b).dismiss();
-                return;
-            case 6:
-                ((ci0) this.f31847b).run();
-                return;
-            case 7:
-                ((qg.u2) this.f31847b).onBackPressed();
-                return;
-            case 8:
-                ((wg) this.f31847b).run();
-                return;
-            case 9:
-                ((ia0) this.f31847b).performClick();
-                return;
-            case 10:
-                PremiumPreviewFragment.p0();
-                PremiumPreviewFragment.k0(((rg.l1) this.f31847b).f47561t0, null, "profile", null);
-                return;
-            case 11:
-                final tg.g0 g0Var = (tg.g0) this.f31847b;
-                vg.a aVar = g0Var.Q0;
-                if (!aVar.f49799a.N) {
-                    aVar.b(true);
-                    String str = g0Var.R0;
-                    Utilities.Callback callback = new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            switch (r2) {
-                                case 0:
-                                    Void r42 = (Void) obj;
-                                    g0 g0Var2 = g0Var;
-                                    g0Var2.Q0.b(false);
-                                    g0Var2.dismiss();
-                                    AndroidUtilities.runOnUIThread(new e0(g0Var2, 1), 200L);
-                                    return;
-                                default:
-                                    g0.d0(g0Var, (TLRPC.TL_error) obj);
-                                    return;
-                            }
-                        }
-                    };
-                    Utilities.Callback callback2 = new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            switch (r2) {
-                                case 0:
-                                    Void r42 = (Void) obj;
-                                    g0 g0Var2 = g0Var;
-                                    g0Var2.Q0.b(false);
-                                    g0Var2.dismiss();
-                                    AndroidUtilities.runOnUIThread(new e0(g0Var2, 1), 200L);
-                                    return;
-                                default:
-                                    g0.d0(g0Var, (TLRPC.TL_error) obj);
-                                    return;
-                            }
-                        }
-                    };
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
-                    TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
-                    tL_payments_applyGiftCode.slug = str;
-                    connectionsManager.sendRequest(tL_payments_applyGiftCode, new tg.o(callback2, callback, 0), 2);
-                    return;
-                }
-                return;
-            case 12:
-                ((tg.j0) this.f31847b).dismiss();
-                return;
-            case 13:
-                ((tg.b0) ((ug.e) this.f31847b)).f48535r.dismiss();
-                return;
-            case 14:
-                Runnable runnable = ((xg.c) this.f31847b).d;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 15:
-                ((xh.d) this.f31847b).dismiss();
-                return;
-            case 16:
-                ((xh.e0) this.f31847b).dismiss();
-                return;
-            case 17:
-                if (((xh.q1) this.f31847b).f51701f0.f52633f > 0 && (R = LaunchActivity.R()) != 0) {
-                    ?? obj = new Object();
-                    obj.f21088a = true;
-                    R.showAsSheet(new p7(), obj);
-                    return;
-                }
-                return;
-            case 18:
-                ((yh.s) this.f31847b).dismiss();
-                return;
-            case 19:
-                ((yh.c0) this.f31847b).dismiss();
-                return;
-            case 20:
-                yh.h0 h0Var = (yh.h0) this.f31847b;
-                zf.b bVar = h0Var.E.f54673a;
-                zf.b bVar2 = zf.b.f54676b;
-                if (bVar == bVar2) {
-                    bVar2 = zf.b.f54675a;
-                }
-                h0Var.p(zf.a.i(0L, bVar2), true, false, true);
-                h0Var.f52840c.setText("");
-                return;
-            case 21:
-                ((yh.r0) this.f31847b).dismiss();
-                return;
-            case 22:
-                ((yh.p1) this.f31847b).run();
-                return;
-            case 23:
-                ((yh.p1) this.f31847b).run();
-                return;
-            case 24:
-                yh.y2 y2Var = (yh.y2) this.f31847b;
-                y2Var.getClass();
-                new f7(y2Var.f53643b, y2Var.f53647g).show();
-                return;
-            case 25:
-                ((r3) this.f31847b).dismiss();
-                return;
-            case 26:
-                ((q5) this.f31847b).run();
-                return;
-            case 27:
-                if (((d7) ((o20) this.f31847b).d).f52633f > 0 && (R2 = LaunchActivity.R()) != 0) {
-                    ?? obj2 = new Object();
-                    obj2.f21088a = true;
-                    R2.showAsSheet(new p7(), obj2);
-                    return;
-                }
-                return;
-            default:
-                zg.a0 a0Var = (zg.a0) this.f31847b;
-                if (a0Var.f54689k) {
-                    a0Var.d();
-                    return;
-                }
-                return;
+    public final void a() {
+        super.a();
+        this.f30354g0 = this.f30365s0.f30505w0;
+    }
+
+    @Override
+    public final void b() {
+        int i10;
+        ChatObject.VideoParticipant videoParticipant;
+        t tVar = this.f30365s0;
+        TextView textView = tVar.O;
+        o oVar = tVar.f30476a;
+        invalidate();
+        ChatObject.Call call = this.f30355h0;
+        if (call != null && call.call.rtmp_stream && tVar.f30510z0) {
+            AndroidUtilities.cancelRunOnUIThread(tVar.A0);
+            tVar.f30510z0 = false;
+            textView.animate().cancel();
+            textView.animate().alpha(0.0f).setDuration(150L).start();
+            oVar.animate().cancel();
+            oVar.animate().alpha(1.0f).setDuration(150L).start();
         }
+        boolean z10 = tVar.f30500s0;
+        q2 q2Var = this.d;
+        if (!z10 && q2Var.getAlpha() != 1.0f) {
+            q2Var.animate().setDuration(300L).alpha(1.0f);
+        }
+        TextureView textureView = this.e;
+        if (textureView != null && textureView.getAlpha() != 1.0f) {
+            textureView.animate().setDuration(300L).alpha(1.0f);
+        }
+        ImageView imageView = tVar.f30507x0;
+        if (imageView != null && imageView.getParent() != null) {
+            if (tVar.f30507x0.getAlpha() == 1.0f) {
+                tVar.f30507x0.animate().alpha(0.0f).setDuration(300L).setListener(new u61(this, 7)).start();
+            } else if (tVar.f30507x0.getParent() != null) {
+                oVar.removeView(tVar.f30507x0);
+            }
+        }
+        int i11 = q2Var.rotatedFrameHeight;
+        if (i11 != 0 && (i10 = q2Var.rotatedFrameWidth) != 0 && (videoParticipant = tVar.f30504w) != null) {
+            videoParticipant.setAspectRatio(i10, i11, call);
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.o.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        t tVar = this.f30365s0;
+        if (tVar.f30489j0 && view == tVar.f30476a.d) {
+            canvas.save();
+            float f7 = tVar.f30483e0;
+            canvas.scale(f7, f7, tVar.f30485f0, tVar.f30486g0);
+            canvas.translate(tVar.f30487h0, tVar.f30488i0);
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void e() {
+        super.e();
+        t tVar = this.f30365s0;
+        o oVar = tVar.f30476a;
+        ImageView imageView = tVar.f30507x0;
+        if (imageView != null && imageView.getParent() != null) {
+            tVar.f30507x0.getLayoutParams().width = oVar.d.getMeasuredWidth();
+            tVar.f30507x0.getLayoutParams().height = oVar.d.getMeasuredHeight();
+        }
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        t tVar = this.f30365s0;
+        tVar.Q = true;
+        tVar.invalidate();
+        tVar.Q = false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        ChatObject.VideoParticipant videoParticipant;
+        t tVar = this.f30365s0;
+        o oVar = tVar.f30476a;
+        boolean z11 = tVar.v;
+        q2 q2Var = this.d;
+        if (z11 && tVar.R && q2Var.rotatedFrameHeight != 0 && q2Var.rotatedFrameWidth != 0) {
+            if (tVar.h) {
+                oVar.f30421a0 = 1;
+            } else if (tVar.f30478b) {
+                oVar.f30421a0 = 1;
+            } else if (this.f30356i0.f30281b) {
+                oVar.f30421a0 = 0;
+            } else if (tVar.f30504w.presentation) {
+                oVar.f30421a0 = 1;
+            } else {
+                oVar.f30421a0 = 2;
+            }
+            tVar.R = false;
+        }
+        super.onLayout(z10, i10, i11, i12, i13);
+        int i15 = q2Var.rotatedFrameHeight;
+        if (i15 != 0 && (i14 = q2Var.rotatedFrameWidth) != 0 && (videoParticipant = tVar.f30504w) != null) {
+            videoParticipant.setAspectRatio(i14, i15, this.f30355h0);
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        this.f30365s0.requestLayout();
+        super.requestLayout();
     }
 }

@@ -1,27 +1,23 @@
 package org.telegram.ui;
-public final class q10 {
-    public long f41140a;
-    public int f41141b;
 
-    public q10(int i10, long j3) {
-        this.f41140a = j3;
-        this.f41141b = i10;
+import android.content.Context;
+public final class q10 extends org.telegram.ui.Components.f10 {
+    public final int U;
+    public final Object V;
+
+    public q10(Object obj, Context context, int i10) {
+        super(context, null);
+        this.U = i10;
+        this.V = obj;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final int getColumnsCount() {
+        switch (this.U) {
+            case 0:
+                return ((c20) this.V).f34702s;
+            default:
+                return ((a20) this.V).d.f34702s;
         }
-        if (obj != null && q10.class == obj.getClass()) {
-            q10 q10Var = (q10) obj;
-            if (this.f41140a == q10Var.f41140a && this.f41141b == q10Var.f41141b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f41141b;
     }
 }

@@ -1,54 +1,156 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class su extends og.a {
-    public final int f41987c;
-    public final int d;
-    public final int f41988e;
-    public final CharSequence f41989f;
-    public final CharSequence f41990g;
-    public final int h;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.SharedConfig;
+public final class su extends org.telegram.ui.Components.lm0 {
+    public final Context f40212c;
+    public final DataSettingsActivity d;
 
-    public su(int i10, String str) {
-        super(i10, false);
-        this.f41989f = str;
+    public su(DataSettingsActivity dataSettingsActivity, Context context) {
+        this.d = dataSettingsActivity;
+        this.f40212c = context;
     }
 
-    public static su b(CharSequence charSequence, String str) {
-        return new su(-1, 0, 0, 0, charSequence, str);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof su)) {
-            return false;
-        }
-        su suVar = (su) obj;
-        CharSequence charSequence = suVar.f41989f;
-        int i10 = suVar.f16877a;
-        int i11 = this.f16877a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f41989f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int b10 = b1Var.b();
+        DataSettingsActivity dataSettingsActivity = this.d;
+        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f32071f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f32074s) {
+            i10 = dataSettingsActivity.useLessDataForCallsRow;
+            if (b10 != i10 && b10 != dataSettingsActivity.v) {
+                i11 = dataSettingsActivity.proxyRow;
+                if (b10 != i11) {
+                    i12 = dataSettingsActivity.clearDraftsRow;
+                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f32077y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f32072n) {
+                        i13 = dataSettingsActivity.saveToGalleryGroupsRow;
+                        if (b10 != i13) {
+                            i14 = dataSettingsActivity.saveToGalleryPeerRow;
+                            if (b10 != i14) {
+                                i15 = dataSettingsActivity.saveToGalleryChannelsRow;
+                                if (b10 != i15) {
+                                    i16 = dataSettingsActivity.resetDownloadRow;
+                                    if (b10 != i16) {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            if (suVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || suVar.d != this.d || suVar.f41988e != this.f41988e || suVar.f41987c != this.f41987c) {
-                return false;
-            }
-            return true;
         }
-        return TextUtils.equals(charSequence2, charSequence);
+        return true;
     }
 
-    public su(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f41987c = i11;
-        this.d = i12;
-        this.f41988e = i13;
-        this.f41989f = charSequence;
-        this.f41990g = charSequence2;
+    @Override
+    public final int h() {
+        return this.d.U;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        DataSettingsActivity dataSettingsActivity = this.d;
+        if (i10 != dataSettingsActivity.f32073r && i10 != dataSettingsActivity.f32075w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
+            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f32076x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
+                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f32077y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
+                    if (i10 == dataSettingsActivity.H) {
+                        return 4;
+                    }
+                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f32071f) {
+                        i11 = dataSettingsActivity.saveToGalleryGroupsRow;
+                        if (i10 != i11) {
+                            i12 = dataSettingsActivity.saveToGalleryPeerRow;
+                            if (i10 != i12) {
+                                i13 = dataSettingsActivity.saveToGalleryChannelsRow;
+                                if (i10 != i13) {
+                                    if (i10 != dataSettingsActivity.f32074s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f32072n) {
+                                        return 1;
+                                    }
+                                    return 6;
+                                }
+                                return 5;
+                            }
+                            return 5;
+                        }
+                        return 5;
+                    }
+                    return 5;
+                }
+                return 3;
+            }
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.su.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View b7Var;
+        Context context = this.f40212c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 5) {
+                                b7Var = new org.telegram.ui.Cells.r8(context);
+                            } else {
+                                b7Var = new org.telegram.ui.Cells.j5(context);
+                            }
+                        } else {
+                            b7Var = new org.telegram.ui.Cells.e9(context);
+                        }
+                    } else {
+                        b7Var = new org.telegram.ui.Cells.w8(context);
+                    }
+                } else {
+                    b7Var = new org.telegram.ui.Cells.m4(context, 22);
+                }
+            } else {
+                b7Var = new org.telegram.ui.Cells.ca(context);
+            }
+        } else {
+            b7Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.d0) null);
+        }
+        return com.google.android.gms.internal.play_billing.k3.l(b7Var, b7Var, -1, -2);
+    }
+
+    @Override
+    public final void y(s4.b1 b1Var) {
+        if (b1Var.f44841f == 3) {
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) b1Var.f44838a;
+            int b10 = b1Var.b();
+            DataSettingsActivity dataSettingsActivity = this.d;
+            if (b10 == dataSettingsActivity.E) {
+                w8Var.setChecked(SharedConfig.saveStreamMedia);
+            } else if (b10 == dataSettingsActivity.f32077y) {
+                w8Var.setChecked(SharedConfig.streamMedia);
+            } else if (b10 == dataSettingsActivity.F) {
+                w8Var.setChecked(SharedConfig.streamAllVideo);
+            } else if (b10 == dataSettingsActivity.G) {
+                w8Var.setChecked(SharedConfig.streamMkv);
+            } else if (b10 == dataSettingsActivity.J) {
+                w8Var.setChecked(SharedConfig.isAutoplayGifs());
+            } else if (b10 == dataSettingsActivity.K) {
+                w8Var.setChecked(SharedConfig.isAutoplayVideo());
+            }
+        }
     }
 }

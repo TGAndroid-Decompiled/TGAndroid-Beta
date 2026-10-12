@@ -58,7 +58,7 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String f19295id;
+        public final String f18763id;
         public final String ip;
         public final String network;
         public final String port;
@@ -74,7 +74,7 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.f19295id = str5;
+            this.f18763id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
@@ -86,7 +86,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f19295id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f18763id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -141,7 +141,7 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long f19296id;
+        public final long f18764id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -155,9 +155,9 @@ public final class Instance {
         public final int type;
         public final String username;
 
-        public Endpoint(boolean z10, long j3, String str, String str2, int i10, int i11, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
+        public Endpoint(boolean z10, long j10, String str, String str2, int i10, int i11, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
             this.isRtc = z10;
-            this.f19296id = j3;
+            this.f18764id = j10;
             this.ipv4 = str;
             this.ipv6 = str2;
             this.port = i10;
@@ -170,7 +170,7 @@ public final class Instance {
                 this.password = str4;
             } else if (bArr != null) {
                 this.username = "reflector";
-                this.password = e2.d0.b0(bArr);
+                this.password = e2.m0.f0(bArr);
             } else {
                 this.username = null;
                 this.password = null;
@@ -179,7 +179,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.f19296id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f18764id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -254,7 +254,7 @@ public final class Instance {
             sb2.append(", login='");
             sb2.append(this.login);
             sb2.append("', password='");
-            return a1.g.t(sb2, this.password, "'}");
+            return a1.g.s(sb2, this.password, "'}");
         }
     }
 
@@ -304,11 +304,11 @@ public final class Instance {
         public final long bytesSentMobile;
         public final long bytesSentWifi;
 
-        public TrafficStats(long j3, long j10, long j11, long j12) {
-            this.bytesSentWifi = j3;
-            this.bytesReceivedWifi = j10;
-            this.bytesSentMobile = j11;
-            this.bytesReceivedMobile = j12;
+        public TrafficStats(long j10, long j11, long j12, long j13) {
+            this.bytesSentWifi = j10;
+            this.bytesReceivedWifi = j11;
+            this.bytesSentMobile = j12;
+            this.bytesReceivedMobile = j13;
         }
 
         public String toString() {
@@ -338,11 +338,11 @@ public final class Instance {
         return globalServerConfig;
     }
 
-    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i10, EncryptionKey encryptionKey, VideoSink videoSink, long j3, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
+    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i10, EncryptionKey encryptionKey, VideoSink videoSink, long j10, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
             ContextUtils.initialize(ApplicationLoader.applicationContext);
         }
-        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j3, audioLevelsCallback);
+        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j10, audioLevelsCallback);
         setGlobalServerConfig(globalServerConfig.jsonObject.toString());
         setBufferSize(bufferSize);
         return instance;
@@ -363,9 +363,9 @@ public final class Instance {
             if (nativeInstance != null) {
                 nativeInstance.setGlobalServerConfig(str);
             }
-        } catch (JSONException e7) {
+        } catch (JSONException e) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("failed to parse tgvoip server config", e7);
+                FileLog.e("failed to parse tgvoip server config", e);
             }
         }
     }

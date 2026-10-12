@@ -1,78 +1,49 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class nz0 extends s4.t0 {
-    public final int f40515a;
-    public final ProfileActivity f40516b;
+public final class nz0 extends s4.b0 {
+    public final ProfileActivity I;
 
-    public nz0(ProfileActivity profileActivity, int i10) {
-        this.f40515a = i10;
-        this.f40516b = profileActivity;
+    public nz0(ProfileActivity profileActivity) {
+        this.I = profileActivity;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        switch (this.f40515a) {
-            case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f40516b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            default:
-                ProfileActivity profileActivity = this.f40516b;
-                boolean z11 = true;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
-                }
-                if (profileActivity.F0 && i10 != 2) {
-                    profileActivity.F0 = false;
-                }
-                org.telegram.ui.ActionBar.u0 u0Var = profileActivity.U0;
-                if (u0Var != null) {
-                    if (i10 != 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    profileActivity.f34226z1 = z10;
-                    if (z10 || profileActivity.f34158p2) {
+    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
+        ProfileActivity profileActivity = this.I;
+        View m10 = profileActivity.f32543c.m(0);
+        if (m10 != null && !profileActivity.F0) {
+            int top = m10.getTop() - profileActivity.T3();
+            boolean z10 = profileActivity.f32629o2;
+            boolean z11 = true;
+            if (!z10 && top > i10) {
+                if (!profileActivity.f32620n0.X0.isEmpty() && profileActivity.f32558e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f32622n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
+                    if (profileActivity.J2 != null) {
                         z11 = false;
                     }
-                    u0Var.setEnabled(z11);
+                    profileActivity.f32629o2 = z11;
                 }
-                m01 m01Var = profileActivity.O;
-                boolean z12 = profileActivity.f34050a.I1;
-                m01Var.getClass();
-                return;
+            } else if (z10) {
+                if (i10 >= top) {
+                    profileActivity.f32629o2 = false;
+                } else if (profileActivity.f32528a.getScrollState() == 1 && !profileActivity.f32636p2) {
+                    i10 /= 2;
+                }
+            }
+            i10 = top;
         }
+        if (profileActivity.O1 && !profileActivity.f32528a.P0) {
+            return 0;
+        }
+        return super.o0(i10, eVar, y0Var);
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f40515a) {
-            case 1:
-                ProfileActivity profileActivity = this.f40516b;
-                org.telegram.ui.Components.c50 c50Var = profileActivity.X;
-                boolean z10 = true;
-                if (c50Var != null) {
-                    c50Var.b(true);
-                }
-                profileActivity.A3();
-                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f34065c.N0() > profileActivity.f34202v4 - 8) {
-                    profileActivity.R3(false);
-                }
-                m01 m01Var = profileActivity.O;
-                if (m01Var.getY() > 0.0f) {
-                    z10 = false;
-                }
-                m01Var.setPinnedToTop(z10);
-                profileActivity.U4();
-                return;
-            default:
-                return;
+    public final boolean y0() {
+        if (this.I.f32640q0 != null) {
+            return true;
         }
+        return false;
     }
 }

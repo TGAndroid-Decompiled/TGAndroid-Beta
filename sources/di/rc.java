@@ -1,0 +1,13 @@
+package di;
+
+import android.graphics.Bitmap;
+import org.telegram.ui.Components.es;
+public final class rc {
+    public final Bitmap f7728a;
+    public final org.telegram.ui.Components.g6 f7729b;
+
+    public rc(sc scVar, Bitmap bitmap) {
+        this.f7729b = new org.telegram.ui.Components.g6(0.0f, scVar.f7807n, 0L, 240L, es.h);
+        this.f7728a = bitmap;
+    }
+}

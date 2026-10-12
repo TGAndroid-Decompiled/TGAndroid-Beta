@@ -1,44 +1,51 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class z1 implements Runnable {
-    public final int f35580a;
-    public final boolean[] f35581b;
-    public final b2 f35582c;
-    public final j2 d;
+import org.json.JSONObject;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class z1 {
+    public final TL_wallet.tonConnectSession f33900a;
+    public final int f33901b;
+    public final int f33902c;
+    public final String d;
+    public final String e;
+    public final c2 f33903f;
+    public final byte[] f33904g;
+    public final String h;
+    public final String f33905i;
+    public final String f33906j;
+    public final String f33907k;
+    public final int f33908l;
+    public boolean f33909m;
+    public boolean f33910n;
+    public boolean f33911o;
+    public boolean f33912p;
+    public boolean f33913q;
+    public Runnable f33914r;
 
-    public z1(boolean[] zArr, b2 b2Var, j2 j2Var, int i10) {
-        this.f35580a = i10;
-        this.f35581b = zArr;
-        this.f35582c = b2Var;
-        this.d = j2Var;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f35580a) {
-            case 0:
-                if (!this.f35581b[0]) {
-                    if (this.f35582c.f34497m) {
-                        AndroidUtilities.runOnUIThread(this, 1000L);
-                        return;
-                    } else {
-                        this.d.dismiss();
-                        return;
-                    }
-                }
-                return;
-            default:
-                if (!this.f35581b[0]) {
-                    if (this.f35582c.f34497m) {
-                        AndroidUtilities.runOnUIThread(this, 1000L);
-                        return;
-                    } else {
-                        this.d.dismiss();
-                        return;
-                    }
-                }
-                return;
+    public z1(TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, JSONObject jSONObject, String str, byte[] bArr) {
+        c2 c2Var;
+        this.f33900a = tonconnectpending.session;
+        this.f33901b = tonconnectrequest.msg_id;
+        this.f33902c = tonconnectrequest.expires;
+        tonconnectrequest.body.clone();
+        this.f33905i = tonconnectrequest.trace_id;
+        this.d = jSONObject.getString("id");
+        this.e = jSONObject.optString("method");
+        int optInt = jSONObject.optInt("errorCode", -1);
+        this.f33908l = optInt;
+        String str2 = null;
+        this.f33906j = jSONObject.optString("errorMessage", null);
+        if (optInt < 0 && jSONObject.has("transaction")) {
+            c2Var = new c2(jSONObject.getJSONObject("transaction"));
+        } else {
+            c2Var = null;
         }
+        this.f33903f = c2Var;
+        if (optInt < 0 && jSONObject.has("data")) {
+            str2 = jSONObject.getJSONObject("data").toString();
+        }
+        this.f33907k = str2;
+        this.h = str;
+        this.f33904g = (byte[]) bArr.clone();
     }
 }

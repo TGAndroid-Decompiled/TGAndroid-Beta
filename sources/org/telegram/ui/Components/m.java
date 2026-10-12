@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
-public final class m extends s4.j {
+public final class m extends s4.k {
     public final e0 F;
 
     public m(e0 e0Var) {
@@ -9,7 +9,7 @@ public final class m extends s4.j {
     }
 
     @Override
-    public final void P(s4.d1 d1Var) {
+    public final void P(s4.b1 b1Var) {
         ViewGroup viewGroup;
         viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
         viewGroup.invalidate();

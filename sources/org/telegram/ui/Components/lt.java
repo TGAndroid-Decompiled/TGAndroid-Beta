@@ -1,87 +1,106 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
-public class lt extends h71 {
-    public final int N;
-    public final int O;
-    public final boolean P;
-    public final kt Q;
-    public final ArrayList R;
-    public final ArrayList S;
-    public final ArrayList T;
-    public boolean U;
-    public boolean V;
-    public final CharSequence W;
-    public int X;
-    public int Y;
-    public boolean Z;
-    public boolean f28272a0;
-    public boolean f28273b0;
-    public int f28274c0;
-    public int f28275d0;
-    public String f28276e0;
-    public final et f28277f0;
-    public boolean f28278g0;
-    public final a3 f28279h0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class lt extends AnimatorListenerAdapter {
+    public final int f27119a;
+    public final s4.b1 f27120b;
+    public final int f27121c;
+    public final View d;
+    public final int e;
+    public final ViewPropertyAnimator f27122f;
+    public final s4.e1 h;
 
-    public lt(wm0 wm0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(wm0Var, context, i10, 0, true, null, c6Var);
-        this.R = new ArrayList();
-        this.S = new ArrayList();
-        this.T = new ArrayList();
-        this.f28277f0 = new et(this, 0);
-        this.f28278g0 = true;
-        this.f28279h0 = new a3(this, 3);
-        this.f26680s = new d(this, 8);
-        this.N = i10;
-        this.O = i11;
-        this.P = z10;
-        this.Q = new kt(i10, new et(this, 1));
-        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ft(this, c6Var, context)), true);
-        N(false);
-        MediaDataController.getInstance(i10).loadHints(true);
+    public lt(s4.e1 e1Var, s4.b1 b1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
+        this.f27119a = i12;
+        this.h = e1Var;
+        this.f27120b = b1Var;
+        this.f27121c = i10;
+        this.d = view;
+        this.e = i11;
+        this.f27122f = viewPropertyAnimator;
     }
 
-    public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f28276e0);
-        wm0 wm0Var = this.d;
-        if (!isEmpty) {
-            if (this.f28273b0 && !this.Z && wm0Var != null) {
-                int i10 = 0;
-                while (true) {
-                    if (i10 >= wm0Var.getChildCount()) {
-                        break;
-                    } else if (wm0Var.getChildAt(i10) instanceof m10) {
-                        if (this.f28273b0 && !this.Z && !TextUtils.isEmpty(this.f28276e0)) {
-                            W(true);
-                        }
-                    } else {
-                        i10++;
-                    }
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f27119a) {
+            case 0:
+                int i10 = this.f27121c;
+                View view = this.d;
+                if (i10 != 0) {
+                    view.setTranslationX(0.0f);
                 }
-            }
-        } else {
-            if (!this.f28278g0) {
-                if (wm0Var != null) {
-                    for (int i11 = 0; i11 < wm0Var.getChildCount(); i11++) {
-                        if (!(wm0Var.getChildAt(i11) instanceof m10)) {
-                        }
-                    }
+                if (this.e != 0) {
+                    view.setTranslationY(0.0f);
                 }
-            }
-            this.Q.a();
-            break;
+                View view2 = this.f27120b.f44838a;
+                if (view2 instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view2).setMoving(false);
+                    return;
+                } else if (view2 instanceof hg.l) {
+                    ((hg.l) view2).f10654a = false;
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                int i11 = this.f27121c;
+                View view3 = this.d;
+                if (i11 != 0) {
+                    view3.setTranslationX(0.0f);
+                }
+                if (this.e != 0) {
+                    view3.setTranslationY(0.0f);
+                    return;
+                }
+                return;
         }
-        this.f28278g0 = false;
     }
 
-    public final void W(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lt.W(boolean):void");
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27119a) {
+            case 0:
+                this.f27122f.setListener(null);
+                ot otVar = (ot) this.h;
+                s4.b1 b1Var = this.f27120b;
+                otVar.v(b1Var);
+                otVar.f28052w.remove(b1Var);
+                otVar.A();
+                View view = b1Var.f44838a;
+                if (view instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
+                } else if (view instanceof hg.l) {
+                    ((hg.l) view).f10654a = false;
+                }
+                View view2 = this.d;
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                return;
+            default:
+                this.f27122f.setListener(null);
+                s4.k kVar = (s4.k) this.h;
+                s4.b1 b1Var2 = this.f27120b;
+                kVar.P(b1Var2);
+                kVar.v(b1Var2);
+                kVar.f44911z.remove(b1Var2);
+                kVar.G();
+                kVar.z(b1Var2);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f27119a) {
+            case 0:
+                ((ot) this.h).getClass();
+                return;
+            default:
+                ((s4.k) this.h).getClass();
+                return;
+        }
     }
 }

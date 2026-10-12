@@ -2,29 +2,43 @@ package org.telegram.messenger;
 
 import java.text.Collator;
 import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.ContactsController;
 public final class o1 implements Comparator {
-    public final int f18433a;
-    public final Collator f18434b;
-    public final Object f18435c;
+    public final int f17985a;
+    public final Collator f17986b;
 
-    public o1(Object obj, Collator collator, int i10) {
-        this.f18433a = i10;
-        this.f18435c = obj;
-        this.f18434b = collator;
+    public o1(Collator collator, int i10) {
+        this.f17985a = i10;
+        this.f17986b = collator;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        int lambda$buildContactsSectionsArrays$43;
-        int lambda$processLoadedContacts$30;
-        switch (this.f18433a) {
+        int lambda$buildContactsSectionsArrays$44;
+        int lambda$mergePhonebookAndTelegramContacts$38;
+        int lambda$mergePhonebookAndTelegramContacts$39;
+        int lambda$processLoadedContacts$31;
+        int lambda$processLoadedContacts$32;
+        int lambda$updateUnregisteredContacts$42;
+        switch (this.f17985a) {
             case 0:
-                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f18435c).lambda$buildContactsSectionsArrays$43(this.f18434b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                return lambda$buildContactsSectionsArrays$43;
+                lambda$buildContactsSectionsArrays$44 = ContactsController.lambda$buildContactsSectionsArrays$44(this.f17986b, (String) obj, (String) obj2);
+                return lambda$buildContactsSectionsArrays$44;
+            case 1:
+                lambda$mergePhonebookAndTelegramContacts$38 = ContactsController.lambda$mergePhonebookAndTelegramContacts$38(this.f17986b, obj, obj2);
+                return lambda$mergePhonebookAndTelegramContacts$38;
+            case 2:
+                lambda$mergePhonebookAndTelegramContacts$39 = ContactsController.lambda$mergePhonebookAndTelegramContacts$39(this.f17986b, (String) obj, (String) obj2);
+                return lambda$mergePhonebookAndTelegramContacts$39;
+            case 3:
+                lambda$processLoadedContacts$31 = ContactsController.lambda$processLoadedContacts$31(this.f17986b, (String) obj, (String) obj2);
+                return lambda$processLoadedContacts$31;
+            case 4:
+                lambda$processLoadedContacts$32 = ContactsController.lambda$processLoadedContacts$32(this.f17986b, (String) obj, (String) obj2);
+                return lambda$processLoadedContacts$32;
             default:
-                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.i) this.f18435c, this.f18434b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                return lambda$processLoadedContacts$30;
+                lambda$updateUnregisteredContacts$42 = ContactsController.lambda$updateUnregisteredContacts$42(this.f17986b, (ContactsController.Contact) obj, (ContactsController.Contact) obj2);
+                return lambda$updateUnregisteredContacts$42;
         }
     }
 }

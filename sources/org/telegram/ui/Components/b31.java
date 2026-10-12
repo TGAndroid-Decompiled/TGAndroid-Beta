@@ -1,60 +1,76 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class b31 extends FrameLayout {
-    public final ImageView f24550a;
-    public final z21 f24551b;
-    public final ThemeEditorView.EditorAlert f24552c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public abstract class b31 extends View {
+    public final c31 f23693a;
+    public Utilities.Callback f23694b;
+    public final org.telegram.ui.ActionBar.c6 f23695c;
+    public int d;
 
-    public b31(ThemeEditorView.EditorAlert editorAlert, Context context) {
+    public b31(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f24552c = editorAlert;
-        View view = new View(context);
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(18.0f), -854795));
-        addView(view, w7.w5.a(36.0f, 14.0f, 11.0f, 14.0f, 0.0f, -1, 51));
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.w5.a(36.0f, 16.0f, 11.0f, 0.0f, 0.0f, 36, 51));
-        ImageView imageView2 = new ImageView(context);
-        this.f24550a = imageView2;
-        imageView2.setScaleType(scaleType);
-        xq xqVar = new xq();
-        imageView2.setImageDrawable(xqVar);
-        xqVar.f32818f = AndroidUtilities.dp(7.0f);
-        imageView2.setScaleX(0.1f);
-        imageView2.setScaleY(0.1f);
-        imageView2.setAlpha(0.0f);
-        addView(imageView2, w7.w5.a(36.0f, 14.0f, 11.0f, 14.0f, 0.0f, 36, 53));
-        imageView2.setOnClickListener(new f90(this, 21));
-        z21 z21Var = new z21(this, context);
-        this.f24551b = z21Var;
-        z21Var.setTextSize(1, 16.0f);
-        z21Var.setHintTextColor(-6774617);
-        z21Var.setTextColor(-14540254);
-        z21Var.setBackgroundDrawable(null);
-        z21Var.setPadding(0, 0, 0, 0);
-        z21Var.setMaxLines(1);
-        z21Var.setLines(1);
-        z21Var.setSingleLine(true);
-        z21Var.setImeOptions(268435459);
-        z21Var.setHint(LocaleController.getString(R.string.Search));
-        z21Var.setCursorColor(-11491093);
-        z21Var.setCursorSize(AndroidUtilities.dp(20.0f));
-        z21Var.setCursorWidth(1.5f);
-        addView(z21Var, w7.w5.a(40.0f, 54.0f, 9.0f, 46.0f, 0.0f, -1, 51));
-        z21Var.addTextChangedListener(new a31(this));
-        z21Var.setOnEditorActionListener(new e1(this, 10));
+        this.f23695c = c6Var;
+        c31 c31Var = new c31(i10, this, c6Var, false);
+        this.f23693a = c31Var;
+        c31Var.f23939r = new lr0(this, 19);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        org.telegram.ui.ActionBar.c6 c6Var = this.f23695c;
+        if (c6Var != null) {
+            c6Var.l(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        } else {
+            org.telegram.ui.ActionBar.g6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        }
+        this.f23693a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f23693a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f23693a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f23693a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void set(MessageObject messageObject) {
+        c31 c31Var = this.f23693a;
+        c31Var.e(messageObject);
+        if (isAttachedToWindow()) {
+            c31Var.a();
+        }
+    }
+
+    public void setBackgroundHeight(int i10) {
+        this.d = i10;
+    }
+
+    public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
+        this.f23694b = callback;
     }
 }

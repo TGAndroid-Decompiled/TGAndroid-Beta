@@ -1,30 +1,56 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class bk implements Runnable {
-    public final int f24667a;
-    public final dk f24668b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class bk implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23789a;
+    public final int f23790b;
+    public final float f23791c;
+    public final FrameLayout d;
 
-    public bk(dk dkVar, int i10) {
-        this.f24667a = i10;
-        this.f24668b = dkVar;
+    public bk(FrameLayout frameLayout, int i10, float f7, int i11) {
+        this.f23789a = i11;
+        this.d = frameLayout;
+        this.f23790b = i10;
+        this.f23791c = f7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24667a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23789a) {
             case 0:
-                dk dkVar = this.f24668b;
-                if (dkVar.f25382f != null) {
-                    dkVar.v = org.telegram.messenger.am.g(new StringBuilder("+"), dkVar.f25382f.phone, hf.b.c());
-                    dkVar.f25385s = dkVar.f25382f;
-                    AndroidUtilities.runOnUIThread(new bk(dkVar, 1));
+                pk pkVar = (pk) this.d;
+                ek ekVar = pkVar.f28354r;
+                ek ekVar2 = pkVar.f28355s;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int i10 = this.f23790b;
+                float f7 = this.f23791c;
+                if (i10 == 1) {
+                    ekVar.setTranslationX(f7 * floatValue);
+                    ekVar.setAlpha(1.0f - floatValue);
+                    ekVar.invalidate();
+                    ekVar2.setAlpha(floatValue);
+                    float f10 = (floatValue * 0.05f) + 0.95f;
+                    ekVar2.setScaleX(f10);
+                    ekVar2.setScaleY(f10);
                     return;
                 }
+                ekVar2.setTranslationX(f7 * floatValue);
+                ekVar2.setAlpha(Math.max(0.0f, 1.0f - floatValue));
+                ekVar2.invalidate();
+                ekVar.setAlpha(floatValue);
+                float f11 = (floatValue * 0.05f) + 0.95f;
+                ekVar.setScaleX(f11);
+                ekVar.setScaleY(f11);
+                ekVar2.invalidate();
                 return;
             default:
-                dk dkVar2 = this.f24668b;
-                dkVar2.f25380c.l(dkVar2.v, false);
+                pc0 pc0Var = (pc0) this.d;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f12 = 1.0f - floatValue2;
+                int i11 = (int) ((pc0Var.R * floatValue2) + (this.f23790b * f12));
+                pc0Var.T = i11;
+                pc0Var.e((pc0Var.S * floatValue2) + (this.f23791c * f12), i11);
                 return;
         }
     }

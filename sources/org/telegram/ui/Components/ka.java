@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-public abstract class ka extends wm0 {
+public abstract class ka extends mm0 {
     public int V2;
     public int W2;
     public int X2;
     public boolean Y2;
     public int Z2;
-    public boolean f27799a3;
+    public boolean f26649a3;
 
     @Override
     public void dispatchDraw(Canvas canvas) {
@@ -25,18 +25,18 @@ public abstract class ka extends wm0 {
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view.getY() + view.getMeasuredHeight() < this.V2 && !this.f27799a3 && !Z0()) {
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view.getY() + view.getMeasuredHeight() < this.V2 && !this.f26649a3 && !Z0()) {
             return true;
         }
-        return super.drawChild(canvas, view, j3);
+        return super.drawChild(canvas, view, j10);
     }
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        this.f27799a3 = true;
+        this.f26649a3 = true;
         super.f(canvas, rectF);
-        this.f27799a3 = false;
+        this.f26649a3 = false;
     }
 
     @Override

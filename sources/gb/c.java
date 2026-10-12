@@ -1,65 +1,80 @@
 package gb;
 
+import j$.util.Objects;
+import java.io.Serializable;
 import java.lang.reflect.Type;
-import java.util.Collection;
-public final class c extends db.u {
-    public final int f10441a = 0;
-    public final Object f10442b;
-    public final Object f10443c;
+import java.lang.reflect.WildcardType;
+public final class c implements WildcardType, Serializable {
+    public final Type f10041a;
+    public final Type f10042b;
 
-    public c(db.g gVar, Type type, db.u uVar, fb.o oVar) {
-        this.f10442b = new o(gVar, uVar, type);
-        this.f10443c = oVar;
+    public c(Type[] typeArr, Type[] typeArr2) {
+        boolean z10;
+        boolean z11;
+        if (typeArr2.length <= 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d.b(z10);
+        if (typeArr.length == 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        d.b(z11);
+        if (typeArr2.length == 1) {
+            Objects.requireNonNull(typeArr2[0]);
+            d.c(typeArr2[0]);
+            d.b(typeArr[0] == Object.class);
+            this.f10042b = d.a(typeArr2[0]);
+            this.f10041a = Object.class;
+            return;
+        }
+        Objects.requireNonNull(typeArr[0]);
+        d.c(typeArr[0]);
+        this.f10042b = null;
+        this.f10041a = d.a(typeArr[0]);
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof WildcardType) && d.e(this, (WildcardType) obj)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final Object read(lb.a aVar) {
-        switch (this.f10441a) {
-            case 0:
-                if (aVar.x() == 9) {
-                    aVar.t();
-                    return null;
-                }
-                Collection collection = (Collection) ((fb.o) this.f10443c).w2();
-                aVar.a();
-                while (aVar.k()) {
-                    collection.add(((db.u) ((o) this.f10442b).f10479c).read(aVar));
-                }
-                aVar.e();
-                return collection;
-            default:
-                Class cls = (Class) this.f10442b;
-                Object read = ((x0) this.f10443c).f10506c.read(aVar);
-                if (read != null && !cls.isInstance(read)) {
-                    throw new RuntimeException("Expected a " + cls.getName() + " but was " + read.getClass().getName() + "; at path " + aVar.j());
-                }
-                return read;
-        }
+    public final Type[] getLowerBounds() {
+        Type type = this.f10042b;
+        return type != null ? new Type[]{type} : d.f10043a;
     }
 
     @Override
-    public final void write(lb.b bVar, Object obj) {
-        switch (this.f10441a) {
-            case 0:
-                Collection<Object> collection = (Collection) obj;
-                if (collection == null) {
-                    bVar.i();
-                    return;
-                }
-                bVar.b();
-                for (Object obj2 : collection) {
-                    ((o) this.f10442b).write(bVar, obj2);
-                }
-                bVar.e();
-                return;
-            default:
-                ((x0) this.f10443c).f10506c.write(bVar, obj);
-                return;
-        }
+    public final Type[] getUpperBounds() {
+        return new Type[]{this.f10041a};
     }
 
-    public c(x0 x0Var, Class cls) {
-        this.f10443c = x0Var;
-        this.f10442b = cls;
+    public final int hashCode() {
+        int i10;
+        Type type = this.f10042b;
+        if (type != null) {
+            i10 = type.hashCode() + 31;
+        } else {
+            i10 = 1;
+        }
+        return i10 ^ (this.f10041a.hashCode() + 31);
+    }
+
+    public final String toString() {
+        Type type = this.f10042b;
+        if (type != null) {
+            return "? super " + d.k(type);
+        }
+        Type type2 = this.f10041a;
+        if (type2 == Object.class) {
+            return "?";
+        }
+        return "? extends " + d.k(type2);
     }
 }

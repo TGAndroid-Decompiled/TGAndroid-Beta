@@ -1,77 +1,64 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.zc;
-public final class f7 implements Utilities.Callback2 {
-    public final int f34763a;
-    public final n7 f34764b;
-    public final of.e f34765c;
-    public final l0 d;
+public final class f7 implements Utilities.Callback {
+    public final int f33182a = 0;
+    public final k7 f33183b;
+    public final Utilities.Callback f33184c;
+    public final o0 d;
+    public final j0 e;
 
-    public f7(n7 n7Var, of.e eVar, l0 l0Var, int i10) {
-        this.f34763a = i10;
-        this.f34764b = n7Var;
-        this.f34765c = eVar;
-        this.d = l0Var;
+    public f7(k7 k7Var, Utilities.Callback callback, j0 j0Var, o0 o0Var) {
+        this.f33183b = k7Var;
+        this.f33184c = callback;
+        this.e = j0Var;
+        this.d = o0Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f34763a) {
+    public final void run(Object obj) {
+        String o10;
+        switch (this.f33182a) {
             case 0:
-                i0 i0Var = (i0) obj;
-                String str = (String) obj2;
-                this.f34765c.c(false);
-                n7 n7Var = this.f34764b;
-                if (i0Var == null) {
-                    zc a02 = zc.a0(n7Var);
-                    if (str == null) {
-                        str = "NULL_ERROR";
-                    }
-                    a02.e0(str, false);
-                    return;
-                }
-                r7 r7Var = new r7();
-                r7Var.h = true;
-                ArrayList arrayList = r7Var.f35329a;
-                arrayList.clear();
-                if (!i0Var.e()) {
-                    arrayList.addAll(i0Var.g());
-                }
-                r7Var.V();
-                r7Var.f35333f = new s(n7Var, this.d);
-                n7Var.presentFragment(r7Var);
+                k7.Y(this.f33183b, this.f33184c, this.e, this.d, (g0) obj);
                 return;
             default:
-                g0 g0Var = (g0) obj;
-                String str2 = (String) obj2;
-                this.f34765c.c(false);
-                n7 n7Var2 = this.f34764b;
-                if (g0Var == null) {
-                    zc a03 = zc.a0(n7Var2);
-                    if (str2 == null) {
-                        str2 = "NULL_ERROR";
-                    }
-                    a03.e0(str2, false);
-                    return;
-                } else if (n7Var2.f35138e) {
-                    g0Var.close();
-                    return;
-                } else {
-                    n7Var2.d.add(g0Var);
-                    r7 r7Var2 = new r7();
-                    i0 i0Var2 = g0Var.f34780b;
-                    ArrayList arrayList2 = r7Var2.f35329a;
-                    arrayList2.clear();
-                    if (!i0Var2.e()) {
-                        arrayList2.addAll(i0Var2.g());
-                    }
-                    r7Var2.V();
-                    r7Var2.f35333f = new l(n7Var2, this.d, g0Var);
-                    n7Var2.presentFragment(r7Var2);
+                a0 a0Var = (a0) obj;
+                Utilities.Callback callback = this.f33184c;
+                if (a0Var == null) {
+                    callback.run("ADDRESS_NO_INFO");
                     return;
                 }
+                byte[] bArr = a0Var.f32911c;
+                o0 o0Var = this.d;
+                if (bArr == null) {
+                    byte[][] m10 = o0Var.m();
+                    if (m10.length <= 0) {
+                        callback.run("STORAGE_NO_PUBLIC_KEY");
+                        return;
+                    }
+                    bArr = m10[0];
+                }
+                if (!o0Var.f(bArr)) {
+                    callback.run("STORAGE_OLD_PUBLIC_KEY");
+                    return;
+                }
+                f7 f7Var = new f7(this.f33183b, callback, this.e, o0Var);
+                if (bArr == null) {
+                    o10 = "";
+                } else {
+                    o10 = o0.o(bArr);
+                }
+                String str = o10;
+                o0.h.execute(new org.telegram.ui.Components.r2(o0Var, o0Var.l(), str, false, (Utilities.Callback) f7Var));
+                return;
         }
+    }
+
+    public f7(k7 k7Var, Utilities.Callback callback, o0 o0Var, j0 j0Var) {
+        this.f33183b = k7Var;
+        this.f33184c = callback;
+        this.d = o0Var;
+        this.e = j0Var;
     }
 }

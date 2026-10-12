@@ -1,34 +1,22 @@
 package org.telegram.messenger;
+public final class wk implements Runnable {
+    public final int f18956a;
+    public final TopicsController f18957b;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.TranslateController;
-public final class wk implements Comparator {
-    public final int f19507a;
-    public final Object f19508b;
-
-    public wk(Object obj, int i10) {
-        this.f19507a = i10;
-        this.f19508b = obj;
+    public wk(TopicsController topicsController, int i10) {
+        this.f18956a = i10;
+        this.f18957b = topicsController;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getMusicDialogsSortedByVisibleOrder$1;
-        int lambda$getLocales$3;
-        int lambda$getLanguages$1;
-        switch (this.f19507a) {
+    public final void run() {
+        switch (this.f18956a) {
             case 0:
-                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f19508b, (Long) obj, (Long) obj2);
-                return lambda$getMusicDialogsSortedByVisibleOrder$1;
-            case 1:
-                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f19508b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
-                return lambda$getLocales$3;
+                this.f18957b.lambda$applyPinnedOrder$17();
+                return;
             default:
-                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f19508b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
-                return lambda$getLanguages$1;
+                this.f18957b.lambda$databaseCleared$25();
+                return;
         }
     }
 }

@@ -1,12 +1,28 @@
 package w7;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 public abstract class f9 {
-    public static int a(Object obj) {
-        int hashCode;
-        if (obj == null) {
-            hashCode = 0;
-        } else {
-            hashCode = obj.hashCode();
+    public static boolean a(e9.j2 j2Var, Collection collection) {
+        collection.getClass();
+        if (collection instanceof z7.l) {
+            collection = ((z7.l) collection).zza();
         }
-        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
+        boolean z10 = false;
+        if ((collection instanceof Set) && collection.size() > j2Var.size()) {
+            Iterator<E> it = j2Var.iterator();
+            while (it.hasNext()) {
+                if (collection.contains(it.next())) {
+                    it.remove();
+                    z10 = true;
+                }
+            }
+            return z10;
+        }
+        for (Object obj : collection) {
+            z10 |= j2Var.remove(obj);
+        }
+        return z10;
     }
 }

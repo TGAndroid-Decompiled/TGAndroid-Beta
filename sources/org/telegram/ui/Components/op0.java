@@ -1,41 +1,34 @@
 package org.telegram.ui.Components;
+public final class op0 implements o1.f {
+    public final int f28012a;
+    public final wp0 f28013b;
+    public final o1.k f28014c;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
-public final class op0 extends f8 {
-    public final Context E;
-    public final Object F;
-    public final int f29271y;
-
-    public op0(Object obj, Context context, Context context2, int i10) {
-        super(context);
-        this.f29271y = i10;
-        this.F = obj;
-        this.E = context2;
+    public op0(wp0 wp0Var, o1.k kVar, int i10) {
+        this.f28012a = i10;
+        this.f28013b = wp0Var;
+        this.f28014c = kVar;
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f29271y) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f28012a) {
             case 0:
-                xa0 xa0Var = new xa0(this.E);
-                xa0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Si, ((qp0) this.F).M));
-                xa0Var.setTextSize(1, 12.0f);
-                xa0Var.setEllipsize(TextUtils.TruncateAt.END);
-                xa0Var.setSingleLine(true);
-                xa0Var.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
-                return xa0Var;
+                if (!z10) {
+                    this.f28013b.f30943z.remove(this.f28014c);
+                    hVar.c();
+                    return;
+                }
+                return;
             default:
-                TextView textView = new TextView(this.E);
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Pi, ((ProfileActivity) this.F).f34225z0));
-                textView.setTextSize(0, AndroidUtilities.dp(13.5f));
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                textView.setGravity(3);
-                return textView;
+                wp0 wp0Var = this.f28013b;
+                if (!z10) {
+                    wp0Var.f30943z.remove(this.f28014c);
+                    hVar.c();
+                    return;
+                }
+                wp0Var.getClass();
+                return;
         }
     }
 }

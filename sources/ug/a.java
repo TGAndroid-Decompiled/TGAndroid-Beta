@@ -1,147 +1,105 @@
 package ug;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a extends og.a {
-    public CharSequence f49138c;
-    public TLRPC.InputPeer d;
-    public TLRPC.Chat f49139e;
-    public Object f49140f;
-    public boolean f49141g;
-    public long h;
-    public int f49142i;
-    public int f49143j;
-    public List f49144k;
-    public int f49145l;
-    public TLObject f49146m;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+import android.util.Pair;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.r6;
+public final class a extends ReplacementSpan {
+    public final Drawable f46250a;
+    public final Drawable f46251b;
+    public boolean f46252c;
+    public boolean d;
+    public final r6 e;
+    public final TextPaint f46253f;
+    public final int h;
 
-    public static a b(TLRPC.Chat chat, int i10, boolean z10) {
-        ?? aVar = new og.a(9, false);
-        aVar.f49139e = chat;
-        aVar.d = null;
-        aVar.f49141g = z10;
-        aVar.f49142i = i10;
-        return aVar;
+    public a(u1 u1Var, TextPaint textPaint, int i10) {
+        this.f46253f = textPaint;
+        r6 r6Var = new r6(false, false, true);
+        this.e = r6Var;
+        r6Var.n(0.3f, 250L, es.h);
+        r6Var.setCallback(u1Var);
+        r6Var.w(AndroidUtilities.dp(11.5f));
+        r6Var.x(AndroidUtilities.bold());
+        r6Var.t("", true, true);
+        r6Var.f28748b = 17;
+        Drawable mutate = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
+        this.f46250a = mutate;
+        Drawable mutate2 = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
+        this.f46251b = mutate2;
+        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
+        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
+        this.h = i10;
+        r6Var.t(i10 > 1 ? String.valueOf(i10) : "", false, true);
     }
 
-    public static a c(CharSequence charSequence, boolean z10) {
-        ?? aVar = new og.a(7, false);
-        aVar.f49138c = charSequence;
-        aVar.f49141g = z10;
-        return aVar;
+    public static Pair a(u1 u1Var, TextPaint textPaint, int i10) {
+        SpannableString spannableString = new SpannableString("d");
+        a aVar = new a(u1Var, textPaint, i10);
+        spannableString.setSpan(aVar, 0, 1, 33);
+        return new Pair(spannableString, aVar);
     }
 
-    public static a d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i10, long j3, boolean z10, boolean z11) {
-        ?? aVar = new og.a(17, z10);
-        aVar.f49142i = i10;
-        aVar.h = j3;
-        aVar.f49146m = tL_starsGiveawayOption;
-        aVar.f49141g = z11;
-        return aVar;
-    }
-
-    public static a e(int i10, int i11, boolean z10, ArrayList arrayList) {
-        boolean z11;
-        if (i11 == i10) {
-            z11 = true;
+    public final int b() {
+        int i10;
+        if (this.d) {
+            i10 = 8;
         } else {
-            z11 = false;
+            i10 = 0;
         }
-        ?? aVar = new og.a(11, z11);
-        aVar.f49145l = i10;
-        aVar.f49141g = z10;
-        aVar.f49140f = arrayList;
-        return aVar;
-    }
-
-    public static a f(String str) {
-        ?? aVar = new og.a(6, false);
-        aVar.f49138c = str;
-        return aVar;
-    }
-
-    public static boolean g(List list, List list2) {
-        if (list == null && list2 == null) {
-            return true;
-        }
-        if (list == null || list2 == null || list.size() != list2.size()) {
-            return false;
-        }
-        for (int i10 = 0; i10 < list.size(); i10++) {
-            if (((Integer) list.get(i10)).intValue() != ((Integer) list2.get(i10)).intValue()) {
-                return false;
-            }
-        }
-        return true;
+        return (int) (this.e.e() + AndroidUtilities.dp(i10 + 16));
     }
 
     @Override
-    public final boolean a(og.a aVar) {
-        a aVar2;
-        int i10;
-        int i11;
-        if (this != aVar) {
-            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f16877a) == (i11 = this.f16877a)) {
-                if (i11 == 0) {
-                    if (this.f49141g == aVar2.f49141g) {
-                        return true;
-                    }
-                    return false;
-                } else if (i10 == 17) {
-                    if (this.f49142i == aVar2.f49142i && this.h == aVar2.h && this.f49146m == aVar2.f49146m && this.f49141g == aVar2.f49141g && this.f16878b == aVar2.f16878b) {
-                        return true;
-                    }
-                    return false;
-                } else if (i11 == 5) {
-                    if (this.f49142i == aVar2.f49142i && g(this.f49144k, aVar2.f49144k)) {
-                        return true;
-                    }
-                    return false;
-                } else if (i11 == 13 && this.f49142i == aVar2.f49142i && TextUtils.equals(this.f49138c, aVar2.f49138c)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            return false;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15;
+        TextPaint textPaint = this.f46253f;
+        int color = textPaint.getColor();
+        r6 r6Var = this.e;
+        int color2 = r6Var.f28746a.getColor();
+        Drawable drawable = this.f46251b;
+        Drawable drawable2 = this.f46250a;
+        if (color != color2) {
+            r6Var.u(textPaint.getColor());
+            int color3 = r6Var.f28746a.getColor();
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(r6Var.f28746a.getColor(), mode));
         }
-        return true;
+        canvas.save();
+        if (this.d && !this.f46252c) {
+            i15 = AndroidUtilities.dp(8.0f);
+        } else {
+            i15 = 0;
+        }
+        canvas.translate(f7 + i15, -AndroidUtilities.dp(0.2f));
+        if (this.h == 1) {
+            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
+            drawable2.draw(canvas);
+        } else {
+            drawable.draw(canvas);
+        }
+        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.set(0, 0, (int) r6Var.c(), (int) r6Var.e);
+        r6Var.setBounds(rect);
+        r6Var.draw(canvas);
+        canvas.restore();
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && a.class == obj.getClass()) {
-                a aVar = (a) obj;
-                int i10 = this.f16877a;
-                if (i10 == aVar.f16877a) {
-                    if (i10 != 0) {
-                        if (i10 == 17) {
-                            if (this.f49142i == aVar.f49142i && this.f49146m == aVar.f49146m) {
-                                return true;
-                            }
-                            return false;
-                        } else if (i10 == 5) {
-                            return g(this.f49144k, aVar.f49144k);
-                        } else {
-                            if (i10 == 13) {
-                                return TextUtils.equals(this.f49138c, aVar.f49138c);
-                            }
-                            if (this.f49139e == aVar.f49139e && this.f49140f == aVar.f49140f && this.d == aVar.d && this.f49146m == aVar.f49146m && this.f49141g == aVar.f49141g && this.f49142i == aVar.f49142i && this.f49143j == aVar.f49143j && this.h == aVar.h && this.f49145l == aVar.f49145l && TextUtils.equals(this.f49138c, aVar.f49138c)) {
-                                return true;
-                            }
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return b();
     }
 }

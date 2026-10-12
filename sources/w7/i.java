@@ -1,24 +1,18 @@
 package w7;
 
-import com.google.android.gms.tasks.Task;
-import java.util.concurrent.CancellationException;
+import android.os.Build;
 public abstract class i {
-    public static final Object a(Task task, ld.c cVar) {
-        if (task.isComplete()) {
-            Exception exception = task.getException();
-            if (exception == null) {
-                if (!task.isCanceled()) {
-                    return task.getResult();
-                }
-                throw new CancellationException("Task " + task + " was cancelled normally.");
-            }
-            throw exception;
+    public static boolean a(int i10) {
+        if (i10 == 8 || i10 == 7) {
+            return true;
         }
-        ae.m mVar = new ae.m(1, h.b(cVar));
-        mVar.s();
-        task.addOnCompleteListener(ke.a.f14789a, new a6.m(mVar, 28));
-        Object r10 = mVar.r();
-        kd.a aVar = kd.a.f14781a;
-        return r10;
+        int i11 = Build.VERSION.SDK_INT;
+        if (i11 >= 31 && (i10 == 26 || i10 == 27)) {
+            return true;
+        }
+        if (i11 >= 33 && i10 == 30) {
+            return true;
+        }
+        return false;
     }
 }

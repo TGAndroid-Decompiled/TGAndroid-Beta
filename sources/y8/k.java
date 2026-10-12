@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 public final class k extends l6.a {
     public final int d;
-    public final int f52021e;
+    public final int e;
 
     public k(DataHolder dataHolder, int i10, int i11, int i12) {
         super(dataHolder, i10);
         this.d = i12;
-        this.f52021e = i11;
+        this.e = i11;
     }
 
     public final String toString() {
@@ -20,44 +20,44 @@ public final class k extends l6.a {
         Object valueOf;
         switch (this.d) {
             case 0:
-                DataHolder dataHolder = this.f15188a;
-                int i10 = this.f15189b;
+                DataHolder dataHolder = this.f14604a;
+                int i10 = this.f14605b;
                 dataHolder.c(i10, "event_type");
-                if (dataHolder.d[this.f15190c].getInt(i10, dataHolder.f6737c.getInt("event_type")) == 1) {
+                if (dataHolder.d[this.f14606c].getInt(i10, dataHolder.f5086c.getInt("event_type")) == 1) {
                     str = "changed";
                 } else {
-                    int i11 = this.f15189b;
+                    int i11 = this.f14605b;
                     dataHolder.c(i11, "event_type");
-                    if (dataHolder.d[this.f15190c].getInt(i11, dataHolder.f6737c.getInt("event_type")) == 2) {
+                    if (dataHolder.d[this.f14606c].getInt(i11, dataHolder.f5086c.getInt("event_type")) == 2) {
                         str = "deleted";
                     } else {
                         str = "unknown";
                     }
                 }
-                return org.telegram.ui.Cells.c1.i("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f15189b, this.f52021e, 1).toString(), " }");
+                return org.telegram.ui.Cells.d0.j("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f14605b, this.e, 1).toString(), " }");
             default:
                 boolean isLoggable = Log.isLoggable("DataItem", 3);
-                DataHolder dataHolder2 = this.f15188a;
-                int i12 = this.f15189b;
+                DataHolder dataHolder2 = this.f14604a;
+                int i12 = this.f14605b;
                 dataHolder2.c(i12, "data");
-                byte[] blob = dataHolder2.d[this.f15190c].getBlob(i12, dataHolder2.f6737c.getInt("data"));
-                int i13 = this.f52021e;
+                byte[] blob = dataHolder2.d[this.f14606c].getBlob(i12, dataHolder2.f5086c.getInt("data"));
+                int i13 = this.e;
                 HashMap hashMap = new HashMap(i13);
                 for (int i14 = 0; i14 < i13; i14++) {
-                    l6.a aVar = new l6.a(dataHolder2, this.f15189b + i14);
-                    DataHolder dataHolder3 = aVar.f15188a;
-                    int i15 = aVar.f15189b;
+                    l6.a aVar = new l6.a(dataHolder2, this.f14605b + i14);
+                    DataHolder dataHolder3 = aVar.f14604a;
+                    int i15 = aVar.f14605b;
                     dataHolder3.c(i15, "asset_key");
-                    if (dataHolder3.d[aVar.f15190c].getString(i15, dataHolder3.f6737c.getInt("asset_key")) != null) {
-                        int i16 = aVar.f15189b;
+                    if (dataHolder3.d[aVar.f14606c].getString(i15, dataHolder3.f5086c.getInt("asset_key")) != null) {
+                        int i16 = aVar.f14605b;
                         dataHolder3.c(i16, "asset_key");
-                        hashMap.put(dataHolder3.d[aVar.f15190c].getString(i16, dataHolder3.f6737c.getInt("asset_key")), aVar);
+                        hashMap.put(dataHolder3.d[aVar.f14606c].getString(i16, dataHolder3.f5086c.getInt("asset_key")), aVar);
                     }
                 }
                 StringBuilder sb2 = new StringBuilder("DataItemRef{ ");
-                int i17 = this.f15189b;
+                int i17 = this.f14605b;
                 dataHolder2.c(i17, "path");
-                sb2.append("uri=".concat(String.valueOf(Uri.parse(dataHolder2.d[this.f15190c].getString(i17, dataHolder2.f6737c.getInt("path"))))));
+                sb2.append("uri=".concat(String.valueOf(Uri.parse(dataHolder2.d[this.f14606c].getString(i17, dataHolder2.f5086c.getInt("path"))))));
                 if (blob == null) {
                     valueOf = "null";
                 } else {

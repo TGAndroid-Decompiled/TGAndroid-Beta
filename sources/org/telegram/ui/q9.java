@@ -1,32 +1,34 @@
 package org.telegram.ui;
+public final class q9 implements o1.f {
+    public final int f39359a;
+    public final Object f39360b;
 
-import android.animation.ValueAnimator;
-public final class q9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41219a;
-    public final y9 f41220b;
-
-    public q9(y9 y9Var, int i10) {
-        this.f41219a = i10;
-        this.f41220b = y9Var;
+    public q9(Object obj, int i10) {
+        this.f39359a = i10;
+        this.f39360b = obj;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41219a) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f39359a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y9 y9Var = this.f41220b;
-                y9Var.Z = floatValue;
-                y9Var.f44331a.setAlpha(1.0f - floatValue);
-                if (y9Var.X == 3) {
-                    y9Var.f44333b.setAlpha(1.0f - y9Var.Z);
+                z9 z9Var = (z9) this.f39360b;
+                o1.k kVar = z9Var.f42563y;
+                if (kVar != null) {
+                    kVar.c();
+                    z9Var.f42563y = null;
+                    return;
                 }
-                y9Var.f44345s.setAlpha(1.0f - y9Var.Z);
-                y9Var.f44346w = (y9Var.Z * 0.25f) + 0.5f;
-                y9Var.fragmentView.invalidate();
+                return;
+            case 1:
+                yo0 yo0Var = (yo0) this.f39360b;
+                if (hVar == yo0Var.f42201c) {
+                    yo0Var.f42201c = null;
+                    return;
+                }
                 return;
             default:
-                this.f41220b.f44345s.invalidate();
+                ((vu0) this.f39360b).D();
                 return;
         }
     }

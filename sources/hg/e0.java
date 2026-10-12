@@ -1,23 +1,19 @@
 package hg;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class e0 extends s4.e0 {
-    public final f0 f11202r;
+import org.telegram.messenger.R;
+public enum e0 {
+    All(0, R.string.SearchMessagesFilterAll, R.string.SearchMessagesFilterAllFrom),
+    Private(8, R.string.SearchMessagesFilterPrivate, R.string.SearchMessagesFilterPrivateFrom),
+    Groups(4, R.string.SearchMessagesFilterGroup, R.string.SearchMessagesFilterGroupFrom),
+    Channels(2, R.string.SearchMessagesFilterChannels, R.string.SearchMessagesFilterChannelsFrom);
+    
+    public final int f10534a;
+    public final int f10535b;
+    public final int f10536c;
 
-    public e0(f0 f0Var, Context context) {
-        super(context);
-        this.f11202r = f0Var;
-    }
-
-    @Override
-    public final int k(int i10, View view) {
-        return org.telegram.messenger.v0.z(8.0f, ((j0) this.f11202r.V).f11274s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    e0(int i10, int i11, int i12) {
+        this.f10534a = i10;
+        this.f10535b = i11;
+        this.f10536c = i12;
     }
 }

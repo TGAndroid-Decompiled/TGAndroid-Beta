@@ -1,73 +1,63 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.am;
-import org.telegram.ui.ActionBar.w5;
-public final class n1 extends TextView {
-    public boolean f46371a;
-    public Drawable f46372b;
+import v7.f7;
+public final class n1 extends o1 {
+    public final f1 f43494f;
+    public final float f43495g;
+    public final float h;
+    public final p1 f43496i;
 
-    public n1(Context context) {
-        super(context);
-        setTextColor(-1);
-        setTextSize(1, 14.0f);
-        setCurrent(false);
-        setEllipsize(TextUtils.TruncateAt.END);
-        setSingleLine();
+    public n1(p1 p1Var, f1 f1Var, boolean z10, boolean z11) {
+        float f7;
+        this.f43496i = p1Var;
+        this.f43503b = false;
+        this.f43494f = f1Var;
+        if (z10) {
+            f7 = -1.0f;
+        } else {
+            f7 = 1.0f;
+        }
+        this.f43495g = f7;
+        this.h = z11 ? -1.0f : 1.0f;
+        a();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
-        super.onDraw(canvas);
-        canvas.restore();
-        if (this.f46371a) {
-            int A = am.A(16.0f, getHeight(), 2);
-            if (LocaleController.isRTL) {
-                this.f46372b.setBounds(AndroidUtilities.dp(7.0f), A, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + A);
-            } else {
-                this.f46372b.setBounds(getWidth() - AndroidUtilities.dp(23.0f), A, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + A);
-            }
-            this.f46372b.draw(canvas);
+    public final void a() {
+        f1 f1Var = this.f43494f;
+        if (f1Var != null) {
+            float f7 = (this.f43495g * f1Var.d) + f1Var.f43436b;
+            float f10 = f1Var.f43437c;
+            p1 p1Var = this.f43496i;
+            p1Var.c(f7, (this.h * f1Var.e) + f10, true);
+            float[] fArr = p1Var.f43519p;
+            float f11 = fArr[0];
+            float f12 = fArr[1];
+            this.d = f11;
+            this.e = f12;
         }
     }
 
-    public void setCurrent(boolean z10) {
-        float f7;
-        this.f46371a = z10;
-        if (z10) {
-            float f10 = 12.0f;
-            if (LocaleController.isRTL) {
-                f7 = 27.0f;
-            } else {
-                f7 = 12.0f;
-            }
-            int dp = AndroidUtilities.dp(f7);
-            int dp2 = AndroidUtilities.dp(6.0f);
-            if (!LocaleController.isRTL) {
-                f10 = 27.0f;
-            }
-            setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(6.0f));
-            setBackground(w5.d(new float[]{AndroidUtilities.dp(32.0f)}, 0, w5.b(1090519039)));
-        } else {
-            setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
-            setBackground(w5.d(new float[]{0.0f}, 0, w5.b(-14145495)));
+    @Override
+    public final void b(float f7, float f10) {
+        this.d = f7;
+        this.e = f10;
+        f1 f1Var = this.f43494f;
+        float f11 = ((-this.f43495g) * f1Var.d) + f1Var.f43436b;
+        float f12 = ((-this.h) * f1Var.e) + f1Var.f43437c;
+        p1 p1Var = this.f43496i;
+        p1Var.c(f7, f10, false);
+        p1Var.c(f11, f12, true);
+        float[] fArr = p1Var.f43519p;
+        float f13 = fArr[0];
+        float f14 = fArr[1];
+        double atan2 = (3.141592653589793d - Math.atan2(f10 - f14, f7 - f13)) - f1Var.h;
+        f1Var.d = ((float) Math.abs(Math.cos(atan2) * f7.a(f7, f10, f13, f14))) / 2.0f;
+        f1Var.e = ((float) Math.abs(Math.sin(atan2) * f7.a(f7, f10, f13, f14))) / 2.0f;
+        f1Var.f43436b = (f7 + f13) / 2.0f;
+        f1Var.f43437c = (f10 + f14) / 2.0f;
+        for (int i10 = 0; i10 < p1Var.f43516m.size(); i10++) {
+            ((o1) p1Var.f43516m.get(i10)).a();
         }
-        if (this.f46371a && this.f46372b == null) {
-            Drawable drawable = getContext().getDrawable(R.drawable.photo_expand);
-            this.f46372b = drawable;
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
     }
 }

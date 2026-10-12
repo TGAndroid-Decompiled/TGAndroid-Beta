@@ -1,51 +1,50 @@
 package org.telegram.ui.Wallet;
 
+import android.util.Base64;
 import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_wallet;
 public final class b2 {
-    public final TL_wallet.tonConnectSession f34487a;
-    public final int f34488b;
-    public final int f34489c;
+    public final String f32953a;
+    public final String f32954b;
+    public final String f32955c;
     public final String d;
-    public final String f34490e;
-    public final e2 f34491f;
-    public final byte[] f34492g;
-    public final String h;
-    public final String f34493i;
-    public final String f34494j;
-    public final String f34495k;
-    public final int f34496l;
-    public boolean f34497m;
-    public boolean f34498n;
-    public boolean f34499o;
-    public boolean f34500p;
-    public boolean f34501q;
-    public Runnable f34502r;
+    public final long e;
+    public final boolean f32956f;
 
-    public b2(TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, JSONObject jSONObject, String str, byte[] bArr) {
-        e2 e2Var;
-        this.f34487a = tonconnectpending.session;
-        this.f34488b = tonconnectrequest.msg_id;
-        this.f34489c = tonconnectrequest.expires;
-        tonconnectrequest.body.clone();
-        this.f34493i = tonconnectrequest.trace_id;
-        this.d = jSONObject.getString("id");
-        this.f34490e = jSONObject.optString("method");
-        int optInt = jSONObject.optInt("errorCode", -1);
-        this.f34496l = optInt;
-        String str2 = null;
-        this.f34494j = jSONObject.optString("errorMessage", null);
-        if (optInt < 0 && jSONObject.has("transaction")) {
-            e2Var = new e2(jSONObject.getJSONObject("transaction"));
-        } else {
-            e2Var = null;
+    public b2(JSONObject jSONObject) {
+        String str;
+        String string = jSONObject.getString("address");
+        this.f32953a = string;
+        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
+            this.f32956f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
+            Object obj = jSONObject.get("amount");
+            if (obj instanceof String) {
+                String str2 = (String) obj;
+                if (str2.matches("[0-9]+")) {
+                    long parseLong = Long.parseLong(str2);
+                    this.e = parseLong;
+                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
+                        throw new IllegalArgumentException("Extra currencies are not supported");
+                    }
+                    if (parseLong >= 0) {
+                        if (jSONObject.has("payload")) {
+                            str = jSONObject.getString("payload");
+                        } else {
+                            str = null;
+                        }
+                        this.f32954b = str;
+                        String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
+                        this.f32955c = string2;
+                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
+                            throw new IllegalArgumentException("Invalid transaction cell");
+                        }
+                        this.d = WalletEngine2.textCommentFromBody(str);
+                        return;
+                    }
+                    throw new IllegalArgumentException("Transfer amount must not be negative");
+                }
+            }
+            throw new IllegalArgumentException("Invalid transfer amount");
         }
-        this.f34491f = e2Var;
-        if (optInt < 0 && jSONObject.has("data")) {
-            str2 = jSONObject.getJSONObject("data").toString();
-        }
-        this.f34495k = str2;
-        this.h = str;
-        this.f34492g = (byte[]) bArr.clone();
+        throw new IllegalArgumentException("Expected a friendly destination address");
     }
 }

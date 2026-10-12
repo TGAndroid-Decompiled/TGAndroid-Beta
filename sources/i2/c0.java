@@ -1,105 +1,44 @@
 package i2;
 
-import android.graphics.SurfaceTexture;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.TextureView;
-import b2.w1;
-import ci.rc;
-import java.util.ArrayList;
-import org.telegram.ui.Components.q81;
-public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final f0 f11618a;
-
-    public c0(f0 f0Var) {
-        this.f11618a = f0Var;
-    }
+import android.media.MediaFormat;
+public final class c0 implements a3.y, m1 {
+    public a3.y f10929a;
+    public c0 f10930b;
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f11618a;
-        org.telegram.messenger.g1 g1Var = f0Var.m0;
-        if (g1Var != null) {
-            g1Var.execute(new a0(this, surfaceTexture, i10, i11, 0));
-            return;
+    public final void a(long j10, long j11, b2.x xVar, MediaFormat mediaFormat) {
+        a3.y yVar = this.f10929a;
+        if (yVar != null) {
+            yVar.a(j10, j11, xVar, mediaFormat);
         }
-        Surface surface = new Surface(surfaceTexture);
-        f0Var.v1(surface);
-        f0Var.S = surface;
-        f0Var.o1(i10, i11);
+    }
+
+    public final void b() {
+        c0 c0Var = this.f10930b;
+        if (c0Var != null) {
+            c0Var.b();
+        }
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f11618a;
-        ArrayList arrayList = f0Var.f11676n0;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            if (((q81) ((w1) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
-                return false;
+    public final void c(int i10, Object obj) {
+        if (i10 != 7) {
+            if (i10 != 8) {
+                if (i10 != 10000 || obj == null) {
+                    return;
+                }
+                throw new ClassCastException();
             }
-        }
-        org.telegram.messenger.g1 g1Var = f0Var.m0;
-        if (g1Var != null) {
-            g1Var.execute(new rc(this, surfaceTexture));
-            return true;
-        }
-        f0Var.v1(null);
-        f0Var.o1(0, 0);
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f11618a;
-        org.telegram.messenger.g1 g1Var = f0Var.m0;
-        if (g1Var != null) {
-            g1Var.execute(new gg.n(this, surfaceTexture, i10, i11));
-        } else {
-            f0Var.o1(i10, i11);
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f11618a;
-        org.telegram.messenger.g1 g1Var = f0Var.m0;
-        if (g1Var != null) {
-            g1Var.execute(new gg.w1(10, this, surfaceTexture));
+            this.f10930b = (c0) obj;
             return;
         }
-        ArrayList arrayList = f0Var.f11676n0;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((q81) ((w1) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
-        }
+        this.f10929a = (a3.y) obj;
     }
 
-    @Override
-    public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f11618a.o1(i11, i12);
-    }
-
-    @Override
-    public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f11618a;
-        if (f0Var.U) {
-            f0Var.v1(surfaceHolder.getSurface());
+    public final void d() {
+        c0 c0Var = this.f10930b;
+        if (c0Var != null) {
+            c0Var.d();
         }
-    }
-
-    @Override
-    public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f11618a;
-        if (f0Var.U) {
-            f0Var.v1(null);
-        }
-        f0Var.o1(0, 0);
     }
 }

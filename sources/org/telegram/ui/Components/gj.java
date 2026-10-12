@@ -1,63 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class gj implements TextWatcher {
-    public final mj f26441a;
+import org.telegram.messenger.R;
+public final class gj extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
+    public final org.telegram.ui.ActionBar.c6 f25297a;
+    public final TextView f25298b;
+    public final TextView f25299c;
 
-    public gj(mj mjVar) {
-        this.f26441a = mjVar;
+    public gj(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        this.f25297a = c6Var;
+        setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
+        setTag(-33024);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.a6.q(-1, -2, 17));
+        z9 z9Var = new z9(context);
+        z9Var.setImageDrawable(new yj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        linearLayout.addView(z9Var, w7.a6.t(120, 120, 17, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.f25298b = textView;
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.a6.t(-1, -2, 17, 32, 12, 32, 8), context);
+        this.f25299c = i10;
+        i10.setTextSize(1, 14.0f);
+        i10.setGravity(17);
+        linearLayout.addView(i10, w7.a6.t(-1, -2, 17, 32, 0, 32, 0));
+        d();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        mj mjVar = this.f26441a;
-        bj bjVar = mjVar.f28561f0;
-        TextUtils.isEmpty(mjVar.f28573y);
-        mjVar.f28573y = editable.toString().trim();
-        bj bjVar2 = mjVar.f28556a0;
-        AndroidUtilities.cancelRunOnUIThread(bjVar2);
-        boolean z11 = true;
-        if (!TextUtils.isEmpty(mjVar.f28573y)) {
-            String str = mjVar.f28573y;
-            if (str != null && str.length() >= 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            mjVar.W = z10;
-            if (!TextUtils.equals(mjVar.V, mjVar.f28573y)) {
-                mjVar.L.clear();
-                mjVar.f28557b0 = 0;
-                mjVar.f28558c0 = false;
-            }
-            AndroidUtilities.runOnUIThread(bjVar2, 1500L);
-        }
-        AndroidUtilities.cancelRunOnUIThread(bjVar);
-        if (!TextUtils.isEmpty(mjVar.f28573y)) {
-            String str2 = mjVar.f28573y;
-            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(mjVar.f30570b.M1).config.musicSearchUsername.get())) {
-                z11 = false;
-            }
-            mjVar.m0 = z11;
-            if (!TextUtils.equals(mjVar.f28560e0, mjVar.f28573y)) {
-                mjVar.M.clear();
-                mjVar.f28562g0 = false;
-            }
-            AndroidUtilities.runOnUIThread(bjVar, 1500L);
-        }
-        mjVar.S();
+    public final void d() {
+        int i10 = org.telegram.ui.ActionBar.g6.G6;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f25297a;
+        this.f25298b.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
+        this.f25299c.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20288y6, c6Var));
+    }
+
+    public int[] getColorKeys() {
+        return null;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

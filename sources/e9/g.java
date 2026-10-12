@@ -1,102 +1,180 @@
 package e9;
 
+import j$.util.DesugarCollections;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.NavigableMap;
 import java.util.NavigableSet;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
-public final class g extends j implements NavigableSet {
-    public final v0 f8736e;
+public final class g extends j implements NavigableMap {
+    public final p1 f8562n;
 
-    public g(v0 v0Var, NavigableMap navigableMap) {
-        super(v0Var, navigableMap);
-        this.f8736e = v0Var;
+    public g(p1 p1Var, NavigableMap navigableMap) {
+        super(p1Var, navigableMap);
+        this.f8562n = p1Var;
     }
 
     @Override
-    public final Object ceiling(Object obj) {
-        return i().ceilingKey(obj);
+    public final SortedSet b() {
+        return new h(this.f8562n, d());
     }
 
     @Override
-    public final Iterator descendingIterator() {
-        return ((e) descendingSet()).iterator();
+    public final SortedSet c() {
+        return (NavigableSet) super.keySet();
     }
 
     @Override
-    public final NavigableSet descendingSet() {
-        return new g(this.f8736e, i().descendingMap());
-    }
-
-    @Override
-    public final Object floor(Object obj) {
-        return i().floorKey(obj);
-    }
-
-    @Override
-    public final SortedSet headSet(Object obj) {
-        return headSet(obj, false);
-    }
-
-    @Override
-    public final Object higher(Object obj) {
-        return i().higherKey(obj);
-    }
-
-    @Override
-    public final Object lower(Object obj) {
-        return i().lowerKey(obj);
-    }
-
-    @Override
-    public final NavigableMap i() {
-        return (NavigableMap) ((SortedMap) this.f8727b);
-    }
-
-    @Override
-    public final Object pollFirst() {
-        c cVar = (c) iterator();
-        if (cVar.hasNext()) {
-            Object next = cVar.next();
-            cVar.remove();
-            return next;
+    public final Map.Entry ceilingEntry(Object obj) {
+        Map.Entry ceilingEntry = d().ceilingEntry(obj);
+        if (ceilingEntry == null) {
+            return null;
         }
-        return null;
+        return a(ceilingEntry);
     }
 
     @Override
-    public final Object pollLast() {
-        Iterator descendingIterator = descendingIterator();
-        if (descendingIterator.hasNext()) {
-            Object next = descendingIterator.next();
-            descendingIterator.remove();
-            return next;
+    public final Object ceilingKey(Object obj) {
+        return d().ceilingKey(obj);
+    }
+
+    @Override
+    public final NavigableSet descendingKeySet() {
+        return (NavigableSet) super.keySet();
+    }
+
+    @Override
+    public final NavigableMap descendingMap() {
+        return new g(this.f8562n, d().descendingMap());
+    }
+
+    public final j0 e(Iterator it) {
+        if (!it.hasNext()) {
+            return null;
         }
-        return null;
+        Map.Entry entry = (Map.Entry) it.next();
+        Collection h = this.f8562n.h();
+        h.addAll((Collection) entry.getValue());
+        it.remove();
+        return new j0(entry.getKey(), DesugarCollections.unmodifiableList((List) h));
     }
 
     @Override
-    public final SortedSet subSet(Object obj, Object obj2) {
-        return subSet(obj, true, obj2, false);
+    public final NavigableMap d() {
+        return (NavigableMap) ((SortedMap) this.f8551b);
     }
 
     @Override
-    public final SortedSet tailSet(Object obj) {
-        return tailSet(obj, true);
+    public final Map.Entry firstEntry() {
+        Map.Entry firstEntry = d().firstEntry();
+        if (firstEntry == null) {
+            return null;
+        }
+        return a(firstEntry);
     }
 
     @Override
-    public final NavigableSet headSet(Object obj, boolean z10) {
-        return new g(this.f8736e, i().headMap(obj, z10));
+    public final Map.Entry floorEntry(Object obj) {
+        Map.Entry floorEntry = d().floorEntry(obj);
+        if (floorEntry == null) {
+            return null;
+        }
+        return a(floorEntry);
     }
 
     @Override
-    public final NavigableSet subSet(Object obj, boolean z10, Object obj2, boolean z11) {
-        return new g(this.f8736e, i().subMap(obj, z10, obj2, z11));
+    public final Object floorKey(Object obj) {
+        return d().floorKey(obj);
     }
 
     @Override
-    public final NavigableSet tailSet(Object obj, boolean z10) {
-        return new g(this.f8736e, i().tailMap(obj, z10));
+    public final SortedMap headMap(Object obj) {
+        return headMap(obj, false);
+    }
+
+    @Override
+    public final Map.Entry higherEntry(Object obj) {
+        Map.Entry higherEntry = d().higherEntry(obj);
+        if (higherEntry == null) {
+            return null;
+        }
+        return a(higherEntry);
+    }
+
+    @Override
+    public final Object higherKey(Object obj) {
+        return d().higherKey(obj);
+    }
+
+    @Override
+    public final Set keySet() {
+        return (NavigableSet) super.keySet();
+    }
+
+    @Override
+    public final Map.Entry lastEntry() {
+        Map.Entry lastEntry = d().lastEntry();
+        if (lastEntry == null) {
+            return null;
+        }
+        return a(lastEntry);
+    }
+
+    @Override
+    public final Map.Entry lowerEntry(Object obj) {
+        Map.Entry lowerEntry = d().lowerEntry(obj);
+        if (lowerEntry == null) {
+            return null;
+        }
+        return a(lowerEntry);
+    }
+
+    @Override
+    public final Object lowerKey(Object obj) {
+        return d().lowerKey(obj);
+    }
+
+    @Override
+    public final NavigableSet navigableKeySet() {
+        return (NavigableSet) super.keySet();
+    }
+
+    @Override
+    public final Map.Entry pollFirstEntry() {
+        return e(((c) entrySet()).iterator());
+    }
+
+    @Override
+    public final Map.Entry pollLastEntry() {
+        return e(((c) ((e) descendingMap()).entrySet()).iterator());
+    }
+
+    @Override
+    public final SortedMap subMap(Object obj, Object obj2) {
+        return subMap(obj, true, obj2, false);
+    }
+
+    @Override
+    public final SortedMap tailMap(Object obj) {
+        return tailMap(obj, true);
+    }
+
+    @Override
+    public final NavigableMap headMap(Object obj, boolean z10) {
+        return new g(this.f8562n, d().headMap(obj, z10));
+    }
+
+    @Override
+    public final NavigableMap subMap(Object obj, boolean z10, Object obj2, boolean z11) {
+        return new g(this.f8562n, d().subMap(obj, z10, obj2, z11));
+    }
+
+    @Override
+    public final NavigableMap tailMap(Object obj, boolean z10) {
+        return new g(this.f8562n, d().tailMap(obj, z10));
     }
 }

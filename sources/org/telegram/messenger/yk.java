@@ -1,24 +1,38 @@
 package org.telegram.messenger;
-public final class yk implements Runnable {
-    public final int f19694a;
-    public final TopicsController f19695b;
-    public final long f19696c;
 
-    public yk(TopicsController topicsController, long j3, int i10) {
-        this.f19694a = i10;
-        this.f19695b = topicsController;
-        this.f19696c = j3;
+import java.util.ArrayList;
+public final class yk implements Runnable {
+    public final int f19115a;
+    public final long f19116b;
+    public final BaseController f19117c;
+    public final Object d;
+
+    public yk(BaseController baseController, Object obj, long j10, int i10) {
+        this.f19115a = i10;
+        this.f19117c = baseController;
+        this.d = obj;
+        this.f19116b = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19694a) {
+        switch (this.f19115a) {
             case 0:
-                this.f19695b.lambda$loadTopics$6(this.f19696c);
+                ((TopicsController) this.f19117c).lambda$updateTopicsWithDeletedMessages$10((ArrayList) this.d, this.f19116b);
+                return;
+            case 1:
+                ((TranslateController) this.f19117c).lambda$setDialogTranslateTo$0(this.f19116b, (String) this.d);
                 return;
             default:
-                this.f19695b.lambda$processTopics$8(this.f19696c);
+                ((TranslateController) this.f19117c).lambda$invalidateTranslation$9((MessageObject) this.d, this.f19116b);
                 return;
         }
+    }
+
+    public yk(TranslateController translateController, long j10, String str) {
+        this.f19115a = 1;
+        this.f19117c = translateController;
+        this.f19116b = j10;
+        this.d = str;
     }
 }

@@ -1,12 +1,19 @@
 package ee;
+public final class f extends md.c {
+    public g f8740a;
+    public Object f8741b;
+    public final g f8742c;
+    public int d;
 
-import sd.p;
-public final class f extends kotlin.jvm.internal.j implements p {
-    public static final f f8904b = new kotlin.jvm.internal.j(2);
+    public f(g gVar, md.c cVar) {
+        super(cVar);
+        this.f8742c = gVar;
+    }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        jd.f fVar = (jd.f) obj2;
-        return Integer.valueOf(((Number) obj).intValue() + 1);
+    public final Object invokeSuspend(Object obj) {
+        this.f8741b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f8742c.a(null, this);
     }
 }

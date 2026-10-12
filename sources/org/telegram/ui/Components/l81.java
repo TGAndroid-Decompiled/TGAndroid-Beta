@@ -1,46 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.Map;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
-public final class l81 implements g2.h {
-    public final g2.h f28092a;
-    public final long f28093b;
+import java.util.function.ToDoubleFunction;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class l81 implements ToDoubleFunction {
+    public final int f26976a;
 
-    public l81(ExtendedDefaultDataSource extendedDefaultDataSource, long j3) {
-        this.f28092a = extendedDefaultDataSource;
-        this.f28093b = j3;
+    public l81(int i10) {
+        this.f26976a = i10;
     }
 
     @Override
-    public final void addTransferListener(g2.c0 c0Var) {
-        this.f28092a.addTransferListener(c0Var);
-    }
-
-    @Override
-    public final void close() {
-        this.f28092a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f28092a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f28092a.getUri();
-    }
-
-    @Override
-    public final long open(g2.m mVar) {
-        g2.l a2 = mVar.a();
-        a2.f10259b = mVar.f10268e + this.f28093b;
-        return this.f28092a.open(a2.d());
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        return this.f28092a.read(bArr, i10, i11);
+    public final double applyAsDouble(Object obj) {
+        switch (this.f26976a) {
+            case 0:
+                return ((o81) obj).f27908a;
+            case 1:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 2:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 3:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 4:
+                return zh.r0.Q((TL_stars.starGiftAttributeBackdrop) obj);
+            case 5:
+                return zh.r0.Q((TL_stars.starGiftAttributePattern) obj);
+            default:
+                return zh.r0.Q((TL_stars.starGiftAttributeModel) obj);
+        }
     }
 }

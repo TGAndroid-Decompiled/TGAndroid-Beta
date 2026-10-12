@@ -1,86 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sc1 implements RequestDelegate {
-    public final int f41900a;
-    public final zd1 f41901b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class sc1 implements Utilities.Callback {
+    public final int f40061a;
+    public final ce1 f40062b;
 
-    public sc1(zd1 zd1Var, int i10) {
-        this.f41900a = i10;
-        this.f41901b = zd1Var;
+    public sc1(ce1 ce1Var, int i10) {
+        this.f40061a = i10;
+        this.f40062b = ce1Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41900a) {
+    public final void run(Object obj) {
+        switch (this.f40061a) {
             case 0:
-                final zd1 zd1Var = this.f41901b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                zd1.W(zd1Var, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        zd1 zd1Var2 = zd1Var;
-                                        zd1Var2.W0 = tL_wallPaper;
-                                        zd1Var2.b1(false);
-                                        zd1Var2.j1();
-                                        zd1Var2.U0.add(0, zd1Var2.W0);
-                                        xd1 xd1Var = zd1Var2.Q0;
-                                        if (xd1Var != null) {
-                                            xd1Var.l();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+                ce1 ce1Var = this.f40062b;
+                ce1Var.getClass();
+                ce1Var.f34892n1 = ((Float) obj).floatValue();
+                ce1Var.f34915x0.invalidate();
+                ce1Var.V0();
+                return;
+            case 1:
+                ce1 ce1Var2 = this.f40062b;
+                ce1Var2.V1 = (TL_stories.TL_premium_boostsStatus) obj;
+                ce1Var2.U1 = true;
+                ce1Var2.h1(true);
+                ce1Var2.T1 = false;
                 return;
             default:
-                final zd1 zd1Var2 = this.f41901b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                zd1.W(zd1Var2, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        zd1 zd1Var22 = zd1Var2;
-                                        zd1Var22.W0 = tL_wallPaper;
-                                        zd1Var22.b1(false);
-                                        zd1Var22.j1();
-                                        zd1Var22.U0.add(0, zd1Var22.W0);
-                                        xd1 xd1Var = zd1Var22.Q0;
-                                        if (xd1Var != null) {
-                                            xd1Var.l();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+                ce1.U(this.f40062b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }

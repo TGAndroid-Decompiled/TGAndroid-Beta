@@ -1,136 +1,46 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.js;
-public final class p2 extends View {
-    public final Paint f53228a;
-    public final Paint f53229b;
-    public final Paint f53230c;
-    public final RadialGradient[] d;
-    public final Matrix f53231e;
-    public final org.telegram.ui.Components.g6 f53232f;
-    public final RadialGradient h;
-    public final Path f53233n;
-    public int f53234r;
-    public int f53235s;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import bi.b5;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.h71;
+import w7.a6;
+import w7.e6;
+import zh.f5;
+import zh.n5;
+public final class p2 extends org.telegram.ui.ActionBar.e3 {
+    public long f49077b;
 
-    public p2(Context context) {
-        super(context);
-        this.f53228a = new Paint(1);
-        this.f53229b = new Paint(1);
-        Paint paint = new Paint(1);
-        this.f53230c = paint;
-        this.d = new RadialGradient[2];
-        this.f53231e = new Matrix();
-        this.f53232f = new org.telegram.ui.Components.g6(1.0f, this, 0L, 420L, js.h);
-        this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
-        this.f53233n = new Path();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-    }
-
-    public final void a(int i10, int i11) {
-        if (this.f53234r == i10 && this.f53235s == i11) {
-            return;
-        }
-        RadialGradient[] radialGradientArr = this.d;
-        radialGradientArr[0] = radialGradientArr[1];
-        this.f53234r = i10;
-        this.f53235s = i11;
-        radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f53232f.d(0.0f, true);
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        Paint paint;
-        float f10 = 1.0f;
-        int i10 = 0;
-        float d = this.f53232f.d(1.0f, false);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
-        float f11 = 0.0f;
-        if (getAlpha() > 0.0f) {
-            invalidate();
-        }
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint2 = this.f53229b;
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        Path path = this.f53233n;
-        path.rewind();
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float min = Math.min(getWidth(), getHeight()) / 2.0f;
-        int i11 = 0;
-        while (i11 < 6) {
-            float d10 = sc.v.d(i11, 60.0f, 12.5f, currentTimeMillis);
-            path.moveTo(width, height);
-            double d11 = ((d10 - 12.5f) / 180.0f) * 3.141592653589793d;
-            path.lineTo((((float) Math.cos(d11)) * min) + width, (((float) Math.sin(d11)) * min) + height);
-            double d12 = ((d10 + 12.5f) / 180.0f) * 3.141592653589793d;
-            path.lineTo((((float) Math.cos(d12)) * min) + width, (((float) Math.sin(d12)) * min) + height);
-            path.lineTo(width, height);
-            i11++;
-            f10 = f10;
-        }
-        float f12 = f10;
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        while (true) {
-            RadialGradient[] radialGradientArr = this.d;
-            int length = radialGradientArr.length;
-            Matrix matrix = this.f53231e;
-            if (i10 < length) {
-                if (radialGradientArr[i10] == null) {
-                    f7 = f11;
-                    paint = paint2;
-                } else {
-                    f7 = f11;
-                    paint = paint2;
-                    float pow = (float) Math.pow(f12 - Math.abs(i10 - d), 0.5d);
-                    if (pow > f7) {
-                        matrix.reset();
-                        float f13 = min / 100.0f;
-                        matrix.postScale(f13, f13);
-                        matrix.postTranslate(width, height);
-                        radialGradientArr[i10].setLocalMatrix(matrix);
-                        RadialGradient radialGradient = radialGradientArr[i10];
-                        Paint paint3 = this.f53228a;
-                        paint3.setShader(radialGradient);
-                        float f14 = pow * 255.0f;
-                        paint3.setAlpha((int) (0.3f * f14));
-                        paint.setShader(radialGradientArr[i10]);
-                        paint.setAlpha((int) f14);
-                        canvas.drawPath(path, paint3);
-                        canvas.drawPath(path, paint);
-                    }
-                }
-                i10++;
-                f11 = f7;
-                paint2 = paint;
-            } else {
-                matrix.reset();
-                float f15 = min / 100.0f;
-                matrix.postScale(f15, f15);
-                matrix.postTranslate(width, height);
-                RadialGradient radialGradient2 = this.h;
-                radialGradient2.setLocalMatrix(matrix);
-                Paint paint4 = this.f53230c;
-                paint4.setShader(radialGradient2);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint4);
-                canvas.restore();
-                return;
-            }
-        }
+    public p2(Context context, long j10, TL_stars.SavedStarGift savedStarGift, c6 c6Var, Utilities.Callback0Return callback0Return) {
+        super(1, context, c6Var, false);
+        this.f49077b = 0L;
+        fixNavigationBar();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        TextView b10 = e6.b(context, 20.0f, g6.G6, true, c6Var);
+        b10.setText(LocaleController.getString(R.string.Gift2UnpinAlertTitle));
+        linearLayout.addView(b10, a6.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
+        TextView b11 = e6.b(context, 14.0f, g6.f20288y6, false, c6Var);
+        b11.setText(LocaleController.getString(R.string.Gift2UnpinAlertSubtitle));
+        linearLayout.addView(b11, a6.k(22.0f, 4.33f, 22.0f, 10.0f, -1, -2));
+        di.d dVar = new di.d(context, c6Var, true);
+        f5 G = n5.y(this.currentAccount, false).G(j10, true);
+        h71 h71Var = new h71(context, this.currentAccount, 0, false, new rh.s(2, this, G), new org.telegram.ui.web.c0(22, this, dVar), null, c6Var);
+        h71Var.setSpanCount(3);
+        h71Var.setOverScrollMode(2);
+        h71Var.setScrollEnabled(false);
+        linearLayout.addView(h71Var, a6.k(11.0f, 0.0f, 11.0f, 0.0f, -1, -2));
+        dVar.g(LocaleController.getString(R.string.Gift2UnpinAlertButton), false, true);
+        linearLayout.addView(dVar, a6.k(22.0f, 9.0f, 22.0f, 9.0f, -1, 48));
+        dVar.setEnabled(false);
+        dVar.setOnClickListener(new b5(this, G, savedStarGift, callback0Return, 16));
+        setCustomView(linearLayout);
     }
 }

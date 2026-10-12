@@ -1,8 +1,8 @@
 package k1;
 public final class i extends k {
-    public final b0 f14340a;
+    public final a0 f13775a;
 
-    public i(b0 b0Var) {
-        this.f14340a = b0Var;
+    public i(a0 a0Var) {
+        this.f13775a = a0Var;
     }
 }

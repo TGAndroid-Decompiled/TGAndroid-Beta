@@ -2,21 +2,21 @@ package m2;
 
 import java.util.List;
 public final class o extends n {
-    public final List f15711j;
+    public final List f15365j;
 
-    public o(j jVar, long j3, long j10, long j11, long j12, List list, long j13, List list2, long j14, long j15) {
-        super(jVar, j3, j10, j11, j12, list, j13, j14, j15);
-        this.f15711j = list2;
+    public o(j jVar, long j10, long j11, long j12, long j13, List list, long j14, List list2, long j15, long j16) {
+        super(jVar, j10, j11, j12, j13, list, j14, j15, j16);
+        this.f15365j = list2;
     }
 
     @Override
-    public final long d(long j3) {
-        return this.f15711j.size();
+    public final long d(long j10) {
+        return this.f15365j.size();
     }
 
     @Override
-    public final j h(k kVar, long j3) {
-        return (j) this.f15711j.get((int) (j3 - this.d));
+    public final j h(k kVar, long j10) {
+        return (j) this.f15365j.get((int) (j10 - this.d));
     }
 
     @Override

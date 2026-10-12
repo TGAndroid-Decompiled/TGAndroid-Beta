@@ -1,36 +1,28 @@
 package z7;
-
-import java.util.Arrays;
 public final class we {
-    public final Boolean f54334a;
-    public final Boolean f54335b;
-    public final Boolean f54336c;
-    public final Boolean d;
-    public final Boolean f54337e;
+    public final String f49835a;
+    public final String f49836b;
+    public final String f49837c;
+    public final String d;
+    public final m e;
+    public final String f49838f;
+    public final Boolean f49839g;
+    public final Boolean h;
+    public final Boolean f49840i;
+    public final Integer f49841j;
+    public final Integer f49842k;
 
-    public we(ci.u5 u5Var) {
-        this.f54334a = (Boolean) u5Var.f6063a;
-        this.f54335b = (Boolean) u5Var.f6064b;
-        this.f54336c = (Boolean) u5Var.f6065c;
-        this.d = (Boolean) u5Var.d;
-        this.f54337e = (Boolean) u5Var.f6066e;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof we)) {
-            return false;
-        }
-        we weVar = (we) obj;
-        if (n6.m.l(this.f54334a, weVar.f54334a) && n6.m.l(this.f54335b, weVar.f54335b) && n6.m.l(this.f54336c, weVar.f54336c) && n6.m.l(this.d, weVar.d) && n6.m.l(this.f54337e, weVar.f54337e)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f54334a, this.f54335b, this.f54336c, this.d, this.f54337e});
+    public we(v7.d8 d8Var) {
+        this.f49835a = d8Var.f46606a;
+        this.f49836b = d8Var.f46607b;
+        this.f49837c = d8Var.f46608c;
+        this.d = d8Var.d;
+        this.e = (m) d8Var.f46613k;
+        this.f49838f = d8Var.e;
+        this.f49839g = (Boolean) d8Var.f46609f;
+        this.h = (Boolean) d8Var.f46610g;
+        this.f49840i = (Boolean) d8Var.h;
+        this.f49841j = d8Var.f46611i;
+        this.f49842k = (Integer) d8Var.f46612j;
     }
 }

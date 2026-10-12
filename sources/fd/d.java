@@ -1,51 +1,15 @@
 package fd;
-
-import cf.p;
-import cf.s;
-public final class d extends h {
-    public final int f9858e;
+public class d extends f2.e {
+    public String f9111c;
 
     @Override
-    public final p b() {
-        switch (this.f9858e) {
-            case 0:
-                int i10 = this.d + 1;
-                this.d = i10;
-                if (c() == '[') {
-                    this.d++;
-                    s f7 = f("![");
-                    i iVar = this.f9862a;
-                    f6.f fVar = iVar.f9876i;
-                    f6.f fVar2 = new f6.f(f7, i10, fVar, iVar.h, true);
-                    if (fVar != null) {
-                        fVar.d = true;
-                    }
-                    iVar.f9876i = fVar2;
-                    return f7;
-                }
-                return null;
-            default:
-                int i11 = this.d;
-                this.d = i11 + 1;
-                s f10 = f("[");
-                i iVar2 = this.f9862a;
-                f6.f fVar3 = iVar2.f9876i;
-                f6.f fVar4 = new f6.f(f10, i11, fVar3, iVar2.h, false);
-                if (fVar3 != null) {
-                    fVar3.d = true;
-                }
-                iVar2.f9876i = fVar4;
-                return f10;
-        }
+    public final f2.e b() {
+        this.f9111c = null;
+        return this;
     }
 
     @Override
-    public final char d() {
-        switch (this.f9858e) {
-            case 0:
-                return '!';
-            default:
-                return '[';
-        }
+    public String toString() {
+        return this.f9111c;
     }
 }

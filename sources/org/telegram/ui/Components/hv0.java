@@ -1,230 +1,197 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hv0 implements org.telegram.ui.st {
-    public final TLRPC.TL_messageMediaPoll f26899a;
-    public final TLRPC.PollAnswer f26900b;
-    public final org.telegram.ui.Cells.u1 f26901c;
-    public final mv0 d;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.SavedMessagesController;
+public final class hv0 extends lm0 {
+    public final Context f25760c;
+    public final SavedMessagesController d;
+    public boolean h;
+    public pu0 f25764s;
+    public final xv0 f25766x;
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f25761f = new ArrayList();
+    public final lr0 f25762n = new lr0(this, 6);
+    public final s4.t0 f25763r = new s4.t0();
+    public final s4.y v = new s4.y(new fv0(this));
+    public final HashSet f25765w = new HashSet();
 
-    public hv0(mv0 mv0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
-        this.d = mv0Var;
-        this.f26899a = tL_messageMediaPoll;
-        this.f26900b = pollAnswer;
-        this.f26901c = u1Var;
+    public hv0(xv0 xv0Var, Context context) {
+        this.f25766x = xv0Var;
+        this.f25760c = context;
+        SavedMessagesController savedMessagesController = xv0Var.f31388v1.getMessagesController().getSavedMessagesController();
+        this.d = savedMessagesController;
+        if (xv0Var.l0()) {
+            savedMessagesController.loadDialogs(false);
+        }
+        C(true);
+        F(false);
     }
 
     @Override
-    public final MessageObject A() {
-        return this.f26901c.getMessageObject();
+    public final boolean D(s4.b1 b1Var) {
+        return true;
     }
 
-    @Override
-    public final boolean B() {
-        return false;
+    public final void E(View view) {
+        ArrayList arrayList;
+        SavedMessagesController.SavedDialog savedDialog;
+        boolean z10;
+        int i10;
+        if (view instanceof org.telegram.ui.Cells.s2) {
+            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) view;
+            long dialogId = s2Var.getDialogId();
+            int i11 = 0;
+            int i12 = 0;
+            while (true) {
+                arrayList = this.f25761f;
+                if (i12 < arrayList.size()) {
+                    if (((SavedMessagesController.SavedDialog) arrayList.get(i12)).dialogId == dialogId) {
+                        savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i12);
+                        break;
+                    }
+                    i12++;
+                } else {
+                    savedDialog = null;
+                    break;
+                }
+            }
+            if (savedDialog == null) {
+                return;
+            }
+            Long valueOf = Long.valueOf(savedDialog.dialogId);
+            HashSet hashSet = this.f25765w;
+            boolean contains = hashSet.contains(valueOf);
+            xv0 xv0Var = this.f25766x;
+            if (contains) {
+                hashSet.remove(Long.valueOf(savedDialog.dialogId));
+                if (hashSet.size() <= 0 && xv0Var.C1) {
+                    xv0Var.b1(false);
+                }
+            } else {
+                hashSet.add(Long.valueOf(savedDialog.dialogId));
+                if (hashSet.size() > 0 && !xv0Var.C1) {
+                    xv0Var.b1(true);
+                    org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31385u0;
+                    if (u0Var != null) {
+                        u0Var.setVisibility(8);
+                    }
+                    org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31383t0;
+                    if (u0Var2 != null) {
+                        u0Var2.setVisibility(8);
+                    }
+                }
+            }
+            xv0Var.A0.a(hashSet.size(), true);
+            if (hashSet.size() > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                long longValue = ((Long) it.next()).longValue();
+                int i13 = 0;
+                while (true) {
+                    if (i13 >= arrayList.size()) {
+                        break;
+                    }
+                    SavedMessagesController.SavedDialog savedDialog2 = (SavedMessagesController.SavedDialog) arrayList.get(i13);
+                    if (savedDialog2.dialogId == longValue) {
+                        if (!savedDialog2.pinned) {
+                            z10 = false;
+                        }
+                    } else {
+                        i13++;
+                    }
+                }
+                if (!z10) {
+                    break;
+                }
+            }
+            org.telegram.ui.ActionBar.u0 u0Var3 = xv0Var.f31387v0;
+            if (u0Var3 != null) {
+                if (z10) {
+                    i10 = 8;
+                } else {
+                    i10 = 0;
+                }
+                u0Var3.setVisibility(i10);
+            }
+            org.telegram.ui.ActionBar.u0 u0Var4 = xv0Var.f31390w0;
+            if (u0Var4 != null) {
+                if (!z10) {
+                    i11 = 8;
+                }
+                u0Var4.setVisibility(i11);
+            }
+            s2Var.V(hashSet.contains(Long.valueOf(savedDialog.dialogId)), true);
+        }
     }
 
-    @Override
-    public final boolean D() {
-        return false;
-    }
-
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final void K() {
-        ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f26900b);
-        SendMessagesHelper.getInstance(this.d.f28655a).sendVote(this.f26901c.getMessageObject(), arrayList, null);
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        mv0 mv0Var = this.d;
-        ov0 ov0Var = mv0Var.f28657c;
-        if (inputStickerSet != null && ov0Var.f29314s.getContext() != null) {
-            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f19823id = inputStickerSet.f19823id;
-            dz0 dz0Var = new dz0(ov0Var.f29314s.getContext(), ov0Var.f29314s.f26957v1, tL_inputStickerSetID, null, null, mv0Var.f28656b);
-            dz0Var.setCalcMandatoryInsets(true);
-            dz0Var.f25494i0 = z10;
-            dz0Var.show();
+    public final void F(boolean z10) {
+        ArrayList arrayList = this.e;
+        arrayList.clear();
+        ArrayList arrayList2 = this.f25761f;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        arrayList2.addAll(this.d.allDialogs);
+        if (z10) {
+            l();
         }
     }
 
     @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
+    public final int h() {
+        return this.f25761f.size();
     }
 
     @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
+    public final long i(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f25761f;
+            if (i10 < arrayList.size()) {
+                return ((SavedMessagesController.SavedDialog) arrayList.get(i10)).dialogId;
+            }
+        }
+        return i10;
     }
 
     @Override
-    public final boolean Q() {
-        return true;
+    public final int j(int i10) {
+        return 13;
     }
 
     @Override
-    public final long a() {
-        return this.d.f28657c.f29314s.f26932j1;
+    public final void v(s4.b1 b1Var, int i10) {
+        View view = b1Var.f44838a;
+        if (!(view instanceof org.telegram.ui.Cells.s2)) {
+            return;
+        }
+        org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) view;
+        ArrayList arrayList = this.f25761f;
+        SavedMessagesController.SavedDialog savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i10);
+        s2Var.W(savedDialog.dialogId, savedDialog.message, savedDialog.getDate(), false, false);
+        boolean z10 = true;
+        s2Var.f21893s0 = true;
+        s2Var.V(this.f25765w.contains(Long.valueOf(savedDialog.dialogId)), false);
+        if (i10 + 1 >= arrayList.size()) {
+            z10 = false;
+        }
+        s2Var.f21895s2 = z10;
     }
 
     @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return this.f26899a;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return this.f26900b;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final s80 j(ci.m6 m6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean m(int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final void s() {
-        SendMessagesHelper.getInstance(this.d.f28655a).sendVote(this.f26901c.getMessageObject(), null, null);
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void o(String str) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.jt jtVar) {
-    }
-
-    @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        gv0 gv0Var = new gv0(this, this.f25760c);
+        xv0 xv0Var = this.f25766x;
+        gv0Var.setDialogCellDelegate(xv0Var);
+        gv0Var.f21887r0 = true;
+        gv0Var.setBackgroundColor(xv0Var.h0(org.telegram.ui.ActionBar.g6.f19901d6));
+        return new s4.b1(gv0Var);
     }
 }

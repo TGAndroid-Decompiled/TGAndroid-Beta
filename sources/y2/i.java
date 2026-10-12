@@ -1,6 +1,6 @@
 package y2;
 public interface i {
-    void C();
+    void J();
 
     void a();
 }

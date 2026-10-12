@@ -1,23 +1,35 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.cu0;
-public final class e0 extends View {
-    public final cu0 f46173a;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+public final class e0 implements Runnable {
+    public final int f43431a;
+    public final ArrayList f43432b;
 
-    public e0(cu0 cu0Var, Context context) {
-        super(context);
-        this.f46173a = cu0Var;
+    public e0(ArrayList arrayList, int i10) {
+        this.f43431a = i10;
+        this.f43432b = arrayList;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        c0 c0Var = this.f46173a.W0;
-        if (c0Var != null) {
-            c0Var.d(canvas);
+    public final void run() {
+        switch (this.f43431a) {
+            case 0:
+                j0.h = this.f43432b;
+                j0.f43459i = false;
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
+                return;
+            default:
+                ArrayList arrayList = this.f43432b;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    ((Bitmap) obj).recycle();
+                }
+                return;
         }
     }
 }

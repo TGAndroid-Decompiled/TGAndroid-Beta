@@ -1,80 +1,59 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class h51 extends FrameLayout {
-    public float f38248a;
-    public final boolean f38249b;
-    public final boolean f38250c;
-    public boolean d;
-    public int f38251e;
-    public final o1.j f38252f;
-    public final o1.k h;
-    public final t0 f38253n;
-    public final SecretMediaViewer f38254r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class h51 extends AnimatorListenerAdapter {
+    public final int f36614a;
+    public final org.telegram.ui.Components.gn0 f36615b;
 
-    public h51(SecretMediaViewer secretMediaViewer, Activity activity) {
-        super(activity);
-        this.f38254r = secretMediaViewer;
-        this.f38248a = 1.0f;
-        this.f38249b = true;
-        this.f38250c = true;
-        o1.j jVar = new o1.j(0.0f);
-        this.f38252f = jVar;
-        o1.k kVar = new o1.k(jVar);
-        kVar.f16691u = org.telegram.ui.Cells.c1.j(0.0f, 750.0f, 1.0f);
-        kVar.b(new td0(this, 5));
-        this.h = kVar;
-        this.f38253n = new t0("progress", 6);
-        setWillNotDraw(false);
+    public h51(org.telegram.ui.Components.gn0 gn0Var, int i10) {
+        this.f36614a = i10;
+        this.f36615b = gn0Var;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f38252f.f16690a = 0.0f;
-        this.f38251e = 0;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        float f7;
-        super.onLayout(z10, i10, i11, i12, i13);
-        SecretMediaViewer secretMediaViewer = this.f38254r;
-        e51 e51Var = secretMediaViewer.f34306y;
-        if (e51Var != null) {
-            f7 = ((float) e51Var.n()) / ((float) secretMediaViewer.f34306y.p());
-        } else {
-            f7 = 0.0f;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36614a) {
+            case 0:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36615b.f25369b;
+                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
+                iu0 iu0Var = secretMediaViewer.f32728a0;
+                iu0Var.f41083l0 = false;
+                if (iu0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) iu0Var.f41085o0.getLayoutParams()).topMargin = iu0Var.m0;
+                    iu0Var.m0 = -1;
+                    iu0Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((SecretMediaViewer) this.f36615b.f25369b).Z.setTranslationY(0.0f);
+                return;
         }
-        secretMediaViewer.Q.h(f7, false);
     }
 
     @Override
-    public final void onMeasure(int r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h51.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f38248a < 1.0f) {
-            return false;
+    public void onAnimationStart(Animator animator) {
+        switch (this.f36614a) {
+            case 0:
+                iu0 iu0Var = ((SecretMediaViewer) this.f36615b.f25369b).f32728a0;
+                Method method = iu0Var.f41077f0;
+                if (method != null) {
+                    try {
+                        method.invoke(iu0Var, null);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        SecretMediaViewer secretMediaViewer = this.f38254r;
-        if (secretMediaViewer.Q.e(motionEvent.getX() - AndroidUtilities.dp(2.0f), motionEvent.getY(), motionEvent.getAction())) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-            secretMediaViewer.R.invalidate();
-        }
-        return true;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.d) {
-            return;
-        }
-        super.requestLayout();
     }
 }

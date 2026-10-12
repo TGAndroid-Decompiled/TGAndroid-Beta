@@ -7,21 +7,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import w7.a8;
+import w7.d8;
 public final class a {
     public static volatile a d;
-    public static final Object f49349e = new Object();
-    public final Context f49352c;
-    public final HashSet f49351b = new HashSet();
-    public final HashMap f49350a = new HashMap();
+    public static final Object e = new Object();
+    public final Context f46564c;
+    public final HashSet f46563b = new HashSet();
+    public final HashMap f46562a = new HashMap();
 
     public a(Context context) {
-        this.f49352c = context.getApplicationContext();
+        this.f46564c = context.getApplicationContext();
     }
 
     public static a c(Context context) {
         if (d == null) {
-            synchronized (f49349e) {
+            synchronized (e) {
                 try {
                     if (d == null) {
                         d = new a(context);
@@ -35,14 +35,14 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f49352c.getString(2131689503);
+        String string = this.f46564c.getString(2131689503);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();
                 Iterator<String> it = bundle.keySet().iterator();
                 while (true) {
                     boolean hasNext = it.hasNext();
-                    hashSet = this.f49351b;
+                    hashSet = this.f46563b;
                     if (!hasNext) {
                         break;
                     }
@@ -66,10 +66,10 @@ public final class a {
 
     public final Object b(Class cls, HashSet hashSet) {
         Object obj;
-        HashMap hashMap = this.f49350a;
-        if (a8.b()) {
+        HashMap hashMap = this.f46562a;
+        if (d8.b()) {
             try {
-                a8.a(cls.getSimpleName());
+                d8.a(cls.getSimpleName());
             } catch (Throwable th2) {
                 Trace.endSection();
                 throw th2;
@@ -87,7 +87,7 @@ public final class a {
                         }
                     }
                 }
-                obj = bVar.b(this.f49352c);
+                obj = bVar.b(this.f46564c);
                 hashSet.remove(cls);
                 hashMap.put(cls, obj);
             } else {

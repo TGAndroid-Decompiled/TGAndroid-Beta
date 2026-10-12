@@ -100,32 +100,32 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
                 } else if (i11 == 0) {
                     return 0;
                 } else {
-                    long j3 = 0;
-                    while (j3 == 0) {
+                    long j10 = 0;
+                    while (j10 == 0) {
                         try {
-                            long j10 = i10;
-                            long[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(j10, i11);
-                            long j11 = downloadedLengthFromOffset[0];
+                            long j11 = i10;
+                            long[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(j11, i11);
+                            long j12 = downloadedLengthFromOffset[0];
                             try {
                                 if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
                                     this.finishedLoadingFile = true;
                                     this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
                                 }
-                                if (j11 == 0) {
+                                if (j12 == 0) {
                                     synchronized (this.sync) {
                                         if (this.canceled) {
                                             cancelLoadingInternal();
                                             return 0;
                                         }
                                         this.countDownLatch = new CountDownLatch(1);
-                                        if (this.loadOperation.isPaused() || this.lastOffset != j10 || this.preview) {
-                                            FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j10, this.preview, this.loadingPriority);
+                                        if (this.loadOperation.isPaused() || this.lastOffset != j11 || this.preview) {
+                                            FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j11, this.preview, this.loadingPriority);
                                             FileLoadOperation fileLoadOperation = this.loadOperation;
                                             if (fileLoadOperation != loadStreamFile) {
                                                 fileLoadOperation.removeStreamListener(this);
                                                 this.loadOperation = loadStreamFile;
                                             }
-                                            this.lastOffset = j10 + j11;
+                                            this.lastOffset = j11 + j12;
                                         }
                                         synchronized (this.sync) {
                                             if (this.canceled) {
@@ -145,19 +145,19 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
                                         }
                                     }
                                 }
-                                j3 = j11;
-                            } catch (Exception e7) {
-                                e = e7;
-                                j3 = j11;
+                                j10 = j12;
+                            } catch (Exception e) {
+                                e = e;
+                                j10 = j12;
                                 FileLog.e((Throwable) e, false);
-                                return (int) j3;
+                                return (int) j10;
                             }
-                        } catch (Exception e10) {
-                            e = e10;
+                        } catch (Exception e7) {
+                            e = e7;
                         }
                     }
-                    this.lastOffset = i10 + j3;
-                    return (int) j3;
+                    this.lastOffset = i10 + j10;
+                    return (int) j10;
                 }
             } finally {
             }

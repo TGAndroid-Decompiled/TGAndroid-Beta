@@ -1,78 +1,40 @@
 package e2;
 
-import android.os.SystemClock;
-public final class g {
-    public final x f8545a;
-    public boolean f8546b;
+import java.util.Locale;
+import java.util.regex.Pattern;
+public abstract class g {
+    public static final byte[] f8346a = {0, 0, 0, 1};
+    public static final String[] f8347b = {"", "A", "B", "C"};
+    public static final Pattern f8348c = Pattern.compile("^\\D?(\\d+)$");
 
-    public g() {
-        this(x.f8587a);
-    }
-
-    public final synchronized void a() {
-        while (!this.f8546b) {
-            this.f8545a.getClass();
-            wait();
-        }
-    }
-
-    public final synchronized void b() {
-        boolean z10 = false;
-        while (!this.f8546b) {
-            try {
-                this.f8545a.getClass();
-                wait();
-            } catch (InterruptedException unused) {
-                z10 = true;
-            }
-        }
+    public static String a(int i10, int i11, int i12, int i13, boolean z10, int[] iArr) {
+        char c10;
+        String str = f8347b[i10];
+        Integer valueOf = Integer.valueOf(i11);
+        Integer valueOf2 = Integer.valueOf(i12);
         if (z10) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    public final synchronized boolean c(long j3) {
-        if (j3 <= 0) {
-            return this.f8546b;
-        }
-        this.f8545a.getClass();
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = j3 + elapsedRealtime;
-        if (j10 < elapsedRealtime) {
-            b();
+            c10 = 'H';
         } else {
-            boolean z10 = false;
-            while (!this.f8546b && elapsedRealtime < j10) {
-                try {
-                    this.f8545a.getClass();
-                    wait(j10 - elapsedRealtime);
-                } catch (InterruptedException unused) {
-                    z10 = true;
-                }
-                this.f8545a.getClass();
-                elapsedRealtime = SystemClock.elapsedRealtime();
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
+            c10 = 'L';
         }
-        return this.f8546b;
-    }
-
-    public final synchronized void d() {
-        this.f8546b = false;
-    }
-
-    public final synchronized boolean e() {
-        if (this.f8546b) {
-            return false;
+        Object[] objArr = {str, valueOf, valueOf2, Character.valueOf(c10), Integer.valueOf(i13)};
+        String str2 = m0.f8372a;
+        StringBuilder sb2 = new StringBuilder(String.format(Locale.US, "hvc1.%s%d.%X.%c%d", objArr));
+        int length = iArr.length;
+        while (length > 0 && iArr[length - 1] == 0) {
+            length--;
         }
-        this.f8546b = true;
-        notifyAll();
-        return true;
+        for (int i14 = 0; i14 < length; i14++) {
+            sb2.append(String.format(".%02X", Integer.valueOf(iArr[i14])));
+        }
+        return sb2.toString();
     }
 
-    public g(x xVar) {
-        this.f8545a = xVar;
+    public static android.util.Pair b(b2.x r33) {
+        throw new UnsupportedOperationException("Method not decompiled: e2.g.b(b2.x):android.util.Pair");
+    }
+
+    public static android.util.Pair c(java.lang.String r11, java.lang.String[] r12, b2.o r13) {
+        throw new UnsupportedOperationException("Method not decompiled: e2.g.c(java.lang.String, java.lang.String[], b2.o):android.util.Pair");
     }
 }

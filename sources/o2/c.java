@@ -1,38 +1,42 @@
 package o2;
 
-import b2.r0;
+import b2.w;
+import b2.w0;
+import b2.x;
 import java.util.ArrayList;
-import v7.v7;
+import t7.u;
+import v7.b8;
 public final class c {
-    public static final int[] f16708c = {8, 13, 11, 2, 0, 1, 7};
-    public qb.b f16709a;
-    public boolean f16710b;
+    public static final int[] d = {8, 13, 11, 2, 0, 1, 7};
+    public u f16483a;
+    public boolean f16484b;
+    public int f16485c;
 
     public static void a(int i10, ArrayList arrayList) {
-        if (v7.d(i10, 0, 7, f16708c) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
+        if (b8.d(i10, 0, 7, d) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
             arrayList.add(Integer.valueOf(i10));
         }
     }
 
-    public final b2.s b(b2.s sVar) {
+    public final x b(x xVar) {
         String str;
-        if (this.f16710b && this.f16709a.H(sVar)) {
-            b2.r a2 = sVar.a();
-            String str2 = sVar.f3634k;
-            a2.f3583q = r0.n("application/x-media3-cues");
-            a2.O = this.f16709a.y(sVar);
+        if (this.f16484b && this.f16483a.b0(xVar)) {
+            w a2 = xVar.a();
+            String str2 = xVar.f2511k;
+            a2.f2466r = w0.n("application/x-media3-cues");
+            a2.P = this.f16483a.J(xVar);
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(sVar.f3641r);
+            sb2.append(xVar.f2519s);
             if (str2 != null) {
                 str = " ".concat(str2);
             } else {
                 str = "";
             }
             sb2.append(str);
-            a2.f3576j = sb2.toString();
-            a2.v = Long.MAX_VALUE;
-            return new b2.s(a2);
+            a2.f2458j = sb2.toString();
+            a2.f2470w = Long.MAX_VALUE;
+            return new x(a2);
         }
-        return sVar;
+        return xVar;
     }
 }

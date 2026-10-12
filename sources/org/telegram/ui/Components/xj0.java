@@ -1,82 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class xj0 extends Drawable {
-    public final View f32777a;
-    public final Paint f32778b;
-    public final Path f32779c;
-    public int d;
-    public boolean f32780e;
-    public final g6 f32781f;
+public final class xj0 implements Runnable {
+    public final int f31264a;
+    public final yj0 f31265b;
 
-    public xj0(View view) {
-        Paint paint = new Paint(1);
-        this.f32778b = paint;
-        Path path = new Path();
-        this.f32779c = path;
-        this.d = 255;
-        this.f32777a = view;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f32781f = new g6(view, 0L, 350L, js.h);
-        float dpf2 = AndroidUtilities.dpf2(4.66f);
-        float dpf22 = AndroidUtilities.dpf2(2.16f);
-        path.rewind();
-        path.moveTo(dpf2 / 2.0f, 0.0f);
-        float f7 = (-dpf2) / 2.0f;
-        path.lineTo(f7, 0.0f);
-        float f10 = f7 + dpf22;
-        path.lineTo(f10, -dpf22);
-        path.moveTo(f7, 0.0f);
-        path.lineTo(f10, dpf22);
+    public xj0(yj0 yj0Var, int i10) {
+        this.f31264a = i10;
+        this.f31265b = yj0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        float e7 = this.f32781f.e(this.f32780e);
-        float dpf2 = AndroidUtilities.dpf2(2.51f);
-        canvas.save();
-        canvas.translate(centerX, centerY);
-        canvas.save();
-        canvas.translate(dpf2, dpf2);
-        canvas.rotate(45.0f);
-        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e7), 1.0f);
-        Path path = this.f32779c;
-        Paint paint = this.f32778b;
-        canvas.drawPath(path, paint);
-        canvas.restore();
-        canvas.save();
-        float f7 = -dpf2;
-        canvas.translate(f7, f7);
-        canvas.rotate(225.0f);
-        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e7), 1.0f);
-        canvas.drawPath(path, paint);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10;
-        this.f32778b.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void run() {
+        switch (this.f31264a) {
+            case 0:
+                yj0 yj0Var = this.f31265b;
+                yj0Var.getClass();
+                try {
+                    zf.f fVar = yj0Var.B0;
+                    if (fVar != null) {
+                        fVar.b();
+                    }
+                } catch (Throwable unused) {
+                }
+                AndroidUtilities.runOnUIThread(yj0Var.f31635z0);
+                return;
+            case 1:
+                yj0 yj0Var2 = this.f31265b;
+                yj0Var2.P = null;
+                yj0Var2.p();
+                return;
+            case 2:
+                yj0.h(this.f31265b);
+                return;
+            case 3:
+                yj0.e(this.f31265b);
+                return;
+            case 4:
+                yj0.d(this.f31265b);
+                return;
+            case 5:
+                yj0.f(this.f31265b);
+                return;
+            default:
+                this.f31265b.m();
+                return;
+        }
     }
 }

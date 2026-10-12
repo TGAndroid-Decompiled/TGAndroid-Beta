@@ -1,26 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class se extends View.AccessibilityDelegate {
-    public final int f30552a;
+public final class se implements f5, cm0 {
+    public final ChatActivityEnterView f29124a;
+
+    public se(ChatActivityEnterView chatActivityEnterView) {
+        this.f29124a = chatActivityEnterView;
+    }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f30552a) {
-            case 0:
-                super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-                accessibilityNodeInfo.setClassName("android.widget.ImageButton");
-                accessibilityNodeInfo.setClickable(true);
-                accessibilityNodeInfo.setLongClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-                if (view.isEnabled()) {
-                    accessibilityNodeInfo.addAction(16);
-                    return;
-                }
-                return;
+    public void J(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f29124a;
+        boolean R0 = chatActivityEnterView.R0(i10, z10, i11, true, 0L);
+        of ofVar = chatActivityEnterView.L0;
+        if (ofVar != null) {
+            ofVar.h(!R0);
+            chatActivityEnterView.L0 = null;
         }
+    }
+
+    @Override
+    public boolean a(int i10, View view) {
+        if (view instanceof fi.z) {
+            ChatActivityEnterView chatActivityEnterView = this.f29124a;
+            chatActivityEnterView.setFieldText(((fi.z) view).getCommand() + " ");
+            chatActivityEnterView.m0.c();
+            return true;
+        }
+        return false;
     }
 }

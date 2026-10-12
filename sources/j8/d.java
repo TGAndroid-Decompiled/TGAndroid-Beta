@@ -1,7 +1,7 @@
 package j8;
 public final class d {
-    public double f14075a;
-    public double f14076b;
-    public double f14077c;
+    public double f12888a;
+    public double f12889b;
+    public double f12890c;
     public double d;
 }

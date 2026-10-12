@@ -1,89 +1,147 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
+import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
-public final class oi0 implements z4.e {
-    public final wi0 f29222a;
+public final class oi0 extends iq {
+    public final ArrayList f27964c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public final Context e;
+    public final Paint f27965f;
+    public z9 f27966g;
+    public final pi0 h;
 
-    public oi0(wi0 wi0Var) {
-        this.f29222a = wi0Var;
+    public oi0(pi0 pi0Var, Context context, org.telegram.ui.s01 s01Var) {
+        this.h = pi0Var;
+        this.e = context;
+        this.f27966g = s01Var;
+        Paint paint = new Paint(1);
+        this.f27965f = paint;
+        paint.setColor(-16777216);
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z10;
-        wi0 wi0Var = this.f29222a;
-        int i11 = wi0Var.f32416o1;
-        int i12 = 0;
-        if (i10 >= i11) {
-            z10 = true;
+    public final void a(z4.g gVar, Object obj) {
+        li0 li0Var = (li0) obj;
+        View view = li0Var.f27049b;
+        if (view != null) {
+            gVar.removeView(view);
+        }
+        if (li0Var.f27048a) {
+            return;
+        }
+        ji0 ji0Var = li0Var.f27050c;
+        if (ji0Var.getImageReceiver().hasStaticThumb()) {
+            Drawable drawable = ji0Var.getImageReceiver().getDrawable();
+            if (drawable instanceof f6) {
+                ((f6) drawable).w(ji0Var);
+            }
+        }
+        ji0Var.setRoundRadius(0);
+        gVar.removeView(ji0Var);
+        ji0Var.getImageReceiver().cancelLoadImage();
+    }
+
+    @Override
+    public final int b() {
+        return this.f27964c.size();
+    }
+
+    @Override
+    public final int c(Object obj) {
+        int indexOf = this.f27964c.indexOf((li0) obj);
+        if (indexOf == -1) {
+            return -2;
+        }
+        return indexOf;
+    }
+
+    @Override
+    public final CharSequence d(int i10) {
+        int count;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(k(i10) + 1);
+        sb2.append("/");
+        MessagesController.DialogPhotos dialogPhotos = this.h.S0;
+        if (dialogPhotos == null) {
+            count = 0;
         } else {
-            z10 = false;
+            count = dialogPhotos.getCount();
         }
-        if (i10 != i11) {
-            wi0Var.getClass();
-            wi0Var.f32416o1 = i10;
-        }
-        MessagesController.DialogPhotos dialogPhotos = wi0Var.S0;
-        if (dialogPhotos != null) {
-            vi0 vi0Var = wi0Var.D0;
-            if (vi0Var != null) {
-                i12 = vi0Var.j();
+        sb2.append(count);
+        return sb2.toString();
+    }
+
+    @Override
+    public final java.lang.Object e(z4.g r42, int r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oi0.e(z4.g, int):java.lang.Object");
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        li0 li0Var = (li0) obj;
+        if (li0Var.f27048a) {
+            if (view == li0Var.f27049b) {
+                return true;
             }
-            dialogPhotos.loadAfter(i10 - i12, z10);
+            return false;
+        } else if (view == li0Var.f27050c) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        ImageLocation imageLocation;
-        wi0 wi0Var = this.f29222a;
-        wi0Var.B(f7, i10);
-        if (i11 == 0) {
-            int k10 = wi0Var.D0.k(i10);
-            if (wi0Var.f32411i1) {
-                k10--;
+    public final void g() {
+        ArrayList arrayList;
+        int count;
+        int i10 = 0;
+        while (true) {
+            arrayList = this.d;
+            if (i10 >= arrayList.size()) {
+                break;
             }
-            wi0Var.getCurrentItemView();
-            int childCount = wi0Var.getChildCount();
-            for (int i12 = 0; i12 < childCount; i12++) {
-                View childAt = wi0Var.getChildAt(i12);
-                if (childAt instanceof y9) {
-                    vi0 vi0Var = wi0Var.D0;
-                    int k11 = vi0Var.k(vi0Var.d.indexOf(childAt));
-                    if (wi0Var.f32411i1) {
-                        k11--;
-                    }
-                    ImageReceiver imageReceiver = ((y9) childAt).getImageReceiver();
-                    boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
-                    if (k11 >= 0 && k11 < wi0Var.W0.size()) {
-                        if (k11 == k10) {
-                            if (!allowStartAnimation) {
-                                imageReceiver.setAllowStartAnimation(true);
-                                imageReceiver.startAnimation();
-                            }
-                            ImageLocation imageLocation2 = (ImageLocation) wi0Var.W0.get(k11);
-                            if (imageLocation2 != null) {
-                                FileLoader.getInstance(wi0Var.L0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
-                            }
-                        } else if (allowStartAnimation) {
-                            f6 animation = imageReceiver.getAnimation();
-                            if (animation != null && (imageLocation = (ImageLocation) wi0Var.W0.get(k11)) != null) {
-                                animation.y(imageLocation.videoSeekTo, false, true);
-                            }
-                            imageReceiver.setAllowStartAnimation(false);
-                            imageReceiver.stopAnimation();
-                        }
-                    }
-                }
+            if (arrayList.get(i10) != null) {
+                ((z9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
             }
+            i10++;
         }
+        ArrayList arrayList2 = this.f27964c;
+        arrayList2.clear();
+        arrayList.clear();
+        pi0 pi0Var = this.h;
+        int size = pi0Var.X0.size();
+        if (pi0Var.f28327i1) {
+            size++;
+        }
+        MessagesController.DialogPhotos dialogPhotos = pi0Var.S0;
+        if (dialogPhotos == null) {
+            count = 0;
+        } else {
+            count = dialogPhotos.getCount();
+        }
+        int j10 = (j() * 2) + Math.max(count, size);
+        for (int i11 = 0; i11 < j10; i11++) {
+            arrayList2.add(new Object());
+            arrayList.add(null);
+        }
+        super.g();
     }
 
     @Override
-    public final void c(int i10) {
+    public final int j() {
+        pi0 pi0Var = this.h;
+        int size = pi0Var.X0.size();
+        if (pi0Var.f28327i1) {
+            size++;
+        }
+        if (size >= 2) {
+            return pi0Var.getOffscreenPageLimit();
+        }
+        return 0;
     }
 }

@@ -1,32 +1,71 @@
 package b2;
 
-import android.os.Bundle;
-public abstract class u0 extends Exception {
-    public static final String d;
-    public static final String f3662e;
-    public static final String f3663f;
-    public static final String h;
-    public static final String f3664n;
-    public static final String f3665r;
-    public final int f3666a;
-    public final long f3667b;
-    public final Bundle f3668c;
+import java.util.Arrays;
+import java.util.List;
+import v7.c8;
+public final class u0 {
+    public final t0[] f2398a;
+    public final long f2399b;
 
-    static {
-        String str = e2.d0.f8529a;
-        d = Integer.toString(0, 36);
-        f3662e = Integer.toString(1, 36);
-        f3663f = Integer.toString(2, 36);
-        h = Integer.toString(3, 36);
-        f3664n = Integer.toString(4, 36);
-        f3665r = Integer.toString(5, 36);
+    public u0(t0... t0VarArr) {
+        this(-9223372036854775807L, t0VarArr);
     }
 
-    public u0(String str, Throwable th2, int i10, long j3) {
-        super(str, th2);
-        Bundle bundle = Bundle.EMPTY;
-        this.f3666a = i10;
-        this.f3668c = bundle;
-        this.f3667b = j3;
+    public final u0 a(t0... t0VarArr) {
+        if (t0VarArr.length == 0) {
+            return this;
+        }
+        String str = e2.m0.f8372a;
+        t0[] t0VarArr2 = this.f2398a;
+        Object[] copyOf = Arrays.copyOf(t0VarArr2, t0VarArr2.length + t0VarArr.length);
+        System.arraycopy(t0VarArr, 0, copyOf, t0VarArr2.length, t0VarArr.length);
+        return new u0(this.f2399b, (t0[]) copyOf);
+    }
+
+    public final u0 b(u0 u0Var) {
+        if (u0Var == null) {
+            return this;
+        }
+        return a(u0Var.f2398a);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && u0.class == obj.getClass()) {
+            u0 u0Var = (u0) obj;
+            if (Arrays.equals(this.f2398a, u0Var.f2398a) && this.f2399b == u0Var.f2399b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return c8.b(this.f2399b) + (Arrays.hashCode(this.f2398a) * 31);
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb2 = new StringBuilder("entries=");
+        sb2.append(Arrays.toString(this.f2398a));
+        long j10 = this.f2399b;
+        if (j10 == -9223372036854775807L) {
+            str = "";
+        } else {
+            str = ", presentationTimeUs=" + j10;
+        }
+        sb2.append(str);
+        return sb2.toString();
+    }
+
+    public u0(long j10, t0... t0VarArr) {
+        this.f2399b = j10;
+        this.f2398a = t0VarArr;
+    }
+
+    public u0(List list) {
+        this((t0[]) list.toArray(new t0[0]));
     }
 }

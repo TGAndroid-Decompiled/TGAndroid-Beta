@@ -1,76 +1,28 @@
 package org.telegram.ui;
+public final class i40 implements z4.e {
+    public final n60 f37029a;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-public final class i40 extends org.telegram.ui.Components.cv {
-    public final i60 V;
-
-    public i40(i60 i60Var, LaunchActivity launchActivity, m50 m50Var, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(launchActivity, m50Var, m2Var, 5, true, c6Var);
-        this.V = i60Var;
+    public i40(n60 n60Var) {
+        this.f37029a = n60Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == getEditText()) {
-            canvas.save();
-            i60 i60Var = this.V;
-            i60Var.H.getEditText().setTranslationY(view.getMeasuredHeight() - i60Var.B3.f16096e);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
+    public final void b(int i10) {
+        n60 n60Var = this.f37029a;
+        n60Var.f38444b.D0.k(i10);
+        f40 f40Var = n60Var.D2;
+        f40Var.J = f40Var.L;
+        f40Var.K = f40Var.M;
+        f40Var.N = 0.0f;
+        f40Var.O = 1;
+        f40Var.invalidate();
     }
 
     @Override
-    public final void f() {
-        ViewGroup viewGroup;
-        super.f();
-        org.telegram.ui.Components.d00 emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f25135w0 = false;
-            emojiView.f25137w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            viewGroup = ((org.telegram.ui.ActionBar.e3) this.V).containerView;
-            emojiView.setBottomInset(viewGroup.getPaddingBottom());
-        }
+    public final void c(int i10) {
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        me.e eVar = this.V.B3;
-        if (eVar.f16096e == 0.0f) {
-            eVar.c(getMeasuredHeight());
-        } else {
-            eVar.a(getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void p() {
-        int i10;
-        ph.i iVar = this.V.C1;
-        if (this.f25018e) {
-            i10 = Math.max(0, getEmojiPadding());
-        } else if (this.N) {
-            i10 = Math.max(0, getKeyboardHeight());
-        } else {
-            i10 = 0;
-        }
-        if (i10 > 0) {
-            iVar.g(i10);
-        } else {
-            iVar.i(false);
-        }
-    }
-
-    @Override
-    public final void y() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.V).containerView;
-        viewGroup.requestApplyInsets();
+    public final void a(float f7, int i10, int i11) {
     }
 }

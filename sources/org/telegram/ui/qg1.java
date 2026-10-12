@@ -1,43 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class qg1 implements Runnable {
-    public final int f41331a;
-    public final TwoStepVerificationActivity f41332b;
+import org.telegram.tgnet.TLRPC;
+public final class qg1 extends pg.a {
+    public final TLRPC.TL_forumTopic f39443c;
 
-    public qg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f41331a = i10;
-        this.f41332b = twoStepVerificationActivity;
+    public qg1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
+        super(i10, false);
+        this.f39443c = tL_forumTopic;
     }
 
-    @Override
-    public final void run() {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f41331a) {
-            case 0:
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f41332b;
-                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f34419s) != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f34419s);
-                    return;
-                }
-                return;
-            case 1:
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f41332b;
-                twoStepVerificationActivity2.U = false;
-                twoStepVerificationActivity2.v.a(0.0f);
-                return;
-            case 2:
-                this.f41332b.y0();
-                return;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f41332b;
-                qg1 qg1Var = twoStepVerificationActivity3.V;
-                AndroidUtilities.cancelRunOnUIThread(qg1Var);
-                AndroidUtilities.runOnUIThread(qg1Var, 1500L);
-                twoStepVerificationActivity3.U = true;
-                return;
+    public final boolean equals(Object obj) {
+        TLRPC.TL_forumTopic tL_forumTopic;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || qg1.class != obj.getClass()) {
+            return false;
+        }
+        qg1 qg1Var = (qg1) obj;
+        if (this.f43203a != qg1Var.f43203a) {
+            return false;
+        }
+        TLRPC.TL_forumTopic tL_forumTopic2 = this.f39443c;
+        if (tL_forumTopic2 == null || (tL_forumTopic = qg1Var.f39443c) == null || tL_forumTopic2.f19268id == tL_forumTopic.f19268id) {
+            return true;
+        }
+        return false;
     }
 }

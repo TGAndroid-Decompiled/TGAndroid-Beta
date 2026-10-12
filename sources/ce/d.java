@@ -1,21 +1,186 @@
 package ce;
-public abstract class d {
-    public static final h f4614a = new h(-1, null, null, 0);
-    public static final int f4615b = fe.a.j(32, 12, "kotlinx.coroutines.bufferedChannel.segmentSize");
-    public static final int f4616c = fe.a.j(10000, 12, "kotlinx.coroutines.bufferedChannel.expandBufferCompletionWaitIterations");
-    public static final da.a d = new da.a("BUFFERED");
-    public static final da.a f4617e = new da.a("SHOULD_BUFFER");
-    public static final da.a f4618f = new da.a("S_RESUMING_BY_RCV");
-    public static final da.a f4619g = new da.a("RESUMING_BY_EB");
-    public static final da.a h = new da.a("POISONED");
-    public static final da.a f4620i = new da.a("DONE_RCV");
-    public static final da.a f4621j = new da.a("INTERRUPTED_SEND");
-    public static final da.a f4622k = new da.a("INTERRUPTED_RCV");
-    public static final da.a f4623l = new da.a("CHANNEL_CLOSED");
-    public static final da.a f4624m = new da.a("SUSPEND");
-    public static final da.a f4625n = new da.a("SUSPEND_NO_WAITER");
-    public static final da.a f4626o = new da.a("FAILED");
-    public static final da.a f4627p = new da.a("CLOSE_HANDLER_CLOSED");
-    public static final da.a f4628q = new da.a("CLOSE_HANDLER_INVOKED");
-    public static final da.a f4629r = new da.a("NO_CLOSE_CAUSE");
+
+import be.j2;
+import be.t;
+import com.google.firebase.messaging.s;
+import de.g;
+import de.h;
+import id.i;
+import j9.u;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.atomic.AtomicLongFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import k1.k;
+import k1.m;
+import kotlin.jvm.internal.j;
+import td.l;
+public final class d extends j implements l {
+    public final int f4741b;
+    public final Object f4742c;
+    public final Object d;
+
+    public d(int i10, Object obj, Object obj2) {
+        super(1);
+        this.f4741b = i10;
+        this.f4742c = obj;
+        this.d = obj2;
+    }
+
+    @Override
+    public final Object invoke(Object obj) {
+        boolean z10;
+        boolean z11;
+        long j10;
+        int i10;
+        de.f eVar;
+        j2 j2Var;
+        i iVar;
+        Throwable th2;
+        a6.i iVar2;
+        switch (this.f4741b) {
+            case 0:
+                Throwable th3 = (Throwable) obj;
+                ((e) this.f4742c).f4743c.removeCallbacks((u) this.d);
+                return i.f11386a;
+            default:
+                Throwable th4 = (Throwable) obj;
+                ((m) this.f4742c).invoke(th4);
+                de.b bVar = (de.b) ((s) this.d).d;
+                bVar.getClass();
+                AtomicLongFieldUpdater atomicLongFieldUpdater = de.b.f6486b;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = de.b.f6490i;
+                a6.i iVar3 = de.d.f6508r;
+                while (true) {
+                    z10 = true;
+                    if (atomicReferenceFieldUpdater.compareAndSet(bVar, iVar3, th4)) {
+                        z11 = true;
+                    } else if (atomicReferenceFieldUpdater.get(bVar) != iVar3) {
+                        z11 = false;
+                    }
+                }
+                while (true) {
+                    long j11 = atomicLongFieldUpdater.get(bVar);
+                    int i11 = (int) (j11 >> 60);
+                    if (i11 != 0) {
+                        if (i11 == 1) {
+                            j10 = j11 & 1152921504606846975L;
+                            i10 = 3;
+                        }
+                    } else {
+                        j10 = j11 & 1152921504606846975L;
+                        i10 = 2;
+                    }
+                    de.b bVar2 = bVar;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater2 = atomicLongFieldUpdater;
+                    boolean compareAndSet = atomicLongFieldUpdater2.compareAndSet(bVar2, j11, (i10 << 60) + j10);
+                    bVar = bVar2;
+                    if (!compareAndSet) {
+                        atomicLongFieldUpdater = atomicLongFieldUpdater2;
+                    }
+                }
+                bVar.c();
+                if (z11) {
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = de.b.f6491j;
+                    while (true) {
+                        Object obj2 = atomicReferenceFieldUpdater2.get(bVar);
+                        if (obj2 == null) {
+                            iVar2 = de.d.f6506p;
+                        } else {
+                            iVar2 = de.d.f6507q;
+                        }
+                        while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, iVar2)) {
+                            if (atomicReferenceFieldUpdater2.get(bVar) != obj2) {
+                                break;
+                            }
+                        }
+                        if (obj2 != null) {
+                            kotlin.jvm.internal.s.a(1, obj2);
+                            ((l) obj2).invoke((Throwable) de.b.f6490i.get(bVar));
+                        }
+                    }
+                }
+                while (true) {
+                    bVar.getClass();
+                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = de.b.f6487c;
+                    long j12 = atomicLongFieldUpdater3.get(bVar);
+                    long j13 = de.b.f6486b.get(bVar);
+                    if (bVar.i(j13, z10)) {
+                        eVar = new de.e((Throwable) de.b.f6490i.get(bVar));
+                    } else {
+                        int i12 = (j12 > (j13 & 1152921504606846975L) ? 1 : (j12 == (j13 & 1152921504606846975L) ? 0 : -1));
+                        de.f fVar = g.f6510a;
+                        if (i12 < 0) {
+                            a6.i iVar4 = de.d.f6501k;
+                            h hVar = (h) de.b.f6489g.get(bVar);
+                            while (true) {
+                                if (bVar.i(de.b.f6486b.get(bVar), z10)) {
+                                    eVar = new de.e((Throwable) de.b.f6490i.get(bVar));
+                                } else {
+                                    long andIncrement = atomicLongFieldUpdater3.getAndIncrement(bVar);
+                                    long j14 = de.d.f6495b;
+                                    long j15 = andIncrement / j14;
+                                    int i13 = (int) (andIncrement % j14);
+                                    if (hVar.f10132c != j15) {
+                                        h e = bVar.e(j15, hVar);
+                                        if (e == null) {
+                                            continue;
+                                            z10 = true;
+                                        } else {
+                                            hVar = e;
+                                        }
+                                    }
+                                    Object o10 = bVar.o(hVar, i13, andIncrement, iVar4);
+                                    if (o10 == de.d.f6503m) {
+                                        if (iVar4 instanceof j2) {
+                                            j2Var = (j2) iVar4;
+                                        } else {
+                                            j2Var = null;
+                                        }
+                                        if (j2Var != null) {
+                                            j2Var.a(hVar, i13);
+                                        }
+                                        bVar.q(andIncrement);
+                                        hVar.i();
+                                    } else if (o10 == de.d.f6505o) {
+                                        if (andIncrement < bVar.g()) {
+                                            hVar.b();
+                                        }
+                                        z10 = true;
+                                    } else if (o10 != de.d.f6504n) {
+                                        hVar.b();
+                                        eVar = o10;
+                                    } else {
+                                        throw new IllegalStateException("unexpected");
+                                    }
+                                }
+                            }
+                        }
+                        eVar = fVar;
+                    }
+                    if (eVar instanceof de.f) {
+                        eVar = null;
+                    }
+                    i iVar5 = i.f11386a;
+                    if (eVar == null) {
+                        iVar = null;
+                    } else {
+                        k kVar = (k) eVar;
+                        if (kVar instanceof k1.j) {
+                            t tVar = ((k1.j) kVar).f13777b;
+                            if (th4 == null) {
+                                th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
+                            } else {
+                                th2 = th4;
+                            }
+                            tVar.L(th2);
+                        }
+                        iVar = iVar5;
+                    }
+                    if (iVar == null) {
+                        return iVar5;
+                    }
+                    z10 = true;
+                }
+        }
+    }
 }

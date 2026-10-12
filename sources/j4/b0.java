@@ -1,18 +1,21 @@
 package j4;
+
+import e2.k0;
+import e2.m0;
 public final class b0 implements g0 {
-    public final a0 f13739a;
-    public final e2.v f13740b = new e2.v(32);
-    public int f13741c;
+    public final a0 f12581a;
+    public final e2.x f12582b = new e2.x(32);
+    public int f12583c;
     public int d;
-    public boolean f13742e;
-    public boolean f13743f;
+    public boolean e;
+    public boolean f12584f;
 
     public b0(a0 a0Var) {
-        this.f13739a = a0Var;
+        this.f12581a = a0Var;
     }
 
     @Override
-    public final void a(int i10, e2.v vVar) {
+    public final void a(int i10, e2.x xVar) {
         boolean z10;
         int i11;
         boolean z11;
@@ -22,74 +25,74 @@ public final class b0 implements g0 {
             z10 = false;
         }
         if (z10) {
-            i11 = vVar.f8582b + vVar.x();
+            i11 = xVar.f8412b + xVar.A();
         } else {
             i11 = -1;
         }
-        if (this.f13743f) {
+        if (this.f12584f) {
             if (z10) {
-                this.f13743f = false;
-                vVar.J(i11);
+                this.f12584f = false;
+                xVar.N(i11);
                 this.d = 0;
             } else {
                 return;
             }
         }
-        while (vVar.a() > 0) {
+        while (xVar.a() > 0) {
             int i12 = this.d;
-            e2.v vVar2 = this.f13740b;
+            e2.x xVar2 = this.f12582b;
             if (i12 < 3) {
                 if (i12 == 0) {
-                    int x10 = vVar.x();
-                    vVar.J(vVar.f8582b - 1);
-                    if (x10 == 255) {
-                        this.f13743f = true;
+                    int A = xVar.A();
+                    xVar.N(xVar.f8412b - 1);
+                    if (A == 255) {
+                        this.f12584f = true;
                         return;
                     }
                 }
-                int min = Math.min(vVar.a(), 3 - this.d);
-                vVar.h(this.d, min, vVar2.f8581a);
+                int min = Math.min(xVar.a(), 3 - this.d);
+                xVar.k(this.d, min, xVar2.f8411a);
                 int i13 = this.d + min;
                 this.d = i13;
                 if (i13 == 3) {
-                    vVar2.J(0);
-                    vVar2.I(3);
-                    vVar2.K(1);
-                    int x11 = vVar2.x();
-                    int x12 = vVar2.x();
-                    if ((x11 & 128) != 0) {
+                    xVar2.N(0);
+                    xVar2.M(3);
+                    xVar2.O(1);
+                    int A2 = xVar2.A();
+                    int A3 = xVar2.A();
+                    if ((A2 & 128) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    this.f13742e = z11;
-                    int i14 = (((x11 & 15) << 8) | x12) + 3;
-                    this.f13741c = i14;
-                    byte[] bArr = vVar2.f8581a;
+                    this.e = z11;
+                    int i14 = (((A2 & 15) << 8) | A3) + 3;
+                    this.f12583c = i14;
+                    byte[] bArr = xVar2.f8411a;
                     if (bArr.length < i14) {
-                        vVar2.c(Math.min(4098, Math.max(i14, bArr.length * 2)));
+                        xVar2.c(Math.min(4098, Math.max(i14, bArr.length * 2)));
                     }
                 }
             } else {
-                int min2 = Math.min(vVar.a(), this.f13741c - this.d);
-                vVar.h(this.d, min2, vVar2.f8581a);
+                int min2 = Math.min(xVar.a(), this.f12583c - this.d);
+                xVar.k(this.d, min2, xVar2.f8411a);
                 int i15 = this.d + min2;
                 this.d = i15;
-                int i16 = this.f13741c;
+                int i16 = this.f12583c;
                 if (i15 != i16) {
                     continue;
                 } else {
-                    if (this.f13742e) {
-                        if (e2.d0.n(0, i16, -1, vVar2.f8581a) != 0) {
-                            this.f13743f = true;
+                    if (this.e) {
+                        if (m0.p(0, i16, -1, xVar2.f8411a) != 0) {
+                            this.f12584f = true;
                             return;
                         }
-                        vVar2.I(this.f13741c - 4);
+                        xVar2.M(this.f12583c - 4);
                     } else {
-                        vVar2.I(i16);
+                        xVar2.M(i16);
                     }
-                    vVar2.J(0);
-                    this.f13739a.b(vVar2);
+                    xVar2.N(0);
+                    this.f12581a.a(xVar2);
                     this.d = 0;
                 }
             }
@@ -97,13 +100,13 @@ public final class b0 implements g0 {
     }
 
     @Override
-    public final void c(e2.b0 b0Var, c3.q qVar, f0 f0Var) {
-        this.f13739a.c(b0Var, qVar, f0Var);
-        this.f13743f = true;
+    public final void b(k0 k0Var, c3.q qVar, f0 f0Var) {
+        this.f12581a.b(k0Var, qVar, f0Var);
+        this.f12584f = true;
     }
 
     @Override
-    public final void d() {
-        this.f13743f = true;
+    public final void c() {
+        this.f12584f = true;
     }
 }

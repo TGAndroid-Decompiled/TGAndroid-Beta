@@ -1,112 +1,155 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.js;
-public final class j2 extends Drawable {
-    public final Paint f52951a;
-    public final LinearGradient[] f52952b;
-    public final Matrix f52953c;
-    public final org.telegram.ui.Components.g6 d;
-    public final Path f52954e;
-    public final b8 f52955f;
-    public int f52956g;
-    public int h;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.ns0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import zh.f5;
+public final class j2 extends s4.v {
+    public final ns0 d;
+    public final m2 e;
 
-    public j2() {
-        Paint paint = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.f52951a = new Paint(1);
-        this.f52952b = new LinearGradient[2];
-        this.f52953c = new Matrix();
-        this.d = new org.telegram.ui.Components.g6(1.0f, new f0(this, 2), 0L, 420L, js.h);
-        this.f52954e = new Path();
-        this.f52955f = new b8(1, 45);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setColor(117440511);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        paint2.setStyle(style);
-        paint2.setColor(301989887);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
-    }
-
-    public final void a(int i10, int i11) {
-        if (this.f52956g == i10 && this.h == i11) {
-            return;
-        }
-        LinearGradient[] linearGradientArr = this.f52952b;
-        linearGradientArr[0] = linearGradientArr[1];
-        this.f52956g = i10;
-        this.h = i11;
-        linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.d.d(0.0f, true);
-        invalidateSelf();
+    public j2(m2 m2Var, ns0 ns0Var) {
+        this.e = m2Var;
+        this.d = ns0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        AndroidUtilities.rectTmp.set(getBounds());
-        float dp = AndroidUtilities.dp(24.0f);
-        int i10 = 0;
-        float d = this.d.d(1.0f, false);
-        while (true) {
-            LinearGradient[] linearGradientArr = this.f52952b;
-            if (i10 < linearGradientArr.length) {
-                if (linearGradientArr[i10] != null) {
-                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
-                    if (pow > 0.0f) {
-                        Matrix matrix = this.f52953c;
-                        matrix.reset();
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        matrix.postScale(rectF.width() / 100.0f, 1.0f);
-                        linearGradientArr[i10].setLocalMatrix(matrix);
-                        LinearGradient linearGradient = linearGradientArr[i10];
-                        Paint paint = this.f52951a;
-                        paint.setShader(linearGradient);
-                        paint.setAlpha((int) (pow * 255.0f));
-                        canvas.drawRoundRect(rectF, dp, dp, paint);
-                    }
-                }
-                i10++;
+    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
+        super.a(recyclerView, b1Var);
+        b1Var.f44838a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
+        TL_stars.SavedStarGift savedStarGift;
+        View view = b1Var.f44838a;
+        if (view instanceof h1) {
+            savedStarGift = ((h1) view).getSavedGift();
+        } else {
+            savedStarGift = null;
+        }
+        if (r(savedStarGift)) {
+            return s4.v.l(15, 0);
+        }
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean j() {
+        return this.e.f48998n;
+    }
+
+    @Override
+    public final boolean k() {
+        return this.e.f48998n;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+        TL_stars.SavedStarGift savedStarGift;
+        zh.f0 f0Var;
+        m2 m2Var = this.e;
+        h2 h2Var = m2Var.f48997f;
+        if (m2Var.e != null && m2Var.f48998n) {
+            View view = b1Var.f44838a;
+            TL_stars.SavedStarGift savedStarGift2 = null;
+            if (view instanceof h1) {
+                savedStarGift = ((h1) view).getSavedGift();
             } else {
-                Path path = this.f52954e;
-                path.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                b8 b8Var = this.f52955f;
-                b8Var.g(rectF2);
-                b8Var.h = 30.0f;
-                b8Var.d();
-                b8Var.a(canvas, org.telegram.ui.ActionBar.h6.m1(0.6f, -1));
-                invalidateSelf();
-                canvas.restore();
-                AndroidUtilities.drawStroke(canvas, rectF2, dp);
+                savedStarGift = null;
+            }
+            if (r(savedStarGift)) {
+                View view2 = b1Var2.f44838a;
+                if (view2 instanceof h1) {
+                    savedStarGift2 = ((h1) view2).getSavedGift();
+                }
+                if (r(savedStarGift2)) {
+                    int b10 = b1Var.b();
+                    int b11 = b1Var2.b();
+                    boolean z10 = m2Var.d;
+                    ns0 ns0Var = this.d;
+                    if (z10) {
+                        m2Var.e.k(b10, b11);
+                        ns0Var.e.n(m2Var.e.d);
+                    } else {
+                        f5 f5Var = m2Var.e;
+                        if (f5Var.f50514q == null) {
+                            f5Var.f50514q = f5Var.h();
+                        }
+                        f5Var.k(b10, b11);
+                    }
+                    h2Var.W2.p(b10, b11);
+                    h2Var.W2.S();
+                    if (m2Var.d) {
+                        HashMap hashMap = q2.T;
+                        ns0Var.f(true);
+                    }
+                    org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                    if ((U instanceof ProfileActivity) && (f0Var = ((ProfileActivity) U).f32676v0) != null) {
+                        f0Var.a();
+                    }
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.b1 b1Var, int i10) {
+        m2 m2Var = this.e;
+        if (i10 == 0) {
+            f5 f5Var = m2Var.e;
+            if (f5Var != null) {
+                ArrayList arrayList = f5Var.f50514q;
+                if (arrayList != null) {
+                    ArrayList h = f5Var.h();
+                    if (arrayList.size() == h.size()) {
+                        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                            if (arrayList.get(i11) == h.get(i11)) {
+                            }
+                        }
+                    }
+                    f5Var.l();
+                    f5Var.f50514q = null;
+                    return;
+                }
+                f5Var.f50514q = null;
                 return;
             }
+            return;
+        }
+        h2 h2Var = m2Var.f48997f;
+        if (h2Var != null) {
+            h2Var.I0(false);
+        }
+        if (b1Var != null) {
+            b1Var.f44838a.setPressed(true);
         }
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public final boolean r(TL_stars.SavedStarGift savedStarGift) {
+        m2 m2Var = this.e;
+        if (m2Var.f48998n) {
+            if (m2Var.e == this.d.d) {
+                if (savedStarGift == null || !savedStarGift.pinned_to_top) {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void q(s4.b1 b1Var) {
     }
 }

@@ -1,66 +1,64 @@
 package jb;
 
-import db.g;
-import db.u;
-import db.v;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-public final class b extends u {
-    public static final a f14095b = new a();
-    public final SimpleDateFormat f14096a;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import v7.r8;
+public final class b extends r8 {
+    public final Method f12951a = Class.class.getMethod("isRecord", null);
+    public final Method f12952b = Class.class.getMethod("getRecordComponents", null);
+    public final Method f12953c;
+    public final Method d;
 
-    public class a implements v {
-        @Override
-        public final u create(g gVar, kb.a aVar) {
-            if (aVar.f14776a == Time.class) {
-                return new b(0);
-            }
-            return null;
-        }
-    }
-
-    public b(int i10) {
-        this();
+    public b() {
+        Class<?> cls = Class.forName("java.lang.reflect.RecordComponent");
+        this.f12953c = cls.getMethod("getName", null);
+        this.d = cls.getMethod("getType", null);
     }
 
     @Override
-    public final Object read(lb.a aVar) {
-        Time time;
-        if (aVar.x() == 9) {
-            aVar.t();
-            return null;
+    public final Method a(Class cls, Field field) {
+        try {
+            return cls.getMethod(field.getName(), null);
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e);
         }
-        String v = aVar.v();
-        synchronized (this) {
-            TimeZone timeZone = this.f14096a.getTimeZone();
-            try {
-                time = new Time(this.f14096a.parse(v).getTime());
-                this.f14096a.setTimeZone(timeZone);
-            } catch (ParseException e7) {
-                throw new RuntimeException("Failed parsing '" + v + "' as SQL Time; at path " + aVar.j(), e7);
-            }
-        }
-        return time;
     }
 
     @Override
-    public final void write(lb.b bVar, Object obj) {
-        String format;
-        Time time = (Time) obj;
-        if (time == null) {
-            bVar.i();
-            return;
+    public final Constructor b(Class cls) {
+        try {
+            Object[] objArr = (Object[]) this.f12952b.invoke(cls, null);
+            Class<?>[] clsArr = new Class[objArr.length];
+            for (int i10 = 0; i10 < objArr.length; i10++) {
+                clsArr[i10] = (Class) this.d.invoke(objArr[i10], null);
+            }
+            return cls.getDeclaredConstructor(clsArr);
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e);
         }
-        synchronized (this) {
-            format = this.f14096a.format((Date) time);
-        }
-        bVar.r(format);
     }
 
-    private b() {
-        this.f14096a = new SimpleDateFormat("hh:mm:ss a");
+    @Override
+    public final String[] c(Class cls) {
+        try {
+            Object[] objArr = (Object[]) this.f12952b.invoke(cls, null);
+            String[] strArr = new String[objArr.length];
+            for (int i10 = 0; i10 < objArr.length; i10++) {
+                strArr[i10] = (String) this.f12953c.invoke(objArr[i10], null);
+            }
+            return strArr;
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e);
+        }
+    }
+
+    @Override
+    public final boolean d(Class cls) {
+        try {
+            return ((Boolean) this.f12951a.invoke(cls, null)).booleanValue();
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e);
+        }
     }
 }

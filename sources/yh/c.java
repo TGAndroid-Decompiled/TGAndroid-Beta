@@ -1,30 +1,18 @@
 package yh;
 
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class c implements Runnable {
-    public final int f52558a;
-    public final g f52559b;
-    public final TwoStepVerificationActivity f52560c;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.c6;
+public final class c extends FrameLayout {
+    public static final int f48801c = 0;
+    public final c6 f48802a;
+    public final int f48803b;
 
-    public c(g gVar, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f52558a = i10;
-        this.f52559b = gVar;
-        this.f52560c = twoStepVerificationActivity;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f52558a) {
-            case 0:
-                g gVar = this.f52559b;
-                gVar.Y.setLoading(false);
-                gVar.presentFragment(this.f52560c);
-                return;
-            default:
-                g gVar2 = this.f52559b;
-                gVar2.R.setLoading(false);
-                gVar2.presentFragment(this.f52560c);
-                return;
-        }
+    public c(Context context, int i10, c6 c6Var) {
+        super(context);
+        this.f48803b = i10;
+        this.f48802a = c6Var;
+        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
     }
 }

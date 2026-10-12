@@ -1,34 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class yx0 extends AnimatorListenerAdapter {
-    public final int f33223a;
-    public final zx0 f33224b;
-
-    public yx0(zx0 zx0Var, int i10) {
-        this.f33223a = i10;
-        this.f33224b = zx0Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class yx0 extends oc {
+    public yx0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
+        this(launchActivity, null, 1, i10, document, null);
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33223a) {
-            case 0:
-                zx0 zx0Var = this.f33224b;
-                zx0Var.f33520y = 1.0f;
-                zx0Var.invalidate();
-                zx0Var.G = null;
-                return;
-            case 1:
-                zx0 zx0Var2 = this.f33224b;
-                zx0Var2.m(((Float) zx0Var2.v.getAnimatedValue()).floatValue());
-                zx0Var2.v = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                this.f33224b.F = null;
-                return;
-        }
+    public yx0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.c6 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yx0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.c6):void");
     }
 }

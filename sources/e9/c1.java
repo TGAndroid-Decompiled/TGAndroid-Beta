@@ -1,54 +1,15 @@
 package e9;
+public final class c1 extends a {
+    public static final c1 d = new c1(new Object[0]);
+    public final Object[] f8541c;
 
-import java.util.Map;
-public final class c1 extends m0 {
-    public final transient k0 d;
-    public final transient Object[] f8719e;
-    public final transient int f8720f;
-    public final transient int h;
-
-    public c1(k0 k0Var, Object[] objArr, int i10, int i11) {
-        this.d = k0Var;
-        this.f8719e = objArr;
-        this.f8720f = i10;
-        this.h = i11;
+    public c1(Object[] objArr) {
+        super(objArr.length, 0);
+        this.f8541c = objArr;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.d.get(key))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int n(int i10, Object[] objArr) {
-        return i().n(i10, objArr);
-    }
-
-    @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final o1 s() {
-        return i().listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.h;
-    }
-
-    @Override
-    public final i0 w() {
-        return new b1(this);
+    public final Object a(int i10) {
+        return this.f8541c[i10];
     }
 }

@@ -1,54 +1,69 @@
 package fi;
 
-import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.e3;
-import s4.d1;
-public final class g0 extends s4.j {
-    public final h0 F;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import di.x8;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.g6;
+public final class g0 extends Drawable {
+    public final Paint f9280a = new Paint(1);
+    public final RectF f9281b = new RectF();
+    public final int f9282c;
+    public final Path d;
+    public boolean e;
+    public int f9283f;
+    public final g6 f9284g;
+    public final g6 h;
 
-    public g0(h0 h0Var) {
-        this.F = h0Var;
+    public g0(int i10) {
+        Path path = new Path();
+        this.d = path;
+        x8 x8Var = new x8(this, 12);
+        es esVar = es.h;
+        this.f9284g = new g6(x8Var, 320L, esVar, 0);
+        this.h = new g6(new x8(this, 12), 320L, esVar, 0);
+        this.f9282c = i10;
+        path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
+        path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
+        path.lineTo(0.0f, -AndroidUtilities.dp(6.16f));
+        path.close();
     }
 
     @Override
-    public final void M() {
-        ViewGroup viewGroup;
-        h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9975f).containerView;
-        viewGroup.invalidate();
-        h0Var.f9973c.invalidate();
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f9281b;
+        rectF.set(bounds);
+        rectF.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        int i10 = this.f9282c;
+        Paint paint = this.f9280a;
+        canvas.drawRoundRect(rectF, i10, i10, paint);
+        float e = this.f9284g.e(this.e);
+        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f9283f, false);
+        if (e > 0.0f) {
+            canvas.save();
+            canvas.translate(dp, com.google.android.gms.internal.play_billing.k3.y(1.0f, e, AndroidUtilities.dp(6.16f), AndroidUtilities.dp(8.0f)));
+            canvas.drawPath(this.d, paint);
+            canvas.restore();
+        }
     }
 
     @Override
-    public final void O() {
-        ViewGroup viewGroup;
-        h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9975f).containerView;
-        viewGroup.invalidate();
-        h0Var.f9973c.invalidate();
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void P(d1 d1Var) {
-        ViewGroup viewGroup;
-        h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9975f).containerView;
-        viewGroup.invalidate();
-        h0Var.f9973c.invalidate();
-        h0Var.d.invalidate();
+    public final void setAlpha(int i10) {
     }
 
     @Override
-    public final void Q() {
-        ViewGroup viewGroup;
-        h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9975f).containerView;
-        viewGroup.invalidate();
-        h0Var.f9973c.invalidate();
-    }
-
-    @Override
-    public final boolean t(d1 d1Var) {
-        return true;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

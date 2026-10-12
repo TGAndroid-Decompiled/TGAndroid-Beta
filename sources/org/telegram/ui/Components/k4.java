@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class k4 extends yd0 {
-    public final int[] f27750w0;
+public final class k4 extends ud0 {
+    public final int[] f26576w0;
 
     public k4(Context context, org.telegram.ui.ActionBar.c6 c6Var, int[] iArr) {
         super(context, c6Var);
-        this.f27750w0 = iArr;
+        this.f26576w0 = iArr;
     }
 
     @Override
     public final CharSequence d(int i10) {
-        int i11 = this.f27750w0[i10];
+        int i11 = this.f26576w0[i10];
         if (i11 == 0) {
             return LocaleController.getString(R.string.AutoDeleteNever);
         }

@@ -1,114 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class wq extends Drawable {
-    public final Drawable f32529a;
-    public Path f32530b;
-    public final RectF f32531c;
-    public final RectF d;
-    public boolean f32532e;
-    public final float[] f32533f;
+import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class wq implements TextWatcher {
+    public final int f30944a = 1;
+    public final int f30945b;
+    public final View f30946c;
 
-    public wq(Drawable drawable) {
-        i.f fVar = new i.f(this, 2);
-        this.f32531c = new RectF();
-        this.d = new RectF();
-        this.f32532e = false;
-        this.f32533f = new float[8];
-        Drawable drawable2 = this.f32529a;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.f32529a = drawable;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.f32529a.setCallback(fVar);
-        }
-    }
-
-    public final void a() {
-        if (!this.f32532e) {
-            return;
-        }
-        Path path = this.f32530b;
-        if (path == null) {
-            this.f32530b = new Path();
-        } else {
-            path.rewind();
-        }
-        Rect bounds = getBounds();
-        RectF rectF = this.f32531c;
-        rectF.set(bounds);
-        float f7 = rectF.left;
-        RectF rectF2 = this.d;
-        rectF.left = f7 + rectF2.left;
-        rectF.top += rectF2.top;
-        rectF.right -= rectF2.right;
-        rectF.bottom -= rectF2.bottom;
-        this.f32530b.addRoundRect(rectF, this.f32533f, Path.Direction.CW);
+    public wq(zq zqVar, int i10) {
+        this.f30946c = zqVar;
+        this.f30945b = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.f32529a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            if (!this.f32532e) {
-                canvas.save();
-                canvas.clipRect(getBounds());
-                this.f32529a.draw(canvas);
-                canvas.restore();
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        int i11 = this.f30944a;
+        int i12 = this.f30945b;
+        View view = this.f30946c;
+        boolean z10 = false;
+        switch (i11) {
+            case 0:
+                zq zqVar = (zq) view;
+                EditTextBoldCursor[] editTextBoldCursorArr = zqVar.E;
+                if (!zqVar.f31970r) {
+                    zqVar.f31970r = true;
+                    int i13 = 0;
+                    while (i13 < editable.length()) {
+                        char charAt = editable.charAt(i13);
+                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
+                            editable.replace(i13, i13 + 1, "");
+                            i13--;
+                        }
+                        i13++;
+                    }
+                    if (editable.length() == 0) {
+                        zqVar.f31970r = false;
+                        return;
+                    }
+                    try {
+                        i10 = Integer.parseInt(editTextBoldCursorArr[i12].getText().toString(), 16) | (-16777216);
+                    } catch (Exception unused) {
+                        i10 = -1;
+                    }
+                    zqVar.setColorInner(i10);
+                    int color = zqVar.getColor();
+                    if (editable.length() == 6) {
+                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
+                        editTextBoldCursorArr[i12].setSelection(editable.length());
+                    }
+                    zqVar.v[zqVar.S].a(color);
+                    zqVar.f31961a.t0(color, zqVar.S, true);
+                    zqVar.f31970r = false;
+                    return;
+                }
                 return;
-            }
-            canvas.save();
-            a();
-            canvas.clipPath(this.f32530b);
-            this.f32529a.draw(canvas);
-            canvas.restore();
+            default:
+                NumberTextView numberTextView = (NumberTextView) view;
+                int codePointCount = i12 - Character.codePointCount(editable, 0, editable.length());
+                if (codePointCount < 30) {
+                    if (numberTextView.getVisibility() == 0) {
+                        z10 = true;
+                    }
+                    numberTextView.a(codePointCount, z10);
+                    AndroidUtilities.updateViewVisibilityAnimated(numberTextView, true);
+                    return;
+                }
+                AndroidUtilities.updateViewVisibilityAnimated(numberTextView, false);
+                return;
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        Drawable drawable = this.f32529a;
-        if (drawable != null) {
-            return drawable.getIntrinsicHeight();
-        }
-        return super.getIntrinsicHeight();
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f30944a;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        Drawable drawable = this.f32529a;
-        if (drawable != null) {
-            return drawable.getIntrinsicWidth();
-        }
-        return super.getIntrinsicWidth();
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f30944a;
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public wq(int i10, NumberTextView numberTextView) {
+        this.f30945b = i10;
+        this.f30946c = numberTextView;
     }
 
-    @Override
-    public final void setAlpha(int i10) {
-        Drawable drawable = this.f32529a;
-        if (drawable != null) {
-            drawable.setAlpha(i10);
-        }
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f32529a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

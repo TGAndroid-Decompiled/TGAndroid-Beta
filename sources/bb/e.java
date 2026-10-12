@@ -1,36 +1,28 @@
 package bb;
 
-import java.util.regex.Pattern;
+import kotlin.jvm.internal.i;
 public final class e {
-    public final qa.d f3813a;
-    public final aa.a f3814b;
-    public final m f3815c;
-    public final je.d d = je.e.a();
+    public final String f2628a;
 
-    public e(jd.h hVar, qa.d dVar, za.b bVar, aa.a aVar, k1.f fVar) {
-        this.f3813a = dVar;
-        this.f3814b = aVar;
-        this.f3815c = new m(fVar);
+    public e(String str) {
+        this.f2628a = str;
     }
 
-    public static String b(String str) {
-        Pattern compile = Pattern.compile("/");
-        kotlin.jvm.internal.i.d(compile, "compile(...)");
-        String replaceAll = compile.matcher(str).replaceAll("");
-        kotlin.jvm.internal.i.d(replaceAll, "replaceAll(...)");
-        return replaceAll;
-    }
-
-    public final Boolean a() {
-        f fVar = this.f3815c.f3841b;
-        if (fVar != null) {
-            return fVar.f3816a;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        kotlin.jvm.internal.i.h("sessionConfigs");
-        throw null;
+        if ((obj instanceof e) && i.a(this.f2628a, ((e) obj).f2628a)) {
+            return true;
+        }
+        return false;
     }
 
-    public final java.lang.Object c(jd.c r25) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.e.c(jd.c):java.lang.Object");
+    public final int hashCode() {
+        return this.f2628a.hashCode();
+    }
+
+    public final String toString() {
+        return "SessionDetails(sessionId=" + this.f2628a + ')';
     }
 }

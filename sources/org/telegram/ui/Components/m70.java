@@ -1,43 +1,42 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class m70 implements View.OnClickListener {
-    public final int f28414a;
-    public final TLRPC.User f28415b;
-    public final String f28416c;
-    public final boolean d;
-    public final boolean f28417e;
-    public final boolean f28418f;
-    public final vm0 h;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class m70 extends FrameLayout {
+    public final TextView f27226a;
+    public final TextView f27227b;
+    public final p70 f27228c;
 
-    public m70(vm0 vm0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f28414a = i10;
-        this.h = vm0Var;
-        this.f28415b = user;
-        this.f28416c = str;
-        this.d = z10;
-        this.f28417e = z11;
-        this.f28418f = z12;
+    public m70(p70 p70Var, Context context) {
+        super(context);
+        this.f27228c = p70Var;
+        ImageView imageView = new ImageView(context);
+        imageView.setBackground(org.telegram.ui.ActionBar.g6.L(46, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.R7, false), org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Y7, false)));
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView.setImageResource(R.drawable.large_income);
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        addView(imageView, w7.a6.a(46.0f, 13.0f, 0.0f, 0.0f, 0.0f, 46, 19));
+        TextView textView = new TextView(context);
+        this.f27226a = textView;
+        com.google.android.gms.internal.play_billing.k3.m(16.0f, 1, textView);
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
+        addView(textView, w7.a6.a(-2.0f, 72.0f, 9.0f, 0.0f, 0.0f, -1, 51));
+        TextView textView2 = new TextView(context);
+        this.f27227b = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20288y6, false));
+        addView(textView2, w7.a6.a(-2.0f, 72.0f, 32.0f, 0.0f, 0.0f, -1, 51));
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        switch (this.f28414a) {
-            case 0:
-                w70 w70Var = ((r70) this.h).f30068c;
-                Context context = w70Var.getContext();
-                i10 = ((org.telegram.ui.ActionBar.e3) w70Var).currentAccount;
-                c6Var = ((org.telegram.ui.ActionBar.e3) w70Var).resourcesProvider;
-                j11.b(context, i10, -w70Var.f32327g0, this.f28415b, this.f28416c, this.d, this.f28417e, this.f28418f, c6Var);
-                return;
-            default:
-                hw0 hw0Var = ((ru0) this.h).f30243f;
-                j11.b(hw0Var.getContext(), hw0Var.f26957v1.getCurrentAccount(), hw0Var.f26932j1, this.f28415b, this.f28416c, this.d, this.f28417e, this.f28418f, hw0Var.F1);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
     }
 }

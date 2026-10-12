@@ -1,107 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.IUpdateLayout;
-public final class v71 extends IUpdateLayout {
-    public FrameLayout f31450a;
-    public RadialProgress2 f31451b;
-    public org.telegram.ui.Cells.x1 f31452c;
-    public final Activity d;
-    public final ViewGroup f31453e;
+import android.view.TextureView;
+import java.util.ArrayList;
+public final class v71 implements Runnable {
+    public final int f29913a;
+    public final Object f29914b;
 
-    public v71(Activity activity, ViewGroup viewGroup) {
-        super(activity, viewGroup);
-        this.d = activity;
-        this.f31453e = viewGroup;
+    public v71(Object obj, int i10) {
+        this.f29913a = i10;
+        this.f29914b = obj;
     }
 
     @Override
-    public final void createUpdateUI(int i10) {
-        ViewGroup viewGroup = this.f31453e;
-        if (viewGroup != null && this.f31450a == null) {
-            Activity activity = this.d;
-            FrameLayout frameLayout = new FrameLayout(activity);
-            this.f31450a = frameLayout;
-            frameLayout.setVisibility(4);
-            this.f31450a.setTranslationY(AndroidUtilities.dp(44.0f));
-            this.f31450a.setBackground(org.telegram.ui.ActionBar.h6.g0(1090519039, 2, -1));
-            viewGroup.addView(this.f31450a, w7.w5.e(-1, 44, 83));
-            this.f31450a.setOnClickListener(new ci.m4(this, i10, 14));
-            org.telegram.ui.Cells.x1 x1Var = new org.telegram.ui.Cells.x1(this, activity);
-            this.f31452c = x1Var;
-            x1Var.setTextSize(AndroidUtilities.dp(15.0f));
-            this.f31452c.setTypeface(AndroidUtilities.bold());
-            this.f31452c.setTextColor(-1);
-            this.f31452c.setGravity(17);
-            this.f31450a.addView(this.f31452c, w7.w5.g());
-            this.f31452c.c(LocaleController.getString(R.string.AppUpdateBeta), false, true);
-            RadialProgress2 radialProgress2 = new RadialProgress2(this.f31452c, null);
-            this.f31451b = radialProgress2;
-            int i11 = org.telegram.ui.ActionBar.h6.Oh;
-            radialProgress2.setColors(-1, -1, org.telegram.ui.ActionBar.h6.x0(null, i11, false), org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-            this.f31451b.q(0, 0, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
-            this.f31451b.setCircleRadius(AndroidUtilities.dp(11.0f));
-            this.f31451b.setAsMini();
-        }
-    }
-
-    @Override
-    public final void updateAppUpdateViews(int i10, boolean z10) {
-        if (this.f31453e != null) {
-            if (ApplicationLoader.applicationLoaderInstance.getUpdate() != null) {
-                createUpdateUI(i10);
-                File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
-                if (downloadedUpdateFile != null && downloadedUpdateFile.exists()) {
-                    this.f31451b.setIcon(15, true, z10);
-                    this.f31452c.c(LocaleController.getString(R.string.AppUpdateNow), z10, true);
-                } else if (ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
-                    this.f31451b.setIcon(3, true, z10);
-                    this.f31451b.o(ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress(), true);
-                    this.f31452c.c(LocaleController.formatString(R.string.AppUpdateDownloading, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z10, true);
-                } else {
-                    this.f31451b.setIcon(2, true, z10);
-                    this.f31452c.c(LocaleController.getString(R.string.AppUpdateBeta), z10, true);
-                }
-                if (this.f31450a.getTag() == null) {
-                    this.f31450a.setVisibility(0);
-                    this.f31450a.setTag(1);
-                    if (z10) {
-                        this.f31450a.animate().translationY(0.0f).setInterpolator(js.f27635g).setListener(null).setDuration(180L).start();
-                        return;
-                    } else {
-                        this.f31450a.setTranslationY(0.0f);
-                        return;
-                    }
-                }
-                return;
-            }
-            FrameLayout frameLayout = this.f31450a;
-            if (frameLayout != null && frameLayout.getTag() != null) {
-                this.f31450a.setTag(null);
-                if (z10) {
-                    this.f31450a.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(js.f27635g).setListener(new zd0(this, 28)).setDuration(180L).start();
+    public final void run() {
+        switch (this.f29913a) {
+            case 0:
+                h00 h00Var = ((x71) this.f29914b).f31189b;
+                if (h00Var != null) {
+                    h00Var.d(false, true, false);
                     return;
                 }
-                this.f31450a.setTranslationY(AndroidUtilities.dp(44.0f));
-                this.f31450a.setVisibility(4);
-            }
-        }
-    }
-
-    @Override
-    public final void updateFileProgress(Object[] objArr) {
-        if (this.f31450a != null && this.f31452c != null && ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
-            float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
-            this.f31451b.o(downloadingUpdateProgress, true);
-            this.f31452c.setText(LocaleController.formatString(R.string.AppUpdateDownloading, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
-            this.f31450a.invalidate();
+                return;
+            case 1:
+                h81 h81Var = (h81) this.f29914b;
+                i2.h0 h0Var = h81Var.d;
+                if (h0Var != null) {
+                    TextureView textureView = h81Var.f25556n;
+                    h0Var.F1();
+                    if (textureView != null && textureView == h0Var.X) {
+                        h0Var.F1();
+                        h0Var.s1();
+                        h0Var.x1(null);
+                        h0Var.q1(0, 0);
+                    }
+                    h81Var.d.z1(h81Var.f25556n);
+                    ArrayList arrayList = h81Var.N;
+                    if (arrayList != null) {
+                        h81Var.F(arrayList, h81Var.O);
+                    } else if (h81Var.U) {
+                        h81Var.G(h81Var.Q, h81Var.S, h81Var.R, h81Var.T);
+                    } else {
+                        h81Var.D(h81Var.Q, h81Var.S);
+                    }
+                    h81Var.C();
+                    return;
+                }
+                return;
+            case 2:
+                h81 h81Var2 = ((g81) this.f29914b).f25222f;
+                h81Var2.f25544a0.removeCallbacksAndMessages(null);
+                h81Var2.K.onVisualizerUpdate(false, true, null);
+                return;
+            case 3:
+                ((j81) this.f29914b).f26241g = false;
+                return;
+            case 4:
+                ((ca1) ((li.e) ((org.telegram.ui.Cells.da) this.f29914b).f21091b).f14763b).v.b();
+                return;
+            default:
+                ((y91) this.f29914b).d(false, true);
+                return;
         }
     }
 }
